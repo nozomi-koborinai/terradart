@@ -32,7 +32,7 @@ final class ContainerAttachedClusterAuthorization {
 final class ContainerAttachedClusterBinaryAuthorization {
   const ContainerAttachedClusterBinaryAuthorization({this.evaluationMode});
 
-  final TfArg<ContainerAttachedClusterEvaluationMode>? evaluationMode;
+  final ContainerAttachedClusterEvaluationMode? evaluationMode;
 
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
@@ -40,13 +40,27 @@ final class ContainerAttachedClusterBinaryAuthorization {
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum ContainerAttachedClusterEvaluationMode implements TerraformEnum {
-  disabled('DISABLED'),
-  projectSingletonPolicyEnforce('PROJECT_SINGLETON_POLICY_ENFORCE');
+extension type const ContainerAttachedClusterEvaluationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAttachedClusterEvaluationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAttachedClusterEvaluationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAttachedClusterEvaluationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ContainerAttachedClusterEvaluationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = ContainerAttachedClusterEvaluationMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const projectSingletonPolicyEnforce =
+      ContainerAttachedClusterEvaluationMode._(
+        TfArgLiteral('PROJECT_SINGLETON_POLICY_ENFORCE'),
+      );
+
+  static const List<ContainerAttachedClusterEvaluationMode> values = [
+    disabled,
+    projectSingletonPolicyEnforce,
+  ];
 }
 
 /// Typed helper for the `fleet` block of
@@ -79,7 +93,7 @@ final class ContainerAttachedClusterLoggingConfig {
 final class ContainerAttachedClusterComponentConfig {
   const ContainerAttachedClusterComponentConfig({this.enableComponents});
 
-  final List<TfArg<ContainerAttachedClusterEnableComponents>>? enableComponents;
+  final List<ContainerAttachedClusterEnableComponents>? enableComponents;
 
   Map<String, Object?> encode() => {
     if (enableComponents != null)
@@ -88,13 +102,26 @@ final class ContainerAttachedClusterComponentConfig {
 }
 
 /// `enable_components` — derived from the provider schema description.
-enum ContainerAttachedClusterEnableComponents implements TerraformEnum {
-  systemComponents('SYSTEM_COMPONENTS'),
-  workloads('WORKLOADS');
+extension type const ContainerAttachedClusterEnableComponents._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAttachedClusterEnableComponents.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAttachedClusterEnableComponents.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAttachedClusterEnableComponents.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ContainerAttachedClusterEnableComponents(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const systemComponents = ContainerAttachedClusterEnableComponents._(
+    TfArgLiteral('SYSTEM_COMPONENTS'),
+  );
+  static const workloads = ContainerAttachedClusterEnableComponents._(
+    TfArgLiteral('WORKLOADS'),
+  );
+
+  static const List<ContainerAttachedClusterEnableComponents> values = [
+    systemComponents,
+    workloads,
+  ];
 }
 
 /// Typed helper for the `monitoring_config` block of
@@ -183,7 +210,7 @@ final class ContainerAttachedClusterSecurityPostureConfig {
     required this.vulnerabilityMode,
   });
 
-  final TfArg<ContainerAttachedClusterVulnerabilityMode> vulnerabilityMode;
+  final ContainerAttachedClusterVulnerabilityMode vulnerabilityMode;
 
   Map<String, Object?> encode() => {
     'vulnerability_mode': vulnerabilityMode.toTfJson(),
@@ -191,13 +218,29 @@ final class ContainerAttachedClusterSecurityPostureConfig {
 }
 
 /// `vulnerability_mode` — derived from the provider schema description.
-enum ContainerAttachedClusterVulnerabilityMode implements TerraformEnum {
-  vulnerabilityDisabled('VULNERABILITY_DISABLED'),
-  vulnerabilityEnterprise('VULNERABILITY_ENTERPRISE');
+extension type const ContainerAttachedClusterVulnerabilityMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerAttachedClusterVulnerabilityMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAttachedClusterVulnerabilityMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAttachedClusterVulnerabilityMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ContainerAttachedClusterVulnerabilityMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vulnerabilityDisabled =
+      ContainerAttachedClusterVulnerabilityMode._(
+        TfArgLiteral('VULNERABILITY_DISABLED'),
+      );
+  static const vulnerabilityEnterprise =
+      ContainerAttachedClusterVulnerabilityMode._(
+        TfArgLiteral('VULNERABILITY_ENTERPRISE'),
+      );
+
+  static const List<ContainerAttachedClusterVulnerabilityMode> values = [
+    vulnerabilityDisabled,
+    vulnerabilityEnterprise,
+  ];
 }
 
 /// Factory wrapper for `google_container_attached_cluster`.

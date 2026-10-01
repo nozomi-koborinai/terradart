@@ -11,13 +11,17 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDatazoneDomainSensitive = <String>{};
 
 /// Datazone Domain enum for `domain_version`.
-enum DatazoneDomainVersion implements TerraformEnum {
-  v1('V1'),
-  v2('V2');
+extension type const DatazoneDomainVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazoneDomainVersion.variable(String name) : this._(TfArg.variable(name));
+  DatazoneDomainVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazoneDomainVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazoneDomainVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1 = DatazoneDomainVersion._(TfArgLiteral('V1'));
+  static const v2 = DatazoneDomainVersion._(TfArgLiteral('V2'));
+
+  static const List<DatazoneDomainVersion> values = [v1, v2];
 }
 
 /// Typed helper for the `single_sign_on` block of
@@ -28,7 +32,7 @@ final class DatazoneDomainSingleSignOn {
 
   final TfArg<String>? type;
 
-  final TfArg<DatazoneDomainUserAssignment>? userAssignment;
+  final DatazoneDomainUserAssignment? userAssignment;
 
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
@@ -37,13 +41,20 @@ final class DatazoneDomainSingleSignOn {
 }
 
 /// `user_assignment` — derived from the provider schema description.
-enum DatazoneDomainUserAssignment implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  manual('MANUAL');
+extension type const DatazoneDomainUserAssignment._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazoneDomainUserAssignment.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazoneDomainUserAssignment.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazoneDomainUserAssignment.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazoneDomainUserAssignment(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = DatazoneDomainUserAssignment._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const manual = DatazoneDomainUserAssignment._(TfArgLiteral('MANUAL'));
+
+  static const List<DatazoneDomainUserAssignment> values = [automatic, manual];
 }
 
 /// Factory wrapper for `aws_datazone_domain`.
@@ -54,7 +65,7 @@ final class AwsDatazoneDomain extends Resource {
     super.localName, {
     TfArg<String>? description,
     required TfArg<String> domainExecutionRole,
-    TfArg<DatazoneDomainVersion>? domainVersion,
+    DatazoneDomainVersion? domainVersion,
     RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,

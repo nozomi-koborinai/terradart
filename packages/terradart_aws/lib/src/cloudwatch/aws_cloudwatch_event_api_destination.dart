@@ -7,18 +7,46 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudwatchEventApiDestinationSensitive = <String>{};
 
 /// Cloudwatch Event Api Destination Http enum for `http_method`.
-enum CloudwatchEventApiDestinationHttpMethod implements TerraformEnum {
-  post('POST'),
-  get('GET'),
-  head('HEAD'),
-  options('OPTIONS'),
-  put('PUT'),
-  patch('PATCH'),
-  delete('DELETE');
+extension type const CloudwatchEventApiDestinationHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventApiDestinationHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventApiDestinationHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventApiDestinationHttpMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchEventApiDestinationHttpMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const post = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('POST'),
+  );
+  static const get = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('GET'),
+  );
+  static const head = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('HEAD'),
+  );
+  static const options = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const put = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('PUT'),
+  );
+  static const patch = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('PATCH'),
+  );
+  static const delete = CloudwatchEventApiDestinationHttpMethod._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<CloudwatchEventApiDestinationHttpMethod> values = [
+    post,
+    get,
+    head,
+    options,
+    put,
+    patch,
+    delete,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudwatch_event_api_destination`.
@@ -29,7 +57,7 @@ final class AwsCloudwatchEventApiDestination extends Resource {
     super.localName, {
     required TfArg<String> connectionArn,
     TfArg<String>? description,
-    required TfArg<CloudwatchEventApiDestinationHttpMethod> httpMethod,
+    required CloudwatchEventApiDestinationHttpMethod httpMethod,
     required TfArg<String> invocationEndpoint,
     TfArg<num>? invocationRateLimitPerSecond,
     required TfArg<String> name,

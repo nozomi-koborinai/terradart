@@ -14,79 +14,180 @@ const Set<String> _awsElasticacheReplicationGroupSensitive = <String>{
 };
 
 /// Elasticache Replication Group Auth Token Update enum for `auth_token_update_strategy`.
-enum ElasticacheReplicationGroupAuthTokenUpdateStrategy
-    implements TerraformEnum {
-  set('SET'),
-  rotate('ROTATE'),
-  delete('DELETE');
+extension type const ElasticacheReplicationGroupAuthTokenUpdateStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ElasticacheReplicationGroupAuthTokenUpdateStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupAuthTokenUpdateStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupAuthTokenUpdateStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ElasticacheReplicationGroupAuthTokenUpdateStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const set = ElasticacheReplicationGroupAuthTokenUpdateStrategy._(
+    TfArgLiteral('SET'),
+  );
+  static const rotate = ElasticacheReplicationGroupAuthTokenUpdateStrategy._(
+    TfArgLiteral('ROTATE'),
+  );
+  static const delete = ElasticacheReplicationGroupAuthTokenUpdateStrategy._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<ElasticacheReplicationGroupAuthTokenUpdateStrategy> values =
+      [set, rotate, delete];
 }
 
 /// Elasticache Replication Group Cluster enum for `cluster_mode`.
-enum ElasticacheReplicationGroupClusterMode implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled'),
-  compatible('compatible');
+extension type const ElasticacheReplicationGroupClusterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupClusterMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupClusterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupClusterMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupClusterMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ElasticacheReplicationGroupClusterMode._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = ElasticacheReplicationGroupClusterMode._(
+    TfArgLiteral('disabled'),
+  );
+  static const compatible = ElasticacheReplicationGroupClusterMode._(
+    TfArgLiteral('compatible'),
+  );
+
+  static const List<ElasticacheReplicationGroupClusterMode> values = [
+    enabled,
+    disabled,
+    compatible,
+  ];
 }
 
 /// Elasticache Replication Group enum for `durability`.
-enum ElasticacheReplicationGroupDurability implements TerraformEnum {
-  defaultCase('default'),
-  async('async'),
-  sync('sync'),
-  disabled('disabled');
+extension type const ElasticacheReplicationGroupDurability._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupDurability.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupDurability.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupDurability.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupDurability(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = ElasticacheReplicationGroupDurability._(
+    TfArgLiteral('default'),
+  );
+  static const async = ElasticacheReplicationGroupDurability._(
+    TfArgLiteral('async'),
+  );
+  static const sync = ElasticacheReplicationGroupDurability._(
+    TfArgLiteral('sync'),
+  );
+  static const disabled = ElasticacheReplicationGroupDurability._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<ElasticacheReplicationGroupDurability> values = [
+    defaultCase,
+    async,
+    sync,
+    disabled,
+  ];
 }
 
 /// Elasticache Replication Group enum for `engine`.
-enum ElasticacheReplicationGroupEngine implements TerraformEnum {
-  redis('redis'),
-  valkey('valkey');
+extension type const ElasticacheReplicationGroupEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheReplicationGroupEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redis = ElasticacheReplicationGroupEngine._(
+    TfArgLiteral('redis'),
+  );
+  static const valkey = ElasticacheReplicationGroupEngine._(
+    TfArgLiteral('valkey'),
+  );
+
+  static const List<ElasticacheReplicationGroupEngine> values = [redis, valkey];
 }
 
 /// Elasticache Replication Group Ip enum for `ip_discovery`.
-enum ElasticacheReplicationGroupIpDiscovery implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const ElasticacheReplicationGroupIpDiscovery._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupIpDiscovery.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupIpDiscovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupIpDiscovery.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupIpDiscovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ElasticacheReplicationGroupIpDiscovery._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = ElasticacheReplicationGroupIpDiscovery._(
+    TfArgLiteral('ipv6'),
+  );
+
+  static const List<ElasticacheReplicationGroupIpDiscovery> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Elasticache Replication Group Network enum for `network_type`.
-enum ElasticacheReplicationGroupNetworkType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualStack('dual_stack');
+extension type const ElasticacheReplicationGroupNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ElasticacheReplicationGroupNetworkType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = ElasticacheReplicationGroupNetworkType._(
+    TfArgLiteral('ipv6'),
+  );
+  static const dualStack = ElasticacheReplicationGroupNetworkType._(
+    TfArgLiteral('dual_stack'),
+  );
+
+  static const List<ElasticacheReplicationGroupNetworkType> values = [
+    ipv4,
+    ipv6,
+    dualStack,
+  ];
 }
 
 /// Elasticache Replication Group Transit Encryption enum for `transit_encryption_mode`.
-enum ElasticacheReplicationGroupTransitEncryptionMode implements TerraformEnum {
-  preferred('preferred'),
-  required('required');
+extension type const ElasticacheReplicationGroupTransitEncryptionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ElasticacheReplicationGroupTransitEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupTransitEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupTransitEncryptionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupTransitEncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const preferred = ElasticacheReplicationGroupTransitEncryptionMode._(
+    TfArgLiteral('preferred'),
+  );
+  static const required = ElasticacheReplicationGroupTransitEncryptionMode._(
+    TfArgLiteral('required'),
+  );
+
+  static const List<ElasticacheReplicationGroupTransitEncryptionMode> values = [
+    preferred,
+    required,
+  ];
 }
 
 /// At most one of `auth_token`, `auth_token_wo`, `user_group_ids` on `aws_elasticache_replication_group`: the provider rejects
@@ -266,11 +367,11 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 
   final TfArg<String> destination;
 
-  final TfArg<ElasticacheReplicationGroupDestinationType> destinationType;
+  final ElasticacheReplicationGroupDestinationType destinationType;
 
-  final TfArg<ElasticacheReplicationGroupLogFormat> logFormat;
+  final ElasticacheReplicationGroupLogFormat logFormat;
 
-  final TfArg<ElasticacheReplicationGroupLogType> logType;
+  final ElasticacheReplicationGroupLogType logType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -281,33 +382,69 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum ElasticacheReplicationGroupDestinationType implements TerraformEnum {
-  cloudwatchLogs('cloudwatch-logs'),
-  kinesisFirehose('kinesis-firehose');
+extension type const ElasticacheReplicationGroupDestinationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ElasticacheReplicationGroupDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupDestinationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudwatchLogs = ElasticacheReplicationGroupDestinationType._(
+    TfArgLiteral('cloudwatch-logs'),
+  );
+  static const kinesisFirehose = ElasticacheReplicationGroupDestinationType._(
+    TfArgLiteral('kinesis-firehose'),
+  );
+
+  static const List<ElasticacheReplicationGroupDestinationType> values = [
+    cloudwatchLogs,
+    kinesisFirehose,
+  ];
 }
 
 /// `log_format` — derived from the provider schema description.
-enum ElasticacheReplicationGroupLogFormat implements TerraformEnum {
-  text('text'),
-  json('json');
+extension type const ElasticacheReplicationGroupLogFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupLogFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupLogFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupLogFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheReplicationGroupLogFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = ElasticacheReplicationGroupLogFormat._(
+    TfArgLiteral('text'),
+  );
+  static const json = ElasticacheReplicationGroupLogFormat._(
+    TfArgLiteral('json'),
+  );
+
+  static const List<ElasticacheReplicationGroupLogFormat> values = [text, json];
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ElasticacheReplicationGroupLogType implements TerraformEnum {
-  slowLog('slow-log'),
-  engineLog('engine-log');
+extension type const ElasticacheReplicationGroupLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheReplicationGroupLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheReplicationGroupLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheReplicationGroupLogType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheReplicationGroupLogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const slowLog = ElasticacheReplicationGroupLogType._(
+    TfArgLiteral('slow-log'),
+  );
+  static const engineLog = ElasticacheReplicationGroupLogType._(
+    TfArgLiteral('engine-log'),
+  );
+
+  static const List<ElasticacheReplicationGroupLogType> values = [
+    slowLog,
+    engineLog,
+  ];
 }
 
 /// Typed helper for the `node_group_configuration` block of
@@ -358,24 +495,23 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<String>? atRestEncryptionEnabled,
     ElasticacheReplicationGroupAuth? auth,
-    TfArg<ElasticacheReplicationGroupAuthTokenUpdateStrategy>?
-    authTokenUpdateStrategy,
+    ElasticacheReplicationGroupAuthTokenUpdateStrategy? authTokenUpdateStrategy,
     TfArg<num>? authTokenWoVersion,
     TfArg<String>? autoMinorVersionUpgrade,
     TfArg<bool>? automaticFailoverEnabled,
-    TfArg<ElasticacheReplicationGroupClusterMode>? clusterMode,
+    ElasticacheReplicationGroupClusterMode? clusterMode,
     TfArg<bool>? dataTieringEnabled,
     required TfArg<String> description,
-    TfArg<ElasticacheReplicationGroupDurability>? durability,
-    TfArg<ElasticacheReplicationGroupEngine>? engine,
+    ElasticacheReplicationGroupDurability? durability,
+    ElasticacheReplicationGroupEngine? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalReplicationGroupId,
-    TfArg<ElasticacheReplicationGroupIpDiscovery>? ipDiscovery,
+    ElasticacheReplicationGroupIpDiscovery? ipDiscovery,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? maintenanceWindow,
     TfArg<bool>? multiAzEnabled,
-    TfArg<ElasticacheReplicationGroupNetworkType>? networkType,
+    ElasticacheReplicationGroupNetworkType? networkType,
     TfArg<String>? nodeType,
     TfArg<String>? notificationTopicArn,
     TfArg<num>? numCacheClusters,
@@ -395,8 +531,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<String>? subnetGroupName,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? transitEncryptionEnabled,
-    TfArg<ElasticacheReplicationGroupTransitEncryptionMode>?
-    transitEncryptionMode,
+    ElasticacheReplicationGroupTransitEncryptionMode? transitEncryptionMode,
     List<ElasticacheReplicationGroupLogDeliveryConfiguration>?
     logDeliveryConfiguration,
     super.lifecycle,

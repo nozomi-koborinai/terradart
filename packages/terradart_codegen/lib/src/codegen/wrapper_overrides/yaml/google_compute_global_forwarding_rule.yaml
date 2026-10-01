@@ -68,10 +68,10 @@ curatedDoc: |-
   ///   name: TfArg.literal('lb-https-frontend'),
   ///   target: httpsProxy.selfLink,
   ///   ipAddress: lbVip.selfLink,
-  ///   ipProtocol: TfArg.literal(GlobalForwardingRuleIpProtocol.tcp),
+  ///   ipProtocol: GlobalForwardingRuleIpProtocol.tcp,
   ///   portRange: TfArg.literal('443'),
   ///   loadBalancingScheme:
-  ///       TfArg.literal(GlobalForwardingRuleLoadBalancingScheme.externalManaged),
+  ///       GlobalForwardingRuleLoadBalancingScheme.externalManaged,
   /// );
   /// ```
   ///
@@ -129,29 +129,33 @@ prelude: |
   /// this typed enum. Callers who need it can drop down to a raw
   /// `TfArg.literal<String>('L3_DEFAULT')` via the wrapper's untyped
   /// escape hatch.
-  enum GlobalForwardingRuleIpProtocol implements TerraformEnum {
-    tcp('TCP'),
-    udp('UDP'),
-    esp('ESP'),
-    ah('AH'),
-    sctp('SCTP'),
-    icmp('ICMP');
+  extension type const GlobalForwardingRuleIpProtocol._(TfArg<String> _) implements TfArg<String> {
+    GlobalForwardingRuleIpProtocol.variable(String name) : this._(TfArg.variable(name));
+    GlobalForwardingRuleIpProtocol.expression(String template) : this._(TfArg.expression(template));
+    const GlobalForwardingRuleIpProtocol.arg(TfArg<String> arg) : this._(arg);
 
-    const GlobalForwardingRuleIpProtocol(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const tcp = GlobalForwardingRuleIpProtocol._(TfArgLiteral('TCP'));
+    static const udp = GlobalForwardingRuleIpProtocol._(TfArgLiteral('UDP'));
+    static const esp = GlobalForwardingRuleIpProtocol._(TfArgLiteral('ESP'));
+    static const ah = GlobalForwardingRuleIpProtocol._(TfArgLiteral('AH'));
+    static const sctp = GlobalForwardingRuleIpProtocol._(TfArgLiteral('SCTP'));
+    static const icmp = GlobalForwardingRuleIpProtocol._(TfArgLiteral('ICMP'));
+
+    static const List<GlobalForwardingRuleIpProtocol> values = [tcp, udp, esp, ah, sctp, icmp];
   }
 
   /// IP version for the global forwarding rule's VIP. Default `IPV4`.
   /// Selecting [ipv6] requires a global IPv6 [GoogleComputeGlobalAddress]
   /// for [GoogleComputeGlobalForwardingRule.ipAddress].
-  enum GlobalForwardingRuleIpVersion implements TerraformEnum {
-    ipv4('IPV4'),
-    ipv6('IPV6');
+  extension type const GlobalForwardingRuleIpVersion._(TfArg<String> _) implements TfArg<String> {
+    GlobalForwardingRuleIpVersion.variable(String name) : this._(TfArg.variable(name));
+    GlobalForwardingRuleIpVersion.expression(String template) : this._(TfArg.expression(template));
+    const GlobalForwardingRuleIpVersion.arg(TfArg<String> arg) : this._(arg);
 
-    const GlobalForwardingRuleIpVersion(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const ipv4 = GlobalForwardingRuleIpVersion._(TfArgLiteral('IPV4'));
+    static const ipv6 = GlobalForwardingRuleIpVersion._(TfArgLiteral('IPV6'));
+
+    static const List<GlobalForwardingRuleIpVersion> values = [ipv4, ipv6];
   }
 
   /// `load_balancing_scheme`. Picks which load balancer variant this
@@ -170,21 +174,22 @@ prelude: |
   ///   apply will fail.
   /// - [internalSelfManaged]: Traffic Director (xDS) — proxyless gRPC
   ///   service mesh. The only scheme that honors `metadata_filters`.
-  enum GlobalForwardingRuleLoadBalancingScheme implements TerraformEnum {
-    external('EXTERNAL'),
-    externalManaged('EXTERNAL_MANAGED'),
+  extension type const GlobalForwardingRuleLoadBalancingScheme._(TfArg<String> _) implements TfArg<String> {
+    GlobalForwardingRuleLoadBalancingScheme.variable(String name) : this._(TfArg.variable(name));
+    GlobalForwardingRuleLoadBalancingScheme.expression(String template) : this._(TfArg.expression(template));
+    const GlobalForwardingRuleLoadBalancingScheme.arg(TfArg<String> arg) : this._(arg);
 
+    static const external = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('EXTERNAL'));
+    static const externalManaged = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('EXTERNAL_MANAGED'));
     /// API-rejected on most global forwarding rules: the GCP API only
     /// accepts `INTERNAL_MANAGED` here for the cross-region internal
     /// Application Load Balancer exception, and even within that
     /// exception it is an uncommon configuration. Selecting this value
     /// for a standard global LB frontend will fail at apply time.
-    internalManaged('INTERNAL_MANAGED'),
-    internalSelfManaged('INTERNAL_SELF_MANAGED');
+    static const internalManaged = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('INTERNAL_MANAGED'));
+    static const internalSelfManaged = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('INTERNAL_SELF_MANAGED'));
 
-    const GlobalForwardingRuleLoadBalancingScheme(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const List<GlobalForwardingRuleLoadBalancingScheme> values = [external, externalManaged, internalManaged, internalSelfManaged];
   }
 
   /// `network_tier`. For global forwarding rules GCP only accepts
@@ -192,13 +197,15 @@ prelude: |
   /// with the regional resource, but supplying it on a global rule
   /// errors out. Leave the field `null` (provider default = `PREMIUM`)
   /// unless overriding is explicitly needed.
-  enum GlobalForwardingRuleNetworkTier implements TerraformEnum {
-    premium('PREMIUM'),
-    standard('STANDARD');
+  extension type const GlobalForwardingRuleNetworkTier._(TfArg<String> _) implements TfArg<String> {
+    GlobalForwardingRuleNetworkTier.variable(String name) : this._(TfArg.variable(name));
+    GlobalForwardingRuleNetworkTier.expression(String template) : this._(TfArg.expression(template));
+    const GlobalForwardingRuleNetworkTier.arg(TfArg<String> arg) : this._(arg);
 
-    const GlobalForwardingRuleNetworkTier(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const premium = GlobalForwardingRuleNetworkTier._(TfArgLiteral('PREMIUM'));
+    static const standard = GlobalForwardingRuleNetworkTier._(TfArgLiteral('STANDARD'));
+
+    static const List<GlobalForwardingRuleNetworkTier> values = [premium, standard];
   }
 
   /// `external_managed_backend_bucket_migration_state`. Drives the
@@ -213,14 +220,16 @@ prelude: |
   /// 3. [testAllTraffic]: route 100% before switching
   ///    `loadBalancingScheme` to [GlobalForwardingRuleLoadBalancingScheme.externalManaged].
   /// Rollback walks the same states in reverse.
-  enum GlobalForwardingRuleMigrationState implements TerraformEnum {
-    prepare('PREPARE'),
-    testByPercentage('TEST_BY_PERCENTAGE'),
-    testAllTraffic('TEST_ALL_TRAFFIC');
+  extension type const GlobalForwardingRuleMigrationState._(TfArg<String> _) implements TfArg<String> {
+    GlobalForwardingRuleMigrationState.variable(String name) : this._(TfArg.variable(name));
+    GlobalForwardingRuleMigrationState.expression(String template) : this._(TfArg.expression(template));
+    const GlobalForwardingRuleMigrationState.arg(TfArg<String> arg) : this._(arg);
 
-    const GlobalForwardingRuleMigrationState(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const prepare = GlobalForwardingRuleMigrationState._(TfArgLiteral('PREPARE'));
+    static const testByPercentage = GlobalForwardingRuleMigrationState._(TfArgLiteral('TEST_BY_PERCENTAGE'));
+    static const testAllTraffic = GlobalForwardingRuleMigrationState._(TfArgLiteral('TEST_ALL_TRAFFIC'));
+
+    static const List<GlobalForwardingRuleMigrationState> values = [prepare, testByPercentage, testAllTraffic];
   }
 
   /// `metadata_filters[*].filter_match_criteria`. Controls how the
@@ -229,13 +238,15 @@ prelude: |
   /// - [matchAny]: at least one filter label must match a label in the
   ///   xDS client's node metadata.
   /// - [matchAll]: every filter label must match.
-  enum GlobalForwardingRuleMetadataFilterMatchCriteria implements TerraformEnum {
-    matchAny('MATCH_ANY'),
-    matchAll('MATCH_ALL');
+  extension type const GlobalForwardingRuleMetadataFilterMatchCriteria._(TfArg<String> _) implements TfArg<String> {
+    GlobalForwardingRuleMetadataFilterMatchCriteria.variable(String name) : this._(TfArg.variable(name));
+    GlobalForwardingRuleMetadataFilterMatchCriteria.expression(String template) : this._(TfArg.expression(template));
+    const GlobalForwardingRuleMetadataFilterMatchCriteria.arg(TfArg<String> arg) : this._(arg);
 
-    const GlobalForwardingRuleMetadataFilterMatchCriteria(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const matchAny = GlobalForwardingRuleMetadataFilterMatchCriteria._(TfArgLiteral('MATCH_ANY'));
+    static const matchAll = GlobalForwardingRuleMetadataFilterMatchCriteria._(TfArgLiteral('MATCH_ALL'));
+
+    static const List<GlobalForwardingRuleMetadataFilterMatchCriteria> values = [matchAny, matchAll];
   }
 
   // ===========================================================================
@@ -256,7 +267,7 @@ prelude: |
 
     /// Whether the [filterLabels] entries are AND-combined ([GlobalForwardingRuleMetadataFilterMatchCriteria.matchAll])
     /// or OR-combined ([GlobalForwardingRuleMetadataFilterMatchCriteria.matchAny]).
-    final TfArg<GlobalForwardingRuleMetadataFilterMatchCriteria> filterMatchCriteria;
+    final GlobalForwardingRuleMetadataFilterMatchCriteria filterMatchCriteria;
 
     /// 1-64 label entries. Must be non-empty by schema (`min_items: 1`).
     final List<ComputeGlobalForwardingRuleMetadataFilterLabel> filterLabels;

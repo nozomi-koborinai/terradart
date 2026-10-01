@@ -35,7 +35,7 @@ final class SagemakerUserProfileUserSettings {
     this.tensorBoardAppSettings,
   });
 
-  final TfArg<SagemakerUserProfileAutoMountHomeEfs>? autoMountHomeEfs;
+  final SagemakerUserProfileAutoMountHomeEfs? autoMountHomeEfs;
 
   final TfArg<String>? defaultLandingUri;
 
@@ -43,7 +43,7 @@ final class SagemakerUserProfileUserSettings {
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<SagemakerUserProfileStudioWebPortal>? studioWebPortal;
+  final SagemakerUserProfileStudioWebPortal? studioWebPortal;
 
   final SagemakerUserProfileCanvasAppSettings? canvasAppSettings;
 
@@ -99,24 +99,53 @@ final class SagemakerUserProfileUserSettings {
 }
 
 /// `auto_mount_home_efs` — derived from the provider schema description.
-enum SagemakerUserProfileAutoMountHomeEfs implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled'),
-  defaultasdomain('DefaultAsDomain');
+extension type const SagemakerUserProfileAutoMountHomeEfs._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileAutoMountHomeEfs.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileAutoMountHomeEfs.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileAutoMountHomeEfs.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerUserProfileAutoMountHomeEfs(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerUserProfileAutoMountHomeEfs._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = SagemakerUserProfileAutoMountHomeEfs._(
+    TfArgLiteral('Disabled'),
+  );
+  static const defaultasdomain = SagemakerUserProfileAutoMountHomeEfs._(
+    TfArgLiteral('DefaultAsDomain'),
+  );
+
+  static const List<SagemakerUserProfileAutoMountHomeEfs> values = [
+    enabled,
+    disabled,
+    defaultasdomain,
+  ];
 }
 
 /// `studio_web_portal` — derived from the provider schema description.
-enum SagemakerUserProfileStudioWebPortal implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerUserProfileStudioWebPortal._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileStudioWebPortal.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileStudioWebPortal.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileStudioWebPortal.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerUserProfileStudioWebPortal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerUserProfileStudioWebPortal._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerUserProfileStudioWebPortal._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerUserProfileStudioWebPortal> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `user_settings.canvas_app_settings` block of
@@ -174,19 +203,26 @@ final class SagemakerUserProfileCanvasAppSettings {
 final class SagemakerUserProfileDirectDeploySettings {
   const SagemakerUserProfileDirectDeploySettings({this.status});
 
-  final TfArg<SagemakerUserProfileStatus>? status;
+  final SagemakerUserProfileStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum SagemakerUserProfileStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerUserProfileStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerUserProfileStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = SagemakerUserProfileStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerUserProfileStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `user_settings.canvas_app_settings.emr_serverless_settings` block of
@@ -200,7 +236,7 @@ final class SagemakerUserProfileEmrServerlessSettings {
 
   final RefTo<AwsIamRole>? executionRoleArn;
 
-  final TfArg<SagemakerUserProfileStatus>? status;
+  final SagemakerUserProfileStatus? status;
 
   Map<String, Object?> encode() => {
     'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
@@ -231,11 +267,11 @@ final class SagemakerUserProfileIdentityProviderOauthSettings {
     this.status,
   });
 
-  final TfArg<SagemakerUserProfileDataSourceName>? dataSourceName;
+  final SagemakerUserProfileDataSourceName? dataSourceName;
 
   final TfArg<String> secretArn;
 
-  final TfArg<SagemakerUserProfileStatus>? status;
+  final SagemakerUserProfileStatus? status;
 
   Map<String, Object?> encode() => {
     'data_source_name': ?dataSourceName?.toTfJson(),
@@ -245,13 +281,25 @@ final class SagemakerUserProfileIdentityProviderOauthSettings {
 }
 
 /// `data_source_name` — derived from the provider schema description.
-enum SagemakerUserProfileDataSourceName implements TerraformEnum {
-  salesforcegenie('SalesforceGenie'),
-  snowflake('Snowflake');
+extension type const SagemakerUserProfileDataSourceName._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileDataSourceName.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileDataSourceName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileDataSourceName.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileDataSourceName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const salesforcegenie = SagemakerUserProfileDataSourceName._(
+    TfArgLiteral('SalesforceGenie'),
+  );
+  static const snowflake = SagemakerUserProfileDataSourceName._(
+    TfArgLiteral('Snowflake'),
+  );
+
+  static const List<SagemakerUserProfileDataSourceName> values = [
+    salesforcegenie,
+    snowflake,
+  ];
 }
 
 /// Typed helper for the `user_settings.canvas_app_settings.kendra_settings` block of
@@ -260,7 +308,7 @@ enum SagemakerUserProfileDataSourceName implements TerraformEnum {
 final class SagemakerUserProfileKendraSettings {
   const SagemakerUserProfileKendraSettings({this.status});
 
-  final TfArg<SagemakerUserProfileStatus>? status;
+  final SagemakerUserProfileStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
@@ -276,7 +324,7 @@ final class SagemakerUserProfileModelRegisterSettings {
 
   final TfArg<String>? crossAccountModelRegisterRoleArn;
 
-  final TfArg<SagemakerUserProfileStatus>? status;
+  final SagemakerUserProfileStatus? status;
 
   Map<String, Object?> encode() => {
     'cross_account_model_register_role_arn': ?crossAccountModelRegisterRoleArn
@@ -296,7 +344,7 @@ final class SagemakerUserProfileTimeSeriesForecastingSettings {
 
   final TfArg<String>? amazonForecastRoleArn;
 
-  final TfArg<SagemakerUserProfileStatus>? status;
+  final SagemakerUserProfileStatus? status;
 
   Map<String, Object?> encode() => {
     'amazon_forecast_role_arn': ?amazonForecastRoleArn?.toTfJson(),
@@ -381,7 +429,7 @@ final class SagemakerUserProfileIdleSettings {
 
   final TfArg<num>? idleTimeoutInMinutes;
 
-  final TfArg<SagemakerUserProfileLifecycleManagement>? lifecycleManagement;
+  final SagemakerUserProfileLifecycleManagement? lifecycleManagement;
 
   final TfArg<num>? maxIdleTimeoutInMinutes;
 
@@ -396,13 +444,26 @@ final class SagemakerUserProfileIdleSettings {
 }
 
 /// `lifecycle_management` — derived from the provider schema description.
-enum SagemakerUserProfileLifecycleManagement implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerUserProfileLifecycleManagement._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileLifecycleManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileLifecycleManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileLifecycleManagement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerUserProfileLifecycleManagement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerUserProfileLifecycleManagement._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerUserProfileLifecycleManagement._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerUserProfileLifecycleManagement> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `user_settings.code_editor_app_settings.custom_image` block of
@@ -442,7 +503,7 @@ final class SagemakerUserProfileDefaultResourceSpec {
     this.sagemakerImageVersionArn,
   });
 
-  final TfArg<SagemakerUserProfileInstanceType>? instanceType;
+  final SagemakerUserProfileInstanceType? instanceType;
 
   final TfArg<String>? lifecycleConfigArn;
 
@@ -462,187 +523,721 @@ final class SagemakerUserProfileDefaultResourceSpec {
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerUserProfileInstanceType implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
+extension type const SagemakerUserProfileInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const system = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('system'),
+  );
+  static const mlT3Micro = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.t3.micro'),
+  );
+  static const mlT3Small = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.t3.small'),
+  );
+  static const mlT3Medium = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlM5Large = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.large'),
+  );
+  static const mlM5Xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.8xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.16xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlM5dLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.large'),
+  );
+  static const mlM5dXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.xlarge'),
+  );
+  static const mlM5d2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.2xlarge'),
+  );
+  static const mlM5d4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.4xlarge'),
+  );
+  static const mlM5d8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.8xlarge'),
+  );
+  static const mlM5d12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.12xlarge'),
+  );
+  static const mlM5d16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.16xlarge'),
+  );
+  static const mlM5d24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m5d.24xlarge'),
+  );
+  static const mlC5Large = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.large'),
+  );
+  static const mlC5Xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.12xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5p24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c5.24xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p3dn.24xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g4dn.12xlarge'),
+  );
+  static const mlG4dn16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g4dn.16xlarge'),
+  );
+  static const mlR5Large = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+  static const mlGeospatialInteractive = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.geospatial.interactive'),
+  );
+  static const mlP4d24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p4de.24xlarge'),
+  );
+  static const mlTrn1p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.trn1.2xlarge'),
+  );
+  static const mlTrn1p32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.trn1.32xlarge'),
+  );
+  static const mlTrn1n32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.trn1n.32xlarge'),
+  );
+  static const mlP5p48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP5en48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p5en.48xlarge'),
+  );
+  static const mlP6B200p48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p6-b200.48xlarge'),
+  );
+  static const mlM6iLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlM7iLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC6iLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.large'),
+  );
+  static const mlC6iXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlC7iLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR6iLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.large'),
+  );
+  static const mlR6iXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.xlarge'),
+  );
+  static const mlR6i2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.2xlarge'),
+  );
+  static const mlR6i4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.4xlarge'),
+  );
+  static const mlR6i8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.8xlarge'),
+  );
+  static const mlR6i12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.12xlarge'),
+  );
+  static const mlR6i16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.16xlarge'),
+  );
+  static const mlR6i24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.24xlarge'),
+  );
+  static const mlR6i32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6i.32xlarge'),
+  );
+  static const mlR7iLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlM6idLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.large'),
+  );
+  static const mlM6idXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.xlarge'),
+  );
+  static const mlM6id2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.2xlarge'),
+  );
+  static const mlM6id4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.4xlarge'),
+  );
+  static const mlM6id8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.8xlarge'),
+  );
+  static const mlM6id12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.12xlarge'),
+  );
+  static const mlM6id16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.16xlarge'),
+  );
+  static const mlM6id24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.24xlarge'),
+  );
+  static const mlM6id32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.m6id.32xlarge'),
+  );
+  static const mlC6idLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.large'),
+  );
+  static const mlC6idXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.xlarge'),
+  );
+  static const mlC6id2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.2xlarge'),
+  );
+  static const mlC6id4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.4xlarge'),
+  );
+  static const mlC6id8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.8xlarge'),
+  );
+  static const mlC6id12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.12xlarge'),
+  );
+  static const mlC6id16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.16xlarge'),
+  );
+  static const mlC6id24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.24xlarge'),
+  );
+  static const mlC6id32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.c6id.32xlarge'),
+  );
+  static const mlR6idLarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.large'),
+  );
+  static const mlR6idXlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.xlarge'),
+  );
+  static const mlR6id2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.2xlarge'),
+  );
+  static const mlR6id4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.4xlarge'),
+  );
+  static const mlR6id8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.8xlarge'),
+  );
+  static const mlR6id12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.12xlarge'),
+  );
+  static const mlR6id16xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.16xlarge'),
+  );
+  static const mlR6id24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.24xlarge'),
+  );
+  static const mlR6id32xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.r6id.32xlarge'),
+  );
+  static const mlP5p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlG7p2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7.2xlarge'),
+  );
+  static const mlG7p4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7.4xlarge'),
+  );
+  static const mlG7p8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7.8xlarge'),
+  );
+  static const mlG7p12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7.12xlarge'),
+  );
+  static const mlG7p24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7.24xlarge'),
+  );
+  static const mlG7p48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7.48xlarge'),
+  );
+  static const mlG7e2xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerUserProfileInstanceType._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+
+  static const List<SagemakerUserProfileInstanceType> values = [
+    system,
+    mlT3Micro,
+    mlT3Small,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p8xlarge,
+    mlM5p12xlarge,
+    mlM5p16xlarge,
+    mlM5p24xlarge,
+    mlM5dLarge,
+    mlM5dXlarge,
+    mlM5d2xlarge,
+    mlM5d4xlarge,
+    mlM5d8xlarge,
+    mlM5d12xlarge,
+    mlM5d16xlarge,
+    mlM5d24xlarge,
+    mlC5Large,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p12xlarge,
+    mlC5p18xlarge,
+    mlC5p24xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p12xlarge,
+    mlG6p16xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e12xlarge,
+    mlG6e16xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlGeospatialInteractive,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlP5p48xlarge,
+    mlP5en48xlarge,
+    mlP6B200p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC6iLarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i4xlarge,
+    mlC6i8xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR6iLarge,
+    mlR6iXlarge,
+    mlR6i2xlarge,
+    mlR6i4xlarge,
+    mlR6i8xlarge,
+    mlR6i12xlarge,
+    mlR6i16xlarge,
+    mlR6i24xlarge,
+    mlR6i32xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlM6idLarge,
+    mlM6idXlarge,
+    mlM6id2xlarge,
+    mlM6id4xlarge,
+    mlM6id8xlarge,
+    mlM6id12xlarge,
+    mlM6id16xlarge,
+    mlM6id24xlarge,
+    mlM6id32xlarge,
+    mlC6idLarge,
+    mlC6idXlarge,
+    mlC6id2xlarge,
+    mlC6id4xlarge,
+    mlC6id8xlarge,
+    mlC6id12xlarge,
+    mlC6id16xlarge,
+    mlC6id24xlarge,
+    mlC6id32xlarge,
+    mlR6idLarge,
+    mlR6idXlarge,
+    mlR6id2xlarge,
+    mlR6id4xlarge,
+    mlR6id8xlarge,
+    mlR6id12xlarge,
+    mlR6id16xlarge,
+    mlR6id24xlarge,
+    mlR6id32xlarge,
+    mlP5p4xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+  ];
 }
 
 /// Typed helper for the `user_settings.custom_file_system_config` block of
@@ -848,9 +1443,9 @@ final class SagemakerUserProfileRStudioServerProAppSettings {
     this.userGroup,
   });
 
-  final TfArg<SagemakerUserProfileAccessStatus>? accessStatus;
+  final SagemakerUserProfileAccessStatus? accessStatus;
 
-  final TfArg<SagemakerUserProfileUserGroup>? userGroup;
+  final SagemakerUserProfileUserGroup? userGroup;
 
   Map<String, Object?> encode() => {
     'access_status': ?accessStatus?.toTfJson(),
@@ -859,23 +1454,47 @@ final class SagemakerUserProfileRStudioServerProAppSettings {
 }
 
 /// `access_status` — derived from the provider schema description.
-enum SagemakerUserProfileAccessStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerUserProfileAccessStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileAccessStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileAccessStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileAccessStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileAccessStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerUserProfileAccessStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerUserProfileAccessStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerUserProfileAccessStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `user_group` — derived from the provider schema description.
-enum SagemakerUserProfileUserGroup implements TerraformEnum {
-  rStudioAdmin('R_STUDIO_ADMIN'),
-  rStudioUser('R_STUDIO_USER');
+extension type const SagemakerUserProfileUserGroup._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileUserGroup.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileUserGroup.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileUserGroup.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileUserGroup(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rStudioAdmin = SagemakerUserProfileUserGroup._(
+    TfArgLiteral('R_STUDIO_ADMIN'),
+  );
+  static const rStudioUser = SagemakerUserProfileUserGroup._(
+    TfArgLiteral('R_STUDIO_USER'),
+  );
+
+  static const List<SagemakerUserProfileUserGroup> values = [
+    rStudioAdmin,
+    rStudioUser,
+  ];
 }
 
 /// Typed helper for the `user_settings.sharing_settings` block of
@@ -888,7 +1507,7 @@ final class SagemakerUserProfileSharingSettings {
     this.s3OutputPath,
   });
 
-  final TfArg<SagemakerUserProfileNotebookOutputOption>? notebookOutputOption;
+  final SagemakerUserProfileNotebookOutputOption? notebookOutputOption;
 
   final TfArg<String>? s3KmsKeyId;
 
@@ -902,13 +1521,26 @@ final class SagemakerUserProfileSharingSettings {
 }
 
 /// `notebook_output_option` — derived from the provider schema description.
-enum SagemakerUserProfileNotebookOutputOption implements TerraformEnum {
-  allowed('Allowed'),
-  disabled('Disabled');
+extension type const SagemakerUserProfileNotebookOutputOption._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileNotebookOutputOption.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileNotebookOutputOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileNotebookOutputOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerUserProfileNotebookOutputOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowed = SagemakerUserProfileNotebookOutputOption._(
+    TfArgLiteral('Allowed'),
+  );
+  static const disabled = SagemakerUserProfileNotebookOutputOption._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerUserProfileNotebookOutputOption> values = [
+    allowed,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `user_settings.space_storage_settings` block of
@@ -956,12 +1588,11 @@ final class SagemakerUserProfileStudioWebPortalSettings {
     this.hiddenMlTools,
   });
 
-  final List<TfArg<SagemakerUserProfileHiddenAppTypes>>? hiddenAppTypes;
+  final List<SagemakerUserProfileHiddenAppTypes>? hiddenAppTypes;
 
-  final List<TfArg<SagemakerUserProfileHiddenInstanceTypes>>?
-  hiddenInstanceTypes;
+  final List<SagemakerUserProfileHiddenInstanceTypes>? hiddenInstanceTypes;
 
-  final List<TfArg<SagemakerUserProfileHiddenMlTools>>? hiddenMlTools;
+  final List<SagemakerUserProfileHiddenMlTools>? hiddenMlTools;
 
   Map<String, Object?> encode() => {
     if (hiddenAppTypes != null)
@@ -976,235 +1607,879 @@ final class SagemakerUserProfileStudioWebPortalSettings {
 }
 
 /// `hidden_app_types` — derived from the provider schema description.
-enum SagemakerUserProfileHiddenAppTypes implements TerraformEnum {
-  jupyterserver('JupyterServer'),
-  kernelgateway('KernelGateway'),
-  detailedprofiler('DetailedProfiler'),
-  tensorboard('TensorBoard'),
-  codeeditor('CodeEditor'),
-  jupyterlab('JupyterLab'),
-  rstudioserverpro('RStudioServerPro'),
-  rsessiongateway('RSessionGateway'),
-  canvas('Canvas');
+extension type const SagemakerUserProfileHiddenAppTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileHiddenAppTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileHiddenAppTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileHiddenAppTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileHiddenAppTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jupyterserver = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('JupyterServer'),
+  );
+  static const kernelgateway = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('KernelGateway'),
+  );
+  static const detailedprofiler = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('DetailedProfiler'),
+  );
+  static const tensorboard = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('TensorBoard'),
+  );
+  static const codeeditor = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('CodeEditor'),
+  );
+  static const jupyterlab = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('JupyterLab'),
+  );
+  static const rstudioserverpro = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('RStudioServerPro'),
+  );
+  static const rsessiongateway = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('RSessionGateway'),
+  );
+  static const canvas = SagemakerUserProfileHiddenAppTypes._(
+    TfArgLiteral('Canvas'),
+  );
+
+  static const List<SagemakerUserProfileHiddenAppTypes> values = [
+    jupyterserver,
+    kernelgateway,
+    detailedprofiler,
+    tensorboard,
+    codeeditor,
+    jupyterlab,
+    rstudioserverpro,
+    rsessiongateway,
+    canvas,
+  ];
 }
 
 /// `hidden_instance_types` — derived from the provider schema description.
-enum SagemakerUserProfileHiddenInstanceTypes implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
+extension type const SagemakerUserProfileHiddenInstanceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileHiddenInstanceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileHiddenInstanceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileHiddenInstanceTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerUserProfileHiddenInstanceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const system = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('system'),
+  );
+  static const mlT3Micro = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.micro'),
+  );
+  static const mlT3Small = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.small'),
+  );
+  static const mlT3Medium = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlM5Large = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.large'),
+  );
+  static const mlM5Xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.8xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.16xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlM5dLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.large'),
+  );
+  static const mlM5dXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.xlarge'),
+  );
+  static const mlM5d2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.2xlarge'),
+  );
+  static const mlM5d4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.4xlarge'),
+  );
+  static const mlM5d8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.8xlarge'),
+  );
+  static const mlM5d12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.12xlarge'),
+  );
+  static const mlM5d16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.16xlarge'),
+  );
+  static const mlM5d24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.24xlarge'),
+  );
+  static const mlC5Large = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.large'),
+  );
+  static const mlC5Xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.12xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5p24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.24xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3dn.24xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.12xlarge'),
+  );
+  static const mlG4dn16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.16xlarge'),
+  );
+  static const mlR5Large = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+  static const mlGeospatialInteractive =
+      SagemakerUserProfileHiddenInstanceTypes._(
+        TfArgLiteral('ml.geospatial.interactive'),
+      );
+  static const mlP4d24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p4de.24xlarge'),
+  );
+  static const mlTrn1p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.trn1.2xlarge'),
+  );
+  static const mlTrn1p32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.trn1.32xlarge'),
+  );
+  static const mlTrn1n32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.trn1n.32xlarge'),
+  );
+  static const mlP5p48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP5en48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p5en.48xlarge'),
+  );
+  static const mlP6B200p48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p6-b200.48xlarge'),
+  );
+  static const mlM6iLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlM7iLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC6iLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.large'),
+  );
+  static const mlC6iXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlC7iLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR6iLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.large'),
+  );
+  static const mlR6iXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.xlarge'),
+  );
+  static const mlR6i2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.2xlarge'),
+  );
+  static const mlR6i4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.4xlarge'),
+  );
+  static const mlR6i8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.8xlarge'),
+  );
+  static const mlR6i12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.12xlarge'),
+  );
+  static const mlR6i16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.16xlarge'),
+  );
+  static const mlR6i24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.24xlarge'),
+  );
+  static const mlR6i32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.32xlarge'),
+  );
+  static const mlR7iLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlM6idLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.large'),
+  );
+  static const mlM6idXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.xlarge'),
+  );
+  static const mlM6id2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.2xlarge'),
+  );
+  static const mlM6id4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.4xlarge'),
+  );
+  static const mlM6id8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.8xlarge'),
+  );
+  static const mlM6id12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.12xlarge'),
+  );
+  static const mlM6id16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.16xlarge'),
+  );
+  static const mlM6id24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.24xlarge'),
+  );
+  static const mlM6id32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.32xlarge'),
+  );
+  static const mlC6idLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.large'),
+  );
+  static const mlC6idXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.xlarge'),
+  );
+  static const mlC6id2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.2xlarge'),
+  );
+  static const mlC6id4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.4xlarge'),
+  );
+  static const mlC6id8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.8xlarge'),
+  );
+  static const mlC6id12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.12xlarge'),
+  );
+  static const mlC6id16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.16xlarge'),
+  );
+  static const mlC6id24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.24xlarge'),
+  );
+  static const mlC6id32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.32xlarge'),
+  );
+  static const mlR6idLarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.large'),
+  );
+  static const mlR6idXlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.xlarge'),
+  );
+  static const mlR6id2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.2xlarge'),
+  );
+  static const mlR6id4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.4xlarge'),
+  );
+  static const mlR6id8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.8xlarge'),
+  );
+  static const mlR6id12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.12xlarge'),
+  );
+  static const mlR6id16xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.16xlarge'),
+  );
+  static const mlR6id24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.24xlarge'),
+  );
+  static const mlR6id32xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.32xlarge'),
+  );
+  static const mlP5p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlG7p2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.2xlarge'),
+  );
+  static const mlG7p4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.4xlarge'),
+  );
+  static const mlG7p8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.8xlarge'),
+  );
+  static const mlG7p12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.12xlarge'),
+  );
+  static const mlG7p24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.24xlarge'),
+  );
+  static const mlG7p48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.48xlarge'),
+  );
+  static const mlG7e2xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerUserProfileHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+
+  static const List<SagemakerUserProfileHiddenInstanceTypes> values = [
+    system,
+    mlT3Micro,
+    mlT3Small,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p8xlarge,
+    mlM5p12xlarge,
+    mlM5p16xlarge,
+    mlM5p24xlarge,
+    mlM5dLarge,
+    mlM5dXlarge,
+    mlM5d2xlarge,
+    mlM5d4xlarge,
+    mlM5d8xlarge,
+    mlM5d12xlarge,
+    mlM5d16xlarge,
+    mlM5d24xlarge,
+    mlC5Large,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p12xlarge,
+    mlC5p18xlarge,
+    mlC5p24xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p12xlarge,
+    mlG6p16xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e12xlarge,
+    mlG6e16xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlGeospatialInteractive,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlP5p48xlarge,
+    mlP5en48xlarge,
+    mlP6B200p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC6iLarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i4xlarge,
+    mlC6i8xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR6iLarge,
+    mlR6iXlarge,
+    mlR6i2xlarge,
+    mlR6i4xlarge,
+    mlR6i8xlarge,
+    mlR6i12xlarge,
+    mlR6i16xlarge,
+    mlR6i24xlarge,
+    mlR6i32xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlM6idLarge,
+    mlM6idXlarge,
+    mlM6id2xlarge,
+    mlM6id4xlarge,
+    mlM6id8xlarge,
+    mlM6id12xlarge,
+    mlM6id16xlarge,
+    mlM6id24xlarge,
+    mlM6id32xlarge,
+    mlC6idLarge,
+    mlC6idXlarge,
+    mlC6id2xlarge,
+    mlC6id4xlarge,
+    mlC6id8xlarge,
+    mlC6id12xlarge,
+    mlC6id16xlarge,
+    mlC6id24xlarge,
+    mlC6id32xlarge,
+    mlR6idLarge,
+    mlR6idXlarge,
+    mlR6id2xlarge,
+    mlR6id4xlarge,
+    mlR6id8xlarge,
+    mlR6id12xlarge,
+    mlR6id16xlarge,
+    mlR6id24xlarge,
+    mlR6id32xlarge,
+    mlP5p4xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+  ];
 }
 
 /// `hidden_ml_tools` — derived from the provider schema description.
-enum SagemakerUserProfileHiddenMlTools implements TerraformEnum {
-  datawrangler('DataWrangler'),
-  featurestore('FeatureStore'),
-  emrclusters('EmrClusters'),
-  automl('AutoMl'),
-  experiments('Experiments'),
-  training('Training'),
-  modelevaluation('ModelEvaluation'),
-  pipelines('Pipelines'),
-  models('Models'),
-  jumpstart('JumpStart'),
-  inferencerecommender('InferenceRecommender'),
-  endpoints('Endpoints'),
-  projects('Projects'),
-  inferenceoptimization('InferenceOptimization'),
-  performanceevaluation('PerformanceEvaluation'),
-  lakeraguard('LakeraGuard'),
-  comet('Comet'),
-  deepchecksllmevaluation('DeepchecksLLMEvaluation'),
-  fiddler('Fiddler'),
-  hyperpodclusters('HyperPodClusters'),
-  runninginstances('RunningInstances'),
-  datasets('Datasets'),
-  evaluators('Evaluators');
+extension type const SagemakerUserProfileHiddenMlTools._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerUserProfileHiddenMlTools.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerUserProfileHiddenMlTools.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerUserProfileHiddenMlTools.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerUserProfileHiddenMlTools(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const datawrangler = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('DataWrangler'),
+  );
+  static const featurestore = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('FeatureStore'),
+  );
+  static const emrclusters = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('EmrClusters'),
+  );
+  static const automl = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('AutoMl'),
+  );
+  static const experiments = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Experiments'),
+  );
+  static const training = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Training'),
+  );
+  static const modelevaluation = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('ModelEvaluation'),
+  );
+  static const pipelines = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Pipelines'),
+  );
+  static const models = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Models'),
+  );
+  static const jumpstart = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('JumpStart'),
+  );
+  static const inferencerecommender = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('InferenceRecommender'),
+  );
+  static const endpoints = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Endpoints'),
+  );
+  static const projects = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Projects'),
+  );
+  static const inferenceoptimization = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('InferenceOptimization'),
+  );
+  static const performanceevaluation = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('PerformanceEvaluation'),
+  );
+  static const lakeraguard = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('LakeraGuard'),
+  );
+  static const comet = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Comet'),
+  );
+  static const deepchecksllmevaluation = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('DeepchecksLLMEvaluation'),
+  );
+  static const fiddler = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Fiddler'),
+  );
+  static const hyperpodclusters = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('HyperPodClusters'),
+  );
+  static const runninginstances = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('RunningInstances'),
+  );
+  static const datasets = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Datasets'),
+  );
+  static const evaluators = SagemakerUserProfileHiddenMlTools._(
+    TfArgLiteral('Evaluators'),
+  );
+
+  static const List<SagemakerUserProfileHiddenMlTools> values = [
+    datawrangler,
+    featurestore,
+    emrclusters,
+    automl,
+    experiments,
+    training,
+    modelevaluation,
+    pipelines,
+    models,
+    jumpstart,
+    inferencerecommender,
+    endpoints,
+    projects,
+    inferenceoptimization,
+    performanceevaluation,
+    lakeraguard,
+    comet,
+    deepchecksllmevaluation,
+    fiddler,
+    hyperpodclusters,
+    runninginstances,
+    datasets,
+    evaluators,
+  ];
 }
 
 /// Typed helper for the `user_settings.tensor_board_app_settings` block of

@@ -9,24 +9,54 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleNetworkConnectivityTransportSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Network Connectivity transports.
-enum NetworkConnectivityTransportDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const NetworkConnectivityTransportDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityTransportDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityTransportDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityTransportDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkConnectivityTransportDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = NetworkConnectivityTransportDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = NetworkConnectivityTransportDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = NetworkConnectivityTransportDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<NetworkConnectivityTransportDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// IP stack for `google_network_connectivity_transport.stack_type`.
-enum NetworkConnectivityTransportStackType implements TerraformEnum {
-  ipv4Ipv6('IPV4_IPV6'),
-  ipv4Only('IPV4_ONLY');
+extension type const NetworkConnectivityTransportStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityTransportStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityTransportStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityTransportStackType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkConnectivityTransportStackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Ipv6 = NetworkConnectivityTransportStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = NetworkConnectivityTransportStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+
+  static const List<NetworkConnectivityTransportStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+  ];
 }
 
 /// Factory wrapper for `google_network_connectivity_transport`.
@@ -67,10 +97,10 @@ final class GoogleNetworkConnectivityTransport extends Resource {
     TfArg<String>? remoteAccountId,
     TfArg<String>? providedActivationKey,
     TfArg<List<String>>? advertisedRoutes,
-    TfArg<NetworkConnectivityTransportStackType>? stackType,
+    NetworkConnectivityTransportStackType? stackType,
     TfArg<num>? mtuLimit,
     TfArg<Map<String, String>>? labels,
-    TfArg<NetworkConnectivityTransportDeletionPolicy>? deletionPolicy,
+    NetworkConnectivityTransportDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

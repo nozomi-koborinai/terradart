@@ -12,58 +12,124 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsFsxLustreFileSystemSensitive = <String>{};
 
 /// Fsx Lustre File System Auto Import enum for `auto_import_policy`.
-enum FsxLustreFileSystemAutoImportPolicy implements TerraformEnum {
-  none('NONE'),
-  newCase('NEW'),
-  newChanged('NEW_CHANGED'),
-  newChangedDeleted('NEW_CHANGED_DELETED');
+extension type const FsxLustreFileSystemAutoImportPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemAutoImportPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxLustreFileSystemAutoImportPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemAutoImportPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxLustreFileSystemAutoImportPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = FsxLustreFileSystemAutoImportPolicy._(
+    TfArgLiteral('NONE'),
+  );
+  static const newCase = FsxLustreFileSystemAutoImportPolicy._(
+    TfArgLiteral('NEW'),
+  );
+  static const newChanged = FsxLustreFileSystemAutoImportPolicy._(
+    TfArgLiteral('NEW_CHANGED'),
+  );
+  static const newChangedDeleted = FsxLustreFileSystemAutoImportPolicy._(
+    TfArgLiteral('NEW_CHANGED_DELETED'),
+  );
+
+  static const List<FsxLustreFileSystemAutoImportPolicy> values = [
+    none,
+    newCase,
+    newChanged,
+    newChangedDeleted,
+  ];
 }
 
 /// Fsx Lustre File System Data Compression enum for `data_compression_type`.
-enum FsxLustreFileSystemDataCompressionType implements TerraformEnum {
-  none('NONE'),
-  lz4('LZ4');
+extension type const FsxLustreFileSystemDataCompressionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemDataCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxLustreFileSystemDataCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemDataCompressionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxLustreFileSystemDataCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = FsxLustreFileSystemDataCompressionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const lz4 = FsxLustreFileSystemDataCompressionType._(
+    TfArgLiteral('LZ4'),
+  );
+
+  static const List<FsxLustreFileSystemDataCompressionType> values = [
+    none,
+    lz4,
+  ];
 }
 
 /// Fsx Lustre File System Deployment enum for `deployment_type`.
-enum FsxLustreFileSystemDeploymentType implements TerraformEnum {
-  scratch1('SCRATCH_1'),
-  scratch2('SCRATCH_2'),
-  persistent1('PERSISTENT_1'),
-  persistent2('PERSISTENT_2');
+extension type const FsxLustreFileSystemDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxLustreFileSystemDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxLustreFileSystemDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scratch1 = FsxLustreFileSystemDeploymentType._(
+    TfArgLiteral('SCRATCH_1'),
+  );
+  static const scratch2 = FsxLustreFileSystemDeploymentType._(
+    TfArgLiteral('SCRATCH_2'),
+  );
+  static const persistent1 = FsxLustreFileSystemDeploymentType._(
+    TfArgLiteral('PERSISTENT_1'),
+  );
+  static const persistent2 = FsxLustreFileSystemDeploymentType._(
+    TfArgLiteral('PERSISTENT_2'),
+  );
+
+  static const List<FsxLustreFileSystemDeploymentType> values = [
+    scratch1,
+    scratch2,
+    persistent1,
+    persistent2,
+  ];
 }
 
 /// Fsx Lustre File System Drive Cache enum for `drive_cache_type`.
-enum FsxLustreFileSystemDriveCacheType implements TerraformEnum {
-  none('NONE'),
-  read('READ');
+extension type const FsxLustreFileSystemDriveCacheType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemDriveCacheType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxLustreFileSystemDriveCacheType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemDriveCacheType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxLustreFileSystemDriveCacheType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = FsxLustreFileSystemDriveCacheType._(TfArgLiteral('NONE'));
+  static const read = FsxLustreFileSystemDriveCacheType._(TfArgLiteral('READ'));
+
+  static const List<FsxLustreFileSystemDriveCacheType> values = [none, read];
 }
 
 /// Fsx Lustre File System Storage enum for `storage_type`.
-enum FsxLustreFileSystemStorageType implements TerraformEnum {
-  ssd('SSD'),
-  hdd('HDD'),
-  intelligentTiering('INTELLIGENT_TIERING');
+extension type const FsxLustreFileSystemStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxLustreFileSystemStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxLustreFileSystemStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssd = FsxLustreFileSystemStorageType._(TfArgLiteral('SSD'));
+  static const hdd = FsxLustreFileSystemStorageType._(TfArgLiteral('HDD'));
+  static const intelligentTiering = FsxLustreFileSystemStorageType._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+
+  static const List<FsxLustreFileSystemStorageType> values = [
+    ssd,
+    hdd,
+    intelligentTiering,
+  ];
 }
 
 /// Typed helper for the `data_read_cache_configuration` block of
@@ -77,7 +143,7 @@ final class FsxLustreFileSystemDataReadCacheConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<FsxLustreFileSystemSizingMode> sizingMode;
+  final FsxLustreFileSystemSizingMode sizingMode;
 
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
@@ -86,14 +152,30 @@ final class FsxLustreFileSystemDataReadCacheConfiguration {
 }
 
 /// `sizing_mode` — derived from the provider schema description.
-enum FsxLustreFileSystemSizingMode implements TerraformEnum {
-  noCache('NO_CACHE'),
-  userProvisioned('USER_PROVISIONED'),
-  proportionalToThroughputCapacity('PROPORTIONAL_TO_THROUGHPUT_CAPACITY');
+extension type const FsxLustreFileSystemSizingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemSizingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxLustreFileSystemSizingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemSizingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxLustreFileSystemSizingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noCache = FsxLustreFileSystemSizingMode._(
+    TfArgLiteral('NO_CACHE'),
+  );
+  static const userProvisioned = FsxLustreFileSystemSizingMode._(
+    TfArgLiteral('USER_PROVISIONED'),
+  );
+  static const proportionalToThroughputCapacity =
+      FsxLustreFileSystemSizingMode._(
+        TfArgLiteral('PROPORTIONAL_TO_THROUGHPUT_CAPACITY'),
+      );
+
+  static const List<FsxLustreFileSystemSizingMode> values = [
+    noCache,
+    userProvisioned,
+    proportionalToThroughputCapacity,
+  ];
 }
 
 /// Typed helper for the `log_configuration` block of
@@ -104,7 +186,7 @@ final class FsxLustreFileSystemLogConfiguration {
 
   final TfArg<String>? destination;
 
-  final TfArg<FsxLustreFileSystemLevel>? level;
+  final FsxLustreFileSystemLevel? level;
 
   Map<String, Object?> encode() => {
     'destination': ?destination?.toTfJson(),
@@ -113,15 +195,28 @@ final class FsxLustreFileSystemLogConfiguration {
 }
 
 /// `level` — derived from the provider schema description.
-enum FsxLustreFileSystemLevel implements TerraformEnum {
-  disabled('DISABLED'),
-  warnOnly('WARN_ONLY'),
-  errorOnly('ERROR_ONLY'),
-  warnError('WARN_ERROR');
+extension type const FsxLustreFileSystemLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemLevel.variable(String name) : this._(TfArg.variable(name));
+  FsxLustreFileSystemLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxLustreFileSystemLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = FsxLustreFileSystemLevel._(TfArgLiteral('DISABLED'));
+  static const warnOnly = FsxLustreFileSystemLevel._(TfArgLiteral('WARN_ONLY'));
+  static const errorOnly = FsxLustreFileSystemLevel._(
+    TfArgLiteral('ERROR_ONLY'),
+  );
+  static const warnError = FsxLustreFileSystemLevel._(
+    TfArgLiteral('WARN_ERROR'),
+  );
+
+  static const List<FsxLustreFileSystemLevel> values = [
+    disabled,
+    warnOnly,
+    errorOnly,
+    warnError,
+  ];
 }
 
 /// Typed helper for the `metadata_configuration` block of
@@ -132,7 +227,7 @@ final class FsxLustreFileSystemMetadataConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxLustreFileSystemMode>? mode;
+  final FsxLustreFileSystemMode? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -141,13 +236,22 @@ final class FsxLustreFileSystemMetadataConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxLustreFileSystemMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  userProvisioned('USER_PROVISIONED');
+extension type const FsxLustreFileSystemMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxLustreFileSystemMode.variable(String name) : this._(TfArg.variable(name));
+  FsxLustreFileSystemMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxLustreFileSystemMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxLustreFileSystemMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = FsxLustreFileSystemMode._(TfArgLiteral('AUTOMATIC'));
+  static const userProvisioned = FsxLustreFileSystemMode._(
+    TfArgLiteral('USER_PROVISIONED'),
+  );
+
+  static const List<FsxLustreFileSystemMode> values = [
+    automatic,
+    userProvisioned,
+  ];
 }
 
 /// Typed helper for the `root_squash_configuration` block of
@@ -175,14 +279,14 @@ final class AwsFsxLustreFileSystem extends Resource {
 
   AwsFsxLustreFileSystem(
     super.localName, {
-    TfArg<FsxLustreFileSystemAutoImportPolicy>? autoImportPolicy,
+    FsxLustreFileSystemAutoImportPolicy? autoImportPolicy,
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? backupId,
     TfArg<bool>? copyTagsToBackups,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    TfArg<FsxLustreFileSystemDataCompressionType>? dataCompressionType,
-    TfArg<FsxLustreFileSystemDeploymentType>? deploymentType,
-    TfArg<FsxLustreFileSystemDriveCacheType>? driveCacheType,
+    FsxLustreFileSystemDataCompressionType? dataCompressionType,
+    FsxLustreFileSystemDeploymentType? deploymentType,
+    FsxLustreFileSystemDriveCacheType? driveCacheType,
     TfArg<bool>? efaEnabled,
     TfArg<String>? exportPath,
     TfArg<String>? fileSystemTypeVersion,
@@ -195,7 +299,7 @@ final class AwsFsxLustreFileSystem extends Resource {
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<bool>? skipFinalBackup,
     TfArg<num>? storageCapacity,
-    TfArg<FsxLustreFileSystemStorageType>? storageType,
+    FsxLustreFileSystemStorageType? storageType,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? throughputCapacity,

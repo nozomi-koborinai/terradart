@@ -8,13 +8,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesLbEdgeExtensionSensitive = <String>{};
 
 /// Network Services Lb Edge Extension Load Balancing enum for `load_balancing_scheme`.
-enum NetworkServicesLbEdgeExtensionLoadBalancingScheme
-    implements TerraformEnum {
-  externalManaged('EXTERNAL_MANAGED');
+extension type const NetworkServicesLbEdgeExtensionLoadBalancingScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbEdgeExtensionLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbEdgeExtensionLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbEdgeExtensionLoadBalancingScheme.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesLbEdgeExtensionLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const externalManaged =
+      NetworkServicesLbEdgeExtensionLoadBalancingScheme._(
+        TfArgLiteral('EXTERNAL_MANAGED'),
+      );
+
+  static const List<NetworkServicesLbEdgeExtensionLoadBalancingScheme> values =
+      [externalManaged];
 }
 
 /// Typed helper for the `extension_chains` block of
@@ -115,7 +125,7 @@ final class GoogleNetworkServicesLbEdgeExtension extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<NetworkServicesLbEdgeExtensionLoadBalancingScheme>
+    required NetworkServicesLbEdgeExtensionLoadBalancingScheme
     loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
     required List<NetworkServicesLbEdgeExtensionChains> extensionChains,

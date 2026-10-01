@@ -52,7 +52,7 @@ final class OracleGoldengateStack extends Stack {
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(odbSubnetId),
       cidrRange: .literal('10.20.0.0/24'),
-      purpose: .literal(.clientSubnet),
+      purpose: .clientSubnet,
       dependsOn: [...apiDeps, odbNetwork],
     );
     add(odbSubnet);
@@ -72,7 +72,7 @@ final class OracleGoldengateStack extends Stack {
           adminPassword: .literal('placeholder-password'),
         ),
       ),
-      deletionPolicy: .literal(.delete),
+      deletionPolicy: .delete,
       dependsOn: [...apiDeps, odbSubnet],
     );
     add(deployment);

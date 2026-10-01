@@ -40,7 +40,7 @@ final class ApiSecurityStack extends Stack {
         'web_login',
         displayName: .literal('Login page'),
         webSettings: RecaptchaEnterpriseKeyWebSettings(
-          integrationType: .literal(.score),
+          integrationType: .score,
           allowAllDomains: .literal(true),
         ),
         dependsOn: apiDeps,
@@ -55,7 +55,7 @@ final class ApiSecurityStack extends Stack {
         protocol: .literal('TCP'),
         source: NetworkManagementConnectivityTestSource(
           ipAddress: .literal('10.0.0.2'),
-          networkType: .literal(.gcpNetwork),
+          networkType: .gcpNetwork,
         ),
         destination: NetworkManagementConnectivityTestDestination(
           ipAddress: .literal('8.8.8.8'),

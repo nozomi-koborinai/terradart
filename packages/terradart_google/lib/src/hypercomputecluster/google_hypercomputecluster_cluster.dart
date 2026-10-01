@@ -583,9 +583,9 @@ final class HypercomputeclusterClusterNewFilestore {
 
   final TfArg<String> filestore;
 
-  final TfArg<HypercomputeclusterClusterProtocol>? protocol;
+  final HypercomputeclusterClusterProtocol? protocol;
 
-  final TfArg<HypercomputeclusterClusterTier> tier;
+  final HypercomputeclusterClusterTier tier;
 
   final List<HypercomputeclusterClusterFileShares> fileShares;
 
@@ -599,25 +599,53 @@ final class HypercomputeclusterClusterNewFilestore {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum HypercomputeclusterClusterProtocol implements TerraformEnum {
-  protocolUnspecified('PROTOCOL_UNSPECIFIED'),
-  nfsv3('NFSV3'),
-  nfsv41('NFSV41');
+extension type const HypercomputeclusterClusterProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  HypercomputeclusterClusterProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const HypercomputeclusterClusterProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const protocolUnspecified = HypercomputeclusterClusterProtocol._(
+    TfArgLiteral('PROTOCOL_UNSPECIFIED'),
+  );
+  static const nfsv3 = HypercomputeclusterClusterProtocol._(
+    TfArgLiteral('NFSV3'),
+  );
+  static const nfsv41 = HypercomputeclusterClusterProtocol._(
+    TfArgLiteral('NFSV41'),
+  );
+
+  static const List<HypercomputeclusterClusterProtocol> values = [
+    protocolUnspecified,
+    nfsv3,
+    nfsv41,
+  ];
 }
 
 /// `tier` — derived from the provider schema description.
-enum HypercomputeclusterClusterTier implements TerraformEnum {
-  tierUnspecified('TIER_UNSPECIFIED'),
-  zonal('ZONAL'),
-  regional('REGIONAL');
+extension type const HypercomputeclusterClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  HypercomputeclusterClusterTier.variable(String name)
+    : this._(TfArg.variable(name));
+  HypercomputeclusterClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const HypercomputeclusterClusterTier.arg(TfArg<String> arg) : this._(arg);
 
-  const HypercomputeclusterClusterTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tierUnspecified = HypercomputeclusterClusterTier._(
+    TfArgLiteral('TIER_UNSPECIFIED'),
+  );
+  static const zonal = HypercomputeclusterClusterTier._(TfArgLiteral('ZONAL'));
+  static const regional = HypercomputeclusterClusterTier._(
+    TfArgLiteral('REGIONAL'),
+  );
+
+  static const List<HypercomputeclusterClusterTier> values = [
+    tierUnspecified,
+    zonal,
+    regional,
+  ];
 }
 
 /// Typed helper for the `storage_resources.config.new_filestore.file_shares` block of

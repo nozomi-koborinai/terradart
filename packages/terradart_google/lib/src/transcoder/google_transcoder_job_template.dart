@@ -424,7 +424,7 @@ final class TranscoderJobTemplateManifests {
 
   final TfArg<List<String>>? muxStreams;
 
-  final TfArg<TranscoderJobTemplateType>? type;
+  final TranscoderJobTemplateType? type;
 
   Map<String, Object?> encode() => {
     'file_name': ?fileName?.toTfJson(),
@@ -434,14 +434,25 @@ final class TranscoderJobTemplateManifests {
 }
 
 /// `type` — derived from the provider schema description.
-enum TranscoderJobTemplateType implements TerraformEnum {
-  manifestTypeUnspecified('MANIFEST_TYPE_UNSPECIFIED'),
-  hls('HLS'),
-  dash('DASH');
+extension type const TranscoderJobTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  TranscoderJobTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  TranscoderJobTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TranscoderJobTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  const TranscoderJobTemplateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const manifestTypeUnspecified = TranscoderJobTemplateType._(
+    TfArgLiteral('MANIFEST_TYPE_UNSPECIFIED'),
+  );
+  static const hls = TranscoderJobTemplateType._(TfArgLiteral('HLS'));
+  static const dash = TranscoderJobTemplateType._(TfArgLiteral('DASH'));
+
+  static const List<TranscoderJobTemplateType> values = [
+    manifestTypeUnspecified,
+    hls,
+    dash,
+  ];
 }
 
 /// Typed helper for the `config.mux_streams` block of
@@ -544,7 +555,7 @@ final class TranscoderJobTemplateAnimationFade {
 
   final TfArg<String>? endTimeOffset;
 
-  final TfArg<TranscoderJobTemplateFadeType> fadeType;
+  final TranscoderJobTemplateFadeType fadeType;
 
   final TfArg<String>? startTimeOffset;
 
@@ -559,14 +570,29 @@ final class TranscoderJobTemplateAnimationFade {
 }
 
 /// `fade_type` — derived from the provider schema description.
-enum TranscoderJobTemplateFadeType implements TerraformEnum {
-  fadeTypeUnspecified('FADE_TYPE_UNSPECIFIED'),
-  fadeIn('FADE_IN'),
-  fadeOut('FADE_OUT');
+extension type const TranscoderJobTemplateFadeType._(TfArg<String> _)
+    implements TfArg<String> {
+  TranscoderJobTemplateFadeType.variable(String name)
+    : this._(TfArg.variable(name));
+  TranscoderJobTemplateFadeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TranscoderJobTemplateFadeType.arg(TfArg<String> arg) : this._(arg);
 
-  const TranscoderJobTemplateFadeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fadeTypeUnspecified = TranscoderJobTemplateFadeType._(
+    TfArgLiteral('FADE_TYPE_UNSPECIFIED'),
+  );
+  static const fadeIn = TranscoderJobTemplateFadeType._(
+    TfArgLiteral('FADE_IN'),
+  );
+  static const fadeOut = TranscoderJobTemplateFadeType._(
+    TfArgLiteral('FADE_OUT'),
+  );
+
+  static const List<TranscoderJobTemplateFadeType> values = [
+    fadeTypeUnspecified,
+    fadeIn,
+    fadeOut,
+  ];
 }
 
 /// Typed helper for the `config.overlays.animations.animation_fade.xy` block of

@@ -302,7 +302,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final TfArg<String>? networkIp;
 
-  final TfArg<ComputeRegionInstanceTemplateNicType>? nicType;
+  final ComputeRegionInstanceTemplateNicType? nicType;
 
   final TfArg<num>? queueCount;
 
@@ -343,15 +343,34 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum ComputeRegionInstanceTemplateNicType implements TerraformEnum {
-  gvnic('GVNIC'),
-  virtioNet('VIRTIO_NET'),
-  mrdma('MRDMA'),
-  irdma('IRDMA');
+extension type const ComputeRegionInstanceTemplateNicType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionInstanceTemplateNicType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateNicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateNicType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionInstanceTemplateNicType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gvnic = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('GVNIC'),
+  );
+  static const virtioNet = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
+  static const mrdma = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const irdma = ComputeRegionInstanceTemplateNicType._(
+    TfArgLiteral('IRDMA'),
+  );
+
+  static const List<ComputeRegionInstanceTemplateNicType> values = [
+    gvnic,
+    virtioNet,
+    mrdma,
+    irdma,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -413,7 +432,7 @@ final class ComputeRegionInstanceTemplateNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<ComputeRegionInstanceTemplateTotalEgressBandwidthTier>
+  final ComputeRegionInstanceTemplateTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -422,16 +441,28 @@ final class ComputeRegionInstanceTemplateNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeRegionInstanceTemplateTotalEgressBandwidthTier
-    implements TerraformEnum {
-  tier1('TIER_1'),
-  defaultCase('DEFAULT');
+extension type const ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstanceTemplateTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstanceTemplateTotalEgressBandwidthTier.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionInstanceTemplateTotalEgressBandwidthTier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionInstanceTemplateTotalEgressBandwidthTier(
-    this.terraformValue,
+  static const tier1 = ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
   );
-  @override
-  final String terraformValue;
+  static const defaultCase =
+      ComputeRegionInstanceTemplateTotalEgressBandwidthTier._(
+        TfArgLiteral('DEFAULT'),
+      );
+
+  static const List<ComputeRegionInstanceTemplateTotalEgressBandwidthTier>
+  values = [tier1, defaultCase];
 }
 
 /// Typed helper for the `reservation_affinity` block of

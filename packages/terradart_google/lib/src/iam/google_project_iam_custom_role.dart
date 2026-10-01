@@ -10,16 +10,26 @@ const Set<String> _googleProjectIamCustomRoleSensitive = <String>{};
 /// `stage` field exposed by the IAM API — `alpha` / `beta` / `ga` are
 /// grantable; `deprecated` / `disabled` keep the role visible but
 /// reject new bindings.
-enum CustomRoleStage implements TerraformEnum {
-  alpha('ALPHA'),
-  beta('BETA'),
-  ga('GA'),
-  deprecated('DEPRECATED'),
-  disabled('DISABLED');
+extension type const CustomRoleStage._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomRoleStage.variable(String name) : this._(TfArg.variable(name));
+  CustomRoleStage.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomRoleStage.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomRoleStage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alpha = CustomRoleStage._(TfArgLiteral('ALPHA'));
+  static const beta = CustomRoleStage._(TfArgLiteral('BETA'));
+  static const ga = CustomRoleStage._(TfArgLiteral('GA'));
+  static const deprecated = CustomRoleStage._(TfArgLiteral('DEPRECATED'));
+  static const disabled = CustomRoleStage._(TfArgLiteral('DISABLED'));
+
+  static const List<CustomRoleStage> values = [
+    alpha,
+    beta,
+    ga,
+    deprecated,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `google_project_iam_custom_role`.
@@ -61,7 +71,7 @@ final class GoogleProjectIamCustomRole extends Resource {
     required TfArg<String> title,
     required TfArg<List<String>> permissions,
     TfArg<String>? description,
-    TfArg<CustomRoleStage>? stage,
+    CustomRoleStage? stage,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

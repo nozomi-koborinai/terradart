@@ -35,7 +35,7 @@ final class DataZeroTrustTunnelWarpConnectorFilter {
 
   final TfArg<String>? name;
 
-  final TfArg<DataZeroTrustTunnelWarpConnectorFilterStatus>? status;
+  final DataZeroTrustTunnelWarpConnectorFilterStatus? status;
 
   final TfArg<String>? uuid;
 
@@ -57,15 +57,35 @@ final class DataZeroTrustTunnelWarpConnectorFilter {
 }
 
 /// `status` — derived from the provider schema description.
-enum DataZeroTrustTunnelWarpConnectorFilterStatus implements TerraformEnum {
-  inactive('inactive'),
-  degraded('degraded'),
-  healthy('healthy'),
-  down('down');
+extension type const DataZeroTrustTunnelWarpConnectorFilterStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustTunnelWarpConnectorFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustTunnelWarpConnectorFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustTunnelWarpConnectorFilterStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustTunnelWarpConnectorFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inactive = DataZeroTrustTunnelWarpConnectorFilterStatus._(
+    TfArgLiteral('inactive'),
+  );
+  static const degraded = DataZeroTrustTunnelWarpConnectorFilterStatus._(
+    TfArgLiteral('degraded'),
+  );
+  static const healthy = DataZeroTrustTunnelWarpConnectorFilterStatus._(
+    TfArgLiteral('healthy'),
+  );
+  static const down = DataZeroTrustTunnelWarpConnectorFilterStatus._(
+    TfArgLiteral('down'),
+  );
+
+  static const List<DataZeroTrustTunnelWarpConnectorFilterStatus> values = [
+    inactive,
+    degraded,
+    healthy,
+    down,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_tunnel_warp_connector`.

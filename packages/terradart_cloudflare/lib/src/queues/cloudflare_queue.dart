@@ -10,14 +10,18 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareQueueSensitive = <String>{};
 
 /// Queue enum for `jurisdiction`.
-enum QueueJurisdiction implements TerraformEnum {
-  eu('eu'),
-  us('us'),
-  fedramp('fedramp');
+extension type const QueueJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  QueueJurisdiction.variable(String name) : this._(TfArg.variable(name));
+  QueueJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const QueueJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const QueueJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eu = QueueJurisdiction._(TfArgLiteral('eu'));
+  static const us = QueueJurisdiction._(TfArgLiteral('us'));
+  static const fedramp = QueueJurisdiction._(TfArgLiteral('fedramp'));
+
+  static const List<QueueJurisdiction> values = [eu, us, fedramp];
 }
 
 /// Typed helper for the `settings` block of
@@ -55,7 +59,7 @@ final class CloudflareQueue extends Resource {
   CloudflareQueue(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<QueueJurisdiction>? jurisdiction,
+    QueueJurisdiction? jurisdiction,
     required TfArg<String> queueName,
     QueueSettings? settings,
     super.lifecycle,

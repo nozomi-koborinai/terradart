@@ -7,14 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcRouteServerSensitive = <String>{};
 
 /// Vpc Route Server Persist enum for `persist_routes`.
-enum VpcRouteServerPersistRoutes implements TerraformEnum {
-  enable('enable'),
-  disable('disable'),
-  reset('reset');
+extension type const VpcRouteServerPersistRoutes._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcRouteServerPersistRoutes.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcRouteServerPersistRoutes.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcRouteServerPersistRoutes.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcRouteServerPersistRoutes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = VpcRouteServerPersistRoutes._(TfArgLiteral('enable'));
+  static const disable = VpcRouteServerPersistRoutes._(TfArgLiteral('disable'));
+  static const reset = VpcRouteServerPersistRoutes._(TfArgLiteral('reset'));
+
+  static const List<VpcRouteServerPersistRoutes> values = [
+    enable,
+    disable,
+    reset,
+  ];
 }
 
 /// Factory wrapper for `aws_vpc_route_server`.
@@ -24,7 +33,7 @@ final class AwsVpcRouteServer extends Resource {
   AwsVpcRouteServer(
     super.localName, {
     required TfArg<num> amazonSideAsn,
-    TfArg<VpcRouteServerPersistRoutes>? persistRoutes,
+    VpcRouteServerPersistRoutes? persistRoutes,
     TfArg<num>? persistRoutesDuration,
     TfArg<String>? region,
     TfArg<bool>? snsNotificationsEnabled,

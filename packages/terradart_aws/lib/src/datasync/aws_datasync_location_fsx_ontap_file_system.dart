@@ -77,18 +77,29 @@ final class DatasyncLocationFsxOntapFileSystemNfs {
 final class DatasyncLocationFsxOntapFileSystemNfsMountOptions {
   const DatasyncLocationFsxOntapFileSystemNfsMountOptions({this.version});
 
-  final TfArg<DatasyncLocationFsxOntapFileSystemNfsVersion>? version;
+  final DatasyncLocationFsxOntapFileSystemNfsVersion? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationFsxOntapFileSystemNfsVersion implements TerraformEnum {
-  nfs3('NFS3');
+extension type const DatasyncLocationFsxOntapFileSystemNfsVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatasyncLocationFsxOntapFileSystemNfsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationFsxOntapFileSystemNfsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationFsxOntapFileSystemNfsVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationFsxOntapFileSystemNfsVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nfs3 = DatasyncLocationFsxOntapFileSystemNfsVersion._(
+    TfArgLiteral('NFS3'),
+  );
+
+  static const List<DatasyncLocationFsxOntapFileSystemNfsVersion> values = [
+    nfs3,
+  ];
 }
 
 /// Typed helper for the `protocol.smb` block of
@@ -124,21 +135,41 @@ final class DatasyncLocationFsxOntapFileSystemSmb {
 final class DatasyncLocationFsxOntapFileSystemSmbMountOptions {
   const DatasyncLocationFsxOntapFileSystemSmbMountOptions({this.version});
 
-  final TfArg<DatasyncLocationFsxOntapFileSystemSmbVersion>? version;
+  final DatasyncLocationFsxOntapFileSystemSmbVersion? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationFsxOntapFileSystemSmbVersion implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  smb2('SMB2'),
-  smb3('SMB3'),
-  smb20('SMB2_0');
+extension type const DatasyncLocationFsxOntapFileSystemSmbVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatasyncLocationFsxOntapFileSystemSmbVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationFsxOntapFileSystemSmbVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationFsxOntapFileSystemSmbVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationFsxOntapFileSystemSmbVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = DatasyncLocationFsxOntapFileSystemSmbVersion._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const smb2 = DatasyncLocationFsxOntapFileSystemSmbVersion._(
+    TfArgLiteral('SMB2'),
+  );
+  static const smb3 = DatasyncLocationFsxOntapFileSystemSmbVersion._(
+    TfArgLiteral('SMB3'),
+  );
+  static const smb20 = DatasyncLocationFsxOntapFileSystemSmbVersion._(
+    TfArgLiteral('SMB2_0'),
+  );
+
+  static const List<DatasyncLocationFsxOntapFileSystemSmbVersion> values = [
+    automatic,
+    smb2,
+    smb3,
+    smb20,
+  ];
 }
 
 /// Factory wrapper for `aws_datasync_location_fsx_ontap_file_system`.

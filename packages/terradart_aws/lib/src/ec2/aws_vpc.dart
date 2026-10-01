@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcSensitive = <String>{};
 
 /// Vpc Instance enum for `instance_tenancy`.
-enum VpcInstanceTenancy implements TerraformEnum {
-  defaultCase('default'),
-  dedicated('dedicated');
+extension type const VpcInstanceTenancy._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcInstanceTenancy.variable(String name) : this._(TfArg.variable(name));
+  VpcInstanceTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcInstanceTenancy.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcInstanceTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = VpcInstanceTenancy._(TfArgLiteral('default'));
+  static const dedicated = VpcInstanceTenancy._(TfArgLiteral('dedicated'));
+
+  static const List<VpcInstanceTenancy> values = [defaultCase, dedicated];
 }
 
 /// At most one of `cidr_block`, `ipv4_netmask_length` on `aws_vpc`: the provider rejects
@@ -89,7 +93,7 @@ final class AwsVpc extends Resource {
     TfArg<bool>? enableDnsHostnames,
     TfArg<bool>? enableDnsSupport,
     TfArg<bool>? enableNetworkAddressUsageMetrics,
-    TfArg<VpcInstanceTenancy>? instanceTenancy,
+    VpcInstanceTenancy? instanceTenancy,
     TfArg<String>? ipv4IpamPoolId,
     TfArg<String>? ipv6CidrBlock,
     TfArg<String>? ipv6CidrBlockNetworkBorderGroup,

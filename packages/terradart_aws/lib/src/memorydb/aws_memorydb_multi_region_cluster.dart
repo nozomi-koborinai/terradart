@@ -7,23 +7,45 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMemorydbMultiRegionClusterSensitive = <String>{};
 
 /// Memorydb Multi Region Cluster enum for `engine`.
-enum MemorydbMultiRegionClusterEngine implements TerraformEnum {
-  redis('redis'),
-  valkey('valkey');
+extension type const MemorydbMultiRegionClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorydbMultiRegionClusterEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorydbMultiRegionClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorydbMultiRegionClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorydbMultiRegionClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redis = MemorydbMultiRegionClusterEngine._(
+    TfArgLiteral('redis'),
+  );
+  static const valkey = MemorydbMultiRegionClusterEngine._(
+    TfArgLiteral('valkey'),
+  );
+
+  static const List<MemorydbMultiRegionClusterEngine> values = [redis, valkey];
 }
 
 /// Memorydb Multi Region Cluster Update enum for `update_strategy`.
-enum MemorydbMultiRegionClusterUpdateStrategy implements TerraformEnum {
-  coordinated('coordinated'),
-  uncoordinated('uncoordinated');
+extension type const MemorydbMultiRegionClusterUpdateStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorydbMultiRegionClusterUpdateStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorydbMultiRegionClusterUpdateStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorydbMultiRegionClusterUpdateStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MemorydbMultiRegionClusterUpdateStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const coordinated = MemorydbMultiRegionClusterUpdateStrategy._(
+    TfArgLiteral('coordinated'),
+  );
+  static const uncoordinated = MemorydbMultiRegionClusterUpdateStrategy._(
+    TfArgLiteral('uncoordinated'),
+  );
+
+  static const List<MemorydbMultiRegionClusterUpdateStrategy> values = [
+    coordinated,
+    uncoordinated,
+  ];
 }
 
 /// Factory wrapper for `aws_memorydb_multi_region_cluster`.
@@ -33,7 +55,7 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
   AwsMemorydbMultiRegionCluster(
     super.localName, {
     TfArg<String>? description,
-    TfArg<MemorydbMultiRegionClusterEngine>? engine,
+    MemorydbMultiRegionClusterEngine? engine,
     TfArg<String>? engineVersion,
     required TfArg<String> multiRegionClusterNameSuffix,
     TfArg<String>? multiRegionParameterGroupName,
@@ -42,7 +64,7 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? tlsEnabled,
-    TfArg<MemorydbMultiRegionClusterUpdateStrategy>? updateStrategy,
+    MemorydbMultiRegionClusterUpdateStrategy? updateStrategy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

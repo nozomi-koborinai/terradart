@@ -8,13 +8,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecuritylakeSubscriberSensitive = <String>{};
 
 /// Securitylake Subscriber Access enum for `access_type`.
-enum SecuritylakeSubscriberAccessType implements TerraformEnum {
-  lakeformation('LAKEFORMATION'),
-  s3('S3');
+extension type const SecuritylakeSubscriberAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecuritylakeSubscriberAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecuritylakeSubscriberAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecuritylakeSubscriberAccessType.arg(TfArg<String> arg) : this._(arg);
 
-  const SecuritylakeSubscriberAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lakeformation = SecuritylakeSubscriberAccessType._(
+    TfArgLiteral('LAKEFORMATION'),
+  );
+  static const s3 = SecuritylakeSubscriberAccessType._(TfArgLiteral('S3'));
+
+  static const List<SecuritylakeSubscriberAccessType> values = [
+    lakeformation,
+    s3,
+  ];
 }
 
 /// Typed helper for the `source` block of
@@ -52,7 +62,7 @@ final class SecuritylakeSubscriberAwsLogSourceResource {
     this.sourceVersion,
   });
 
-  final TfArg<SecuritylakeSubscriberSourceName> sourceName;
+  final SecuritylakeSubscriberSourceName sourceName;
 
   final TfArg<String>? sourceVersion;
 
@@ -63,19 +73,47 @@ final class SecuritylakeSubscriberAwsLogSourceResource {
 }
 
 /// `source_name` — derived from the provider schema description.
-enum SecuritylakeSubscriberSourceName implements TerraformEnum {
-  route53('ROUTE53'),
-  vpcFlow('VPC_FLOW'),
-  shFindings('SH_FINDINGS'),
-  cloudTrailMgmt('CLOUD_TRAIL_MGMT'),
-  lambdaExecution('LAMBDA_EXECUTION'),
-  s3Data('S3_DATA'),
-  eksAudit('EKS_AUDIT'),
-  waf('WAF');
+extension type const SecuritylakeSubscriberSourceName._(TfArg<String> _)
+    implements TfArg<String> {
+  SecuritylakeSubscriberSourceName.variable(String name)
+    : this._(TfArg.variable(name));
+  SecuritylakeSubscriberSourceName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecuritylakeSubscriberSourceName.arg(TfArg<String> arg) : this._(arg);
 
-  const SecuritylakeSubscriberSourceName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const route53 = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('ROUTE53'),
+  );
+  static const vpcFlow = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('VPC_FLOW'),
+  );
+  static const shFindings = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('SH_FINDINGS'),
+  );
+  static const cloudTrailMgmt = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('CLOUD_TRAIL_MGMT'),
+  );
+  static const lambdaExecution = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('LAMBDA_EXECUTION'),
+  );
+  static const s3Data = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('S3_DATA'),
+  );
+  static const eksAudit = SecuritylakeSubscriberSourceName._(
+    TfArgLiteral('EKS_AUDIT'),
+  );
+  static const waf = SecuritylakeSubscriberSourceName._(TfArgLiteral('WAF'));
+
+  static const List<SecuritylakeSubscriberSourceName> values = [
+    route53,
+    vpcFlow,
+    shFindings,
+    cloudTrailMgmt,
+    lambdaExecution,
+    s3Data,
+    eksAudit,
+    waf,
+  ];
 }
 
 /// Typed helper for the `source.custom_log_source_resource` block of
@@ -122,7 +160,7 @@ final class AwsSecuritylakeSubscriber extends Resource {
 
   AwsSecuritylakeSubscriber(
     super.localName, {
-    TfArg<SecuritylakeSubscriberAccessType>? accessType,
+    SecuritylakeSubscriberAccessType? accessType,
     TfArg<String>? region,
     TfArg<String>? subscriberDescription,
     TfArg<String>? subscriberName,

@@ -11,69 +11,152 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleRedisClusterSensitive = <String>{};
 
 /// Redis Cluster Authorization enum for `authorization_mode`.
-enum RedisClusterAuthorizationMode implements TerraformEnum {
-  authModeUnspecified('AUTH_MODE_UNSPECIFIED'),
-  authModeIamAuth('AUTH_MODE_IAM_AUTH'),
-  authModeDisabled('AUTH_MODE_DISABLED');
+extension type const RedisClusterAuthorizationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterAuthorizationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RedisClusterAuthorizationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterAuthorizationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterAuthorizationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authModeUnspecified = RedisClusterAuthorizationMode._(
+    TfArgLiteral('AUTH_MODE_UNSPECIFIED'),
+  );
+  static const authModeIamAuth = RedisClusterAuthorizationMode._(
+    TfArgLiteral('AUTH_MODE_IAM_AUTH'),
+  );
+  static const authModeDisabled = RedisClusterAuthorizationMode._(
+    TfArgLiteral('AUTH_MODE_DISABLED'),
+  );
+
+  static const List<RedisClusterAuthorizationMode> values = [
+    authModeUnspecified,
+    authModeIamAuth,
+    authModeDisabled,
+  ];
 }
 
 /// Redis Cluster Node enum for `node_type`.
-enum RedisClusterNodeType implements TerraformEnum {
-  redisSharedCoreNano('REDIS_SHARED_CORE_NANO'),
-  redisHighmemMedium('REDIS_HIGHMEM_MEDIUM'),
-  redisHighcpuMedium('REDIS_HIGHCPU_MEDIUM'),
-  redisStandardLarge('REDIS_STANDARD_LARGE'),
-  redisHighmemXlarge('REDIS_HIGHMEM_XLARGE'),
-  redisHighmem2xlarge('REDIS_HIGHMEM_2XLARGE'),
-  redisStandardSmall('REDIS_STANDARD_SMALL');
+extension type const RedisClusterNodeType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterNodeType.variable(String name) : this._(TfArg.variable(name));
+  RedisClusterNodeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterNodeType.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterNodeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redisSharedCoreNano = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_SHARED_CORE_NANO'),
+  );
+  static const redisHighmemMedium = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_HIGHMEM_MEDIUM'),
+  );
+  static const redisHighcpuMedium = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_HIGHCPU_MEDIUM'),
+  );
+  static const redisStandardLarge = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_STANDARD_LARGE'),
+  );
+  static const redisHighmemXlarge = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_HIGHMEM_XLARGE'),
+  );
+  static const redisHighmem2xlarge = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_HIGHMEM_2XLARGE'),
+  );
+  static const redisStandardSmall = RedisClusterNodeType._(
+    TfArgLiteral('REDIS_STANDARD_SMALL'),
+  );
+
+  static const List<RedisClusterNodeType> values = [
+    redisSharedCoreNano,
+    redisHighmemMedium,
+    redisHighcpuMedium,
+    redisStandardLarge,
+    redisHighmemXlarge,
+    redisHighmem2xlarge,
+    redisStandardSmall,
+  ];
 }
 
 /// Redis Cluster Server Ca enum for `server_ca_mode`.
-enum RedisClusterServerCaMode implements TerraformEnum {
-  serverCaModeGoogleManagedPerInstanceCa(
-    'SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA',
-  ),
-  serverCaModeGoogleManagedSharedCa('SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA'),
-  serverCaModeCustomerManagedCasCa('SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA'),
-  serverCaModeUnspecified('SERVER_CA_MODE_UNSPECIFIED');
+extension type const RedisClusterServerCaMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterServerCaMode.variable(String name) : this._(TfArg.variable(name));
+  RedisClusterServerCaMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterServerCaMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterServerCaMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serverCaModeGoogleManagedPerInstanceCa =
+      RedisClusterServerCaMode._(
+        TfArgLiteral('SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA'),
+      );
+  static const serverCaModeGoogleManagedSharedCa = RedisClusterServerCaMode._(
+    TfArgLiteral('SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA'),
+  );
+  static const serverCaModeCustomerManagedCasCa = RedisClusterServerCaMode._(
+    TfArgLiteral('SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA'),
+  );
+  static const serverCaModeUnspecified = RedisClusterServerCaMode._(
+    TfArgLiteral('SERVER_CA_MODE_UNSPECIFIED'),
+  );
+
+  static const List<RedisClusterServerCaMode> values = [
+    serverCaModeGoogleManagedPerInstanceCa,
+    serverCaModeGoogleManagedSharedCa,
+    serverCaModeCustomerManagedCasCa,
+    serverCaModeUnspecified,
+  ];
 }
 
 /// Redis Cluster enum for `state`.
-enum RedisClusterState implements TerraformEnum {
-  creating('CREATING'),
-  ready('READY'),
-  updating('UPDATING'),
-  deleting('DELETING'),
-  suspended('SUSPENDED');
+extension type const RedisClusterState._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterState.variable(String name) : this._(TfArg.variable(name));
+  RedisClusterState.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterState.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const creating = RedisClusterState._(TfArgLiteral('CREATING'));
+  static const ready = RedisClusterState._(TfArgLiteral('READY'));
+  static const updating = RedisClusterState._(TfArgLiteral('UPDATING'));
+  static const deleting = RedisClusterState._(TfArgLiteral('DELETING'));
+  static const suspended = RedisClusterState._(TfArgLiteral('SUSPENDED'));
+
+  static const List<RedisClusterState> values = [
+    creating,
+    ready,
+    updating,
+    deleting,
+    suspended,
+  ];
 }
 
 /// Redis Cluster Transit Encryption enum for `transit_encryption_mode`.
-enum RedisClusterTransitEncryptionMode implements TerraformEnum {
-  transitEncryptionModeUnspecified('TRANSIT_ENCRYPTION_MODE_UNSPECIFIED'),
-  transitEncryptionModeDisabled('TRANSIT_ENCRYPTION_MODE_DISABLED'),
-  transitEncryptionModeServerAuthentication(
-    'TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION',
-  );
+extension type const RedisClusterTransitEncryptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterTransitEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RedisClusterTransitEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterTransitEncryptionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterTransitEncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transitEncryptionModeUnspecified =
+      RedisClusterTransitEncryptionMode._(
+        TfArgLiteral('TRANSIT_ENCRYPTION_MODE_UNSPECIFIED'),
+      );
+  static const transitEncryptionModeDisabled =
+      RedisClusterTransitEncryptionMode._(
+        TfArgLiteral('TRANSIT_ENCRYPTION_MODE_DISABLED'),
+      );
+  static const transitEncryptionModeServerAuthentication =
+      RedisClusterTransitEncryptionMode._(
+        TfArgLiteral('TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION'),
+      );
+
+  static const List<RedisClusterTransitEncryptionMode> values = [
+    transitEncryptionModeUnspecified,
+    transitEncryptionModeDisabled,
+    transitEncryptionModeServerAuthentication,
+  ];
 }
 
 /// At most one of `gcs_source`, `managed_backup_source` on `google_redis_cluster`: the provider rejects
@@ -192,7 +275,7 @@ final class RedisClusterCrossClusterReplicationConfig {
     this.secondaryClusters,
   });
 
-  final TfArg<RedisClusterRole>? clusterRole;
+  final RedisClusterRole? clusterRole;
 
   final RedisClusterPrimaryCluster? primaryCluster;
 
@@ -207,15 +290,26 @@ final class RedisClusterCrossClusterReplicationConfig {
 }
 
 /// `cluster_role` — derived from the provider schema description.
-enum RedisClusterRole implements TerraformEnum {
-  clusterRoleUnspecified('CLUSTER_ROLE_UNSPECIFIED'),
-  none('NONE'),
-  primary('PRIMARY'),
-  secondary('SECONDARY');
+extension type const RedisClusterRole._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterRole.variable(String name) : this._(TfArg.variable(name));
+  RedisClusterRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterRole.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clusterRoleUnspecified = RedisClusterRole._(
+    TfArgLiteral('CLUSTER_ROLE_UNSPECIFIED'),
+  );
+  static const none = RedisClusterRole._(TfArgLiteral('NONE'));
+  static const primary = RedisClusterRole._(TfArgLiteral('PRIMARY'));
+  static const secondary = RedisClusterRole._(TfArgLiteral('SECONDARY'));
+
+  static const List<RedisClusterRole> values = [
+    clusterRoleUnspecified,
+    none,
+    primary,
+    secondary,
+  ];
 }
 
 /// Typed helper for the `cross_cluster_replication_config.primary_cluster` block of
@@ -276,7 +370,7 @@ final class RedisClusterWeeklyMaintenanceWindow {
     required this.startTime,
   });
 
-  final TfArg<RedisClusterDay> day;
+  final RedisClusterDay day;
 
   final RedisClusterWeeklyMaintenanceWindowStartTime startTime;
 
@@ -287,19 +381,34 @@ final class RedisClusterWeeklyMaintenanceWindow {
 }
 
 /// `day` — derived from the provider schema description.
-enum RedisClusterDay implements TerraformEnum {
-  dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const RedisClusterDay._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterDay.variable(String name) : this._(TfArg.variable(name));
+  RedisClusterDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterDay.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dayOfWeekUnspecified = RedisClusterDay._(
+    TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'),
+  );
+  static const monday = RedisClusterDay._(TfArgLiteral('MONDAY'));
+  static const tuesday = RedisClusterDay._(TfArgLiteral('TUESDAY'));
+  static const wednesday = RedisClusterDay._(TfArgLiteral('WEDNESDAY'));
+  static const thursday = RedisClusterDay._(TfArgLiteral('THURSDAY'));
+  static const friday = RedisClusterDay._(TfArgLiteral('FRIDAY'));
+  static const saturday = RedisClusterDay._(TfArgLiteral('SATURDAY'));
+  static const sunday = RedisClusterDay._(TfArgLiteral('SUNDAY'));
+
+  static const List<RedisClusterDay> values = [
+    dayOfWeekUnspecified,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `maintenance_policy.weekly_maintenance_window.start_time` block of
@@ -350,7 +459,7 @@ final class RedisClusterPersistenceConfig {
     this.rdbConfig,
   });
 
-  final TfArg<RedisClusterPersistenceConfigMode>? mode;
+  final RedisClusterPersistenceConfigMode? mode;
 
   final RedisClusterAofConfig? aofConfig;
 
@@ -364,15 +473,29 @@ final class RedisClusterPersistenceConfig {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RedisClusterPersistenceConfigMode implements TerraformEnum {
-  persistenceModeUnspecified('PERSISTENCE_MODE_UNSPECIFIED'),
-  disabled('DISABLED'),
-  rdb('RDB'),
-  aof('AOF');
+extension type const RedisClusterPersistenceConfigMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterPersistenceConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RedisClusterPersistenceConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterPersistenceConfigMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterPersistenceConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const persistenceModeUnspecified = RedisClusterPersistenceConfigMode._(
+    TfArgLiteral('PERSISTENCE_MODE_UNSPECIFIED'),
+  );
+  static const disabled = RedisClusterPersistenceConfigMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const rdb = RedisClusterPersistenceConfigMode._(TfArgLiteral('RDB'));
+  static const aof = RedisClusterPersistenceConfigMode._(TfArgLiteral('AOF'));
+
+  static const List<RedisClusterPersistenceConfigMode> values = [
+    persistenceModeUnspecified,
+    disabled,
+    rdb,
+    aof,
+  ];
 }
 
 /// Typed helper for the `persistence_config.aof_config` block of
@@ -381,21 +504,32 @@ enum RedisClusterPersistenceConfigMode implements TerraformEnum {
 final class RedisClusterAofConfig {
   const RedisClusterAofConfig({this.appendFsync});
 
-  final TfArg<RedisClusterAppendFsync>? appendFsync;
+  final RedisClusterAppendFsync? appendFsync;
 
   Map<String, Object?> encode() => {'append_fsync': ?appendFsync?.toTfJson()};
 }
 
 /// `append_fsync` — derived from the provider schema description.
-enum RedisClusterAppendFsync implements TerraformEnum {
-  appendFsyncUnspecified('APPEND_FSYNC_UNSPECIFIED'),
-  no('NO'),
-  everysec('EVERYSEC'),
-  always('ALWAYS');
+extension type const RedisClusterAppendFsync._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterAppendFsync.variable(String name) : this._(TfArg.variable(name));
+  RedisClusterAppendFsync.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterAppendFsync.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterAppendFsync(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const appendFsyncUnspecified = RedisClusterAppendFsync._(
+    TfArgLiteral('APPEND_FSYNC_UNSPECIFIED'),
+  );
+  static const no = RedisClusterAppendFsync._(TfArgLiteral('NO'));
+  static const everysec = RedisClusterAppendFsync._(TfArgLiteral('EVERYSEC'));
+  static const always = RedisClusterAppendFsync._(TfArgLiteral('ALWAYS'));
+
+  static const List<RedisClusterAppendFsync> values = [
+    appendFsyncUnspecified,
+    no,
+    everysec,
+    always,
+  ];
 }
 
 /// Typed helper for the `persistence_config.rdb_config` block of
@@ -407,7 +541,7 @@ final class RedisClusterRdbConfig {
     this.rdbSnapshotStartTime,
   });
 
-  final TfArg<RedisClusterRdbSnapshotPeriod>? rdbSnapshotPeriod;
+  final RedisClusterRdbSnapshotPeriod? rdbSnapshotPeriod;
 
   final TfArg<String>? rdbSnapshotStartTime;
 
@@ -418,16 +552,37 @@ final class RedisClusterRdbConfig {
 }
 
 /// `rdb_snapshot_period` — derived from the provider schema description.
-enum RedisClusterRdbSnapshotPeriod implements TerraformEnum {
-  snapshotPeriodUnspecified('SNAPSHOT_PERIOD_UNSPECIFIED'),
-  oneHour('ONE_HOUR'),
-  sixHours('SIX_HOURS'),
-  twelveHours('TWELVE_HOURS'),
-  twentyFourHours('TWENTY_FOUR_HOURS');
+extension type const RedisClusterRdbSnapshotPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterRdbSnapshotPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  RedisClusterRdbSnapshotPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterRdbSnapshotPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const RedisClusterRdbSnapshotPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const snapshotPeriodUnspecified = RedisClusterRdbSnapshotPeriod._(
+    TfArgLiteral('SNAPSHOT_PERIOD_UNSPECIFIED'),
+  );
+  static const oneHour = RedisClusterRdbSnapshotPeriod._(
+    TfArgLiteral('ONE_HOUR'),
+  );
+  static const sixHours = RedisClusterRdbSnapshotPeriod._(
+    TfArgLiteral('SIX_HOURS'),
+  );
+  static const twelveHours = RedisClusterRdbSnapshotPeriod._(
+    TfArgLiteral('TWELVE_HOURS'),
+  );
+  static const twentyFourHours = RedisClusterRdbSnapshotPeriod._(
+    TfArgLiteral('TWENTY_FOUR_HOURS'),
+  );
+
+  static const List<RedisClusterRdbSnapshotPeriod> values = [
+    snapshotPeriodUnspecified,
+    oneHour,
+    sixHours,
+    twelveHours,
+    twentyFourHours,
+  ];
 }
 
 /// Typed helper for the `psc_configs` block of
@@ -449,7 +604,7 @@ final class RedisClusterPscConfigs {
 final class RedisClusterZoneDistributionConfig {
   const RedisClusterZoneDistributionConfig({this.mode, this.zone});
 
-  final TfArg<RedisClusterZoneDistributionConfigMode>? mode;
+  final RedisClusterZoneDistributionConfigMode? mode;
 
   final TfArg<String>? zone;
 
@@ -460,13 +615,26 @@ final class RedisClusterZoneDistributionConfig {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RedisClusterZoneDistributionConfigMode implements TerraformEnum {
-  multiZone('MULTI_ZONE'),
-  singleZone('SINGLE_ZONE');
+extension type const RedisClusterZoneDistributionConfigMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RedisClusterZoneDistributionConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RedisClusterZoneDistributionConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedisClusterZoneDistributionConfigMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedisClusterZoneDistributionConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiZone = RedisClusterZoneDistributionConfigMode._(
+    TfArgLiteral('MULTI_ZONE'),
+  );
+  static const singleZone = RedisClusterZoneDistributionConfigMode._(
+    TfArgLiteral('SINGLE_ZONE'),
+  );
+
+  static const List<RedisClusterZoneDistributionConfigMode> values = [
+    multiZone,
+    singleZone,
+  ];
 }
 
 /// Factory wrapper for `google_redis_cluster`.
@@ -494,7 +662,7 @@ enum RedisClusterZoneDistributionConfigMode implements TerraformEnum {
 ///   region: TfArg.literal('us-central1'),
 ///   shardCount: TfArg.literal(1),
 ///   replicaCount: TfArg.literal(0),
-///   nodeType: TfArg.literal(RedisClusterNodeType.redisSharedCoreNano),
+///   nodeType: RedisClusterNodeType.redisSharedCoreNano,
 ///   pscConfigs: [
 ///     RedisClusterPscConfigs(network: network.ref),
 ///   ],
@@ -510,10 +678,10 @@ final class GoogleRedisCluster extends Resource {
     TfArg<String>? region,
     required TfArg<num> shardCount,
     TfArg<num>? replicaCount,
-    TfArg<RedisClusterNodeType>? nodeType,
+    RedisClusterNodeType? nodeType,
     List<RedisClusterPscConfigs>? pscConfigs,
-    TfArg<RedisClusterAuthorizationMode>? authorizationMode,
-    TfArg<RedisClusterTransitEncryptionMode>? transitEncryptionMode,
+    RedisClusterAuthorizationMode? authorizationMode,
+    RedisClusterTransitEncryptionMode? transitEncryptionMode,
     TfArg<Map<String, String>>? redisConfigs,
     RedisClusterPersistenceConfig? persistenceConfig,
     RedisClusterZoneDistributionConfig? zoneDistributionConfig,
@@ -526,7 +694,7 @@ final class GoogleRedisCluster extends Resource {
     TfArg<String>? project,
     TfArg<String>? aclPolicy,
     TfArg<String>? maintenanceVersion,
-    TfArg<RedisClusterServerCaMode>? serverCaMode,
+    RedisClusterServerCaMode? serverCaMode,
     TfArg<String>? serverCaPool,
     RedisClusterCrossClusterReplicationConfig? crossClusterReplicationConfig,
     RedisClusterSource? source,

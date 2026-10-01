@@ -235,7 +235,7 @@ final class CloudfrontResponseHeadersPolicyFrameOptions {
     required this.override,
   });
 
-  final TfArg<CloudfrontResponseHeadersPolicyFrameOption> frameOption;
+  final CloudfrontResponseHeadersPolicyFrameOption frameOption;
 
   final TfArg<bool> override;
 
@@ -246,13 +246,27 @@ final class CloudfrontResponseHeadersPolicyFrameOptions {
 }
 
 /// `frame_option` — derived from the provider schema description.
-enum CloudfrontResponseHeadersPolicyFrameOption implements TerraformEnum {
-  deny('DENY'),
-  sameorigin('SAMEORIGIN');
+extension type const CloudfrontResponseHeadersPolicyFrameOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontResponseHeadersPolicyFrameOption.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontResponseHeadersPolicyFrameOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontResponseHeadersPolicyFrameOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontResponseHeadersPolicyFrameOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deny = CloudfrontResponseHeadersPolicyFrameOption._(
+    TfArgLiteral('DENY'),
+  );
+  static const sameorigin = CloudfrontResponseHeadersPolicyFrameOption._(
+    TfArgLiteral('SAMEORIGIN'),
+  );
+
+  static const List<CloudfrontResponseHeadersPolicyFrameOption> values = [
+    deny,
+    sameorigin,
+  ];
 }
 
 /// Typed helper for the `security_headers_config.referrer_policy` block of
@@ -266,9 +280,7 @@ final class CloudfrontResponseHeadersPolicyReferrerPolicy {
 
   final TfArg<bool> override;
 
-  final TfArg<
-    CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
-  >
+  final CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
   referrerPolicy;
 
   Map<String, Object?> encode() => {
@@ -278,22 +290,65 @@ final class CloudfrontResponseHeadersPolicyReferrerPolicy {
 }
 
 /// `referrer_policy` — derived from the provider schema description.
-enum CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
-    implements TerraformEnum {
-  noReferrer('no-referrer'),
-  noReferrerWhenDowngrade('no-referrer-when-downgrade'),
-  origin('origin'),
-  originWhenCrossOrigin('origin-when-cross-origin'),
-  sameOrigin('same-origin'),
-  strictOrigin('strict-origin'),
-  strictOriginWhenCrossOrigin('strict-origin-when-cross-origin'),
-  unsafeUrl('unsafe-url');
+extension type const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const noReferrer =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('no-referrer'),
+      );
+  static const noReferrerWhenDowngrade =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('no-referrer-when-downgrade'),
+      );
+  static const origin =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('origin'),
+      );
+  static const originWhenCrossOrigin =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('origin-when-cross-origin'),
+      );
+  static const sameOrigin =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('same-origin'),
+      );
+  static const strictOrigin =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('strict-origin'),
+      );
+  static const strictOriginWhenCrossOrigin =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('strict-origin-when-cross-origin'),
+      );
+  static const unsafeUrl =
+      CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy._(
+        TfArgLiteral('unsafe-url'),
+      );
+
+  static const List<
+    CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
+  >
+  values = [
+    noReferrer,
+    noReferrerWhenDowngrade,
+    origin,
+    originWhenCrossOrigin,
+    sameOrigin,
+    strictOrigin,
+    strictOriginWhenCrossOrigin,
+    unsafeUrl,
+  ];
 }
 
 /// Typed helper for the `security_headers_config.strict_transport_security` block of

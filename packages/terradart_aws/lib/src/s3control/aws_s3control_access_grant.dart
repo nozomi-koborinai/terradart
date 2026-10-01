@@ -8,23 +8,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsS3controlAccessGrantSensitive = <String>{};
 
 /// S3control Access Grant enum for `permission`.
-enum S3controlAccessGrantPermission implements TerraformEnum {
-  read('READ'),
-  write('WRITE'),
-  readwrite('READWRITE');
+extension type const S3controlAccessGrantPermission._(TfArg<String> _)
+    implements TfArg<String> {
+  S3controlAccessGrantPermission.variable(String name)
+    : this._(TfArg.variable(name));
+  S3controlAccessGrantPermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3controlAccessGrantPermission.arg(TfArg<String> arg) : this._(arg);
 
-  const S3controlAccessGrantPermission(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const read = S3controlAccessGrantPermission._(TfArgLiteral('READ'));
+  static const write = S3controlAccessGrantPermission._(TfArgLiteral('WRITE'));
+  static const readwrite = S3controlAccessGrantPermission._(
+    TfArgLiteral('READWRITE'),
+  );
+
+  static const List<S3controlAccessGrantPermission> values = [
+    read,
+    write,
+    readwrite,
+  ];
 }
 
 /// S3control Access Grant S3 Prefix enum for `s3_prefix_type`.
-enum S3controlAccessGrantS3PrefixType implements TerraformEnum {
-  object('Object');
+extension type const S3controlAccessGrantS3PrefixType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3controlAccessGrantS3PrefixType.variable(String name)
+    : this._(TfArg.variable(name));
+  S3controlAccessGrantS3PrefixType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3controlAccessGrantS3PrefixType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3controlAccessGrantS3PrefixType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const object = S3controlAccessGrantS3PrefixType._(
+    TfArgLiteral('Object'),
+  );
+
+  static const List<S3controlAccessGrantS3PrefixType> values = [object];
 }
 
 /// Typed helper for the `access_grants_location_configuration` block of
@@ -51,7 +69,7 @@ final class S3controlAccessGrantGrantee {
 
   final TfArg<String> granteeIdentifier;
 
-  final TfArg<S3controlAccessGrantGranteeType> granteeType;
+  final S3controlAccessGrantGranteeType granteeType;
 
   Map<String, Object?> encode() => {
     'grantee_identifier': granteeIdentifier.toTfJson(),
@@ -60,14 +78,27 @@ final class S3controlAccessGrantGrantee {
 }
 
 /// `grantee_type` — derived from the provider schema description.
-enum S3controlAccessGrantGranteeType implements TerraformEnum {
-  directoryUser('DIRECTORY_USER'),
-  directoryGroup('DIRECTORY_GROUP'),
-  iam('IAM');
+extension type const S3controlAccessGrantGranteeType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3controlAccessGrantGranteeType.variable(String name)
+    : this._(TfArg.variable(name));
+  S3controlAccessGrantGranteeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3controlAccessGrantGranteeType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3controlAccessGrantGranteeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const directoryUser = S3controlAccessGrantGranteeType._(
+    TfArgLiteral('DIRECTORY_USER'),
+  );
+  static const directoryGroup = S3controlAccessGrantGranteeType._(
+    TfArgLiteral('DIRECTORY_GROUP'),
+  );
+  static const iam = S3controlAccessGrantGranteeType._(TfArgLiteral('IAM'));
+
+  static const List<S3controlAccessGrantGranteeType> values = [
+    directoryUser,
+    directoryGroup,
+    iam,
+  ];
 }
 
 /// Factory wrapper for `aws_s3control_access_grant`.
@@ -78,9 +109,9 @@ final class AwsS3controlAccessGrant extends Resource {
     super.localName, {
     required TfArg<String> accessGrantsLocationId,
     TfArg<String>? accountId,
-    required TfArg<S3controlAccessGrantPermission> permission,
+    required S3controlAccessGrantPermission permission,
     TfArg<String>? region,
-    TfArg<S3controlAccessGrantS3PrefixType>? s3PrefixType,
+    S3controlAccessGrantS3PrefixType? s3PrefixType,
     TfArg<Map<String, String>>? tags,
     List<S3controlAccessGrantAccessGrantsLocationConfiguration>?
     accessGrantsLocationConfiguration,

@@ -16,7 +16,7 @@ final class WafXssMatchSetXssMatchTuples {
     required this.fieldToMatch,
   });
 
-  final TfArg<WafXssMatchSetTextTransformation> textTransformation;
+  final WafXssMatchSetTextTransformation textTransformation;
 
   final WafXssMatchSetFieldToMatch fieldToMatch;
 
@@ -27,17 +27,39 @@ final class WafXssMatchSetXssMatchTuples {
 }
 
 /// `text_transformation` — derived from the provider schema description.
-enum WafXssMatchSetTextTransformation implements TerraformEnum {
-  none('NONE'),
-  compressWhiteSpace('COMPRESS_WHITE_SPACE'),
-  htmlEntityDecode('HTML_ENTITY_DECODE'),
-  lowercase('LOWERCASE'),
-  cmdLine('CMD_LINE'),
-  urlDecode('URL_DECODE');
+extension type const WafXssMatchSetTextTransformation._(TfArg<String> _)
+    implements TfArg<String> {
+  WafXssMatchSetTextTransformation.variable(String name)
+    : this._(TfArg.variable(name));
+  WafXssMatchSetTextTransformation.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafXssMatchSetTextTransformation.arg(TfArg<String> arg) : this._(arg);
 
-  const WafXssMatchSetTextTransformation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = WafXssMatchSetTextTransformation._(TfArgLiteral('NONE'));
+  static const compressWhiteSpace = WafXssMatchSetTextTransformation._(
+    TfArgLiteral('COMPRESS_WHITE_SPACE'),
+  );
+  static const htmlEntityDecode = WafXssMatchSetTextTransformation._(
+    TfArgLiteral('HTML_ENTITY_DECODE'),
+  );
+  static const lowercase = WafXssMatchSetTextTransformation._(
+    TfArgLiteral('LOWERCASE'),
+  );
+  static const cmdLine = WafXssMatchSetTextTransformation._(
+    TfArgLiteral('CMD_LINE'),
+  );
+  static const urlDecode = WafXssMatchSetTextTransformation._(
+    TfArgLiteral('URL_DECODE'),
+  );
+
+  static const List<WafXssMatchSetTextTransformation> values = [
+    none,
+    compressWhiteSpace,
+    htmlEntityDecode,
+    lowercase,
+    cmdLine,
+    urlDecode,
+  ];
 }
 
 /// Typed helper for the `xss_match_tuples.field_to_match` block of
@@ -48,7 +70,7 @@ final class WafXssMatchSetFieldToMatch {
 
   final TfArg<String>? data;
 
-  final TfArg<WafXssMatchSetType> type;
+  final WafXssMatchSetType type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -57,18 +79,34 @@ final class WafXssMatchSetFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafXssMatchSetType implements TerraformEnum {
-  uri('URI'),
-  queryString('QUERY_STRING'),
-  header('HEADER'),
-  method('METHOD'),
-  body('BODY'),
-  singleQueryArg('SINGLE_QUERY_ARG'),
-  allQueryArgs('ALL_QUERY_ARGS');
+extension type const WafXssMatchSetType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafXssMatchSetType.variable(String name) : this._(TfArg.variable(name));
+  WafXssMatchSetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafXssMatchSetType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafXssMatchSetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uri = WafXssMatchSetType._(TfArgLiteral('URI'));
+  static const queryString = WafXssMatchSetType._(TfArgLiteral('QUERY_STRING'));
+  static const header = WafXssMatchSetType._(TfArgLiteral('HEADER'));
+  static const method = WafXssMatchSetType._(TfArgLiteral('METHOD'));
+  static const body = WafXssMatchSetType._(TfArgLiteral('BODY'));
+  static const singleQueryArg = WafXssMatchSetType._(
+    TfArgLiteral('SINGLE_QUERY_ARG'),
+  );
+  static const allQueryArgs = WafXssMatchSetType._(
+    TfArgLiteral('ALL_QUERY_ARGS'),
+  );
+
+  static const List<WafXssMatchSetType> values = [
+    uri,
+    queryString,
+    header,
+    method,
+    body,
+    singleQueryArg,
+    allQueryArgs,
+  ];
 }
 
 /// Factory wrapper for `aws_waf_xss_match_set`.

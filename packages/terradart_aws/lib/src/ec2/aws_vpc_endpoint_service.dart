@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcEndpointServiceSensitive = <String>{};
 
 /// Vpc Endpoint Service Supported Ip Address enum for `supported_ip_address_types`.
-enum VpcEndpointServiceSupportedIpAddressTypes implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const VpcEndpointServiceSupportedIpAddressTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpcEndpointServiceSupportedIpAddressTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcEndpointServiceSupportedIpAddressTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcEndpointServiceSupportedIpAddressTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpcEndpointServiceSupportedIpAddressTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = VpcEndpointServiceSupportedIpAddressTypes._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = VpcEndpointServiceSupportedIpAddressTypes._(
+    TfArgLiteral('ipv6'),
+  );
+
+  static const List<VpcEndpointServiceSupportedIpAddressTypes> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Factory wrapper for `aws_vpc_endpoint_service`.
@@ -28,8 +42,7 @@ final class AwsVpcEndpointService extends Resource {
     TfArg<List<String>>? networkLoadBalancerArns,
     TfArg<String>? privateDnsName,
     TfArg<String>? region,
-    List<TfArg<VpcEndpointServiceSupportedIpAddressTypes>>?
-    supportedIpAddressTypes,
+    List<VpcEndpointServiceSupportedIpAddressTypes>? supportedIpAddressTypes,
     TfArg<List<String>>? supportedRegions,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

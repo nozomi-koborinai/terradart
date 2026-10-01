@@ -10,16 +10,31 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareZoneSubscriptionSensitive = <String>{};
 
 /// Zone Subscription enum for `frequency`.
-enum ZoneSubscriptionFrequency implements TerraformEnum {
-  weekly('weekly'),
-  monthly('monthly'),
-  quarterly('quarterly'),
-  yearly('yearly'),
-  notApplicable('not-applicable');
+extension type const ZoneSubscriptionFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneSubscriptionFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ZoneSubscriptionFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneSubscriptionFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneSubscriptionFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const weekly = ZoneSubscriptionFrequency._(TfArgLiteral('weekly'));
+  static const monthly = ZoneSubscriptionFrequency._(TfArgLiteral('monthly'));
+  static const quarterly = ZoneSubscriptionFrequency._(
+    TfArgLiteral('quarterly'),
+  );
+  static const yearly = ZoneSubscriptionFrequency._(TfArgLiteral('yearly'));
+  static const notApplicable = ZoneSubscriptionFrequency._(
+    TfArgLiteral('not-applicable'),
+  );
+
+  static const List<ZoneSubscriptionFrequency> values = [
+    weekly,
+    monthly,
+    quarterly,
+    yearly,
+    notApplicable,
+  ];
 }
 
 /// Typed helper for the `rate_plan` block of
@@ -28,7 +43,7 @@ enum ZoneSubscriptionFrequency implements TerraformEnum {
 final class ZoneSubscriptionRatePlan {
   const ZoneSubscriptionRatePlan({this.id, this.scope});
 
-  final TfArg<ZoneSubscriptionRatePlanId>? id;
+  final ZoneSubscriptionRatePlanId? id;
 
   final TfArg<String>? scope;
 
@@ -39,22 +54,53 @@ final class ZoneSubscriptionRatePlan {
 }
 
 /// `id` — derived from the provider schema description.
-enum ZoneSubscriptionRatePlanId implements TerraformEnum {
-  free('free'),
-  lite('lite'),
-  pro('pro'),
-  proPlus('pro_plus'),
-  business('business'),
-  enterprise('enterprise'),
-  partnersFree('partners_free'),
-  partnersPro('partners_pro'),
-  partnersBusiness('partners_business'),
-  partnersEnterprise('partners_enterprise'),
-  partnersEnt('partners_ent');
+extension type const ZoneSubscriptionRatePlanId._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneSubscriptionRatePlanId.variable(String name)
+    : this._(TfArg.variable(name));
+  ZoneSubscriptionRatePlanId.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneSubscriptionRatePlanId.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneSubscriptionRatePlanId(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const free = ZoneSubscriptionRatePlanId._(TfArgLiteral('free'));
+  static const lite = ZoneSubscriptionRatePlanId._(TfArgLiteral('lite'));
+  static const pro = ZoneSubscriptionRatePlanId._(TfArgLiteral('pro'));
+  static const proPlus = ZoneSubscriptionRatePlanId._(TfArgLiteral('pro_plus'));
+  static const business = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('business'),
+  );
+  static const enterprise = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('enterprise'),
+  );
+  static const partnersFree = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('partners_free'),
+  );
+  static const partnersPro = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('partners_pro'),
+  );
+  static const partnersBusiness = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('partners_business'),
+  );
+  static const partnersEnterprise = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('partners_enterprise'),
+  );
+  static const partnersEnt = ZoneSubscriptionRatePlanId._(
+    TfArgLiteral('partners_ent'),
+  );
+
+  static const List<ZoneSubscriptionRatePlanId> values = [
+    free,
+    lite,
+    pro,
+    proPlus,
+    business,
+    enterprise,
+    partnersFree,
+    partnersPro,
+    partnersBusiness,
+    partnersEnterprise,
+    partnersEnt,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zone_subscription`.
@@ -67,7 +113,7 @@ final class CloudflareZoneSubscription extends Resource {
 
   CloudflareZoneSubscription(
     super.localName, {
-    TfArg<ZoneSubscriptionFrequency>? frequency,
+    ZoneSubscriptionFrequency? frequency,
     required RefTo<CloudflareZone> zoneId,
     ZoneSubscriptionRatePlan? ratePlan,
     super.lifecycle,

@@ -8,55 +8,80 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAmiSensitive = <String>{};
 
 /// Ami enum for `architecture`.
-enum AmiArchitecture implements TerraformEnum {
-  i386('i386'),
-  x8664('x86_64'),
-  arm64('arm64'),
-  x8664Mac('x86_64_mac'),
-  arm64Mac('arm64_mac');
+extension type const AmiArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  AmiArchitecture.variable(String name) : this._(TfArg.variable(name));
+  AmiArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmiArchitecture.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiArchitecture(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const i386 = AmiArchitecture._(TfArgLiteral('i386'));
+  static const x8664 = AmiArchitecture._(TfArgLiteral('x86_64'));
+  static const arm64 = AmiArchitecture._(TfArgLiteral('arm64'));
+  static const x8664Mac = AmiArchitecture._(TfArgLiteral('x86_64_mac'));
+  static const arm64Mac = AmiArchitecture._(TfArgLiteral('arm64_mac'));
+
+  static const List<AmiArchitecture> values = [
+    i386,
+    x8664,
+    arm64,
+    x8664Mac,
+    arm64Mac,
+  ];
 }
 
 /// Ami Boot enum for `boot_mode`.
-enum AmiBootMode implements TerraformEnum {
-  legacyBios('legacy-bios'),
-  uefi('uefi'),
-  uefiPreferred('uefi-preferred');
+extension type const AmiBootMode._(TfArg<String> _) implements TfArg<String> {
+  AmiBootMode.variable(String name) : this._(TfArg.variable(name));
+  AmiBootMode.expression(String template) : this._(TfArg.expression(template));
+  const AmiBootMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiBootMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const legacyBios = AmiBootMode._(TfArgLiteral('legacy-bios'));
+  static const uefi = AmiBootMode._(TfArgLiteral('uefi'));
+  static const uefiPreferred = AmiBootMode._(TfArgLiteral('uefi-preferred'));
+
+  static const List<AmiBootMode> values = [legacyBios, uefi, uefiPreferred];
 }
 
 /// Ami Imds enum for `imds_support`.
-enum AmiImdsSupport implements TerraformEnum {
-  v2p0('v2.0');
+extension type const AmiImdsSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  AmiImdsSupport.variable(String name) : this._(TfArg.variable(name));
+  AmiImdsSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmiImdsSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiImdsSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v2p0 = AmiImdsSupport._(TfArgLiteral('v2.0'));
+
+  static const List<AmiImdsSupport> values = [v2p0];
 }
 
 /// Ami Tpm enum for `tpm_support`.
-enum AmiTpmSupport implements TerraformEnum {
-  v2p0('v2.0');
+extension type const AmiTpmSupport._(TfArg<String> _) implements TfArg<String> {
+  AmiTpmSupport.variable(String name) : this._(TfArg.variable(name));
+  AmiTpmSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmiTpmSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiTpmSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v2p0 = AmiTpmSupport._(TfArgLiteral('v2.0'));
+
+  static const List<AmiTpmSupport> values = [v2p0];
 }
 
 /// Ami Virtualization enum for `virtualization_type`.
-enum AmiVirtualizationType implements TerraformEnum {
-  hvm('hvm'),
-  paravirtual('paravirtual');
+extension type const AmiVirtualizationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AmiVirtualizationType.variable(String name) : this._(TfArg.variable(name));
+  AmiVirtualizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmiVirtualizationType.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiVirtualizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hvm = AmiVirtualizationType._(TfArgLiteral('hvm'));
+  static const paravirtual = AmiVirtualizationType._(
+    TfArgLiteral('paravirtual'),
+  );
+
+  static const List<AmiVirtualizationType> values = [hvm, paravirtual];
 }
 
 /// Typed helper for the `ebs_block_device` block of
@@ -91,7 +116,7 @@ final class AmiEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<AmiVolumeType>? volumeType;
+  final AmiVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -107,18 +132,29 @@ final class AmiEbsBlockDevice {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum AmiVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
+extension type const AmiVolumeType._(TfArg<String> _) implements TfArg<String> {
+  AmiVolumeType.variable(String name) : this._(TfArg.variable(name));
+  AmiVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmiVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = AmiVolumeType._(TfArgLiteral('standard'));
+  static const io1 = AmiVolumeType._(TfArgLiteral('io1'));
+  static const io2 = AmiVolumeType._(TfArgLiteral('io2'));
+  static const gp2 = AmiVolumeType._(TfArgLiteral('gp2'));
+  static const sc1 = AmiVolumeType._(TfArgLiteral('sc1'));
+  static const st1 = AmiVolumeType._(TfArgLiteral('st1'));
+  static const gp3 = AmiVolumeType._(TfArgLiteral('gp3'));
+
+  static const List<AmiVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    sc1,
+    st1,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `ephemeral_block_device` block of
@@ -146,13 +182,13 @@ final class AwsAmi extends Resource {
 
   AwsAmi(
     super.localName, {
-    TfArg<AmiArchitecture>? architecture,
-    TfArg<AmiBootMode>? bootMode,
+    AmiArchitecture? architecture,
+    AmiBootMode? bootMode,
     TfArg<String>? deprecationTime,
     TfArg<String>? description,
     TfArg<bool>? enaSupport,
     TfArg<String>? imageLocation,
-    TfArg<AmiImdsSupport>? imdsSupport,
+    AmiImdsSupport? imdsSupport,
     TfArg<String>? kernelId,
     required TfArg<String> name,
     TfArg<String>? ramdiskId,
@@ -160,9 +196,9 @@ final class AwsAmi extends Resource {
     TfArg<String>? rootDeviceName,
     TfArg<String>? sriovNetSupport,
     TfArg<Map<String, String>>? tags,
-    TfArg<AmiTpmSupport>? tpmSupport,
+    AmiTpmSupport? tpmSupport,
     TfArg<String>? uefiData,
-    TfArg<AmiVirtualizationType>? virtualizationType,
+    AmiVirtualizationType? virtualizationType,
     List<AmiEbsBlockDevice>? ebsBlockDevice,
     List<AmiEphemeralBlockDevice>? ephemeralBlockDevice,
     super.lifecycle,

@@ -21,20 +21,37 @@ const Set<String> _googleComputeRegionBackendServiceSensitive = <String>{
 /// `SSL`, and `UDP` are for Passthrough Network Load Balancing /
 /// regional internal proxy routing. `GRPC` is required when the URL
 /// map is bound to a regional target gRPC proxy.
-enum RegionBackendServiceProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  http2('HTTP2'),
-  tcp('TCP'),
-  ssl('SSL'),
-  udp('UDP'),
-  grpc('GRPC'),
-  unspecified('UNSPECIFIED'),
-  h2c('H2C');
+extension type const RegionBackendServiceProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionBackendServiceProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = RegionBackendServiceProtocol._(TfArgLiteral('HTTP'));
+  static const https = RegionBackendServiceProtocol._(TfArgLiteral('HTTPS'));
+  static const http2 = RegionBackendServiceProtocol._(TfArgLiteral('HTTP2'));
+  static const tcp = RegionBackendServiceProtocol._(TfArgLiteral('TCP'));
+  static const ssl = RegionBackendServiceProtocol._(TfArgLiteral('SSL'));
+  static const udp = RegionBackendServiceProtocol._(TfArgLiteral('UDP'));
+  static const grpc = RegionBackendServiceProtocol._(TfArgLiteral('GRPC'));
+  static const unspecified = RegionBackendServiceProtocol._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+  static const h2c = RegionBackendServiceProtocol._(TfArgLiteral('H2C'));
+
+  static const List<RegionBackendServiceProtocol> values = [
+    http,
+    https,
+    http2,
+    tcp,
+    ssl,
+    udp,
+    grpc,
+    unspecified,
+    h2c,
+  ];
 }
 
 /// `load_balancing_scheme`. A backend service of one scheme cannot be
@@ -47,16 +64,38 @@ enum RegionBackendServiceProtocol implements TerraformEnum {
 /// [internalManaged] (Internal Application LB / Regional External
 /// Application LB) are unique to the regional resource and will be
 /// rejected by `google_compute_backend_service`.
-enum RegionBackendServiceLoadBalancingScheme implements TerraformEnum {
-  external('EXTERNAL'),
-  externalManaged('EXTERNAL_MANAGED'),
-  internal('INTERNAL'),
-  internalManaged('INTERNAL_MANAGED'),
-  internalSelfManaged('INTERNAL_SELF_MANAGED');
+extension type const RegionBackendServiceLoadBalancingScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceLoadBalancingScheme.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const external = RegionBackendServiceLoadBalancingScheme._(
+    TfArgLiteral('EXTERNAL'),
+  );
+  static const externalManaged = RegionBackendServiceLoadBalancingScheme._(
+    TfArgLiteral('EXTERNAL_MANAGED'),
+  );
+  static const internal = RegionBackendServiceLoadBalancingScheme._(
+    TfArgLiteral('INTERNAL'),
+  );
+  static const internalManaged = RegionBackendServiceLoadBalancingScheme._(
+    TfArgLiteral('INTERNAL_MANAGED'),
+  );
+  static const internalSelfManaged = RegionBackendServiceLoadBalancingScheme._(
+    TfArgLiteral('INTERNAL_SELF_MANAGED'),
+  );
+
+  static const List<RegionBackendServiceLoadBalancingScheme> values = [
+    external,
+    externalManaged,
+    internal,
+    internalManaged,
+    internalSelfManaged,
+  ];
 }
 
 /// `locality_lb_policy`. See the schema docstring for the matrix of which
@@ -66,19 +105,50 @@ enum RegionBackendServiceLoadBalancingScheme implements TerraformEnum {
 /// Passthrough NLBs only [maglev] and [weightedMaglev] are honored;
 /// for INTERNAL_MANAGED with HTTP-class protocols the full set is
 /// available.
-enum RegionBackendServiceLocalityLbPolicy implements TerraformEnum {
-  roundRobin('ROUND_ROBIN'),
-  leastRequest('LEAST_REQUEST'),
-  ringHash('RING_HASH'),
-  random('RANDOM'),
-  originalDestination('ORIGINAL_DESTINATION'),
-  maglev('MAGLEV'),
-  weightedMaglev('WEIGHTED_MAGLEV'),
-  weightedRoundRobin('WEIGHTED_ROUND_ROBIN');
+extension type const RegionBackendServiceLocalityLbPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceLocalityLbPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceLocalityLbPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceLocalityLbPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceLocalityLbPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const roundRobin = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('ROUND_ROBIN'),
+  );
+  static const leastRequest = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('LEAST_REQUEST'),
+  );
+  static const ringHash = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('RING_HASH'),
+  );
+  static const random = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('RANDOM'),
+  );
+  static const originalDestination = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('ORIGINAL_DESTINATION'),
+  );
+  static const maglev = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('MAGLEV'),
+  );
+  static const weightedMaglev = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('WEIGHTED_MAGLEV'),
+  );
+  static const weightedRoundRobin = RegionBackendServiceLocalityLbPolicy._(
+    TfArgLiteral('WEIGHTED_ROUND_ROBIN'),
+  );
+
+  static const List<RegionBackendServiceLocalityLbPolicy> values = [
+    roundRobin,
+    leastRequest,
+    ringHash,
+    random,
+    originalDestination,
+    maglev,
+    weightedMaglev,
+    weightedRoundRobin,
+  ];
 }
 
 /// `session_affinity`. Applicable only when the locality LB policy is
@@ -87,71 +157,169 @@ enum RegionBackendServiceLocalityLbPolicy implements TerraformEnum {
 /// 5-tuple variants apply directly. The regional resource adds
 /// [clientIpNoDestination] (Passthrough NLB variant that ignores the
 /// destination tuple component) versus the global resource.
-enum RegionBackendServiceSessionAffinity implements TerraformEnum {
-  none('NONE'),
-  clientIp('CLIENT_IP'),
-  clientIpPortProto('CLIENT_IP_PORT_PROTO'),
-  clientIpProto('CLIENT_IP_PROTO'),
-  generatedCookie('GENERATED_COOKIE'),
-  headerField('HEADER_FIELD'),
-  httpCookie('HTTP_COOKIE'),
-  clientIpNoDestination('CLIENT_IP_NO_DESTINATION'),
-  strongCookieAffinity('STRONG_COOKIE_AFFINITY');
+extension type const RegionBackendServiceSessionAffinity._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceSessionAffinity.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceSessionAffinity.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceSessionAffinity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceSessionAffinity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('NONE'),
+  );
+  static const clientIp = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('CLIENT_IP'),
+  );
+  static const clientIpPortProto = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('CLIENT_IP_PORT_PROTO'),
+  );
+  static const clientIpProto = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('CLIENT_IP_PROTO'),
+  );
+  static const generatedCookie = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('GENERATED_COOKIE'),
+  );
+  static const headerField = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('HEADER_FIELD'),
+  );
+  static const httpCookie = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('HTTP_COOKIE'),
+  );
+  static const clientIpNoDestination = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('CLIENT_IP_NO_DESTINATION'),
+  );
+  static const strongCookieAffinity = RegionBackendServiceSessionAffinity._(
+    TfArgLiteral('STRONG_COOKIE_AFFINITY'),
+  );
+
+  static const List<RegionBackendServiceSessionAffinity> values = [
+    none,
+    clientIp,
+    clientIpPortProto,
+    clientIpProto,
+    generatedCookie,
+    headerField,
+    httpCookie,
+    clientIpNoDestination,
+    strongCookieAffinity,
+  ];
 }
 
 /// `ip_address_selection_policy`. Controls IPv4-vs-IPv6 preference when
 /// the load balancer dials a backend (or when a proxyless gRPC client
 /// dials directly).
-enum RegionBackendServiceIpAddressSelectionPolicy implements TerraformEnum {
-  ipv4Only('IPV4_ONLY'),
-  preferIpv6('PREFER_IPV6'),
-  ipv6Only('IPV6_ONLY');
+extension type const RegionBackendServiceIpAddressSelectionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionBackendServiceIpAddressSelectionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceIpAddressSelectionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceIpAddressSelectionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceIpAddressSelectionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Only = RegionBackendServiceIpAddressSelectionPolicy._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const preferIpv6 = RegionBackendServiceIpAddressSelectionPolicy._(
+    TfArgLiteral('PREFER_IPV6'),
+  );
+  static const ipv6Only = RegionBackendServiceIpAddressSelectionPolicy._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<RegionBackendServiceIpAddressSelectionPolicy> values = [
+    ipv4Only,
+    preferIpv6,
+    ipv6Only,
+  ];
 }
 
 /// Per-backend balancing mode. See [ComputeRegionBackendServiceBackend.balancingMode].
 /// Note: the regional resource omits the global `IN_FLIGHT` mode.
-enum RegionBackendServiceBalancingMode implements TerraformEnum {
-  utilization('UTILIZATION'),
-  rate('RATE'),
-  connection('CONNECTION'),
-  customMetrics('CUSTOM_METRICS');
+extension type const RegionBackendServiceBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceBalancingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionBackendServiceBalancingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const utilization = RegionBackendServiceBalancingMode._(
+    TfArgLiteral('UTILIZATION'),
+  );
+  static const rate = RegionBackendServiceBalancingMode._(TfArgLiteral('RATE'));
+  static const connection = RegionBackendServiceBalancingMode._(
+    TfArgLiteral('CONNECTION'),
+  );
+  static const customMetrics = RegionBackendServiceBalancingMode._(
+    TfArgLiteral('CUSTOM_METRICS'),
+  );
+
+  static const List<RegionBackendServiceBalancingMode> values = [
+    utilization,
+    rate,
+    connection,
+    customMetrics,
+  ];
 }
 
 /// `cdn_policy.cache_mode`. Enabling CDN (`enable_cdn = true`) without
 /// setting this defaults to `CACHE_ALL_STATIC`.
-enum RegionBackendServiceCacheMode implements TerraformEnum {
-  useOriginHeaders('USE_ORIGIN_HEADERS'),
-  forceCacheAll('FORCE_CACHE_ALL'),
-  cacheAllStatic('CACHE_ALL_STATIC');
+extension type const RegionBackendServiceCacheMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceCacheMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceCacheMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceCacheMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionBackendServiceCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useOriginHeaders = RegionBackendServiceCacheMode._(
+    TfArgLiteral('USE_ORIGIN_HEADERS'),
+  );
+  static const forceCacheAll = RegionBackendServiceCacheMode._(
+    TfArgLiteral('FORCE_CACHE_ALL'),
+  );
+  static const cacheAllStatic = RegionBackendServiceCacheMode._(
+    TfArgLiteral('CACHE_ALL_STATIC'),
+  );
+
+  static const List<RegionBackendServiceCacheMode> values = [
+    useOriginHeaders,
+    forceCacheAll,
+    cacheAllStatic,
+  ];
 }
 
 /// `log_config.optional_mode`. Controls which optional access-log
 /// fields are exported when [ComputeRegionBackendServiceLogConfig.enable] is
 /// true.
-enum RegionBackendServiceLogOptionalMode implements TerraformEnum {
-  includeAllOptional('INCLUDE_ALL_OPTIONAL'),
-  excludeAllOptional('EXCLUDE_ALL_OPTIONAL'),
-  custom('CUSTOM');
+extension type const RegionBackendServiceLogOptionalMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceLogOptionalMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceLogOptionalMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceLogOptionalMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceLogOptionalMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const includeAllOptional = RegionBackendServiceLogOptionalMode._(
+    TfArgLiteral('INCLUDE_ALL_OPTIONAL'),
+  );
+  static const excludeAllOptional = RegionBackendServiceLogOptionalMode._(
+    TfArgLiteral('EXCLUDE_ALL_OPTIONAL'),
+  );
+  static const custom = RegionBackendServiceLogOptionalMode._(
+    TfArgLiteral('CUSTOM'),
+  );
+
+  static const List<RegionBackendServiceLogOptionalMode> values = [
+    includeAllOptional,
+    excludeAllOptional,
+    custom,
+  ];
 }
 
 /// `ha_policy.fast_ip_move`. Controls fast IP-move behavior for
@@ -162,49 +330,107 @@ enum RegionBackendServiceLogOptionalMode implements TerraformEnum {
 ///   or ICMPv6 Router Advertisement (IPv6) packet to immediately but
 ///   temporarily redirect traffic to itself. Faster than the leader
 ///   API path; intended for sub-second failover.
-enum RegionBackendServiceFastIpMove implements TerraformEnum {
-  disabled('DISABLED'),
-  garpRa('GARP_RA');
+extension type const RegionBackendServiceFastIpMove._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceFastIpMove.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceFastIpMove.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceFastIpMove.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionBackendServiceFastIpMove(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = RegionBackendServiceFastIpMove._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const garpRa = RegionBackendServiceFastIpMove._(
+    TfArgLiteral('GARP_RA'),
+  );
+
+  static const List<RegionBackendServiceFastIpMove> values = [disabled, garpRa];
 }
 
 /// `network_pass_through_lb_traffic_policy.zonal_affinity.spillover`.
 /// Zonal-affinity selector for Internal Passthrough NLBs.
-enum RegionBackendServiceZonalAffinitySpillover implements TerraformEnum {
-  zonalAffinityDisabled('ZONAL_AFFINITY_DISABLED'),
-  zonalAffinitySpillCrossZone('ZONAL_AFFINITY_SPILL_CROSS_ZONE'),
-  zonalAffinityStayWithinZone('ZONAL_AFFINITY_STAY_WITHIN_ZONE');
+extension type const RegionBackendServiceZonalAffinitySpillover._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionBackendServiceZonalAffinitySpillover.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceZonalAffinitySpillover.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceZonalAffinitySpillover.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceZonalAffinitySpillover(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zonalAffinityDisabled =
+      RegionBackendServiceZonalAffinitySpillover._(
+        TfArgLiteral('ZONAL_AFFINITY_DISABLED'),
+      );
+  static const zonalAffinitySpillCrossZone =
+      RegionBackendServiceZonalAffinitySpillover._(
+        TfArgLiteral('ZONAL_AFFINITY_SPILL_CROSS_ZONE'),
+      );
+  static const zonalAffinityStayWithinZone =
+      RegionBackendServiceZonalAffinitySpillover._(
+        TfArgLiteral('ZONAL_AFFINITY_STAY_WITHIN_ZONE'),
+      );
+
+  static const List<RegionBackendServiceZonalAffinitySpillover> values = [
+    zonalAffinityDisabled,
+    zonalAffinitySpillCrossZone,
+    zonalAffinityStayWithinZone,
+  ];
 }
 
 /// `connection_tracking_policy.connection_persistence_on_unhealthy_backends`.
 /// Whether existing connections persist on backends that have become
 /// unhealthy. Default `DEFAULT_FOR_PROTOCOL`.
-enum RegionBackendServiceConnectionPersistence implements TerraformEnum {
-  defaultForProtocol('DEFAULT_FOR_PROTOCOL'),
-  neverPersist('NEVER_PERSIST'),
-  alwaysPersist('ALWAYS_PERSIST');
+extension type const RegionBackendServiceConnectionPersistence._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionBackendServiceConnectionPersistence.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceConnectionPersistence.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceConnectionPersistence.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionBackendServiceConnectionPersistence(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultForProtocol = RegionBackendServiceConnectionPersistence._(
+    TfArgLiteral('DEFAULT_FOR_PROTOCOL'),
+  );
+  static const neverPersist = RegionBackendServiceConnectionPersistence._(
+    TfArgLiteral('NEVER_PERSIST'),
+  );
+  static const alwaysPersist = RegionBackendServiceConnectionPersistence._(
+    TfArgLiteral('ALWAYS_PERSIST'),
+  );
+
+  static const List<RegionBackendServiceConnectionPersistence> values = [
+    defaultForProtocol,
+    neverPersist,
+    alwaysPersist,
+  ];
 }
 
 /// `connection_tracking_policy.tracking_mode`. Connection-tracking key:
 /// [perConnection] tracks 5-tuple (default); [perSession] tracks 3-tuple.
-enum RegionBackendServiceTrackingMode implements TerraformEnum {
-  perConnection('PER_CONNECTION'),
-  perSession('PER_SESSION');
+extension type const RegionBackendServiceTrackingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionBackendServiceTrackingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionBackendServiceTrackingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionBackendServiceTrackingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionBackendServiceTrackingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const perConnection = RegionBackendServiceTrackingMode._(
+    TfArgLiteral('PER_CONNECTION'),
+  );
+  static const perSession = RegionBackendServiceTrackingMode._(
+    TfArgLiteral('PER_SESSION'),
+  );
+
+  static const List<RegionBackendServiceTrackingMode> values = [
+    perConnection,
+    perSession,
+  ];
 }
 
 // ===========================================================================
@@ -287,7 +513,7 @@ final class ComputeRegionBackendServiceBackend {
     this.customMetrics,
   });
 
-  final TfArg<RegionBackendServiceBalancingMode>? balancingMode;
+  final RegionBackendServiceBalancingMode? balancingMode;
 
   final TfArg<num>? capacityScaler;
 
@@ -370,7 +596,7 @@ final class ComputeRegionBackendServiceCdnPolicy {
     this.negativeCachingPolicy,
   });
 
-  final TfArg<RegionBackendServiceCacheMode>? cacheMode;
+  final RegionBackendServiceCacheMode? cacheMode;
 
   final TfArg<num>? clientTtl;
 
@@ -493,14 +719,14 @@ final class ComputeRegionBackendServiceConnectionTrackingPolicy {
     this.trackingMode,
   });
 
-  final TfArg<RegionBackendServiceConnectionPersistence>?
+  final RegionBackendServiceConnectionPersistence?
   connectionPersistenceOnUnhealthyBackends;
 
   final TfArg<bool>? enableStrongAffinity;
 
   final TfArg<num>? idleTimeoutSec;
 
-  final TfArg<RegionBackendServiceTrackingMode>? trackingMode;
+  final RegionBackendServiceTrackingMode? trackingMode;
 
   Map<String, Object?> encode() => {
     'connection_persistence_on_unhealthy_backends':
@@ -619,7 +845,7 @@ final class ComputeRegionBackendServiceFailoverPolicy {
 final class ComputeRegionBackendServiceHaPolicy {
   const ComputeRegionBackendServiceHaPolicy({this.fastIpMove, this.leader});
 
-  final TfArg<RegionBackendServiceFastIpMove>? fastIpMove;
+  final RegionBackendServiceFastIpMove? fastIpMove;
 
   final ComputeRegionBackendServiceLeader? leader;
 
@@ -699,7 +925,7 @@ final class ComputeRegionBackendServiceLogConfig {
 
   final TfArg<List<String>>? optionalFields;
 
-  final TfArg<RegionBackendServiceLogOptionalMode>? optionalMode;
+  final RegionBackendServiceLogOptionalMode? optionalMode;
 
   final TfArg<num>? sampleRate;
 
@@ -763,7 +989,7 @@ final class ComputeRegionBackendServiceZonalAffinity {
     this.spilloverRatio,
   });
 
-  final TfArg<RegionBackendServiceZonalAffinitySpillover>? spillover;
+  final RegionBackendServiceZonalAffinitySpillover? spillover;
 
   final TfArg<num>? spilloverRatio;
 
@@ -1017,9 +1243,9 @@ final class ComputeRegionBackendServiceSubjectAltNames {
 ///   'api',
 ///   name: TfArg.literal('api-rbs'),
 ///   region: TfArg.literal('asia-northeast1'),
-///   protocol: TfArg.literal(RegionBackendServiceProtocol.https),
+///   protocol: RegionBackendServiceProtocol.https,
 ///   loadBalancingScheme:
-///       TfArg.literal(RegionBackendServiceLoadBalancingScheme.internalManaged),
+///       RegionBackendServiceLoadBalancingScheme.internalManaged,
 ///   portName: TfArg.literal('https'),
 ///   timeoutSec: TfArg.literal(30),
 ///   healthChecks: TfArg.literal([
@@ -1038,7 +1264,7 @@ final class ComputeRegionBackendServiceSubjectAltNames {
 ///         // or a Batch 3 regional MIG self-link.
 ///         'projects/p/regions/asia-northeast1/networkEndpointGroups/api-rneg',
 ///       ),
-///       balancingMode: TfArg.literal(RegionBackendServiceBalancingMode.rate),
+///       balancingMode: RegionBackendServiceBalancingMode.rate,
 ///       maxRatePerEndpoint: TfArg.literal(100),
 ///       capacityScaler: TfArg.literal(1.0),
 ///     ),
@@ -1070,17 +1296,16 @@ final class GoogleComputeRegionBackendService extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<RegionBackendServiceProtocol>? protocol,
+    RegionBackendServiceProtocol? protocol,
     TfArg<String>? portName,
-    TfArg<RegionBackendServiceLoadBalancingScheme>? loadBalancingScheme,
-    TfArg<RegionBackendServiceLocalityLbPolicy>? localityLbPolicy,
-    TfArg<RegionBackendServiceSessionAffinity>? sessionAffinity,
+    RegionBackendServiceLoadBalancingScheme? loadBalancingScheme,
+    RegionBackendServiceLocalityLbPolicy? localityLbPolicy,
+    RegionBackendServiceSessionAffinity? sessionAffinity,
     TfArg<num>? affinityCookieTtlSec,
     TfArg<num>? timeoutSec,
     TfArg<num>? connectionDrainingTimeoutSec,
     TfArg<bool>? enableCdn,
-    TfArg<RegionBackendServiceIpAddressSelectionPolicy>?
-    ipAddressSelectionPolicy,
+    RegionBackendServiceIpAddressSelectionPolicy? ipAddressSelectionPolicy,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<List<String>>? healthChecks,
     TfArg<String>? securityPolicy,

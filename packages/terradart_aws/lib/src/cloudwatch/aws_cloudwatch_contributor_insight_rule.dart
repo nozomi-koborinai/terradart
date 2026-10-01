@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudwatchContributorInsightRuleSensitive = <String>{};
 
 /// Cloudwatch Contributor Insight Rule enum for `rule_state`.
-enum CloudwatchContributorInsightRuleState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CloudwatchContributorInsightRuleState._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchContributorInsightRuleState.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchContributorInsightRuleState.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchContributorInsightRuleState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchContributorInsightRuleState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CloudwatchContributorInsightRuleState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = CloudwatchContributorInsightRuleState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CloudwatchContributorInsightRuleState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudwatch_contributor_insight_rule`.
@@ -25,7 +38,7 @@ final class AwsCloudwatchContributorInsightRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleDefinition,
     required TfArg<String> ruleName,
-    TfArg<CloudwatchContributorInsightRuleState>? ruleState,
+    CloudwatchContributorInsightRuleState? ruleState,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

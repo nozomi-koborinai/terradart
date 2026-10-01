@@ -12,12 +12,23 @@ const Set<String> _awsS3BucketObjectLockConfigurationSensitive = <String>{
 };
 
 /// S3 Bucket Object Lock Configuration Object Lock enum for `object_lock_enabled`.
-enum S3BucketObjectLockConfigurationObjectLockEnabled implements TerraformEnum {
-  enabled('Enabled');
+extension type const S3BucketObjectLockConfigurationObjectLockEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketObjectLockConfigurationObjectLockEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketObjectLockConfigurationObjectLockEnabled.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectLockConfigurationObjectLockEnabled.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketObjectLockConfigurationObjectLockEnabled(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketObjectLockConfigurationObjectLockEnabled._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<S3BucketObjectLockConfigurationObjectLockEnabled> values = [
+    enabled,
+  ];
 }
 
 /// Typed helper for the `rule` block of
@@ -44,7 +55,7 @@ final class S3BucketObjectLockConfigurationDefaultRetention {
 
   final S3BucketObjectLockConfigurationPeriod? period;
 
-  final TfArg<S3BucketObjectLockConfigurationMode>? mode;
+  final S3BucketObjectLockConfigurationMode? mode;
 
   Map<String, Object?> encode() => {
     ...?period?.encode(),
@@ -103,13 +114,26 @@ final class S3BucketObjectLockConfigurationPeriodYears
 }
 
 /// `mode` — derived from the provider schema description.
-enum S3BucketObjectLockConfigurationMode implements TerraformEnum {
-  governance('GOVERNANCE'),
-  compliance('COMPLIANCE');
+extension type const S3BucketObjectLockConfigurationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketObjectLockConfigurationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketObjectLockConfigurationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectLockConfigurationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketObjectLockConfigurationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const governance = S3BucketObjectLockConfigurationMode._(
+    TfArgLiteral('GOVERNANCE'),
+  );
+  static const compliance = S3BucketObjectLockConfigurationMode._(
+    TfArgLiteral('COMPLIANCE'),
+  );
+
+  static const List<S3BucketObjectLockConfigurationMode> values = [
+    governance,
+    compliance,
+  ];
 }
 
 /// Factory wrapper for `aws_s3_bucket_object_lock_configuration`.
@@ -120,7 +144,7 @@ final class AwsS3BucketObjectLockConfiguration extends Resource {
     super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
-    TfArg<S3BucketObjectLockConfigurationObjectLockEnabled>? objectLockEnabled,
+    S3BucketObjectLockConfigurationObjectLockEnabled? objectLockEnabled,
     TfArg<String>? region,
     TfArg<String>? token,
     S3BucketObjectLockConfigurationRule? rule,

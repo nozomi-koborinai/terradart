@@ -10,14 +10,30 @@ import '../migration/google_migration_center_preference_set.dart'
 const Set<String> _googleMigrationCenterSettingsSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center settings.
-enum MigrationCenterSettingsDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterSettingsDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterSettingsDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterSettingsDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterSettingsDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterSettingsDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterSettingsDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterSettingsDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterSettingsDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterSettingsDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_migration_center_settings`.
@@ -37,7 +53,7 @@ final class GoogleMigrationCenterSettings extends Resource {
     required TfArg<String> location,
     RefTo<GoogleMigrationCenterPreferenceSet>? preferenceSet,
     TfArg<bool>? disableCloudLogging,
-    TfArg<MigrationCenterSettingsDeletionPolicy>? deletionPolicy,
+    MigrationCenterSettingsDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

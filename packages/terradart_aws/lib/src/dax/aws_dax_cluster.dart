@@ -11,13 +11,18 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsDaxClusterSensitive = <String>{};
 
 /// Dax Cluster Endpoint Encryption enum for `cluster_endpoint_encryption_type`.
-enum DaxClusterEndpointEncryptionType implements TerraformEnum {
-  none('NONE'),
-  tls('TLS');
+extension type const DaxClusterEndpointEncryptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  DaxClusterEndpointEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DaxClusterEndpointEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DaxClusterEndpointEncryptionType.arg(TfArg<String> arg) : this._(arg);
 
-  const DaxClusterEndpointEncryptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DaxClusterEndpointEncryptionType._(TfArgLiteral('NONE'));
+  static const tls = DaxClusterEndpointEncryptionType._(TfArgLiteral('TLS'));
+
+  static const List<DaxClusterEndpointEncryptionType> values = [none, tls];
 }
 
 /// Typed helper for the `server_side_encryption` block of
@@ -38,7 +43,7 @@ final class AwsDaxCluster extends Resource {
   AwsDaxCluster(
     super.localName, {
     TfArg<List<String>>? availabilityZones,
-    TfArg<DaxClusterEndpointEncryptionType>? clusterEndpointEncryptionType,
+    DaxClusterEndpointEncryptionType? clusterEndpointEncryptionType,
     required TfArg<String> clusterName,
     TfArg<String>? description,
     required RefTo<AwsIamRole> iamRoleArn,

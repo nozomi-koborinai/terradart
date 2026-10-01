@@ -13,7 +13,7 @@ const Set<String> _googleComputeInterconnectGroupSensitive = <String>{};
 final class ComputeInterconnectGroupIntent {
   const ComputeInterconnectGroupIntent({this.topologyCapability});
 
-  final TfArg<ComputeInterconnectGroupTopologyCapability>? topologyCapability;
+  final ComputeInterconnectGroupTopologyCapability? topologyCapability;
 
   Map<String, Object?> encode() => {
     'topology_capability': ?topologyCapability?.toTfJson(),
@@ -21,15 +21,38 @@ final class ComputeInterconnectGroupIntent {
 }
 
 /// `topology_capability` — derived from the provider schema description.
-enum ComputeInterconnectGroupTopologyCapability implements TerraformEnum {
-  productionNonCritical('PRODUCTION_NON_CRITICAL'),
-  productionCritical('PRODUCTION_CRITICAL'),
-  noSla('NO_SLA'),
-  availabilitySlaUnspecified('AVAILABILITY_SLA_UNSPECIFIED');
+extension type const ComputeInterconnectGroupTopologyCapability._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInterconnectGroupTopologyCapability.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectGroupTopologyCapability.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectGroupTopologyCapability.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInterconnectGroupTopologyCapability(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const productionNonCritical =
+      ComputeInterconnectGroupTopologyCapability._(
+        TfArgLiteral('PRODUCTION_NON_CRITICAL'),
+      );
+  static const productionCritical =
+      ComputeInterconnectGroupTopologyCapability._(
+        TfArgLiteral('PRODUCTION_CRITICAL'),
+      );
+  static const noSla = ComputeInterconnectGroupTopologyCapability._(
+    TfArgLiteral('NO_SLA'),
+  );
+  static const availabilitySlaUnspecified =
+      ComputeInterconnectGroupTopologyCapability._(
+        TfArgLiteral('AVAILABILITY_SLA_UNSPECIFIED'),
+      );
+
+  static const List<ComputeInterconnectGroupTopologyCapability> values = [
+    productionNonCritical,
+    productionCritical,
+    noSla,
+    availabilitySlaUnspecified,
+  ];
 }
 
 /// Typed helper for the `interconnects` block of

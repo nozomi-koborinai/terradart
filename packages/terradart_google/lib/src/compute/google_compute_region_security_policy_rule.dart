@@ -23,7 +23,7 @@ class ComputeRegionSecurityPolicyRuleMatch {
   final ComputeRegionSecurityPolicyRuleMatchConfig? config;
 
   Map<String, Object?> toArgMap() => {
-    if (versionedExpr != null) 'versioned_expr': versionedExpr!.terraformValue,
+    if (versionedExpr != null) 'versioned_expr': versionedExpr!.toTfJson(),
     if (config != null) 'config': config!.toArgMap(),
   };
 }
@@ -51,7 +51,7 @@ class ComputeRegionSecurityPolicyRuleRateLimitOptions {
   enforceOnKeyConfigs;
 
   Map<String, Object?> toArgMap() => {
-    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.terraformValue,
+    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.toTfJson(),
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
     if (enforceOnKeyConfigs != null)
@@ -73,7 +73,7 @@ class ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig {
 
   Map<String, Object?> toArgMap() => {
     if (enforceOnKeyType != null)
-      'enforce_on_key_type': enforceOnKeyType!.terraformValue,
+      'enforce_on_key_type': enforceOnKeyType!.toTfJson(),
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
   };
@@ -130,7 +130,7 @@ class ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch {
   final TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
-    if (operator != null) 'operator': operator!.terraformValue,
+    if (operator != null) 'operator': operator!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
 }

@@ -32,7 +32,7 @@ final class FilestoreSnapshotStack extends Stack {
         'nfs_vpc',
         name: .literal('nfs-vpc'),
         autoCreateSubnetworks: .literal(false),
-        routingMode: .literal(.regional),
+        routingMode: .regional,
         dependsOn: apiDeps,
       ),
     );
@@ -52,17 +52,14 @@ final class FilestoreSnapshotStack extends Stack {
       GoogleFilestoreInstance(
         'snapshot_nfs',
         name: .literal('snapshot-nfs'),
-        tier: .literal(.highScaleSsd),
+        tier: .highScaleSsd,
         location: .literal('us-central1-a'),
         fileShares: FilestoreInstanceFileShares(
           name: .literal('snapshot_share'),
           capacityGb: .literal(10240),
         ),
         networks: [
-          FilestoreInstanceNetworks(
-            network: nfsVpc.ref,
-            modes: [.literal(.modeIpv4)],
-          ),
+          FilestoreInstanceNetworks(network: nfsVpc.ref, modes: [.modeIpv4]),
         ],
         dependsOn: apiDeps,
       ),

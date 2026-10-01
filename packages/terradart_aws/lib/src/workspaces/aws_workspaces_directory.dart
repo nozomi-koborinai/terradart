@@ -10,34 +10,69 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsWorkspacesDirectorySensitive = <String>{};
 
 /// Workspaces Directory enum for `tenancy`.
-enum WorkspacesDirectoryTenancy implements TerraformEnum {
-  dedicated('DEDICATED'),
-  shared('SHARED');
+extension type const WorkspacesDirectoryTenancy._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryTenancy.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryTenancy.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesDirectoryTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dedicated = WorkspacesDirectoryTenancy._(
+    TfArgLiteral('DEDICATED'),
+  );
+  static const shared = WorkspacesDirectoryTenancy._(TfArgLiteral('SHARED'));
+
+  static const List<WorkspacesDirectoryTenancy> values = [dedicated, shared];
 }
 
 /// Workspaces Directory User Identity enum for `user_identity_type`.
-enum WorkspacesDirectoryUserIdentityType implements TerraformEnum {
-  customerManaged('CUSTOMER_MANAGED'),
-  awsDirectoryService('AWS_DIRECTORY_SERVICE'),
-  awsIamIdentityCenter('AWS_IAM_IDENTITY_CENTER');
+extension type const WorkspacesDirectoryUserIdentityType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryUserIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryUserIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryUserIdentityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryUserIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerManaged = WorkspacesDirectoryUserIdentityType._(
+    TfArgLiteral('CUSTOMER_MANAGED'),
+  );
+  static const awsDirectoryService = WorkspacesDirectoryUserIdentityType._(
+    TfArgLiteral('AWS_DIRECTORY_SERVICE'),
+  );
+  static const awsIamIdentityCenter = WorkspacesDirectoryUserIdentityType._(
+    TfArgLiteral('AWS_IAM_IDENTITY_CENTER'),
+  );
+
+  static const List<WorkspacesDirectoryUserIdentityType> values = [
+    customerManaged,
+    awsDirectoryService,
+    awsIamIdentityCenter,
+  ];
 }
 
 /// Workspaces Directory Workspace enum for `workspace_type`.
-enum WorkspacesDirectoryWorkspaceType implements TerraformEnum {
-  personal('PERSONAL'),
-  pools('POOLS');
+extension type const WorkspacesDirectoryWorkspaceType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryWorkspaceType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryWorkspaceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryWorkspaceType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesDirectoryWorkspaceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const personal = WorkspacesDirectoryWorkspaceType._(
+    TfArgLiteral('PERSONAL'),
+  );
+  static const pools = WorkspacesDirectoryWorkspaceType._(
+    TfArgLiteral('POOLS'),
+  );
+
+  static const List<WorkspacesDirectoryWorkspaceType> values = [
+    personal,
+    pools,
+  ];
 }
 
 /// Typed helper for the `active_directory_config` block of
@@ -70,7 +105,7 @@ final class WorkspacesDirectoryCertificateBasedAuthProperties {
 
   final TfArg<String>? certificateAuthorityArn;
 
-  final TfArg<WorkspacesDirectoryCertificateBasedAuthPropertiesStatus>? status;
+  final WorkspacesDirectoryCertificateBasedAuthPropertiesStatus? status;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
@@ -79,16 +114,29 @@ final class WorkspacesDirectoryCertificateBasedAuthProperties {
 }
 
 /// `status` — derived from the provider schema description.
-enum WorkspacesDirectoryCertificateBasedAuthPropertiesStatus
-    implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const WorkspacesDirectoryCertificateBasedAuthPropertiesStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkspacesDirectoryCertificateBasedAuthPropertiesStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryCertificateBasedAuthPropertiesStatus.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WorkspacesDirectoryCertificateBasedAuthPropertiesStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const WorkspacesDirectoryCertificateBasedAuthPropertiesStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const disabled =
+      WorkspacesDirectoryCertificateBasedAuthPropertiesStatus._(
+        TfArgLiteral('DISABLED'),
+      );
+  static const enabled =
+      WorkspacesDirectoryCertificateBasedAuthPropertiesStatus._(
+        TfArgLiteral('ENABLED'),
+      );
+
+  static const List<WorkspacesDirectoryCertificateBasedAuthPropertiesStatus>
+  values = [disabled, enabled];
 }
 
 /// Typed helper for the `saml_properties` block of
@@ -103,7 +151,7 @@ final class WorkspacesDirectorySamlProperties {
 
   final TfArg<String>? relayStateParameterName;
 
-  final TfArg<WorkspacesDirectorySamlPropertiesStatus>? status;
+  final WorkspacesDirectorySamlPropertiesStatus? status;
 
   final TfArg<String>? userAccessUrl;
 
@@ -115,14 +163,31 @@ final class WorkspacesDirectorySamlProperties {
 }
 
 /// `status` — derived from the provider schema description.
-enum WorkspacesDirectorySamlPropertiesStatus implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  enabledWithDirectoryLoginFallback('ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK');
+extension type const WorkspacesDirectorySamlPropertiesStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectorySamlPropertiesStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectorySamlPropertiesStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectorySamlPropertiesStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectorySamlPropertiesStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspacesDirectorySamlPropertiesStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = WorkspacesDirectorySamlPropertiesStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const enabledWithDirectoryLoginFallback =
+      WorkspacesDirectorySamlPropertiesStatus._(
+        TfArgLiteral('ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK'),
+      );
+
+  static const List<WorkspacesDirectorySamlPropertiesStatus> values = [
+    disabled,
+    enabled,
+    enabledWithDirectoryLoginFallback,
+  ];
 }
 
 /// Typed helper for the `self_service_permissions` block of
@@ -172,21 +237,21 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
     this.accessEndpointConfig,
   });
 
-  final TfArg<WorkspacesDirectoryDeviceTypeAndroid>? deviceTypeAndroid;
+  final WorkspacesDirectoryDeviceTypeAndroid? deviceTypeAndroid;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeChromeos>? deviceTypeChromeos;
+  final WorkspacesDirectoryDeviceTypeChromeos? deviceTypeChromeos;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeIos>? deviceTypeIos;
+  final WorkspacesDirectoryDeviceTypeIos? deviceTypeIos;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeLinux>? deviceTypeLinux;
+  final WorkspacesDirectoryDeviceTypeLinux? deviceTypeLinux;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeOsx>? deviceTypeOsx;
+  final WorkspacesDirectoryDeviceTypeOsx? deviceTypeOsx;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeWeb>? deviceTypeWeb;
+  final WorkspacesDirectoryDeviceTypeWeb? deviceTypeWeb;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeWindows>? deviceTypeWindows;
+  final WorkspacesDirectoryDeviceTypeWindows? deviceTypeWindows;
 
-  final TfArg<WorkspacesDirectoryDeviceTypeZeroclient>? deviceTypeZeroclient;
+  final WorkspacesDirectoryDeviceTypeZeroclient? deviceTypeZeroclient;
 
   final WorkspacesDirectoryAccessEndpointConfig? accessEndpointConfig;
 
@@ -204,83 +269,165 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
 }
 
 /// `device_type_android` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeAndroid implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeAndroid._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeAndroid.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeAndroid.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeAndroid.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeAndroid(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeAndroid._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeAndroid._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<WorkspacesDirectoryDeviceTypeAndroid> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// `device_type_chromeos` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeChromeos implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeChromeos._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeChromeos.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeChromeos.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeChromeos.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeChromeos(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeChromeos._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeChromeos._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<WorkspacesDirectoryDeviceTypeChromeos> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// `device_type_ios` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeIos implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeIos._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeIos.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeIos.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeIos.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeIos(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeIos._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeIos._(TfArgLiteral('DENY'));
+
+  static const List<WorkspacesDirectoryDeviceTypeIos> values = [allow, deny];
 }
 
 /// `device_type_linux` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeLinux implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeLinux._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeLinux.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeLinux.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeLinux.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeLinux(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeLinux._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeLinux._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<WorkspacesDirectoryDeviceTypeLinux> values = [allow, deny];
 }
 
 /// `device_type_osx` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeOsx implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeOsx._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeOsx.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeOsx.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeOsx.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeOsx(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeOsx._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeOsx._(TfArgLiteral('DENY'));
+
+  static const List<WorkspacesDirectoryDeviceTypeOsx> values = [allow, deny];
 }
 
 /// `device_type_web` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeWeb implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeWeb._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeWeb.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeWeb.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeWeb.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeWeb(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeWeb._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeWeb._(TfArgLiteral('DENY'));
+
+  static const List<WorkspacesDirectoryDeviceTypeWeb> values = [allow, deny];
 }
 
 /// `device_type_windows` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeWindows implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeWindows._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeWindows.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeWindows.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeWindows.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeWindows(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeWindows._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeWindows._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<WorkspacesDirectoryDeviceTypeWindows> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// `device_type_zeroclient` — derived from the provider schema description.
-enum WorkspacesDirectoryDeviceTypeZeroclient implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const WorkspacesDirectoryDeviceTypeZeroclient._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryDeviceTypeZeroclient.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryDeviceTypeZeroclient.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryDeviceTypeZeroclient.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryDeviceTypeZeroclient(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = WorkspacesDirectoryDeviceTypeZeroclient._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = WorkspacesDirectoryDeviceTypeZeroclient._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<WorkspacesDirectoryDeviceTypeZeroclient> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Typed helper for the `workspace_access_properties.access_endpoint_config` block of
@@ -292,7 +439,7 @@ final class WorkspacesDirectoryAccessEndpointConfig {
     required this.accessEndpoints,
   });
 
-  final List<TfArg<WorkspacesDirectoryInternetFallbackProtocols>>?
+  final List<WorkspacesDirectoryInternetFallbackProtocols>?
   internetFallbackProtocols;
 
   final List<WorkspacesDirectoryAccessEndpoints> accessEndpoints;
@@ -307,12 +454,23 @@ final class WorkspacesDirectoryAccessEndpointConfig {
 }
 
 /// `internet_fallback_protocols` — derived from the provider schema description.
-enum WorkspacesDirectoryInternetFallbackProtocols implements TerraformEnum {
-  pcoip('PCOIP');
+extension type const WorkspacesDirectoryInternetFallbackProtocols._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkspacesDirectoryInternetFallbackProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryInternetFallbackProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryInternetFallbackProtocols.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryInternetFallbackProtocols(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pcoip = WorkspacesDirectoryInternetFallbackProtocols._(
+    TfArgLiteral('PCOIP'),
+  );
+
+  static const List<WorkspacesDirectoryInternetFallbackProtocols> values = [
+    pcoip,
+  ];
 }
 
 /// Typed helper for the `workspace_access_properties.access_endpoint_config.access_endpoints` block of
@@ -324,7 +482,7 @@ final class WorkspacesDirectoryAccessEndpoints {
     required this.vpcEndpointId,
   });
 
-  final TfArg<WorkspacesDirectoryAccessEndpointType> accessEndpointType;
+  final WorkspacesDirectoryAccessEndpointType accessEndpointType;
 
   final TfArg<String> vpcEndpointId;
 
@@ -335,12 +493,22 @@ final class WorkspacesDirectoryAccessEndpoints {
 }
 
 /// `access_endpoint_type` — derived from the provider schema description.
-enum WorkspacesDirectoryAccessEndpointType implements TerraformEnum {
-  streamingWsp('STREAMING_WSP');
+extension type const WorkspacesDirectoryAccessEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesDirectoryAccessEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesDirectoryAccessEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesDirectoryAccessEndpointType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspacesDirectoryAccessEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const streamingWsp = WorkspacesDirectoryAccessEndpointType._(
+    TfArgLiteral('STREAMING_WSP'),
+  );
+
+  static const List<WorkspacesDirectoryAccessEndpointType> values = [
+    streamingWsp,
+  ];
 }
 
 /// Typed helper for the `workspace_creation_properties` block of
@@ -386,11 +554,11 @@ final class AwsWorkspacesDirectory extends Resource {
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<WorkspacesDirectoryTenancy>? tenancy,
-    TfArg<WorkspacesDirectoryUserIdentityType>? userIdentityType,
+    WorkspacesDirectoryTenancy? tenancy,
+    WorkspacesDirectoryUserIdentityType? userIdentityType,
     TfArg<String>? workspaceDirectoryDescription,
     TfArg<String>? workspaceDirectoryName,
-    TfArg<WorkspacesDirectoryWorkspaceType>? workspaceType,
+    WorkspacesDirectoryWorkspaceType? workspaceType,
     WorkspacesDirectoryActiveDirectoryConfig? activeDirectoryConfig,
     WorkspacesDirectoryCertificateBasedAuthProperties?
     certificateBasedAuthProperties,

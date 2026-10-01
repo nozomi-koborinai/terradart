@@ -15,13 +15,25 @@ const Set<String> _googleCloudbuildTriggerSensitive = <String>{};
 /// `include_build_logs`. Controls whether Cloud Build forwards build
 /// logs back to the originating GitHub check-run. Only meaningful for
 /// triggers attached to a GitHub source.
-enum CloudBuildTriggerIncludeBuildLogs implements TerraformEnum {
-  unspecified('INCLUDE_BUILD_LOGS_UNSPECIFIED'),
-  withStatus('INCLUDE_BUILD_LOGS_WITH_STATUS');
+extension type const CloudBuildTriggerIncludeBuildLogs._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudBuildTriggerIncludeBuildLogs.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudBuildTriggerIncludeBuildLogs.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudBuildTriggerIncludeBuildLogs.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudBuildTriggerIncludeBuildLogs(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = CloudBuildTriggerIncludeBuildLogs._(
+    TfArgLiteral('INCLUDE_BUILD_LOGS_UNSPECIFIED'),
+  );
+  static const withStatus = CloudBuildTriggerIncludeBuildLogs._(
+    TfArgLiteral('INCLUDE_BUILD_LOGS_WITH_STATUS'),
+  );
+
+  static const List<CloudBuildTriggerIncludeBuildLogs> values = [
+    unspecified,
+    withStatus,
+  ];
 }
 
 /// Exactly one of `filename`, `build`, `git_file_source` on `google_cloudbuild_trigger`: the provider rejects
@@ -215,7 +227,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPullRequest {
 
   final TfArg<String> branch;
 
-  final TfArg<CloudbuildTriggerCommentControl>? commentControl;
+  final CloudbuildTriggerCommentControl? commentControl;
 
   final TfArg<bool>? invertRegex;
 
@@ -227,16 +239,30 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPullRequest {
 }
 
 /// `comment_control` — derived from the provider schema description.
-enum CloudbuildTriggerCommentControl implements TerraformEnum {
-  commentsDisabled('COMMENTS_DISABLED'),
-  commentsEnabled('COMMENTS_ENABLED'),
-  commentsEnabledForExternalContributorsOnly(
-    'COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY',
-  );
+extension type const CloudbuildTriggerCommentControl._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerCommentControl.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerCommentControl.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerCommentControl.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudbuildTriggerCommentControl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const commentsDisabled = CloudbuildTriggerCommentControl._(
+    TfArgLiteral('COMMENTS_DISABLED'),
+  );
+  static const commentsEnabled = CloudbuildTriggerCommentControl._(
+    TfArgLiteral('COMMENTS_ENABLED'),
+  );
+  static const commentsEnabledForExternalContributorsOnly =
+      CloudbuildTriggerCommentControl._(
+        TfArgLiteral('COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY'),
+      );
+
+  static const List<CloudbuildTriggerCommentControl> values = [
+    commentsDisabled,
+    commentsEnabled,
+    commentsEnabledForExternalContributorsOnly,
+  ];
 }
 
 /// Typed helper for the `bitbucket_server_trigger_config.push` block of
@@ -537,20 +563,19 @@ final class CloudbuildTriggerOptions {
 
   final TfArg<List<String>>? env;
 
-  final TfArg<CloudbuildTriggerLogStreamingOption>? logStreamingOption;
+  final CloudbuildTriggerLogStreamingOption? logStreamingOption;
 
-  final TfArg<CloudbuildTriggerLogging>? logging;
+  final CloudbuildTriggerLogging? logging;
 
   final TfArg<String>? machineType;
 
-  final TfArg<CloudbuildTriggerRequestedVerifyOption>? requestedVerifyOption;
+  final CloudbuildTriggerRequestedVerifyOption? requestedVerifyOption;
 
   final TfArg<List<String>>? secretEnv;
 
-  final List<TfArg<CloudbuildTriggerSourceProvenanceHash>>?
-  sourceProvenanceHash;
+  final List<CloudbuildTriggerSourceProvenanceHash>? sourceProvenanceHash;
 
-  final TfArg<CloudbuildTriggerSubstitutionOption>? substitutionOption;
+  final CloudbuildTriggerSubstitutionOption? substitutionOption;
 
   final TfArg<String>? workerPool;
 
@@ -576,59 +601,134 @@ final class CloudbuildTriggerOptions {
 }
 
 /// `log_streaming_option` — derived from the provider schema description.
-enum CloudbuildTriggerLogStreamingOption implements TerraformEnum {
-  streamDefault('STREAM_DEFAULT'),
-  streamOn('STREAM_ON'),
-  streamOff('STREAM_OFF');
+extension type const CloudbuildTriggerLogStreamingOption._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerLogStreamingOption.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerLogStreamingOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerLogStreamingOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudbuildTriggerLogStreamingOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const streamDefault = CloudbuildTriggerLogStreamingOption._(
+    TfArgLiteral('STREAM_DEFAULT'),
+  );
+  static const streamOn = CloudbuildTriggerLogStreamingOption._(
+    TfArgLiteral('STREAM_ON'),
+  );
+  static const streamOff = CloudbuildTriggerLogStreamingOption._(
+    TfArgLiteral('STREAM_OFF'),
+  );
+
+  static const List<CloudbuildTriggerLogStreamingOption> values = [
+    streamDefault,
+    streamOn,
+    streamOff,
+  ];
 }
 
 /// `logging` — derived from the provider schema description.
-enum CloudbuildTriggerLogging implements TerraformEnum {
-  loggingUnspecified('LOGGING_UNSPECIFIED'),
-  legacy('LEGACY'),
-  gcsOnly('GCS_ONLY'),
-  stackdriverOnly('STACKDRIVER_ONLY'),
-  cloudLoggingOnly('CLOUD_LOGGING_ONLY'),
-  none('NONE');
+extension type const CloudbuildTriggerLogging._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerLogging.variable(String name) : this._(TfArg.variable(name));
+  CloudbuildTriggerLogging.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerLogging.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudbuildTriggerLogging(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loggingUnspecified = CloudbuildTriggerLogging._(
+    TfArgLiteral('LOGGING_UNSPECIFIED'),
+  );
+  static const legacy = CloudbuildTriggerLogging._(TfArgLiteral('LEGACY'));
+  static const gcsOnly = CloudbuildTriggerLogging._(TfArgLiteral('GCS_ONLY'));
+  static const stackdriverOnly = CloudbuildTriggerLogging._(
+    TfArgLiteral('STACKDRIVER_ONLY'),
+  );
+  static const cloudLoggingOnly = CloudbuildTriggerLogging._(
+    TfArgLiteral('CLOUD_LOGGING_ONLY'),
+  );
+  static const none = CloudbuildTriggerLogging._(TfArgLiteral('NONE'));
+
+  static const List<CloudbuildTriggerLogging> values = [
+    loggingUnspecified,
+    legacy,
+    gcsOnly,
+    stackdriverOnly,
+    cloudLoggingOnly,
+    none,
+  ];
 }
 
 /// `requested_verify_option` — derived from the provider schema description.
-enum CloudbuildTriggerRequestedVerifyOption implements TerraformEnum {
-  notVerified('NOT_VERIFIED'),
-  verified('VERIFIED');
+extension type const CloudbuildTriggerRequestedVerifyOption._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerRequestedVerifyOption.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerRequestedVerifyOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerRequestedVerifyOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudbuildTriggerRequestedVerifyOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notVerified = CloudbuildTriggerRequestedVerifyOption._(
+    TfArgLiteral('NOT_VERIFIED'),
+  );
+  static const verified = CloudbuildTriggerRequestedVerifyOption._(
+    TfArgLiteral('VERIFIED'),
+  );
+
+  static const List<CloudbuildTriggerRequestedVerifyOption> values = [
+    notVerified,
+    verified,
+  ];
 }
 
 /// `source_provenance_hash` — derived from the provider schema description.
-enum CloudbuildTriggerSourceProvenanceHash implements TerraformEnum {
-  none('NONE'),
-  sha256('SHA256'),
-  md5('MD5');
+extension type const CloudbuildTriggerSourceProvenanceHash._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerSourceProvenanceHash.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerSourceProvenanceHash.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerSourceProvenanceHash.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudbuildTriggerSourceProvenanceHash(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudbuildTriggerSourceProvenanceHash._(
+    TfArgLiteral('NONE'),
+  );
+  static const sha256 = CloudbuildTriggerSourceProvenanceHash._(
+    TfArgLiteral('SHA256'),
+  );
+  static const md5 = CloudbuildTriggerSourceProvenanceHash._(
+    TfArgLiteral('MD5'),
+  );
+
+  static const List<CloudbuildTriggerSourceProvenanceHash> values = [
+    none,
+    sha256,
+    md5,
+  ];
 }
 
 /// `substitution_option` — derived from the provider schema description.
-enum CloudbuildTriggerSubstitutionOption implements TerraformEnum {
-  mustMatch('MUST_MATCH'),
-  allowLoose('ALLOW_LOOSE');
+extension type const CloudbuildTriggerSubstitutionOption._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerSubstitutionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerSubstitutionOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerSubstitutionOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudbuildTriggerSubstitutionOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mustMatch = CloudbuildTriggerSubstitutionOption._(
+    TfArgLiteral('MUST_MATCH'),
+  );
+  static const allowLoose = CloudbuildTriggerSubstitutionOption._(
+    TfArgLiteral('ALLOW_LOOSE'),
+  );
+
+  static const List<CloudbuildTriggerSubstitutionOption> values = [
+    mustMatch,
+    allowLoose,
+  ];
 }
 
 /// Typed helper for the `build.options.volumes` block of
@@ -926,7 +1026,7 @@ final class CloudbuildTriggerDeveloperConnectEventConfigPullRequest {
 
   final TfArg<String>? branch;
 
-  final TfArg<CloudbuildTriggerCommentControl>? commentControl;
+  final CloudbuildTriggerCommentControl? commentControl;
 
   final TfArg<bool>? invertRegex;
 
@@ -980,7 +1080,7 @@ final class CloudbuildTriggerGitFileSource {
 
   final TfArg<String> path;
 
-  final TfArg<CloudbuildTriggerRepoType> repoType;
+  final CloudbuildTriggerRepoType repoType;
 
   final TfArg<String>? repository;
 
@@ -1000,15 +1100,29 @@ final class CloudbuildTriggerGitFileSource {
 }
 
 /// `repo_type` — derived from the provider schema description.
-enum CloudbuildTriggerRepoType implements TerraformEnum {
-  unknown('UNKNOWN'),
-  cloudSourceRepositories('CLOUD_SOURCE_REPOSITORIES'),
-  github('GITHUB'),
-  bitbucketServer('BITBUCKET_SERVER');
+extension type const CloudbuildTriggerRepoType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudbuildTriggerRepoType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudbuildTriggerRepoType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudbuildTriggerRepoType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudbuildTriggerRepoType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unknown = CloudbuildTriggerRepoType._(TfArgLiteral('UNKNOWN'));
+  static const cloudSourceRepositories = CloudbuildTriggerRepoType._(
+    TfArgLiteral('CLOUD_SOURCE_REPOSITORIES'),
+  );
+  static const github = CloudbuildTriggerRepoType._(TfArgLiteral('GITHUB'));
+  static const bitbucketServer = CloudbuildTriggerRepoType._(
+    TfArgLiteral('BITBUCKET_SERVER'),
+  );
+
+  static const List<CloudbuildTriggerRepoType> values = [
+    unknown,
+    cloudSourceRepositories,
+    github,
+    bitbucketServer,
+  ];
 }
 
 /// Typed helper for the `github` block of
@@ -1200,7 +1314,7 @@ final class CloudbuildTriggerSourceToBuild {
 
   final TfArg<String> ref;
 
-  final TfArg<CloudbuildTriggerRepoType> repoType;
+  final CloudbuildTriggerRepoType repoType;
 
   final TfArg<String>? repository;
 
@@ -1402,7 +1516,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///     event: .pullRequest(
 ///       .new(
 ///         branch: .literal(r'^main$'),
-///         commentControl: .literal(.commentsEnabled),
+///         commentControl: .commentsEnabled,
 ///       ),
 ///     ),
 ///   ),
@@ -1424,7 +1538,7 @@ final class GoogleCloudbuildTrigger extends Resource {
     TfArg<List<String>>? tags,
     TfArg<bool>? disabled,
     RefTo<GoogleServiceAccount>? serviceAccount,
-    TfArg<CloudBuildTriggerIncludeBuildLogs>? includeBuildLogs,
+    CloudBuildTriggerIncludeBuildLogs? includeBuildLogs,
     TfArg<String>? filter,
     TfArg<Map<String, String>>? substitutions,
     TfArg<List<String>>? includedFiles,

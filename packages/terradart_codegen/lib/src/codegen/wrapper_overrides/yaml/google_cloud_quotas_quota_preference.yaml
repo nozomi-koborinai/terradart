@@ -13,14 +13,16 @@ dartTypeOverrides:
 
 prelude: |
   /// Quota safety checks that may be skipped on create/update.
-  enum CloudQuotasQuotaPreferenceIgnoreSafetyChecks implements TerraformEnum {
-    unspecified('QUOTA_SAFETY_CHECK_UNSPECIFIED'),
-    decreaseBelowUsage('QUOTA_DECREASE_BELOW_USAGE'),
-    decreasePercentageTooHigh('QUOTA_DECREASE_PERCENTAGE_TOO_HIGH');
+  extension type const CloudQuotasQuotaPreferenceIgnoreSafetyChecks._(TfArg<String> _) implements TfArg<String> {
+    CloudQuotasQuotaPreferenceIgnoreSafetyChecks.variable(String name) : this._(TfArg.variable(name));
+    CloudQuotasQuotaPreferenceIgnoreSafetyChecks.expression(String template) : this._(TfArg.expression(template));
+    const CloudQuotasQuotaPreferenceIgnoreSafetyChecks.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudQuotasQuotaPreferenceIgnoreSafetyChecks(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unspecified = CloudQuotasQuotaPreferenceIgnoreSafetyChecks._(TfArgLiteral('QUOTA_SAFETY_CHECK_UNSPECIFIED'));
+    static const decreaseBelowUsage = CloudQuotasQuotaPreferenceIgnoreSafetyChecks._(TfArgLiteral('QUOTA_DECREASE_BELOW_USAGE'));
+    static const decreasePercentageTooHigh = CloudQuotasQuotaPreferenceIgnoreSafetyChecks._(TfArgLiteral('QUOTA_DECREASE_PERCENTAGE_TOO_HIGH'));
+
+    static const List<CloudQuotasQuotaPreferenceIgnoreSafetyChecks> values = [unspecified, decreaseBelowUsage, decreasePercentageTooHigh];
   }
 
 curatedDoc: |-

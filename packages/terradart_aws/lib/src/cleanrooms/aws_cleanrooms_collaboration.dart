@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCleanroomsCollaborationSensitive = <String>{};
 
 /// Cleanrooms Collaboration Analytics enum for `analytics_engine`.
-enum CleanroomsCollaborationAnalyticsEngine implements TerraformEnum {
-  spark('SPARK'),
-  cleanRoomsSql('CLEAN_ROOMS_SQL');
+extension type const CleanroomsCollaborationAnalyticsEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  CleanroomsCollaborationAnalyticsEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  CleanroomsCollaborationAnalyticsEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const CleanroomsCollaborationAnalyticsEngine.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CleanroomsCollaborationAnalyticsEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const spark = CleanroomsCollaborationAnalyticsEngine._(
+    TfArgLiteral('SPARK'),
+  );
+  static const cleanRoomsSql = CleanroomsCollaborationAnalyticsEngine._(
+    TfArgLiteral('CLEAN_ROOMS_SQL'),
+  );
+
+  static const List<CleanroomsCollaborationAnalyticsEngine> values = [
+    spark,
+    cleanRoomsSql,
+  ];
 }
 
 /// Typed helper for the `data_encryption_metadata` block of
@@ -74,7 +87,7 @@ final class AwsCleanroomsCollaboration extends Resource {
 
   AwsCleanroomsCollaboration(
     super.localName, {
-    TfArg<CleanroomsCollaborationAnalyticsEngine>? analyticsEngine,
+    CleanroomsCollaborationAnalyticsEngine? analyticsEngine,
     required TfArg<String> creatorDisplayName,
     required TfArg<List<String>> creatorMemberAbilities,
     required TfArg<String> description,

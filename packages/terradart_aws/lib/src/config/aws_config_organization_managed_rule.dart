@@ -7,19 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConfigOrganizationManagedRuleSensitive = <String>{};
 
 /// Config Organization Managed Rule Maximum Execution enum for `maximum_execution_frequency`.
-enum ConfigOrganizationManagedRuleMaximumExecutionFrequency
-    implements TerraformEnum {
-  oneHour('One_Hour'),
-  threeHours('Three_Hours'),
-  sixHours('Six_Hours'),
-  twelveHours('Twelve_Hours'),
-  twentyfourHours('TwentyFour_Hours');
+extension type const ConfigOrganizationManagedRuleMaximumExecutionFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ConfigOrganizationManagedRuleMaximumExecutionFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigOrganizationManagedRuleMaximumExecutionFrequency.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ConfigOrganizationManagedRuleMaximumExecutionFrequency.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ConfigOrganizationManagedRuleMaximumExecutionFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const oneHour =
+      ConfigOrganizationManagedRuleMaximumExecutionFrequency._(
+        TfArgLiteral('One_Hour'),
+      );
+  static const threeHours =
+      ConfigOrganizationManagedRuleMaximumExecutionFrequency._(
+        TfArgLiteral('Three_Hours'),
+      );
+  static const sixHours =
+      ConfigOrganizationManagedRuleMaximumExecutionFrequency._(
+        TfArgLiteral('Six_Hours'),
+      );
+  static const twelveHours =
+      ConfigOrganizationManagedRuleMaximumExecutionFrequency._(
+        TfArgLiteral('Twelve_Hours'),
+      );
+  static const twentyfourHours =
+      ConfigOrganizationManagedRuleMaximumExecutionFrequency._(
+        TfArgLiteral('TwentyFour_Hours'),
+      );
+
+  static const List<ConfigOrganizationManagedRuleMaximumExecutionFrequency>
+  values = [oneHour, threeHours, sixHours, twelveHours, twentyfourHours];
 }
 
 /// Factory wrapper for `aws_config_organization_managed_rule`.
@@ -31,7 +53,7 @@ final class AwsConfigOrganizationManagedRule extends Resource {
     TfArg<String>? description,
     TfArg<List<String>>? excludedAccounts,
     TfArg<String>? inputParameters,
-    TfArg<ConfigOrganizationManagedRuleMaximumExecutionFrequency>?
+    ConfigOrganizationManagedRuleMaximumExecutionFrequency?
     maximumExecutionFrequency,
     required TfArg<String> name,
     TfArg<String>? region,

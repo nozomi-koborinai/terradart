@@ -37,7 +37,7 @@ final class WorkflowStack extends Stack {
         name: .literal('terradart-hello'),
         region: .literal('us-central1'),
         description: .literal('Returns a greeting (terradart demo)'),
-        callLogLevel: .literal(.logErrorsOnly),
+        callLogLevel: .logErrorsOnly,
         // The provider defaults deletion_protection to true, which blocks
         // teardown; set it false so the example can be created and destroyed.
         deletionProtection: .literal(false),

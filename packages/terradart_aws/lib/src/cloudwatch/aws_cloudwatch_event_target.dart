@@ -173,11 +173,11 @@ final class CloudwatchEventTargetEcsTarget {
 
   final TfArg<String>? group;
 
-  final TfArg<CloudwatchEventTargetLaunchType>? launchType;
+  final CloudwatchEventTargetLaunchType? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<CloudwatchEventTargetPropagateTags>? propagateTags;
+  final CloudwatchEventTargetPropagateTags? propagateTags;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -222,23 +222,45 @@ final class CloudwatchEventTargetEcsTarget {
 }
 
 /// `launch_type` — derived from the provider schema description.
-enum CloudwatchEventTargetLaunchType implements TerraformEnum {
-  ec2('EC2'),
-  fargate('FARGATE'),
-  external('EXTERNAL');
+extension type const CloudwatchEventTargetLaunchType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventTargetLaunchType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventTargetLaunchType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventTargetLaunchType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventTargetLaunchType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = CloudwatchEventTargetLaunchType._(TfArgLiteral('EC2'));
+  static const fargate = CloudwatchEventTargetLaunchType._(
+    TfArgLiteral('FARGATE'),
+  );
+  static const external = CloudwatchEventTargetLaunchType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<CloudwatchEventTargetLaunchType> values = [
+    ec2,
+    fargate,
+    external,
+  ];
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum CloudwatchEventTargetPropagateTags implements TerraformEnum {
-  taskDefinition('TASK_DEFINITION');
+extension type const CloudwatchEventTargetPropagateTags._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventTargetPropagateTags.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventTargetPropagateTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventTargetPropagateTags.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventTargetPropagateTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const taskDefinition = CloudwatchEventTargetPropagateTags._(
+    TfArgLiteral('TASK_DEFINITION'),
+  );
+
+  static const List<CloudwatchEventTargetPropagateTags> values = [
+    taskDefinition,
+  ];
 }
 
 /// Typed helper for the `ecs_target.capacity_provider_strategy` block of
@@ -298,7 +320,7 @@ final class CloudwatchEventTargetOrderedPlacementStrategy {
 
   final TfArg<String>? field;
 
-  final TfArg<CloudwatchEventTargetOrderedPlacementStrategyType> type;
+  final CloudwatchEventTargetOrderedPlacementStrategyType type;
 
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
@@ -307,15 +329,28 @@ final class CloudwatchEventTargetOrderedPlacementStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchEventTargetOrderedPlacementStrategyType
-    implements TerraformEnum {
-  random('random'),
-  spread('spread'),
-  binpack('binpack');
+extension type const CloudwatchEventTargetOrderedPlacementStrategyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchEventTargetOrderedPlacementStrategyType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventTargetOrderedPlacementStrategyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventTargetOrderedPlacementStrategyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchEventTargetOrderedPlacementStrategyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const random = CloudwatchEventTargetOrderedPlacementStrategyType._(
+    TfArgLiteral('random'),
+  );
+  static const spread = CloudwatchEventTargetOrderedPlacementStrategyType._(
+    TfArgLiteral('spread'),
+  );
+  static const binpack = CloudwatchEventTargetOrderedPlacementStrategyType._(
+    TfArgLiteral('binpack'),
+  );
+
+  static const List<CloudwatchEventTargetOrderedPlacementStrategyType> values =
+      [random, spread, binpack];
 }
 
 /// Typed helper for the `ecs_target.placement_constraint` block of
@@ -329,7 +364,7 @@ final class CloudwatchEventTargetPlacementConstraint {
 
   final TfArg<String>? expression;
 
-  final TfArg<CloudwatchEventTargetPlacementConstraintType> type;
+  final CloudwatchEventTargetPlacementConstraintType type;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -338,13 +373,28 @@ final class CloudwatchEventTargetPlacementConstraint {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchEventTargetPlacementConstraintType implements TerraformEnum {
-  distinctinstance('distinctInstance'),
-  memberof('memberOf');
+extension type const CloudwatchEventTargetPlacementConstraintType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchEventTargetPlacementConstraintType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventTargetPlacementConstraintType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventTargetPlacementConstraintType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchEventTargetPlacementConstraintType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const distinctinstance =
+      CloudwatchEventTargetPlacementConstraintType._(
+        TfArgLiteral('distinctInstance'),
+      );
+  static const memberof = CloudwatchEventTargetPlacementConstraintType._(
+    TfArgLiteral('memberOf'),
+  );
+
+  static const List<CloudwatchEventTargetPlacementConstraintType> values = [
+    distinctinstance,
+    memberof,
+  ];
 }
 
 /// Typed helper for the `http_target` block of

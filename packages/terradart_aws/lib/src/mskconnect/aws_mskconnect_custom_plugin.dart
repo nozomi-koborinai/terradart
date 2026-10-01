@@ -10,13 +10,18 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsMskconnectCustomPluginSensitive = <String>{};
 
 /// Mskconnect Custom Plugin Content enum for `content_type`.
-enum MskconnectCustomPluginContentType implements TerraformEnum {
-  jar('JAR'),
-  zip('ZIP');
+extension type const MskconnectCustomPluginContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskconnectCustomPluginContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  MskconnectCustomPluginContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskconnectCustomPluginContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const MskconnectCustomPluginContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jar = MskconnectCustomPluginContentType._(TfArgLiteral('JAR'));
+  static const zip = MskconnectCustomPluginContentType._(TfArgLiteral('ZIP'));
+
+  static const List<MskconnectCustomPluginContentType> values = [jar, zip];
 }
 
 /// Typed helper for the `location` block of
@@ -59,7 +64,7 @@ final class AwsMskconnectCustomPlugin extends Resource {
 
   AwsMskconnectCustomPlugin(
     super.localName, {
-    required TfArg<MskconnectCustomPluginContentType> contentType,
+    required MskconnectCustomPluginContentType contentType,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

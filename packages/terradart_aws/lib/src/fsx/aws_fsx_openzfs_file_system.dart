@@ -12,46 +12,93 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsFsxOpenzfsFileSystemSensitive = <String>{};
 
 /// Fsx Openzfs File System Delete enum for `delete_options`.
-enum FsxOpenzfsFileSystemDeleteOptions implements TerraformEnum {
-  deleteChildVolumesAndSnapshots('DELETE_CHILD_VOLUMES_AND_SNAPSHOTS');
+extension type const FsxOpenzfsFileSystemDeleteOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemDeleteOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemDeleteOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemDeleteOptions.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemDeleteOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deleteChildVolumesAndSnapshots =
+      FsxOpenzfsFileSystemDeleteOptions._(
+        TfArgLiteral('DELETE_CHILD_VOLUMES_AND_SNAPSHOTS'),
+      );
+
+  static const List<FsxOpenzfsFileSystemDeleteOptions> values = [
+    deleteChildVolumesAndSnapshots,
+  ];
 }
 
 /// Fsx Openzfs File System Deployment enum for `deployment_type`.
-enum FsxOpenzfsFileSystemDeploymentType implements TerraformEnum {
-  singleAz1('SINGLE_AZ_1'),
-  singleAz2('SINGLE_AZ_2'),
-  singleAzHa1('SINGLE_AZ_HA_1'),
-  singleAzHa2('SINGLE_AZ_HA_2'),
-  multiAz1('MULTI_AZ_1');
+extension type const FsxOpenzfsFileSystemDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleAz1 = FsxOpenzfsFileSystemDeploymentType._(
+    TfArgLiteral('SINGLE_AZ_1'),
+  );
+  static const singleAz2 = FsxOpenzfsFileSystemDeploymentType._(
+    TfArgLiteral('SINGLE_AZ_2'),
+  );
+  static const singleAzHa1 = FsxOpenzfsFileSystemDeploymentType._(
+    TfArgLiteral('SINGLE_AZ_HA_1'),
+  );
+  static const singleAzHa2 = FsxOpenzfsFileSystemDeploymentType._(
+    TfArgLiteral('SINGLE_AZ_HA_2'),
+  );
+  static const multiAz1 = FsxOpenzfsFileSystemDeploymentType._(
+    TfArgLiteral('MULTI_AZ_1'),
+  );
+
+  static const List<FsxOpenzfsFileSystemDeploymentType> values = [
+    singleAz1,
+    singleAz2,
+    singleAzHa1,
+    singleAzHa2,
+    multiAz1,
+  ];
 }
 
 /// Fsx Openzfs File System Network enum for `network_type`.
-enum FsxOpenzfsFileSystemNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  dual('DUAL');
+extension type const FsxOpenzfsFileSystemNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = FsxOpenzfsFileSystemNetworkType._(TfArgLiteral('IPV4'));
+  static const dual = FsxOpenzfsFileSystemNetworkType._(TfArgLiteral('DUAL'));
+
+  static const List<FsxOpenzfsFileSystemNetworkType> values = [ipv4, dual];
 }
 
 /// Fsx Openzfs File System Storage enum for `storage_type`.
-enum FsxOpenzfsFileSystemStorageType implements TerraformEnum {
-  ssd('SSD'),
-  hdd('HDD'),
-  intelligentTiering('INTELLIGENT_TIERING');
+extension type const FsxOpenzfsFileSystemStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssd = FsxOpenzfsFileSystemStorageType._(TfArgLiteral('SSD'));
+  static const hdd = FsxOpenzfsFileSystemStorageType._(TfArgLiteral('HDD'));
+  static const intelligentTiering = FsxOpenzfsFileSystemStorageType._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+
+  static const List<FsxOpenzfsFileSystemStorageType> values = [
+    ssd,
+    hdd,
+    intelligentTiering,
+  ];
 }
 
 /// Typed helper for the `disk_iops_configuration` block of
@@ -62,7 +109,7 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxOpenzfsFileSystemMode>? mode;
+  final FsxOpenzfsFileSystemMode? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -71,13 +118,24 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  userProvisioned('USER_PROVISIONED');
+extension type const FsxOpenzfsFileSystemMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemMode.variable(String name) : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = FsxOpenzfsFileSystemMode._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const userProvisioned = FsxOpenzfsFileSystemMode._(
+    TfArgLiteral('USER_PROVISIONED'),
+  );
+
+  static const List<FsxOpenzfsFileSystemMode> values = [
+    automatic,
+    userProvisioned,
+  ];
 }
 
 /// Typed helper for the `read_cache_configuration` block of
@@ -91,7 +149,7 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<FsxOpenzfsFileSystemSizingMode>? sizingMode;
+  final FsxOpenzfsFileSystemSizingMode? sizingMode;
 
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
@@ -100,14 +158,30 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
 }
 
 /// `sizing_mode` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemSizingMode implements TerraformEnum {
-  noCache('NO_CACHE'),
-  userProvisioned('USER_PROVISIONED'),
-  proportionalToThroughputCapacity('PROPORTIONAL_TO_THROUGHPUT_CAPACITY');
+extension type const FsxOpenzfsFileSystemSizingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemSizingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemSizingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemSizingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemSizingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noCache = FsxOpenzfsFileSystemSizingMode._(
+    TfArgLiteral('NO_CACHE'),
+  );
+  static const userProvisioned = FsxOpenzfsFileSystemSizingMode._(
+    TfArgLiteral('USER_PROVISIONED'),
+  );
+  static const proportionalToThroughputCapacity =
+      FsxOpenzfsFileSystemSizingMode._(
+        TfArgLiteral('PROPORTIONAL_TO_THROUGHPUT_CAPACITY'),
+      );
+
+  static const List<FsxOpenzfsFileSystemSizingMode> values = [
+    noCache,
+    userProvisioned,
+    proportionalToThroughputCapacity,
+  ];
 }
 
 /// Typed helper for the `root_volume_configuration` block of
@@ -125,7 +199,7 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
 
   final TfArg<bool>? copyTagsToSnapshots;
 
-  final TfArg<FsxOpenzfsFileSystemDataCompressionType>? dataCompressionType;
+  final FsxOpenzfsFileSystemDataCompressionType? dataCompressionType;
 
   final TfArg<bool>? readOnly;
 
@@ -149,14 +223,30 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
 }
 
 /// `data_compression_type` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemDataCompressionType implements TerraformEnum {
-  none('NONE'),
-  zstd('ZSTD'),
-  lz4('LZ4');
+extension type const FsxOpenzfsFileSystemDataCompressionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemDataCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemDataCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemDataCompressionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxOpenzfsFileSystemDataCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = FsxOpenzfsFileSystemDataCompressionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const zstd = FsxOpenzfsFileSystemDataCompressionType._(
+    TfArgLiteral('ZSTD'),
+  );
+  static const lz4 = FsxOpenzfsFileSystemDataCompressionType._(
+    TfArgLiteral('LZ4'),
+  );
+
+  static const List<FsxOpenzfsFileSystemDataCompressionType> values = [
+    none,
+    zstd,
+    lz4,
+  ];
 }
 
 /// Typed helper for the `root_volume_configuration.nfs_exports` block of
@@ -205,7 +295,7 @@ final class FsxOpenzfsFileSystemUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<FsxOpenzfsFileSystemType> type;
+  final FsxOpenzfsFileSystemType type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -215,13 +305,17 @@ final class FsxOpenzfsFileSystemUserAndGroupQuotas {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOpenzfsFileSystemType implements TerraformEnum {
-  user('USER'),
-  group('GROUP');
+extension type const FsxOpenzfsFileSystemType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsFileSystemType.variable(String name) : this._(TfArg.variable(name));
+  FsxOpenzfsFileSystemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsFileSystemType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsFileSystemType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = FsxOpenzfsFileSystemType._(TfArgLiteral('USER'));
+  static const group = FsxOpenzfsFileSystemType._(TfArgLiteral('GROUP'));
+
+  static const List<FsxOpenzfsFileSystemType> values = [user, group];
 }
 
 /// Factory wrapper for `aws_fsx_openzfs_file_system`.
@@ -235,19 +329,19 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
     TfArg<bool>? copyTagsToBackups,
     TfArg<bool>? copyTagsToVolumes,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    List<TfArg<FsxOpenzfsFileSystemDeleteOptions>>? deleteOptions,
-    required TfArg<FsxOpenzfsFileSystemDeploymentType> deploymentType,
+    List<FsxOpenzfsFileSystemDeleteOptions>? deleteOptions,
+    required FsxOpenzfsFileSystemDeploymentType deploymentType,
     TfArg<String>? endpointIpAddressRange,
     TfArg<Map<String, String>>? finalBackupTags,
     RefTo<AwsKmsKey>? kmsKeyId,
-    TfArg<FsxOpenzfsFileSystemNetworkType>? networkType,
+    FsxOpenzfsFileSystemNetworkType? networkType,
     TfArg<String>? preferredSubnetId,
     TfArg<String>? region,
     TfArg<List<String>>? routeTableIds,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<bool>? skipFinalBackup,
     TfArg<num>? storageCapacity,
-    TfArg<FsxOpenzfsFileSystemStorageType>? storageType,
+    FsxOpenzfsFileSystemStorageType? storageType,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> throughputCapacity,

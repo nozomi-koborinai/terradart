@@ -34,7 +34,7 @@ final class EventsStack extends Stack {
       GoogleBigtableInstance(
         'events',
         name: .literal('quickstart-events'),
-        instanceType: .literal(.production),
+        instanceType: .production,
         deletionPolicy: .literal('DELETE'),
         deletionProtection: .literal(false),
         cluster: [

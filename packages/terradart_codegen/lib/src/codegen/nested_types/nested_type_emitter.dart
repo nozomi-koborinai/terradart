@@ -1,5 +1,7 @@
+import '../enum_emitter.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
+import '../provider_enums.dart';
 import '../references/reference_slots.dart';
 import '../references/reference_targets.dart';
 import 'nested_type_collector.dart';
@@ -15,7 +17,7 @@ import 'nested_type_collector.dart';
 /// callers splice it into the surrounding wrapper file and run
 /// `dart_style.DartFormatter` once, over the whole file. It assumes that
 /// file already imports `package:meta/meta.dart` (`@immutable`) and
-/// `package:terradart_core/terradart_core.dart` (`TfArg`, `TerraformEnum`);
+/// `package:terradart_core/terradart_core.dart` (`TfArg`, `TfArgLiteral`);
 /// no import directives are emitted here.
 ///
 /// Ordering is depth-first over [specs] — each spec's own class, then its
@@ -221,32 +223,18 @@ String _renderClass(
   return buf.toString();
 }
 
-/// Renders the free-standing `TerraformEnum` declaration for one
-/// enum-carrying attribute. Member names reuse [enumMemberNames] (shared
-/// with the top-level `deriveEnums` path via `naming.dart`'s `enumName`) —
-/// never re-implemented here, including its reserved-word fallback.
+/// Renders the free-standing enum declaration for one enum-carrying
+/// attribute. Member names reuse [enumMemberNames] (shared with the
+/// top-level `deriveEnums` path via `naming.dart`'s `enumName`) — never
+/// re-implemented here, including its reserved-word fallback.
 String _renderEnum(NestedAttrSpec attr) {
   final values = attr.enumValues!;
-  final members = enumMemberNames(values);
-  final buf = StringBuffer()
-    ..writeln(
-      '/// `${attr.tfName}` — derived from the provider schema description.',
-    )
-    ..writeln('enum ${attr.dartType} implements TerraformEnum {');
-  for (var i = 0; i < values.length; i++) {
-    final isLast = i == values.length - 1;
-    buf.writeln(
-      "  ${members[i]}('${dartSingleQuotedBody(values[i])}')"
-      "${isLast ? ';' : ','}",
-    );
-  }
-  buf
-    ..writeln()
-    ..writeln('  const ${attr.dartType}(this.terraformValue);')
-    ..writeln('  @override')
-    ..writeln('  final String terraformValue;')
-    ..writeln('}');
-  return buf.toString();
+  return renderTerraformEnum(
+    doc: '`${attr.tfName}` — derived from the provider schema description.',
+    name: attr.dartType,
+    members: enumMemberNames(values),
+    rawValues: values,
+  );
 }
 
 /// One class member's rendering, in its three call sites (constructor
@@ -690,7 +678,7 @@ ExactlyOneVariant _variant({
   required bool wrapInTfArg,
 }) {
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
-  final elementDartType = wrapInTfArg ? 'TfArg<$elementType>' : elementType;
+  final elementDartType = wrapInTfArg ? argTypeFor(elementType) : elementType;
   return (
     tfName: tfName,
     ident: ident,
@@ -807,7 +795,7 @@ _FieldPlan _plan({
 }) {
   final ident = safeDartIdentifier(dartName);
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
-  final elementDartType = wrapInTfArg ? 'TfArg<$elementType>' : elementType;
+  final elementDartType = wrapInTfArg ? argTypeFor(elementType) : elementType;
   final bareFieldType = repeated
       ? 'List<$elementDartType>'
       : keyed

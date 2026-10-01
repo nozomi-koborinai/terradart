@@ -59,7 +59,7 @@ final class AnalyticsStack extends Stack {
       description: .literal('Production analytics events + sessions.'),
       // 30 days in milliseconds.
       defaultTableExpirationMs: .literal(30 * 24 * 60 * 60 * 1000),
-      storageBillingModel: .literal(.logical),
+      storageBillingModel: .logical,
       access: [
         // UserByEmail variant pointed at the in-stack reader SA — a real
         // identity once applied, not a placeholder address.
@@ -141,8 +141,8 @@ final class AnalyticsStack extends Stack {
         'email_mask',
         location: .literal('asia-northeast1'),
         dataPolicyId: .literal('mask-email'),
-        dataPolicyType: .literal(.dataMaskingPolicy),
-        dataMaskingPolicy: .predefinedExpression(.literal(.emailMask)),
+        dataPolicyType: .dataMaskingPolicy,
+        dataMaskingPolicy: .predefinedExpression(.emailMask),
         policyTag: .literal(
           'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1',
         ),
@@ -197,7 +197,7 @@ final class AnalyticsStack extends Stack {
       GoogleBigqueryReservationAssignment(
         'project_slots',
         assignee: .literal('projects/$projectId'),
-        jobType: .literal(.query),
+        jobType: .query,
         location: .literal('asia-northeast1'),
         reservation: slotsReservation.ref,
       ),
@@ -291,8 +291,8 @@ final class AnalyticsStack extends Stack {
               datasetId: dataset.ref,
               tableId: .literal('events_daily_count'),
             ),
-            writeDisposition: .literal(.writeTruncate),
-            createDisposition: .literal(.createIfNeeded),
+            writeDisposition: .writeTruncate,
+            createDisposition: .createIfNeeded,
           ),
         ),
       ),
@@ -303,9 +303,9 @@ final class AnalyticsStack extends Stack {
         'add_one',
         datasetId: dataset.ref,
         routineId: .literal('add_one'),
-        routineType: .literal(.scalarFunction),
+        routineType: .scalarFunction,
         definitionBody: .literal('x + 1'),
-        language: .literal(.sql),
+        language: .sql,
         arguments: [
           BigqueryRoutineArgument(
             name: .literal('x'),
@@ -365,8 +365,8 @@ final class AnalyticsStack extends Stack {
         capacityCommitmentId: .literal('analytics-trial'),
         location: .literal('asia-northeast1'),
         slotCount: .literal(50),
-        plan: .literal(.trial),
-        renewalPlan: .literal(.none),
+        plan: .trial,
+        renewalPlan: .none,
       ),
     );
 
@@ -394,7 +394,7 @@ final class AnalyticsStack extends Stack {
         'project_writers_reader',
         datasetId: dataset.ref,
         role: .literal('READER'),
-        grantee: .specialGroup(.literal(.projectWriters)),
+        grantee: .specialGroup(.projectWriters),
         dependsOn: [dataset],
       ),
     );

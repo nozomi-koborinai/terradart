@@ -11,41 +11,105 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsStoragegatewayNfsFileShareSensitive = <String>{};
 
 /// Storagegateway Nfs File Share Default Storage enum for `default_storage_class`.
-enum StoragegatewayNfsFileShareDefaultStorageClass implements TerraformEnum {
-  s3IntelligentTiering('S3_INTELLIGENT_TIERING'),
-  s3OnezoneIa('S3_ONEZONE_IA'),
-  s3Standard('S3_STANDARD'),
-  s3StandardIa('S3_STANDARD_IA');
+extension type const StoragegatewayNfsFileShareDefaultStorageClass._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StoragegatewayNfsFileShareDefaultStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayNfsFileShareDefaultStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayNfsFileShareDefaultStorageClass.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewayNfsFileShareDefaultStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3IntelligentTiering =
+      StoragegatewayNfsFileShareDefaultStorageClass._(
+        TfArgLiteral('S3_INTELLIGENT_TIERING'),
+      );
+  static const s3OnezoneIa = StoragegatewayNfsFileShareDefaultStorageClass._(
+    TfArgLiteral('S3_ONEZONE_IA'),
+  );
+  static const s3Standard = StoragegatewayNfsFileShareDefaultStorageClass._(
+    TfArgLiteral('S3_STANDARD'),
+  );
+  static const s3StandardIa = StoragegatewayNfsFileShareDefaultStorageClass._(
+    TfArgLiteral('S3_STANDARD_IA'),
+  );
+
+  static const List<StoragegatewayNfsFileShareDefaultStorageClass> values = [
+    s3IntelligentTiering,
+    s3OnezoneIa,
+    s3Standard,
+    s3StandardIa,
+  ];
 }
 
 /// Storagegateway Nfs File Share Object enum for `object_acl`.
-enum StoragegatewayNfsFileShareObjectAcl implements TerraformEnum {
-  private('private'),
-  publicRead('public-read'),
-  publicReadWrite('public-read-write'),
-  authenticatedRead('authenticated-read'),
-  bucketOwnerRead('bucket-owner-read'),
-  bucketOwnerFullControl('bucket-owner-full-control'),
-  awsExecRead('aws-exec-read');
+extension type const StoragegatewayNfsFileShareObjectAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayNfsFileShareObjectAcl.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayNfsFileShareObjectAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayNfsFileShareObjectAcl.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewayNfsFileShareObjectAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('private'),
+  );
+  static const publicRead = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('public-read'),
+  );
+  static const publicReadWrite = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('public-read-write'),
+  );
+  static const authenticatedRead = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('authenticated-read'),
+  );
+  static const bucketOwnerRead = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('bucket-owner-read'),
+  );
+  static const bucketOwnerFullControl = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('bucket-owner-full-control'),
+  );
+  static const awsExecRead = StoragegatewayNfsFileShareObjectAcl._(
+    TfArgLiteral('aws-exec-read'),
+  );
+
+  static const List<StoragegatewayNfsFileShareObjectAcl> values = [
+    private,
+    publicRead,
+    publicReadWrite,
+    authenticatedRead,
+    bucketOwnerRead,
+    bucketOwnerFullControl,
+    awsExecRead,
+  ];
 }
 
 /// Storagegateway Nfs File Share enum for `squash`.
-enum StoragegatewayNfsFileShareSquash implements TerraformEnum {
-  allsquash('AllSquash'),
-  nosquash('NoSquash'),
-  rootsquash('RootSquash');
+extension type const StoragegatewayNfsFileShareSquash._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayNfsFileShareSquash.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayNfsFileShareSquash.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayNfsFileShareSquash.arg(TfArg<String> arg) : this._(arg);
 
-  const StoragegatewayNfsFileShareSquash(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allsquash = StoragegatewayNfsFileShareSquash._(
+    TfArgLiteral('AllSquash'),
+  );
+  static const nosquash = StoragegatewayNfsFileShareSquash._(
+    TfArgLiteral('NoSquash'),
+  );
+  static const rootsquash = StoragegatewayNfsFileShareSquash._(
+    TfArgLiteral('RootSquash'),
+  );
+
+  static const List<StoragegatewayNfsFileShareSquash> values = [
+    allsquash,
+    nosquash,
+    rootsquash,
+  ];
 }
 
 /// Typed helper for the `cache_attributes` block of
@@ -99,7 +163,7 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
     TfArg<String>? auditDestinationArn,
     TfArg<String>? bucketRegion,
     required TfArg<List<String>> clientList,
-    TfArg<StoragegatewayNfsFileShareDefaultStorageClass>? defaultStorageClass,
+    StoragegatewayNfsFileShareDefaultStorageClass? defaultStorageClass,
     TfArg<String>? fileShareName,
     required TfArg<String> gatewayArn,
     TfArg<bool>? guessMimeTypeEnabled,
@@ -107,12 +171,12 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> locationArn,
     TfArg<String>? notificationPolicy,
-    TfArg<StoragegatewayNfsFileShareObjectAcl>? objectAcl,
+    StoragegatewayNfsFileShareObjectAcl? objectAcl,
     TfArg<bool>? readOnly,
     TfArg<String>? region,
     TfArg<bool>? requesterPays,
     required RefTo<AwsIamRole> roleArn,
-    TfArg<StoragegatewayNfsFileShareSquash>? squash,
+    StoragegatewayNfsFileShareSquash? squash,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcEndpointDnsName,
     StoragegatewayNfsFileShareCacheAttributes? cacheAttributes,

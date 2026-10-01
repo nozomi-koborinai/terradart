@@ -107,16 +107,18 @@ prelude: |
   /// - [gceVmIpPortmap]: port-mapping NEG attached to a VM NIC. Niche; used
   ///   when an L4 internal passthrough LB needs to fan-out across multiple
   ///   destination ports on each backend VM.
-  enum RegionNetworkEndpointGroupType implements TerraformEnum {
-    serverless('SERVERLESS'),
-    privateServiceConnect('PRIVATE_SERVICE_CONNECT'),
-    internetIpPort('INTERNET_IP_PORT'),
-    internetFqdnPort('INTERNET_FQDN_PORT'),
-    gceVmIpPortmap('GCE_VM_IP_PORTMAP');
+  extension type const RegionNetworkEndpointGroupType._(TfArg<String> _) implements TfArg<String> {
+    RegionNetworkEndpointGroupType.variable(String name) : this._(TfArg.variable(name));
+    RegionNetworkEndpointGroupType.expression(String template) : this._(TfArg.expression(template));
+    const RegionNetworkEndpointGroupType.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionNetworkEndpointGroupType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const serverless = RegionNetworkEndpointGroupType._(TfArgLiteral('SERVERLESS'));
+    static const privateServiceConnect = RegionNetworkEndpointGroupType._(TfArgLiteral('PRIVATE_SERVICE_CONNECT'));
+    static const internetIpPort = RegionNetworkEndpointGroupType._(TfArgLiteral('INTERNET_IP_PORT'));
+    static const internetFqdnPort = RegionNetworkEndpointGroupType._(TfArgLiteral('INTERNET_FQDN_PORT'));
+    static const gceVmIpPortmap = RegionNetworkEndpointGroupType._(TfArgLiteral('GCE_VM_IP_PORTMAP'));
+
+    static const List<RegionNetworkEndpointGroupType> values = [serverless, privateServiceConnect, internetIpPort, internetFqdnPort, gceVmIpPortmap];
   }
 
   // ===========================================================================

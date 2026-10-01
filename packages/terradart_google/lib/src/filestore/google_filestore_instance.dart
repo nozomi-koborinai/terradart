@@ -11,81 +11,169 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleFilestoreInstanceSensitive = <String>{};
 
 /// `tier` — Filestore service tier.
-enum FilestoreInstanceTier implements TerraformEnum {
-  standard('STANDARD'),
-  premium('PREMIUM'),
-  basicHdd('BASIC_HDD'),
-  basicSsd('BASIC_SSD'),
-  highScaleSsd('HIGH_SCALE_SSD'),
-  zonal('ZONAL'),
-  regional('REGIONAL'),
-  enterprise('ENTERPRISE');
+extension type const FilestoreInstanceTier._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceTier.variable(String name) : this._(TfArg.variable(name));
+  FilestoreInstanceTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceTier.arg(TfArg<String> arg) : this._(arg);
 
-  const FilestoreInstanceTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = FilestoreInstanceTier._(TfArgLiteral('STANDARD'));
+  static const premium = FilestoreInstanceTier._(TfArgLiteral('PREMIUM'));
+  static const basicHdd = FilestoreInstanceTier._(TfArgLiteral('BASIC_HDD'));
+  static const basicSsd = FilestoreInstanceTier._(TfArgLiteral('BASIC_SSD'));
+  static const highScaleSsd = FilestoreInstanceTier._(
+    TfArgLiteral('HIGH_SCALE_SSD'),
+  );
+  static const zonal = FilestoreInstanceTier._(TfArgLiteral('ZONAL'));
+  static const regional = FilestoreInstanceTier._(TfArgLiteral('REGIONAL'));
+  static const enterprise = FilestoreInstanceTier._(TfArgLiteral('ENTERPRISE'));
+
+  static const List<FilestoreInstanceTier> values = [
+    standard,
+    premium,
+    basicHdd,
+    basicSsd,
+    highScaleSsd,
+    zonal,
+    regional,
+    enterprise,
+  ];
 }
 
 /// `desired_replica_state` — the replica state to move the instance to.
-enum FilestoreInstanceDesiredReplicaState implements TerraformEnum {
-  paused('PAUSED'),
-  ready('READY');
+extension type const FilestoreInstanceDesiredReplicaState._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceDesiredReplicaState.variable(String name)
+    : this._(TfArg.variable(name));
+  FilestoreInstanceDesiredReplicaState.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceDesiredReplicaState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FilestoreInstanceDesiredReplicaState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const paused = FilestoreInstanceDesiredReplicaState._(
+    TfArgLiteral('PAUSED'),
+  );
+  static const ready = FilestoreInstanceDesiredReplicaState._(
+    TfArgLiteral('READY'),
+  );
+
+  static const List<FilestoreInstanceDesiredReplicaState> values = [
+    paused,
+    ready,
+  ];
 }
 
 /// `protocol` — the file protocol the instance serves.
-enum FilestoreInstanceProtocol implements TerraformEnum {
-  nfsV3('NFS_V3'),
-  nfsV41('NFS_V4_1');
+extension type const FilestoreInstanceProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  FilestoreInstanceProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const FilestoreInstanceProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nfsV3 = FilestoreInstanceProtocol._(TfArgLiteral('NFS_V3'));
+  static const nfsV41 = FilestoreInstanceProtocol._(TfArgLiteral('NFS_V4_1'));
+
+  static const List<FilestoreInstanceProtocol> values = [nfsV3, nfsV41];
 }
 
 /// `networks.connect_mode` — VPC reachability mode.
-enum FilestoreInstanceConnectMode implements TerraformEnum {
-  directPeering('DIRECT_PEERING'),
-  privateServiceAccess('PRIVATE_SERVICE_ACCESS'),
-  privateServiceConnect('PRIVATE_SERVICE_CONNECT');
+extension type const FilestoreInstanceConnectMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceConnectMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FilestoreInstanceConnectMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceConnectMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FilestoreInstanceConnectMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const directPeering = FilestoreInstanceConnectMode._(
+    TfArgLiteral('DIRECT_PEERING'),
+  );
+  static const privateServiceAccess = FilestoreInstanceConnectMode._(
+    TfArgLiteral('PRIVATE_SERVICE_ACCESS'),
+  );
+  static const privateServiceConnect = FilestoreInstanceConnectMode._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+
+  static const List<FilestoreInstanceConnectMode> values = [
+    directPeering,
+    privateServiceAccess,
+    privateServiceConnect,
+  ];
 }
 
 /// `file_shares.nfs_export_options.access_mode`.
-enum FilestoreInstanceNfsExportAccessMode implements TerraformEnum {
-  readOnly('READ_ONLY'),
-  readWrite('READ_WRITE');
+extension type const FilestoreInstanceNfsExportAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceNfsExportAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FilestoreInstanceNfsExportAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceNfsExportAccessMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FilestoreInstanceNfsExportAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readOnly = FilestoreInstanceNfsExportAccessMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const readWrite = FilestoreInstanceNfsExportAccessMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<FilestoreInstanceNfsExportAccessMode> values = [
+    readOnly,
+    readWrite,
+  ];
 }
 
 /// `file_shares.nfs_export_options.squash_mode`.
-enum FilestoreInstanceNfsSquashMode implements TerraformEnum {
-  noRootSquash('NO_ROOT_SQUASH'),
-  rootSquash('ROOT_SQUASH');
+extension type const FilestoreInstanceNfsSquashMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceNfsSquashMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FilestoreInstanceNfsSquashMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceNfsSquashMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FilestoreInstanceNfsSquashMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noRootSquash = FilestoreInstanceNfsSquashMode._(
+    TfArgLiteral('NO_ROOT_SQUASH'),
+  );
+  static const rootSquash = FilestoreInstanceNfsSquashMode._(
+    TfArgLiteral('ROOT_SQUASH'),
+  );
+
+  static const List<FilestoreInstanceNfsSquashMode> values = [
+    noRootSquash,
+    rootSquash,
+  ];
 }
 
 /// `initial_replication.role`.
-enum FilestoreInstanceReplicationRole implements TerraformEnum {
-  roleUnspecified('ROLE_UNSPECIFIED'),
-  active('ACTIVE'),
-  standby('STANDBY');
+extension type const FilestoreInstanceReplicationRole._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceReplicationRole.variable(String name)
+    : this._(TfArg.variable(name));
+  FilestoreInstanceReplicationRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceReplicationRole.arg(TfArg<String> arg) : this._(arg);
 
-  const FilestoreInstanceReplicationRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const roleUnspecified = FilestoreInstanceReplicationRole._(
+    TfArgLiteral('ROLE_UNSPECIFIED'),
+  );
+  static const active = FilestoreInstanceReplicationRole._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const standby = FilestoreInstanceReplicationRole._(
+    TfArgLiteral('STANDBY'),
+  );
+
+  static const List<FilestoreInstanceReplicationRole> values = [
+    roleUnspecified,
+    active,
+    standby,
+  ];
 }
 
 /// Typed helper for the `directory_services` block of
@@ -171,7 +259,7 @@ final class FilestoreInstanceNfsExportOptions {
     this.squashMode,
   });
 
-  final TfArg<FilestoreInstanceNfsExportAccessMode>? accessMode;
+  final FilestoreInstanceNfsExportAccessMode? accessMode;
 
   final TfArg<num>? anonGid;
 
@@ -181,7 +269,7 @@ final class FilestoreInstanceNfsExportOptions {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<FilestoreInstanceNfsSquashMode>? squashMode;
+  final FilestoreInstanceNfsSquashMode? squashMode;
 
   Map<String, Object?> encode() => {
     'access_mode': ?accessMode?.toTfJson(),
@@ -199,7 +287,7 @@ final class FilestoreInstanceNfsExportOptions {
 final class FilestoreInstanceInitialReplication {
   const FilestoreInstanceInitialReplication({this.role, this.replicas});
 
-  final TfArg<FilestoreInstanceReplicationRole>? role;
+  final FilestoreInstanceReplicationRole? role;
 
   final List<FilestoreInstanceReplicas>? replicas;
 
@@ -232,9 +320,9 @@ final class FilestoreInstanceNetworks {
     this.pscConfig,
   });
 
-  final TfArg<FilestoreInstanceConnectMode>? connectMode;
+  final FilestoreInstanceConnectMode? connectMode;
 
-  final List<TfArg<FilestoreInstanceModes>> modes;
+  final List<FilestoreInstanceModes> modes;
 
   final RefTo<GoogleComputeNetwork> network;
 
@@ -252,14 +340,24 @@ final class FilestoreInstanceNetworks {
 }
 
 /// `modes` — derived from the provider schema description.
-enum FilestoreInstanceModes implements TerraformEnum {
-  addressModeUnspecified('ADDRESS_MODE_UNSPECIFIED'),
-  modeIpv4('MODE_IPV4'),
-  modeIpv6('MODE_IPV6');
+extension type const FilestoreInstanceModes._(TfArg<String> _)
+    implements TfArg<String> {
+  FilestoreInstanceModes.variable(String name) : this._(TfArg.variable(name));
+  FilestoreInstanceModes.expression(String template)
+    : this._(TfArg.expression(template));
+  const FilestoreInstanceModes.arg(TfArg<String> arg) : this._(arg);
 
-  const FilestoreInstanceModes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const addressModeUnspecified = FilestoreInstanceModes._(
+    TfArgLiteral('ADDRESS_MODE_UNSPECIFIED'),
+  );
+  static const modeIpv4 = FilestoreInstanceModes._(TfArgLiteral('MODE_IPV4'));
+  static const modeIpv6 = FilestoreInstanceModes._(TfArgLiteral('MODE_IPV6'));
+
+  static const List<FilestoreInstanceModes> values = [
+    addressModeUnspecified,
+    modeIpv4,
+    modeIpv6,
+  ];
 }
 
 /// Typed helper for the `networks.psc_config` block of
@@ -371,7 +469,7 @@ final class FilestoreInstanceIopsPerTb {
 /// GoogleFilestoreInstance(
 ///   'nfs',
 ///   name: .literal('shared-nfs'),
-///   tier: .literal(.basicHdd),
+///   tier: .basicHdd,
 ///   location: .literal('asia-northeast1'),
 ///   fileShares: FilestoreInstanceFileShares(
 ///     name: .literal('share1'),
@@ -380,7 +478,7 @@ final class FilestoreInstanceIopsPerTb {
 ///   networks: [
 ///     FilestoreInstanceNetworks(
 ///       network: vpc.ref,
-///       modes: [.literal(.modeIpv4)],
+///       modes: [.modeIpv4],
 ///     ),
 ///   ],
 /// );
@@ -391,7 +489,7 @@ final class GoogleFilestoreInstance extends Resource {
   GoogleFilestoreInstance(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<FilestoreInstanceTier> tier,
+    required FilestoreInstanceTier tier,
     TfArg<String>? location,
     required FilestoreInstanceFileShares fileShares,
     required List<FilestoreInstanceNetworks> networks,
@@ -400,10 +498,10 @@ final class GoogleFilestoreInstance extends Resource {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? deletionProtectionReason,
     TfArg<String>? description,
-    TfArg<FilestoreInstanceDesiredReplicaState>? desiredReplicaState,
+    FilestoreInstanceDesiredReplicaState? desiredReplicaState,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<String>? project,
-    TfArg<FilestoreInstanceProtocol>? protocol,
+    FilestoreInstanceProtocol? protocol,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? zone,
     FilestoreInstanceDirectoryServices? directoryServices,

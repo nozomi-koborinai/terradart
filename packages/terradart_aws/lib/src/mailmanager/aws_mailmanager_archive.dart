@@ -15,7 +15,7 @@ const Set<String> _awsMailmanagerArchiveSensitive = <String>{};
 final class MailmanagerArchiveRetention {
   const MailmanagerArchiveRetention({required this.retentionPeriod});
 
-  final TfArg<MailmanagerArchiveRetentionPeriod> retentionPeriod;
+  final MailmanagerArchiveRetentionPeriod retentionPeriod;
 
   Map<String, Object?> encode() => {
     'retention_period': retentionPeriod.toTfJson(),
@@ -23,27 +23,81 @@ final class MailmanagerArchiveRetention {
 }
 
 /// `retention_period` — derived from the provider schema description.
-enum MailmanagerArchiveRetentionPeriod implements TerraformEnum {
-  threeMonths('THREE_MONTHS'),
-  sixMonths('SIX_MONTHS'),
-  nineMonths('NINE_MONTHS'),
-  oneYear('ONE_YEAR'),
-  eighteenMonths('EIGHTEEN_MONTHS'),
-  twoYears('TWO_YEARS'),
-  thirtyMonths('THIRTY_MONTHS'),
-  threeYears('THREE_YEARS'),
-  fourYears('FOUR_YEARS'),
-  fiveYears('FIVE_YEARS'),
-  sixYears('SIX_YEARS'),
-  sevenYears('SEVEN_YEARS'),
-  eightYears('EIGHT_YEARS'),
-  nineYears('NINE_YEARS'),
-  tenYears('TEN_YEARS'),
-  permanent('PERMANENT');
+extension type const MailmanagerArchiveRetentionPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerArchiveRetentionPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerArchiveRetentionPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerArchiveRetentionPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerArchiveRetentionPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const threeMonths = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('THREE_MONTHS'),
+  );
+  static const sixMonths = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('SIX_MONTHS'),
+  );
+  static const nineMonths = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('NINE_MONTHS'),
+  );
+  static const oneYear = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('ONE_YEAR'),
+  );
+  static const eighteenMonths = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('EIGHTEEN_MONTHS'),
+  );
+  static const twoYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('TWO_YEARS'),
+  );
+  static const thirtyMonths = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('THIRTY_MONTHS'),
+  );
+  static const threeYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('THREE_YEARS'),
+  );
+  static const fourYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('FOUR_YEARS'),
+  );
+  static const fiveYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('FIVE_YEARS'),
+  );
+  static const sixYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('SIX_YEARS'),
+  );
+  static const sevenYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('SEVEN_YEARS'),
+  );
+  static const eightYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('EIGHT_YEARS'),
+  );
+  static const nineYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('NINE_YEARS'),
+  );
+  static const tenYears = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('TEN_YEARS'),
+  );
+  static const permanent = MailmanagerArchiveRetentionPeriod._(
+    TfArgLiteral('PERMANENT'),
+  );
+
+  static const List<MailmanagerArchiveRetentionPeriod> values = [
+    threeMonths,
+    sixMonths,
+    nineMonths,
+    oneYear,
+    eighteenMonths,
+    twoYears,
+    thirtyMonths,
+    threeYears,
+    fourYears,
+    fiveYears,
+    sixYears,
+    sevenYears,
+    eightYears,
+    nineYears,
+    tenYears,
+    permanent,
+  ];
 }
 
 /// Factory wrapper for `aws_mailmanager_archive`.

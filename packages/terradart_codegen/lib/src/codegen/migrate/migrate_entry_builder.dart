@@ -108,7 +108,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
   Map<String, String> barrelFiles = const {},
 }) {
   const helperExtractor = HelperClassExtractor();
-  const enumExtractor = EnumExtractor.lenient();
+  const enumExtractor = EnumExtractor();
   final perFileHelpers = <HelperExtraction>[];
   final perFileEnums = <List<EmittedEnum>>[];
   for (final input in inputs) {
@@ -174,8 +174,7 @@ MigrateEntryBuild buildMigrateEntry({
 
   final extraction =
       fileHelpers ?? const HelperClassExtractor().extract(emittedSource);
-  final enums =
-      fileEnums ?? const EnumExtractor.lenient().extract(emittedSource);
+  final enums = fileEnums ?? const EnumExtractor().extract(emittedSource);
   final ctx =
       context ??
       ShapeContext(
@@ -387,10 +386,7 @@ MigrateSlotData _attributeSlot(
   }
   final payload = dartTypeOverrides[attr.name] ?? writeDartType(attr.type);
   final shape = resolveEnumPayload(
-    classifyDartType(
-      isEnumListType(payload) ? payload : 'TfArg<$payload>',
-      ctx,
-    ),
+    classifyDartType(argTypeFor(payload), ctx),
     ctx,
   );
   return _fromShape(

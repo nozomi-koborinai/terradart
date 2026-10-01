@@ -18,11 +18,11 @@ final class RolesanywhereTrustAnchorNotificationSettings {
     this.threshold,
   });
 
-  final TfArg<RolesanywhereTrustAnchorChannel>? channel;
+  final RolesanywhereTrustAnchorChannel? channel;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<RolesanywhereTrustAnchorEvent>? event;
+  final RolesanywhereTrustAnchorEvent? event;
 
   final TfArg<num>? threshold;
 
@@ -35,22 +35,39 @@ final class RolesanywhereTrustAnchorNotificationSettings {
 }
 
 /// `channel` — derived from the provider schema description.
-enum RolesanywhereTrustAnchorChannel implements TerraformEnum {
-  all('ALL');
+extension type const RolesanywhereTrustAnchorChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  RolesanywhereTrustAnchorChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  RolesanywhereTrustAnchorChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const RolesanywhereTrustAnchorChannel.arg(TfArg<String> arg) : this._(arg);
 
-  const RolesanywhereTrustAnchorChannel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = RolesanywhereTrustAnchorChannel._(TfArgLiteral('ALL'));
+
+  static const List<RolesanywhereTrustAnchorChannel> values = [all];
 }
 
 /// `event` — derived from the provider schema description.
-enum RolesanywhereTrustAnchorEvent implements TerraformEnum {
-  caCertificateExpiry('CA_CERTIFICATE_EXPIRY'),
-  endEntityCertificateExpiry('END_ENTITY_CERTIFICATE_EXPIRY');
+extension type const RolesanywhereTrustAnchorEvent._(TfArg<String> _)
+    implements TfArg<String> {
+  RolesanywhereTrustAnchorEvent.variable(String name)
+    : this._(TfArg.variable(name));
+  RolesanywhereTrustAnchorEvent.expression(String template)
+    : this._(TfArg.expression(template));
+  const RolesanywhereTrustAnchorEvent.arg(TfArg<String> arg) : this._(arg);
 
-  const RolesanywhereTrustAnchorEvent(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const caCertificateExpiry = RolesanywhereTrustAnchorEvent._(
+    TfArgLiteral('CA_CERTIFICATE_EXPIRY'),
+  );
+  static const endEntityCertificateExpiry = RolesanywhereTrustAnchorEvent._(
+    TfArgLiteral('END_ENTITY_CERTIFICATE_EXPIRY'),
+  );
+
+  static const List<RolesanywhereTrustAnchorEvent> values = [
+    caCertificateExpiry,
+    endEntityCertificateExpiry,
+  ];
 }
 
 /// Typed helper for the `source` block of
@@ -62,7 +79,7 @@ final class RolesanywhereTrustAnchorSource {
     required this.sourceData,
   });
 
-  final TfArg<RolesanywhereTrustAnchorSourceType> sourceType;
+  final RolesanywhereTrustAnchorSourceType sourceType;
 
   final RolesanywhereTrustAnchorSourceData sourceData;
 
@@ -73,14 +90,29 @@ final class RolesanywhereTrustAnchorSource {
 }
 
 /// `source_type` — derived from the provider schema description.
-enum RolesanywhereTrustAnchorSourceType implements TerraformEnum {
-  awsAcmPca('AWS_ACM_PCA'),
-  certificateBundle('CERTIFICATE_BUNDLE'),
-  selfSignedRepository('SELF_SIGNED_REPOSITORY');
+extension type const RolesanywhereTrustAnchorSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  RolesanywhereTrustAnchorSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  RolesanywhereTrustAnchorSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RolesanywhereTrustAnchorSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const RolesanywhereTrustAnchorSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsAcmPca = RolesanywhereTrustAnchorSourceType._(
+    TfArgLiteral('AWS_ACM_PCA'),
+  );
+  static const certificateBundle = RolesanywhereTrustAnchorSourceType._(
+    TfArgLiteral('CERTIFICATE_BUNDLE'),
+  );
+  static const selfSignedRepository = RolesanywhereTrustAnchorSourceType._(
+    TfArgLiteral('SELF_SIGNED_REPOSITORY'),
+  );
+
+  static const List<RolesanywhereTrustAnchorSourceType> values = [
+    awsAcmPca,
+    certificateBundle,
+    selfSignedRepository,
+  ];
 }
 
 /// Typed helper for the `source.source_data` block of

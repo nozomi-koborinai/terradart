@@ -12,13 +12,27 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsLaunchTemplateSensitive = <String>{};
 
 /// Launch Template Instance Initiated Shutdown enum for `instance_initiated_shutdown_behavior`.
-enum LaunchTemplateInstanceInitiatedShutdownBehavior implements TerraformEnum {
-  stop('stop'),
-  terminate('terminate');
+extension type const LaunchTemplateInstanceInitiatedShutdownBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LaunchTemplateInstanceInitiatedShutdownBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateInstanceInitiatedShutdownBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateInstanceInitiatedShutdownBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LaunchTemplateInstanceInitiatedShutdownBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stop = LaunchTemplateInstanceInitiatedShutdownBehavior._(
+    TfArgLiteral('stop'),
+  );
+  static const terminate = LaunchTemplateInstanceInitiatedShutdownBehavior._(
+    TfArgLiteral('terminate'),
+  );
+
+  static const List<LaunchTemplateInstanceInitiatedShutdownBehavior> values = [
+    stop,
+    terminate,
+  ];
 }
 
 /// At most one of `default_version`, `update_default_version` on `aws_launch_template`: the provider rejects
@@ -343,7 +357,7 @@ final class LaunchTemplateEbs {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<LaunchTemplateVolumeType>? volumeType;
+  final LaunchTemplateVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -359,18 +373,30 @@ final class LaunchTemplateEbs {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum LaunchTemplateVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
+extension type const LaunchTemplateVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateVolumeType.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = LaunchTemplateVolumeType._(TfArgLiteral('standard'));
+  static const io1 = LaunchTemplateVolumeType._(TfArgLiteral('io1'));
+  static const io2 = LaunchTemplateVolumeType._(TfArgLiteral('io2'));
+  static const gp2 = LaunchTemplateVolumeType._(TfArgLiteral('gp2'));
+  static const sc1 = LaunchTemplateVolumeType._(TfArgLiteral('sc1'));
+  static const st1 = LaunchTemplateVolumeType._(TfArgLiteral('st1'));
+  static const gp3 = LaunchTemplateVolumeType._(TfArgLiteral('gp3'));
+
+  static const List<LaunchTemplateVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    sc1,
+    st1,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `capacity_reservation_specification` block of
@@ -382,7 +408,7 @@ final class LaunchTemplateCapacityReservationSpecification {
     this.capacityReservationTarget,
   });
 
-  final TfArg<LaunchTemplateCapacityReservationPreference>?
+  final LaunchTemplateCapacityReservationPreference?
   capacityReservationPreference;
 
   final LaunchTemplateCapacityReservationTarget? capacityReservationTarget;
@@ -395,14 +421,32 @@ final class LaunchTemplateCapacityReservationSpecification {
 }
 
 /// `capacity_reservation_preference` — derived from the provider schema description.
-enum LaunchTemplateCapacityReservationPreference implements TerraformEnum {
-  capacityReservationsOnly('capacity-reservations-only'),
-  open('open'),
-  none('none');
+extension type const LaunchTemplateCapacityReservationPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LaunchTemplateCapacityReservationPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateCapacityReservationPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateCapacityReservationPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LaunchTemplateCapacityReservationPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacityReservationsOnly =
+      LaunchTemplateCapacityReservationPreference._(
+        TfArgLiteral('capacity-reservations-only'),
+      );
+  static const open = LaunchTemplateCapacityReservationPreference._(
+    TfArgLiteral('open'),
+  );
+  static const none = LaunchTemplateCapacityReservationPreference._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<LaunchTemplateCapacityReservationPreference> values = [
+    capacityReservationsOnly,
+    open,
+    none,
+  ];
 }
 
 /// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_launch_template`: the provider rejects
@@ -477,11 +521,11 @@ final class LaunchTemplateCpuOptions {
     this.threadsPerCore,
   });
 
-  final TfArg<LaunchTemplateAmdSevSnp>? amdSevSnp;
+  final LaunchTemplateAmdSevSnp? amdSevSnp;
 
   final TfArg<num>? coreCount;
 
-  final TfArg<LaunchTemplateNestedVirtualization>? nestedVirtualization;
+  final LaunchTemplateNestedVirtualization? nestedVirtualization;
 
   final TfArg<num>? threadsPerCore;
 
@@ -494,23 +538,39 @@ final class LaunchTemplateCpuOptions {
 }
 
 /// `amd_sev_snp` — derived from the provider schema description.
-enum LaunchTemplateAmdSevSnp implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const LaunchTemplateAmdSevSnp._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateAmdSevSnp.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateAmdSevSnp.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateAmdSevSnp.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateAmdSevSnp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = LaunchTemplateAmdSevSnp._(TfArgLiteral('enabled'));
+  static const disabled = LaunchTemplateAmdSevSnp._(TfArgLiteral('disabled'));
+
+  static const List<LaunchTemplateAmdSevSnp> values = [enabled, disabled];
 }
 
 /// `nested_virtualization` — derived from the provider schema description.
-enum LaunchTemplateNestedVirtualization implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const LaunchTemplateNestedVirtualization._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateNestedVirtualization.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateNestedVirtualization.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateNestedVirtualization.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateNestedVirtualization(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = LaunchTemplateNestedVirtualization._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = LaunchTemplateNestedVirtualization._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<LaunchTemplateNestedVirtualization> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `credit_specification` block of
@@ -519,19 +579,25 @@ enum LaunchTemplateNestedVirtualization implements TerraformEnum {
 final class LaunchTemplateCreditSpecification {
   const LaunchTemplateCreditSpecification({this.cpuCredits});
 
-  final TfArg<LaunchTemplateCpuCredits>? cpuCredits;
+  final LaunchTemplateCpuCredits? cpuCredits;
 
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
 /// `cpu_credits` — derived from the provider schema description.
-enum LaunchTemplateCpuCredits implements TerraformEnum {
-  standard('standard'),
-  unlimited('unlimited');
+extension type const LaunchTemplateCpuCredits._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateCpuCredits.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateCpuCredits.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateCpuCredits.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateCpuCredits(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = LaunchTemplateCpuCredits._(TfArgLiteral('standard'));
+  static const unlimited = LaunchTemplateCpuCredits._(
+    TfArgLiteral('unlimited'),
+  );
+
+  static const List<LaunchTemplateCpuCredits> values = [standard, unlimited];
 }
 
 /// Typed helper for the `enclave_options` block of
@@ -615,7 +681,7 @@ final class LaunchTemplateInstanceMarketOptions {
     this.spotOptions,
   });
 
-  final TfArg<LaunchTemplateMarketType>? marketType;
+  final LaunchTemplateMarketType? marketType;
 
   final LaunchTemplateSpotOptions? spotOptions;
 
@@ -626,15 +692,28 @@ final class LaunchTemplateInstanceMarketOptions {
 }
 
 /// `market_type` — derived from the provider schema description.
-enum LaunchTemplateMarketType implements TerraformEnum {
-  spot('spot'),
-  capacityBlock('capacity-block'),
-  interruptibleCapacityReservation('interruptible-capacity-reservation'),
-  onDemand('on-demand');
+extension type const LaunchTemplateMarketType._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateMarketType.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateMarketType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateMarketType.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateMarketType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const spot = LaunchTemplateMarketType._(TfArgLiteral('spot'));
+  static const capacityBlock = LaunchTemplateMarketType._(
+    TfArgLiteral('capacity-block'),
+  );
+  static const interruptibleCapacityReservation = LaunchTemplateMarketType._(
+    TfArgLiteral('interruptible-capacity-reservation'),
+  );
+  static const onDemand = LaunchTemplateMarketType._(TfArgLiteral('on-demand'));
+
+  static const List<LaunchTemplateMarketType> values = [
+    spot,
+    capacityBlock,
+    interruptibleCapacityReservation,
+    onDemand,
+  ];
 }
 
 /// Typed helper for the `instance_market_options.spot_options` block of
@@ -651,12 +730,12 @@ final class LaunchTemplateSpotOptions {
 
   final TfArg<num>? blockDurationMinutes;
 
-  final TfArg<LaunchTemplateInstanceInterruptionBehavior>?
+  final LaunchTemplateInstanceInterruptionBehavior?
   instanceInterruptionBehavior;
 
   final TfArg<String>? maxPrice;
 
-  final TfArg<LaunchTemplateSpotInstanceType>? spotInstanceType;
+  final LaunchTemplateSpotInstanceType? spotInstanceType;
 
   final TfArg<String>? validUntil;
 
@@ -670,24 +749,53 @@ final class LaunchTemplateSpotOptions {
 }
 
 /// `instance_interruption_behavior` — derived from the provider schema description.
-enum LaunchTemplateInstanceInterruptionBehavior implements TerraformEnum {
-  hibernate('hibernate'),
-  stop('stop'),
-  terminate('terminate');
+extension type const LaunchTemplateInstanceInterruptionBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LaunchTemplateInstanceInterruptionBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateInstanceInterruptionBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateInstanceInterruptionBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LaunchTemplateInstanceInterruptionBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hibernate = LaunchTemplateInstanceInterruptionBehavior._(
+    TfArgLiteral('hibernate'),
+  );
+  static const stop = LaunchTemplateInstanceInterruptionBehavior._(
+    TfArgLiteral('stop'),
+  );
+  static const terminate = LaunchTemplateInstanceInterruptionBehavior._(
+    TfArgLiteral('terminate'),
+  );
+
+  static const List<LaunchTemplateInstanceInterruptionBehavior> values = [
+    hibernate,
+    stop,
+    terminate,
+  ];
 }
 
 /// `spot_instance_type` — derived from the provider schema description.
-enum LaunchTemplateSpotInstanceType implements TerraformEnum {
-  oneTime('one-time'),
-  persistent('persistent');
+extension type const LaunchTemplateSpotInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateSpotInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateSpotInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateSpotInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateSpotInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneTime = LaunchTemplateSpotInstanceType._(
+    TfArgLiteral('one-time'),
+  );
+  static const persistent = LaunchTemplateSpotInstanceType._(
+    TfArgLiteral('persistent'),
+  );
+
+  static const List<LaunchTemplateSpotInstanceType> values = [
+    oneTime,
+    persistent,
+  ];
 }
 
 /// Typed helper for the `instance_requirements` block of
@@ -719,26 +827,25 @@ final class LaunchTemplateInstanceRequirements {
     required this.vcpuCount,
   });
 
-  final List<TfArg<LaunchTemplateAcceleratorManufacturers>>?
-  acceleratorManufacturers;
+  final List<LaunchTemplateAcceleratorManufacturers>? acceleratorManufacturers;
 
-  final List<TfArg<LaunchTemplateAcceleratorNames>>? acceleratorNames;
+  final List<LaunchTemplateAcceleratorNames>? acceleratorNames;
 
-  final List<TfArg<LaunchTemplateAcceleratorTypes>>? acceleratorTypes;
+  final List<LaunchTemplateAcceleratorTypes>? acceleratorTypes;
 
   final LaunchTemplateInstanceTypes? instanceTypes;
 
-  final TfArg<LaunchTemplateBareMetal>? bareMetal;
+  final LaunchTemplateBareMetal? bareMetal;
 
-  final TfArg<LaunchTemplateBurstablePerformance>? burstablePerformance;
+  final LaunchTemplateBurstablePerformance? burstablePerformance;
 
-  final List<TfArg<LaunchTemplateCpuManufacturers>>? cpuManufacturers;
+  final List<LaunchTemplateCpuManufacturers>? cpuManufacturers;
 
-  final List<TfArg<LaunchTemplateInstanceGenerations>>? instanceGenerations;
+  final List<LaunchTemplateInstanceGenerations>? instanceGenerations;
 
-  final TfArg<LaunchTemplateLocalStorage>? localStorage;
+  final LaunchTemplateLocalStorage? localStorage;
 
-  final List<TfArg<LaunchTemplateLocalStorageTypes>>? localStorageTypes;
+  final List<LaunchTemplateLocalStorageTypes>? localStorageTypes;
 
   final LaunchTemplatePrice? price;
 
@@ -921,120 +1028,258 @@ final class LaunchTemplateSpotMaxPricePercentageOverLowestPrice
 }
 
 /// `accelerator_manufacturers` — derived from the provider schema description.
-enum LaunchTemplateAcceleratorManufacturers implements TerraformEnum {
-  amazonWebServices('amazon-web-services'),
-  amd('amd'),
-  nvidia('nvidia'),
-  xilinx('xilinx'),
-  habana('habana');
+extension type const LaunchTemplateAcceleratorManufacturers._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateAcceleratorManufacturers.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateAcceleratorManufacturers.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateAcceleratorManufacturers.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LaunchTemplateAcceleratorManufacturers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amazonWebServices = LaunchTemplateAcceleratorManufacturers._(
+    TfArgLiteral('amazon-web-services'),
+  );
+  static const amd = LaunchTemplateAcceleratorManufacturers._(
+    TfArgLiteral('amd'),
+  );
+  static const nvidia = LaunchTemplateAcceleratorManufacturers._(
+    TfArgLiteral('nvidia'),
+  );
+  static const xilinx = LaunchTemplateAcceleratorManufacturers._(
+    TfArgLiteral('xilinx'),
+  );
+  static const habana = LaunchTemplateAcceleratorManufacturers._(
+    TfArgLiteral('habana'),
+  );
+
+  static const List<LaunchTemplateAcceleratorManufacturers> values = [
+    amazonWebServices,
+    amd,
+    nvidia,
+    xilinx,
+    habana,
+  ];
 }
 
 /// `accelerator_names` — derived from the provider schema description.
-enum LaunchTemplateAcceleratorNames implements TerraformEnum {
-  a100('a100'),
-  inferentia('inferentia'),
-  k520('k520'),
-  k80('k80'),
-  m60('m60'),
-  radeonProV520('radeon-pro-v520'),
-  t4('t4'),
-  vu9p('vu9p'),
-  v100('v100'),
-  a10g('a10g'),
-  h100('h100'),
-  t4g('t4g'),
-  l40s('l40s'),
-  l4('l4'),
-  gaudiHl205('gaudi-hl-205'),
-  inferentia2('inferentia2'),
-  trainium('trainium'),
-  trainium2('trainium2'),
-  u30('u30');
+extension type const LaunchTemplateAcceleratorNames._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateAcceleratorNames.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateAcceleratorNames.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateAcceleratorNames.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateAcceleratorNames(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a100 = LaunchTemplateAcceleratorNames._(TfArgLiteral('a100'));
+  static const inferentia = LaunchTemplateAcceleratorNames._(
+    TfArgLiteral('inferentia'),
+  );
+  static const k520 = LaunchTemplateAcceleratorNames._(TfArgLiteral('k520'));
+  static const k80 = LaunchTemplateAcceleratorNames._(TfArgLiteral('k80'));
+  static const m60 = LaunchTemplateAcceleratorNames._(TfArgLiteral('m60'));
+  static const radeonProV520 = LaunchTemplateAcceleratorNames._(
+    TfArgLiteral('radeon-pro-v520'),
+  );
+  static const t4 = LaunchTemplateAcceleratorNames._(TfArgLiteral('t4'));
+  static const vu9p = LaunchTemplateAcceleratorNames._(TfArgLiteral('vu9p'));
+  static const v100 = LaunchTemplateAcceleratorNames._(TfArgLiteral('v100'));
+  static const a10g = LaunchTemplateAcceleratorNames._(TfArgLiteral('a10g'));
+  static const h100 = LaunchTemplateAcceleratorNames._(TfArgLiteral('h100'));
+  static const t4g = LaunchTemplateAcceleratorNames._(TfArgLiteral('t4g'));
+  static const l40s = LaunchTemplateAcceleratorNames._(TfArgLiteral('l40s'));
+  static const l4 = LaunchTemplateAcceleratorNames._(TfArgLiteral('l4'));
+  static const gaudiHl205 = LaunchTemplateAcceleratorNames._(
+    TfArgLiteral('gaudi-hl-205'),
+  );
+  static const inferentia2 = LaunchTemplateAcceleratorNames._(
+    TfArgLiteral('inferentia2'),
+  );
+  static const trainium = LaunchTemplateAcceleratorNames._(
+    TfArgLiteral('trainium'),
+  );
+  static const trainium2 = LaunchTemplateAcceleratorNames._(
+    TfArgLiteral('trainium2'),
+  );
+  static const u30 = LaunchTemplateAcceleratorNames._(TfArgLiteral('u30'));
+
+  static const List<LaunchTemplateAcceleratorNames> values = [
+    a100,
+    inferentia,
+    k520,
+    k80,
+    m60,
+    radeonProV520,
+    t4,
+    vu9p,
+    v100,
+    a10g,
+    h100,
+    t4g,
+    l40s,
+    l4,
+    gaudiHl205,
+    inferentia2,
+    trainium,
+    trainium2,
+    u30,
+  ];
 }
 
 /// `accelerator_types` — derived from the provider schema description.
-enum LaunchTemplateAcceleratorTypes implements TerraformEnum {
-  gpu('gpu'),
-  fpga('fpga'),
-  inference('inference'),
-  media('media');
+extension type const LaunchTemplateAcceleratorTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateAcceleratorTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateAcceleratorTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateAcceleratorTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateAcceleratorTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gpu = LaunchTemplateAcceleratorTypes._(TfArgLiteral('gpu'));
+  static const fpga = LaunchTemplateAcceleratorTypes._(TfArgLiteral('fpga'));
+  static const inference = LaunchTemplateAcceleratorTypes._(
+    TfArgLiteral('inference'),
+  );
+  static const media = LaunchTemplateAcceleratorTypes._(TfArgLiteral('media'));
+
+  static const List<LaunchTemplateAcceleratorTypes> values = [
+    gpu,
+    fpga,
+    inference,
+    media,
+  ];
 }
 
 /// `bare_metal` — derived from the provider schema description.
-enum LaunchTemplateBareMetal implements TerraformEnum {
-  included('included'),
-  required('required'),
-  excluded('excluded');
+extension type const LaunchTemplateBareMetal._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateBareMetal.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateBareMetal.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateBareMetal.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateBareMetal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = LaunchTemplateBareMetal._(TfArgLiteral('included'));
+  static const required = LaunchTemplateBareMetal._(TfArgLiteral('required'));
+  static const excluded = LaunchTemplateBareMetal._(TfArgLiteral('excluded'));
+
+  static const List<LaunchTemplateBareMetal> values = [
+    included,
+    required,
+    excluded,
+  ];
 }
 
 /// `burstable_performance` — derived from the provider schema description.
-enum LaunchTemplateBurstablePerformance implements TerraformEnum {
-  included('included'),
-  required('required'),
-  excluded('excluded');
+extension type const LaunchTemplateBurstablePerformance._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateBurstablePerformance.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateBurstablePerformance.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateBurstablePerformance.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateBurstablePerformance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = LaunchTemplateBurstablePerformance._(
+    TfArgLiteral('included'),
+  );
+  static const required = LaunchTemplateBurstablePerformance._(
+    TfArgLiteral('required'),
+  );
+  static const excluded = LaunchTemplateBurstablePerformance._(
+    TfArgLiteral('excluded'),
+  );
+
+  static const List<LaunchTemplateBurstablePerformance> values = [
+    included,
+    required,
+    excluded,
+  ];
 }
 
 /// `cpu_manufacturers` — derived from the provider schema description.
-enum LaunchTemplateCpuManufacturers implements TerraformEnum {
-  intel('intel'),
-  amd('amd'),
-  amazonWebServices('amazon-web-services'),
-  apple('apple');
+extension type const LaunchTemplateCpuManufacturers._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateCpuManufacturers.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateCpuManufacturers.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateCpuManufacturers.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateCpuManufacturers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const intel = LaunchTemplateCpuManufacturers._(TfArgLiteral('intel'));
+  static const amd = LaunchTemplateCpuManufacturers._(TfArgLiteral('amd'));
+  static const amazonWebServices = LaunchTemplateCpuManufacturers._(
+    TfArgLiteral('amazon-web-services'),
+  );
+  static const apple = LaunchTemplateCpuManufacturers._(TfArgLiteral('apple'));
+
+  static const List<LaunchTemplateCpuManufacturers> values = [
+    intel,
+    amd,
+    amazonWebServices,
+    apple,
+  ];
 }
 
 /// `instance_generations` — derived from the provider schema description.
-enum LaunchTemplateInstanceGenerations implements TerraformEnum {
-  current('current'),
-  previous('previous');
+extension type const LaunchTemplateInstanceGenerations._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateInstanceGenerations.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateInstanceGenerations.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateInstanceGenerations.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateInstanceGenerations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const current = LaunchTemplateInstanceGenerations._(
+    TfArgLiteral('current'),
+  );
+  static const previous = LaunchTemplateInstanceGenerations._(
+    TfArgLiteral('previous'),
+  );
+
+  static const List<LaunchTemplateInstanceGenerations> values = [
+    current,
+    previous,
+  ];
 }
 
 /// `local_storage` — derived from the provider schema description.
-enum LaunchTemplateLocalStorage implements TerraformEnum {
-  included('included'),
-  required('required'),
-  excluded('excluded');
+extension type const LaunchTemplateLocalStorage._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateLocalStorage.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateLocalStorage.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateLocalStorage.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateLocalStorage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = LaunchTemplateLocalStorage._(
+    TfArgLiteral('included'),
+  );
+  static const required = LaunchTemplateLocalStorage._(
+    TfArgLiteral('required'),
+  );
+  static const excluded = LaunchTemplateLocalStorage._(
+    TfArgLiteral('excluded'),
+  );
+
+  static const List<LaunchTemplateLocalStorage> values = [
+    included,
+    required,
+    excluded,
+  ];
 }
 
 /// `local_storage_types` — derived from the provider schema description.
-enum LaunchTemplateLocalStorageTypes implements TerraformEnum {
-  hdd('hdd'),
-  ssd('ssd');
+extension type const LaunchTemplateLocalStorageTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateLocalStorageTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateLocalStorageTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateLocalStorageTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateLocalStorageTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hdd = LaunchTemplateLocalStorageTypes._(TfArgLiteral('hdd'));
+  static const ssd = LaunchTemplateLocalStorageTypes._(TfArgLiteral('ssd'));
+
+  static const List<LaunchTemplateLocalStorageTypes> values = [hdd, ssd];
 }
 
 /// Typed helper for the `instance_requirements.accelerator_count` block of
@@ -1202,19 +1447,31 @@ final class LaunchTemplateLicenseSpecification {
 final class LaunchTemplateMaintenanceOptions {
   const LaunchTemplateMaintenanceOptions({this.autoRecovery});
 
-  final TfArg<LaunchTemplateAutoRecovery>? autoRecovery;
+  final LaunchTemplateAutoRecovery? autoRecovery;
 
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
 /// `auto_recovery` — derived from the provider schema description.
-enum LaunchTemplateAutoRecovery implements TerraformEnum {
-  defaultCase('default'),
-  disabled('disabled');
+extension type const LaunchTemplateAutoRecovery._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateAutoRecovery.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateAutoRecovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateAutoRecovery.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateAutoRecovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = LaunchTemplateAutoRecovery._(
+    TfArgLiteral('default'),
+  );
+  static const disabled = LaunchTemplateAutoRecovery._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<LaunchTemplateAutoRecovery> values = [
+    defaultCase,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `metadata_options` block of
@@ -1229,15 +1486,15 @@ final class LaunchTemplateMetadataOptions {
     this.instanceMetadataTags,
   });
 
-  final TfArg<LaunchTemplateHttpEndpoint>? httpEndpoint;
+  final LaunchTemplateHttpEndpoint? httpEndpoint;
 
-  final TfArg<LaunchTemplateHttpProtocolIpv6>? httpProtocolIpv6;
+  final LaunchTemplateHttpProtocolIpv6? httpProtocolIpv6;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<LaunchTemplateHttpTokens>? httpTokens;
+  final LaunchTemplateHttpTokens? httpTokens;
 
-  final TfArg<LaunchTemplateInstanceMetadataTags>? instanceMetadataTags;
+  final LaunchTemplateInstanceMetadataTags? instanceMetadataTags;
 
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
@@ -1249,43 +1506,78 @@ final class LaunchTemplateMetadataOptions {
 }
 
 /// `http_endpoint` — derived from the provider schema description.
-enum LaunchTemplateHttpEndpoint implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const LaunchTemplateHttpEndpoint._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateHttpEndpoint.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateHttpEndpoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateHttpEndpoint.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateHttpEndpoint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = LaunchTemplateHttpEndpoint._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = LaunchTemplateHttpEndpoint._(TfArgLiteral('enabled'));
+
+  static const List<LaunchTemplateHttpEndpoint> values = [disabled, enabled];
 }
 
 /// `http_protocol_ipv6` — derived from the provider schema description.
-enum LaunchTemplateHttpProtocolIpv6 implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const LaunchTemplateHttpProtocolIpv6._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateHttpProtocolIpv6.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateHttpProtocolIpv6.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateHttpProtocolIpv6.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateHttpProtocolIpv6(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = LaunchTemplateHttpProtocolIpv6._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = LaunchTemplateHttpProtocolIpv6._(
+    TfArgLiteral('enabled'),
+  );
+
+  static const List<LaunchTemplateHttpProtocolIpv6> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum LaunchTemplateHttpTokens implements TerraformEnum {
-  optional('optional'),
-  required('required');
+extension type const LaunchTemplateHttpTokens._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateHttpTokens.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateHttpTokens.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateHttpTokens.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateHttpTokens(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const optional = LaunchTemplateHttpTokens._(TfArgLiteral('optional'));
+  static const required = LaunchTemplateHttpTokens._(TfArgLiteral('required'));
+
+  static const List<LaunchTemplateHttpTokens> values = [optional, required];
 }
 
 /// `instance_metadata_tags` — derived from the provider schema description.
-enum LaunchTemplateInstanceMetadataTags implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const LaunchTemplateInstanceMetadataTags._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateInstanceMetadataTags.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateInstanceMetadataTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateInstanceMetadataTags.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateInstanceMetadataTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = LaunchTemplateInstanceMetadataTags._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = LaunchTemplateInstanceMetadataTags._(
+    TfArgLiteral('enabled'),
+  );
+
+  static const List<LaunchTemplateInstanceMetadataTags> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Typed helper for the `monitoring` block of
@@ -1341,7 +1633,7 @@ final class LaunchTemplateNetworkInterfaces {
 
   final TfArg<num>? enaQueueCount;
 
-  final TfArg<LaunchTemplateNetworkInterfacesInterfaceType>? interfaceType;
+  final LaunchTemplateNetworkInterfacesInterfaceType? interfaceType;
 
   final TfArg<num>? ipv4AddressCount;
 
@@ -1405,14 +1697,31 @@ final class LaunchTemplateNetworkInterfaces {
 }
 
 /// `interface_type` — derived from the provider schema description.
-enum LaunchTemplateNetworkInterfacesInterfaceType implements TerraformEnum {
-  efa('efa'),
-  efaOnly('efa-only'),
-  interface('interface');
+extension type const LaunchTemplateNetworkInterfacesInterfaceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LaunchTemplateNetworkInterfacesInterfaceType.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateNetworkInterfacesInterfaceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateNetworkInterfacesInterfaceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LaunchTemplateNetworkInterfacesInterfaceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const efa = LaunchTemplateNetworkInterfacesInterfaceType._(
+    TfArgLiteral('efa'),
+  );
+  static const efaOnly = LaunchTemplateNetworkInterfacesInterfaceType._(
+    TfArgLiteral('efa-only'),
+  );
+  static const interface = LaunchTemplateNetworkInterfacesInterfaceType._(
+    TfArgLiteral('interface'),
+  );
+
+  static const List<LaunchTemplateNetworkInterfacesInterfaceType> values = [
+    efa,
+    efaOnly,
+    interface,
+  ];
 }
 
 /// Typed helper for the `network_interfaces.connection_tracking_specification` block of
@@ -1476,7 +1785,7 @@ final class LaunchTemplateEnaSrdUdpSpecification {
 final class LaunchTemplateNetworkPerformanceOptions {
   const LaunchTemplateNetworkPerformanceOptions({this.bandwidthWeighting});
 
-  final TfArg<LaunchTemplateBandwidthWeighting>? bandwidthWeighting;
+  final LaunchTemplateBandwidthWeighting? bandwidthWeighting;
 
   Map<String, Object?> encode() => {
     'bandwidth_weighting': ?bandwidthWeighting?.toTfJson(),
@@ -1484,14 +1793,25 @@ final class LaunchTemplateNetworkPerformanceOptions {
 }
 
 /// `bandwidth_weighting` — derived from the provider schema description.
-enum LaunchTemplateBandwidthWeighting implements TerraformEnum {
-  defaultCase('default'),
-  vpc1('vpc-1'),
-  ebs1('ebs-1');
+extension type const LaunchTemplateBandwidthWeighting._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateBandwidthWeighting.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateBandwidthWeighting.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateBandwidthWeighting.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateBandwidthWeighting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = LaunchTemplateBandwidthWeighting._(
+    TfArgLiteral('default'),
+  );
+  static const vpc1 = LaunchTemplateBandwidthWeighting._(TfArgLiteral('vpc-1'));
+  static const ebs1 = LaunchTemplateBandwidthWeighting._(TfArgLiteral('ebs-1'));
+
+  static const List<LaunchTemplateBandwidthWeighting> values = [
+    defaultCase,
+    vpc1,
+    ebs1,
+  ];
 }
 
 /// Typed helper for the `placement` block of
@@ -1520,7 +1840,7 @@ final class LaunchTemplatePlacement {
 
   final TfArg<String>? spreadDomain;
 
-  final TfArg<LaunchTemplateTenancy>? tenancy;
+  final LaunchTemplateTenancy? tenancy;
 
   Map<String, Object?> encode() => {
     'affinity': ?affinity?.toTfJson(),
@@ -1633,14 +1953,22 @@ final class LaunchTemplateHostResourceGroupArn extends LaunchTemplateHost {
 }
 
 /// `tenancy` — derived from the provider schema description.
-enum LaunchTemplateTenancy implements TerraformEnum {
-  defaultCase('default'),
-  dedicated('dedicated'),
-  host('host');
+extension type const LaunchTemplateTenancy._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateTenancy.variable(String name) : this._(TfArg.variable(name));
+  LaunchTemplateTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateTenancy.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = LaunchTemplateTenancy._(TfArgLiteral('default'));
+  static const dedicated = LaunchTemplateTenancy._(TfArgLiteral('dedicated'));
+  static const host = LaunchTemplateTenancy._(TfArgLiteral('host'));
+
+  static const List<LaunchTemplateTenancy> values = [
+    defaultCase,
+    dedicated,
+    host,
+  ];
 }
 
 /// Typed helper for the `private_dns_name_options` block of
@@ -1657,7 +1985,7 @@ final class LaunchTemplatePrivateDnsNameOptions {
 
   final TfArg<bool>? enableResourceNameDnsAaaaRecord;
 
-  final TfArg<LaunchTemplateHostnameType>? hostnameType;
+  final LaunchTemplateHostnameType? hostnameType;
 
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
@@ -1669,13 +1997,20 @@ final class LaunchTemplatePrivateDnsNameOptions {
 }
 
 /// `hostname_type` — derived from the provider schema description.
-enum LaunchTemplateHostnameType implements TerraformEnum {
-  ipName('ip-name'),
-  resourceName('resource-name');
+extension type const LaunchTemplateHostnameType._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateHostnameType.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateHostnameType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateHostnameType.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateHostnameType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipName = LaunchTemplateHostnameType._(TfArgLiteral('ip-name'));
+  static const resourceName = LaunchTemplateHostnameType._(
+    TfArgLiteral('resource-name'),
+  );
+
+  static const List<LaunchTemplateHostnameType> values = [ipName, resourceName];
 }
 
 /// Typed helper for the `secondary_interfaces` block of
@@ -1696,7 +2031,7 @@ final class LaunchTemplateSecondaryInterfaces {
 
   final TfArg<num>? deviceIndex;
 
-  final TfArg<LaunchTemplateSecondaryInterfacesInterfaceType>? interfaceType;
+  final LaunchTemplateSecondaryInterfacesInterfaceType? interfaceType;
 
   final TfArg<num>? networkCardIndex;
 
@@ -1718,12 +2053,23 @@ final class LaunchTemplateSecondaryInterfaces {
 }
 
 /// `interface_type` — derived from the provider schema description.
-enum LaunchTemplateSecondaryInterfacesInterfaceType implements TerraformEnum {
-  secondary('secondary');
+extension type const LaunchTemplateSecondaryInterfacesInterfaceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LaunchTemplateSecondaryInterfacesInterfaceType.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateSecondaryInterfacesInterfaceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateSecondaryInterfacesInterfaceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LaunchTemplateSecondaryInterfacesInterfaceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secondary = LaunchTemplateSecondaryInterfacesInterfaceType._(
+    TfArgLiteral('secondary'),
+  );
+
+  static const List<LaunchTemplateSecondaryInterfacesInterfaceType> values = [
+    secondary,
+  ];
 }
 
 /// Typed helper for the `tag_specifications` block of
@@ -1732,7 +2078,7 @@ enum LaunchTemplateSecondaryInterfacesInterfaceType implements TerraformEnum {
 final class LaunchTemplateTagSpecifications {
   const LaunchTemplateTagSpecifications({this.resourceType, this.tags});
 
-  final TfArg<LaunchTemplateResourceType>? resourceType;
+  final LaunchTemplateResourceType? resourceType;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -1743,132 +2089,455 @@ final class LaunchTemplateTagSpecifications {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum LaunchTemplateResourceType implements TerraformEnum {
-  capacityReservation('capacity-reservation'),
-  clientVpnEndpoint('client-vpn-endpoint'),
-  customerGateway('customer-gateway'),
-  carrierGateway('carrier-gateway'),
-  coipPool('coip-pool'),
-  declarativePoliciesReport('declarative-policies-report'),
-  dedicatedHost('dedicated-host'),
-  dhcpOptions('dhcp-options'),
-  egressOnlyInternetGateway('egress-only-internet-gateway'),
-  elasticIp('elastic-ip'),
-  elasticGpu('elastic-gpu'),
-  exportImageTask('export-image-task'),
-  exportInstanceTask('export-instance-task'),
-  fleet('fleet'),
-  fpgaImage('fpga-image'),
-  hostReservation('host-reservation'),
-  image('image'),
-  imageUsageReport('image-usage-report'),
-  importImageTask('import-image-task'),
-  importSnapshotTask('import-snapshot-task'),
-  instance('instance'),
-  instanceEventWindow('instance-event-window'),
-  internetGateway('internet-gateway'),
-  ipam('ipam'),
-  ipamPool('ipam-pool'),
-  ipamScope('ipam-scope'),
-  ipv4poolEc2('ipv4pool-ec2'),
-  ipv6poolEc2('ipv6pool-ec2'),
-  keyPair('key-pair'),
-  launchTemplate('launch-template'),
-  localGateway('local-gateway'),
-  localGatewayRouteTable('local-gateway-route-table'),
-  localGatewayVirtualInterface('local-gateway-virtual-interface'),
-  localGatewayVirtualInterfaceGroup('local-gateway-virtual-interface-group'),
-  localGatewayRouteTableVpcAssociation(
-    'local-gateway-route-table-vpc-association',
-  ),
-  localGatewayRouteTableVirtualInterfaceGroupAssociation(
-    'local-gateway-route-table-virtual-interface-group-association',
-  ),
-  natgateway('natgateway'),
-  networkAcl('network-acl'),
-  networkInterface('network-interface'),
-  networkInsightsAnalysis('network-insights-analysis'),
-  networkInsightsPath('network-insights-path'),
-  networkInsightsAccessScope('network-insights-access-scope'),
-  networkInsightsAccessScopeAnalysis('network-insights-access-scope-analysis'),
-  outpostLag('outpost-lag'),
-  placementGroup('placement-group'),
-  prefixList('prefix-list'),
-  replaceRootVolumeTask('replace-root-volume-task'),
-  reservedInstances('reserved-instances'),
-  routeTable('route-table'),
-  securityGroup('security-group'),
-  securityGroupRule('security-group-rule'),
-  serviceLinkVirtualInterface('service-link-virtual-interface'),
-  snapshot('snapshot'),
-  spotFleetRequest('spot-fleet-request'),
-  spotInstancesRequest('spot-instances-request'),
-  subnet('subnet'),
-  subnetCidrReservation('subnet-cidr-reservation'),
-  trafficMirrorFilter('traffic-mirror-filter'),
-  trafficMirrorSession('traffic-mirror-session'),
-  trafficMirrorTarget('traffic-mirror-target'),
-  transitGateway('transit-gateway'),
-  transitGatewayAttachment('transit-gateway-attachment'),
-  transitGatewayConnectPeer('transit-gateway-connect-peer'),
-  transitGatewayMulticastDomain('transit-gateway-multicast-domain'),
-  transitGatewayPolicyTable('transit-gateway-policy-table'),
-  transitGatewayMeteringPolicy('transit-gateway-metering-policy'),
-  transitGatewayRouteTable('transit-gateway-route-table'),
-  transitGatewayRouteTableAnnouncement(
-    'transit-gateway-route-table-announcement',
-  ),
-  volume('volume'),
-  vpc('vpc'),
-  vpcEndpoint('vpc-endpoint'),
-  vpcEndpointConnection('vpc-endpoint-connection'),
-  vpcEndpointService('vpc-endpoint-service'),
-  vpcEndpointServicePermission('vpc-endpoint-service-permission'),
-  vpcPeeringConnection('vpc-peering-connection'),
-  vpnConnection('vpn-connection'),
-  vpnGateway('vpn-gateway'),
-  vpcFlowLog('vpc-flow-log'),
-  capacityReservationFleet('capacity-reservation-fleet'),
-  trafficMirrorFilterRule('traffic-mirror-filter-rule'),
-  vpcEndpointConnectionDeviceType('vpc-endpoint-connection-device-type'),
-  verifiedAccessInstance('verified-access-instance'),
-  verifiedAccessGroup('verified-access-group'),
-  verifiedAccessEndpoint('verified-access-endpoint'),
-  verifiedAccessPolicy('verified-access-policy'),
-  verifiedAccessTrustProvider('verified-access-trust-provider'),
-  vpnConnectionDeviceType('vpn-connection-device-type'),
-  vpcBlockPublicAccessExclusion('vpc-block-public-access-exclusion'),
-  vpcEncryptionControl('vpc-encryption-control'),
-  routeServer('route-server'),
-  routeServerEndpoint('route-server-endpoint'),
-  routeServerPeer('route-server-peer'),
-  ipamResourceDiscovery('ipam-resource-discovery'),
-  ipamResourceDiscoveryAssociation('ipam-resource-discovery-association'),
-  instanceConnectEndpoint('instance-connect-endpoint'),
-  verifiedAccessEndpointTarget('verified-access-endpoint-target'),
-  ipamExternalResourceVerificationToken(
-    'ipam-external-resource-verification-token',
-  ),
-  capacityBlock('capacity-block'),
-  macModificationTask('mac-modification-task'),
-  ipamPrefixListResolver('ipam-prefix-list-resolver'),
-  ipamPolicy('ipam-policy'),
-  ipamPrefixListResolverTarget('ipam-prefix-list-resolver-target'),
-  ipamInternetRegistryAssociation('ipam-internet-registry-association'),
-  secondaryInterface('secondary-interface'),
-  secondaryNetwork('secondary-network'),
-  secondarySubnet('secondary-subnet'),
-  capacityManagerDataExport('capacity-manager-data-export'),
-  vpnConcentrator('vpn-concentrator'),
-  ipamPoolAllocation('ipam-pool-allocation'),
-  capacityReservationCancellationQuote(
-    'capacity-reservation-cancellation-quote',
-  ),
-  applicationStatusCheck('application-status-check');
+extension type const LaunchTemplateResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchTemplateResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchTemplateResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchTemplateResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchTemplateResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacityReservation = LaunchTemplateResourceType._(
+    TfArgLiteral('capacity-reservation'),
+  );
+  static const clientVpnEndpoint = LaunchTemplateResourceType._(
+    TfArgLiteral('client-vpn-endpoint'),
+  );
+  static const customerGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('customer-gateway'),
+  );
+  static const carrierGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('carrier-gateway'),
+  );
+  static const coipPool = LaunchTemplateResourceType._(
+    TfArgLiteral('coip-pool'),
+  );
+  static const declarativePoliciesReport = LaunchTemplateResourceType._(
+    TfArgLiteral('declarative-policies-report'),
+  );
+  static const dedicatedHost = LaunchTemplateResourceType._(
+    TfArgLiteral('dedicated-host'),
+  );
+  static const dhcpOptions = LaunchTemplateResourceType._(
+    TfArgLiteral('dhcp-options'),
+  );
+  static const egressOnlyInternetGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('egress-only-internet-gateway'),
+  );
+  static const elasticIp = LaunchTemplateResourceType._(
+    TfArgLiteral('elastic-ip'),
+  );
+  static const elasticGpu = LaunchTemplateResourceType._(
+    TfArgLiteral('elastic-gpu'),
+  );
+  static const exportImageTask = LaunchTemplateResourceType._(
+    TfArgLiteral('export-image-task'),
+  );
+  static const exportInstanceTask = LaunchTemplateResourceType._(
+    TfArgLiteral('export-instance-task'),
+  );
+  static const fleet = LaunchTemplateResourceType._(TfArgLiteral('fleet'));
+  static const fpgaImage = LaunchTemplateResourceType._(
+    TfArgLiteral('fpga-image'),
+  );
+  static const hostReservation = LaunchTemplateResourceType._(
+    TfArgLiteral('host-reservation'),
+  );
+  static const image = LaunchTemplateResourceType._(TfArgLiteral('image'));
+  static const imageUsageReport = LaunchTemplateResourceType._(
+    TfArgLiteral('image-usage-report'),
+  );
+  static const importImageTask = LaunchTemplateResourceType._(
+    TfArgLiteral('import-image-task'),
+  );
+  static const importSnapshotTask = LaunchTemplateResourceType._(
+    TfArgLiteral('import-snapshot-task'),
+  );
+  static const instance = LaunchTemplateResourceType._(
+    TfArgLiteral('instance'),
+  );
+  static const instanceEventWindow = LaunchTemplateResourceType._(
+    TfArgLiteral('instance-event-window'),
+  );
+  static const internetGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('internet-gateway'),
+  );
+  static const ipam = LaunchTemplateResourceType._(TfArgLiteral('ipam'));
+  static const ipamPool = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-pool'),
+  );
+  static const ipamScope = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-scope'),
+  );
+  static const ipv4poolEc2 = LaunchTemplateResourceType._(
+    TfArgLiteral('ipv4pool-ec2'),
+  );
+  static const ipv6poolEc2 = LaunchTemplateResourceType._(
+    TfArgLiteral('ipv6pool-ec2'),
+  );
+  static const keyPair = LaunchTemplateResourceType._(TfArgLiteral('key-pair'));
+  static const launchTemplate = LaunchTemplateResourceType._(
+    TfArgLiteral('launch-template'),
+  );
+  static const localGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('local-gateway'),
+  );
+  static const localGatewayRouteTable = LaunchTemplateResourceType._(
+    TfArgLiteral('local-gateway-route-table'),
+  );
+  static const localGatewayVirtualInterface = LaunchTemplateResourceType._(
+    TfArgLiteral('local-gateway-virtual-interface'),
+  );
+  static const localGatewayVirtualInterfaceGroup = LaunchTemplateResourceType._(
+    TfArgLiteral('local-gateway-virtual-interface-group'),
+  );
+  static const localGatewayRouteTableVpcAssociation =
+      LaunchTemplateResourceType._(
+        TfArgLiteral('local-gateway-route-table-vpc-association'),
+      );
+  static const localGatewayRouteTableVirtualInterfaceGroupAssociation =
+      LaunchTemplateResourceType._(
+        TfArgLiteral(
+          'local-gateway-route-table-virtual-interface-group-association',
+        ),
+      );
+  static const natgateway = LaunchTemplateResourceType._(
+    TfArgLiteral('natgateway'),
+  );
+  static const networkAcl = LaunchTemplateResourceType._(
+    TfArgLiteral('network-acl'),
+  );
+  static const networkInterface = LaunchTemplateResourceType._(
+    TfArgLiteral('network-interface'),
+  );
+  static const networkInsightsAnalysis = LaunchTemplateResourceType._(
+    TfArgLiteral('network-insights-analysis'),
+  );
+  static const networkInsightsPath = LaunchTemplateResourceType._(
+    TfArgLiteral('network-insights-path'),
+  );
+  static const networkInsightsAccessScope = LaunchTemplateResourceType._(
+    TfArgLiteral('network-insights-access-scope'),
+  );
+  static const networkInsightsAccessScopeAnalysis =
+      LaunchTemplateResourceType._(
+        TfArgLiteral('network-insights-access-scope-analysis'),
+      );
+  static const outpostLag = LaunchTemplateResourceType._(
+    TfArgLiteral('outpost-lag'),
+  );
+  static const placementGroup = LaunchTemplateResourceType._(
+    TfArgLiteral('placement-group'),
+  );
+  static const prefixList = LaunchTemplateResourceType._(
+    TfArgLiteral('prefix-list'),
+  );
+  static const replaceRootVolumeTask = LaunchTemplateResourceType._(
+    TfArgLiteral('replace-root-volume-task'),
+  );
+  static const reservedInstances = LaunchTemplateResourceType._(
+    TfArgLiteral('reserved-instances'),
+  );
+  static const routeTable = LaunchTemplateResourceType._(
+    TfArgLiteral('route-table'),
+  );
+  static const securityGroup = LaunchTemplateResourceType._(
+    TfArgLiteral('security-group'),
+  );
+  static const securityGroupRule = LaunchTemplateResourceType._(
+    TfArgLiteral('security-group-rule'),
+  );
+  static const serviceLinkVirtualInterface = LaunchTemplateResourceType._(
+    TfArgLiteral('service-link-virtual-interface'),
+  );
+  static const snapshot = LaunchTemplateResourceType._(
+    TfArgLiteral('snapshot'),
+  );
+  static const spotFleetRequest = LaunchTemplateResourceType._(
+    TfArgLiteral('spot-fleet-request'),
+  );
+  static const spotInstancesRequest = LaunchTemplateResourceType._(
+    TfArgLiteral('spot-instances-request'),
+  );
+  static const subnet = LaunchTemplateResourceType._(TfArgLiteral('subnet'));
+  static const subnetCidrReservation = LaunchTemplateResourceType._(
+    TfArgLiteral('subnet-cidr-reservation'),
+  );
+  static const trafficMirrorFilter = LaunchTemplateResourceType._(
+    TfArgLiteral('traffic-mirror-filter'),
+  );
+  static const trafficMirrorSession = LaunchTemplateResourceType._(
+    TfArgLiteral('traffic-mirror-session'),
+  );
+  static const trafficMirrorTarget = LaunchTemplateResourceType._(
+    TfArgLiteral('traffic-mirror-target'),
+  );
+  static const transitGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway'),
+  );
+  static const transitGatewayAttachment = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway-attachment'),
+  );
+  static const transitGatewayConnectPeer = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway-connect-peer'),
+  );
+  static const transitGatewayMulticastDomain = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway-multicast-domain'),
+  );
+  static const transitGatewayPolicyTable = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway-policy-table'),
+  );
+  static const transitGatewayMeteringPolicy = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway-metering-policy'),
+  );
+  static const transitGatewayRouteTable = LaunchTemplateResourceType._(
+    TfArgLiteral('transit-gateway-route-table'),
+  );
+  static const transitGatewayRouteTableAnnouncement =
+      LaunchTemplateResourceType._(
+        TfArgLiteral('transit-gateway-route-table-announcement'),
+      );
+  static const volume = LaunchTemplateResourceType._(TfArgLiteral('volume'));
+  static const vpc = LaunchTemplateResourceType._(TfArgLiteral('vpc'));
+  static const vpcEndpoint = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-endpoint'),
+  );
+  static const vpcEndpointConnection = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-endpoint-connection'),
+  );
+  static const vpcEndpointService = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-endpoint-service'),
+  );
+  static const vpcEndpointServicePermission = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-endpoint-service-permission'),
+  );
+  static const vpcPeeringConnection = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-peering-connection'),
+  );
+  static const vpnConnection = LaunchTemplateResourceType._(
+    TfArgLiteral('vpn-connection'),
+  );
+  static const vpnGateway = LaunchTemplateResourceType._(
+    TfArgLiteral('vpn-gateway'),
+  );
+  static const vpcFlowLog = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-flow-log'),
+  );
+  static const capacityReservationFleet = LaunchTemplateResourceType._(
+    TfArgLiteral('capacity-reservation-fleet'),
+  );
+  static const trafficMirrorFilterRule = LaunchTemplateResourceType._(
+    TfArgLiteral('traffic-mirror-filter-rule'),
+  );
+  static const vpcEndpointConnectionDeviceType = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-endpoint-connection-device-type'),
+  );
+  static const verifiedAccessInstance = LaunchTemplateResourceType._(
+    TfArgLiteral('verified-access-instance'),
+  );
+  static const verifiedAccessGroup = LaunchTemplateResourceType._(
+    TfArgLiteral('verified-access-group'),
+  );
+  static const verifiedAccessEndpoint = LaunchTemplateResourceType._(
+    TfArgLiteral('verified-access-endpoint'),
+  );
+  static const verifiedAccessPolicy = LaunchTemplateResourceType._(
+    TfArgLiteral('verified-access-policy'),
+  );
+  static const verifiedAccessTrustProvider = LaunchTemplateResourceType._(
+    TfArgLiteral('verified-access-trust-provider'),
+  );
+  static const vpnConnectionDeviceType = LaunchTemplateResourceType._(
+    TfArgLiteral('vpn-connection-device-type'),
+  );
+  static const vpcBlockPublicAccessExclusion = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-block-public-access-exclusion'),
+  );
+  static const vpcEncryptionControl = LaunchTemplateResourceType._(
+    TfArgLiteral('vpc-encryption-control'),
+  );
+  static const routeServer = LaunchTemplateResourceType._(
+    TfArgLiteral('route-server'),
+  );
+  static const routeServerEndpoint = LaunchTemplateResourceType._(
+    TfArgLiteral('route-server-endpoint'),
+  );
+  static const routeServerPeer = LaunchTemplateResourceType._(
+    TfArgLiteral('route-server-peer'),
+  );
+  static const ipamResourceDiscovery = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-resource-discovery'),
+  );
+  static const ipamResourceDiscoveryAssociation = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-resource-discovery-association'),
+  );
+  static const instanceConnectEndpoint = LaunchTemplateResourceType._(
+    TfArgLiteral('instance-connect-endpoint'),
+  );
+  static const verifiedAccessEndpointTarget = LaunchTemplateResourceType._(
+    TfArgLiteral('verified-access-endpoint-target'),
+  );
+  static const ipamExternalResourceVerificationToken =
+      LaunchTemplateResourceType._(
+        TfArgLiteral('ipam-external-resource-verification-token'),
+      );
+  static const capacityBlock = LaunchTemplateResourceType._(
+    TfArgLiteral('capacity-block'),
+  );
+  static const macModificationTask = LaunchTemplateResourceType._(
+    TfArgLiteral('mac-modification-task'),
+  );
+  static const ipamPrefixListResolver = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-prefix-list-resolver'),
+  );
+  static const ipamPolicy = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-policy'),
+  );
+  static const ipamPrefixListResolverTarget = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-prefix-list-resolver-target'),
+  );
+  static const ipamInternetRegistryAssociation = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-internet-registry-association'),
+  );
+  static const secondaryInterface = LaunchTemplateResourceType._(
+    TfArgLiteral('secondary-interface'),
+  );
+  static const secondaryNetwork = LaunchTemplateResourceType._(
+    TfArgLiteral('secondary-network'),
+  );
+  static const secondarySubnet = LaunchTemplateResourceType._(
+    TfArgLiteral('secondary-subnet'),
+  );
+  static const capacityManagerDataExport = LaunchTemplateResourceType._(
+    TfArgLiteral('capacity-manager-data-export'),
+  );
+  static const vpnConcentrator = LaunchTemplateResourceType._(
+    TfArgLiteral('vpn-concentrator'),
+  );
+  static const ipamPoolAllocation = LaunchTemplateResourceType._(
+    TfArgLiteral('ipam-pool-allocation'),
+  );
+  static const capacityReservationCancellationQuote =
+      LaunchTemplateResourceType._(
+        TfArgLiteral('capacity-reservation-cancellation-quote'),
+      );
+  static const applicationStatusCheck = LaunchTemplateResourceType._(
+    TfArgLiteral('application-status-check'),
+  );
+
+  static const List<LaunchTemplateResourceType> values = [
+    capacityReservation,
+    clientVpnEndpoint,
+    customerGateway,
+    carrierGateway,
+    coipPool,
+    declarativePoliciesReport,
+    dedicatedHost,
+    dhcpOptions,
+    egressOnlyInternetGateway,
+    elasticIp,
+    elasticGpu,
+    exportImageTask,
+    exportInstanceTask,
+    fleet,
+    fpgaImage,
+    hostReservation,
+    image,
+    imageUsageReport,
+    importImageTask,
+    importSnapshotTask,
+    instance,
+    instanceEventWindow,
+    internetGateway,
+    ipam,
+    ipamPool,
+    ipamScope,
+    ipv4poolEc2,
+    ipv6poolEc2,
+    keyPair,
+    launchTemplate,
+    localGateway,
+    localGatewayRouteTable,
+    localGatewayVirtualInterface,
+    localGatewayVirtualInterfaceGroup,
+    localGatewayRouteTableVpcAssociation,
+    localGatewayRouteTableVirtualInterfaceGroupAssociation,
+    natgateway,
+    networkAcl,
+    networkInterface,
+    networkInsightsAnalysis,
+    networkInsightsPath,
+    networkInsightsAccessScope,
+    networkInsightsAccessScopeAnalysis,
+    outpostLag,
+    placementGroup,
+    prefixList,
+    replaceRootVolumeTask,
+    reservedInstances,
+    routeTable,
+    securityGroup,
+    securityGroupRule,
+    serviceLinkVirtualInterface,
+    snapshot,
+    spotFleetRequest,
+    spotInstancesRequest,
+    subnet,
+    subnetCidrReservation,
+    trafficMirrorFilter,
+    trafficMirrorSession,
+    trafficMirrorTarget,
+    transitGateway,
+    transitGatewayAttachment,
+    transitGatewayConnectPeer,
+    transitGatewayMulticastDomain,
+    transitGatewayPolicyTable,
+    transitGatewayMeteringPolicy,
+    transitGatewayRouteTable,
+    transitGatewayRouteTableAnnouncement,
+    volume,
+    vpc,
+    vpcEndpoint,
+    vpcEndpointConnection,
+    vpcEndpointService,
+    vpcEndpointServicePermission,
+    vpcPeeringConnection,
+    vpnConnection,
+    vpnGateway,
+    vpcFlowLog,
+    capacityReservationFleet,
+    trafficMirrorFilterRule,
+    vpcEndpointConnectionDeviceType,
+    verifiedAccessInstance,
+    verifiedAccessGroup,
+    verifiedAccessEndpoint,
+    verifiedAccessPolicy,
+    verifiedAccessTrustProvider,
+    vpnConnectionDeviceType,
+    vpcBlockPublicAccessExclusion,
+    vpcEncryptionControl,
+    routeServer,
+    routeServerEndpoint,
+    routeServerPeer,
+    ipamResourceDiscovery,
+    ipamResourceDiscoveryAssociation,
+    instanceConnectEndpoint,
+    verifiedAccessEndpointTarget,
+    ipamExternalResourceVerificationToken,
+    capacityBlock,
+    macModificationTask,
+    ipamPrefixListResolver,
+    ipamPolicy,
+    ipamPrefixListResolverTarget,
+    ipamInternetRegistryAssociation,
+    secondaryInterface,
+    secondaryNetwork,
+    secondarySubnet,
+    capacityManagerDataExport,
+    vpnConcentrator,
+    ipamPoolAllocation,
+    capacityReservationCancellationQuote,
+    applicationStatusCheck,
+  ];
 }
 
 /// Factory wrapper for `aws_launch_template`.
@@ -1883,7 +2552,7 @@ final class AwsLaunchTemplate extends Resource {
     TfArg<bool>? disableApiTermination,
     TfArg<String>? ebsOptimized,
     TfArg<String>? imageId,
-    TfArg<LaunchTemplateInstanceInitiatedShutdownBehavior>?
+    LaunchTemplateInstanceInitiatedShutdownBehavior?
     instanceInitiatedShutdownBehavior,
     LaunchTemplateInstance? instance,
     TfArg<String>? kernelId,

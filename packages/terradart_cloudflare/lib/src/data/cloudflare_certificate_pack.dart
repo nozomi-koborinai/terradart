@@ -15,9 +15,9 @@ const Set<String> _cloudflareCertificatePackSensitive = <String>{};
 final class DataCertificatePackFilter {
   const DataCertificatePackFilter({this.deploy, this.status});
 
-  final TfArg<DataCertificatePackDeploy>? deploy;
+  final DataCertificatePackDeploy? deploy;
 
-  final TfArg<DataCertificatePackFilterStatus>? status;
+  final DataCertificatePackFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'deploy': ?deploy?.toTfJson(),
@@ -26,22 +26,34 @@ final class DataCertificatePackFilter {
 }
 
 /// `deploy` — derived from the provider schema description.
-enum DataCertificatePackDeploy implements TerraformEnum {
-  staging('staging'),
-  production('production');
+extension type const DataCertificatePackDeploy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCertificatePackDeploy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCertificatePackDeploy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCertificatePackDeploy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCertificatePackDeploy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const staging = DataCertificatePackDeploy._(TfArgLiteral('staging'));
+  static const production = DataCertificatePackDeploy._(
+    TfArgLiteral('production'),
+  );
+
+  static const List<DataCertificatePackDeploy> values = [staging, production];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataCertificatePackFilterStatus implements TerraformEnum {
-  all('all');
+extension type const DataCertificatePackFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCertificatePackFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCertificatePackFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCertificatePackFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCertificatePackFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = DataCertificatePackFilterStatus._(TfArgLiteral('all'));
+
+  static const List<DataCertificatePackFilterStatus> values = [all];
 }
 
 /// Factory wrapper for `cloudflare_certificate_pack`.

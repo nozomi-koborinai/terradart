@@ -306,7 +306,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
     this.ipConfig,
   });
 
-  final TfArg<DatabaseMigrationServiceConnectionProfileActivationPolicy>?
+  final DatabaseMigrationServiceConnectionProfileActivationPolicy?
   activationPolicy;
 
   final TfArg<bool>? autoStorageIncrease;
@@ -317,14 +317,13 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 
   final TfArg<String>? dataDiskSizeGb;
 
-  final TfArg<DatabaseMigrationServiceConnectionProfileDataDiskType>?
-  dataDiskType;
+  final DatabaseMigrationServiceConnectionProfileDataDiskType? dataDiskType;
 
   final TfArg<Map<String, String>>? databaseFlags;
 
   final TfArg<String>? databaseVersion;
 
-  final TfArg<DatabaseMigrationServiceConnectionProfileEdition>? edition;
+  final DatabaseMigrationServiceConnectionProfileEdition? edition;
 
   final TfArg<String>? rootPassword;
 
@@ -361,39 +360,79 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 }
 
 /// `activation_policy` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileActivationPolicy
-    implements TerraformEnum {
-  always('ALWAYS'),
-  never('NEVER');
+extension type const DatabaseMigrationServiceConnectionProfileActivationPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileActivationPolicy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileActivationPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileActivationPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DatabaseMigrationServiceConnectionProfileActivationPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const always =
+      DatabaseMigrationServiceConnectionProfileActivationPolicy._(
+        TfArgLiteral('ALWAYS'),
+      );
+  static const never =
+      DatabaseMigrationServiceConnectionProfileActivationPolicy._(
+        TfArgLiteral('NEVER'),
+      );
+
+  static const List<DatabaseMigrationServiceConnectionProfileActivationPolicy>
+  values = [always, never];
 }
 
 /// `data_disk_type` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileDataDiskType
-    implements TerraformEnum {
-  pdSsd('PD_SSD'),
-  pdHdd('PD_HDD');
+extension type const DatabaseMigrationServiceConnectionProfileDataDiskType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileDataDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileDataDiskType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileDataDiskType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DatabaseMigrationServiceConnectionProfileDataDiskType(
-    this.terraformValue,
+  static const pdSsd = DatabaseMigrationServiceConnectionProfileDataDiskType._(
+    TfArgLiteral('PD_SSD'),
   );
-  @override
-  final String terraformValue;
+  static const pdHdd = DatabaseMigrationServiceConnectionProfileDataDiskType._(
+    TfArgLiteral('PD_HDD'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileDataDiskType>
+  values = [pdSsd, pdHdd];
 }
 
 /// `edition` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileEdition implements TerraformEnum {
-  enterprise('ENTERPRISE'),
-  enterprisePlus('ENTERPRISE_PLUS');
+extension type const DatabaseMigrationServiceConnectionProfileEdition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileEdition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatabaseMigrationServiceConnectionProfileEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enterprise = DatabaseMigrationServiceConnectionProfileEdition._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const enterprisePlus =
+      DatabaseMigrationServiceConnectionProfileEdition._(
+        TfArgLiteral('ENTERPRISE_PLUS'),
+      );
+
+  static const List<DatabaseMigrationServiceConnectionProfileEdition> values = [
+    enterprise,
+    enterprisePlus,
+  ];
 }
 
 /// Typed helper for the `cloudsql.settings.ip_config` block of
@@ -554,7 +593,7 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
 
   final TfArg<String>? clientKey;
 
-  final TfArg<DatabaseMigrationServiceConnectionProfileType>? type;
+  final DatabaseMigrationServiceConnectionProfileType? type;
 
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
@@ -565,15 +604,35 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
 }
 
 /// `type` — derived from the provider schema description.
-enum DatabaseMigrationServiceConnectionProfileType implements TerraformEnum {
-  serverOnly('SERVER_ONLY'),
-  serverClient('SERVER_CLIENT'),
-  required('REQUIRED'),
-  none('NONE');
+extension type const DatabaseMigrationServiceConnectionProfileType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatabaseMigrationServiceConnectionProfileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serverOnly = DatabaseMigrationServiceConnectionProfileType._(
+    TfArgLiteral('SERVER_ONLY'),
+  );
+  static const serverClient = DatabaseMigrationServiceConnectionProfileType._(
+    TfArgLiteral('SERVER_CLIENT'),
+  );
+  static const required = DatabaseMigrationServiceConnectionProfileType._(
+    TfArgLiteral('REQUIRED'),
+  );
+  static const none = DatabaseMigrationServiceConnectionProfileType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileType> values = [
+    serverOnly,
+    serverClient,
+    required,
+    none,
+  ];
 }
 
 /// Typed helper for the `oracle` block of

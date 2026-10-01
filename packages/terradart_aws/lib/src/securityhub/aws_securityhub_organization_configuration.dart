@@ -9,16 +9,28 @@ const Set<String> _awsSecurityhubOrganizationConfigurationSensitive =
     <String>{};
 
 /// Securityhub Organization Configuration Auto Enable enum for `auto_enable_standards`.
-enum SecurityhubOrganizationConfigurationAutoEnableStandards
-    implements TerraformEnum {
-  none('NONE'),
-  defaultCase('DEFAULT');
+extension type const SecurityhubOrganizationConfigurationAutoEnableStandards._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubOrganizationConfigurationAutoEnableStandards.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubOrganizationConfigurationAutoEnableStandards.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SecurityhubOrganizationConfigurationAutoEnableStandards.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SecurityhubOrganizationConfigurationAutoEnableStandards(
-    this.terraformValue,
+  static const none = SecurityhubOrganizationConfigurationAutoEnableStandards._(
+    TfArgLiteral('NONE'),
   );
-  @override
-  final String terraformValue;
+  static const defaultCase =
+      SecurityhubOrganizationConfigurationAutoEnableStandards._(
+        TfArgLiteral('DEFAULT'),
+      );
+
+  static const List<SecurityhubOrganizationConfigurationAutoEnableStandards>
+  values = [none, defaultCase];
 }
 
 /// Typed helper for the `organization_configuration` block of
@@ -27,7 +39,7 @@ enum SecurityhubOrganizationConfigurationAutoEnableStandards
 final class SecurityhubOrganizationConfiguration {
   const SecurityhubOrganizationConfiguration({required this.configurationType});
 
-  final TfArg<SecurityhubOrganizationConfigurationType> configurationType;
+  final SecurityhubOrganizationConfigurationType configurationType;
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
@@ -35,13 +47,26 @@ final class SecurityhubOrganizationConfiguration {
 }
 
 /// `configuration_type` — derived from the provider schema description.
-enum SecurityhubOrganizationConfigurationType implements TerraformEnum {
-  central('CENTRAL'),
-  local('LOCAL');
+extension type const SecurityhubOrganizationConfigurationType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubOrganizationConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubOrganizationConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubOrganizationConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubOrganizationConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const central = SecurityhubOrganizationConfigurationType._(
+    TfArgLiteral('CENTRAL'),
+  );
+  static const local = SecurityhubOrganizationConfigurationType._(
+    TfArgLiteral('LOCAL'),
+  );
+
+  static const List<SecurityhubOrganizationConfigurationType> values = [
+    central,
+    local,
+  ];
 }
 
 /// Factory wrapper for `aws_securityhub_organization_configuration`.
@@ -51,7 +76,7 @@ final class AwsSecurityhubOrganizationConfiguration extends Resource {
   AwsSecurityhubOrganizationConfiguration(
     super.localName, {
     required TfArg<bool> autoEnable,
-    TfArg<SecurityhubOrganizationConfigurationAutoEnableStandards>?
+    SecurityhubOrganizationConfigurationAutoEnableStandards?
     autoEnableStandards,
     TfArg<String>? region,
     SecurityhubOrganizationConfiguration? organizationConfiguration,

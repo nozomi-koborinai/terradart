@@ -11,28 +11,51 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleDataFusionInstanceSensitive = <String>{};
 
 /// Data Fusion Instance enum for `state`.
-enum DataFusionInstanceState implements TerraformEnum {
-  creating('CREATING'),
-  running('RUNNING'),
-  failed('FAILED'),
-  deleting('DELETING'),
-  upgrading('UPGRADING'),
-  restarting('RESTARTING');
+extension type const DataFusionInstanceState._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFusionInstanceState.variable(String name) : this._(TfArg.variable(name));
+  DataFusionInstanceState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFusionInstanceState.arg(TfArg<String> arg) : this._(arg);
 
-  const DataFusionInstanceState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const creating = DataFusionInstanceState._(TfArgLiteral('CREATING'));
+  static const running = DataFusionInstanceState._(TfArgLiteral('RUNNING'));
+  static const failed = DataFusionInstanceState._(TfArgLiteral('FAILED'));
+  static const deleting = DataFusionInstanceState._(TfArgLiteral('DELETING'));
+  static const upgrading = DataFusionInstanceState._(TfArgLiteral('UPGRADING'));
+  static const restarting = DataFusionInstanceState._(
+    TfArgLiteral('RESTARTING'),
+  );
+
+  static const List<DataFusionInstanceState> values = [
+    creating,
+    running,
+    failed,
+    deleting,
+    upgrading,
+    restarting,
+  ];
 }
 
 /// Data Fusion Instance enum for `type`.
-enum DataFusionInstanceType implements TerraformEnum {
-  basic('BASIC'),
-  enterprise('ENTERPRISE'),
-  developer('DEVELOPER');
+extension type const DataFusionInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFusionInstanceType.variable(String name) : this._(TfArg.variable(name));
+  DataFusionInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFusionInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataFusionInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = DataFusionInstanceType._(TfArgLiteral('BASIC'));
+  static const enterprise = DataFusionInstanceType._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const developer = DataFusionInstanceType._(TfArgLiteral('DEVELOPER'));
+
+  static const List<DataFusionInstanceType> values = [
+    basic,
+    enterprise,
+    developer,
+  ];
 }
 
 /// Typed helper for the `accelerators` block of
@@ -44,9 +67,9 @@ final class DataFusionInstanceAccelerators {
     required this.state,
   });
 
-  final TfArg<DataFusionInstanceAcceleratorType> acceleratorType;
+  final DataFusionInstanceAcceleratorType acceleratorType;
 
-  final TfArg<DataFusionInstanceAcceleratorsState> state;
+  final DataFusionInstanceAcceleratorsState state;
 
   Map<String, Object?> encode() => {
     'accelerator_type': acceleratorType.toTfJson(),
@@ -55,24 +78,50 @@ final class DataFusionInstanceAccelerators {
 }
 
 /// `accelerator_type` — derived from the provider schema description.
-enum DataFusionInstanceAcceleratorType implements TerraformEnum {
-  cdc('CDC'),
-  healthcare('HEALTHCARE'),
-  ccaiInsights('CCAI_INSIGHTS');
+extension type const DataFusionInstanceAcceleratorType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFusionInstanceAcceleratorType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFusionInstanceAcceleratorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFusionInstanceAcceleratorType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataFusionInstanceAcceleratorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cdc = DataFusionInstanceAcceleratorType._(TfArgLiteral('CDC'));
+  static const healthcare = DataFusionInstanceAcceleratorType._(
+    TfArgLiteral('HEALTHCARE'),
+  );
+  static const ccaiInsights = DataFusionInstanceAcceleratorType._(
+    TfArgLiteral('CCAI_INSIGHTS'),
+  );
+
+  static const List<DataFusionInstanceAcceleratorType> values = [
+    cdc,
+    healthcare,
+    ccaiInsights,
+  ];
 }
 
 /// `state` — derived from the provider schema description.
-enum DataFusionInstanceAcceleratorsState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DataFusionInstanceAcceleratorsState._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFusionInstanceAcceleratorsState.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFusionInstanceAcceleratorsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFusionInstanceAcceleratorsState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataFusionInstanceAcceleratorsState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DataFusionInstanceAcceleratorsState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = DataFusionInstanceAcceleratorsState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<DataFusionInstanceAcceleratorsState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `crypto_key_config` block of
@@ -182,7 +231,7 @@ final class DataFusionInstanceNetworkConfig {
     this.privateServiceConnectConfig,
   });
 
-  final TfArg<DataFusionInstanceConnectionType>? connectionType;
+  final DataFusionInstanceConnectionType? connectionType;
 
   final TfArg<String>? ipAllocation;
 
@@ -200,13 +249,26 @@ final class DataFusionInstanceNetworkConfig {
 }
 
 /// `connection_type` — derived from the provider schema description.
-enum DataFusionInstanceConnectionType implements TerraformEnum {
-  vpcPeering('VPC_PEERING'),
-  privateServiceConnectInterfaces('PRIVATE_SERVICE_CONNECT_INTERFACES');
+extension type const DataFusionInstanceConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFusionInstanceConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFusionInstanceConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFusionInstanceConnectionType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataFusionInstanceConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpcPeering = DataFusionInstanceConnectionType._(
+    TfArgLiteral('VPC_PEERING'),
+  );
+  static const privateServiceConnectInterfaces =
+      DataFusionInstanceConnectionType._(
+        TfArgLiteral('PRIVATE_SERVICE_CONNECT_INTERFACES'),
+      );
+
+  static const List<DataFusionInstanceConnectionType> values = [
+    vpcPeering,
+    privateServiceConnectInterfaces,
+  ];
 }
 
 /// Typed helper for the `network_config.private_service_connect_config` block of
@@ -251,7 +313,7 @@ final class GoogleDataFusionInstance extends Resource {
   GoogleDataFusionInstance(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<DataFusionInstanceType> type,
+    required DataFusionInstanceType type,
     TfArg<String>? region,
     TfArg<String>? description,
     TfArg<String>? displayName,

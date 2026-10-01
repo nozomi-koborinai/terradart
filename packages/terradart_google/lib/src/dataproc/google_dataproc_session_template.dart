@@ -81,7 +81,7 @@ final class DataprocSessionTemplateAuthenticationConfig {
     this.userWorkloadAuthenticationType,
   });
 
-  final TfArg<DataprocSessionTemplateUserWorkloadAuthenticationType>?
+  final DataprocSessionTemplateUserWorkloadAuthenticationType?
   userWorkloadAuthenticationType;
 
   Map<String, Object?> encode() => {
@@ -91,16 +91,29 @@ final class DataprocSessionTemplateAuthenticationConfig {
 }
 
 /// `user_workload_authentication_type` — derived from the provider schema description.
-enum DataprocSessionTemplateUserWorkloadAuthenticationType
-    implements TerraformEnum {
-  serviceAccount('SERVICE_ACCOUNT'),
-  endUserCredentials('END_USER_CREDENTIALS');
+extension type const DataprocSessionTemplateUserWorkloadAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocSessionTemplateUserWorkloadAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocSessionTemplateUserWorkloadAuthenticationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataprocSessionTemplateUserWorkloadAuthenticationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataprocSessionTemplateUserWorkloadAuthenticationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const serviceAccount =
+      DataprocSessionTemplateUserWorkloadAuthenticationType._(
+        TfArgLiteral('SERVICE_ACCOUNT'),
+      );
+  static const endUserCredentials =
+      DataprocSessionTemplateUserWorkloadAuthenticationType._(
+        TfArgLiteral('END_USER_CREDENTIALS'),
+      );
+
+  static const List<DataprocSessionTemplateUserWorkloadAuthenticationType>
+  values = [serviceAccount, endUserCredentials];
 }
 
 /// Typed helper for the `environment_config.peripherals_config` block of
@@ -144,7 +157,7 @@ final class DataprocSessionTemplateJupyterSession {
 
   final TfArg<String>? displayName;
 
-  final TfArg<DataprocSessionTemplateKernel>? kernel;
+  final DataprocSessionTemplateKernel? kernel;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -153,13 +166,18 @@ final class DataprocSessionTemplateJupyterSession {
 }
 
 /// `kernel` — derived from the provider schema description.
-enum DataprocSessionTemplateKernel implements TerraformEnum {
-  python('PYTHON'),
-  scala('SCALA');
+extension type const DataprocSessionTemplateKernel._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocSessionTemplateKernel.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocSessionTemplateKernel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocSessionTemplateKernel.arg(TfArg<String> arg) : this._(arg);
 
-  const DataprocSessionTemplateKernel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const python = DataprocSessionTemplateKernel._(TfArgLiteral('PYTHON'));
+  static const scala = DataprocSessionTemplateKernel._(TfArgLiteral('SCALA'));
+
+  static const List<DataprocSessionTemplateKernel> values = [python, scala];
 }
 
 /// Typed helper for the `runtime_config` block of

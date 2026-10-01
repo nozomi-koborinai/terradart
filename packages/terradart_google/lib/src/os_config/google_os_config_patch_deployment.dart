@@ -151,7 +151,7 @@ final class OsConfigPatchDeploymentPatchConfig {
 
   final TfArg<bool>? migInstancesAllowed;
 
-  final TfArg<OsConfigPatchDeploymentRebootConfig>? rebootConfig;
+  final OsConfigPatchDeploymentRebootConfig? rebootConfig;
 
   final TfArg<bool>? skipUnpatchableVms;
 
@@ -184,14 +184,30 @@ final class OsConfigPatchDeploymentPatchConfig {
 }
 
 /// `reboot_config` — derived from the provider schema description.
-enum OsConfigPatchDeploymentRebootConfig implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  always('ALWAYS'),
-  never('NEVER');
+extension type const OsConfigPatchDeploymentRebootConfig._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigPatchDeploymentRebootConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigPatchDeploymentRebootConfig.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigPatchDeploymentRebootConfig.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigPatchDeploymentRebootConfig(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = OsConfigPatchDeploymentRebootConfig._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const always = OsConfigPatchDeploymentRebootConfig._(
+    TfArgLiteral('ALWAYS'),
+  );
+  static const never = OsConfigPatchDeploymentRebootConfig._(
+    TfArgLiteral('NEVER'),
+  );
+
+  static const List<OsConfigPatchDeploymentRebootConfig> values = [
+    defaultCase,
+    always,
+    never,
+  ];
 }
 
 /// Typed helper for the `patch_config.apt` block of
@@ -208,7 +224,7 @@ final class OsConfigPatchDeploymentApt {
 
   final TfArg<List<String>>? exclusivePackages;
 
-  final TfArg<OsConfigPatchDeploymentType>? type;
+  final OsConfigPatchDeploymentType? type;
 
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
@@ -218,13 +234,18 @@ final class OsConfigPatchDeploymentApt {
 }
 
 /// `type` — derived from the provider schema description.
-enum OsConfigPatchDeploymentType implements TerraformEnum {
-  dist('DIST'),
-  upgrade('UPGRADE');
+extension type const OsConfigPatchDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigPatchDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigPatchDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigPatchDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigPatchDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dist = OsConfigPatchDeploymentType._(TfArgLiteral('DIST'));
+  static const upgrade = OsConfigPatchDeploymentType._(TfArgLiteral('UPGRADE'));
+
+  static const List<OsConfigPatchDeploymentType> values = [dist, upgrade];
 }
 
 /// Typed helper for the `patch_config.goo` block of
@@ -270,7 +291,7 @@ final class OsConfigPatchDeploymentLinuxExecStepConfig {
 
   final TfArg<List<num>>? allowedSuccessCodes;
 
-  final TfArg<OsConfigPatchDeploymentInterpreter>? interpreter;
+  final OsConfigPatchDeploymentInterpreter? interpreter;
 
   final OsConfigPatchDeploymentLinuxExecStepConfigScript script;
 
@@ -337,13 +358,25 @@ final class OsConfigPatchDeploymentLinuxExecStepConfigScriptGcsObject
 }
 
 /// `interpreter` — derived from the provider schema description.
-enum OsConfigPatchDeploymentInterpreter implements TerraformEnum {
-  shell('SHELL'),
-  powershell('POWERSHELL');
+extension type const OsConfigPatchDeploymentInterpreter._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigPatchDeploymentInterpreter.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigPatchDeploymentInterpreter.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigPatchDeploymentInterpreter.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigPatchDeploymentInterpreter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const shell = OsConfigPatchDeploymentInterpreter._(
+    TfArgLiteral('SHELL'),
+  );
+  static const powershell = OsConfigPatchDeploymentInterpreter._(
+    TfArgLiteral('POWERSHELL'),
+  );
+
+  static const List<OsConfigPatchDeploymentInterpreter> values = [
+    shell,
+    powershell,
+  ];
 }
 
 /// Typed helper for the `patch_config.post_step.linux_exec_step_config.gcs_object` block of
@@ -383,7 +416,7 @@ final class OsConfigPatchDeploymentWindowsExecStepConfig {
 
   final TfArg<List<num>>? allowedSuccessCodes;
 
-  final TfArg<OsConfigPatchDeploymentInterpreter>? interpreter;
+  final OsConfigPatchDeploymentInterpreter? interpreter;
 
   final OsConfigPatchDeploymentWindowsExecStepConfigScript script;
 
@@ -478,7 +511,7 @@ final class OsConfigPatchDeploymentWindowsUpdate {
     this.exclusivePatches,
   });
 
-  final List<TfArg<OsConfigPatchDeploymentClassifications>>? classifications;
+  final List<OsConfigPatchDeploymentClassifications>? classifications;
 
   final TfArg<List<String>>? excludes;
 
@@ -493,20 +526,54 @@ final class OsConfigPatchDeploymentWindowsUpdate {
 }
 
 /// `classifications` — derived from the provider schema description.
-enum OsConfigPatchDeploymentClassifications implements TerraformEnum {
-  critical('CRITICAL'),
-  security('SECURITY'),
-  definition('DEFINITION'),
-  driver('DRIVER'),
-  featurePack('FEATURE_PACK'),
-  servicePack('SERVICE_PACK'),
-  tool('TOOL'),
-  updateRollup('UPDATE_ROLLUP'),
-  update('UPDATE');
+extension type const OsConfigPatchDeploymentClassifications._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigPatchDeploymentClassifications.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigPatchDeploymentClassifications.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigPatchDeploymentClassifications.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigPatchDeploymentClassifications(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const security = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('SECURITY'),
+  );
+  static const definition = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('DEFINITION'),
+  );
+  static const driver = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('DRIVER'),
+  );
+  static const featurePack = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('FEATURE_PACK'),
+  );
+  static const servicePack = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('SERVICE_PACK'),
+  );
+  static const tool = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('TOOL'),
+  );
+  static const updateRollup = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('UPDATE_ROLLUP'),
+  );
+  static const update = OsConfigPatchDeploymentClassifications._(
+    TfArgLiteral('UPDATE'),
+  );
+
+  static const List<OsConfigPatchDeploymentClassifications> values = [
+    critical,
+    security,
+    definition,
+    driver,
+    featurePack,
+    servicePack,
+    tool,
+    updateRollup,
+    update,
+  ];
 }
 
 /// Typed helper for the `patch_config.yum` block of
@@ -668,7 +735,7 @@ final class OsConfigPatchDeploymentWeekDayOfMonth {
     required this.weekOrdinal,
   });
 
-  final TfArg<OsConfigPatchDeploymentDayOfWeek> dayOfWeek;
+  final OsConfigPatchDeploymentDayOfWeek dayOfWeek;
 
   final TfArg<num>? dayOffset;
 
@@ -682,18 +749,45 @@ final class OsConfigPatchDeploymentWeekDayOfMonth {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum OsConfigPatchDeploymentDayOfWeek implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const OsConfigPatchDeploymentDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigPatchDeploymentDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigPatchDeploymentDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigPatchDeploymentDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigPatchDeploymentDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = OsConfigPatchDeploymentDayOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<OsConfigPatchDeploymentDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `recurring_schedule.time_of_day` block of
@@ -745,7 +839,7 @@ final class OsConfigPatchDeploymentTimeZone {
 final class OsConfigPatchDeploymentWeekly {
   const OsConfigPatchDeploymentWeekly({required this.dayOfWeek});
 
-  final TfArg<OsConfigPatchDeploymentDayOfWeek> dayOfWeek;
+  final OsConfigPatchDeploymentDayOfWeek dayOfWeek;
 
   Map<String, Object?> encode() => {'day_of_week': dayOfWeek.toTfJson()};
 }
@@ -759,7 +853,7 @@ final class OsConfigPatchDeploymentRollout {
     required this.disruptionBudget,
   });
 
-  final TfArg<OsConfigPatchDeploymentMode> mode;
+  final OsConfigPatchDeploymentMode mode;
 
   final OsConfigPatchDeploymentDisruptionBudget disruptionBudget;
 
@@ -770,13 +864,25 @@ final class OsConfigPatchDeploymentRollout {
 }
 
 /// `mode` — derived from the provider schema description.
-enum OsConfigPatchDeploymentMode implements TerraformEnum {
-  zoneByZone('ZONE_BY_ZONE'),
-  concurrentZones('CONCURRENT_ZONES');
+extension type const OsConfigPatchDeploymentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigPatchDeploymentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigPatchDeploymentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigPatchDeploymentMode.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigPatchDeploymentMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zoneByZone = OsConfigPatchDeploymentMode._(
+    TfArgLiteral('ZONE_BY_ZONE'),
+  );
+  static const concurrentZones = OsConfigPatchDeploymentMode._(
+    TfArgLiteral('CONCURRENT_ZONES'),
+  );
+
+  static const List<OsConfigPatchDeploymentMode> values = [
+    zoneByZone,
+    concurrentZones,
+  ];
 }
 
 /// Exactly one of `fixed`, `percentage` on the `rollout.disruption_budget` block of `google_os_config_patch_deployment`: the provider rejects

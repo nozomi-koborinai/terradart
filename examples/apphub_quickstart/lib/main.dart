@@ -43,7 +43,7 @@ final class ApphubStack extends Stack {
         location: .literal('us-central1'),
         applicationId: .literal('terradart-orders'),
         displayName: .literal('TerraDart orders app'),
-        scope: ApphubApplicationScope(type: .literal(.regional)),
+        scope: ApphubApplicationScope(type: .regional),
         dependsOn: apiDeps,
       ),
     );

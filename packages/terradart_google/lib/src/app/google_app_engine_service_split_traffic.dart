@@ -18,7 +18,7 @@ final class AppEngineServiceSplitTrafficSplit {
 
   final TfArg<Map<String, String>> allocations;
 
-  final TfArg<AppEngineServiceSplitTrafficShardBy>? shardBy;
+  final AppEngineServiceSplitTrafficShardBy? shardBy;
 
   Map<String, Object?> encode() => {
     'allocations': allocations.toTfJson(),
@@ -27,15 +27,32 @@ final class AppEngineServiceSplitTrafficSplit {
 }
 
 /// `shard_by` — derived from the provider schema description.
-enum AppEngineServiceSplitTrafficShardBy implements TerraformEnum {
-  unspecified('UNSPECIFIED'),
-  cookie('COOKIE'),
-  ip('IP'),
-  random('RANDOM');
+extension type const AppEngineServiceSplitTrafficShardBy._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineServiceSplitTrafficShardBy.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineServiceSplitTrafficShardBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineServiceSplitTrafficShardBy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineServiceSplitTrafficShardBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = AppEngineServiceSplitTrafficShardBy._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+  static const cookie = AppEngineServiceSplitTrafficShardBy._(
+    TfArgLiteral('COOKIE'),
+  );
+  static const ip = AppEngineServiceSplitTrafficShardBy._(TfArgLiteral('IP'));
+  static const random = AppEngineServiceSplitTrafficShardBy._(
+    TfArgLiteral('RANDOM'),
+  );
+
+  static const List<AppEngineServiceSplitTrafficShardBy> values = [
+    unspecified,
+    cookie,
+    ip,
+    random,
+  ];
 }
 
 /// Factory wrapper for `google_app_engine_service_split_traffic`.

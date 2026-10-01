@@ -31,7 +31,7 @@ final class ComputeFirewallPolicyWithRulesRule {
 
   final TfArg<String>? description;
 
-  final TfArg<ComputeFirewallPolicyWithRulesDirection>? direction;
+  final ComputeFirewallPolicyWithRulesDirection? direction;
 
   final TfArg<bool>? disabled;
 
@@ -72,13 +72,26 @@ final class ComputeFirewallPolicyWithRulesRule {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputeFirewallPolicyWithRulesDirection implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const ComputeFirewallPolicyWithRulesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFirewallPolicyWithRulesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFirewallPolicyWithRulesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFirewallPolicyWithRulesDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFirewallPolicyWithRulesDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = ComputeFirewallPolicyWithRulesDirection._(
+    TfArgLiteral('INGRESS'),
+  );
+  static const egress = ComputeFirewallPolicyWithRulesDirection._(
+    TfArgLiteral('EGRESS'),
+  );
+
+  static const List<ComputeFirewallPolicyWithRulesDirection> values = [
+    ingress,
+    egress,
+  ];
 }
 
 /// Typed helper for the `rule.match` block of

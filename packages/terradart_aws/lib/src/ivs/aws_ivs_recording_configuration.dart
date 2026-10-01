@@ -42,7 +42,7 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
     this.targetIntervalSeconds,
   });
 
-  final TfArg<IvsRecordingConfigurationRecordingMode>? recordingMode;
+  final IvsRecordingConfigurationRecordingMode? recordingMode;
 
   final TfArg<num>? targetIntervalSeconds;
 
@@ -53,13 +53,26 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
 }
 
 /// `recording_mode` — derived from the provider schema description.
-enum IvsRecordingConfigurationRecordingMode implements TerraformEnum {
-  disabled('DISABLED'),
-  interval('INTERVAL');
+extension type const IvsRecordingConfigurationRecordingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  IvsRecordingConfigurationRecordingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  IvsRecordingConfigurationRecordingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IvsRecordingConfigurationRecordingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IvsRecordingConfigurationRecordingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = IvsRecordingConfigurationRecordingMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const interval = IvsRecordingConfigurationRecordingMode._(
+    TfArgLiteral('INTERVAL'),
+  );
+
+  static const List<IvsRecordingConfigurationRecordingMode> values = [
+    disabled,
+    interval,
+  ];
 }
 
 /// Factory wrapper for `aws_ivs_recording_configuration`.

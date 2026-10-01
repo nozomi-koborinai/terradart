@@ -7,17 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightRoleMembershipSensitive = <String>{};
 
 /// Quicksight Role Membership enum for `role`.
-enum QuicksightRoleMembershipRole implements TerraformEnum {
-  admin('ADMIN'),
-  author('AUTHOR'),
-  reader('READER'),
-  adminPro('ADMIN_PRO'),
-  authorPro('AUTHOR_PRO'),
-  readerPro('READER_PRO');
+extension type const QuicksightRoleMembershipRole._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightRoleMembershipRole.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightRoleMembershipRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightRoleMembershipRole.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightRoleMembershipRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admin = QuicksightRoleMembershipRole._(TfArgLiteral('ADMIN'));
+  static const author = QuicksightRoleMembershipRole._(TfArgLiteral('AUTHOR'));
+  static const reader = QuicksightRoleMembershipRole._(TfArgLiteral('READER'));
+  static const adminPro = QuicksightRoleMembershipRole._(
+    TfArgLiteral('ADMIN_PRO'),
+  );
+  static const authorPro = QuicksightRoleMembershipRole._(
+    TfArgLiteral('AUTHOR_PRO'),
+  );
+  static const readerPro = QuicksightRoleMembershipRole._(
+    TfArgLiteral('READER_PRO'),
+  );
+
+  static const List<QuicksightRoleMembershipRole> values = [
+    admin,
+    author,
+    reader,
+    adminPro,
+    authorPro,
+    readerPro,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_role_membership`.
@@ -30,7 +48,7 @@ final class AwsQuicksightRoleMembership extends Resource {
     required TfArg<String> memberName,
     TfArg<String>? namespace,
     TfArg<String>? region,
-    required TfArg<QuicksightRoleMembershipRole> role,
+    required QuicksightRoleMembershipRole role,
     super.lifecycle,
     super.dependsOn,
     super.provider,

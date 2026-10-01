@@ -516,8 +516,7 @@ final class ZeroTrustAccessGroupServiceToken {
 final class ZeroTrustAccessGroupUserRiskScore {
   const ZeroTrustAccessGroupUserRiskScore({required this.userRiskScore});
 
-  final List<TfArg<ZeroTrustAccessGroupUserRiskScoreUserRiskScore>>
-  userRiskScore;
+  final List<ZeroTrustAccessGroupUserRiskScoreUserRiskScore> userRiskScore;
 
   Map<String, Object?> encode() => {
     'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
@@ -525,15 +524,35 @@ final class ZeroTrustAccessGroupUserRiskScore {
 }
 
 /// `user_risk_score` — derived from the provider schema description.
-enum ZeroTrustAccessGroupUserRiskScoreUserRiskScore implements TerraformEnum {
-  low('low'),
-  medium('medium'),
-  high('high'),
-  unscored('unscored');
+extension type const ZeroTrustAccessGroupUserRiskScoreUserRiskScore._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessGroupUserRiskScoreUserRiskScore.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessGroupUserRiskScoreUserRiskScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessGroupUserRiskScoreUserRiskScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessGroupUserRiskScoreUserRiskScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = ZeroTrustAccessGroupUserRiskScoreUserRiskScore._(
+    TfArgLiteral('low'),
+  );
+  static const medium = ZeroTrustAccessGroupUserRiskScoreUserRiskScore._(
+    TfArgLiteral('medium'),
+  );
+  static const high = ZeroTrustAccessGroupUserRiskScoreUserRiskScore._(
+    TfArgLiteral('high'),
+  );
+  static const unscored = ZeroTrustAccessGroupUserRiskScoreUserRiskScore._(
+    TfArgLiteral('unscored'),
+  );
+
+  static const List<ZeroTrustAccessGroupUserRiskScoreUserRiskScore> values = [
+    low,
+    medium,
+    high,
+    unscored,
+  ];
 }
 
 /// Typed helper for the `include` block of

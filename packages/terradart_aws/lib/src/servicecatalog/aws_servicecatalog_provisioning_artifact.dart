@@ -7,38 +7,95 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogProvisioningArtifactSensitive = <String>{};
 
 /// Servicecatalog Provisioning Artifact Accept enum for `accept_language`.
-enum ServicecatalogProvisioningArtifactAcceptLanguage implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogProvisioningArtifactAcceptLanguage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogProvisioningArtifactAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProvisioningArtifactAcceptLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogProvisioningArtifactAcceptLanguage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogProvisioningArtifactAcceptLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ServicecatalogProvisioningArtifactAcceptLanguage._(
+    TfArgLiteral('en'),
+  );
+  static const jp = ServicecatalogProvisioningArtifactAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogProvisioningArtifactAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogProvisioningArtifactAcceptLanguage> values = [
+    en,
+    jp,
+    zh,
+  ];
 }
 
 /// Servicecatalog Provisioning Artifact enum for `guidance`.
-enum ServicecatalogProvisioningArtifactGuidance implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  deprecated('DEPRECATED');
+extension type const ServicecatalogProvisioningArtifactGuidance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogProvisioningArtifactGuidance.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProvisioningArtifactGuidance.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogProvisioningArtifactGuidance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogProvisioningArtifactGuidance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = ServicecatalogProvisioningArtifactGuidance._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const deprecated = ServicecatalogProvisioningArtifactGuidance._(
+    TfArgLiteral('DEPRECATED'),
+  );
+
+  static const List<ServicecatalogProvisioningArtifactGuidance> values = [
+    defaultCase,
+    deprecated,
+  ];
 }
 
 /// Servicecatalog Provisioning Artifact enum for `type`.
-enum ServicecatalogProvisioningArtifactType implements TerraformEnum {
-  cloudFormationTemplate('CLOUD_FORMATION_TEMPLATE'),
-  marketplaceAmi('MARKETPLACE_AMI'),
-  marketplaceCar('MARKETPLACE_CAR'),
-  terraformOpenSource('TERRAFORM_OPEN_SOURCE'),
-  terraformCloud('TERRAFORM_CLOUD'),
-  external('EXTERNAL');
+extension type const ServicecatalogProvisioningArtifactType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogProvisioningArtifactType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProvisioningArtifactType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogProvisioningArtifactType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogProvisioningArtifactType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudFormationTemplate =
+      ServicecatalogProvisioningArtifactType._(
+        TfArgLiteral('CLOUD_FORMATION_TEMPLATE'),
+      );
+  static const marketplaceAmi = ServicecatalogProvisioningArtifactType._(
+    TfArgLiteral('MARKETPLACE_AMI'),
+  );
+  static const marketplaceCar = ServicecatalogProvisioningArtifactType._(
+    TfArgLiteral('MARKETPLACE_CAR'),
+  );
+  static const terraformOpenSource = ServicecatalogProvisioningArtifactType._(
+    TfArgLiteral('TERRAFORM_OPEN_SOURCE'),
+  );
+  static const terraformCloud = ServicecatalogProvisioningArtifactType._(
+    TfArgLiteral('TERRAFORM_CLOUD'),
+  );
+  static const external = ServicecatalogProvisioningArtifactType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<ServicecatalogProvisioningArtifactType> values = [
+    cloudFormationTemplate,
+    marketplaceAmi,
+    marketplaceCar,
+    terraformOpenSource,
+    terraformCloud,
+    external,
+  ];
 }
 
 /// Exactly one of `template_physical_id`, `template_url` on `aws_servicecatalog_provisioning_artifact`: the provider rejects
@@ -114,16 +171,16 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
 
   AwsServicecatalogProvisioningArtifact(
     super.localName, {
-    TfArg<ServicecatalogProvisioningArtifactAcceptLanguage>? acceptLanguage,
+    ServicecatalogProvisioningArtifactAcceptLanguage? acceptLanguage,
     TfArg<bool>? active,
     TfArg<String>? description,
     TfArg<bool>? disableTemplateValidation,
-    TfArg<ServicecatalogProvisioningArtifactGuidance>? guidance,
+    ServicecatalogProvisioningArtifactGuidance? guidance,
     TfArg<String>? name,
     required TfArg<String> productId,
     TfArg<String>? region,
     required ServicecatalogProvisioningArtifactTemplate template,
-    TfArg<ServicecatalogProvisioningArtifactType>? type,
+    ServicecatalogProvisioningArtifactType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -13,9 +13,9 @@ const Set<String> _awsDevicefarmDevicePoolSensitive = <String>{};
 final class DevicefarmDevicePoolRule {
   const DevicefarmDevicePoolRule({this.attribute, this.operator, this.value});
 
-  final TfArg<DevicefarmDevicePoolAttribute>? attribute;
+  final DevicefarmDevicePoolAttribute? attribute;
 
-  final TfArg<DevicefarmDevicePoolOperator>? operator;
+  final DevicefarmDevicePoolOperator? operator;
 
   final TfArg<String>? value;
 
@@ -27,40 +27,105 @@ final class DevicefarmDevicePoolRule {
 }
 
 /// `attribute` — derived from the provider schema description.
-enum DevicefarmDevicePoolAttribute implements TerraformEnum {
-  arn('ARN'),
-  platform('PLATFORM'),
-  formFactor('FORM_FACTOR'),
-  manufacturer('MANUFACTURER'),
-  remoteAccessEnabled('REMOTE_ACCESS_ENABLED'),
-  remoteDebugEnabled('REMOTE_DEBUG_ENABLED'),
-  appiumVersion('APPIUM_VERSION'),
-  instanceArn('INSTANCE_ARN'),
-  instanceLabels('INSTANCE_LABELS'),
-  fleetType('FLEET_TYPE'),
-  osVersion('OS_VERSION'),
-  model('MODEL'),
-  availability('AVAILABILITY');
+extension type const DevicefarmDevicePoolAttribute._(TfArg<String> _)
+    implements TfArg<String> {
+  DevicefarmDevicePoolAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  DevicefarmDevicePoolAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevicefarmDevicePoolAttribute.arg(TfArg<String> arg) : this._(arg);
 
-  const DevicefarmDevicePoolAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arn = DevicefarmDevicePoolAttribute._(TfArgLiteral('ARN'));
+  static const platform = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('PLATFORM'),
+  );
+  static const formFactor = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('FORM_FACTOR'),
+  );
+  static const manufacturer = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('MANUFACTURER'),
+  );
+  static const remoteAccessEnabled = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('REMOTE_ACCESS_ENABLED'),
+  );
+  static const remoteDebugEnabled = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('REMOTE_DEBUG_ENABLED'),
+  );
+  static const appiumVersion = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('APPIUM_VERSION'),
+  );
+  static const instanceArn = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('INSTANCE_ARN'),
+  );
+  static const instanceLabels = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('INSTANCE_LABELS'),
+  );
+  static const fleetType = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('FLEET_TYPE'),
+  );
+  static const osVersion = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('OS_VERSION'),
+  );
+  static const model = DevicefarmDevicePoolAttribute._(TfArgLiteral('MODEL'));
+  static const availability = DevicefarmDevicePoolAttribute._(
+    TfArgLiteral('AVAILABILITY'),
+  );
+
+  static const List<DevicefarmDevicePoolAttribute> values = [
+    arn,
+    platform,
+    formFactor,
+    manufacturer,
+    remoteAccessEnabled,
+    remoteDebugEnabled,
+    appiumVersion,
+    instanceArn,
+    instanceLabels,
+    fleetType,
+    osVersion,
+    model,
+    availability,
+  ];
 }
 
 /// `operator` — derived from the provider schema description.
-enum DevicefarmDevicePoolOperator implements TerraformEnum {
-  equals('EQUALS'),
-  lessThan('LESS_THAN'),
-  lessThanOrEquals('LESS_THAN_OR_EQUALS'),
-  greaterThan('GREATER_THAN'),
-  greaterThanOrEquals('GREATER_THAN_OR_EQUALS'),
-  inCase('IN'),
-  notIn('NOT_IN'),
-  contains('CONTAINS');
+extension type const DevicefarmDevicePoolOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  DevicefarmDevicePoolOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  DevicefarmDevicePoolOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevicefarmDevicePoolOperator.arg(TfArg<String> arg) : this._(arg);
 
-  const DevicefarmDevicePoolOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = DevicefarmDevicePoolOperator._(TfArgLiteral('EQUALS'));
+  static const lessThan = DevicefarmDevicePoolOperator._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const lessThanOrEquals = DevicefarmDevicePoolOperator._(
+    TfArgLiteral('LESS_THAN_OR_EQUALS'),
+  );
+  static const greaterThan = DevicefarmDevicePoolOperator._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const greaterThanOrEquals = DevicefarmDevicePoolOperator._(
+    TfArgLiteral('GREATER_THAN_OR_EQUALS'),
+  );
+  static const inCase = DevicefarmDevicePoolOperator._(TfArgLiteral('IN'));
+  static const notIn = DevicefarmDevicePoolOperator._(TfArgLiteral('NOT_IN'));
+  static const contains = DevicefarmDevicePoolOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+
+  static const List<DevicefarmDevicePoolOperator> values = [
+    equals,
+    lessThan,
+    lessThanOrEquals,
+    greaterThan,
+    greaterThanOrEquals,
+    inCase,
+    notIn,
+    contains,
+  ];
 }
 
 /// Factory wrapper for `aws_devicefarm_device_pool`.

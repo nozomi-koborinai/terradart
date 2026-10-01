@@ -10,40 +10,93 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustGatewayPolicySensitive = <String>{};
 
 /// Zero Trust Gateway Policy enum for `action`.
-enum ZeroTrustGatewayPolicyAction implements TerraformEnum {
-  on('on'),
-  off('off'),
-  allow('allow'),
-  block('block'),
-  scan('scan'),
-  noscan('noscan'),
-  safesearch('safesearch'),
-  ytrestricted('ytrestricted'),
-  isolate('isolate'),
-  noisolate('noisolate'),
-  overrideCase('override'),
-  l4Override('l4_override'),
-  egress('egress'),
-  resolve('resolve'),
-  quarantine('quarantine'),
-  redirect('redirect');
+extension type const ZeroTrustGatewayPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyAction.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = ZeroTrustGatewayPolicyAction._(TfArgLiteral('on'));
+  static const off = ZeroTrustGatewayPolicyAction._(TfArgLiteral('off'));
+  static const allow = ZeroTrustGatewayPolicyAction._(TfArgLiteral('allow'));
+  static const block = ZeroTrustGatewayPolicyAction._(TfArgLiteral('block'));
+  static const scan = ZeroTrustGatewayPolicyAction._(TfArgLiteral('scan'));
+  static const noscan = ZeroTrustGatewayPolicyAction._(TfArgLiteral('noscan'));
+  static const safesearch = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('safesearch'),
+  );
+  static const ytrestricted = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('ytrestricted'),
+  );
+  static const isolate = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('isolate'),
+  );
+  static const noisolate = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('noisolate'),
+  );
+  static const overrideCase = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('override'),
+  );
+  static const l4Override = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('l4_override'),
+  );
+  static const egress = ZeroTrustGatewayPolicyAction._(TfArgLiteral('egress'));
+  static const resolve = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('resolve'),
+  );
+  static const quarantine = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('quarantine'),
+  );
+  static const redirect = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('redirect'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyAction> values = [
+    on,
+    off,
+    allow,
+    block,
+    scan,
+    noscan,
+    safesearch,
+    ytrestricted,
+    isolate,
+    noisolate,
+    overrideCase,
+    l4Override,
+    egress,
+    resolve,
+    quarantine,
+    redirect,
+  ];
 }
 
 /// Zero Trust Gateway Policy enum for `filters`.
-enum ZeroTrustGatewayPolicyFilters implements TerraformEnum {
-  http('http'),
-  dns('dns'),
-  l4('l4'),
-  egress('egress'),
-  dnsResolver('dns_resolver');
+extension type const ZeroTrustGatewayPolicyFilters._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyFilters.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyFilters.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyFilters.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyFilters(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = ZeroTrustGatewayPolicyFilters._(TfArgLiteral('http'));
+  static const dns = ZeroTrustGatewayPolicyFilters._(TfArgLiteral('dns'));
+  static const l4 = ZeroTrustGatewayPolicyFilters._(TfArgLiteral('l4'));
+  static const egress = ZeroTrustGatewayPolicyFilters._(TfArgLiteral('egress'));
+  static const dnsResolver = ZeroTrustGatewayPolicyFilters._(
+    TfArgLiteral('dns_resolver'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyFilters> values = [
+    http,
+    dns,
+    l4,
+    egress,
+    dnsResolver,
+  ];
 }
 
 /// Typed helper for the `expiration` block of
@@ -222,7 +275,7 @@ final class ZeroTrustGatewayPolicyBisoAdminControls {
     this.wmId,
   });
 
-  final TfArg<ZeroTrustGatewayPolicyCopy>? copy;
+  final ZeroTrustGatewayPolicyCopy? copy;
 
   final TfArg<bool>? dcp;
 
@@ -230,21 +283,21 @@ final class ZeroTrustGatewayPolicyBisoAdminControls {
 
   final TfArg<bool>? dk;
 
-  final TfArg<ZeroTrustGatewayPolicyDownload>? download;
+  final ZeroTrustGatewayPolicyDownload? download;
 
   final TfArg<bool>? dp;
 
   final TfArg<bool>? du;
 
-  final TfArg<ZeroTrustGatewayPolicyKeyboard>? keyboard;
+  final ZeroTrustGatewayPolicyKeyboard? keyboard;
 
-  final TfArg<ZeroTrustGatewayPolicyPaste>? paste;
+  final ZeroTrustGatewayPolicyPaste? paste;
 
-  final TfArg<ZeroTrustGatewayPolicyPrinting>? printing;
+  final ZeroTrustGatewayPolicyPrinting? printing;
 
-  final TfArg<ZeroTrustGatewayPolicyUpload>? upload;
+  final ZeroTrustGatewayPolicyUpload? upload;
 
-  final TfArg<ZeroTrustGatewayPolicyBisoAdminControlsVersion>? version;
+  final ZeroTrustGatewayPolicyBisoAdminControlsVersion? version;
 
   final TfArg<String>? wmId;
 
@@ -266,76 +319,164 @@ final class ZeroTrustGatewayPolicyBisoAdminControls {
 }
 
 /// `copy` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyCopy implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled'),
-  remoteOnly('remote_only');
+extension type const ZeroTrustGatewayPolicyCopy._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyCopy.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyCopy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyCopy.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyCopy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustGatewayPolicyCopy._(TfArgLiteral('enabled'));
+  static const disabled = ZeroTrustGatewayPolicyCopy._(
+    TfArgLiteral('disabled'),
+  );
+  static const remoteOnly = ZeroTrustGatewayPolicyCopy._(
+    TfArgLiteral('remote_only'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyCopy> values = [
+    enabled,
+    disabled,
+    remoteOnly,
+  ];
 }
 
 /// `download` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyDownload implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled'),
-  remoteOnly('remote_only');
+extension type const ZeroTrustGatewayPolicyDownload._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyDownload.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyDownload.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyDownload.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyDownload(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustGatewayPolicyDownload._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = ZeroTrustGatewayPolicyDownload._(
+    TfArgLiteral('disabled'),
+  );
+  static const remoteOnly = ZeroTrustGatewayPolicyDownload._(
+    TfArgLiteral('remote_only'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyDownload> values = [
+    enabled,
+    disabled,
+    remoteOnly,
+  ];
 }
 
 /// `keyboard` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyKeyboard implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const ZeroTrustGatewayPolicyKeyboard._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyKeyboard.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyKeyboard.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyKeyboard.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyKeyboard(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustGatewayPolicyKeyboard._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = ZeroTrustGatewayPolicyKeyboard._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyKeyboard> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `paste` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyPaste implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled'),
-  remoteOnly('remote_only');
+extension type const ZeroTrustGatewayPolicyPaste._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyPaste.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyPaste.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyPaste.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyPaste(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustGatewayPolicyPaste._(TfArgLiteral('enabled'));
+  static const disabled = ZeroTrustGatewayPolicyPaste._(
+    TfArgLiteral('disabled'),
+  );
+  static const remoteOnly = ZeroTrustGatewayPolicyPaste._(
+    TfArgLiteral('remote_only'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyPaste> values = [
+    enabled,
+    disabled,
+    remoteOnly,
+  ];
 }
 
 /// `printing` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyPrinting implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const ZeroTrustGatewayPolicyPrinting._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyPrinting.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyPrinting.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyPrinting.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyPrinting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustGatewayPolicyPrinting._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = ZeroTrustGatewayPolicyPrinting._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyPrinting> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `upload` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyUpload implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const ZeroTrustGatewayPolicyUpload._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyUpload.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyUpload.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyUpload.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyUpload(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustGatewayPolicyUpload._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = ZeroTrustGatewayPolicyUpload._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyUpload> values = [enabled, disabled];
 }
 
 /// `version` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyBisoAdminControlsVersion implements TerraformEnum {
-  v1('v1'),
-  v2('v2');
+extension type const ZeroTrustGatewayPolicyBisoAdminControlsVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustGatewayPolicyBisoAdminControlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyBisoAdminControlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyBisoAdminControlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustGatewayPolicyBisoAdminControlsVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1 = ZeroTrustGatewayPolicyBisoAdminControlsVersion._(
+    TfArgLiteral('v1'),
+  );
+  static const v2 = ZeroTrustGatewayPolicyBisoAdminControlsVersion._(
+    TfArgLiteral('v2'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyBisoAdminControlsVersion> values = [
+    v1,
+    v2,
+  ];
 }
 
 /// Typed helper for the `rule_settings.block_page` block of
@@ -533,7 +674,7 @@ final class ZeroTrustGatewayPolicyPayloadLog {
 final class ZeroTrustGatewayPolicyQuarantine {
   const ZeroTrustGatewayPolicyQuarantine({this.fileTypes});
 
-  final List<TfArg<ZeroTrustGatewayPolicyFileTypes>>? fileTypes;
+  final List<ZeroTrustGatewayPolicyFileTypes>? fileTypes;
 
   Map<String, Object?> encode() => {
     if (fileTypes != null)
@@ -542,24 +683,43 @@ final class ZeroTrustGatewayPolicyQuarantine {
 }
 
 /// `file_types` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyFileTypes implements TerraformEnum {
-  exe('exe'),
-  pdf('pdf'),
-  doc('doc'),
-  docm('docm'),
-  docx('docx'),
-  rtf('rtf'),
-  ppt('ppt'),
-  pptx('pptx'),
-  xls('xls'),
-  xlsm('xlsm'),
-  xlsx('xlsx'),
-  zip('zip'),
-  rar('rar');
+extension type const ZeroTrustGatewayPolicyFileTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyFileTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyFileTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyFileTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyFileTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const exe = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('exe'));
+  static const pdf = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('pdf'));
+  static const doc = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('doc'));
+  static const docm = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('docm'));
+  static const docx = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('docx'));
+  static const rtf = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('rtf'));
+  static const ppt = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('ppt'));
+  static const pptx = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('pptx'));
+  static const xls = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('xls'));
+  static const xlsm = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('xlsm'));
+  static const xlsx = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('xlsx'));
+  static const zip = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('zip'));
+  static const rar = ZeroTrustGatewayPolicyFileTypes._(TfArgLiteral('rar'));
+
+  static const List<ZeroTrustGatewayPolicyFileTypes> values = [
+    exe,
+    pdf,
+    doc,
+    docm,
+    docx,
+    rtf,
+    ppt,
+    pptx,
+    xls,
+    xlsm,
+    xlsx,
+    zip,
+    rar,
+  ];
 }
 
 /// Typed helper for the `rule_settings.redirect` block of
@@ -594,7 +754,7 @@ final class ZeroTrustGatewayPolicyResolveDnsInternally {
     this.viewId,
   });
 
-  final TfArg<ZeroTrustGatewayPolicyFallback>? fallback;
+  final ZeroTrustGatewayPolicyFallback? fallback;
 
   final TfArg<String>? viewId;
 
@@ -605,13 +765,20 @@ final class ZeroTrustGatewayPolicyResolveDnsInternally {
 }
 
 /// `fallback` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyFallback implements TerraformEnum {
-  none('none'),
-  publicDns('public_dns');
+extension type const ZeroTrustGatewayPolicyFallback._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayPolicyFallback.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyFallback.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyFallback.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayPolicyFallback(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = ZeroTrustGatewayPolicyFallback._(TfArgLiteral('none'));
+  static const publicDns = ZeroTrustGatewayPolicyFallback._(
+    TfArgLiteral('public_dns'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyFallback> values = [none, publicDns];
 }
 
 /// Typed helper for the `rule_settings.untrusted_cert` block of
@@ -620,20 +787,37 @@ enum ZeroTrustGatewayPolicyFallback implements TerraformEnum {
 final class ZeroTrustGatewayPolicyUntrustedCert {
   const ZeroTrustGatewayPolicyUntrustedCert({this.action});
 
-  final TfArg<ZeroTrustGatewayPolicyUntrustedCertAction>? action;
+  final ZeroTrustGatewayPolicyUntrustedCertAction? action;
 
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum ZeroTrustGatewayPolicyUntrustedCertAction implements TerraformEnum {
-  passThrough('pass_through'),
-  block('block'),
-  error('error');
+extension type const ZeroTrustGatewayPolicyUntrustedCertAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustGatewayPolicyUntrustedCertAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayPolicyUntrustedCertAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayPolicyUntrustedCertAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustGatewayPolicyUntrustedCertAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const passThrough = ZeroTrustGatewayPolicyUntrustedCertAction._(
+    TfArgLiteral('pass_through'),
+  );
+  static const block = ZeroTrustGatewayPolicyUntrustedCertAction._(
+    TfArgLiteral('block'),
+  );
+  static const error = ZeroTrustGatewayPolicyUntrustedCertAction._(
+    TfArgLiteral('error'),
+  );
+
+  static const List<ZeroTrustGatewayPolicyUntrustedCertAction> values = [
+    passThrough,
+    block,
+    error,
+  ];
 }
 
 /// Typed helper for the `schedule` block of
@@ -686,11 +870,11 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
   CloudflareZeroTrustGatewayPolicy(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    required TfArg<ZeroTrustGatewayPolicyAction> action,
+    required ZeroTrustGatewayPolicyAction action,
     TfArg<String>? description,
     TfArg<String>? devicePosture,
     TfArg<bool>? enabled,
-    List<TfArg<ZeroTrustGatewayPolicyFilters>>? filters,
+    List<ZeroTrustGatewayPolicyFilters>? filters,
     TfArg<String>? identity,
     required TfArg<String> name,
     TfArg<num>? precedence,

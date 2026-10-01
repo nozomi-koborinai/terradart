@@ -107,7 +107,7 @@ final class PagesProjectPreview {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<PagesProjectUsageModel>? usageModel;
+  final PagesProjectUsageModel? usageModel;
 
   final TfArg<String>? wranglerConfigHash;
 
@@ -206,14 +206,22 @@ final class PagesProjectPreview {
 }
 
 /// `usage_model` — derived from the provider schema description.
-enum PagesProjectUsageModel implements TerraformEnum {
-  standard('standard'),
-  bundled('bundled'),
-  unbound('unbound');
+extension type const PagesProjectUsageModel._(TfArg<String> _)
+    implements TfArg<String> {
+  PagesProjectUsageModel.variable(String name) : this._(TfArg.variable(name));
+  PagesProjectUsageModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const PagesProjectUsageModel.arg(TfArg<String> arg) : this._(arg);
 
-  const PagesProjectUsageModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = PagesProjectUsageModel._(TfArgLiteral('standard'));
+  static const bundled = PagesProjectUsageModel._(TfArgLiteral('bundled'));
+  static const unbound = PagesProjectUsageModel._(TfArgLiteral('unbound'));
+
+  static const List<PagesProjectUsageModel> values = [
+    standard,
+    bundled,
+    unbound,
+  ];
 }
 
 /// Typed helper for the `deployment_configs.preview.ai_bindings` block of
@@ -281,7 +289,7 @@ final class PagesProjectDurableObjectNamespaces {
 final class PagesProjectEnvVars {
   const PagesProjectEnvVars({required this.type, required this.value});
 
-  final TfArg<PagesProjectEnvVarsType> type;
+  final PagesProjectEnvVarsType type;
 
   final TfArg<String> value;
 
@@ -292,13 +300,21 @@ final class PagesProjectEnvVars {
 }
 
 /// `type` — derived from the provider schema description.
-enum PagesProjectEnvVarsType implements TerraformEnum {
-  plainText('plain_text'),
-  secretText('secret_text');
+extension type const PagesProjectEnvVarsType._(TfArg<String> _)
+    implements TfArg<String> {
+  PagesProjectEnvVarsType.variable(String name) : this._(TfArg.variable(name));
+  PagesProjectEnvVarsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PagesProjectEnvVarsType.arg(TfArg<String> arg) : this._(arg);
 
-  const PagesProjectEnvVarsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plainText = PagesProjectEnvVarsType._(
+    TfArgLiteral('plain_text'),
+  );
+  static const secretText = PagesProjectEnvVarsType._(
+    TfArgLiteral('secret_text'),
+  );
+
+  static const List<PagesProjectEnvVarsType> values = [plainText, secretText];
 }
 
 /// Typed helper for the `deployment_configs.preview.hyperdrive_bindings` block of
@@ -465,7 +481,7 @@ final class PagesProjectProduction {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<PagesProjectUsageModel>? usageModel;
+  final PagesProjectUsageModel? usageModel;
 
   final TfArg<String>? wranglerConfigHash;
 
@@ -569,7 +585,7 @@ final class PagesProjectProduction {
 final class PagesProjectSource {
   const PagesProjectSource({required this.type, required this.config});
 
-  final TfArg<PagesProjectType> type;
+  final PagesProjectType type;
 
   final PagesProjectConfig config;
 
@@ -580,13 +596,17 @@ final class PagesProjectSource {
 }
 
 /// `type` — derived from the provider schema description.
-enum PagesProjectType implements TerraformEnum {
-  github('github'),
-  gitlab('gitlab');
+extension type const PagesProjectType._(TfArg<String> _)
+    implements TfArg<String> {
+  PagesProjectType.variable(String name) : this._(TfArg.variable(name));
+  PagesProjectType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PagesProjectType.arg(TfArg<String> arg) : this._(arg);
 
-  const PagesProjectType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const github = PagesProjectType._(TfArgLiteral('github'));
+  static const gitlab = PagesProjectType._(TfArgLiteral('gitlab'));
+
+  static const List<PagesProjectType> values = [github, gitlab];
 }
 
 /// Typed helper for the `source.config` block of
@@ -625,7 +645,7 @@ final class PagesProjectConfig {
 
   final TfArg<List<String>>? previewBranchIncludes;
 
-  final TfArg<PagesProjectPreviewDeploymentSetting>? previewDeploymentSetting;
+  final PagesProjectPreviewDeploymentSetting? previewDeploymentSetting;
 
   final TfArg<String>? productionBranch;
 
@@ -653,14 +673,30 @@ final class PagesProjectConfig {
 }
 
 /// `preview_deployment_setting` — derived from the provider schema description.
-enum PagesProjectPreviewDeploymentSetting implements TerraformEnum {
-  all('all'),
-  none('none'),
-  custom('custom');
+extension type const PagesProjectPreviewDeploymentSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  PagesProjectPreviewDeploymentSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  PagesProjectPreviewDeploymentSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const PagesProjectPreviewDeploymentSetting.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PagesProjectPreviewDeploymentSetting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = PagesProjectPreviewDeploymentSetting._(
+    TfArgLiteral('all'),
+  );
+  static const none = PagesProjectPreviewDeploymentSetting._(
+    TfArgLiteral('none'),
+  );
+  static const custom = PagesProjectPreviewDeploymentSetting._(
+    TfArgLiteral('custom'),
+  );
+
+  static const List<PagesProjectPreviewDeploymentSetting> values = [
+    all,
+    none,
+    custom,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_pages_project`.

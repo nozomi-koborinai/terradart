@@ -166,19 +166,13 @@ final class ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionCon
     this.kmsKeyArn,
   });
 
-  final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy
-  >?
+  final ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy?
   encryptionConflictResolutionStrategy;
 
-  final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationEncryptionScope
-  >?
+  final ObservabilityadminCentralizationRuleForOrganizationEncryptionScope?
   encryptionScope;
 
-  final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy
-  >
+  final ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy
   encryptionStrategy;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
@@ -193,42 +187,90 @@ final class ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionCon
 }
 
 /// `encryption_conflict_resolution_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy
-    implements TerraformEnum {
-  allow('ALLOW'),
-  skip('SKIP');
+extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allow =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy._(
+        TfArgLiteral('ALLOW'),
+      );
+  static const skip =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy._(
+        TfArgLiteral('SKIP'),
+      );
+
+  static const List<
+    ObservabilityadminCentralizationRuleForOrganizationEncryptionConflictResolutionStrategy
+  >
+  values = [allow, skip];
 }
 
 /// `encryption_scope` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationEncryptionScope
-    implements TerraformEnum {
-  encryptedSourceOnly('ENCRYPTED_SOURCE_ONLY'),
-  newDestinationLogGroups('NEW_DESTINATION_LOG_GROUPS');
+extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptionScope._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminCentralizationRuleForOrganizationEncryptionScope.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ObservabilityadminCentralizationRuleForOrganizationEncryptionScope.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptionScope.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ObservabilityadminCentralizationRuleForOrganizationEncryptionScope(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const encryptedSourceOnly =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptionScope._(
+        TfArgLiteral('ENCRYPTED_SOURCE_ONLY'),
+      );
+  static const newDestinationLogGroups =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptionScope._(
+        TfArgLiteral('NEW_DESTINATION_LOG_GROUPS'),
+      );
+
+  static const List<
+    ObservabilityadminCentralizationRuleForOrganizationEncryptionScope
+  >
+  values = [encryptedSourceOnly, newDestinationLogGroups];
 }
 
 /// `encryption_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy
-    implements TerraformEnum {
-  customerManaged('CUSTOMER_MANAGED'),
-  awsOwned('AWS_OWNED');
+extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const customerManaged =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy._(
+        TfArgLiteral('CUSTOMER_MANAGED'),
+      );
+  static const awsOwned =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy._(
+        TfArgLiteral('AWS_OWNED'),
+      );
+
+  static const List<
+    ObservabilityadminCentralizationRuleForOrganizationEncryptionStrategy
+  >
+  values = [customerManaged, awsOwned];
 }
 
 /// Typed helper for the `rule.destination.destination_logs_configuration.tag_propagation_configuration` block of
@@ -242,9 +284,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationTagPropagationCon
 
   final TfArg<String> destinationRoleArn;
 
-  final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy
-  >?
+  final ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy?
   tagConflictResolutionStrategy;
 
   Map<String, Object?> encode() => {
@@ -255,17 +295,36 @@ final class ObservabilityadminCentralizationRuleForOrganizationTagPropagationCon
 }
 
 /// `tag_conflict_resolution_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy
-    implements TerraformEnum {
-  inSync('IN_SYNC'),
-  addOnly('ADD_ONLY'),
-  updateSync('UPDATE_SYNC');
+extension type const ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const inSync =
+      ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy._(
+        TfArgLiteral('IN_SYNC'),
+      );
+  static const addOnly =
+      ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy._(
+        TfArgLiteral('ADD_ONLY'),
+      );
+  static const updateSync =
+      ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy._(
+        TfArgLiteral('UPDATE_SYNC'),
+      );
+
+  static const List<
+    ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy
+  >
+  values = [inSync, addOnly, updateSync];
 }
 
 /// Typed helper for the `rule.destination.destination_metrics_configuration` block of
@@ -353,9 +412,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfigu
 
   final TfArg<String>? dataSourceSelectionCriteria;
 
-  final TfArg<
-    ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy
-  >
+  final ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy
   encryptedLogGroupStrategy;
 
   final TfArg<String>? logGroupSelectionCriteria;
@@ -368,16 +425,32 @@ final class ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfigu
 }
 
 /// `encrypted_log_group_strategy` — derived from the provider schema description.
-enum ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy
-    implements TerraformEnum {
-  allow('ALLOW'),
-  skip('SKIP');
+extension type const ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allow =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy._(
+        TfArgLiteral('ALLOW'),
+      );
+  static const skip =
+      ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy._(
+        TfArgLiteral('SKIP'),
+      );
+
+  static const List<
+    ObservabilityadminCentralizationRuleForOrganizationEncryptedLogGroupStrategy
+  >
+  values = [allow, skip];
 }
 
 /// Typed helper for the `rule.source.source_metrics_configuration` block of

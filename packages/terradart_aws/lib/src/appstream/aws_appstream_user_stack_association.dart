@@ -7,15 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAppstreamUserStackAssociationSensitive = <String>{};
 
 /// Appstream User Stack Association Authentication enum for `authentication_type`.
-enum AppstreamUserStackAssociationAuthenticationType implements TerraformEnum {
-  api('API'),
-  saml('SAML'),
-  userpool('USERPOOL'),
-  awsAd('AWS_AD');
+extension type const AppstreamUserStackAssociationAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppstreamUserStackAssociationAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppstreamUserStackAssociationAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamUserStackAssociationAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppstreamUserStackAssociationAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const api = AppstreamUserStackAssociationAuthenticationType._(
+    TfArgLiteral('API'),
+  );
+  static const saml = AppstreamUserStackAssociationAuthenticationType._(
+    TfArgLiteral('SAML'),
+  );
+  static const userpool = AppstreamUserStackAssociationAuthenticationType._(
+    TfArgLiteral('USERPOOL'),
+  );
+  static const awsAd = AppstreamUserStackAssociationAuthenticationType._(
+    TfArgLiteral('AWS_AD'),
+  );
+
+  static const List<AppstreamUserStackAssociationAuthenticationType> values = [
+    api,
+    saml,
+    userpool,
+    awsAd,
+  ];
 }
 
 /// Factory wrapper for `aws_appstream_user_stack_association`.
@@ -24,8 +44,7 @@ final class AwsAppstreamUserStackAssociation extends Resource {
 
   AwsAppstreamUserStackAssociation(
     super.localName, {
-    required TfArg<AppstreamUserStackAssociationAuthenticationType>
-    authenticationType,
+    required AppstreamUserStackAssociationAuthenticationType authenticationType,
     TfArg<String>? region,
     TfArg<bool>? sendEmailNotification,
     required TfArg<String> stackName,

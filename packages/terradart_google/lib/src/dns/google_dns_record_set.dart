@@ -10,40 +10,80 @@ import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
 const Set<String> _googleDnsRecordSetSensitive = <String>{};
 
 /// DNS resource record type for `google_dns_record_set.type`.
-enum DnsRecordSetType implements TerraformEnum {
-  a('A'),
-  aaaa('AAAA'),
-  cname('CNAME'),
-  mx('MX'),
-  txt('TXT'),
-  ns('NS'),
-  soa('SOA'),
-  ptr('PTR'),
-  srv('SRV'),
-  caa('CAA');
+extension type const DnsRecordSetType._(TfArg<String> _)
+    implements TfArg<String> {
+  DnsRecordSetType.variable(String name) : this._(TfArg.variable(name));
+  DnsRecordSetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsRecordSetType.arg(TfArg<String> arg) : this._(arg);
 
-  const DnsRecordSetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a = DnsRecordSetType._(TfArgLiteral('A'));
+  static const aaaa = DnsRecordSetType._(TfArgLiteral('AAAA'));
+  static const cname = DnsRecordSetType._(TfArgLiteral('CNAME'));
+  static const mx = DnsRecordSetType._(TfArgLiteral('MX'));
+  static const txt = DnsRecordSetType._(TfArgLiteral('TXT'));
+  static const ns = DnsRecordSetType._(TfArgLiteral('NS'));
+  static const soa = DnsRecordSetType._(TfArgLiteral('SOA'));
+  static const ptr = DnsRecordSetType._(TfArgLiteral('PTR'));
+  static const srv = DnsRecordSetType._(TfArgLiteral('SRV'));
+  static const caa = DnsRecordSetType._(TfArgLiteral('CAA'));
+
+  static const List<DnsRecordSetType> values = [
+    a,
+    aaaa,
+    cname,
+    mx,
+    txt,
+    ns,
+    soa,
+    ptr,
+    srv,
+    caa,
+  ];
 }
 
-enum DnsRecordSetRoutingPolicyIlbIpProtocol implements TerraformEnum {
-  tcp('tcp'),
-  udp('udp');
+extension type const DnsRecordSetRoutingPolicyIlbIpProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  DnsRecordSetRoutingPolicyIlbIpProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  DnsRecordSetRoutingPolicyIlbIpProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsRecordSetRoutingPolicyIlbIpProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DnsRecordSetRoutingPolicyIlbIpProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = DnsRecordSetRoutingPolicyIlbIpProtocol._(
+    TfArgLiteral('tcp'),
+  );
+  static const udp = DnsRecordSetRoutingPolicyIlbIpProtocol._(
+    TfArgLiteral('udp'),
+  );
+
+  static const List<DnsRecordSetRoutingPolicyIlbIpProtocol> values = [tcp, udp];
 }
 
-enum DnsRecordSetRoutingPolicyIlbType implements TerraformEnum {
-  regionalL4ilb('regionalL4ilb'),
-  regionalL7ilb('regionalL7ilb'),
-  globalL7ilb('globalL7ilb');
+extension type const DnsRecordSetRoutingPolicyIlbType._(TfArg<String> _)
+    implements TfArg<String> {
+  DnsRecordSetRoutingPolicyIlbType.variable(String name)
+    : this._(TfArg.variable(name));
+  DnsRecordSetRoutingPolicyIlbType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsRecordSetRoutingPolicyIlbType.arg(TfArg<String> arg) : this._(arg);
 
-  const DnsRecordSetRoutingPolicyIlbType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regionalL4ilb = DnsRecordSetRoutingPolicyIlbType._(
+    TfArgLiteral('regionalL4ilb'),
+  );
+  static const regionalL7ilb = DnsRecordSetRoutingPolicyIlbType._(
+    TfArgLiteral('regionalL7ilb'),
+  );
+  static const globalL7ilb = DnsRecordSetRoutingPolicyIlbType._(
+    TfArgLiteral('globalL7ilb'),
+  );
+
+  static const List<DnsRecordSetRoutingPolicyIlbType> values = [
+    regionalL4ilb,
+    regionalL7ilb,
+    globalL7ilb,
+  ];
 }
 
 @immutable
@@ -68,9 +108,9 @@ class DnsRecordSetRoutingPolicyInternalLoadBalancer {
 
   Map<String, Object?> toArgMap() => {
     'ip_address': ipAddress.toTfJson(),
-    if (ipProtocol != null) 'ip_protocol': ipProtocol!.terraformValue,
+    if (ipProtocol != null) 'ip_protocol': ipProtocol!.toTfJson(),
     if (loadBalancerType != null)
-      'load_balancer_type': loadBalancerType!.terraformValue,
+      'load_balancer_type': loadBalancerType!.toTfJson(),
     if (networkUrl != null) 'network_url': networkUrl!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (project != null) 'project': project!.toTfJson(),
@@ -171,7 +211,7 @@ final class GoogleDnsRecordSet extends Resource {
     TfArg<String>? project,
     TfArg<List<String>>? rrdatas,
     TfArg<num>? ttl,
-    required TfArg<DnsRecordSetType> type,
+    required DnsRecordSetType type,
     DnsRecordSetRoutingPolicy? routingPolicy,
     super.lifecycle,
     super.dependsOn,

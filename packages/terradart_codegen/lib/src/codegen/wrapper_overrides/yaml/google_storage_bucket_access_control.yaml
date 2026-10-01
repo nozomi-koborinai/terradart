@@ -20,7 +20,7 @@ curatedDoc: |-
   ///   'legacy_reader',
   ///   bucket: legacy.ref,
   ///   entity: .literal('allAuthenticatedUsers'),
-  ///   role: TfArg.literal(StorageBucketAccessControlRole.reader),
+  ///   role: StorageBucketAccessControlRole.reader,
   /// );
   /// ```
 

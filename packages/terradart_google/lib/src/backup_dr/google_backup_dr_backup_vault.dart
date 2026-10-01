@@ -10,29 +10,71 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleBackupDrBackupVaultSensitive = <String>{};
 
 /// Backup Dr Backup Vault Access enum for `access_restriction`.
-enum BackupDrBackupVaultAccessRestriction implements TerraformEnum {
-  accessRestrictionUnspecified('ACCESS_RESTRICTION_UNSPECIFIED'),
-  withinProject('WITHIN_PROJECT'),
-  withinOrganization('WITHIN_ORGANIZATION'),
-  unrestricted('UNRESTRICTED'),
-  withinOrgButUnrestrictedForBa('WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA');
+extension type const BackupDrBackupVaultAccessRestriction._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrBackupVaultAccessRestriction.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrBackupVaultAccessRestriction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupVaultAccessRestriction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrBackupVaultAccessRestriction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accessRestrictionUnspecified =
+      BackupDrBackupVaultAccessRestriction._(
+        TfArgLiteral('ACCESS_RESTRICTION_UNSPECIFIED'),
+      );
+  static const withinProject = BackupDrBackupVaultAccessRestriction._(
+    TfArgLiteral('WITHIN_PROJECT'),
+  );
+  static const withinOrganization = BackupDrBackupVaultAccessRestriction._(
+    TfArgLiteral('WITHIN_ORGANIZATION'),
+  );
+  static const unrestricted = BackupDrBackupVaultAccessRestriction._(
+    TfArgLiteral('UNRESTRICTED'),
+  );
+  static const withinOrgButUnrestrictedForBa =
+      BackupDrBackupVaultAccessRestriction._(
+        TfArgLiteral('WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA'),
+      );
+
+  static const List<BackupDrBackupVaultAccessRestriction> values = [
+    accessRestrictionUnspecified,
+    withinProject,
+    withinOrganization,
+    unrestricted,
+    withinOrgButUnrestrictedForBa,
+  ];
 }
 
 /// Backup Dr Backup Vault Backup Retention enum for `backup_retention_inheritance`.
-enum BackupDrBackupVaultBackupRetentionInheritance implements TerraformEnum {
-  backupRetentionInheritanceUnspecified(
-    'BACKUP_RETENTION_INHERITANCE_UNSPECIFIED',
-  ),
-  inheritVaultRetention('INHERIT_VAULT_RETENTION'),
-  matchBackupExpireTime('MATCH_BACKUP_EXPIRE_TIME');
+extension type const BackupDrBackupVaultBackupRetentionInheritance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrBackupVaultBackupRetentionInheritance.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrBackupVaultBackupRetentionInheritance.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupVaultBackupRetentionInheritance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrBackupVaultBackupRetentionInheritance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backupRetentionInheritanceUnspecified =
+      BackupDrBackupVaultBackupRetentionInheritance._(
+        TfArgLiteral('BACKUP_RETENTION_INHERITANCE_UNSPECIFIED'),
+      );
+  static const inheritVaultRetention =
+      BackupDrBackupVaultBackupRetentionInheritance._(
+        TfArgLiteral('INHERIT_VAULT_RETENTION'),
+      );
+  static const matchBackupExpireTime =
+      BackupDrBackupVaultBackupRetentionInheritance._(
+        TfArgLiteral('MATCH_BACKUP_EXPIRE_TIME'),
+      );
+
+  static const List<BackupDrBackupVaultBackupRetentionInheritance> values = [
+    backupRetentionInheritanceUnspecified,
+    inheritVaultRetention,
+    matchBackupExpireTime,
+  ];
 }
 
 /// Typed helper for the `encryption_config` block of
@@ -85,9 +127,8 @@ final class GoogleBackupDrBackupVault extends Resource {
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
-    TfArg<BackupDrBackupVaultAccessRestriction>? accessRestriction,
-    TfArg<BackupDrBackupVaultBackupRetentionInheritance>?
-    backupRetentionInheritance,
+    BackupDrBackupVaultAccessRestriction? accessRestriction,
+    BackupDrBackupVaultBackupRetentionInheritance? backupRetentionInheritance,
     BackupDrBackupVaultEncryptionConfig? encryptionConfig,
     TfArg<String>? effectiveTime,
     TfArg<bool>? forceUpdate,

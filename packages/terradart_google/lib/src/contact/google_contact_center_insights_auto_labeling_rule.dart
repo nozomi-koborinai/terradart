@@ -9,14 +9,27 @@ const Set<String> _googleContactCenterInsightsAutoLabelingRuleSensitive =
     <String>{};
 
 /// Contact Center Insights Auto Labeling Rule Label Key enum for `label_key_type`.
-enum ContactCenterInsightsAutoLabelingRuleLabelKeyType
-    implements TerraformEnum {
-  labelKeyTypeUnspecified('LABEL_KEY_TYPE_UNSPECIFIED'),
-  labelKeyTypeCustom('LABEL_KEY_TYPE_CUSTOM');
+extension type const ContactCenterInsightsAutoLabelingRuleLabelKeyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContactCenterInsightsAutoLabelingRuleLabelKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContactCenterInsightsAutoLabelingRuleLabelKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContactCenterInsightsAutoLabelingRuleLabelKeyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ContactCenterInsightsAutoLabelingRuleLabelKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const labelKeyTypeUnspecified =
+      ContactCenterInsightsAutoLabelingRuleLabelKeyType._(
+        TfArgLiteral('LABEL_KEY_TYPE_UNSPECIFIED'),
+      );
+  static const labelKeyTypeCustom =
+      ContactCenterInsightsAutoLabelingRuleLabelKeyType._(
+        TfArgLiteral('LABEL_KEY_TYPE_CUSTOM'),
+      );
+
+  static const List<ContactCenterInsightsAutoLabelingRuleLabelKeyType> values =
+      [labelKeyTypeUnspecified, labelKeyTypeCustom];
 }
 
 /// Typed helper for the `conditions` block of
@@ -60,7 +73,7 @@ final class GoogleContactCenterInsightsAutoLabelingRule extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<String>? labelKey,
-    TfArg<ContactCenterInsightsAutoLabelingRuleLabelKeyType>? labelKeyType,
+    ContactCenterInsightsAutoLabelingRuleLabelKeyType? labelKeyType,
     List<ContactCenterInsightsAutoLabelingRuleConditions>? conditions,
     TfArg<bool>? active,
     TfArg<String>? project,

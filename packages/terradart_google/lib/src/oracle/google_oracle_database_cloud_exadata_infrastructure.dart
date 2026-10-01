@@ -9,17 +9,33 @@ const Set<String> _googleOracleDatabaseCloudExadataInfrastructureSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for Cloud Exadata Infrastructure.
-enum OracleDatabaseCloudExadataInfrastructureDeletionPolicy
-    implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseCloudExadataInfrastructureDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructureDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructureDeletionPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructureDeletionPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const OracleDatabaseCloudExadataInfrastructureDeletionPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const delete =
+      OracleDatabaseCloudExadataInfrastructureDeletionPolicy._(
+        TfArgLiteral('DELETE'),
+      );
+  static const prevent =
+      OracleDatabaseCloudExadataInfrastructureDeletionPolicy._(
+        TfArgLiteral('PREVENT'),
+      );
+  static const abandon =
+      OracleDatabaseCloudExadataInfrastructureDeletionPolicy._(
+        TfArgLiteral('ABANDON'),
+      );
+
+  static const List<OracleDatabaseCloudExadataInfrastructureDeletionPolicy>
+  values = [delete, prevent, abandon];
 }
 
 /// Typed helper for the `properties` block of
@@ -141,8 +157,7 @@ final class GoogleOracleDatabaseCloudExadataInfrastructure extends Resource {
     TfArg<String>? displayName,
     OracleDatabaseCloudExadataInfrastructureProperties? properties,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseCloudExadataInfrastructureDeletionPolicy>?
-    deletionPolicy,
+    OracleDatabaseCloudExadataInfrastructureDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

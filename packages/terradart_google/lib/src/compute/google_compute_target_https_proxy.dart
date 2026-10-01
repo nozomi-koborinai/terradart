@@ -10,19 +10,21 @@ import '../compute/google_compute_url_map.dart' show GoogleComputeUrlMap;
 const Set<String> _googleComputeTargetHttpsProxySensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
-// directly; TfArg detects `.terraformValue` getter.
+// directly; TfArg detects `.toTfJson()` getter.
 
 /// QUIC negotiation policy for the HTTPS target proxy. When set to
 /// [none] (the default), Google manages whether QUIC is offered to
 /// clients; [enable] always offers QUIC; [disable] never offers it.
-enum QuicOverride implements TerraformEnum {
-  none('NONE'),
-  enable('ENABLE'),
-  disable('DISABLE');
+extension type const QuicOverride._(TfArg<String> _) implements TfArg<String> {
+  QuicOverride.variable(String name) : this._(TfArg.variable(name));
+  QuicOverride.expression(String template) : this._(TfArg.expression(template));
+  const QuicOverride.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = QuicOverride._(TfArgLiteral('NONE'));
+  static const enable = QuicOverride._(TfArgLiteral('ENABLE'));
+  static const disable = QuicOverride._(TfArgLiteral('DISABLE'));
+
+  static const List<QuicOverride> values = [none, enable, disable];
 }
 
 /// TLS 1.3 0-RTT ("Early Data") acceptance policy. Early Data lets a
@@ -37,15 +39,22 @@ enum QuicOverride implements TerraformEnum {
 /// - [unrestricted]: accept Early Data on any request. The caller is
 ///   responsible for handling replay risk.
 /// - [disabled]: never accept Early Data (0-RTT off).
-enum TlsEarlyData implements TerraformEnum {
-  strict('STRICT'),
-  permissive('PERMISSIVE'),
-  unrestricted('UNRESTRICTED'),
-  disabled('DISABLED');
+extension type const TlsEarlyData._(TfArg<String> _) implements TfArg<String> {
+  TlsEarlyData.variable(String name) : this._(TfArg.variable(name));
+  TlsEarlyData.expression(String template) : this._(TfArg.expression(template));
+  const TlsEarlyData.arg(TfArg<String> arg) : this._(arg);
 
-  const TlsEarlyData(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const strict = TlsEarlyData._(TfArgLiteral('STRICT'));
+  static const permissive = TlsEarlyData._(TfArgLiteral('PERMISSIVE'));
+  static const unrestricted = TlsEarlyData._(TfArgLiteral('UNRESTRICTED'));
+  static const disabled = TlsEarlyData._(TfArgLiteral('DISABLED'));
+
+  static const List<TlsEarlyData> values = [
+    strict,
+    permissive,
+    unrestricted,
+    disabled,
+  ];
 }
 
 /// At most one of `certificate_manager_certificates`, `ssl_certificates` on `google_compute_target_https_proxy`: the provider rejects
@@ -171,7 +180,7 @@ final class ComputeTargetHttpsProxySslCertificates
 ///     TfArg.literal(const ['projects/my-proj/global/sslCertificates/my-cert']),
 ///   ),
 ///   sslPolicy: sslPolicy.ref,
-///   quicOverride: TfArg.literal(QuicOverride.enable),
+///   quicOverride: QuicOverride.enable,
 /// );
 /// ```
 ///
@@ -190,8 +199,8 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
     TfArg<String>? certificateMap,
     RefTo<GoogleComputeSslPolicy>? sslPolicy,
     TfArg<String>? serverTlsPolicy,
-    TfArg<QuicOverride>? quicOverride,
-    TfArg<TlsEarlyData>? tlsEarlyData,
+    QuicOverride? quicOverride,
+    TlsEarlyData? tlsEarlyData,
     TfArg<bool>? proxyBind,
     TfArg<num>? httpKeepAliveTimeoutSec,
     TfArg<String>? description,

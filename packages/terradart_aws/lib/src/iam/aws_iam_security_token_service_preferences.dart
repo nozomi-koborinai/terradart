@@ -7,16 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIamSecurityTokenServicePreferencesSensitive = <String>{};
 
 /// Iam Security Token Service Preferences Global Endpoint Token enum for `global_endpoint_token_version`.
-enum IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion
-    implements TerraformEnum {
-  v1token('v1Token'),
-  v2token('v2Token');
+extension type const IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const v1token =
+      IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion._(
+        TfArgLiteral('v1Token'),
+      );
+  static const v2token =
+      IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion._(
+        TfArgLiteral('v2Token'),
+      );
+
+  static const List<
+    IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion
+  >
+  values = [v1token, v2token];
 }
 
 /// Factory wrapper for `aws_iam_security_token_service_preferences`.
@@ -25,7 +41,7 @@ final class AwsIamSecurityTokenServicePreferences extends Resource {
 
   AwsIamSecurityTokenServicePreferences(
     super.localName, {
-    required TfArg<IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion>
+    required IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion
     globalEndpointTokenVersion,
     super.lifecycle,
     super.dependsOn,

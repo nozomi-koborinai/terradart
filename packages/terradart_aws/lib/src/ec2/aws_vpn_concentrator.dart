@@ -7,12 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpnConcentratorSensitive = <String>{};
 
 /// Vpn Concentrator enum for `type`.
-enum VpnConcentratorType implements TerraformEnum {
-  ipsec1('ipsec.1');
+extension type const VpnConcentratorType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConcentratorType.variable(String name) : this._(TfArg.variable(name));
+  VpnConcentratorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConcentratorType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConcentratorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipsec1 = VpnConcentratorType._(TfArgLiteral('ipsec.1'));
+
+  static const List<VpnConcentratorType> values = [ipsec1];
 }
 
 /// Factory wrapper for `aws_vpn_concentrator`.
@@ -24,7 +28,7 @@ final class AwsVpnConcentrator extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayId,
-    required TfArg<VpnConcentratorType> type,
+    required VpnConcentratorType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

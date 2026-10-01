@@ -12,54 +12,121 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleDataprocMetastoreServiceSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Dataproc Metastore services.
-enum DataprocMetastoreServiceDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const DataprocMetastoreServiceDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreServiceDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = DataprocMetastoreServiceDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = DataprocMetastoreServiceDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = DataprocMetastoreServiceDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<DataprocMetastoreServiceDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Service tier for `google_dataproc_metastore_service.tier`.
-enum DataprocMetastoreServiceTier implements TerraformEnum {
-  developer('DEVELOPER'),
-  enterprise('ENTERPRISE');
+extension type const DataprocMetastoreServiceTier._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceTier.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceTier.arg(TfArg<String> arg) : this._(arg);
 
-  const DataprocMetastoreServiceTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const developer = DataprocMetastoreServiceTier._(
+    TfArgLiteral('DEVELOPER'),
+  );
+  static const enterprise = DataprocMetastoreServiceTier._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+
+  static const List<DataprocMetastoreServiceTier> values = [
+    developer,
+    enterprise,
+  ];
 }
 
 /// Database engine for `google_dataproc_metastore_service.database_type`.
-enum DataprocMetastoreServiceDatabaseType implements TerraformEnum {
-  mysql('MYSQL'),
-  spanner('SPANNER');
+extension type const DataprocMetastoreServiceDatabaseType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceDatabaseType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceDatabaseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceDatabaseType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreServiceDatabaseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mysql = DataprocMetastoreServiceDatabaseType._(
+    TfArgLiteral('MYSQL'),
+  );
+  static const spanner = DataprocMetastoreServiceDatabaseType._(
+    TfArgLiteral('SPANNER'),
+  );
+
+  static const List<DataprocMetastoreServiceDatabaseType> values = [
+    mysql,
+    spanner,
+  ];
 }
 
 /// Release channel for `google_dataproc_metastore_service.release_channel`.
-enum DataprocMetastoreServiceReleaseChannel implements TerraformEnum {
-  canary('CANARY'),
-  stable('STABLE');
+extension type const DataprocMetastoreServiceReleaseChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceReleaseChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceReleaseChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceReleaseChannel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreServiceReleaseChannel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const canary = DataprocMetastoreServiceReleaseChannel._(
+    TfArgLiteral('CANARY'),
+  );
+  static const stable = DataprocMetastoreServiceReleaseChannel._(
+    TfArgLiteral('STABLE'),
+  );
+
+  static const List<DataprocMetastoreServiceReleaseChannel> values = [
+    canary,
+    stable,
+  ];
 }
 
 /// Endpoint protocol for `hive_metastore_config.endpoint_protocol`.
-enum DataprocMetastoreServiceEndpointProtocol implements TerraformEnum {
-  thrift('THRIFT'),
-  grpc('GRPC');
+extension type const DataprocMetastoreServiceEndpointProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceEndpointProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceEndpointProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceEndpointProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreServiceEndpointProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const thrift = DataprocMetastoreServiceEndpointProtocol._(
+    TfArgLiteral('THRIFT'),
+  );
+  static const grpc = DataprocMetastoreServiceEndpointProtocol._(
+    TfArgLiteral('GRPC'),
+  );
+
+  static const List<DataprocMetastoreServiceEndpointProtocol> values = [
+    thrift,
+    grpc,
+  ];
 }
 
 /// At most one of `tier`, `scaling_config` on `google_dataproc_metastore_service`: the provider rejects
@@ -72,7 +139,7 @@ sealed class DataprocMetastoreServiceCapacity {
 
   /// Sets `tier`.
   const factory DataprocMetastoreServiceCapacity.tier(
-    TfArg<DataprocMetastoreServiceTier> tier,
+    DataprocMetastoreServiceTier tier,
   ) = DataprocMetastoreServiceCapacityTier;
 
   /// Sets `scaling_config`.
@@ -95,7 +162,7 @@ final class DataprocMetastoreServiceCapacityTier
     extends DataprocMetastoreServiceCapacity {
   const DataprocMetastoreServiceCapacityTier(this.tier);
 
-  final TfArg<DataprocMetastoreServiceTier> tier;
+  final DataprocMetastoreServiceTier tier;
 
   @override
   String get blockKey => 'tier';
@@ -153,7 +220,7 @@ final class DataprocMetastoreServiceHiveMetastoreConfig {
 
   final TfArg<Map<String, String>>? configOverrides;
 
-  final TfArg<DataprocMetastoreServiceEndpointProtocol>? endpointProtocol;
+  final DataprocMetastoreServiceEndpointProtocol? endpointProtocol;
 
   final TfArg<String> version;
 
@@ -237,7 +304,7 @@ final class DataprocMetastoreServiceMaintenanceWindow {
     required this.hourOfDay,
   });
 
-  final TfArg<DataprocMetastoreServiceDayOfWeek> dayOfWeek;
+  final DataprocMetastoreServiceDayOfWeek dayOfWeek;
 
   final TfArg<num> hourOfDay;
 
@@ -248,18 +315,45 @@ final class DataprocMetastoreServiceMaintenanceWindow {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum DataprocMetastoreServiceDayOfWeek implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const DataprocMetastoreServiceDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const DataprocMetastoreServiceDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = DataprocMetastoreServiceDayOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<DataprocMetastoreServiceDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `metadata_integration` block of
@@ -323,7 +417,7 @@ sealed class DataprocMetastoreServiceScalingConfig {
 
   /// Sets `instance_size`.
   const factory DataprocMetastoreServiceScalingConfig.instanceSize(
-    TfArg<DataprocMetastoreServiceInstanceSize> instanceSize,
+    DataprocMetastoreServiceInstanceSize instanceSize,
   ) = DataprocMetastoreServiceScalingConfigInstanceSize;
 
   /// Sets `scaling_factor`.
@@ -347,7 +441,7 @@ final class DataprocMetastoreServiceScalingConfigInstanceSize
     extends DataprocMetastoreServiceScalingConfig {
   const DataprocMetastoreServiceScalingConfigInstanceSize(this.instanceSize);
 
-  final TfArg<DataprocMetastoreServiceInstanceSize> instanceSize;
+  final DataprocMetastoreServiceInstanceSize instanceSize;
 
   @override
   String get blockKey => 'instance_size';
@@ -389,16 +483,38 @@ final class DataprocMetastoreServiceScalingConfigAutoscalingConfig
 }
 
 /// `instance_size` — derived from the provider schema description.
-enum DataprocMetastoreServiceInstanceSize implements TerraformEnum {
-  extraSmall('EXTRA_SMALL'),
-  small('SMALL'),
-  medium('MEDIUM'),
-  large('LARGE'),
-  extraLarge('EXTRA_LARGE');
+extension type const DataprocMetastoreServiceInstanceSize._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceInstanceSize.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceInstanceSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceInstanceSize.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreServiceInstanceSize(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const extraSmall = DataprocMetastoreServiceInstanceSize._(
+    TfArgLiteral('EXTRA_SMALL'),
+  );
+  static const small = DataprocMetastoreServiceInstanceSize._(
+    TfArgLiteral('SMALL'),
+  );
+  static const medium = DataprocMetastoreServiceInstanceSize._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const large = DataprocMetastoreServiceInstanceSize._(
+    TfArgLiteral('LARGE'),
+  );
+  static const extraLarge = DataprocMetastoreServiceInstanceSize._(
+    TfArgLiteral('EXTRA_LARGE'),
+  );
+
+  static const List<DataprocMetastoreServiceInstanceSize> values = [
+    extraSmall,
+    small,
+    medium,
+    large,
+    extraLarge,
+  ];
 }
 
 /// Typed helper for the `scaling_config.autoscaling_config` block of
@@ -472,19 +588,26 @@ final class DataprocMetastoreServiceScheduledBackup {
 final class DataprocMetastoreServiceTelemetryConfig {
   const DataprocMetastoreServiceTelemetryConfig({this.logFormat});
 
-  final TfArg<DataprocMetastoreServiceLogFormat>? logFormat;
+  final DataprocMetastoreServiceLogFormat? logFormat;
 
   Map<String, Object?> encode() => {'log_format': ?logFormat?.toTfJson()};
 }
 
 /// `log_format` — derived from the provider schema description.
-enum DataprocMetastoreServiceLogFormat implements TerraformEnum {
-  legacy('LEGACY'),
-  json('JSON');
+extension type const DataprocMetastoreServiceLogFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreServiceLogFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreServiceLogFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreServiceLogFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const DataprocMetastoreServiceLogFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const legacy = DataprocMetastoreServiceLogFormat._(
+    TfArgLiteral('LEGACY'),
+  );
+  static const json = DataprocMetastoreServiceLogFormat._(TfArgLiteral('JSON'));
+
+  static const List<DataprocMetastoreServiceLogFormat> values = [legacy, json];
 }
 
 /// Factory wrapper for `google_dataproc_metastore_service`.
@@ -504,14 +627,14 @@ final class GoogleDataprocMetastoreService extends Resource {
     required TfArg<String> serviceId,
     TfArg<String>? location,
     DataprocMetastoreServiceCapacity? capacity,
-    TfArg<DataprocMetastoreServiceDatabaseType>? databaseType,
-    TfArg<DataprocMetastoreServiceReleaseChannel>? releaseChannel,
+    DataprocMetastoreServiceDatabaseType? databaseType,
+    DataprocMetastoreServiceReleaseChannel? releaseChannel,
     DataprocMetastoreServiceHiveMetastoreConfig? hiveMetastoreConfig,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<num>? port,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
-    TfArg<DataprocMetastoreServiceDeletionPolicy>? deletionPolicy,
+    DataprocMetastoreServiceDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     TfArg<Map<String, String>>? tags,
     DataprocMetastoreServiceEncryptionConfig? encryptionConfig,

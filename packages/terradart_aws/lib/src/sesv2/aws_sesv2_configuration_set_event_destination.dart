@@ -23,7 +23,7 @@ final class Sesv2ConfigurationSetEventDestination {
 
   final TfArg<bool>? enabled;
 
-  final List<TfArg<Sesv2ConfigurationSetEventDestinationMatchingEventTypes>>
+  final List<Sesv2ConfigurationSetEventDestinationMatchingEventTypes>
   matchingEventTypes;
 
   final Sesv2ConfigurationSetEventDestinationTarget target;
@@ -170,24 +170,70 @@ final class Sesv2ConfigurationSetEventDestinationTargetSnsDestination
 }
 
 /// `matching_event_types` — derived from the provider schema description.
-enum Sesv2ConfigurationSetEventDestinationMatchingEventTypes
-    implements TerraformEnum {
-  send('SEND'),
-  reject('REJECT'),
-  bounce('BOUNCE'),
-  complaint('COMPLAINT'),
-  delivery('DELIVERY'),
-  open('OPEN'),
-  click('CLICK'),
-  renderingFailure('RENDERING_FAILURE'),
-  deliveryDelay('DELIVERY_DELAY'),
-  subscription('SUBSCRIPTION');
+extension type const Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Sesv2ConfigurationSetEventDestinationMatchingEventTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetEventDestinationMatchingEventTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetEventDestinationMatchingEventTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Sesv2ConfigurationSetEventDestinationMatchingEventTypes(
-    this.terraformValue,
+  static const send = Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+    TfArgLiteral('SEND'),
   );
-  @override
-  final String terraformValue;
+  static const reject =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('REJECT'),
+      );
+  static const bounce =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('BOUNCE'),
+      );
+  static const complaint =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('COMPLAINT'),
+      );
+  static const delivery =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('DELIVERY'),
+      );
+  static const open = Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+    TfArgLiteral('OPEN'),
+  );
+  static const click =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('CLICK'),
+      );
+  static const renderingFailure =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('RENDERING_FAILURE'),
+      );
+  static const deliveryDelay =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('DELIVERY_DELAY'),
+      );
+  static const subscription =
+      Sesv2ConfigurationSetEventDestinationMatchingEventTypes._(
+        TfArgLiteral('SUBSCRIPTION'),
+      );
+
+  static const List<Sesv2ConfigurationSetEventDestinationMatchingEventTypes>
+  values = [
+    send,
+    reject,
+    bounce,
+    complaint,
+    delivery,
+    open,
+    click,
+    renderingFailure,
+    deliveryDelay,
+    subscription,
+  ];
 }
 
 /// Typed helper for the `event_destination.cloud_watch_destination` block of
@@ -222,7 +268,7 @@ final class Sesv2ConfigurationSetEventDestinationDimensionConfiguration {
 
   final TfArg<String> dimensionName;
 
-  final TfArg<Sesv2ConfigurationSetEventDestinationDimensionValueSource>
+  final Sesv2ConfigurationSetEventDestinationDimensionValueSource
   dimensionValueSource;
 
   Map<String, Object?> encode() => {
@@ -233,17 +279,34 @@ final class Sesv2ConfigurationSetEventDestinationDimensionConfiguration {
 }
 
 /// `dimension_value_source` — derived from the provider schema description.
-enum Sesv2ConfigurationSetEventDestinationDimensionValueSource
-    implements TerraformEnum {
-  messageTag('MESSAGE_TAG'),
-  emailHeader('EMAIL_HEADER'),
-  linkTag('LINK_TAG');
+extension type const Sesv2ConfigurationSetEventDestinationDimensionValueSource._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Sesv2ConfigurationSetEventDestinationDimensionValueSource.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetEventDestinationDimensionValueSource.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetEventDestinationDimensionValueSource.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Sesv2ConfigurationSetEventDestinationDimensionValueSource(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const messageTag =
+      Sesv2ConfigurationSetEventDestinationDimensionValueSource._(
+        TfArgLiteral('MESSAGE_TAG'),
+      );
+  static const emailHeader =
+      Sesv2ConfigurationSetEventDestinationDimensionValueSource._(
+        TfArgLiteral('EMAIL_HEADER'),
+      );
+  static const linkTag =
+      Sesv2ConfigurationSetEventDestinationDimensionValueSource._(
+        TfArgLiteral('LINK_TAG'),
+      );
+
+  static const List<Sesv2ConfigurationSetEventDestinationDimensionValueSource>
+  values = [messageTag, emailHeader, linkTag];
 }
 
 /// Typed helper for the `event_destination.event_bridge_destination` block of

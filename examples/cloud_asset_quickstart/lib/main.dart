@@ -79,7 +79,7 @@ final class CloudAssetStack extends Stack {
         assetTypes: .literal(const [
           'cloudresourcemanager.googleapis.com/Project',
         ]),
-        contentType: .literal(.resource),
+        contentType: .resource,
         feedOutputConfig: CloudAssetProjectFeedOutputConfig(
           pubsubDestination: .new(topic: topic.ref),
         ),

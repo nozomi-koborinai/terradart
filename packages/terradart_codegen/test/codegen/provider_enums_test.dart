@@ -209,10 +209,10 @@ properties:
     }, ir.resources);
     expect(typed['x_thing']!.dartTypeOverrides, {
       'mode': 'XThingMode',
-      'tags': 'List<TfArg<XThingTags>>',
+      'tags': 'List<XThingTags>',
       'kind': 'String',
     });
-    expect(isEnumListType('List<TfArg<XThingTags>>'), isTrue);
+    expect(isEnumListType('List<XThingTags>'), isTrue);
     expect(isEnumListType('XThingMode'), isFalse);
 
     final untouched = enums.typeDerivedEnums({

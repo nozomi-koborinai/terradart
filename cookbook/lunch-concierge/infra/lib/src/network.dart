@@ -44,8 +44,8 @@ LunchNetwork addNetwork(Stack stack, List<TfAddressed> apiDeps) {
     GoogleComputeGlobalAddress(
       'psa_range',
       name: .literal(psaRangeName),
-      addressType: .literal(.internal),
-      purpose: .literal(.vpcPeering),
+      addressType: .internal,
+      purpose: .vpcPeering,
       prefixLength: .literal(16),
       network: vpc.ref,
       dependsOn: [vpc],

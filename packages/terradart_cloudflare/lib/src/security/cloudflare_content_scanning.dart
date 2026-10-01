@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareContentScanningSensitive = <String>{};
 
 /// Content Scanning enum for `value`.
-enum ContentScanningValue implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const ContentScanningValue._(TfArg<String> _)
+    implements TfArg<String> {
+  ContentScanningValue.variable(String name) : this._(TfArg.variable(name));
+  ContentScanningValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContentScanningValue.arg(TfArg<String> arg) : this._(arg);
 
-  const ContentScanningValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ContentScanningValue._(TfArgLiteral('enabled'));
+  static const disabled = ContentScanningValue._(TfArgLiteral('disabled'));
+
+  static const List<ContentScanningValue> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `cloudflare_content_scanning`.
@@ -29,7 +33,7 @@ final class CloudflareContentScanning extends Resource {
 
   CloudflareContentScanning(
     super.localName, {
-    required TfArg<ContentScanningValue> value,
+    required ContentScanningValue value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

@@ -109,8 +109,7 @@ final class ContactCenterInsightsAnalysisRuleSummarizationConfig {
 
   final TfArg<String>? conversationProfile;
 
-  final TfArg<ContactCenterInsightsAnalysisRuleSummarizationModel>?
-  summarizationModel;
+  final ContactCenterInsightsAnalysisRuleSummarizationModel? summarizationModel;
 
   Map<String, Object?> encode() => {
     'conversation_profile': ?conversationProfile?.toTfJson(),
@@ -119,16 +118,29 @@ final class ContactCenterInsightsAnalysisRuleSummarizationConfig {
 }
 
 /// `summarization_model` — derived from the provider schema description.
-enum ContactCenterInsightsAnalysisRuleSummarizationModel
-    implements TerraformEnum {
-  baselineModel('BASELINE_MODEL'),
-  baselineModelV20('BASELINE_MODEL_V2_0');
+extension type const ContactCenterInsightsAnalysisRuleSummarizationModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContactCenterInsightsAnalysisRuleSummarizationModel.variable(String name)
+    : this._(TfArg.variable(name));
+  ContactCenterInsightsAnalysisRuleSummarizationModel.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContactCenterInsightsAnalysisRuleSummarizationModel.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ContactCenterInsightsAnalysisRuleSummarizationModel(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const baselineModel =
+      ContactCenterInsightsAnalysisRuleSummarizationModel._(
+        TfArgLiteral('BASELINE_MODEL'),
+      );
+  static const baselineModelV20 =
+      ContactCenterInsightsAnalysisRuleSummarizationModel._(
+        TfArgLiteral('BASELINE_MODEL_V2_0'),
+      );
+
+  static const List<ContactCenterInsightsAnalysisRuleSummarizationModel>
+  values = [baselineModel, baselineModelV20];
 }
 
 /// Factory wrapper for `google_contact_center_insights_analysis_rule`.

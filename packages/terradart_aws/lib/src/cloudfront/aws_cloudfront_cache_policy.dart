@@ -47,7 +47,7 @@ final class CloudfrontCachePolicyCookiesConfig {
     this.cookies,
   });
 
-  final TfArg<CloudfrontCachePolicyCookieBehavior> cookieBehavior;
+  final CloudfrontCachePolicyCookieBehavior cookieBehavior;
 
   final CloudfrontCachePolicyCookies? cookies;
 
@@ -58,15 +58,32 @@ final class CloudfrontCachePolicyCookiesConfig {
 }
 
 /// `cookie_behavior` — derived from the provider schema description.
-enum CloudfrontCachePolicyCookieBehavior implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  allexcept('allExcept'),
-  all('all');
+extension type const CloudfrontCachePolicyCookieBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontCachePolicyCookieBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontCachePolicyCookieBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontCachePolicyCookieBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontCachePolicyCookieBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontCachePolicyCookieBehavior._(
+    TfArgLiteral('none'),
+  );
+  static const whitelist = CloudfrontCachePolicyCookieBehavior._(
+    TfArgLiteral('whitelist'),
+  );
+  static const allexcept = CloudfrontCachePolicyCookieBehavior._(
+    TfArgLiteral('allExcept'),
+  );
+  static const all = CloudfrontCachePolicyCookieBehavior._(TfArgLiteral('all'));
+
+  static const List<CloudfrontCachePolicyCookieBehavior> values = [
+    none,
+    whitelist,
+    allexcept,
+    all,
+  ];
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.cookies_config.cookies` block of
@@ -86,7 +103,7 @@ final class CloudfrontCachePolicyCookies {
 final class CloudfrontCachePolicyHeadersConfig {
   const CloudfrontCachePolicyHeadersConfig({this.headerBehavior, this.headers});
 
-  final TfArg<CloudfrontCachePolicyHeaderBehavior>? headerBehavior;
+  final CloudfrontCachePolicyHeaderBehavior? headerBehavior;
 
   final CloudfrontCachePolicyHeaders? headers;
 
@@ -97,13 +114,26 @@ final class CloudfrontCachePolicyHeadersConfig {
 }
 
 /// `header_behavior` — derived from the provider schema description.
-enum CloudfrontCachePolicyHeaderBehavior implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist');
+extension type const CloudfrontCachePolicyHeaderBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontCachePolicyHeaderBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontCachePolicyHeaderBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontCachePolicyHeaderBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontCachePolicyHeaderBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontCachePolicyHeaderBehavior._(
+    TfArgLiteral('none'),
+  );
+  static const whitelist = CloudfrontCachePolicyHeaderBehavior._(
+    TfArgLiteral('whitelist'),
+  );
+
+  static const List<CloudfrontCachePolicyHeaderBehavior> values = [
+    none,
+    whitelist,
+  ];
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.headers_config.headers` block of
@@ -126,7 +156,7 @@ final class CloudfrontCachePolicyQueryStringsConfig {
     this.queryStrings,
   });
 
-  final TfArg<CloudfrontCachePolicyQueryStringBehavior> queryStringBehavior;
+  final CloudfrontCachePolicyQueryStringBehavior queryStringBehavior;
 
   final CloudfrontCachePolicyQueryStrings? queryStrings;
 
@@ -137,15 +167,34 @@ final class CloudfrontCachePolicyQueryStringsConfig {
 }
 
 /// `query_string_behavior` — derived from the provider schema description.
-enum CloudfrontCachePolicyQueryStringBehavior implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  allexcept('allExcept'),
-  all('all');
+extension type const CloudfrontCachePolicyQueryStringBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontCachePolicyQueryStringBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontCachePolicyQueryStringBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontCachePolicyQueryStringBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontCachePolicyQueryStringBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontCachePolicyQueryStringBehavior._(
+    TfArgLiteral('none'),
+  );
+  static const whitelist = CloudfrontCachePolicyQueryStringBehavior._(
+    TfArgLiteral('whitelist'),
+  );
+  static const allexcept = CloudfrontCachePolicyQueryStringBehavior._(
+    TfArgLiteral('allExcept'),
+  );
+  static const all = CloudfrontCachePolicyQueryStringBehavior._(
+    TfArgLiteral('all'),
+  );
+
+  static const List<CloudfrontCachePolicyQueryStringBehavior> values = [
+    none,
+    whitelist,
+    allexcept,
+    all,
+  ];
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.query_strings_config.query_strings` block of

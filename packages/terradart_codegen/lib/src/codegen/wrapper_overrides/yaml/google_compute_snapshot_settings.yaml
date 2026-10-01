@@ -24,9 +24,7 @@ curatedDoc: |-
   /// GoogleComputeSnapshotSettings(
   ///   'defaults',
   ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
-  ///     policy: TfArg.literal(
-  ///       ComputeSnapshotSettingsPolicy.localRegion,
-  ///     ),
+  ///     policy: ComputeSnapshotSettingsPolicy.localRegion,
   ///   ),
   /// );
   /// ```

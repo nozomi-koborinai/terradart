@@ -11,22 +11,63 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleLookerInstanceSensitive = <String>{};
 
 /// Looker Instance Platform enum for `platform_edition`.
-enum LookerInstancePlatformEdition implements TerraformEnum {
-  lookerCoreTrial('LOOKER_CORE_TRIAL'),
-  lookerCoreStandard('LOOKER_CORE_STANDARD'),
-  lookerCoreStandardAnnual('LOOKER_CORE_STANDARD_ANNUAL'),
-  lookerCoreEnterpriseAnnual('LOOKER_CORE_ENTERPRISE_ANNUAL'),
-  lookerCoreEmbedAnnual('LOOKER_CORE_EMBED_ANNUAL'),
-  lookerCoreNonprodStandardAnnual('LOOKER_CORE_NONPROD_STANDARD_ANNUAL'),
-  lookerCoreNonprodEnterpriseAnnual('LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL'),
-  lookerCoreNonprodEmbedAnnual('LOOKER_CORE_NONPROD_EMBED_ANNUAL'),
-  lookerCoreTrialStandard('LOOKER_CORE_TRIAL_STANDARD'),
-  lookerCoreTrialEnterprise('LOOKER_CORE_TRIAL_ENTERPRISE'),
-  lookerCoreTrialEmbed('LOOKER_CORE_TRIAL_EMBED');
+extension type const LookerInstancePlatformEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  LookerInstancePlatformEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  LookerInstancePlatformEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const LookerInstancePlatformEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const LookerInstancePlatformEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lookerCoreTrial = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_TRIAL'),
+  );
+  static const lookerCoreStandard = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_STANDARD'),
+  );
+  static const lookerCoreStandardAnnual = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_STANDARD_ANNUAL'),
+  );
+  static const lookerCoreEnterpriseAnnual = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_ENTERPRISE_ANNUAL'),
+  );
+  static const lookerCoreEmbedAnnual = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_EMBED_ANNUAL'),
+  );
+  static const lookerCoreNonprodStandardAnnual =
+      LookerInstancePlatformEdition._(
+        TfArgLiteral('LOOKER_CORE_NONPROD_STANDARD_ANNUAL'),
+      );
+  static const lookerCoreNonprodEnterpriseAnnual =
+      LookerInstancePlatformEdition._(
+        TfArgLiteral('LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL'),
+      );
+  static const lookerCoreNonprodEmbedAnnual = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_NONPROD_EMBED_ANNUAL'),
+  );
+  static const lookerCoreTrialStandard = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_TRIAL_STANDARD'),
+  );
+  static const lookerCoreTrialEnterprise = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_TRIAL_ENTERPRISE'),
+  );
+  static const lookerCoreTrialEmbed = LookerInstancePlatformEdition._(
+    TfArgLiteral('LOOKER_CORE_TRIAL_EMBED'),
+  );
+
+  static const List<LookerInstancePlatformEdition> values = [
+    lookerCoreTrial,
+    lookerCoreStandard,
+    lookerCoreStandardAnnual,
+    lookerCoreEnterpriseAnnual,
+    lookerCoreEmbedAnnual,
+    lookerCoreNonprodStandardAnnual,
+    lookerCoreNonprodEnterpriseAnnual,
+    lookerCoreNonprodEmbedAnnual,
+    lookerCoreTrialStandard,
+    lookerCoreTrialEnterprise,
+    lookerCoreTrialEmbed,
+  ];
 }
 
 /// Typed helper for the `admin_settings` block of
@@ -182,7 +223,7 @@ final class LookerInstanceMaintenanceWindow {
     required this.startTime,
   });
 
-  final TfArg<LookerInstanceDayOfWeek> dayOfWeek;
+  final LookerInstanceDayOfWeek dayOfWeek;
 
   final LookerInstanceStartTime startTime;
 
@@ -193,18 +234,30 @@ final class LookerInstanceMaintenanceWindow {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum LookerInstanceDayOfWeek implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const LookerInstanceDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  LookerInstanceDayOfWeek.variable(String name) : this._(TfArg.variable(name));
+  LookerInstanceDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const LookerInstanceDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const LookerInstanceDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = LookerInstanceDayOfWeek._(TfArgLiteral('MONDAY'));
+  static const tuesday = LookerInstanceDayOfWeek._(TfArgLiteral('TUESDAY'));
+  static const wednesday = LookerInstanceDayOfWeek._(TfArgLiteral('WEDNESDAY'));
+  static const thursday = LookerInstanceDayOfWeek._(TfArgLiteral('THURSDAY'));
+  static const friday = LookerInstanceDayOfWeek._(TfArgLiteral('FRIDAY'));
+  static const saturday = LookerInstanceDayOfWeek._(TfArgLiteral('SATURDAY'));
+  static const sunday = LookerInstanceDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+  static const List<LookerInstanceDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `maintenance_window.start_time` block of
@@ -360,9 +413,7 @@ final class LookerInstanceUserMetadata {
 ///   'bi',
 ///   name: TfArg.literal('terradart-looker'),
 ///   region: TfArg.literal('us-central1'),
-///   platformEdition: TfArg.literal(
-///     LookerInstancePlatformEdition.lookerCoreTrialStandard,
-///   ),
+///   platformEdition: LookerInstancePlatformEdition.lookerCoreTrialStandard,
 ///   oauthConfig: LookerInstanceOauthConfig(
 ///     clientId: TfArg.literal('…'),
 ///     clientSecret: TfArg.literal('…'),
@@ -376,7 +427,7 @@ final class GoogleLookerInstance extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<LookerInstancePlatformEdition>? platformEdition,
+    LookerInstancePlatformEdition? platformEdition,
     required LookerInstanceOauthConfig oauthConfig,
     RefTo<GoogleComputeNetwork>? consumerNetwork,
     LookerInstanceAdminSettings? adminSettings,

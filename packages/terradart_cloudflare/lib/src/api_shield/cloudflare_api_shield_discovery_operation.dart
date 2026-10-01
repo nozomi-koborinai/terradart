@@ -9,13 +9,25 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareApiShieldDiscoveryOperationSensitive = <String>{};
 
 /// Api Shield Discovery Operation enum for `state`.
-enum ApiShieldDiscoveryOperationState implements TerraformEnum {
-  review('review'),
-  ignored('ignored');
+extension type const ApiShieldDiscoveryOperationState._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiShieldDiscoveryOperationState.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiShieldDiscoveryOperationState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiShieldDiscoveryOperationState.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiShieldDiscoveryOperationState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const review = ApiShieldDiscoveryOperationState._(
+    TfArgLiteral('review'),
+  );
+  static const ignored = ApiShieldDiscoveryOperationState._(
+    TfArgLiteral('ignored'),
+  );
+
+  static const List<ApiShieldDiscoveryOperationState> values = [
+    review,
+    ignored,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_api_shield_discovery_operation`.
@@ -29,7 +41,7 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
   CloudflareApiShieldDiscoveryOperation(
     super.localName, {
     required TfArg<String> operationId,
-    TfArg<ApiShieldDiscoveryOperationState>? state,
+    ApiShieldDiscoveryOperationState? state,
     RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,

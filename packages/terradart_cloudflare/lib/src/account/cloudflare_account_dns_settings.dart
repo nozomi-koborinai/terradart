@@ -35,7 +35,7 @@ final class AccountDnsSettingsZoneDefaults {
 
   final TfArg<bool>? secondaryOverrides;
 
-  final TfArg<AccountDnsSettingsZoneMode>? zoneMode;
+  final AccountDnsSettingsZoneMode? zoneMode;
 
   final AccountDnsSettingsInternalDns? internalDns;
 
@@ -57,14 +57,25 @@ final class AccountDnsSettingsZoneDefaults {
 }
 
 /// `zone_mode` — derived from the provider schema description.
-enum AccountDnsSettingsZoneMode implements TerraformEnum {
-  standard('standard'),
-  cdnOnly('cdn_only'),
-  dnsOnly('dns_only');
+extension type const AccountDnsSettingsZoneMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountDnsSettingsZoneMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AccountDnsSettingsZoneMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountDnsSettingsZoneMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountDnsSettingsZoneMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = AccountDnsSettingsZoneMode._(
+    TfArgLiteral('standard'),
+  );
+  static const cdnOnly = AccountDnsSettingsZoneMode._(TfArgLiteral('cdn_only'));
+  static const dnsOnly = AccountDnsSettingsZoneMode._(TfArgLiteral('dns_only'));
+
+  static const List<AccountDnsSettingsZoneMode> values = [
+    standard,
+    cdnOnly,
+    dnsOnly,
+  ];
 }
 
 /// Typed helper for the `zone_defaults.internal_dns` block of
@@ -86,21 +97,38 @@ final class AccountDnsSettingsInternalDns {
 final class AccountDnsSettingsNameservers {
   const AccountDnsSettingsNameservers({this.type});
 
-  final TfArg<AccountDnsSettingsType>? type;
+  final AccountDnsSettingsType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum AccountDnsSettingsType implements TerraformEnum {
-  cloudflareStandard('cloudflare.standard'),
-  cloudflareStandardRandom('cloudflare.standard.random'),
-  customAccount('custom.account'),
-  customTenant('custom.tenant');
+extension type const AccountDnsSettingsType._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountDnsSettingsType.variable(String name) : this._(TfArg.variable(name));
+  AccountDnsSettingsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountDnsSettingsType.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountDnsSettingsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudflareStandard = AccountDnsSettingsType._(
+    TfArgLiteral('cloudflare.standard'),
+  );
+  static const cloudflareStandardRandom = AccountDnsSettingsType._(
+    TfArgLiteral('cloudflare.standard.random'),
+  );
+  static const customAccount = AccountDnsSettingsType._(
+    TfArgLiteral('custom.account'),
+  );
+  static const customTenant = AccountDnsSettingsType._(
+    TfArgLiteral('custom.tenant'),
+  );
+
+  static const List<AccountDnsSettingsType> values = [
+    cloudflareStandard,
+    cloudflareStandardRandom,
+    customAccount,
+    customTenant,
+  ];
 }
 
 /// Typed helper for the `zone_defaults.soa` block of

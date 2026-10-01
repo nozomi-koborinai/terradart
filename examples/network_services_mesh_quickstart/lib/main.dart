@@ -86,9 +86,7 @@ final class NetworkServicesMeshStack extends Stack {
               retryPolicy: .new(
                 numRetries: .literal(1),
                 retryConditions: [
-                  .literal(
-                    NetworkServicesGrpcRouteRetryConditions.connectFailure,
-                  ),
+                  NetworkServicesGrpcRouteRetryConditions.connectFailure,
                 ],
               ),
             ),
@@ -122,12 +120,12 @@ final class NetworkServicesMeshStack extends Stack {
       GoogleNetworkServicesEndpointPolicy(
         'ep',
         name: .literal('terradart-ep'),
-        type: .literal(.sidecarProxy),
+        type: .sidecarProxy,
         endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
           metadataLabelMatcher: .new(
-            metadataLabelMatchCriteria: .literal(
-              NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.matchAny,
-            ),
+            metadataLabelMatchCriteria:
+                NetworkServicesEndpointPolicyMetadataLabelMatchCriteria
+                    .matchAny,
             metadataLabels: [
               .new(
                 labelName: .literal('app'),

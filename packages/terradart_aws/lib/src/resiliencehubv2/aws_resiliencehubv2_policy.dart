@@ -45,8 +45,7 @@ final class Resiliencehubv2PolicyMultiAz {
     this.rtoInMinutes,
   });
 
-  final TfArg<Resiliencehubv2PolicyDisasterRecoveryApproach>
-  disasterRecoveryApproach;
+  final Resiliencehubv2PolicyDisasterRecoveryApproach disasterRecoveryApproach;
 
   final TfArg<num>? rpoInMinutes;
 
@@ -60,16 +59,40 @@ final class Resiliencehubv2PolicyMultiAz {
 }
 
 /// `disaster_recovery_approach` — derived from the provider schema description.
-enum Resiliencehubv2PolicyDisasterRecoveryApproach implements TerraformEnum {
-  activeActive('ACTIVE_ACTIVE'),
-  hotStandby('HOT_STANDBY'),
-  warmStandby('WARM_STANDBY'),
-  pilotLight('PILOT_LIGHT'),
-  backupAndRestore('BACKUP_AND_RESTORE');
+extension type const Resiliencehubv2PolicyDisasterRecoveryApproach._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Resiliencehubv2PolicyDisasterRecoveryApproach.variable(String name)
+    : this._(TfArg.variable(name));
+  Resiliencehubv2PolicyDisasterRecoveryApproach.expression(String template)
+    : this._(TfArg.expression(template));
+  const Resiliencehubv2PolicyDisasterRecoveryApproach.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Resiliencehubv2PolicyDisasterRecoveryApproach(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activeActive = Resiliencehubv2PolicyDisasterRecoveryApproach._(
+    TfArgLiteral('ACTIVE_ACTIVE'),
+  );
+  static const hotStandby = Resiliencehubv2PolicyDisasterRecoveryApproach._(
+    TfArgLiteral('HOT_STANDBY'),
+  );
+  static const warmStandby = Resiliencehubv2PolicyDisasterRecoveryApproach._(
+    TfArgLiteral('WARM_STANDBY'),
+  );
+  static const pilotLight = Resiliencehubv2PolicyDisasterRecoveryApproach._(
+    TfArgLiteral('PILOT_LIGHT'),
+  );
+  static const backupAndRestore =
+      Resiliencehubv2PolicyDisasterRecoveryApproach._(
+        TfArgLiteral('BACKUP_AND_RESTORE'),
+      );
+
+  static const List<Resiliencehubv2PolicyDisasterRecoveryApproach> values = [
+    activeActive,
+    hotStandby,
+    warmStandby,
+    pilotLight,
+    backupAndRestore,
+  ];
 }
 
 /// Typed helper for the `multi_region` block of
@@ -82,8 +105,7 @@ final class Resiliencehubv2PolicyMultiRegion {
     this.rtoInMinutes,
   });
 
-  final TfArg<Resiliencehubv2PolicyDisasterRecoveryApproach>
-  disasterRecoveryApproach;
+  final Resiliencehubv2PolicyDisasterRecoveryApproach disasterRecoveryApproach;
 
   final TfArg<num>? rpoInMinutes;
 

@@ -13,7 +13,13 @@ void main() {
           enumValues: ['active', 'always_running', 'on_demand'],
           resourcePascal: 'GoogleFoo',
         );
-        expect(out, contains('enum GoogleFooState implements TerraformEnum {'));
+        expect(
+          out,
+          contains(
+            'extension type const GoogleFooState._(TfArg<String> _) '
+            'implements TfArg<String> {',
+          ),
+        );
         expect(out, contains('active'));
         expect(out, contains('alwaysRunning'));
         expect(out, contains('onDemand'));
@@ -22,17 +28,24 @@ void main() {
       },
     );
 
-    test('emits terraformValue getter mapping camel back to snake', () {
+    test('maps each camel member back to its snake value', () {
       final out = emitter.emit(
         fieldName: 'state',
         enumValues: ['active', 'always_running'],
         resourcePascal: 'GoogleFoo',
       );
-      expect(out, contains('String get terraformValue'));
-      expect(out, contains("case GoogleFooState.active: return 'active'"));
       expect(
         out,
-        contains("case GoogleFooState.alwaysRunning: return 'always_running'"),
+        contains(
+          "static const active = GoogleFooState._(TfArgLiteral('active'));",
+        ),
+      );
+      expect(
+        out,
+        contains(
+          'static const alwaysRunning = '
+          "GoogleFooState._(TfArgLiteral('always_running'));",
+        ),
       );
     });
 
@@ -71,11 +84,12 @@ void main() {
         );
         expect(out, contains('defaultCase'));
         expect(out, contains('strict'));
-        // The `case GoogleFooMode.defaultCase: return 'DEFAULT';` arm must
-        // produce the unmodified terraform value.
+        // `defaultCase` must carry the unmodified Terraform value.
         expect(
           out,
-          contains("case GoogleFooMode.defaultCase: return 'DEFAULT'"),
+          contains(
+            "static const defaultCase = GoogleFooMode._(TfArgLiteral('DEFAULT'));",
+          ),
         );
       },
     );
@@ -92,9 +106,7 @@ void main() {
       // Pascal-cased leaf field.
       expect(
         out,
-        contains(
-          'enum GoogleComputeNetworkRoutingMode implements TerraformEnum {',
-        ),
+        contains('extension type const GoogleComputeNetworkRoutingMode._('),
       );
       // The header comment uses the leaf.
       expect(out, contains('# --- validValues: routing_mode ---'));

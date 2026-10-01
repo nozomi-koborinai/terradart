@@ -129,7 +129,7 @@ final class DataplexCatalogStack extends Stack {
         aspectTypeId: .literal('terradart-quality'),
         location: .literal('us-central1'),
         displayName: .literal('Data quality'),
-        dataClassification: .literal(.metadataAndData),
+        dataClassification: .metadataAndData,
         // Minimal valid metadata template (single required enum field).
         metadataTemplate: .literal('''
 {
@@ -349,7 +349,7 @@ final class DataplexCatalogStack extends Stack {
         entryReferences: [
           DataplexEntryLinkEntryReferences(
             name: .literal(customerDatasetEntry.name.interpolation),
-            type: .literal(.source),
+            type: .source,
           ),
           DataplexEntryLinkEntryReferences(
             name: .literal(
@@ -358,7 +358,7 @@ final class DataplexCatalogStack extends Stack {
               '/projects/${current.number.interpolation}/locations/us-central1'
               '/glossaries/terradart-glossary/terms/terradart-mrr',
             ),
-            type: .literal(.target),
+            type: .target,
           ),
         ],
         dependsOn: [customerDatasetEntry, glossary],
@@ -410,13 +410,11 @@ final class DataplexCatalogStack extends Stack {
         name: .literal('terradart-raw-zone'),
         lake: lake.ref,
         location: .literal('us-central1'),
-        type: .literal(.raw),
+        type: .raw,
         displayName: .literal('Raw zone'),
         description: .literal('Raw data partition in the analytics lake'),
         discoverySpec: DataplexZoneDiscoverySpec(enabled: .literal(false)),
-        resourceSpec: DataplexZoneResourceSpec(
-          locationType: .literal(.singleRegion),
-        ),
+        resourceSpec: DataplexZoneResourceSpec(locationType: .singleRegion),
         dependsOn: [lake, ...apiDeps],
       ),
     );
@@ -434,7 +432,7 @@ final class DataplexCatalogStack extends Stack {
           name: .literal(
             'projects/$projectId/buckets/terradart-dataplex-lake-data',
           ),
-          type: .literal(.storageBucket),
+          type: .storageBucket,
         ),
         dependsOn: [rawZone, lakeDataBucket],
       ),
@@ -523,7 +521,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         lake: .literal('terradart-lake'),
         workload: .spark(.new(driver: .sqlScript(.literal('SELECT 1')))),
-        triggerSpec: DataplexTaskTriggerSpec(type: .literal(.onDemand)),
+        triggerSpec: DataplexTaskTriggerSpec(type: .onDemand),
         executionSpec: DataplexTaskExecutionSpec(
           serviceAccount: .literal(reader.email.interpolation),
           // Spark-SQL tasks require an output location, passed via TASK_ARGS.

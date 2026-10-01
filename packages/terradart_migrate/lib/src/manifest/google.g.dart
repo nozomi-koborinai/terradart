@@ -126585,7 +126585,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
           dartType: 'MonitoringUptimeCheckRegion',
         ),
         MigrateSlot(
@@ -165008,7 +165007,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
           dartType: 'StorageNotificationEventType',
         ),
         MigrateSlot(
@@ -177000,7 +176998,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'AgentRegistryServiceAgentSpecType',
         ),
         MigrateSlot(
@@ -177021,7 +177018,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'AgentRegistryServiceEndpointSpecType',
         ),
       ],
@@ -177035,7 +177031,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'protocolBinding',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'AgentRegistryServiceInterfacesProtocolBinding',
         ),
         MigrateSlot(
@@ -177055,7 +177050,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'AgentRegistryServiceMcpServerSpecType',
         ),
         MigrateSlot(
@@ -181831,7 +181825,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'loggingState',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ArtifactRegistryPlatformLogsLoggingState',
         ),
         MigrateSlot(
@@ -181839,7 +181832,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'severityLevel',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ArtifactRegistryPlatformLogsSeverityLevel',
         ),
       ],
@@ -186610,7 +186602,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'BigqueryConnectionCloudSqlType',
         ),
         MigrateSlot(
@@ -187106,7 +187097,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'predefinedExpression',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'BigqueryDatapolicyv2DataPolicyPredefinedExpression',
         ),
         MigrateSlot(
@@ -187207,7 +187197,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: true,
           repeated: true,
-          wrapped: false,
           dartType: 'BigqueryDatasetAccessDatasetTargetType',
         ),
       ],
@@ -188583,7 +188572,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'argumentKind',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'BigqueryRoutineArgumentKind',
         ),
         MigrateSlot(
@@ -188591,7 +188579,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'BigqueryRoutineArgumentMode',
         ),
         MigrateSlot(
@@ -194841,7 +194828,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'filterOperator',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartFilterOperator',
         ),
       ],
@@ -194887,7 +194873,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'metricDisplayTrend',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartMetricDisplayTrend',
         ),
         MigrateSlot(
@@ -194895,7 +194880,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'metricFormat',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartMetricFormat',
         ),
         MigrateSlot(
@@ -194903,7 +194887,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'metricTrendType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartMetricTrendType',
         ),
       ],
@@ -194956,7 +194939,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'timeUnit',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartTimeUnit',
         ),
       ],
@@ -194969,7 +194951,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'seriesType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartSeriesType',
         ),
         MigrateSlot(
@@ -194977,7 +194958,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'seriesStackStrategy',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartSeriesStackStrategy',
         ),
         MigrateSlot(
@@ -195005,7 +194985,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'tileType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartTileType',
         ),
         MigrateSlot(
@@ -195045,7 +195024,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'buttonStyle',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartButtonStyle',
         ),
         MigrateSlot(
@@ -195053,7 +195031,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'plotMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartPlotMode',
         ),
         MigrateSlot(
@@ -195061,7 +195038,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'pointSizeType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartPointSizeType',
         ),
         MigrateSlot(
@@ -195069,7 +195045,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'legendAlign',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartLegendAlign',
         ),
         MigrateSlot(
@@ -195077,7 +195052,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'legendOrient',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartLegendOrient',
         ),
         MigrateSlot(
@@ -195085,7 +195059,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'columnRenderType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartColumnRenderType',
         ),
         MigrateSlot(
@@ -195093,7 +195066,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'tooltipTrigger',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartTooltipTrigger',
         ),
         MigrateSlot(
@@ -195101,7 +195073,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'visualMapType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleDashboardChartVisualMapType',
         ),
         MigrateSlot(
@@ -199382,7 +199353,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'dataSource',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleNativeDashboardFilterDataSource',
         ),
         MigrateSlot(
@@ -199404,7 +199374,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'filterOperator',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ChronicleNativeDashboardFilterOperator',
         ),
         MigrateSlot(
@@ -213578,7 +213547,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'AutoscalerMode',
         ),
         MigrateSlot(
@@ -213639,7 +213607,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'predictiveMethod',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'AutoscalerCpuPredictiveMethod',
         ),
       ],
@@ -213678,7 +213645,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'AutoscalerMetricType',
         ),
         MigrateSlot(
@@ -213845,7 +213811,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'cacheMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'BackendBucketCacheMode',
         ),
         MigrateSlot(
@@ -214974,7 +214939,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'ComputeDiskGuestOsFeatureType',
         ),
       ],
@@ -215251,7 +215215,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'metadata',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'FirewallLogMetadata',
         ),
       ],
@@ -215968,7 +215931,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
         MigrateSlot(
@@ -215996,7 +215958,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
         MigrateSlot(
@@ -216052,7 +216013,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -216060,7 +216020,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
@@ -216109,7 +216068,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -216117,7 +216075,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
@@ -216166,7 +216123,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -216174,7 +216130,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
@@ -216228,7 +216183,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -216236,7 +216190,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
@@ -216278,7 +216231,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -216286,7 +216238,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
@@ -218123,7 +218074,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'minimalAction',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'InstanceGroupManagerUpdatePolicyAction',
         ),
         MigrateSlot(
@@ -218131,7 +218081,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'InstanceGroupManagerUpdatePolicyType',
         ),
         MigrateSlot(
@@ -218139,7 +218088,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'mostDisruptiveAllowedAction',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'InstanceGroupManagerUpdatePolicyAction',
         ),
         MigrateSlot(
@@ -218175,7 +218123,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'replacementMethod',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'InstanceGroupManagerUpdatePolicyReplacementMethod',
         ),
       ],
@@ -221447,7 +221394,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionAutoscalerMode',
         ),
         MigrateSlot(
@@ -221508,7 +221454,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'predictiveMethod',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionAutoscalerCpuPredictiveMethod',
         ),
       ],
@@ -221547,7 +221492,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionAutoscalerMetricType',
         ),
         MigrateSlot(
@@ -222603,7 +222547,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'ComputeRegionDiskGuestOsFeatureType',
         ),
       ],
@@ -222728,7 +222671,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
         MigrateSlot(
@@ -222756,7 +222698,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
         MigrateSlot(
@@ -222812,7 +222753,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -222820,7 +222760,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
@@ -222869,7 +222808,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -222877,7 +222815,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
@@ -222926,7 +222863,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -222934,7 +222870,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
@@ -222988,7 +222923,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -222996,7 +222930,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
@@ -223038,7 +222971,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'proxyHeader',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckProxyHeader',
         ),
         MigrateSlot(
@@ -223046,7 +222978,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'portSpecification',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
@@ -223261,7 +223192,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'minimalAction',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'RegionInstanceGroupManagerUpdatePolicyAction',
         ),
         MigrateSlot(
@@ -223269,7 +223199,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'RegionInstanceGroupManagerUpdatePolicyType',
         ),
         MigrateSlot(
@@ -223277,7 +223206,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'instanceRedistributionType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionInstanceGroupManagerInstanceRedistributionType',
         ),
         MigrateSlot(
@@ -223285,7 +223213,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'mostDisruptiveAllowedAction',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionInstanceGroupManagerUpdatePolicyAction',
         ),
         MigrateSlot(
@@ -223321,7 +223248,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'replacementMethod',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionInstanceGroupManagerUpdatePolicyReplacementMethod',
         ),
       ],
@@ -224985,7 +224911,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'jsonParsing',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RegionSecurityPolicyJsonParsing',
         ),
         MigrateSlot(
@@ -224993,7 +224918,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'logLevel',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyLogLevel',
         ),
         MigrateSlot(
@@ -225023,7 +224947,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'ddosProtection',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'RegionSecurityPolicyDdosProtection',
         ),
       ],
@@ -225050,7 +224973,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'versionedExpr',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleMatchVersionedExpr',
         ),
         MigrateSlot(
@@ -225205,7 +225127,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartName: 'operator',
               kind: MigrateSlotKind.enumValue,
               required: false,
-              wrapped: false,
               dartType: 'SecurityPolicyWafExclusionOperator',
             ),
             MigrateSlot(
@@ -225225,7 +225146,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKeyType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -225245,7 +225165,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -225350,7 +225269,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKeyType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -225473,7 +225391,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartName: 'operator',
               kind: MigrateSlotKind.enumValue,
               required: true,
-              wrapped: false,
               dartType: 'SecurityPolicyWafExclusionOperator',
             ),
             MigrateSlot(
@@ -225530,7 +225447,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -225578,7 +225494,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'base',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'RegionSecurityPolicyUserDefinedFieldBase',
         ),
         MigrateSlot(
@@ -228280,7 +228195,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'advertiseMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ComputeRouterBgpAdvertiseMode',
         ),
         MigrateSlot(
@@ -228811,7 +228725,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'jsonParsing',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyJsonParsing',
         ),
         MigrateSlot(
@@ -228819,7 +228732,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'logLevel',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyLogLevel',
         ),
         MigrateSlot(
@@ -228924,7 +228836,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'versionedExpr',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleMatchVersionedExpr',
         ),
         MigrateSlot(
@@ -229010,7 +228921,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'operator',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyWafExclusionOperator',
         ),
         MigrateSlot(
@@ -229030,7 +228940,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKeyType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -229050,7 +228959,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -229124,7 +229032,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'action',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleAction',
         ),
         MigrateSlot(
@@ -229183,7 +229090,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKeyType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -229303,7 +229209,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'enforceOnKey',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
         ),
         MigrateSlot(
@@ -240892,7 +240797,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'primitiveType',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           positional: true,
           dartType: 'DataCatalogTagTemplatePrimitiveType',
         ),
@@ -267518,7 +267422,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'nonExistence',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'DnssecNonExistence',
         ),
         MigrateSlot(
@@ -267526,7 +267429,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'state',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'DnssecState',
         ),
         MigrateSlot(
@@ -267548,7 +267450,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'algorithm',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'DnssecKeyAlgorithm',
         ),
         MigrateSlot(
@@ -267563,7 +267464,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'keyType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'DnssecKeyType',
         ),
         MigrateSlot(
@@ -267618,7 +267518,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'forwardingPath',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ForwardingPath',
         ),
       ],
@@ -267778,7 +267677,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'forwardingPath',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'ForwardingPath',
         ),
       ],
@@ -267901,7 +267799,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'ipProtocol',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'DnsRecordSetRoutingPolicyIlbIpProtocol',
         ),
         MigrateSlot(
@@ -267909,7 +267806,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'loadBalancerType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'DnsRecordSetRoutingPolicyIlbType',
         ),
         MigrateSlot(
@@ -268037,7 +267933,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'type',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType: 'DnsResponsePolicyRuleRecordType',
         ),
         MigrateSlot(
@@ -268830,7 +268725,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'logSeverity',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'EventarcMessageBusLogSeverity',
         ),
       ],
@@ -269880,7 +269774,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'tagColor',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RemoteConfigTagColor',
         ),
       ],
@@ -269952,7 +269845,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'valueType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'RemoteConfigValueType',
         ),
         MigrateSlot(
@@ -270062,7 +269954,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'day',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'BackupDayOfWeek',
         ),
       ],
@@ -270244,7 +270135,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'order',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           positional: true,
           dartType: 'FirestoreIndexOrder',
         ),
@@ -270805,7 +270695,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           repeated: true,
-          wrapped: false,
           dartType: 'GkeBackupBackupPlanDayOfWeek',
         ),
       ],
@@ -273103,7 +272992,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'evaluationMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'GkeHubFleetBinaryAuthorizationEvaluationMode',
         ),
       ],
@@ -273137,7 +273025,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'GkeHubFleetSecurityPostureMode',
         ),
         MigrateSlot(
@@ -273145,7 +273032,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'vulnerabilityMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'GkeHubFleetSecurityPostureVulnerabilityMode',
         ),
       ],
@@ -282557,7 +282443,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'protectionLevel',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'KmsProtectionLevel',
         ),
       ],
@@ -284298,7 +284183,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'day',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'MemcacheInstanceWeeklyMaintenanceDay',
         ),
       ],
@@ -290358,7 +290242,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'direction',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          wrapped: false,
           dartType: 'NetworkSecurityUllMirroringCollectorRuleDirection',
         ),
         MigrateSlot(
@@ -290482,7 +290365,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'governedAccessPath',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          wrapped: false,
           dartType:
               'NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath',
         ),

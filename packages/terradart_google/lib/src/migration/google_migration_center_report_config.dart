@@ -13,14 +13,31 @@ import '../migration/google_migration_center_preference_set.dart'
 const Set<String> _googleMigrationCenterReportConfigSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center report configs.
-enum MigrationCenterReportConfigDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterReportConfigDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterReportConfigDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterReportConfigDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterReportConfigDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterReportConfigDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterReportConfigDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterReportConfigDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterReportConfigDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterReportConfigDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// `group_preferenceset_assignments` entry on a report config.
@@ -60,7 +77,7 @@ final class GoogleMigrationCenterReportConfig extends Resource {
     TfArg<String>? description,
     required List<MigrationCenterReportConfigGroupPreferencesetAssignment>
     groupPreferencesetAssignments,
-    TfArg<MigrationCenterReportConfigDeletionPolicy>? deletionPolicy,
+    MigrationCenterReportConfigDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

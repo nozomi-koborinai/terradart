@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIamUserSshKeySensitive = <String>{};
 
 /// Iam User Ssh Key enum for `encoding`.
-enum IamUserSshKeyEncoding implements TerraformEnum {
-  ssh('SSH'),
-  pem('PEM');
+extension type const IamUserSshKeyEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  IamUserSshKeyEncoding.variable(String name) : this._(TfArg.variable(name));
+  IamUserSshKeyEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamUserSshKeyEncoding.arg(TfArg<String> arg) : this._(arg);
 
-  const IamUserSshKeyEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssh = IamUserSshKeyEncoding._(TfArgLiteral('SSH'));
+  static const pem = IamUserSshKeyEncoding._(TfArgLiteral('PEM'));
+
+  static const List<IamUserSshKeyEncoding> values = [ssh, pem];
 }
 
 /// Factory wrapper for `aws_iam_user_ssh_key`.
@@ -22,7 +26,7 @@ final class AwsIamUserSshKey extends Resource {
 
   AwsIamUserSshKey(
     super.localName, {
-    required TfArg<IamUserSshKeyEncoding> encoding,
+    required IamUserSshKeyEncoding encoding,
     required TfArg<String> publicKey,
     TfArg<String>? status,
     required TfArg<String> username,

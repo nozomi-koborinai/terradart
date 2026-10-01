@@ -32,7 +32,7 @@ final class NetworkSecurityDnsThreatStack extends Stack {
         'dns_threat',
         name: .literal('terradart-dns-threat'),
         location: .literal('global'),
-        threatDetectorProvider: .literal(.infoblox),
+        threatDetectorProvider: .infoblox,
         dependsOn: [apiNetworkSecurity],
       ),
     );

@@ -10,17 +10,41 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleCloudAssetProjectFeedSensitive = <String>{};
 
 /// Cloud Asset Project Feed Content enum for `content_type`.
-enum CloudAssetProjectFeedContentType implements TerraformEnum {
-  contentTypeUnspecified('CONTENT_TYPE_UNSPECIFIED'),
-  resource('RESOURCE'),
-  iamPolicy('IAM_POLICY'),
-  orgPolicy('ORG_POLICY'),
-  osInventory('OS_INVENTORY'),
-  accessPolicy('ACCESS_POLICY');
+extension type const CloudAssetProjectFeedContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudAssetProjectFeedContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudAssetProjectFeedContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudAssetProjectFeedContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudAssetProjectFeedContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contentTypeUnspecified = CloudAssetProjectFeedContentType._(
+    TfArgLiteral('CONTENT_TYPE_UNSPECIFIED'),
+  );
+  static const resource = CloudAssetProjectFeedContentType._(
+    TfArgLiteral('RESOURCE'),
+  );
+  static const iamPolicy = CloudAssetProjectFeedContentType._(
+    TfArgLiteral('IAM_POLICY'),
+  );
+  static const orgPolicy = CloudAssetProjectFeedContentType._(
+    TfArgLiteral('ORG_POLICY'),
+  );
+  static const osInventory = CloudAssetProjectFeedContentType._(
+    TfArgLiteral('OS_INVENTORY'),
+  );
+  static const accessPolicy = CloudAssetProjectFeedContentType._(
+    TfArgLiteral('ACCESS_POLICY'),
+  );
+
+  static const List<CloudAssetProjectFeedContentType> values = [
+    contentTypeUnspecified,
+    resource,
+    iamPolicy,
+    orgPolicy,
+    osInventory,
+    accessPolicy,
+  ];
 }
 
 /// Typed helper for the `condition` block of
@@ -105,7 +129,7 @@ final class CloudAssetProjectFeedPubsubDestination {
 ///   assetTypes: TfArg.literal(const [
 ///     'cloudresourcemanager.googleapis.com/Project',
 ///   ]),
-///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
+///   contentType: CloudAssetProjectFeedContentType.resource,
 ///   feedOutputConfig: CloudAssetProjectFeedOutputConfig(
 ///     pubsubDestination: .new(
 ///       topic: topic.ref,
@@ -121,7 +145,7 @@ final class GoogleCloudAssetProjectFeed extends Resource {
     required TfArg<String> feedId,
     TfArg<List<String>>? assetTypes,
     TfArg<List<String>>? assetNames,
-    TfArg<CloudAssetProjectFeedContentType>? contentType,
+    CloudAssetProjectFeedContentType? contentType,
     required CloudAssetProjectFeedOutputConfig feedOutputConfig,
     CloudAssetProjectFeedCondition? condition,
     TfArg<String>? billingProject,

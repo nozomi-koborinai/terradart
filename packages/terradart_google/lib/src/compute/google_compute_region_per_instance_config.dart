@@ -50,11 +50,11 @@ final class ComputeRegionPerInstanceConfigDisk {
     required this.source,
   });
 
-  final TfArg<ComputeRegionPerInstanceConfigDeleteRule>? deleteRule;
+  final ComputeRegionPerInstanceConfigDeleteRule? deleteRule;
 
   final TfArg<String> deviceName;
 
-  final TfArg<ComputeRegionPerInstanceConfigMode>? mode;
+  final ComputeRegionPerInstanceConfigMode? mode;
 
   final TfArg<String> source;
 
@@ -67,23 +67,49 @@ final class ComputeRegionPerInstanceConfigDisk {
 }
 
 /// `delete_rule` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigDeleteRule implements TerraformEnum {
-  never('NEVER'),
-  onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
+extension type const ComputeRegionPerInstanceConfigDeleteRule._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionPerInstanceConfigDeleteRule.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionPerInstanceConfigDeleteRule.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionPerInstanceConfigDeleteRule.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionPerInstanceConfigDeleteRule(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = ComputeRegionPerInstanceConfigDeleteRule._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onPermanentInstanceDeletion =
+      ComputeRegionPerInstanceConfigDeleteRule._(
+        TfArgLiteral('ON_PERMANENT_INSTANCE_DELETION'),
+      );
+
+  static const List<ComputeRegionPerInstanceConfigDeleteRule> values = [
+    never,
+    onPermanentInstanceDeletion,
+  ];
 }
 
 /// `mode` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigMode implements TerraformEnum {
-  readOnly('READ_ONLY'),
-  readWrite('READ_WRITE');
+extension type const ComputeRegionPerInstanceConfigMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionPerInstanceConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionPerInstanceConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionPerInstanceConfigMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRegionPerInstanceConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readOnly = ComputeRegionPerInstanceConfigMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const readWrite = ComputeRegionPerInstanceConfigMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<ComputeRegionPerInstanceConfigMode> values = [
+    readOnly,
+    readWrite,
+  ];
 }
 
 /// Typed helper for the `preserved_state.external_ip` block of
@@ -96,7 +122,7 @@ final class ComputeRegionPerInstanceConfigExternalIp {
     this.ipAddress,
   });
 
-  final TfArg<ComputeRegionPerInstanceConfigAutoDelete>? autoDelete;
+  final ComputeRegionPerInstanceConfigAutoDelete? autoDelete;
 
   final TfArg<String> interfaceName;
 
@@ -110,13 +136,27 @@ final class ComputeRegionPerInstanceConfigExternalIp {
 }
 
 /// `auto_delete` — derived from the provider schema description.
-enum ComputeRegionPerInstanceConfigAutoDelete implements TerraformEnum {
-  never('NEVER'),
-  onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
+extension type const ComputeRegionPerInstanceConfigAutoDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionPerInstanceConfigAutoDelete.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionPerInstanceConfigAutoDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionPerInstanceConfigAutoDelete.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionPerInstanceConfigAutoDelete(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = ComputeRegionPerInstanceConfigAutoDelete._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onPermanentInstanceDeletion =
+      ComputeRegionPerInstanceConfigAutoDelete._(
+        TfArgLiteral('ON_PERMANENT_INSTANCE_DELETION'),
+      );
+
+  static const List<ComputeRegionPerInstanceConfigAutoDelete> values = [
+    never,
+    onPermanentInstanceDeletion,
+  ];
 }
 
 /// Typed helper for the `preserved_state.external_ip.ip_address` block of
@@ -141,7 +181,7 @@ final class ComputeRegionPerInstanceConfigInternalIp {
     this.ipAddress,
   });
 
-  final TfArg<ComputeRegionPerInstanceConfigAutoDelete>? autoDelete;
+  final ComputeRegionPerInstanceConfigAutoDelete? autoDelete;
 
   final TfArg<String> interfaceName;
 

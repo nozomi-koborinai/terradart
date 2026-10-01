@@ -8,36 +8,120 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDiscoveryEngineLicenseConfigSensitive = <String>{};
 
 /// Discovery Engine License Config Subscription enum for `subscription_term`.
-enum DiscoveryEngineLicenseConfigSubscriptionTerm implements TerraformEnum {
-  subscriptionTermUnspecified('SUBSCRIPTION_TERM_UNSPECIFIED'),
-  subscriptionTermOneMonth('SUBSCRIPTION_TERM_ONE_MONTH'),
-  subscriptionTermOneYear('SUBSCRIPTION_TERM_ONE_YEAR'),
-  subscriptionTermThreeYears('SUBSCRIPTION_TERM_THREE_YEARS'),
-  subscriptionTermThreeMonths('SUBSCRIPTION_TERM_THREE_MONTHS'),
-  subscriptionTermFourteenDays('SUBSCRIPTION_TERM_FOURTEEN_DAYS'),
-  subscriptionTermCustom('SUBSCRIPTION_TERM_CUSTOM');
+extension type const DiscoveryEngineLicenseConfigSubscriptionTerm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineLicenseConfigSubscriptionTerm.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineLicenseConfigSubscriptionTerm.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineLicenseConfigSubscriptionTerm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineLicenseConfigSubscriptionTerm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const subscriptionTermUnspecified =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_UNSPECIFIED'),
+      );
+  static const subscriptionTermOneMonth =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_ONE_MONTH'),
+      );
+  static const subscriptionTermOneYear =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_ONE_YEAR'),
+      );
+  static const subscriptionTermThreeYears =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_THREE_YEARS'),
+      );
+  static const subscriptionTermThreeMonths =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_THREE_MONTHS'),
+      );
+  static const subscriptionTermFourteenDays =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_FOURTEEN_DAYS'),
+      );
+  static const subscriptionTermCustom =
+      DiscoveryEngineLicenseConfigSubscriptionTerm._(
+        TfArgLiteral('SUBSCRIPTION_TERM_CUSTOM'),
+      );
+
+  static const List<DiscoveryEngineLicenseConfigSubscriptionTerm> values = [
+    subscriptionTermUnspecified,
+    subscriptionTermOneMonth,
+    subscriptionTermOneYear,
+    subscriptionTermThreeYears,
+    subscriptionTermThreeMonths,
+    subscriptionTermFourteenDays,
+    subscriptionTermCustom,
+  ];
 }
 
 /// Discovery Engine License Config Subscription enum for `subscription_tier`.
-enum DiscoveryEngineLicenseConfigSubscriptionTier implements TerraformEnum {
-  subscriptionTierUnspecified('SUBSCRIPTION_TIER_UNSPECIFIED'),
-  subscriptionTierSearch('SUBSCRIPTION_TIER_SEARCH'),
-  subscriptionTierSearchAndAssistant('SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT'),
-  subscriptionTierNotebookLm('SUBSCRIPTION_TIER_NOTEBOOK_LM'),
-  subscriptionTierFrontlineWorker('SUBSCRIPTION_TIER_FRONTLINE_WORKER'),
-  subscriptionTierAgentspaceStarter('SUBSCRIPTION_TIER_AGENTSPACE_STARTER'),
-  subscriptionTierAgentspaceBusiness('SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS'),
-  subscriptionTierEnterprise('SUBSCRIPTION_TIER_ENTERPRISE'),
-  subscriptionTierEdu('SUBSCRIPTION_TIER_EDU'),
-  subscriptionTierEduPro('SUBSCRIPTION_TIER_EDU_PRO');
+extension type const DiscoveryEngineLicenseConfigSubscriptionTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineLicenseConfigSubscriptionTier.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineLicenseConfigSubscriptionTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineLicenseConfigSubscriptionTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineLicenseConfigSubscriptionTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const subscriptionTierUnspecified =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_UNSPECIFIED'),
+      );
+  static const subscriptionTierSearch =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_SEARCH'),
+      );
+  static const subscriptionTierSearchAndAssistant =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT'),
+      );
+  static const subscriptionTierNotebookLm =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_NOTEBOOK_LM'),
+      );
+  static const subscriptionTierFrontlineWorker =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_FRONTLINE_WORKER'),
+      );
+  static const subscriptionTierAgentspaceStarter =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_AGENTSPACE_STARTER'),
+      );
+  static const subscriptionTierAgentspaceBusiness =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS'),
+      );
+  static const subscriptionTierEnterprise =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_ENTERPRISE'),
+      );
+  static const subscriptionTierEdu =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_EDU'),
+      );
+  static const subscriptionTierEduPro =
+      DiscoveryEngineLicenseConfigSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_EDU_PRO'),
+      );
+
+  static const List<DiscoveryEngineLicenseConfigSubscriptionTier> values = [
+    subscriptionTierUnspecified,
+    subscriptionTierSearch,
+    subscriptionTierSearchAndAssistant,
+    subscriptionTierNotebookLm,
+    subscriptionTierFrontlineWorker,
+    subscriptionTierAgentspaceStarter,
+    subscriptionTierAgentspaceBusiness,
+    subscriptionTierEnterprise,
+    subscriptionTierEdu,
+    subscriptionTierEduPro,
+  ];
 }
 
 /// Typed helper for the `end_date` block of
@@ -110,10 +194,8 @@ final class GoogleDiscoveryEngineLicenseConfig extends Resource {
     required TfArg<String> licenseConfigId,
     required TfArg<String> location,
     required TfArg<num> licenseCount,
-    required TfArg<DiscoveryEngineLicenseConfigSubscriptionTier>
-    subscriptionTier,
-    required TfArg<DiscoveryEngineLicenseConfigSubscriptionTerm>
-    subscriptionTerm,
+    required DiscoveryEngineLicenseConfigSubscriptionTier subscriptionTier,
+    required DiscoveryEngineLicenseConfigSubscriptionTerm subscriptionTerm,
     required DiscoveryEngineLicenseConfigStartDate startDate,
     DiscoveryEngineLicenseConfigEndDate? endDate,
     TfArg<bool>? autoRenew,

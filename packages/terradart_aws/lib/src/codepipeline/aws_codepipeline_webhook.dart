@@ -10,14 +10,27 @@ const Set<String> _awsCodepipelineWebhookSensitive = <String>{
 };
 
 /// Codepipeline Webhook enum for `authentication`.
-enum CodepipelineWebhookAuthentication implements TerraformEnum {
-  githubHmac('GITHUB_HMAC'),
-  ip('IP'),
-  unauthenticated('UNAUTHENTICATED');
+extension type const CodepipelineWebhookAuthentication._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineWebhookAuthentication.variable(String name)
+    : this._(TfArg.variable(name));
+  CodepipelineWebhookAuthentication.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineWebhookAuthentication.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineWebhookAuthentication(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const githubHmac = CodepipelineWebhookAuthentication._(
+    TfArgLiteral('GITHUB_HMAC'),
+  );
+  static const ip = CodepipelineWebhookAuthentication._(TfArgLiteral('IP'));
+  static const unauthenticated = CodepipelineWebhookAuthentication._(
+    TfArgLiteral('UNAUTHENTICATED'),
+  );
+
+  static const List<CodepipelineWebhookAuthentication> values = [
+    githubHmac,
+    ip,
+    unauthenticated,
+  ];
 }
 
 /// Typed helper for the `authentication_configuration` block of
@@ -64,7 +77,7 @@ final class AwsCodepipelineWebhook extends Resource {
 
   AwsCodepipelineWebhook(
     super.localName, {
-    required TfArg<CodepipelineWebhookAuthentication> authentication,
+    required CodepipelineWebhookAuthentication authentication,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -39,7 +39,7 @@ curatedDoc: |-
   ///   assetTypes: TfArg.literal(const [
   ///     'cloudresourcemanager.googleapis.com/Project',
   ///   ]),
-  ///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
+  ///   contentType: CloudAssetProjectFeedContentType.resource,
   ///   feedOutputConfig: CloudAssetProjectFeedOutputConfig(
   ///     pubsubDestination: .new(
   ///       topic: topic.ref,

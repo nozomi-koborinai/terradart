@@ -9,13 +9,22 @@ const Set<String> _googleBlockchainNodeEngineBlockchainNodesSensitive =
     <String>{};
 
 /// Blockchain Node Engine Blockchain Nodes Blockchain enum for `blockchain_type`.
-enum BlockchainNodeEngineBlockchainNodesBlockchainType
-    implements TerraformEnum {
-  ethereum('ETHEREUM');
+extension type const BlockchainNodeEngineBlockchainNodesBlockchainType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BlockchainNodeEngineBlockchainNodesBlockchainType.variable(String name)
+    : this._(TfArg.variable(name));
+  BlockchainNodeEngineBlockchainNodesBlockchainType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BlockchainNodeEngineBlockchainNodesBlockchainType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BlockchainNodeEngineBlockchainNodesBlockchainType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ethereum = BlockchainNodeEngineBlockchainNodesBlockchainType._(
+    TfArgLiteral('ETHEREUM'),
+  );
+
+  static const List<BlockchainNodeEngineBlockchainNodesBlockchainType> values =
+      [ethereum];
 }
 
 /// Typed helper for the `ethereum_details` block of
@@ -37,15 +46,13 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
 
   final TfArg<bool>? apiEnableDebug;
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesConsensusClient>?
-  consensusClient;
+  final BlockchainNodeEngineBlockchainNodesConsensusClient? consensusClient;
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesExecutionClient>?
-  executionClient;
+  final BlockchainNodeEngineBlockchainNodesExecutionClient? executionClient;
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesNetwork>? network;
+  final BlockchainNodeEngineBlockchainNodesNetwork? network;
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesNodeType>? nodeType;
+  final BlockchainNodeEngineBlockchainNodesNodeType? nodeType;
 
   final BlockchainNodeEngineBlockchainNodesGethDetails? gethDetails;
 
@@ -64,48 +71,112 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
 }
 
 /// `consensus_client` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesConsensusClient
-    implements TerraformEnum {
-  consensusClientUnspecified('CONSENSUS_CLIENT_UNSPECIFIED'),
-  lighthouse('LIGHTHOUSE');
+extension type const BlockchainNodeEngineBlockchainNodesConsensusClient._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BlockchainNodeEngineBlockchainNodesConsensusClient.variable(String name)
+    : this._(TfArg.variable(name));
+  BlockchainNodeEngineBlockchainNodesConsensusClient.expression(String template)
+    : this._(TfArg.expression(template));
+  const BlockchainNodeEngineBlockchainNodesConsensusClient.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BlockchainNodeEngineBlockchainNodesConsensusClient(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const consensusClientUnspecified =
+      BlockchainNodeEngineBlockchainNodesConsensusClient._(
+        TfArgLiteral('CONSENSUS_CLIENT_UNSPECIFIED'),
+      );
+  static const lighthouse =
+      BlockchainNodeEngineBlockchainNodesConsensusClient._(
+        TfArgLiteral('LIGHTHOUSE'),
+      );
+
+  static const List<BlockchainNodeEngineBlockchainNodesConsensusClient> values =
+      [consensusClientUnspecified, lighthouse];
 }
 
 /// `execution_client` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesExecutionClient
-    implements TerraformEnum {
-  executionClientUnspecified('EXECUTION_CLIENT_UNSPECIFIED'),
-  geth('GETH'),
-  erigon('ERIGON');
+extension type const BlockchainNodeEngineBlockchainNodesExecutionClient._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BlockchainNodeEngineBlockchainNodesExecutionClient.variable(String name)
+    : this._(TfArg.variable(name));
+  BlockchainNodeEngineBlockchainNodesExecutionClient.expression(String template)
+    : this._(TfArg.expression(template));
+  const BlockchainNodeEngineBlockchainNodesExecutionClient.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BlockchainNodeEngineBlockchainNodesExecutionClient(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const executionClientUnspecified =
+      BlockchainNodeEngineBlockchainNodesExecutionClient._(
+        TfArgLiteral('EXECUTION_CLIENT_UNSPECIFIED'),
+      );
+  static const geth = BlockchainNodeEngineBlockchainNodesExecutionClient._(
+    TfArgLiteral('GETH'),
+  );
+  static const erigon = BlockchainNodeEngineBlockchainNodesExecutionClient._(
+    TfArgLiteral('ERIGON'),
+  );
+
+  static const List<BlockchainNodeEngineBlockchainNodesExecutionClient> values =
+      [executionClientUnspecified, geth, erigon];
 }
 
 /// `network` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesNetwork implements TerraformEnum {
-  mainnet('MAINNET'),
-  testnetGoerliPrater('TESTNET_GOERLI_PRATER'),
-  testnetSepolia('TESTNET_SEPOLIA');
+extension type const BlockchainNodeEngineBlockchainNodesNetwork._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BlockchainNodeEngineBlockchainNodesNetwork.variable(String name)
+    : this._(TfArg.variable(name));
+  BlockchainNodeEngineBlockchainNodesNetwork.expression(String template)
+    : this._(TfArg.expression(template));
+  const BlockchainNodeEngineBlockchainNodesNetwork.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BlockchainNodeEngineBlockchainNodesNetwork(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mainnet = BlockchainNodeEngineBlockchainNodesNetwork._(
+    TfArgLiteral('MAINNET'),
+  );
+  static const testnetGoerliPrater =
+      BlockchainNodeEngineBlockchainNodesNetwork._(
+        TfArgLiteral('TESTNET_GOERLI_PRATER'),
+      );
+  static const testnetSepolia = BlockchainNodeEngineBlockchainNodesNetwork._(
+    TfArgLiteral('TESTNET_SEPOLIA'),
+  );
+
+  static const List<BlockchainNodeEngineBlockchainNodesNetwork> values = [
+    mainnet,
+    testnetGoerliPrater,
+    testnetSepolia,
+  ];
 }
 
 /// `node_type` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesNodeType implements TerraformEnum {
-  light('LIGHT'),
-  full('FULL'),
-  archive('ARCHIVE');
+extension type const BlockchainNodeEngineBlockchainNodesNodeType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BlockchainNodeEngineBlockchainNodesNodeType.variable(String name)
+    : this._(TfArg.variable(name));
+  BlockchainNodeEngineBlockchainNodesNodeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BlockchainNodeEngineBlockchainNodesNodeType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BlockchainNodeEngineBlockchainNodesNodeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const light = BlockchainNodeEngineBlockchainNodesNodeType._(
+    TfArgLiteral('LIGHT'),
+  );
+  static const full = BlockchainNodeEngineBlockchainNodesNodeType._(
+    TfArgLiteral('FULL'),
+  );
+  static const archive = BlockchainNodeEngineBlockchainNodesNodeType._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<BlockchainNodeEngineBlockchainNodesNodeType> values = [
+    light,
+    full,
+    archive,
+  ];
 }
 
 /// Typed helper for the `ethereum_details.geth_details` block of
@@ -116,7 +187,7 @@ final class BlockchainNodeEngineBlockchainNodesGethDetails {
     this.garbageCollectionMode,
   });
 
-  final TfArg<BlockchainNodeEngineBlockchainNodesGarbageCollectionMode>?
+  final BlockchainNodeEngineBlockchainNodesGarbageCollectionMode?
   garbageCollectionMode;
 
   Map<String, Object?> encode() => {
@@ -125,16 +196,29 @@ final class BlockchainNodeEngineBlockchainNodesGethDetails {
 }
 
 /// `garbage_collection_mode` — derived from the provider schema description.
-enum BlockchainNodeEngineBlockchainNodesGarbageCollectionMode
-    implements TerraformEnum {
-  full('FULL'),
-  archive('ARCHIVE');
+extension type const BlockchainNodeEngineBlockchainNodesGarbageCollectionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BlockchainNodeEngineBlockchainNodesGarbageCollectionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BlockchainNodeEngineBlockchainNodesGarbageCollectionMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BlockchainNodeEngineBlockchainNodesGarbageCollectionMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BlockchainNodeEngineBlockchainNodesGarbageCollectionMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const full =
+      BlockchainNodeEngineBlockchainNodesGarbageCollectionMode._(
+        TfArgLiteral('FULL'),
+      );
+  static const archive =
+      BlockchainNodeEngineBlockchainNodesGarbageCollectionMode._(
+        TfArgLiteral('ARCHIVE'),
+      );
+
+  static const List<BlockchainNodeEngineBlockchainNodesGarbageCollectionMode>
+  values = [full, archive];
 }
 
 /// Typed helper for the `ethereum_details.validator_config` block of
@@ -176,7 +260,7 @@ final class GoogleBlockchainNodeEngineBlockchainNodes extends Resource {
     super.localName, {
     required TfArg<String> blockchainNodeId,
     required TfArg<String> location,
-    TfArg<BlockchainNodeEngineBlockchainNodesBlockchainType>? blockchainType,
+    BlockchainNodeEngineBlockchainNodesBlockchainType? blockchainType,
     BlockchainNodeEngineBlockchainNodesEthereumDetails? ethereumDetails,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

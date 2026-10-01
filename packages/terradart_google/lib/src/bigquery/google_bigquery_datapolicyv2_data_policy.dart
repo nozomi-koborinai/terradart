@@ -8,31 +8,85 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBigqueryDatapolicyv2DataPolicySensitive = <String>{};
 
 /// Enrollment level for `google_bigquery_datapolicyv2_data_policy.data_policy_type`.
-enum BigqueryDatapolicyv2DataPolicyType implements TerraformEnum {
-  dataMaskingPolicy('DATA_MASKING_POLICY'),
-  rawDataAccessPolicy('RAW_DATA_ACCESS_POLICY'),
-  columnLevelSecurityPolicy('COLUMN_LEVEL_SECURITY_POLICY');
+extension type const BigqueryDatapolicyv2DataPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryDatapolicyv2DataPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatapolicyv2DataPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatapolicyv2DataPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryDatapolicyv2DataPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataMaskingPolicy = BigqueryDatapolicyv2DataPolicyType._(
+    TfArgLiteral('DATA_MASKING_POLICY'),
+  );
+  static const rawDataAccessPolicy = BigqueryDatapolicyv2DataPolicyType._(
+    TfArgLiteral('RAW_DATA_ACCESS_POLICY'),
+  );
+  static const columnLevelSecurityPolicy = BigqueryDatapolicyv2DataPolicyType._(
+    TfArgLiteral('COLUMN_LEVEL_SECURITY_POLICY'),
+  );
+
+  static const List<BigqueryDatapolicyv2DataPolicyType> values = [
+    dataMaskingPolicy,
+    rawDataAccessPolicy,
+    columnLevelSecurityPolicy,
+  ];
 }
 
 /// Predefined masking expression for V2 [BigqueryDatapolicyv2DataPolicyDataMaskingPolicy].
-enum BigqueryDatapolicyv2DataPolicyPredefinedExpression
-    implements TerraformEnum {
-  sha256('SHA256'),
-  alwaysNull('ALWAYS_NULL'),
-  defaultMaskingValue('DEFAULT_MASKING_VALUE'),
-  lastFourCharacters('LAST_FOUR_CHARACTERS'),
-  firstFourCharacters('FIRST_FOUR_CHARACTERS'),
-  emailMask('EMAIL_MASK'),
-  dateYearMask('DATE_YEAR_MASK'),
-  randomHash('RANDOM_HASH');
+extension type const BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BigqueryDatapolicyv2DataPolicyPredefinedExpression.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatapolicyv2DataPolicyPredefinedExpression.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatapolicyv2DataPolicyPredefinedExpression.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BigqueryDatapolicyv2DataPolicyPredefinedExpression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha256 = BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+    TfArgLiteral('SHA256'),
+  );
+  static const alwaysNull =
+      BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+        TfArgLiteral('ALWAYS_NULL'),
+      );
+  static const defaultMaskingValue =
+      BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+        TfArgLiteral('DEFAULT_MASKING_VALUE'),
+      );
+  static const lastFourCharacters =
+      BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+        TfArgLiteral('LAST_FOUR_CHARACTERS'),
+      );
+  static const firstFourCharacters =
+      BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+        TfArgLiteral('FIRST_FOUR_CHARACTERS'),
+      );
+  static const emailMask = BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+    TfArgLiteral('EMAIL_MASK'),
+  );
+  static const dateYearMask =
+      BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+        TfArgLiteral('DATE_YEAR_MASK'),
+      );
+  static const randomHash =
+      BigqueryDatapolicyv2DataPolicyPredefinedExpression._(
+        TfArgLiteral('RANDOM_HASH'),
+      );
+
+  static const List<BigqueryDatapolicyv2DataPolicyPredefinedExpression> values =
+      [
+        sha256,
+        alwaysNull,
+        defaultMaskingValue,
+        lastFourCharacters,
+        firstFourCharacters,
+        emailMask,
+        dateYearMask,
+        randomHash,
+      ];
 }
 
 /// `data_masking_policy` — predefined expression **or** custom routine.
@@ -49,7 +103,7 @@ class BigqueryDatapolicyv2DataPolicyDataMaskingPolicy {
 
   Map<String, Object?> encode() => {
     if (predefinedExpression != null)
-      'predefined_expression': predefinedExpression!.terraformValue,
+      'predefined_expression': predefinedExpression!.toTfJson(),
     if (routine != null) 'routine': routine!.toTfJson(),
   };
 }
@@ -89,9 +143,7 @@ class BigqueryDatapolicyv2DataPolicyDataGovernanceTag {
 ///   'raw_access',
 ///   location: TfArg.literal('us-central1'),
 ///   dataPolicyId: TfArg.literal('raw-access'),
-///   dataPolicyType: TfArg.literal(
-///     BigqueryDatapolicyv2DataPolicyType.rawDataAccessPolicy,
-///   ),
+///   dataPolicyType: BigqueryDatapolicyv2DataPolicyType.rawDataAccessPolicy,
 /// );
 /// ```
 ///
@@ -101,9 +153,7 @@ class BigqueryDatapolicyv2DataPolicyDataGovernanceTag {
 ///   'email_mask_v2',
 ///   location: TfArg.literal('us-central1'),
 ///   dataPolicyId: TfArg.literal('email-mask-v2'),
-///   dataPolicyType: TfArg.literal(
-///     BigqueryDatapolicyv2DataPolicyType.dataMaskingPolicy,
-///   ),
+///   dataPolicyType: BigqueryDatapolicyv2DataPolicyType.dataMaskingPolicy,
 ///   dataMaskingPolicy: const BigqueryDatapolicyv2DataPolicyDataMaskingPolicy(
 ///     predefinedExpression:
 ///         BigqueryDatapolicyv2DataPolicyPredefinedExpression.emailMask,
@@ -116,7 +166,7 @@ final class GoogleBigqueryDatapolicyv2DataPolicy extends Resource {
   GoogleBigqueryDatapolicyv2DataPolicy(
     super.localName, {
     required TfArg<String> dataPolicyId,
-    required TfArg<BigqueryDatapolicyv2DataPolicyType> dataPolicyType,
+    required BigqueryDatapolicyv2DataPolicyType dataPolicyType,
     required TfArg<String> location,
     TfArg<List<String>>? grantees,
     BigqueryDatapolicyv2DataPolicyDataMaskingPolicy? dataMaskingPolicy,

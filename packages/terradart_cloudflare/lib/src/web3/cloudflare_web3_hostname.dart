@@ -9,14 +9,24 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareWeb3HostnameSensitive = <String>{};
 
 /// Web3 Hostname enum for `target`.
-enum Web3HostnameTarget implements TerraformEnum {
-  ethereum('ethereum'),
-  ipfs('ipfs'),
-  ipfsUniversalPath('ipfs_universal_path');
+extension type const Web3HostnameTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  Web3HostnameTarget.variable(String name) : this._(TfArg.variable(name));
+  Web3HostnameTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const Web3HostnameTarget.arg(TfArg<String> arg) : this._(arg);
 
-  const Web3HostnameTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ethereum = Web3HostnameTarget._(TfArgLiteral('ethereum'));
+  static const ipfs = Web3HostnameTarget._(TfArgLiteral('ipfs'));
+  static const ipfsUniversalPath = Web3HostnameTarget._(
+    TfArgLiteral('ipfs_universal_path'),
+  );
+
+  static const List<Web3HostnameTarget> values = [
+    ethereum,
+    ipfs,
+    ipfsUniversalPath,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_web3_hostname`.
@@ -32,7 +42,7 @@ final class CloudflareWeb3Hostname extends Resource {
     TfArg<String>? description,
     TfArg<String>? dnslink,
     required TfArg<String> name,
-    required TfArg<Web3HostnameTarget> target,
+    required Web3HostnameTarget target,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

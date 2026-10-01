@@ -11,23 +11,51 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsLambdaEventSourceMappingSensitive = <String>{};
 
 /// Lambda Event Source Mapping Function Response enum for `function_response_types`.
-enum LambdaEventSourceMappingFunctionResponseTypes implements TerraformEnum {
-  reportbatchitemfailures('ReportBatchItemFailures');
+extension type const LambdaEventSourceMappingFunctionResponseTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdaEventSourceMappingFunctionResponseTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingFunctionResponseTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingFunctionResponseTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaEventSourceMappingFunctionResponseTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const reportbatchitemfailures =
+      LambdaEventSourceMappingFunctionResponseTypes._(
+        TfArgLiteral('ReportBatchItemFailures'),
+      );
+
+  static const List<LambdaEventSourceMappingFunctionResponseTypes> values = [
+    reportbatchitemfailures,
+  ];
 }
 
 /// Lambda Event Source Mapping Starting enum for `starting_position`.
-enum LambdaEventSourceMappingStartingPosition implements TerraformEnum {
-  trimHorizon('TRIM_HORIZON'),
-  latest('LATEST'),
-  atTimestamp('AT_TIMESTAMP');
+extension type const LambdaEventSourceMappingStartingPosition._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaEventSourceMappingStartingPosition.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingStartingPosition.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingStartingPosition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaEventSourceMappingStartingPosition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trimHorizon = LambdaEventSourceMappingStartingPosition._(
+    TfArgLiteral('TRIM_HORIZON'),
+  );
+  static const latest = LambdaEventSourceMappingStartingPosition._(
+    TfArgLiteral('LATEST'),
+  );
+  static const atTimestamp = LambdaEventSourceMappingStartingPosition._(
+    TfArgLiteral('AT_TIMESTAMP'),
+  );
+
+  static const List<LambdaEventSourceMappingStartingPosition> values = [
+    trimHorizon,
+    latest,
+    atTimestamp,
+  ];
 }
 
 /// Exactly one of `event_source_arn`, `self_managed_event_source` on `aws_lambda_event_source_mapping`: the provider rejects
@@ -216,7 +244,7 @@ final class LambdaEventSourceMappingSchemaRegistryConfig {
     this.schemaValidationConfig,
   });
 
-  final TfArg<LambdaEventSourceMappingEventRecordFormat>? eventRecordFormat;
+  final LambdaEventSourceMappingEventRecordFormat? eventRecordFormat;
 
   final TfArg<String>? schemaRegistryUri;
 
@@ -238,13 +266,27 @@ final class LambdaEventSourceMappingSchemaRegistryConfig {
 }
 
 /// `event_record_format` — derived from the provider schema description.
-enum LambdaEventSourceMappingEventRecordFormat implements TerraformEnum {
-  json('JSON'),
-  source('SOURCE');
+extension type const LambdaEventSourceMappingEventRecordFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdaEventSourceMappingEventRecordFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingEventRecordFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingEventRecordFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaEventSourceMappingEventRecordFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = LambdaEventSourceMappingEventRecordFormat._(
+    TfArgLiteral('JSON'),
+  );
+  static const source = LambdaEventSourceMappingEventRecordFormat._(
+    TfArgLiteral('SOURCE'),
+  );
+
+  static const List<LambdaEventSourceMappingEventRecordFormat> values = [
+    json,
+    source,
+  ];
 }
 
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config.access_config` block of
@@ -254,7 +296,7 @@ enum LambdaEventSourceMappingEventRecordFormat implements TerraformEnum {
 final class LambdaEventSourceMappingAccessConfig {
   const LambdaEventSourceMappingAccessConfig({this.type, this.uri});
 
-  final TfArg<LambdaEventSourceMappingAccessConfigType>? type;
+  final LambdaEventSourceMappingAccessConfigType? type;
 
   final TfArg<String>? uri;
 
@@ -265,14 +307,32 @@ final class LambdaEventSourceMappingAccessConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum LambdaEventSourceMappingAccessConfigType implements TerraformEnum {
-  basicAuth('BASIC_AUTH'),
-  clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
-  serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
+extension type const LambdaEventSourceMappingAccessConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaEventSourceMappingAccessConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingAccessConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingAccessConfigType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaEventSourceMappingAccessConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basicAuth = LambdaEventSourceMappingAccessConfigType._(
+    TfArgLiteral('BASIC_AUTH'),
+  );
+  static const clientCertificateTlsAuth =
+      LambdaEventSourceMappingAccessConfigType._(
+        TfArgLiteral('CLIENT_CERTIFICATE_TLS_AUTH'),
+      );
+  static const serverRootCaCertificate =
+      LambdaEventSourceMappingAccessConfigType._(
+        TfArgLiteral('SERVER_ROOT_CA_CERTIFICATE'),
+      );
+
+  static const List<LambdaEventSourceMappingAccessConfigType> values = [
+    basicAuth,
+    clientCertificateTlsAuth,
+    serverRootCaCertificate,
+  ];
 }
 
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config.schema_validation_config` block of
@@ -282,19 +342,26 @@ enum LambdaEventSourceMappingAccessConfigType implements TerraformEnum {
 final class LambdaEventSourceMappingSchemaValidationConfig {
   const LambdaEventSourceMappingSchemaValidationConfig({this.attribute});
 
-  final TfArg<LambdaEventSourceMappingAttribute>? attribute;
+  final LambdaEventSourceMappingAttribute? attribute;
 
   Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum LambdaEventSourceMappingAttribute implements TerraformEnum {
-  key('KEY'),
-  value('VALUE');
+extension type const LambdaEventSourceMappingAttribute._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaEventSourceMappingAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingAttribute.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaEventSourceMappingAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const key = LambdaEventSourceMappingAttribute._(TfArgLiteral('KEY'));
+  static const value = LambdaEventSourceMappingAttribute._(
+    TfArgLiteral('VALUE'),
+  );
+
+  static const List<LambdaEventSourceMappingAttribute> values = [key, value];
 }
 
 /// Typed helper for the `destination_config` block of
@@ -335,7 +402,7 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
 
   final TfArg<String> databaseName;
 
-  final TfArg<LambdaEventSourceMappingFullDocument>? fullDocument;
+  final LambdaEventSourceMappingFullDocument? fullDocument;
 
   Map<String, Object?> encode() => {
     'collection_name': ?collectionName?.toTfJson(),
@@ -345,13 +412,26 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
 }
 
 /// `full_document` — derived from the provider schema description.
-enum LambdaEventSourceMappingFullDocument implements TerraformEnum {
-  updatelookup('UpdateLookup'),
-  defaultCase('Default');
+extension type const LambdaEventSourceMappingFullDocument._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaEventSourceMappingFullDocument.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingFullDocument.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingFullDocument.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaEventSourceMappingFullDocument(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const updatelookup = LambdaEventSourceMappingFullDocument._(
+    TfArgLiteral('UpdateLookup'),
+  );
+  static const defaultCase = LambdaEventSourceMappingFullDocument._(
+    TfArgLiteral('Default'),
+  );
+
+  static const List<LambdaEventSourceMappingFullDocument> values = [
+    updatelookup,
+    defaultCase,
+  ];
 }
 
 /// Typed helper for the `filter_criteria` block of
@@ -384,7 +464,7 @@ final class LambdaEventSourceMappingFilter {
 final class LambdaEventSourceMappingMetricsConfig {
   const LambdaEventSourceMappingMetricsConfig({required this.metrics});
 
-  final List<TfArg<LambdaEventSourceMappingMetrics>> metrics;
+  final List<LambdaEventSourceMappingMetrics> metrics;
 
   Map<String, Object?> encode() => {
     'metrics': [for (final e in metrics) e.toTfJson()],
@@ -392,14 +472,29 @@ final class LambdaEventSourceMappingMetricsConfig {
 }
 
 /// `metrics` — derived from the provider schema description.
-enum LambdaEventSourceMappingMetrics implements TerraformEnum {
-  eventcount('EventCount'),
-  errorcount('ErrorCount'),
-  kafkametrics('KafkaMetrics');
+extension type const LambdaEventSourceMappingMetrics._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaEventSourceMappingMetrics.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingMetrics.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingMetrics.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaEventSourceMappingMetrics(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eventcount = LambdaEventSourceMappingMetrics._(
+    TfArgLiteral('EventCount'),
+  );
+  static const errorcount = LambdaEventSourceMappingMetrics._(
+    TfArgLiteral('ErrorCount'),
+  );
+  static const kafkametrics = LambdaEventSourceMappingMetrics._(
+    TfArgLiteral('KafkaMetrics'),
+  );
+
+  static const List<LambdaEventSourceMappingMetrics> values = [
+    eventcount,
+    errorcount,
+    kafkametrics,
+  ];
 }
 
 /// Typed helper for the `provisioned_poller_config` block of
@@ -479,7 +574,7 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
     required this.uri,
   });
 
-  final TfArg<LambdaEventSourceMappingType> type;
+  final LambdaEventSourceMappingType type;
 
   final TfArg<String> uri;
 
@@ -490,19 +585,49 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum LambdaEventSourceMappingType implements TerraformEnum {
-  basicAuth('BASIC_AUTH'),
-  vpcSubnet('VPC_SUBNET'),
-  vpcSecurityGroup('VPC_SECURITY_GROUP'),
-  saslScram512Auth('SASL_SCRAM_512_AUTH'),
-  saslScram256Auth('SASL_SCRAM_256_AUTH'),
-  virtualHost('VIRTUAL_HOST'),
-  clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
-  serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
+extension type const LambdaEventSourceMappingType._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaEventSourceMappingType.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaEventSourceMappingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaEventSourceMappingType.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaEventSourceMappingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basicAuth = LambdaEventSourceMappingType._(
+    TfArgLiteral('BASIC_AUTH'),
+  );
+  static const vpcSubnet = LambdaEventSourceMappingType._(
+    TfArgLiteral('VPC_SUBNET'),
+  );
+  static const vpcSecurityGroup = LambdaEventSourceMappingType._(
+    TfArgLiteral('VPC_SECURITY_GROUP'),
+  );
+  static const saslScram512Auth = LambdaEventSourceMappingType._(
+    TfArgLiteral('SASL_SCRAM_512_AUTH'),
+  );
+  static const saslScram256Auth = LambdaEventSourceMappingType._(
+    TfArgLiteral('SASL_SCRAM_256_AUTH'),
+  );
+  static const virtualHost = LambdaEventSourceMappingType._(
+    TfArgLiteral('VIRTUAL_HOST'),
+  );
+  static const clientCertificateTlsAuth = LambdaEventSourceMappingType._(
+    TfArgLiteral('CLIENT_CERTIFICATE_TLS_AUTH'),
+  );
+  static const serverRootCaCertificate = LambdaEventSourceMappingType._(
+    TfArgLiteral('SERVER_ROOT_CA_CERTIFICATE'),
+  );
+
+  static const List<LambdaEventSourceMappingType> values = [
+    basicAuth,
+    vpcSubnet,
+    vpcSecurityGroup,
+    saslScram512Auth,
+    saslScram256Auth,
+    virtualHost,
+    clientCertificateTlsAuth,
+    serverRootCaCertificate,
+  ];
 }
 
 /// Factory wrapper for `aws_lambda_event_source_mapping`.
@@ -516,8 +641,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<bool>? enabled,
     required LambdaEventSourceMappingEventSource eventSource,
     required RefTo<AwsLambdaFunction> functionName,
-    List<TfArg<LambdaEventSourceMappingFunctionResponseTypes>>?
-    functionResponseTypes,
+    List<LambdaEventSourceMappingFunctionResponseTypes>? functionResponseTypes,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<num>? maximumBatchingWindowInSeconds,
     TfArg<num>? maximumRecordAgeInSeconds,
@@ -525,7 +649,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<num>? parallelizationFactor,
     TfArg<List<String>>? queues,
     TfArg<String>? region,
-    TfArg<LambdaEventSourceMappingStartingPosition>? startingPosition,
+    LambdaEventSourceMappingStartingPosition? startingPosition,
     TfArg<String>? startingPositionTimestamp,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? topics,

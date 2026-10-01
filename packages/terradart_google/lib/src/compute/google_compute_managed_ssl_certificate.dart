@@ -8,19 +8,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeManagedSslCertificateSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
-// directly; TfArg detects `.terraformValue` getter.
+// directly; TfArg detects `.toTfJson()` getter.
 
 /// Certificate provisioning mode. The schema for this resource accepts
 /// only `MANAGED`, and that value is the default — the enum exists for
 /// symmetry with the legacy unified `google_compute_ssl_certificate`
 /// resource (which historically distinguished `MANAGED` from
 /// `SELF_MANAGED`). For new code, omit `type` entirely.
-enum ManagedSslCertificateType implements TerraformEnum {
-  managed('MANAGED');
+extension type const ManagedSslCertificateType._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedSslCertificateType.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedSslCertificateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedSslCertificateType.arg(TfArg<String> arg) : this._(arg);
 
-  const ManagedSslCertificateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managed = ManagedSslCertificateType._(TfArgLiteral('MANAGED'));
+
+  static const List<ManagedSslCertificateType> values = [managed];
 }
 
 /// `managed` block payload (single block, max_items=1). Carries the
@@ -99,7 +104,7 @@ final class GoogleComputeManagedSslCertificate extends Resource {
     super.localName, {
     TfArg<String>? name,
     ComputeManagedSslCertificateConfig? managed,
-    TfArg<ManagedSslCertificateType>? type,
+    ManagedSslCertificateType? type,
     TfArg<String>? description,
     TfArg<String>? project,
     super.lifecycle,

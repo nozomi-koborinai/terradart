@@ -14,46 +14,40 @@ extraImports:
 # 27 analyst roles stay compile-checked.
 prelude: |
   /// `role` for [GoogleAgenticApplicationsAnalystAgentPersona].
-  enum AgenticApplicationsAnalystAgentPersonaRole implements TerraformEnum {
-    genericFinanceAnalyst('ANALYST_ROLE_GENERIC_FINANCE_ANALYST'),
-    corporateFinanceAnalyst('ANALYST_ROLE_CORPORATE_FINANCE_ANALYST'),
-    crossAssetDerivativesStrategist(
-      'ANALYST_ROLE_CROSS_ASSET_DERIVATIVES_STRATEGIST',
-    ),
-    kycAnalyst('ANALYST_ROLE_KYC_ANALYST'),
-    salesTrader('ANALYST_ROLE_SALES_TRADER'),
-    quantAnalyst('ANALYST_ROLE_QUANT_ANALYST'),
-    exchangeManager('ANALYST_ROLE_EXCHANGE_MANAGER'),
-    portfolioManager('ANALYST_ROLE_PORTFOLIO_MANAGER'),
-    wealthManager('ANALYST_ROLE_WEALTH_MANAGER'),
-    institutionalPortfolioStrategist(
-      'ANALYST_ROLE_INSTITUTIONAL_PORTFOLIO_STRATEGIST',
-    ),
-    mnaExecutionAnalyst('ANALYST_ROLE_MNA_EXECUTION_ANALYST'),
-    ecmOriginationStrategist('ANALYST_ROLE_ECM_ORIGINATION_STRATEGIST'),
-    leveragedFinanceSpecialist('ANALYST_ROLE_LEVERAGED_FINANCE_SPECIALIST'),
-    investmentResearchAnalyst('ANALYST_ROLE_INVESTMENT_RESEARCH_ANALYST'),
-    corporateBankingAnalyst('ANALYST_ROLE_CORPORATE_BANKING_ANALYST'),
-    creditRiskStrategist('ANALYST_ROLE_CREDIT_RISK_STRATEGIST'),
-    behavioralFinancialStrategist(
-      'ANALYST_ROLE_BEHAVIORAL_FINANCIAL_STRATEGIST',
-    ),
-    fundAccountant('ANALYST_ROLE_FUND_ACCOUNTANT'),
-    modelValidationAuditor('ANALYST_ROLE_MODEL_VALIDATION_AUDITOR'),
-    privateEquitySpecialist('ANALYST_ROLE_PRIVATE_EQUITY_SPECIALIST'),
-    treasuryAnalyst('ANALYST_ROLE_TREASURY_ANALYST'),
-    ventureCapitalAnalyst('ANALYST_ROLE_VENTURE_CAPITAL_ANALYST'),
-    amlInvestigator('ANALYST_ROLE_AML_INVESTIGATOR'),
-    dueDiligenceAnalyst('ANALYST_ROLE_DUE_DILIGENCE_ANALYST'),
-    insuranceClaimsAnalyst('ANALYST_ROLE_INSURANCE_CLAIMS_ANALYST'),
-    specialtyLiabilityUnderwriter(
-      'ANALYST_ROLE_SPECIALTY_LIABILITY_UNDERWRITER',
-    ),
-    catastropheExposureModeler('ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER');
+  extension type const AgenticApplicationsAnalystAgentPersonaRole._(TfArg<String> _) implements TfArg<String> {
+    AgenticApplicationsAnalystAgentPersonaRole.variable(String name) : this._(TfArg.variable(name));
+    AgenticApplicationsAnalystAgentPersonaRole.expression(String template) : this._(TfArg.expression(template));
+    const AgenticApplicationsAnalystAgentPersonaRole.arg(TfArg<String> arg) : this._(arg);
 
-    const AgenticApplicationsAnalystAgentPersonaRole(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const genericFinanceAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_GENERIC_FINANCE_ANALYST'));
+    static const corporateFinanceAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_CORPORATE_FINANCE_ANALYST'));
+    static const crossAssetDerivativesStrategist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_CROSS_ASSET_DERIVATIVES_STRATEGIST'));
+    static const kycAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_KYC_ANALYST'));
+    static const salesTrader = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_SALES_TRADER'));
+    static const quantAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_QUANT_ANALYST'));
+    static const exchangeManager = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_EXCHANGE_MANAGER'));
+    static const portfolioManager = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_PORTFOLIO_MANAGER'));
+    static const wealthManager = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_WEALTH_MANAGER'));
+    static const institutionalPortfolioStrategist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_INSTITUTIONAL_PORTFOLIO_STRATEGIST'));
+    static const mnaExecutionAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_MNA_EXECUTION_ANALYST'));
+    static const ecmOriginationStrategist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_ECM_ORIGINATION_STRATEGIST'));
+    static const leveragedFinanceSpecialist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_LEVERAGED_FINANCE_SPECIALIST'));
+    static const investmentResearchAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_INVESTMENT_RESEARCH_ANALYST'));
+    static const corporateBankingAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_CORPORATE_BANKING_ANALYST'));
+    static const creditRiskStrategist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_CREDIT_RISK_STRATEGIST'));
+    static const behavioralFinancialStrategist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_BEHAVIORAL_FINANCIAL_STRATEGIST'));
+    static const fundAccountant = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_FUND_ACCOUNTANT'));
+    static const modelValidationAuditor = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_MODEL_VALIDATION_AUDITOR'));
+    static const privateEquitySpecialist = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_PRIVATE_EQUITY_SPECIALIST'));
+    static const treasuryAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_TREASURY_ANALYST'));
+    static const ventureCapitalAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_VENTURE_CAPITAL_ANALYST'));
+    static const amlInvestigator = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_AML_INVESTIGATOR'));
+    static const dueDiligenceAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_DUE_DILIGENCE_ANALYST'));
+    static const insuranceClaimsAnalyst = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_INSURANCE_CLAIMS_ANALYST'));
+    static const specialtyLiabilityUnderwriter = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_SPECIALTY_LIABILITY_UNDERWRITER'));
+    static const catastropheExposureModeler = AgenticApplicationsAnalystAgentPersonaRole._(TfArgLiteral('ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER'));
+
+    static const List<AgenticApplicationsAnalystAgentPersonaRole> values = [genericFinanceAnalyst, corporateFinanceAnalyst, crossAssetDerivativesStrategist, kycAnalyst, salesTrader, quantAnalyst, exchangeManager, portfolioManager, wealthManager, institutionalPortfolioStrategist, mnaExecutionAnalyst, ecmOriginationStrategist, leveragedFinanceSpecialist, investmentResearchAnalyst, corporateBankingAnalyst, creditRiskStrategist, behavioralFinancialStrategist, fundAccountant, modelValidationAuditor, privateEquitySpecialist, treasuryAnalyst, ventureCapitalAnalyst, amlInvestigator, dueDiligenceAnalyst, insuranceClaimsAnalyst, specialtyLiabilityUnderwriter, catastropheExposureModeler];
   }
 
 dartTypeOverrides:
@@ -98,9 +92,7 @@ curatedDoc: |-
   ///   location: TfArg.literal('us-central1'),
   ///   analystAgentPersonaId: TfArg.literal('terradart-analyst'),
   ///   displayName: TfArg.literal('TerraDart treasury analyst'),
-  ///   role: TfArg.literal(
-  ///     AgenticApplicationsAnalystAgentPersonaRole.treasuryAnalyst,
-  ///   ),
+  ///   role: AgenticApplicationsAnalystAgentPersonaRole.treasuryAnalyst,
   ///   skills: [
   ///     AgenticApplicationsAnalystAgentPersonaSkills(
   ///       skillId: TfArg.literal('cash-position'),

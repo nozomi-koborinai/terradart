@@ -13,19 +13,31 @@ const Set<String> _awsLocationPlaceIndexSensitive = <String>{};
 final class LocationPlaceIndexDataSourceConfiguration {
   const LocationPlaceIndexDataSourceConfiguration({this.intendedUse});
 
-  final TfArg<LocationPlaceIndexIntendedUse>? intendedUse;
+  final LocationPlaceIndexIntendedUse? intendedUse;
 
   Map<String, Object?> encode() => {'intended_use': ?intendedUse?.toTfJson()};
 }
 
 /// `intended_use` — derived from the provider schema description.
-enum LocationPlaceIndexIntendedUse implements TerraformEnum {
-  singleuse('SingleUse'),
-  storage('Storage');
+extension type const LocationPlaceIndexIntendedUse._(TfArg<String> _)
+    implements TfArg<String> {
+  LocationPlaceIndexIntendedUse.variable(String name)
+    : this._(TfArg.variable(name));
+  LocationPlaceIndexIntendedUse.expression(String template)
+    : this._(TfArg.expression(template));
+  const LocationPlaceIndexIntendedUse.arg(TfArg<String> arg) : this._(arg);
 
-  const LocationPlaceIndexIntendedUse(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleuse = LocationPlaceIndexIntendedUse._(
+    TfArgLiteral('SingleUse'),
+  );
+  static const storage = LocationPlaceIndexIntendedUse._(
+    TfArgLiteral('Storage'),
+  );
+
+  static const List<LocationPlaceIndexIntendedUse> values = [
+    singleuse,
+    storage,
+  ];
 }
 
 /// Factory wrapper for `aws_location_place_index`.

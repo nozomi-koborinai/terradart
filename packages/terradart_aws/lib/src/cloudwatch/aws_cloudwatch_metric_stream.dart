@@ -10,14 +10,29 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCloudwatchMetricStreamSensitive = <String>{};
 
 /// Cloudwatch Metric Stream Output enum for `output_format`.
-enum CloudwatchMetricStreamOutputFormat implements TerraformEnum {
-  json('json'),
-  opentelemetry0p7('opentelemetry0.7'),
-  opentelemetry1p0('opentelemetry1.0');
+extension type const CloudwatchMetricStreamOutputFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricStreamOutputFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricStreamOutputFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricStreamOutputFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchMetricStreamOutputFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = CloudwatchMetricStreamOutputFormat._(
+    TfArgLiteral('json'),
+  );
+  static const opentelemetry0p7 = CloudwatchMetricStreamOutputFormat._(
+    TfArgLiteral('opentelemetry0.7'),
+  );
+  static const opentelemetry1p0 = CloudwatchMetricStreamOutputFormat._(
+    TfArgLiteral('opentelemetry1.0'),
+  );
+
+  static const List<CloudwatchMetricStreamOutputFormat> values = [
+    json,
+    opentelemetry0p7,
+    opentelemetry1p0,
+  ];
 }
 
 /// At most one of `exclude_filter`, `include_filter` on `aws_cloudwatch_metric_stream`: the provider rejects
@@ -240,7 +255,7 @@ final class AwsCloudwatchMetricStream extends Resource {
     required TfArg<String> firehoseArn,
     TfArg<bool>? includeLinkedAccountsMetrics,
     CloudwatchMetricStreamName? name,
-    required TfArg<CloudwatchMetricStreamOutputFormat> outputFormat,
+    required CloudwatchMetricStreamOutputFormat outputFormat,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,

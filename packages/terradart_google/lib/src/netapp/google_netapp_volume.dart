@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetappVolumeSensitive = <String>{};
 
 /// Netapp Volume Security enum for `security_style`.
-enum NetappVolumeSecurityStyle implements TerraformEnum {
-  ntfs('NTFS'),
-  unix('UNIX');
+extension type const NetappVolumeSecurityStyle._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeSecurityStyle.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeSecurityStyle.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeSecurityStyle.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeSecurityStyle(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ntfs = NetappVolumeSecurityStyle._(TfArgLiteral('NTFS'));
+  static const unix = NetappVolumeSecurityStyle._(TfArgLiteral('UNIX'));
+
+  static const List<NetappVolumeSecurityStyle> values = [ntfs, unix];
 }
 
 /// Typed helper for the `backup_config` block of
@@ -54,7 +59,7 @@ final class NetappVolumeBlockDevices {
 
   final TfArg<String>? name;
 
-  final TfArg<NetappVolumeOsType> osType;
+  final NetappVolumeOsType osType;
 
   Map<String, Object?> encode() => {
     'host_groups': ?hostGroups?.toTfJson(),
@@ -64,14 +69,18 @@ final class NetappVolumeBlockDevices {
 }
 
 /// `os_type` — derived from the provider schema description.
-enum NetappVolumeOsType implements TerraformEnum {
-  linux('LINUX'),
-  windows('WINDOWS'),
-  esxi('ESXI');
+extension type const NetappVolumeOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeOsType.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeOsType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeOsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linux = NetappVolumeOsType._(TfArgLiteral('LINUX'));
+  static const windows = NetappVolumeOsType._(TfArgLiteral('WINDOWS'));
+  static const esxi = NetappVolumeOsType._(TfArgLiteral('ESXI'));
+
+  static const List<NetappVolumeOsType> values = [linux, windows, esxi];
 }
 
 /// Typed helper for the `cache_parameters` block of
@@ -159,7 +168,7 @@ final class NetappVolumeRules {
     this.squashMode,
   });
 
-  final TfArg<NetappVolumeAccessType>? accessType;
+  final NetappVolumeAccessType? accessType;
 
   final TfArg<String>? allowedClients;
 
@@ -183,7 +192,7 @@ final class NetappVolumeRules {
 
   final TfArg<bool>? nfsv4;
 
-  final TfArg<NetappVolumeSquashMode>? squashMode;
+  final NetappVolumeSquashMode? squashMode;
 
   Map<String, Object?> encode() => {
     'access_type': ?accessType?.toTfJson(),
@@ -203,26 +212,49 @@ final class NetappVolumeRules {
 }
 
 /// `access_type` — derived from the provider schema description.
-enum NetappVolumeAccessType implements TerraformEnum {
-  readOnly('READ_ONLY'),
-  readWrite('READ_WRITE'),
-  readNone('READ_NONE');
+extension type const NetappVolumeAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeAccessType.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeAccessType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readOnly = NetappVolumeAccessType._(TfArgLiteral('READ_ONLY'));
+  static const readWrite = NetappVolumeAccessType._(TfArgLiteral('READ_WRITE'));
+  static const readNone = NetappVolumeAccessType._(TfArgLiteral('READ_NONE'));
+
+  static const List<NetappVolumeAccessType> values = [
+    readOnly,
+    readWrite,
+    readNone,
+  ];
 }
 
 /// `squash_mode` — derived from the provider schema description.
-enum NetappVolumeSquashMode implements TerraformEnum {
-  squashModeUnspecified('SQUASH_MODE_UNSPECIFIED'),
-  noRootSquash('NO_ROOT_SQUASH'),
-  rootSquash('ROOT_SQUASH'),
-  allSquash('ALL_SQUASH');
+extension type const NetappVolumeSquashMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeSquashMode.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeSquashMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeSquashMode.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeSquashMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const squashModeUnspecified = NetappVolumeSquashMode._(
+    TfArgLiteral('SQUASH_MODE_UNSPECIFIED'),
+  );
+  static const noRootSquash = NetappVolumeSquashMode._(
+    TfArgLiteral('NO_ROOT_SQUASH'),
+  );
+  static const rootSquash = NetappVolumeSquashMode._(
+    TfArgLiteral('ROOT_SQUASH'),
+  );
+  static const allSquash = NetappVolumeSquashMode._(TfArgLiteral('ALL_SQUASH'));
+
+  static const List<NetappVolumeSquashMode> values = [
+    squashModeUnspecified,
+    noRootSquash,
+    rootSquash,
+    allSquash,
+  ];
 }
 
 /// Typed helper for the `hybrid_replication_parameters` block of
@@ -247,7 +279,7 @@ final class NetappVolumeHybridReplicationParameters {
 
   final TfArg<String>? description;
 
-  final TfArg<NetappVolumeHybridReplicationType>? hybridReplicationType;
+  final NetappVolumeHybridReplicationType? hybridReplicationType;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -263,7 +295,7 @@ final class NetappVolumeHybridReplicationParameters {
 
   final TfArg<String>? replication;
 
-  final TfArg<NetappVolumeReplicationSchedule>? replicationSchedule;
+  final NetappVolumeReplicationSchedule? replicationSchedule;
 
   Map<String, Object?> encode() => {
     'cluster_location': ?clusterLocation?.toTfJson(),
@@ -281,26 +313,57 @@ final class NetappVolumeHybridReplicationParameters {
 }
 
 /// `hybrid_replication_type` — derived from the provider schema description.
-enum NetappVolumeHybridReplicationType implements TerraformEnum {
-  migration('MIGRATION'),
-  continuousReplication('CONTINUOUS_REPLICATION'),
-  onpremReplication('ONPREM_REPLICATION'),
-  reverseOnpremReplication('REVERSE_ONPREM_REPLICATION');
+extension type const NetappVolumeHybridReplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeHybridReplicationType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeHybridReplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeHybridReplicationType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeHybridReplicationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const migration = NetappVolumeHybridReplicationType._(
+    TfArgLiteral('MIGRATION'),
+  );
+  static const continuousReplication = NetappVolumeHybridReplicationType._(
+    TfArgLiteral('CONTINUOUS_REPLICATION'),
+  );
+  static const onpremReplication = NetappVolumeHybridReplicationType._(
+    TfArgLiteral('ONPREM_REPLICATION'),
+  );
+  static const reverseOnpremReplication = NetappVolumeHybridReplicationType._(
+    TfArgLiteral('REVERSE_ONPREM_REPLICATION'),
+  );
+
+  static const List<NetappVolumeHybridReplicationType> values = [
+    migration,
+    continuousReplication,
+    onpremReplication,
+    reverseOnpremReplication,
+  ];
 }
 
 /// `replication_schedule` — derived from the provider schema description.
-enum NetappVolumeReplicationSchedule implements TerraformEnum {
-  every10Minutes('EVERY_10_MINUTES'),
-  hourly('HOURLY'),
-  daily('DAILY');
+extension type const NetappVolumeReplicationSchedule._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeReplicationSchedule.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeReplicationSchedule.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeReplicationSchedule.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeReplicationSchedule(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const every10Minutes = NetappVolumeReplicationSchedule._(
+    TfArgLiteral('EVERY_10_MINUTES'),
+  );
+  static const hourly = NetappVolumeReplicationSchedule._(
+    TfArgLiteral('HOURLY'),
+  );
+  static const daily = NetappVolumeReplicationSchedule._(TfArgLiteral('DAILY'));
+
+  static const List<NetappVolumeReplicationSchedule> values = [
+    every10Minutes,
+    hourly,
+    daily,
+  ];
 }
 
 /// Typed helper for the `large_capacity_config` block of
@@ -510,7 +573,7 @@ final class NetappVolumeTieringPolicy {
 
   final TfArg<bool>? hotTierBypassModeEnabled;
 
-  final TfArg<NetappVolumeTierAction>? tierAction;
+  final NetappVolumeTierAction? tierAction;
 
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
@@ -520,13 +583,17 @@ final class NetappVolumeTieringPolicy {
 }
 
 /// `tier_action` — derived from the provider schema description.
-enum NetappVolumeTierAction implements TerraformEnum {
-  enabled('ENABLED'),
-  paused('PAUSED');
+extension type const NetappVolumeTierAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeTierAction.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeTierAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeTierAction.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeTierAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = NetappVolumeTierAction._(TfArgLiteral('ENABLED'));
+  static const paused = NetappVolumeTierAction._(TfArgLiteral('PAUSED'));
+
+  static const List<NetappVolumeTierAction> values = [enabled, paused];
 }
 
 /// Factory wrapper for `google_netapp_volume`.

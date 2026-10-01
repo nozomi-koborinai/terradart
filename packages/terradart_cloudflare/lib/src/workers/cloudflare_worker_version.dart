@@ -15,23 +15,35 @@ const Set<String> _cloudflareWorkerVersionSensitive = <String>{
 };
 
 /// Worker Version enum for `include`.
-enum WorkerVersionInclude implements TerraformEnum {
-  modules('modules');
+extension type const WorkerVersionInclude._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionInclude.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionInclude.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionInclude.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionInclude(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modules = WorkerVersionInclude._(TfArgLiteral('modules'));
+
+  static const List<WorkerVersionInclude> values = [modules];
 }
 
 /// Worker Version Usage enum for `usage_model`.
-enum WorkerVersionUsageModel implements TerraformEnum {
-  standard('standard'),
-  bundled('bundled'),
-  unbound('unbound');
+extension type const WorkerVersionUsageModel._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionUsageModel.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionUsageModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionUsageModel.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionUsageModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = WorkerVersionUsageModel._(TfArgLiteral('standard'));
+  static const bundled = WorkerVersionUsageModel._(TfArgLiteral('bundled'));
+  static const unbound = WorkerVersionUsageModel._(TfArgLiteral('unbound'));
+
+  static const List<WorkerVersionUsageModel> values = [
+    standard,
+    bundled,
+    unbound,
+  ];
 }
 
 /// Typed helper for the `annotations` block of
@@ -128,9 +140,9 @@ final class WorkerVersionConfig {
 
   final TfArg<String>? basePath;
 
-  final TfArg<WorkerVersionHtmlHandling>? htmlHandling;
+  final WorkerVersionHtmlHandling? htmlHandling;
 
-  final TfArg<WorkerVersionNotFoundHandling>? notFoundHandling;
+  final WorkerVersionNotFoundHandling? notFoundHandling;
 
   final TfArg<Object?>? runWorkerFirst;
 
@@ -143,26 +155,55 @@ final class WorkerVersionConfig {
 }
 
 /// `html_handling` — derived from the provider schema description.
-enum WorkerVersionHtmlHandling implements TerraformEnum {
-  autoTrailingSlash('auto-trailing-slash'),
-  forceTrailingSlash('force-trailing-slash'),
-  dropTrailingSlash('drop-trailing-slash'),
-  none('none');
+extension type const WorkerVersionHtmlHandling._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionHtmlHandling.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkerVersionHtmlHandling.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionHtmlHandling.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionHtmlHandling(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoTrailingSlash = WorkerVersionHtmlHandling._(
+    TfArgLiteral('auto-trailing-slash'),
+  );
+  static const forceTrailingSlash = WorkerVersionHtmlHandling._(
+    TfArgLiteral('force-trailing-slash'),
+  );
+  static const dropTrailingSlash = WorkerVersionHtmlHandling._(
+    TfArgLiteral('drop-trailing-slash'),
+  );
+  static const none = WorkerVersionHtmlHandling._(TfArgLiteral('none'));
+
+  static const List<WorkerVersionHtmlHandling> values = [
+    autoTrailingSlash,
+    forceTrailingSlash,
+    dropTrailingSlash,
+    none,
+  ];
 }
 
 /// `not_found_handling` — derived from the provider schema description.
-enum WorkerVersionNotFoundHandling implements TerraformEnum {
-  none('none'),
-  v404Page('404-page'),
-  singlePageApplication('single-page-application');
+extension type const WorkerVersionNotFoundHandling._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionNotFoundHandling.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkerVersionNotFoundHandling.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionNotFoundHandling.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionNotFoundHandling(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = WorkerVersionNotFoundHandling._(TfArgLiteral('none'));
+  static const v404Page = WorkerVersionNotFoundHandling._(
+    TfArgLiteral('404-page'),
+  );
+  static const singlePageApplication = WorkerVersionNotFoundHandling._(
+    TfArgLiteral('single-page-application'),
+  );
+
+  static const List<WorkerVersionNotFoundHandling> values = [
+    none,
+    v404Page,
+    singlePageApplication,
+  ];
 }
 
 /// Typed helper for the `bindings` block of
@@ -242,11 +283,11 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? environment;
 
-  final TfArg<WorkerVersionFormat>? format;
+  final WorkerVersionFormat? format;
 
   final TfArg<String>? id;
 
-  final TfArg<WorkerVersionIdentity>? identity;
+  final WorkerVersionIdentity? identity;
 
   final TfArg<String>? indexName;
 
@@ -254,7 +295,7 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? json;
 
-  final TfArg<WorkerVersionJurisdiction>? jurisdiction;
+  final WorkerVersionJurisdiction? jurisdiction;
 
   final TfArg<String>? keyBase64;
 
@@ -292,7 +333,7 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? tunnelId;
 
-  final TfArg<WorkerVersionBindingsType> type;
+  final WorkerVersionBindingsType type;
 
   final TfArg<List<String>>? usages;
 
@@ -353,81 +394,194 @@ final class WorkerVersionBindings {
 }
 
 /// `format` — derived from the provider schema description.
-enum WorkerVersionFormat implements TerraformEnum {
-  raw('raw'),
-  pkcs8('pkcs8'),
-  spki('spki'),
-  jwk('jwk');
+extension type const WorkerVersionFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionFormat.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const raw = WorkerVersionFormat._(TfArgLiteral('raw'));
+  static const pkcs8 = WorkerVersionFormat._(TfArgLiteral('pkcs8'));
+  static const spki = WorkerVersionFormat._(TfArgLiteral('spki'));
+  static const jwk = WorkerVersionFormat._(TfArgLiteral('jwk'));
+
+  static const List<WorkerVersionFormat> values = [raw, pkcs8, spki, jwk];
 }
 
 /// `identity` — derived from the provider schema description.
-enum WorkerVersionIdentity implements TerraformEnum {
-  runtimeEmailAlpha('runtime-email-alpha');
+extension type const WorkerVersionIdentity._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionIdentity.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionIdentity.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionIdentity.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionIdentity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const runtimeEmailAlpha = WorkerVersionIdentity._(
+    TfArgLiteral('runtime-email-alpha'),
+  );
+
+  static const List<WorkerVersionIdentity> values = [runtimeEmailAlpha];
 }
 
 /// `jurisdiction` — derived from the provider schema description.
-enum WorkerVersionJurisdiction implements TerraformEnum {
-  eu('eu'),
-  fedramp('fedramp'),
-  fedrampHigh('fedramp-high'),
-  us('us');
+extension type const WorkerVersionJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkerVersionJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eu = WorkerVersionJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = WorkerVersionJurisdiction._(TfArgLiteral('fedramp'));
+  static const fedrampHigh = WorkerVersionJurisdiction._(
+    TfArgLiteral('fedramp-high'),
+  );
+  static const us = WorkerVersionJurisdiction._(TfArgLiteral('us'));
+
+  static const List<WorkerVersionJurisdiction> values = [
+    eu,
+    fedramp,
+    fedrampHigh,
+    us,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum WorkerVersionBindingsType implements TerraformEnum {
-  ai('ai'),
-  aiSearch('ai_search'),
-  aiSearchNamespace('ai_search_namespace'),
-  messaging('messaging'),
-  analyticsEngine('analytics_engine'),
-  assets('assets'),
-  browser('browser'),
-  d1('d1'),
-  dataBlob('data_blob'),
-  dispatchNamespace('dispatch_namespace'),
-  durableObjectNamespace('durable_object_namespace'),
-  hyperdrive('hyperdrive'),
-  inherit('inherit'),
-  images('images'),
-  json('json'),
-  kvNamespace('kv_namespace'),
-  media('media'),
-  mtlsCertificate('mtls_certificate'),
-  plainText('plain_text'),
-  pipelines('pipelines'),
-  k2('k2'),
-  queue('queue'),
-  ratelimit('ratelimit'),
-  r2Bucket('r2_bucket'),
-  secretText('secret_text'),
-  sendEmail('send_email'),
-  service('service'),
-  textBlob('text_blob'),
-  vectorize('vectorize'),
-  versionMetadata('version_metadata'),
-  secretsStoreSecret('secrets_store_secret'),
-  flagship('flagship'),
-  secretKey('secret_key'),
-  workflow('workflow'),
-  wasmModule('wasm_module'),
-  vpcService('vpc_service'),
-  vpcNetwork('vpc_network');
+extension type const WorkerVersionBindingsType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionBindingsType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkerVersionBindingsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionBindingsType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionBindingsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ai = WorkerVersionBindingsType._(TfArgLiteral('ai'));
+  static const aiSearch = WorkerVersionBindingsType._(
+    TfArgLiteral('ai_search'),
+  );
+  static const aiSearchNamespace = WorkerVersionBindingsType._(
+    TfArgLiteral('ai_search_namespace'),
+  );
+  static const messaging = WorkerVersionBindingsType._(
+    TfArgLiteral('messaging'),
+  );
+  static const analyticsEngine = WorkerVersionBindingsType._(
+    TfArgLiteral('analytics_engine'),
+  );
+  static const assets = WorkerVersionBindingsType._(TfArgLiteral('assets'));
+  static const browser = WorkerVersionBindingsType._(TfArgLiteral('browser'));
+  static const d1 = WorkerVersionBindingsType._(TfArgLiteral('d1'));
+  static const dataBlob = WorkerVersionBindingsType._(
+    TfArgLiteral('data_blob'),
+  );
+  static const dispatchNamespace = WorkerVersionBindingsType._(
+    TfArgLiteral('dispatch_namespace'),
+  );
+  static const durableObjectNamespace = WorkerVersionBindingsType._(
+    TfArgLiteral('durable_object_namespace'),
+  );
+  static const hyperdrive = WorkerVersionBindingsType._(
+    TfArgLiteral('hyperdrive'),
+  );
+  static const inherit = WorkerVersionBindingsType._(TfArgLiteral('inherit'));
+  static const images = WorkerVersionBindingsType._(TfArgLiteral('images'));
+  static const json = WorkerVersionBindingsType._(TfArgLiteral('json'));
+  static const kvNamespace = WorkerVersionBindingsType._(
+    TfArgLiteral('kv_namespace'),
+  );
+  static const media = WorkerVersionBindingsType._(TfArgLiteral('media'));
+  static const mtlsCertificate = WorkerVersionBindingsType._(
+    TfArgLiteral('mtls_certificate'),
+  );
+  static const plainText = WorkerVersionBindingsType._(
+    TfArgLiteral('plain_text'),
+  );
+  static const pipelines = WorkerVersionBindingsType._(
+    TfArgLiteral('pipelines'),
+  );
+  static const k2 = WorkerVersionBindingsType._(TfArgLiteral('k2'));
+  static const queue = WorkerVersionBindingsType._(TfArgLiteral('queue'));
+  static const ratelimit = WorkerVersionBindingsType._(
+    TfArgLiteral('ratelimit'),
+  );
+  static const r2Bucket = WorkerVersionBindingsType._(
+    TfArgLiteral('r2_bucket'),
+  );
+  static const secretText = WorkerVersionBindingsType._(
+    TfArgLiteral('secret_text'),
+  );
+  static const sendEmail = WorkerVersionBindingsType._(
+    TfArgLiteral('send_email'),
+  );
+  static const service = WorkerVersionBindingsType._(TfArgLiteral('service'));
+  static const textBlob = WorkerVersionBindingsType._(
+    TfArgLiteral('text_blob'),
+  );
+  static const vectorize = WorkerVersionBindingsType._(
+    TfArgLiteral('vectorize'),
+  );
+  static const versionMetadata = WorkerVersionBindingsType._(
+    TfArgLiteral('version_metadata'),
+  );
+  static const secretsStoreSecret = WorkerVersionBindingsType._(
+    TfArgLiteral('secrets_store_secret'),
+  );
+  static const flagship = WorkerVersionBindingsType._(TfArgLiteral('flagship'));
+  static const secretKey = WorkerVersionBindingsType._(
+    TfArgLiteral('secret_key'),
+  );
+  static const workflow = WorkerVersionBindingsType._(TfArgLiteral('workflow'));
+  static const wasmModule = WorkerVersionBindingsType._(
+    TfArgLiteral('wasm_module'),
+  );
+  static const vpcService = WorkerVersionBindingsType._(
+    TfArgLiteral('vpc_service'),
+  );
+  static const vpcNetwork = WorkerVersionBindingsType._(
+    TfArgLiteral('vpc_network'),
+  );
+
+  static const List<WorkerVersionBindingsType> values = [
+    ai,
+    aiSearch,
+    aiSearchNamespace,
+    messaging,
+    analyticsEngine,
+    assets,
+    browser,
+    d1,
+    dataBlob,
+    dispatchNamespace,
+    durableObjectNamespace,
+    hyperdrive,
+    inherit,
+    images,
+    json,
+    kvNamespace,
+    media,
+    mtlsCertificate,
+    plainText,
+    pipelines,
+    k2,
+    queue,
+    ratelimit,
+    r2Bucket,
+    secretText,
+    sendEmail,
+    service,
+    textBlob,
+    vectorize,
+    versionMetadata,
+    secretsStoreSecret,
+    flagship,
+    secretKey,
+    workflow,
+    wasmModule,
+    vpcService,
+    vpcNetwork,
+  ];
 }
 
 /// Typed helper for the `bindings.outbound` block of
@@ -542,15 +696,15 @@ final class WorkerVersionExports {
 
   final TfArg<String>? renamedTo;
 
-  final TfArg<WorkerVersionState>? state;
+  final WorkerVersionState? state;
 
-  final TfArg<WorkerVersionStorage>? storage;
+  final WorkerVersionStorage? storage;
 
   final TfArg<String>? transferFrom;
 
   final TfArg<String>? transferredTo;
 
-  final TfArg<WorkerVersionExportsType> type;
+  final WorkerVersionExportsType type;
 
   final WorkerVersionCache? cache;
 
@@ -566,36 +720,58 @@ final class WorkerVersionExports {
 }
 
 /// `state` — derived from the provider schema description.
-enum WorkerVersionState implements TerraformEnum {
-  created('created'),
-  deleted('deleted'),
-  renamed('renamed'),
-  transferred('transferred'),
-  expectingTransfer('expecting-transfer');
+extension type const WorkerVersionState._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionState.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionState.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionState.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const created = WorkerVersionState._(TfArgLiteral('created'));
+  static const deleted = WorkerVersionState._(TfArgLiteral('deleted'));
+  static const renamed = WorkerVersionState._(TfArgLiteral('renamed'));
+  static const transferred = WorkerVersionState._(TfArgLiteral('transferred'));
+  static const expectingTransfer = WorkerVersionState._(
+    TfArgLiteral('expecting-transfer'),
+  );
+
+  static const List<WorkerVersionState> values = [
+    created,
+    deleted,
+    renamed,
+    transferred,
+    expectingTransfer,
+  ];
 }
 
 /// `storage` — derived from the provider schema description.
-enum WorkerVersionStorage implements TerraformEnum {
-  sqlite('sqlite'),
-  legacyKv('legacy-kv');
+extension type const WorkerVersionStorage._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionStorage.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionStorage.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionStorage.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionStorage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sqlite = WorkerVersionStorage._(TfArgLiteral('sqlite'));
+  static const legacyKv = WorkerVersionStorage._(TfArgLiteral('legacy-kv'));
+
+  static const List<WorkerVersionStorage> values = [sqlite, legacyKv];
 }
 
 /// `type` — derived from the provider schema description.
-enum WorkerVersionExportsType implements TerraformEnum {
-  worker('worker'),
-  durableObject('durable-object');
+extension type const WorkerVersionExportsType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionExportsType.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionExportsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionExportsType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionExportsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const worker = WorkerVersionExportsType._(TfArgLiteral('worker'));
+  static const durableObject = WorkerVersionExportsType._(
+    TfArgLiteral('durable-object'),
+  );
+
+  static const List<WorkerVersionExportsType> values = [worker, durableObject];
 }
 
 /// Typed helper for the `exports.cache` block of
@@ -850,7 +1026,7 @@ final class WorkerVersionPlacement {
 
   final TfArg<String>? hostname;
 
-  final TfArg<WorkerVersionMode>? mode;
+  final WorkerVersionMode? mode;
 
   final TfArg<String>? region;
 
@@ -866,13 +1042,17 @@ final class WorkerVersionPlacement {
 }
 
 /// `mode` — derived from the provider schema description.
-enum WorkerVersionMode implements TerraformEnum {
-  smart('smart'),
-  targeted('targeted');
+extension type const WorkerVersionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerVersionMode.variable(String name) : this._(TfArg.variable(name));
+  WorkerVersionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerVersionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerVersionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const smart = WorkerVersionMode._(TfArgLiteral('smart'));
+  static const targeted = WorkerVersionMode._(TfArgLiteral('targeted'));
+
+  static const List<WorkerVersionMode> values = [smart, targeted];
 }
 
 /// Typed helper for the `placement.target` block of
@@ -908,9 +1088,9 @@ final class CloudflareWorkerVersion extends Resource {
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
     TfArg<bool>? deploy,
-    TfArg<WorkerVersionInclude>? include,
+    WorkerVersionInclude? include,
     TfArg<String>? mainModule,
-    TfArg<WorkerVersionUsageModel>? usageModel,
+    WorkerVersionUsageModel? usageModel,
     required TfArg<String> workerId,
     WorkerVersionAnnotations? annotations,
     WorkerVersionAssets? assets,

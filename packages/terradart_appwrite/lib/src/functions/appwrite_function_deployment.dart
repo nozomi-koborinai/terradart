@@ -10,13 +10,20 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwriteFunctionDeploymentSensitive = <String>{};
 
 /// Function Deployment Source enum for `source_type`.
-enum FunctionDeploymentSourceType implements TerraformEnum {
-  code('code'),
-  template('template');
+extension type const FunctionDeploymentSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  FunctionDeploymentSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionDeploymentSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionDeploymentSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const FunctionDeploymentSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const code = FunctionDeploymentSourceType._(TfArgLiteral('code'));
+  static const template = FunctionDeploymentSourceType._(
+    TfArgLiteral('template'),
+  );
+
+  static const List<FunctionDeploymentSourceType> values = [code, template];
 }
 
 /// Factory wrapper for `appwrite_function_deployment`.
@@ -38,7 +45,7 @@ final class AppwriteFunctionDeployment extends Resource {
     TfArg<String>? reference,
     TfArg<String>? repository,
     TfArg<String>? rootDirectory,
-    required TfArg<FunctionDeploymentSourceType> sourceType,
+    required FunctionDeploymentSourceType sourceType,
     TfArg<String>? type,
     TfArg<bool>? waitForReady,
     super.lifecycle,

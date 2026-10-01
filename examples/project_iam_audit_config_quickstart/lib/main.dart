@@ -38,11 +38,7 @@ final class ProjectIamAuditConfigStack extends Stack {
         service: .literal('storage.googleapis.com'),
         auditLogConfig: [
           ProjectIamAuditConfigAuditLogConfig(
-            logType: .literal(
-              ProjectIamAuditConfigAuditLogConfigLogType
-                  .adminRead
-                  .terraformValue,
-            ),
+            logType: ProjectIamAuditConfigAuditLogConfigLogType.adminRead,
           ),
         ],
       ),

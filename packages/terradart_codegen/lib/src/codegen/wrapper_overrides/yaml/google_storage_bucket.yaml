@@ -11,7 +11,7 @@ curatedDoc: |-
   ///   'assets',
   ///   name: TfArg.literal('my-app-assets-prod'),
   ///   location: TfArg.literal('ASIA-NORTHEAST1'),
-  ///   storageClass: TfArg.literal(BucketStorageClass.standard),
+  ///   storageClass: BucketStorageClass.standard,
   ///   forceDestroy: TfArg.literal(false),
   ///   versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
   ///   uniformBucketLevelAccess: TfArg.literal(true),
@@ -54,27 +54,31 @@ prelude: |
   ///
   /// `durableReducedAvailability` is the legacy class (deprecated 2018);
   /// keep for completeness, GCP still accepts it for existing buckets.
-  enum BucketStorageClass implements TerraformEnum {
-    standard('STANDARD'),
-    nearline('NEARLINE'),
-    coldline('COLDLINE'),
-    archive('ARCHIVE'),
-    multiRegional('MULTI_REGIONAL'),
-    regional('REGIONAL'),
-    durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
+  extension type const BucketStorageClass._(TfArg<String> _) implements TfArg<String> {
+    BucketStorageClass.variable(String name) : this._(TfArg.variable(name));
+    BucketStorageClass.expression(String template) : this._(TfArg.expression(template));
+    const BucketStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-    const BucketStorageClass(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const standard = BucketStorageClass._(TfArgLiteral('STANDARD'));
+    static const nearline = BucketStorageClass._(TfArgLiteral('NEARLINE'));
+    static const coldline = BucketStorageClass._(TfArgLiteral('COLDLINE'));
+    static const archive = BucketStorageClass._(TfArgLiteral('ARCHIVE'));
+    static const multiRegional = BucketStorageClass._(TfArgLiteral('MULTI_REGIONAL'));
+    static const regional = BucketStorageClass._(TfArgLiteral('REGIONAL'));
+    static const durableReducedAvailability = BucketStorageClass._(TfArgLiteral('DURABLE_REDUCED_AVAILABILITY'));
+
+    static const List<BucketStorageClass> values = [standard, nearline, coldline, archive, multiRegional, regional, durableReducedAvailability];
   }
 
   /// Action type for `lifecycle_rule.action.type`.
-  enum LifecycleActionType implements TerraformEnum {
-    delete('Delete'),
-    setStorageClass('SetStorageClass');
+  extension type const LifecycleActionType._(TfArg<String> _) implements TfArg<String> {
+    LifecycleActionType.variable(String name) : this._(TfArg.variable(name));
+    LifecycleActionType.expression(String template) : this._(TfArg.expression(template));
+    const LifecycleActionType.arg(TfArg<String> arg) : this._(arg);
 
-    const LifecycleActionType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = LifecycleActionType._(TfArgLiteral('Delete'));
+    static const setStorageClass = LifecycleActionType._(TfArgLiteral('SetStorageClass'));
+
+    static const List<LifecycleActionType> values = [delete, setStorageClass];
   }
 

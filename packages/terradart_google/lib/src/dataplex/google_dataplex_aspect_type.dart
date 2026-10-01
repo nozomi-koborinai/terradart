@@ -8,16 +8,29 @@ const Set<String> _googleDataplexAspectTypeSensitive = <String>{};
 
 /// Data-classification level a [GoogleDataplexAspectType] applies to the
 /// aspects (metadata) it governs.
-enum DataplexAspectTypeDataClassification implements TerraformEnum {
+extension type const DataplexAspectTypeDataClassification._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexAspectTypeDataClassification.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexAspectTypeDataClassification.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexAspectTypeDataClassification.arg(TfArg<String> arg)
+    : this._(arg);
+
   /// Unspecified — no explicit classification.
-  unspecified('DATA_CLASSIFICATION_UNSPECIFIED'),
+  static const unspecified = DataplexAspectTypeDataClassification._(
+    TfArgLiteral('DATA_CLASSIFICATION_UNSPECIFIED'),
+  );
 
   /// Classification applies to both the metadata and the underlying data.
-  metadataAndData('METADATA_AND_DATA');
+  static const metadataAndData = DataplexAspectTypeDataClassification._(
+    TfArgLiteral('METADATA_AND_DATA'),
+  );
 
-  const DataplexAspectTypeDataClassification(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<DataplexAspectTypeDataClassification> values = [
+    unspecified,
+    metadataAndData,
+  ];
 }
 
 /// Factory wrapper for `google_dataplex_aspect_type`.
@@ -33,7 +46,7 @@ final class GoogleDataplexAspectType extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<String>? metadataTemplate,
-    TfArg<DataplexAspectTypeDataClassification>? dataClassification,
+    DataplexAspectTypeDataClassification? dataClassification,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

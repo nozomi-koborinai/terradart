@@ -20,8 +20,7 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
     this.kmsKeyId,
   });
 
-  final TfArg<CodegurureviewerRepositoryAssociationEncryptionOption>?
-  encryptionOption;
+  final CodegurureviewerRepositoryAssociationEncryptionOption? encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
@@ -32,16 +31,29 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum CodegurureviewerRepositoryAssociationEncryptionOption
-    implements TerraformEnum {
-  awsOwnedCmk('AWS_OWNED_CMK'),
-  customerManagedCmk('CUSTOMER_MANAGED_CMK');
+extension type const CodegurureviewerRepositoryAssociationEncryptionOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodegurureviewerRepositoryAssociationEncryptionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  CodegurureviewerRepositoryAssociationEncryptionOption.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CodegurureviewerRepositoryAssociationEncryptionOption.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CodegurureviewerRepositoryAssociationEncryptionOption(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const awsOwnedCmk =
+      CodegurureviewerRepositoryAssociationEncryptionOption._(
+        TfArgLiteral('AWS_OWNED_CMK'),
+      );
+  static const customerManagedCmk =
+      CodegurureviewerRepositoryAssociationEncryptionOption._(
+        TfArgLiteral('CUSTOMER_MANAGED_CMK'),
+      );
+
+  static const List<CodegurureviewerRepositoryAssociationEncryptionOption>
+  values = [awsOwnedCmk, customerManagedCmk];
 }
 
 /// Typed helper for the `repository` block of

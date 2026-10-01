@@ -20,7 +20,7 @@ final class BedrockagentcoreMemoryIndexedKey {
 
   final TfArg<String> key;
 
-  final TfArg<BedrockagentcoreMemoryType> type;
+  final BedrockagentcoreMemoryType type;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -29,14 +29,25 @@ final class BedrockagentcoreMemoryIndexedKey {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryType implements TerraformEnum {
-  string('STRING'),
-  stringlist('STRINGLIST'),
-  number('NUMBER');
+extension type const BedrockagentcoreMemoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreMemoryType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreMemoryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = BedrockagentcoreMemoryType._(TfArgLiteral('STRING'));
+  static const stringlist = BedrockagentcoreMemoryType._(
+    TfArgLiteral('STRINGLIST'),
+  );
+  static const number = BedrockagentcoreMemoryType._(TfArgLiteral('NUMBER'));
+
+  static const List<BedrockagentcoreMemoryType> values = [
+    string,
+    stringlist,
+    number,
+  ];
 }
 
 /// Typed helper for the `stream_delivery_resources` block of
@@ -96,9 +107,9 @@ final class BedrockagentcoreMemoryContentConfiguration {
     required this.type,
   });
 
-  final TfArg<BedrockagentcoreMemoryLevel>? level;
+  final BedrockagentcoreMemoryLevel? level;
 
-  final TfArg<BedrockagentcoreMemoryContentConfigurationType> type;
+  final BedrockagentcoreMemoryContentConfigurationType type;
 
   Map<String, Object?> encode() => {
     'level': ?level?.toTfJson(),
@@ -107,22 +118,45 @@ final class BedrockagentcoreMemoryContentConfiguration {
 }
 
 /// `level` — derived from the provider schema description.
-enum BedrockagentcoreMemoryLevel implements TerraformEnum {
-  metadataOnly('METADATA_ONLY'),
-  fullContent('FULL_CONTENT');
+extension type const BedrockagentcoreMemoryLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreMemoryLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreMemoryLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const metadataOnly = BedrockagentcoreMemoryLevel._(
+    TfArgLiteral('METADATA_ONLY'),
+  );
+  static const fullContent = BedrockagentcoreMemoryLevel._(
+    TfArgLiteral('FULL_CONTENT'),
+  );
+
+  static const List<BedrockagentcoreMemoryLevel> values = [
+    metadataOnly,
+    fullContent,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryContentConfigurationType implements TerraformEnum {
-  memoryRecords('MEMORY_RECORDS');
+extension type const BedrockagentcoreMemoryContentConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreMemoryContentConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryContentConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryContentConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreMemoryContentConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const memoryRecords = BedrockagentcoreMemoryContentConfigurationType._(
+    TfArgLiteral('MEMORY_RECORDS'),
+  );
+
+  static const List<BedrockagentcoreMemoryContentConfigurationType> values = [
+    memoryRecords,
+  ];
 }
 
 /// Factory wrapper for `aws_bedrockagentcore_memory`.

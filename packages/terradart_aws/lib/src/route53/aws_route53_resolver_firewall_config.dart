@@ -7,14 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53ResolverFirewallConfigSensitive = <String>{};
 
 /// Route53 Resolver Firewall Config Firewall Fail enum for `firewall_fail_open`.
-enum Route53ResolverFirewallConfigFirewallFailOpen implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED'),
-  useLocalResourceSetting('USE_LOCAL_RESOURCE_SETTING');
+extension type const Route53ResolverFirewallConfigFirewallFailOpen._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverFirewallConfigFirewallFailOpen.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverFirewallConfigFirewallFailOpen.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverFirewallConfigFirewallFailOpen.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53ResolverFirewallConfigFirewallFailOpen(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = Route53ResolverFirewallConfigFirewallFailOpen._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = Route53ResolverFirewallConfigFirewallFailOpen._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const useLocalResourceSetting =
+      Route53ResolverFirewallConfigFirewallFailOpen._(
+        TfArgLiteral('USE_LOCAL_RESOURCE_SETTING'),
+      );
+
+  static const List<Route53ResolverFirewallConfigFirewallFailOpen> values = [
+    enabled,
+    disabled,
+    useLocalResourceSetting,
+  ];
 }
 
 /// Factory wrapper for `aws_route53_resolver_firewall_config`.
@@ -23,7 +41,7 @@ final class AwsRoute53ResolverFirewallConfig extends Resource {
 
   AwsRoute53ResolverFirewallConfig(
     super.localName, {
-    TfArg<Route53ResolverFirewallConfigFirewallFailOpen>? firewallFailOpen,
+    Route53ResolverFirewallConfigFirewallFailOpen? firewallFailOpen,
     TfArg<String>? region,
     required TfArg<String> resourceId,
     super.lifecycle,

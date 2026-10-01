@@ -247,7 +247,7 @@ String _singular(String seg) {
 /// `extension type`, `typedef`).
 Set<String> declaredTypeNames(String source) => {
   for (final m in RegExp(
-    r'\b(?:class|enum|mixin|typedef|extension\s+type)\s+(\w+)',
+    r'\b(?:class|enum|mixin|typedef|extension\s+type(?:\s+const)?)\s+(\w+)',
   ).allMatches(source))
     m.group(1)!,
 };

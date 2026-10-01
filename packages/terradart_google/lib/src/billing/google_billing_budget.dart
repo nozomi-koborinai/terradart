@@ -10,14 +10,29 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleBillingBudgetSensitive = <String>{};
 
 /// Billing Budget Ownership enum for `ownership_scope`.
-enum BillingBudgetOwnershipScope implements TerraformEnum {
-  ownershipScopeUnspecified('OWNERSHIP_SCOPE_UNSPECIFIED'),
-  allUsers('ALL_USERS'),
-  billingAccount('BILLING_ACCOUNT');
+extension type const BillingBudgetOwnershipScope._(TfArg<String> _)
+    implements TfArg<String> {
+  BillingBudgetOwnershipScope.variable(String name)
+    : this._(TfArg.variable(name));
+  BillingBudgetOwnershipScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const BillingBudgetOwnershipScope.arg(TfArg<String> arg) : this._(arg);
 
-  const BillingBudgetOwnershipScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ownershipScopeUnspecified = BillingBudgetOwnershipScope._(
+    TfArgLiteral('OWNERSHIP_SCOPE_UNSPECIFIED'),
+  );
+  static const allUsers = BillingBudgetOwnershipScope._(
+    TfArgLiteral('ALL_USERS'),
+  );
+  static const billingAccount = BillingBudgetOwnershipScope._(
+    TfArgLiteral('BILLING_ACCOUNT'),
+  );
+
+  static const List<BillingBudgetOwnershipScope> values = [
+    ownershipScopeUnspecified,
+    allUsers,
+    billingAccount,
+  ];
 }
 
 /// Typed helper for the `all_updates_rule` block of
@@ -145,11 +160,11 @@ final class BillingBudgetFilter {
     this.customPeriod,
   });
 
-  final TfArg<BillingBudgetCalendarPeriod>? calendarPeriod;
+  final BillingBudgetCalendarPeriod? calendarPeriod;
 
   final TfArg<List<String>>? creditTypes;
 
-  final TfArg<BillingBudgetCreditTypesTreatment>? creditTypesTreatment;
+  final BillingBudgetCreditTypesTreatment? creditTypesTreatment;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -177,26 +192,53 @@ final class BillingBudgetFilter {
 }
 
 /// `calendar_period` — derived from the provider schema description.
-enum BillingBudgetCalendarPeriod implements TerraformEnum {
-  month('MONTH'),
-  quarter('QUARTER'),
-  year('YEAR'),
-  calendarPeriodUnspecified('CALENDAR_PERIOD_UNSPECIFIED');
+extension type const BillingBudgetCalendarPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  BillingBudgetCalendarPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  BillingBudgetCalendarPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const BillingBudgetCalendarPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const BillingBudgetCalendarPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const month = BillingBudgetCalendarPeriod._(TfArgLiteral('MONTH'));
+  static const quarter = BillingBudgetCalendarPeriod._(TfArgLiteral('QUARTER'));
+  static const year = BillingBudgetCalendarPeriod._(TfArgLiteral('YEAR'));
+  static const calendarPeriodUnspecified = BillingBudgetCalendarPeriod._(
+    TfArgLiteral('CALENDAR_PERIOD_UNSPECIFIED'),
+  );
+
+  static const List<BillingBudgetCalendarPeriod> values = [
+    month,
+    quarter,
+    year,
+    calendarPeriodUnspecified,
+  ];
 }
 
 /// `credit_types_treatment` — derived from the provider schema description.
-enum BillingBudgetCreditTypesTreatment implements TerraformEnum {
-  includeAllCredits('INCLUDE_ALL_CREDITS'),
-  excludeAllCredits('EXCLUDE_ALL_CREDITS'),
-  includeSpecifiedCredits('INCLUDE_SPECIFIED_CREDITS');
+extension type const BillingBudgetCreditTypesTreatment._(TfArg<String> _)
+    implements TfArg<String> {
+  BillingBudgetCreditTypesTreatment.variable(String name)
+    : this._(TfArg.variable(name));
+  BillingBudgetCreditTypesTreatment.expression(String template)
+    : this._(TfArg.expression(template));
+  const BillingBudgetCreditTypesTreatment.arg(TfArg<String> arg) : this._(arg);
 
-  const BillingBudgetCreditTypesTreatment(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const includeAllCredits = BillingBudgetCreditTypesTreatment._(
+    TfArgLiteral('INCLUDE_ALL_CREDITS'),
+  );
+  static const excludeAllCredits = BillingBudgetCreditTypesTreatment._(
+    TfArgLiteral('EXCLUDE_ALL_CREDITS'),
+  );
+  static const includeSpecifiedCredits = BillingBudgetCreditTypesTreatment._(
+    TfArgLiteral('INCLUDE_SPECIFIED_CREDITS'),
+  );
+
+  static const List<BillingBudgetCreditTypesTreatment> values = [
+    includeAllCredits,
+    excludeAllCredits,
+    includeSpecifiedCredits,
+  ];
 }
 
 /// Typed helper for the `budget_filter.custom_period` block of
@@ -270,7 +312,7 @@ final class BillingBudgetThresholdRules {
     required this.thresholdPercent,
   });
 
-  final TfArg<BillingBudgetSpendBasis>? spendBasis;
+  final BillingBudgetSpendBasis? spendBasis;
 
   final TfArg<num> thresholdPercent;
 
@@ -281,13 +323,24 @@ final class BillingBudgetThresholdRules {
 }
 
 /// `spend_basis` — derived from the provider schema description.
-enum BillingBudgetSpendBasis implements TerraformEnum {
-  currentSpend('CURRENT_SPEND'),
-  forecastedSpend('FORECASTED_SPEND');
+extension type const BillingBudgetSpendBasis._(TfArg<String> _)
+    implements TfArg<String> {
+  BillingBudgetSpendBasis.variable(String name) : this._(TfArg.variable(name));
+  BillingBudgetSpendBasis.expression(String template)
+    : this._(TfArg.expression(template));
+  const BillingBudgetSpendBasis.arg(TfArg<String> arg) : this._(arg);
 
-  const BillingBudgetSpendBasis(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const currentSpend = BillingBudgetSpendBasis._(
+    TfArgLiteral('CURRENT_SPEND'),
+  );
+  static const forecastedSpend = BillingBudgetSpendBasis._(
+    TfArgLiteral('FORECASTED_SPEND'),
+  );
+
+  static const List<BillingBudgetSpendBasis> values = [
+    currentSpend,
+    forecastedSpend,
+  ];
 }
 
 /// Factory wrapper for `google_billing_budget`.
@@ -308,7 +361,7 @@ final class GoogleBillingBudget extends Resource {
     required TfArg<String> billingAccount,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<BillingBudgetOwnershipScope>? ownershipScope,
+    BillingBudgetOwnershipScope? ownershipScope,
     BillingBudgetAllUpdatesRule? allUpdatesRule,
     required BillingBudgetAmount amount,
     BillingBudgetFilter? budgetFilter,

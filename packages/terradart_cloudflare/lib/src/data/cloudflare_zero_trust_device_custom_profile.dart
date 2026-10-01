@@ -15,20 +15,32 @@ const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
 final class DataZeroTrustDeviceCustomProfileFilter {
   const DataZeroTrustDeviceCustomProfileFilter({this.profileType});
 
-  final TfArg<DataZeroTrustDeviceCustomProfileFilterProfileType>? profileType;
+  final DataZeroTrustDeviceCustomProfileFilterProfileType? profileType;
 
   Map<String, Object?> encode() => {'profile_type': ?profileType?.toTfJson()};
 }
 
 /// `profile_type` — derived from the provider schema description.
-enum DataZeroTrustDeviceCustomProfileFilterProfileType
-    implements TerraformEnum {
-  warp('warp'),
-  browserExtension('browser_extension');
+extension type const DataZeroTrustDeviceCustomProfileFilterProfileType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustDeviceCustomProfileFilterProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDeviceCustomProfileFilterProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDeviceCustomProfileFilterProfileType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustDeviceCustomProfileFilterProfileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const warp = DataZeroTrustDeviceCustomProfileFilterProfileType._(
+    TfArgLiteral('warp'),
+  );
+  static const browserExtension =
+      DataZeroTrustDeviceCustomProfileFilterProfileType._(
+        TfArgLiteral('browser_extension'),
+      );
+
+  static const List<DataZeroTrustDeviceCustomProfileFilterProfileType> values =
+      [warp, browserExtension];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_device_custom_profile`.

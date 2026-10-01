@@ -15,13 +15,17 @@ const Set<String> _googleComputeSnapshotSensitive = <String>{
 };
 
 /// Compute Snapshot enum for `snapshot_type`.
-enum ComputeSnapshotType implements TerraformEnum {
-  archive('ARCHIVE'),
-  standard('STANDARD');
+extension type const ComputeSnapshotType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSnapshotType.variable(String name) : this._(TfArg.variable(name));
+  ComputeSnapshotType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSnapshotType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeSnapshotType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const archive = ComputeSnapshotType._(TfArgLiteral('ARCHIVE'));
+  static const standard = ComputeSnapshotType._(TfArgLiteral('STANDARD'));
+
+  static const List<ComputeSnapshotType> values = [archive, standard];
 }
 
 /// Snapshot source for [GoogleComputeSnapshot]. Sealed so the provider
@@ -174,7 +178,7 @@ final class GoogleComputeSnapshot extends Resource {
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<List<String>>? storageLocations,
-    TfArg<ComputeSnapshotType>? snapshotType,
+    ComputeSnapshotType? snapshotType,
     TfArg<String>? chainName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,

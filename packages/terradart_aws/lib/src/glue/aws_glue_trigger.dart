@@ -8,15 +8,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlueTriggerSensitive = <String>{};
 
 /// Glue Trigger enum for `type`.
-enum GlueTriggerType implements TerraformEnum {
-  scheduled('SCHEDULED'),
-  conditional('CONDITIONAL'),
-  onDemand('ON_DEMAND'),
-  event('EVENT');
+extension type const GlueTriggerType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueTriggerType.variable(String name) : this._(TfArg.variable(name));
+  GlueTriggerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueTriggerType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueTriggerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scheduled = GlueTriggerType._(TfArgLiteral('SCHEDULED'));
+  static const conditional = GlueTriggerType._(TfArgLiteral('CONDITIONAL'));
+  static const onDemand = GlueTriggerType._(TfArgLiteral('ON_DEMAND'));
+  static const event = GlueTriggerType._(TfArgLiteral('EVENT'));
+
+  static const List<GlueTriggerType> values = [
+    scheduled,
+    conditional,
+    onDemand,
+    event,
+  ];
 }
 
 /// Typed helper for the `actions` block of
@@ -92,7 +101,7 @@ final class GlueTriggerEventBatchingCondition {
 final class GlueTriggerPredicate {
   const GlueTriggerPredicate({this.logical, required this.conditions});
 
-  final TfArg<GlueTriggerLogical>? logical;
+  final GlueTriggerLogical? logical;
 
   final List<GlueTriggerConditions> conditions;
 
@@ -103,13 +112,17 @@ final class GlueTriggerPredicate {
 }
 
 /// `logical` — derived from the provider schema description.
-enum GlueTriggerLogical implements TerraformEnum {
-  and('AND'),
-  any('ANY');
+extension type const GlueTriggerLogical._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueTriggerLogical.variable(String name) : this._(TfArg.variable(name));
+  GlueTriggerLogical.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueTriggerLogical.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueTriggerLogical(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const and = GlueTriggerLogical._(TfArgLiteral('AND'));
+  static const any = GlueTriggerLogical._(TfArgLiteral('ANY'));
+
+  static const List<GlueTriggerLogical> values = [and, any];
 }
 
 /// Typed helper for the `predicate.conditions` block of
@@ -124,15 +137,15 @@ final class GlueTriggerConditions {
     this.state,
   });
 
-  final TfArg<GlueTriggerCrawlState>? crawlState;
+  final GlueTriggerCrawlState? crawlState;
 
   final TfArg<String>? crawlerName;
 
   final TfArg<String>? jobName;
 
-  final TfArg<GlueTriggerLogicalOperator>? logicalOperator;
+  final GlueTriggerLogicalOperator? logicalOperator;
 
-  final TfArg<GlueTriggerConditionsState>? state;
+  final GlueTriggerConditionsState? state;
 
   Map<String, Object?> encode() => {
     'crawl_state': ?crawlState?.toTfJson(),
@@ -144,44 +157,82 @@ final class GlueTriggerConditions {
 }
 
 /// `crawl_state` — derived from the provider schema description.
-enum GlueTriggerCrawlState implements TerraformEnum {
-  running('RUNNING'),
-  cancelling('CANCELLING'),
-  cancelled('CANCELLED'),
-  succeeded('SUCCEEDED'),
-  failed('FAILED'),
-  error('ERROR');
+extension type const GlueTriggerCrawlState._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueTriggerCrawlState.variable(String name) : this._(TfArg.variable(name));
+  GlueTriggerCrawlState.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueTriggerCrawlState.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueTriggerCrawlState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const running = GlueTriggerCrawlState._(TfArgLiteral('RUNNING'));
+  static const cancelling = GlueTriggerCrawlState._(TfArgLiteral('CANCELLING'));
+  static const cancelled = GlueTriggerCrawlState._(TfArgLiteral('CANCELLED'));
+  static const succeeded = GlueTriggerCrawlState._(TfArgLiteral('SUCCEEDED'));
+  static const failed = GlueTriggerCrawlState._(TfArgLiteral('FAILED'));
+  static const error = GlueTriggerCrawlState._(TfArgLiteral('ERROR'));
+
+  static const List<GlueTriggerCrawlState> values = [
+    running,
+    cancelling,
+    cancelled,
+    succeeded,
+    failed,
+    error,
+  ];
 }
 
 /// `logical_operator` — derived from the provider schema description.
-enum GlueTriggerLogicalOperator implements TerraformEnum {
-  equals('EQUALS');
+extension type const GlueTriggerLogicalOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueTriggerLogicalOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueTriggerLogicalOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueTriggerLogicalOperator.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueTriggerLogicalOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = GlueTriggerLogicalOperator._(TfArgLiteral('EQUALS'));
+
+  static const List<GlueTriggerLogicalOperator> values = [equals];
 }
 
 /// `state` — derived from the provider schema description.
-enum GlueTriggerConditionsState implements TerraformEnum {
-  starting('STARTING'),
-  running('RUNNING'),
-  stopping('STOPPING'),
-  stopped('STOPPED'),
-  succeeded('SUCCEEDED'),
-  failed('FAILED'),
-  timeout('TIMEOUT'),
-  error('ERROR'),
-  waiting('WAITING'),
-  expired('EXPIRED');
+extension type const GlueTriggerConditionsState._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueTriggerConditionsState.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueTriggerConditionsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueTriggerConditionsState.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueTriggerConditionsState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const starting = GlueTriggerConditionsState._(
+    TfArgLiteral('STARTING'),
+  );
+  static const running = GlueTriggerConditionsState._(TfArgLiteral('RUNNING'));
+  static const stopping = GlueTriggerConditionsState._(
+    TfArgLiteral('STOPPING'),
+  );
+  static const stopped = GlueTriggerConditionsState._(TfArgLiteral('STOPPED'));
+  static const succeeded = GlueTriggerConditionsState._(
+    TfArgLiteral('SUCCEEDED'),
+  );
+  static const failed = GlueTriggerConditionsState._(TfArgLiteral('FAILED'));
+  static const timeout = GlueTriggerConditionsState._(TfArgLiteral('TIMEOUT'));
+  static const error = GlueTriggerConditionsState._(TfArgLiteral('ERROR'));
+  static const waiting = GlueTriggerConditionsState._(TfArgLiteral('WAITING'));
+  static const expired = GlueTriggerConditionsState._(TfArgLiteral('EXPIRED'));
+
+  static const List<GlueTriggerConditionsState> values = [
+    starting,
+    running,
+    stopping,
+    stopped,
+    succeeded,
+    failed,
+    timeout,
+    error,
+    waiting,
+    expired,
+  ];
 }
 
 /// Factory wrapper for `aws_glue_trigger`.
@@ -197,7 +248,7 @@ final class AwsGlueTrigger extends Resource {
     TfArg<String>? schedule,
     TfArg<bool>? startOnCreation,
     TfArg<Map<String, String>>? tags,
-    required TfArg<GlueTriggerType> type,
+    required GlueTriggerType type,
     TfArg<String>? workflowName,
     required List<GlueTriggerActions> actions,
     List<GlueTriggerEventBatchingCondition>? eventBatchingCondition,

@@ -8,13 +8,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVerifiedpermissionsPolicyStoreSensitive = <String>{};
 
 /// Verifiedpermissions Policy Store Deletion enum for `deletion_protection`.
-enum VerifiedpermissionsPolicyStoreDeletionProtection implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const VerifiedpermissionsPolicyStoreDeletionProtection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VerifiedpermissionsPolicyStoreDeletionProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedpermissionsPolicyStoreDeletionProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedpermissionsPolicyStoreDeletionProtection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VerifiedpermissionsPolicyStoreDeletionProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = VerifiedpermissionsPolicyStoreDeletionProtection._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = VerifiedpermissionsPolicyStoreDeletionProtection._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<VerifiedpermissionsPolicyStoreDeletionProtection> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `validation_settings` block of
@@ -23,19 +37,26 @@ enum VerifiedpermissionsPolicyStoreDeletionProtection implements TerraformEnum {
 final class VerifiedpermissionsPolicyStoreValidationSettings {
   const VerifiedpermissionsPolicyStoreValidationSettings({required this.mode});
 
-  final TfArg<VerifiedpermissionsPolicyStoreMode> mode;
+  final VerifiedpermissionsPolicyStoreMode mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum VerifiedpermissionsPolicyStoreMode implements TerraformEnum {
-  off('OFF'),
-  strict('STRICT');
+extension type const VerifiedpermissionsPolicyStoreMode._(TfArg<String> _)
+    implements TfArg<String> {
+  VerifiedpermissionsPolicyStoreMode.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedpermissionsPolicyStoreMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedpermissionsPolicyStoreMode.arg(TfArg<String> arg) : this._(arg);
 
-  const VerifiedpermissionsPolicyStoreMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = VerifiedpermissionsPolicyStoreMode._(TfArgLiteral('OFF'));
+  static const strict = VerifiedpermissionsPolicyStoreMode._(
+    TfArgLiteral('STRICT'),
+  );
+
+  static const List<VerifiedpermissionsPolicyStoreMode> values = [off, strict];
 }
 
 /// Factory wrapper for `aws_verifiedpermissions_policy_store`.
@@ -44,7 +65,7 @@ final class AwsVerifiedpermissionsPolicyStore extends Resource {
 
   AwsVerifiedpermissionsPolicyStore(
     super.localName, {
-    TfArg<VerifiedpermissionsPolicyStoreDeletionProtection>? deletionProtection,
+    VerifiedpermissionsPolicyStoreDeletionProtection? deletionProtection,
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

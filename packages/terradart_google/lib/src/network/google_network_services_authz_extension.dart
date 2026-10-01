@@ -7,24 +7,57 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesAuthzExtensionSensitive = <String>{};
 
 /// Network Services Authz Extension Load Balancing enum for `load_balancing_scheme`.
-enum NetworkServicesAuthzExtensionLoadBalancingScheme implements TerraformEnum {
-  internalManaged('INTERNAL_MANAGED'),
-  externalManaged('EXTERNAL_MANAGED');
+extension type const NetworkServicesAuthzExtensionLoadBalancingScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAuthzExtensionLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAuthzExtensionLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesAuthzExtensionLoadBalancingScheme.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesAuthzExtensionLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internalManaged =
+      NetworkServicesAuthzExtensionLoadBalancingScheme._(
+        TfArgLiteral('INTERNAL_MANAGED'),
+      );
+  static const externalManaged =
+      NetworkServicesAuthzExtensionLoadBalancingScheme._(
+        TfArgLiteral('EXTERNAL_MANAGED'),
+      );
+
+  static const List<NetworkServicesAuthzExtensionLoadBalancingScheme> values = [
+    internalManaged,
+    externalManaged,
+  ];
 }
 
 /// Network Services Authz Extension Wire enum for `wire_format`.
-enum NetworkServicesAuthzExtensionWireFormat implements TerraformEnum {
-  wireFormatUnspecified('WIRE_FORMAT_UNSPECIFIED'),
-  extProcGrpc('EXT_PROC_GRPC'),
-  extAuthzGrpc('EXT_AUTHZ_GRPC');
+extension type const NetworkServicesAuthzExtensionWireFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesAuthzExtensionWireFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAuthzExtensionWireFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesAuthzExtensionWireFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesAuthzExtensionWireFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const wireFormatUnspecified =
+      NetworkServicesAuthzExtensionWireFormat._(
+        TfArgLiteral('WIRE_FORMAT_UNSPECIFIED'),
+      );
+  static const extProcGrpc = NetworkServicesAuthzExtensionWireFormat._(
+    TfArgLiteral('EXT_PROC_GRPC'),
+  );
+  static const extAuthzGrpc = NetworkServicesAuthzExtensionWireFormat._(
+    TfArgLiteral('EXT_AUTHZ_GRPC'),
+  );
+
+  static const List<NetworkServicesAuthzExtensionWireFormat> values = [
+    wireFormatUnspecified,
+    extProcGrpc,
+    extAuthzGrpc,
+  ];
 }
 
 /// Factory wrapper for `google_network_services_authz_extension`.
@@ -56,13 +89,12 @@ final class GoogleNetworkServicesAuthzExtension extends Resource {
     required TfArg<String> location,
     required TfArg<String> service,
     required TfArg<String> timeout,
-    TfArg<NetworkServicesAuthzExtensionLoadBalancingScheme>?
-    loadBalancingScheme,
+    NetworkServicesAuthzExtensionLoadBalancingScheme? loadBalancingScheme,
     TfArg<String>? authority,
     TfArg<bool>? failOpen,
     TfArg<List<String>>? forwardHeaders,
     TfArg<Map<String, String>>? metadata,
-    TfArg<NetworkServicesAuthzExtensionWireFormat>? wireFormat,
+    NetworkServicesAuthzExtensionWireFormat? wireFormat,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

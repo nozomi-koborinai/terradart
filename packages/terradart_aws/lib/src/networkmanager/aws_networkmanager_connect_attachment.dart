@@ -13,19 +13,32 @@ const Set<String> _awsNetworkmanagerConnectAttachmentSensitive = <String>{};
 final class NetworkmanagerConnectAttachmentOptions {
   const NetworkmanagerConnectAttachmentOptions({this.protocol});
 
-  final TfArg<NetworkmanagerConnectAttachmentProtocol>? protocol;
+  final NetworkmanagerConnectAttachmentProtocol? protocol;
 
   Map<String, Object?> encode() => {'protocol': ?protocol?.toTfJson()};
 }
 
 /// `protocol` — derived from the provider schema description.
-enum NetworkmanagerConnectAttachmentProtocol implements TerraformEnum {
-  gre('GRE'),
-  noEncap('NO_ENCAP');
+extension type const NetworkmanagerConnectAttachmentProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkmanagerConnectAttachmentProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkmanagerConnectAttachmentProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkmanagerConnectAttachmentProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkmanagerConnectAttachmentProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gre = NetworkmanagerConnectAttachmentProtocol._(
+    TfArgLiteral('GRE'),
+  );
+  static const noEncap = NetworkmanagerConnectAttachmentProtocol._(
+    TfArgLiteral('NO_ENCAP'),
+  );
+
+  static const List<NetworkmanagerConnectAttachmentProtocol> values = [
+    gre,
+    noEncap,
+  ];
 }
 
 /// Factory wrapper for `aws_networkmanager_connect_attachment`.

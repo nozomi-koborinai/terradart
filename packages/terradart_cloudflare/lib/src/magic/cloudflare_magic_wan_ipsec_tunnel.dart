@@ -63,13 +63,13 @@ final class MagicWanIpsecTunnelHealthCheck {
     this.target,
   });
 
-  final TfArg<MagicWanIpsecTunnelDirection>? direction;
+  final MagicWanIpsecTunnelDirection? direction;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<MagicWanIpsecTunnelRate>? rate;
+  final MagicWanIpsecTunnelRate? rate;
 
-  final TfArg<MagicWanIpsecTunnelType>? type;
+  final MagicWanIpsecTunnelType? type;
 
   final MagicWanIpsecTunnelTarget? target;
 
@@ -83,34 +83,54 @@ final class MagicWanIpsecTunnelHealthCheck {
 }
 
 /// `direction` — derived from the provider schema description.
-enum MagicWanIpsecTunnelDirection implements TerraformEnum {
-  unidirectional('unidirectional'),
-  bidirectional('bidirectional');
+extension type const MagicWanIpsecTunnelDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicWanIpsecTunnelDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicWanIpsecTunnelDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicWanIpsecTunnelDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicWanIpsecTunnelDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unidirectional = MagicWanIpsecTunnelDirection._(
+    TfArgLiteral('unidirectional'),
+  );
+  static const bidirectional = MagicWanIpsecTunnelDirection._(
+    TfArgLiteral('bidirectional'),
+  );
+
+  static const List<MagicWanIpsecTunnelDirection> values = [
+    unidirectional,
+    bidirectional,
+  ];
 }
 
 /// `rate` — derived from the provider schema description.
-enum MagicWanIpsecTunnelRate implements TerraformEnum {
-  low('low'),
-  mid('mid'),
-  high('high');
+extension type const MagicWanIpsecTunnelRate._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicWanIpsecTunnelRate.variable(String name) : this._(TfArg.variable(name));
+  MagicWanIpsecTunnelRate.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicWanIpsecTunnelRate.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicWanIpsecTunnelRate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = MagicWanIpsecTunnelRate._(TfArgLiteral('low'));
+  static const mid = MagicWanIpsecTunnelRate._(TfArgLiteral('mid'));
+  static const high = MagicWanIpsecTunnelRate._(TfArgLiteral('high'));
+
+  static const List<MagicWanIpsecTunnelRate> values = [low, mid, high];
 }
 
 /// `type` — derived from the provider schema description.
-enum MagicWanIpsecTunnelType implements TerraformEnum {
-  reply('reply'),
-  request('request');
+extension type const MagicWanIpsecTunnelType._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicWanIpsecTunnelType.variable(String name) : this._(TfArg.variable(name));
+  MagicWanIpsecTunnelType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicWanIpsecTunnelType.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicWanIpsecTunnelType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const reply = MagicWanIpsecTunnelType._(TfArgLiteral('reply'));
+  static const request = MagicWanIpsecTunnelType._(TfArgLiteral('request'));
+
+  static const List<MagicWanIpsecTunnelType> values = [reply, request];
 }
 
 /// Typed helper for the `health_check.target` block of

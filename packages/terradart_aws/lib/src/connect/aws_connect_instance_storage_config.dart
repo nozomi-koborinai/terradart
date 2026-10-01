@@ -11,28 +11,73 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsConnectInstanceStorageConfigSensitive = <String>{};
 
 /// Connect Instance Storage Config Resource enum for `resource_type`.
-enum ConnectInstanceStorageConfigResourceType implements TerraformEnum {
-  chatTranscripts('CHAT_TRANSCRIPTS'),
-  callRecordings('CALL_RECORDINGS'),
-  scheduledReports('SCHEDULED_REPORTS'),
-  mediaStreams('MEDIA_STREAMS'),
-  contactTraceRecords('CONTACT_TRACE_RECORDS'),
-  agentEvents('AGENT_EVENTS'),
-  realTimeContactAnalysisSegments('REAL_TIME_CONTACT_ANALYSIS_SEGMENTS'),
-  attachments('ATTACHMENTS'),
-  contactEvaluations('CONTACT_EVALUATIONS'),
-  screenRecordings('SCREEN_RECORDINGS'),
-  realTimeContactAnalysisChatSegments(
-    'REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS',
-  ),
-  realTimeContactAnalysisVoiceSegments(
-    'REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS',
-  ),
-  emailMessages('EMAIL_MESSAGES');
+extension type const ConnectInstanceStorageConfigResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectInstanceStorageConfigResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectInstanceStorageConfigResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectInstanceStorageConfigResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConnectInstanceStorageConfigResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const chatTranscripts = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('CHAT_TRANSCRIPTS'),
+  );
+  static const callRecordings = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('CALL_RECORDINGS'),
+  );
+  static const scheduledReports = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('SCHEDULED_REPORTS'),
+  );
+  static const mediaStreams = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('MEDIA_STREAMS'),
+  );
+  static const contactTraceRecords = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('CONTACT_TRACE_RECORDS'),
+  );
+  static const agentEvents = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('AGENT_EVENTS'),
+  );
+  static const realTimeContactAnalysisSegments =
+      ConnectInstanceStorageConfigResourceType._(
+        TfArgLiteral('REAL_TIME_CONTACT_ANALYSIS_SEGMENTS'),
+      );
+  static const attachments = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('ATTACHMENTS'),
+  );
+  static const contactEvaluations = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('CONTACT_EVALUATIONS'),
+  );
+  static const screenRecordings = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('SCREEN_RECORDINGS'),
+  );
+  static const realTimeContactAnalysisChatSegments =
+      ConnectInstanceStorageConfigResourceType._(
+        TfArgLiteral('REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS'),
+      );
+  static const realTimeContactAnalysisVoiceSegments =
+      ConnectInstanceStorageConfigResourceType._(
+        TfArgLiteral('REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS'),
+      );
+  static const emailMessages = ConnectInstanceStorageConfigResourceType._(
+    TfArgLiteral('EMAIL_MESSAGES'),
+  );
+
+  static const List<ConnectInstanceStorageConfigResourceType> values = [
+    chatTranscripts,
+    callRecordings,
+    scheduledReports,
+    mediaStreams,
+    contactTraceRecords,
+    agentEvents,
+    realTimeContactAnalysisSegments,
+    attachments,
+    contactEvaluations,
+    screenRecordings,
+    realTimeContactAnalysisChatSegments,
+    realTimeContactAnalysisVoiceSegments,
+    emailMessages,
+  ];
 }
 
 /// Typed helper for the `storage_config` block of
@@ -47,7 +92,7 @@ final class ConnectInstanceStorageConfig {
     this.s3Config,
   });
 
-  final TfArg<ConnectInstanceStorageConfigStorageType> storageType;
+  final ConnectInstanceStorageConfigStorageType storageType;
 
   final ConnectInstanceStorageConfigKinesisFirehoseConfig?
   kinesisFirehoseConfig;
@@ -69,15 +114,34 @@ final class ConnectInstanceStorageConfig {
 }
 
 /// `storage_type` — derived from the provider schema description.
-enum ConnectInstanceStorageConfigStorageType implements TerraformEnum {
-  s3('S3'),
-  kinesisVideoStream('KINESIS_VIDEO_STREAM'),
-  kinesisStream('KINESIS_STREAM'),
-  kinesisFirehose('KINESIS_FIREHOSE');
+extension type const ConnectInstanceStorageConfigStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectInstanceStorageConfigStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectInstanceStorageConfigStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectInstanceStorageConfigStorageType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConnectInstanceStorageConfigStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = ConnectInstanceStorageConfigStorageType._(
+    TfArgLiteral('S3'),
+  );
+  static const kinesisVideoStream = ConnectInstanceStorageConfigStorageType._(
+    TfArgLiteral('KINESIS_VIDEO_STREAM'),
+  );
+  static const kinesisStream = ConnectInstanceStorageConfigStorageType._(
+    TfArgLiteral('KINESIS_STREAM'),
+  );
+  static const kinesisFirehose = ConnectInstanceStorageConfigStorageType._(
+    TfArgLiteral('KINESIS_FIREHOSE'),
+  );
+
+  static const List<ConnectInstanceStorageConfigStorageType> values = [
+    s3,
+    kinesisVideoStream,
+    kinesisStream,
+    kinesisFirehose,
+  ];
 }
 
 /// Typed helper for the `storage_config.kinesis_firehose_config` block of
@@ -139,7 +203,7 @@ final class ConnectInstanceStorageConfigEncryptionConfig {
     required this.keyId,
   });
 
-  final TfArg<ConnectInstanceStorageConfigEncryptionType> encryptionType;
+  final ConnectInstanceStorageConfigEncryptionType encryptionType;
 
   final RefTo<AwsKmsKey> keyId;
 
@@ -150,12 +214,21 @@ final class ConnectInstanceStorageConfigEncryptionConfig {
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum ConnectInstanceStorageConfigEncryptionType implements TerraformEnum {
-  kms('KMS');
+extension type const ConnectInstanceStorageConfigEncryptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ConnectInstanceStorageConfigEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectInstanceStorageConfigEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectInstanceStorageConfigEncryptionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConnectInstanceStorageConfigEncryptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const kms = ConnectInstanceStorageConfigEncryptionType._(
+    TfArgLiteral('KMS'),
+  );
+
+  static const List<ConnectInstanceStorageConfigEncryptionType> values = [kms];
 }
 
 /// Typed helper for the `storage_config.s3_config` block of
@@ -189,7 +262,7 @@ final class AwsConnectInstanceStorageConfig extends Resource {
     super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
-    required TfArg<ConnectInstanceStorageConfigResourceType> resourceType,
+    required ConnectInstanceStorageConfigResourceType resourceType,
     required ConnectInstanceStorageConfig storageConfig,
     super.lifecycle,
     super.dependsOn,

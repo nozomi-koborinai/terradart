@@ -423,7 +423,7 @@ final class ProviderEnums {
   /// [overrides] with a `dartTypeOverrides` entry naming the derived enum
   /// for every `deriveEnums` top-level string attribute of [ir] that carries
   /// `enumValues` — so the constructor parameter takes the enum the wrapper
-  /// declares — and `List<TfArg<Enum>>` for a list or set of strings, the
+  /// declares — and `List<Enum>` for a list or set of strings, the
   /// element-wise shape nested helpers use ([isEnumListType]). An explicit
   /// `dartTypeOverrides` entry or a custom slot wins.
   Map<String, WrapperOverride> typeDerivedEnums(
@@ -486,9 +486,29 @@ ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {
 }
 
 /// Whether a `dartTypeOverrides` value is the element-wise enum list shape
-/// (`List<TfArg<Enum>>`): the constructor takes it bare, not in a `TfArg`,
-/// and the argMap encodes it element by element.
-bool isEnumListType(String dartType) => dartType.startsWith('List<TfArg<');
+/// (`List<Enum>`): the constructor takes it bare, not in a `TfArg`, and the
+/// argMap encodes it element by element.
+bool isEnumListType(String dartType) {
+  final m = RegExp(r'^List<(\w+)>$').firstMatch(dartType);
+  return m != null && isEnumTypeName(m.group(1)!);
+}
+
+/// Whether [dartType] names a generated or prelude enum. Enums are the only
+/// bare type names a `dartTypeOverrides` value or a derived nested input
+/// carries; the provider schema's own types render as `String`, `int`,
+/// `num`, `bool`, `Object?` or a collection.
+bool isEnumTypeName(String dartType) =>
+    RegExp(r'^[A-Z][A-Za-z0-9_]*$').hasMatch(dartType) &&
+    dartType != 'String' &&
+    dartType != 'Object';
+
+/// The parameter or field type for an input whose payload is [dartType]:
+/// an enum, or a list of one, is itself a `TfArg` and goes in bare;
+/// anything else is wrapped in `TfArg<...>`.
+String argTypeFor(String dartType) =>
+    isEnumTypeName(dartType) || isEnumListType(dartType)
+    ? dartType
+    : 'TfArg<$dartType>';
 
 bool _isStringish(TypeDef t) => switch (t) {
   StringType() => true,
@@ -497,7 +517,7 @@ bool _isStringish(TypeDef t) => switch (t) {
 };
 
 String _enumSlotType(Attribute attr, String enumType) =>
-    attr.type is StringType ? enumType : 'List<TfArg<$enumType>>';
+    attr.type is StringType ? enumType : 'List<$enumType>';
 
 Attribute _enrichAttr(Attribute a, EnumValuesResolver resolve) {
   if (!_isStringish(a.type) ||

@@ -8,17 +8,43 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSiteVerificationWebResourceSensitive = <String>{};
 
 /// Site Verification Web Resource Verification enum for `verification_method`.
-enum SiteVerificationWebResourceVerificationMethod implements TerraformEnum {
-  analytics('ANALYTICS'),
-  dnsCname('DNS_CNAME'),
-  dnsTxt('DNS_TXT'),
-  file('FILE'),
-  meta('META'),
-  tagManager('TAG_MANAGER');
+extension type const SiteVerificationWebResourceVerificationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SiteVerificationWebResourceVerificationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  SiteVerificationWebResourceVerificationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const SiteVerificationWebResourceVerificationMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SiteVerificationWebResourceVerificationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const analytics = SiteVerificationWebResourceVerificationMethod._(
+    TfArgLiteral('ANALYTICS'),
+  );
+  static const dnsCname = SiteVerificationWebResourceVerificationMethod._(
+    TfArgLiteral('DNS_CNAME'),
+  );
+  static const dnsTxt = SiteVerificationWebResourceVerificationMethod._(
+    TfArgLiteral('DNS_TXT'),
+  );
+  static const file = SiteVerificationWebResourceVerificationMethod._(
+    TfArgLiteral('FILE'),
+  );
+  static const meta = SiteVerificationWebResourceVerificationMethod._(
+    TfArgLiteral('META'),
+  );
+  static const tagManager = SiteVerificationWebResourceVerificationMethod._(
+    TfArgLiteral('TAG_MANAGER'),
+  );
+
+  static const List<SiteVerificationWebResourceVerificationMethod> values = [
+    analytics,
+    dnsCname,
+    dnsTxt,
+    file,
+    meta,
+    tagManager,
+  ];
 }
 
 /// Typed helper for the `site` block of
@@ -32,7 +58,7 @@ final class SiteVerificationWebResourceSite {
 
   final TfArg<String> identifier;
 
-  final TfArg<SiteVerificationWebResourceType> type;
+  final SiteVerificationWebResourceType type;
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
@@ -41,13 +67,23 @@ final class SiteVerificationWebResourceSite {
 }
 
 /// `type` — derived from the provider schema description.
-enum SiteVerificationWebResourceType implements TerraformEnum {
-  inetDomain('INET_DOMAIN'),
-  site('SITE');
+extension type const SiteVerificationWebResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SiteVerificationWebResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SiteVerificationWebResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SiteVerificationWebResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SiteVerificationWebResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inetDomain = SiteVerificationWebResourceType._(
+    TfArgLiteral('INET_DOMAIN'),
+  );
+  static const site = SiteVerificationWebResourceType._(TfArgLiteral('SITE'));
+
+  static const List<SiteVerificationWebResourceType> values = [
+    inetDomain,
+    site,
+  ];
 }
 
 /// Factory wrapper for `google_site_verification_web_resource`.
@@ -75,8 +111,7 @@ final class GoogleSiteVerificationWebResource extends Resource {
   GoogleSiteVerificationWebResource(
     super.localName, {
     TfArg<String>? deletionPolicy,
-    required TfArg<SiteVerificationWebResourceVerificationMethod>
-    verificationMethod,
+    required SiteVerificationWebResourceVerificationMethod verificationMethod,
     required SiteVerificationWebResourceSite site,
     super.lifecycle,
     super.dependsOn,

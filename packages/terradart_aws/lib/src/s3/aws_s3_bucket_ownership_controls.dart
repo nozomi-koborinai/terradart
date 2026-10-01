@@ -15,7 +15,7 @@ const Set<String> _awsS3BucketOwnershipControlsSensitive = <String>{};
 final class S3BucketOwnershipControlsRule {
   const S3BucketOwnershipControlsRule({required this.objectOwnership});
 
-  final TfArg<S3BucketOwnershipControlsObjectOwnership> objectOwnership;
+  final S3BucketOwnershipControlsObjectOwnership objectOwnership;
 
   Map<String, Object?> encode() => {
     'object_ownership': objectOwnership.toTfJson(),
@@ -23,14 +23,31 @@ final class S3BucketOwnershipControlsRule {
 }
 
 /// `object_ownership` — derived from the provider schema description.
-enum S3BucketOwnershipControlsObjectOwnership implements TerraformEnum {
-  bucketownerpreferred('BucketOwnerPreferred'),
-  objectwriter('ObjectWriter'),
-  bucketownerenforced('BucketOwnerEnforced');
+extension type const S3BucketOwnershipControlsObjectOwnership._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketOwnershipControlsObjectOwnership.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketOwnershipControlsObjectOwnership.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketOwnershipControlsObjectOwnership.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketOwnershipControlsObjectOwnership(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bucketownerpreferred =
+      S3BucketOwnershipControlsObjectOwnership._(
+        TfArgLiteral('BucketOwnerPreferred'),
+      );
+  static const objectwriter = S3BucketOwnershipControlsObjectOwnership._(
+    TfArgLiteral('ObjectWriter'),
+  );
+  static const bucketownerenforced = S3BucketOwnershipControlsObjectOwnership._(
+    TfArgLiteral('BucketOwnerEnforced'),
+  );
+
+  static const List<S3BucketOwnershipControlsObjectOwnership> values = [
+    bucketownerpreferred,
+    objectwriter,
+    bucketownerenforced,
+  ];
 }
 
 /// Factory wrapper for `aws_s3_bucket_ownership_controls`.

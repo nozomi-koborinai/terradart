@@ -15,11 +15,11 @@ const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
 final class DataTurnstileWidgetFilter {
   const DataTurnstileWidgetFilter({this.direction, this.filter, this.order});
 
-  final TfArg<DataTurnstileWidgetDirection>? direction;
+  final DataTurnstileWidgetDirection? direction;
 
   final TfArg<String>? filter;
 
-  final TfArg<DataTurnstileWidgetOrder>? order;
+  final DataTurnstileWidgetOrder? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -29,26 +29,45 @@ final class DataTurnstileWidgetFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataTurnstileWidgetDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataTurnstileWidgetDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataTurnstileWidgetDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataTurnstileWidgetDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataTurnstileWidgetDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataTurnstileWidgetDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataTurnstileWidgetDirection._(TfArgLiteral('asc'));
+  static const desc = DataTurnstileWidgetDirection._(TfArgLiteral('desc'));
+
+  static const List<DataTurnstileWidgetDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataTurnstileWidgetOrder implements TerraformEnum {
-  id('id'),
-  sitekey('sitekey'),
-  name('name'),
-  createdOn('created_on'),
-  modifiedOn('modified_on');
+extension type const DataTurnstileWidgetOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataTurnstileWidgetOrder.variable(String name) : this._(TfArg.variable(name));
+  DataTurnstileWidgetOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataTurnstileWidgetOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataTurnstileWidgetOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const id = DataTurnstileWidgetOrder._(TfArgLiteral('id'));
+  static const sitekey = DataTurnstileWidgetOrder._(TfArgLiteral('sitekey'));
+  static const name = DataTurnstileWidgetOrder._(TfArgLiteral('name'));
+  static const createdOn = DataTurnstileWidgetOrder._(
+    TfArgLiteral('created_on'),
+  );
+  static const modifiedOn = DataTurnstileWidgetOrder._(
+    TfArgLiteral('modified_on'),
+  );
+
+  static const List<DataTurnstileWidgetOrder> values = [
+    id,
+    sitekey,
+    name,
+    createdOn,
+    modifiedOn,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_turnstile_widget`.

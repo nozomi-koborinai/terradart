@@ -398,7 +398,7 @@ final class AppmeshVirtualNodeHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<AppmeshVirtualNodeProtocol> protocol;
+  final AppmeshVirtualNodeProtocol protocol;
 
   final TfArg<num> timeoutMillis;
 
@@ -416,15 +416,25 @@ final class AppmeshVirtualNodeHealthCheck {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualNodeProtocol implements TerraformEnum {
-  http('http'),
-  tcp('tcp'),
-  http2('http2'),
-  grpc('grpc');
+extension type const AppmeshVirtualNodeProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualNodeProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  AppmeshVirtualNodeProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualNodeProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualNodeProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = AppmeshVirtualNodeProtocol._(TfArgLiteral('http'));
+  static const tcp = AppmeshVirtualNodeProtocol._(TfArgLiteral('tcp'));
+  static const http2 = AppmeshVirtualNodeProtocol._(TfArgLiteral('http2'));
+  static const grpc = AppmeshVirtualNodeProtocol._(TfArgLiteral('grpc'));
+
+  static const List<AppmeshVirtualNodeProtocol> values = [
+    http,
+    tcp,
+    http2,
+    grpc,
+  ];
 }
 
 /// Typed helper for the `spec.listener.outlier_detection` block of
@@ -463,7 +473,7 @@ final class AppmeshVirtualNodeBaseEjectionDuration {
     required this.value,
   });
 
-  final TfArg<AppmeshVirtualNodeUnit> unit;
+  final AppmeshVirtualNodeUnit unit;
 
   final TfArg<num> value;
 
@@ -474,13 +484,17 @@ final class AppmeshVirtualNodeBaseEjectionDuration {
 }
 
 /// `unit` — derived from the provider schema description.
-enum AppmeshVirtualNodeUnit implements TerraformEnum {
-  s('s'),
-  ms('ms');
+extension type const AppmeshVirtualNodeUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualNodeUnit.variable(String name) : this._(TfArg.variable(name));
+  AppmeshVirtualNodeUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualNodeUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualNodeUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s = AppmeshVirtualNodeUnit._(TfArgLiteral('s'));
+  static const ms = AppmeshVirtualNodeUnit._(TfArgLiteral('ms'));
+
+  static const List<AppmeshVirtualNodeUnit> values = [s, ms];
 }
 
 /// Typed helper for the `spec.listener.outlier_detection.interval` block of
@@ -489,7 +503,7 @@ enum AppmeshVirtualNodeUnit implements TerraformEnum {
 final class AppmeshVirtualNodeInterval {
   const AppmeshVirtualNodeInterval({required this.unit, required this.value});
 
-  final TfArg<AppmeshVirtualNodeUnit> unit;
+  final AppmeshVirtualNodeUnit unit;
 
   final TfArg<num> value;
 
@@ -510,7 +524,7 @@ final class AppmeshVirtualNodePortMapping {
 
   final TfArg<num> port;
 
-  final TfArg<AppmeshVirtualNodeProtocol> protocol;
+  final AppmeshVirtualNodeProtocol protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
@@ -563,7 +577,7 @@ final class AppmeshVirtualNodeTimeoutGrpc {
 final class AppmeshVirtualNodeIdle {
   const AppmeshVirtualNodeIdle({required this.unit, required this.value});
 
-  final TfArg<AppmeshVirtualNodeUnit> unit;
+  final AppmeshVirtualNodeUnit unit;
 
   final TfArg<num> value;
 
@@ -580,7 +594,7 @@ final class AppmeshVirtualNodeIdle {
 final class AppmeshVirtualNodePerRequest {
   const AppmeshVirtualNodePerRequest({required this.unit, required this.value});
 
-  final TfArg<AppmeshVirtualNodeUnit> unit;
+  final AppmeshVirtualNodeUnit unit;
 
   final TfArg<num> value;
 
@@ -643,7 +657,7 @@ final class AppmeshVirtualNodeTls {
     this.validation,
   });
 
-  final TfArg<AppmeshVirtualNodeMode> mode;
+  final AppmeshVirtualNodeMode mode;
 
   final AppmeshVirtualNodeCertificate certificate;
 
@@ -657,14 +671,24 @@ final class AppmeshVirtualNodeTls {
 }
 
 /// `mode` — derived from the provider schema description.
-enum AppmeshVirtualNodeMode implements TerraformEnum {
-  strict('STRICT'),
-  permissive('PERMISSIVE'),
-  disabled('DISABLED');
+extension type const AppmeshVirtualNodeMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualNodeMode.variable(String name) : this._(TfArg.variable(name));
+  AppmeshVirtualNodeMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualNodeMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualNodeMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const strict = AppmeshVirtualNodeMode._(TfArgLiteral('STRICT'));
+  static const permissive = AppmeshVirtualNodeMode._(
+    TfArgLiteral('PERMISSIVE'),
+  );
+  static const disabled = AppmeshVirtualNodeMode._(TfArgLiteral('DISABLED'));
+
+  static const List<AppmeshVirtualNodeMode> values = [
+    strict,
+    permissive,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `spec.listener.tls.certificate` block of
@@ -891,9 +915,9 @@ final class AppmeshVirtualNodeDns {
 
   final TfArg<String> hostname;
 
-  final TfArg<AppmeshVirtualNodeIpPreference>? ipPreference;
+  final AppmeshVirtualNodeIpPreference? ipPreference;
 
-  final TfArg<AppmeshVirtualNodeResponseType>? responseType;
+  final AppmeshVirtualNodeResponseType? responseType;
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
@@ -903,25 +927,55 @@ final class AppmeshVirtualNodeDns {
 }
 
 /// `ip_preference` — derived from the provider schema description.
-enum AppmeshVirtualNodeIpPreference implements TerraformEnum {
-  ipv6Preferred('IPv6_PREFERRED'),
-  ipv4Preferred('IPv4_PREFERRED'),
-  ipv4Only('IPv4_ONLY'),
-  ipv6Only('IPv6_ONLY');
+extension type const AppmeshVirtualNodeIpPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualNodeIpPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  AppmeshVirtualNodeIpPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualNodeIpPreference.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualNodeIpPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv6Preferred = AppmeshVirtualNodeIpPreference._(
+    TfArgLiteral('IPv6_PREFERRED'),
+  );
+  static const ipv4Preferred = AppmeshVirtualNodeIpPreference._(
+    TfArgLiteral('IPv4_PREFERRED'),
+  );
+  static const ipv4Only = AppmeshVirtualNodeIpPreference._(
+    TfArgLiteral('IPv4_ONLY'),
+  );
+  static const ipv6Only = AppmeshVirtualNodeIpPreference._(
+    TfArgLiteral('IPv6_ONLY'),
+  );
+
+  static const List<AppmeshVirtualNodeIpPreference> values = [
+    ipv6Preferred,
+    ipv4Preferred,
+    ipv4Only,
+    ipv6Only,
+  ];
 }
 
 /// `response_type` — derived from the provider schema description.
-enum AppmeshVirtualNodeResponseType implements TerraformEnum {
-  loadbalancer('LOADBALANCER'),
-  endpoints('ENDPOINTS');
+extension type const AppmeshVirtualNodeResponseType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualNodeResponseType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppmeshVirtualNodeResponseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualNodeResponseType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualNodeResponseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loadbalancer = AppmeshVirtualNodeResponseType._(
+    TfArgLiteral('LOADBALANCER'),
+  );
+  static const endpoints = AppmeshVirtualNodeResponseType._(
+    TfArgLiteral('ENDPOINTS'),
+  );
+
+  static const List<AppmeshVirtualNodeResponseType> values = [
+    loadbalancer,
+    endpoints,
+  ];
 }
 
 /// Factory wrapper for `aws_appmesh_virtual_node`.

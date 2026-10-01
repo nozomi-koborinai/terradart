@@ -7,14 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApiGatewayAuthorizerSensitive = <String>{};
 
 /// Api Gateway Authorizer enum for `type`.
-enum ApiGatewayAuthorizerType implements TerraformEnum {
-  token('TOKEN'),
-  request('REQUEST'),
-  cognitoUserPools('COGNITO_USER_POOLS');
+extension type const ApiGatewayAuthorizerType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayAuthorizerType.variable(String name) : this._(TfArg.variable(name));
+  ApiGatewayAuthorizerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayAuthorizerType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayAuthorizerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const token = ApiGatewayAuthorizerType._(TfArgLiteral('TOKEN'));
+  static const request = ApiGatewayAuthorizerType._(TfArgLiteral('REQUEST'));
+  static const cognitoUserPools = ApiGatewayAuthorizerType._(
+    TfArgLiteral('COGNITO_USER_POOLS'),
+  );
+
+  static const List<ApiGatewayAuthorizerType> values = [
+    token,
+    request,
+    cognitoUserPools,
+  ];
 }
 
 /// Factory wrapper for `aws_api_gateway_authorizer`.
@@ -32,7 +42,7 @@ final class AwsApiGatewayAuthorizer extends Resource {
     TfArg<List<String>>? providerArns,
     TfArg<String>? region,
     required TfArg<String> restApiId,
-    TfArg<ApiGatewayAuthorizerType>? type,
+    ApiGatewayAuthorizerType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

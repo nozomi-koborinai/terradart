@@ -16,18 +16,27 @@ const Set<String> _awsAthenaDatabaseSensitive = <String>{};
 final class AthenaDatabaseAclConfiguration {
   const AthenaDatabaseAclConfiguration({required this.s3AclOption});
 
-  final TfArg<AthenaDatabaseS3AclOption> s3AclOption;
+  final AthenaDatabaseS3AclOption s3AclOption;
 
   Map<String, Object?> encode() => {'s3_acl_option': s3AclOption.toTfJson()};
 }
 
 /// `s3_acl_option` — derived from the provider schema description.
-enum AthenaDatabaseS3AclOption implements TerraformEnum {
-  bucketOwnerFullControl('BUCKET_OWNER_FULL_CONTROL');
+extension type const AthenaDatabaseS3AclOption._(TfArg<String> _)
+    implements TfArg<String> {
+  AthenaDatabaseS3AclOption.variable(String name)
+    : this._(TfArg.variable(name));
+  AthenaDatabaseS3AclOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const AthenaDatabaseS3AclOption.arg(TfArg<String> arg) : this._(arg);
 
-  const AthenaDatabaseS3AclOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bucketOwnerFullControl = AthenaDatabaseS3AclOption._(
+    TfArgLiteral('BUCKET_OWNER_FULL_CONTROL'),
+  );
+
+  static const List<AthenaDatabaseS3AclOption> values = [
+    bucketOwnerFullControl,
+  ];
 }
 
 /// Typed helper for the `encryption_configuration` block of
@@ -39,7 +48,7 @@ final class AthenaDatabaseEncryptionConfiguration {
     this.kmsKey,
   });
 
-  final TfArg<AthenaDatabaseEncryptionOption> encryptionOption;
+  final AthenaDatabaseEncryptionOption encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKey;
 
@@ -50,14 +59,27 @@ final class AthenaDatabaseEncryptionConfiguration {
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum AthenaDatabaseEncryptionOption implements TerraformEnum {
-  sseS3('SSE_S3'),
-  sseKms('SSE_KMS'),
-  cseKms('CSE_KMS');
+extension type const AthenaDatabaseEncryptionOption._(TfArg<String> _)
+    implements TfArg<String> {
+  AthenaDatabaseEncryptionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  AthenaDatabaseEncryptionOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const AthenaDatabaseEncryptionOption.arg(TfArg<String> arg) : this._(arg);
 
-  const AthenaDatabaseEncryptionOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sseS3 = AthenaDatabaseEncryptionOption._(TfArgLiteral('SSE_S3'));
+  static const sseKms = AthenaDatabaseEncryptionOption._(
+    TfArgLiteral('SSE_KMS'),
+  );
+  static const cseKms = AthenaDatabaseEncryptionOption._(
+    TfArgLiteral('CSE_KMS'),
+  );
+
+  static const List<AthenaDatabaseEncryptionOption> values = [
+    sseS3,
+    sseKms,
+    cseKms,
+  ];
 }
 
 /// Factory wrapper for `aws_athena_database`.

@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMacie2FindingsFilterSensitive = <String>{};
 
 /// Macie2 Findings Filter enum for `action`.
-enum Macie2FindingsFilterAction implements TerraformEnum {
-  archive('ARCHIVE'),
-  noop('NOOP');
+extension type const Macie2FindingsFilterAction._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2FindingsFilterAction.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2FindingsFilterAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2FindingsFilterAction.arg(TfArg<String> arg) : this._(arg);
 
-  const Macie2FindingsFilterAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const archive = Macie2FindingsFilterAction._(TfArgLiteral('ARCHIVE'));
+  static const noop = Macie2FindingsFilterAction._(TfArgLiteral('NOOP'));
+
+  static const List<Macie2FindingsFilterAction> values = [archive, noop];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_macie2_findings_filter`: the provider rejects
@@ -138,7 +143,7 @@ final class AwsMacie2FindingsFilter extends Resource {
 
   AwsMacie2FindingsFilter(
     super.localName, {
-    required TfArg<Macie2FindingsFilterAction> action,
+    required Macie2FindingsFilterAction action,
     TfArg<String>? description,
     Macie2FindingsFilterName? name,
     TfArg<num>? position,

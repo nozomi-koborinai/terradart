@@ -10,29 +10,64 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsKinesisStreamSensitive = <String>{};
 
 /// Kinesis Stream Encryption enum for `encryption_type`.
-enum KinesisStreamEncryptionType implements TerraformEnum {
-  none('NONE'),
-  kms('KMS');
+extension type const KinesisStreamEncryptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  KinesisStreamEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisStreamEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisStreamEncryptionType.arg(TfArg<String> arg) : this._(arg);
 
-  const KinesisStreamEncryptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = KinesisStreamEncryptionType._(TfArgLiteral('NONE'));
+  static const kms = KinesisStreamEncryptionType._(TfArgLiteral('KMS'));
+
+  static const List<KinesisStreamEncryptionType> values = [none, kms];
 }
 
 /// Kinesis Stream Shard Level enum for `shard_level_metrics`.
-enum KinesisStreamShardLevelMetrics implements TerraformEnum {
-  incomingbytes('IncomingBytes'),
-  incomingrecords('IncomingRecords'),
-  outgoingbytes('OutgoingBytes'),
-  outgoingrecords('OutgoingRecords'),
-  writeprovisionedthroughputexceeded('WriteProvisionedThroughputExceeded'),
-  readprovisionedthroughputexceeded('ReadProvisionedThroughputExceeded'),
-  iteratoragemilliseconds('IteratorAgeMilliseconds'),
-  all('ALL');
+extension type const KinesisStreamShardLevelMetrics._(TfArg<String> _)
+    implements TfArg<String> {
+  KinesisStreamShardLevelMetrics.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisStreamShardLevelMetrics.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisStreamShardLevelMetrics.arg(TfArg<String> arg) : this._(arg);
 
-  const KinesisStreamShardLevelMetrics(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const incomingbytes = KinesisStreamShardLevelMetrics._(
+    TfArgLiteral('IncomingBytes'),
+  );
+  static const incomingrecords = KinesisStreamShardLevelMetrics._(
+    TfArgLiteral('IncomingRecords'),
+  );
+  static const outgoingbytes = KinesisStreamShardLevelMetrics._(
+    TfArgLiteral('OutgoingBytes'),
+  );
+  static const outgoingrecords = KinesisStreamShardLevelMetrics._(
+    TfArgLiteral('OutgoingRecords'),
+  );
+  static const writeprovisionedthroughputexceeded =
+      KinesisStreamShardLevelMetrics._(
+        TfArgLiteral('WriteProvisionedThroughputExceeded'),
+      );
+  static const readprovisionedthroughputexceeded =
+      KinesisStreamShardLevelMetrics._(
+        TfArgLiteral('ReadProvisionedThroughputExceeded'),
+      );
+  static const iteratoragemilliseconds = KinesisStreamShardLevelMetrics._(
+    TfArgLiteral('IteratorAgeMilliseconds'),
+  );
+  static const all = KinesisStreamShardLevelMetrics._(TfArgLiteral('ALL'));
+
+  static const List<KinesisStreamShardLevelMetrics> values = [
+    incomingbytes,
+    incomingrecords,
+    outgoingbytes,
+    outgoingrecords,
+    writeprovisionedthroughputexceeded,
+    readprovisionedthroughputexceeded,
+    iteratoragemilliseconds,
+    all,
+  ];
 }
 
 /// At most one of `shard_count`, `warm_throughput_mib_ps` on `aws_kinesis_stream`: the provider rejects
@@ -105,19 +140,23 @@ final class KinesisStreamCapacityWarmThroughputMibPs
 final class KinesisStreamModeDetails {
   const KinesisStreamModeDetails({required this.streamMode});
 
-  final TfArg<KinesisStreamMode> streamMode;
+  final KinesisStreamMode streamMode;
 
   Map<String, Object?> encode() => {'stream_mode': streamMode.toTfJson()};
 }
 
 /// `stream_mode` — derived from the provider schema description.
-enum KinesisStreamMode implements TerraformEnum {
-  provisioned('PROVISIONED'),
-  onDemand('ON_DEMAND');
+extension type const KinesisStreamMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KinesisStreamMode.variable(String name) : this._(TfArg.variable(name));
+  KinesisStreamMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisStreamMode.arg(TfArg<String> arg) : this._(arg);
 
-  const KinesisStreamMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const provisioned = KinesisStreamMode._(TfArgLiteral('PROVISIONED'));
+  static const onDemand = KinesisStreamMode._(TfArgLiteral('ON_DEMAND'));
+
+  static const List<KinesisStreamMode> values = [provisioned, onDemand];
 }
 
 /// Factory wrapper for `aws_kinesis_stream`.
@@ -127,7 +166,7 @@ final class AwsKinesisStream extends Resource {
   AwsKinesisStream(
     super.localName, {
     TfArg<String>? arn,
-    TfArg<KinesisStreamEncryptionType>? encryptionType,
+    KinesisStreamEncryptionType? encryptionType,
     TfArg<bool>? enforceConsumerDeletion,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<num>? maxRecordSizeInKib,
@@ -135,7 +174,7 @@ final class AwsKinesisStream extends Resource {
     TfArg<String>? region,
     TfArg<num>? retentionPeriod,
     KinesisStreamCapacity? capacity,
-    List<TfArg<KinesisStreamShardLevelMetrics>>? shardLevelMetrics,
+    List<KinesisStreamShardLevelMetrics>? shardLevelMetrics,
     TfArg<Map<String, String>>? tags,
     KinesisStreamModeDetails? streamModeDetails,
     super.lifecycle,

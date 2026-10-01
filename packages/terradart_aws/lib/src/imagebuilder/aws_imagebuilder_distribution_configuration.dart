@@ -167,7 +167,7 @@ final class ImagebuilderDistributionConfigurationTargetRepository {
 
   final TfArg<String> repositoryName;
 
-  final TfArg<ImagebuilderDistributionConfigurationService> service;
+  final ImagebuilderDistributionConfigurationService service;
 
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
@@ -176,12 +176,23 @@ final class ImagebuilderDistributionConfigurationTargetRepository {
 }
 
 /// `service` — derived from the provider schema description.
-enum ImagebuilderDistributionConfigurationService implements TerraformEnum {
-  ecr('ECR');
+extension type const ImagebuilderDistributionConfigurationService._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderDistributionConfigurationService.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderDistributionConfigurationService.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderDistributionConfigurationService.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderDistributionConfigurationService(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecr = ImagebuilderDistributionConfigurationService._(
+    TfArgLiteral('ECR'),
+  );
+
+  static const List<ImagebuilderDistributionConfigurationService> values = [
+    ecr,
+  ];
 }
 
 /// Typed helper for the `distribution.fast_launch_configuration` block of
@@ -288,8 +299,7 @@ final class ImagebuilderDistributionConfigurationS3ExportConfiguration {
     this.s3Prefix,
   });
 
-  final TfArg<ImagebuilderDistributionConfigurationDiskImageFormat>
-  diskImageFormat;
+  final ImagebuilderDistributionConfigurationDiskImageFormat diskImageFormat;
 
   final RefTo<AwsIamRole> roleName;
 
@@ -306,17 +316,30 @@ final class ImagebuilderDistributionConfigurationS3ExportConfiguration {
 }
 
 /// `disk_image_format` — derived from the provider schema description.
-enum ImagebuilderDistributionConfigurationDiskImageFormat
-    implements TerraformEnum {
-  vmdk('VMDK'),
-  raw('RAW'),
-  vhd('VHD');
+extension type const ImagebuilderDistributionConfigurationDiskImageFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderDistributionConfigurationDiskImageFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderDistributionConfigurationDiskImageFormat.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ImagebuilderDistributionConfigurationDiskImageFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ImagebuilderDistributionConfigurationDiskImageFormat(
-    this.terraformValue,
+  static const vmdk = ImagebuilderDistributionConfigurationDiskImageFormat._(
+    TfArgLiteral('VMDK'),
   );
-  @override
-  final String terraformValue;
+  static const raw = ImagebuilderDistributionConfigurationDiskImageFormat._(
+    TfArgLiteral('RAW'),
+  );
+  static const vhd = ImagebuilderDistributionConfigurationDiskImageFormat._(
+    TfArgLiteral('VHD'),
+  );
+
+  static const List<ImagebuilderDistributionConfigurationDiskImageFormat>
+  values = [vmdk, raw, vhd];
 }
 
 /// Typed helper for the `distribution.ssm_parameter_configuration` block of
@@ -331,7 +354,7 @@ final class ImagebuilderDistributionConfigurationSsmParameterConfiguration {
 
   final TfArg<String>? amiAccountId;
 
-  final TfArg<ImagebuilderDistributionConfigurationDataType>? dataType;
+  final ImagebuilderDistributionConfigurationDataType? dataType;
 
   final TfArg<String> parameterName;
 
@@ -343,13 +366,27 @@ final class ImagebuilderDistributionConfigurationSsmParameterConfiguration {
 }
 
 /// `data_type` — derived from the provider schema description.
-enum ImagebuilderDistributionConfigurationDataType implements TerraformEnum {
-  text('text'),
-  awsEc2Image('aws:ec2:image');
+extension type const ImagebuilderDistributionConfigurationDataType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderDistributionConfigurationDataType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderDistributionConfigurationDataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderDistributionConfigurationDataType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderDistributionConfigurationDataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = ImagebuilderDistributionConfigurationDataType._(
+    TfArgLiteral('text'),
+  );
+  static const awsEc2Image = ImagebuilderDistributionConfigurationDataType._(
+    TfArgLiteral('aws:ec2:image'),
+  );
+
+  static const List<ImagebuilderDistributionConfigurationDataType> values = [
+    text,
+    awsEc2Image,
+  ];
 }
 
 /// Factory wrapper for `aws_imagebuilder_distribution_configuration`.

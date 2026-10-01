@@ -9,13 +9,26 @@ const Set<String> _googleNetworkSecurityAuthorizationPolicySensitive =
     <String>{};
 
 /// Network Security Authorization Policy enum for `action`.
-enum NetworkSecurityAuthorizationPolicyAction implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const NetworkSecurityAuthorizationPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecurityAuthorizationPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthorizationPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAuthorizationPolicyAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityAuthorizationPolicyAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = NetworkSecurityAuthorizationPolicyAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = NetworkSecurityAuthorizationPolicyAction._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<NetworkSecurityAuthorizationPolicyAction> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Typed helper for the `rules` block of
@@ -114,7 +127,7 @@ final class GoogleNetworkSecurityAuthorizationPolicy extends Resource {
 
   GoogleNetworkSecurityAuthorizationPolicy(
     super.localName, {
-    required TfArg<NetworkSecurityAuthorizationPolicyAction> action,
+    required NetworkSecurityAuthorizationPolicyAction action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

@@ -28,14 +28,16 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for ExaDB VM clusters.
-  enum OracleDatabaseExadbVmClusterDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const OracleDatabaseExadbVmClusterDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    OracleDatabaseExadbVmClusterDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    OracleDatabaseExadbVmClusterDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const OracleDatabaseExadbVmClusterDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const OracleDatabaseExadbVmClusterDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = OracleDatabaseExadbVmClusterDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = OracleDatabaseExadbVmClusterDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = OracleDatabaseExadbVmClusterDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<OracleDatabaseExadbVmClusterDeletionPolicy> values = [delete, prevent, abandon];
   }
 
 dartTypeOverrides:

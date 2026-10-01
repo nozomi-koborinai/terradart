@@ -30,7 +30,7 @@ final class ComputeSnapshotSettingsStack extends Stack {
       GoogleComputeSnapshotSettings(
         'defaults',
         storageLocation: ComputeSnapshotSettingsStorageLocation(
-          policy: .literal(.localRegion),
+          policy: .localRegion,
         ),
         dependsOn: [apiCompute],
       ),

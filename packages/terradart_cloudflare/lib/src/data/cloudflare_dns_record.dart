@@ -29,11 +29,11 @@ final class DataDnsRecordFilter {
     this.tag,
   });
 
-  final TfArg<DataDnsRecordDirection>? direction;
+  final DataDnsRecordDirection? direction;
 
-  final TfArg<DataDnsRecordMatch>? match;
+  final DataDnsRecordMatch? match;
 
-  final TfArg<DataDnsRecordOrder>? order;
+  final DataDnsRecordOrder? order;
 
   final TfArg<bool>? proxied;
 
@@ -43,9 +43,9 @@ final class DataDnsRecordFilter {
 
   final TfArg<String>? shadowingName;
 
-  final TfArg<DataDnsRecordTagMatch>? tagMatch;
+  final DataDnsRecordTagMatch? tagMatch;
 
-  final TfArg<DataDnsRecordFilterType>? type;
+  final DataDnsRecordFilterType? type;
 
   final DataDnsRecordFilterComment? comment;
 
@@ -73,75 +73,125 @@ final class DataDnsRecordFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataDnsRecordDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataDnsRecordDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordDirection.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataDnsRecordDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataDnsRecordDirection._(TfArgLiteral('asc'));
+  static const desc = DataDnsRecordDirection._(TfArgLiteral('desc'));
+
+  static const List<DataDnsRecordDirection> values = [asc, desc];
 }
 
 /// `match` — derived from the provider schema description.
-enum DataDnsRecordMatch implements TerraformEnum {
-  any('any'),
-  all('all');
+extension type const DataDnsRecordMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordMatch.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordMatch.arg(TfArg<String> arg) : this._(arg);
 
-  const DataDnsRecordMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = DataDnsRecordMatch._(TfArgLiteral('any'));
+  static const all = DataDnsRecordMatch._(TfArgLiteral('all'));
+
+  static const List<DataDnsRecordMatch> values = [any, all];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataDnsRecordOrder implements TerraformEnum {
-  type('type'),
-  name('name'),
-  content('content'),
-  ttl('ttl'),
-  proxied('proxied');
+extension type const DataDnsRecordOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordOrder.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataDnsRecordOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const type = DataDnsRecordOrder._(TfArgLiteral('type'));
+  static const name = DataDnsRecordOrder._(TfArgLiteral('name'));
+  static const content = DataDnsRecordOrder._(TfArgLiteral('content'));
+  static const ttl = DataDnsRecordOrder._(TfArgLiteral('ttl'));
+  static const proxied = DataDnsRecordOrder._(TfArgLiteral('proxied'));
+
+  static const List<DataDnsRecordOrder> values = [
+    type,
+    name,
+    content,
+    ttl,
+    proxied,
+  ];
 }
 
 /// `tag_match` — derived from the provider schema description.
-enum DataDnsRecordTagMatch implements TerraformEnum {
-  any('any'),
-  all('all');
+extension type const DataDnsRecordTagMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordTagMatch.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordTagMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordTagMatch.arg(TfArg<String> arg) : this._(arg);
 
-  const DataDnsRecordTagMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = DataDnsRecordTagMatch._(TfArgLiteral('any'));
+  static const all = DataDnsRecordTagMatch._(TfArgLiteral('all'));
+
+  static const List<DataDnsRecordTagMatch> values = [any, all];
 }
 
 /// `type` — derived from the provider schema description.
-enum DataDnsRecordFilterType implements TerraformEnum {
-  a('A'),
-  aaaa('AAAA'),
-  caa('CAA'),
-  cert('CERT'),
-  cname('CNAME'),
-  dnskey('DNSKEY'),
-  ds('DS'),
-  https('HTTPS'),
-  loc('LOC'),
-  mx('MX'),
-  naptr('NAPTR'),
-  ns('NS'),
-  openpgpkey('OPENPGPKEY'),
-  ptr('PTR'),
-  smimea('SMIMEA'),
-  srv('SRV'),
-  sshfp('SSHFP'),
-  svcb('SVCB'),
-  tlsa('TLSA'),
-  txt('TXT'),
-  uri('URI');
+extension type const DataDnsRecordFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDnsRecordFilterType.variable(String name) : this._(TfArg.variable(name));
+  DataDnsRecordFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDnsRecordFilterType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataDnsRecordFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a = DataDnsRecordFilterType._(TfArgLiteral('A'));
+  static const aaaa = DataDnsRecordFilterType._(TfArgLiteral('AAAA'));
+  static const caa = DataDnsRecordFilterType._(TfArgLiteral('CAA'));
+  static const cert = DataDnsRecordFilterType._(TfArgLiteral('CERT'));
+  static const cname = DataDnsRecordFilterType._(TfArgLiteral('CNAME'));
+  static const dnskey = DataDnsRecordFilterType._(TfArgLiteral('DNSKEY'));
+  static const ds = DataDnsRecordFilterType._(TfArgLiteral('DS'));
+  static const https = DataDnsRecordFilterType._(TfArgLiteral('HTTPS'));
+  static const loc = DataDnsRecordFilterType._(TfArgLiteral('LOC'));
+  static const mx = DataDnsRecordFilterType._(TfArgLiteral('MX'));
+  static const naptr = DataDnsRecordFilterType._(TfArgLiteral('NAPTR'));
+  static const ns = DataDnsRecordFilterType._(TfArgLiteral('NS'));
+  static const openpgpkey = DataDnsRecordFilterType._(
+    TfArgLiteral('OPENPGPKEY'),
+  );
+  static const ptr = DataDnsRecordFilterType._(TfArgLiteral('PTR'));
+  static const smimea = DataDnsRecordFilterType._(TfArgLiteral('SMIMEA'));
+  static const srv = DataDnsRecordFilterType._(TfArgLiteral('SRV'));
+  static const sshfp = DataDnsRecordFilterType._(TfArgLiteral('SSHFP'));
+  static const svcb = DataDnsRecordFilterType._(TfArgLiteral('SVCB'));
+  static const tlsa = DataDnsRecordFilterType._(TfArgLiteral('TLSA'));
+  static const txt = DataDnsRecordFilterType._(TfArgLiteral('TXT'));
+  static const uri = DataDnsRecordFilterType._(TfArgLiteral('URI'));
+
+  static const List<DataDnsRecordFilterType> values = [
+    a,
+    aaaa,
+    caa,
+    cert,
+    cname,
+    dnskey,
+    ds,
+    https,
+    loc,
+    mx,
+    naptr,
+    ns,
+    openpgpkey,
+    ptr,
+    smimea,
+    srv,
+    sshfp,
+    svcb,
+    tlsa,
+    txt,
+    uri,
+  ];
 }
 
 /// Typed helper for the `filter.comment` block of

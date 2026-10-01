@@ -13,13 +13,25 @@ const Set<String> _googleIamWorkforcePoolProviderSensitive = <String>{
 
 /// `scim_usage` — whether authorization checks use SCIM-managed groups
 /// instead of the `google.groups` attribute mapping.
-enum IamWorkforcePoolProviderScimUsage implements TerraformEnum {
-  scimUsageUnspecified('SCIM_USAGE_UNSPECIFIED'),
-  enabledForGroups('ENABLED_FOR_GROUPS');
+extension type const IamWorkforcePoolProviderScimUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkforcePoolProviderScimUsage.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderScimUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderScimUsage.arg(TfArg<String> arg) : this._(arg);
 
-  const IamWorkforcePoolProviderScimUsage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scimUsageUnspecified = IamWorkforcePoolProviderScimUsage._(
+    TfArgLiteral('SCIM_USAGE_UNSPECIFIED'),
+  );
+  static const enabledForGroups = IamWorkforcePoolProviderScimUsage._(
+    TfArgLiteral('ENABLED_FOR_GROUPS'),
+  );
+
+  static const List<IamWorkforcePoolProviderScimUsage> values = [
+    scimUsageUnspecified,
+    enabledForGroups,
+  ];
 }
 
 /// Exactly one of `saml`, `oidc` on `google_iam_workforce_pool_provider`: the provider rejects
@@ -103,7 +115,7 @@ sealed class IamWorkforcePoolProviderGroupSource {
 
   /// Sets `scim_usage`.
   const factory IamWorkforcePoolProviderGroupSource.scimUsage(
-    TfArg<IamWorkforcePoolProviderScimUsage> scimUsage,
+    IamWorkforcePoolProviderScimUsage scimUsage,
   ) = IamWorkforcePoolProviderGroupSourceScimUsage;
 
   /// The Terraform argument this choice sets.
@@ -148,7 +160,7 @@ final class IamWorkforcePoolProviderGroupSourceScimUsage
     extends IamWorkforcePoolProviderGroupSource {
   const IamWorkforcePoolProviderGroupSourceScimUsage(this.scimUsage);
 
-  final TfArg<IamWorkforcePoolProviderScimUsage> scimUsage;
+  final IamWorkforcePoolProviderScimUsage scimUsage;
 
   @override
   String get blockKey => 'scim_usage';
@@ -298,7 +310,7 @@ final class IamWorkforcePoolProviderExtraAttributesOauth2Client {
     this.queryParameters,
   });
 
-  final TfArg<IamWorkforcePoolProviderAttributesType> attributesType;
+  final IamWorkforcePoolProviderAttributesType attributesType;
 
   final TfArg<String> clientId;
 
@@ -318,14 +330,31 @@ final class IamWorkforcePoolProviderExtraAttributesOauth2Client {
 }
 
 /// `attributes_type` — derived from the provider schema description.
-enum IamWorkforcePoolProviderAttributesType implements TerraformEnum {
-  azureAdGroupsMail('AZURE_AD_GROUPS_MAIL'),
-  azureAdGroupsId('AZURE_AD_GROUPS_ID'),
-  azureAdGroupsDisplayName('AZURE_AD_GROUPS_DISPLAY_NAME');
+extension type const IamWorkforcePoolProviderAttributesType._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkforcePoolProviderAttributesType.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderAttributesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderAttributesType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IamWorkforcePoolProviderAttributesType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const azureAdGroupsMail = IamWorkforcePoolProviderAttributesType._(
+    TfArgLiteral('AZURE_AD_GROUPS_MAIL'),
+  );
+  static const azureAdGroupsId = IamWorkforcePoolProviderAttributesType._(
+    TfArgLiteral('AZURE_AD_GROUPS_ID'),
+  );
+  static const azureAdGroupsDisplayName =
+      IamWorkforcePoolProviderAttributesType._(
+        TfArgLiteral('AZURE_AD_GROUPS_DISPLAY_NAME'),
+      );
+
+  static const List<IamWorkforcePoolProviderAttributesType> values = [
+    azureAdGroupsMail,
+    azureAdGroupsId,
+    azureAdGroupsDisplayName,
+  ];
 }
 
 /// Typed helper for the `oidc` block of
@@ -371,10 +400,9 @@ final class IamWorkforcePoolProviderWebSsoConfig {
 
   final TfArg<List<String>>? additionalScopes;
 
-  final TfArg<IamWorkforcePoolProviderAssertionClaimsBehavior>
-  assertionClaimsBehavior;
+  final IamWorkforcePoolProviderAssertionClaimsBehavior assertionClaimsBehavior;
 
-  final TfArg<IamWorkforcePoolProviderResponseType> responseType;
+  final IamWorkforcePoolProviderResponseType responseType;
 
   Map<String, Object?> encode() => {
     'additional_scopes': ?additionalScopes?.toTfJson(),
@@ -384,23 +412,52 @@ final class IamWorkforcePoolProviderWebSsoConfig {
 }
 
 /// `assertion_claims_behavior` — derived from the provider schema description.
-enum IamWorkforcePoolProviderAssertionClaimsBehavior implements TerraformEnum {
-  mergeUserInfoOverIdTokenClaims('MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS'),
-  onlyIdTokenClaims('ONLY_ID_TOKEN_CLAIMS');
+extension type const IamWorkforcePoolProviderAssertionClaimsBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IamWorkforcePoolProviderAssertionClaimsBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderAssertionClaimsBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderAssertionClaimsBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IamWorkforcePoolProviderAssertionClaimsBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mergeUserInfoOverIdTokenClaims =
+      IamWorkforcePoolProviderAssertionClaimsBehavior._(
+        TfArgLiteral('MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS'),
+      );
+  static const onlyIdTokenClaims =
+      IamWorkforcePoolProviderAssertionClaimsBehavior._(
+        TfArgLiteral('ONLY_ID_TOKEN_CLAIMS'),
+      );
+
+  static const List<IamWorkforcePoolProviderAssertionClaimsBehavior> values = [
+    mergeUserInfoOverIdTokenClaims,
+    onlyIdTokenClaims,
+  ];
 }
 
 /// `response_type` — derived from the provider schema description.
-enum IamWorkforcePoolProviderResponseType implements TerraformEnum {
-  code('CODE'),
-  idToken('ID_TOKEN');
+extension type const IamWorkforcePoolProviderResponseType._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkforcePoolProviderResponseType.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderResponseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderResponseType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IamWorkforcePoolProviderResponseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const code = IamWorkforcePoolProviderResponseType._(
+    TfArgLiteral('CODE'),
+  );
+  static const idToken = IamWorkforcePoolProviderResponseType._(
+    TfArgLiteral('ID_TOKEN'),
+  );
+
+  static const List<IamWorkforcePoolProviderResponseType> values = [
+    code,
+    idToken,
+  ];
 }
 
 /// Typed helper for the `saml` block of

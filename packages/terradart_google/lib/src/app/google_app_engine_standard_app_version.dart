@@ -340,14 +340,14 @@ final class AppEngineStandardAppVersionHandlers {
     this.staticFiles,
   });
 
-  final TfArg<AppEngineStandardAppVersionAuthFailAction>? authFailAction;
+  final AppEngineStandardAppVersionAuthFailAction? authFailAction;
 
-  final TfArg<AppEngineStandardAppVersionLogin>? login;
+  final AppEngineStandardAppVersionLogin? login;
 
-  final TfArg<AppEngineStandardAppVersionRedirectHttpResponseCode>?
+  final AppEngineStandardAppVersionRedirectHttpResponseCode?
   redirectHttpResponseCode;
 
-  final TfArg<AppEngineStandardAppVersionSecurityLevel>? securityLevel;
+  final AppEngineStandardAppVersionSecurityLevel? securityLevel;
 
   final TfArg<String>? urlRegex;
 
@@ -367,51 +367,125 @@ final class AppEngineStandardAppVersionHandlers {
 }
 
 /// `auth_fail_action` — derived from the provider schema description.
-enum AppEngineStandardAppVersionAuthFailAction implements TerraformEnum {
-  authFailActionRedirect('AUTH_FAIL_ACTION_REDIRECT'),
-  authFailActionUnauthorized('AUTH_FAIL_ACTION_UNAUTHORIZED');
+extension type const AppEngineStandardAppVersionAuthFailAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineStandardAppVersionAuthFailAction.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionAuthFailAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionAuthFailAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineStandardAppVersionAuthFailAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authFailActionRedirect =
+      AppEngineStandardAppVersionAuthFailAction._(
+        TfArgLiteral('AUTH_FAIL_ACTION_REDIRECT'),
+      );
+  static const authFailActionUnauthorized =
+      AppEngineStandardAppVersionAuthFailAction._(
+        TfArgLiteral('AUTH_FAIL_ACTION_UNAUTHORIZED'),
+      );
+
+  static const List<AppEngineStandardAppVersionAuthFailAction> values = [
+    authFailActionRedirect,
+    authFailActionUnauthorized,
+  ];
 }
 
 /// `login` — derived from the provider schema description.
-enum AppEngineStandardAppVersionLogin implements TerraformEnum {
-  loginOptional('LOGIN_OPTIONAL'),
-  loginAdmin('LOGIN_ADMIN'),
-  loginRequired('LOGIN_REQUIRED');
+extension type const AppEngineStandardAppVersionLogin._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionLogin.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionLogin.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionLogin.arg(TfArg<String> arg) : this._(arg);
 
-  const AppEngineStandardAppVersionLogin(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loginOptional = AppEngineStandardAppVersionLogin._(
+    TfArgLiteral('LOGIN_OPTIONAL'),
+  );
+  static const loginAdmin = AppEngineStandardAppVersionLogin._(
+    TfArgLiteral('LOGIN_ADMIN'),
+  );
+  static const loginRequired = AppEngineStandardAppVersionLogin._(
+    TfArgLiteral('LOGIN_REQUIRED'),
+  );
+
+  static const List<AppEngineStandardAppVersionLogin> values = [
+    loginOptional,
+    loginAdmin,
+    loginRequired,
+  ];
 }
 
 /// `redirect_http_response_code` — derived from the provider schema description.
-enum AppEngineStandardAppVersionRedirectHttpResponseCode
-    implements TerraformEnum {
-  redirectHttpResponseCode301('REDIRECT_HTTP_RESPONSE_CODE_301'),
-  redirectHttpResponseCode302('REDIRECT_HTTP_RESPONSE_CODE_302'),
-  redirectHttpResponseCode303('REDIRECT_HTTP_RESPONSE_CODE_303'),
-  redirectHttpResponseCode307('REDIRECT_HTTP_RESPONSE_CODE_307');
+extension type const AppEngineStandardAppVersionRedirectHttpResponseCode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineStandardAppVersionRedirectHttpResponseCode.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionRedirectHttpResponseCode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionRedirectHttpResponseCode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AppEngineStandardAppVersionRedirectHttpResponseCode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const redirectHttpResponseCode301 =
+      AppEngineStandardAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_301'),
+      );
+  static const redirectHttpResponseCode302 =
+      AppEngineStandardAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_302'),
+      );
+  static const redirectHttpResponseCode303 =
+      AppEngineStandardAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_303'),
+      );
+  static const redirectHttpResponseCode307 =
+      AppEngineStandardAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_307'),
+      );
+
+  static const List<AppEngineStandardAppVersionRedirectHttpResponseCode>
+  values = [
+    redirectHttpResponseCode301,
+    redirectHttpResponseCode302,
+    redirectHttpResponseCode303,
+    redirectHttpResponseCode307,
+  ];
 }
 
 /// `security_level` — derived from the provider schema description.
-enum AppEngineStandardAppVersionSecurityLevel implements TerraformEnum {
-  secureDefault('SECURE_DEFAULT'),
-  secureNever('SECURE_NEVER'),
-  secureOptional('SECURE_OPTIONAL'),
-  secureAlways('SECURE_ALWAYS');
+extension type const AppEngineStandardAppVersionSecurityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionSecurityLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionSecurityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionSecurityLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineStandardAppVersionSecurityLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secureDefault = AppEngineStandardAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_DEFAULT'),
+  );
+  static const secureNever = AppEngineStandardAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_NEVER'),
+  );
+  static const secureOptional = AppEngineStandardAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_OPTIONAL'),
+  );
+  static const secureAlways = AppEngineStandardAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_ALWAYS'),
+  );
+
+  static const List<AppEngineStandardAppVersionSecurityLevel> values = [
+    secureDefault,
+    secureNever,
+    secureOptional,
+    secureAlways,
+  ];
 }
 
 /// Typed helper for the `handlers.script` block of

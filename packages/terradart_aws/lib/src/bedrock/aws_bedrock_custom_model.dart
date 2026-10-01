@@ -12,16 +12,38 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsBedrockCustomModelSensitive = <String>{};
 
 /// Bedrock Custom Model Customization enum for `customization_type`.
-enum BedrockCustomModelCustomizationType implements TerraformEnum {
-  fineTuning('FINE_TUNING'),
-  continuedPreTraining('CONTINUED_PRE_TRAINING'),
-  distillation('DISTILLATION'),
-  reinforcementFineTuning('REINFORCEMENT_FINE_TUNING'),
-  imported('IMPORTED');
+extension type const BedrockCustomModelCustomizationType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockCustomModelCustomizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockCustomModelCustomizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockCustomModelCustomizationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockCustomModelCustomizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fineTuning = BedrockCustomModelCustomizationType._(
+    TfArgLiteral('FINE_TUNING'),
+  );
+  static const continuedPreTraining = BedrockCustomModelCustomizationType._(
+    TfArgLiteral('CONTINUED_PRE_TRAINING'),
+  );
+  static const distillation = BedrockCustomModelCustomizationType._(
+    TfArgLiteral('DISTILLATION'),
+  );
+  static const reinforcementFineTuning = BedrockCustomModelCustomizationType._(
+    TfArgLiteral('REINFORCEMENT_FINE_TUNING'),
+  );
+  static const imported = BedrockCustomModelCustomizationType._(
+    TfArgLiteral('IMPORTED'),
+  );
+
+  static const List<BedrockCustomModelCustomizationType> values = [
+    fineTuning,
+    continuedPreTraining,
+    distillation,
+    reinforcementFineTuning,
+    imported,
+  ];
 }
 
 /// Typed helper for the `output_data_config` block of
@@ -99,7 +121,7 @@ final class AwsBedrockCustomModel extends Resource {
     required TfArg<String> baseModelIdentifier,
     TfArg<String>? customModelKmsKeyId,
     required TfArg<String> customModelName,
-    TfArg<BedrockCustomModelCustomizationType>? customizationType,
+    BedrockCustomModelCustomizationType? customizationType,
     required TfArg<Map<String, String>> hyperparameters,
     required TfArg<String> jobName,
     TfArg<String>? region,

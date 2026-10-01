@@ -8,31 +8,71 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsResiliencehubResiliencyPolicySensitive = <String>{};
 
 /// Resiliencehub Resiliency Policy Data Location enum for `data_location_constraint`.
-enum ResiliencehubResiliencyPolicyDataLocationConstraint
-    implements TerraformEnum {
-  anylocation('AnyLocation'),
-  samecontinent('SameContinent'),
-  samecountry('SameCountry');
+extension type const ResiliencehubResiliencyPolicyDataLocationConstraint._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ResiliencehubResiliencyPolicyDataLocationConstraint.variable(String name)
+    : this._(TfArg.variable(name));
+  ResiliencehubResiliencyPolicyDataLocationConstraint.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ResiliencehubResiliencyPolicyDataLocationConstraint.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ResiliencehubResiliencyPolicyDataLocationConstraint(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const anylocation =
+      ResiliencehubResiliencyPolicyDataLocationConstraint._(
+        TfArgLiteral('AnyLocation'),
+      );
+  static const samecontinent =
+      ResiliencehubResiliencyPolicyDataLocationConstraint._(
+        TfArgLiteral('SameContinent'),
+      );
+  static const samecountry =
+      ResiliencehubResiliencyPolicyDataLocationConstraint._(
+        TfArgLiteral('SameCountry'),
+      );
+
+  static const List<ResiliencehubResiliencyPolicyDataLocationConstraint>
+  values = [anylocation, samecontinent, samecountry];
 }
 
 /// Resiliencehub Resiliency Policy enum for `tier`.
-enum ResiliencehubResiliencyPolicyTier implements TerraformEnum {
-  missioncritical('MissionCritical'),
-  critical('Critical'),
-  important('Important'),
-  coreservices('CoreServices'),
-  noncritical('NonCritical'),
-  notapplicable('NotApplicable');
+extension type const ResiliencehubResiliencyPolicyTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ResiliencehubResiliencyPolicyTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ResiliencehubResiliencyPolicyTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ResiliencehubResiliencyPolicyTier.arg(TfArg<String> arg) : this._(arg);
 
-  const ResiliencehubResiliencyPolicyTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const missioncritical = ResiliencehubResiliencyPolicyTier._(
+    TfArgLiteral('MissionCritical'),
+  );
+  static const critical = ResiliencehubResiliencyPolicyTier._(
+    TfArgLiteral('Critical'),
+  );
+  static const important = ResiliencehubResiliencyPolicyTier._(
+    TfArgLiteral('Important'),
+  );
+  static const coreservices = ResiliencehubResiliencyPolicyTier._(
+    TfArgLiteral('CoreServices'),
+  );
+  static const noncritical = ResiliencehubResiliencyPolicyTier._(
+    TfArgLiteral('NonCritical'),
+  );
+  static const notapplicable = ResiliencehubResiliencyPolicyTier._(
+    TfArgLiteral('NotApplicable'),
+  );
+
+  static const List<ResiliencehubResiliencyPolicyTier> values = [
+    missioncritical,
+    critical,
+    important,
+    coreservices,
+    noncritical,
+    notapplicable,
+  ];
 }
 
 /// Typed helper for the `policy` block of
@@ -138,13 +178,12 @@ final class AwsResiliencehubResiliencyPolicy extends Resource {
 
   AwsResiliencehubResiliencyPolicy(
     super.localName, {
-    TfArg<ResiliencehubResiliencyPolicyDataLocationConstraint>?
-    dataLocationConstraint,
+    ResiliencehubResiliencyPolicyDataLocationConstraint? dataLocationConstraint,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<ResiliencehubResiliencyPolicyTier> tier,
+    required ResiliencehubResiliencyPolicyTier tier,
     List<ResiliencehubResiliencyPolicy>? policy,
     super.lifecycle,
     super.dependsOn,

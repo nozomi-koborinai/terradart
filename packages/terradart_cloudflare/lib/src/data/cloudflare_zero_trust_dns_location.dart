@@ -20,11 +20,11 @@ final class DataZeroTrustDnsLocationFilter {
     this.search,
   });
 
-  final TfArg<DataZeroTrustDnsLocationDirection>? direction;
+  final DataZeroTrustDnsLocationDirection? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustDnsLocationOrderBy>? orderBy;
+  final DataZeroTrustDnsLocationOrderBy? orderBy;
 
   final TfArg<String>? search;
 
@@ -37,24 +37,42 @@ final class DataZeroTrustDnsLocationFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustDnsLocationDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataZeroTrustDnsLocationDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDnsLocationDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDnsLocationDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDnsLocationDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZeroTrustDnsLocationDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataZeroTrustDnsLocationDirection._(TfArgLiteral('asc'));
+  static const desc = DataZeroTrustDnsLocationDirection._(TfArgLiteral('desc'));
+
+  static const List<DataZeroTrustDnsLocationDirection> values = [asc, desc];
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustDnsLocationOrderBy implements TerraformEnum {
-  name('name'),
-  createdAt('created_at'),
-  updatedAt('updated_at');
+extension type const DataZeroTrustDnsLocationOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDnsLocationOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDnsLocationOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDnsLocationOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZeroTrustDnsLocationOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataZeroTrustDnsLocationOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataZeroTrustDnsLocationOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustDnsLocationOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+
+  static const List<DataZeroTrustDnsLocationOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dns_location`.

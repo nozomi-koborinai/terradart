@@ -16,7 +16,7 @@ final class WafregionalXssMatchSetXssMatchTuple {
     required this.fieldToMatch,
   });
 
-  final TfArg<WafregionalXssMatchSetTextTransformation> textTransformation;
+  final WafregionalXssMatchSetTextTransformation textTransformation;
 
   final WafregionalXssMatchSetFieldToMatch fieldToMatch;
 
@@ -27,17 +27,42 @@ final class WafregionalXssMatchSetXssMatchTuple {
 }
 
 /// `text_transformation` — derived from the provider schema description.
-enum WafregionalXssMatchSetTextTransformation implements TerraformEnum {
-  none('NONE'),
-  compressWhiteSpace('COMPRESS_WHITE_SPACE'),
-  htmlEntityDecode('HTML_ENTITY_DECODE'),
-  lowercase('LOWERCASE'),
-  cmdLine('CMD_LINE'),
-  urlDecode('URL_DECODE');
+extension type const WafregionalXssMatchSetTextTransformation._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalXssMatchSetTextTransformation.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalXssMatchSetTextTransformation.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalXssMatchSetTextTransformation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WafregionalXssMatchSetTextTransformation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = WafregionalXssMatchSetTextTransformation._(
+    TfArgLiteral('NONE'),
+  );
+  static const compressWhiteSpace = WafregionalXssMatchSetTextTransformation._(
+    TfArgLiteral('COMPRESS_WHITE_SPACE'),
+  );
+  static const htmlEntityDecode = WafregionalXssMatchSetTextTransformation._(
+    TfArgLiteral('HTML_ENTITY_DECODE'),
+  );
+  static const lowercase = WafregionalXssMatchSetTextTransformation._(
+    TfArgLiteral('LOWERCASE'),
+  );
+  static const cmdLine = WafregionalXssMatchSetTextTransformation._(
+    TfArgLiteral('CMD_LINE'),
+  );
+  static const urlDecode = WafregionalXssMatchSetTextTransformation._(
+    TfArgLiteral('URL_DECODE'),
+  );
+
+  static const List<WafregionalXssMatchSetTextTransformation> values = [
+    none,
+    compressWhiteSpace,
+    htmlEntityDecode,
+    lowercase,
+    cmdLine,
+    urlDecode,
+  ];
 }
 
 /// Typed helper for the `xss_match_tuple.field_to_match` block of
@@ -48,7 +73,7 @@ final class WafregionalXssMatchSetFieldToMatch {
 
   final TfArg<String>? data;
 
-  final TfArg<WafregionalXssMatchSetType> type;
+  final WafregionalXssMatchSetType type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -57,18 +82,37 @@ final class WafregionalXssMatchSetFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalXssMatchSetType implements TerraformEnum {
-  uri('URI'),
-  queryString('QUERY_STRING'),
-  header('HEADER'),
-  method('METHOD'),
-  body('BODY'),
-  singleQueryArg('SINGLE_QUERY_ARG'),
-  allQueryArgs('ALL_QUERY_ARGS');
+extension type const WafregionalXssMatchSetType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalXssMatchSetType.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalXssMatchSetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalXssMatchSetType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafregionalXssMatchSetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uri = WafregionalXssMatchSetType._(TfArgLiteral('URI'));
+  static const queryString = WafregionalXssMatchSetType._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+  static const header = WafregionalXssMatchSetType._(TfArgLiteral('HEADER'));
+  static const method = WafregionalXssMatchSetType._(TfArgLiteral('METHOD'));
+  static const body = WafregionalXssMatchSetType._(TfArgLiteral('BODY'));
+  static const singleQueryArg = WafregionalXssMatchSetType._(
+    TfArgLiteral('SINGLE_QUERY_ARG'),
+  );
+  static const allQueryArgs = WafregionalXssMatchSetType._(
+    TfArgLiteral('ALL_QUERY_ARGS'),
+  );
+
+  static const List<WafregionalXssMatchSetType> values = [
+    uri,
+    queryString,
+    header,
+    method,
+    body,
+    singleQueryArg,
+    allQueryArgs,
+  ];
 }
 
 /// Factory wrapper for `aws_wafregional_xss_match_set`.

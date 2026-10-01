@@ -696,7 +696,7 @@ final class DataprocWorkflowTemplateGceClusterConfig {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<DataprocWorkflowTemplatePrivateIpv6GoogleAccess>?
+  final DataprocWorkflowTemplatePrivateIpv6GoogleAccess?
   privateIpv6GoogleAccess;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
@@ -732,15 +732,38 @@ final class DataprocWorkflowTemplateGceClusterConfig {
 }
 
 /// `private_ipv6_google_access` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePrivateIpv6GoogleAccess implements TerraformEnum {
-  privateIpv6GoogleAccessUnspecified('PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED'),
-  inheritFromSubnetwork('INHERIT_FROM_SUBNETWORK'),
-  outbound('OUTBOUND'),
-  bidirectional('BIDIRECTIONAL');
+extension type const DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocWorkflowTemplatePrivateIpv6GoogleAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplatePrivateIpv6GoogleAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplatePrivateIpv6GoogleAccess.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocWorkflowTemplatePrivateIpv6GoogleAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const privateIpv6GoogleAccessUnspecified =
+      DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
+        TfArgLiteral('PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED'),
+      );
+  static const inheritFromSubnetwork =
+      DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
+        TfArgLiteral('INHERIT_FROM_SUBNETWORK'),
+      );
+  static const outbound = DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
+    TfArgLiteral('OUTBOUND'),
+  );
+  static const bidirectional =
+      DataprocWorkflowTemplatePrivateIpv6GoogleAccess._(
+        TfArgLiteral('BIDIRECTIONAL'),
+      );
+
+  static const List<DataprocWorkflowTemplatePrivateIpv6GoogleAccess> values = [
+    privateIpv6GoogleAccessUnspecified,
+    inheritFromSubnetwork,
+    outbound,
+    bidirectional,
+  ];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.node_group_affinity` block of
@@ -764,8 +787,7 @@ final class DataprocWorkflowTemplateReservationAffinity {
     this.values,
   });
 
-  final TfArg<DataprocWorkflowTemplateConsumeReservationType>?
-  consumeReservationType;
+  final DataprocWorkflowTemplateConsumeReservationType? consumeReservationType;
 
   final TfArg<String>? key;
 
@@ -779,15 +801,38 @@ final class DataprocWorkflowTemplateReservationAffinity {
 }
 
 /// `consume_reservation_type` — derived from the provider schema description.
-enum DataprocWorkflowTemplateConsumeReservationType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  noReservation('NO_RESERVATION'),
-  anyReservation('ANY_RESERVATION'),
-  specificReservation('SPECIFIC_RESERVATION');
+extension type const DataprocWorkflowTemplateConsumeReservationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocWorkflowTemplateConsumeReservationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateConsumeReservationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateConsumeReservationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocWorkflowTemplateConsumeReservationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified =
+      DataprocWorkflowTemplateConsumeReservationType._(
+        TfArgLiteral('TYPE_UNSPECIFIED'),
+      );
+  static const noReservation = DataprocWorkflowTemplateConsumeReservationType._(
+    TfArgLiteral('NO_RESERVATION'),
+  );
+  static const anyReservation =
+      DataprocWorkflowTemplateConsumeReservationType._(
+        TfArgLiteral('ANY_RESERVATION'),
+      );
+  static const specificReservation =
+      DataprocWorkflowTemplateConsumeReservationType._(
+        TfArgLiteral('SPECIFIC_RESERVATION'),
+      );
+
+  static const List<DataprocWorkflowTemplateConsumeReservationType> values = [
+    typeUnspecified,
+    noReservation,
+    anyReservation,
+    specificReservation,
+  ];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.gce_cluster_config.shielded_instance_config` block of
@@ -878,7 +923,7 @@ final class DataprocWorkflowTemplateMasterConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<DataprocWorkflowTemplatePreemptibility>? preemptibility;
+  final DataprocWorkflowTemplatePreemptibility? preemptibility;
 
   final List<DataprocWorkflowTemplateAccelerators>? accelerators;
 
@@ -901,14 +946,31 @@ final class DataprocWorkflowTemplateMasterConfig {
 }
 
 /// `preemptibility` — derived from the provider schema description.
-enum DataprocWorkflowTemplatePreemptibility implements TerraformEnum {
-  preemptibilityUnspecified('PREEMPTIBILITY_UNSPECIFIED'),
-  nonPreemptible('NON_PREEMPTIBLE'),
-  preemptible('PREEMPTIBLE');
+extension type const DataprocWorkflowTemplatePreemptibility._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocWorkflowTemplatePreemptibility.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplatePreemptibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplatePreemptibility.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocWorkflowTemplatePreemptibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const preemptibilityUnspecified =
+      DataprocWorkflowTemplatePreemptibility._(
+        TfArgLiteral('PREEMPTIBILITY_UNSPECIFIED'),
+      );
+  static const nonPreemptible = DataprocWorkflowTemplatePreemptibility._(
+    TfArgLiteral('NON_PREEMPTIBLE'),
+  );
+  static const preemptible = DataprocWorkflowTemplatePreemptibility._(
+    TfArgLiteral('PREEMPTIBLE'),
+  );
+
+  static const List<DataprocWorkflowTemplatePreemptibility> values = [
+    preemptibilityUnspecified,
+    nonPreemptible,
+    preemptible,
+  ];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.accelerators` block of
@@ -1068,7 +1130,7 @@ final class DataprocWorkflowTemplateSecondaryWorkerConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<DataprocWorkflowTemplatePreemptibility>? preemptibility;
+  final DataprocWorkflowTemplatePreemptibility? preemptibility;
 
   final List<DataprocWorkflowTemplateAccelerators>? accelerators;
 
@@ -1264,7 +1326,7 @@ final class DataprocWorkflowTemplateWorkerConfig {
 
   final TfArg<num>? numInstances;
 
-  final TfArg<DataprocWorkflowTemplatePreemptibility>? preemptibility;
+  final DataprocWorkflowTemplatePreemptibility? preemptibility;
 
   final List<DataprocWorkflowTemplateAccelerators>? accelerators;
 

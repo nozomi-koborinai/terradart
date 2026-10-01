@@ -12,12 +12,16 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsFsxFileCacheSensitive = <String>{};
 
 /// Fsx File Cache enum for `file_cache_type`.
-enum FsxFileCacheType implements TerraformEnum {
-  lustre('LUSTRE');
+extension type const FsxFileCacheType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxFileCacheType.variable(String name) : this._(TfArg.variable(name));
+  FsxFileCacheType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxFileCacheType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxFileCacheType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lustre = FsxFileCacheType._(TfArgLiteral('LUSTRE'));
+
+  static const List<FsxFileCacheType> values = [lustre];
 }
 
 /// Typed helper for the `data_repository_association` block of
@@ -59,7 +63,7 @@ final class FsxFileCacheNfs {
 
   final TfArg<List<String>>? dnsIps;
 
-  final TfArg<FsxFileCacheVersion> version;
+  final FsxFileCacheVersion version;
 
   Map<String, Object?> encode() => {
     'dns_ips': ?dnsIps?.toTfJson(),
@@ -68,12 +72,16 @@ final class FsxFileCacheNfs {
 }
 
 /// `version` — derived from the provider schema description.
-enum FsxFileCacheVersion implements TerraformEnum {
-  nfs3('NFS3');
+extension type const FsxFileCacheVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxFileCacheVersion.variable(String name) : this._(TfArg.variable(name));
+  FsxFileCacheVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxFileCacheVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxFileCacheVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nfs3 = FsxFileCacheVersion._(TfArgLiteral('NFS3'));
+
+  static const List<FsxFileCacheVersion> values = [nfs3];
 }
 
 /// Typed helper for the `lustre_configuration` block of
@@ -87,7 +95,7 @@ final class FsxFileCacheLustreConfiguration {
     required this.metadataConfiguration,
   });
 
-  final TfArg<FsxFileCacheDeploymentType> deploymentType;
+  final FsxFileCacheDeploymentType deploymentType;
 
   final TfArg<num> perUnitStorageThroughput;
 
@@ -106,12 +114,17 @@ final class FsxFileCacheLustreConfiguration {
 }
 
 /// `deployment_type` — derived from the provider schema description.
-enum FsxFileCacheDeploymentType implements TerraformEnum {
-  cache1('CACHE_1');
+extension type const FsxFileCacheDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxFileCacheDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxFileCacheDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxFileCacheDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxFileCacheDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cache1 = FsxFileCacheDeploymentType._(TfArgLiteral('CACHE_1'));
+
+  static const List<FsxFileCacheDeploymentType> values = [cache1];
 }
 
 /// Typed helper for the `lustre_configuration.metadata_configuration` block of
@@ -134,7 +147,7 @@ final class AwsFsxFileCache extends Resource {
   AwsFsxFileCache(
     super.localName, {
     TfArg<bool>? copyTagsToDataRepositoryAssociations,
-    required TfArg<FsxFileCacheType> fileCacheType,
+    required FsxFileCacheType fileCacheType,
     required TfArg<String> fileCacheTypeVersion,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,

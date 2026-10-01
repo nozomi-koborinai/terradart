@@ -44,7 +44,7 @@ final class HelloStack extends Stack {
         'hello',
         functionName: .literal('hello-dart'),
         role: role.ref,
-        runtime: .literal(.providedAl2023),
+        runtime: .providedAl2023,
         handler: .literal('bootstrap'),
         code: .filename(.literal('build/bootstrap.zip')),
       ),

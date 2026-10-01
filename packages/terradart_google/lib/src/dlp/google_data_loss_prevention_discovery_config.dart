@@ -13,13 +13,26 @@ const Set<String> _googleDataLossPreventionDiscoveryConfigSensitive =
     <String>{};
 
 /// Data Loss Prevention Discovery Config enum for `status`.
-enum DataLossPreventionDiscoveryConfigStatus implements TerraformEnum {
-  running('RUNNING'),
-  paused('PAUSED');
+extension type const DataLossPreventionDiscoveryConfigStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const running = DataLossPreventionDiscoveryConfigStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const paused = DataLossPreventionDiscoveryConfigStatus._(
+    TfArgLiteral('PAUSED'),
+  );
+
+  static const List<DataLossPreventionDiscoveryConfigStatus> values = [
+    running,
+    paused,
+  ];
 }
 
 /// Typed helper for the `actions` block of
@@ -135,10 +148,9 @@ final class DataLossPreventionDiscoveryConfigPubSubNotification {
     this.pubsubCondition,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigDetailOfMessage>?
-  detailOfMessage;
+  final DataLossPreventionDiscoveryConfigDetailOfMessage? detailOfMessage;
 
-  final TfArg<DataLossPreventionDiscoveryConfigEvent>? event;
+  final DataLossPreventionDiscoveryConfigEvent? event;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -153,25 +165,60 @@ final class DataLossPreventionDiscoveryConfigPubSubNotification {
 }
 
 /// `detail_of_message` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigDetailOfMessage implements TerraformEnum {
-  tableProfile('TABLE_PROFILE'),
-  resourceName('RESOURCE_NAME');
+extension type const DataLossPreventionDiscoveryConfigDetailOfMessage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigDetailOfMessage.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigDetailOfMessage.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigDetailOfMessage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigDetailOfMessage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tableProfile =
+      DataLossPreventionDiscoveryConfigDetailOfMessage._(
+        TfArgLiteral('TABLE_PROFILE'),
+      );
+  static const resourceName =
+      DataLossPreventionDiscoveryConfigDetailOfMessage._(
+        TfArgLiteral('RESOURCE_NAME'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigDetailOfMessage> values = [
+    tableProfile,
+    resourceName,
+  ];
 }
 
 /// `event` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigEvent implements TerraformEnum {
-  newProfile('NEW_PROFILE'),
-  changedProfile('CHANGED_PROFILE'),
-  scoreIncreased('SCORE_INCREASED'),
-  errorChanged('ERROR_CHANGED');
+extension type const DataLossPreventionDiscoveryConfigEvent._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigEvent.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigEvent.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigEvent.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigEvent(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const newProfile = DataLossPreventionDiscoveryConfigEvent._(
+    TfArgLiteral('NEW_PROFILE'),
+  );
+  static const changedProfile = DataLossPreventionDiscoveryConfigEvent._(
+    TfArgLiteral('CHANGED_PROFILE'),
+  );
+  static const scoreIncreased = DataLossPreventionDiscoveryConfigEvent._(
+    TfArgLiteral('SCORE_INCREASED'),
+  );
+  static const errorChanged = DataLossPreventionDiscoveryConfigEvent._(
+    TfArgLiteral('ERROR_CHANGED'),
+  );
+
+  static const List<DataLossPreventionDiscoveryConfigEvent> values = [
+    newProfile,
+    changedProfile,
+    scoreIncreased,
+    errorChanged,
+  ];
 }
 
 /// Typed helper for the `actions.pub_sub_notification.pubsub_condition` block of
@@ -194,8 +241,7 @@ final class DataLossPreventionDiscoveryConfigExpressions {
     this.conditions,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigLogicalOperator>?
-  logicalOperator;
+  final DataLossPreventionDiscoveryConfigLogicalOperator? logicalOperator;
 
   final List<DataLossPreventionDiscoveryConfigExpressionsConditions>?
   conditions;
@@ -208,13 +254,27 @@ final class DataLossPreventionDiscoveryConfigExpressions {
 }
 
 /// `logical_operator` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigLogicalOperator implements TerraformEnum {
-  or('OR'),
-  and('AND');
+extension type const DataLossPreventionDiscoveryConfigLogicalOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigLogicalOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigLogicalOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigLogicalOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigLogicalOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const or = DataLossPreventionDiscoveryConfigLogicalOperator._(
+    TfArgLiteral('OR'),
+  );
+  static const and = DataLossPreventionDiscoveryConfigLogicalOperator._(
+    TfArgLiteral('AND'),
+  );
+
+  static const List<DataLossPreventionDiscoveryConfigLogicalOperator> values = [
+    or,
+    and,
+  ];
 }
 
 /// Typed helper for the `actions.pub_sub_notification.pubsub_condition.expressions.conditions` block of
@@ -226,10 +286,9 @@ final class DataLossPreventionDiscoveryConfigExpressionsConditions {
     this.minimumSensitivityScore,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigMinimumRiskScore>?
-  minimumRiskScore;
+  final DataLossPreventionDiscoveryConfigMinimumRiskScore? minimumRiskScore;
 
-  final TfArg<DataLossPreventionDiscoveryConfigMinimumSensitivityScore>?
+  final DataLossPreventionDiscoveryConfigMinimumSensitivityScore?
   minimumSensitivityScore;
 
   Map<String, Object?> encode() => {
@@ -239,27 +298,52 @@ final class DataLossPreventionDiscoveryConfigExpressionsConditions {
 }
 
 /// `minimum_risk_score` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigMinimumRiskScore
-    implements TerraformEnum {
-  high('HIGH'),
-  mediumOrHigh('MEDIUM_OR_HIGH');
+extension type const DataLossPreventionDiscoveryConfigMinimumRiskScore._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigMinimumRiskScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigMinimumRiskScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigMinimumRiskScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigMinimumRiskScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const high = DataLossPreventionDiscoveryConfigMinimumRiskScore._(
+    TfArgLiteral('HIGH'),
+  );
+  static const mediumOrHigh =
+      DataLossPreventionDiscoveryConfigMinimumRiskScore._(
+        TfArgLiteral('MEDIUM_OR_HIGH'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigMinimumRiskScore> values =
+      [high, mediumOrHigh];
 }
 
 /// `minimum_sensitivity_score` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigMinimumSensitivityScore
-    implements TerraformEnum {
-  high('HIGH'),
-  mediumOrHigh('MEDIUM_OR_HIGH');
+extension type const DataLossPreventionDiscoveryConfigMinimumSensitivityScore._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigMinimumSensitivityScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigMinimumSensitivityScore.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigMinimumSensitivityScore.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigMinimumSensitivityScore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const high =
+      DataLossPreventionDiscoveryConfigMinimumSensitivityScore._(
+        TfArgLiteral('HIGH'),
+      );
+  static const mediumOrHigh =
+      DataLossPreventionDiscoveryConfigMinimumSensitivityScore._(
+        TfArgLiteral('MEDIUM_OR_HIGH'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigMinimumSensitivityScore>
+  values = [high, mediumOrHigh];
 }
 
 /// Typed helper for the `actions.publish_to_chronicle` block of
@@ -301,7 +385,7 @@ final class DataLossPreventionDiscoveryConfigTagResources {
 
   final TfArg<bool>? lowerDataRiskToLow;
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigProfileGenerationsToTag>>?
+  final List<DataLossPreventionDiscoveryConfigProfileGenerationsToTag>?
   profileGenerationsToTag;
 
   final List<DataLossPreventionDiscoveryConfigTagConditions>? tagConditions;
@@ -318,16 +402,29 @@ final class DataLossPreventionDiscoveryConfigTagResources {
 }
 
 /// `profile_generations_to_tag` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigProfileGenerationsToTag
-    implements TerraformEnum {
-  profileGenerationNew('PROFILE_GENERATION_NEW'),
-  profileGenerationUpdate('PROFILE_GENERATION_UPDATE');
+extension type const DataLossPreventionDiscoveryConfigProfileGenerationsToTag._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigProfileGenerationsToTag.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigProfileGenerationsToTag.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigProfileGenerationsToTag.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigProfileGenerationsToTag(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const profileGenerationNew =
+      DataLossPreventionDiscoveryConfigProfileGenerationsToTag._(
+        TfArgLiteral('PROFILE_GENERATION_NEW'),
+      );
+  static const profileGenerationUpdate =
+      DataLossPreventionDiscoveryConfigProfileGenerationsToTag._(
+        TfArgLiteral('PROFILE_GENERATION_UPDATE'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigProfileGenerationsToTag>
+  values = [profileGenerationNew, profileGenerationUpdate];
 }
 
 /// Typed helper for the `actions.tag_resources.tag_conditions` block of
@@ -357,21 +454,40 @@ final class DataLossPreventionDiscoveryConfigSensitivityScore {
     required this.score,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigScore> score;
+  final DataLossPreventionDiscoveryConfigScore score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigScore implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH'),
-  sensitivityUnknown('SENSITIVITY_UNKNOWN');
+extension type const DataLossPreventionDiscoveryConfigScore._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sensitivityLow = DataLossPreventionDiscoveryConfigScore._(
+    TfArgLiteral('SENSITIVITY_LOW'),
+  );
+  static const sensitivityModerate = DataLossPreventionDiscoveryConfigScore._(
+    TfArgLiteral('SENSITIVITY_MODERATE'),
+  );
+  static const sensitivityHigh = DataLossPreventionDiscoveryConfigScore._(
+    TfArgLiteral('SENSITIVITY_HIGH'),
+  );
+  static const sensitivityUnknown = DataLossPreventionDiscoveryConfigScore._(
+    TfArgLiteral('SENSITIVITY_UNKNOWN'),
+  );
+
+  static const List<DataLossPreventionDiscoveryConfigScore> values = [
+    sensitivityLow,
+    sensitivityModerate,
+    sensitivityHigh,
+    sensitivityUnknown,
+  ];
 }
 
 /// Typed helper for the `actions.tag_resources.tag_conditions.tag` block of
@@ -526,8 +642,7 @@ final class DataLossPreventionDiscoveryConfigCadence {
     this.tableModifiedCadence,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigRefreshFrequency>?
-  refreshFrequency;
+  final DataLossPreventionDiscoveryConfigRefreshFrequency? refreshFrequency;
 
   final DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
@@ -548,15 +663,31 @@ final class DataLossPreventionDiscoveryConfigCadence {
 }
 
 /// `refresh_frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigRefreshFrequency
-    implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
+extension type const DataLossPreventionDiscoveryConfigRefreshFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigRefreshFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigRefreshFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigRefreshFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigRefreshFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const updateFrequencyNever =
+      DataLossPreventionDiscoveryConfigRefreshFrequency._(
+        TfArgLiteral('UPDATE_FREQUENCY_NEVER'),
+      );
+  static const updateFrequencyDaily =
+      DataLossPreventionDiscoveryConfigRefreshFrequency._(
+        TfArgLiteral('UPDATE_FREQUENCY_DAILY'),
+      );
+  static const updateFrequencyMonthly =
+      DataLossPreventionDiscoveryConfigRefreshFrequency._(
+        TfArgLiteral('UPDATE_FREQUENCY_MONTHLY'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigRefreshFrequency> values =
+      [updateFrequencyNever, updateFrequencyDaily, updateFrequencyMonthly];
 }
 
 /// Typed helper for the `targets.big_query_target.cadence.inspect_template_modified_cadence` block of
@@ -568,20 +699,40 @@ final class DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCaden
     this.frequency,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
+  final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
   Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigFrequency implements TerraformEnum {
-  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
-  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
-  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
+extension type const DataLossPreventionDiscoveryConfigFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const updateFrequencyNever =
+      DataLossPreventionDiscoveryConfigFrequency._(
+        TfArgLiteral('UPDATE_FREQUENCY_NEVER'),
+      );
+  static const updateFrequencyDaily =
+      DataLossPreventionDiscoveryConfigFrequency._(
+        TfArgLiteral('UPDATE_FREQUENCY_DAILY'),
+      );
+  static const updateFrequencyMonthly =
+      DataLossPreventionDiscoveryConfigFrequency._(
+        TfArgLiteral('UPDATE_FREQUENCY_MONTHLY'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigFrequency> values = [
+    updateFrequencyNever,
+    updateFrequencyDaily,
+    updateFrequencyMonthly,
+  ];
 }
 
 /// Typed helper for the `targets.big_query_target.cadence.schema_modified_cadence` block of
@@ -593,9 +744,9 @@ final class DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence {
     this.types,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
+  final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigCadenceTypes>>? types;
+  final List<DataLossPreventionDiscoveryConfigCadenceTypes>? types;
 
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
@@ -604,13 +755,29 @@ final class DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence {
 }
 
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigCadenceTypes implements TerraformEnum {
-  schemaNewColumns('SCHEMA_NEW_COLUMNS'),
-  schemaRemovedColumns('SCHEMA_REMOVED_COLUMNS');
+extension type const DataLossPreventionDiscoveryConfigCadenceTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigCadenceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigCadenceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigCadenceTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigCadenceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const schemaNewColumns =
+      DataLossPreventionDiscoveryConfigCadenceTypes._(
+        TfArgLiteral('SCHEMA_NEW_COLUMNS'),
+      );
+  static const schemaRemovedColumns =
+      DataLossPreventionDiscoveryConfigCadenceTypes._(
+        TfArgLiteral('SCHEMA_REMOVED_COLUMNS'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigCadenceTypes> values = [
+    schemaNewColumns,
+    schemaRemovedColumns,
+  ];
 }
 
 /// Typed helper for the `targets.big_query_target.cadence.table_modified_cadence` block of
@@ -622,7 +789,7 @@ final class DataLossPreventionDiscoveryConfigTableModifiedCadence {
     this.types,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
+  final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
   final TfArg<List<String>>? types;
 
@@ -645,7 +812,7 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetConditions {
 
   final TfArg<String>? createdAfter;
 
-  final TfArg<DataLossPreventionDiscoveryConfigTypeCollection>? typeCollection;
+  final DataLossPreventionDiscoveryConfigTypeCollection? typeCollection;
 
   final DataLossPreventionDiscoveryConfigOrConditions? orConditions;
 
@@ -660,15 +827,29 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetConditions {
 }
 
 /// `type_collection` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTypeCollection implements TerraformEnum {
-  bigQueryCollectionAllTypes('BIG_QUERY_COLLECTION_ALL_TYPES'),
-  bigQueryCollectionOnlySupportedTypes(
-    'BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES',
-  );
+extension type const DataLossPreventionDiscoveryConfigTypeCollection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigTypeCollection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigTypeCollection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigTypeCollection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigTypeCollection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bigQueryCollectionAllTypes =
+      DataLossPreventionDiscoveryConfigTypeCollection._(
+        TfArgLiteral('BIG_QUERY_COLLECTION_ALL_TYPES'),
+      );
+  static const bigQueryCollectionOnlySupportedTypes =
+      DataLossPreventionDiscoveryConfigTypeCollection._(
+        TfArgLiteral('BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigTypeCollection> values = [
+    bigQueryCollectionAllTypes,
+    bigQueryCollectionOnlySupportedTypes,
+  ];
 }
 
 /// Typed helper for the `targets.big_query_target.conditions.or_conditions` block of
@@ -696,7 +877,7 @@ final class DataLossPreventionDiscoveryConfigOrConditions {
 final class DataLossPreventionDiscoveryConfigBigQueryTargetTypes {
   const DataLossPreventionDiscoveryConfigBigQueryTargetTypes({this.types});
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigTypesTypes>>? types;
+  final List<DataLossPreventionDiscoveryConfigTypesTypes>? types;
 
   Map<String, Object?> encode() => {
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
@@ -704,13 +885,29 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetTypes {
 }
 
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigTypesTypes implements TerraformEnum {
-  bigQueryTableTypeTable('BIG_QUERY_TABLE_TYPE_TABLE'),
-  bigQueryTableTypeExternalBigLake('BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE');
+extension type const DataLossPreventionDiscoveryConfigTypesTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigTypesTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigTypesTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigTypesTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigTypesTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bigQueryTableTypeTable =
+      DataLossPreventionDiscoveryConfigTypesTypes._(
+        TfArgLiteral('BIG_QUERY_TABLE_TYPE_TABLE'),
+      );
+  static const bigQueryTableTypeExternalBigLake =
+      DataLossPreventionDiscoveryConfigTypesTypes._(
+        TfArgLiteral('BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigTypesTypes> values = [
+    bigQueryTableTypeTable,
+    bigQueryTableTypeExternalBigLake,
+  ];
 }
 
 /// Typed helper for the `targets.big_query_target.disabled` block of
@@ -864,11 +1061,9 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetConditions {
     this.types,
   });
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigDatabaseEngines>>?
-  databaseEngines;
+  final List<DataLossPreventionDiscoveryConfigDatabaseEngines>? databaseEngines;
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>>?
-  types;
+  final List<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>? types;
 
   Map<String, Object?> encode() => {
     if (databaseEngines != null)
@@ -878,29 +1073,58 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetConditions {
 }
 
 /// `database_engines` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigDatabaseEngines implements TerraformEnum {
-  allSupportedDatabaseEngines('ALL_SUPPORTED_DATABASE_ENGINES'),
-  mysql('MYSQL'),
-  postgres('POSTGRES');
+extension type const DataLossPreventionDiscoveryConfigDatabaseEngines._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigDatabaseEngines.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigDatabaseEngines.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigDatabaseEngines.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigDatabaseEngines(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allSupportedDatabaseEngines =
+      DataLossPreventionDiscoveryConfigDatabaseEngines._(
+        TfArgLiteral('ALL_SUPPORTED_DATABASE_ENGINES'),
+      );
+  static const mysql = DataLossPreventionDiscoveryConfigDatabaseEngines._(
+    TfArgLiteral('MYSQL'),
+  );
+  static const postgres = DataLossPreventionDiscoveryConfigDatabaseEngines._(
+    TfArgLiteral('POSTGRES'),
+  );
+
+  static const List<DataLossPreventionDiscoveryConfigDatabaseEngines> values = [
+    allSupportedDatabaseEngines,
+    mysql,
+    postgres,
+  ];
 }
 
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigCloudSqlTargetTypes
-    implements TerraformEnum {
-  databaseResourceTypeAllSupportedTypes(
-    'DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES',
-  ),
-  databaseResourceTypeTable('DATABASE_RESOURCE_TYPE_TABLE');
+extension type const DataLossPreventionDiscoveryConfigCloudSqlTargetTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigCloudSqlTargetTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigCloudSqlTargetTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigCloudSqlTargetTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigCloudSqlTargetTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const databaseResourceTypeAllSupportedTypes =
+      DataLossPreventionDiscoveryConfigCloudSqlTargetTypes._(
+        TfArgLiteral('DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES'),
+      );
+  static const databaseResourceTypeTable =
+      DataLossPreventionDiscoveryConfigCloudSqlTargetTypes._(
+        TfArgLiteral('DATABASE_RESOURCE_TYPE_TABLE'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>
+  values = [databaseResourceTypeAllSupportedTypes, databaseResourceTypeTable];
 }
 
 /// Typed helper for the `targets.cloud_sql_target.filter` block of
@@ -1032,8 +1256,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetGenerationCadence {
     this.schemaModifiedCadence,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigRefreshFrequency>?
-  refreshFrequency;
+  final DataLossPreventionDiscoveryConfigRefreshFrequency? refreshFrequency;
 
   final DataLossPreventionDiscoveryConfigGenerationCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
@@ -1057,7 +1280,7 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceInspectTemplateMod
     required this.frequency,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigFrequency> frequency;
+  final DataLossPreventionDiscoveryConfigFrequency frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
@@ -1071,10 +1294,9 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCade
     this.types,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigFrequency>? frequency;
+  final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>>?
-  types;
+  final List<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>? types;
 
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
@@ -1083,16 +1305,29 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCade
 }
 
 /// `types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigGenerationCadenceTypes
-    implements TerraformEnum {
-  newColumns('NEW_COLUMNS'),
-  removedColumns('REMOVED_COLUMNS');
+extension type const DataLossPreventionDiscoveryConfigGenerationCadenceTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigGenerationCadenceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigGenerationCadenceTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigGenerationCadenceTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigGenerationCadenceTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const newColumns =
+      DataLossPreventionDiscoveryConfigGenerationCadenceTypes._(
+        TfArgLiteral('NEW_COLUMNS'),
+      );
+  static const removedColumns =
+      DataLossPreventionDiscoveryConfigGenerationCadenceTypes._(
+        TfArgLiteral('REMOVED_COLUMNS'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>
+  values = [newColumns, removedColumns];
 }
 
 /// Typed helper for the `targets.cloud_storage_target` block of
@@ -1157,10 +1392,10 @@ final class DataLossPreventionDiscoveryConfigCloudStorageConditions {
     this.includedObjectAttributes,
   });
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigIncludedBucketAttributes>>?
+  final List<DataLossPreventionDiscoveryConfigIncludedBucketAttributes>?
   includedBucketAttributes;
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>>?
+  final List<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>?
   includedObjectAttributes;
 
   Map<String, Object?> encode() => {
@@ -1176,36 +1411,94 @@ final class DataLossPreventionDiscoveryConfigCloudStorageConditions {
 }
 
 /// `included_bucket_attributes` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigIncludedBucketAttributes
-    implements TerraformEnum {
-  allSupportedBuckets('ALL_SUPPORTED_BUCKETS'),
-  autoclassDisabled('AUTOCLASS_DISABLED'),
-  autoclassEnabled('AUTOCLASS_ENABLED');
+extension type const DataLossPreventionDiscoveryConfigIncludedBucketAttributes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigIncludedBucketAttributes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigIncludedBucketAttributes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigIncludedBucketAttributes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigIncludedBucketAttributes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allSupportedBuckets =
+      DataLossPreventionDiscoveryConfigIncludedBucketAttributes._(
+        TfArgLiteral('ALL_SUPPORTED_BUCKETS'),
+      );
+  static const autoclassDisabled =
+      DataLossPreventionDiscoveryConfigIncludedBucketAttributes._(
+        TfArgLiteral('AUTOCLASS_DISABLED'),
+      );
+  static const autoclassEnabled =
+      DataLossPreventionDiscoveryConfigIncludedBucketAttributes._(
+        TfArgLiteral('AUTOCLASS_ENABLED'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigIncludedBucketAttributes>
+  values = [allSupportedBuckets, autoclassDisabled, autoclassEnabled];
 }
 
 /// `included_object_attributes` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigIncludedObjectAttributes
-    implements TerraformEnum {
-  allSupportedObjects('ALL_SUPPORTED_OBJECTS'),
-  standard('STANDARD'),
-  nearline('NEARLINE'),
-  coldline('COLDLINE'),
-  archive('ARCHIVE'),
-  regional('REGIONAL'),
-  multiRegional('MULTI_REGIONAL'),
-  durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
+extension type const DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigIncludedObjectAttributes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigIncludedObjectAttributes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigIncludedObjectAttributes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigIncludedObjectAttributes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allSupportedObjects =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('ALL_SUPPORTED_OBJECTS'),
+      );
+  static const standard =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('STANDARD'),
+      );
+  static const nearline =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('NEARLINE'),
+      );
+  static const coldline =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('COLDLINE'),
+      );
+  static const archive =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('ARCHIVE'),
+      );
+  static const regional =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('REGIONAL'),
+      );
+  static const multiRegional =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('MULTI_REGIONAL'),
+      );
+  static const durableReducedAvailability =
+      DataLossPreventionDiscoveryConfigIncludedObjectAttributes._(
+        TfArgLiteral('DURABLE_REDUCED_AVAILABILITY'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>
+  values = [
+    allSupportedObjects,
+    standard,
+    nearline,
+    coldline,
+    archive,
+    regional,
+    multiRegional,
+    durableReducedAvailability,
+  ];
 }
 
 /// Typed helper for the `targets.cloud_storage_target.filter` block of
@@ -1407,8 +1700,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence
     this.inspectTemplateModifiedCadence,
   });
 
-  final TfArg<DataLossPreventionDiscoveryConfigRefreshFrequency>?
-  refreshFrequency;
+  final DataLossPreventionDiscoveryConfigRefreshFrequency? refreshFrequency;
 
   final DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
@@ -1481,9 +1773,9 @@ final class DataLossPreventionDiscoveryConfigAmazonS3BucketConditions {
     this.objectStorageClasses,
   });
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigBucketTypes>>? bucketTypes;
+  final List<DataLossPreventionDiscoveryConfigBucketTypes>? bucketTypes;
 
-  final List<TfArg<DataLossPreventionDiscoveryConfigObjectStorageClasses>>?
+  final List<DataLossPreventionDiscoveryConfigObjectStorageClasses>?
   objectStorageClasses;
 
   Map<String, Object?> encode() => {
@@ -1497,29 +1789,73 @@ final class DataLossPreventionDiscoveryConfigAmazonS3BucketConditions {
 }
 
 /// `bucket_types` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigBucketTypes implements TerraformEnum {
-  typeAllSupported('TYPE_ALL_SUPPORTED'),
-  typeGeneralPurpose('TYPE_GENERAL_PURPOSE');
+extension type const DataLossPreventionDiscoveryConfigBucketTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigBucketTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigBucketTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigBucketTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigBucketTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeAllSupported =
+      DataLossPreventionDiscoveryConfigBucketTypes._(
+        TfArgLiteral('TYPE_ALL_SUPPORTED'),
+      );
+  static const typeGeneralPurpose =
+      DataLossPreventionDiscoveryConfigBucketTypes._(
+        TfArgLiteral('TYPE_GENERAL_PURPOSE'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigBucketTypes> values = [
+    typeAllSupported,
+    typeGeneralPurpose,
+  ];
 }
 
 /// `object_storage_classes` — derived from the provider schema description.
-enum DataLossPreventionDiscoveryConfigObjectStorageClasses
-    implements TerraformEnum {
-  allSupportedClasses('ALL_SUPPORTED_CLASSES'),
-  standard('STANDARD'),
-  standardInfrequentAccess('STANDARD_INFREQUENT_ACCESS'),
-  glacierInstantRetrieval('GLACIER_INSTANT_RETRIEVAL'),
-  intelligentTiering('INTELLIGENT_TIERING');
+extension type const DataLossPreventionDiscoveryConfigObjectStorageClasses._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigObjectStorageClasses.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigObjectStorageClasses.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigObjectStorageClasses.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDiscoveryConfigObjectStorageClasses(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allSupportedClasses =
+      DataLossPreventionDiscoveryConfigObjectStorageClasses._(
+        TfArgLiteral('ALL_SUPPORTED_CLASSES'),
+      );
+  static const standard =
+      DataLossPreventionDiscoveryConfigObjectStorageClasses._(
+        TfArgLiteral('STANDARD'),
+      );
+  static const standardInfrequentAccess =
+      DataLossPreventionDiscoveryConfigObjectStorageClasses._(
+        TfArgLiteral('STANDARD_INFREQUENT_ACCESS'),
+      );
+  static const glacierInstantRetrieval =
+      DataLossPreventionDiscoveryConfigObjectStorageClasses._(
+        TfArgLiteral('GLACIER_INSTANT_RETRIEVAL'),
+      );
+  static const intelligentTiering =
+      DataLossPreventionDiscoveryConfigObjectStorageClasses._(
+        TfArgLiteral('INTELLIGENT_TIERING'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigObjectStorageClasses>
+  values = [
+    allSupportedClasses,
+    standard,
+    standardInfrequentAccess,
+    glacierInstantRetrieval,
+    intelligentTiering,
+  ];
 }
 
 /// Typed helper for the `targets.other_cloud_target.data_source_type` block of
@@ -1709,7 +2045,7 @@ final class GoogleDataLossPreventionDiscoveryConfig extends Resource {
     TfArg<List<String>>? inspectTemplates,
     required TfArg<String> location,
     required TfArg<String> parent,
-    TfArg<DataLossPreventionDiscoveryConfigStatus>? status,
+    DataLossPreventionDiscoveryConfigStatus? status,
     List<DataLossPreventionDiscoveryConfigActions>? actions,
     DataLossPreventionDiscoveryConfigOrgConfig? orgConfig,
     DataLossPreventionDiscoveryConfigOtherCloudStartingLocation?

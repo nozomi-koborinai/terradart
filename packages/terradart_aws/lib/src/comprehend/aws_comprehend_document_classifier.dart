@@ -12,27 +12,64 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsComprehendDocumentClassifierSensitive = <String>{};
 
 /// Comprehend Document Classifier Language enum for `language_code`.
-enum ComprehendDocumentClassifierLanguageCode implements TerraformEnum {
-  en('en'),
-  es('es'),
-  fr('fr'),
-  de('de'),
-  it('it'),
-  pt('pt');
+extension type const ComprehendDocumentClassifierLanguageCode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendDocumentClassifierLanguageCode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendDocumentClassifierLanguageCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendDocumentClassifierLanguageCode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendDocumentClassifierLanguageCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ComprehendDocumentClassifierLanguageCode._(
+    TfArgLiteral('en'),
+  );
+  static const es = ComprehendDocumentClassifierLanguageCode._(
+    TfArgLiteral('es'),
+  );
+  static const fr = ComprehendDocumentClassifierLanguageCode._(
+    TfArgLiteral('fr'),
+  );
+  static const de = ComprehendDocumentClassifierLanguageCode._(
+    TfArgLiteral('de'),
+  );
+  static const it = ComprehendDocumentClassifierLanguageCode._(
+    TfArgLiteral('it'),
+  );
+  static const pt = ComprehendDocumentClassifierLanguageCode._(
+    TfArgLiteral('pt'),
+  );
+
+  static const List<ComprehendDocumentClassifierLanguageCode> values = [
+    en,
+    es,
+    fr,
+    de,
+    it,
+    pt,
+  ];
 }
 
 /// Comprehend Document Classifier enum for `mode`.
-enum ComprehendDocumentClassifierMode implements TerraformEnum {
-  multiClass('MULTI_CLASS'),
-  multiLabel('MULTI_LABEL');
+extension type const ComprehendDocumentClassifierMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendDocumentClassifierMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendDocumentClassifierMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendDocumentClassifierMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComprehendDocumentClassifierMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiClass = ComprehendDocumentClassifierMode._(
+    TfArgLiteral('MULTI_CLASS'),
+  );
+  static const multiLabel = ComprehendDocumentClassifierMode._(
+    TfArgLiteral('MULTI_LABEL'),
+  );
+
+  static const List<ComprehendDocumentClassifierMode> values = [
+    multiClass,
+    multiLabel,
+  ];
 }
 
 /// At most one of `version_name`, `version_name_prefix` on `aws_comprehend_document_classifier`: the provider rejects
@@ -112,9 +149,9 @@ final class ComprehendDocumentClassifierInputDataConfig {
     this.testS3Uri,
   });
 
-  final TfArg<ComprehendDocumentClassifierDataFormat>? dataFormat;
+  final ComprehendDocumentClassifierDataFormat? dataFormat;
 
-  final TfArg<ComprehendDocumentClassifierLabelDelimiter>? labelDelimiter;
+  final ComprehendDocumentClassifierLabelDelimiter? labelDelimiter;
 
   final ComprehendDocumentClassifierSource source;
 
@@ -183,42 +220,126 @@ final class ComprehendDocumentClassifierSourceS3Uri
 }
 
 /// `data_format` — derived from the provider schema description.
-enum ComprehendDocumentClassifierDataFormat implements TerraformEnum {
-  comprehendCsv('COMPREHEND_CSV'),
-  augmentedManifest('AUGMENTED_MANIFEST');
+extension type const ComprehendDocumentClassifierDataFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendDocumentClassifierDataFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendDocumentClassifierDataFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendDocumentClassifierDataFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendDocumentClassifierDataFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const comprehendCsv = ComprehendDocumentClassifierDataFormat._(
+    TfArgLiteral('COMPREHEND_CSV'),
+  );
+  static const augmentedManifest = ComprehendDocumentClassifierDataFormat._(
+    TfArgLiteral('AUGMENTED_MANIFEST'),
+  );
+
+  static const List<ComprehendDocumentClassifierDataFormat> values = [
+    comprehendCsv,
+    augmentedManifest,
+  ];
 }
 
 /// `label_delimiter` — derived from the provider schema description.
-enum ComprehendDocumentClassifierLabelDelimiter implements TerraformEnum {
-  value('|'),
-  value2('~'),
-  value3('!'),
-  value4('@'),
-  value5('#'),
-  value6('\$'),
-  value7('%'),
-  value8('^'),
-  value9('*'),
-  value10('-'),
-  value11('_'),
-  value12('+'),
-  eq('='),
-  value13('\\'),
-  value14(':'),
-  value15(';'),
-  gt('>'),
-  value16('?'),
-  value17('/'),
-  value18(' '),
-  value19('	');
+extension type const ComprehendDocumentClassifierLabelDelimiter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComprehendDocumentClassifierLabelDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendDocumentClassifierLabelDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendDocumentClassifierLabelDelimiter.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendDocumentClassifierLabelDelimiter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const value = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('|'),
+  );
+  static const value2 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('~'),
+  );
+  static const value3 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('!'),
+  );
+  static const value4 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('@'),
+  );
+  static const value5 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('#'),
+  );
+  static const value6 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('\$'),
+  );
+  static const value7 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('%'),
+  );
+  static const value8 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('^'),
+  );
+  static const value9 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('*'),
+  );
+  static const value10 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('-'),
+  );
+  static const value11 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('_'),
+  );
+  static const value12 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('+'),
+  );
+  static const eq = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('='),
+  );
+  static const value13 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('\\'),
+  );
+  static const value14 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral(':'),
+  );
+  static const value15 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral(';'),
+  );
+  static const gt = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('>'),
+  );
+  static const value16 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('?'),
+  );
+  static const value17 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('/'),
+  );
+  static const value18 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral(' '),
+  );
+  static const value19 = ComprehendDocumentClassifierLabelDelimiter._(
+    TfArgLiteral('	'),
+  );
+
+  static const List<ComprehendDocumentClassifierLabelDelimiter> values = [
+    value,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value9,
+    value10,
+    value11,
+    value12,
+    eq,
+    value13,
+    value14,
+    value15,
+    gt,
+    value16,
+    value17,
+    value18,
+    value19,
+  ];
 }
 
 /// Typed helper for the `input_data_config.augmented_manifests` block of
@@ -238,13 +359,13 @@ final class ComprehendDocumentClassifierAugmentedManifests {
 
   final TfArg<List<String>> attributeNames;
 
-  final TfArg<ComprehendDocumentClassifierDocumentType>? documentType;
+  final ComprehendDocumentClassifierDocumentType? documentType;
 
   final TfArg<String> s3Uri;
 
   final TfArg<String>? sourceDocumentsS3Uri;
 
-  final TfArg<ComprehendDocumentClassifierSplit>? split;
+  final ComprehendDocumentClassifierSplit? split;
 
   Map<String, Object?> encode() => {
     'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
@@ -257,23 +378,44 @@ final class ComprehendDocumentClassifierAugmentedManifests {
 }
 
 /// `document_type` — derived from the provider schema description.
-enum ComprehendDocumentClassifierDocumentType implements TerraformEnum {
-  plainTextDocument('PLAIN_TEXT_DOCUMENT'),
-  semiStructuredDocument('SEMI_STRUCTURED_DOCUMENT');
+extension type const ComprehendDocumentClassifierDocumentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendDocumentClassifierDocumentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendDocumentClassifierDocumentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendDocumentClassifierDocumentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendDocumentClassifierDocumentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plainTextDocument = ComprehendDocumentClassifierDocumentType._(
+    TfArgLiteral('PLAIN_TEXT_DOCUMENT'),
+  );
+  static const semiStructuredDocument =
+      ComprehendDocumentClassifierDocumentType._(
+        TfArgLiteral('SEMI_STRUCTURED_DOCUMENT'),
+      );
+
+  static const List<ComprehendDocumentClassifierDocumentType> values = [
+    plainTextDocument,
+    semiStructuredDocument,
+  ];
 }
 
 /// `split` — derived from the provider schema description.
-enum ComprehendDocumentClassifierSplit implements TerraformEnum {
-  train('TRAIN'),
-  test('TEST');
+extension type const ComprehendDocumentClassifierSplit._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendDocumentClassifierSplit.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendDocumentClassifierSplit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendDocumentClassifierSplit.arg(TfArg<String> arg) : this._(arg);
 
-  const ComprehendDocumentClassifierSplit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const train = ComprehendDocumentClassifierSplit._(
+    TfArgLiteral('TRAIN'),
+  );
+  static const test = ComprehendDocumentClassifierSplit._(TfArgLiteral('TEST'));
+
+  static const List<ComprehendDocumentClassifierSplit> values = [train, test];
 }
 
 /// Typed helper for the `output_data_config` block of
@@ -321,8 +463,8 @@ final class AwsComprehendDocumentClassifier extends Resource {
   AwsComprehendDocumentClassifier(
     super.localName, {
     required TfArg<String> dataAccessRoleArn,
-    required TfArg<ComprehendDocumentClassifierLanguageCode> languageCode,
-    TfArg<ComprehendDocumentClassifierMode>? mode,
+    required ComprehendDocumentClassifierLanguageCode languageCode,
+    ComprehendDocumentClassifierMode? mode,
     TfArg<String>? modelKmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

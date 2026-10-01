@@ -9,12 +9,22 @@ const Set<String> _googleNetworkSecurityDnsThreatDetectorSensitive = <String>{};
 /// `threat_detector_provider` for [GoogleNetworkSecurityDnsThreatDetector].
 ///
 /// Upstream documents `INFOBLOX` as the only supported value.
-enum NetworkSecurityDnsThreatDetectorProvider implements TerraformEnum {
-  infoblox('INFOBLOX');
+extension type const NetworkSecurityDnsThreatDetectorProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecurityDnsThreatDetectorProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityDnsThreatDetectorProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityDnsThreatDetectorProvider.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityDnsThreatDetectorProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const infoblox = NetworkSecurityDnsThreatDetectorProvider._(
+    TfArgLiteral('INFOBLOX'),
+  );
+
+  static const List<NetworkSecurityDnsThreatDetectorProvider> values = [
+    infoblox,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_dns_threat_detector`.
@@ -40,9 +50,7 @@ enum NetworkSecurityDnsThreatDetectorProvider implements TerraformEnum {
 ///   'dns_threat',
 ///   name: TfArg.literal('terradart-dns-threat'),
 ///   location: TfArg.literal('global'),
-///   threatDetectorProvider: TfArg.literal(
-///     NetworkSecurityDnsThreatDetectorProvider.infoblox,
-///   ),
+///   threatDetectorProvider: NetworkSecurityDnsThreatDetectorProvider.infoblox,
 /// );
 /// ```
 final class GoogleNetworkSecurityDnsThreatDetector extends Resource {
@@ -52,7 +60,7 @@ final class GoogleNetworkSecurityDnsThreatDetector extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
-    TfArg<NetworkSecurityDnsThreatDetectorProvider>? threatDetectorProvider,
+    NetworkSecurityDnsThreatDetectorProvider? threatDetectorProvider,
     TfArg<List<String>>? excludedNetworks,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

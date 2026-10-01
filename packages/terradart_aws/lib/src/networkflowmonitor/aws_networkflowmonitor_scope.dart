@@ -36,7 +36,7 @@ final class NetworkflowmonitorScopeTargetIdentifier {
     this.targetId,
   });
 
-  final TfArg<NetworkflowmonitorScopeTargetType> targetType;
+  final NetworkflowmonitorScopeTargetType targetType;
 
   final List<NetworkflowmonitorScopeTargetId>? targetId;
 
@@ -47,12 +47,19 @@ final class NetworkflowmonitorScopeTargetIdentifier {
 }
 
 /// `target_type` — derived from the provider schema description.
-enum NetworkflowmonitorScopeTargetType implements TerraformEnum {
-  account('ACCOUNT');
+extension type const NetworkflowmonitorScopeTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkflowmonitorScopeTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkflowmonitorScopeTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkflowmonitorScopeTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkflowmonitorScopeTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const account = NetworkflowmonitorScopeTargetType._(
+    TfArgLiteral('ACCOUNT'),
+  );
+
+  static const List<NetworkflowmonitorScopeTargetType> values = [account];
 }
 
 /// Typed helper for the `target.target_identifier.target_id` block of

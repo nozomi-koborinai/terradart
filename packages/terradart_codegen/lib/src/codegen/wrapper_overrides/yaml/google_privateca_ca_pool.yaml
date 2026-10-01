@@ -37,7 +37,7 @@ curatedDoc: |-
   ///   'app_pool',
   ///   name: TfArg.literal('app-pool'),
   ///   location: TfArg.literal('us-central1'),
-  ///   tier: TfArg.literal(PrivatecaCaPoolTier.devops),
+  ///   tier: PrivatecaCaPoolTier.devops,
   /// );
   ///
   /// GoogleCertificateManagerCertificateIssuanceConfig(
@@ -49,9 +49,7 @@ curatedDoc: |-
   ///       caPool: pool.ref,
   ///     ),
   ///   ),
-  ///   keyAlgorithm: TfArg.literal(
-  ///     CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
-  ///   ),
+  ///   keyAlgorithm: CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
   ///   lifetime: TfArg.literal('2592000s'),
   ///   rotationWindowPercentage: TfArg.literal(50),
   /// );
@@ -59,11 +57,13 @@ curatedDoc: |-
 
 prelude: |
   /// `tier` — CAS pool service tier.
-  enum PrivatecaCaPoolTier implements TerraformEnum {
-    enterprise('ENTERPRISE'),
-    devops('DEVOPS');
+  extension type const PrivatecaCaPoolTier._(TfArg<String> _) implements TfArg<String> {
+    PrivatecaCaPoolTier.variable(String name) : this._(TfArg.variable(name));
+    PrivatecaCaPoolTier.expression(String template) : this._(TfArg.expression(template));
+    const PrivatecaCaPoolTier.arg(TfArg<String> arg) : this._(arg);
 
-    const PrivatecaCaPoolTier(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const enterprise = PrivatecaCaPoolTier._(TfArgLiteral('ENTERPRISE'));
+    static const devops = PrivatecaCaPoolTier._(TfArgLiteral('DEVOPS'));
+
+    static const List<PrivatecaCaPoolTier> values = [enterprise, devops];
   }

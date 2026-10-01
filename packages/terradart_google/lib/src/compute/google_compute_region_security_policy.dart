@@ -17,52 +17,115 @@ const Set<String> _googleComputeRegionSecurityPolicySensitive = <String>{};
 // Top-level enums
 // ===========================================================================
 
-enum RegionSecurityPolicyType implements TerraformEnum {
-  cloudArmor('CLOUD_ARMOR'),
-  cloudArmorEdge('CLOUD_ARMOR_EDGE'),
-  cloudArmorNetwork('CLOUD_ARMOR_NETWORK');
+extension type const RegionSecurityPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionSecurityPolicyType.variable(String name) : this._(TfArg.variable(name));
+  RegionSecurityPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionSecurityPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionSecurityPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudArmor = RegionSecurityPolicyType._(
+    TfArgLiteral('CLOUD_ARMOR'),
+  );
+  static const cloudArmorEdge = RegionSecurityPolicyType._(
+    TfArgLiteral('CLOUD_ARMOR_EDGE'),
+  );
+  static const cloudArmorNetwork = RegionSecurityPolicyType._(
+    TfArgLiteral('CLOUD_ARMOR_NETWORK'),
+  );
+
+  static const List<RegionSecurityPolicyType> values = [
+    cloudArmor,
+    cloudArmorEdge,
+    cloudArmorNetwork,
+  ];
 }
 
 /// `advanced_options_config.json_parsing` -- JSON body parsing mode for
 /// preconfigured WAF evaluation. Regional policies also support GraphQL
 /// body parsing via [standardWithGraphql].
-enum RegionSecurityPolicyJsonParsing implements TerraformEnum {
-  disabled('DISABLED'),
-  standard('STANDARD'),
-  standardWithGraphql('STANDARD_WITH_GRAPHQL');
+extension type const RegionSecurityPolicyJsonParsing._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionSecurityPolicyJsonParsing.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionSecurityPolicyJsonParsing.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionSecurityPolicyJsonParsing.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionSecurityPolicyJsonParsing(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = RegionSecurityPolicyJsonParsing._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const standard = RegionSecurityPolicyJsonParsing._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardWithGraphql = RegionSecurityPolicyJsonParsing._(
+    TfArgLiteral('STANDARD_WITH_GRAPHQL'),
+  );
+
+  static const List<RegionSecurityPolicyJsonParsing> values = [
+    disabled,
+    standard,
+    standardWithGraphql,
+  ];
 }
 
 /// `ddos_protection_config.ddos_protection` -- DDoS protection tier for
 /// network load balancing policies.
-enum RegionSecurityPolicyDdosProtection implements TerraformEnum {
-  advanced('ADVANCED'),
-  advancedPreview('ADVANCED_PREVIEW'),
-  standard('STANDARD');
+extension type const RegionSecurityPolicyDdosProtection._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionSecurityPolicyDdosProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionSecurityPolicyDdosProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionSecurityPolicyDdosProtection.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionSecurityPolicyDdosProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const advanced = RegionSecurityPolicyDdosProtection._(
+    TfArgLiteral('ADVANCED'),
+  );
+  static const advancedPreview = RegionSecurityPolicyDdosProtection._(
+    TfArgLiteral('ADVANCED_PREVIEW'),
+  );
+  static const standard = RegionSecurityPolicyDdosProtection._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<RegionSecurityPolicyDdosProtection> values = [
+    advanced,
+    advancedPreview,
+    standard,
+  ];
 }
 
 /// `user_defined_fields.base` -- header anchor for a user-defined match
 /// field in CLOUD_ARMOR_NETWORK policies.
-enum RegionSecurityPolicyUserDefinedFieldBase implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6'),
-  tcp('TCP'),
-  udp('UDP');
+extension type const RegionSecurityPolicyUserDefinedFieldBase._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionSecurityPolicyUserDefinedFieldBase.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionSecurityPolicyUserDefinedFieldBase.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionSecurityPolicyUserDefinedFieldBase.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionSecurityPolicyUserDefinedFieldBase(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = RegionSecurityPolicyUserDefinedFieldBase._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = RegionSecurityPolicyUserDefinedFieldBase._(
+    TfArgLiteral('IPV6'),
+  );
+  static const tcp = RegionSecurityPolicyUserDefinedFieldBase._(
+    TfArgLiteral('TCP'),
+  );
+  static const udp = RegionSecurityPolicyUserDefinedFieldBase._(
+    TfArgLiteral('UDP'),
+  );
+
+  static const List<RegionSecurityPolicyUserDefinedFieldBase> values = [
+    ipv4,
+    ipv6,
+    tcp,
+    udp,
+  ];
 }
 
 // ===========================================================================
@@ -139,7 +202,7 @@ class ComputeRegionSecurityPolicyRulesMatch {
   final ComputeRegionSecurityPolicyRulesMatchExpr? expr;
 
   Map<String, Object?> toArgMap() => {
-    if (versionedExpr != null) 'versioned_expr': versionedExpr!.terraformValue,
+    if (versionedExpr != null) 'versioned_expr': versionedExpr!.toTfJson(),
     if (config != null) 'config': [config!.toArgMap()],
     if (expr != null) 'expr': [expr!.toArgMap()],
   };
@@ -196,7 +259,7 @@ class ComputeRegionSecurityPolicyRulesRateLimitOptions {
     'rate_limit_threshold': [rateLimitThreshold.toArgMap()],
     if (banDurationSec != null) 'ban_duration_sec': banDurationSec!.toTfJson(),
     if (banThreshold != null) 'ban_threshold': [banThreshold!.toArgMap()],
-    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.terraformValue,
+    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.toTfJson(),
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
     if (enforceOnKeyConfigs != null)
@@ -234,7 +297,7 @@ class ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig {
 
   Map<String, Object?> toArgMap() => {
     if (enforceOnKeyType != null)
-      'enforce_on_key_type': enforceOnKeyType!.terraformValue,
+      'enforce_on_key_type': enforceOnKeyType!.toTfJson(),
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
   };
@@ -299,7 +362,7 @@ class ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch {
   final TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
-    'operator': operator.terraformValue,
+    'operator': operator.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
 }
@@ -323,8 +386,8 @@ class ComputeRegionSecurityPolicyAdvancedOptionsConfig {
   final ComputeRegionSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
   Map<String, Object?> toArgMap() => {
-    if (jsonParsing != null) 'json_parsing': jsonParsing!.terraformValue,
-    if (logLevel != null) 'log_level': logLevel!.terraformValue,
+    if (jsonParsing != null) 'json_parsing': jsonParsing!.toTfJson(),
+    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
     if (userIpRequestHeaders != null)
       'user_ip_request_headers': userIpRequestHeaders,
     if (jsonCustomConfig != null)
@@ -356,7 +419,7 @@ class ComputeRegionSecurityPolicyDdosProtectionConfig {
   final RegionSecurityPolicyDdosProtection ddosProtection;
 
   Map<String, Object?> toArgMap() => {
-    'ddos_protection': ddosProtection.terraformValue,
+    'ddos_protection': ddosProtection.toTfJson(),
   };
 }
 
@@ -381,7 +444,7 @@ class ComputeRegionSecurityPolicyUserDefinedField {
   final TfArg<int>? size;
 
   Map<String, Object?> toArgMap() => {
-    'base': base.terraformValue,
+    'base': base.toTfJson(),
     if (mask != null) 'mask': mask!.toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
     if (offset != null) 'offset': offset!.toTfJson(),
@@ -401,7 +464,7 @@ final class GoogleComputeRegionSecurityPolicy extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,
-    TfArg<RegionSecurityPolicyType>? type,
+    RegionSecurityPolicyType? type,
     ComputeRegionSecurityPolicyAdvancedOptionsConfig? advancedOptionsConfig,
     ComputeRegionSecurityPolicyDdosProtectionConfig? ddosProtectionConfig,
     required List<ComputeRegionSecurityPolicyRules> rules,

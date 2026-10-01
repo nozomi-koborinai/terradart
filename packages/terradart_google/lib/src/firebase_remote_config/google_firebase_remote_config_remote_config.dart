@@ -15,22 +15,38 @@ const Set<String> _googleFirebaseRemoteConfigRemoteConfigSensitive = <String>{};
 /// condition in the Firebase Console. The 11 values below come from the
 /// schema's enumerated "Possible values" list. Leaving this null (the
 /// schema-default) lets the Console pick a colour automatically.
-enum RemoteConfigTagColor implements TerraformEnum {
-  blue('BLUE'),
-  brown('BROWN'),
-  cyan('CYAN'),
-  deepOrange('DEEP_ORANGE'),
-  green('GREEN'),
-  indigo('INDIGO'),
-  lime('LIME'),
-  orange('ORANGE'),
-  pink('PINK'),
-  purple('PURPLE'),
-  teal('TEAL');
+extension type const RemoteConfigTagColor._(TfArg<String> _)
+    implements TfArg<String> {
+  RemoteConfigTagColor.variable(String name) : this._(TfArg.variable(name));
+  RemoteConfigTagColor.expression(String template)
+    : this._(TfArg.expression(template));
+  const RemoteConfigTagColor.arg(TfArg<String> arg) : this._(arg);
 
-  const RemoteConfigTagColor(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blue = RemoteConfigTagColor._(TfArgLiteral('BLUE'));
+  static const brown = RemoteConfigTagColor._(TfArgLiteral('BROWN'));
+  static const cyan = RemoteConfigTagColor._(TfArgLiteral('CYAN'));
+  static const deepOrange = RemoteConfigTagColor._(TfArgLiteral('DEEP_ORANGE'));
+  static const green = RemoteConfigTagColor._(TfArgLiteral('GREEN'));
+  static const indigo = RemoteConfigTagColor._(TfArgLiteral('INDIGO'));
+  static const lime = RemoteConfigTagColor._(TfArgLiteral('LIME'));
+  static const orange = RemoteConfigTagColor._(TfArgLiteral('ORANGE'));
+  static const pink = RemoteConfigTagColor._(TfArgLiteral('PINK'));
+  static const purple = RemoteConfigTagColor._(TfArgLiteral('PURPLE'));
+  static const teal = RemoteConfigTagColor._(TfArgLiteral('TEAL'));
+
+  static const List<RemoteConfigTagColor> values = [
+    blue,
+    brown,
+    cyan,
+    deepOrange,
+    green,
+    indigo,
+    lime,
+    orange,
+    pink,
+    purple,
+    teal,
+  ];
 }
 
 /// `parameters[].value_type` (and `parameter_groups[].parameters[].value_type`)
@@ -38,15 +54,24 @@ enum RemoteConfigTagColor implements TerraformEnum {
 /// [FirebaseRemoteConfigRemoteConfigConditionalValue.value]. `string` is the schema default.
 /// `jsonValue` covers any structured payload (the wire format is still a
 /// string -- the client is expected to JSON-parse it).
-enum RemoteConfigValueType implements TerraformEnum {
-  string('STRING'),
-  boolean('BOOLEAN'),
-  number('NUMBER'),
-  jsonValue('JSON');
+extension type const RemoteConfigValueType._(TfArg<String> _)
+    implements TfArg<String> {
+  RemoteConfigValueType.variable(String name) : this._(TfArg.variable(name));
+  RemoteConfigValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RemoteConfigValueType.arg(TfArg<String> arg) : this._(arg);
 
-  const RemoteConfigValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = RemoteConfigValueType._(TfArgLiteral('STRING'));
+  static const boolean = RemoteConfigValueType._(TfArgLiteral('BOOLEAN'));
+  static const number = RemoteConfigValueType._(TfArgLiteral('NUMBER'));
+  static const jsonValue = RemoteConfigValueType._(TfArgLiteral('JSON'));
+
+  static const List<RemoteConfigValueType> values = [
+    string,
+    boolean,
+    number,
+    jsonValue,
+  ];
 }
 
 // ===========================================================================
@@ -83,7 +108,7 @@ class FirebaseRemoteConfigRemoteConfigCondition {
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
     'expression': expression.toTfJson(),
-    if (tagColor != null) 'tag_color': tagColor!.terraformValue,
+    if (tagColor != null) 'tag_color': tagColor!.toTfJson(),
   };
 }
 
@@ -217,7 +242,7 @@ class FirebaseRemoteConfigRemoteConfigParameter {
   Map<String, Object?> toArgMap() => {
     'parameter_name': parameterName.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
-    if (valueType != null) 'value_type': valueType!.terraformValue,
+    if (valueType != null) 'value_type': valueType!.toTfJson(),
     if (defaultValue != null) 'default_value': [defaultValue!.toArgMap()],
     if (conditionalValues != null)
       'conditional_values': conditionalValues!

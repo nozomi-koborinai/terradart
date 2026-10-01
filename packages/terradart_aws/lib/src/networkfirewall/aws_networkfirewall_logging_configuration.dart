@@ -37,10 +37,10 @@ final class NetworkfirewallLoggingConfigurationLogDestinationConfig {
 
   final TfArg<Map<String, String>> logDestination;
 
-  final TfArg<NetworkfirewallLoggingConfigurationLogDestinationType>
+  final NetworkfirewallLoggingConfigurationLogDestinationType
   logDestinationType;
 
-  final TfArg<NetworkfirewallLoggingConfigurationLogType> logType;
+  final NetworkfirewallLoggingConfigurationLogType logType;
 
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
@@ -50,28 +50,60 @@ final class NetworkfirewallLoggingConfigurationLogDestinationConfig {
 }
 
 /// `log_destination_type` — derived from the provider schema description.
-enum NetworkfirewallLoggingConfigurationLogDestinationType
-    implements TerraformEnum {
-  s3('S3'),
-  cloudwatchlogs('CloudWatchLogs'),
-  kinesisdatafirehose('KinesisDataFirehose');
+extension type const NetworkfirewallLoggingConfigurationLogDestinationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallLoggingConfigurationLogDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallLoggingConfigurationLogDestinationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkfirewallLoggingConfigurationLogDestinationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkfirewallLoggingConfigurationLogDestinationType(
-    this.terraformValue,
+  static const s3 = NetworkfirewallLoggingConfigurationLogDestinationType._(
+    TfArgLiteral('S3'),
   );
-  @override
-  final String terraformValue;
+  static const cloudwatchlogs =
+      NetworkfirewallLoggingConfigurationLogDestinationType._(
+        TfArgLiteral('CloudWatchLogs'),
+      );
+  static const kinesisdatafirehose =
+      NetworkfirewallLoggingConfigurationLogDestinationType._(
+        TfArgLiteral('KinesisDataFirehose'),
+      );
+
+  static const List<NetworkfirewallLoggingConfigurationLogDestinationType>
+  values = [s3, cloudwatchlogs, kinesisdatafirehose];
 }
 
 /// `log_type` — derived from the provider schema description.
-enum NetworkfirewallLoggingConfigurationLogType implements TerraformEnum {
-  alert('ALERT'),
-  flow('FLOW'),
-  tls('TLS');
+extension type const NetworkfirewallLoggingConfigurationLogType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallLoggingConfigurationLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallLoggingConfigurationLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallLoggingConfigurationLogType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallLoggingConfigurationLogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alert = NetworkfirewallLoggingConfigurationLogType._(
+    TfArgLiteral('ALERT'),
+  );
+  static const flow = NetworkfirewallLoggingConfigurationLogType._(
+    TfArgLiteral('FLOW'),
+  );
+  static const tls = NetworkfirewallLoggingConfigurationLogType._(
+    TfArgLiteral('TLS'),
+  );
+
+  static const List<NetworkfirewallLoggingConfigurationLogType> values = [
+    alert,
+    flow,
+    tls,
+  ];
 }
 
 /// Factory wrapper for `aws_networkfirewall_logging_configuration`.

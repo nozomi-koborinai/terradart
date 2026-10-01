@@ -12,13 +12,15 @@ dartTypeOverrides:
 
 prelude: |
   /// Terraform `desired_state` for [GoogleColabSchedule].
-  enum ColabScheduleDesiredState implements TerraformEnum {
-    active('ACTIVE'),
-    paused('PAUSED');
+  extension type const ColabScheduleDesiredState._(TfArg<String> _) implements TfArg<String> {
+    ColabScheduleDesiredState.variable(String name) : this._(TfArg.variable(name));
+    ColabScheduleDesiredState.expression(String template) : this._(TfArg.expression(template));
+    const ColabScheduleDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-    const ColabScheduleDesiredState(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const active = ColabScheduleDesiredState._(TfArgLiteral('ACTIVE'));
+    static const paused = ColabScheduleDesiredState._(TfArgLiteral('PAUSED'));
+
+    static const List<ColabScheduleDesiredState> values = [active, paused];
   }
 
 curatedDoc: |-

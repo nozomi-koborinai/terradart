@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetappVolumeReplicationSensitive = <String>{};
 
 /// Netapp Volume Replication Replication enum for `replication_schedule`.
-enum NetappVolumeReplicationReplicationSchedule implements TerraformEnum {
-  every10Minutes('EVERY_10_MINUTES'),
-  hourly('HOURLY'),
-  daily('DAILY');
+extension type const NetappVolumeReplicationReplicationSchedule._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetappVolumeReplicationReplicationSchedule.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeReplicationReplicationSchedule.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeReplicationReplicationSchedule.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetappVolumeReplicationReplicationSchedule(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const every10Minutes = NetappVolumeReplicationReplicationSchedule._(
+    TfArgLiteral('EVERY_10_MINUTES'),
+  );
+  static const hourly = NetappVolumeReplicationReplicationSchedule._(
+    TfArgLiteral('HOURLY'),
+  );
+  static const daily = NetappVolumeReplicationReplicationSchedule._(
+    TfArgLiteral('DAILY'),
+  );
+
+  static const List<NetappVolumeReplicationReplicationSchedule> values = [
+    every10Minutes,
+    hourly,
+    daily,
+  ];
 }
 
 /// Typed helper for the `destination_volume_parameters` block of
@@ -60,7 +77,7 @@ final class NetappVolumeReplicationTieringPolicy {
 
   final TfArg<num>? coolingThresholdDays;
 
-  final TfArg<NetappVolumeReplicationTierAction>? tierAction;
+  final NetappVolumeReplicationTierAction? tierAction;
 
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
@@ -69,13 +86,25 @@ final class NetappVolumeReplicationTieringPolicy {
 }
 
 /// `tier_action` — derived from the provider schema description.
-enum NetappVolumeReplicationTierAction implements TerraformEnum {
-  enabled('ENABLED'),
-  paused('PAUSED');
+extension type const NetappVolumeReplicationTierAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeReplicationTierAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeReplicationTierAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeReplicationTierAction.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeReplicationTierAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = NetappVolumeReplicationTierAction._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const paused = NetappVolumeReplicationTierAction._(
+    TfArgLiteral('PAUSED'),
+  );
+
+  static const List<NetappVolumeReplicationTierAction> values = [
+    enabled,
+    paused,
+  ];
 }
 
 /// Factory wrapper for `google_netapp_volume_replication`.
@@ -111,8 +140,7 @@ final class GoogleNetappVolumeReplication extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> volumeName,
-    required TfArg<NetappVolumeReplicationReplicationSchedule>
-    replicationSchedule,
+    required NetappVolumeReplicationReplicationSchedule replicationSchedule,
     NetappVolumeReplicationDestinationVolumeParameters?
     destinationVolumeParameters,
     TfArg<String>? description,

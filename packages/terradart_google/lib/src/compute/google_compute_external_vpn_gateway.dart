@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeExternalVpnGatewaySensitive = <String>{};
 
 /// Compute External Vpn Gateway Redundancy enum for `redundancy_type`.
-enum ComputeExternalVpnGatewayRedundancyType implements TerraformEnum {
-  fourIpsRedundancy('FOUR_IPS_REDUNDANCY'),
-  singleIpInternallyRedundant('SINGLE_IP_INTERNALLY_REDUNDANT'),
-  twoIpsRedundancy('TWO_IPS_REDUNDANCY');
+extension type const ComputeExternalVpnGatewayRedundancyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeExternalVpnGatewayRedundancyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeExternalVpnGatewayRedundancyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeExternalVpnGatewayRedundancyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeExternalVpnGatewayRedundancyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fourIpsRedundancy = ComputeExternalVpnGatewayRedundancyType._(
+    TfArgLiteral('FOUR_IPS_REDUNDANCY'),
+  );
+  static const singleIpInternallyRedundant =
+      ComputeExternalVpnGatewayRedundancyType._(
+        TfArgLiteral('SINGLE_IP_INTERNALLY_REDUNDANT'),
+      );
+  static const twoIpsRedundancy = ComputeExternalVpnGatewayRedundancyType._(
+    TfArgLiteral('TWO_IPS_REDUNDANCY'),
+  );
+
+  static const List<ComputeExternalVpnGatewayRedundancyType> values = [
+    fourIpsRedundancy,
+    singleIpInternallyRedundant,
+    twoIpsRedundancy,
+  ];
 }
 
 /// Typed helper for the `interface` block of
@@ -64,7 +81,7 @@ final class GoogleComputeExternalVpnGateway extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
-    TfArg<ComputeExternalVpnGatewayRedundancyType>? redundancyType,
+    ComputeExternalVpnGatewayRedundancyType? redundancyType,
     TfArg<Map<String, String>>? labels,
     List<ComputeExternalVpnGatewayInterface>? interface,
     ComputeExternalVpnGatewayParams? params,

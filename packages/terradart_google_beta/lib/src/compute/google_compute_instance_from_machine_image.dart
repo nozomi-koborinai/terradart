@@ -145,7 +145,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final TfArg<String>? networkIp;
 
-  final TfArg<ComputeInstanceFromMachineImageNicType>? nicType;
+  final ComputeInstanceFromMachineImageNicType? nicType;
 
   final TfArg<num>? queueCount;
 
@@ -193,16 +193,38 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum ComputeInstanceFromMachineImageNicType implements TerraformEnum {
-  gvnic('GVNIC'),
-  virtioNet('VIRTIO_NET'),
-  idpf('IDPF'),
-  mrdma('MRDMA'),
-  irdma('IRDMA');
+extension type const ComputeInstanceFromMachineImageNicType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromMachineImageNicType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageNicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageNicType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInstanceFromMachineImageNicType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gvnic = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('GVNIC'),
+  );
+  static const virtioNet = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
+  static const idpf = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('IDPF'),
+  );
+  static const mrdma = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const irdma = ComputeInstanceFromMachineImageNicType._(
+    TfArgLiteral('IRDMA'),
+  );
+
+  static const List<ComputeInstanceFromMachineImageNicType> values = [
+    gvnic,
+    virtioNet,
+    idpf,
+    mrdma,
+    irdma,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -305,7 +327,7 @@ final class ComputeInstanceFromMachineImageNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<ComputeInstanceFromMachineImageTotalEgressBandwidthTier>
+  final ComputeInstanceFromMachineImageTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -314,16 +336,29 @@ final class ComputeInstanceFromMachineImageNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeInstanceFromMachineImageTotalEgressBandwidthTier
-    implements TerraformEnum {
-  tier1('TIER_1'),
-  defaultCase('DEFAULT');
+extension type const ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImageTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageTotalEgressBandwidthTier.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageTotalEgressBandwidthTier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeInstanceFromMachineImageTotalEgressBandwidthTier(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const tier1 =
+      ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
+        TfArgLiteral('TIER_1'),
+      );
+  static const defaultCase =
+      ComputeInstanceFromMachineImageTotalEgressBandwidthTier._(
+        TfArgLiteral('DEFAULT'),
+      );
+
+  static const List<ComputeInstanceFromMachineImageTotalEgressBandwidthTier>
+  values = [tier1, defaultCase];
 }
 
 /// Typed helper for the `params` block of

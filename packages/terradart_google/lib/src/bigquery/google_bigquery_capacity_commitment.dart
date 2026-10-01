@@ -24,32 +24,71 @@ const Set<String> _googleBigqueryCapacityCommitmentSensitive = <String>{};
 /// `FLEX`, `TRIAL`, `MONTHLY`, `ANNUAL`, `THREE_YEAR`. Schema does
 /// not enumerate explicitly — see the field description for the
 /// authoritative link.
-enum BigqueryCapacityCommitmentPlan implements TerraformEnum {
-  flex('FLEX'),
-  trial('TRIAL'),
-  monthly('MONTHLY'),
-  annual('ANNUAL'),
-  threeYear('THREE_YEAR');
+extension type const BigqueryCapacityCommitmentPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryCapacityCommitmentPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryCapacityCommitmentPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryCapacityCommitmentPlan.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryCapacityCommitmentPlan(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const flex = BigqueryCapacityCommitmentPlan._(TfArgLiteral('FLEX'));
+  static const trial = BigqueryCapacityCommitmentPlan._(TfArgLiteral('TRIAL'));
+  static const monthly = BigqueryCapacityCommitmentPlan._(
+    TfArgLiteral('MONTHLY'),
+  );
+  static const annual = BigqueryCapacityCommitmentPlan._(
+    TfArgLiteral('ANNUAL'),
+  );
+  static const threeYear = BigqueryCapacityCommitmentPlan._(
+    TfArgLiteral('THREE_YEAR'),
+  );
+
+  static const List<BigqueryCapacityCommitmentPlan> values = [
+    flex,
+    trial,
+    monthly,
+    annual,
+    threeYear,
+  ];
 }
 
 /// Renewal plan applied when the current commitment term ends.
 /// Documented values: `NONE` (no renewal — commitment lapses),
 /// `FLEX`, `MONTHLY`, `ANNUAL`, `THREE_YEAR`. (`TRIAL` is a
 /// commitment-creation-only plan and is not a valid renewal target.)
-enum BigqueryCapacityCommitmentRenewalPlan implements TerraformEnum {
-  none('NONE'),
-  flex('FLEX'),
-  monthly('MONTHLY'),
-  annual('ANNUAL'),
-  threeYear('THREE_YEAR');
+extension type const BigqueryCapacityCommitmentRenewalPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryCapacityCommitmentRenewalPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryCapacityCommitmentRenewalPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryCapacityCommitmentRenewalPlan.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryCapacityCommitmentRenewalPlan(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('NONE'),
+  );
+  static const flex = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('FLEX'),
+  );
+  static const monthly = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('MONTHLY'),
+  );
+  static const annual = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('ANNUAL'),
+  );
+  static const threeYear = BigqueryCapacityCommitmentRenewalPlan._(
+    TfArgLiteral('THREE_YEAR'),
+  );
+
+  static const List<BigqueryCapacityCommitmentRenewalPlan> values = [
+    none,
+    flex,
+    monthly,
+    annual,
+    threeYear,
+  ];
 }
 
 /// BigQuery edition for
@@ -59,14 +98,29 @@ enum BigqueryCapacityCommitmentRenewalPlan implements TerraformEnum {
 /// `BigqueryReservationEdition` even though both wrap the same GCP
 /// enum — keeping resource-scoped naming avoids cross-resource
 /// coupling.
-enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
-  standard('STANDARD'),
-  enterprise('ENTERPRISE'),
-  enterprisePlus('ENTERPRISE_PLUS');
+extension type const BigqueryCapacityCommitmentEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryCapacityCommitmentEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryCapacityCommitmentEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryCapacityCommitmentEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryCapacityCommitmentEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = BigqueryCapacityCommitmentEdition._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const enterprise = BigqueryCapacityCommitmentEdition._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const enterprisePlus = BigqueryCapacityCommitmentEdition._(
+    TfArgLiteral('ENTERPRISE_PLUS'),
+  );
+
+  static const List<BigqueryCapacityCommitmentEdition> values = [
+    standard,
+    enterprise,
+    enterprisePlus,
+  ];
 }
 
 // ===========================================================================
@@ -110,9 +164,9 @@ enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
 ///   capacityCommitmentId: TfArg.literal('yearly-1k'),
 ///   location: TfArg.literal('US'),
 ///   slotCount: TfArg.literal(1000),
-///   plan: .literal(BigqueryCapacityCommitmentPlan.annual),
-///   renewalPlan: .literal(BigqueryCapacityCommitmentRenewalPlan.annual),
-///   edition: .literal(BigqueryCapacityCommitmentEdition.enterprise),
+///   plan: BigqueryCapacityCommitmentPlan.annual,
+///   renewalPlan: BigqueryCapacityCommitmentRenewalPlan.annual,
+///   edition: BigqueryCapacityCommitmentEdition.enterprise,
 /// );
 /// ```
 final class GoogleBigqueryCapacityCommitment extends Resource {
@@ -123,9 +177,9 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
     required TfArg<String> capacityCommitmentId,
     TfArg<String>? location,
     required TfArg<num> slotCount,
-    required TfArg<BigqueryCapacityCommitmentPlan> plan,
-    TfArg<BigqueryCapacityCommitmentRenewalPlan>? renewalPlan,
-    TfArg<BigqueryCapacityCommitmentEdition>? edition,
+    required BigqueryCapacityCommitmentPlan plan,
+    BigqueryCapacityCommitmentRenewalPlan? renewalPlan,
+    BigqueryCapacityCommitmentEdition? edition,
     TfArg<String>? enforceSingleAdminProjectPerOrg,
     TfArg<String>? project,
     super.lifecycle,

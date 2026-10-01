@@ -20,8 +20,7 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
     required this.subnetId,
   });
 
-  final TfArg<NetworkfirewallVpcEndpointAssociationIpAddressType>?
-  ipAddressType;
+  final NetworkfirewallVpcEndpointAssociationIpAddressType? ipAddressType;
 
   final RefTo<AwsSubnet> subnetId;
 
@@ -32,15 +31,29 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum NetworkfirewallVpcEndpointAssociationIpAddressType
-    implements TerraformEnum {
-  dualstack('DUALSTACK'),
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const NetworkfirewallVpcEndpointAssociationIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallVpcEndpointAssociationIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallVpcEndpointAssociationIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallVpcEndpointAssociationIpAddressType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkfirewallVpcEndpointAssociationIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dualstack = NetworkfirewallVpcEndpointAssociationIpAddressType._(
+    TfArgLiteral('DUALSTACK'),
+  );
+  static const ipv4 = NetworkfirewallVpcEndpointAssociationIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = NetworkfirewallVpcEndpointAssociationIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<NetworkfirewallVpcEndpointAssociationIpAddressType> values =
+      [dualstack, ipv4, ipv6];
 }
 
 /// Factory wrapper for `aws_networkfirewall_vpc_endpoint_association`.

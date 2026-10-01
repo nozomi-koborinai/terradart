@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudwatchLogStorageTierPolicySensitive = <String>{};
 
 /// Cloudwatch Log Storage Tier Policy Storage enum for `storage_tier`.
-enum CloudwatchLogStorageTierPolicyStorageTier implements TerraformEnum {
-  standard('STANDARD'),
-  intelligentTiering('INTELLIGENT_TIERING');
+extension type const CloudwatchLogStorageTierPolicyStorageTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchLogStorageTierPolicyStorageTier.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogStorageTierPolicyStorageTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogStorageTierPolicyStorageTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogStorageTierPolicyStorageTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = CloudwatchLogStorageTierPolicyStorageTier._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const intelligentTiering = CloudwatchLogStorageTierPolicyStorageTier._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+
+  static const List<CloudwatchLogStorageTierPolicyStorageTier> values = [
+    standard,
+    intelligentTiering,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudwatch_log_storage_tier_policy`.
@@ -27,7 +41,7 @@ final class AwsCloudwatchLogStorageTierPolicy extends Resource {
   AwsCloudwatchLogStorageTierPolicy(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<CloudwatchLogStorageTierPolicyStorageTier> storageTier,
+    required CloudwatchLogStorageTierPolicyStorageTier storageTier,
     super.lifecycle,
     super.dependsOn,
     super.provider,

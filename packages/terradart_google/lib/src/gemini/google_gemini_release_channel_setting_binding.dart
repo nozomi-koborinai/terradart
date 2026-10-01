@@ -11,13 +11,27 @@ const Set<String> _googleGeminiReleaseChannelSettingBindingSensitive =
     <String>{};
 
 /// Gemini Release Channel Setting Binding enum for `product`.
-enum GeminiReleaseChannelSettingBindingProduct implements TerraformEnum {
-  geminiCloudAssist('GEMINI_CLOUD_ASSIST'),
-  geminiCodeAssist('GEMINI_CODE_ASSIST');
+extension type const GeminiReleaseChannelSettingBindingProduct._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GeminiReleaseChannelSettingBindingProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  GeminiReleaseChannelSettingBindingProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const GeminiReleaseChannelSettingBindingProduct.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GeminiReleaseChannelSettingBindingProduct(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const geminiCloudAssist = GeminiReleaseChannelSettingBindingProduct._(
+    TfArgLiteral('GEMINI_CLOUD_ASSIST'),
+  );
+  static const geminiCodeAssist = GeminiReleaseChannelSettingBindingProduct._(
+    TfArgLiteral('GEMINI_CODE_ASSIST'),
+  );
+
+  static const List<GeminiReleaseChannelSettingBindingProduct> values = [
+    geminiCloudAssist,
+    geminiCodeAssist,
+  ];
 }
 
 /// Factory wrapper for `google_gemini_release_channel_setting_binding`.

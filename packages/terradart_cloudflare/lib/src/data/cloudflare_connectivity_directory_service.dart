@@ -15,19 +15,33 @@ const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
 final class DataConnectivityDirectoryServiceFilter {
   const DataConnectivityDirectoryServiceFilter({this.type});
 
-  final TfArg<DataConnectivityDirectoryServiceFilterType>? type;
+  final DataConnectivityDirectoryServiceFilterType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum DataConnectivityDirectoryServiceFilterType implements TerraformEnum {
-  tcp('tcp'),
-  http('http');
+extension type const DataConnectivityDirectoryServiceFilterType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataConnectivityDirectoryServiceFilterType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataConnectivityDirectoryServiceFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataConnectivityDirectoryServiceFilterType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataConnectivityDirectoryServiceFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = DataConnectivityDirectoryServiceFilterType._(
+    TfArgLiteral('tcp'),
+  );
+  static const http = DataConnectivityDirectoryServiceFilterType._(
+    TfArgLiteral('http'),
+  );
+
+  static const List<DataConnectivityDirectoryServiceFilterType> values = [
+    tcp,
+    http,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_connectivity_directory_service`.

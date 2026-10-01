@@ -45,7 +45,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
         enabled: .literal(true),
         priority: .literal(1),
         sessionMatcher: .literal("host() == 'example.com'"),
-        basicProfile: .literal(.allow),
+        basicProfile: .allow,
         dependsOn: [policy],
       ),
     );

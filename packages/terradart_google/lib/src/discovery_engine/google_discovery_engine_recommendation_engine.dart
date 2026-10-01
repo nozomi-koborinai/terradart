@@ -9,16 +9,27 @@ const Set<String> _googleDiscoveryEngineRecommendationEngineSensitive =
     <String>{};
 
 /// Discovery Engine Recommendation Engine Industry enum for `industry_vertical`.
-enum DiscoveryEngineRecommendationEngineIndustryVertical
-    implements TerraformEnum {
-  generic('GENERIC'),
-  media('MEDIA');
+extension type const DiscoveryEngineRecommendationEngineIndustryVertical._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineIndustryVertical.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineIndustryVertical.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineIndustryVertical.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DiscoveryEngineRecommendationEngineIndustryVertical(
-    this.terraformValue,
+  static const generic = DiscoveryEngineRecommendationEngineIndustryVertical._(
+    TfArgLiteral('GENERIC'),
   );
-  @override
-  final String terraformValue;
+  static const media = DiscoveryEngineRecommendationEngineIndustryVertical._(
+    TfArgLiteral('MEDIA'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineIndustryVertical>
+  values = [generic, media];
 }
 
 /// Typed helper for the `common_config` block of
@@ -46,7 +57,7 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
 
   final TfArg<String>? optimizationObjective;
 
-  final TfArg<DiscoveryEngineRecommendationEngineTrainingState>? trainingState;
+  final DiscoveryEngineRecommendationEngineTrainingState? trainingState;
 
   final TfArg<String>? type;
 
@@ -65,13 +76,27 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
 }
 
 /// `training_state` — derived from the provider schema description.
-enum DiscoveryEngineRecommendationEngineTrainingState implements TerraformEnum {
-  paused('PAUSED'),
-  training('TRAINING');
+extension type const DiscoveryEngineRecommendationEngineTrainingState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineTrainingState.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineTrainingState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineTrainingState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineRecommendationEngineTrainingState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const paused = DiscoveryEngineRecommendationEngineTrainingState._(
+    TfArgLiteral('PAUSED'),
+  );
+  static const training = DiscoveryEngineRecommendationEngineTrainingState._(
+    TfArgLiteral('TRAINING'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineTrainingState> values = [
+    paused,
+    training,
+  ];
 }
 
 /// Typed helper for the `media_recommendation_engine_config.engine_features_config` block of
@@ -165,8 +190,7 @@ final class GoogleDiscoveryEngineRecommendationEngine extends Resource {
     required TfArg<String> engineId,
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
-    TfArg<DiscoveryEngineRecommendationEngineIndustryVertical>?
-    industryVertical,
+    DiscoveryEngineRecommendationEngineIndustryVertical? industryVertical,
     DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig?
     mediaRecommendationEngineConfig,
     DiscoveryEngineRecommendationEngineCommonConfig? commonConfig,

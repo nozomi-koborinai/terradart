@@ -11,7 +11,7 @@ void main() {
         workloadIdentityConfig: CloudRunV2ServiceWorkloadIdentityConfig(
           identity: .literal('spiffe://example'),
           identityCertificateEnabled: .literal(true),
-          identityType: .literal(.workloadIdentity),
+          identityType: .workloadIdentity,
         ),
       );
       expect(template.encode()['workload_identity_config'], {

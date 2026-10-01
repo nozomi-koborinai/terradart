@@ -10,13 +10,25 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsS3outpostsEndpointSensitive = <String>{};
 
 /// S3outposts Endpoint Access enum for `access_type`.
-enum S3outpostsEndpointAccessType implements TerraformEnum {
-  private('Private'),
-  customerownedip('CustomerOwnedIp');
+extension type const S3outpostsEndpointAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3outpostsEndpointAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  S3outpostsEndpointAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3outpostsEndpointAccessType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3outpostsEndpointAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = S3outpostsEndpointAccessType._(
+    TfArgLiteral('Private'),
+  );
+  static const customerownedip = S3outpostsEndpointAccessType._(
+    TfArgLiteral('CustomerOwnedIp'),
+  );
+
+  static const List<S3outpostsEndpointAccessType> values = [
+    private,
+    customerownedip,
+  ];
 }
 
 /// Factory wrapper for `aws_s3outposts_endpoint`.
@@ -25,7 +37,7 @@ final class AwsS3outpostsEndpoint extends Resource {
 
   AwsS3outpostsEndpoint(
     super.localName, {
-    TfArg<S3outpostsEndpointAccessType>? accessType,
+    S3outpostsEndpointAccessType? accessType,
     TfArg<String>? customerOwnedIpv4Pool,
     required TfArg<String> outpostId,
     TfArg<String>? region,

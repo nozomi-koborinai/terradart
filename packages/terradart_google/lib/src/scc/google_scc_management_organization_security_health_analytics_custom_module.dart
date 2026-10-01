@@ -10,16 +10,32 @@ _googleSccManagementOrganizationSecurityHealthAnalyticsCustomModuleSensitive =
     <String>{};
 
 /// Scc Management Organization Security Health Analytics Custom Module Enablement enum for `enablement_state`.
-enum SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<
+    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
+  >
+  values = [enabled, disabled];
 }
 
 /// Typed helper for the `custom_config` block of
@@ -39,9 +55,7 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 
   final TfArg<String> recommendation;
 
-  final TfArg<
-    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity
-  >
+  final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity
   severity;
 
   final SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomOutput?
@@ -64,18 +78,40 @@ final class SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomCo
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity
-    implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const critical =
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('CRITICAL'),
+      );
+  static const high =
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('HIGH'),
+      );
+  static const medium =
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('MEDIUM'),
+      );
+  static const low =
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('LOW'),
+      );
+
+  static const List<
+    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleSeverity
+  >
+  values = [critical, high, medium, low];
 }
 
 /// Typed helper for the `custom_config.custom_output` block of
@@ -206,9 +242,7 @@ final class GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule
     super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<
-      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
-    >?
+    SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState?
     enablementState,
     TfArg<String>? location,
     required TfArg<String> organization,

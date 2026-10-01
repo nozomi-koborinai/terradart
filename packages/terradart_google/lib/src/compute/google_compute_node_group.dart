@@ -24,7 +24,7 @@ final class ComputeNodeGroupAutoscalingPolicy {
 
   final TfArg<num>? minNodes;
 
-  final TfArg<ComputeNodeGroupMode>? mode;
+  final ComputeNodeGroupMode? mode;
 
   Map<String, Object?> encode() => {
     'max_nodes': ?maxNodes?.toTfJson(),
@@ -34,14 +34,20 @@ final class ComputeNodeGroupAutoscalingPolicy {
 }
 
 /// `mode` — derived from the provider schema description.
-enum ComputeNodeGroupMode implements TerraformEnum {
-  off('OFF'),
-  on('ON'),
-  onlyScaleOut('ONLY_SCALE_OUT');
+extension type const ComputeNodeGroupMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeNodeGroupMode.variable(String name) : this._(TfArg.variable(name));
+  ComputeNodeGroupMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNodeGroupMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeNodeGroupMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = ComputeNodeGroupMode._(TfArgLiteral('OFF'));
+  static const on = ComputeNodeGroupMode._(TfArgLiteral('ON'));
+  static const onlyScaleOut = ComputeNodeGroupMode._(
+    TfArgLiteral('ONLY_SCALE_OUT'),
+  );
+
+  static const List<ComputeNodeGroupMode> values = [off, on, onlyScaleOut];
 }
 
 /// Typed helper for the `maintenance_window` block of
@@ -64,7 +70,7 @@ final class ComputeNodeGroupShareSettings {
     this.projectMap,
   });
 
-  final TfArg<ComputeNodeGroupShareType> shareType;
+  final ComputeNodeGroupShareType shareType;
 
   final List<ComputeNodeGroupProjectMap>? projectMap;
 
@@ -76,14 +82,27 @@ final class ComputeNodeGroupShareSettings {
 }
 
 /// `share_type` — derived from the provider schema description.
-enum ComputeNodeGroupShareType implements TerraformEnum {
-  organization('ORGANIZATION'),
-  specificProjects('SPECIFIC_PROJECTS'),
-  local('LOCAL');
+extension type const ComputeNodeGroupShareType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeNodeGroupShareType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNodeGroupShareType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNodeGroupShareType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeNodeGroupShareType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const organization = ComputeNodeGroupShareType._(
+    TfArgLiteral('ORGANIZATION'),
+  );
+  static const specificProjects = ComputeNodeGroupShareType._(
+    TfArgLiteral('SPECIFIC_PROJECTS'),
+  );
+  static const local = ComputeNodeGroupShareType._(TfArgLiteral('LOCAL'));
+
+  static const List<ComputeNodeGroupShareType> values = [
+    organization,
+    specificProjects,
+    local,
+  ];
 }
 
 /// Typed helper for the `share_settings.project_map` block of

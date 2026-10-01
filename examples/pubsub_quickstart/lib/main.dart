@@ -48,7 +48,7 @@ final class OrdersStack extends Stack {
       GooglePubsubSchema(
         'orders_proto',
         name: .literal('orders-proto'),
-        type: .literal(.protocolBuffer),
+        type: .protocolBuffer,
         definition: .literal(
           'syntax = "proto3"; message Order { string id = 1; }',
         ),

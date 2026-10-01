@@ -8,14 +8,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRolloutPlanSensitive = <String>{};
 
 /// Compute Rollout Plan Location enum for `location_scope`.
-enum ComputeRolloutPlanLocationScope implements TerraformEnum {
-  locationScopeUnspecified('LOCATION_SCOPE_UNSPECIFIED'),
-  zonal('ZONAL'),
-  regional('REGIONAL');
+extension type const ComputeRolloutPlanLocationScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRolloutPlanLocationScope.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRolloutPlanLocationScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRolloutPlanLocationScope.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRolloutPlanLocationScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const locationScopeUnspecified = ComputeRolloutPlanLocationScope._(
+    TfArgLiteral('LOCATION_SCOPE_UNSPECIFIED'),
+  );
+  static const zonal = ComputeRolloutPlanLocationScope._(TfArgLiteral('ZONAL'));
+  static const regional = ComputeRolloutPlanLocationScope._(
+    TfArgLiteral('REGIONAL'),
+  );
+
+  static const List<ComputeRolloutPlanLocationScope> values = [
+    locationScopeUnspecified,
+    zonal,
+    regional,
+  ];
 }
 
 /// Typed helper for the `waves` block of
@@ -75,11 +88,11 @@ final class ComputeRolloutPlanOrchestrationOptions {
 final class ComputeRolloutPlanDelays {
   const ComputeRolloutPlanDelays({this.delimiter, this.duration, this.type});
 
-  final TfArg<ComputeRolloutPlanDelimiter>? delimiter;
+  final ComputeRolloutPlanDelimiter? delimiter;
 
   final TfArg<String>? duration;
 
-  final TfArg<ComputeRolloutPlanType>? type;
+  final ComputeRolloutPlanType? type;
 
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
@@ -89,25 +102,54 @@ final class ComputeRolloutPlanDelays {
 }
 
 /// `delimiter` — derived from the provider schema description.
-enum ComputeRolloutPlanDelimiter implements TerraformEnum {
-  delimiterUnspecified('DELIMITER_UNSPECIFIED'),
-  delimiterLocation('DELIMITER_LOCATION'),
-  delimiterBatch('DELIMITER_BATCH');
+extension type const ComputeRolloutPlanDelimiter._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRolloutPlanDelimiter.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRolloutPlanDelimiter.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRolloutPlanDelimiter.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRolloutPlanDelimiter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delimiterUnspecified = ComputeRolloutPlanDelimiter._(
+    TfArgLiteral('DELIMITER_UNSPECIFIED'),
+  );
+  static const delimiterLocation = ComputeRolloutPlanDelimiter._(
+    TfArgLiteral('DELIMITER_LOCATION'),
+  );
+  static const delimiterBatch = ComputeRolloutPlanDelimiter._(
+    TfArgLiteral('DELIMITER_BATCH'),
+  );
+
+  static const List<ComputeRolloutPlanDelimiter> values = [
+    delimiterUnspecified,
+    delimiterLocation,
+    delimiterBatch,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeRolloutPlanType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  typeOffset('TYPE_OFFSET'),
-  typeMinimum('TYPE_MINIMUM');
+extension type const ComputeRolloutPlanType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRolloutPlanType.variable(String name) : this._(TfArg.variable(name));
+  ComputeRolloutPlanType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRolloutPlanType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRolloutPlanType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = ComputeRolloutPlanType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const typeOffset = ComputeRolloutPlanType._(
+    TfArgLiteral('TYPE_OFFSET'),
+  );
+  static const typeMinimum = ComputeRolloutPlanType._(
+    TfArgLiteral('TYPE_MINIMUM'),
+  );
+
+  static const List<ComputeRolloutPlanType> values = [
+    typeUnspecified,
+    typeOffset,
+    typeMinimum,
+  ];
 }
 
 /// Typed helper for the `waves.selectors` block of
@@ -222,7 +264,7 @@ final class GoogleComputeRolloutPlan extends Resource {
   GoogleComputeRolloutPlan(
     super.localName, {
     required TfArg<String> name,
-    TfArg<ComputeRolloutPlanLocationScope>? locationScope,
+    ComputeRolloutPlanLocationScope? locationScope,
     TfArg<String>? description,
     required List<ComputeRolloutPlanWaves> waves,
     TfArg<String>? deletionPolicy,

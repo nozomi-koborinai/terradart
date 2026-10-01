@@ -21,7 +21,7 @@ final class SpannerInstanceConfigReplicas {
 
   final TfArg<String>? location;
 
-  final TfArg<SpannerInstanceConfigReplicasType>? type;
+  final SpannerInstanceConfigReplicasType? type;
 
   Map<String, Object?> encode() => {
     'default_leader_location': ?defaultLeaderLocation?.toTfJson(),
@@ -31,14 +31,29 @@ final class SpannerInstanceConfigReplicas {
 }
 
 /// `type` — derived from the provider schema description.
-enum SpannerInstanceConfigReplicasType implements TerraformEnum {
-  readWrite('READ_WRITE'),
-  readOnly('READ_ONLY'),
-  witness('WITNESS');
+extension type const SpannerInstanceConfigReplicasType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerInstanceConfigReplicasType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpannerInstanceConfigReplicasType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerInstanceConfigReplicasType.arg(TfArg<String> arg) : this._(arg);
 
-  const SpannerInstanceConfigReplicasType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readWrite = SpannerInstanceConfigReplicasType._(
+    TfArgLiteral('READ_WRITE'),
+  );
+  static const readOnly = SpannerInstanceConfigReplicasType._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const witness = SpannerInstanceConfigReplicasType._(
+    TfArgLiteral('WITNESS'),
+  );
+
+  static const List<SpannerInstanceConfigReplicasType> values = [
+    readWrite,
+    readOnly,
+    witness,
+  ];
 }
 
 /// Factory wrapper for `google_spanner_instance_config`.
@@ -70,7 +85,7 @@ enum SpannerInstanceConfigReplicasType implements TerraformEnum {
 ///   replicas: [
 ///     SpannerInstanceConfigReplicas(
 ///       location: TfArg.literal('us-west1'),
-///       type: TfArg.literal(SpannerInstanceConfigReplicasType.readOnly),
+///       type: SpannerInstanceConfigReplicasType.readOnly,
 ///       defaultLeaderLocation: TfArg.literal(false),
 ///     ),
 ///   ],

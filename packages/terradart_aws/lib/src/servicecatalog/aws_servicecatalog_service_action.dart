@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogServiceActionSensitive = <String>{};
 
 /// Servicecatalog Service Action Accept enum for `accept_language`.
-enum ServicecatalogServiceActionAcceptLanguage implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogServiceActionAcceptLanguage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogServiceActionAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogServiceActionAcceptLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogServiceActionAcceptLanguage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogServiceActionAcceptLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ServicecatalogServiceActionAcceptLanguage._(
+    TfArgLiteral('en'),
+  );
+  static const jp = ServicecatalogServiceActionAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogServiceActionAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogServiceActionAcceptLanguage> values = [
+    en,
+    jp,
+    zh,
+  ];
 }
 
 /// Typed helper for the `definition` block of
@@ -36,7 +53,7 @@ final class ServicecatalogServiceActionDefinition {
 
   final TfArg<String>? parameters;
 
-  final TfArg<ServicecatalogServiceActionType>? type;
+  final ServicecatalogServiceActionType? type;
 
   final TfArg<String> version;
 
@@ -50,12 +67,19 @@ final class ServicecatalogServiceActionDefinition {
 }
 
 /// `type` — derived from the provider schema description.
-enum ServicecatalogServiceActionType implements TerraformEnum {
-  ssmAutomation('SSM_AUTOMATION');
+extension type const ServicecatalogServiceActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogServiceActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogServiceActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogServiceActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const ServicecatalogServiceActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssmAutomation = ServicecatalogServiceActionType._(
+    TfArgLiteral('SSM_AUTOMATION'),
+  );
+
+  static const List<ServicecatalogServiceActionType> values = [ssmAutomation];
 }
 
 /// Factory wrapper for `aws_servicecatalog_service_action`.
@@ -64,7 +88,7 @@ final class AwsServicecatalogServiceAction extends Resource {
 
   AwsServicecatalogServiceAction(
     super.localName, {
-    TfArg<ServicecatalogServiceActionAcceptLanguage>? acceptLanguage,
+    ServicecatalogServiceActionAcceptLanguage? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -13,220 +13,820 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsSagemakerNotebookInstanceSensitive = <String>{};
 
 /// Sagemaker Notebook Instance Direct Internet enum for `direct_internet_access`.
-enum SagemakerNotebookInstanceDirectInternetAccess implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const SagemakerNotebookInstanceDirectInternetAccess._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerNotebookInstanceDirectInternetAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerNotebookInstanceDirectInternetAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerNotebookInstanceDirectInternetAccess.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerNotebookInstanceDirectInternetAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerNotebookInstanceDirectInternetAccess._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = SagemakerNotebookInstanceDirectInternetAccess._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerNotebookInstanceDirectInternetAccess> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Sagemaker Notebook Instance enum for `instance_type`.
-enum SagemakerNotebookInstanceType implements TerraformEnum {
-  mlT2Medium('ml.t2.medium'),
-  mlT2Large('ml.t2.large'),
-  mlT2Xlarge('ml.t2.xlarge'),
-  mlT2p2xlarge('ml.t2.2xlarge'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM4Xlarge('ml.m4.xlarge'),
-  mlM4p2xlarge('ml.m4.2xlarge'),
-  mlM4p4xlarge('ml.m4.4xlarge'),
-  mlM4p10xlarge('ml.m4.10xlarge'),
-  mlM4p16xlarge('ml.m4.16xlarge'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC4Xlarge('ml.c4.xlarge'),
-  mlC4p2xlarge('ml.c4.2xlarge'),
-  mlC4p4xlarge('ml.c4.4xlarge'),
-  mlC4p8xlarge('ml.c4.8xlarge'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5dXlarge('ml.c5d.xlarge'),
-  mlC5d2xlarge('ml.c5d.2xlarge'),
-  mlC5d4xlarge('ml.c5d.4xlarge'),
-  mlC5d9xlarge('ml.c5d.9xlarge'),
-  mlC5d18xlarge('ml.c5d.18xlarge'),
-  mlP2Xlarge('ml.p2.xlarge'),
-  mlP2p8xlarge('ml.p2.8xlarge'),
-  mlP2p16xlarge('ml.p2.16xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlInf1Xlarge('ml.inf1.xlarge'),
-  mlInf1p2xlarge('ml.inf1.2xlarge'),
-  mlInf1p6xlarge('ml.inf1.6xlarge'),
-  mlInf1p24xlarge('ml.inf1.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlInf2Xlarge('ml.inf2.xlarge'),
-  mlInf2p8xlarge('ml.inf2.8xlarge'),
-  mlInf2p24xlarge('ml.inf2.24xlarge'),
-  mlInf2p48xlarge('ml.inf2.48xlarge'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge');
+extension type const SagemakerNotebookInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerNotebookInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerNotebookInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerNotebookInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerNotebookInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mlT2Medium = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t2.medium'),
+  );
+  static const mlT2Large = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t2.large'),
+  );
+  static const mlT2Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t2.xlarge'),
+  );
+  static const mlT2p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t2.2xlarge'),
+  );
+  static const mlT3Medium = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlM4Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m4.xlarge'),
+  );
+  static const mlM4p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m4.2xlarge'),
+  );
+  static const mlM4p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m4.4xlarge'),
+  );
+  static const mlM4p10xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m4.10xlarge'),
+  );
+  static const mlM4p16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m4.16xlarge'),
+  );
+  static const mlM5Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlM5dLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.large'),
+  );
+  static const mlM5dXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.xlarge'),
+  );
+  static const mlM5d2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.2xlarge'),
+  );
+  static const mlM5d4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.4xlarge'),
+  );
+  static const mlM5d8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.8xlarge'),
+  );
+  static const mlM5d12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.12xlarge'),
+  );
+  static const mlM5d16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.16xlarge'),
+  );
+  static const mlM5d24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m5d.24xlarge'),
+  );
+  static const mlC4Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c4.xlarge'),
+  );
+  static const mlC4p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c4.2xlarge'),
+  );
+  static const mlC4p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c4.4xlarge'),
+  );
+  static const mlC4p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c4.8xlarge'),
+  );
+  static const mlC5Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5dXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5d.xlarge'),
+  );
+  static const mlC5d2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5d.2xlarge'),
+  );
+  static const mlC5d4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5d.4xlarge'),
+  );
+  static const mlC5d9xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5d.9xlarge'),
+  );
+  static const mlC5d18xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c5d.18xlarge'),
+  );
+  static const mlP2Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p2.xlarge'),
+  );
+  static const mlP2p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p2.8xlarge'),
+  );
+  static const mlP2p16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p2.16xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p3dn.24xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g4dn.12xlarge'),
+  );
+  static const mlG4dn16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g4dn.16xlarge'),
+  );
+  static const mlR5Large = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlInf1Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf1.xlarge'),
+  );
+  static const mlInf1p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf1.2xlarge'),
+  );
+  static const mlInf1p6xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf1.6xlarge'),
+  );
+  static const mlInf1p24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf1.24xlarge'),
+  );
+  static const mlTrn1p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.trn1.2xlarge'),
+  );
+  static const mlTrn1p32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.trn1.32xlarge'),
+  );
+  static const mlTrn1n32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.trn1n.32xlarge'),
+  );
+  static const mlInf2Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf2.xlarge'),
+  );
+  static const mlInf2p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf2.8xlarge'),
+  );
+  static const mlInf2p24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf2.24xlarge'),
+  );
+  static const mlInf2p48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.inf2.48xlarge'),
+  );
+  static const mlP4d24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p4de.24xlarge'),
+  );
+  static const mlP5p48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP6B200p48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p6-b200.48xlarge'),
+  );
+  static const mlM6iLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlM7iLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC6iLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.large'),
+  );
+  static const mlC6iXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlC7iLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR6iLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.large'),
+  );
+  static const mlR6iXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.xlarge'),
+  );
+  static const mlR6i2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.2xlarge'),
+  );
+  static const mlR6i4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.4xlarge'),
+  );
+  static const mlR6i8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.8xlarge'),
+  );
+  static const mlR6i12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.12xlarge'),
+  );
+  static const mlR6i16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.16xlarge'),
+  );
+  static const mlR6i24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.24xlarge'),
+  );
+  static const mlR6i32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6i.32xlarge'),
+  );
+  static const mlR7iLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlM6idLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.large'),
+  );
+  static const mlM6idXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.xlarge'),
+  );
+  static const mlM6id2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.2xlarge'),
+  );
+  static const mlM6id4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.4xlarge'),
+  );
+  static const mlM6id8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.8xlarge'),
+  );
+  static const mlM6id12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.12xlarge'),
+  );
+  static const mlM6id16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.16xlarge'),
+  );
+  static const mlM6id24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.24xlarge'),
+  );
+  static const mlM6id32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.m6id.32xlarge'),
+  );
+  static const mlC6idLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.large'),
+  );
+  static const mlC6idXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.xlarge'),
+  );
+  static const mlC6id2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.2xlarge'),
+  );
+  static const mlC6id4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.4xlarge'),
+  );
+  static const mlC6id8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.8xlarge'),
+  );
+  static const mlC6id12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.12xlarge'),
+  );
+  static const mlC6id16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.16xlarge'),
+  );
+  static const mlC6id24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.24xlarge'),
+  );
+  static const mlC6id32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.c6id.32xlarge'),
+  );
+  static const mlR6idLarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.large'),
+  );
+  static const mlR6idXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.xlarge'),
+  );
+  static const mlR6id2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.2xlarge'),
+  );
+  static const mlR6id4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.4xlarge'),
+  );
+  static const mlR6id8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.8xlarge'),
+  );
+  static const mlR6id12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.12xlarge'),
+  );
+  static const mlR6id16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.16xlarge'),
+  );
+  static const mlR6id24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.24xlarge'),
+  );
+  static const mlR6id32xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.r6id.32xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG7e2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+  static const mlP5p4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlP5en48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.p5en.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerNotebookInstanceType._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+
+  static const List<SagemakerNotebookInstanceType> values = [
+    mlT2Medium,
+    mlT2Large,
+    mlT2Xlarge,
+    mlT2p2xlarge,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlM4Xlarge,
+    mlM4p2xlarge,
+    mlM4p4xlarge,
+    mlM4p10xlarge,
+    mlM4p16xlarge,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p12xlarge,
+    mlM5p24xlarge,
+    mlM5dLarge,
+    mlM5dXlarge,
+    mlM5d2xlarge,
+    mlM5d4xlarge,
+    mlM5d8xlarge,
+    mlM5d12xlarge,
+    mlM5d16xlarge,
+    mlM5d24xlarge,
+    mlC4Xlarge,
+    mlC4p2xlarge,
+    mlC4p4xlarge,
+    mlC4p8xlarge,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p18xlarge,
+    mlC5dXlarge,
+    mlC5d2xlarge,
+    mlC5d4xlarge,
+    mlC5d9xlarge,
+    mlC5d18xlarge,
+    mlP2Xlarge,
+    mlP2p8xlarge,
+    mlP2p16xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlInf1Xlarge,
+    mlInf1p2xlarge,
+    mlInf1p6xlarge,
+    mlInf1p24xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlInf2Xlarge,
+    mlInf2p8xlarge,
+    mlInf2p24xlarge,
+    mlInf2p48xlarge,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlP5p48xlarge,
+    mlP6B200p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC6iLarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i4xlarge,
+    mlC6i8xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR6iLarge,
+    mlR6iXlarge,
+    mlR6i2xlarge,
+    mlR6i4xlarge,
+    mlR6i8xlarge,
+    mlR6i12xlarge,
+    mlR6i16xlarge,
+    mlR6i24xlarge,
+    mlR6i32xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlM6idLarge,
+    mlM6idXlarge,
+    mlM6id2xlarge,
+    mlM6id4xlarge,
+    mlM6id8xlarge,
+    mlM6id12xlarge,
+    mlM6id16xlarge,
+    mlM6id24xlarge,
+    mlM6id32xlarge,
+    mlC6idLarge,
+    mlC6idXlarge,
+    mlC6id2xlarge,
+    mlC6id4xlarge,
+    mlC6id8xlarge,
+    mlC6id12xlarge,
+    mlC6id16xlarge,
+    mlC6id24xlarge,
+    mlC6id32xlarge,
+    mlR6idLarge,
+    mlR6idXlarge,
+    mlR6id2xlarge,
+    mlR6id4xlarge,
+    mlR6id8xlarge,
+    mlR6id12xlarge,
+    mlR6id16xlarge,
+    mlR6id24xlarge,
+    mlR6id32xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p12xlarge,
+    mlG6p16xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+    mlP5p4xlarge,
+    mlP5en48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e12xlarge,
+    mlG6e16xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+  ];
 }
 
 /// Sagemaker Notebook Instance Root enum for `root_access`.
-enum SagemakerNotebookInstanceRootAccess implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const SagemakerNotebookInstanceRootAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerNotebookInstanceRootAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerNotebookInstanceRootAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerNotebookInstanceRootAccess.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerNotebookInstanceRootAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerNotebookInstanceRootAccess._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = SagemakerNotebookInstanceRootAccess._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerNotebookInstanceRootAccess> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `instance_metadata_service_configuration` block of
@@ -237,7 +837,7 @@ final class SagemakerNotebookInstanceMetadataServiceConfiguration {
     this.minimumInstanceMetadataServiceVersion,
   });
 
-  final TfArg<SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion>?
+  final SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion?
   minimumInstanceMetadataServiceVersion;
 
   Map<String, Object?> encode() => {
@@ -247,16 +847,32 @@ final class SagemakerNotebookInstanceMetadataServiceConfiguration {
 }
 
 /// `minimum_instance_metadata_service_version` — derived from the provider schema description.
-enum SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion
-    implements TerraformEnum {
-  v1('1'),
-  v2('2');
+extension type const SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const v1 =
+      SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion._(
+        TfArgLiteral('1'),
+      );
+  static const v2 =
+      SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion._(
+        TfArgLiteral('2'),
+      );
+
+  static const List<
+    SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion
+  >
+  values = [v1, v2];
 }
 
 /// Factory wrapper for `aws_sagemaker_notebook_instance`.
@@ -267,15 +883,15 @@ final class AwsSagemakerNotebookInstance extends Resource {
     super.localName, {
     TfArg<List<String>>? additionalCodeRepositories,
     TfArg<String>? defaultCodeRepository,
-    TfArg<SagemakerNotebookInstanceDirectInternetAccess>? directInternetAccess,
-    required TfArg<SagemakerNotebookInstanceType> instanceType,
+    SagemakerNotebookInstanceDirectInternetAccess? directInternetAccess,
+    required SagemakerNotebookInstanceType instanceType,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? lifecycleConfigName,
     required TfArg<String> name,
     TfArg<String>? platformIdentifier,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
-    TfArg<SagemakerNotebookInstanceRootAccess>? rootAccess,
+    SagemakerNotebookInstanceRootAccess? rootAccess,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,

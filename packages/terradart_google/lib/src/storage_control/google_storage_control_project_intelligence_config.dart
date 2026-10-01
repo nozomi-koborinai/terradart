@@ -9,18 +9,35 @@ const Set<String> _googleStorageControlProjectIntelligenceConfigSensitive =
     <String>{};
 
 /// Edition configuration of the Storage Intelligence resource.
-enum StorageControlProjectIntelligenceConfigEditionConfig
-    implements TerraformEnum {
-  inherit('INHERIT'),
-  trial('TRIAL'),
-  disabled('DISABLED'),
-  standard('STANDARD');
+extension type const StorageControlProjectIntelligenceConfigEditionConfig._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StorageControlProjectIntelligenceConfigEditionConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageControlProjectIntelligenceConfigEditionConfig.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StorageControlProjectIntelligenceConfigEditionConfig.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const StorageControlProjectIntelligenceConfigEditionConfig(
-    this.terraformValue,
+  static const inherit = StorageControlProjectIntelligenceConfigEditionConfig._(
+    TfArgLiteral('INHERIT'),
   );
-  @override
-  final String terraformValue;
+  static const trial = StorageControlProjectIntelligenceConfigEditionConfig._(
+    TfArgLiteral('TRIAL'),
+  );
+  static const disabled =
+      StorageControlProjectIntelligenceConfigEditionConfig._(
+        TfArgLiteral('DISABLED'),
+      );
+  static const standard =
+      StorageControlProjectIntelligenceConfigEditionConfig._(
+        TfArgLiteral('STANDARD'),
+      );
+
+  static const List<StorageControlProjectIntelligenceConfigEditionConfig>
+  values = [inherit, trial, disabled, standard];
 }
 
 /// Typed helper for the `filter` block of
@@ -257,9 +274,7 @@ final class StorageControlProjectIntelligenceConfigIncludedCloudStorageLocations
 /// GoogleStorageControlProjectIntelligenceConfig(
 ///   'intelligence',
 ///   name: TfArg.literal(projectId),
-///   editionConfig: TfArg.literal(
-///     StorageControlProjectIntelligenceConfigEditionConfig.disabled,
-///   ),
+///   editionConfig: StorageControlProjectIntelligenceConfigEditionConfig.disabled,
 /// );
 /// ```
 final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
@@ -269,7 +284,7 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
   GoogleStorageControlProjectIntelligenceConfig(
     super.localName, {
     required TfArg<String> name,
-    TfArg<StorageControlProjectIntelligenceConfigEditionConfig>? editionConfig,
+    StorageControlProjectIntelligenceConfigEditionConfig? editionConfig,
     StorageControlProjectIntelligenceConfigFilter? filter,
     super.lifecycle,
     super.dependsOn,

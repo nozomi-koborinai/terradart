@@ -7,25 +7,38 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIvsChannelSensitive = <String>{};
 
 /// Ivs Channel Latency enum for `latency_mode`.
-enum IvsChannelLatencyMode implements TerraformEnum {
-  normal('NORMAL'),
-  low('LOW');
+extension type const IvsChannelLatencyMode._(TfArg<String> _)
+    implements TfArg<String> {
+  IvsChannelLatencyMode.variable(String name) : this._(TfArg.variable(name));
+  IvsChannelLatencyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IvsChannelLatencyMode.arg(TfArg<String> arg) : this._(arg);
 
-  const IvsChannelLatencyMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const normal = IvsChannelLatencyMode._(TfArgLiteral('NORMAL'));
+  static const low = IvsChannelLatencyMode._(TfArgLiteral('LOW'));
+
+  static const List<IvsChannelLatencyMode> values = [normal, low];
 }
 
 /// Ivs Channel enum for `type`.
-enum IvsChannelType implements TerraformEnum {
-  basic('BASIC'),
-  standard('STANDARD'),
-  advancedSd('ADVANCED_SD'),
-  advancedHd('ADVANCED_HD');
+extension type const IvsChannelType._(TfArg<String> _)
+    implements TfArg<String> {
+  IvsChannelType.variable(String name) : this._(TfArg.variable(name));
+  IvsChannelType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IvsChannelType.arg(TfArg<String> arg) : this._(arg);
 
-  const IvsChannelType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = IvsChannelType._(TfArgLiteral('BASIC'));
+  static const standard = IvsChannelType._(TfArgLiteral('STANDARD'));
+  static const advancedSd = IvsChannelType._(TfArgLiteral('ADVANCED_SD'));
+  static const advancedHd = IvsChannelType._(TfArgLiteral('ADVANCED_HD'));
+
+  static const List<IvsChannelType> values = [
+    basic,
+    standard,
+    advancedSd,
+    advancedHd,
+  ];
 }
 
 /// Factory wrapper for `aws_ivs_channel`.
@@ -35,12 +48,12 @@ final class AwsIvsChannel extends Resource {
   AwsIvsChannel(
     super.localName, {
     TfArg<bool>? authorized,
-    TfArg<IvsChannelLatencyMode>? latencyMode,
+    IvsChannelLatencyMode? latencyMode,
     TfArg<String>? name,
     TfArg<String>? recordingConfigurationArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<IvsChannelType>? type,
+    IvsChannelType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

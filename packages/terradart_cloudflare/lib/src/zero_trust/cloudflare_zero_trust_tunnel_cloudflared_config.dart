@@ -11,13 +11,26 @@ const Set<String> _cloudflareZeroTrustTunnelCloudflaredConfigSensitive =
     <String>{};
 
 /// Zero Trust Tunnel Cloudflared Config enum for `source`.
-enum ZeroTrustTunnelCloudflaredConfigSource implements TerraformEnum {
-  local('local'),
-  cloudflare('cloudflare');
+extension type const ZeroTrustTunnelCloudflaredConfigSource._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustTunnelCloudflaredConfigSource.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustTunnelCloudflaredConfigSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustTunnelCloudflaredConfigSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustTunnelCloudflaredConfigSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const local = ZeroTrustTunnelCloudflaredConfigSource._(
+    TfArgLiteral('local'),
+  );
+  static const cloudflare = ZeroTrustTunnelCloudflaredConfigSource._(
+    TfArgLiteral('cloudflare'),
+  );
+
+  static const List<ZeroTrustTunnelCloudflaredConfigSource> values = [
+    local,
+    cloudflare,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -173,7 +186,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
   CloudflareZeroTrustTunnelCloudflaredConfig(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<ZeroTrustTunnelCloudflaredConfigSource>? source,
+    ZeroTrustTunnelCloudflaredConfigSource? source,
     required TfArg<String> tunnelId,
     ZeroTrustTunnelCloudflaredConfig? config,
     super.lifecycle,

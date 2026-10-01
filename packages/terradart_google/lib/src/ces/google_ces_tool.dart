@@ -246,7 +246,7 @@ final class CesToolDataStoreTool {
 
   final TfArg<String>? description;
 
-  final TfArg<CesToolFilterParameterBehavior>? filterParameterBehavior;
+  final CesToolFilterParameterBehavior? filterParameterBehavior;
 
   final TfArg<num>? maxResults;
 
@@ -323,14 +323,30 @@ final class CesToolEngineSourceChoice extends CesToolSource {
 }
 
 /// `filter_parameter_behavior` — derived from the provider schema description.
-enum CesToolFilterParameterBehavior implements TerraformEnum {
-  filterParameterBehaviorUnspecified('FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED'),
-  alwaysInclude('ALWAYS_INCLUDE'),
-  neverInclude('NEVER_INCLUDE');
+extension type const CesToolFilterParameterBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolFilterParameterBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CesToolFilterParameterBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolFilterParameterBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const CesToolFilterParameterBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const filterParameterBehaviorUnspecified =
+      CesToolFilterParameterBehavior._(
+        TfArgLiteral('FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED'),
+      );
+  static const alwaysInclude = CesToolFilterParameterBehavior._(
+    TfArgLiteral('ALWAYS_INCLUDE'),
+  );
+  static const neverInclude = CesToolFilterParameterBehavior._(
+    TfArgLiteral('NEVER_INCLUDE'),
+  );
+
+  static const List<CesToolFilterParameterBehavior> values = [
+    filterParameterBehaviorUnspecified,
+    alwaysInclude,
+    neverInclude,
+  ];
 }
 
 /// Typed helper for the `data_store_tool.boost_specs` block of
@@ -631,7 +647,7 @@ final class CesToolFileSearchTool {
     required this.name,
   });
 
-  final TfArg<CesToolCorpusType>? corpusType;
+  final CesToolCorpusType? corpusType;
 
   final TfArg<String>? description;
 
@@ -648,14 +664,26 @@ final class CesToolFileSearchTool {
 }
 
 /// `corpus_type` — derived from the provider schema description.
-enum CesToolCorpusType implements TerraformEnum {
-  corpusTypeUnspecified('CORPUS_TYPE_UNSPECIFIED'),
-  userOwned('USER_OWNED'),
-  fullyManaged('FULLY_MANAGED');
+extension type const CesToolCorpusType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolCorpusType.variable(String name) : this._(TfArg.variable(name));
+  CesToolCorpusType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolCorpusType.arg(TfArg<String> arg) : this._(arg);
 
-  const CesToolCorpusType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const corpusTypeUnspecified = CesToolCorpusType._(
+    TfArgLiteral('CORPUS_TYPE_UNSPECIFIED'),
+  );
+  static const userOwned = CesToolCorpusType._(TfArgLiteral('USER_OWNED'));
+  static const fullyManaged = CesToolCorpusType._(
+    TfArgLiteral('FULLY_MANAGED'),
+  );
+
+  static const List<CesToolCorpusType> values = [
+    corpusTypeUnspecified,
+    userOwned,
+    fullyManaged,
+  ];
 }
 
 /// Typed helper for the `google_search_tool` block of
@@ -790,7 +818,7 @@ final class CesToolWidgetTool {
 
   final TfArg<String>? uiConfig;
 
-  final TfArg<CesToolWidgetType>? widgetType;
+  final CesToolWidgetType? widgetType;
 
   final CesToolDataMapping? dataMapping;
 
@@ -810,24 +838,62 @@ final class CesToolWidgetTool {
 }
 
 /// `widget_type` — derived from the provider schema description.
-enum CesToolWidgetType implements TerraformEnum {
-  widgetTypeUnspecified('WIDGET_TYPE_UNSPECIFIED'),
-  custom('CUSTOM'),
-  productCarousel('PRODUCT_CAROUSEL'),
-  productDetails('PRODUCT_DETAILS'),
-  quickActions('QUICK_ACTIONS'),
-  productComparison('PRODUCT_COMPARISON'),
-  advancedProductDetails('ADVANCED_PRODUCT_DETAILS'),
-  shortForm('SHORT_FORM'),
-  overallSatisfaction('OVERALL_SATISFACTION'),
-  orderSummary('ORDER_SUMMARY'),
-  appointmentDetails('APPOINTMENT_DETAILS'),
-  appointmentScheduler('APPOINTMENT_SCHEDULER'),
-  contactForm('CONTACT_FORM');
+extension type const CesToolWidgetType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolWidgetType.variable(String name) : this._(TfArg.variable(name));
+  CesToolWidgetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolWidgetType.arg(TfArg<String> arg) : this._(arg);
 
-  const CesToolWidgetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const widgetTypeUnspecified = CesToolWidgetType._(
+    TfArgLiteral('WIDGET_TYPE_UNSPECIFIED'),
+  );
+  static const custom = CesToolWidgetType._(TfArgLiteral('CUSTOM'));
+  static const productCarousel = CesToolWidgetType._(
+    TfArgLiteral('PRODUCT_CAROUSEL'),
+  );
+  static const productDetails = CesToolWidgetType._(
+    TfArgLiteral('PRODUCT_DETAILS'),
+  );
+  static const quickActions = CesToolWidgetType._(
+    TfArgLiteral('QUICK_ACTIONS'),
+  );
+  static const productComparison = CesToolWidgetType._(
+    TfArgLiteral('PRODUCT_COMPARISON'),
+  );
+  static const advancedProductDetails = CesToolWidgetType._(
+    TfArgLiteral('ADVANCED_PRODUCT_DETAILS'),
+  );
+  static const shortForm = CesToolWidgetType._(TfArgLiteral('SHORT_FORM'));
+  static const overallSatisfaction = CesToolWidgetType._(
+    TfArgLiteral('OVERALL_SATISFACTION'),
+  );
+  static const orderSummary = CesToolWidgetType._(
+    TfArgLiteral('ORDER_SUMMARY'),
+  );
+  static const appointmentDetails = CesToolWidgetType._(
+    TfArgLiteral('APPOINTMENT_DETAILS'),
+  );
+  static const appointmentScheduler = CesToolWidgetType._(
+    TfArgLiteral('APPOINTMENT_SCHEDULER'),
+  );
+  static const contactForm = CesToolWidgetType._(TfArgLiteral('CONTACT_FORM'));
+
+  static const List<CesToolWidgetType> values = [
+    widgetTypeUnspecified,
+    custom,
+    productCarousel,
+    productDetails,
+    quickActions,
+    productComparison,
+    advancedProductDetails,
+    shortForm,
+    overallSatisfaction,
+    orderSummary,
+    appointmentDetails,
+    appointmentScheduler,
+    contactForm,
+  ];
 }
 
 /// Typed helper for the `widget_tool.data_mapping` block of
@@ -843,7 +909,7 @@ final class CesToolDataMapping {
 
   final TfArg<Map<String, String>>? fieldMappings;
 
-  final TfArg<CesToolMode>? mode;
+  final CesToolMode? mode;
 
   final TfArg<String>? sourceToolName;
 
@@ -858,14 +924,22 @@ final class CesToolDataMapping {
 }
 
 /// `mode` — derived from the provider schema description.
-enum CesToolMode implements TerraformEnum {
-  modeUnspecified('MODE_UNSPECIFIED'),
-  fieldMapping('FIELD_MAPPING'),
-  pythonScript('PYTHON_SCRIPT');
+extension type const CesToolMode._(TfArg<String> _) implements TfArg<String> {
+  CesToolMode.variable(String name) : this._(TfArg.variable(name));
+  CesToolMode.expression(String template) : this._(TfArg.expression(template));
+  const CesToolMode.arg(TfArg<String> arg) : this._(arg);
 
-  const CesToolMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modeUnspecified = CesToolMode._(
+    TfArgLiteral('MODE_UNSPECIFIED'),
+  );
+  static const fieldMapping = CesToolMode._(TfArgLiteral('FIELD_MAPPING'));
+  static const pythonScript = CesToolMode._(TfArgLiteral('PYTHON_SCRIPT'));
+
+  static const List<CesToolMode> values = [
+    modeUnspecified,
+    fieldMapping,
+    pythonScript,
+  ];
 }
 
 /// Typed helper for the `widget_tool.data_mapping.python_function` block of
@@ -898,7 +972,7 @@ final class CesToolTextResponseConfig {
 
   final TfArg<String>? textResponseInstruction;
 
-  final TfArg<CesToolType>? type;
+  final CesToolType? type;
 
   Map<String, Object?> encode() => {
     'static_text': ?staticText?.toTfJson(),
@@ -908,15 +982,24 @@ final class CesToolTextResponseConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum CesToolType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  none('NONE'),
-  llmGenerated('LLM_GENERATED'),
-  static('STATIC');
+extension type const CesToolType._(TfArg<String> _) implements TfArg<String> {
+  CesToolType.variable(String name) : this._(TfArg.variable(name));
+  CesToolType.expression(String template) : this._(TfArg.expression(template));
+  const CesToolType.arg(TfArg<String> arg) : this._(arg);
 
-  const CesToolType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = CesToolType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const none = CesToolType._(TfArgLiteral('NONE'));
+  static const llmGenerated = CesToolType._(TfArgLiteral('LLM_GENERATED'));
+  static const static = CesToolType._(TfArgLiteral('STATIC'));
+
+  static const List<CesToolType> values = [
+    typeUnspecified,
+    none,
+    llmGenerated,
+    static,
+  ];
 }
 
 /// Factory wrapper for `google_ces_tool`.

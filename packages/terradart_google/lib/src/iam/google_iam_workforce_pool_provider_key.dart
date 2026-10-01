@@ -13,20 +13,35 @@ const Set<String> _googleIamWorkforcePoolProviderKeySensitive = <String>{};
 final class IamWorkforcePoolProviderKeyData {
   const IamWorkforcePoolProviderKeyData({required this.keySpec});
 
-  final TfArg<IamWorkforcePoolProviderKeySpec> keySpec;
+  final IamWorkforcePoolProviderKeySpec keySpec;
 
   Map<String, Object?> encode() => {'key_spec': keySpec.toTfJson()};
 }
 
 /// `key_spec` — derived from the provider schema description.
-enum IamWorkforcePoolProviderKeySpec implements TerraformEnum {
-  rsa2048('RSA_2048'),
-  rsa3072('RSA_3072'),
-  rsa4096('RSA_4096');
+extension type const IamWorkforcePoolProviderKeySpec._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkforcePoolProviderKeySpec.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderKeySpec.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderKeySpec.arg(TfArg<String> arg) : this._(arg);
 
-  const IamWorkforcePoolProviderKeySpec(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa2048 = IamWorkforcePoolProviderKeySpec._(
+    TfArgLiteral('RSA_2048'),
+  );
+  static const rsa3072 = IamWorkforcePoolProviderKeySpec._(
+    TfArgLiteral('RSA_3072'),
+  );
+  static const rsa4096 = IamWorkforcePoolProviderKeySpec._(
+    TfArgLiteral('RSA_4096'),
+  );
+
+  static const List<IamWorkforcePoolProviderKeySpec> values = [
+    rsa2048,
+    rsa3072,
+    rsa4096,
+  ];
 }
 
 /// Factory wrapper for `google_iam_workforce_pool_provider_key`.

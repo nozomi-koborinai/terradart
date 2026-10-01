@@ -7,40 +7,89 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsKmsExternalKeySensitive = <String>{'key_material_base64'};
 
 /// Kms External Key enum for `key_spec`.
-enum KmsExternalKeySpec implements TerraformEnum {
-  rsa2048('RSA_2048'),
-  rsa3072('RSA_3072'),
-  rsa4096('RSA_4096'),
-  eccNistP256('ECC_NIST_P256'),
-  eccNistP384('ECC_NIST_P384'),
-  eccNistP521('ECC_NIST_P521'),
-  eccSecgP256k1('ECC_SECG_P256K1'),
-  symmetricDefault('SYMMETRIC_DEFAULT'),
-  hmac224('HMAC_224'),
-  hmac256('HMAC_256'),
-  hmac384('HMAC_384'),
-  hmac512('HMAC_512'),
-  sm2('SM2'),
-  mlDsa44('ML_DSA_44'),
-  mlDsa65('ML_DSA_65'),
-  mlDsa87('ML_DSA_87'),
-  eccNistEdwards25519('ECC_NIST_EDWARDS25519');
+extension type const KmsExternalKeySpec._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsExternalKeySpec.variable(String name) : this._(TfArg.variable(name));
+  KmsExternalKeySpec.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsExternalKeySpec.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsExternalKeySpec(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa2048 = KmsExternalKeySpec._(TfArgLiteral('RSA_2048'));
+  static const rsa3072 = KmsExternalKeySpec._(TfArgLiteral('RSA_3072'));
+  static const rsa4096 = KmsExternalKeySpec._(TfArgLiteral('RSA_4096'));
+  static const eccNistP256 = KmsExternalKeySpec._(
+    TfArgLiteral('ECC_NIST_P256'),
+  );
+  static const eccNistP384 = KmsExternalKeySpec._(
+    TfArgLiteral('ECC_NIST_P384'),
+  );
+  static const eccNistP521 = KmsExternalKeySpec._(
+    TfArgLiteral('ECC_NIST_P521'),
+  );
+  static const eccSecgP256k1 = KmsExternalKeySpec._(
+    TfArgLiteral('ECC_SECG_P256K1'),
+  );
+  static const symmetricDefault = KmsExternalKeySpec._(
+    TfArgLiteral('SYMMETRIC_DEFAULT'),
+  );
+  static const hmac224 = KmsExternalKeySpec._(TfArgLiteral('HMAC_224'));
+  static const hmac256 = KmsExternalKeySpec._(TfArgLiteral('HMAC_256'));
+  static const hmac384 = KmsExternalKeySpec._(TfArgLiteral('HMAC_384'));
+  static const hmac512 = KmsExternalKeySpec._(TfArgLiteral('HMAC_512'));
+  static const sm2 = KmsExternalKeySpec._(TfArgLiteral('SM2'));
+  static const mlDsa44 = KmsExternalKeySpec._(TfArgLiteral('ML_DSA_44'));
+  static const mlDsa65 = KmsExternalKeySpec._(TfArgLiteral('ML_DSA_65'));
+  static const mlDsa87 = KmsExternalKeySpec._(TfArgLiteral('ML_DSA_87'));
+  static const eccNistEdwards25519 = KmsExternalKeySpec._(
+    TfArgLiteral('ECC_NIST_EDWARDS25519'),
+  );
+
+  static const List<KmsExternalKeySpec> values = [
+    rsa2048,
+    rsa3072,
+    rsa4096,
+    eccNistP256,
+    eccNistP384,
+    eccNistP521,
+    eccSecgP256k1,
+    symmetricDefault,
+    hmac224,
+    hmac256,
+    hmac384,
+    hmac512,
+    sm2,
+    mlDsa44,
+    mlDsa65,
+    mlDsa87,
+    eccNistEdwards25519,
+  ];
 }
 
 /// Kms External Key enum for `key_usage`.
-enum KmsExternalKeyUsage implements TerraformEnum {
-  signVerify('SIGN_VERIFY'),
-  encryptDecrypt('ENCRYPT_DECRYPT'),
-  generateVerifyMac('GENERATE_VERIFY_MAC'),
-  keyAgreement('KEY_AGREEMENT');
+extension type const KmsExternalKeyUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsExternalKeyUsage.variable(String name) : this._(TfArg.variable(name));
+  KmsExternalKeyUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsExternalKeyUsage.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsExternalKeyUsage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const signVerify = KmsExternalKeyUsage._(TfArgLiteral('SIGN_VERIFY'));
+  static const encryptDecrypt = KmsExternalKeyUsage._(
+    TfArgLiteral('ENCRYPT_DECRYPT'),
+  );
+  static const generateVerifyMac = KmsExternalKeyUsage._(
+    TfArgLiteral('GENERATE_VERIFY_MAC'),
+  );
+  static const keyAgreement = KmsExternalKeyUsage._(
+    TfArgLiteral('KEY_AGREEMENT'),
+  );
+
+  static const List<KmsExternalKeyUsage> values = [
+    signVerify,
+    encryptDecrypt,
+    generateVerifyMac,
+    keyAgreement,
+  ];
 }
 
 /// Factory wrapper for `aws_kms_external_key`.
@@ -54,8 +103,8 @@ final class AwsKmsExternalKey extends Resource {
     TfArg<String>? description,
     TfArg<bool>? enabled,
     TfArg<String>? keyMaterialBase64,
-    TfArg<KmsExternalKeySpec>? keySpec,
-    TfArg<KmsExternalKeyUsage>? keyUsage,
+    KmsExternalKeySpec? keySpec,
+    KmsExternalKeyUsage? keyUsage,
     TfArg<bool>? multiRegion,
     TfArg<String>? policy,
     TfArg<String>? region,

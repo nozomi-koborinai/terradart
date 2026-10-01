@@ -22,7 +22,7 @@ final class ObservabilityadminS3TableIntegrationEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<ObservabilityadminS3TableIntegrationSseAlgorithm> sseAlgorithm;
+  final ObservabilityadminS3TableIntegrationSseAlgorithm sseAlgorithm;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -31,13 +31,27 @@ final class ObservabilityadminS3TableIntegrationEncryption {
 }
 
 /// `sse_algorithm` — derived from the provider schema description.
-enum ObservabilityadminS3TableIntegrationSseAlgorithm implements TerraformEnum {
-  awsKms('aws:kms'),
-  aes256('AES256');
+extension type const ObservabilityadminS3TableIntegrationSseAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminS3TableIntegrationSseAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminS3TableIntegrationSseAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminS3TableIntegrationSseAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminS3TableIntegrationSseAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsKms = ObservabilityadminS3TableIntegrationSseAlgorithm._(
+    TfArgLiteral('aws:kms'),
+  );
+  static const aes256 = ObservabilityadminS3TableIntegrationSseAlgorithm._(
+    TfArgLiteral('AES256'),
+  );
+
+  static const List<ObservabilityadminS3TableIntegrationSseAlgorithm> values = [
+    awsKms,
+    aes256,
+  ];
 }
 
 /// Factory wrapper for `aws_observabilityadmin_s3_table_integration`.

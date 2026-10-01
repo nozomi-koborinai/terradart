@@ -4,24 +4,27 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 # Schema docs say "Must be one of DATA_READ, DATA_WRITE, or ADMIN_READ" but
-# deriveEnums does not parse that phrasing — hand-write the TerraformEnum.
+# deriveEnums does not parse that phrasing — hand-write the enum.
 deriveEnums: false
 
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-# Nested dartTypeOverrides are not applied by the emitter today; keep the
-# enum in prelude and pass `.terraformValue` (or a string literal) at call sites.
+# Nested dartTypeOverrides are not applied by the emitter today, so the
+# helper field stays `TfArg<String>`; the prelude enum implements it, so
+# call sites pass `ProjectIamAuditConfigAuditLogConfigLogType.adminRead`.
 prelude: |
   /// Permission type for which IAM audit logging is configured.
-  enum ProjectIamAuditConfigAuditLogConfigLogType implements TerraformEnum {
-    dataRead('DATA_READ'),
-    dataWrite('DATA_WRITE'),
-    adminRead('ADMIN_READ');
+  extension type const ProjectIamAuditConfigAuditLogConfigLogType._(TfArg<String> _) implements TfArg<String> {
+    ProjectIamAuditConfigAuditLogConfigLogType.variable(String name) : this._(TfArg.variable(name));
+    ProjectIamAuditConfigAuditLogConfigLogType.expression(String template) : this._(TfArg.expression(template));
+    const ProjectIamAuditConfigAuditLogConfigLogType.arg(TfArg<String> arg) : this._(arg);
 
-    const ProjectIamAuditConfigAuditLogConfigLogType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(TfArgLiteral('DATA_READ'));
+    static const dataWrite = ProjectIamAuditConfigAuditLogConfigLogType._(TfArgLiteral('DATA_WRITE'));
+    static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(TfArgLiteral('ADMIN_READ'));
+
+    static const List<ProjectIamAuditConfigAuditLogConfigLogType> values = [dataRead, dataWrite, adminRead];
   }
 
 curatedDoc: |-
@@ -41,9 +44,7 @@ curatedDoc: |-
   ///   service: TfArg.literal('storage.googleapis.com'),
   ///   auditLogConfig: [
   ///     ProjectIamAuditConfigAuditLogConfig(
-  ///       logType: TfArg.literal(
-  ///         ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,
-  ///       ),
+  ///       logType: ProjectIamAuditConfigAuditLogConfigLogType.adminRead,
   ///     ),
   ///   ],
   /// );

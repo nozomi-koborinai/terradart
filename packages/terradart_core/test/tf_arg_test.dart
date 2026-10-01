@@ -53,22 +53,21 @@ void main() {
     });
   });
 
-  group('Phase 4.5.1 TG-4: TfArgLiteral enum serialization', () {
-    test(
-      'Enum with `terraformValue` getter → toTfJson returns that String',
-      () {
-        final arg = TfArg.literal(_SampleEnum.alpha);
-        expect(arg.toTfJson(), 'ALPHA_VALUE');
-      },
-    );
+  group('TfArgLiteral enum serialization', () {
+    test('a provider enum is a TfArg<String> holding its value', () {
+      expect(_SampleEnum.alpha.toTfJson(), 'ALPHA_VALUE');
+      expect(_SampleEnum.values, [_SampleEnum.alpha]);
+      expect(_SampleEnum.variable('kind').toTfJson(), r'${var.kind}');
+      expect(
+        _SampleEnum.expression(r'${local.kind}').toTfJson(),
+        r'${local.kind}',
+      );
+    });
 
-    test(
-      'Enum without `terraformValue` getter → toTfJson throws ArgumentError',
-      () {
-        final arg = TfArg.literal(_BareEnum.first);
-        expect(arg.toTfJson, throwsA(isA<ArgumentError>()));
-      },
-    );
+    test('a Dart enum → toTfJson throws ArgumentError', () {
+      final arg = TfArg.literal(_BareEnum.first);
+      expect(arg.toTfJson, throwsA(isA<ArgumentError>()));
+    });
 
     test('String literal: toTfJson unchanged', () {
       expect(TfArg.literal('hello').toTfJson(), 'hello');
@@ -217,17 +216,16 @@ void main() {
   });
 }
 
-/// Sample enum with the convention (`implements TerraformEnum`, providing
-/// a `terraformValue` String field). v0.11.0 (ADR-0016) requires
-/// codegen-emitted enums to declare the interface; this fixture matches.
-enum _SampleEnum implements TerraformEnum {
-  alpha('ALPHA_VALUE');
+/// The shape every provider package declares its enums in.
+extension type const _SampleEnum._(TfArg<String> _) implements TfArg<String> {
+  _SampleEnum.variable(String name) : this._(TfArg.variable(name));
+  _SampleEnum.expression(String template) : this._(TfArg.expression(template));
 
-  const _SampleEnum(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const _SampleEnum alpha = _SampleEnum._(TfArgLiteral('ALPHA_VALUE'));
+
+  static const List<_SampleEnum> values = [alpha];
 }
 
-/// Sample enum WITHOUT the convention (no `implements TerraformEnum`).
-/// TfArg should throw on this.
+/// A plain Dart enum, which has no Terraform value. TfArg should throw on
+/// this.
 enum _BareEnum { first }

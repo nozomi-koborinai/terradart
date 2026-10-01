@@ -7,13 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLightsailLbSensitive = <String>{};
 
 /// Lightsail Lb Ip Address enum for `ip_address_type`.
-enum LightsailLbIpAddressType implements TerraformEnum {
-  dualstack('dualstack'),
-  ipv4('ipv4');
+extension type const LightsailLbIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  LightsailLbIpAddressType.variable(String name) : this._(TfArg.variable(name));
+  LightsailLbIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LightsailLbIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const LightsailLbIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dualstack = LightsailLbIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+  static const ipv4 = LightsailLbIpAddressType._(TfArgLiteral('ipv4'));
+
+  static const List<LightsailLbIpAddressType> values = [dualstack, ipv4];
 }
 
 /// Factory wrapper for `aws_lightsail_lb`.
@@ -24,7 +30,7 @@ final class AwsLightsailLb extends Resource {
     super.localName, {
     TfArg<String>? healthCheckPath,
     required TfArg<num> instancePort,
-    TfArg<LightsailLbIpAddressType>? ipAddressType,
+    LightsailLbIpAddressType? ipAddressType,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

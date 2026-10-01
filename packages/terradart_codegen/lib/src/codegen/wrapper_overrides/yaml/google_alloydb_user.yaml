@@ -31,7 +31,7 @@ curatedDoc: |-
   ///   'app',
   ///   cluster: cluster.ref,
   ///   userId: TfArg.literal('app'),
-  ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
+  ///   userType: AlloydbUserType.alloydbBuiltIn,
   ///   password: .passwordWo(.literal(dbPassword)),
   ///   passwordWoVersion: TfArg.literal('1'),
   /// );
@@ -39,11 +39,13 @@ curatedDoc: |-
 
 prelude: |
   /// `user_type` — built-in vs IAM-authenticated user.
-  enum AlloydbUserType implements TerraformEnum {
-    alloydbBuiltIn('ALLOYDB_BUILT_IN'),
-    alloydbIamUser('ALLOYDB_IAM_USER');
+  extension type const AlloydbUserType._(TfArg<String> _) implements TfArg<String> {
+    AlloydbUserType.variable(String name) : this._(TfArg.variable(name));
+    AlloydbUserType.expression(String template) : this._(TfArg.expression(template));
+    const AlloydbUserType.arg(TfArg<String> arg) : this._(arg);
 
-    const AlloydbUserType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const alloydbBuiltIn = AlloydbUserType._(TfArgLiteral('ALLOYDB_BUILT_IN'));
+    static const alloydbIamUser = AlloydbUserType._(TfArgLiteral('ALLOYDB_IAM_USER'));
+
+    static const List<AlloydbUserType> values = [alloydbBuiltIn, alloydbIamUser];
   }

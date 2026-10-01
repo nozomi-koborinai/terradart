@@ -19,7 +19,7 @@ final class NetworkServicesWasmPluginLogConfig {
 
   final TfArg<bool>? enable;
 
-  final TfArg<NetworkServicesWasmPluginMinLogLevel>? minLogLevel;
+  final NetworkServicesWasmPluginMinLogLevel? minLogLevel;
 
   final TfArg<num>? sampleRate;
 
@@ -31,18 +31,46 @@ final class NetworkServicesWasmPluginLogConfig {
 }
 
 /// `min_log_level` — derived from the provider schema description.
-enum NetworkServicesWasmPluginMinLogLevel implements TerraformEnum {
-  logLevelUnspecified('LOG_LEVEL_UNSPECIFIED'),
-  trace('TRACE'),
-  debug('DEBUG'),
-  info('INFO'),
-  warn('WARN'),
-  error('ERROR'),
-  critical('CRITICAL');
+extension type const NetworkServicesWasmPluginMinLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesWasmPluginMinLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesWasmPluginMinLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesWasmPluginMinLogLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesWasmPluginMinLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const logLevelUnspecified = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('LOG_LEVEL_UNSPECIFIED'),
+  );
+  static const trace = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('TRACE'),
+  );
+  static const debug = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('DEBUG'),
+  );
+  static const info = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('INFO'),
+  );
+  static const warn = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('WARN'),
+  );
+  static const error = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const critical = NetworkServicesWasmPluginMinLogLevel._(
+    TfArgLiteral('CRITICAL'),
+  );
+
+  static const List<NetworkServicesWasmPluginMinLogLevel> values = [
+    logLevelUnspecified,
+    trace,
+    debug,
+    info,
+    warn,
+    error,
+    critical,
+  ];
 }
 
 /// Typed helper for the `versions` block of

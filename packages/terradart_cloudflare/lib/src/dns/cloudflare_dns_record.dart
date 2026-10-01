@@ -10,32 +10,57 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareDnsRecordSensitive = <String>{};
 
 /// Dns Record enum for `type`.
-enum DnsRecordType implements TerraformEnum {
-  a('A'),
-  aaaa('AAAA'),
-  cname('CNAME'),
-  mx('MX'),
-  ns('NS'),
-  openpgpkey('OPENPGPKEY'),
-  ptr('PTR'),
-  txt('TXT'),
-  caa('CAA'),
-  cert('CERT'),
-  dnskey('DNSKEY'),
-  ds('DS'),
-  https('HTTPS'),
-  loc('LOC'),
-  naptr('NAPTR'),
-  smimea('SMIMEA'),
-  srv('SRV'),
-  sshfp('SSHFP'),
-  svcb('SVCB'),
-  tlsa('TLSA'),
-  uri('URI');
+extension type const DnsRecordType._(TfArg<String> _) implements TfArg<String> {
+  DnsRecordType.variable(String name) : this._(TfArg.variable(name));
+  DnsRecordType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsRecordType.arg(TfArg<String> arg) : this._(arg);
 
-  const DnsRecordType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a = DnsRecordType._(TfArgLiteral('A'));
+  static const aaaa = DnsRecordType._(TfArgLiteral('AAAA'));
+  static const cname = DnsRecordType._(TfArgLiteral('CNAME'));
+  static const mx = DnsRecordType._(TfArgLiteral('MX'));
+  static const ns = DnsRecordType._(TfArgLiteral('NS'));
+  static const openpgpkey = DnsRecordType._(TfArgLiteral('OPENPGPKEY'));
+  static const ptr = DnsRecordType._(TfArgLiteral('PTR'));
+  static const txt = DnsRecordType._(TfArgLiteral('TXT'));
+  static const caa = DnsRecordType._(TfArgLiteral('CAA'));
+  static const cert = DnsRecordType._(TfArgLiteral('CERT'));
+  static const dnskey = DnsRecordType._(TfArgLiteral('DNSKEY'));
+  static const ds = DnsRecordType._(TfArgLiteral('DS'));
+  static const https = DnsRecordType._(TfArgLiteral('HTTPS'));
+  static const loc = DnsRecordType._(TfArgLiteral('LOC'));
+  static const naptr = DnsRecordType._(TfArgLiteral('NAPTR'));
+  static const smimea = DnsRecordType._(TfArgLiteral('SMIMEA'));
+  static const srv = DnsRecordType._(TfArgLiteral('SRV'));
+  static const sshfp = DnsRecordType._(TfArgLiteral('SSHFP'));
+  static const svcb = DnsRecordType._(TfArgLiteral('SVCB'));
+  static const tlsa = DnsRecordType._(TfArgLiteral('TLSA'));
+  static const uri = DnsRecordType._(TfArgLiteral('URI'));
+
+  static const List<DnsRecordType> values = [
+    a,
+    aaaa,
+    cname,
+    mx,
+    ns,
+    openpgpkey,
+    ptr,
+    txt,
+    caa,
+    cert,
+    dnskey,
+    ds,
+    https,
+    loc,
+    naptr,
+    smimea,
+    srv,
+    sshfp,
+    svcb,
+    tlsa,
+    uri,
+  ];
 }
 
 /// At most one of `content`, `data` on `cloudflare_dns_record`: the provider rejects
@@ -159,7 +184,7 @@ final class DnsRecordData {
 
   final TfArg<num>? latDegrees;
 
-  final TfArg<DnsRecordLatDirection>? latDirection;
+  final DnsRecordLatDirection? latDirection;
 
   final TfArg<num>? latMinutes;
 
@@ -167,7 +192,7 @@ final class DnsRecordData {
 
   final TfArg<num>? longDegrees;
 
-  final TfArg<DnsRecordLongDirection>? longDirection;
+  final DnsRecordLongDirection? longDirection;
 
   final TfArg<num>? longMinutes;
 
@@ -254,23 +279,31 @@ final class DnsRecordData {
 }
 
 /// `lat_direction` — derived from the provider schema description.
-enum DnsRecordLatDirection implements TerraformEnum {
-  n('N'),
-  s('S');
+extension type const DnsRecordLatDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DnsRecordLatDirection.variable(String name) : this._(TfArg.variable(name));
+  DnsRecordLatDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsRecordLatDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DnsRecordLatDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const n = DnsRecordLatDirection._(TfArgLiteral('N'));
+  static const s = DnsRecordLatDirection._(TfArgLiteral('S'));
+
+  static const List<DnsRecordLatDirection> values = [n, s];
 }
 
 /// `long_direction` — derived from the provider schema description.
-enum DnsRecordLongDirection implements TerraformEnum {
-  e('E'),
-  w('W');
+extension type const DnsRecordLongDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DnsRecordLongDirection.variable(String name) : this._(TfArg.variable(name));
+  DnsRecordLongDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsRecordLongDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DnsRecordLongDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const e = DnsRecordLongDirection._(TfArgLiteral('E'));
+  static const w = DnsRecordLongDirection._(TfArgLiteral('W'));
+
+  static const List<DnsRecordLongDirection> values = [e, w];
 }
 
 /// Typed helper for the `settings` block of
@@ -315,7 +348,7 @@ final class CloudflareDnsRecord extends Resource {
     super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required TfArg<String> name,
-    required TfArg<DnsRecordType> type,
+    required DnsRecordType type,
     required TfArg<num> ttl,
     DnsRecordContent? content,
     TfArg<bool>? proxied,

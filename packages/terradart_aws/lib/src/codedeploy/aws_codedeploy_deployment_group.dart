@@ -10,14 +10,26 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCodedeployDeploymentGroupSensitive = <String>{};
 
 /// Codedeploy Deployment Group Outdated Instances enum for `outdated_instances_strategy`.
-enum CodedeployDeploymentGroupOutdatedInstancesStrategy
-    implements TerraformEnum {
-  update('UPDATE'),
-  ignore('IGNORE');
+extension type const CodedeployDeploymentGroupOutdatedInstancesStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentGroupOutdatedInstancesStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupOutdatedInstancesStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupOutdatedInstancesStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CodedeployDeploymentGroupOutdatedInstancesStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const update = CodedeployDeploymentGroupOutdatedInstancesStrategy._(
+    TfArgLiteral('UPDATE'),
+  );
+  static const ignore = CodedeployDeploymentGroupOutdatedInstancesStrategy._(
+    TfArgLiteral('IGNORE'),
+  );
+
+  static const List<CodedeployDeploymentGroupOutdatedInstancesStrategy> values =
+      [update, ignore];
 }
 
 /// Typed helper for the `alarm_configuration` block of
@@ -97,7 +109,7 @@ final class CodedeployDeploymentGroupDeploymentReadyOption {
     this.waitTimeInMinutes,
   });
 
-  final TfArg<CodedeployDeploymentGroupActionOnTimeout>? actionOnTimeout;
+  final CodedeployDeploymentGroupActionOnTimeout? actionOnTimeout;
 
   final TfArg<num>? waitTimeInMinutes;
 
@@ -108,13 +120,26 @@ final class CodedeployDeploymentGroupDeploymentReadyOption {
 }
 
 /// `action_on_timeout` — derived from the provider schema description.
-enum CodedeployDeploymentGroupActionOnTimeout implements TerraformEnum {
-  continueDeployment('CONTINUE_DEPLOYMENT'),
-  stopDeployment('STOP_DEPLOYMENT');
+extension type const CodedeployDeploymentGroupActionOnTimeout._(TfArg<String> _)
+    implements TfArg<String> {
+  CodedeployDeploymentGroupActionOnTimeout.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupActionOnTimeout.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupActionOnTimeout.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodedeployDeploymentGroupActionOnTimeout(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continueDeployment = CodedeployDeploymentGroupActionOnTimeout._(
+    TfArgLiteral('CONTINUE_DEPLOYMENT'),
+  );
+  static const stopDeployment = CodedeployDeploymentGroupActionOnTimeout._(
+    TfArgLiteral('STOP_DEPLOYMENT'),
+  );
+
+  static const List<CodedeployDeploymentGroupActionOnTimeout> values = [
+    continueDeployment,
+    stopDeployment,
+  ];
 }
 
 /// Typed helper for the `blue_green_deployment_config.green_fleet_provisioning_option` block of
@@ -123,23 +148,36 @@ enum CodedeployDeploymentGroupActionOnTimeout implements TerraformEnum {
 final class CodedeployDeploymentGroupGreenFleetProvisioningOption {
   const CodedeployDeploymentGroupGreenFleetProvisioningOption({this.action});
 
-  final TfArg<CodedeployDeploymentGroupGreenFleetProvisioningOptionAction>?
-  action;
+  final CodedeployDeploymentGroupGreenFleetProvisioningOptionAction? action;
 
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum CodedeployDeploymentGroupGreenFleetProvisioningOptionAction
-    implements TerraformEnum {
-  discoverExisting('DISCOVER_EXISTING'),
-  copyAutoScalingGroup('COPY_AUTO_SCALING_GROUP');
+extension type const CodedeployDeploymentGroupGreenFleetProvisioningOptionAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentGroupGreenFleetProvisioningOptionAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupGreenFleetProvisioningOptionAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupGreenFleetProvisioningOptionAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CodedeployDeploymentGroupGreenFleetProvisioningOptionAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const discoverExisting =
+      CodedeployDeploymentGroupGreenFleetProvisioningOptionAction._(
+        TfArgLiteral('DISCOVER_EXISTING'),
+      );
+  static const copyAutoScalingGroup =
+      CodedeployDeploymentGroupGreenFleetProvisioningOptionAction._(
+        TfArgLiteral('COPY_AUTO_SCALING_GROUP'),
+      );
+
+  static const List<CodedeployDeploymentGroupGreenFleetProvisioningOptionAction>
+  values = [discoverExisting, copyAutoScalingGroup];
 }
 
 /// Typed helper for the `blue_green_deployment_config.terminate_blue_instances_on_deployment_success` block of
@@ -151,9 +189,7 @@ final class CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess {
     this.terminationWaitTimeInMinutes,
   });
 
-  final TfArg<
-    CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction
-  >?
+  final CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction?
   action;
 
   final TfArg<num>? terminationWaitTimeInMinutes;
@@ -166,16 +202,32 @@ final class CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess {
 }
 
 /// `action` — derived from the provider schema description.
-enum CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction
-    implements TerraformEnum {
-  terminate('TERMINATE'),
-  keepAlive('KEEP_ALIVE');
+extension type const CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const terminate =
+      CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction._(
+        TfArgLiteral('TERMINATE'),
+      );
+  static const keepAlive =
+      CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction._(
+        TfArgLiteral('KEEP_ALIVE'),
+      );
+
+  static const List<
+    CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccessAction
+  >
+  values = [terminate, keepAlive];
 }
 
 /// Typed helper for the `deployment_style` block of
@@ -187,9 +239,9 @@ final class CodedeployDeploymentGroupDeploymentStyle {
     this.deploymentType,
   });
 
-  final TfArg<CodedeployDeploymentGroupDeploymentOption>? deploymentOption;
+  final CodedeployDeploymentGroupDeploymentOption? deploymentOption;
 
-  final TfArg<CodedeployDeploymentGroupDeploymentType>? deploymentType;
+  final CodedeployDeploymentGroupDeploymentType? deploymentType;
 
   Map<String, Object?> encode() => {
     'deployment_option': ?deploymentOption?.toTfJson(),
@@ -198,23 +250,51 @@ final class CodedeployDeploymentGroupDeploymentStyle {
 }
 
 /// `deployment_option` — derived from the provider schema description.
-enum CodedeployDeploymentGroupDeploymentOption implements TerraformEnum {
-  withTrafficControl('WITH_TRAFFIC_CONTROL'),
-  withoutTrafficControl('WITHOUT_TRAFFIC_CONTROL');
+extension type const CodedeployDeploymentGroupDeploymentOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentGroupDeploymentOption.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupDeploymentOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupDeploymentOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodedeployDeploymentGroupDeploymentOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const withTrafficControl = CodedeployDeploymentGroupDeploymentOption._(
+    TfArgLiteral('WITH_TRAFFIC_CONTROL'),
+  );
+  static const withoutTrafficControl =
+      CodedeployDeploymentGroupDeploymentOption._(
+        TfArgLiteral('WITHOUT_TRAFFIC_CONTROL'),
+      );
+
+  static const List<CodedeployDeploymentGroupDeploymentOption> values = [
+    withTrafficControl,
+    withoutTrafficControl,
+  ];
 }
 
 /// `deployment_type` — derived from the provider schema description.
-enum CodedeployDeploymentGroupDeploymentType implements TerraformEnum {
-  inPlace('IN_PLACE'),
-  blueGreen('BLUE_GREEN');
+extension type const CodedeployDeploymentGroupDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodedeployDeploymentGroupDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupDeploymentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodedeployDeploymentGroupDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inPlace = CodedeployDeploymentGroupDeploymentType._(
+    TfArgLiteral('IN_PLACE'),
+  );
+  static const blueGreen = CodedeployDeploymentGroupDeploymentType._(
+    TfArgLiteral('BLUE_GREEN'),
+  );
+
+  static const List<CodedeployDeploymentGroupDeploymentType> values = [
+    inPlace,
+    blueGreen,
+  ];
 }
 
 /// Typed helper for the `ec2_tag_filter` block of
@@ -230,7 +310,7 @@ final class CodedeployDeploymentGroupEc2TagFilter {
 
   final TfArg<String>? key;
 
-  final TfArg<CodedeployDeploymentGroupType>? type;
+  final CodedeployDeploymentGroupType? type;
 
   final TfArg<String>? value;
 
@@ -242,14 +322,29 @@ final class CodedeployDeploymentGroupEc2TagFilter {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodedeployDeploymentGroupType implements TerraformEnum {
-  keyOnly('KEY_ONLY'),
-  valueOnly('VALUE_ONLY'),
-  keyAndValue('KEY_AND_VALUE');
+extension type const CodedeployDeploymentGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodedeployDeploymentGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodedeployDeploymentGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keyOnly = CodedeployDeploymentGroupType._(
+    TfArgLiteral('KEY_ONLY'),
+  );
+  static const valueOnly = CodedeployDeploymentGroupType._(
+    TfArgLiteral('VALUE_ONLY'),
+  );
+  static const keyAndValue = CodedeployDeploymentGroupType._(
+    TfArgLiteral('KEY_AND_VALUE'),
+  );
+
+  static const List<CodedeployDeploymentGroupType> values = [
+    keyOnly,
+    valueOnly,
+    keyAndValue,
+  ];
 }
 
 /// Typed helper for the `ec2_tag_set` block of
@@ -399,7 +494,7 @@ final class CodedeployDeploymentGroupOnPremisesInstanceTagFilter {
 
   final TfArg<String>? key;
 
-  final TfArg<CodedeployDeploymentGroupType>? type;
+  final CodedeployDeploymentGroupType? type;
 
   final TfArg<String>? value;
 
@@ -420,7 +515,7 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
     required this.triggerTargetArn,
   });
 
-  final List<TfArg<CodedeployDeploymentGroupTriggerEvents>> triggerEvents;
+  final List<CodedeployDeploymentGroupTriggerEvents> triggerEvents;
 
   final TfArg<String> triggerName;
 
@@ -434,21 +529,58 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
 }
 
 /// `trigger_events` — derived from the provider schema description.
-enum CodedeployDeploymentGroupTriggerEvents implements TerraformEnum {
-  deploymentstart('DeploymentStart'),
-  deploymentsuccess('DeploymentSuccess'),
-  deploymentfailure('DeploymentFailure'),
-  deploymentstop('DeploymentStop'),
-  deploymentrollback('DeploymentRollback'),
-  deploymentready('DeploymentReady'),
-  instancestart('InstanceStart'),
-  instancesuccess('InstanceSuccess'),
-  instancefailure('InstanceFailure'),
-  instanceready('InstanceReady');
+extension type const CodedeployDeploymentGroupTriggerEvents._(TfArg<String> _)
+    implements TfArg<String> {
+  CodedeployDeploymentGroupTriggerEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentGroupTriggerEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentGroupTriggerEvents.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodedeployDeploymentGroupTriggerEvents(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deploymentstart = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('DeploymentStart'),
+  );
+  static const deploymentsuccess = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('DeploymentSuccess'),
+  );
+  static const deploymentfailure = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('DeploymentFailure'),
+  );
+  static const deploymentstop = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('DeploymentStop'),
+  );
+  static const deploymentrollback = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('DeploymentRollback'),
+  );
+  static const deploymentready = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('DeploymentReady'),
+  );
+  static const instancestart = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('InstanceStart'),
+  );
+  static const instancesuccess = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('InstanceSuccess'),
+  );
+  static const instancefailure = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('InstanceFailure'),
+  );
+  static const instanceready = CodedeployDeploymentGroupTriggerEvents._(
+    TfArgLiteral('InstanceReady'),
+  );
+
+  static const List<CodedeployDeploymentGroupTriggerEvents> values = [
+    deploymentstart,
+    deploymentsuccess,
+    deploymentfailure,
+    deploymentstop,
+    deploymentrollback,
+    deploymentready,
+    instancestart,
+    instancesuccess,
+    instancefailure,
+    instanceready,
+  ];
 }
 
 /// Factory wrapper for `aws_codedeploy_deployment_group`.
@@ -461,7 +593,7 @@ final class AwsCodedeployDeploymentGroup extends Resource {
     TfArg<List<String>>? autoscalingGroups,
     TfArg<String>? deploymentConfigName,
     required TfArg<String> deploymentGroupName,
-    TfArg<CodedeployDeploymentGroupOutdatedInstancesStrategy>?
+    CodedeployDeploymentGroupOutdatedInstancesStrategy?
     outdatedInstancesStrategy,
     TfArg<String>? region,
     required RefTo<AwsIamRole> serviceRoleArn,

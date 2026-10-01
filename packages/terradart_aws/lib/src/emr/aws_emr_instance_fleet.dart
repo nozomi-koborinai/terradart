@@ -119,7 +119,7 @@ final class EmrInstanceFleetOnDemandSpecification {
     required this.allocationStrategy,
   });
 
-  final TfArg<EmrInstanceFleetOnDemandSpecificationAllocationStrategy>
+  final EmrInstanceFleetOnDemandSpecificationAllocationStrategy
   allocationStrategy;
 
   Map<String, Object?> encode() => {
@@ -128,16 +128,29 @@ final class EmrInstanceFleetOnDemandSpecification {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum EmrInstanceFleetOnDemandSpecificationAllocationStrategy
-    implements TerraformEnum {
-  lowestPrice('lowest-price'),
-  prioritized('prioritized');
+extension type const EmrInstanceFleetOnDemandSpecificationAllocationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EmrInstanceFleetOnDemandSpecificationAllocationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrInstanceFleetOnDemandSpecificationAllocationStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const EmrInstanceFleetOnDemandSpecificationAllocationStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const EmrInstanceFleetOnDemandSpecificationAllocationStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const lowestPrice =
+      EmrInstanceFleetOnDemandSpecificationAllocationStrategy._(
+        TfArgLiteral('lowest-price'),
+      );
+  static const prioritized =
+      EmrInstanceFleetOnDemandSpecificationAllocationStrategy._(
+        TfArgLiteral('prioritized'),
+      );
+
+  static const List<EmrInstanceFleetOnDemandSpecificationAllocationStrategy>
+  values = [lowestPrice, prioritized];
 }
 
 /// Typed helper for the `launch_specifications.spot_specification` block of
@@ -151,12 +164,11 @@ final class EmrInstanceFleetSpotSpecification {
     required this.timeoutDurationMinutes,
   });
 
-  final TfArg<EmrInstanceFleetSpotSpecificationAllocationStrategy>
-  allocationStrategy;
+  final EmrInstanceFleetSpotSpecificationAllocationStrategy allocationStrategy;
 
   final TfArg<num>? blockDurationMinutes;
 
-  final TfArg<EmrInstanceFleetTimeoutAction> timeoutAction;
+  final EmrInstanceFleetTimeoutAction timeoutAction;
 
   final TfArg<num> timeoutDurationMinutes;
 
@@ -169,29 +181,69 @@ final class EmrInstanceFleetSpotSpecification {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum EmrInstanceFleetSpotSpecificationAllocationStrategy
-    implements TerraformEnum {
-  capacityOptimized('capacity-optimized'),
-  priceCapacityOptimized('price-capacity-optimized'),
-  lowestPrice('lowest-price'),
-  diversified('diversified'),
-  capacityOptimizedPrioritized('capacity-optimized-prioritized');
+extension type const EmrInstanceFleetSpotSpecificationAllocationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EmrInstanceFleetSpotSpecificationAllocationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrInstanceFleetSpotSpecificationAllocationStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const EmrInstanceFleetSpotSpecificationAllocationStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const EmrInstanceFleetSpotSpecificationAllocationStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const capacityOptimized =
+      EmrInstanceFleetSpotSpecificationAllocationStrategy._(
+        TfArgLiteral('capacity-optimized'),
+      );
+  static const priceCapacityOptimized =
+      EmrInstanceFleetSpotSpecificationAllocationStrategy._(
+        TfArgLiteral('price-capacity-optimized'),
+      );
+  static const lowestPrice =
+      EmrInstanceFleetSpotSpecificationAllocationStrategy._(
+        TfArgLiteral('lowest-price'),
+      );
+  static const diversified =
+      EmrInstanceFleetSpotSpecificationAllocationStrategy._(
+        TfArgLiteral('diversified'),
+      );
+  static const capacityOptimizedPrioritized =
+      EmrInstanceFleetSpotSpecificationAllocationStrategy._(
+        TfArgLiteral('capacity-optimized-prioritized'),
+      );
+
+  static const List<EmrInstanceFleetSpotSpecificationAllocationStrategy>
+  values = [
+    capacityOptimized,
+    priceCapacityOptimized,
+    lowestPrice,
+    diversified,
+    capacityOptimizedPrioritized,
+  ];
 }
 
 /// `timeout_action` — derived from the provider schema description.
-enum EmrInstanceFleetTimeoutAction implements TerraformEnum {
-  switchToOnDemand('SWITCH_TO_ON_DEMAND'),
-  terminateCluster('TERMINATE_CLUSTER');
+extension type const EmrInstanceFleetTimeoutAction._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrInstanceFleetTimeoutAction.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrInstanceFleetTimeoutAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrInstanceFleetTimeoutAction.arg(TfArg<String> arg) : this._(arg);
 
-  const EmrInstanceFleetTimeoutAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const switchToOnDemand = EmrInstanceFleetTimeoutAction._(
+    TfArgLiteral('SWITCH_TO_ON_DEMAND'),
+  );
+  static const terminateCluster = EmrInstanceFleetTimeoutAction._(
+    TfArgLiteral('TERMINATE_CLUSTER'),
+  );
+
+  static const List<EmrInstanceFleetTimeoutAction> values = [
+    switchToOnDemand,
+    terminateCluster,
+  ];
 }
 
 /// Factory wrapper for `aws_emr_instance_fleet`.

@@ -12,13 +12,17 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsEmrStudioSensitive = <String>{};
 
 /// Emr Studio Auth enum for `auth_mode`.
-enum EmrStudioAuthMode implements TerraformEnum {
-  sso('SSO'),
-  iam('IAM');
+extension type const EmrStudioAuthMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrStudioAuthMode.variable(String name) : this._(TfArg.variable(name));
+  EmrStudioAuthMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrStudioAuthMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EmrStudioAuthMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sso = EmrStudioAuthMode._(TfArgLiteral('SSO'));
+  static const iam = EmrStudioAuthMode._(TfArgLiteral('IAM'));
+
+  static const List<EmrStudioAuthMode> values = [sso, iam];
 }
 
 /// Factory wrapper for `aws_emr_studio`.
@@ -27,7 +31,7 @@ final class AwsEmrStudio extends Resource {
 
   AwsEmrStudio(
     super.localName, {
-    required TfArg<EmrStudioAuthMode> authMode,
+    required EmrStudioAuthMode authMode,
     required TfArg<String> defaultS3Location,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? encryptionKeyArn,

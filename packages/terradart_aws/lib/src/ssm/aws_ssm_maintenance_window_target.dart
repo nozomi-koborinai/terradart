@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsmMaintenanceWindowTargetSensitive = <String>{};
 
 /// Ssm Maintenance Window Target Resource enum for `resource_type`.
-enum SsmMaintenanceWindowTargetResourceType implements TerraformEnum {
-  instance('INSTANCE'),
-  resourceGroup('RESOURCE_GROUP');
+extension type const SsmMaintenanceWindowTargetResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmMaintenanceWindowTargetResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmMaintenanceWindowTargetResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmMaintenanceWindowTargetResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmMaintenanceWindowTargetResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instance = SsmMaintenanceWindowTargetResourceType._(
+    TfArgLiteral('INSTANCE'),
+  );
+  static const resourceGroup = SsmMaintenanceWindowTargetResourceType._(
+    TfArgLiteral('RESOURCE_GROUP'),
+  );
+
+  static const List<SsmMaintenanceWindowTargetResourceType> values = [
+    instance,
+    resourceGroup,
+  ];
 }
 
 /// Typed helper for the `targets` block of
@@ -46,7 +59,7 @@ final class AwsSsmMaintenanceWindowTarget extends Resource {
     TfArg<String>? name,
     TfArg<String>? ownerInformation,
     TfArg<String>? region,
-    required TfArg<SsmMaintenanceWindowTargetResourceType> resourceType,
+    required SsmMaintenanceWindowTargetResourceType resourceType,
     required TfArg<String> windowId,
     required List<SsmMaintenanceWindowTargetTargets> targets,
     super.lifecycle,

@@ -9,23 +9,38 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsCloudhsmV2ClusterSensitive = <String>{};
 
 /// Cloudhsm V2 Cluster Hsm enum for `hsm_type`.
-enum CloudhsmV2ClusterHsmType implements TerraformEnum {
-  hsm1Medium('hsm1.medium'),
-  hsm2mMedium('hsm2m.medium');
+extension type const CloudhsmV2ClusterHsmType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudhsmV2ClusterHsmType.variable(String name) : this._(TfArg.variable(name));
+  CloudhsmV2ClusterHsmType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudhsmV2ClusterHsmType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudhsmV2ClusterHsmType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hsm1Medium = CloudhsmV2ClusterHsmType._(
+    TfArgLiteral('hsm1.medium'),
+  );
+  static const hsm2mMedium = CloudhsmV2ClusterHsmType._(
+    TfArgLiteral('hsm2m.medium'),
+  );
+
+  static const List<CloudhsmV2ClusterHsmType> values = [
+    hsm1Medium,
+    hsm2mMedium,
+  ];
 }
 
 /// Cloudhsm V2 Cluster enum for `mode`.
-enum CloudhsmV2ClusterMode implements TerraformEnum {
-  fips('FIPS'),
-  nonFips('NON_FIPS');
+extension type const CloudhsmV2ClusterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudhsmV2ClusterMode.variable(String name) : this._(TfArg.variable(name));
+  CloudhsmV2ClusterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudhsmV2ClusterMode.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudhsmV2ClusterMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fips = CloudhsmV2ClusterMode._(TfArgLiteral('FIPS'));
+  static const nonFips = CloudhsmV2ClusterMode._(TfArgLiteral('NON_FIPS'));
+
+  static const List<CloudhsmV2ClusterMode> values = [fips, nonFips];
 }
 
 /// Factory wrapper for `aws_cloudhsm_v2_cluster`.
@@ -34,8 +49,8 @@ final class AwsCloudhsmV2Cluster extends Resource {
 
   AwsCloudhsmV2Cluster(
     super.localName, {
-    required TfArg<CloudhsmV2ClusterHsmType> hsmType,
-    TfArg<CloudhsmV2ClusterMode>? mode,
+    required CloudhsmV2ClusterHsmType hsmType,
+    CloudhsmV2ClusterMode? mode,
     TfArg<String>? region,
     TfArg<String>? sourceBackupIdentifier,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,

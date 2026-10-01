@@ -42,9 +42,9 @@ final class DataCloudforceOneRequestFilter {
 
   final TfArg<String>? sortBy;
 
-  final TfArg<DataCloudforceOneRequestSortOrder>? sortOrder;
+  final DataCloudforceOneRequestSortOrder? sortOrder;
 
-  final TfArg<DataCloudforceOneRequestFilterStatus>? status;
+  final DataCloudforceOneRequestFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'completed_after': ?completedAfter?.toTfJson(),
@@ -61,27 +61,57 @@ final class DataCloudforceOneRequestFilter {
 }
 
 /// `sort_order` — derived from the provider schema description.
-enum DataCloudforceOneRequestSortOrder implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataCloudforceOneRequestSortOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCloudforceOneRequestSortOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCloudforceOneRequestSortOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCloudforceOneRequestSortOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCloudforceOneRequestSortOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataCloudforceOneRequestSortOrder._(TfArgLiteral('asc'));
+  static const desc = DataCloudforceOneRequestSortOrder._(TfArgLiteral('desc'));
+
+  static const List<DataCloudforceOneRequestSortOrder> values = [asc, desc];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataCloudforceOneRequestFilterStatus implements TerraformEnum {
-  open('open'),
-  accepted('accepted'),
-  reported('reported'),
-  approved('approved'),
-  completed('completed'),
-  declined('declined');
+extension type const DataCloudforceOneRequestFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCloudforceOneRequestFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCloudforceOneRequestFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCloudforceOneRequestFilterStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataCloudforceOneRequestFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const open = DataCloudforceOneRequestFilterStatus._(
+    TfArgLiteral('open'),
+  );
+  static const accepted = DataCloudforceOneRequestFilterStatus._(
+    TfArgLiteral('accepted'),
+  );
+  static const reported = DataCloudforceOneRequestFilterStatus._(
+    TfArgLiteral('reported'),
+  );
+  static const approved = DataCloudforceOneRequestFilterStatus._(
+    TfArgLiteral('approved'),
+  );
+  static const completed = DataCloudforceOneRequestFilterStatus._(
+    TfArgLiteral('completed'),
+  );
+  static const declined = DataCloudforceOneRequestFilterStatus._(
+    TfArgLiteral('declined'),
+  );
+
+  static const List<DataCloudforceOneRequestFilterStatus> values = [
+    open,
+    accepted,
+    reported,
+    approved,
+    completed,
+    declined,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_cloudforce_one_request`.

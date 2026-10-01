@@ -20,11 +20,11 @@ final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfig {
     this.jsonCustomConfig,
   });
 
-  final TfArg<ComputeOrganizationSecurityPolicyJsonParsing>? jsonParsing;
+  final ComputeOrganizationSecurityPolicyJsonParsing? jsonParsing;
 
-  final TfArg<ComputeOrganizationSecurityPolicyLogLevel>? logLevel;
+  final ComputeOrganizationSecurityPolicyLogLevel? logLevel;
 
-  final TfArg<ComputeOrganizationSecurityPolicyRequestBodyInspectionSize>?
+  final ComputeOrganizationSecurityPolicyRequestBodyInspectionSize?
   requestBodyInspectionSize;
 
   final TfArg<List<String>>? userIpRequestHeaders;
@@ -41,40 +41,95 @@ final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfig {
 }
 
 /// `json_parsing` — derived from the provider schema description.
-enum ComputeOrganizationSecurityPolicyJsonParsing implements TerraformEnum {
-  disabled('DISABLED'),
-  standard('STANDARD'),
-  standardWithGraphql('STANDARD_WITH_GRAPHQL');
+extension type const ComputeOrganizationSecurityPolicyJsonParsing._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyJsonParsing.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyJsonParsing.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyJsonParsing.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeOrganizationSecurityPolicyJsonParsing(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = ComputeOrganizationSecurityPolicyJsonParsing._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const standard = ComputeOrganizationSecurityPolicyJsonParsing._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardWithGraphql =
+      ComputeOrganizationSecurityPolicyJsonParsing._(
+        TfArgLiteral('STANDARD_WITH_GRAPHQL'),
+      );
+
+  static const List<ComputeOrganizationSecurityPolicyJsonParsing> values = [
+    disabled,
+    standard,
+    standardWithGraphql,
+  ];
 }
 
 /// `log_level` — derived from the provider schema description.
-enum ComputeOrganizationSecurityPolicyLogLevel implements TerraformEnum {
-  normal('NORMAL'),
-  verbose('VERBOSE');
+extension type const ComputeOrganizationSecurityPolicyLogLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyLogLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeOrganizationSecurityPolicyLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const normal = ComputeOrganizationSecurityPolicyLogLevel._(
+    TfArgLiteral('NORMAL'),
+  );
+  static const verbose = ComputeOrganizationSecurityPolicyLogLevel._(
+    TfArgLiteral('VERBOSE'),
+  );
+
+  static const List<ComputeOrganizationSecurityPolicyLogLevel> values = [
+    normal,
+    verbose,
+  ];
 }
 
 /// `request_body_inspection_size` — derived from the provider schema description.
-enum ComputeOrganizationSecurityPolicyRequestBodyInspectionSize
-    implements TerraformEnum {
-  v8kb('8KB'),
-  v16kb('16KB'),
-  v32kb('32KB'),
-  v48kb('48KB'),
-  v64kb('64KB');
+extension type const ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeOrganizationSecurityPolicyRequestBodyInspectionSize.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ComputeOrganizationSecurityPolicyRequestBodyInspectionSize.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeOrganizationSecurityPolicyRequestBodyInspectionSize.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeOrganizationSecurityPolicyRequestBodyInspectionSize(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const v8kb =
+      ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
+        TfArgLiteral('8KB'),
+      );
+  static const v16kb =
+      ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
+        TfArgLiteral('16KB'),
+      );
+  static const v32kb =
+      ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
+        TfArgLiteral('32KB'),
+      );
+  static const v48kb =
+      ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
+        TfArgLiteral('48KB'),
+      );
+  static const v64kb =
+      ComputeOrganizationSecurityPolicyRequestBodyInspectionSize._(
+        TfArgLiteral('64KB'),
+      );
+
+  static const List<ComputeOrganizationSecurityPolicyRequestBodyInspectionSize>
+  values = [v8kb, v16kb, v32kb, v48kb, v64kb];
 }
 
 /// Typed helper for the `advanced_options_config.json_custom_config` block of

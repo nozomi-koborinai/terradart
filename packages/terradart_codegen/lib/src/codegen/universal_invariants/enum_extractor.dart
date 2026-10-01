@@ -1,58 +1,35 @@
-/// One emitted Dart enum: name + member-to-terraformValue map.
+/// One emitted Dart enum: name + member-to-Terraform-value map.
 class EmittedEnum {
   const EmittedEnum({required this.name, required this.members});
   final String name;
   final Map<String, String> members;
 }
 
-/// Parses Dart source for `enum Foo { a('A'), b('B'); const Foo(this.terraformValue);
-/// final String terraformValue; }` blocks via regex. Returns one [EmittedEnum]
-/// per `enum` keyword found whose body matches the convention.
+/// Parses Dart source for the enums `renderTerraformEnum` emits (and every
+/// `prelude` enum is written as):
 ///
-/// Conservative: an enum without the `String terraformValue` getter is
-/// skipped (it isn't using the project's convention, so Gate 3 / Gate 5
-/// don't apply to it).
+/// ```text
+/// extension type const Foo._(TfArg<String> _) implements TfArg<String> {
+///   static const Foo a = Foo._(TfArgLiteral('A'));
+///   ...
+/// }
+/// ```
+///
+/// Returns one [EmittedEnum] per declaration with at least one member.
 class EnumExtractor {
-  /// The universal-invariant scanner: canonical shapes only.
-  const EnumExtractor() : _lenient = false;
+  const EnumExtractor();
 
-  /// Also accepts the hand-curated `@override` form and a wrapped
-  /// constructor. Used by the migration manifest, which must see every
-  /// `TerraformEnum` a wrapper file declares; the invariant gates keep the
-  /// strict matcher so their accepted set does not change silently.
-  const EnumExtractor.lenient() : _lenient = true;
-
-  final bool _lenient;
-
-  /// Matches: `enum <Name> [implements TerraformEnum] { ... }` followed by
-  /// the const constructor + terraformValue field. Captures (name, body).
-  ///
-  /// The optional `implements TerraformEnum` group allows hand-curated
-  /// enums authored before v0.11.0 (ADR-0016) — which carry the
-  /// `const X(this.terraformValue)` constructor + `final String
-  /// terraformValue` field but no `implements` clause — to still match
-  /// against this scanner. The canonical post-v0.11 shape always carries
-  /// the clause.
+  /// Captures (name, body). The body runs to the `values` list every enum
+  /// declares after its members.
   static final RegExp _enumBlock = RegExp(
-    r'enum\s+([A-Z][A-Za-z0-9_]*)(?:\s+implements\s+TerraformEnum)?\s*\{([^}]*?)const\s+\1\s*\(this\.terraformValue\)\s*;\s*final\s+String\s+terraformValue\s*;',
+    r'extension\s+type\s+const\s+([A-Z][A-Za-z0-9_]*)\._\(\s*TfArg<String>\s+_\s*,?\s*\)\s+implements\s+TfArg<String>\s*\{(.*?)static\s+const\s+List<\s*\1\s*>\s+values\b',
     dotAll: true,
   );
 
-  /// [EnumExtractor.lenient]'s block matcher: additionally accepts an
-  /// `@override` before `final String terraformValue` (hand-curated enums
-  /// that annotate the interface member) and whitespace / a trailing comma
-  /// inside `(this.terraformValue)` (a `dart_style`-wrapped constructor of
-  /// a long enum name).
-  static final RegExp _lenientEnumBlock = RegExp(
-    r'enum\s+([A-Z][A-Za-z0-9_]*)(?:\s+implements\s+TerraformEnum)?\s*\{([^}]*?)const\s+\1\s*\(\s*this\.terraformValue\s*,?\s*\)\s*;\s*(?:@override\s+)?final\s+String\s+terraformValue\s*;',
-    dotAll: true,
-  );
-
-  /// Within the body, matches each `member('STRING_VALUE')`. The optional
-  /// trailing comma + whitespace before `)` handles Dart format's multi-line
-  /// member style: `name(\n    'LONG_VALUE',\n  )`.
+  /// Within the body, matches each `static const m = Foo._(TfArgLiteral('V'));`,
+  /// whitespace-tolerant for `dart_style`'s wrapping of a long member.
   static final RegExp _memberEntry = RegExp(
-    r"([a-z][a-zA-Z0-9_]*)\s*\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)",
+    r"static\s+const\s+([a-z][a-zA-Z0-9_]*)\s*=\s*([A-Z][A-Za-z0-9_]*)\._\(\s*TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)\s*,?\s*\)\s*;",
   );
 
   static final RegExp _escape = RegExp(r'\\(.)');
@@ -64,15 +41,13 @@ class EnumExtractor {
 
   List<EmittedEnum> extract(String dartSource) {
     final result = <EmittedEnum>[];
-    final block = _lenient ? _lenientEnumBlock : _enumBlock;
-    for (final match in block.allMatches(dartSource)) {
+    for (final match in _enumBlock.allMatches(dartSource)) {
       final name = match.group(1)!;
       final body = match.group(2)!;
       final members = <String, String>{};
       for (final entry in _memberEntry.allMatches(body)) {
-        final memberName = entry.group(1)!;
-        final terraformValue = _unescape(entry.group(2)!);
-        members[memberName] = terraformValue;
+        if (entry.group(2) != name) continue;
+        members[entry.group(1)!] = _unescape(entry.group(3)!);
       }
       if (members.isNotEmpty) {
         result.add(EmittedEnum(name: name, members: members));

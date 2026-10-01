@@ -20,7 +20,7 @@ final class ApiShieldAuthIdCharacteristics {
 
   final TfArg<String> name;
 
-  final TfArg<ApiShieldType> type;
+  final ApiShieldType type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -29,14 +29,17 @@ final class ApiShieldAuthIdCharacteristics {
 }
 
 /// `type` — derived from the provider schema description.
-enum ApiShieldType implements TerraformEnum {
-  header('header'),
-  cookie('cookie'),
-  jwt('jwt');
+extension type const ApiShieldType._(TfArg<String> _) implements TfArg<String> {
+  ApiShieldType.variable(String name) : this._(TfArg.variable(name));
+  ApiShieldType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiShieldType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiShieldType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const header = ApiShieldType._(TfArgLiteral('header'));
+  static const cookie = ApiShieldType._(TfArgLiteral('cookie'));
+  static const jwt = ApiShieldType._(TfArgLiteral('jwt'));
+
+  static const List<ApiShieldType> values = [header, cookie, jwt];
 }
 
 /// Factory wrapper for `cloudflare_api_shield`.

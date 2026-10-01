@@ -9,10 +9,8 @@ void main() {
       name: TfArg.literal('peer'),
       network: .literal('net-a'),
       peerNetwork: .literal('net-b'),
-      stackType: TfArg.literal(ComputeNetworkPeeringStackType.ipv4Ipv6),
-      updateStrategy: TfArg.literal(
-        ComputeNetworkPeeringUpdateStrategy.consensus,
-      ),
+      stackType: ComputeNetworkPeeringStackType.ipv4Ipv6,
+      updateStrategy: ComputeNetworkPeeringUpdateStrategy.consensus,
     );
     expect(peering.argMap['stack_type']!.toTfJson(), 'IPV4_IPV6');
     expect(peering.argMap['update_strategy']!.toTfJson(), 'CONSENSUS');

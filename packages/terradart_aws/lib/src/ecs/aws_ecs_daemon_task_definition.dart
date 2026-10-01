@@ -162,7 +162,7 @@ final class EcsDaemonTaskDefinitionDependsOn {
     required this.containerName,
   });
 
-  final TfArg<EcsDaemonTaskDefinitionCondition> condition;
+  final EcsDaemonTaskDefinitionCondition condition;
 
   final TfArg<String> containerName;
 
@@ -173,15 +173,33 @@ final class EcsDaemonTaskDefinitionDependsOn {
 }
 
 /// `condition` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionCondition implements TerraformEnum {
-  start('START'),
-  complete('COMPLETE'),
-  success('SUCCESS'),
-  healthy('HEALTHY');
+extension type const EcsDaemonTaskDefinitionCondition._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsDaemonTaskDefinitionCondition.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsDaemonTaskDefinitionCondition.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonTaskDefinitionCondition.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsDaemonTaskDefinitionCondition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const start = EcsDaemonTaskDefinitionCondition._(
+    TfArgLiteral('START'),
+  );
+  static const complete = EcsDaemonTaskDefinitionCondition._(
+    TfArgLiteral('COMPLETE'),
+  );
+  static const success = EcsDaemonTaskDefinitionCondition._(
+    TfArgLiteral('SUCCESS'),
+  );
+  static const healthy = EcsDaemonTaskDefinitionCondition._(
+    TfArgLiteral('HEALTHY'),
+  );
+
+  static const List<EcsDaemonTaskDefinitionCondition> values = [
+    start,
+    complete,
+    success,
+    healthy,
+  ];
 }
 
 /// Typed helper for the `container_definition.environment` block of
@@ -209,7 +227,7 @@ final class EcsDaemonTaskDefinitionEnvironmentFile {
     required this.value,
   });
 
-  final TfArg<EcsDaemonTaskDefinitionEnvironmentFileType> type;
+  final EcsDaemonTaskDefinitionEnvironmentFileType type;
 
   final TfArg<String> value;
 
@@ -220,12 +238,21 @@ final class EcsDaemonTaskDefinitionEnvironmentFile {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionEnvironmentFileType implements TerraformEnum {
-  s3('s3');
+extension type const EcsDaemonTaskDefinitionEnvironmentFileType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EcsDaemonTaskDefinitionEnvironmentFileType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsDaemonTaskDefinitionEnvironmentFileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonTaskDefinitionEnvironmentFileType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsDaemonTaskDefinitionEnvironmentFileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = EcsDaemonTaskDefinitionEnvironmentFileType._(
+    TfArgLiteral('s3'),
+  );
+
+  static const List<EcsDaemonTaskDefinitionEnvironmentFileType> values = [s3];
 }
 
 /// Typed helper for the `container_definition.firelens_configuration` block of
@@ -239,7 +266,7 @@ final class EcsDaemonTaskDefinitionFirelensConfiguration {
 
   final TfArg<Map<String, String>>? options;
 
-  final TfArg<EcsDaemonTaskDefinitionFirelensConfigurationType> type;
+  final EcsDaemonTaskDefinitionFirelensConfigurationType type;
 
   Map<String, Object?> encode() => {
     'options': ?options?.toTfJson(),
@@ -248,13 +275,27 @@ final class EcsDaemonTaskDefinitionFirelensConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionFirelensConfigurationType implements TerraformEnum {
-  fluentd('fluentd'),
-  fluentbit('fluentbit');
+extension type const EcsDaemonTaskDefinitionFirelensConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EcsDaemonTaskDefinitionFirelensConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsDaemonTaskDefinitionFirelensConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonTaskDefinitionFirelensConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsDaemonTaskDefinitionFirelensConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fluentd = EcsDaemonTaskDefinitionFirelensConfigurationType._(
+    TfArgLiteral('fluentd'),
+  );
+  static const fluentbit = EcsDaemonTaskDefinitionFirelensConfigurationType._(
+    TfArgLiteral('fluentbit'),
+  );
+
+  static const List<EcsDaemonTaskDefinitionFirelensConfigurationType> values = [
+    fluentd,
+    fluentbit,
+  ];
 }
 
 /// Typed helper for the `container_definition.health_check` block of
@@ -346,7 +387,7 @@ final class EcsDaemonTaskDefinitionDevice {
 
   final TfArg<String> hostPath;
 
-  final List<TfArg<EcsDaemonTaskDefinitionPermissions>>? permissions;
+  final List<EcsDaemonTaskDefinitionPermissions>? permissions;
 
   Map<String, Object?> encode() => {
     'container_path': ?containerPath?.toTfJson(),
@@ -357,14 +398,29 @@ final class EcsDaemonTaskDefinitionDevice {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionPermissions implements TerraformEnum {
-  read('read'),
-  write('write'),
-  mknod('mknod');
+extension type const EcsDaemonTaskDefinitionPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsDaemonTaskDefinitionPermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsDaemonTaskDefinitionPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonTaskDefinitionPermissions.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsDaemonTaskDefinitionPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const read = EcsDaemonTaskDefinitionPermissions._(
+    TfArgLiteral('read'),
+  );
+  static const write = EcsDaemonTaskDefinitionPermissions._(
+    TfArgLiteral('write'),
+  );
+  static const mknod = EcsDaemonTaskDefinitionPermissions._(
+    TfArgLiteral('mknod'),
+  );
+
+  static const List<EcsDaemonTaskDefinitionPermissions> values = [
+    read,
+    write,
+    mknod,
+  ];
 }
 
 /// Typed helper for the `container_definition.linux_parameters.tmpfs` block of
@@ -400,7 +456,7 @@ final class EcsDaemonTaskDefinitionLogConfiguration {
     this.secretOption,
   });
 
-  final TfArg<EcsDaemonTaskDefinitionLogDriver> logDriver;
+  final EcsDaemonTaskDefinitionLogDriver logDriver;
 
   final TfArg<Map<String, String>>? options;
 
@@ -415,19 +471,47 @@ final class EcsDaemonTaskDefinitionLogConfiguration {
 }
 
 /// `log_driver` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionLogDriver implements TerraformEnum {
-  jsonFile('json-file'),
-  syslog('syslog'),
-  journald('journald'),
-  gelf('gelf'),
-  fluentd('fluentd'),
-  awslogs('awslogs'),
-  splunk('splunk'),
-  awsfirelens('awsfirelens');
+extension type const EcsDaemonTaskDefinitionLogDriver._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsDaemonTaskDefinitionLogDriver.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsDaemonTaskDefinitionLogDriver.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonTaskDefinitionLogDriver.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsDaemonTaskDefinitionLogDriver(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonFile = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('json-file'),
+  );
+  static const syslog = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('syslog'),
+  );
+  static const journald = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('journald'),
+  );
+  static const gelf = EcsDaemonTaskDefinitionLogDriver._(TfArgLiteral('gelf'));
+  static const fluentd = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('fluentd'),
+  );
+  static const awslogs = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('awslogs'),
+  );
+  static const splunk = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('splunk'),
+  );
+  static const awsfirelens = EcsDaemonTaskDefinitionLogDriver._(
+    TfArgLiteral('awsfirelens'),
+  );
+
+  static const List<EcsDaemonTaskDefinitionLogDriver> values = [
+    jsonFile,
+    syslog,
+    journald,
+    gelf,
+    fluentd,
+    awslogs,
+    splunk,
+    awsfirelens,
+  ];
 }
 
 /// Typed helper for the `container_definition.log_configuration.secret_option` block of
@@ -557,7 +641,7 @@ final class EcsDaemonTaskDefinitionUlimit {
 
   final TfArg<num> hardLimit;
 
-  final TfArg<EcsDaemonTaskDefinitionName> name;
+  final EcsDaemonTaskDefinitionName name;
 
   final TfArg<num> softLimit;
 
@@ -569,26 +653,51 @@ final class EcsDaemonTaskDefinitionUlimit {
 }
 
 /// `name` — derived from the provider schema description.
-enum EcsDaemonTaskDefinitionName implements TerraformEnum {
-  core('core'),
-  cpu('cpu'),
-  data('data'),
-  fsize('fsize'),
-  locks('locks'),
-  memlock('memlock'),
-  msgqueue('msgqueue'),
-  nice('nice'),
-  nofile('nofile'),
-  nproc('nproc'),
-  rss('rss'),
-  rtprio('rtprio'),
-  rttime('rttime'),
-  sigpending('sigpending'),
-  stack('stack');
+extension type const EcsDaemonTaskDefinitionName._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsDaemonTaskDefinitionName.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsDaemonTaskDefinitionName.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonTaskDefinitionName.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsDaemonTaskDefinitionName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const core = EcsDaemonTaskDefinitionName._(TfArgLiteral('core'));
+  static const cpu = EcsDaemonTaskDefinitionName._(TfArgLiteral('cpu'));
+  static const data = EcsDaemonTaskDefinitionName._(TfArgLiteral('data'));
+  static const fsize = EcsDaemonTaskDefinitionName._(TfArgLiteral('fsize'));
+  static const locks = EcsDaemonTaskDefinitionName._(TfArgLiteral('locks'));
+  static const memlock = EcsDaemonTaskDefinitionName._(TfArgLiteral('memlock'));
+  static const msgqueue = EcsDaemonTaskDefinitionName._(
+    TfArgLiteral('msgqueue'),
+  );
+  static const nice = EcsDaemonTaskDefinitionName._(TfArgLiteral('nice'));
+  static const nofile = EcsDaemonTaskDefinitionName._(TfArgLiteral('nofile'));
+  static const nproc = EcsDaemonTaskDefinitionName._(TfArgLiteral('nproc'));
+  static const rss = EcsDaemonTaskDefinitionName._(TfArgLiteral('rss'));
+  static const rtprio = EcsDaemonTaskDefinitionName._(TfArgLiteral('rtprio'));
+  static const rttime = EcsDaemonTaskDefinitionName._(TfArgLiteral('rttime'));
+  static const sigpending = EcsDaemonTaskDefinitionName._(
+    TfArgLiteral('sigpending'),
+  );
+  static const stack = EcsDaemonTaskDefinitionName._(TfArgLiteral('stack'));
+
+  static const List<EcsDaemonTaskDefinitionName> values = [
+    core,
+    cpu,
+    data,
+    fsize,
+    locks,
+    memlock,
+    msgqueue,
+    nice,
+    nofile,
+    nproc,
+    rss,
+    rtprio,
+    rttime,
+    sigpending,
+    stack,
+  ];
 }
 
 /// Typed helper for the `volume` block of

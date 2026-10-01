@@ -8,16 +8,37 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseExtensionsInstanceSensitive = <String>{};
 
 /// Firebase Extensions Instance enum for `state`.
-enum FirebaseExtensionsInstanceState implements TerraformEnum {
-  deploying('DEPLOYING'),
-  uninstalling('UNINSTALLING'),
-  active('ACTIVE'),
-  errored('ERRORED'),
-  paused('PAUSED');
+extension type const FirebaseExtensionsInstanceState._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaseExtensionsInstanceState.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseExtensionsInstanceState.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseExtensionsInstanceState.arg(TfArg<String> arg) : this._(arg);
 
-  const FirebaseExtensionsInstanceState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deploying = FirebaseExtensionsInstanceState._(
+    TfArgLiteral('DEPLOYING'),
+  );
+  static const uninstalling = FirebaseExtensionsInstanceState._(
+    TfArgLiteral('UNINSTALLING'),
+  );
+  static const active = FirebaseExtensionsInstanceState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const errored = FirebaseExtensionsInstanceState._(
+    TfArgLiteral('ERRORED'),
+  );
+  static const paused = FirebaseExtensionsInstanceState._(
+    TfArgLiteral('PAUSED'),
+  );
+
+  static const List<FirebaseExtensionsInstanceState> values = [
+    deploying,
+    uninstalling,
+    active,
+    errored,
+    paused,
+  ];
 }
 
 /// Typed helper for the `config` block of

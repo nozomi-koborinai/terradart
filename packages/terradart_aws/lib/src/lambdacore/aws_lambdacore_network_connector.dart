@@ -38,10 +38,10 @@ final class LambdacoreNetworkConnectorVpcEgressConfiguration {
     required this.subnetIds,
   });
 
-  final List<TfArg<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>>
+  final List<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>
   associatedComputeResourceTypes;
 
-  final TfArg<LambdacoreNetworkConnectorNetworkProtocol>? networkProtocol;
+  final LambdacoreNetworkConnectorNetworkProtocol? networkProtocol;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
@@ -58,25 +58,49 @@ final class LambdacoreNetworkConnectorVpcEgressConfiguration {
 }
 
 /// `associated_compute_resource_types` — derived from the provider schema description.
-enum LambdacoreNetworkConnectorAssociatedComputeResourceTypes
-    implements TerraformEnum {
-  microvm('MicroVm');
+extension type const LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdacoreNetworkConnectorAssociatedComputeResourceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdacoreNetworkConnectorAssociatedComputeResourceTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const LambdacoreNetworkConnectorAssociatedComputeResourceTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const LambdacoreNetworkConnectorAssociatedComputeResourceTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const microvm =
+      LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
+        TfArgLiteral('MicroVm'),
+      );
+
+  static const List<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>
+  values = [microvm];
 }
 
 /// `network_protocol` — derived from the provider schema description.
-enum LambdacoreNetworkConnectorNetworkProtocol implements TerraformEnum {
-  ipv4('IPv4'),
-  dualstack('DualStack');
+extension type const LambdacoreNetworkConnectorNetworkProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdacoreNetworkConnectorNetworkProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdacoreNetworkConnectorNetworkProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdacoreNetworkConnectorNetworkProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdacoreNetworkConnectorNetworkProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = LambdacoreNetworkConnectorNetworkProtocol._(
+    TfArgLiteral('IPv4'),
+  );
+  static const dualstack = LambdacoreNetworkConnectorNetworkProtocol._(
+    TfArgLiteral('DualStack'),
+  );
+
+  static const List<LambdacoreNetworkConnectorNetworkProtocol> values = [
+    ipv4,
+    dualstack,
+  ];
 }
 
 /// Factory wrapper for `aws_lambdacore_network_connector`.

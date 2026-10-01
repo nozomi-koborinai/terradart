@@ -28,7 +28,7 @@ curatedDoc: |-
   ///     content: TfArg.literal('{"feature_x": true}'),
   ///   ),
   ///   contentType: TfArg.literal('application/json'),
-  ///   storageClass: TfArg.literal(BucketObjectStorageClass.standard),
+  ///   storageClass: BucketObjectStorageClass.standard,
   /// );
   /// ```
   ///
@@ -206,18 +206,20 @@ prelude: |
   ///
   /// `durableReducedAvailability` is the legacy class (deprecated 2018);
   /// keep for completeness, GCP still accepts it for existing objects.
-  enum BucketObjectStorageClass implements TerraformEnum {
-    standard('STANDARD'),
-    nearline('NEARLINE'),
-    coldline('COLDLINE'),
-    archive('ARCHIVE'),
-    multiRegional('MULTI_REGIONAL'),
-    regional('REGIONAL'),
-    durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
+  extension type const BucketObjectStorageClass._(TfArg<String> _) implements TfArg<String> {
+    BucketObjectStorageClass.variable(String name) : this._(TfArg.variable(name));
+    BucketObjectStorageClass.expression(String template) : this._(TfArg.expression(template));
+    const BucketObjectStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-    const BucketObjectStorageClass(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const standard = BucketObjectStorageClass._(TfArgLiteral('STANDARD'));
+    static const nearline = BucketObjectStorageClass._(TfArgLiteral('NEARLINE'));
+    static const coldline = BucketObjectStorageClass._(TfArgLiteral('COLDLINE'));
+    static const archive = BucketObjectStorageClass._(TfArgLiteral('ARCHIVE'));
+    static const multiRegional = BucketObjectStorageClass._(TfArgLiteral('MULTI_REGIONAL'));
+    static const regional = BucketObjectStorageClass._(TfArgLiteral('REGIONAL'));
+    static const durableReducedAvailability = BucketObjectStorageClass._(TfArgLiteral('DURABLE_REDUCED_AVAILABILITY'));
+
+    static const List<BucketObjectStorageClass> values = [standard, nearline, coldline, archive, multiRegional, regional, durableReducedAvailability];
   }
 
   // ===========================================================================

@@ -143,7 +143,7 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
     this.regexFilter,
   });
 
-  final TfArg<Lexv2modelsSlotTypeResolutionStrategy> resolutionStrategy;
+  final Lexv2modelsSlotTypeResolutionStrategy resolutionStrategy;
 
   final List<Lexv2modelsSlotTypeAdvancedRecognitionSetting>?
   advancedRecognitionSetting;
@@ -162,14 +162,30 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
 }
 
 /// `resolution_strategy` — derived from the provider schema description.
-enum Lexv2modelsSlotTypeResolutionStrategy implements TerraformEnum {
-  originalvalue('OriginalValue'),
-  topresolution('TopResolution'),
-  concatenation('Concatenation');
+extension type const Lexv2modelsSlotTypeResolutionStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  Lexv2modelsSlotTypeResolutionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  Lexv2modelsSlotTypeResolutionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Lexv2modelsSlotTypeResolutionStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Lexv2modelsSlotTypeResolutionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const originalvalue = Lexv2modelsSlotTypeResolutionStrategy._(
+    TfArgLiteral('OriginalValue'),
+  );
+  static const topresolution = Lexv2modelsSlotTypeResolutionStrategy._(
+    TfArgLiteral('TopResolution'),
+  );
+  static const concatenation = Lexv2modelsSlotTypeResolutionStrategy._(
+    TfArgLiteral('Concatenation'),
+  );
+
+  static const List<Lexv2modelsSlotTypeResolutionStrategy> values = [
+    originalvalue,
+    topresolution,
+    concatenation,
+  ];
 }
 
 /// Typed helper for the `value_selection_setting.advanced_recognition_setting` block of
@@ -180,8 +196,7 @@ final class Lexv2modelsSlotTypeAdvancedRecognitionSetting {
     this.audioRecognitionStrategy,
   });
 
-  final TfArg<Lexv2modelsSlotTypeAudioRecognitionStrategy>?
-  audioRecognitionStrategy;
+  final Lexv2modelsSlotTypeAudioRecognitionStrategy? audioRecognitionStrategy;
 
   Map<String, Object?> encode() => {
     'audio_recognition_strategy': ?audioRecognitionStrategy?.toTfJson(),
@@ -189,12 +204,24 @@ final class Lexv2modelsSlotTypeAdvancedRecognitionSetting {
 }
 
 /// `audio_recognition_strategy` — derived from the provider schema description.
-enum Lexv2modelsSlotTypeAudioRecognitionStrategy implements TerraformEnum {
-  useslotvaluesascustomvocabulary('UseSlotValuesAsCustomVocabulary');
+extension type const Lexv2modelsSlotTypeAudioRecognitionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Lexv2modelsSlotTypeAudioRecognitionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  Lexv2modelsSlotTypeAudioRecognitionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Lexv2modelsSlotTypeAudioRecognitionStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Lexv2modelsSlotTypeAudioRecognitionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useslotvaluesascustomvocabulary =
+      Lexv2modelsSlotTypeAudioRecognitionStrategy._(
+        TfArgLiteral('UseSlotValuesAsCustomVocabulary'),
+      );
+
+  static const List<Lexv2modelsSlotTypeAudioRecognitionStrategy> values = [
+    useslotvaluesascustomvocabulary,
+  ];
 }
 
 /// Typed helper for the `value_selection_setting.regex_filter` block of

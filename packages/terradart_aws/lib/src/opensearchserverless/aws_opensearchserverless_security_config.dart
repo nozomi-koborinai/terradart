@@ -8,14 +8,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOpensearchserverlessSecurityConfigSensitive = <String>{};
 
 /// Opensearchserverless Security Config enum for `type`.
-enum OpensearchserverlessSecurityConfigType implements TerraformEnum {
-  saml('saml'),
-  iamidentitycenter('iamidentitycenter'),
-  iamfederation('iamfederation');
+extension type const OpensearchserverlessSecurityConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  OpensearchserverlessSecurityConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessSecurityConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessSecurityConfigType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OpensearchserverlessSecurityConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const saml = OpensearchserverlessSecurityConfigType._(
+    TfArgLiteral('saml'),
+  );
+  static const iamidentitycenter = OpensearchserverlessSecurityConfigType._(
+    TfArgLiteral('iamidentitycenter'),
+  );
+  static const iamfederation = OpensearchserverlessSecurityConfigType._(
+    TfArgLiteral('iamfederation'),
+  );
+
+  static const List<OpensearchserverlessSecurityConfigType> values = [
+    saml,
+    iamidentitycenter,
+    iamfederation,
+  ];
 }
 
 /// Exactly one of `iam_federation_options`, `iam_identity_center_options`, `saml_options` on `aws_opensearchserverless_security_config`: the provider rejects
@@ -158,11 +174,11 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
     this.userAttribute,
   });
 
-  final TfArg<OpensearchserverlessSecurityConfigGroupAttribute>? groupAttribute;
+  final OpensearchserverlessSecurityConfigGroupAttribute? groupAttribute;
 
   final TfArg<String> instanceArn;
 
-  final TfArg<OpensearchserverlessSecurityConfigUserAttribute>? userAttribute;
+  final OpensearchserverlessSecurityConfigUserAttribute? userAttribute;
 
   Map<String, Object?> encode() => {
     'group_attribute': ?groupAttribute?.toTfJson(),
@@ -172,24 +188,55 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
 }
 
 /// `group_attribute` — derived from the provider schema description.
-enum OpensearchserverlessSecurityConfigGroupAttribute implements TerraformEnum {
-  groupid('GroupId'),
-  groupname('GroupName');
+extension type const OpensearchserverlessSecurityConfigGroupAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OpensearchserverlessSecurityConfigGroupAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessSecurityConfigGroupAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessSecurityConfigGroupAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OpensearchserverlessSecurityConfigGroupAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const groupid = OpensearchserverlessSecurityConfigGroupAttribute._(
+    TfArgLiteral('GroupId'),
+  );
+  static const groupname = OpensearchserverlessSecurityConfigGroupAttribute._(
+    TfArgLiteral('GroupName'),
+  );
+
+  static const List<OpensearchserverlessSecurityConfigGroupAttribute> values = [
+    groupid,
+    groupname,
+  ];
 }
 
 /// `user_attribute` — derived from the provider schema description.
-enum OpensearchserverlessSecurityConfigUserAttribute implements TerraformEnum {
-  userid('UserId'),
-  username('UserName'),
-  email('Email');
+extension type const OpensearchserverlessSecurityConfigUserAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OpensearchserverlessSecurityConfigUserAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessSecurityConfigUserAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessSecurityConfigUserAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OpensearchserverlessSecurityConfigUserAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const userid = OpensearchserverlessSecurityConfigUserAttribute._(
+    TfArgLiteral('UserId'),
+  );
+  static const username = OpensearchserverlessSecurityConfigUserAttribute._(
+    TfArgLiteral('UserName'),
+  );
+  static const email = OpensearchserverlessSecurityConfigUserAttribute._(
+    TfArgLiteral('Email'),
+  );
+
+  static const List<OpensearchserverlessSecurityConfigUserAttribute> values = [
+    userid,
+    username,
+    email,
+  ];
 }
 
 /// Typed helper for the `saml_options` block of
@@ -228,7 +275,7 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<OpensearchserverlessSecurityConfigType> type,
+    required OpensearchserverlessSecurityConfigType type,
     required OpensearchserverlessSecurityConfigOptions options,
     super.lifecycle,
     super.dependsOn,

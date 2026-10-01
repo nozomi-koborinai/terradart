@@ -25,7 +25,7 @@ final class CodecommitTrigger {
 
   final TfArg<String> destinationArn;
 
-  final List<TfArg<CodecommitTriggerEvents>> events;
+  final List<CodecommitTriggerEvents> events;
 
   final TfArg<String> name;
 
@@ -39,15 +39,30 @@ final class CodecommitTrigger {
 }
 
 /// `events` — derived from the provider schema description.
-enum CodecommitTriggerEvents implements TerraformEnum {
-  all('all'),
-  updatereference('updateReference'),
-  createreference('createReference'),
-  deletereference('deleteReference');
+extension type const CodecommitTriggerEvents._(TfArg<String> _)
+    implements TfArg<String> {
+  CodecommitTriggerEvents.variable(String name) : this._(TfArg.variable(name));
+  CodecommitTriggerEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodecommitTriggerEvents.arg(TfArg<String> arg) : this._(arg);
 
-  const CodecommitTriggerEvents(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = CodecommitTriggerEvents._(TfArgLiteral('all'));
+  static const updatereference = CodecommitTriggerEvents._(
+    TfArgLiteral('updateReference'),
+  );
+  static const createreference = CodecommitTriggerEvents._(
+    TfArgLiteral('createReference'),
+  );
+  static const deletereference = CodecommitTriggerEvents._(
+    TfArgLiteral('deleteReference'),
+  );
+
+  static const List<CodecommitTriggerEvents> values = [
+    all,
+    updatereference,
+    createreference,
+    deletereference,
+  ];
 }
 
 /// Factory wrapper for `aws_codecommit_trigger`.

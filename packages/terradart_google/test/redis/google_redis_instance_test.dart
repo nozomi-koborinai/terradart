@@ -10,22 +10,19 @@ void main() {
         name: TfArg.literal('cache'),
         memorySizeGb: TfArg.literal(1),
         authEnabled: TfArg.literal(true),
-        transitEncryptionMode: TfArg.literal(
-          RedisInstanceTransitEncryptionMode.serverAuthentication,
-        ),
+        transitEncryptionMode:
+            RedisInstanceTransitEncryptionMode.serverAuthentication,
         maintenancePolicy: const RedisInstanceMaintenancePolicy(
           weeklyMaintenanceWindow: RedisInstanceWeeklyMaintenanceWindow(
-            day: TfArgLiteral(RedisInstanceWeeklyMaintenanceDay.sunday),
+            day: RedisInstanceWeeklyMaintenanceDay.sunday,
             startTime: RedisInstanceMaintenanceStartTime(
               hours: TfArgLiteral(3),
             ),
           ),
         ),
         persistenceConfig: const RedisInstancePersistenceConfig(
-          persistenceMode: TfArgLiteral(RedisInstancePersistenceMode.rdb),
-          rdbSnapshotPeriod: TfArgLiteral(
-            RedisInstanceRdbSnapshotPeriod.twelveHours,
-          ),
+          persistenceMode: RedisInstancePersistenceMode.rdb,
+          rdbSnapshotPeriod: RedisInstanceRdbSnapshotPeriod.twelveHours,
         ),
       );
 
@@ -56,11 +53,9 @@ void main() {
         'cache',
         name: TfArg.literal('cache'),
         memorySizeGb: TfArg.literal(5),
-        tier: TfArg.literal(RedisInstanceTier.standardHa),
+        tier: RedisInstanceTier.standardHa,
         replicaCount: TfArg.literal(2),
-        readReplicasMode: TfArg.literal(
-          RedisInstanceReadReplicasMode.readReplicasEnabled,
-        ),
+        readReplicasMode: RedisInstanceReadReplicasMode.readReplicasEnabled,
       );
       expect(cache.argMap['replica_count']!.toTfJson(), 2);
       expect(

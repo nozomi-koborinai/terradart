@@ -14,13 +14,20 @@ const Set<String> _googleFirebaseDataConnectServiceSensitive = <String>{};
 /// Data Connect schemas / connectors still exist. [defaultPolicy] (the
 /// schema default) refuses to delete the service while any are present;
 /// [force] tears the service down regardless.
-enum DataConnectDeletionPolicy implements TerraformEnum {
-  defaultPolicy('DEFAULT'),
-  force('FORCE');
+extension type const DataConnectDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataConnectDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataConnectDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataConnectDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataConnectDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultPolicy = DataConnectDeletionPolicy._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const force = DataConnectDeletionPolicy._(TfArgLiteral('FORCE'));
+
+  static const List<DataConnectDeletionPolicy> values = [defaultPolicy, force];
 }
 
 /// Factory wrapper for `google_firebase_data_connect_service`.
@@ -57,7 +64,7 @@ final class GoogleFirebaseDataConnectService extends Resource {
     super.localName, {
     required TfArg<String> serviceId,
     required TfArg<String> location,
-    TfArg<DataConnectDeletionPolicy>? deletionPolicy,
+    DataConnectDeletionPolicy? deletionPolicy,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,
     TfArg<Map<String, String>>? labels,

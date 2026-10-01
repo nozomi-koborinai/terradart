@@ -66,7 +66,7 @@ final class ContactCenterInsightsStack extends Stack {
         qaScorecardId: .literal(scorecardId),
         displayName: .literal('TerraDart QA'),
         description: .literal('Quickstart scorecard'),
-        source: .literal(.customerDefined),
+        source: .customerDefined,
         dependsOn: [apiInsights],
       ),
     );
@@ -134,7 +134,7 @@ final class ContactCenterInsightsStack extends Stack {
         displayName: .literal('terradart-draft-autolabel'),
         description: .literal('Inactive quickstart auto-label rule'),
         labelKey: .literal('terradart_label'),
-        labelKeyType: .literal(.labelKeyTypeCustom),
+        labelKeyType: .labelKeyTypeCustom,
         conditions: [
           ContactCenterInsightsAutoLabelingRuleConditions(
             condition: .literal('true'),

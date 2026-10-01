@@ -7,15 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAppstreamUserSensitive = <String>{};
 
 /// Appstream User Authentication enum for `authentication_type`.
-enum AppstreamUserAuthenticationType implements TerraformEnum {
-  api('API'),
-  saml('SAML'),
-  userpool('USERPOOL'),
-  awsAd('AWS_AD');
+extension type const AppstreamUserAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamUserAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppstreamUserAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamUserAuthenticationType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamUserAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const api = AppstreamUserAuthenticationType._(TfArgLiteral('API'));
+  static const saml = AppstreamUserAuthenticationType._(TfArgLiteral('SAML'));
+  static const userpool = AppstreamUserAuthenticationType._(
+    TfArgLiteral('USERPOOL'),
+  );
+  static const awsAd = AppstreamUserAuthenticationType._(
+    TfArgLiteral('AWS_AD'),
+  );
+
+  static const List<AppstreamUserAuthenticationType> values = [
+    api,
+    saml,
+    userpool,
+    awsAd,
+  ];
 }
 
 /// Factory wrapper for `aws_appstream_user`.
@@ -24,7 +38,7 @@ final class AwsAppstreamUser extends Resource {
 
   AwsAppstreamUser(
     super.localName, {
-    required TfArg<AppstreamUserAuthenticationType> authenticationType,
+    required AppstreamUserAuthenticationType authenticationType,
     TfArg<bool>? enabled,
     TfArg<String>? firstName,
     TfArg<String>? lastName,

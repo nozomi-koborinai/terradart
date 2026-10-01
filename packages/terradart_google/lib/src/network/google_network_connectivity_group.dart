@@ -11,14 +11,25 @@ import '../network/google_network_connectivity_hub.dart'
 const Set<String> _googleNetworkConnectivityGroupSensitive = <String>{};
 
 /// Network Connectivity Group enum for `name`.
-enum NetworkConnectivityGroupName implements TerraformEnum {
-  defaultCase('default'),
-  center('center'),
-  edge('edge');
+extension type const NetworkConnectivityGroupName._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityGroupName.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityGroupName.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityGroupName.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkConnectivityGroupName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = NetworkConnectivityGroupName._(
+    TfArgLiteral('default'),
+  );
+  static const center = NetworkConnectivityGroupName._(TfArgLiteral('center'));
+  static const edge = NetworkConnectivityGroupName._(TfArgLiteral('edge'));
+
+  static const List<NetworkConnectivityGroupName> values = [
+    defaultCase,
+    center,
+    edge,
+  ];
 }
 
 /// Optional `auto_accept` block on [GoogleNetworkConnectivityGroup].
@@ -45,7 +56,7 @@ final class NetworkConnectivityGroupAutoAccept {
 /// GoogleNetworkConnectivityGroup(
 ///   'center',
 ///   hub: hub.ref,
-///   name: TfArg.literal(NetworkConnectivityGroupName.center),
+///   name: NetworkConnectivityGroupName.center,
 /// );
 /// ```
 final class GoogleNetworkConnectivityGroup extends Resource {
@@ -54,7 +65,7 @@ final class GoogleNetworkConnectivityGroup extends Resource {
   GoogleNetworkConnectivityGroup(
     super.localName, {
     required RefTo<GoogleNetworkConnectivityHub> hub,
-    required TfArg<NetworkConnectivityGroupName> name,
+    required NetworkConnectivityGroupName name,
     TfArg<String>? description,
     NetworkConnectivityGroupAutoAccept? autoAccept,
     TfArg<Map<String, String>>? labels,

@@ -8,39 +8,87 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsmDocumentSensitive = <String>{};
 
 /// Ssm Document enum for `document_format`.
-enum SsmDocumentFormat implements TerraformEnum {
-  yaml('YAML'),
-  json('JSON'),
-  text('TEXT');
+extension type const SsmDocumentFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmDocumentFormat.variable(String name) : this._(TfArg.variable(name));
+  SsmDocumentFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmDocumentFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmDocumentFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const yaml = SsmDocumentFormat._(TfArgLiteral('YAML'));
+  static const json = SsmDocumentFormat._(TfArgLiteral('JSON'));
+  static const text = SsmDocumentFormat._(TfArgLiteral('TEXT'));
+
+  static const List<SsmDocumentFormat> values = [yaml, json, text];
 }
 
 /// Ssm Document enum for `document_type`.
-enum SsmDocumentType implements TerraformEnum {
-  command('Command'),
-  policy('Policy'),
-  automation('Automation'),
-  session('Session'),
-  package('Package'),
-  applicationconfiguration('ApplicationConfiguration'),
-  applicationconfigurationschema('ApplicationConfigurationSchema'),
-  deploymentstrategy('DeploymentStrategy'),
-  changecalendar('ChangeCalendar'),
-  automationChangetemplate('Automation.ChangeTemplate'),
-  problemanalysis('ProblemAnalysis'),
-  problemanalysistemplate('ProblemAnalysisTemplate'),
-  cloudformation('CloudFormation'),
-  conformancepacktemplate('ConformancePackTemplate'),
-  quicksetup('QuickSetup'),
-  manualapprovalpolicy('ManualApprovalPolicy'),
-  autoapprovalpolicy('AutoApprovalPolicy');
+extension type const SsmDocumentType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmDocumentType.variable(String name) : this._(TfArg.variable(name));
+  SsmDocumentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmDocumentType.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmDocumentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const command = SsmDocumentType._(TfArgLiteral('Command'));
+  static const policy = SsmDocumentType._(TfArgLiteral('Policy'));
+  static const automation = SsmDocumentType._(TfArgLiteral('Automation'));
+  static const session = SsmDocumentType._(TfArgLiteral('Session'));
+  static const package = SsmDocumentType._(TfArgLiteral('Package'));
+  static const applicationconfiguration = SsmDocumentType._(
+    TfArgLiteral('ApplicationConfiguration'),
+  );
+  static const applicationconfigurationschema = SsmDocumentType._(
+    TfArgLiteral('ApplicationConfigurationSchema'),
+  );
+  static const deploymentstrategy = SsmDocumentType._(
+    TfArgLiteral('DeploymentStrategy'),
+  );
+  static const changecalendar = SsmDocumentType._(
+    TfArgLiteral('ChangeCalendar'),
+  );
+  static const automationChangetemplate = SsmDocumentType._(
+    TfArgLiteral('Automation.ChangeTemplate'),
+  );
+  static const problemanalysis = SsmDocumentType._(
+    TfArgLiteral('ProblemAnalysis'),
+  );
+  static const problemanalysistemplate = SsmDocumentType._(
+    TfArgLiteral('ProblemAnalysisTemplate'),
+  );
+  static const cloudformation = SsmDocumentType._(
+    TfArgLiteral('CloudFormation'),
+  );
+  static const conformancepacktemplate = SsmDocumentType._(
+    TfArgLiteral('ConformancePackTemplate'),
+  );
+  static const quicksetup = SsmDocumentType._(TfArgLiteral('QuickSetup'));
+  static const manualapprovalpolicy = SsmDocumentType._(
+    TfArgLiteral('ManualApprovalPolicy'),
+  );
+  static const autoapprovalpolicy = SsmDocumentType._(
+    TfArgLiteral('AutoApprovalPolicy'),
+  );
+
+  static const List<SsmDocumentType> values = [
+    command,
+    policy,
+    automation,
+    session,
+    package,
+    applicationconfiguration,
+    applicationconfigurationschema,
+    deploymentstrategy,
+    changecalendar,
+    automationChangetemplate,
+    problemanalysis,
+    problemanalysistemplate,
+    cloudformation,
+    conformancepacktemplate,
+    quicksetup,
+    manualapprovalpolicy,
+    autoapprovalpolicy,
+  ];
 }
 
 /// Typed helper for the `attachments_source` block of
@@ -53,7 +101,7 @@ final class SsmDocumentAttachmentsSource {
     required this.values,
   });
 
-  final TfArg<SsmDocumentKey> key;
+  final SsmDocumentKey key;
 
   final TfArg<String>? name;
 
@@ -67,14 +115,24 @@ final class SsmDocumentAttachmentsSource {
 }
 
 /// `key` — derived from the provider schema description.
-enum SsmDocumentKey implements TerraformEnum {
-  sourceurl('SourceUrl'),
-  s3fileurl('S3FileUrl'),
-  attachmentreference('AttachmentReference');
+extension type const SsmDocumentKey._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmDocumentKey.variable(String name) : this._(TfArg.variable(name));
+  SsmDocumentKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmDocumentKey.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmDocumentKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sourceurl = SsmDocumentKey._(TfArgLiteral('SourceUrl'));
+  static const s3fileurl = SsmDocumentKey._(TfArgLiteral('S3FileUrl'));
+  static const attachmentreference = SsmDocumentKey._(
+    TfArgLiteral('AttachmentReference'),
+  );
+
+  static const List<SsmDocumentKey> values = [
+    sourceurl,
+    s3fileurl,
+    attachmentreference,
+  ];
 }
 
 /// Factory wrapper for `aws_ssm_document`.
@@ -84,8 +142,8 @@ final class AwsSsmDocument extends Resource {
   AwsSsmDocument(
     super.localName, {
     required TfArg<String> content,
-    TfArg<SsmDocumentFormat>? documentFormat,
-    required TfArg<SsmDocumentType> documentType,
+    SsmDocumentFormat? documentFormat,
+    required SsmDocumentType documentType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? permissions,
     TfArg<String>? region,

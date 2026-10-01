@@ -10,13 +10,19 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwriteMysqlBackupPolicySensitive = <String>{};
 
 /// Mysql Backup Policy enum for `type`.
-enum MysqlBackupPolicyType implements TerraformEnum {
-  full('full'),
-  incremental('incremental');
+extension type const MysqlBackupPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlBackupPolicyType.variable(String name) : this._(TfArg.variable(name));
+  MysqlBackupPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlBackupPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const MysqlBackupPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const full = MysqlBackupPolicyType._(TfArgLiteral('full'));
+  static const incremental = MysqlBackupPolicyType._(
+    TfArgLiteral('incremental'),
+  );
+
+  static const List<MysqlBackupPolicyType> values = [full, incremental];
 }
 
 /// Factory wrapper for `appwrite_mysql_backup_policy`.
@@ -35,7 +41,7 @@ final class AppwriteMysqlBackupPolicy extends Resource {
     RefTo<AppwriteProject>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
-    TfArg<MysqlBackupPolicyType>? type,
+    MysqlBackupPolicyType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

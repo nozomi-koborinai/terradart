@@ -10,25 +10,53 @@ import '../discovery_engine/google_discovery_engine_data_store.dart'
 const Set<String> _googleDiscoveryEngineTargetSiteSensitive = <String>{};
 
 /// Discovery Engine Target Site Indexing enum for `indexing_status`.
-enum DiscoveryEngineTargetSiteIndexingStatus implements TerraformEnum {
-  pending('PENDING'),
-  failed('FAILED'),
-  succeeded('SUCCEEDED'),
-  deleting('DELETING');
+extension type const DiscoveryEngineTargetSiteIndexingStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineTargetSiteIndexingStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineTargetSiteIndexingStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineTargetSiteIndexingStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineTargetSiteIndexingStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pending = DiscoveryEngineTargetSiteIndexingStatus._(
+    TfArgLiteral('PENDING'),
+  );
+  static const failed = DiscoveryEngineTargetSiteIndexingStatus._(
+    TfArgLiteral('FAILED'),
+  );
+  static const succeeded = DiscoveryEngineTargetSiteIndexingStatus._(
+    TfArgLiteral('SUCCEEDED'),
+  );
+  static const deleting = DiscoveryEngineTargetSiteIndexingStatus._(
+    TfArgLiteral('DELETING'),
+  );
+
+  static const List<DiscoveryEngineTargetSiteIndexingStatus> values = [
+    pending,
+    failed,
+    succeeded,
+    deleting,
+  ];
 }
 
 /// Discovery Engine Target Site enum for `type`.
-enum DiscoveryEngineTargetSiteType implements TerraformEnum {
-  include('INCLUDE'),
-  exclude('EXCLUDE');
+extension type const DiscoveryEngineTargetSiteType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineTargetSiteType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineTargetSiteType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineTargetSiteType.arg(TfArg<String> arg) : this._(arg);
 
-  const DiscoveryEngineTargetSiteType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const include = DiscoveryEngineTargetSiteType._(
+    TfArgLiteral('INCLUDE'),
+  );
+  static const exclude = DiscoveryEngineTargetSiteType._(
+    TfArgLiteral('EXCLUDE'),
+  );
+
+  static const List<DiscoveryEngineTargetSiteType> values = [include, exclude];
 }
 
 /// Factory wrapper for `google_discovery_engine_target_site`.
@@ -53,7 +81,7 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
     required TfArg<String> location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> providedUriPattern,
-    TfArg<DiscoveryEngineTargetSiteType>? type,
+    DiscoveryEngineTargetSiteType? type,
     TfArg<bool>? exactMatch,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

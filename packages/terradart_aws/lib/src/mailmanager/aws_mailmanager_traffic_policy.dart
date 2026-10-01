@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMailmanagerTrafficPolicySensitive = <String>{};
 
 /// Mailmanager Traffic Policy Default enum for `default_action`.
-enum MailmanagerTrafficPolicyDefaultAction implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const MailmanagerTrafficPolicyDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerTrafficPolicyDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyDefaultAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyDefaultAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = MailmanagerTrafficPolicyDefaultAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = MailmanagerTrafficPolicyDefaultAction._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<MailmanagerTrafficPolicyDefaultAction> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Typed helper for the `policy_statement` block of
@@ -26,7 +39,7 @@ final class MailmanagerTrafficPolicyStatement {
     this.condition,
   });
 
-  final TfArg<MailmanagerTrafficPolicyAction> action;
+  final MailmanagerTrafficPolicyAction action;
 
   final List<MailmanagerTrafficPolicyCondition>? condition;
 
@@ -38,13 +51,18 @@ final class MailmanagerTrafficPolicyStatement {
 }
 
 /// `action` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyAction implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const MailmanagerTrafficPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerTrafficPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyAction.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerTrafficPolicyAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = MailmanagerTrafficPolicyAction._(TfArgLiteral('ALLOW'));
+  static const deny = MailmanagerTrafficPolicyAction._(TfArgLiteral('DENY'));
+
+  static const List<MailmanagerTrafficPolicyAction> values = [allow, deny];
 }
 
 /// Typed helper for the `policy_statement.condition` block of
@@ -92,7 +110,7 @@ final class MailmanagerTrafficPolicyBooleanExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerTrafficPolicyBooleanExpressionOperator> operator;
+  final MailmanagerTrafficPolicyBooleanExpressionOperator operator;
 
   final List<MailmanagerTrafficPolicyBooleanExpressionEvaluate>? evaluate;
 
@@ -103,14 +121,25 @@ final class MailmanagerTrafficPolicyBooleanExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyBooleanExpressionOperator
-    implements TerraformEnum {
-  isTrue('IS_TRUE'),
-  isFalse('IS_FALSE');
+extension type const MailmanagerTrafficPolicyBooleanExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyBooleanExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyBooleanExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyBooleanExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyBooleanExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const isTrue = MailmanagerTrafficPolicyBooleanExpressionOperator._(
+    TfArgLiteral('IS_TRUE'),
+  );
+  static const isFalse = MailmanagerTrafficPolicyBooleanExpressionOperator._(
+    TfArgLiteral('IS_FALSE'),
+  );
+
+  static const List<MailmanagerTrafficPolicyBooleanExpressionOperator> values =
+      [isTrue, isFalse];
 }
 
 /// Typed helper for the `policy_statement.condition.boolean_expression.evaluate` block of
@@ -164,7 +193,7 @@ final class MailmanagerTrafficPolicyIsInAddressList {
 
   final TfArg<List<String>> addressLists;
 
-  final TfArg<MailmanagerTrafficPolicyStringExpressionAttribute> attribute;
+  final MailmanagerTrafficPolicyStringExpressionAttribute attribute;
 
   Map<String, Object?> encode() => {
     'address_lists': addressLists.toTfJson(),
@@ -173,13 +202,22 @@ final class MailmanagerTrafficPolicyIsInAddressList {
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyStringExpressionAttribute
-    implements TerraformEnum {
-  recipient('RECIPIENT');
+extension type const MailmanagerTrafficPolicyStringExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyStringExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyStringExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyStringExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyStringExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const recipient = MailmanagerTrafficPolicyStringExpressionAttribute._(
+    TfArgLiteral('RECIPIENT'),
+  );
+
+  static const List<MailmanagerTrafficPolicyStringExpressionAttribute> values =
+      [recipient];
 }
 
 /// Typed helper for the `policy_statement.condition.ip_expression` block of
@@ -192,7 +230,7 @@ final class MailmanagerTrafficPolicyIpExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerTrafficPolicyIpExpressionOperator> operator;
+  final MailmanagerTrafficPolicyIpExpressionOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -206,13 +244,27 @@ final class MailmanagerTrafficPolicyIpExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyIpExpressionOperator implements TerraformEnum {
-  cidrMatches('CIDR_MATCHES'),
-  notCidrMatches('NOT_CIDR_MATCHES');
+extension type const MailmanagerTrafficPolicyIpExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyIpExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyIpExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyIpExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyIpExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cidrMatches = MailmanagerTrafficPolicyIpExpressionOperator._(
+    TfArgLiteral('CIDR_MATCHES'),
+  );
+  static const notCidrMatches = MailmanagerTrafficPolicyIpExpressionOperator._(
+    TfArgLiteral('NOT_CIDR_MATCHES'),
+  );
+
+  static const List<MailmanagerTrafficPolicyIpExpressionOperator> values = [
+    cidrMatches,
+    notCidrMatches,
+  ];
 }
 
 /// Typed helper for the `policy_statement.condition.ip_expression.evaluate` block of
@@ -221,18 +273,29 @@ enum MailmanagerTrafficPolicyIpExpressionOperator implements TerraformEnum {
 final class MailmanagerTrafficPolicyIpExpressionEvaluate {
   const MailmanagerTrafficPolicyIpExpressionEvaluate({required this.attribute});
 
-  final TfArg<MailmanagerTrafficPolicyIpExpressionAttribute> attribute;
+  final MailmanagerTrafficPolicyIpExpressionAttribute attribute;
 
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyIpExpressionAttribute implements TerraformEnum {
-  senderIp('SENDER_IP');
+extension type const MailmanagerTrafficPolicyIpExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyIpExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyIpExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyIpExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyIpExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const senderIp = MailmanagerTrafficPolicyIpExpressionAttribute._(
+    TfArgLiteral('SENDER_IP'),
+  );
+
+  static const List<MailmanagerTrafficPolicyIpExpressionAttribute> values = [
+    senderIp,
+  ];
 }
 
 /// Typed helper for the `policy_statement.condition.ipv6_expression` block of
@@ -245,7 +308,7 @@ final class MailmanagerTrafficPolicyIpv6Expression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerTrafficPolicyIpExpressionOperator> operator;
+  final MailmanagerTrafficPolicyIpExpressionOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -266,18 +329,29 @@ final class MailmanagerTrafficPolicyIpv6ExpressionEvaluate {
     required this.attribute,
   });
 
-  final TfArg<MailmanagerTrafficPolicyIpv6ExpressionAttribute> attribute;
+  final MailmanagerTrafficPolicyIpv6ExpressionAttribute attribute;
 
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyIpv6ExpressionAttribute implements TerraformEnum {
-  senderIpv6('SENDER_IPV6');
+extension type const MailmanagerTrafficPolicyIpv6ExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyIpv6ExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyIpv6ExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyIpv6ExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyIpv6ExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const senderIpv6 = MailmanagerTrafficPolicyIpv6ExpressionAttribute._(
+    TfArgLiteral('SENDER_IPV6'),
+  );
+
+  static const List<MailmanagerTrafficPolicyIpv6ExpressionAttribute> values = [
+    senderIpv6,
+  ];
 }
 
 /// Typed helper for the `policy_statement.condition.string_expression` block of
@@ -290,7 +364,7 @@ final class MailmanagerTrafficPolicyStringExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerTrafficPolicyStringExpressionOperator> operator;
+  final MailmanagerTrafficPolicyStringExpressionOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -304,16 +378,39 @@ final class MailmanagerTrafficPolicyStringExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyStringExpressionOperator implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS');
+extension type const MailmanagerTrafficPolicyStringExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyStringExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyStringExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyStringExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyStringExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = MailmanagerTrafficPolicyStringExpressionOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const notEquals = MailmanagerTrafficPolicyStringExpressionOperator._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+  static const startsWith = MailmanagerTrafficPolicyStringExpressionOperator._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+  static const endsWith = MailmanagerTrafficPolicyStringExpressionOperator._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const contains = MailmanagerTrafficPolicyStringExpressionOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+
+  static const List<MailmanagerTrafficPolicyStringExpressionOperator> values = [
+    equals,
+    notEquals,
+    startsWith,
+    endsWith,
+    contains,
+  ];
 }
 
 /// Exactly one of `analysis`, `attribute` on the `policy_statement.condition.string_expression.evaluate` block of `aws_mailmanager_traffic_policy`: the provider rejects
@@ -330,7 +427,7 @@ sealed class MailmanagerTrafficPolicyStringExpressionEvaluate {
 
   /// Sets `attribute`.
   const factory MailmanagerTrafficPolicyStringExpressionEvaluate.attribute(
-    TfArg<MailmanagerTrafficPolicyStringExpressionAttribute> attribute,
+    MailmanagerTrafficPolicyStringExpressionAttribute attribute,
   ) = MailmanagerTrafficPolicyStringExpressionEvaluateAttribute;
 
   /// The Terraform argument this choice sets.
@@ -362,7 +459,7 @@ final class MailmanagerTrafficPolicyStringExpressionEvaluateAttribute
     this.attribute,
   );
 
-  final TfArg<MailmanagerTrafficPolicyStringExpressionAttribute> attribute;
+  final MailmanagerTrafficPolicyStringExpressionAttribute attribute;
 
   @override
   String get blockKey => 'attribute';
@@ -381,9 +478,9 @@ final class MailmanagerTrafficPolicyTlsExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerTrafficPolicyTlsExpressionOperator> operator;
+  final MailmanagerTrafficPolicyTlsExpressionOperator operator;
 
-  final TfArg<MailmanagerTrafficPolicyValue> value;
+  final MailmanagerTrafficPolicyValue value;
 
   final List<MailmanagerTrafficPolicyTlsExpressionEvaluate>? evaluate;
 
@@ -395,23 +492,43 @@ final class MailmanagerTrafficPolicyTlsExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyTlsExpressionOperator implements TerraformEnum {
-  minimumTlsVersion('MINIMUM_TLS_VERSION'),
-  isCase('IS');
+extension type const MailmanagerTrafficPolicyTlsExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyTlsExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyTlsExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyTlsExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyTlsExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minimumTlsVersion =
+      MailmanagerTrafficPolicyTlsExpressionOperator._(
+        TfArgLiteral('MINIMUM_TLS_VERSION'),
+      );
+  static const isCase = MailmanagerTrafficPolicyTlsExpressionOperator._(
+    TfArgLiteral('IS'),
+  );
+
+  static const List<MailmanagerTrafficPolicyTlsExpressionOperator> values = [
+    minimumTlsVersion,
+    isCase,
+  ];
 }
 
 /// `value` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyValue implements TerraformEnum {
-  tls12('TLS1_2'),
-  tls13('TLS1_3');
+extension type const MailmanagerTrafficPolicyValue._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerTrafficPolicyValue.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyValue.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerTrafficPolicyValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls12 = MailmanagerTrafficPolicyValue._(TfArgLiteral('TLS1_2'));
+  static const tls13 = MailmanagerTrafficPolicyValue._(TfArgLiteral('TLS1_3'));
+
+  static const List<MailmanagerTrafficPolicyValue> values = [tls12, tls13];
 }
 
 /// Typed helper for the `policy_statement.condition.tls_expression.evaluate` block of
@@ -422,18 +539,29 @@ final class MailmanagerTrafficPolicyTlsExpressionEvaluate {
     required this.attribute,
   });
 
-  final TfArg<MailmanagerTrafficPolicyTlsExpressionAttribute> attribute;
+  final MailmanagerTrafficPolicyTlsExpressionAttribute attribute;
 
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerTrafficPolicyTlsExpressionAttribute implements TerraformEnum {
-  tlsProtocol('TLS_PROTOCOL');
+extension type const MailmanagerTrafficPolicyTlsExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerTrafficPolicyTlsExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerTrafficPolicyTlsExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerTrafficPolicyTlsExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerTrafficPolicyTlsExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tlsProtocol = MailmanagerTrafficPolicyTlsExpressionAttribute._(
+    TfArgLiteral('TLS_PROTOCOL'),
+  );
+
+  static const List<MailmanagerTrafficPolicyTlsExpressionAttribute> values = [
+    tlsProtocol,
+  ];
 }
 
 /// Factory wrapper for `aws_mailmanager_traffic_policy`.
@@ -442,7 +570,7 @@ final class AwsMailmanagerTrafficPolicy extends Resource {
 
   AwsMailmanagerTrafficPolicy(
     super.localName, {
-    required TfArg<MailmanagerTrafficPolicyDefaultAction> defaultAction,
+    required MailmanagerTrafficPolicyDefaultAction defaultAction,
     TfArg<num>? maxMessageSizeBytes,
     required TfArg<String> name,
     TfArg<String>? region,

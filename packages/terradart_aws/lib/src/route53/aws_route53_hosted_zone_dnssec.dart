@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53HostedZoneDnssecSensitive = <String>{};
 
 /// Route53 Hosted Zone Dnssec Signing enum for `signing_status`.
-enum Route53HostedZoneDnssecSigningStatus implements TerraformEnum {
-  signing('SIGNING'),
-  notSigning('NOT_SIGNING');
+extension type const Route53HostedZoneDnssecSigningStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53HostedZoneDnssecSigningStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53HostedZoneDnssecSigningStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53HostedZoneDnssecSigningStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53HostedZoneDnssecSigningStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const signing = Route53HostedZoneDnssecSigningStatus._(
+    TfArgLiteral('SIGNING'),
+  );
+  static const notSigning = Route53HostedZoneDnssecSigningStatus._(
+    TfArgLiteral('NOT_SIGNING'),
+  );
+
+  static const List<Route53HostedZoneDnssecSigningStatus> values = [
+    signing,
+    notSigning,
+  ];
 }
 
 /// Factory wrapper for `aws_route53_hosted_zone_dnssec`.
@@ -23,7 +36,7 @@ final class AwsRoute53HostedZoneDnssec extends Resource {
   AwsRoute53HostedZoneDnssec(
     super.localName, {
     required TfArg<String> hostedZoneId,
-    TfArg<Route53HostedZoneDnssecSigningStatus>? signingStatus,
+    Route53HostedZoneDnssecSigningStatus? signingStatus,
     super.lifecycle,
     super.dependsOn,
     super.provider,

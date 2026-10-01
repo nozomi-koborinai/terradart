@@ -29,7 +29,7 @@ final class ComputePreviewFeatureStack extends Stack {
       GoogleComputePreviewFeature(
         'alpha',
         name: .literal('alpha-api-access'),
-        activationStatus: .literal(.activationStateUnspecified),
+        activationStatus: .activationStateUnspecified,
         // API currently accepts only FAST_ROLLOUT (provider basic example).
         rolloutOperation: ComputePreviewFeatureRolloutOperation(
           rolloutInput: .new(

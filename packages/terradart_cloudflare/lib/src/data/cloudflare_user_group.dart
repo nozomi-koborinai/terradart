@@ -20,7 +20,7 @@ final class DataUserGroupFilter {
     this.name,
   });
 
-  final TfArg<DataUserGroupDirection>? direction;
+  final DataUserGroupDirection? direction;
 
   final TfArg<String>? fuzzyName;
 
@@ -37,13 +37,17 @@ final class DataUserGroupFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataUserGroupDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataUserGroupDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataUserGroupDirection.variable(String name) : this._(TfArg.variable(name));
+  DataUserGroupDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataUserGroupDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataUserGroupDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataUserGroupDirection._(TfArgLiteral('asc'));
+  static const desc = DataUserGroupDirection._(TfArgLiteral('desc'));
+
+  static const List<DataUserGroupDirection> values = [asc, desc];
 }
 
 /// Factory wrapper for `cloudflare_user_group`.

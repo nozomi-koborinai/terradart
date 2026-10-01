@@ -7,14 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowSipTrunkSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Dialogflow SIP trunks.
-enum DialogflowSipTrunkDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const DialogflowSipTrunkDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowSipTrunkDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowSipTrunkDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowSipTrunkDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowSipTrunkDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = DialogflowSipTrunkDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = DialogflowSipTrunkDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = DialogflowSipTrunkDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<DialogflowSipTrunkDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_dialogflow_sip_trunk`.
@@ -44,7 +59,7 @@ final class GoogleDialogflowSipTrunk extends Resource {
     required TfArg<String> location,
     required TfArg<List<String>> expectedHostname,
     TfArg<String>? displayName,
-    TfArg<DialogflowSipTrunkDeletionPolicy>? deletionPolicy,
+    DialogflowSipTrunkDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

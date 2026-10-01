@@ -87,7 +87,7 @@ final class OsisPipelineVpcOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
-  final TfArg<OsisPipelineVpcEndpointManagement>? vpcEndpointManagement;
+  final OsisPipelineVpcEndpointManagement? vpcEndpointManagement;
 
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
@@ -97,13 +97,25 @@ final class OsisPipelineVpcOptions {
 }
 
 /// `vpc_endpoint_management` — derived from the provider schema description.
-enum OsisPipelineVpcEndpointManagement implements TerraformEnum {
-  customer('CUSTOMER'),
-  service('SERVICE');
+extension type const OsisPipelineVpcEndpointManagement._(TfArg<String> _)
+    implements TfArg<String> {
+  OsisPipelineVpcEndpointManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  OsisPipelineVpcEndpointManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsisPipelineVpcEndpointManagement.arg(TfArg<String> arg) : this._(arg);
 
-  const OsisPipelineVpcEndpointManagement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customer = OsisPipelineVpcEndpointManagement._(
+    TfArgLiteral('CUSTOMER'),
+  );
+  static const service = OsisPipelineVpcEndpointManagement._(
+    TfArgLiteral('SERVICE'),
+  );
+
+  static const List<OsisPipelineVpcEndpointManagement> values = [
+    customer,
+    service,
+  ];
 }
 
 /// Factory wrapper for `aws_osis_pipeline`.

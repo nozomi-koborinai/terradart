@@ -229,10 +229,7 @@ resource "google_storage_bucket" "assets" {
         merged.fields.single.origin,
         'google_storage_bucket.assets.storage_class',
       );
-      expect(
-        merged.source,
-        contains('storageClass: .literal(env.assetsStorageClass)'),
-      );
+      expect(merged.source, contains('storageClass: env.assetsStorageClass'));
     });
 
     test('the enum declares the member, not the wire string', () {

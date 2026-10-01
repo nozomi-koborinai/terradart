@@ -103,10 +103,10 @@ curatedDoc: |-
   ///   network: vpc.ref,
   ///   subnetwork: ilbSubnet.ref,
   ///   ipAddress: ilbVip.selfLink,
-  ///   ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),
+  ///   ipProtocol: ForwardingRuleIpProtocol.tcp,
   ///   portRange: TfArg.literal('443'),
   ///   loadBalancingScheme:
-  ///       TfArg.literal(ForwardingRuleLoadBalancingScheme.internalManaged),
+  ///       ForwardingRuleLoadBalancingScheme.internalManaged,
   /// );
   /// ```
   ///
@@ -168,18 +168,20 @@ prelude: |
   /// service with `UNSPECIFIED` protocol, and pairs with `allPorts: true`
   /// for internal protocol forwarding. It is rejected when the backend
   /// service explicitly declares `TCP` or `UDP`.
-  enum ForwardingRuleIpProtocol implements TerraformEnum {
-    tcp('TCP'),
-    udp('UDP'),
-    esp('ESP'),
-    ah('AH'),
-    sctp('SCTP'),
-    icmp('ICMP'),
-    l3Default('L3_DEFAULT');
+  extension type const ForwardingRuleIpProtocol._(TfArg<String> _) implements TfArg<String> {
+    ForwardingRuleIpProtocol.variable(String name) : this._(TfArg.variable(name));
+    ForwardingRuleIpProtocol.expression(String template) : this._(TfArg.expression(template));
+    const ForwardingRuleIpProtocol.arg(TfArg<String> arg) : this._(arg);
 
-    const ForwardingRuleIpProtocol(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const tcp = ForwardingRuleIpProtocol._(TfArgLiteral('TCP'));
+    static const udp = ForwardingRuleIpProtocol._(TfArgLiteral('UDP'));
+    static const esp = ForwardingRuleIpProtocol._(TfArgLiteral('ESP'));
+    static const ah = ForwardingRuleIpProtocol._(TfArgLiteral('AH'));
+    static const sctp = ForwardingRuleIpProtocol._(TfArgLiteral('SCTP'));
+    static const icmp = ForwardingRuleIpProtocol._(TfArgLiteral('ICMP'));
+    static const l3Default = ForwardingRuleIpProtocol._(TfArgLiteral('L3_DEFAULT'));
+
+    static const List<ForwardingRuleIpProtocol> values = [tcp, udp, esp, ah, sctp, icmp, l3Default];
   }
 
   /// IP version for the regional forwarding rule's VIP. Default `IPV4`.
@@ -188,13 +190,15 @@ prelude: |
   /// rules) typically pairs with [GoogleComputeForwardingRule.ipCollection]
   /// pointing at a `PublicDelegatedPrefix` in
   /// `EXTERNAL_IPV6_FORWARDING_RULE_CREATION` mode.
-  enum ForwardingRuleIpVersion implements TerraformEnum {
-    ipv4('IPV4'),
-    ipv6('IPV6');
+  extension type const ForwardingRuleIpVersion._(TfArg<String> _) implements TfArg<String> {
+    ForwardingRuleIpVersion.variable(String name) : this._(TfArg.variable(name));
+    ForwardingRuleIpVersion.expression(String template) : this._(TfArg.expression(template));
+    const ForwardingRuleIpVersion.arg(TfArg<String> arg) : this._(arg);
 
-    const ForwardingRuleIpVersion(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const ipv4 = ForwardingRuleIpVersion._(TfArgLiteral('IPV4'));
+    static const ipv6 = ForwardingRuleIpVersion._(TfArgLiteral('IPV6'));
+
+    static const List<ForwardingRuleIpVersion> values = [ipv4, ipv6];
   }
 
   /// `load_balancing_scheme`. Picks which regional load balancer variant
@@ -217,15 +221,17 @@ prelude: |
   /// Note: the global resource also accepts `INTERNAL_SELF_MANAGED`
   /// (Traffic Director); regional forwarding rules do **not** — that
   /// scheme is global-only.
-  enum ForwardingRuleLoadBalancingScheme implements TerraformEnum {
-    external('EXTERNAL'),
-    externalManaged('EXTERNAL_MANAGED'),
-    internal('INTERNAL'),
-    internalManaged('INTERNAL_MANAGED');
+  extension type const ForwardingRuleLoadBalancingScheme._(TfArg<String> _) implements TfArg<String> {
+    ForwardingRuleLoadBalancingScheme.variable(String name) : this._(TfArg.variable(name));
+    ForwardingRuleLoadBalancingScheme.expression(String template) : this._(TfArg.expression(template));
+    const ForwardingRuleLoadBalancingScheme.arg(TfArg<String> arg) : this._(arg);
 
-    const ForwardingRuleLoadBalancingScheme(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const external = ForwardingRuleLoadBalancingScheme._(TfArgLiteral('EXTERNAL'));
+    static const externalManaged = ForwardingRuleLoadBalancingScheme._(TfArgLiteral('EXTERNAL_MANAGED'));
+    static const internal = ForwardingRuleLoadBalancingScheme._(TfArgLiteral('INTERNAL'));
+    static const internalManaged = ForwardingRuleLoadBalancingScheme._(TfArgLiteral('INTERNAL_MANAGED'));
+
+    static const List<ForwardingRuleLoadBalancingScheme> values = [external, externalManaged, internal, internalManaged];
   }
 
   /// `network_tier`. Unlike global forwarding rules (which only accept
@@ -233,13 +239,15 @@ prelude: |
   /// must match the tier of the referenced
   /// [GoogleComputeForwardingRule.ipAddress] when one is supplied. Leave
   /// `null` to inherit the provider default (`PREMIUM`).
-  enum ForwardingRuleNetworkTier implements TerraformEnum {
-    premium('PREMIUM'),
-    standard('STANDARD');
+  extension type const ForwardingRuleNetworkTier._(TfArg<String> _) implements TfArg<String> {
+    ForwardingRuleNetworkTier.variable(String name) : this._(TfArg.variable(name));
+    ForwardingRuleNetworkTier.expression(String template) : this._(TfArg.expression(template));
+    const ForwardingRuleNetworkTier.arg(TfArg<String> arg) : this._(arg);
 
-    const ForwardingRuleNetworkTier(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const premium = ForwardingRuleNetworkTier._(TfArgLiteral('PREMIUM'));
+    static const standard = ForwardingRuleNetworkTier._(TfArgLiteral('STANDARD'));
+
+    static const List<ForwardingRuleNetworkTier> values = [premium, standard];
   }
 
   // ===========================================================================

@@ -9,42 +9,87 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleDocumentAiWarehouseLocationSensitive = <String>{};
 
 /// Document Ai Warehouse Location Access Control enum for `access_control_mode`.
-enum DocumentAiWarehouseLocationAccessControlMode implements TerraformEnum {
-  aclModeDocumentLevelAccessControlGci(
-    'ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI',
-  ),
-  aclModeDocumentLevelAccessControlByoid(
-    'ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID',
-  ),
-  aclModeUniversalAccess('ACL_MODE_UNIVERSAL_ACCESS');
+extension type const DocumentAiWarehouseLocationAccessControlMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DocumentAiWarehouseLocationAccessControlMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DocumentAiWarehouseLocationAccessControlMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocumentAiWarehouseLocationAccessControlMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DocumentAiWarehouseLocationAccessControlMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aclModeDocumentLevelAccessControlGci =
+      DocumentAiWarehouseLocationAccessControlMode._(
+        TfArgLiteral('ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI'),
+      );
+  static const aclModeDocumentLevelAccessControlByoid =
+      DocumentAiWarehouseLocationAccessControlMode._(
+        TfArgLiteral('ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID'),
+      );
+  static const aclModeUniversalAccess =
+      DocumentAiWarehouseLocationAccessControlMode._(
+        TfArgLiteral('ACL_MODE_UNIVERSAL_ACCESS'),
+      );
+
+  static const List<DocumentAiWarehouseLocationAccessControlMode> values = [
+    aclModeDocumentLevelAccessControlGci,
+    aclModeDocumentLevelAccessControlByoid,
+    aclModeUniversalAccess,
+  ];
 }
 
 /// Document Ai Warehouse Location Database enum for `database_type`.
-enum DocumentAiWarehouseLocationDatabaseType implements TerraformEnum {
-  dbInfraSpanner('DB_INFRA_SPANNER'),
-  dbCloudSqlPostgres('DB_CLOUD_SQL_POSTGRES');
+extension type const DocumentAiWarehouseLocationDatabaseType._(TfArg<String> _)
+    implements TfArg<String> {
+  DocumentAiWarehouseLocationDatabaseType.variable(String name)
+    : this._(TfArg.variable(name));
+  DocumentAiWarehouseLocationDatabaseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocumentAiWarehouseLocationDatabaseType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DocumentAiWarehouseLocationDatabaseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dbInfraSpanner = DocumentAiWarehouseLocationDatabaseType._(
+    TfArgLiteral('DB_INFRA_SPANNER'),
+  );
+  static const dbCloudSqlPostgres = DocumentAiWarehouseLocationDatabaseType._(
+    TfArgLiteral('DB_CLOUD_SQL_POSTGRES'),
+  );
+
+  static const List<DocumentAiWarehouseLocationDatabaseType> values = [
+    dbInfraSpanner,
+    dbCloudSqlPostgres,
+  ];
 }
 
 /// Document Ai Warehouse Location Document Creator Default enum for `document_creator_default_role`.
-enum DocumentAiWarehouseLocationDocumentCreatorDefaultRole
-    implements TerraformEnum {
-  documentAdmin('DOCUMENT_ADMIN'),
-  documentEditor('DOCUMENT_EDITOR'),
-  documentViewer('DOCUMENT_VIEWER');
+extension type const DocumentAiWarehouseLocationDocumentCreatorDefaultRole._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DocumentAiWarehouseLocationDocumentCreatorDefaultRole.variable(String name)
+    : this._(TfArg.variable(name));
+  DocumentAiWarehouseLocationDocumentCreatorDefaultRole.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DocumentAiWarehouseLocationDocumentCreatorDefaultRole.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DocumentAiWarehouseLocationDocumentCreatorDefaultRole(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const documentAdmin =
+      DocumentAiWarehouseLocationDocumentCreatorDefaultRole._(
+        TfArgLiteral('DOCUMENT_ADMIN'),
+      );
+  static const documentEditor =
+      DocumentAiWarehouseLocationDocumentCreatorDefaultRole._(
+        TfArgLiteral('DOCUMENT_EDITOR'),
+      );
+  static const documentViewer =
+      DocumentAiWarehouseLocationDocumentCreatorDefaultRole._(
+        TfArgLiteral('DOCUMENT_VIEWER'),
+      );
+
+  static const List<DocumentAiWarehouseLocationDocumentCreatorDefaultRole>
+  values = [documentAdmin, documentEditor, documentViewer];
 }
 
 /// Factory wrapper for `google_document_ai_warehouse_location`.
@@ -62,10 +107,9 @@ final class GoogleDocumentAiWarehouseLocation extends Resource {
 
   GoogleDocumentAiWarehouseLocation(
     super.localName, {
-    required TfArg<DocumentAiWarehouseLocationAccessControlMode>
-    accessControlMode,
-    required TfArg<DocumentAiWarehouseLocationDatabaseType> databaseType,
-    TfArg<DocumentAiWarehouseLocationDocumentCreatorDefaultRole>?
+    required DocumentAiWarehouseLocationAccessControlMode accessControlMode,
+    required DocumentAiWarehouseLocationDatabaseType databaseType,
+    DocumentAiWarehouseLocationDocumentCreatorDefaultRole?
     documentCreatorDefaultRole,
     RefTo<GoogleKmsCryptoKey>? kmsKey,
     required TfArg<String> location,

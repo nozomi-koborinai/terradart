@@ -8,13 +8,26 @@ const Set<String> _awsSagemakerServicecatalogPortfolioStatusSensitive =
     <String>{};
 
 /// Sagemaker Servicecatalog Portfolio enum for `status`.
-enum SagemakerServicecatalogPortfolioStatus implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const SagemakerServicecatalogPortfolioStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerServicecatalogPortfolioStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerServicecatalogPortfolioStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerServicecatalogPortfolioStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerServicecatalogPortfolioStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerServicecatalogPortfolioStatus._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = SagemakerServicecatalogPortfolioStatus._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerServicecatalogPortfolioStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_sagemaker_servicecatalog_portfolio_status`.
@@ -24,7 +37,7 @@ final class AwsSagemakerServicecatalogPortfolioStatus extends Resource {
   AwsSagemakerServicecatalogPortfolioStatus(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<SagemakerServicecatalogPortfolioStatus> status,
+    required SagemakerServicecatalogPortfolioStatus status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

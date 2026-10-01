@@ -107,8 +107,8 @@ final class MetastoreStack extends Stack {
       GoogleBiglakeIcebergCatalog(
         'iceberg_catalog',
         name: icebergBucket.name,
-        catalogType: .literal(.catalogTypeGcsBucket),
-        credentialMode: .literal(.credentialModeEndUser),
+        catalogType: .catalogTypeGcsBucket,
+        credentialMode: .credentialModeEndUser,
         dependsOn: [apiBiglake, icebergBucket],
       ),
     );

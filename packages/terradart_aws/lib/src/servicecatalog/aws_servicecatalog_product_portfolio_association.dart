@@ -8,17 +8,30 @@ const Set<String> _awsServicecatalogProductPortfolioAssociationSensitive =
     <String>{};
 
 /// Servicecatalog Product Portfolio Association Accept enum for `accept_language`.
-enum ServicecatalogProductPortfolioAssociationAcceptLanguage
-    implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogProductPortfolioAssociationAcceptLanguage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogProductPortfolioAssociationAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProductPortfolioAssociationAcceptLanguage.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ServicecatalogProductPortfolioAssociationAcceptLanguage.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ServicecatalogProductPortfolioAssociationAcceptLanguage(
-    this.terraformValue,
+  static const en = ServicecatalogProductPortfolioAssociationAcceptLanguage._(
+    TfArgLiteral('en'),
   );
-  @override
-  final String terraformValue;
+  static const jp = ServicecatalogProductPortfolioAssociationAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogProductPortfolioAssociationAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogProductPortfolioAssociationAcceptLanguage>
+  values = [en, jp, zh];
 }
 
 /// Factory wrapper for `aws_servicecatalog_product_portfolio_association`.
@@ -28,8 +41,7 @@ final class AwsServicecatalogProductPortfolioAssociation extends Resource {
 
   AwsServicecatalogProductPortfolioAssociation(
     super.localName, {
-    TfArg<ServicecatalogProductPortfolioAssociationAcceptLanguage>?
-    acceptLanguage,
+    ServicecatalogProductPortfolioAssociationAcceptLanguage? acceptLanguage,
     required TfArg<String> portfolioId,
     required TfArg<String> productId,
     TfArg<String>? region,

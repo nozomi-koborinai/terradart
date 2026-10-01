@@ -13,16 +13,35 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsEksClusterSensitive = <String>{};
 
 /// Eks Cluster Enabled Cluster Log enum for `enabled_cluster_log_types`.
-enum EksClusterEnabledClusterLogTypes implements TerraformEnum {
-  api('api'),
-  audit('audit'),
-  authenticator('authenticator'),
-  controllermanager('controllerManager'),
-  scheduler('scheduler');
+extension type const EksClusterEnabledClusterLogTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterEnabledClusterLogTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  EksClusterEnabledClusterLogTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterEnabledClusterLogTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterEnabledClusterLogTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const api = EksClusterEnabledClusterLogTypes._(TfArgLiteral('api'));
+  static const audit = EksClusterEnabledClusterLogTypes._(
+    TfArgLiteral('audit'),
+  );
+  static const authenticator = EksClusterEnabledClusterLogTypes._(
+    TfArgLiteral('authenticator'),
+  );
+  static const controllermanager = EksClusterEnabledClusterLogTypes._(
+    TfArgLiteral('controllerManager'),
+  );
+  static const scheduler = EksClusterEnabledClusterLogTypes._(
+    TfArgLiteral('scheduler'),
+  );
+
+  static const List<EksClusterEnabledClusterLogTypes> values = [
+    api,
+    audit,
+    authenticator,
+    controllermanager,
+    scheduler,
+  ];
 }
 
 /// Typed helper for the `access_config` block of
@@ -34,7 +53,7 @@ final class EksClusterAccessConfig {
     this.bootstrapClusterCreatorAdminPermissions,
   });
 
-  final TfArg<EksClusterAuthenticationMode>? authenticationMode;
+  final EksClusterAuthenticationMode? authenticationMode;
 
   final TfArg<bool>? bootstrapClusterCreatorAdminPermissions;
 
@@ -46,14 +65,27 @@ final class EksClusterAccessConfig {
 }
 
 /// `authentication_mode` — derived from the provider schema description.
-enum EksClusterAuthenticationMode implements TerraformEnum {
-  api('API'),
-  apiAndConfigMap('API_AND_CONFIG_MAP'),
-  configMap('CONFIG_MAP');
+extension type const EksClusterAuthenticationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  EksClusterAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterAuthenticationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterAuthenticationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const api = EksClusterAuthenticationMode._(TfArgLiteral('API'));
+  static const apiAndConfigMap = EksClusterAuthenticationMode._(
+    TfArgLiteral('API_AND_CONFIG_MAP'),
+  );
+  static const configMap = EksClusterAuthenticationMode._(
+    TfArgLiteral('CONFIG_MAP'),
+  );
+
+  static const List<EksClusterAuthenticationMode> values = [
+    api,
+    apiAndConfigMap,
+    configMap,
+  ];
 }
 
 /// Typed helper for the `compute_config` block of
@@ -68,7 +100,7 @@ final class EksClusterComputeConfig {
 
   final TfArg<bool>? enabled;
 
-  final List<TfArg<EksClusterNodePools>>? nodePools;
+  final List<EksClusterNodePools>? nodePools;
 
   final TfArg<String>? nodeRoleArn;
 
@@ -81,13 +113,19 @@ final class EksClusterComputeConfig {
 }
 
 /// `node_pools` — derived from the provider schema description.
-enum EksClusterNodePools implements TerraformEnum {
-  generalPurpose('general-purpose'),
-  system('system');
+extension type const EksClusterNodePools._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterNodePools.variable(String name) : this._(TfArg.variable(name));
+  EksClusterNodePools.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterNodePools.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterNodePools(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generalPurpose = EksClusterNodePools._(
+    TfArgLiteral('general-purpose'),
+  );
+  static const system = EksClusterNodePools._(TfArgLiteral('system'));
+
+  static const List<EksClusterNodePools> values = [generalPurpose, system];
 }
 
 /// Typed helper for the `control_plane_scaling_config` block of
@@ -96,22 +134,32 @@ enum EksClusterNodePools implements TerraformEnum {
 final class EksClusterControlPlaneScalingConfig {
   const EksClusterControlPlaneScalingConfig({this.tier});
 
-  final TfArg<EksClusterTier>? tier;
+  final EksClusterTier? tier;
 
   Map<String, Object?> encode() => {'tier': ?tier?.toTfJson()};
 }
 
 /// `tier` — derived from the provider schema description.
-enum EksClusterTier implements TerraformEnum {
-  standard('standard'),
-  tierXl('tier-xl'),
-  tier2xl('tier-2xl'),
-  tier4xl('tier-4xl'),
-  tier8xl('tier-8xl');
+extension type const EksClusterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterTier.variable(String name) : this._(TfArg.variable(name));
+  EksClusterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterTier.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = EksClusterTier._(TfArgLiteral('standard'));
+  static const tierXl = EksClusterTier._(TfArgLiteral('tier-xl'));
+  static const tier2xl = EksClusterTier._(TfArgLiteral('tier-2xl'));
+  static const tier4xl = EksClusterTier._(TfArgLiteral('tier-4xl'));
+  static const tier8xl = EksClusterTier._(TfArgLiteral('tier-8xl'));
+
+  static const List<EksClusterTier> values = [
+    standard,
+    tierXl,
+    tier2xl,
+    tier4xl,
+    tier8xl,
+  ];
 }
 
 /// Typed helper for the `encryption_config` block of
@@ -123,7 +171,7 @@ final class EksClusterEncryptionConfig {
     required this.provider,
   });
 
-  final List<TfArg<EksClusterResources>> resources;
+  final List<EksClusterResources> resources;
 
   final EksClusterProvider provider;
 
@@ -134,12 +182,16 @@ final class EksClusterEncryptionConfig {
 }
 
 /// `resources` — derived from the provider schema description.
-enum EksClusterResources implements TerraformEnum {
-  secrets('secrets');
+extension type const EksClusterResources._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterResources.variable(String name) : this._(TfArg.variable(name));
+  EksClusterResources.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterResources.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterResources(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secrets = EksClusterResources._(TfArgLiteral('secrets'));
+
+  static const List<EksClusterResources> values = [secrets];
 }
 
 /// Typed helper for the `encryption_config.provider` block of
@@ -272,7 +324,7 @@ final class EksClusterNodeResourcesFit {
 final class EksClusterScoringStrategy {
   const EksClusterScoringStrategy({this.type, this.resource});
 
-  final TfArg<EksClusterType>? type;
+  final EksClusterType? type;
 
   final List<EksClusterResource>? resource;
 
@@ -283,13 +335,19 @@ final class EksClusterScoringStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum EksClusterType implements TerraformEnum {
-  leastallocated('LeastAllocated'),
-  mostallocated('MostAllocated');
+extension type const EksClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterType.variable(String name) : this._(TfArg.variable(name));
+  EksClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const leastallocated = EksClusterType._(
+    TfArgLiteral('LeastAllocated'),
+  );
+  static const mostallocated = EksClusterType._(TfArgLiteral('MostAllocated'));
+
+  static const List<EksClusterType> values = [leastallocated, mostallocated];
 }
 
 /// Typed helper for the `kube_scheduler_config.node_resources_fit.scoring_strategy.resource` block of
@@ -318,7 +376,7 @@ final class EksClusterKubernetesNetworkConfig {
     this.elasticLoadBalancing,
   });
 
-  final TfArg<EksClusterIpFamily>? ipFamily;
+  final EksClusterIpFamily? ipFamily;
 
   final TfArg<String>? serviceIpv4Cidr;
 
@@ -332,13 +390,17 @@ final class EksClusterKubernetesNetworkConfig {
 }
 
 /// `ip_family` — derived from the provider schema description.
-enum EksClusterIpFamily implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const EksClusterIpFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterIpFamily.variable(String name) : this._(TfArg.variable(name));
+  EksClusterIpFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterIpFamily.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterIpFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = EksClusterIpFamily._(TfArgLiteral('ipv4'));
+  static const ipv6 = EksClusterIpFamily._(TfArgLiteral('ipv6'));
+
+  static const List<EksClusterIpFamily> values = [ipv4, ipv6];
 }
 
 /// Typed helper for the `kubernetes_network_config.elastic_load_balancing` block of
@@ -391,7 +453,7 @@ final class EksClusterControlPlanePlacement {
 
   final TfArg<String>? groupName;
 
-  final TfArg<EksClusterSpreadLevel>? spreadLevel;
+  final EksClusterSpreadLevel? spreadLevel;
 
   Map<String, Object?> encode() => {
     'group_name': ?groupName?.toTfJson(),
@@ -400,13 +462,17 @@ final class EksClusterControlPlanePlacement {
 }
 
 /// `spread_level` — derived from the provider schema description.
-enum EksClusterSpreadLevel implements TerraformEnum {
-  host('host'),
-  rack('rack');
+extension type const EksClusterSpreadLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterSpreadLevel.variable(String name) : this._(TfArg.variable(name));
+  EksClusterSpreadLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterSpreadLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterSpreadLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const host = EksClusterSpreadLevel._(TfArgLiteral('host'));
+  static const rack = EksClusterSpreadLevel._(TfArgLiteral('rack'));
+
+  static const List<EksClusterSpreadLevel> values = [host, rack];
 }
 
 /// Typed helper for the `outpost_config.etcd_placement` block of
@@ -415,7 +481,7 @@ enum EksClusterSpreadLevel implements TerraformEnum {
 final class EksClusterEtcdPlacement {
   const EksClusterEtcdPlacement({this.spreadLevel});
 
-  final TfArg<EksClusterSpreadLevel>? spreadLevel;
+  final EksClusterSpreadLevel? spreadLevel;
 
   Map<String, Object?> encode() => {'spread_level': ?spreadLevel?.toTfJson()};
 }
@@ -489,19 +555,23 @@ final class EksClusterBlockStorage {
 final class EksClusterUpgradePolicy {
   const EksClusterUpgradePolicy({this.supportType});
 
-  final TfArg<EksClusterSupportType>? supportType;
+  final EksClusterSupportType? supportType;
 
   Map<String, Object?> encode() => {'support_type': ?supportType?.toTfJson()};
 }
 
 /// `support_type` — derived from the provider schema description.
-enum EksClusterSupportType implements TerraformEnum {
-  standard('STANDARD'),
-  extended('EXTENDED');
+extension type const EksClusterSupportType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterSupportType.variable(String name) : this._(TfArg.variable(name));
+  EksClusterSupportType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterSupportType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterSupportType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = EksClusterSupportType._(TfArgLiteral('STANDARD'));
+  static const extended = EksClusterSupportType._(TfArgLiteral('EXTENDED'));
+
+  static const List<EksClusterSupportType> values = [standard, extended];
 }
 
 /// Typed helper for the `vpc_config` block of
@@ -517,7 +587,7 @@ final class EksClusterVpcConfig {
     required this.subnetIds,
   });
 
-  final TfArg<EksClusterControlPlaneEgressMode>? controlPlaneEgressMode;
+  final EksClusterControlPlaneEgressMode? controlPlaneEgressMode;
 
   final TfArg<bool>? endpointPrivateAccess;
 
@@ -540,14 +610,29 @@ final class EksClusterVpcConfig {
 }
 
 /// `control_plane_egress_mode` — derived from the provider schema description.
-enum EksClusterControlPlaneEgressMode implements TerraformEnum {
-  awsManaged('AWS_MANAGED'),
-  customerRouted('CUSTOMER_ROUTED'),
-  customerIsolated('CUSTOMER_ISOLATED');
+extension type const EksClusterControlPlaneEgressMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EksClusterControlPlaneEgressMode.variable(String name)
+    : this._(TfArg.variable(name));
+  EksClusterControlPlaneEgressMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksClusterControlPlaneEgressMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EksClusterControlPlaneEgressMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsManaged = EksClusterControlPlaneEgressMode._(
+    TfArgLiteral('AWS_MANAGED'),
+  );
+  static const customerRouted = EksClusterControlPlaneEgressMode._(
+    TfArgLiteral('CUSTOMER_ROUTED'),
+  );
+  static const customerIsolated = EksClusterControlPlaneEgressMode._(
+    TfArgLiteral('CUSTOMER_ISOLATED'),
+  );
+
+  static const List<EksClusterControlPlaneEgressMode> values = [
+    awsManaged,
+    customerRouted,
+    customerIsolated,
+  ];
 }
 
 /// Typed helper for the `zonal_shift_config` block of
@@ -569,7 +654,7 @@ final class AwsEksCluster extends Resource {
     super.localName, {
     TfArg<bool>? bootstrapSelfManagedAddons,
     TfArg<bool>? deletionProtection,
-    List<TfArg<EksClusterEnabledClusterLogTypes>>? enabledClusterLogTypes,
+    List<EksClusterEnabledClusterLogTypes>? enabledClusterLogTypes,
     TfArg<bool>? forceUpdateVersion,
     required TfArg<String> name,
     TfArg<String>? region,

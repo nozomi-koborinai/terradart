@@ -9,16 +9,25 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCloudwatchEventRuleSensitive = <String>{};
 
 /// Cloudwatch Event Rule enum for `state`.
-enum CloudwatchEventRuleState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED'),
-  enabledWithAllCloudtrailManagementEvents(
-    'ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS',
-  );
+extension type const CloudwatchEventRuleState._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventRuleState.variable(String name) : this._(TfArg.variable(name));
+  CloudwatchEventRuleState.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventRuleState.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventRuleState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CloudwatchEventRuleState._(TfArgLiteral('ENABLED'));
+  static const disabled = CloudwatchEventRuleState._(TfArgLiteral('DISABLED'));
+  static const enabledWithAllCloudtrailManagementEvents =
+      CloudwatchEventRuleState._(
+        TfArgLiteral('ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS'),
+      );
+
+  static const List<CloudwatchEventRuleState> values = [
+    enabled,
+    disabled,
+    enabledWithAllCloudtrailManagementEvents,
+  ];
 }
 
 /// At most one of `is_enabled`, `state` on `aws_cloudwatch_event_rule`: the provider rejects
@@ -35,7 +44,7 @@ sealed class CloudwatchEventRuleStatus {
 
   /// Sets `state`.
   const factory CloudwatchEventRuleStatus.state(
-    TfArg<CloudwatchEventRuleState> state,
+    CloudwatchEventRuleState state,
   ) = CloudwatchEventRuleStatusState;
 
   /// The Terraform argument this choice sets.
@@ -69,7 +78,7 @@ final class CloudwatchEventRuleStatusIsEnabled
 final class CloudwatchEventRuleStatusState extends CloudwatchEventRuleStatus {
   const CloudwatchEventRuleStatusState(this.state);
 
-  final TfArg<CloudwatchEventRuleState> state;
+  final CloudwatchEventRuleState state;
 
   @override
   String get blockKey => 'state';

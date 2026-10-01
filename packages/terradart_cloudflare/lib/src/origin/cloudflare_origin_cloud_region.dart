@@ -9,15 +9,19 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareOriginCloudRegionSensitive = <String>{};
 
 /// Origin Cloud Region enum for `vendor`.
-enum OriginCloudRegionVendor implements TerraformEnum {
-  aws('aws'),
-  azure('azure'),
-  gcp('gcp'),
-  oci('oci');
+extension type const OriginCloudRegionVendor._(TfArg<String> _)
+    implements TfArg<String> {
+  OriginCloudRegionVendor.variable(String name) : this._(TfArg.variable(name));
+  OriginCloudRegionVendor.expression(String template)
+    : this._(TfArg.expression(template));
+  const OriginCloudRegionVendor.arg(TfArg<String> arg) : this._(arg);
 
-  const OriginCloudRegionVendor(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aws = OriginCloudRegionVendor._(TfArgLiteral('aws'));
+  static const azure = OriginCloudRegionVendor._(TfArgLiteral('azure'));
+  static const gcp = OriginCloudRegionVendor._(TfArgLiteral('gcp'));
+  static const oci = OriginCloudRegionVendor._(TfArgLiteral('oci'));
+
+  static const List<OriginCloudRegionVendor> values = [aws, azure, gcp, oci];
 }
 
 /// Factory wrapper for `cloudflare_origin_cloud_region`.
@@ -28,7 +32,7 @@ final class CloudflareOriginCloudRegion extends Resource {
     super.localName, {
     required TfArg<String> originIp,
     required TfArg<String> region,
-    required TfArg<OriginCloudRegionVendor> vendor,
+    required OriginCloudRegionVendor vendor,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

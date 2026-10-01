@@ -7,25 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudwatchLogAccountPolicySensitive = <String>{};
 
 /// Cloudwatch Log Account Policy enum for `policy_type`.
-enum CloudwatchLogAccountPolicyType implements TerraformEnum {
-  dataProtectionPolicy('DATA_PROTECTION_POLICY'),
-  subscriptionFilterPolicy('SUBSCRIPTION_FILTER_POLICY'),
-  fieldIndexPolicy('FIELD_INDEX_POLICY'),
-  transformerPolicy('TRANSFORMER_POLICY'),
-  metricExtractionPolicy('METRIC_EXTRACTION_POLICY');
+extension type const CloudwatchLogAccountPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogAccountPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogAccountPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogAccountPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchLogAccountPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataProtectionPolicy = CloudwatchLogAccountPolicyType._(
+    TfArgLiteral('DATA_PROTECTION_POLICY'),
+  );
+  static const subscriptionFilterPolicy = CloudwatchLogAccountPolicyType._(
+    TfArgLiteral('SUBSCRIPTION_FILTER_POLICY'),
+  );
+  static const fieldIndexPolicy = CloudwatchLogAccountPolicyType._(
+    TfArgLiteral('FIELD_INDEX_POLICY'),
+  );
+  static const transformerPolicy = CloudwatchLogAccountPolicyType._(
+    TfArgLiteral('TRANSFORMER_POLICY'),
+  );
+  static const metricExtractionPolicy = CloudwatchLogAccountPolicyType._(
+    TfArgLiteral('METRIC_EXTRACTION_POLICY'),
+  );
+
+  static const List<CloudwatchLogAccountPolicyType> values = [
+    dataProtectionPolicy,
+    subscriptionFilterPolicy,
+    fieldIndexPolicy,
+    transformerPolicy,
+    metricExtractionPolicy,
+  ];
 }
 
 /// Cloudwatch Log Account Policy enum for `scope`.
-enum CloudwatchLogAccountPolicyScope implements TerraformEnum {
-  all('ALL');
+extension type const CloudwatchLogAccountPolicyScope._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogAccountPolicyScope.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogAccountPolicyScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogAccountPolicyScope.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchLogAccountPolicyScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = CloudwatchLogAccountPolicyScope._(TfArgLiteral('ALL'));
+
+  static const List<CloudwatchLogAccountPolicyScope> values = [all];
 }
 
 /// Factory wrapper for `aws_cloudwatch_log_account_policy`.
@@ -36,9 +62,9 @@ final class AwsCloudwatchLogAccountPolicy extends Resource {
     super.localName, {
     required TfArg<String> policyDocument,
     required TfArg<String> policyName,
-    required TfArg<CloudwatchLogAccountPolicyType> policyType,
+    required CloudwatchLogAccountPolicyType policyType,
     TfArg<String>? region,
-    TfArg<CloudwatchLogAccountPolicyScope>? scope,
+    CloudwatchLogAccountPolicyScope? scope,
     TfArg<String>? selectionCriteria,
     super.lifecycle,
     super.dependsOn,

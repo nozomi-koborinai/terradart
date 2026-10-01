@@ -12,28 +12,55 @@ const Set<String> _googleNetworkSecurityUllMirroringCollectorRuleSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for ULL mirroring collector rules.
-enum NetworkSecurityUllMirroringCollectorRuleDeletionPolicy
-    implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const NetworkSecurityUllMirroringCollectorRuleDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityUllMirroringCollectorRuleDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityUllMirroringCollectorRuleDeletionPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityUllMirroringCollectorRuleDeletionPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkSecurityUllMirroringCollectorRuleDeletionPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const delete =
+      NetworkSecurityUllMirroringCollectorRuleDeletionPolicy._(
+        TfArgLiteral('DELETE'),
+      );
+  static const prevent =
+      NetworkSecurityUllMirroringCollectorRuleDeletionPolicy._(
+        TfArgLiteral('PREVENT'),
+      );
+  static const abandon =
+      NetworkSecurityUllMirroringCollectorRuleDeletionPolicy._(
+        TfArgLiteral('ABANDON'),
+      );
+
+  static const List<NetworkSecurityUllMirroringCollectorRuleDeletionPolicy>
+  values = [delete, prevent, abandon];
 }
 
 /// Traffic direction for `match.direction`.
-enum NetworkSecurityUllMirroringCollectorRuleDirection
-    implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const NetworkSecurityUllMirroringCollectorRuleDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityUllMirroringCollectorRuleDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityUllMirroringCollectorRuleDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityUllMirroringCollectorRuleDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityUllMirroringCollectorRuleDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = NetworkSecurityUllMirroringCollectorRuleDirection._(
+    TfArgLiteral('INGRESS'),
+  );
+  static const egress = NetworkSecurityUllMirroringCollectorRuleDirection._(
+    TfArgLiteral('EGRESS'),
+  );
+
+  static const List<NetworkSecurityUllMirroringCollectorRuleDirection> values =
+      [ingress, egress];
 }
 
 /// `match` block on a ULL mirroring collector rule.
@@ -52,7 +79,7 @@ class NetworkSecurityUllMirroringCollectorRuleMatch {
   final List<TfArg<String>>? ipProtocols;
 
   Map<String, Object?> toArgMap() => {
-    if (direction != null) 'direction': direction!.terraformValue,
+    if (direction != null) 'direction': direction!.toTfJson(),
     if (srcIpRanges != null)
       'src_ip_ranges': srcIpRanges!.map((v) => v.toTfJson()).toList(),
     if (dstIpRanges != null)
@@ -83,8 +110,7 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
     required TfArg<String> ullMirroringCollectorRuleId,
     required NetworkSecurityUllMirroringCollectorRuleMatch match,
     TfArg<Map<String, String>>? labels,
-    TfArg<NetworkSecurityUllMirroringCollectorRuleDeletionPolicy>?
-    deletionPolicy,
+    NetworkSecurityUllMirroringCollectorRuleDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

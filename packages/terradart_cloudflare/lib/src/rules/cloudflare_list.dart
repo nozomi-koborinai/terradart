@@ -10,15 +10,17 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareListSensitive = <String>{};
 
 /// List enum for `kind`.
-enum ListKind implements TerraformEnum {
-  ip('ip'),
-  redirect('redirect'),
-  hostname('hostname'),
-  asn('asn');
+extension type const ListKind._(TfArg<String> _) implements TfArg<String> {
+  ListKind.variable(String name) : this._(TfArg.variable(name));
+  ListKind.expression(String template) : this._(TfArg.expression(template));
+  const ListKind.arg(TfArg<String> arg) : this._(arg);
 
-  const ListKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = ListKind._(TfArgLiteral('ip'));
+  static const redirect = ListKind._(TfArgLiteral('redirect'));
+  static const hostname = ListKind._(TfArgLiteral('hostname'));
+  static const asn = ListKind._(TfArgLiteral('asn'));
+
+  static const List<ListKind> values = [ip, redirect, hostname, asn];
 }
 
 /// Typed helper for the `items` block of
@@ -182,7 +184,7 @@ final class CloudflareList extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
-    required TfArg<ListKind> kind,
+    required ListKind kind,
     required TfArg<String> name,
     List<ListItems>? items,
     super.lifecycle,

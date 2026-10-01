@@ -50,12 +50,14 @@ dartTypeOverrides:
 
 prelude: |
   /// `compute_billing_owner` on `data_boost_isolation_read_only`.
-  enum BigtableAppProfileComputeBillingOwner implements TerraformEnum {
-    hostPays('HOST_PAYS');
+  extension type const BigtableAppProfileComputeBillingOwner._(TfArg<String> _) implements TfArg<String> {
+    BigtableAppProfileComputeBillingOwner.variable(String name) : this._(TfArg.variable(name));
+    BigtableAppProfileComputeBillingOwner.expression(String template) : this._(TfArg.expression(template));
+    const BigtableAppProfileComputeBillingOwner.arg(TfArg<String> arg) : this._(arg);
 
-    const BigtableAppProfileComputeBillingOwner(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const hostPays = BigtableAppProfileComputeBillingOwner._(TfArgLiteral('HOST_PAYS'));
+
+    static const List<BigtableAppProfileComputeBillingOwner> values = [hostPays];
   }
 
 sealedNames:

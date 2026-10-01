@@ -74,8 +74,7 @@ final class CustomerprofilesDomainConflictResolution {
     this.sourceName,
   });
 
-  final TfArg<CustomerprofilesDomainConflictResolvingModel>
-  conflictResolvingModel;
+  final CustomerprofilesDomainConflictResolvingModel conflictResolvingModel;
 
   final TfArg<String>? sourceName;
 
@@ -86,13 +85,27 @@ final class CustomerprofilesDomainConflictResolution {
 }
 
 /// `conflict_resolving_model` — derived from the provider schema description.
-enum CustomerprofilesDomainConflictResolvingModel implements TerraformEnum {
-  recency('RECENCY'),
-  source('SOURCE');
+extension type const CustomerprofilesDomainConflictResolvingModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CustomerprofilesDomainConflictResolvingModel.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomerprofilesDomainConflictResolvingModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomerprofilesDomainConflictResolvingModel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CustomerprofilesDomainConflictResolvingModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const recency = CustomerprofilesDomainConflictResolvingModel._(
+    TfArgLiteral('RECENCY'),
+  );
+  static const source = CustomerprofilesDomainConflictResolvingModel._(
+    TfArgLiteral('SOURCE'),
+  );
+
+  static const List<CustomerprofilesDomainConflictResolvingModel> values = [
+    recency,
+    source,
+  ];
 }
 
 /// Typed helper for the `matching.auto_merging.consolidation` block of
@@ -151,7 +164,7 @@ final class CustomerprofilesDomainJobSchedule {
     required this.time,
   });
 
-  final TfArg<CustomerprofilesDomainDayOfTheWeek> dayOfTheWeek;
+  final CustomerprofilesDomainDayOfTheWeek dayOfTheWeek;
 
   final TfArg<String> time;
 
@@ -162,18 +175,45 @@ final class CustomerprofilesDomainJobSchedule {
 }
 
 /// `day_of_the_week` — derived from the provider schema description.
-enum CustomerprofilesDomainDayOfTheWeek implements TerraformEnum {
-  sunday('SUNDAY'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY');
+extension type const CustomerprofilesDomainDayOfTheWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomerprofilesDomainDayOfTheWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomerprofilesDomainDayOfTheWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomerprofilesDomainDayOfTheWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomerprofilesDomainDayOfTheWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sunday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+  static const monday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = CustomerprofilesDomainDayOfTheWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+
+  static const List<CustomerprofilesDomainDayOfTheWeek> values = [
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+  ];
 }
 
 /// Typed helper for the `rule_based_matching` block of
@@ -197,7 +237,7 @@ final class CustomerprofilesDomainRuleBasedMatching {
 
   final TfArg<num>? maxAllowedRuleLevelForMerging;
 
-  final TfArg<CustomerprofilesDomainStatus>? status;
+  final CustomerprofilesDomainStatus? status;
 
   final CustomerprofilesDomainAttributeTypesSelector? attributeTypesSelector;
 
@@ -223,14 +263,27 @@ final class CustomerprofilesDomainRuleBasedMatching {
 }
 
 /// `status` — derived from the provider schema description.
-enum CustomerprofilesDomainStatus implements TerraformEnum {
-  pending('PENDING'),
-  inProgress('IN_PROGRESS'),
-  active('ACTIVE');
+extension type const CustomerprofilesDomainStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomerprofilesDomainStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomerprofilesDomainStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomerprofilesDomainStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomerprofilesDomainStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pending = CustomerprofilesDomainStatus._(
+    TfArgLiteral('PENDING'),
+  );
+  static const inProgress = CustomerprofilesDomainStatus._(
+    TfArgLiteral('IN_PROGRESS'),
+  );
+  static const active = CustomerprofilesDomainStatus._(TfArgLiteral('ACTIVE'));
+
+  static const List<CustomerprofilesDomainStatus> values = [
+    pending,
+    inProgress,
+    active,
+  ];
 }
 
 /// Typed helper for the `rule_based_matching.attribute_types_selector` block of
@@ -246,8 +299,7 @@ final class CustomerprofilesDomainAttributeTypesSelector {
 
   final TfArg<List<String>>? address;
 
-  final TfArg<CustomerprofilesDomainAttributeMatchingModel>
-  attributeMatchingModel;
+  final CustomerprofilesDomainAttributeMatchingModel attributeMatchingModel;
 
   final TfArg<List<String>>? emailAddress;
 
@@ -262,13 +314,27 @@ final class CustomerprofilesDomainAttributeTypesSelector {
 }
 
 /// `attribute_matching_model` — derived from the provider schema description.
-enum CustomerprofilesDomainAttributeMatchingModel implements TerraformEnum {
-  oneToOne('ONE_TO_ONE'),
-  manyToMany('MANY_TO_MANY');
+extension type const CustomerprofilesDomainAttributeMatchingModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CustomerprofilesDomainAttributeMatchingModel.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomerprofilesDomainAttributeMatchingModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomerprofilesDomainAttributeMatchingModel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CustomerprofilesDomainAttributeMatchingModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneToOne = CustomerprofilesDomainAttributeMatchingModel._(
+    TfArgLiteral('ONE_TO_ONE'),
+  );
+  static const manyToMany = CustomerprofilesDomainAttributeMatchingModel._(
+    TfArgLiteral('MANY_TO_MANY'),
+  );
+
+  static const List<CustomerprofilesDomainAttributeMatchingModel> values = [
+    oneToOne,
+    manyToMany,
+  ];
 }
 
 /// Typed helper for the `rule_based_matching.matching_rules` block of

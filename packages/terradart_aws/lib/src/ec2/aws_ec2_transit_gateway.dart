@@ -7,83 +7,177 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2TransitGatewaySensitive = <String>{};
 
 /// Ec2 Transit Gateway Auto Accept Shared enum for `auto_accept_shared_attachments`.
-enum Ec2TransitGatewayAutoAcceptSharedAttachments implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayAutoAcceptSharedAttachments._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayAutoAcceptSharedAttachments.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayAutoAcceptSharedAttachments.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayAutoAcceptSharedAttachments.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayAutoAcceptSharedAttachments(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayAutoAcceptSharedAttachments._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayAutoAcceptSharedAttachments._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayAutoAcceptSharedAttachments> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Default Route Table enum for `default_route_table_association`.
-enum Ec2TransitGatewayDefaultRouteTableAssociation implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayDefaultRouteTableAssociation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayDefaultRouteTableAssociation.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayDefaultRouteTableAssociation.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayDefaultRouteTableAssociation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayDefaultRouteTableAssociation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayDefaultRouteTableAssociation._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayDefaultRouteTableAssociation._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayDefaultRouteTableAssociation> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Default Route Table enum for `default_route_table_propagation`.
-enum Ec2TransitGatewayDefaultRouteTablePropagation implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayDefaultRouteTablePropagation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayDefaultRouteTablePropagation.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayDefaultRouteTablePropagation.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayDefaultRouteTablePropagation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayDefaultRouteTablePropagation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayDefaultRouteTablePropagation._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayDefaultRouteTablePropagation._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayDefaultRouteTablePropagation> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Dns enum for `dns_support`.
-enum Ec2TransitGatewayDnsSupport implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayDnsSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2TransitGatewayDnsSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayDnsSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayDnsSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2TransitGatewayDnsSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayDnsSupport._(TfArgLiteral('enable'));
+  static const disable = Ec2TransitGatewayDnsSupport._(TfArgLiteral('disable'));
+
+  static const List<Ec2TransitGatewayDnsSupport> values = [enable, disable];
 }
 
 /// Ec2 Transit Gateway Encryption enum for `encryption_support`.
-enum Ec2TransitGatewayEncryptionSupport implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayEncryptionSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2TransitGatewayEncryptionSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayEncryptionSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayEncryptionSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2TransitGatewayEncryptionSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayEncryptionSupport._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayEncryptionSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayEncryptionSupport> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Multicast enum for `multicast_support`.
-enum Ec2TransitGatewayMulticastSupport implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayMulticastSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2TransitGatewayMulticastSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayMulticastSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMulticastSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2TransitGatewayMulticastSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayMulticastSupport._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayMulticastSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayMulticastSupport> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Security Group Referencing enum for `security_group_referencing_support`.
-enum Ec2TransitGatewaySecurityGroupReferencingSupport implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewaySecurityGroupReferencingSupport._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewaySecurityGroupReferencingSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewaySecurityGroupReferencingSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewaySecurityGroupReferencingSupport.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewaySecurityGroupReferencingSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewaySecurityGroupReferencingSupport._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewaySecurityGroupReferencingSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewaySecurityGroupReferencingSupport> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Vpn Ecmp enum for `vpn_ecmp_support`.
-enum Ec2TransitGatewayVpnEcmpSupport implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayVpnEcmpSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2TransitGatewayVpnEcmpSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayVpnEcmpSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayVpnEcmpSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2TransitGatewayVpnEcmpSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayVpnEcmpSupport._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayVpnEcmpSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayVpnEcmpSupport> values = [enable, disable];
 }
 
 /// Factory wrapper for `aws_ec2_transit_gateway`.
@@ -93,22 +187,19 @@ final class AwsEc2TransitGateway extends Resource {
   AwsEc2TransitGateway(
     super.localName, {
     TfArg<num>? amazonSideAsn,
-    TfArg<Ec2TransitGatewayAutoAcceptSharedAttachments>?
-    autoAcceptSharedAttachments,
-    TfArg<Ec2TransitGatewayDefaultRouteTableAssociation>?
-    defaultRouteTableAssociation,
-    TfArg<Ec2TransitGatewayDefaultRouteTablePropagation>?
-    defaultRouteTablePropagation,
+    Ec2TransitGatewayAutoAcceptSharedAttachments? autoAcceptSharedAttachments,
+    Ec2TransitGatewayDefaultRouteTableAssociation? defaultRouteTableAssociation,
+    Ec2TransitGatewayDefaultRouteTablePropagation? defaultRouteTablePropagation,
     TfArg<String>? description,
-    TfArg<Ec2TransitGatewayDnsSupport>? dnsSupport,
-    TfArg<Ec2TransitGatewayEncryptionSupport>? encryptionSupport,
-    TfArg<Ec2TransitGatewayMulticastSupport>? multicastSupport,
+    Ec2TransitGatewayDnsSupport? dnsSupport,
+    Ec2TransitGatewayEncryptionSupport? encryptionSupport,
+    Ec2TransitGatewayMulticastSupport? multicastSupport,
     TfArg<String>? region,
-    TfArg<Ec2TransitGatewaySecurityGroupReferencingSupport>?
+    Ec2TransitGatewaySecurityGroupReferencingSupport?
     securityGroupReferencingSupport,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? transitGatewayCidrBlocks,
-    TfArg<Ec2TransitGatewayVpnEcmpSupport>? vpnEcmpSupport,
+    Ec2TransitGatewayVpnEcmpSupport? vpnEcmpSupport,
     super.lifecycle,
     super.dependsOn,
     super.provider,

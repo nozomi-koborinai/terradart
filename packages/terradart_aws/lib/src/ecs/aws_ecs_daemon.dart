@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEcsDaemonSensitive = <String>{};
 
 /// Ecs Daemon Propagate enum for `propagate_tags`.
-enum EcsDaemonPropagateTags implements TerraformEnum {
-  daemon('DAEMON'),
-  none('NONE');
+extension type const EcsDaemonPropagateTags._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsDaemonPropagateTags.variable(String name) : this._(TfArg.variable(name));
+  EcsDaemonPropagateTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsDaemonPropagateTags.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsDaemonPropagateTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daemon = EcsDaemonPropagateTags._(TfArgLiteral('DAEMON'));
+  static const none = EcsDaemonPropagateTags._(TfArgLiteral('NONE'));
+
+  static const List<EcsDaemonPropagateTags> values = [daemon, none];
 }
 
 /// Typed helper for the `deployment_configuration` block of
@@ -68,7 +72,7 @@ final class AwsEcsDaemon extends Resource {
     TfArg<bool>? enableEcsManagedTags,
     TfArg<bool>? enableExecuteCommand,
     required TfArg<String> name,
-    TfArg<EcsDaemonPropagateTags>? propagateTags,
+    EcsDaemonPropagateTags? propagateTags,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<EcsDaemonDeploymentConfiguration>? deploymentConfiguration,

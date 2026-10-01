@@ -7,14 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSesv2AccountSuppressionAttributesSensitive = <String>{};
 
 /// Sesv2 Account Suppression Attributes Suppressed enum for `suppressed_reasons`.
-enum Sesv2AccountSuppressionAttributesSuppressedReasons
-    implements TerraformEnum {
-  bounce('BOUNCE'),
-  complaint('COMPLAINT');
+extension type const Sesv2AccountSuppressionAttributesSuppressedReasons._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Sesv2AccountSuppressionAttributesSuppressedReasons.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2AccountSuppressionAttributesSuppressedReasons.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2AccountSuppressionAttributesSuppressedReasons.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Sesv2AccountSuppressionAttributesSuppressedReasons(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bounce = Sesv2AccountSuppressionAttributesSuppressedReasons._(
+    TfArgLiteral('BOUNCE'),
+  );
+  static const complaint = Sesv2AccountSuppressionAttributesSuppressedReasons._(
+    TfArgLiteral('COMPLAINT'),
+  );
+
+  static const List<Sesv2AccountSuppressionAttributesSuppressedReasons> values =
+      [bounce, complaint];
 }
 
 /// Factory wrapper for `aws_sesv2_account_suppression_attributes`.
@@ -24,7 +36,7 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
   AwsSesv2AccountSuppressionAttributes(
     super.localName, {
     TfArg<String>? region,
-    required List<TfArg<Sesv2AccountSuppressionAttributesSuppressedReasons>>
+    required List<Sesv2AccountSuppressionAttributesSuppressedReasons>
     suppressedReasons,
     super.lifecycle,
     super.dependsOn,

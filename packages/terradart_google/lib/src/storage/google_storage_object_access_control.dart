@@ -9,13 +9,20 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleStorageObjectAccessControlSensitive = <String>{};
 
 /// Storage Object Access Control enum for `role`.
-enum StorageObjectAccessControlRole implements TerraformEnum {
-  owner('OWNER'),
-  reader('READER');
+extension type const StorageObjectAccessControlRole._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageObjectAccessControlRole.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageObjectAccessControlRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageObjectAccessControlRole.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageObjectAccessControlRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = StorageObjectAccessControlRole._(TfArgLiteral('OWNER'));
+  static const reader = StorageObjectAccessControlRole._(
+    TfArgLiteral('READER'),
+  );
+
+  static const List<StorageObjectAccessControlRole> values = [owner, reader];
 }
 
 /// Factory wrapper for `google_storage_object_access_control`.
@@ -42,7 +49,7 @@ enum StorageObjectAccessControlRole implements TerraformEnum {
 ///   bucket: legacy.ref,
 ///   object: TfArg.literal('config/app.json'),
 ///   entity: .literal('allAuthenticatedUsers'),
-///   role: TfArg.literal(StorageObjectAccessControlRole.reader),
+///   role: StorageObjectAccessControlRole.reader,
 /// );
 /// ```
 final class GoogleStorageObjectAccessControl extends Resource {
@@ -53,7 +60,7 @@ final class GoogleStorageObjectAccessControl extends Resource {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> object,
     required TfArg<String> entity,
-    required TfArg<StorageObjectAccessControlRole> role,
+    required StorageObjectAccessControlRole role,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

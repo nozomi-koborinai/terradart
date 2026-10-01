@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeNodeTemplateSensitive = <String>{};
 
 /// Compute Node Template Cpu Overcommit enum for `cpu_overcommit_type`.
-enum ComputeNodeTemplateCpuOvercommitType implements TerraformEnum {
-  enabled('ENABLED'),
-  none('NONE');
+extension type const ComputeNodeTemplateCpuOvercommitType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeNodeTemplateCpuOvercommitType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNodeTemplateCpuOvercommitType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNodeTemplateCpuOvercommitType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeNodeTemplateCpuOvercommitType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ComputeNodeTemplateCpuOvercommitType._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const none = ComputeNodeTemplateCpuOvercommitType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<ComputeNodeTemplateCpuOvercommitType> values = [
+    enabled,
+    none,
+  ];
 }
 
 /// At most one of `node_type`, `node_type_flexibility` on `google_compute_node_template`: the provider rejects
@@ -146,19 +159,30 @@ final class ComputeNodeTemplateNodeTypeFlexibility {
 final class ComputeNodeTemplateServerBinding {
   const ComputeNodeTemplateServerBinding({required this.type});
 
-  final TfArg<ComputeNodeTemplateType> type;
+  final ComputeNodeTemplateType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeNodeTemplateType implements TerraformEnum {
-  restartNodeOnAnyServer('RESTART_NODE_ON_ANY_SERVER'),
-  restartNodeOnMinimalServers('RESTART_NODE_ON_MINIMAL_SERVERS');
+extension type const ComputeNodeTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeNodeTemplateType.variable(String name) : this._(TfArg.variable(name));
+  ComputeNodeTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNodeTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeNodeTemplateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const restartNodeOnAnyServer = ComputeNodeTemplateType._(
+    TfArgLiteral('RESTART_NODE_ON_ANY_SERVER'),
+  );
+  static const restartNodeOnMinimalServers = ComputeNodeTemplateType._(
+    TfArgLiteral('RESTART_NODE_ON_MINIMAL_SERVERS'),
+  );
+
+  static const List<ComputeNodeTemplateType> values = [
+    restartNodeOnAnyServer,
+    restartNodeOnMinimalServers,
+  ];
 }
 
 /// Factory wrapper for `google_compute_node_template`.
@@ -187,7 +211,7 @@ final class GoogleComputeNodeTemplate extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     ComputeNodeTemplateNodeType? nodeType,
-    TfArg<ComputeNodeTemplateCpuOvercommitType>? cpuOvercommitType,
+    ComputeNodeTemplateCpuOvercommitType? cpuOvercommitType,
     TfArg<Map<String, String>>? nodeAffinityLabels,
     List<ComputeNodeTemplateAccelerators>? accelerators,
     List<ComputeNodeTemplateDisks>? disks,

@@ -28,7 +28,7 @@ final class GlueCatalogTableIcebergInput {
     this.icebergTableInput,
   });
 
-  final TfArg<GlueCatalogTableMetadataOperation> metadataOperation;
+  final GlueCatalogTableMetadataOperation metadataOperation;
 
   final TfArg<String>? version;
 
@@ -42,12 +42,19 @@ final class GlueCatalogTableIcebergInput {
 }
 
 /// `metadata_operation` — derived from the provider schema description.
-enum GlueCatalogTableMetadataOperation implements TerraformEnum {
-  create('CREATE');
+extension type const GlueCatalogTableMetadataOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableMetadataOperation.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableMetadataOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableMetadataOperation.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableMetadataOperation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const create = GlueCatalogTableMetadataOperation._(
+    TfArgLiteral('CREATE'),
+  );
+
+  static const List<GlueCatalogTableMetadataOperation> values = [create];
 }
 
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input` block of
@@ -139,7 +146,7 @@ final class GlueCatalogTableIcebergTableInputSchema {
 
   final TfArg<num>? schemaId;
 
-  final TfArg<GlueCatalogTableSchemaType>? type;
+  final GlueCatalogTableSchemaType? type;
 
   final List<GlueCatalogTableSchemaFields> fields;
 
@@ -152,12 +159,17 @@ final class GlueCatalogTableIcebergTableInputSchema {
 }
 
 /// `type` — derived from the provider schema description.
-enum GlueCatalogTableSchemaType implements TerraformEnum {
-  struct('struct');
+extension type const GlueCatalogTableSchemaType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableSchemaType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableSchemaType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableSchemaType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableSchemaType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const struct = GlueCatalogTableSchemaType._(TfArgLiteral('struct'));
+
+  static const List<GlueCatalogTableSchemaType> values = [struct];
 }
 
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.schema.fields` block of
@@ -229,9 +241,9 @@ final class GlueCatalogTableSortOrderFields {
     required this.transform,
   });
 
-  final TfArg<GlueCatalogTableDirection> direction;
+  final GlueCatalogTableDirection direction;
 
-  final TfArg<GlueCatalogTableNullOrder> nullOrder;
+  final GlueCatalogTableNullOrder nullOrder;
 
   final TfArg<num> sourceId;
 
@@ -246,23 +258,37 @@ final class GlueCatalogTableSortOrderFields {
 }
 
 /// `direction` — derived from the provider schema description.
-enum GlueCatalogTableDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const GlueCatalogTableDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = GlueCatalogTableDirection._(TfArgLiteral('asc'));
+  static const desc = GlueCatalogTableDirection._(TfArgLiteral('desc'));
+
+  static const List<GlueCatalogTableDirection> values = [asc, desc];
 }
 
 /// `null_order` — derived from the provider schema description.
-enum GlueCatalogTableNullOrder implements TerraformEnum {
-  nullsFirst('nulls-first'),
-  nullsLast('nulls-last');
+extension type const GlueCatalogTableNullOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableNullOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableNullOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableNullOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableNullOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nullsFirst = GlueCatalogTableNullOrder._(
+    TfArgLiteral('nulls-first'),
+  );
+  static const nullsLast = GlueCatalogTableNullOrder._(
+    TfArgLiteral('nulls-last'),
+  );
+
+  static const List<GlueCatalogTableNullOrder> values = [nullsFirst, nullsLast];
 }
 
 /// Typed helper for the `partition_index` block of
@@ -656,7 +682,7 @@ final class GlueCatalogTableViewDefinition {
 
   final TfArg<bool>? isProtected;
 
-  final TfArg<GlueCatalogTableLastRefreshType>? lastRefreshType;
+  final GlueCatalogTableLastRefreshType? lastRefreshType;
 
   final TfArg<num>? refreshSeconds;
 
@@ -685,13 +711,23 @@ final class GlueCatalogTableViewDefinition {
 }
 
 /// `last_refresh_type` — derived from the provider schema description.
-enum GlueCatalogTableLastRefreshType implements TerraformEnum {
-  full('FULL'),
-  incremental('INCREMENTAL');
+extension type const GlueCatalogTableLastRefreshType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableLastRefreshType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableLastRefreshType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableLastRefreshType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableLastRefreshType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const full = GlueCatalogTableLastRefreshType._(TfArgLiteral('FULL'));
+  static const incremental = GlueCatalogTableLastRefreshType._(
+    TfArgLiteral('INCREMENTAL'),
+  );
+
+  static const List<GlueCatalogTableLastRefreshType> values = [
+    full,
+    incremental,
+  ];
 }
 
 /// Typed helper for the `view_definition.representations` block of
@@ -706,7 +742,7 @@ final class GlueCatalogTableRepresentations {
     this.viewOriginalText,
   });
 
-  final TfArg<GlueCatalogTableDialect>? dialect;
+  final GlueCatalogTableDialect? dialect;
 
   final TfArg<String>? dialectVersion;
 
@@ -726,14 +762,18 @@ final class GlueCatalogTableRepresentations {
 }
 
 /// `dialect` — derived from the provider schema description.
-enum GlueCatalogTableDialect implements TerraformEnum {
-  redshift('REDSHIFT'),
-  athena('ATHENA'),
-  spark('SPARK');
+extension type const GlueCatalogTableDialect._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableDialect.variable(String name) : this._(TfArg.variable(name));
+  GlueCatalogTableDialect.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableDialect.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableDialect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redshift = GlueCatalogTableDialect._(TfArgLiteral('REDSHIFT'));
+  static const athena = GlueCatalogTableDialect._(TfArgLiteral('ATHENA'));
+  static const spark = GlueCatalogTableDialect._(TfArgLiteral('SPARK'));
+
+  static const List<GlueCatalogTableDialect> values = [redshift, athena, spark];
 }
 
 /// Factory wrapper for `aws_glue_catalog_table`.

@@ -8,12 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServiceDiscoveryServiceSensitive = <String>{};
 
 /// Service Discovery Service enum for `type`.
-enum ServiceDiscoveryServiceType implements TerraformEnum {
-  http('HTTP');
+extension type const ServiceDiscoveryServiceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceDiscoveryServiceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceDiscoveryServiceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceDiscoveryServiceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ServiceDiscoveryServiceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = ServiceDiscoveryServiceType._(TfArgLiteral('HTTP'));
+
+  static const List<ServiceDiscoveryServiceType> values = [http];
 }
 
 /// Typed helper for the `dns_config` block of
@@ -28,7 +33,7 @@ final class ServiceDiscoveryServiceDnsConfig {
 
   final TfArg<String> namespaceId;
 
-  final TfArg<ServiceDiscoveryServiceRoutingPolicy>? routingPolicy;
+  final ServiceDiscoveryServiceRoutingPolicy? routingPolicy;
 
   final List<ServiceDiscoveryServiceDnsRecords> dnsRecords;
 
@@ -40,13 +45,26 @@ final class ServiceDiscoveryServiceDnsConfig {
 }
 
 /// `routing_policy` — derived from the provider schema description.
-enum ServiceDiscoveryServiceRoutingPolicy implements TerraformEnum {
-  multivalue('MULTIVALUE'),
-  weighted('WEIGHTED');
+extension type const ServiceDiscoveryServiceRoutingPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceDiscoveryServiceRoutingPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceDiscoveryServiceRoutingPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceDiscoveryServiceRoutingPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServiceDiscoveryServiceRoutingPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multivalue = ServiceDiscoveryServiceRoutingPolicy._(
+    TfArgLiteral('MULTIVALUE'),
+  );
+  static const weighted = ServiceDiscoveryServiceRoutingPolicy._(
+    TfArgLiteral('WEIGHTED'),
+  );
+
+  static const List<ServiceDiscoveryServiceRoutingPolicy> values = [
+    multivalue,
+    weighted,
+  ];
 }
 
 /// Typed helper for the `dns_config.dns_records` block of
@@ -60,7 +78,7 @@ final class ServiceDiscoveryServiceDnsRecords {
 
   final TfArg<num> ttl;
 
-  final TfArg<ServiceDiscoveryServiceDnsRecordsType> type;
+  final ServiceDiscoveryServiceDnsRecordsType type;
 
   Map<String, Object?> encode() => {
     'ttl': ttl.toTfJson(),
@@ -69,15 +87,32 @@ final class ServiceDiscoveryServiceDnsRecords {
 }
 
 /// `type` — derived from the provider schema description.
-enum ServiceDiscoveryServiceDnsRecordsType implements TerraformEnum {
-  srv('SRV'),
-  a('A'),
-  aaaa('AAAA'),
-  cname('CNAME');
+extension type const ServiceDiscoveryServiceDnsRecordsType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceDiscoveryServiceDnsRecordsType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceDiscoveryServiceDnsRecordsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceDiscoveryServiceDnsRecordsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServiceDiscoveryServiceDnsRecordsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const srv = ServiceDiscoveryServiceDnsRecordsType._(
+    TfArgLiteral('SRV'),
+  );
+  static const a = ServiceDiscoveryServiceDnsRecordsType._(TfArgLiteral('A'));
+  static const aaaa = ServiceDiscoveryServiceDnsRecordsType._(
+    TfArgLiteral('AAAA'),
+  );
+  static const cname = ServiceDiscoveryServiceDnsRecordsType._(
+    TfArgLiteral('CNAME'),
+  );
+
+  static const List<ServiceDiscoveryServiceDnsRecordsType> values = [
+    srv,
+    a,
+    aaaa,
+    cname,
+  ];
 }
 
 /// Typed helper for the `health_check_config` block of
@@ -94,7 +129,7 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
 
   final TfArg<String>? resourcePath;
 
-  final TfArg<ServiceDiscoveryServiceHealthCheckConfigType>? type;
+  final ServiceDiscoveryServiceHealthCheckConfigType? type;
 
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -104,14 +139,31 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum ServiceDiscoveryServiceHealthCheckConfigType implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP');
+extension type const ServiceDiscoveryServiceHealthCheckConfigType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServiceDiscoveryServiceHealthCheckConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceDiscoveryServiceHealthCheckConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceDiscoveryServiceHealthCheckConfigType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServiceDiscoveryServiceHealthCheckConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = ServiceDiscoveryServiceHealthCheckConfigType._(
+    TfArgLiteral('HTTP'),
+  );
+  static const https = ServiceDiscoveryServiceHealthCheckConfigType._(
+    TfArgLiteral('HTTPS'),
+  );
+  static const tcp = ServiceDiscoveryServiceHealthCheckConfigType._(
+    TfArgLiteral('TCP'),
+  );
+
+  static const List<ServiceDiscoveryServiceHealthCheckConfigType> values = [
+    http,
+    https,
+    tcp,
+  ];
 }
 
 /// Typed helper for the `health_check_custom_config` block of
@@ -139,7 +191,7 @@ final class AwsServiceDiscoveryService extends Resource {
     TfArg<String>? namespaceId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<ServiceDiscoveryServiceType>? type,
+    ServiceDiscoveryServiceType? type,
     ServiceDiscoveryServiceDnsConfig? dnsConfig,
     ServiceDiscoveryServiceHealthCheckConfig? healthCheckConfig,
     ServiceDiscoveryServiceHealthCheckCustomConfig? healthCheckCustomConfig,

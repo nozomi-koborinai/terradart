@@ -8,18 +8,43 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGkeonpremBareMetalClusterSensitive = <String>{};
 
 /// Gkeonprem Bare Metal Cluster enum for `state`.
-enum GkeonpremBareMetalClusterState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  provisioning('PROVISIONING'),
-  running('RUNNING'),
-  reconciling('RECONCILING'),
-  stopping('STOPPING'),
-  error('ERROR'),
-  degraded('DEGRADED');
+extension type const GkeonpremBareMetalClusterState._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalClusterState.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalClusterState.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalClusterState.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremBareMetalClusterState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = GkeonpremBareMetalClusterState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const provisioning = GkeonpremBareMetalClusterState._(
+    TfArgLiteral('PROVISIONING'),
+  );
+  static const running = GkeonpremBareMetalClusterState._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const reconciling = GkeonpremBareMetalClusterState._(
+    TfArgLiteral('RECONCILING'),
+  );
+  static const stopping = GkeonpremBareMetalClusterState._(
+    TfArgLiteral('STOPPING'),
+  );
+  static const error = GkeonpremBareMetalClusterState._(TfArgLiteral('ERROR'));
+  static const degraded = GkeonpremBareMetalClusterState._(
+    TfArgLiteral('DEGRADED'),
+  );
+
+  static const List<GkeonpremBareMetalClusterState> values = [
+    stateUnspecified,
+    provisioning,
+    running,
+    reconciling,
+    stopping,
+    error,
+    degraded,
+  ];
 }
 
 /// Typed helper for the `binary_authorization` block of
@@ -28,7 +53,7 @@ enum GkeonpremBareMetalClusterState implements TerraformEnum {
 final class GkeonpremBareMetalClusterBinaryAuthorization {
   const GkeonpremBareMetalClusterBinaryAuthorization({this.evaluationMode});
 
-  final TfArg<GkeonpremBareMetalClusterEvaluationMode>? evaluationMode;
+  final GkeonpremBareMetalClusterEvaluationMode? evaluationMode;
 
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
@@ -36,13 +61,27 @@ final class GkeonpremBareMetalClusterBinaryAuthorization {
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum GkeonpremBareMetalClusterEvaluationMode implements TerraformEnum {
-  disabled('DISABLED'),
-  projectSingletonPolicyEnforce('PROJECT_SINGLETON_POLICY_ENFORCE');
+extension type const GkeonpremBareMetalClusterEvaluationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalClusterEvaluationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalClusterEvaluationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalClusterEvaluationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeonpremBareMetalClusterEvaluationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = GkeonpremBareMetalClusterEvaluationMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const projectSingletonPolicyEnforce =
+      GkeonpremBareMetalClusterEvaluationMode._(
+        TfArgLiteral('PROJECT_SINGLETON_POLICY_ENFORCE'),
+      );
+
+  static const List<GkeonpremBareMetalClusterEvaluationMode> values = [
+    disabled,
+    projectSingletonPolicyEnforce,
+  ];
 }
 
 /// Typed helper for the `cluster_operations` block of
@@ -166,7 +205,7 @@ final class GkeonpremBareMetalClusterNodeConfigs {
 final class GkeonpremBareMetalClusterTaints {
   const GkeonpremBareMetalClusterTaints({this.effect, this.key, this.value});
 
-  final TfArg<GkeonpremBareMetalClusterEffect>? effect;
+  final GkeonpremBareMetalClusterEffect? effect;
 
   final TfArg<String>? key;
 
@@ -180,14 +219,29 @@ final class GkeonpremBareMetalClusterTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremBareMetalClusterEffect implements TerraformEnum {
-  effectUnspecified('EFFECT_UNSPECIFIED'),
-  preferNoSchedule('PREFER_NO_SCHEDULE'),
-  noExecute('NO_EXECUTE');
+extension type const GkeonpremBareMetalClusterEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalClusterEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalClusterEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalClusterEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremBareMetalClusterEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const effectUnspecified = GkeonpremBareMetalClusterEffect._(
+    TfArgLiteral('EFFECT_UNSPECIFIED'),
+  );
+  static const preferNoSchedule = GkeonpremBareMetalClusterEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = GkeonpremBareMetalClusterEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<GkeonpremBareMetalClusterEffect> values = [
+    effectUnspecified,
+    preferNoSchedule,
+    noExecute,
+  ];
 }
 
 /// Typed helper for the `load_balancer` block of
@@ -622,7 +676,7 @@ final class GkeonpremBareMetalClusterNodeConfig {
     this.maxPodsPerNode,
   });
 
-  final TfArg<GkeonpremBareMetalClusterContainerRuntime>? containerRuntime;
+  final GkeonpremBareMetalClusterContainerRuntime? containerRuntime;
 
   final TfArg<num>? maxPodsPerNode;
 
@@ -633,14 +687,32 @@ final class GkeonpremBareMetalClusterNodeConfig {
 }
 
 /// `container_runtime` — derived from the provider schema description.
-enum GkeonpremBareMetalClusterContainerRuntime implements TerraformEnum {
-  containerRuntimeUnspecified('CONTAINER_RUNTIME_UNSPECIFIED'),
-  docker('DOCKER'),
-  containerd('CONTAINERD');
+extension type const GkeonpremBareMetalClusterContainerRuntime._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeonpremBareMetalClusterContainerRuntime.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalClusterContainerRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalClusterContainerRuntime.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeonpremBareMetalClusterContainerRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const containerRuntimeUnspecified =
+      GkeonpremBareMetalClusterContainerRuntime._(
+        TfArgLiteral('CONTAINER_RUNTIME_UNSPECIFIED'),
+      );
+  static const docker = GkeonpremBareMetalClusterContainerRuntime._(
+    TfArgLiteral('DOCKER'),
+  );
+  static const containerd = GkeonpremBareMetalClusterContainerRuntime._(
+    TfArgLiteral('CONTAINERD'),
+  );
+
+  static const List<GkeonpremBareMetalClusterContainerRuntime> values = [
+    containerRuntimeUnspecified,
+    docker,
+    containerd,
+  ];
 }
 
 /// Typed helper for the `os_environment_config` block of
@@ -791,19 +863,31 @@ final class GkeonpremBareMetalClusterLvpConfig {
 final class GkeonpremBareMetalClusterUpgradePolicy {
   const GkeonpremBareMetalClusterUpgradePolicy({this.policy});
 
-  final TfArg<GkeonpremBareMetalClusterPolicy>? policy;
+  final GkeonpremBareMetalClusterPolicy? policy;
 
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
 /// `policy` — derived from the provider schema description.
-enum GkeonpremBareMetalClusterPolicy implements TerraformEnum {
-  serial('SERIAL'),
-  concurrent('CONCURRENT');
+extension type const GkeonpremBareMetalClusterPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalClusterPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalClusterPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalClusterPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremBareMetalClusterPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serial = GkeonpremBareMetalClusterPolicy._(
+    TfArgLiteral('SERIAL'),
+  );
+  static const concurrent = GkeonpremBareMetalClusterPolicy._(
+    TfArgLiteral('CONCURRENT'),
+  );
+
+  static const List<GkeonpremBareMetalClusterPolicy> values = [
+    serial,
+    concurrent,
+  ];
 }
 
 /// Factory wrapper for `google_gkeonprem_bare_metal_cluster`.

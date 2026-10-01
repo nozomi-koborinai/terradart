@@ -73,10 +73,10 @@ final class NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationS
     this.unknownStatusAction,
   });
 
-  final TfArg<NetworkfirewallTlsInspectionConfigurationRevokedStatusAction>?
+  final NetworkfirewallTlsInspectionConfigurationRevokedStatusAction?
   revokedStatusAction;
 
-  final TfArg<NetworkfirewallTlsInspectionConfigurationUnknownStatusAction>?
+  final NetworkfirewallTlsInspectionConfigurationUnknownStatusAction?
   unknownStatusAction;
 
   Map<String, Object?> encode() => {
@@ -86,31 +86,69 @@ final class NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationS
 }
 
 /// `revoked_status_action` — derived from the provider schema description.
-enum NetworkfirewallTlsInspectionConfigurationRevokedStatusAction
-    implements TerraformEnum {
-  pass('PASS'),
-  drop('DROP'),
-  reject('REJECT');
+extension type const NetworkfirewallTlsInspectionConfigurationRevokedStatusAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallTlsInspectionConfigurationRevokedStatusAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkfirewallTlsInspectionConfigurationRevokedStatusAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkfirewallTlsInspectionConfigurationRevokedStatusAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkfirewallTlsInspectionConfigurationRevokedStatusAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const pass =
+      NetworkfirewallTlsInspectionConfigurationRevokedStatusAction._(
+        TfArgLiteral('PASS'),
+      );
+  static const drop =
+      NetworkfirewallTlsInspectionConfigurationRevokedStatusAction._(
+        TfArgLiteral('DROP'),
+      );
+  static const reject =
+      NetworkfirewallTlsInspectionConfigurationRevokedStatusAction._(
+        TfArgLiteral('REJECT'),
+      );
+
+  static const List<
+    NetworkfirewallTlsInspectionConfigurationRevokedStatusAction
+  >
+  values = [pass, drop, reject];
 }
 
 /// `unknown_status_action` — derived from the provider schema description.
-enum NetworkfirewallTlsInspectionConfigurationUnknownStatusAction
-    implements TerraformEnum {
-  pass('PASS'),
-  drop('DROP'),
-  reject('REJECT');
+extension type const NetworkfirewallTlsInspectionConfigurationUnknownStatusAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallTlsInspectionConfigurationUnknownStatusAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkfirewallTlsInspectionConfigurationUnknownStatusAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkfirewallTlsInspectionConfigurationUnknownStatusAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkfirewallTlsInspectionConfigurationUnknownStatusAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const pass =
+      NetworkfirewallTlsInspectionConfigurationUnknownStatusAction._(
+        TfArgLiteral('PASS'),
+      );
+  static const drop =
+      NetworkfirewallTlsInspectionConfigurationUnknownStatusAction._(
+        TfArgLiteral('DROP'),
+      );
+  static const reject =
+      NetworkfirewallTlsInspectionConfigurationUnknownStatusAction._(
+        TfArgLiteral('REJECT'),
+      );
+
+  static const List<
+    NetworkfirewallTlsInspectionConfigurationUnknownStatusAction
+  >
+  values = [pass, drop, reject];
 }
 
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope` block of

@@ -9,10 +9,6 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_compute_subnetwork`.
 const Set<String> _googleComputeSubnetworkSensitive = <String>{};
 
-// Phase 4.5.1: dartTypeOverrides re-enabled for enum-typed fields. Callers
-// pass `TfArg.literal(SubnetworkPurpose.private)` (enum value directly) and
-// the TfArg.toTfJson layer detects the `terraformValue` getter convention.
-
 /// Purpose of the subnetwork. Defaults to [private] when unspecified.
 ///
 /// `regionalManagedProxy` / `globalManagedProxy` reserve the subnet for
@@ -21,92 +17,184 @@ const Set<String> _googleComputeSubnetworkSensitive = <String>{};
 /// Private Service Connect published service. `peerMigration` reserves the
 /// subnet for migrating resources between peered networks. `privateNat` is
 /// used as the source range for Private NAT gateways.
-enum SubnetworkPurpose implements TerraformEnum {
-  private('PRIVATE'),
-  regionalManagedProxy('REGIONAL_MANAGED_PROXY'),
-  globalManagedProxy('GLOBAL_MANAGED_PROXY'),
-  privateServiceConnect('PRIVATE_SERVICE_CONNECT'),
-  peerMigration('PEER_MIGRATION'),
-  privateNat('PRIVATE_NAT');
+extension type const SubnetworkPurpose._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkPurpose.variable(String name) : this._(TfArg.variable(name));
+  SubnetworkPurpose.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkPurpose.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkPurpose(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = SubnetworkPurpose._(TfArgLiteral('PRIVATE'));
+  static const regionalManagedProxy = SubnetworkPurpose._(
+    TfArgLiteral('REGIONAL_MANAGED_PROXY'),
+  );
+  static const globalManagedProxy = SubnetworkPurpose._(
+    TfArgLiteral('GLOBAL_MANAGED_PROXY'),
+  );
+  static const privateServiceConnect = SubnetworkPurpose._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+  static const peerMigration = SubnetworkPurpose._(
+    TfArgLiteral('PEER_MIGRATION'),
+  );
+  static const privateNat = SubnetworkPurpose._(TfArgLiteral('PRIVATE_NAT'));
+
+  static const List<SubnetworkPurpose> values = [
+    private,
+    regionalManagedProxy,
+    globalManagedProxy,
+    privateServiceConnect,
+    peerMigration,
+    privateNat,
+  ];
 }
 
 /// Role of a managed-proxy subnetwork. Only meaningful when `purpose` is
 /// `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
-enum SubnetworkRole implements TerraformEnum {
-  active('ACTIVE'),
-  backup('BACKUP');
+extension type const SubnetworkRole._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkRole.variable(String name) : this._(TfArg.variable(name));
+  SubnetworkRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkRole.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = SubnetworkRole._(TfArgLiteral('ACTIVE'));
+  static const backup = SubnetworkRole._(TfArgLiteral('BACKUP'));
+
+  static const List<SubnetworkRole> values = [active, backup];
 }
 
 /// IP stack type for the subnetwork. Immutable after creation.
-enum SubnetworkStackType implements TerraformEnum {
-  ipv4Only('IPV4_ONLY'),
-  ipv4Ipv6('IPV4_IPV6'),
-  ipv6Only('IPV6_ONLY');
+extension type const SubnetworkStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkStackType.variable(String name) : this._(TfArg.variable(name));
+  SubnetworkStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkStackType.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkStackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Only = SubnetworkStackType._(TfArgLiteral('IPV4_ONLY'));
+  static const ipv4Ipv6 = SubnetworkStackType._(TfArgLiteral('IPV4_IPV6'));
+  static const ipv6Only = SubnetworkStackType._(TfArgLiteral('IPV6_ONLY'));
+
+  static const List<SubnetworkStackType> values = [
+    ipv4Only,
+    ipv4Ipv6,
+    ipv6Only,
+  ];
 }
 
 /// Access type of the IPv6 address range held by the subnetwork. Immutable
 /// after creation. Only meaningful when [SubnetworkStackType] includes IPv6.
-enum SubnetworkIpv6AccessType implements TerraformEnum {
-  internal('INTERNAL'),
-  external('EXTERNAL');
+extension type const SubnetworkIpv6AccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkIpv6AccessType.variable(String name) : this._(TfArg.variable(name));
+  SubnetworkIpv6AccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkIpv6AccessType.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkIpv6AccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internal = SubnetworkIpv6AccessType._(TfArgLiteral('INTERNAL'));
+  static const external = SubnetworkIpv6AccessType._(TfArgLiteral('EXTERNAL'));
+
+  static const List<SubnetworkIpv6AccessType> values = [internal, external];
 }
 
 /// VPC flow log aggregation interval. The default on GCP is
 /// [interval5Sec] (denser sampling, higher cost).
-enum SubnetworkLogConfigAggregationInterval implements TerraformEnum {
-  interval5Sec('INTERVAL_5_SEC'),
-  interval30Sec('INTERVAL_30_SEC'),
-  interval1Min('INTERVAL_1_MIN'),
-  interval5Min('INTERVAL_5_MIN'),
-  interval10Min('INTERVAL_10_MIN'),
-  interval15Min('INTERVAL_15_MIN');
+extension type const SubnetworkLogConfigAggregationInterval._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkLogConfigAggregationInterval.variable(String name)
+    : this._(TfArg.variable(name));
+  SubnetworkLogConfigAggregationInterval.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkLogConfigAggregationInterval.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SubnetworkLogConfigAggregationInterval(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const interval5Sec = SubnetworkLogConfigAggregationInterval._(
+    TfArgLiteral('INTERVAL_5_SEC'),
+  );
+  static const interval30Sec = SubnetworkLogConfigAggregationInterval._(
+    TfArgLiteral('INTERVAL_30_SEC'),
+  );
+  static const interval1Min = SubnetworkLogConfigAggregationInterval._(
+    TfArgLiteral('INTERVAL_1_MIN'),
+  );
+  static const interval5Min = SubnetworkLogConfigAggregationInterval._(
+    TfArgLiteral('INTERVAL_5_MIN'),
+  );
+  static const interval10Min = SubnetworkLogConfigAggregationInterval._(
+    TfArgLiteral('INTERVAL_10_MIN'),
+  );
+  static const interval15Min = SubnetworkLogConfigAggregationInterval._(
+    TfArgLiteral('INTERVAL_15_MIN'),
+  );
+
+  static const List<SubnetworkLogConfigAggregationInterval> values = [
+    interval5Sec,
+    interval30Sec,
+    interval1Min,
+    interval5Min,
+    interval10Min,
+    interval15Min,
+  ];
 }
 
 /// VPC flow log metadata-inclusion mode. Pair `customMetadata` with the
 /// [ComputeSubnetworkLogConfig.metadataFields] selector.
-enum SubnetworkLogConfigMetadata implements TerraformEnum {
-  includeAllMetadata('INCLUDE_ALL_METADATA'),
-  excludeAllMetadata('EXCLUDE_ALL_METADATA'),
-  customMetadata('CUSTOM_METADATA');
+extension type const SubnetworkLogConfigMetadata._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkLogConfigMetadata.variable(String name)
+    : this._(TfArg.variable(name));
+  SubnetworkLogConfigMetadata.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkLogConfigMetadata.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkLogConfigMetadata(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const includeAllMetadata = SubnetworkLogConfigMetadata._(
+    TfArgLiteral('INCLUDE_ALL_METADATA'),
+  );
+  static const excludeAllMetadata = SubnetworkLogConfigMetadata._(
+    TfArgLiteral('EXCLUDE_ALL_METADATA'),
+  );
+  static const customMetadata = SubnetworkLogConfigMetadata._(
+    TfArgLiteral('CUSTOM_METADATA'),
+  );
+
+  static const List<SubnetworkLogConfigMetadata> values = [
+    includeAllMetadata,
+    excludeAllMetadata,
+    customMetadata,
+  ];
 }
 
 /// ARP resolution mode for the subnetwork. Controls which ranges respond
 /// to ARP requests. Used only by reserved-internal-range subnetworks.
-enum SubnetworkResolveSubnetMask implements TerraformEnum {
-  arpAllRanges('ARP_ALL_RANGES'),
-  arpPrimaryRange('ARP_PRIMARY_RANGE'),
-  arpBroadcastPrimaryRange('ARP_BROADCAST_PRIMARY_RANGE'),
-  arpBroadcastPrimaryRangeWithLearning(
-    'ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING',
-  );
+extension type const SubnetworkResolveSubnetMask._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkResolveSubnetMask.variable(String name)
+    : this._(TfArg.variable(name));
+  SubnetworkResolveSubnetMask.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkResolveSubnetMask.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkResolveSubnetMask(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arpAllRanges = SubnetworkResolveSubnetMask._(
+    TfArgLiteral('ARP_ALL_RANGES'),
+  );
+  static const arpPrimaryRange = SubnetworkResolveSubnetMask._(
+    TfArgLiteral('ARP_PRIMARY_RANGE'),
+  );
+  static const arpBroadcastPrimaryRange = SubnetworkResolveSubnetMask._(
+    TfArgLiteral('ARP_BROADCAST_PRIMARY_RANGE'),
+  );
+  static const arpBroadcastPrimaryRangeWithLearning =
+      SubnetworkResolveSubnetMask._(
+        TfArgLiteral('ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING'),
+      );
+
+  static const List<SubnetworkResolveSubnetMask> values = [
+    arpAllRanges,
+    arpPrimaryRange,
+    arpBroadcastPrimaryRange,
+    arpBroadcastPrimaryRangeWithLearning,
+  ];
 }
 
 // ===========================================================================
@@ -158,14 +246,14 @@ class ComputeSubnetworkLogConfig {
 
   /// Toggles between dense and sparse aggregation. Defaults to
   /// `INTERVAL_5_SEC` on GCP.
-  final TfArg<SubnetworkLogConfigAggregationInterval>? aggregationInterval;
+  final SubnetworkLogConfigAggregationInterval? aggregationInterval;
 
   /// Fraction of packets to sample, between 0.0 and 1.0.
   final TfArg<num>? flowSampling;
 
   /// Metadata-inclusion mode. Use `customMetadata` to scope via
   /// [metadataFields].
-  final TfArg<SubnetworkLogConfigMetadata>? metadata;
+  final SubnetworkLogConfigMetadata? metadata;
 
   /// Metadata field names included when [metadata] is `customMetadata`.
   final TfArg<List<String>>? metadataFields;
@@ -261,19 +349,19 @@ final class GoogleComputeSubnetwork extends Resource {
     TfArg<String>? region,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? ipCidrRange,
-    TfArg<SubnetworkPurpose>? purpose,
-    TfArg<SubnetworkRole>? role,
+    SubnetworkPurpose? purpose,
+    SubnetworkRole? role,
     List<ComputeSubnetworkSecondaryIpRange>? secondaryIpRange,
     TfArg<bool>? privateIpGoogleAccess,
     TfArg<String>? privateIpv6GoogleAccess,
     ComputeSubnetworkLogConfig? logConfig,
-    TfArg<SubnetworkStackType>? stackType,
-    TfArg<SubnetworkIpv6AccessType>? ipv6AccessType,
+    SubnetworkStackType? stackType,
+    SubnetworkIpv6AccessType? ipv6AccessType,
     TfArg<String>? externalIpv6Prefix,
     TfArg<String>? internalIpv6Prefix,
     TfArg<String>? ipCollection,
     TfArg<String>? reservedInternalRange,
-    TfArg<SubnetworkResolveSubnetMask>? resolveSubnetMask,
+    SubnetworkResolveSubnetMask? resolveSubnetMask,
     TfArg<bool>? sendSecondaryIpRangeIfEmpty,
     TfArg<bool>? allowSubnetCidrRoutesOverlap,
     TfArg<String>? description,

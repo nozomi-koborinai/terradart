@@ -8,42 +8,93 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDrsReplicationConfigurationTemplateSensitive = <String>{};
 
 /// Drs Replication Configuration Template Data Plane enum for `data_plane_routing`.
-enum DrsReplicationConfigurationTemplateDataPlaneRouting
-    implements TerraformEnum {
-  privateIp('PRIVATE_IP'),
-  publicIp('PUBLIC_IP');
+extension type const DrsReplicationConfigurationTemplateDataPlaneRouting._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DrsReplicationConfigurationTemplateDataPlaneRouting.variable(String name)
+    : this._(TfArg.variable(name));
+  DrsReplicationConfigurationTemplateDataPlaneRouting.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DrsReplicationConfigurationTemplateDataPlaneRouting.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DrsReplicationConfigurationTemplateDataPlaneRouting(
-    this.terraformValue,
+  static const privateIp =
+      DrsReplicationConfigurationTemplateDataPlaneRouting._(
+        TfArgLiteral('PRIVATE_IP'),
+      );
+  static const publicIp = DrsReplicationConfigurationTemplateDataPlaneRouting._(
+    TfArgLiteral('PUBLIC_IP'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<DrsReplicationConfigurationTemplateDataPlaneRouting>
+  values = [privateIp, publicIp];
 }
 
 /// Drs Replication Configuration Template Default Large Staging Disk enum for `default_large_staging_disk_type`.
-enum DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType
-    implements TerraformEnum {
-  gp2('GP2'),
-  gp3('GP3'),
-  st1('ST1'),
-  auto('AUTO');
+extension type const DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const gp2 =
+      DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType._(
+        TfArgLiteral('GP2'),
+      );
+  static const gp3 =
+      DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType._(
+        TfArgLiteral('GP3'),
+      );
+  static const st1 =
+      DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType._(
+        TfArgLiteral('ST1'),
+      );
+  static const auto =
+      DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType._(
+        TfArgLiteral('AUTO'),
+      );
+
+  static const List<
+    DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType
+  >
+  values = [gp2, gp3, st1, auto];
 }
 
 /// Drs Replication Configuration Template Ebs enum for `ebs_encryption`.
-enum DrsReplicationConfigurationTemplateEbsEncryption implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  custom('CUSTOM'),
-  none('NONE');
+extension type const DrsReplicationConfigurationTemplateEbsEncryption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DrsReplicationConfigurationTemplateEbsEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  DrsReplicationConfigurationTemplateEbsEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const DrsReplicationConfigurationTemplateEbsEncryption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DrsReplicationConfigurationTemplateEbsEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = DrsReplicationConfigurationTemplateEbsEncryption._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const custom = DrsReplicationConfigurationTemplateEbsEncryption._(
+    TfArgLiteral('CUSTOM'),
+  );
+  static const none = DrsReplicationConfigurationTemplateEbsEncryption._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<DrsReplicationConfigurationTemplateEbsEncryption> values = [
+    defaultCase,
+    custom,
+    none,
+  ];
 }
 
 /// Typed helper for the `pit_policy` block of
@@ -66,7 +117,7 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
 
   final TfArg<num>? ruleId;
 
-  final TfArg<DrsReplicationConfigurationTemplateUnits> units;
+  final DrsReplicationConfigurationTemplateUnits units;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -78,14 +129,30 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
 }
 
 /// `units` — derived from the provider schema description.
-enum DrsReplicationConfigurationTemplateUnits implements TerraformEnum {
-  minute('MINUTE'),
-  hour('HOUR'),
-  day('DAY');
+extension type const DrsReplicationConfigurationTemplateUnits._(TfArg<String> _)
+    implements TfArg<String> {
+  DrsReplicationConfigurationTemplateUnits.variable(String name)
+    : this._(TfArg.variable(name));
+  DrsReplicationConfigurationTemplateUnits.expression(String template)
+    : this._(TfArg.expression(template));
+  const DrsReplicationConfigurationTemplateUnits.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DrsReplicationConfigurationTemplateUnits(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minute = DrsReplicationConfigurationTemplateUnits._(
+    TfArgLiteral('MINUTE'),
+  );
+  static const hour = DrsReplicationConfigurationTemplateUnits._(
+    TfArgLiteral('HOUR'),
+  );
+  static const day = DrsReplicationConfigurationTemplateUnits._(
+    TfArgLiteral('DAY'),
+  );
+
+  static const List<DrsReplicationConfigurationTemplateUnits> values = [
+    minute,
+    hour,
+    day,
+  ];
 }
 
 /// Factory wrapper for `aws_drs_replication_configuration_template`.
@@ -98,14 +165,11 @@ final class AwsDrsReplicationConfigurationTemplate extends Resource {
     TfArg<bool>? autoReplicateNewDisks,
     required TfArg<num> bandwidthThrottling,
     required TfArg<bool> createPublicIp,
-    required TfArg<DrsReplicationConfigurationTemplateDataPlaneRouting>
+    required DrsReplicationConfigurationTemplateDataPlaneRouting
     dataPlaneRouting,
-    required TfArg<
-      DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType
-    >
+    required DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType
     defaultLargeStagingDiskType,
-    required TfArg<DrsReplicationConfigurationTemplateEbsEncryption>
-    ebsEncryption,
+    required DrsReplicationConfigurationTemplateEbsEncryption ebsEncryption,
     TfArg<String>? ebsEncryptionKeyArn,
     TfArg<String>? region,
     required TfArg<String> replicationServerInstanceType,

@@ -10,54 +10,92 @@ import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 const Set<String> _awsElasticacheClusterSensitive = <String>{};
 
 /// Elasticache Cluster Az enum for `az_mode`.
-enum ElasticacheClusterAzMode implements TerraformEnum {
-  singleAz('single-az'),
-  crossAz('cross-az');
+extension type const ElasticacheClusterAzMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterAzMode.variable(String name) : this._(TfArg.variable(name));
+  ElasticacheClusterAzMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterAzMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterAzMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleAz = ElasticacheClusterAzMode._(TfArgLiteral('single-az'));
+  static const crossAz = ElasticacheClusterAzMode._(TfArgLiteral('cross-az'));
+
+  static const List<ElasticacheClusterAzMode> values = [singleAz, crossAz];
 }
 
 /// Elasticache Cluster enum for `engine`.
-enum ElasticacheClusterEngine implements TerraformEnum {
-  memcached('memcached'),
-  redis('redis');
+extension type const ElasticacheClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  ElasticacheClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const memcached = ElasticacheClusterEngine._(
+    TfArgLiteral('memcached'),
+  );
+  static const redis = ElasticacheClusterEngine._(TfArgLiteral('redis'));
+
+  static const List<ElasticacheClusterEngine> values = [memcached, redis];
 }
 
 /// Elasticache Cluster Ip enum for `ip_discovery`.
-enum ElasticacheClusterIpDiscovery implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const ElasticacheClusterIpDiscovery._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterIpDiscovery.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheClusterIpDiscovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterIpDiscovery.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterIpDiscovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ElasticacheClusterIpDiscovery._(TfArgLiteral('ipv4'));
+  static const ipv6 = ElasticacheClusterIpDiscovery._(TfArgLiteral('ipv6'));
+
+  static const List<ElasticacheClusterIpDiscovery> values = [ipv4, ipv6];
 }
 
 /// Elasticache Cluster Network enum for `network_type`.
-enum ElasticacheClusterNetworkType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualStack('dual_stack');
+extension type const ElasticacheClusterNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ElasticacheClusterNetworkType._(TfArgLiteral('ipv4'));
+  static const ipv6 = ElasticacheClusterNetworkType._(TfArgLiteral('ipv6'));
+  static const dualStack = ElasticacheClusterNetworkType._(
+    TfArgLiteral('dual_stack'),
+  );
+
+  static const List<ElasticacheClusterNetworkType> values = [
+    ipv4,
+    ipv6,
+    dualStack,
+  ];
 }
 
 /// Elasticache Cluster Outpost enum for `outpost_mode`.
-enum ElasticacheClusterOutpostMode implements TerraformEnum {
-  singleOutpost('single-outpost'),
-  crossOutpost('cross-outpost');
+extension type const ElasticacheClusterOutpostMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterOutpostMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheClusterOutpostMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterOutpostMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterOutpostMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleOutpost = ElasticacheClusterOutpostMode._(
+    TfArgLiteral('single-outpost'),
+  );
+  static const crossOutpost = ElasticacheClusterOutpostMode._(
+    TfArgLiteral('cross-outpost'),
+  );
+
+  static const List<ElasticacheClusterOutpostMode> values = [
+    singleOutpost,
+    crossOutpost,
+  ];
 }
 
 /// Exactly one of `engine`, `replication_group_id` on `aws_elasticache_cluster`: the provider rejects
@@ -69,7 +107,7 @@ sealed class ElasticacheClusterSource {
 
   /// Sets `engine`.
   const factory ElasticacheClusterSource.engine(
-    TfArg<ElasticacheClusterEngine> engine,
+    ElasticacheClusterEngine engine,
   ) = ElasticacheClusterSourceEngine;
 
   /// Sets `replication_group_id`.
@@ -91,7 +129,7 @@ sealed class ElasticacheClusterSource {
 final class ElasticacheClusterSourceEngine extends ElasticacheClusterSource {
   const ElasticacheClusterSourceEngine(this.engine);
 
-  final TfArg<ElasticacheClusterEngine> engine;
+  final ElasticacheClusterEngine engine;
 
   @override
   String get blockKey => 'engine';
@@ -137,11 +175,11 @@ final class ElasticacheClusterLogDeliveryConfiguration {
 
   final TfArg<String> destination;
 
-  final TfArg<ElasticacheClusterDestinationType> destinationType;
+  final ElasticacheClusterDestinationType destinationType;
 
-  final TfArg<ElasticacheClusterLogFormat> logFormat;
+  final ElasticacheClusterLogFormat logFormat;
 
-  final TfArg<ElasticacheClusterLogType> logType;
+  final ElasticacheClusterLogType logType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -152,33 +190,57 @@ final class ElasticacheClusterLogDeliveryConfiguration {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum ElasticacheClusterDestinationType implements TerraformEnum {
-  cloudwatchLogs('cloudwatch-logs'),
-  kinesisFirehose('kinesis-firehose');
+extension type const ElasticacheClusterDestinationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheClusterDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterDestinationType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudwatchLogs = ElasticacheClusterDestinationType._(
+    TfArgLiteral('cloudwatch-logs'),
+  );
+  static const kinesisFirehose = ElasticacheClusterDestinationType._(
+    TfArgLiteral('kinesis-firehose'),
+  );
+
+  static const List<ElasticacheClusterDestinationType> values = [
+    cloudwatchLogs,
+    kinesisFirehose,
+  ];
 }
 
 /// `log_format` — derived from the provider schema description.
-enum ElasticacheClusterLogFormat implements TerraformEnum {
-  text('text'),
-  json('json');
+extension type const ElasticacheClusterLogFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterLogFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheClusterLogFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterLogFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterLogFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = ElasticacheClusterLogFormat._(TfArgLiteral('text'));
+  static const json = ElasticacheClusterLogFormat._(TfArgLiteral('json'));
+
+  static const List<ElasticacheClusterLogFormat> values = [text, json];
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ElasticacheClusterLogType implements TerraformEnum {
-  slowLog('slow-log'),
-  engineLog('engine-log');
+extension type const ElasticacheClusterLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheClusterLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheClusterLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheClusterLogType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheClusterLogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const slowLog = ElasticacheClusterLogType._(TfArgLiteral('slow-log'));
+  static const engineLog = ElasticacheClusterLogType._(
+    TfArgLiteral('engine-log'),
+  );
+
+  static const List<ElasticacheClusterLogType> values = [slowLog, engineLog];
 }
 
 /// Factory wrapper for `aws_elasticache_cluster`.
@@ -190,18 +252,18 @@ final class AwsElasticacheCluster extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<String>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,
-    TfArg<ElasticacheClusterAzMode>? azMode,
+    ElasticacheClusterAzMode? azMode,
     required TfArg<String> clusterId,
     required ElasticacheClusterSource source,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
-    TfArg<ElasticacheClusterIpDiscovery>? ipDiscovery,
+    ElasticacheClusterIpDiscovery? ipDiscovery,
     TfArg<String>? maintenanceWindow,
-    TfArg<ElasticacheClusterNetworkType>? networkType,
+    ElasticacheClusterNetworkType? networkType,
     TfArg<String>? nodeType,
     TfArg<String>? notificationTopicArn,
     TfArg<num>? numCacheNodes,
-    TfArg<ElasticacheClusterOutpostMode>? outpostMode,
+    ElasticacheClusterOutpostMode? outpostMode,
     TfArg<String>? parameterGroupName,
     TfArg<num>? port,
     TfArg<List<String>>? preferredAvailabilityZones,

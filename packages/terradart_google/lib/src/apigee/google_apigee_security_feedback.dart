@@ -8,25 +8,49 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeSecurityFeedbackSensitive = <String>{};
 
 /// Apigee Security Feedback enum for `feedback_type`.
-enum ApigeeSecurityFeedbackType implements TerraformEnum {
-  excludedDetection('EXCLUDED_DETECTION');
+extension type const ApigeeSecurityFeedbackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeSecurityFeedbackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeSecurityFeedbackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeSecurityFeedbackType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeSecurityFeedbackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const excludedDetection = ApigeeSecurityFeedbackType._(
+    TfArgLiteral('EXCLUDED_DETECTION'),
+  );
+
+  static const List<ApigeeSecurityFeedbackType> values = [excludedDetection];
 }
 
 /// Apigee Security Feedback enum for `reason`.
-enum ApigeeSecurityFeedbackReason implements TerraformEnum {
-  internalSystem('INTERNAL_SYSTEM'),
-  nonRiskClient('NON_RISK_CLIENT'),
-  nat('NAT'),
-  penetrationTest('PENETRATION_TEST'),
-  other('OTHER');
+extension type const ApigeeSecurityFeedbackReason._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeSecurityFeedbackReason.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeSecurityFeedbackReason.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeSecurityFeedbackReason.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeSecurityFeedbackReason(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internalSystem = ApigeeSecurityFeedbackReason._(
+    TfArgLiteral('INTERNAL_SYSTEM'),
+  );
+  static const nonRiskClient = ApigeeSecurityFeedbackReason._(
+    TfArgLiteral('NON_RISK_CLIENT'),
+  );
+  static const nat = ApigeeSecurityFeedbackReason._(TfArgLiteral('NAT'));
+  static const penetrationTest = ApigeeSecurityFeedbackReason._(
+    TfArgLiteral('PENETRATION_TEST'),
+  );
+  static const other = ApigeeSecurityFeedbackReason._(TfArgLiteral('OTHER'));
+
+  static const List<ApigeeSecurityFeedbackReason> values = [
+    internalSystem,
+    nonRiskClient,
+    nat,
+    penetrationTest,
+    other,
+  ];
 }
 
 /// Typed helper for the `feedback_contexts` block of
@@ -38,7 +62,7 @@ final class ApigeeSecurityFeedbackContexts {
     required this.values,
   });
 
-  final TfArg<ApigeeSecurityFeedbackAttribute> attribute;
+  final ApigeeSecurityFeedbackAttribute attribute;
 
   final TfArg<List<String>> values;
 
@@ -49,13 +73,25 @@ final class ApigeeSecurityFeedbackContexts {
 }
 
 /// `attribute` — derived from the provider schema description.
-enum ApigeeSecurityFeedbackAttribute implements TerraformEnum {
-  attributeEnvironments('ATTRIBUTE_ENVIRONMENTS'),
-  attributeIpAddressRanges('ATTRIBUTE_IP_ADDRESS_RANGES');
+extension type const ApigeeSecurityFeedbackAttribute._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeSecurityFeedbackAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeSecurityFeedbackAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeSecurityFeedbackAttribute.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeSecurityFeedbackAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const attributeEnvironments = ApigeeSecurityFeedbackAttribute._(
+    TfArgLiteral('ATTRIBUTE_ENVIRONMENTS'),
+  );
+  static const attributeIpAddressRanges = ApigeeSecurityFeedbackAttribute._(
+    TfArgLiteral('ATTRIBUTE_IP_ADDRESS_RANGES'),
+  );
+
+  static const List<ApigeeSecurityFeedbackAttribute> values = [
+    attributeEnvironments,
+    attributeIpAddressRanges,
+  ];
 }
 
 /// Factory wrapper for `google_apigee_security_feedback`.
@@ -78,8 +114,8 @@ final class GoogleApigeeSecurityFeedback extends Resource {
     super.localName, {
     required TfArg<String> feedbackId,
     required TfArg<String> orgId,
-    required TfArg<ApigeeSecurityFeedbackType> feedbackType,
-    TfArg<ApigeeSecurityFeedbackReason>? reason,
+    required ApigeeSecurityFeedbackType feedbackType,
+    ApigeeSecurityFeedbackReason? reason,
     TfArg<String>? comment,
     TfArg<String>? displayName,
     required List<ApigeeSecurityFeedbackContexts> feedbackContexts,

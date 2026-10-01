@@ -12,26 +12,78 @@ const Set<String> _cloudflareZeroTrustAccessIdentityProviderSensitive =
     <String>{'config.client_secret', 'scim_config.secret'};
 
 /// Zero Trust Access Identity Provider enum for `type`.
-enum ZeroTrustAccessIdentityProviderType implements TerraformEnum {
-  onetimepin('onetimepin'),
-  azuread('azureAD'),
-  saml('saml'),
-  centrify('centrify'),
-  facebook('facebook'),
-  github('github'),
-  googleApps('google-apps'),
-  google('google'),
-  linkedin('linkedin'),
-  oidc('oidc'),
-  okta('okta'),
-  onelogin('onelogin'),
-  pingone('pingone'),
-  yandex('yandex'),
-  cloudflare('cloudflare');
+extension type const ZeroTrustAccessIdentityProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessIdentityProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessIdentityProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessIdentityProviderType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessIdentityProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onetimepin = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('onetimepin'),
+  );
+  static const azuread = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('azureAD'),
+  );
+  static const saml = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('saml'),
+  );
+  static const centrify = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('centrify'),
+  );
+  static const facebook = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('facebook'),
+  );
+  static const github = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('github'),
+  );
+  static const googleApps = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('google-apps'),
+  );
+  static const google = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('google'),
+  );
+  static const linkedin = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('linkedin'),
+  );
+  static const oidc = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('oidc'),
+  );
+  static const okta = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('okta'),
+  );
+  static const onelogin = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('onelogin'),
+  );
+  static const pingone = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('pingone'),
+  );
+  static const yandex = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('yandex'),
+  );
+  static const cloudflare = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('cloudflare'),
+  );
+
+  static const List<ZeroTrustAccessIdentityProviderType> values = [
+    onetimepin,
+    azuread,
+    saml,
+    centrify,
+    facebook,
+    github,
+    googleApps,
+    google,
+    linkedin,
+    oidc,
+    okta,
+    onelogin,
+    pingone,
+    yandex,
+    cloudflare,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -119,7 +171,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? pkceEnabled;
 
-  final TfArg<ZeroTrustAccessIdentityProviderPrompt>? prompt;
+  final ZeroTrustAccessIdentityProviderPrompt? prompt;
 
   final TfArg<bool>? restrictToAccountMembers;
 
@@ -175,15 +227,34 @@ final class ZeroTrustAccessIdentityProviderConfig {
 }
 
 /// `prompt` — derived from the provider schema description.
-enum ZeroTrustAccessIdentityProviderPrompt implements TerraformEnum {
-  login('login'),
-  selectAccount('select_account'),
-  none('none'),
-  consent('consent');
+extension type const ZeroTrustAccessIdentityProviderPrompt._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessIdentityProviderPrompt.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessIdentityProviderPrompt.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessIdentityProviderPrompt.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessIdentityProviderPrompt(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const login = ZeroTrustAccessIdentityProviderPrompt._(
+    TfArgLiteral('login'),
+  );
+  static const selectAccount = ZeroTrustAccessIdentityProviderPrompt._(
+    TfArgLiteral('select_account'),
+  );
+  static const none = ZeroTrustAccessIdentityProviderPrompt._(
+    TfArgLiteral('none'),
+  );
+  static const consent = ZeroTrustAccessIdentityProviderPrompt._(
+    TfArgLiteral('consent'),
+  );
+
+  static const List<ZeroTrustAccessIdentityProviderPrompt> values = [
+    login,
+    selectAccount,
+    none,
+    consent,
+  ];
 }
 
 /// Typed helper for the `config.header_attributes` block of
@@ -218,7 +289,7 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<ZeroTrustAccessIdentityProviderIdentityUpdateBehavior>?
+  final ZeroTrustAccessIdentityProviderIdentityUpdateBehavior?
   identityUpdateBehavior;
 
   final TfArg<bool>? seatDeprovision;
@@ -234,17 +305,32 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 }
 
 /// `identity_update_behavior` — derived from the provider schema description.
-enum ZeroTrustAccessIdentityProviderIdentityUpdateBehavior
-    implements TerraformEnum {
-  automatic('automatic'),
-  reauth('reauth'),
-  noAction('no_action');
+extension type const ZeroTrustAccessIdentityProviderIdentityUpdateBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessIdentityProviderIdentityUpdateBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessIdentityProviderIdentityUpdateBehavior.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ZeroTrustAccessIdentityProviderIdentityUpdateBehavior.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustAccessIdentityProviderIdentityUpdateBehavior(
-    this.terraformValue,
+  static const automatic =
+      ZeroTrustAccessIdentityProviderIdentityUpdateBehavior._(
+        TfArgLiteral('automatic'),
+      );
+  static const reauth = ZeroTrustAccessIdentityProviderIdentityUpdateBehavior._(
+    TfArgLiteral('reauth'),
   );
-  @override
-  final String terraformValue;
+  static const noAction =
+      ZeroTrustAccessIdentityProviderIdentityUpdateBehavior._(
+        TfArgLiteral('no_action'),
+      );
+
+  static const List<ZeroTrustAccessIdentityProviderIdentityUpdateBehavior>
+  values = [automatic, reauth, noAction];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_identity_provider`.
@@ -262,7 +348,7 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
     required TfArg<String> name,
     TfArg<bool>? readOnly,
     TfArg<String>? samlCertificateSetId,
-    required TfArg<ZeroTrustAccessIdentityProviderType> type,
+    required ZeroTrustAccessIdentityProviderType type,
     RefTo<CloudflareZone>? zoneId,
     required ZeroTrustAccessIdentityProviderConfig config,
     ZeroTrustAccessIdentityProviderScimConfig? scimConfig,

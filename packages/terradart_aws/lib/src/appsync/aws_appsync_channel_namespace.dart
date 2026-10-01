@@ -37,7 +37,7 @@ final class AppsyncChannelNamespaceOnPublish {
     this.integration,
   });
 
-  final TfArg<AppsyncChannelNamespaceBehavior> behavior;
+  final AppsyncChannelNamespaceBehavior behavior;
 
   final List<AppsyncChannelNamespaceIntegration>? integration;
 
@@ -49,13 +49,20 @@ final class AppsyncChannelNamespaceOnPublish {
 }
 
 /// `behavior` — derived from the provider schema description.
-enum AppsyncChannelNamespaceBehavior implements TerraformEnum {
-  code('CODE'),
-  direct('DIRECT');
+extension type const AppsyncChannelNamespaceBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncChannelNamespaceBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  AppsyncChannelNamespaceBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncChannelNamespaceBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncChannelNamespaceBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const code = AppsyncChannelNamespaceBehavior._(TfArgLiteral('CODE'));
+  static const direct = AppsyncChannelNamespaceBehavior._(
+    TfArgLiteral('DIRECT'),
+  );
+
+  static const List<AppsyncChannelNamespaceBehavior> values = [code, direct];
 }
 
 /// Typed helper for the `handler_configs.on_publish.integration` block of
@@ -86,19 +93,31 @@ final class AppsyncChannelNamespaceIntegration {
 final class AppsyncChannelNamespaceLambdaConfig {
   const AppsyncChannelNamespaceLambdaConfig({this.invokeType});
 
-  final TfArg<AppsyncChannelNamespaceInvokeType>? invokeType;
+  final AppsyncChannelNamespaceInvokeType? invokeType;
 
   Map<String, Object?> encode() => {'invoke_type': ?invokeType?.toTfJson()};
 }
 
 /// `invoke_type` — derived from the provider schema description.
-enum AppsyncChannelNamespaceInvokeType implements TerraformEnum {
-  requestResponse('REQUEST_RESPONSE'),
-  event('EVENT');
+extension type const AppsyncChannelNamespaceInvokeType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncChannelNamespaceInvokeType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppsyncChannelNamespaceInvokeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncChannelNamespaceInvokeType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncChannelNamespaceInvokeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const requestResponse = AppsyncChannelNamespaceInvokeType._(
+    TfArgLiteral('REQUEST_RESPONSE'),
+  );
+  static const event = AppsyncChannelNamespaceInvokeType._(
+    TfArgLiteral('EVENT'),
+  );
+
+  static const List<AppsyncChannelNamespaceInvokeType> values = [
+    requestResponse,
+    event,
+  ];
 }
 
 /// Typed helper for the `handler_configs.on_subscribe` block of
@@ -110,7 +129,7 @@ final class AppsyncChannelNamespaceOnSubscribe {
     this.integration,
   });
 
-  final TfArg<AppsyncChannelNamespaceBehavior> behavior;
+  final AppsyncChannelNamespaceBehavior behavior;
 
   final List<AppsyncChannelNamespaceIntegration>? integration;
 
@@ -127,22 +146,43 @@ final class AppsyncChannelNamespaceOnSubscribe {
 final class AppsyncChannelNamespacePublishAuthMode {
   const AppsyncChannelNamespacePublishAuthMode({required this.authType});
 
-  final TfArg<AppsyncChannelNamespaceAuthType> authType;
+  final AppsyncChannelNamespaceAuthType authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum AppsyncChannelNamespaceAuthType implements TerraformEnum {
-  apiKey('API_KEY'),
-  awsIam('AWS_IAM'),
-  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
-  openidConnect('OPENID_CONNECT'),
-  awsLambda('AWS_LAMBDA');
+extension type const AppsyncChannelNamespaceAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncChannelNamespaceAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppsyncChannelNamespaceAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncChannelNamespaceAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncChannelNamespaceAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const apiKey = AppsyncChannelNamespaceAuthType._(
+    TfArgLiteral('API_KEY'),
+  );
+  static const awsIam = AppsyncChannelNamespaceAuthType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+  static const amazonCognitoUserPools = AppsyncChannelNamespaceAuthType._(
+    TfArgLiteral('AMAZON_COGNITO_USER_POOLS'),
+  );
+  static const openidConnect = AppsyncChannelNamespaceAuthType._(
+    TfArgLiteral('OPENID_CONNECT'),
+  );
+  static const awsLambda = AppsyncChannelNamespaceAuthType._(
+    TfArgLiteral('AWS_LAMBDA'),
+  );
+
+  static const List<AppsyncChannelNamespaceAuthType> values = [
+    apiKey,
+    awsIam,
+    amazonCognitoUserPools,
+    openidConnect,
+    awsLambda,
+  ];
 }
 
 /// Typed helper for the `subscribe_auth_mode` block of
@@ -151,7 +191,7 @@ enum AppsyncChannelNamespaceAuthType implements TerraformEnum {
 final class AppsyncChannelNamespaceSubscribeAuthMode {
   const AppsyncChannelNamespaceSubscribeAuthMode({required this.authType});
 
-  final TfArg<AppsyncChannelNamespaceAuthType> authType;
+  final AppsyncChannelNamespaceAuthType authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }

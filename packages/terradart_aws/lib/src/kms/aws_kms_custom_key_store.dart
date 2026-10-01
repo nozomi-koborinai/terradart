@@ -8,23 +8,47 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsKmsCustomKeyStoreSensitive = <String>{};
 
 /// Kms Custom Key Store enum for `custom_key_store_type`.
-enum KmsCustomKeyStoreType implements TerraformEnum {
-  awsCloudhsm('AWS_CLOUDHSM'),
-  externalKeyStore('EXTERNAL_KEY_STORE');
+extension type const KmsCustomKeyStoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsCustomKeyStoreType.variable(String name) : this._(TfArg.variable(name));
+  KmsCustomKeyStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsCustomKeyStoreType.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsCustomKeyStoreType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsCloudhsm = KmsCustomKeyStoreType._(
+    TfArgLiteral('AWS_CLOUDHSM'),
+  );
+  static const externalKeyStore = KmsCustomKeyStoreType._(
+    TfArgLiteral('EXTERNAL_KEY_STORE'),
+  );
+
+  static const List<KmsCustomKeyStoreType> values = [
+    awsCloudhsm,
+    externalKeyStore,
+  ];
 }
 
 /// Kms Custom Key Store Xks Proxy enum for `xks_proxy_connectivity`.
-enum KmsCustomKeyStoreXksProxyConnectivity implements TerraformEnum {
-  publicEndpoint('PUBLIC_ENDPOINT'),
-  vpcEndpointService('VPC_ENDPOINT_SERVICE');
+extension type const KmsCustomKeyStoreXksProxyConnectivity._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsCustomKeyStoreXksProxyConnectivity.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsCustomKeyStoreXksProxyConnectivity.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsCustomKeyStoreXksProxyConnectivity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KmsCustomKeyStoreXksProxyConnectivity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const publicEndpoint = KmsCustomKeyStoreXksProxyConnectivity._(
+    TfArgLiteral('PUBLIC_ENDPOINT'),
+  );
+  static const vpcEndpointService = KmsCustomKeyStoreXksProxyConnectivity._(
+    TfArgLiteral('VPC_ENDPOINT_SERVICE'),
+  );
+
+  static const List<KmsCustomKeyStoreXksProxyConnectivity> values = [
+    publicEndpoint,
+    vpcEndpointService,
+  ];
 }
 
 /// Typed helper for the `xks_proxy_authentication_credential` block of
@@ -54,11 +78,11 @@ final class AwsKmsCustomKeyStore extends Resource {
     super.localName, {
     TfArg<String>? cloudHsmClusterId,
     required TfArg<String> customKeyStoreName,
-    TfArg<KmsCustomKeyStoreType>? customKeyStoreType,
+    KmsCustomKeyStoreType? customKeyStoreType,
     TfArg<String>? keyStorePassword,
     TfArg<String>? region,
     TfArg<String>? trustAnchorCertificate,
-    TfArg<KmsCustomKeyStoreXksProxyConnectivity>? xksProxyConnectivity,
+    KmsCustomKeyStoreXksProxyConnectivity? xksProxyConnectivity,
     TfArg<String>? xksProxyUriEndpoint,
     TfArg<String>? xksProxyUriPath,
     TfArg<String>? xksProxyVpcEndpointServiceName,

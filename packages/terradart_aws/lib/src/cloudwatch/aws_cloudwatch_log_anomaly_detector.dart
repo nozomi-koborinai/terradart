@@ -9,17 +9,43 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsCloudwatchLogAnomalyDetectorSensitive = <String>{};
 
 /// Cloudwatch Log Anomaly Detector Evaluation enum for `evaluation_frequency`.
-enum CloudwatchLogAnomalyDetectorEvaluationFrequency implements TerraformEnum {
-  oneMin('ONE_MIN'),
-  fiveMin('FIVE_MIN'),
-  tenMin('TEN_MIN'),
-  fifteenMin('FIFTEEN_MIN'),
-  thirtyMin('THIRTY_MIN'),
-  oneHour('ONE_HOUR');
+extension type const CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchLogAnomalyDetectorEvaluationFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogAnomalyDetectorEvaluationFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogAnomalyDetectorEvaluationFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogAnomalyDetectorEvaluationFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneMin = CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+    TfArgLiteral('ONE_MIN'),
+  );
+  static const fiveMin = CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+    TfArgLiteral('FIVE_MIN'),
+  );
+  static const tenMin = CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+    TfArgLiteral('TEN_MIN'),
+  );
+  static const fifteenMin = CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+    TfArgLiteral('FIFTEEN_MIN'),
+  );
+  static const thirtyMin = CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+    TfArgLiteral('THIRTY_MIN'),
+  );
+  static const oneHour = CloudwatchLogAnomalyDetectorEvaluationFrequency._(
+    TfArgLiteral('ONE_HOUR'),
+  );
+
+  static const List<CloudwatchLogAnomalyDetectorEvaluationFrequency> values = [
+    oneMin,
+    fiveMin,
+    tenMin,
+    fifteenMin,
+    thirtyMin,
+    oneHour,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudwatch_log_anomaly_detector`.
@@ -31,7 +57,7 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
     TfArg<num>? anomalyVisibilityTime,
     TfArg<String>? detectorName,
     required TfArg<bool> enabled,
-    TfArg<CloudwatchLogAnomalyDetectorEvaluationFrequency>? evaluationFrequency,
+    CloudwatchLogAnomalyDetectorEvaluationFrequency? evaluationFrequency,
     TfArg<String>? filterPattern,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<List<String>> logGroupArnList,

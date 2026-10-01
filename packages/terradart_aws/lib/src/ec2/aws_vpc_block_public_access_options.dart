@@ -7,17 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcBlockPublicAccessOptionsSensitive = <String>{};
 
 /// Vpc Block Public Access Options Internet Gateway Block enum for `internet_gateway_block_mode`.
-enum VpcBlockPublicAccessOptionsInternetGatewayBlockMode
-    implements TerraformEnum {
-  off('off'),
-  blockBidirectional('block-bidirectional'),
-  blockIngress('block-ingress');
+extension type const VpcBlockPublicAccessOptionsInternetGatewayBlockMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpcBlockPublicAccessOptionsInternetGatewayBlockMode.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcBlockPublicAccessOptionsInternetGatewayBlockMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VpcBlockPublicAccessOptionsInternetGatewayBlockMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const VpcBlockPublicAccessOptionsInternetGatewayBlockMode(
-    this.terraformValue,
+  static const off = VpcBlockPublicAccessOptionsInternetGatewayBlockMode._(
+    TfArgLiteral('off'),
   );
-  @override
-  final String terraformValue;
+  static const blockBidirectional =
+      VpcBlockPublicAccessOptionsInternetGatewayBlockMode._(
+        TfArgLiteral('block-bidirectional'),
+      );
+  static const blockIngress =
+      VpcBlockPublicAccessOptionsInternetGatewayBlockMode._(
+        TfArgLiteral('block-ingress'),
+      );
+
+  static const List<VpcBlockPublicAccessOptionsInternetGatewayBlockMode>
+  values = [off, blockBidirectional, blockIngress];
 }
 
 /// Factory wrapper for `aws_vpc_block_public_access_options`.
@@ -26,7 +41,7 @@ final class AwsVpcBlockPublicAccessOptions extends Resource {
 
   AwsVpcBlockPublicAccessOptions(
     super.localName, {
-    required TfArg<VpcBlockPublicAccessOptionsInternetGatewayBlockMode>
+    required VpcBlockPublicAccessOptionsInternetGatewayBlockMode
     internetGatewayBlockMode,
     TfArg<String>? region,
     super.lifecycle,

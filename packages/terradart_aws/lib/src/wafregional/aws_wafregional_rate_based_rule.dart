@@ -21,7 +21,7 @@ final class WafregionalRateBasedRulePredicate {
 
   final TfArg<bool> negated;
 
-  final TfArg<WafregionalRateBasedRuleType> type;
+  final WafregionalRateBasedRuleType type;
 
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
@@ -31,18 +31,45 @@ final class WafregionalRateBasedRulePredicate {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalRateBasedRuleType implements TerraformEnum {
-  ipmatch('IPMatch'),
-  bytematch('ByteMatch'),
-  sqlinjectionmatch('SqlInjectionMatch'),
-  geomatch('GeoMatch'),
-  sizeconstraint('SizeConstraint'),
-  xssmatch('XssMatch'),
-  regexmatch('RegexMatch');
+extension type const WafregionalRateBasedRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalRateBasedRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalRateBasedRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalRateBasedRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafregionalRateBasedRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipmatch = WafregionalRateBasedRuleType._(
+    TfArgLiteral('IPMatch'),
+  );
+  static const bytematch = WafregionalRateBasedRuleType._(
+    TfArgLiteral('ByteMatch'),
+  );
+  static const sqlinjectionmatch = WafregionalRateBasedRuleType._(
+    TfArgLiteral('SqlInjectionMatch'),
+  );
+  static const geomatch = WafregionalRateBasedRuleType._(
+    TfArgLiteral('GeoMatch'),
+  );
+  static const sizeconstraint = WafregionalRateBasedRuleType._(
+    TfArgLiteral('SizeConstraint'),
+  );
+  static const xssmatch = WafregionalRateBasedRuleType._(
+    TfArgLiteral('XssMatch'),
+  );
+  static const regexmatch = WafregionalRateBasedRuleType._(
+    TfArgLiteral('RegexMatch'),
+  );
+
+  static const List<WafregionalRateBasedRuleType> values = [
+    ipmatch,
+    bytematch,
+    sqlinjectionmatch,
+    geomatch,
+    sizeconstraint,
+    xssmatch,
+    regexmatch,
+  ];
 }
 
 /// Factory wrapper for `aws_wafregional_rate_based_rule`.

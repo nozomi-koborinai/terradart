@@ -7,36 +7,75 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSagemakerImageVersionSensitive = <String>{};
 
 /// Sagemaker Image Version Job enum for `job_type`.
-enum SagemakerImageVersionJobType implements TerraformEnum {
-  training('TRAINING'),
-  inference('INFERENCE'),
-  notebookKernel('NOTEBOOK_KERNEL');
+extension type const SagemakerImageVersionJobType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerImageVersionJobType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerImageVersionJobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerImageVersionJobType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerImageVersionJobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const training = SagemakerImageVersionJobType._(
+    TfArgLiteral('TRAINING'),
+  );
+  static const inference = SagemakerImageVersionJobType._(
+    TfArgLiteral('INFERENCE'),
+  );
+  static const notebookKernel = SagemakerImageVersionJobType._(
+    TfArgLiteral('NOTEBOOK_KERNEL'),
+  );
+
+  static const List<SagemakerImageVersionJobType> values = [
+    training,
+    inference,
+    notebookKernel,
+  ];
 }
 
 /// Sagemaker Image Version enum for `processor`.
-enum SagemakerImageVersionProcessor implements TerraformEnum {
-  cpu('CPU'),
-  gpu('GPU');
+extension type const SagemakerImageVersionProcessor._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerImageVersionProcessor.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerImageVersionProcessor.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerImageVersionProcessor.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerImageVersionProcessor(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cpu = SagemakerImageVersionProcessor._(TfArgLiteral('CPU'));
+  static const gpu = SagemakerImageVersionProcessor._(TfArgLiteral('GPU'));
+
+  static const List<SagemakerImageVersionProcessor> values = [cpu, gpu];
 }
 
 /// Sagemaker Image Version Vendor enum for `vendor_guidance`.
-enum SagemakerImageVersionVendorGuidance implements TerraformEnum {
-  notProvided('NOT_PROVIDED'),
-  stable('STABLE'),
-  toBeArchived('TO_BE_ARCHIVED'),
-  archived('ARCHIVED');
+extension type const SagemakerImageVersionVendorGuidance._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerImageVersionVendorGuidance.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerImageVersionVendorGuidance.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerImageVersionVendorGuidance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerImageVersionVendorGuidance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notProvided = SagemakerImageVersionVendorGuidance._(
+    TfArgLiteral('NOT_PROVIDED'),
+  );
+  static const stable = SagemakerImageVersionVendorGuidance._(
+    TfArgLiteral('STABLE'),
+  );
+  static const toBeArchived = SagemakerImageVersionVendorGuidance._(
+    TfArgLiteral('TO_BE_ARCHIVED'),
+  );
+  static const archived = SagemakerImageVersionVendorGuidance._(
+    TfArgLiteral('ARCHIVED'),
+  );
+
+  static const List<SagemakerImageVersionVendorGuidance> values = [
+    notProvided,
+    stable,
+    toBeArchived,
+    archived,
+  ];
 }
 
 /// Factory wrapper for `aws_sagemaker_image_version`.
@@ -49,13 +88,13 @@ final class AwsSagemakerImageVersion extends Resource {
     required TfArg<String> baseImage,
     TfArg<bool>? horovod,
     required TfArg<String> imageName,
-    TfArg<SagemakerImageVersionJobType>? jobType,
+    SagemakerImageVersionJobType? jobType,
     TfArg<String>? mlFramework,
-    TfArg<SagemakerImageVersionProcessor>? processor,
+    SagemakerImageVersionProcessor? processor,
     TfArg<String>? programmingLang,
     TfArg<String>? region,
     TfArg<String>? releaseNotes,
-    TfArg<SagemakerImageVersionVendorGuidance>? vendorGuidance,
+    SagemakerImageVersionVendorGuidance? vendorGuidance,
     super.lifecycle,
     super.dependsOn,
     super.provider,

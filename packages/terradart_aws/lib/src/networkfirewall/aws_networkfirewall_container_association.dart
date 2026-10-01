@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNetworkfirewallContainerAssociationSensitive = <String>{};
 
 /// Networkfirewall Container Association enum for `type`.
-enum NetworkfirewallContainerAssociationType implements TerraformEnum {
-  ecs('ECS'),
-  eks('EKS');
+extension type const NetworkfirewallContainerAssociationType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallContainerAssociationType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallContainerAssociationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallContainerAssociationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallContainerAssociationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecs = NetworkfirewallContainerAssociationType._(
+    TfArgLiteral('ECS'),
+  );
+  static const eks = NetworkfirewallContainerAssociationType._(
+    TfArgLiteral('EKS'),
+  );
+
+  static const List<NetworkfirewallContainerAssociationType> values = [
+    ecs,
+    eks,
+  ];
 }
 
 /// Typed helper for the `container_monitoring_configuration` block of
@@ -67,7 +80,7 @@ final class AwsNetworkfirewallContainerAssociation extends Resource {
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<NetworkfirewallContainerAssociationType> type,
+    required NetworkfirewallContainerAssociationType type,
     List<NetworkfirewallContainerAssociationContainerMonitoringConfiguration>?
     containerMonitoringConfiguration,
     super.lifecycle,

@@ -8,27 +8,52 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogProductSensitive = <String>{};
 
 /// Servicecatalog Product Accept enum for `accept_language`.
-enum ServicecatalogProductAcceptLanguage implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogProductAcceptLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogProductAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProductAcceptLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogProductAcceptLanguage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogProductAcceptLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ServicecatalogProductAcceptLanguage._(TfArgLiteral('en'));
+  static const jp = ServicecatalogProductAcceptLanguage._(TfArgLiteral('jp'));
+  static const zh = ServicecatalogProductAcceptLanguage._(TfArgLiteral('zh'));
+
+  static const List<ServicecatalogProductAcceptLanguage> values = [en, jp, zh];
 }
 
 /// Servicecatalog Product enum for `type`.
-enum ServicecatalogProductType implements TerraformEnum {
-  cloudFormationTemplate('CLOUD_FORMATION_TEMPLATE'),
-  marketplace('MARKETPLACE'),
-  terraformOpenSource('TERRAFORM_OPEN_SOURCE'),
-  terraformCloud('TERRAFORM_CLOUD'),
-  external('EXTERNAL');
+extension type const ServicecatalogProductType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogProductType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProductType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogProductType.arg(TfArg<String> arg) : this._(arg);
 
-  const ServicecatalogProductType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudFormationTemplate = ServicecatalogProductType._(
+    TfArgLiteral('CLOUD_FORMATION_TEMPLATE'),
+  );
+  static const marketplace = ServicecatalogProductType._(
+    TfArgLiteral('MARKETPLACE'),
+  );
+  static const terraformOpenSource = ServicecatalogProductType._(
+    TfArgLiteral('TERRAFORM_OPEN_SOURCE'),
+  );
+  static const terraformCloud = ServicecatalogProductType._(
+    TfArgLiteral('TERRAFORM_CLOUD'),
+  );
+  static const external = ServicecatalogProductType._(TfArgLiteral('EXTERNAL'));
+
+  static const List<ServicecatalogProductType> values = [
+    cloudFormationTemplate,
+    marketplace,
+    terraformOpenSource,
+    terraformCloud,
+    external,
+  ];
 }
 
 /// Typed helper for the `provisioning_artifact_parameters` block of
@@ -51,7 +76,7 @@ final class ServicecatalogProductProvisioningArtifactParameters {
 
   final ServicecatalogProductTemplate template;
 
-  final TfArg<ServicecatalogProductProvisioningArtifactParametersType>? type;
+  final ServicecatalogProductProvisioningArtifactParametersType? type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -116,20 +141,52 @@ final class ServicecatalogProductTemplateUrl
 }
 
 /// `type` — derived from the provider schema description.
-enum ServicecatalogProductProvisioningArtifactParametersType
-    implements TerraformEnum {
-  cloudFormationTemplate('CLOUD_FORMATION_TEMPLATE'),
-  marketplaceAmi('MARKETPLACE_AMI'),
-  marketplaceCar('MARKETPLACE_CAR'),
-  terraformOpenSource('TERRAFORM_OPEN_SOURCE'),
-  terraformCloud('TERRAFORM_CLOUD'),
-  external('EXTERNAL');
+extension type const ServicecatalogProductProvisioningArtifactParametersType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogProductProvisioningArtifactParametersType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProductProvisioningArtifactParametersType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ServicecatalogProductProvisioningArtifactParametersType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ServicecatalogProductProvisioningArtifactParametersType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const cloudFormationTemplate =
+      ServicecatalogProductProvisioningArtifactParametersType._(
+        TfArgLiteral('CLOUD_FORMATION_TEMPLATE'),
+      );
+  static const marketplaceAmi =
+      ServicecatalogProductProvisioningArtifactParametersType._(
+        TfArgLiteral('MARKETPLACE_AMI'),
+      );
+  static const marketplaceCar =
+      ServicecatalogProductProvisioningArtifactParametersType._(
+        TfArgLiteral('MARKETPLACE_CAR'),
+      );
+  static const terraformOpenSource =
+      ServicecatalogProductProvisioningArtifactParametersType._(
+        TfArgLiteral('TERRAFORM_OPEN_SOURCE'),
+      );
+  static const terraformCloud =
+      ServicecatalogProductProvisioningArtifactParametersType._(
+        TfArgLiteral('TERRAFORM_CLOUD'),
+      );
+  static const external =
+      ServicecatalogProductProvisioningArtifactParametersType._(
+        TfArgLiteral('EXTERNAL'),
+      );
+
+  static const List<ServicecatalogProductProvisioningArtifactParametersType>
+  values = [
+    cloudFormationTemplate,
+    marketplaceAmi,
+    marketplaceCar,
+    terraformOpenSource,
+    terraformCloud,
+    external,
+  ];
 }
 
 /// Factory wrapper for `aws_servicecatalog_product`.
@@ -138,7 +195,7 @@ final class AwsServicecatalogProduct extends Resource {
 
   AwsServicecatalogProduct(
     super.localName, {
-    TfArg<ServicecatalogProductAcceptLanguage>? acceptLanguage,
+    ServicecatalogProductAcceptLanguage? acceptLanguage,
     TfArg<String>? description,
     TfArg<String>? distributor,
     required TfArg<String> name,
@@ -148,7 +205,7 @@ final class AwsServicecatalogProduct extends Resource {
     TfArg<String>? supportEmail,
     TfArg<String>? supportUrl,
     TfArg<Map<String, String>>? tags,
-    required TfArg<ServicecatalogProductType> type,
+    required ServicecatalogProductType type,
     required ServicecatalogProductProvisioningArtifactParameters
     provisioningArtifactParameters,
     super.lifecycle,

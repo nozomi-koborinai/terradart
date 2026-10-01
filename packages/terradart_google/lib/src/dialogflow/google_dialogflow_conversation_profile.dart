@@ -316,7 +316,7 @@ final class DialogflowConversationProfileKnowledgeBaseQuerySource {
 final class DialogflowConversationProfileSections {
   const DialogflowConversationProfileSections({this.sectionTypes});
 
-  final List<TfArg<DialogflowConversationProfileSectionTypes>>? sectionTypes;
+  final List<DialogflowConversationProfileSectionTypes>? sectionTypes;
 
   Map<String, Object?> encode() => {
     if (sectionTypes != null)
@@ -325,18 +325,50 @@ final class DialogflowConversationProfileSections {
 }
 
 /// `section_types` — derived from the provider schema description.
-enum DialogflowConversationProfileSectionTypes implements TerraformEnum {
-  sectionTypeUnspecified('SECTION_TYPE_UNSPECIFIED'),
-  situation('SITUATION'),
-  action('ACTION'),
-  resolution('RESOLUTION'),
-  reasonForCancellation('REASON_FOR_CANCELLATION'),
-  customerSatisfaction('CUSTOMER_SATISFACTION'),
-  entities('ENTITIES');
+extension type const DialogflowConversationProfileSectionTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowConversationProfileSectionTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileSectionTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowConversationProfileSectionTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowConversationProfileSectionTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sectionTypeUnspecified =
+      DialogflowConversationProfileSectionTypes._(
+        TfArgLiteral('SECTION_TYPE_UNSPECIFIED'),
+      );
+  static const situation = DialogflowConversationProfileSectionTypes._(
+    TfArgLiteral('SITUATION'),
+  );
+  static const action = DialogflowConversationProfileSectionTypes._(
+    TfArgLiteral('ACTION'),
+  );
+  static const resolution = DialogflowConversationProfileSectionTypes._(
+    TfArgLiteral('RESOLUTION'),
+  );
+  static const reasonForCancellation =
+      DialogflowConversationProfileSectionTypes._(
+        TfArgLiteral('REASON_FOR_CANCELLATION'),
+      );
+  static const customerSatisfaction =
+      DialogflowConversationProfileSectionTypes._(
+        TfArgLiteral('CUSTOMER_SATISFACTION'),
+      );
+  static const entities = DialogflowConversationProfileSectionTypes._(
+    TfArgLiteral('ENTITIES'),
+  );
+
+  static const List<DialogflowConversationProfileSectionTypes> values = [
+    sectionTypeUnspecified,
+    situation,
+    action,
+    resolution,
+    reasonForCancellation,
+    customerSatisfaction,
+    entities,
+  ];
 }
 
 /// Typed helper for the `human_agent_assistant_config.end_user_suggestion_config.feature_configs.suggestion_feature` block of
@@ -522,7 +554,7 @@ final class DialogflowConversationProfileNotificationConfig {
     this.topic,
   });
 
-  final TfArg<DialogflowConversationProfileMessageFormat>? messageFormat;
+  final DialogflowConversationProfileMessageFormat? messageFormat;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -533,14 +565,32 @@ final class DialogflowConversationProfileNotificationConfig {
 }
 
 /// `message_format` — derived from the provider schema description.
-enum DialogflowConversationProfileMessageFormat implements TerraformEnum {
-  messageFormatUnspecified('MESSAGE_FORMAT_UNSPECIFIED'),
-  proto('PROTO'),
-  json('JSON');
+extension type const DialogflowConversationProfileMessageFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowConversationProfileMessageFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileMessageFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowConversationProfileMessageFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowConversationProfileMessageFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const messageFormatUnspecified =
+      DialogflowConversationProfileMessageFormat._(
+        TfArgLiteral('MESSAGE_FORMAT_UNSPECIFIED'),
+      );
+  static const proto = DialogflowConversationProfileMessageFormat._(
+    TfArgLiteral('PROTO'),
+  );
+  static const json = DialogflowConversationProfileMessageFormat._(
+    TfArgLiteral('JSON'),
+  );
+
+  static const List<DialogflowConversationProfileMessageFormat> values = [
+    messageFormatUnspecified,
+    proto,
+    json,
+  ];
 }
 
 /// Typed helper for the `human_agent_handoff_config` block of
@@ -595,7 +645,7 @@ final class DialogflowConversationProfileNewMessageEventNotificationConfig {
     this.topic,
   });
 
-  final TfArg<DialogflowConversationProfileMessageFormat>? messageFormat;
+  final DialogflowConversationProfileMessageFormat? messageFormat;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -614,7 +664,7 @@ final class DialogflowConversationProfileNewRecognitionResultNotificationConfig 
     this.topic,
   });
 
-  final TfArg<DialogflowConversationProfileMessageFormat>? messageFormat;
+  final DialogflowConversationProfileMessageFormat? messageFormat;
 
   final RefTo<GooglePubsubTopic>? topic;
 
@@ -638,7 +688,7 @@ final class DialogflowConversationProfileSttConfig {
     this.useTimeoutBasedEndpointing,
   });
 
-  final TfArg<DialogflowConversationProfileAudioEncoding>? audioEncoding;
+  final DialogflowConversationProfileAudioEncoding? audioEncoding;
 
   final TfArg<bool>? enableWordInfo;
 
@@ -648,8 +698,7 @@ final class DialogflowConversationProfileSttConfig {
 
   final TfArg<num>? sampleRateHertz;
 
-  final TfArg<DialogflowConversationProfileSpeechModelVariant>?
-  speechModelVariant;
+  final DialogflowConversationProfileSpeechModelVariant? speechModelVariant;
 
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
@@ -665,31 +714,91 @@ final class DialogflowConversationProfileSttConfig {
 }
 
 /// `audio_encoding` — derived from the provider schema description.
-enum DialogflowConversationProfileAudioEncoding implements TerraformEnum {
-  audioEncodingUnspecified('AUDIO_ENCODING_UNSPECIFIED'),
-  audioEncodingLinear16('AUDIO_ENCODING_LINEAR_16'),
-  audioEncodingFlac('AUDIO_ENCODING_FLAC'),
-  audioEncodingMulaw('AUDIO_ENCODING_MULAW'),
-  audioEncodingAmr('AUDIO_ENCODING_AMR'),
-  audioEncodingAmrWb('AUDIO_ENCODING_AMR_WB'),
-  audioEncodingOggOpus('AUDIO_ENCODING_OGG_OPUS'),
-  audioEncodingSpeexWithHeaderByte('AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE');
+extension type const DialogflowConversationProfileAudioEncoding._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowConversationProfileAudioEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileAudioEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowConversationProfileAudioEncoding.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowConversationProfileAudioEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const audioEncodingUnspecified =
+      DialogflowConversationProfileAudioEncoding._(
+        TfArgLiteral('AUDIO_ENCODING_UNSPECIFIED'),
+      );
+  static const audioEncodingLinear16 =
+      DialogflowConversationProfileAudioEncoding._(
+        TfArgLiteral('AUDIO_ENCODING_LINEAR_16'),
+      );
+  static const audioEncodingFlac = DialogflowConversationProfileAudioEncoding._(
+    TfArgLiteral('AUDIO_ENCODING_FLAC'),
+  );
+  static const audioEncodingMulaw =
+      DialogflowConversationProfileAudioEncoding._(
+        TfArgLiteral('AUDIO_ENCODING_MULAW'),
+      );
+  static const audioEncodingAmr = DialogflowConversationProfileAudioEncoding._(
+    TfArgLiteral('AUDIO_ENCODING_AMR'),
+  );
+  static const audioEncodingAmrWb =
+      DialogflowConversationProfileAudioEncoding._(
+        TfArgLiteral('AUDIO_ENCODING_AMR_WB'),
+      );
+  static const audioEncodingOggOpus =
+      DialogflowConversationProfileAudioEncoding._(
+        TfArgLiteral('AUDIO_ENCODING_OGG_OPUS'),
+      );
+  static const audioEncodingSpeexWithHeaderByte =
+      DialogflowConversationProfileAudioEncoding._(
+        TfArgLiteral('AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE'),
+      );
+
+  static const List<DialogflowConversationProfileAudioEncoding> values = [
+    audioEncodingUnspecified,
+    audioEncodingLinear16,
+    audioEncodingFlac,
+    audioEncodingMulaw,
+    audioEncodingAmr,
+    audioEncodingAmrWb,
+    audioEncodingOggOpus,
+    audioEncodingSpeexWithHeaderByte,
+  ];
 }
 
 /// `speech_model_variant` — derived from the provider schema description.
-enum DialogflowConversationProfileSpeechModelVariant implements TerraformEnum {
-  speechModelVariantUnspecified('SPEECH_MODEL_VARIANT_UNSPECIFIED'),
-  useBestAvailable('USE_BEST_AVAILABLE'),
-  useStandard('USE_STANDARD'),
-  useEnhanced('USE_ENHANCED');
+extension type const DialogflowConversationProfileSpeechModelVariant._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowConversationProfileSpeechModelVariant.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileSpeechModelVariant.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowConversationProfileSpeechModelVariant.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowConversationProfileSpeechModelVariant(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const speechModelVariantUnspecified =
+      DialogflowConversationProfileSpeechModelVariant._(
+        TfArgLiteral('SPEECH_MODEL_VARIANT_UNSPECIFIED'),
+      );
+  static const useBestAvailable =
+      DialogflowConversationProfileSpeechModelVariant._(
+        TfArgLiteral('USE_BEST_AVAILABLE'),
+      );
+  static const useStandard = DialogflowConversationProfileSpeechModelVariant._(
+    TfArgLiteral('USE_STANDARD'),
+  );
+  static const useEnhanced = DialogflowConversationProfileSpeechModelVariant._(
+    TfArgLiteral('USE_ENHANCED'),
+  );
+
+  static const List<DialogflowConversationProfileSpeechModelVariant> values = [
+    speechModelVariantUnspecified,
+    useBestAvailable,
+    useStandard,
+    useEnhanced,
+  ];
 }
 
 /// Typed helper for the `tts_config` block of
@@ -731,7 +840,7 @@ final class DialogflowConversationProfileVoice {
 
   final TfArg<String>? name;
 
-  final TfArg<DialogflowConversationProfileSsmlGender>? ssmlGender;
+  final DialogflowConversationProfileSsmlGender? ssmlGender;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -740,15 +849,37 @@ final class DialogflowConversationProfileVoice {
 }
 
 /// `ssml_gender` — derived from the provider schema description.
-enum DialogflowConversationProfileSsmlGender implements TerraformEnum {
-  ssmlVoiceGenderUnspecified('SSML_VOICE_GENDER_UNSPECIFIED'),
-  ssmlVoiceGenderMale('SSML_VOICE_GENDER_MALE'),
-  ssmlVoiceGenderFemale('SSML_VOICE_GENDER_FEMALE'),
-  ssmlVoiceGenderNeutral('SSML_VOICE_GENDER_NEUTRAL');
+extension type const DialogflowConversationProfileSsmlGender._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowConversationProfileSsmlGender.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileSsmlGender.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowConversationProfileSsmlGender.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowConversationProfileSsmlGender(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssmlVoiceGenderUnspecified =
+      DialogflowConversationProfileSsmlGender._(
+        TfArgLiteral('SSML_VOICE_GENDER_UNSPECIFIED'),
+      );
+  static const ssmlVoiceGenderMale = DialogflowConversationProfileSsmlGender._(
+    TfArgLiteral('SSML_VOICE_GENDER_MALE'),
+  );
+  static const ssmlVoiceGenderFemale =
+      DialogflowConversationProfileSsmlGender._(
+        TfArgLiteral('SSML_VOICE_GENDER_FEMALE'),
+      );
+  static const ssmlVoiceGenderNeutral =
+      DialogflowConversationProfileSsmlGender._(
+        TfArgLiteral('SSML_VOICE_GENDER_NEUTRAL'),
+      );
+
+  static const List<DialogflowConversationProfileSsmlGender> values = [
+    ssmlVoiceGenderUnspecified,
+    ssmlVoiceGenderMale,
+    ssmlVoiceGenderFemale,
+    ssmlVoiceGenderNeutral,
+  ];
 }
 
 /// Factory wrapper for `google_dialogflow_conversation_profile`.

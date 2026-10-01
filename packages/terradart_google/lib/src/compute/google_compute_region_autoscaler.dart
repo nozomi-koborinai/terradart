@@ -24,15 +24,26 @@ const Set<String> _googleComputeRegionAutoscalerSensitive = <String>{};
 /// - [onlyScaleOut] — alias for [onlyUp]; some GCP samples still use
 ///   this name. Retained for surface compatibility.
 /// - [on] — full bidirectional autoscaling.
-enum RegionAutoscalerMode implements TerraformEnum {
-  off('OFF'),
-  onlyUp('ONLY_UP'),
-  onlyScaleOut('ONLY_SCALE_OUT'),
-  on('ON');
+extension type const RegionAutoscalerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionAutoscalerMode.variable(String name) : this._(TfArg.variable(name));
+  RegionAutoscalerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionAutoscalerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionAutoscalerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = RegionAutoscalerMode._(TfArgLiteral('OFF'));
+  static const onlyUp = RegionAutoscalerMode._(TfArgLiteral('ONLY_UP'));
+  static const onlyScaleOut = RegionAutoscalerMode._(
+    TfArgLiteral('ONLY_SCALE_OUT'),
+  );
+  static const on = RegionAutoscalerMode._(TfArgLiteral('ON'));
+
+  static const List<RegionAutoscalerMode> values = [
+    off,
+    onlyUp,
+    onlyScaleOut,
+    on,
+  ];
 }
 
 /// Predictive autoscaling method for [ComputeRegionAutoscalerCpuUtilization].
@@ -40,13 +51,26 @@ enum RegionAutoscalerMode implements TerraformEnum {
 /// - [none] — disable predictive autoscaling (default).
 /// - [optimizeAvailability] — monitor weekly load patterns and scale out
 ///   ahead of anticipated demand.
-enum RegionAutoscalerCpuPredictiveMethod implements TerraformEnum {
-  none('NONE'),
-  optimizeAvailability('OPTIMIZE_AVAILABILITY');
+extension type const RegionAutoscalerCpuPredictiveMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionAutoscalerCpuPredictiveMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionAutoscalerCpuPredictiveMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionAutoscalerCpuPredictiveMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionAutoscalerCpuPredictiveMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RegionAutoscalerCpuPredictiveMethod._(
+    TfArgLiteral('NONE'),
+  );
+  static const optimizeAvailability = RegionAutoscalerCpuPredictiveMethod._(
+    TfArgLiteral('OPTIMIZE_AVAILABILITY'),
+  );
+
+  static const List<RegionAutoscalerCpuPredictiveMethod> values = [
+    none,
+    optimizeAvailability,
+  ];
 }
 
 /// Defines how a custom-metric value is interpreted by the autoscaler.
@@ -56,14 +80,27 @@ enum RegionAutoscalerCpuPredictiveMethod implements TerraformEnum {
 ///   keeps it at [ComputeRegionAutoscalerMetric.target].
 /// - [deltaPerSecond] — the metric is a per-second rate.
 /// - [deltaPerMinute] — the metric is a per-minute rate.
-enum RegionAutoscalerMetricType implements TerraformEnum {
-  gauge('GAUGE'),
-  deltaPerSecond('DELTA_PER_SECOND'),
-  deltaPerMinute('DELTA_PER_MINUTE');
+extension type const RegionAutoscalerMetricType._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionAutoscalerMetricType.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionAutoscalerMetricType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionAutoscalerMetricType.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionAutoscalerMetricType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gauge = RegionAutoscalerMetricType._(TfArgLiteral('GAUGE'));
+  static const deltaPerSecond = RegionAutoscalerMetricType._(
+    TfArgLiteral('DELTA_PER_SECOND'),
+  );
+  static const deltaPerMinute = RegionAutoscalerMetricType._(
+    TfArgLiteral('DELTA_PER_MINUTE'),
+  );
+
+  static const List<RegionAutoscalerMetricType> values = [
+    gauge,
+    deltaPerSecond,
+    deltaPerMinute,
+  ];
 }
 
 // ===========================================================================
@@ -137,7 +174,7 @@ class ComputeRegionAutoscalerAutoscalingPolicy {
     'min_replicas': minReplicas.toTfJson(),
     'max_replicas': maxReplicas.toTfJson(),
     if (cooldownPeriod != null) 'cooldown_period': cooldownPeriod!.toTfJson(),
-    if (mode != null) 'mode': mode!.terraformValue,
+    if (mode != null) 'mode': mode!.toTfJson(),
     if (cpuUtilization != null) 'cpu_utilization': [cpuUtilization!.toArgMap()],
     if (loadBalancingUtilization != null)
       'load_balancing_utilization': [loadBalancingUtilization!.toArgMap()],
@@ -176,7 +213,7 @@ class ComputeRegionAutoscalerCpuUtilization {
   Map<String, Object?> toArgMap() => {
     'target': target.toTfJson(),
     if (predictiveMethod != null)
-      'predictive_method': predictiveMethod!.terraformValue,
+      'predictive_method': predictiveMethod!.toTfJson(),
   };
 }
 
@@ -242,7 +279,7 @@ class ComputeRegionAutoscalerMetric {
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
     if (target != null) 'target': target!.toTfJson(),
-    if (type != null) 'type': type!.terraformValue,
+    if (type != null) 'type': type!.toTfJson(),
     if (singleInstanceAssignment != null)
       'single_instance_assignment': singleInstanceAssignment!.toTfJson(),
     if (filter != null) 'filter': filter!.toTfJson(),

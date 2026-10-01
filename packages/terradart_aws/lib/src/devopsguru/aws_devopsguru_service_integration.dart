@@ -21,9 +21,9 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final TfArg<DevopsguruServiceIntegrationOptInStatus>? optInStatus;
+  final DevopsguruServiceIntegrationOptInStatus? optInStatus;
 
-  final TfArg<DevopsguruServiceIntegrationType>? type;
+  final DevopsguruServiceIntegrationType? type;
 
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -33,23 +33,48 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
 }
 
 /// `opt_in_status` — derived from the provider schema description.
-enum DevopsguruServiceIntegrationOptInStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DevopsguruServiceIntegrationOptInStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DevopsguruServiceIntegrationOptInStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DevopsguruServiceIntegrationOptInStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevopsguruServiceIntegrationOptInStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DevopsguruServiceIntegrationOptInStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DevopsguruServiceIntegrationOptInStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = DevopsguruServiceIntegrationOptInStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<DevopsguruServiceIntegrationOptInStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum DevopsguruServiceIntegrationType implements TerraformEnum {
-  customerManagedKey('CUSTOMER_MANAGED_KEY'),
-  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+extension type const DevopsguruServiceIntegrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DevopsguruServiceIntegrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DevopsguruServiceIntegrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevopsguruServiceIntegrationType.arg(TfArg<String> arg) : this._(arg);
 
-  const DevopsguruServiceIntegrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerManagedKey = DevopsguruServiceIntegrationType._(
+    TfArgLiteral('CUSTOMER_MANAGED_KEY'),
+  );
+  static const awsOwnedKmsKey = DevopsguruServiceIntegrationType._(
+    TfArgLiteral('AWS_OWNED_KMS_KEY'),
+  );
+
+  static const List<DevopsguruServiceIntegrationType> values = [
+    customerManagedKey,
+    awsOwnedKmsKey,
+  ];
 }
 
 /// Typed helper for the `logs_anomaly_detection` block of
@@ -58,7 +83,7 @@ enum DevopsguruServiceIntegrationType implements TerraformEnum {
 final class DevopsguruServiceIntegrationLogsAnomalyDetection {
   const DevopsguruServiceIntegrationLogsAnomalyDetection({this.optInStatus});
 
-  final TfArg<DevopsguruServiceIntegrationOptInStatus>? optInStatus;
+  final DevopsguruServiceIntegrationOptInStatus? optInStatus;
 
   Map<String, Object?> encode() => {'opt_in_status': ?optInStatus?.toTfJson()};
 }
@@ -69,7 +94,7 @@ final class DevopsguruServiceIntegrationLogsAnomalyDetection {
 final class DevopsguruServiceIntegrationOpsCenter {
   const DevopsguruServiceIntegrationOpsCenter({this.optInStatus});
 
-  final TfArg<DevopsguruServiceIntegrationOptInStatus>? optInStatus;
+  final DevopsguruServiceIntegrationOptInStatus? optInStatus;
 
   Map<String, Object?> encode() => {'opt_in_status': ?optInStatus?.toTfJson()};
 }

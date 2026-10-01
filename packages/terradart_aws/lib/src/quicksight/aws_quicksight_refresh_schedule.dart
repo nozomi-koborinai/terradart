@@ -17,7 +17,7 @@ final class QuicksightRefreshSchedule {
     this.scheduleFrequency,
   });
 
-  final TfArg<QuicksightRefreshScheduleRefreshType> refreshType;
+  final QuicksightRefreshScheduleRefreshType refreshType;
 
   final TfArg<String>? startAfterDateTime;
 
@@ -32,13 +32,26 @@ final class QuicksightRefreshSchedule {
 }
 
 /// `refresh_type` — derived from the provider schema description.
-enum QuicksightRefreshScheduleRefreshType implements TerraformEnum {
-  incrementalRefresh('INCREMENTAL_REFRESH'),
-  fullRefresh('FULL_REFRESH');
+extension type const QuicksightRefreshScheduleRefreshType._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightRefreshScheduleRefreshType.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightRefreshScheduleRefreshType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightRefreshScheduleRefreshType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const QuicksightRefreshScheduleRefreshType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const incrementalRefresh = QuicksightRefreshScheduleRefreshType._(
+    TfArgLiteral('INCREMENTAL_REFRESH'),
+  );
+  static const fullRefresh = QuicksightRefreshScheduleRefreshType._(
+    TfArgLiteral('FULL_REFRESH'),
+  );
+
+  static const List<QuicksightRefreshScheduleRefreshType> values = [
+    incrementalRefresh,
+    fullRefresh,
+  ];
 }
 
 /// Typed helper for the `schedule.schedule_frequency` block of
@@ -52,7 +65,7 @@ final class QuicksightRefreshScheduleFrequency {
     this.refreshOnDay,
   });
 
-  final TfArg<QuicksightRefreshScheduleInterval> interval;
+  final QuicksightRefreshScheduleInterval interval;
 
   final TfArg<String>? timeOfTheDay;
 
@@ -70,17 +83,41 @@ final class QuicksightRefreshScheduleFrequency {
 }
 
 /// `interval` — derived from the provider schema description.
-enum QuicksightRefreshScheduleInterval implements TerraformEnum {
-  minute15('MINUTE15'),
-  minute30('MINUTE30'),
-  hourly('HOURLY'),
-  daily('DAILY'),
-  weekly('WEEKLY'),
-  monthly('MONTHLY');
+extension type const QuicksightRefreshScheduleInterval._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightRefreshScheduleInterval.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightRefreshScheduleInterval.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightRefreshScheduleInterval.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightRefreshScheduleInterval(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minute15 = QuicksightRefreshScheduleInterval._(
+    TfArgLiteral('MINUTE15'),
+  );
+  static const minute30 = QuicksightRefreshScheduleInterval._(
+    TfArgLiteral('MINUTE30'),
+  );
+  static const hourly = QuicksightRefreshScheduleInterval._(
+    TfArgLiteral('HOURLY'),
+  );
+  static const daily = QuicksightRefreshScheduleInterval._(
+    TfArgLiteral('DAILY'),
+  );
+  static const weekly = QuicksightRefreshScheduleInterval._(
+    TfArgLiteral('WEEKLY'),
+  );
+  static const monthly = QuicksightRefreshScheduleInterval._(
+    TfArgLiteral('MONTHLY'),
+  );
+
+  static const List<QuicksightRefreshScheduleInterval> values = [
+    minute15,
+    minute30,
+    hourly,
+    daily,
+    weekly,
+    monthly,
+  ];
 }
 
 /// At most one of `day_of_month`, `day_of_week` on the `schedule.schedule_frequency.refresh_on_day` block of `aws_quicksight_refresh_schedule`: the provider rejects
@@ -98,7 +135,7 @@ sealed class QuicksightRefreshScheduleRefreshOnDay {
 
   /// Sets `day_of_week`.
   const factory QuicksightRefreshScheduleRefreshOnDay.dayOfWeek(
-    TfArg<QuicksightRefreshScheduleDayOfWeek> dayOfWeek,
+    QuicksightRefreshScheduleDayOfWeek dayOfWeek,
   ) = QuicksightRefreshScheduleRefreshOnDayOfWeek;
 
   /// The Terraform argument this choice sets.
@@ -126,7 +163,7 @@ final class QuicksightRefreshScheduleRefreshOnDayOfWeek
     extends QuicksightRefreshScheduleRefreshOnDay {
   const QuicksightRefreshScheduleRefreshOnDayOfWeek(this.dayOfWeek);
 
-  final TfArg<QuicksightRefreshScheduleDayOfWeek> dayOfWeek;
+  final QuicksightRefreshScheduleDayOfWeek dayOfWeek;
 
   @override
   String get blockKey => 'day_of_week';
@@ -136,18 +173,45 @@ final class QuicksightRefreshScheduleRefreshOnDayOfWeek
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum QuicksightRefreshScheduleDayOfWeek implements TerraformEnum {
-  sunday('SUNDAY'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY');
+extension type const QuicksightRefreshScheduleDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightRefreshScheduleDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightRefreshScheduleDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightRefreshScheduleDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightRefreshScheduleDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sunday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+  static const monday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = QuicksightRefreshScheduleDayOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+
+  static const List<QuicksightRefreshScheduleDayOfWeek> values = [
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_refresh_schedule`.

@@ -10,15 +10,27 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustAccessPolicySensitive = <String>{};
 
 /// Zero Trust Access Policy enum for `decision`.
-enum ZeroTrustAccessPolicyDecision implements TerraformEnum {
-  allow('allow'),
-  deny('deny'),
-  nonIdentity('non_identity'),
-  bypass('bypass');
+extension type const ZeroTrustAccessPolicyDecision._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessPolicyDecision.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessPolicyDecision.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessPolicyDecision.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessPolicyDecision(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = ZeroTrustAccessPolicyDecision._(TfArgLiteral('allow'));
+  static const deny = ZeroTrustAccessPolicyDecision._(TfArgLiteral('deny'));
+  static const nonIdentity = ZeroTrustAccessPolicyDecision._(
+    TfArgLiteral('non_identity'),
+  );
+  static const bypass = ZeroTrustAccessPolicyDecision._(TfArgLiteral('bypass'));
+
+  static const List<ZeroTrustAccessPolicyDecision> values = [
+    allow,
+    deny,
+    nonIdentity,
+    bypass,
+  ];
 }
 
 /// Typed helper for the `approval_groups` block of
@@ -64,10 +76,10 @@ final class ZeroTrustAccessPolicyRdp {
     this.allowedClipboardRemoteToLocalFormats,
   });
 
-  final List<TfArg<ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats>>?
+  final List<ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats>?
   allowedClipboardLocalToRemoteFormats;
 
-  final List<TfArg<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>>?
+  final List<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>?
   allowedClipboardRemoteToLocalFormats;
 
   Map<String, Object?> encode() => {
@@ -83,27 +95,49 @@ final class ZeroTrustAccessPolicyRdp {
 }
 
 /// `allowed_clipboard_local_to_remote_formats` — derived from the provider schema description.
-enum ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats
-    implements TerraformEnum {
-  text('text');
+extension type const ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const text =
+      ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._(
+        TfArgLiteral('text'),
+      );
+
+  static const List<ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats>
+  values = [text];
 }
 
 /// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
-enum ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats
-    implements TerraformEnum {
-  text('text');
+extension type const ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const text =
+      ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats._(
+        TfArgLiteral('text'),
+      );
+
+  static const List<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>
+  values = [text];
 }
 
 /// Typed helper for the `exclude` block of
@@ -612,8 +646,7 @@ final class ZeroTrustAccessPolicyServiceToken {
 final class ZeroTrustAccessPolicyUserRiskScore {
   const ZeroTrustAccessPolicyUserRiskScore({required this.userRiskScore});
 
-  final List<TfArg<ZeroTrustAccessPolicyUserRiskScoreUserRiskScore>>
-  userRiskScore;
+  final List<ZeroTrustAccessPolicyUserRiskScoreUserRiskScore> userRiskScore;
 
   Map<String, Object?> encode() => {
     'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
@@ -621,15 +654,35 @@ final class ZeroTrustAccessPolicyUserRiskScore {
 }
 
 /// `user_risk_score` — derived from the provider schema description.
-enum ZeroTrustAccessPolicyUserRiskScoreUserRiskScore implements TerraformEnum {
-  low('low'),
-  medium('medium'),
-  high('high'),
-  unscored('unscored');
+extension type const ZeroTrustAccessPolicyUserRiskScoreUserRiskScore._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessPolicyUserRiskScoreUserRiskScore.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessPolicyUserRiskScoreUserRiskScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessPolicyUserRiskScoreUserRiskScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessPolicyUserRiskScoreUserRiskScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = ZeroTrustAccessPolicyUserRiskScoreUserRiskScore._(
+    TfArgLiteral('low'),
+  );
+  static const medium = ZeroTrustAccessPolicyUserRiskScoreUserRiskScore._(
+    TfArgLiteral('medium'),
+  );
+  static const high = ZeroTrustAccessPolicyUserRiskScoreUserRiskScore._(
+    TfArgLiteral('high'),
+  );
+  static const unscored = ZeroTrustAccessPolicyUserRiskScoreUserRiskScore._(
+    TfArgLiteral('unscored'),
+  );
+
+  static const List<ZeroTrustAccessPolicyUserRiskScoreUserRiskScore> values = [
+    low,
+    medium,
+    high,
+    unscored,
+  ];
 }
 
 /// Typed helper for the `include` block of
@@ -757,8 +810,7 @@ final class ZeroTrustAccessPolicyMfaConfig {
     this.sessionDuration,
   });
 
-  final List<TfArg<ZeroTrustAccessPolicyAllowedAuthenticators>>?
-  allowedAuthenticators;
+  final List<ZeroTrustAccessPolicyAllowedAuthenticators>? allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
 
@@ -775,14 +827,31 @@ final class ZeroTrustAccessPolicyMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustAccessPolicyAllowedAuthenticators implements TerraformEnum {
-  totp('totp'),
-  biometrics('biometrics'),
-  securityKey('security_key');
+extension type const ZeroTrustAccessPolicyAllowedAuthenticators._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessPolicyAllowedAuthenticators.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessPolicyAllowedAuthenticators.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessPolicyAllowedAuthenticators.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessPolicyAllowedAuthenticators(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const totp = ZeroTrustAccessPolicyAllowedAuthenticators._(
+    TfArgLiteral('totp'),
+  );
+  static const biometrics = ZeroTrustAccessPolicyAllowedAuthenticators._(
+    TfArgLiteral('biometrics'),
+  );
+  static const securityKey = ZeroTrustAccessPolicyAllowedAuthenticators._(
+    TfArgLiteral('security_key'),
+  );
+
+  static const List<ZeroTrustAccessPolicyAllowedAuthenticators> values = [
+    totp,
+    biometrics,
+    securityKey,
+  ];
 }
 
 /// Typed helper for the `require` block of
@@ -912,7 +981,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? approvalRequired,
-    required TfArg<ZeroTrustAccessPolicyDecision> decision,
+    required ZeroTrustAccessPolicyDecision decision,
     TfArg<bool>? isolationRequired,
     required TfArg<String> name,
     TfArg<String>? purposeJustificationPrompt,

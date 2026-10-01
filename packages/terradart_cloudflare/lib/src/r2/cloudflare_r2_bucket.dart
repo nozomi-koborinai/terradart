@@ -9,40 +9,69 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareR2BucketSensitive = <String>{};
 
 /// R2 Bucket enum for `jurisdiction`.
-enum R2BucketJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp'),
-  us('us'),
-  fedrampHigh('fedramp-high');
+extension type const R2BucketJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketJurisdiction.variable(String name) : this._(TfArg.variable(name));
+  R2BucketJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2BucketJurisdiction._(TfArgLiteral('default'));
+  static const eu = R2BucketJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2BucketJurisdiction._(TfArgLiteral('fedramp'));
+  static const us = R2BucketJurisdiction._(TfArgLiteral('us'));
+  static const fedrampHigh = R2BucketJurisdiction._(
+    TfArgLiteral('fedramp-high'),
+  );
+
+  static const List<R2BucketJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+    us,
+    fedrampHigh,
+  ];
 }
 
 /// R2 Bucket enum for `location`.
-enum R2BucketLocation implements TerraformEnum {
-  apac('apac'),
-  eeur('eeur'),
-  enam('enam'),
-  weur('weur'),
-  wnam('wnam'),
-  oc('oc');
+extension type const R2BucketLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketLocation.variable(String name) : this._(TfArg.variable(name));
+  R2BucketLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketLocation.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketLocation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const apac = R2BucketLocation._(TfArgLiteral('apac'));
+  static const eeur = R2BucketLocation._(TfArgLiteral('eeur'));
+  static const enam = R2BucketLocation._(TfArgLiteral('enam'));
+  static const weur = R2BucketLocation._(TfArgLiteral('weur'));
+  static const wnam = R2BucketLocation._(TfArgLiteral('wnam'));
+  static const oc = R2BucketLocation._(TfArgLiteral('oc'));
+
+  static const List<R2BucketLocation> values = [
+    apac,
+    eeur,
+    enam,
+    weur,
+    wnam,
+    oc,
+  ];
 }
 
 /// R2 Bucket Storage enum for `storage_class`.
-enum R2BucketStorageClass implements TerraformEnum {
-  standard('Standard'),
-  infrequentaccess('InfrequentAccess');
+extension type const R2BucketStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketStorageClass.variable(String name) : this._(TfArg.variable(name));
+  R2BucketStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = R2BucketStorageClass._(TfArgLiteral('Standard'));
+  static const infrequentaccess = R2BucketStorageClass._(
+    TfArgLiteral('InfrequentAccess'),
+  );
+
+  static const List<R2BucketStorageClass> values = [standard, infrequentaccess];
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket`.
@@ -56,10 +85,10 @@ final class CloudflareR2Bucket extends Resource {
   CloudflareR2Bucket(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<R2BucketJurisdiction>? jurisdiction,
-    TfArg<R2BucketLocation>? location,
+    R2BucketJurisdiction? jurisdiction,
+    R2BucketLocation? location,
     required TfArg<String> name,
-    TfArg<R2BucketStorageClass>? storageClass,
+    R2BucketStorageClass? storageClass,
     super.lifecycle,
     super.dependsOn,
     super.provider,

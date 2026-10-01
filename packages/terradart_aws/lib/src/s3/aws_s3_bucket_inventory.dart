@@ -11,39 +11,108 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsS3BucketInventorySensitive = <String>{};
 
 /// S3 Bucket Inventory Included Object enum for `included_object_versions`.
-enum S3BucketInventoryIncludedObjectVersions implements TerraformEnum {
-  all('All'),
-  current('Current');
+extension type const S3BucketInventoryIncludedObjectVersions._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketInventoryIncludedObjectVersions.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketInventoryIncludedObjectVersions.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketInventoryIncludedObjectVersions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketInventoryIncludedObjectVersions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = S3BucketInventoryIncludedObjectVersions._(
+    TfArgLiteral('All'),
+  );
+  static const current = S3BucketInventoryIncludedObjectVersions._(
+    TfArgLiteral('Current'),
+  );
+
+  static const List<S3BucketInventoryIncludedObjectVersions> values = [
+    all,
+    current,
+  ];
 }
 
 /// S3 Bucket Inventory Optional enum for `optional_fields`.
-enum S3BucketInventoryOptionalFields implements TerraformEnum {
-  size('Size'),
-  lastmodifieddate('LastModifiedDate'),
-  storageclass('StorageClass'),
-  etag('ETag'),
-  ismultipartuploaded('IsMultipartUploaded'),
-  replicationstatus('ReplicationStatus'),
-  encryptionstatus('EncryptionStatus'),
-  objectlockretainuntildate('ObjectLockRetainUntilDate'),
-  objectlockmode('ObjectLockMode'),
-  objectlocklegalholdstatus('ObjectLockLegalHoldStatus'),
-  objectlockeventholdstatus('ObjectLockEventHoldStatus'),
-  objectlockeventholdduration('ObjectLockEventHoldDuration'),
-  intelligenttieringaccesstier('IntelligentTieringAccessTier'),
-  bucketkeystatus('BucketKeyStatus'),
-  checksumalgorithm('ChecksumAlgorithm'),
-  objectaccesscontrollist('ObjectAccessControlList'),
-  objectowner('ObjectOwner'),
-  lifecycleexpirationdate('LifecycleExpirationDate');
+extension type const S3BucketInventoryOptionalFields._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketInventoryOptionalFields.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketInventoryOptionalFields.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketInventoryOptionalFields.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketInventoryOptionalFields(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const size = S3BucketInventoryOptionalFields._(TfArgLiteral('Size'));
+  static const lastmodifieddate = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('LastModifiedDate'),
+  );
+  static const storageclass = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('StorageClass'),
+  );
+  static const etag = S3BucketInventoryOptionalFields._(TfArgLiteral('ETag'));
+  static const ismultipartuploaded = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('IsMultipartUploaded'),
+  );
+  static const replicationstatus = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ReplicationStatus'),
+  );
+  static const encryptionstatus = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('EncryptionStatus'),
+  );
+  static const objectlockretainuntildate = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectLockRetainUntilDate'),
+  );
+  static const objectlockmode = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectLockMode'),
+  );
+  static const objectlocklegalholdstatus = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectLockLegalHoldStatus'),
+  );
+  static const objectlockeventholdstatus = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectLockEventHoldStatus'),
+  );
+  static const objectlockeventholdduration = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectLockEventHoldDuration'),
+  );
+  static const intelligenttieringaccesstier = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('IntelligentTieringAccessTier'),
+  );
+  static const bucketkeystatus = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('BucketKeyStatus'),
+  );
+  static const checksumalgorithm = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ChecksumAlgorithm'),
+  );
+  static const objectaccesscontrollist = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectAccessControlList'),
+  );
+  static const objectowner = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('ObjectOwner'),
+  );
+  static const lifecycleexpirationdate = S3BucketInventoryOptionalFields._(
+    TfArgLiteral('LifecycleExpirationDate'),
+  );
+
+  static const List<S3BucketInventoryOptionalFields> values = [
+    size,
+    lastmodifieddate,
+    storageclass,
+    etag,
+    ismultipartuploaded,
+    replicationstatus,
+    encryptionstatus,
+    objectlockretainuntildate,
+    objectlockmode,
+    objectlocklegalholdstatus,
+    objectlockeventholdstatus,
+    objectlockeventholdduration,
+    intelligenttieringaccesstier,
+    bucketkeystatus,
+    checksumalgorithm,
+    objectaccesscontrollist,
+    objectowner,
+    lifecycleexpirationdate,
+  ];
 }
 
 /// Typed helper for the `destination` block of
@@ -73,7 +142,7 @@ final class S3BucketInventoryDestinationBucket {
 
   final RefTo<AwsS3Bucket> bucketArn;
 
-  final TfArg<S3BucketInventoryFormat> format;
+  final S3BucketInventoryFormat format;
 
   final TfArg<String>? prefix;
 
@@ -89,14 +158,18 @@ final class S3BucketInventoryDestinationBucket {
 }
 
 /// `format` — derived from the provider schema description.
-enum S3BucketInventoryFormat implements TerraformEnum {
-  csv('CSV'),
-  orc('ORC'),
-  parquet('Parquet');
+extension type const S3BucketInventoryFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketInventoryFormat.variable(String name) : this._(TfArg.variable(name));
+  S3BucketInventoryFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketInventoryFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketInventoryFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = S3BucketInventoryFormat._(TfArgLiteral('CSV'));
+  static const orc = S3BucketInventoryFormat._(TfArgLiteral('ORC'));
+  static const parquet = S3BucketInventoryFormat._(TfArgLiteral('Parquet'));
+
+  static const List<S3BucketInventoryFormat> values = [csv, orc, parquet];
 }
 
 /// At most one of `sse_kms`, `sse_s3` on the `destination.bucket.encryption` block of `aws_s3_bucket_inventory`: the provider rejects
@@ -188,19 +261,24 @@ final class S3BucketInventoryFilter {
 final class S3BucketInventorySchedule {
   const S3BucketInventorySchedule({required this.frequency});
 
-  final TfArg<S3BucketInventoryFrequency> frequency;
+  final S3BucketInventoryFrequency frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
-enum S3BucketInventoryFrequency implements TerraformEnum {
-  daily('Daily'),
-  weekly('Weekly');
+extension type const S3BucketInventoryFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketInventoryFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketInventoryFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketInventoryFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketInventoryFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = S3BucketInventoryFrequency._(TfArgLiteral('Daily'));
+  static const weekly = S3BucketInventoryFrequency._(TfArgLiteral('Weekly'));
+
+  static const List<S3BucketInventoryFrequency> values = [daily, weekly];
 }
 
 /// Factory wrapper for `aws_s3_bucket_inventory`.
@@ -211,10 +289,9 @@ final class AwsS3BucketInventory extends Resource {
     super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? enabled,
-    required TfArg<S3BucketInventoryIncludedObjectVersions>
-    includedObjectVersions,
+    required S3BucketInventoryIncludedObjectVersions includedObjectVersions,
     required TfArg<String> name,
-    List<TfArg<S3BucketInventoryOptionalFields>>? optionalFields,
+    List<S3BucketInventoryOptionalFields>? optionalFields,
     TfArg<String>? region,
     required S3BucketInventoryDestination destination,
     S3BucketInventoryFilter? filter,

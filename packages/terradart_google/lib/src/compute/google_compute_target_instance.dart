@@ -9,12 +9,17 @@ import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
 const Set<String> _googleComputeTargetInstanceSensitive = <String>{};
 
 /// Compute Target Instance Nat enum for `nat_policy`.
-enum ComputeTargetInstanceNatPolicy implements TerraformEnum {
-  noNat('NO_NAT');
+extension type const ComputeTargetInstanceNatPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeTargetInstanceNatPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeTargetInstanceNatPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeTargetInstanceNatPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeTargetInstanceNatPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noNat = ComputeTargetInstanceNatPolicy._(TfArgLiteral('NO_NAT'));
+
+  static const List<ComputeTargetInstanceNatPolicy> values = [noNat];
 }
 
 /// Factory wrapper for `google_compute_target_instance`.
@@ -39,7 +44,7 @@ final class GoogleComputeTargetInstance extends Resource {
     required RefTo<GoogleComputeInstance> instance,
     TfArg<String>? zone,
     TfArg<String>? description,
-    TfArg<ComputeTargetInstanceNatPolicy>? natPolicy,
+    ComputeTargetInstanceNatPolicy? natPolicy,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

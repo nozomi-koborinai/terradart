@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsElasticacheGlobalReplicationGroupSensitive = <String>{};
 
 /// Elasticache Global Replication Group enum for `engine`.
-enum ElasticacheGlobalReplicationGroupEngine implements TerraformEnum {
-  redis('redis'),
-  valkey('valkey');
+extension type const ElasticacheGlobalReplicationGroupEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheGlobalReplicationGroupEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheGlobalReplicationGroupEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheGlobalReplicationGroupEngine.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheGlobalReplicationGroupEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redis = ElasticacheGlobalReplicationGroupEngine._(
+    TfArgLiteral('redis'),
+  );
+  static const valkey = ElasticacheGlobalReplicationGroupEngine._(
+    TfArgLiteral('valkey'),
+  );
+
+  static const List<ElasticacheGlobalReplicationGroupEngine> values = [
+    redis,
+    valkey,
+  ];
 }
 
 /// Factory wrapper for `aws_elasticache_global_replication_group`.
@@ -24,7 +37,7 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
     super.localName, {
     TfArg<bool>? automaticFailoverEnabled,
     TfArg<String>? cacheNodeType,
-    TfArg<ElasticacheGlobalReplicationGroupEngine>? engine,
+    ElasticacheGlobalReplicationGroupEngine? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? globalReplicationGroupDescription,
     required TfArg<String> globalReplicationGroupIdSuffix,

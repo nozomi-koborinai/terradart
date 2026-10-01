@@ -7,18 +7,47 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLicensemanagerGrantSensitive = <String>{};
 
 /// Licensemanager Grant Allowed enum for `allowed_operations`.
-enum LicensemanagerGrantAllowedOperations implements TerraformEnum {
-  creategrant('CreateGrant'),
-  checkoutlicense('CheckoutLicense'),
-  checkoutborrowlicense('CheckoutBorrowLicense'),
-  checkinlicense('CheckInLicense'),
-  extendconsumptionlicense('ExtendConsumptionLicense'),
-  listpurchasedlicenses('ListPurchasedLicenses'),
-  createtoken('CreateToken');
+extension type const LicensemanagerGrantAllowedOperations._(TfArg<String> _)
+    implements TfArg<String> {
+  LicensemanagerGrantAllowedOperations.variable(String name)
+    : this._(TfArg.variable(name));
+  LicensemanagerGrantAllowedOperations.expression(String template)
+    : this._(TfArg.expression(template));
+  const LicensemanagerGrantAllowedOperations.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LicensemanagerGrantAllowedOperations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const creategrant = LicensemanagerGrantAllowedOperations._(
+    TfArgLiteral('CreateGrant'),
+  );
+  static const checkoutlicense = LicensemanagerGrantAllowedOperations._(
+    TfArgLiteral('CheckoutLicense'),
+  );
+  static const checkoutborrowlicense = LicensemanagerGrantAllowedOperations._(
+    TfArgLiteral('CheckoutBorrowLicense'),
+  );
+  static const checkinlicense = LicensemanagerGrantAllowedOperations._(
+    TfArgLiteral('CheckInLicense'),
+  );
+  static const extendconsumptionlicense =
+      LicensemanagerGrantAllowedOperations._(
+        TfArgLiteral('ExtendConsumptionLicense'),
+      );
+  static const listpurchasedlicenses = LicensemanagerGrantAllowedOperations._(
+    TfArgLiteral('ListPurchasedLicenses'),
+  );
+  static const createtoken = LicensemanagerGrantAllowedOperations._(
+    TfArgLiteral('CreateToken'),
+  );
+
+  static const List<LicensemanagerGrantAllowedOperations> values = [
+    creategrant,
+    checkoutlicense,
+    checkoutborrowlicense,
+    checkinlicense,
+    extendconsumptionlicense,
+    listpurchasedlicenses,
+    createtoken,
+  ];
 }
 
 /// Factory wrapper for `aws_licensemanager_grant`.
@@ -27,8 +56,7 @@ final class AwsLicensemanagerGrant extends Resource {
 
   AwsLicensemanagerGrant(
     super.localName, {
-    required List<TfArg<LicensemanagerGrantAllowedOperations>>
-    allowedOperations,
+    required List<LicensemanagerGrantAllowedOperations> allowedOperations,
     required TfArg<String> licenseArn,
     required TfArg<String> name,
     required TfArg<String> principal,

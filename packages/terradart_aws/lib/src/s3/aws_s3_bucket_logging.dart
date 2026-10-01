@@ -18,7 +18,7 @@ final class S3BucketLoggingTargetGrant {
     required this.grantee,
   });
 
-  final TfArg<S3BucketLoggingPermission> permission;
+  final S3BucketLoggingPermission permission;
 
   final S3BucketLoggingGrantee grantee;
 
@@ -29,14 +29,25 @@ final class S3BucketLoggingTargetGrant {
 }
 
 /// `permission` — derived from the provider schema description.
-enum S3BucketLoggingPermission implements TerraformEnum {
-  fullControl('FULL_CONTROL'),
-  read('READ'),
-  write('WRITE');
+extension type const S3BucketLoggingPermission._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketLoggingPermission.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketLoggingPermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketLoggingPermission.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketLoggingPermission(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullControl = S3BucketLoggingPermission._(
+    TfArgLiteral('FULL_CONTROL'),
+  );
+  static const read = S3BucketLoggingPermission._(TfArgLiteral('READ'));
+  static const write = S3BucketLoggingPermission._(TfArgLiteral('WRITE'));
+
+  static const List<S3BucketLoggingPermission> values = [
+    fullControl,
+    read,
+    write,
+  ];
 }
 
 /// Typed helper for the `target_grant.grantee` block of
@@ -54,7 +65,7 @@ final class S3BucketLoggingGrantee {
 
   final TfArg<String>? id;
 
-  final TfArg<S3BucketLoggingType> type;
+  final S3BucketLoggingType type;
 
   final TfArg<String>? uri;
 
@@ -67,14 +78,26 @@ final class S3BucketLoggingGrantee {
 }
 
 /// `type` — derived from the provider schema description.
-enum S3BucketLoggingType implements TerraformEnum {
-  canonicaluser('CanonicalUser'),
-  amazoncustomerbyemail('AmazonCustomerByEmail'),
-  group('Group');
+extension type const S3BucketLoggingType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketLoggingType.variable(String name) : this._(TfArg.variable(name));
+  S3BucketLoggingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketLoggingType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketLoggingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const canonicaluser = S3BucketLoggingType._(
+    TfArgLiteral('CanonicalUser'),
+  );
+  static const amazoncustomerbyemail = S3BucketLoggingType._(
+    TfArgLiteral('AmazonCustomerByEmail'),
+  );
+  static const group = S3BucketLoggingType._(TfArgLiteral('Group'));
+
+  static const List<S3BucketLoggingType> values = [
+    canonicaluser,
+    amazoncustomerbyemail,
+    group,
+  ];
 }
 
 /// Exactly one of `partitioned_prefix`, `simple_prefix` on the `target_object_key_format` block of `aws_s3_bucket_logging`: the provider rejects
@@ -138,7 +161,7 @@ final class S3BucketLoggingTargetObjectKeyFormatSimplePrefix
 final class S3BucketLoggingPartitionedPrefix {
   const S3BucketLoggingPartitionedPrefix({required this.partitionDateSource});
 
-  final TfArg<S3BucketLoggingPartitionDateSource> partitionDateSource;
+  final S3BucketLoggingPartitionDateSource partitionDateSource;
 
   Map<String, Object?> encode() => {
     'partition_date_source': partitionDateSource.toTfJson(),
@@ -146,13 +169,25 @@ final class S3BucketLoggingPartitionedPrefix {
 }
 
 /// `partition_date_source` — derived from the provider schema description.
-enum S3BucketLoggingPartitionDateSource implements TerraformEnum {
-  eventtime('EventTime'),
-  deliverytime('DeliveryTime');
+extension type const S3BucketLoggingPartitionDateSource._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketLoggingPartitionDateSource.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketLoggingPartitionDateSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketLoggingPartitionDateSource.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketLoggingPartitionDateSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eventtime = S3BucketLoggingPartitionDateSource._(
+    TfArgLiteral('EventTime'),
+  );
+  static const deliverytime = S3BucketLoggingPartitionDateSource._(
+    TfArgLiteral('DeliveryTime'),
+  );
+
+  static const List<S3BucketLoggingPartitionDateSource> values = [
+    eventtime,
+    deliverytime,
+  ];
 }
 
 /// Typed helper for the `target_object_key_format.simple_prefix` block of

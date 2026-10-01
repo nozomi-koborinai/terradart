@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudfrontFunctionSensitive = <String>{};
 
 /// Cloudfront Function enum for `runtime`.
-enum CloudfrontFunctionRuntime implements TerraformEnum {
-  cloudfrontJs1p0('cloudfront-js-1.0'),
-  cloudfrontJs2p0('cloudfront-js-2.0');
+extension type const CloudfrontFunctionRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontFunctionRuntime.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontFunctionRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontFunctionRuntime.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontFunctionRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfrontJs1p0 = CloudfrontFunctionRuntime._(
+    TfArgLiteral('cloudfront-js-1.0'),
+  );
+  static const cloudfrontJs2p0 = CloudfrontFunctionRuntime._(
+    TfArgLiteral('cloudfront-js-2.0'),
+  );
+
+  static const List<CloudfrontFunctionRuntime> values = [
+    cloudfrontJs1p0,
+    cloudfrontJs2p0,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudfront_function`.
@@ -27,7 +39,7 @@ final class AwsCloudfrontFunction extends Resource {
     TfArg<List<String>>? keyValueStoreAssociations,
     required TfArg<String> name,
     TfArg<bool>? publish,
-    required TfArg<CloudfrontFunctionRuntime> runtime,
+    required CloudfrontFunctionRuntime runtime,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

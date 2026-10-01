@@ -12,44 +12,117 @@ const Set<String> _awsCognitoManagedUserPoolClientSensitive = <String>{
 };
 
 /// Cognito Managed User Pool Client Allowed Oauth enum for `allowed_oauth_flows`.
-enum CognitoManagedUserPoolClientAllowedOauthFlows implements TerraformEnum {
-  code('code'),
-  implicit('implicit'),
-  clientCredentials('client_credentials');
+extension type const CognitoManagedUserPoolClientAllowedOauthFlows._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitoManagedUserPoolClientAllowedOauthFlows.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedUserPoolClientAllowedOauthFlows.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoManagedUserPoolClientAllowedOauthFlows.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoManagedUserPoolClientAllowedOauthFlows(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const code = CognitoManagedUserPoolClientAllowedOauthFlows._(
+    TfArgLiteral('code'),
+  );
+  static const implicit = CognitoManagedUserPoolClientAllowedOauthFlows._(
+    TfArgLiteral('implicit'),
+  );
+  static const clientCredentials =
+      CognitoManagedUserPoolClientAllowedOauthFlows._(
+        TfArgLiteral('client_credentials'),
+      );
+
+  static const List<CognitoManagedUserPoolClientAllowedOauthFlows> values = [
+    code,
+    implicit,
+    clientCredentials,
+  ];
 }
 
 /// Cognito Managed User Pool Client Explicit Auth enum for `explicit_auth_flows`.
-enum CognitoManagedUserPoolClientExplicitAuthFlows implements TerraformEnum {
-  adminNoSrpAuth('ADMIN_NO_SRP_AUTH'),
-  customAuthFlowOnly('CUSTOM_AUTH_FLOW_ONLY'),
-  userPasswordAuth('USER_PASSWORD_AUTH'),
-  allowAdminUserPasswordAuth('ALLOW_ADMIN_USER_PASSWORD_AUTH'),
-  allowCustomAuth('ALLOW_CUSTOM_AUTH'),
-  allowUserPasswordAuth('ALLOW_USER_PASSWORD_AUTH'),
-  allowUserSrpAuth('ALLOW_USER_SRP_AUTH'),
-  allowRefreshTokenAuth('ALLOW_REFRESH_TOKEN_AUTH'),
-  allowUserAuth('ALLOW_USER_AUTH');
+extension type const CognitoManagedUserPoolClientExplicitAuthFlows._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitoManagedUserPoolClientExplicitAuthFlows.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedUserPoolClientExplicitAuthFlows.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoManagedUserPoolClientExplicitAuthFlows.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoManagedUserPoolClientExplicitAuthFlows(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const adminNoSrpAuth = CognitoManagedUserPoolClientExplicitAuthFlows._(
+    TfArgLiteral('ADMIN_NO_SRP_AUTH'),
+  );
+  static const customAuthFlowOnly =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('CUSTOM_AUTH_FLOW_ONLY'),
+      );
+  static const userPasswordAuth =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('USER_PASSWORD_AUTH'),
+      );
+  static const allowAdminUserPasswordAuth =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('ALLOW_ADMIN_USER_PASSWORD_AUTH'),
+      );
+  static const allowCustomAuth =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('ALLOW_CUSTOM_AUTH'),
+      );
+  static const allowUserPasswordAuth =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('ALLOW_USER_PASSWORD_AUTH'),
+      );
+  static const allowUserSrpAuth =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('ALLOW_USER_SRP_AUTH'),
+      );
+  static const allowRefreshTokenAuth =
+      CognitoManagedUserPoolClientExplicitAuthFlows._(
+        TfArgLiteral('ALLOW_REFRESH_TOKEN_AUTH'),
+      );
+  static const allowUserAuth = CognitoManagedUserPoolClientExplicitAuthFlows._(
+    TfArgLiteral('ALLOW_USER_AUTH'),
+  );
+
+  static const List<CognitoManagedUserPoolClientExplicitAuthFlows> values = [
+    adminNoSrpAuth,
+    customAuthFlowOnly,
+    userPasswordAuth,
+    allowAdminUserPasswordAuth,
+    allowCustomAuth,
+    allowUserPasswordAuth,
+    allowUserSrpAuth,
+    allowRefreshTokenAuth,
+    allowUserAuth,
+  ];
 }
 
 /// Cognito Managed User Pool Client Prevent User Existence enum for `prevent_user_existence_errors`.
-enum CognitoManagedUserPoolClientPreventUserExistenceErrors
-    implements TerraformEnum {
-  legacy('LEGACY'),
-  enabled('ENABLED');
+extension type const CognitoManagedUserPoolClientPreventUserExistenceErrors._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitoManagedUserPoolClientPreventUserExistenceErrors.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedUserPoolClientPreventUserExistenceErrors.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CognitoManagedUserPoolClientPreventUserExistenceErrors.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CognitoManagedUserPoolClientPreventUserExistenceErrors(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const legacy =
+      CognitoManagedUserPoolClientPreventUserExistenceErrors._(
+        TfArgLiteral('LEGACY'),
+      );
+  static const enabled =
+      CognitoManagedUserPoolClientPreventUserExistenceErrors._(
+        TfArgLiteral('ENABLED'),
+      );
+
+  static const List<CognitoManagedUserPoolClientPreventUserExistenceErrors>
+  values = [legacy, enabled];
 }
 
 /// Exactly one of `name_pattern`, `name_prefix` on `aws_cognito_managed_user_pool_client`: the provider rejects
@@ -202,7 +275,7 @@ final class CognitoManagedUserPoolClientRefreshTokenRotation {
     this.retryGracePeriodSeconds,
   });
 
-  final TfArg<CognitoManagedUserPoolClientFeature> feature;
+  final CognitoManagedUserPoolClientFeature feature;
 
   final TfArg<num>? retryGracePeriodSeconds;
 
@@ -213,13 +286,26 @@ final class CognitoManagedUserPoolClientRefreshTokenRotation {
 }
 
 /// `feature` — derived from the provider schema description.
-enum CognitoManagedUserPoolClientFeature implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CognitoManagedUserPoolClientFeature._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoManagedUserPoolClientFeature.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedUserPoolClientFeature.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoManagedUserPoolClientFeature.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoManagedUserPoolClientFeature(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CognitoManagedUserPoolClientFeature._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = CognitoManagedUserPoolClientFeature._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CognitoManagedUserPoolClientFeature> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `token_validity_units` block of
@@ -252,8 +338,7 @@ final class AwsCognitoManagedUserPoolClient extends Resource {
   AwsCognitoManagedUserPoolClient(
     super.localName, {
     TfArg<num>? accessTokenValidity,
-    List<TfArg<CognitoManagedUserPoolClientAllowedOauthFlows>>?
-    allowedOauthFlows,
+    List<CognitoManagedUserPoolClientAllowedOauthFlows>? allowedOauthFlows,
     TfArg<bool>? allowedOauthFlowsUserPoolClient,
     TfArg<List<String>>? allowedOauthScopes,
     TfArg<num>? authSessionValidity,
@@ -261,12 +346,11 @@ final class AwsCognitoManagedUserPoolClient extends Resource {
     TfArg<String>? defaultRedirectUri,
     TfArg<bool>? enablePropagateAdditionalUserContextData,
     TfArg<bool>? enableTokenRevocation,
-    List<TfArg<CognitoManagedUserPoolClientExplicitAuthFlows>>?
-    explicitAuthFlows,
+    List<CognitoManagedUserPoolClientExplicitAuthFlows>? explicitAuthFlows,
     TfArg<num>? idTokenValidity,
     TfArg<List<String>>? logoutUrls,
     required CognitoManagedUserPoolClientName name,
-    TfArg<CognitoManagedUserPoolClientPreventUserExistenceErrors>?
+    CognitoManagedUserPoolClientPreventUserExistenceErrors?
     preventUserExistenceErrors,
     TfArg<List<String>>? readAttributes,
     TfArg<num>? refreshTokenValidity,

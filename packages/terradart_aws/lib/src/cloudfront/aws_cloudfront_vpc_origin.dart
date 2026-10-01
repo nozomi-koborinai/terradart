@@ -28,7 +28,7 @@ final class CloudfrontVpcOriginEndpointConfig {
 
   final TfArg<String> name;
 
-  final TfArg<CloudfrontVpcOriginProtocolPolicy> originProtocolPolicy;
+  final CloudfrontVpcOriginProtocolPolicy originProtocolPolicy;
 
   final List<CloudfrontVpcOriginSslProtocols>? originSslProtocols;
 
@@ -44,14 +44,29 @@ final class CloudfrontVpcOriginEndpointConfig {
 }
 
 /// `origin_protocol_policy` — derived from the provider schema description.
-enum CloudfrontVpcOriginProtocolPolicy implements TerraformEnum {
-  httpOnly('http-only'),
-  matchViewer('match-viewer'),
-  httpsOnly('https-only');
+extension type const CloudfrontVpcOriginProtocolPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontVpcOriginProtocolPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontVpcOriginProtocolPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontVpcOriginProtocolPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontVpcOriginProtocolPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const httpOnly = CloudfrontVpcOriginProtocolPolicy._(
+    TfArgLiteral('http-only'),
+  );
+  static const matchViewer = CloudfrontVpcOriginProtocolPolicy._(
+    TfArgLiteral('match-viewer'),
+  );
+  static const httpsOnly = CloudfrontVpcOriginProtocolPolicy._(
+    TfArgLiteral('https-only'),
+  );
+
+  static const List<CloudfrontVpcOriginProtocolPolicy> values = [
+    httpOnly,
+    matchViewer,
+    httpsOnly,
+  ];
 }
 
 /// Typed helper for the `vpc_origin_endpoint_config.origin_ssl_protocols` block of

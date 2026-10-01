@@ -98,7 +98,7 @@ final class OsConfigOsPolicyAssignmentOsPolicies {
 
   final TfArg<String> id;
 
-  final TfArg<OsConfigOsPolicyAssignmentMode> mode;
+  final OsConfigOsPolicyAssignmentMode mode;
 
   final List<OsConfigOsPolicyAssignmentResourceGroups> resourceGroups;
 
@@ -112,14 +112,29 @@ final class OsConfigOsPolicyAssignmentOsPolicies {
 }
 
 /// `mode` — derived from the provider schema description.
-enum OsConfigOsPolicyAssignmentMode implements TerraformEnum {
-  modeUnspecified('MODE_UNSPECIFIED'),
-  validation('VALIDATION'),
-  enforcement('ENFORCEMENT');
+extension type const OsConfigOsPolicyAssignmentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigOsPolicyAssignmentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigOsPolicyAssignmentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigOsPolicyAssignmentMode.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigOsPolicyAssignmentMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modeUnspecified = OsConfigOsPolicyAssignmentMode._(
+    TfArgLiteral('MODE_UNSPECIFIED'),
+  );
+  static const validation = OsConfigOsPolicyAssignmentMode._(
+    TfArgLiteral('VALIDATION'),
+  );
+  static const enforcement = OsConfigOsPolicyAssignmentMode._(
+    TfArgLiteral('ENFORCEMENT'),
+  );
+
+  static const List<OsConfigOsPolicyAssignmentMode> values = [
+    modeUnspecified,
+    validation,
+    enforcement,
+  ];
 }
 
 /// Typed helper for the `os_policies.resource_groups` block of
@@ -222,7 +237,7 @@ final class OsConfigOsPolicyAssignmentEnforce {
 
   final TfArg<List<String>>? args;
 
-  final TfArg<OsConfigOsPolicyAssignmentInterpreter> interpreter;
+  final OsConfigOsPolicyAssignmentInterpreter interpreter;
 
   final TfArg<String>? outputFilePath;
 
@@ -240,15 +255,34 @@ final class OsConfigOsPolicyAssignmentEnforce {
 }
 
 /// `interpreter` — derived from the provider schema description.
-enum OsConfigOsPolicyAssignmentInterpreter implements TerraformEnum {
-  interpreterUnspecified('INTERPRETER_UNSPECIFIED'),
-  none('NONE'),
-  shell('SHELL'),
-  powershell('POWERSHELL');
+extension type const OsConfigOsPolicyAssignmentInterpreter._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigOsPolicyAssignmentInterpreter.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigOsPolicyAssignmentInterpreter.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigOsPolicyAssignmentInterpreter.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigOsPolicyAssignmentInterpreter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const interpreterUnspecified = OsConfigOsPolicyAssignmentInterpreter._(
+    TfArgLiteral('INTERPRETER_UNSPECIFIED'),
+  );
+  static const none = OsConfigOsPolicyAssignmentInterpreter._(
+    TfArgLiteral('NONE'),
+  );
+  static const shell = OsConfigOsPolicyAssignmentInterpreter._(
+    TfArgLiteral('SHELL'),
+  );
+  static const powershell = OsConfigOsPolicyAssignmentInterpreter._(
+    TfArgLiteral('POWERSHELL'),
+  );
+
+  static const List<OsConfigOsPolicyAssignmentInterpreter> values = [
+    interpreterUnspecified,
+    none,
+    shell,
+    powershell,
+  ];
 }
 
 /// Typed helper for the `os_policies.resource_groups.resources.file.file` block of
@@ -337,7 +371,7 @@ final class OsConfigOsPolicyAssignmentValidate {
 
   final TfArg<List<String>>? args;
 
-  final TfArg<OsConfigOsPolicyAssignmentInterpreter> interpreter;
+  final OsConfigOsPolicyAssignmentInterpreter interpreter;
 
   final TfArg<String>? outputFilePath;
 
@@ -369,7 +403,7 @@ final class OsConfigOsPolicyAssignmentFile {
 
   final TfArg<String> path;
 
-  final TfArg<OsConfigOsPolicyAssignmentState> state;
+  final OsConfigOsPolicyAssignmentState state;
 
   final OsConfigOsPolicyAssignmentFileFile? file;
 
@@ -382,15 +416,33 @@ final class OsConfigOsPolicyAssignmentFile {
 }
 
 /// `state` — derived from the provider schema description.
-enum OsConfigOsPolicyAssignmentState implements TerraformEnum {
-  desiredStateUnspecified('DESIRED_STATE_UNSPECIFIED'),
-  present('PRESENT'),
-  absent('ABSENT'),
-  contentsMatch('CONTENTS_MATCH');
+extension type const OsConfigOsPolicyAssignmentState._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigOsPolicyAssignmentState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigOsPolicyAssignmentState.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigOsPolicyAssignmentState.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigOsPolicyAssignmentState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const desiredStateUnspecified = OsConfigOsPolicyAssignmentState._(
+    TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
+  );
+  static const present = OsConfigOsPolicyAssignmentState._(
+    TfArgLiteral('PRESENT'),
+  );
+  static const absent = OsConfigOsPolicyAssignmentState._(
+    TfArgLiteral('ABSENT'),
+  );
+  static const contentsMatch = OsConfigOsPolicyAssignmentState._(
+    TfArgLiteral('CONTENTS_MATCH'),
+  );
+
+  static const List<OsConfigOsPolicyAssignmentState> values = [
+    desiredStateUnspecified,
+    present,
+    absent,
+    contentsMatch,
+  ];
 }
 
 /// Typed helper for the `os_policies.resource_groups.resources.pkg` block of
@@ -408,7 +460,7 @@ final class OsConfigOsPolicyAssignmentPkg {
     this.zypper,
   });
 
-  final TfArg<OsConfigOsPolicyAssignmentDesiredState> desiredState;
+  final OsConfigOsPolicyAssignmentDesiredState desiredState;
 
   final OsConfigOsPolicyAssignmentPkgApt? apt;
 
@@ -437,14 +489,31 @@ final class OsConfigOsPolicyAssignmentPkg {
 }
 
 /// `desired_state` — derived from the provider schema description.
-enum OsConfigOsPolicyAssignmentDesiredState implements TerraformEnum {
-  desiredStateUnspecified('DESIRED_STATE_UNSPECIFIED'),
-  installed('INSTALLED'),
-  removed('REMOVED');
+extension type const OsConfigOsPolicyAssignmentDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigOsPolicyAssignmentDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigOsPolicyAssignmentDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigOsPolicyAssignmentDesiredState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigOsPolicyAssignmentDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const desiredStateUnspecified =
+      OsConfigOsPolicyAssignmentDesiredState._(
+        TfArgLiteral('DESIRED_STATE_UNSPECIFIED'),
+      );
+  static const installed = OsConfigOsPolicyAssignmentDesiredState._(
+    TfArgLiteral('INSTALLED'),
+  );
+  static const removed = OsConfigOsPolicyAssignmentDesiredState._(
+    TfArgLiteral('REMOVED'),
+  );
+
+  static const List<OsConfigOsPolicyAssignmentDesiredState> values = [
+    desiredStateUnspecified,
+    installed,
+    removed,
+  ];
 }
 
 /// Typed helper for the `os_policies.resource_groups.resources.pkg.apt` block of
@@ -606,7 +675,7 @@ final class OsConfigOsPolicyAssignmentRepositoryApt {
     required this.uri,
   });
 
-  final TfArg<OsConfigOsPolicyAssignmentArchiveType> archiveType;
+  final OsConfigOsPolicyAssignmentArchiveType archiveType;
 
   final TfArg<List<String>> components;
 
@@ -626,14 +695,30 @@ final class OsConfigOsPolicyAssignmentRepositoryApt {
 }
 
 /// `archive_type` — derived from the provider schema description.
-enum OsConfigOsPolicyAssignmentArchiveType implements TerraformEnum {
-  archiveTypeUnspecified('ARCHIVE_TYPE_UNSPECIFIED'),
-  deb('DEB'),
-  debSrc('DEB_SRC');
+extension type const OsConfigOsPolicyAssignmentArchiveType._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigOsPolicyAssignmentArchiveType.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigOsPolicyAssignmentArchiveType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigOsPolicyAssignmentArchiveType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigOsPolicyAssignmentArchiveType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const archiveTypeUnspecified = OsConfigOsPolicyAssignmentArchiveType._(
+    TfArgLiteral('ARCHIVE_TYPE_UNSPECIFIED'),
+  );
+  static const deb = OsConfigOsPolicyAssignmentArchiveType._(
+    TfArgLiteral('DEB'),
+  );
+  static const debSrc = OsConfigOsPolicyAssignmentArchiveType._(
+    TfArgLiteral('DEB_SRC'),
+  );
+
+  static const List<OsConfigOsPolicyAssignmentArchiveType> values = [
+    archiveTypeUnspecified,
+    deb,
+    debSrc,
+  ];
 }
 
 /// Typed helper for the `os_policies.resource_groups.resources.repository.goo` block of

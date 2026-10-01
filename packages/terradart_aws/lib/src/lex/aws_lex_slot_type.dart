@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLexSlotTypeSensitive = <String>{};
 
 /// Lex Slot Type Value Selection enum for `value_selection_strategy`.
-enum LexSlotTypeValueSelectionStrategy implements TerraformEnum {
-  originalValue('ORIGINAL_VALUE'),
-  topResolution('TOP_RESOLUTION');
+extension type const LexSlotTypeValueSelectionStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  LexSlotTypeValueSelectionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  LexSlotTypeValueSelectionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LexSlotTypeValueSelectionStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const LexSlotTypeValueSelectionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const originalValue = LexSlotTypeValueSelectionStrategy._(
+    TfArgLiteral('ORIGINAL_VALUE'),
+  );
+  static const topResolution = LexSlotTypeValueSelectionStrategy._(
+    TfArgLiteral('TOP_RESOLUTION'),
+  );
+
+  static const List<LexSlotTypeValueSelectionStrategy> values = [
+    originalValue,
+    topResolution,
+  ];
 }
 
 /// Typed helper for the `enumeration_value` block of
@@ -43,7 +55,7 @@ final class AwsLexSlotType extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<LexSlotTypeValueSelectionStrategy>? valueSelectionStrategy,
+    LexSlotTypeValueSelectionStrategy? valueSelectionStrategy,
     required List<LexSlotTypeEnumerationValue> enumerationValue,
     super.lifecycle,
     super.dependsOn,

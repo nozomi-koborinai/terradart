@@ -8,14 +8,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleIdentityPlatformTenantSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Identity Platform tenants.
-enum IdentityPlatformTenantDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const IdentityPlatformTenantDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  IdentityPlatformTenantDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  IdentityPlatformTenantDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const IdentityPlatformTenantDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IdentityPlatformTenantDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = IdentityPlatformTenantDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = IdentityPlatformTenantDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = IdentityPlatformTenantDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<IdentityPlatformTenantDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Typed helper for the `client` block of
@@ -73,7 +89,7 @@ final class GoogleIdentityPlatformTenant extends Resource {
     TfArg<bool>? allowPasswordSignup,
     TfArg<bool>? enableEmailLinkSignin,
     TfArg<bool>? disableAuth,
-    TfArg<IdentityPlatformTenantDeletionPolicy>? deletionPolicy,
+    IdentityPlatformTenantDeletionPolicy? deletionPolicy,
     IdentityPlatformTenantClient? client,
     TfArg<String>? project,
     super.lifecycle,

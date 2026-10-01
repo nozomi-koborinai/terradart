@@ -8,37 +8,80 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeEnvironmentSensitive = <String>{};
 
 /// Apigee Environment Api Proxy enum for `api_proxy_type`.
-enum ApigeeEnvironmentApiProxyType implements TerraformEnum {
-  apiProxyTypeUnspecified('API_PROXY_TYPE_UNSPECIFIED'),
-  programmable('PROGRAMMABLE'),
-  configurable('CONFIGURABLE');
+extension type const ApigeeEnvironmentApiProxyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeEnvironmentApiProxyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeEnvironmentApiProxyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeEnvironmentApiProxyType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeEnvironmentApiProxyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const apiProxyTypeUnspecified = ApigeeEnvironmentApiProxyType._(
+    TfArgLiteral('API_PROXY_TYPE_UNSPECIFIED'),
+  );
+  static const programmable = ApigeeEnvironmentApiProxyType._(
+    TfArgLiteral('PROGRAMMABLE'),
+  );
+  static const configurable = ApigeeEnvironmentApiProxyType._(
+    TfArgLiteral('CONFIGURABLE'),
+  );
+
+  static const List<ApigeeEnvironmentApiProxyType> values = [
+    apiProxyTypeUnspecified,
+    programmable,
+    configurable,
+  ];
 }
 
 /// Apigee Environment Deployment enum for `deployment_type`.
-enum ApigeeEnvironmentDeploymentType implements TerraformEnum {
-  deploymentTypeUnspecified('DEPLOYMENT_TYPE_UNSPECIFIED'),
-  proxy('PROXY'),
-  archive('ARCHIVE');
+extension type const ApigeeEnvironmentDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeEnvironmentDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeEnvironmentDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeEnvironmentDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeEnvironmentDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deploymentTypeUnspecified = ApigeeEnvironmentDeploymentType._(
+    TfArgLiteral('DEPLOYMENT_TYPE_UNSPECIFIED'),
+  );
+  static const proxy = ApigeeEnvironmentDeploymentType._(TfArgLiteral('PROXY'));
+  static const archive = ApigeeEnvironmentDeploymentType._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<ApigeeEnvironmentDeploymentType> values = [
+    deploymentTypeUnspecified,
+    proxy,
+    archive,
+  ];
 }
 
 /// Apigee Environment enum for `type`.
-enum ApigeeEnvironmentType implements TerraformEnum {
-  environmentTypeUnspecified('ENVIRONMENT_TYPE_UNSPECIFIED'),
-  base('BASE'),
-  intermediate('INTERMEDIATE'),
-  comprehensive('COMPREHENSIVE');
+extension type const ApigeeEnvironmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeEnvironmentType.variable(String name) : this._(TfArg.variable(name));
+  ApigeeEnvironmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeEnvironmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeEnvironmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const environmentTypeUnspecified = ApigeeEnvironmentType._(
+    TfArgLiteral('ENVIRONMENT_TYPE_UNSPECIFIED'),
+  );
+  static const base = ApigeeEnvironmentType._(TfArgLiteral('BASE'));
+  static const intermediate = ApigeeEnvironmentType._(
+    TfArgLiteral('INTERMEDIATE'),
+  );
+  static const comprehensive = ApigeeEnvironmentType._(
+    TfArgLiteral('COMPREHENSIVE'),
+  );
+
+  static const List<ApigeeEnvironmentType> values = [
+    environmentTypeUnspecified,
+    base,
+    intermediate,
+    comprehensive,
+  ];
 }
 
 /// Typed helper for the `client_ip_resolution_config` block of

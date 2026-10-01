@@ -10,23 +10,39 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsDlmLifecyclePolicySensitive = <String>{};
 
 /// Dlm Lifecycle Policy Default enum for `default_policy`.
-enum DlmLifecyclePolicyDefaultPolicy implements TerraformEnum {
-  volume('VOLUME'),
-  instance('INSTANCE');
+extension type const DlmLifecyclePolicyDefaultPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyDefaultPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyDefaultPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyDefaultPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyDefaultPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const volume = DlmLifecyclePolicyDefaultPolicy._(
+    TfArgLiteral('VOLUME'),
+  );
+  static const instance = DlmLifecyclePolicyDefaultPolicy._(
+    TfArgLiteral('INSTANCE'),
+  );
+
+  static const List<DlmLifecyclePolicyDefaultPolicy> values = [
+    volume,
+    instance,
+  ];
 }
 
 /// Dlm Lifecycle Policy enum for `state`.
-enum DlmLifecyclePolicyState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DlmLifecyclePolicyState._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyState.variable(String name) : this._(TfArg.variable(name));
+  DlmLifecyclePolicyState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyState.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DlmLifecyclePolicyState._(TfArgLiteral('ENABLED'));
+  static const disabled = DlmLifecyclePolicyState._(TfArgLiteral('DISABLED'));
+
+  static const List<DlmLifecyclePolicyState> values = [enabled, disabled];
 }
 
 /// Typed helper for the `policy_details` block of
@@ -57,15 +73,15 @@ final class DlmLifecyclePolicyDetails {
 
   final TfArg<bool>? extendDeletion;
 
-  final TfArg<DlmLifecyclePolicyLanguage>? policyLanguage;
+  final DlmLifecyclePolicyLanguage? policyLanguage;
 
-  final TfArg<DlmLifecyclePolicyType>? policyType;
+  final DlmLifecyclePolicyType? policyType;
 
-  final List<TfArg<DlmLifecyclePolicyResourceLocations>>? resourceLocations;
+  final List<DlmLifecyclePolicyResourceLocations>? resourceLocations;
 
-  final TfArg<DlmLifecyclePolicyResourceType>? resourceType;
+  final DlmLifecyclePolicyResourceType? resourceType;
 
-  final List<TfArg<DlmLifecyclePolicyResourceTypes>>? resourceTypes;
+  final List<DlmLifecyclePolicyResourceTypes>? resourceTypes;
 
   final TfArg<num>? retainInterval;
 
@@ -103,55 +119,115 @@ final class DlmLifecyclePolicyDetails {
 }
 
 /// `policy_language` — derived from the provider schema description.
-enum DlmLifecyclePolicyLanguage implements TerraformEnum {
-  simplified('SIMPLIFIED'),
-  standard('STANDARD');
+extension type const DlmLifecyclePolicyLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simplified = DlmLifecyclePolicyLanguage._(
+    TfArgLiteral('SIMPLIFIED'),
+  );
+  static const standard = DlmLifecyclePolicyLanguage._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<DlmLifecyclePolicyLanguage> values = [simplified, standard];
 }
 
 /// `policy_type` — derived from the provider schema description.
-enum DlmLifecyclePolicyType implements TerraformEnum {
-  ebsSnapshotManagement('EBS_SNAPSHOT_MANAGEMENT'),
-  imageManagement('IMAGE_MANAGEMENT'),
-  eventBasedPolicy('EVENT_BASED_POLICY');
+extension type const DlmLifecyclePolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyType.variable(String name) : this._(TfArg.variable(name));
+  DlmLifecyclePolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ebsSnapshotManagement = DlmLifecyclePolicyType._(
+    TfArgLiteral('EBS_SNAPSHOT_MANAGEMENT'),
+  );
+  static const imageManagement = DlmLifecyclePolicyType._(
+    TfArgLiteral('IMAGE_MANAGEMENT'),
+  );
+  static const eventBasedPolicy = DlmLifecyclePolicyType._(
+    TfArgLiteral('EVENT_BASED_POLICY'),
+  );
+
+  static const List<DlmLifecyclePolicyType> values = [
+    ebsSnapshotManagement,
+    imageManagement,
+    eventBasedPolicy,
+  ];
 }
 
 /// `resource_locations` — derived from the provider schema description.
-enum DlmLifecyclePolicyResourceLocations implements TerraformEnum {
-  cloud('CLOUD'),
-  outpost('OUTPOST'),
-  localZone('LOCAL_ZONE');
+extension type const DlmLifecyclePolicyResourceLocations._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyResourceLocations.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyResourceLocations.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyResourceLocations.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DlmLifecyclePolicyResourceLocations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloud = DlmLifecyclePolicyResourceLocations._(
+    TfArgLiteral('CLOUD'),
+  );
+  static const outpost = DlmLifecyclePolicyResourceLocations._(
+    TfArgLiteral('OUTPOST'),
+  );
+  static const localZone = DlmLifecyclePolicyResourceLocations._(
+    TfArgLiteral('LOCAL_ZONE'),
+  );
+
+  static const List<DlmLifecyclePolicyResourceLocations> values = [
+    cloud,
+    outpost,
+    localZone,
+  ];
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum DlmLifecyclePolicyResourceType implements TerraformEnum {
-  volume('VOLUME'),
-  instance('INSTANCE');
+extension type const DlmLifecyclePolicyResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const volume = DlmLifecyclePolicyResourceType._(
+    TfArgLiteral('VOLUME'),
+  );
+  static const instance = DlmLifecyclePolicyResourceType._(
+    TfArgLiteral('INSTANCE'),
+  );
+
+  static const List<DlmLifecyclePolicyResourceType> values = [volume, instance];
 }
 
 /// `resource_types` — derived from the provider schema description.
-enum DlmLifecyclePolicyResourceTypes implements TerraformEnum {
-  volume('VOLUME'),
-  instance('INSTANCE');
+extension type const DlmLifecyclePolicyResourceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyResourceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyResourceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyResourceTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyResourceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const volume = DlmLifecyclePolicyResourceTypes._(
+    TfArgLiteral('VOLUME'),
+  );
+  static const instance = DlmLifecyclePolicyResourceTypes._(
+    TfArgLiteral('INSTANCE'),
+  );
+
+  static const List<DlmLifecyclePolicyResourceTypes> values = [
+    volume,
+    instance,
+  ];
 }
 
 /// Typed helper for the `policy_details.action` block of
@@ -227,7 +303,7 @@ final class DlmLifecyclePolicyCrossRegionCopyRetainRule {
 
   final TfArg<num> interval;
 
-  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit> intervalUnit;
+  final DlmLifecyclePolicyDeprecateRuleIntervalUnit intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
@@ -236,15 +312,35 @@ final class DlmLifecyclePolicyCrossRegionCopyRetainRule {
 }
 
 /// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyDeprecateRuleIntervalUnit implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
+extension type const DlmLifecyclePolicyDeprecateRuleIntervalUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DlmLifecyclePolicyDeprecateRuleIntervalUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyDeprecateRuleIntervalUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyDeprecateRuleIntervalUnit.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DlmLifecyclePolicyDeprecateRuleIntervalUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = DlmLifecyclePolicyDeprecateRuleIntervalUnit._(
+    TfArgLiteral('DAYS'),
+  );
+  static const weeks = DlmLifecyclePolicyDeprecateRuleIntervalUnit._(
+    TfArgLiteral('WEEKS'),
+  );
+  static const months = DlmLifecyclePolicyDeprecateRuleIntervalUnit._(
+    TfArgLiteral('MONTHS'),
+  );
+  static const years = DlmLifecyclePolicyDeprecateRuleIntervalUnit._(
+    TfArgLiteral('YEARS'),
+  );
+
+  static const List<DlmLifecyclePolicyDeprecateRuleIntervalUnit> values = [
+    days,
+    weeks,
+    months,
+    years,
+  ];
 }
 
 /// Typed helper for the `policy_details.event_source` block of
@@ -256,7 +352,7 @@ final class DlmLifecyclePolicyEventSource {
     required this.parameters,
   });
 
-  final TfArg<DlmLifecyclePolicyEventSourceType> type;
+  final DlmLifecyclePolicyEventSourceType type;
 
   final DlmLifecyclePolicyEventSourceParameters parameters;
 
@@ -267,12 +363,19 @@ final class DlmLifecyclePolicyEventSource {
 }
 
 /// `type` — derived from the provider schema description.
-enum DlmLifecyclePolicyEventSourceType implements TerraformEnum {
-  managedCwe('MANAGED_CWE');
+extension type const DlmLifecyclePolicyEventSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyEventSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyEventSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyEventSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyEventSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managedCwe = DlmLifecyclePolicyEventSourceType._(
+    TfArgLiteral('MANAGED_CWE'),
+  );
+
+  static const List<DlmLifecyclePolicyEventSourceType> values = [managedCwe];
 }
 
 /// Typed helper for the `policy_details.event_source.parameters` block of
@@ -287,7 +390,7 @@ final class DlmLifecyclePolicyEventSourceParameters {
 
   final TfArg<String> descriptionRegex;
 
-  final TfArg<DlmLifecyclePolicyEventType> eventType;
+  final DlmLifecyclePolicyEventType eventType;
 
   final TfArg<List<String>> snapshotOwner;
 
@@ -299,12 +402,19 @@ final class DlmLifecyclePolicyEventSourceParameters {
 }
 
 /// `event_type` — derived from the provider schema description.
-enum DlmLifecyclePolicyEventType implements TerraformEnum {
-  sharesnapshot('shareSnapshot');
+extension type const DlmLifecyclePolicyEventType._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyEventType.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyEventType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyEventType.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyEventType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sharesnapshot = DlmLifecyclePolicyEventType._(
+    TfArgLiteral('shareSnapshot'),
+  );
+
+  static const List<DlmLifecyclePolicyEventType> values = [sharesnapshot];
 }
 
 /// Typed helper for the `policy_details.exclusions` block of
@@ -453,7 +563,7 @@ final class DlmLifecyclePolicyRetentionArchiveTier {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
+  final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
@@ -479,9 +589,9 @@ final class DlmLifecyclePolicyCreateRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyCreateRuleIntervalUnit>? intervalUnit;
+  final DlmLifecyclePolicyCreateRuleIntervalUnit? intervalUnit;
 
-  final TfArg<DlmLifecyclePolicyLocation>? location;
+  final DlmLifecyclePolicyLocation? location;
 
   final TfArg<List<String>>? times;
 
@@ -498,23 +608,44 @@ final class DlmLifecyclePolicyCreateRule {
 }
 
 /// `interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyCreateRuleIntervalUnit implements TerraformEnum {
-  hours('HOURS');
+extension type const DlmLifecyclePolicyCreateRuleIntervalUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyCreateRuleIntervalUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyCreateRuleIntervalUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyCreateRuleIntervalUnit.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DlmLifecyclePolicyCreateRuleIntervalUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hours = DlmLifecyclePolicyCreateRuleIntervalUnit._(
+    TfArgLiteral('HOURS'),
+  );
+
+  static const List<DlmLifecyclePolicyCreateRuleIntervalUnit> values = [hours];
 }
 
 /// `location` — derived from the provider schema description.
-enum DlmLifecyclePolicyLocation implements TerraformEnum {
-  cloud('CLOUD'),
-  outpostLocal('OUTPOST_LOCAL'),
-  localZone('LOCAL_ZONE');
+extension type const DlmLifecyclePolicyLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyLocation.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyLocation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloud = DlmLifecyclePolicyLocation._(TfArgLiteral('CLOUD'));
+  static const outpostLocal = DlmLifecyclePolicyLocation._(
+    TfArgLiteral('OUTPOST_LOCAL'),
+  );
+  static const localZone = DlmLifecyclePolicyLocation._(
+    TfArgLiteral('LOCAL_ZONE'),
+  );
+
+  static const List<DlmLifecyclePolicyLocation> values = [
+    cloud,
+    outpostLocal,
+    localZone,
+  ];
 }
 
 /// Typed helper for the `policy_details.schedule.create_rule.scripts` block of
@@ -534,14 +665,13 @@ final class DlmLifecyclePolicyScripts {
 
   final TfArg<String> executionHandler;
 
-  final TfArg<DlmLifecyclePolicyExecutionHandlerService>?
-  executionHandlerService;
+  final DlmLifecyclePolicyExecutionHandlerService? executionHandlerService;
 
   final TfArg<num>? executionTimeout;
 
   final TfArg<num>? maximumRetryCount;
 
-  final List<TfArg<DlmLifecyclePolicyStages>>? stages;
+  final List<DlmLifecyclePolicyStages>? stages;
 
   Map<String, Object?> encode() => {
     'execute_operation_on_script_failure': ?executeOperationOnScriptFailure
@@ -555,22 +685,37 @@ final class DlmLifecyclePolicyScripts {
 }
 
 /// `execution_handler_service` — derived from the provider schema description.
-enum DlmLifecyclePolicyExecutionHandlerService implements TerraformEnum {
-  awsSystemsManager('AWS_SYSTEMS_MANAGER');
+extension type const DlmLifecyclePolicyExecutionHandlerService._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DlmLifecyclePolicyExecutionHandlerService.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyExecutionHandlerService.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyExecutionHandlerService.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DlmLifecyclePolicyExecutionHandlerService(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsSystemsManager = DlmLifecyclePolicyExecutionHandlerService._(
+    TfArgLiteral('AWS_SYSTEMS_MANAGER'),
+  );
+
+  static const List<DlmLifecyclePolicyExecutionHandlerService> values = [
+    awsSystemsManager,
+  ];
 }
 
 /// `stages` — derived from the provider schema description.
-enum DlmLifecyclePolicyStages implements TerraformEnum {
-  pre('PRE'),
-  post('POST');
+extension type const DlmLifecyclePolicyStages._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyStages.variable(String name) : this._(TfArg.variable(name));
+  DlmLifecyclePolicyStages.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyStages.arg(TfArg<String> arg) : this._(arg);
 
-  const DlmLifecyclePolicyStages(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pre = DlmLifecyclePolicyStages._(TfArgLiteral('PRE'));
+  static const post = DlmLifecyclePolicyStages._(TfArgLiteral('POST'));
+
+  static const List<DlmLifecyclePolicyStages> values = [pre, post];
 }
 
 /// Typed helper for the `policy_details.schedule.cross_region_copy_rule` block of
@@ -623,7 +768,7 @@ final class DlmLifecyclePolicyCrossRegionCopyRuleDeprecateRule {
 
   final TfArg<num> interval;
 
-  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit> intervalUnit;
+  final DlmLifecyclePolicyDeprecateRuleIntervalUnit intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
@@ -645,7 +790,7 @@ final class DlmLifecyclePolicyDeprecateRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
+  final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
@@ -671,7 +816,7 @@ final class DlmLifecyclePolicyFastRestoreRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
+  final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),
@@ -695,7 +840,7 @@ final class DlmLifecyclePolicyRetainRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<DlmLifecyclePolicyDeprecateRuleIntervalUnit>? intervalUnit;
+  final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
@@ -718,7 +863,7 @@ final class DlmLifecyclePolicyShareRule {
 
   final TfArg<num>? unshareInterval;
 
-  final TfArg<DlmLifecyclePolicyUnshareIntervalUnit>? unshareIntervalUnit;
+  final DlmLifecyclePolicyUnshareIntervalUnit? unshareIntervalUnit;
 
   Map<String, Object?> encode() => {
     'target_accounts': targetAccounts.toTfJson(),
@@ -728,15 +873,34 @@ final class DlmLifecyclePolicyShareRule {
 }
 
 /// `unshare_interval_unit` — derived from the provider schema description.
-enum DlmLifecyclePolicyUnshareIntervalUnit implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
+extension type const DlmLifecyclePolicyUnshareIntervalUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  DlmLifecyclePolicyUnshareIntervalUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  DlmLifecyclePolicyUnshareIntervalUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const DlmLifecyclePolicyUnshareIntervalUnit.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DlmLifecyclePolicyUnshareIntervalUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = DlmLifecyclePolicyUnshareIntervalUnit._(
+    TfArgLiteral('DAYS'),
+  );
+  static const weeks = DlmLifecyclePolicyUnshareIntervalUnit._(
+    TfArgLiteral('WEEKS'),
+  );
+  static const months = DlmLifecyclePolicyUnshareIntervalUnit._(
+    TfArgLiteral('MONTHS'),
+  );
+  static const years = DlmLifecyclePolicyUnshareIntervalUnit._(
+    TfArgLiteral('YEARS'),
+  );
+
+  static const List<DlmLifecyclePolicyUnshareIntervalUnit> values = [
+    days,
+    weeks,
+    months,
+    years,
+  ];
 }
 
 /// Factory wrapper for `aws_dlm_lifecycle_policy`.
@@ -745,11 +909,11 @@ final class AwsDlmLifecyclePolicy extends Resource {
 
   AwsDlmLifecyclePolicy(
     super.localName, {
-    TfArg<DlmLifecyclePolicyDefaultPolicy>? defaultPolicy,
+    DlmLifecyclePolicyDefaultPolicy? defaultPolicy,
     required TfArg<String> description,
     required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? region,
-    TfArg<DlmLifecyclePolicyState>? state,
+    DlmLifecyclePolicyState? state,
     TfArg<Map<String, String>>? tags,
     required DlmLifecyclePolicyDetails policyDetails,
     super.lifecycle,

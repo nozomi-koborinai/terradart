@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** every generated enum is an extension type implementing `TfArg<String>`, so an enum slot takes a member bare — `priceClass: .priceclass100`, `actions: [.getcertificate]` instead of `[.literal(.getcertificate)]`. `.variable(...)`, `.expression(...)` and `.arg(...)` cover values not known at synth time. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** every factory takes its local name as the first positional argument: `AwsIamRole('hello', ...)`. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
 
 ## 0.31.0 - 2026-10-01

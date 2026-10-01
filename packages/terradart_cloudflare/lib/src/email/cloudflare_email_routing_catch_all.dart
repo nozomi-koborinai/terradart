@@ -10,13 +10,20 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareEmailRoutingCatchAllSensitive = <String>{};
 
 /// Email Routing Catch All enum for `source`.
-enum EmailRoutingCatchAllSource implements TerraformEnum {
-  api('api'),
-  wrangler('wrangler');
+extension type const EmailRoutingCatchAllSource._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingCatchAllSource.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailRoutingCatchAllSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingCatchAllSource.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingCatchAllSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const api = EmailRoutingCatchAllSource._(TfArgLiteral('api'));
+  static const wrangler = EmailRoutingCatchAllSource._(
+    TfArgLiteral('wrangler'),
+  );
+
+  static const List<EmailRoutingCatchAllSource> values = [api, wrangler];
 }
 
 /// Typed helper for the `actions` block of
@@ -25,7 +32,7 @@ enum EmailRoutingCatchAllSource implements TerraformEnum {
 final class EmailRoutingCatchAllActions {
   const EmailRoutingCatchAllActions({required this.type, this.value});
 
-  final TfArg<EmailRoutingCatchAllActionsType> type;
+  final EmailRoutingCatchAllActionsType type;
 
   final TfArg<List<String>>? value;
 
@@ -36,14 +43,27 @@ final class EmailRoutingCatchAllActions {
 }
 
 /// `type` — derived from the provider schema description.
-enum EmailRoutingCatchAllActionsType implements TerraformEnum {
-  drop('drop'),
-  forward('forward'),
-  worker('worker');
+extension type const EmailRoutingCatchAllActionsType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingCatchAllActionsType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailRoutingCatchAllActionsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingCatchAllActionsType.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingCatchAllActionsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const drop = EmailRoutingCatchAllActionsType._(TfArgLiteral('drop'));
+  static const forward = EmailRoutingCatchAllActionsType._(
+    TfArgLiteral('forward'),
+  );
+  static const worker = EmailRoutingCatchAllActionsType._(
+    TfArgLiteral('worker'),
+  );
+
+  static const List<EmailRoutingCatchAllActionsType> values = [
+    drop,
+    forward,
+    worker,
+  ];
 }
 
 /// Typed helper for the `matchers` block of
@@ -52,18 +72,23 @@ enum EmailRoutingCatchAllActionsType implements TerraformEnum {
 final class EmailRoutingCatchAllMatchers {
   const EmailRoutingCatchAllMatchers({required this.type});
 
-  final TfArg<EmailRoutingCatchAllMatchersType> type;
+  final EmailRoutingCatchAllMatchersType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum EmailRoutingCatchAllMatchersType implements TerraformEnum {
-  all('all');
+extension type const EmailRoutingCatchAllMatchersType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingCatchAllMatchersType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailRoutingCatchAllMatchersType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingCatchAllMatchersType.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingCatchAllMatchersType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = EmailRoutingCatchAllMatchersType._(TfArgLiteral('all'));
+
+  static const List<EmailRoutingCatchAllMatchersType> values = [all];
 }
 
 /// Factory wrapper for `cloudflare_email_routing_catch_all`.
@@ -79,7 +104,7 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
     TfArg<bool>? enabled,
     TfArg<String>? name,
     TfArg<String>? ownerWorkerTag,
-    TfArg<EmailRoutingCatchAllSource>? source,
+    EmailRoutingCatchAllSource? source,
     required RefTo<CloudflareZone> zoneId,
     required List<EmailRoutingCatchAllActions> actions,
     required List<EmailRoutingCatchAllMatchers> matchers,

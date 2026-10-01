@@ -30,233 +30,267 @@ dartTypeOverrides:
 
 prelude: |
   /// Terraform `deletion_policy` for Chronicle dashboard charts.
-  enum ChronicleDashboardChartDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const ChronicleDashboardChartDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = ChronicleDashboardChartDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = ChronicleDashboardChartDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = ChronicleDashboardChartDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<ChronicleDashboardChartDeletionPolicy> values = [delete, prevent, abandon];
   }
 
   /// Tile type for `dashboard_chart.tile_type`.
-  enum ChronicleDashboardChartTileType implements TerraformEnum {
-    tileTypeUnspecified('TILE_TYPE_UNSPECIFIED'),
-    tileTypeVisualization('TILE_TYPE_VISUALIZATION'),
-    tileTypeButton('TILE_TYPE_BUTTON'),
-    tileTypeMarkdown('TILE_TYPE_MARKDOWN');
+  extension type const ChronicleDashboardChartTileType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartTileType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartTileType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartTileType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartTileType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const tileTypeUnspecified = ChronicleDashboardChartTileType._(TfArgLiteral('TILE_TYPE_UNSPECIFIED'));
+    static const tileTypeVisualization = ChronicleDashboardChartTileType._(TfArgLiteral('TILE_TYPE_VISUALIZATION'));
+    static const tileTypeButton = ChronicleDashboardChartTileType._(TfArgLiteral('TILE_TYPE_BUTTON'));
+    static const tileTypeMarkdown = ChronicleDashboardChartTileType._(TfArgLiteral('TILE_TYPE_MARKDOWN'));
+
+    static const List<ChronicleDashboardChartTileType> values = [tileTypeUnspecified, tileTypeVisualization, tileTypeButton, tileTypeMarkdown];
   }
 
   /// Relative time unit for `dashboard_query.input.relative_time.time_unit`.
-  enum ChronicleDashboardChartTimeUnit implements TerraformEnum {
-    second('SECOND'),
-    minute('MINUTE'),
-    hour('HOUR'),
-    day('DAY'),
-    week('WEEK'),
-    month('MONTH'),
-    year('YEAR');
+  extension type const ChronicleDashboardChartTimeUnit._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartTimeUnit.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartTimeUnit.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartTimeUnit.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartTimeUnit(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const second = ChronicleDashboardChartTimeUnit._(TfArgLiteral('SECOND'));
+    static const minute = ChronicleDashboardChartTimeUnit._(TfArgLiteral('MINUTE'));
+    static const hour = ChronicleDashboardChartTimeUnit._(TfArgLiteral('HOUR'));
+    static const day = ChronicleDashboardChartTimeUnit._(TfArgLiteral('DAY'));
+    static const week = ChronicleDashboardChartTimeUnit._(TfArgLiteral('WEEK'));
+    static const month = ChronicleDashboardChartTimeUnit._(TfArgLiteral('MONTH'));
+    static const year = ChronicleDashboardChartTimeUnit._(TfArgLiteral('YEAR'));
+
+    static const List<ChronicleDashboardChartTimeUnit> values = [second, minute, hour, day, week, month, year];
   }
 
   /// Filter operator used in drill-down filter blocks.
-  enum ChronicleDashboardChartFilterOperator implements TerraformEnum {
-    equal('EQUAL'),
-    notEqual('NOT_EQUAL'),
-    in_('IN'),
-    greaterThan('GREATER_THAN'),
-    greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-    lessThan('LESS_THAN'),
-    lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-    between('BETWEEN'),
-    past('PAST'),
-    isNull('IS_NULL'),
-    isNotNull('IS_NOT_NULL'),
-    startsWith('STARTS_WITH'),
-    endsWith('ENDS_WITH'),
-    doesNotStartsWith('DOES_NOT_STARTS_WITH'),
-    doesNotEndsWith('DOES_NOT_ENDS_WITH'),
-    notIn('NOT_IN'),
-    contains('CONTAINS'),
-    doesNotContain('DOES_NOT_CONTAIN');
+  extension type const ChronicleDashboardChartFilterOperator._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartFilterOperator.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartFilterOperator.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartFilterOperator.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartFilterOperator(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const equal = ChronicleDashboardChartFilterOperator._(TfArgLiteral('EQUAL'));
+    static const notEqual = ChronicleDashboardChartFilterOperator._(TfArgLiteral('NOT_EQUAL'));
+    static const in_ = ChronicleDashboardChartFilterOperator._(TfArgLiteral('IN'));
+    static const greaterThan = ChronicleDashboardChartFilterOperator._(TfArgLiteral('GREATER_THAN'));
+    static const greaterThanOrEqualTo = ChronicleDashboardChartFilterOperator._(TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'));
+    static const lessThan = ChronicleDashboardChartFilterOperator._(TfArgLiteral('LESS_THAN'));
+    static const lessThanOrEqualTo = ChronicleDashboardChartFilterOperator._(TfArgLiteral('LESS_THAN_OR_EQUAL_TO'));
+    static const between = ChronicleDashboardChartFilterOperator._(TfArgLiteral('BETWEEN'));
+    static const past = ChronicleDashboardChartFilterOperator._(TfArgLiteral('PAST'));
+    static const isNull = ChronicleDashboardChartFilterOperator._(TfArgLiteral('IS_NULL'));
+    static const isNotNull = ChronicleDashboardChartFilterOperator._(TfArgLiteral('IS_NOT_NULL'));
+    static const startsWith = ChronicleDashboardChartFilterOperator._(TfArgLiteral('STARTS_WITH'));
+    static const endsWith = ChronicleDashboardChartFilterOperator._(TfArgLiteral('ENDS_WITH'));
+    static const doesNotStartsWith = ChronicleDashboardChartFilterOperator._(TfArgLiteral('DOES_NOT_STARTS_WITH'));
+    static const doesNotEndsWith = ChronicleDashboardChartFilterOperator._(TfArgLiteral('DOES_NOT_ENDS_WITH'));
+    static const notIn = ChronicleDashboardChartFilterOperator._(TfArgLiteral('NOT_IN'));
+    static const contains = ChronicleDashboardChartFilterOperator._(TfArgLiteral('CONTAINS'));
+    static const doesNotContain = ChronicleDashboardChartFilterOperator._(TfArgLiteral('DOES_NOT_CONTAIN'));
+
+    static const List<ChronicleDashboardChartFilterOperator> values = [equal, notEqual, in_, greaterThan, greaterThanOrEqualTo, lessThan, lessThanOrEqualTo, between, past, isNull, isNotNull, startsWith, endsWith, doesNotStartsWith, doesNotEndsWith, notIn, contains, doesNotContain];
   }
 
   /// Button style for visualization buttons.
-  enum ChronicleDashboardChartButtonStyle implements TerraformEnum {
-    buttonStyleUnspecified('BUTTON_STYLE_UNSPECIFIED'),
-    buttonStyleFilled('BUTTON_STYLE_FILLED'),
-    buttonStyleOutlined('BUTTON_STYLE_OUTLINED'),
-    buttonStyleTransparent('BUTTON_STYLE_TRANSPARENT');
+  extension type const ChronicleDashboardChartButtonStyle._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartButtonStyle.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartButtonStyle.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartButtonStyle.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartButtonStyle(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const buttonStyleUnspecified = ChronicleDashboardChartButtonStyle._(TfArgLiteral('BUTTON_STYLE_UNSPECIFIED'));
+    static const buttonStyleFilled = ChronicleDashboardChartButtonStyle._(TfArgLiteral('BUTTON_STYLE_FILLED'));
+    static const buttonStyleOutlined = ChronicleDashboardChartButtonStyle._(TfArgLiteral('BUTTON_STYLE_OUTLINED'));
+    static const buttonStyleTransparent = ChronicleDashboardChartButtonStyle._(TfArgLiteral('BUTTON_STYLE_TRANSPARENT'));
+
+    static const List<ChronicleDashboardChartButtonStyle> values = [buttonStyleUnspecified, buttonStyleFilled, buttonStyleOutlined, buttonStyleTransparent];
   }
 
   /// Google Maps plot mode.
-  enum ChronicleDashboardChartPlotMode implements TerraformEnum {
-    plotModeUnspecified('PLOT_MODE_UNSPECIFIED'),
-    plotModePoints('PLOT_MODE_POINTS'),
-    plotModeHeatmap('PLOT_MODE_HEATMAP'),
-    plotModeBoth('PLOT_MODE_BOTH');
+  extension type const ChronicleDashboardChartPlotMode._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartPlotMode.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartPlotMode.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartPlotMode.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartPlotMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const plotModeUnspecified = ChronicleDashboardChartPlotMode._(TfArgLiteral('PLOT_MODE_UNSPECIFIED'));
+    static const plotModePoints = ChronicleDashboardChartPlotMode._(TfArgLiteral('PLOT_MODE_POINTS'));
+    static const plotModeHeatmap = ChronicleDashboardChartPlotMode._(TfArgLiteral('PLOT_MODE_HEATMAP'));
+    static const plotModeBoth = ChronicleDashboardChartPlotMode._(TfArgLiteral('PLOT_MODE_BOTH'));
+
+    static const List<ChronicleDashboardChartPlotMode> values = [plotModeUnspecified, plotModePoints, plotModeHeatmap, plotModeBoth];
   }
 
   /// Google Maps point size type.
-  enum ChronicleDashboardChartPointSizeType implements TerraformEnum {
-    pointSizeTypeUnspecified('POINT_SIZE_TYPE_UNSPECIFIED'),
-    pointSizeTypeFixed('POINT_SIZE_TYPE_FIXED'),
-    pointSizeTypeProportionalToSize('POINT_SIZE_TYPE_PROPORTIONAL_TO_SIZE');
+  extension type const ChronicleDashboardChartPointSizeType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartPointSizeType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartPointSizeType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartPointSizeType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartPointSizeType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const pointSizeTypeUnspecified = ChronicleDashboardChartPointSizeType._(TfArgLiteral('POINT_SIZE_TYPE_UNSPECIFIED'));
+    static const pointSizeTypeFixed = ChronicleDashboardChartPointSizeType._(TfArgLiteral('POINT_SIZE_TYPE_FIXED'));
+    static const pointSizeTypeProportionalToSize = ChronicleDashboardChartPointSizeType._(TfArgLiteral('POINT_SIZE_TYPE_PROPORTIONAL_TO_SIZE'));
+
+    static const List<ChronicleDashboardChartPointSizeType> values = [pointSizeTypeUnspecified, pointSizeTypeFixed, pointSizeTypeProportionalToSize];
   }
 
   /// Legend alignment.
-  enum ChronicleDashboardChartLegendAlign implements TerraformEnum {
-    auto('AUTO'),
-    left('LEFT'),
-    right('RIGHT');
+  extension type const ChronicleDashboardChartLegendAlign._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartLegendAlign.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartLegendAlign.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartLegendAlign.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartLegendAlign(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const auto = ChronicleDashboardChartLegendAlign._(TfArgLiteral('AUTO'));
+    static const left = ChronicleDashboardChartLegendAlign._(TfArgLiteral('LEFT'));
+    static const right = ChronicleDashboardChartLegendAlign._(TfArgLiteral('RIGHT'));
+
+    static const List<ChronicleDashboardChartLegendAlign> values = [auto, left, right];
   }
 
   /// Legend orientation.
-  enum ChronicleDashboardChartLegendOrient implements TerraformEnum {
-    vertical('VERTICAL'),
-    horizontal('HORIZONTAL');
+  extension type const ChronicleDashboardChartLegendOrient._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartLegendOrient.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartLegendOrient.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartLegendOrient.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartLegendOrient(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const vertical = ChronicleDashboardChartLegendOrient._(TfArgLiteral('VERTICAL'));
+    static const horizontal = ChronicleDashboardChartLegendOrient._(TfArgLiteral('HORIZONTAL'));
+
+    static const List<ChronicleDashboardChartLegendOrient> values = [vertical, horizontal];
   }
 
   /// Series stack strategy.
-  enum ChronicleDashboardChartSeriesStackStrategy implements TerraformEnum {
-    samesign('SAMESIGN'),
-    all('ALL'),
-    positive('POSITIVE'),
-    negative('NEGATIVE');
+  extension type const ChronicleDashboardChartSeriesStackStrategy._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartSeriesStackStrategy.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartSeriesStackStrategy.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartSeriesStackStrategy.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartSeriesStackStrategy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const samesign = ChronicleDashboardChartSeriesStackStrategy._(TfArgLiteral('SAMESIGN'));
+    static const all = ChronicleDashboardChartSeriesStackStrategy._(TfArgLiteral('ALL'));
+    static const positive = ChronicleDashboardChartSeriesStackStrategy._(TfArgLiteral('POSITIVE'));
+    static const negative = ChronicleDashboardChartSeriesStackStrategy._(TfArgLiteral('NEGATIVE'));
+
+    static const List<ChronicleDashboardChartSeriesStackStrategy> values = [samesign, all, positive, negative];
   }
 
   /// Chart series type.
-  enum ChronicleDashboardChartSeriesType implements TerraformEnum {
-    line('LINE'),
-    bar('BAR'),
-    pie('PIE'),
-    text('TEXT'),
-    map('MAP'),
-    gauge('GAUGE'),
-    scatterplot('SCATTERPLOT');
+  extension type const ChronicleDashboardChartSeriesType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartSeriesType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartSeriesType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartSeriesType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartSeriesType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const line = ChronicleDashboardChartSeriesType._(TfArgLiteral('LINE'));
+    static const bar = ChronicleDashboardChartSeriesType._(TfArgLiteral('BAR'));
+    static const pie = ChronicleDashboardChartSeriesType._(TfArgLiteral('PIE'));
+    static const text = ChronicleDashboardChartSeriesType._(TfArgLiteral('TEXT'));
+    static const map = ChronicleDashboardChartSeriesType._(TfArgLiteral('MAP'));
+    static const gauge = ChronicleDashboardChartSeriesType._(TfArgLiteral('GAUGE'));
+    static const scatterplot = ChronicleDashboardChartSeriesType._(TfArgLiteral('SCATTERPLOT'));
+
+    static const List<ChronicleDashboardChartSeriesType> values = [line, bar, pie, text, map, gauge, scatterplot];
   }
 
   /// Metric display trend mode.
-  enum ChronicleDashboardChartMetricDisplayTrend implements TerraformEnum {
-    metricDisplayTrendUnspecified('METRIC_DISPLAY_TREND_UNSPECIFIED'),
-    metricDisplayTrendAbsoluteValue('METRIC_DISPLAY_TREND_ABSOLUTE_VALUE'),
-    metricDisplayTrendPercentage('METRIC_DISPLAY_TREND_PERCENTAGE'),
-    metricDisplayTrendAbsoluteValueAndPercentage(
-      'METRIC_DISPLAY_TREND_ABSOLUTE_VALUE_AND_PERCENTAGE',
-    );
+  extension type const ChronicleDashboardChartMetricDisplayTrend._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartMetricDisplayTrend.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartMetricDisplayTrend.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartMetricDisplayTrend.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartMetricDisplayTrend(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const metricDisplayTrendUnspecified = ChronicleDashboardChartMetricDisplayTrend._(TfArgLiteral('METRIC_DISPLAY_TREND_UNSPECIFIED'));
+    static const metricDisplayTrendAbsoluteValue = ChronicleDashboardChartMetricDisplayTrend._(TfArgLiteral('METRIC_DISPLAY_TREND_ABSOLUTE_VALUE'));
+    static const metricDisplayTrendPercentage = ChronicleDashboardChartMetricDisplayTrend._(TfArgLiteral('METRIC_DISPLAY_TREND_PERCENTAGE'));
+    static const metricDisplayTrendAbsoluteValueAndPercentage = ChronicleDashboardChartMetricDisplayTrend._(TfArgLiteral('METRIC_DISPLAY_TREND_ABSOLUTE_VALUE_AND_PERCENTAGE'));
+
+    static const List<ChronicleDashboardChartMetricDisplayTrend> values = [metricDisplayTrendUnspecified, metricDisplayTrendAbsoluteValue, metricDisplayTrendPercentage, metricDisplayTrendAbsoluteValueAndPercentage];
   }
 
   /// Metric format.
-  enum ChronicleDashboardChartMetricFormat implements TerraformEnum {
-    metricFormatUnspecified('METRIC_FORMAT_UNSPECIFIED'),
-    metricFormatNumber('METRIC_FORMAT_NUMBER'),
-    metricFormatPlainText('METRIC_FORMAT_PLAIN_TEXT');
+  extension type const ChronicleDashboardChartMetricFormat._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartMetricFormat.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartMetricFormat.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartMetricFormat.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartMetricFormat(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const metricFormatUnspecified = ChronicleDashboardChartMetricFormat._(TfArgLiteral('METRIC_FORMAT_UNSPECIFIED'));
+    static const metricFormatNumber = ChronicleDashboardChartMetricFormat._(TfArgLiteral('METRIC_FORMAT_NUMBER'));
+    static const metricFormatPlainText = ChronicleDashboardChartMetricFormat._(TfArgLiteral('METRIC_FORMAT_PLAIN_TEXT'));
+
+    static const List<ChronicleDashboardChartMetricFormat> values = [metricFormatUnspecified, metricFormatNumber, metricFormatPlainText];
   }
 
   /// Metric trend type.
-  enum ChronicleDashboardChartMetricTrendType implements TerraformEnum {
-    metricTrendTypeUnspecified('METRIC_TREND_TYPE_UNSPECIFIED'),
-    metricTrendTypeRegular('METRIC_TREND_TYPE_REGULAR'),
-    metricTrendTypeInverse('METRIC_TREND_TYPE_INVERSE');
+  extension type const ChronicleDashboardChartMetricTrendType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartMetricTrendType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartMetricTrendType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartMetricTrendType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartMetricTrendType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const metricTrendTypeUnspecified = ChronicleDashboardChartMetricTrendType._(TfArgLiteral('METRIC_TREND_TYPE_UNSPECIFIED'));
+    static const metricTrendTypeRegular = ChronicleDashboardChartMetricTrendType._(TfArgLiteral('METRIC_TREND_TYPE_REGULAR'));
+    static const metricTrendTypeInverse = ChronicleDashboardChartMetricTrendType._(TfArgLiteral('METRIC_TREND_TYPE_INVERSE'));
+
+    static const List<ChronicleDashboardChartMetricTrendType> values = [metricTrendTypeUnspecified, metricTrendTypeRegular, metricTrendTypeInverse];
   }
 
   /// Table column render type.
-  enum ChronicleDashboardChartColumnRenderType implements TerraformEnum {
-    renderTypeUnspecified('RENDER_TYPE_UNSPECIFIED'),
-    renderTypeText('RENDER_TYPE_TEXT'),
-    renderTypeIcon('RENDER_TYPE_ICON'),
-    renderTypeIconAndText('RENDER_TYPE_ICON_AND_TEXT');
+  extension type const ChronicleDashboardChartColumnRenderType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartColumnRenderType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartColumnRenderType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartColumnRenderType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartColumnRenderType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const renderTypeUnspecified = ChronicleDashboardChartColumnRenderType._(TfArgLiteral('RENDER_TYPE_UNSPECIFIED'));
+    static const renderTypeText = ChronicleDashboardChartColumnRenderType._(TfArgLiteral('RENDER_TYPE_TEXT'));
+    static const renderTypeIcon = ChronicleDashboardChartColumnRenderType._(TfArgLiteral('RENDER_TYPE_ICON'));
+    static const renderTypeIconAndText = ChronicleDashboardChartColumnRenderType._(TfArgLiteral('RENDER_TYPE_ICON_AND_TEXT'));
+
+    static const List<ChronicleDashboardChartColumnRenderType> values = [renderTypeUnspecified, renderTypeText, renderTypeIcon, renderTypeIconAndText];
   }
 
   /// Tooltip trigger mode.
-  enum ChronicleDashboardChartTooltipTrigger implements TerraformEnum {
-    tooltipTriggerUnspecified('TOOLTIP_TRIGGER_UNSPECIFIED'),
-    tooltipTriggerNone('TOOLTIP_TRIGGER_NONE'),
-    tooltipTriggerItem('TOOLTIP_TRIGGER_ITEM'),
-    tooltipTriggerAxis('TOOLTIP_TRIGGER_AXIS');
+  extension type const ChronicleDashboardChartTooltipTrigger._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartTooltipTrigger.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartTooltipTrigger.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartTooltipTrigger.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartTooltipTrigger(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const tooltipTriggerUnspecified = ChronicleDashboardChartTooltipTrigger._(TfArgLiteral('TOOLTIP_TRIGGER_UNSPECIFIED'));
+    static const tooltipTriggerNone = ChronicleDashboardChartTooltipTrigger._(TfArgLiteral('TOOLTIP_TRIGGER_NONE'));
+    static const tooltipTriggerItem = ChronicleDashboardChartTooltipTrigger._(TfArgLiteral('TOOLTIP_TRIGGER_ITEM'));
+    static const tooltipTriggerAxis = ChronicleDashboardChartTooltipTrigger._(TfArgLiteral('TOOLTIP_TRIGGER_AXIS'));
+
+    static const List<ChronicleDashboardChartTooltipTrigger> values = [tooltipTriggerUnspecified, tooltipTriggerNone, tooltipTriggerItem, tooltipTriggerAxis];
   }
 
   /// Visual map type.
-  enum ChronicleDashboardChartVisualMapType implements TerraformEnum {
-    visualMapTypeUnspecified('VISUAL_MAP_TYPE_UNSPECIFIED'),
-    continuous('CONTINUOUS'),
-    piecewise('PIECEWISE');
+  extension type const ChronicleDashboardChartVisualMapType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartVisualMapType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartVisualMapType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartVisualMapType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartVisualMapType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const visualMapTypeUnspecified = ChronicleDashboardChartVisualMapType._(TfArgLiteral('VISUAL_MAP_TYPE_UNSPECIFIED'));
+    static const continuous = ChronicleDashboardChartVisualMapType._(TfArgLiteral('CONTINUOUS'));
+    static const piecewise = ChronicleDashboardChartVisualMapType._(TfArgLiteral('PIECEWISE'));
+
+    static const List<ChronicleDashboardChartVisualMapType> values = [visualMapTypeUnspecified, continuous, piecewise];
   }
 
   /// Axis type for chart axes.
-  enum ChronicleDashboardChartAxisType implements TerraformEnum {
-    value('VALUE'),
-    category('CATEGORY'),
-    time('TIME'),
-    log('LOG');
+  extension type const ChronicleDashboardChartAxisType._(TfArg<String> _) implements TfArg<String> {
+    ChronicleDashboardChartAxisType.variable(String name) : this._(TfArg.variable(name));
+    ChronicleDashboardChartAxisType.expression(String template) : this._(TfArg.expression(template));
+    const ChronicleDashboardChartAxisType.arg(TfArg<String> arg) : this._(arg);
 
-    const ChronicleDashboardChartAxisType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const value = ChronicleDashboardChartAxisType._(TfArgLiteral('VALUE'));
+    static const category = ChronicleDashboardChartAxisType._(TfArgLiteral('CATEGORY'));
+    static const time = ChronicleDashboardChartAxisType._(TfArgLiteral('TIME'));
+    static const log = ChronicleDashboardChartAxisType._(TfArgLiteral('LOG'));
+
+    static const List<ChronicleDashboardChartAxisType> values = [value, category, time, log];
   }
 
   /// `chart_layout` block.
@@ -291,7 +325,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       if (filterOperator != null)
-        'filter_operator': filterOperator!.terraformValue,
+        'filter_operator': filterOperator!.toTfJson(),
     };
   }
 
@@ -310,10 +344,10 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       if (metricDisplayTrend != null)
-        'metric_display_trend': metricDisplayTrend!.terraformValue,
-      if (metricFormat != null) 'metric_format': metricFormat!.terraformValue,
+        'metric_display_trend': metricDisplayTrend!.toTfJson(),
+      if (metricFormat != null) 'metric_format': metricFormat!.toTfJson(),
       if (metricTrendType != null)
-        'metric_trend_type': metricTrendType!.terraformValue,
+        'metric_trend_type': metricTrendType!.toTfJson(),
     };
   }
 
@@ -331,9 +365,9 @@ prelude: |
     final ChronicleDashboardChartMetricTrendConfig? metricTrendConfig;
 
     Map<String, Object?> toArgMap() => {
-      if (seriesType != null) 'series_type': seriesType!.terraformValue,
+      if (seriesType != null) 'series_type': seriesType!.toTfJson(),
       if (seriesStackStrategy != null)
-        'series_stack_strategy': seriesStackStrategy!.terraformValue,
+        'series_stack_strategy': seriesStackStrategy!.toTfJson(),
       if (metricTrendConfig != null)
         'metric_trend_config': [metricTrendConfig!.toArgMap()],
     };
@@ -373,50 +407,50 @@ prelude: |
         'button': [
           {
             'properties': [
-              {'button_style': buttonStyle!.terraformValue},
+              {'button_style': buttonStyle!.toTfJson()},
             ],
           },
         ],
       if (plotMode != null)
         'google_maps_config': [
           {
-            'plot_mode': plotMode!.terraformValue,
+            'plot_mode': plotMode!.toTfJson(),
             if (pointSizeType != null)
               'point_settings': [
-                {'point_size_type': pointSizeType!.terraformValue},
+                {'point_size_type': pointSizeType!.toTfJson()},
               ],
           },
         ],
       if (legendAlign != null || legendOrient != null)
         'legends': [
           {
-            if (legendAlign != null) 'legend_align': legendAlign!.terraformValue,
+            if (legendAlign != null) 'legend_align': legendAlign!.toTfJson(),
             if (legendOrient != null)
-              'legend_orient': legendOrient!.terraformValue,
+              'legend_orient': legendOrient!.toTfJson(),
           },
         ],
       if (columnRenderType != null)
         'table_config': [
           {
             'column_render_type_settings': [
-              {'column_render_type': columnRenderType!.terraformValue},
+              {'column_render_type': columnRenderType!.toTfJson()},
             ],
           },
         ],
       if (tooltipTrigger != null)
         'tooltip': [
-          {'tooltip_trigger': tooltipTrigger!.terraformValue},
+          {'tooltip_trigger': tooltipTrigger!.toTfJson()},
         ],
       if (visualMapType != null)
         'visual_maps': [
-          {'visual_map_type': visualMapType!.terraformValue},
+          {'visual_map_type': visualMapType!.toTfJson()},
         ],
       if (axisType != null) ...{
         'x_axes': [
-          {'axis_type': axisType!.terraformValue},
+          {'axis_type': axisType!.toTfJson()},
         ],
         'y_axes': [
-          {'axis_type': axisType!.terraformValue},
+          {'axis_type': axisType!.toTfJson()},
         ],
       },
     };
@@ -440,7 +474,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       'display_name': displayName.toTfJson(),
-      if (tileType != null) 'tile_type': tileType!.terraformValue,
+      if (tileType != null) 'tile_type': tileType!.toTfJson(),
       if (visualization != null)
         'visualization': visualization!.map((v) => v.toArgMap()).toList(),
       if (filterOperatorAndValues != null)
@@ -479,7 +513,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       'start_time_val': startTimeVal.toTfJson(),
-      'time_unit': timeUnit.terraformValue,
+      'time_unit': timeUnit.toTfJson(),
     };
   }
 

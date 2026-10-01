@@ -21,7 +21,7 @@ final class ElastictranscoderPipelineContentConfig {
 
   final RefTo<AwsS3Bucket>? bucket;
 
-  final TfArg<ElastictranscoderPipelineStorageClass>? storageClass;
+  final ElastictranscoderPipelineStorageClass? storageClass;
 
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
@@ -30,13 +30,26 @@ final class ElastictranscoderPipelineContentConfig {
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum ElastictranscoderPipelineStorageClass implements TerraformEnum {
-  standard('Standard'),
-  reducedredundancy('ReducedRedundancy');
+extension type const ElastictranscoderPipelineStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  ElastictranscoderPipelineStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  ElastictranscoderPipelineStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElastictranscoderPipelineStorageClass.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElastictranscoderPipelineStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ElastictranscoderPipelineStorageClass._(
+    TfArgLiteral('Standard'),
+  );
+  static const reducedredundancy = ElastictranscoderPipelineStorageClass._(
+    TfArgLiteral('ReducedRedundancy'),
+  );
+
+  static const List<ElastictranscoderPipelineStorageClass> values = [
+    standard,
+    reducedredundancy,
+  ];
 }
 
 /// Typed helper for the `content_config_permissions` block of
@@ -49,11 +62,11 @@ final class ElastictranscoderPipelineContentConfigPermissions {
     this.granteeType,
   });
 
-  final List<TfArg<ElastictranscoderPipelineAccess>>? access;
+  final List<ElastictranscoderPipelineAccess>? access;
 
   final TfArg<String>? grantee;
 
-  final TfArg<ElastictranscoderPipelineGranteeType>? granteeType;
+  final ElastictranscoderPipelineGranteeType? granteeType;
 
   Map<String, Object?> encode() => {
     if (access != null) 'access': [for (final e in access!) e.toTfJson()],
@@ -63,26 +76,58 @@ final class ElastictranscoderPipelineContentConfigPermissions {
 }
 
 /// `access` — derived from the provider schema description.
-enum ElastictranscoderPipelineAccess implements TerraformEnum {
-  read('Read'),
-  readacp('ReadAcp'),
-  writeacp('WriteAcp'),
-  fullcontrol('FullControl');
+extension type const ElastictranscoderPipelineAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  ElastictranscoderPipelineAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  ElastictranscoderPipelineAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElastictranscoderPipelineAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const ElastictranscoderPipelineAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const read = ElastictranscoderPipelineAccess._(TfArgLiteral('Read'));
+  static const readacp = ElastictranscoderPipelineAccess._(
+    TfArgLiteral('ReadAcp'),
+  );
+  static const writeacp = ElastictranscoderPipelineAccess._(
+    TfArgLiteral('WriteAcp'),
+  );
+  static const fullcontrol = ElastictranscoderPipelineAccess._(
+    TfArgLiteral('FullControl'),
+  );
+
+  static const List<ElastictranscoderPipelineAccess> values = [
+    read,
+    readacp,
+    writeacp,
+    fullcontrol,
+  ];
 }
 
 /// `grantee_type` — derived from the provider schema description.
-enum ElastictranscoderPipelineGranteeType implements TerraformEnum {
-  canonical('Canonical'),
-  email('Email'),
-  group('Group');
+extension type const ElastictranscoderPipelineGranteeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElastictranscoderPipelineGranteeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElastictranscoderPipelineGranteeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElastictranscoderPipelineGranteeType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElastictranscoderPipelineGranteeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const canonical = ElastictranscoderPipelineGranteeType._(
+    TfArgLiteral('Canonical'),
+  );
+  static const email = ElastictranscoderPipelineGranteeType._(
+    TfArgLiteral('Email'),
+  );
+  static const group = ElastictranscoderPipelineGranteeType._(
+    TfArgLiteral('Group'),
+  );
+
+  static const List<ElastictranscoderPipelineGranteeType> values = [
+    canonical,
+    email,
+    group,
+  ];
 }
 
 /// Typed helper for the `notifications` block of
@@ -123,7 +168,7 @@ final class ElastictranscoderPipelineThumbnailConfig {
 
   final RefTo<AwsS3Bucket>? bucket;
 
-  final TfArg<ElastictranscoderPipelineStorageClass>? storageClass;
+  final ElastictranscoderPipelineStorageClass? storageClass;
 
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
@@ -141,11 +186,11 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
     this.granteeType,
   });
 
-  final List<TfArg<ElastictranscoderPipelineAccess>>? access;
+  final List<ElastictranscoderPipelineAccess>? access;
 
   final TfArg<String>? grantee;
 
-  final TfArg<ElastictranscoderPipelineGranteeType>? granteeType;
+  final ElastictranscoderPipelineGranteeType? granteeType;
 
   Map<String, Object?> encode() => {
     if (access != null) 'access': [for (final e in access!) e.toTfJson()],

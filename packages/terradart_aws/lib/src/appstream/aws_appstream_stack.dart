@@ -16,7 +16,7 @@ final class AppstreamStackAccessEndpoints {
     this.vpceId,
   });
 
-  final TfArg<AppstreamStackEndpointType> endpointType;
+  final AppstreamStackEndpointType endpointType;
 
   final TfArg<String>? vpceId;
 
@@ -27,12 +27,19 @@ final class AppstreamStackAccessEndpoints {
 }
 
 /// `endpoint_type` — derived from the provider schema description.
-enum AppstreamStackEndpointType implements TerraformEnum {
-  streaming('STREAMING');
+extension type const AppstreamStackEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamStackEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppstreamStackEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamStackEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamStackEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const streaming = AppstreamStackEndpointType._(
+    TfArgLiteral('STREAMING'),
+  );
+
+  static const List<AppstreamStackEndpointType> values = [streaming];
 }
 
 /// Typed helper for the `application_settings` block of
@@ -64,7 +71,7 @@ final class AppstreamStackStorageConnectors {
     this.resourceIdentifier,
   });
 
-  final TfArg<AppstreamStackConnectorType> connectorType;
+  final AppstreamStackConnectorType connectorType;
 
   final TfArg<List<String>>? domains;
 
@@ -78,14 +85,29 @@ final class AppstreamStackStorageConnectors {
 }
 
 /// `connector_type` — derived from the provider schema description.
-enum AppstreamStackConnectorType implements TerraformEnum {
-  homefolders('HOMEFOLDERS'),
-  googleDrive('GOOGLE_DRIVE'),
-  oneDrive('ONE_DRIVE');
+extension type const AppstreamStackConnectorType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamStackConnectorType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppstreamStackConnectorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamStackConnectorType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamStackConnectorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const homefolders = AppstreamStackConnectorType._(
+    TfArgLiteral('HOMEFOLDERS'),
+  );
+  static const googleDrive = AppstreamStackConnectorType._(
+    TfArgLiteral('GOOGLE_DRIVE'),
+  );
+  static const oneDrive = AppstreamStackConnectorType._(
+    TfArgLiteral('ONE_DRIVE'),
+  );
+
+  static const List<AppstreamStackConnectorType> values = [
+    homefolders,
+    googleDrive,
+    oneDrive,
+  ];
 }
 
 /// Typed helper for the `streaming_experience_settings` block of
@@ -94,7 +116,7 @@ enum AppstreamStackConnectorType implements TerraformEnum {
 final class AppstreamStackStreamingExperienceSettings {
   const AppstreamStackStreamingExperienceSettings({this.preferredProtocol});
 
-  final TfArg<AppstreamStackPreferredProtocol>? preferredProtocol;
+  final AppstreamStackPreferredProtocol? preferredProtocol;
 
   Map<String, Object?> encode() => {
     'preferred_protocol': ?preferredProtocol?.toTfJson(),
@@ -102,13 +124,18 @@ final class AppstreamStackStreamingExperienceSettings {
 }
 
 /// `preferred_protocol` — derived from the provider schema description.
-enum AppstreamStackPreferredProtocol implements TerraformEnum {
-  tcp('TCP'),
-  udp('UDP');
+extension type const AppstreamStackPreferredProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamStackPreferredProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  AppstreamStackPreferredProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamStackPreferredProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamStackPreferredProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = AppstreamStackPreferredProtocol._(TfArgLiteral('TCP'));
+  static const udp = AppstreamStackPreferredProtocol._(TfArgLiteral('UDP'));
+
+  static const List<AppstreamStackPreferredProtocol> values = [tcp, udp];
 }
 
 /// Typed helper for the `user_settings` block of
@@ -120,9 +147,9 @@ final class AppstreamStackUserSettings {
     required this.permission,
   });
 
-  final TfArg<AppstreamStackAction> action;
+  final AppstreamStackAction action;
 
-  final TfArg<AppstreamStackPermission> permission;
+  final AppstreamStackPermission permission;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -131,29 +158,60 @@ final class AppstreamStackUserSettings {
 }
 
 /// `action` — derived from the provider schema description.
-enum AppstreamStackAction implements TerraformEnum {
-  clipboardCopyFromLocalDevice('CLIPBOARD_COPY_FROM_LOCAL_DEVICE'),
-  clipboardCopyToLocalDevice('CLIPBOARD_COPY_TO_LOCAL_DEVICE'),
-  fileUpload('FILE_UPLOAD'),
-  fileDownload('FILE_DOWNLOAD'),
-  printingToLocalDevice('PRINTING_TO_LOCAL_DEVICE'),
-  domainPasswordSignin('DOMAIN_PASSWORD_SIGNIN'),
-  domainSmartCardSignin('DOMAIN_SMART_CARD_SIGNIN'),
-  autoTimeZoneRedirection('AUTO_TIME_ZONE_REDIRECTION');
+extension type const AppstreamStackAction._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamStackAction.variable(String name) : this._(TfArg.variable(name));
+  AppstreamStackAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamStackAction.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamStackAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clipboardCopyFromLocalDevice = AppstreamStackAction._(
+    TfArgLiteral('CLIPBOARD_COPY_FROM_LOCAL_DEVICE'),
+  );
+  static const clipboardCopyToLocalDevice = AppstreamStackAction._(
+    TfArgLiteral('CLIPBOARD_COPY_TO_LOCAL_DEVICE'),
+  );
+  static const fileUpload = AppstreamStackAction._(TfArgLiteral('FILE_UPLOAD'));
+  static const fileDownload = AppstreamStackAction._(
+    TfArgLiteral('FILE_DOWNLOAD'),
+  );
+  static const printingToLocalDevice = AppstreamStackAction._(
+    TfArgLiteral('PRINTING_TO_LOCAL_DEVICE'),
+  );
+  static const domainPasswordSignin = AppstreamStackAction._(
+    TfArgLiteral('DOMAIN_PASSWORD_SIGNIN'),
+  );
+  static const domainSmartCardSignin = AppstreamStackAction._(
+    TfArgLiteral('DOMAIN_SMART_CARD_SIGNIN'),
+  );
+  static const autoTimeZoneRedirection = AppstreamStackAction._(
+    TfArgLiteral('AUTO_TIME_ZONE_REDIRECTION'),
+  );
+
+  static const List<AppstreamStackAction> values = [
+    clipboardCopyFromLocalDevice,
+    clipboardCopyToLocalDevice,
+    fileUpload,
+    fileDownload,
+    printingToLocalDevice,
+    domainPasswordSignin,
+    domainSmartCardSignin,
+    autoTimeZoneRedirection,
+  ];
 }
 
 /// `permission` — derived from the provider schema description.
-enum AppstreamStackPermission implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const AppstreamStackPermission._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamStackPermission.variable(String name) : this._(TfArg.variable(name));
+  AppstreamStackPermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamStackPermission.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamStackPermission(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = AppstreamStackPermission._(TfArgLiteral('ENABLED'));
+  static const disabled = AppstreamStackPermission._(TfArgLiteral('DISABLED'));
+
+  static const List<AppstreamStackPermission> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_appstream_stack`.

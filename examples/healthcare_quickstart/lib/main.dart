@@ -84,7 +84,7 @@ final class HealthcareStack extends Stack {
         dataset: dataset.ref,
         rejectDuplicateMessage: .literal(true),
         parserConfig: HealthcareHl7V2StoreParserConfig(
-          version: .literal(.v3),
+          version: .v3,
           allowNullHeader: .literal(false),
         ),
         dependsOn: [dataset],
@@ -96,7 +96,7 @@ final class HealthcareStack extends Stack {
         'clinical',
         name: .literal('terradart-fhir'),
         dataset: dataset.ref,
-        version: .literal(.r4),
+        version: .r4,
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [dataset],
       ),

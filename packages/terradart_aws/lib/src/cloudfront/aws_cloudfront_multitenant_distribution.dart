@@ -15,15 +15,35 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsCloudfrontMultitenantDistributionSensitive = <String>{};
 
 /// Cloudfront Multitenant Distribution Http enum for `http_version`.
-enum CloudfrontMultitenantDistributionHttpVersion implements TerraformEnum {
-  http1p1('http1.1'),
-  http2('http2'),
-  http3('http3'),
-  http2and3('http2and3');
+extension type const CloudfrontMultitenantDistributionHttpVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionHttpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionHttpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionHttpVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontMultitenantDistributionHttpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http1p1 = CloudfrontMultitenantDistributionHttpVersion._(
+    TfArgLiteral('http1.1'),
+  );
+  static const http2 = CloudfrontMultitenantDistributionHttpVersion._(
+    TfArgLiteral('http2'),
+  );
+  static const http3 = CloudfrontMultitenantDistributionHttpVersion._(
+    TfArgLiteral('http3'),
+  );
+  static const http2and3 = CloudfrontMultitenantDistributionHttpVersion._(
+    TfArgLiteral('http2and3'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionHttpVersion> values = [
+    http1p1,
+    http2,
+    http3,
+    http2and3,
+  ];
 }
 
 /// Typed helper for the `active_trusted_key_groups` block of
@@ -84,7 +104,7 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<CloudfrontMultitenantDistributionViewerProtocolPolicy>
+  final CloudfrontMultitenantDistributionViewerProtocolPolicy
   viewerProtocolPolicy;
 
   final List<CloudfrontMultitenantDistributionAllowedMethods>? allowedMethods;
@@ -124,17 +144,33 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
 }
 
 /// `viewer_protocol_policy` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionViewerProtocolPolicy
-    implements TerraformEnum {
-  allowAll('allow-all'),
-  httpsOnly('https-only'),
-  redirectToHttps('redirect-to-https');
+extension type const CloudfrontMultitenantDistributionViewerProtocolPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionViewerProtocolPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionViewerProtocolPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionViewerProtocolPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontMultitenantDistributionViewerProtocolPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allowAll =
+      CloudfrontMultitenantDistributionViewerProtocolPolicy._(
+        TfArgLiteral('allow-all'),
+      );
+  static const httpsOnly =
+      CloudfrontMultitenantDistributionViewerProtocolPolicy._(
+        TfArgLiteral('https-only'),
+      );
+  static const redirectToHttps =
+      CloudfrontMultitenantDistributionViewerProtocolPolicy._(
+        TfArgLiteral('redirect-to-https'),
+      );
+
+  static const List<CloudfrontMultitenantDistributionViewerProtocolPolicy>
+  values = [allowAll, httpsOnly, redirectToHttps];
 }
 
 /// Typed helper for the `cache_behavior.allowed_methods` block of
@@ -147,8 +183,7 @@ final class CloudfrontMultitenantDistributionAllowedMethods {
     required this.items,
   });
 
-  final List<TfArg<CloudfrontMultitenantDistributionCachedMethods>>
-  cachedMethods;
+  final List<CloudfrontMultitenantDistributionCachedMethods> cachedMethods;
 
   final TfArg<List<String>> items;
 
@@ -159,18 +194,47 @@ final class CloudfrontMultitenantDistributionAllowedMethods {
 }
 
 /// `cached_methods` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionCachedMethods implements TerraformEnum {
-  get('GET'),
-  head('HEAD'),
-  post('POST'),
-  put('PUT'),
-  patch('PATCH'),
-  options('OPTIONS'),
-  delete('DELETE');
+extension type const CloudfrontMultitenantDistributionCachedMethods._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionCachedMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionCachedMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionCachedMethods.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontMultitenantDistributionCachedMethods(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('GET'),
+  );
+  static const head = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('HEAD'),
+  );
+  static const post = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('POST'),
+  );
+  static const put = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('PUT'),
+  );
+  static const patch = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('PATCH'),
+  );
+  static const options = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const delete = CloudfrontMultitenantDistributionCachedMethods._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionCachedMethods> values = [
+    get,
+    head,
+    post,
+    put,
+    patch,
+    options,
+    delete,
+  ];
 }
 
 /// Typed helper for the `cache_behavior.function_association` block of
@@ -183,7 +247,7 @@ final class CloudfrontMultitenantDistributionFunctionAssociation {
     required this.functionArn,
   });
 
-  final TfArg<CloudfrontMultitenantDistributionEventType> eventType;
+  final CloudfrontMultitenantDistributionEventType eventType;
 
   final TfArg<String> functionArn;
 
@@ -194,15 +258,35 @@ final class CloudfrontMultitenantDistributionFunctionAssociation {
 }
 
 /// `event_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionEventType implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
+extension type const CloudfrontMultitenantDistributionEventType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionEventType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionEventType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionEventType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontMultitenantDistributionEventType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const viewerRequest = CloudfrontMultitenantDistributionEventType._(
+    TfArgLiteral('viewer-request'),
+  );
+  static const viewerResponse = CloudfrontMultitenantDistributionEventType._(
+    TfArgLiteral('viewer-response'),
+  );
+  static const originRequest = CloudfrontMultitenantDistributionEventType._(
+    TfArgLiteral('origin-request'),
+  );
+  static const originResponse = CloudfrontMultitenantDistributionEventType._(
+    TfArgLiteral('origin-response'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionEventType> values = [
+    viewerRequest,
+    viewerResponse,
+    originRequest,
+    originResponse,
+  ];
 }
 
 /// Typed helper for the `cache_behavior.lambda_function_association` block of
@@ -216,7 +300,7 @@ final class CloudfrontMultitenantDistributionLambdaFunctionAssociation {
     required this.lambdaFunctionArn,
   });
 
-  final TfArg<CloudfrontMultitenantDistributionEventType> eventType;
+  final CloudfrontMultitenantDistributionEventType eventType;
 
   final TfArg<bool>? includeBody;
 
@@ -309,7 +393,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<CloudfrontMultitenantDistributionViewerProtocolPolicy>
+  final CloudfrontMultitenantDistributionViewerProtocolPolicy
   viewerProtocolPolicy;
 
   final List<CloudfrontMultitenantDistributionAllowedMethods>? allowedMethods;
@@ -447,16 +531,16 @@ final class CloudfrontMultitenantDistributionCustomOriginConfig {
 
   final TfArg<num> httpsPort;
 
-  final TfArg<CloudfrontMultitenantDistributionIpAddressType>? ipAddressType;
+  final CloudfrontMultitenantDistributionIpAddressType? ipAddressType;
 
   final TfArg<num>? originKeepaliveTimeout;
 
-  final TfArg<CloudfrontMultitenantDistributionOriginProtocolPolicy>
+  final CloudfrontMultitenantDistributionOriginProtocolPolicy
   originProtocolPolicy;
 
   final TfArg<num>? originReadTimeout;
 
-  final List<TfArg<CloudfrontMultitenantDistributionOriginSslProtocols>>
+  final List<CloudfrontMultitenantDistributionOriginSslProtocols>
   originSslProtocols;
 
   final List<CloudfrontMultitenantDistributionOriginMtlsConfig>?
@@ -476,43 +560,91 @@ final class CloudfrontMultitenantDistributionCustomOriginConfig {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualstack('dualstack');
+extension type const CloudfrontMultitenantDistributionIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontMultitenantDistributionIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = CloudfrontMultitenantDistributionIpAddressType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = CloudfrontMultitenantDistributionIpAddressType._(
+    TfArgLiteral('ipv6'),
+  );
+  static const dualstack = CloudfrontMultitenantDistributionIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionIpAddressType> values = [
+    ipv4,
+    ipv6,
+    dualstack,
+  ];
 }
 
 /// `origin_protocol_policy` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionOriginProtocolPolicy
-    implements TerraformEnum {
-  httpOnly('http-only'),
-  matchViewer('match-viewer'),
-  httpsOnly('https-only');
+extension type const CloudfrontMultitenantDistributionOriginProtocolPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionOriginProtocolPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionOriginProtocolPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionOriginProtocolPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontMultitenantDistributionOriginProtocolPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const httpOnly =
+      CloudfrontMultitenantDistributionOriginProtocolPolicy._(
+        TfArgLiteral('http-only'),
+      );
+  static const matchViewer =
+      CloudfrontMultitenantDistributionOriginProtocolPolicy._(
+        TfArgLiteral('match-viewer'),
+      );
+  static const httpsOnly =
+      CloudfrontMultitenantDistributionOriginProtocolPolicy._(
+        TfArgLiteral('https-only'),
+      );
+
+  static const List<CloudfrontMultitenantDistributionOriginProtocolPolicy>
+  values = [httpOnly, matchViewer, httpsOnly];
 }
 
 /// `origin_ssl_protocols` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionOriginSslProtocols
-    implements TerraformEnum {
-  sslv3('SSLv3'),
-  tlsv1('TLSv1'),
-  tlsv1p1('TLSv1.1'),
-  tlsv1p2('TLSv1.2');
+extension type const CloudfrontMultitenantDistributionOriginSslProtocols._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionOriginSslProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionOriginSslProtocols.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionOriginSslProtocols.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontMultitenantDistributionOriginSslProtocols(
-    this.terraformValue,
+  static const sslv3 = CloudfrontMultitenantDistributionOriginSslProtocols._(
+    TfArgLiteral('SSLv3'),
   );
-  @override
-  final String terraformValue;
+  static const tlsv1 = CloudfrontMultitenantDistributionOriginSslProtocols._(
+    TfArgLiteral('TLSv1'),
+  );
+  static const tlsv1p1 = CloudfrontMultitenantDistributionOriginSslProtocols._(
+    TfArgLiteral('TLSv1.1'),
+  );
+  static const tlsv1p2 = CloudfrontMultitenantDistributionOriginSslProtocols._(
+    TfArgLiteral('TLSv1.2'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionOriginSslProtocols>
+  values = [sslv3, tlsv1, tlsv1p1, tlsv1p2];
 }
 
 /// Typed helper for the `origin.custom_origin_config.origin_mtls_config` block of
@@ -646,7 +778,7 @@ final class CloudfrontMultitenantDistributionGeoRestriction {
 
   final TfArg<List<String>>? items;
 
-  final TfArg<CloudfrontMultitenantDistributionRestrictionType> restrictionType;
+  final CloudfrontMultitenantDistributionRestrictionType restrictionType;
 
   Map<String, Object?> encode() => {
     'items': ?items?.toTfJson(),
@@ -655,14 +787,31 @@ final class CloudfrontMultitenantDistributionGeoRestriction {
 }
 
 /// `restriction_type` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionRestrictionType implements TerraformEnum {
-  blacklist('blacklist'),
-  whitelist('whitelist'),
-  none('none');
+extension type const CloudfrontMultitenantDistributionRestrictionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionRestrictionType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionRestrictionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionRestrictionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontMultitenantDistributionRestrictionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blacklist = CloudfrontMultitenantDistributionRestrictionType._(
+    TfArgLiteral('blacklist'),
+  );
+  static const whitelist = CloudfrontMultitenantDistributionRestrictionType._(
+    TfArgLiteral('whitelist'),
+  );
+  static const none = CloudfrontMultitenantDistributionRestrictionType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionRestrictionType> values = [
+    blacklist,
+    whitelist,
+    none,
+  ];
 }
 
 /// Typed helper for the `tenant_config` block of
@@ -756,11 +905,10 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 
   final TfArg<bool>? cloudfrontDefaultCertificate;
 
-  final TfArg<CloudfrontMultitenantDistributionMinimumProtocolVersion>?
+  final CloudfrontMultitenantDistributionMinimumProtocolVersion?
   minimumProtocolVersion;
 
-  final TfArg<CloudfrontMultitenantDistributionSslSupportMethod>?
-  sslSupportMethod;
+  final CloudfrontMultitenantDistributionSslSupportMethod? sslSupportMethod;
 
   Map<String, Object?> encode() => {
     'acm_certificate_arn': ?acmCertificateArn?.encodeAs('arn').toTfJson(),
@@ -771,35 +919,92 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 }
 
 /// `minimum_protocol_version` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionMinimumProtocolVersion
-    implements TerraformEnum {
-  sslv3('SSLv3'),
-  tlsv1('TLSv1'),
-  tlsv12016('TLSv1_2016'),
-  tlsv1p1x2016('TLSv1.1_2016'),
-  tlsv1p2x2018('TLSv1.2_2018'),
-  tlsv1p2x2019('TLSv1.2_2019'),
-  tlsv1p2x2021('TLSv1.2_2021'),
-  tlsv1p3x2025('TLSv1.3_2025'),
-  tlsv1p2x2025('TLSv1.2_2025');
+extension type const CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionMinimumProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionMinimumProtocolVersion.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionMinimumProtocolVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontMultitenantDistributionMinimumProtocolVersion(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sslv3 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('SSLv3'),
+      );
+  static const tlsv1 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1'),
+      );
+  static const tlsv12016 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1_2016'),
+      );
+  static const tlsv1p1x2016 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1.1_2016'),
+      );
+  static const tlsv1p2x2018 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1.2_2018'),
+      );
+  static const tlsv1p2x2019 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1.2_2019'),
+      );
+  static const tlsv1p2x2021 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1.2_2021'),
+      );
+  static const tlsv1p3x2025 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1.3_2025'),
+      );
+  static const tlsv1p2x2025 =
+      CloudfrontMultitenantDistributionMinimumProtocolVersion._(
+        TfArgLiteral('TLSv1.2_2025'),
+      );
+
+  static const List<CloudfrontMultitenantDistributionMinimumProtocolVersion>
+  values = [
+    sslv3,
+    tlsv1,
+    tlsv12016,
+    tlsv1p1x2016,
+    tlsv1p2x2018,
+    tlsv1p2x2019,
+    tlsv1p2x2021,
+    tlsv1p3x2025,
+    tlsv1p2x2025,
+  ];
 }
 
 /// `ssl_support_method` — derived from the provider schema description.
-enum CloudfrontMultitenantDistributionSslSupportMethod
-    implements TerraformEnum {
-  sniOnly('sni-only'),
-  vip('vip'),
-  staticIp('static-ip');
+extension type const CloudfrontMultitenantDistributionSslSupportMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMultitenantDistributionSslSupportMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontMultitenantDistributionSslSupportMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontMultitenantDistributionSslSupportMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontMultitenantDistributionSslSupportMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sniOnly = CloudfrontMultitenantDistributionSslSupportMethod._(
+    TfArgLiteral('sni-only'),
+  );
+  static const vip = CloudfrontMultitenantDistributionSslSupportMethod._(
+    TfArgLiteral('vip'),
+  );
+  static const staticIp = CloudfrontMultitenantDistributionSslSupportMethod._(
+    TfArgLiteral('static-ip'),
+  );
+
+  static const List<CloudfrontMultitenantDistributionSslSupportMethod> values =
+      [sniOnly, vip, staticIp];
 }
 
 /// Factory wrapper for `aws_cloudfront_multitenant_distribution`.
@@ -811,7 +1016,7 @@ final class AwsCloudfrontMultitenantDistribution extends Resource {
     required TfArg<String> comment,
     TfArg<String>? defaultRootObject,
     required TfArg<bool> enabled,
-    TfArg<CloudfrontMultitenantDistributionHttpVersion>? httpVersion,
+    CloudfrontMultitenantDistributionHttpVersion? httpVersion,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? webAclId,
     List<CloudfrontMultitenantDistributionActiveTrustedKeyGroups>?

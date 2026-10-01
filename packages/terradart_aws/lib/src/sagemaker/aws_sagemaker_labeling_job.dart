@@ -178,7 +178,7 @@ final class SagemakerLabelingJobInputConfig {
 final class SagemakerLabelingJobDataAttributes {
   const SagemakerLabelingJobDataAttributes({this.contentClassifiers});
 
-  final List<TfArg<SagemakerLabelingJobContentClassifiers>>? contentClassifiers;
+  final List<SagemakerLabelingJobContentClassifiers>? contentClassifiers;
 
   Map<String, Object?> encode() => {
     if (contentClassifiers != null)
@@ -189,15 +189,27 @@ final class SagemakerLabelingJobDataAttributes {
 }
 
 /// `content_classifiers` — derived from the provider schema description.
-enum SagemakerLabelingJobContentClassifiers implements TerraformEnum {
-  freeofpersonallyidentifiableinformation(
-    'FreeOfPersonallyIdentifiableInformation',
-  ),
-  freeofadultcontent('FreeOfAdultContent');
+extension type const SagemakerLabelingJobContentClassifiers._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerLabelingJobContentClassifiers.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerLabelingJobContentClassifiers.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerLabelingJobContentClassifiers.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerLabelingJobContentClassifiers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const freeofpersonallyidentifiableinformation =
+      SagemakerLabelingJobContentClassifiers._(
+        TfArgLiteral('FreeOfPersonallyIdentifiableInformation'),
+      );
+  static const freeofadultcontent = SagemakerLabelingJobContentClassifiers._(
+    TfArgLiteral('FreeOfAdultContent'),
+  );
+
+  static const List<SagemakerLabelingJobContentClassifiers> values = [
+    freeofpersonallyidentifiableinformation,
+    freeofadultcontent,
+  ];
 }
 
 /// Typed helper for the `input_config.data_source` block of

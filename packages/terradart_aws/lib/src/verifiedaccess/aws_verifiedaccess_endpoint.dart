@@ -12,24 +12,46 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsVerifiedaccessEndpointSensitive = <String>{};
 
 /// Verifiedaccess Endpoint Attachment enum for `attachment_type`.
-enum VerifiedaccessEndpointAttachmentType implements TerraformEnum {
-  vpc('vpc');
+extension type const VerifiedaccessEndpointAttachmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  VerifiedaccessEndpointAttachmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessEndpointAttachmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessEndpointAttachmentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VerifiedaccessEndpointAttachmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpc = VerifiedaccessEndpointAttachmentType._(
+    TfArgLiteral('vpc'),
+  );
+
+  static const List<VerifiedaccessEndpointAttachmentType> values = [vpc];
 }
 
 /// Verifiedaccess Endpoint enum for `endpoint_type`.
-enum VerifiedaccessEndpointType implements TerraformEnum {
-  loadBalancer('load-balancer'),
-  networkInterface('network-interface'),
-  rds('rds'),
-  cidr('cidr');
+extension type const VerifiedaccessEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  VerifiedaccessEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const VerifiedaccessEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loadBalancer = VerifiedaccessEndpointType._(
+    TfArgLiteral('load-balancer'),
+  );
+  static const networkInterface = VerifiedaccessEndpointType._(
+    TfArgLiteral('network-interface'),
+  );
+  static const rds = VerifiedaccessEndpointType._(TfArgLiteral('rds'));
+  static const cidr = VerifiedaccessEndpointType._(TfArgLiteral('cidr'));
+
+  static const List<VerifiedaccessEndpointType> values = [
+    loadBalancer,
+    networkInterface,
+    rds,
+    cidr,
+  ];
 }
 
 /// Typed helper for the `cidr_options` block of
@@ -45,7 +67,7 @@ final class VerifiedaccessEndpointCidrOptions {
 
   final TfArg<String> cidr;
 
-  final TfArg<VerifiedaccessEndpointCidrOptionsProtocol>? protocol;
+  final VerifiedaccessEndpointCidrOptionsProtocol? protocol;
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
@@ -60,12 +82,21 @@ final class VerifiedaccessEndpointCidrOptions {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum VerifiedaccessEndpointCidrOptionsProtocol implements TerraformEnum {
-  tcp('tcp');
+extension type const VerifiedaccessEndpointCidrOptionsProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VerifiedaccessEndpointCidrOptionsProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessEndpointCidrOptionsProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessEndpointCidrOptionsProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VerifiedaccessEndpointCidrOptionsProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = VerifiedaccessEndpointCidrOptionsProtocol._(
+    TfArgLiteral('tcp'),
+  );
+
+  static const List<VerifiedaccessEndpointCidrOptionsProtocol> values = [tcp];
 }
 
 /// Typed helper for the `cidr_options.port_range` block of
@@ -104,7 +135,7 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
 
   final TfArg<num>? port;
 
-  final TfArg<VerifiedaccessEndpointLoadBalancerOptionsProtocol>? protocol;
+  final VerifiedaccessEndpointLoadBalancerOptionsProtocol? protocol;
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
@@ -121,15 +152,28 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum VerifiedaccessEndpointLoadBalancerOptionsProtocol
-    implements TerraformEnum {
-  http('http'),
-  https('https'),
-  tcp('tcp');
+extension type const VerifiedaccessEndpointLoadBalancerOptionsProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VerifiedaccessEndpointLoadBalancerOptionsProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessEndpointLoadBalancerOptionsProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessEndpointLoadBalancerOptionsProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VerifiedaccessEndpointLoadBalancerOptionsProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = VerifiedaccessEndpointLoadBalancerOptionsProtocol._(
+    TfArgLiteral('http'),
+  );
+  static const https = VerifiedaccessEndpointLoadBalancerOptionsProtocol._(
+    TfArgLiteral('https'),
+  );
+  static const tcp = VerifiedaccessEndpointLoadBalancerOptionsProtocol._(
+    TfArgLiteral('tcp'),
+  );
+
+  static const List<VerifiedaccessEndpointLoadBalancerOptionsProtocol> values =
+      [http, https, tcp];
 }
 
 /// Typed helper for the `network_interface_options` block of
@@ -147,7 +191,7 @@ final class VerifiedaccessEndpointNetworkInterfaceOptions {
 
   final TfArg<num>? port;
 
-  final TfArg<VerifiedaccessEndpointLoadBalancerOptionsProtocol>? protocol;
+  final VerifiedaccessEndpointLoadBalancerOptionsProtocol? protocol;
 
   final List<VerifiedaccessEndpointPortRange>? portRange;
 
@@ -176,7 +220,7 @@ final class VerifiedaccessEndpointRdsOptions {
 
   final TfArg<num>? port;
 
-  final TfArg<VerifiedaccessEndpointCidrOptionsProtocol>? protocol;
+  final VerifiedaccessEndpointCidrOptionsProtocol? protocol;
 
   final TfArg<String>? rdsDbClusterArn;
 
@@ -225,11 +269,11 @@ final class AwsVerifiedaccessEndpoint extends Resource {
   AwsVerifiedaccessEndpoint(
     super.localName, {
     TfArg<String>? applicationDomain,
-    required TfArg<VerifiedaccessEndpointAttachmentType> attachmentType,
+    required VerifiedaccessEndpointAttachmentType attachmentType,
     TfArg<String>? description,
     TfArg<String>? domainCertificateArn,
     TfArg<String>? endpointDomainPrefix,
-    required TfArg<VerifiedaccessEndpointType> endpointType,
+    required VerifiedaccessEndpointType endpointType,
     TfArg<String>? policyDocument,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,

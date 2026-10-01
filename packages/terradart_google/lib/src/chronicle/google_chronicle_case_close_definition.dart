@@ -7,15 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleCaseCloseDefinitionSensitive = <String>{};
 
 /// Chronicle Case Close Definition Close enum for `close_reason`.
-enum ChronicleCaseCloseDefinitionCloseReason implements TerraformEnum {
-  malicious('MALICIOUS'),
-  notMalicious('NOT_MALICIOUS'),
-  maintenance('MAINTENANCE'),
-  inconclusive('INCONCLUSIVE');
+extension type const ChronicleCaseCloseDefinitionCloseReason._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleCaseCloseDefinitionCloseReason.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleCaseCloseDefinitionCloseReason.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleCaseCloseDefinitionCloseReason.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChronicleCaseCloseDefinitionCloseReason(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const malicious = ChronicleCaseCloseDefinitionCloseReason._(
+    TfArgLiteral('MALICIOUS'),
+  );
+  static const notMalicious = ChronicleCaseCloseDefinitionCloseReason._(
+    TfArgLiteral('NOT_MALICIOUS'),
+  );
+  static const maintenance = ChronicleCaseCloseDefinitionCloseReason._(
+    TfArgLiteral('MAINTENANCE'),
+  );
+  static const inconclusive = ChronicleCaseCloseDefinitionCloseReason._(
+    TfArgLiteral('INCONCLUSIVE'),
+  );
+
+  static const List<ChronicleCaseCloseDefinitionCloseReason> values = [
+    malicious,
+    notMalicious,
+    maintenance,
+    inconclusive,
+  ];
 }
 
 /// Factory wrapper for `google_chronicle_case_close_definition`.
@@ -34,7 +53,7 @@ final class GoogleChronicleCaseCloseDefinition extends Resource {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
-    required TfArg<ChronicleCaseCloseDefinitionCloseReason> closeReason,
+    required ChronicleCaseCloseDefinitionCloseReason closeReason,
     required TfArg<String> rootCause,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

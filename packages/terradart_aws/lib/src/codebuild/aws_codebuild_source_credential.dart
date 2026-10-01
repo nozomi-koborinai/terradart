@@ -7,29 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodebuildSourceCredentialSensitive = <String>{'token'};
 
 /// Codebuild Source Credential Auth enum for `auth_type`.
-enum CodebuildSourceCredentialAuthType implements TerraformEnum {
-  oauth('OAUTH'),
-  basicAuth('BASIC_AUTH'),
-  personalAccessToken('PERSONAL_ACCESS_TOKEN'),
-  codeconnections('CODECONNECTIONS'),
-  secretsManager('SECRETS_MANAGER');
+extension type const CodebuildSourceCredentialAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodebuildSourceCredentialAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodebuildSourceCredentialAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodebuildSourceCredentialAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodebuildSourceCredentialAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oauth = CodebuildSourceCredentialAuthType._(
+    TfArgLiteral('OAUTH'),
+  );
+  static const basicAuth = CodebuildSourceCredentialAuthType._(
+    TfArgLiteral('BASIC_AUTH'),
+  );
+  static const personalAccessToken = CodebuildSourceCredentialAuthType._(
+    TfArgLiteral('PERSONAL_ACCESS_TOKEN'),
+  );
+  static const codeconnections = CodebuildSourceCredentialAuthType._(
+    TfArgLiteral('CODECONNECTIONS'),
+  );
+  static const secretsManager = CodebuildSourceCredentialAuthType._(
+    TfArgLiteral('SECRETS_MANAGER'),
+  );
+
+  static const List<CodebuildSourceCredentialAuthType> values = [
+    oauth,
+    basicAuth,
+    personalAccessToken,
+    codeconnections,
+    secretsManager,
+  ];
 }
 
 /// Codebuild Source Credential Server enum for `server_type`.
-enum CodebuildSourceCredentialServerType implements TerraformEnum {
-  github('GITHUB'),
-  bitbucket('BITBUCKET'),
-  githubEnterprise('GITHUB_ENTERPRISE'),
-  gitlab('GITLAB'),
-  gitlabSelfManaged('GITLAB_SELF_MANAGED');
+extension type const CodebuildSourceCredentialServerType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodebuildSourceCredentialServerType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodebuildSourceCredentialServerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodebuildSourceCredentialServerType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodebuildSourceCredentialServerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const github = CodebuildSourceCredentialServerType._(
+    TfArgLiteral('GITHUB'),
+  );
+  static const bitbucket = CodebuildSourceCredentialServerType._(
+    TfArgLiteral('BITBUCKET'),
+  );
+  static const githubEnterprise = CodebuildSourceCredentialServerType._(
+    TfArgLiteral('GITHUB_ENTERPRISE'),
+  );
+  static const gitlab = CodebuildSourceCredentialServerType._(
+    TfArgLiteral('GITLAB'),
+  );
+  static const gitlabSelfManaged = CodebuildSourceCredentialServerType._(
+    TfArgLiteral('GITLAB_SELF_MANAGED'),
+  );
+
+  static const List<CodebuildSourceCredentialServerType> values = [
+    github,
+    bitbucket,
+    githubEnterprise,
+    gitlab,
+    gitlabSelfManaged,
+  ];
 }
 
 /// Factory wrapper for `aws_codebuild_source_credential`.
@@ -38,9 +81,9 @@ final class AwsCodebuildSourceCredential extends Resource {
 
   AwsCodebuildSourceCredential(
     super.localName, {
-    required TfArg<CodebuildSourceCredentialAuthType> authType,
+    required CodebuildSourceCredentialAuthType authType,
     TfArg<String>? region,
-    required TfArg<CodebuildSourceCredentialServerType> serverType,
+    required CodebuildSourceCredentialServerType serverType,
     required TfArg<String> token,
     TfArg<String>? userName,
     super.lifecycle,

@@ -15,9 +15,9 @@ const Set<String> _cloudflareWorkerSensitive = <String>{};
 final class DataWorkerFilter {
   const DataWorkerFilter({this.order, this.orderBy});
 
-  final TfArg<DataWorkerOrder>? order;
+  final DataWorkerOrder? order;
 
-  final TfArg<DataWorkerOrderBy>? orderBy;
+  final DataWorkerOrderBy? orderBy;
 
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
@@ -26,25 +26,38 @@ final class DataWorkerFilter {
 }
 
 /// `order` — derived from the provider schema description.
-enum DataWorkerOrder implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataWorkerOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkerOrder.variable(String name) : this._(TfArg.variable(name));
+  DataWorkerOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkerOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataWorkerOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataWorkerOrder._(TfArgLiteral('asc'));
+  static const desc = DataWorkerOrder._(TfArgLiteral('desc'));
+
+  static const List<DataWorkerOrder> values = [asc, desc];
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataWorkerOrderBy implements TerraformEnum {
-  deployedOn('deployed_on'),
-  updatedOn('updated_on'),
-  createdOn('created_on'),
-  name('name');
+extension type const DataWorkerOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkerOrderBy.variable(String name) : this._(TfArg.variable(name));
+  DataWorkerOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkerOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataWorkerOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deployedOn = DataWorkerOrderBy._(TfArgLiteral('deployed_on'));
+  static const updatedOn = DataWorkerOrderBy._(TfArgLiteral('updated_on'));
+  static const createdOn = DataWorkerOrderBy._(TfArgLiteral('created_on'));
+  static const name = DataWorkerOrderBy._(TfArgLiteral('name'));
+
+  static const List<DataWorkerOrderBy> values = [
+    deployedOn,
+    updatedOn,
+    createdOn,
+    name,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_worker`.

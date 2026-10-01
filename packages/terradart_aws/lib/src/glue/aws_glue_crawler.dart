@@ -157,8 +157,7 @@ final class GlueCrawlerJdbcTarget {
 
   final TfArg<String> connectionName;
 
-  final List<TfArg<GlueCrawlerEnableAdditionalMetadata>>?
-  enableAdditionalMetadata;
+  final List<GlueCrawlerEnableAdditionalMetadata>? enableAdditionalMetadata;
 
   final TfArg<List<String>>? exclusions;
 
@@ -176,13 +175,26 @@ final class GlueCrawlerJdbcTarget {
 }
 
 /// `enable_additional_metadata` — derived from the provider schema description.
-enum GlueCrawlerEnableAdditionalMetadata implements TerraformEnum {
-  comments('COMMENTS'),
-  rawtypes('RAWTYPES');
+extension type const GlueCrawlerEnableAdditionalMetadata._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCrawlerEnableAdditionalMetadata.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCrawlerEnableAdditionalMetadata.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCrawlerEnableAdditionalMetadata.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlueCrawlerEnableAdditionalMetadata(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const comments = GlueCrawlerEnableAdditionalMetadata._(
+    TfArgLiteral('COMMENTS'),
+  );
+  static const rawtypes = GlueCrawlerEnableAdditionalMetadata._(
+    TfArgLiteral('RAWTYPES'),
+  );
+
+  static const List<GlueCrawlerEnableAdditionalMetadata> values = [
+    comments,
+    rawtypes,
+  ];
 }
 
 /// Typed helper for the `lake_formation_configuration` block of
@@ -210,7 +222,7 @@ final class GlueCrawlerLakeFormationConfiguration {
 final class GlueCrawlerLineageConfiguration {
   const GlueCrawlerLineageConfiguration({this.crawlerLineageSettings});
 
-  final TfArg<GlueCrawlerLineageSettings>? crawlerLineageSettings;
+  final GlueCrawlerLineageSettings? crawlerLineageSettings;
 
   Map<String, Object?> encode() => {
     'crawler_lineage_settings': ?crawlerLineageSettings?.toTfJson(),
@@ -218,13 +230,18 @@ final class GlueCrawlerLineageConfiguration {
 }
 
 /// `crawler_lineage_settings` — derived from the provider schema description.
-enum GlueCrawlerLineageSettings implements TerraformEnum {
-  enable('ENABLE'),
-  disable('DISABLE');
+extension type const GlueCrawlerLineageSettings._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCrawlerLineageSettings.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCrawlerLineageSettings.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCrawlerLineageSettings.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCrawlerLineageSettings(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = GlueCrawlerLineageSettings._(TfArgLiteral('ENABLE'));
+  static const disable = GlueCrawlerLineageSettings._(TfArgLiteral('DISABLE'));
+
+  static const List<GlueCrawlerLineageSettings> values = [enable, disable];
 }
 
 /// Typed helper for the `mongodb_target` block of
@@ -256,7 +273,7 @@ final class GlueCrawlerMongodbTarget {
 final class GlueCrawlerRecrawlPolicy {
   const GlueCrawlerRecrawlPolicy({this.recrawlBehavior});
 
-  final TfArg<GlueCrawlerRecrawlBehavior>? recrawlBehavior;
+  final GlueCrawlerRecrawlBehavior? recrawlBehavior;
 
   Map<String, Object?> encode() => {
     'recrawl_behavior': ?recrawlBehavior?.toTfJson(),
@@ -264,14 +281,29 @@ final class GlueCrawlerRecrawlPolicy {
 }
 
 /// `recrawl_behavior` — derived from the provider schema description.
-enum GlueCrawlerRecrawlBehavior implements TerraformEnum {
-  crawlEverything('CRAWL_EVERYTHING'),
-  crawlNewFoldersOnly('CRAWL_NEW_FOLDERS_ONLY'),
-  crawlEventMode('CRAWL_EVENT_MODE');
+extension type const GlueCrawlerRecrawlBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCrawlerRecrawlBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCrawlerRecrawlBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCrawlerRecrawlBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCrawlerRecrawlBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const crawlEverything = GlueCrawlerRecrawlBehavior._(
+    TfArgLiteral('CRAWL_EVERYTHING'),
+  );
+  static const crawlNewFoldersOnly = GlueCrawlerRecrawlBehavior._(
+    TfArgLiteral('CRAWL_NEW_FOLDERS_ONLY'),
+  );
+  static const crawlEventMode = GlueCrawlerRecrawlBehavior._(
+    TfArgLiteral('CRAWL_EVENT_MODE'),
+  );
+
+  static const List<GlueCrawlerRecrawlBehavior> values = [
+    crawlEverything,
+    crawlNewFoldersOnly,
+    crawlEventMode,
+  ];
 }
 
 /// Typed helper for the `s3_target` block of
@@ -318,9 +350,9 @@ final class GlueCrawlerSchemaChangePolicy {
     this.updateBehavior,
   });
 
-  final TfArg<GlueCrawlerDeleteBehavior>? deleteBehavior;
+  final GlueCrawlerDeleteBehavior? deleteBehavior;
 
-  final TfArg<GlueCrawlerUpdateBehavior>? updateBehavior;
+  final GlueCrawlerUpdateBehavior? updateBehavior;
 
   Map<String, Object?> encode() => {
     'delete_behavior': ?deleteBehavior?.toTfJson(),
@@ -329,24 +361,44 @@ final class GlueCrawlerSchemaChangePolicy {
 }
 
 /// `delete_behavior` — derived from the provider schema description.
-enum GlueCrawlerDeleteBehavior implements TerraformEnum {
-  log('LOG'),
-  deleteFromDatabase('DELETE_FROM_DATABASE'),
-  deprecateInDatabase('DEPRECATE_IN_DATABASE');
+extension type const GlueCrawlerDeleteBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCrawlerDeleteBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCrawlerDeleteBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCrawlerDeleteBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCrawlerDeleteBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = GlueCrawlerDeleteBehavior._(TfArgLiteral('LOG'));
+  static const deleteFromDatabase = GlueCrawlerDeleteBehavior._(
+    TfArgLiteral('DELETE_FROM_DATABASE'),
+  );
+  static const deprecateInDatabase = GlueCrawlerDeleteBehavior._(
+    TfArgLiteral('DEPRECATE_IN_DATABASE'),
+  );
+
+  static const List<GlueCrawlerDeleteBehavior> values = [
+    log,
+    deleteFromDatabase,
+    deprecateInDatabase,
+  ];
 }
 
 /// `update_behavior` — derived from the provider schema description.
-enum GlueCrawlerUpdateBehavior implements TerraformEnum {
-  log('LOG'),
-  updateInDatabase('UPDATE_IN_DATABASE');
+extension type const GlueCrawlerUpdateBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCrawlerUpdateBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCrawlerUpdateBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCrawlerUpdateBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCrawlerUpdateBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = GlueCrawlerUpdateBehavior._(TfArgLiteral('LOG'));
+  static const updateInDatabase = GlueCrawlerUpdateBehavior._(
+    TfArgLiteral('UPDATE_IN_DATABASE'),
+  );
+
+  static const List<GlueCrawlerUpdateBehavior> values = [log, updateInDatabase];
 }
 
 /// Factory wrapper for `aws_glue_crawler`.

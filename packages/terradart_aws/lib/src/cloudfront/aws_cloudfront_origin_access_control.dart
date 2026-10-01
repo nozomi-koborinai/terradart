@@ -7,36 +7,86 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudfrontOriginAccessControlSensitive = <String>{};
 
 /// Cloudfront Origin Access Control Origin enum for `origin_access_control_origin_type`.
-enum CloudfrontOriginAccessControlOriginType implements TerraformEnum {
-  s3('s3'),
-  mediastore('mediastore'),
-  mediapackagev2('mediapackagev2'),
-  lambda('lambda');
+extension type const CloudfrontOriginAccessControlOriginType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontOriginAccessControlOriginType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontOriginAccessControlOriginType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontOriginAccessControlOriginType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontOriginAccessControlOriginType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = CloudfrontOriginAccessControlOriginType._(
+    TfArgLiteral('s3'),
+  );
+  static const mediastore = CloudfrontOriginAccessControlOriginType._(
+    TfArgLiteral('mediastore'),
+  );
+  static const mediapackagev2 = CloudfrontOriginAccessControlOriginType._(
+    TfArgLiteral('mediapackagev2'),
+  );
+  static const lambda = CloudfrontOriginAccessControlOriginType._(
+    TfArgLiteral('lambda'),
+  );
+
+  static const List<CloudfrontOriginAccessControlOriginType> values = [
+    s3,
+    mediastore,
+    mediapackagev2,
+    lambda,
+  ];
 }
 
 /// Cloudfront Origin Access Control Signing enum for `signing_behavior`.
-enum CloudfrontOriginAccessControlSigningBehavior implements TerraformEnum {
-  never('never'),
-  always('always'),
-  noOverride('no-override');
+extension type const CloudfrontOriginAccessControlSigningBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontOriginAccessControlSigningBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontOriginAccessControlSigningBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontOriginAccessControlSigningBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontOriginAccessControlSigningBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = CloudfrontOriginAccessControlSigningBehavior._(
+    TfArgLiteral('never'),
+  );
+  static const always = CloudfrontOriginAccessControlSigningBehavior._(
+    TfArgLiteral('always'),
+  );
+  static const noOverride = CloudfrontOriginAccessControlSigningBehavior._(
+    TfArgLiteral('no-override'),
+  );
+
+  static const List<CloudfrontOriginAccessControlSigningBehavior> values = [
+    never,
+    always,
+    noOverride,
+  ];
 }
 
 /// Cloudfront Origin Access Control Signing enum for `signing_protocol`.
-enum CloudfrontOriginAccessControlSigningProtocol implements TerraformEnum {
-  sigv4('sigv4'),
-  sigv4a('sigv4a');
+extension type const CloudfrontOriginAccessControlSigningProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontOriginAccessControlSigningProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontOriginAccessControlSigningProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontOriginAccessControlSigningProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontOriginAccessControlSigningProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sigv4 = CloudfrontOriginAccessControlSigningProtocol._(
+    TfArgLiteral('sigv4'),
+  );
+  static const sigv4a = CloudfrontOriginAccessControlSigningProtocol._(
+    TfArgLiteral('sigv4a'),
+  );
+
+  static const List<CloudfrontOriginAccessControlSigningProtocol> values = [
+    sigv4,
+    sigv4a,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudfront_origin_access_control`.
@@ -47,12 +97,10 @@ final class AwsCloudfrontOriginAccessControl extends Resource {
     super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
-    required TfArg<CloudfrontOriginAccessControlOriginType>
+    required CloudfrontOriginAccessControlOriginType
     originAccessControlOriginType,
-    required TfArg<CloudfrontOriginAccessControlSigningBehavior>
-    signingBehavior,
-    required TfArg<CloudfrontOriginAccessControlSigningProtocol>
-    signingProtocol,
+    required CloudfrontOriginAccessControlSigningBehavior signingBehavior,
+    required CloudfrontOriginAccessControlSigningProtocol signingProtocol,
     super.lifecycle,
     super.dependsOn,
     super.provider,

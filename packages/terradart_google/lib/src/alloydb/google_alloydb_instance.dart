@@ -11,14 +11,22 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleAlloydbInstanceSensitive = <String>{};
 
 /// `instance_type` — primary, read pool, or secondary.
-enum AlloydbInstanceType implements TerraformEnum {
-  primary('PRIMARY'),
-  readPool('READ_POOL'),
-  secondary('SECONDARY');
+extension type const AlloydbInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbInstanceType.variable(String name) : this._(TfArg.variable(name));
+  AlloydbInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlloydbInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const primary = AlloydbInstanceType._(TfArgLiteral('PRIMARY'));
+  static const readPool = AlloydbInstanceType._(TfArgLiteral('READ_POOL'));
+  static const secondary = AlloydbInstanceType._(TfArgLiteral('SECONDARY'));
+
+  static const List<AlloydbInstanceType> values = [
+    primary,
+    readPool,
+    secondary,
+  ];
 }
 
 /// Typed helper for the `client_connection_config` block of
@@ -46,19 +54,30 @@ final class AlloydbInstanceClientConnectionConfig {
 final class AlloydbInstanceSslConfig {
   const AlloydbInstanceSslConfig({this.sslMode});
 
-  final TfArg<AlloydbInstanceSslMode>? sslMode;
+  final AlloydbInstanceSslMode? sslMode;
 
   Map<String, Object?> encode() => {'ssl_mode': ?sslMode?.toTfJson()};
 }
 
 /// `ssl_mode` — derived from the provider schema description.
-enum AlloydbInstanceSslMode implements TerraformEnum {
-  encryptedOnly('ENCRYPTED_ONLY'),
-  allowUnencryptedAndEncrypted('ALLOW_UNENCRYPTED_AND_ENCRYPTED');
+extension type const AlloydbInstanceSslMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbInstanceSslMode.variable(String name) : this._(TfArg.variable(name));
+  AlloydbInstanceSslMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbInstanceSslMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AlloydbInstanceSslMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const encryptedOnly = AlloydbInstanceSslMode._(
+    TfArgLiteral('ENCRYPTED_ONLY'),
+  );
+  static const allowUnencryptedAndEncrypted = AlloydbInstanceSslMode._(
+    TfArgLiteral('ALLOW_UNENCRYPTED_AND_ENCRYPTED'),
+  );
+
+  static const List<AlloydbInstanceSslMode> values = [
+    encryptedOnly,
+    allowUnencryptedAndEncrypted,
+  ];
 }
 
 /// Typed helper for the `connection_pool_config` block of
@@ -255,7 +274,7 @@ final class AlloydbInstanceReadPoolConfig {
 ///   'primary',
 ///   cluster: cluster.ref,
 ///   instanceId: TfArg.literal('primary'),
-///   instanceType: TfArg.literal(AlloydbInstanceType.primary),
+///   instanceType: AlloydbInstanceType.primary,
 ///   machineConfig: AlloydbInstanceMachineConfig(
 ///     cpuCount: TfArg.literal(2),
 ///   ),
@@ -268,7 +287,7 @@ final class GoogleAlloydbInstance extends Resource {
     super.localName, {
     required RefTo<GoogleAlloydbCluster> cluster,
     required TfArg<String> instanceId,
-    required TfArg<AlloydbInstanceType> instanceType,
+    required AlloydbInstanceType instanceType,
     AlloydbInstanceMachineConfig? machineConfig,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,

@@ -25,26 +25,60 @@ const Set<String> _googleComputeRegionUrlMapSensitive = <String>{};
 ///   on the wire; emitted as the literal token `MOVED_PERMANENTLY_DEFAULT`.
 /// - [found] -> 302, [seeOther] -> 303, [temporaryRedirect] -> 307,
 ///   [permanentRedirect] -> 308.
-enum RegionUrlMapRedirectResponseCode implements TerraformEnum {
-  found('FOUND'),
-  movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
-  permanentRedirect('PERMANENT_REDIRECT'),
-  seeOther('SEE_OTHER'),
-  temporaryRedirect('TEMPORARY_REDIRECT');
+extension type const RegionUrlMapRedirectResponseCode._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionUrlMapRedirectResponseCode.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionUrlMapRedirectResponseCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionUrlMapRedirectResponseCode.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionUrlMapRedirectResponseCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const found = RegionUrlMapRedirectResponseCode._(
+    TfArgLiteral('FOUND'),
+  );
+  static const movedPermanentlyDefault = RegionUrlMapRedirectResponseCode._(
+    TfArgLiteral('MOVED_PERMANENTLY_DEFAULT'),
+  );
+  static const permanentRedirect = RegionUrlMapRedirectResponseCode._(
+    TfArgLiteral('PERMANENT_REDIRECT'),
+  );
+  static const seeOther = RegionUrlMapRedirectResponseCode._(
+    TfArgLiteral('SEE_OTHER'),
+  );
+  static const temporaryRedirect = RegionUrlMapRedirectResponseCode._(
+    TfArgLiteral('TEMPORARY_REDIRECT'),
+  );
+
+  static const List<RegionUrlMapRedirectResponseCode> values = [
+    found,
+    movedPermanentlyDefault,
+    permanentRedirect,
+    seeOther,
+    temporaryRedirect,
+  ];
 }
 
 /// `match_rules.metadata_filters.filter_match_criteria`.
-enum RegionUrlMapMetadataFilterMatchCriteria implements TerraformEnum {
-  matchAll('MATCH_ALL'),
-  matchAny('MATCH_ANY');
+extension type const RegionUrlMapMetadataFilterMatchCriteria._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionUrlMapMetadataFilterMatchCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionUrlMapMetadataFilterMatchCriteria.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionUrlMapMetadataFilterMatchCriteria.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionUrlMapMetadataFilterMatchCriteria(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const matchAll = RegionUrlMapMetadataFilterMatchCriteria._(
+    TfArgLiteral('MATCH_ALL'),
+  );
+  static const matchAny = RegionUrlMapMetadataFilterMatchCriteria._(
+    TfArgLiteral('MATCH_ANY'),
+  );
+
+  static const List<RegionUrlMapMetadataFilterMatchCriteria> values = [
+    matchAll,
+    matchAny,
+  ];
 }
 
 // ===========================================================================
@@ -514,7 +548,7 @@ final class ComputeRegionUrlMapDefaultUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+  final RegionUrlMapRedirectResponseCode? redirectResponseCode;
 
   final TfArg<bool> stripQuery;
 
@@ -1119,7 +1153,7 @@ final class ComputeRegionUrlMapPathRuleUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+  final RegionUrlMapRedirectResponseCode? redirectResponseCode;
 
   final TfArg<bool> stripQuery;
 
@@ -1288,7 +1322,7 @@ final class ComputeRegionUrlMapMetadataFilters {
     required this.filterLabels,
   });
 
-  final TfArg<RegionUrlMapMetadataFilterMatchCriteria> filterMatchCriteria;
+  final RegionUrlMapMetadataFilterMatchCriteria filterMatchCriteria;
 
   final List<ComputeRegionUrlMapFilterLabels> filterLabels;
 
@@ -1466,7 +1500,7 @@ final class ComputeRegionUrlMapRouteRulesUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+  final RegionUrlMapRedirectResponseCode? redirectResponseCode;
 
   final TfArg<bool>? stripQuery;
 

@@ -387,9 +387,9 @@ final class DialogflowCxFlowDataStoreConnections {
 
   final TfArg<String>? dataStore;
 
-  final TfArg<DialogflowCxFlowDataStoreType>? dataStoreType;
+  final DialogflowCxFlowDataStoreType? dataStoreType;
 
-  final TfArg<DialogflowCxFlowDocumentProcessingMode>? documentProcessingMode;
+  final DialogflowCxFlowDocumentProcessingMode? documentProcessingMode;
 
   Map<String, Object?> encode() => {
     'data_store': ?dataStore?.toTfJson(),
@@ -399,24 +399,52 @@ final class DialogflowCxFlowDataStoreConnections {
 }
 
 /// `data_store_type` — derived from the provider schema description.
-enum DialogflowCxFlowDataStoreType implements TerraformEnum {
-  publicWeb('PUBLIC_WEB'),
-  unstructured('UNSTRUCTURED'),
-  structured('STRUCTURED');
+extension type const DialogflowCxFlowDataStoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxFlowDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxFlowDataStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxFlowDataStoreType.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxFlowDataStoreType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const publicWeb = DialogflowCxFlowDataStoreType._(
+    TfArgLiteral('PUBLIC_WEB'),
+  );
+  static const unstructured = DialogflowCxFlowDataStoreType._(
+    TfArgLiteral('UNSTRUCTURED'),
+  );
+  static const structured = DialogflowCxFlowDataStoreType._(
+    TfArgLiteral('STRUCTURED'),
+  );
+
+  static const List<DialogflowCxFlowDataStoreType> values = [
+    publicWeb,
+    unstructured,
+    structured,
+  ];
 }
 
 /// `document_processing_mode` — derived from the provider schema description.
-enum DialogflowCxFlowDocumentProcessingMode implements TerraformEnum {
-  documents('DOCUMENTS'),
-  chunks('CHUNKS');
+extension type const DialogflowCxFlowDocumentProcessingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxFlowDocumentProcessingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxFlowDocumentProcessingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxFlowDocumentProcessingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxFlowDocumentProcessingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const documents = DialogflowCxFlowDocumentProcessingMode._(
+    TfArgLiteral('DOCUMENTS'),
+  );
+  static const chunks = DialogflowCxFlowDocumentProcessingMode._(
+    TfArgLiteral('CHUNKS'),
+  );
+
+  static const List<DialogflowCxFlowDocumentProcessingMode> values = [
+    documents,
+    chunks,
+  ];
 }
 
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment` block of
@@ -588,9 +616,9 @@ final class DialogflowCxFlowNluSettings {
 
   final TfArg<num>? classificationThreshold;
 
-  final TfArg<DialogflowCxFlowModelTrainingMode>? modelTrainingMode;
+  final DialogflowCxFlowModelTrainingMode? modelTrainingMode;
 
-  final TfArg<DialogflowCxFlowModelType>? modelType;
+  final DialogflowCxFlowModelType? modelType;
 
   Map<String, Object?> encode() => {
     'classification_threshold': ?classificationThreshold?.toTfJson(),
@@ -600,23 +628,47 @@ final class DialogflowCxFlowNluSettings {
 }
 
 /// `model_training_mode` — derived from the provider schema description.
-enum DialogflowCxFlowModelTrainingMode implements TerraformEnum {
-  modelTrainingModeAutomatic('MODEL_TRAINING_MODE_AUTOMATIC'),
-  modelTrainingModeManual('MODEL_TRAINING_MODE_MANUAL');
+extension type const DialogflowCxFlowModelTrainingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxFlowModelTrainingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxFlowModelTrainingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxFlowModelTrainingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxFlowModelTrainingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modelTrainingModeAutomatic = DialogflowCxFlowModelTrainingMode._(
+    TfArgLiteral('MODEL_TRAINING_MODE_AUTOMATIC'),
+  );
+  static const modelTrainingModeManual = DialogflowCxFlowModelTrainingMode._(
+    TfArgLiteral('MODEL_TRAINING_MODE_MANUAL'),
+  );
+
+  static const List<DialogflowCxFlowModelTrainingMode> values = [
+    modelTrainingModeAutomatic,
+    modelTrainingModeManual,
+  ];
 }
 
 /// `model_type` — derived from the provider schema description.
-enum DialogflowCxFlowModelType implements TerraformEnum {
-  modelTypeStandard('MODEL_TYPE_STANDARD'),
-  modelTypeAdvanced('MODEL_TYPE_ADVANCED');
+extension type const DialogflowCxFlowModelType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxFlowModelType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxFlowModelType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxFlowModelType.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxFlowModelType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modelTypeStandard = DialogflowCxFlowModelType._(
+    TfArgLiteral('MODEL_TYPE_STANDARD'),
+  );
+  static const modelTypeAdvanced = DialogflowCxFlowModelType._(
+    TfArgLiteral('MODEL_TYPE_ADVANCED'),
+  );
+
+  static const List<DialogflowCxFlowModelType> values = [
+    modelTypeStandard,
+    modelTypeAdvanced,
+  ];
 }
 
 /// Typed helper for the `transition_routes` block of

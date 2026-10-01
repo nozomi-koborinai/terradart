@@ -299,9 +299,9 @@ final class GkeHubFeatureMembershipMonitoring {
 final class GkeHubFeatureMembershipMesh {
   const GkeHubFeatureMembershipMesh({this.controlPlane, this.management});
 
-  final TfArg<GkeHubFeatureMembershipControlPlane>? controlPlane;
+  final GkeHubFeatureMembershipControlPlane? controlPlane;
 
-  final TfArg<GkeHubFeatureMembershipManagement>? management;
+  final GkeHubFeatureMembershipManagement? management;
 
   Map<String, Object?> encode() => {
     'control_plane': ?controlPlane?.toTfJson(),
@@ -310,25 +310,57 @@ final class GkeHubFeatureMembershipMesh {
 }
 
 /// `control_plane` — derived from the provider schema description.
-enum GkeHubFeatureMembershipControlPlane implements TerraformEnum {
-  controlPlaneManagementUnspecified('CONTROL_PLANE_MANAGEMENT_UNSPECIFIED'),
-  automatic('AUTOMATIC'),
-  manual('MANUAL');
+extension type const GkeHubFeatureMembershipControlPlane._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipControlPlane.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipControlPlane.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipControlPlane.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeHubFeatureMembershipControlPlane(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const controlPlaneManagementUnspecified =
+      GkeHubFeatureMembershipControlPlane._(
+        TfArgLiteral('CONTROL_PLANE_MANAGEMENT_UNSPECIFIED'),
+      );
+  static const automatic = GkeHubFeatureMembershipControlPlane._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const manual = GkeHubFeatureMembershipControlPlane._(
+    TfArgLiteral('MANUAL'),
+  );
+
+  static const List<GkeHubFeatureMembershipControlPlane> values = [
+    controlPlaneManagementUnspecified,
+    automatic,
+    manual,
+  ];
 }
 
 /// `management` — derived from the provider schema description.
-enum GkeHubFeatureMembershipManagement implements TerraformEnum {
-  managementUnspecified('MANAGEMENT_UNSPECIFIED'),
-  managementAutomatic('MANAGEMENT_AUTOMATIC'),
-  managementManual('MANAGEMENT_MANUAL');
+extension type const GkeHubFeatureMembershipManagement._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipManagement.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureMembershipManagement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managementUnspecified = GkeHubFeatureMembershipManagement._(
+    TfArgLiteral('MANAGEMENT_UNSPECIFIED'),
+  );
+  static const managementAutomatic = GkeHubFeatureMembershipManagement._(
+    TfArgLiteral('MANAGEMENT_AUTOMATIC'),
+  );
+  static const managementManual = GkeHubFeatureMembershipManagement._(
+    TfArgLiteral('MANAGEMENT_MANUAL'),
+  );
+
+  static const List<GkeHubFeatureMembershipManagement> values = [
+    managementUnspecified,
+    managementAutomatic,
+    managementManual,
+  ];
 }
 
 /// Typed helper for the `policycontroller` block of
@@ -374,7 +406,7 @@ final class GkeHubFeatureMembershipPolicyControllerHubConfig {
 
   final TfArg<List<String>>? exemptableNamespaces;
 
-  final TfArg<GkeHubFeatureMembershipInstallSpec>? installSpec;
+  final GkeHubFeatureMembershipInstallSpec? installSpec;
 
   final TfArg<bool>? logDeniesEnabled;
 
@@ -404,16 +436,37 @@ final class GkeHubFeatureMembershipPolicyControllerHubConfig {
 }
 
 /// `install_spec` — derived from the provider schema description.
-enum GkeHubFeatureMembershipInstallSpec implements TerraformEnum {
-  installSpecUnspecified('INSTALL_SPEC_UNSPECIFIED'),
-  installSpecNotInstalled('INSTALL_SPEC_NOT_INSTALLED'),
-  installSpecEnabled('INSTALL_SPEC_ENABLED'),
-  installSpecSuspended('INSTALL_SPEC_SUSPENDED'),
-  installSpecDetached('INSTALL_SPEC_DETACHED');
+extension type const GkeHubFeatureMembershipInstallSpec._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipInstallSpec.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipInstallSpec.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipInstallSpec.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureMembershipInstallSpec(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const installSpecUnspecified = GkeHubFeatureMembershipInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_UNSPECIFIED'),
+  );
+  static const installSpecNotInstalled = GkeHubFeatureMembershipInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_NOT_INSTALLED'),
+  );
+  static const installSpecEnabled = GkeHubFeatureMembershipInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_ENABLED'),
+  );
+  static const installSpecSuspended = GkeHubFeatureMembershipInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_SUSPENDED'),
+  );
+  static const installSpecDetached = GkeHubFeatureMembershipInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_DETACHED'),
+  );
+
+  static const List<GkeHubFeatureMembershipInstallSpec> values = [
+    installSpecUnspecified,
+    installSpecNotInstalled,
+    installSpecEnabled,
+    installSpecSuspended,
+    installSpecDetached,
+  ];
 }
 
 /// Typed helper for the `policycontroller.policy_controller_hub_config.deployment_configs` block of
@@ -430,7 +483,7 @@ final class GkeHubFeatureMembershipDeploymentConfigs {
 
   final TfArg<String> componentName;
 
-  final TfArg<GkeHubFeatureMembershipPodAffinity>? podAffinity;
+  final GkeHubFeatureMembershipPodAffinity? podAffinity;
 
   final TfArg<num>? replicaCount;
 
@@ -449,14 +502,29 @@ final class GkeHubFeatureMembershipDeploymentConfigs {
 }
 
 /// `pod_affinity` — derived from the provider schema description.
-enum GkeHubFeatureMembershipPodAffinity implements TerraformEnum {
-  affinityUnspecified('AFFINITY_UNSPECIFIED'),
-  noAffinity('NO_AFFINITY'),
-  antiAffinity('ANTI_AFFINITY');
+extension type const GkeHubFeatureMembershipPodAffinity._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipPodAffinity.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipPodAffinity.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipPodAffinity.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureMembershipPodAffinity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const affinityUnspecified = GkeHubFeatureMembershipPodAffinity._(
+    TfArgLiteral('AFFINITY_UNSPECIFIED'),
+  );
+  static const noAffinity = GkeHubFeatureMembershipPodAffinity._(
+    TfArgLiteral('NO_AFFINITY'),
+  );
+  static const antiAffinity = GkeHubFeatureMembershipPodAffinity._(
+    TfArgLiteral('ANTI_AFFINITY'),
+  );
+
+  static const List<GkeHubFeatureMembershipPodAffinity> values = [
+    affinityUnspecified,
+    noAffinity,
+    antiAffinity,
+  ];
 }
 
 /// Typed helper for the `policycontroller.policy_controller_hub_config.deployment_configs.container_resources` block of
@@ -578,20 +646,34 @@ final class GkeHubFeatureMembershipBundles {
 final class GkeHubFeatureMembershipTemplateLibrary {
   const GkeHubFeatureMembershipTemplateLibrary({this.installation});
 
-  final TfArg<GkeHubFeatureMembershipInstallation>? installation;
+  final GkeHubFeatureMembershipInstallation? installation;
 
   Map<String, Object?> encode() => {'installation': ?installation?.toTfJson()};
 }
 
 /// `installation` — derived from the provider schema description.
-enum GkeHubFeatureMembershipInstallation implements TerraformEnum {
-  installationUnspecified('INSTALLATION_UNSPECIFIED'),
-  notInstalled('NOT_INSTALLED'),
-  all('ALL');
+extension type const GkeHubFeatureMembershipInstallation._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMembershipInstallation.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureMembershipInstallation.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMembershipInstallation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeHubFeatureMembershipInstallation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const installationUnspecified = GkeHubFeatureMembershipInstallation._(
+    TfArgLiteral('INSTALLATION_UNSPECIFIED'),
+  );
+  static const notInstalled = GkeHubFeatureMembershipInstallation._(
+    TfArgLiteral('NOT_INSTALLED'),
+  );
+  static const all = GkeHubFeatureMembershipInstallation._(TfArgLiteral('ALL'));
+
+  static const List<GkeHubFeatureMembershipInstallation> values = [
+    installationUnspecified,
+    notInstalled,
+    all,
+  ];
 }
 
 /// Factory wrapper for `google_gke_hub_feature_membership`.

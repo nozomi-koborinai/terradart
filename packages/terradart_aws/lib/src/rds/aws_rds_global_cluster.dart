@@ -7,26 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRdsGlobalClusterSensitive = <String>{};
 
 /// Rds Global Cluster enum for `engine`.
-enum RdsGlobalClusterEngine implements TerraformEnum {
-  aurora('aurora'),
-  auroraMysql('aurora-mysql'),
-  auroraPostgresql('aurora-postgresql');
+extension type const RdsGlobalClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsGlobalClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  RdsGlobalClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsGlobalClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const RdsGlobalClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aurora = RdsGlobalClusterEngine._(TfArgLiteral('aurora'));
+  static const auroraMysql = RdsGlobalClusterEngine._(
+    TfArgLiteral('aurora-mysql'),
+  );
+  static const auroraPostgresql = RdsGlobalClusterEngine._(
+    TfArgLiteral('aurora-postgresql'),
+  );
+
+  static const List<RdsGlobalClusterEngine> values = [
+    aurora,
+    auroraMysql,
+    auroraPostgresql,
+  ];
 }
 
 /// Rds Global Cluster Engine Lifecycle enum for `engine_lifecycle_support`.
-enum RdsGlobalClusterEngineLifecycleSupport implements TerraformEnum {
-  openSourceRdsExtendedSupport('open-source-rds-extended-support'),
-  openSourceRdsExtendedSupportDisabled(
-    'open-source-rds-extended-support-disabled',
-  );
+extension type const RdsGlobalClusterEngineLifecycleSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsGlobalClusterEngineLifecycleSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  RdsGlobalClusterEngineLifecycleSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsGlobalClusterEngineLifecycleSupport.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RdsGlobalClusterEngineLifecycleSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openSourceRdsExtendedSupport =
+      RdsGlobalClusterEngineLifecycleSupport._(
+        TfArgLiteral('open-source-rds-extended-support'),
+      );
+  static const openSourceRdsExtendedSupportDisabled =
+      RdsGlobalClusterEngineLifecycleSupport._(
+        TfArgLiteral('open-source-rds-extended-support-disabled'),
+      );
+
+  static const List<RdsGlobalClusterEngineLifecycleSupport> values = [
+    openSourceRdsExtendedSupport,
+    openSourceRdsExtendedSupportDisabled,
+  ];
 }
 
 /// Factory wrapper for `aws_rds_global_cluster`.
@@ -37,8 +62,8 @@ final class AwsRdsGlobalCluster extends Resource {
     super.localName, {
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
-    TfArg<RdsGlobalClusterEngine>? engine,
-    TfArg<RdsGlobalClusterEngineLifecycleSupport>? engineLifecycleSupport,
+    RdsGlobalClusterEngine? engine,
+    RdsGlobalClusterEngineLifecycleSupport? engineLifecycleSupport,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceDestroy,
     required TfArg<String> globalClusterIdentifier,

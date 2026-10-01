@@ -38,7 +38,7 @@ final class BillingViewDataFilterExpression {
 final class BillingViewDimensions {
   const BillingViewDimensions({required this.key, required this.values});
 
-  final TfArg<BillingViewKey> key;
+  final BillingViewKey key;
 
   final TfArg<List<String>> values;
 
@@ -49,12 +49,16 @@ final class BillingViewDimensions {
 }
 
 /// `key` — derived from the provider schema description.
-enum BillingViewKey implements TerraformEnum {
-  linkedAccount('LINKED_ACCOUNT');
+extension type const BillingViewKey._(TfArg<String> _)
+    implements TfArg<String> {
+  BillingViewKey.variable(String name) : this._(TfArg.variable(name));
+  BillingViewKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const BillingViewKey.arg(TfArg<String> arg) : this._(arg);
 
-  const BillingViewKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linkedAccount = BillingViewKey._(TfArgLiteral('LINKED_ACCOUNT'));
+
+  static const List<BillingViewKey> values = [linkedAccount];
 }
 
 /// Typed helper for the `data_filter_expression.tags` block of

@@ -8,15 +8,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53ResolverRuleSensitive = <String>{};
 
 /// Route53 Resolver Rule enum for `rule_type`.
-enum Route53ResolverRuleType implements TerraformEnum {
-  forward('FORWARD'),
-  system('SYSTEM'),
-  recursive('RECURSIVE'),
-  delegate('DELEGATE');
+extension type const Route53ResolverRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverRuleType.variable(String name) : this._(TfArg.variable(name));
+  Route53ResolverRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ResolverRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forward = Route53ResolverRuleType._(TfArgLiteral('FORWARD'));
+  static const system = Route53ResolverRuleType._(TfArgLiteral('SYSTEM'));
+  static const recursive = Route53ResolverRuleType._(TfArgLiteral('RECURSIVE'));
+  static const delegate = Route53ResolverRuleType._(TfArgLiteral('DELEGATE'));
+
+  static const List<Route53ResolverRuleType> values = [
+    forward,
+    system,
+    recursive,
+    delegate,
+  ];
 }
 
 /// Typed helper for the `target_ip` block of
@@ -36,7 +45,7 @@ final class Route53ResolverRuleTargetIp {
 
   final TfArg<num>? port;
 
-  final TfArg<Route53ResolverRuleProtocol>? protocol;
+  final Route53ResolverRuleProtocol? protocol;
 
   Map<String, Object?> encode() => {
     'ip': ?ip?.toTfJson(),
@@ -47,14 +56,21 @@ final class Route53ResolverRuleTargetIp {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum Route53ResolverRuleProtocol implements TerraformEnum {
-  doh('DoH'),
-  do53('Do53'),
-  dohFips('DoH-FIPS');
+extension type const Route53ResolverRuleProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverRuleProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverRuleProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverRuleProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ResolverRuleProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const doh = Route53ResolverRuleProtocol._(TfArgLiteral('DoH'));
+  static const do53 = Route53ResolverRuleProtocol._(TfArgLiteral('Do53'));
+  static const dohFips = Route53ResolverRuleProtocol._(
+    TfArgLiteral('DoH-FIPS'),
+  );
+
+  static const List<Route53ResolverRuleProtocol> values = [doh, do53, dohFips];
 }
 
 /// Factory wrapper for `aws_route53_resolver_rule`.
@@ -67,7 +83,7 @@ final class AwsRoute53ResolverRule extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? resolverEndpointId,
-    required TfArg<Route53ResolverRuleType> ruleType,
+    required Route53ResolverRuleType ruleType,
     TfArg<Map<String, String>>? tags,
     List<Route53ResolverRuleTargetIp>? targetIp,
     super.lifecycle,

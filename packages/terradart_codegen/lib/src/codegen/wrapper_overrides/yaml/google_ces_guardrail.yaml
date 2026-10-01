@@ -32,13 +32,8 @@ curatedDoc: |-
   ///   modelSafety: CesGuardrailModelSafety(
   ///     safetySettings: [
   ///       .new(
-  ///         category: TfArg.literal(
-  ///           CesGuardrailCategory
-  ///               .harmCategoryHateSpeech,
-  ///         ),
-  ///         threshold: TfArg.literal(
-  ///           CesGuardrailThreshold.blockNone,
-  ///         ),
+  ///         category: CesGuardrailCategory.harmCategoryHateSpeech,
+  ///         threshold: CesGuardrailThreshold.blockNone,
   ///       ),
   ///     ],
   ///   ),

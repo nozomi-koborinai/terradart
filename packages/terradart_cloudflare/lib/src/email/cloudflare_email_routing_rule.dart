@@ -10,13 +10,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareEmailRoutingRuleSensitive = <String>{};
 
 /// Email Routing Rule enum for `source`.
-enum EmailRoutingRuleSource implements TerraformEnum {
-  api('api'),
-  wrangler('wrangler');
+extension type const EmailRoutingRuleSource._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingRuleSource.variable(String name) : this._(TfArg.variable(name));
+  EmailRoutingRuleSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingRuleSource.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingRuleSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const api = EmailRoutingRuleSource._(TfArgLiteral('api'));
+  static const wrangler = EmailRoutingRuleSource._(TfArgLiteral('wrangler'));
+
+  static const List<EmailRoutingRuleSource> values = [api, wrangler];
 }
 
 /// Typed helper for the `actions` block of
@@ -25,7 +29,7 @@ enum EmailRoutingRuleSource implements TerraformEnum {
 final class EmailRoutingRuleActions {
   const EmailRoutingRuleActions({required this.type, this.value});
 
-  final TfArg<EmailRoutingRuleActionsType> type;
+  final EmailRoutingRuleActionsType type;
 
   final TfArg<List<String>>? value;
 
@@ -36,14 +40,23 @@ final class EmailRoutingRuleActions {
 }
 
 /// `type` — derived from the provider schema description.
-enum EmailRoutingRuleActionsType implements TerraformEnum {
-  drop('drop'),
-  forward('forward'),
-  worker('worker');
+extension type const EmailRoutingRuleActionsType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingRuleActionsType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailRoutingRuleActionsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingRuleActionsType.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingRuleActionsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const drop = EmailRoutingRuleActionsType._(TfArgLiteral('drop'));
+  static const forward = EmailRoutingRuleActionsType._(TfArgLiteral('forward'));
+  static const worker = EmailRoutingRuleActionsType._(TfArgLiteral('worker'));
+
+  static const List<EmailRoutingRuleActionsType> values = [
+    drop,
+    forward,
+    worker,
+  ];
 }
 
 /// Typed helper for the `matchers` block of
@@ -52,9 +65,9 @@ enum EmailRoutingRuleActionsType implements TerraformEnum {
 final class EmailRoutingRuleMatchers {
   const EmailRoutingRuleMatchers({this.field, required this.type, this.value});
 
-  final TfArg<EmailRoutingRuleField>? field;
+  final EmailRoutingRuleField? field;
 
-  final TfArg<EmailRoutingRuleMatchersType> type;
+  final EmailRoutingRuleMatchersType type;
 
   final TfArg<String>? value;
 
@@ -66,22 +79,33 @@ final class EmailRoutingRuleMatchers {
 }
 
 /// `field` — derived from the provider schema description.
-enum EmailRoutingRuleField implements TerraformEnum {
-  to('to');
+extension type const EmailRoutingRuleField._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingRuleField.variable(String name) : this._(TfArg.variable(name));
+  EmailRoutingRuleField.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingRuleField.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingRuleField(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const to = EmailRoutingRuleField._(TfArgLiteral('to'));
+
+  static const List<EmailRoutingRuleField> values = [to];
 }
 
 /// `type` — derived from the provider schema description.
-enum EmailRoutingRuleMatchersType implements TerraformEnum {
-  all('all'),
-  literal('literal');
+extension type const EmailRoutingRuleMatchersType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingRuleMatchersType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailRoutingRuleMatchersType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingRuleMatchersType.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingRuleMatchersType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = EmailRoutingRuleMatchersType._(TfArgLiteral('all'));
+  static const literal = EmailRoutingRuleMatchersType._(
+    TfArgLiteral('literal'),
+  );
+
+  static const List<EmailRoutingRuleMatchersType> values = [all, literal];
 }
 
 /// Factory wrapper for `cloudflare_email_routing_rule`.
@@ -98,7 +122,7 @@ final class CloudflareEmailRoutingRule extends Resource {
     TfArg<String>? name,
     TfArg<String>? ownerWorkerTag,
     TfArg<num>? priority,
-    TfArg<EmailRoutingRuleSource>? source,
+    EmailRoutingRuleSource? source,
     required RefTo<CloudflareZone> zoneId,
     required List<EmailRoutingRuleActions> actions,
     required List<EmailRoutingRuleMatchers> matchers,

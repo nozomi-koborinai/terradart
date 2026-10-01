@@ -136,7 +136,7 @@ final class MailmanagerRuleSetArchive {
     required this.targetArchive,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final TfArg<String> targetArchive;
 
@@ -147,13 +147,26 @@ final class MailmanagerRuleSetArchive {
 }
 
 /// `action_failure_policy` — derived from the provider schema description.
-enum MailmanagerRuleSetActionFailurePolicy implements TerraformEnum {
-  continueCase('CONTINUE'),
-  drop('DROP');
+extension type const MailmanagerRuleSetActionFailurePolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetActionFailurePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetActionFailurePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetActionFailurePolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetActionFailurePolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continueCase = MailmanagerRuleSetActionFailurePolicy._(
+    TfArgLiteral('CONTINUE'),
+  );
+  static const drop = MailmanagerRuleSetActionFailurePolicy._(
+    TfArgLiteral('DROP'),
+  );
+
+  static const List<MailmanagerRuleSetActionFailurePolicy> values = [
+    continueCase,
+    drop,
+  ];
 }
 
 /// Typed helper for the `rule.action.bounce` block of
@@ -170,7 +183,7 @@ final class MailmanagerRuleSetBounce {
     required this.statusCode,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final TfArg<String> diagnosticMessage;
 
@@ -205,7 +218,7 @@ final class MailmanagerRuleSetDeliverToMailbox {
     required this.roleArn,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final TfArg<String> mailboxArn;
 
@@ -229,7 +242,7 @@ final class MailmanagerRuleSetDeliverToQBusiness {
     required this.roleArn,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final TfArg<String> applicationId;
 
@@ -266,11 +279,11 @@ final class MailmanagerRuleSetInvokeLambda {
     required this.roleArn,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final RefTo<AwsLambdaFunction> functionArn;
 
-  final TfArg<MailmanagerRuleSetInvocationType> invocationType;
+  final MailmanagerRuleSetInvocationType invocationType;
 
   final TfArg<num>? retryTimeMinutes;
 
@@ -286,13 +299,25 @@ final class MailmanagerRuleSetInvokeLambda {
 }
 
 /// `invocation_type` — derived from the provider schema description.
-enum MailmanagerRuleSetInvocationType implements TerraformEnum {
-  event('EVENT'),
-  requestResponse('REQUEST_RESPONSE');
+extension type const MailmanagerRuleSetInvocationType._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetInvocationType.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetInvocationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetInvocationType.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerRuleSetInvocationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const event = MailmanagerRuleSetInvocationType._(
+    TfArgLiteral('EVENT'),
+  );
+  static const requestResponse = MailmanagerRuleSetInvocationType._(
+    TfArgLiteral('REQUEST_RESPONSE'),
+  );
+
+  static const List<MailmanagerRuleSetInvocationType> values = [
+    event,
+    requestResponse,
+  ];
 }
 
 /// Typed helper for the `rule.action.publish_to_sns` block of
@@ -307,11 +332,11 @@ final class MailmanagerRuleSetPublishToSns {
     required this.topicArn,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
-  final TfArg<MailmanagerRuleSetEncoding>? encoding;
+  final MailmanagerRuleSetEncoding? encoding;
 
-  final TfArg<MailmanagerRuleSetPayloadType>? payloadType;
+  final MailmanagerRuleSetPayloadType? payloadType;
 
   final RefTo<AwsIamRole> roleArn;
 
@@ -327,23 +352,37 @@ final class MailmanagerRuleSetPublishToSns {
 }
 
 /// `encoding` — derived from the provider schema description.
-enum MailmanagerRuleSetEncoding implements TerraformEnum {
-  utf8('UTF-8'),
-  base64('BASE64');
+extension type const MailmanagerRuleSetEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetEncoding.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerRuleSetEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const utf8 = MailmanagerRuleSetEncoding._(TfArgLiteral('UTF-8'));
+  static const base64 = MailmanagerRuleSetEncoding._(TfArgLiteral('BASE64'));
+
+  static const List<MailmanagerRuleSetEncoding> values = [utf8, base64];
 }
 
 /// `payload_type` — derived from the provider schema description.
-enum MailmanagerRuleSetPayloadType implements TerraformEnum {
-  headers('HEADERS'),
-  content('CONTENT');
+extension type const MailmanagerRuleSetPayloadType._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetPayloadType.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetPayloadType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetPayloadType.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerRuleSetPayloadType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const headers = MailmanagerRuleSetPayloadType._(
+    TfArgLiteral('HEADERS'),
+  );
+  static const content = MailmanagerRuleSetPayloadType._(
+    TfArgLiteral('CONTENT'),
+  );
+
+  static const List<MailmanagerRuleSetPayloadType> values = [headers, content];
 }
 
 /// Typed helper for the `rule.action.relay` block of
@@ -356,9 +395,9 @@ final class MailmanagerRuleSetRelay {
     required this.relay,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
-  final TfArg<MailmanagerRuleSetMailFrom>? mailFrom;
+  final MailmanagerRuleSetMailFrom? mailFrom;
 
   final TfArg<String> relay;
 
@@ -370,13 +409,20 @@ final class MailmanagerRuleSetRelay {
 }
 
 /// `mail_from` — derived from the provider schema description.
-enum MailmanagerRuleSetMailFrom implements TerraformEnum {
-  replace('REPLACE'),
-  preserve('PRESERVE');
+extension type const MailmanagerRuleSetMailFrom._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetMailFrom.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetMailFrom.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetMailFrom.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerRuleSetMailFrom(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const replace = MailmanagerRuleSetMailFrom._(TfArgLiteral('REPLACE'));
+  static const preserve = MailmanagerRuleSetMailFrom._(
+    TfArgLiteral('PRESERVE'),
+  );
+
+  static const List<MailmanagerRuleSetMailFrom> values = [replace, preserve];
 }
 
 /// Typed helper for the `rule.action.replace_recipient` block of
@@ -399,7 +445,7 @@ final class MailmanagerRuleSetSend {
     required this.roleArn,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final RefTo<AwsIamRole> roleArn;
 
@@ -421,7 +467,7 @@ final class MailmanagerRuleSetWriteToS3 {
     this.s3SseKmsKeyId,
   });
 
-  final TfArg<MailmanagerRuleSetActionFailurePolicy>? actionFailurePolicy;
+  final MailmanagerRuleSetActionFailurePolicy? actionFailurePolicy;
 
   final RefTo<AwsIamRole> roleArn;
 
@@ -491,7 +537,7 @@ final class MailmanagerRuleSetBooleanExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerRuleSetBooleanExpressionOperator> operator;
+  final MailmanagerRuleSetBooleanExpressionOperator operator;
 
   final List<MailmanagerRuleSetBooleanExpressionEvaluate>? evaluate;
 
@@ -502,13 +548,27 @@ final class MailmanagerRuleSetBooleanExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerRuleSetBooleanExpressionOperator implements TerraformEnum {
-  isTrue('IS_TRUE'),
-  isFalse('IS_FALSE');
+extension type const MailmanagerRuleSetBooleanExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetBooleanExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetBooleanExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetBooleanExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetBooleanExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const isTrue = MailmanagerRuleSetBooleanExpressionOperator._(
+    TfArgLiteral('IS_TRUE'),
+  );
+  static const isFalse = MailmanagerRuleSetBooleanExpressionOperator._(
+    TfArgLiteral('IS_FALSE'),
+  );
+
+  static const List<MailmanagerRuleSetBooleanExpressionOperator> values = [
+    isTrue,
+    isFalse,
+  ];
 }
 
 /// Exactly one of `analysis`, `attribute`, `is_in_address_list` on the `rule.condition.boolean_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
@@ -525,7 +585,7 @@ sealed class MailmanagerRuleSetBooleanExpressionEvaluate {
 
   /// Sets `attribute`.
   const factory MailmanagerRuleSetBooleanExpressionEvaluate.attribute(
-    TfArg<MailmanagerRuleSetBooleanExpressionAttribute> attribute,
+    MailmanagerRuleSetBooleanExpressionAttribute attribute,
   ) = MailmanagerRuleSetBooleanExpressionEvaluateAttribute;
 
   /// Sets `is_in_address_list`.
@@ -560,7 +620,7 @@ final class MailmanagerRuleSetBooleanExpressionEvaluateAttribute
     extends MailmanagerRuleSetBooleanExpressionEvaluate {
   const MailmanagerRuleSetBooleanExpressionEvaluateAttribute(this.attribute);
 
-  final TfArg<MailmanagerRuleSetBooleanExpressionAttribute> attribute;
+  final MailmanagerRuleSetBooleanExpressionAttribute attribute;
 
   @override
   String get blockKey => 'attribute';
@@ -588,14 +648,32 @@ final class MailmanagerRuleSetBooleanExpressionEvaluateIsInAddressList
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetBooleanExpressionAttribute implements TerraformEnum {
-  readReceiptRequested('READ_RECEIPT_REQUESTED'),
-  tls('TLS'),
-  tlsWrapped('TLS_WRAPPED');
+extension type const MailmanagerRuleSetBooleanExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetBooleanExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetBooleanExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetBooleanExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetBooleanExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readReceiptRequested =
+      MailmanagerRuleSetBooleanExpressionAttribute._(
+        TfArgLiteral('READ_RECEIPT_REQUESTED'),
+      );
+  static const tls = MailmanagerRuleSetBooleanExpressionAttribute._(
+    TfArgLiteral('TLS'),
+  );
+  static const tlsWrapped = MailmanagerRuleSetBooleanExpressionAttribute._(
+    TfArgLiteral('TLS_WRAPPED'),
+  );
+
+  static const List<MailmanagerRuleSetBooleanExpressionAttribute> values = [
+    readReceiptRequested,
+    tls,
+    tlsWrapped,
+  ];
 }
 
 /// Typed helper for the `rule.condition.boolean_expression.evaluate.analysis` block of
@@ -630,7 +708,7 @@ final class MailmanagerRuleSetIsInAddressList {
 
   final TfArg<List<String>> addressLists;
 
-  final TfArg<MailmanagerRuleSetIsInAddressListAttribute> attribute;
+  final MailmanagerRuleSetIsInAddressListAttribute attribute;
 
   Map<String, Object?> encode() => {
     'address_lists': addressLists.toTfJson(),
@@ -639,17 +717,43 @@ final class MailmanagerRuleSetIsInAddressList {
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetIsInAddressListAttribute implements TerraformEnum {
-  recipient('RECIPIENT'),
-  mailFrom('MAIL_FROM'),
-  sender('SENDER'),
-  from('FROM'),
-  to('TO'),
-  cc('CC');
+extension type const MailmanagerRuleSetIsInAddressListAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetIsInAddressListAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetIsInAddressListAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetIsInAddressListAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetIsInAddressListAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const recipient = MailmanagerRuleSetIsInAddressListAttribute._(
+    TfArgLiteral('RECIPIENT'),
+  );
+  static const mailFrom = MailmanagerRuleSetIsInAddressListAttribute._(
+    TfArgLiteral('MAIL_FROM'),
+  );
+  static const sender = MailmanagerRuleSetIsInAddressListAttribute._(
+    TfArgLiteral('SENDER'),
+  );
+  static const from = MailmanagerRuleSetIsInAddressListAttribute._(
+    TfArgLiteral('FROM'),
+  );
+  static const to = MailmanagerRuleSetIsInAddressListAttribute._(
+    TfArgLiteral('TO'),
+  );
+  static const cc = MailmanagerRuleSetIsInAddressListAttribute._(
+    TfArgLiteral('CC'),
+  );
+
+  static const List<MailmanagerRuleSetIsInAddressListAttribute> values = [
+    recipient,
+    mailFrom,
+    sender,
+    from,
+    to,
+    cc,
+  ];
 }
 
 /// Typed helper for the `rule.condition.dmarc_expression` block of
@@ -662,9 +766,9 @@ final class MailmanagerRuleSetDmarcExpression {
     required this.values,
   });
 
-  final TfArg<MailmanagerRuleSetDmarcExpressionOperator> operator;
+  final MailmanagerRuleSetDmarcExpressionOperator operator;
 
-  final List<TfArg<MailmanagerRuleSetDmarcExpressionValues>> values;
+  final List<MailmanagerRuleSetDmarcExpressionValues> values;
 
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
@@ -673,24 +777,54 @@ final class MailmanagerRuleSetDmarcExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerRuleSetDmarcExpressionOperator implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS');
+extension type const MailmanagerRuleSetDmarcExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetDmarcExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetDmarcExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetDmarcExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetDmarcExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = MailmanagerRuleSetDmarcExpressionOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const notEquals = MailmanagerRuleSetDmarcExpressionOperator._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+
+  static const List<MailmanagerRuleSetDmarcExpressionOperator> values = [
+    equals,
+    notEquals,
+  ];
 }
 
 /// `values` — derived from the provider schema description.
-enum MailmanagerRuleSetDmarcExpressionValues implements TerraformEnum {
-  none('NONE'),
-  quarantine('QUARANTINE'),
-  reject('REJECT');
+extension type const MailmanagerRuleSetDmarcExpressionValues._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetDmarcExpressionValues.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetDmarcExpressionValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetDmarcExpressionValues.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetDmarcExpressionValues(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = MailmanagerRuleSetDmarcExpressionValues._(
+    TfArgLiteral('NONE'),
+  );
+  static const quarantine = MailmanagerRuleSetDmarcExpressionValues._(
+    TfArgLiteral('QUARANTINE'),
+  );
+  static const reject = MailmanagerRuleSetDmarcExpressionValues._(
+    TfArgLiteral('REJECT'),
+  );
+
+  static const List<MailmanagerRuleSetDmarcExpressionValues> values = [
+    none,
+    quarantine,
+    reject,
+  ];
 }
 
 /// Typed helper for the `rule.condition.ip_expression` block of
@@ -704,7 +838,7 @@ final class MailmanagerRuleSetIpExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerRuleSetIpExpressionOperator> operator;
+  final MailmanagerRuleSetIpExpressionOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -718,13 +852,26 @@ final class MailmanagerRuleSetIpExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerRuleSetIpExpressionOperator implements TerraformEnum {
-  cidrMatches('CIDR_MATCHES'),
-  notCidrMatches('NOT_CIDR_MATCHES');
+extension type const MailmanagerRuleSetIpExpressionOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetIpExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetIpExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetIpExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetIpExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cidrMatches = MailmanagerRuleSetIpExpressionOperator._(
+    TfArgLiteral('CIDR_MATCHES'),
+  );
+  static const notCidrMatches = MailmanagerRuleSetIpExpressionOperator._(
+    TfArgLiteral('NOT_CIDR_MATCHES'),
+  );
+
+  static const List<MailmanagerRuleSetIpExpressionOperator> values = [
+    cidrMatches,
+    notCidrMatches,
+  ];
 }
 
 /// Typed helper for the `rule.condition.ip_expression.evaluate` block of
@@ -734,18 +881,28 @@ enum MailmanagerRuleSetIpExpressionOperator implements TerraformEnum {
 final class MailmanagerRuleSetIpExpressionEvaluate {
   const MailmanagerRuleSetIpExpressionEvaluate({required this.attribute});
 
-  final TfArg<MailmanagerRuleSetIpExpressionAttribute> attribute;
+  final MailmanagerRuleSetIpExpressionAttribute attribute;
 
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetIpExpressionAttribute implements TerraformEnum {
-  sourceIp('SOURCE_IP');
+extension type const MailmanagerRuleSetIpExpressionAttribute._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerRuleSetIpExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetIpExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetIpExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetIpExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sourceIp = MailmanagerRuleSetIpExpressionAttribute._(
+    TfArgLiteral('SOURCE_IP'),
+  );
+
+  static const List<MailmanagerRuleSetIpExpressionAttribute> values = [
+    sourceIp,
+  ];
 }
 
 /// Typed helper for the `rule.condition.number_expression` block of
@@ -759,7 +916,7 @@ final class MailmanagerRuleSetNumberExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerRuleSetNumberExpressionOperator> operator;
+  final MailmanagerRuleSetNumberExpressionOperator operator;
 
   final TfArg<num> value;
 
@@ -773,17 +930,44 @@ final class MailmanagerRuleSetNumberExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerRuleSetNumberExpressionOperator implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  lessThanOrEqual('LESS_THAN_OR_EQUAL'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+extension type const MailmanagerRuleSetNumberExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetNumberExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetNumberExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetNumberExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetNumberExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = MailmanagerRuleSetNumberExpressionOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const notEquals = MailmanagerRuleSetNumberExpressionOperator._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+  static const lessThan = MailmanagerRuleSetNumberExpressionOperator._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = MailmanagerRuleSetNumberExpressionOperator._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const lessThanOrEqual = MailmanagerRuleSetNumberExpressionOperator._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL'),
+  );
+  static const greaterThanOrEqual =
+      MailmanagerRuleSetNumberExpressionOperator._(
+        TfArgLiteral('GREATER_THAN_OR_EQUAL'),
+      );
+
+  static const List<MailmanagerRuleSetNumberExpressionOperator> values = [
+    equals,
+    notEquals,
+    lessThan,
+    greaterThan,
+    lessThanOrEqual,
+    greaterThanOrEqual,
+  ];
 }
 
 /// Typed helper for the `rule.condition.number_expression.evaluate` block of
@@ -793,18 +977,29 @@ enum MailmanagerRuleSetNumberExpressionOperator implements TerraformEnum {
 final class MailmanagerRuleSetNumberExpressionEvaluate {
   const MailmanagerRuleSetNumberExpressionEvaluate({required this.attribute});
 
-  final TfArg<MailmanagerRuleSetNumberExpressionAttribute> attribute;
+  final MailmanagerRuleSetNumberExpressionAttribute attribute;
 
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetNumberExpressionAttribute implements TerraformEnum {
-  messageSize('MESSAGE_SIZE');
+extension type const MailmanagerRuleSetNumberExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetNumberExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetNumberExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetNumberExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetNumberExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const messageSize = MailmanagerRuleSetNumberExpressionAttribute._(
+    TfArgLiteral('MESSAGE_SIZE'),
+  );
+
+  static const List<MailmanagerRuleSetNumberExpressionAttribute> values = [
+    messageSize,
+  ];
 }
 
 /// Typed helper for the `rule.condition.string_expression` block of
@@ -818,7 +1013,7 @@ final class MailmanagerRuleSetStringExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerRuleSetStringExpressionOperator> operator;
+  final MailmanagerRuleSetStringExpressionOperator operator;
 
   final TfArg<List<String>> values;
 
@@ -832,16 +1027,39 @@ final class MailmanagerRuleSetStringExpression {
 }
 
 /// `operator` — derived from the provider schema description.
-enum MailmanagerRuleSetStringExpressionOperator implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS');
+extension type const MailmanagerRuleSetStringExpressionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetStringExpressionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetStringExpressionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetStringExpressionOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetStringExpressionOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = MailmanagerRuleSetStringExpressionOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const notEquals = MailmanagerRuleSetStringExpressionOperator._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+  static const startsWith = MailmanagerRuleSetStringExpressionOperator._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+  static const endsWith = MailmanagerRuleSetStringExpressionOperator._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const contains = MailmanagerRuleSetStringExpressionOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+
+  static const List<MailmanagerRuleSetStringExpressionOperator> values = [
+    equals,
+    notEquals,
+    startsWith,
+    endsWith,
+    contains,
+  ];
 }
 
 /// Exactly one of `analysis`, `attribute`, `client_certificate_attribute`, `mime_header_attribute` on the `rule.condition.string_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
@@ -858,13 +1076,12 @@ sealed class MailmanagerRuleSetStringExpressionEvaluate {
 
   /// Sets `attribute`.
   const factory MailmanagerRuleSetStringExpressionEvaluate.attribute(
-    TfArg<MailmanagerRuleSetStringExpressionAttribute> attribute,
+    MailmanagerRuleSetStringExpressionAttribute attribute,
   ) = MailmanagerRuleSetStringExpressionEvaluateAttribute;
 
   /// Sets `client_certificate_attribute`.
   const factory MailmanagerRuleSetStringExpressionEvaluate.clientCertificateAttribute(
-    TfArg<MailmanagerRuleSetClientCertificateAttribute>
-    clientCertificateAttribute,
+    MailmanagerRuleSetClientCertificateAttribute clientCertificateAttribute,
   ) = MailmanagerRuleSetStringExpressionEvaluateClientCertificateAttribute;
 
   /// Sets `mime_header_attribute`.
@@ -899,7 +1116,7 @@ final class MailmanagerRuleSetStringExpressionEvaluateAttribute
     extends MailmanagerRuleSetStringExpressionEvaluate {
   const MailmanagerRuleSetStringExpressionEvaluateAttribute(this.attribute);
 
-  final TfArg<MailmanagerRuleSetStringExpressionAttribute> attribute;
+  final MailmanagerRuleSetStringExpressionAttribute attribute;
 
   @override
   String get blockKey => 'attribute';
@@ -915,8 +1132,7 @@ final class MailmanagerRuleSetStringExpressionEvaluateClientCertificateAttribute
     this.clientCertificateAttribute,
   );
 
-  final TfArg<MailmanagerRuleSetClientCertificateAttribute>
-  clientCertificateAttribute;
+  final MailmanagerRuleSetClientCertificateAttribute clientCertificateAttribute;
 
   @override
   String get blockKey => 'client_certificate_attribute';
@@ -946,35 +1162,101 @@ final class MailmanagerRuleSetStringExpressionEvaluateMimeHeaderAttribute
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetStringExpressionAttribute implements TerraformEnum {
-  mailFrom('MAIL_FROM'),
-  helo('HELO'),
-  recipient('RECIPIENT'),
-  sender('SENDER'),
-  from('FROM'),
-  subject('SUBJECT'),
-  to('TO'),
-  cc('CC');
+extension type const MailmanagerRuleSetStringExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetStringExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetStringExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetStringExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetStringExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mailFrom = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('MAIL_FROM'),
+  );
+  static const helo = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('HELO'),
+  );
+  static const recipient = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('RECIPIENT'),
+  );
+  static const sender = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('SENDER'),
+  );
+  static const from = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('FROM'),
+  );
+  static const subject = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('SUBJECT'),
+  );
+  static const to = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('TO'),
+  );
+  static const cc = MailmanagerRuleSetStringExpressionAttribute._(
+    TfArgLiteral('CC'),
+  );
+
+  static const List<MailmanagerRuleSetStringExpressionAttribute> values = [
+    mailFrom,
+    helo,
+    recipient,
+    sender,
+    from,
+    subject,
+    to,
+    cc,
+  ];
 }
 
 /// `client_certificate_attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetClientCertificateAttribute implements TerraformEnum {
-  cn('CN'),
-  sanRfc822Name('SAN_RFC822_NAME'),
-  sanDnsName('SAN_DNS_NAME'),
-  sanDirectoryName('SAN_DIRECTORY_NAME'),
-  sanUniformResourceIdentifier('SAN_UNIFORM_RESOURCE_IDENTIFIER'),
-  sanIpAddress('SAN_IP_ADDRESS'),
-  sanRegisteredId('SAN_REGISTERED_ID'),
-  serialNumber('SERIAL_NUMBER');
+extension type const MailmanagerRuleSetClientCertificateAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetClientCertificateAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetClientCertificateAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetClientCertificateAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetClientCertificateAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cn = MailmanagerRuleSetClientCertificateAttribute._(
+    TfArgLiteral('CN'),
+  );
+  static const sanRfc822Name = MailmanagerRuleSetClientCertificateAttribute._(
+    TfArgLiteral('SAN_RFC822_NAME'),
+  );
+  static const sanDnsName = MailmanagerRuleSetClientCertificateAttribute._(
+    TfArgLiteral('SAN_DNS_NAME'),
+  );
+  static const sanDirectoryName =
+      MailmanagerRuleSetClientCertificateAttribute._(
+        TfArgLiteral('SAN_DIRECTORY_NAME'),
+      );
+  static const sanUniformResourceIdentifier =
+      MailmanagerRuleSetClientCertificateAttribute._(
+        TfArgLiteral('SAN_UNIFORM_RESOURCE_IDENTIFIER'),
+      );
+  static const sanIpAddress = MailmanagerRuleSetClientCertificateAttribute._(
+    TfArgLiteral('SAN_IP_ADDRESS'),
+  );
+  static const sanRegisteredId = MailmanagerRuleSetClientCertificateAttribute._(
+    TfArgLiteral('SAN_REGISTERED_ID'),
+  );
+  static const serialNumber = MailmanagerRuleSetClientCertificateAttribute._(
+    TfArgLiteral('SERIAL_NUMBER'),
+  );
+
+  static const List<MailmanagerRuleSetClientCertificateAttribute> values = [
+    cn,
+    sanRfc822Name,
+    sanDnsName,
+    sanDirectoryName,
+    sanUniformResourceIdentifier,
+    sanIpAddress,
+    sanRegisteredId,
+    serialNumber,
+  ];
 }
 
 /// Typed helper for the `rule.condition.verdict_expression` block of
@@ -988,9 +1270,9 @@ final class MailmanagerRuleSetVerdictExpression {
     this.evaluate,
   });
 
-  final TfArg<MailmanagerRuleSetDmarcExpressionOperator> operator;
+  final MailmanagerRuleSetDmarcExpressionOperator operator;
 
-  final List<TfArg<MailmanagerRuleSetVerdictExpressionValues>> values;
+  final List<MailmanagerRuleSetVerdictExpressionValues> values;
 
   final List<MailmanagerRuleSetVerdictExpressionEvaluate>? evaluate;
 
@@ -1002,15 +1284,35 @@ final class MailmanagerRuleSetVerdictExpression {
 }
 
 /// `values` — derived from the provider schema description.
-enum MailmanagerRuleSetVerdictExpressionValues implements TerraformEnum {
-  pass('PASS'),
-  fail('FAIL'),
-  gray('GRAY'),
-  processingFailed('PROCESSING_FAILED');
+extension type const MailmanagerRuleSetVerdictExpressionValues._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetVerdictExpressionValues.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetVerdictExpressionValues.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetVerdictExpressionValues.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetVerdictExpressionValues(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pass = MailmanagerRuleSetVerdictExpressionValues._(
+    TfArgLiteral('PASS'),
+  );
+  static const fail = MailmanagerRuleSetVerdictExpressionValues._(
+    TfArgLiteral('FAIL'),
+  );
+  static const gray = MailmanagerRuleSetVerdictExpressionValues._(
+    TfArgLiteral('GRAY'),
+  );
+  static const processingFailed = MailmanagerRuleSetVerdictExpressionValues._(
+    TfArgLiteral('PROCESSING_FAILED'),
+  );
+
+  static const List<MailmanagerRuleSetVerdictExpressionValues> values = [
+    pass,
+    fail,
+    gray,
+    processingFailed,
+  ];
 }
 
 /// Exactly one of `analysis`, `attribute` on the `rule.condition.verdict_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
@@ -1027,7 +1329,7 @@ sealed class MailmanagerRuleSetVerdictExpressionEvaluate {
 
   /// Sets `attribute`.
   const factory MailmanagerRuleSetVerdictExpressionEvaluate.attribute(
-    TfArg<MailmanagerRuleSetVerdictExpressionAttribute> attribute,
+    MailmanagerRuleSetVerdictExpressionAttribute attribute,
   ) = MailmanagerRuleSetVerdictExpressionEvaluateAttribute;
 
   /// The Terraform argument this choice sets.
@@ -1057,7 +1359,7 @@ final class MailmanagerRuleSetVerdictExpressionEvaluateAttribute
     extends MailmanagerRuleSetVerdictExpressionEvaluate {
   const MailmanagerRuleSetVerdictExpressionEvaluateAttribute(this.attribute);
 
-  final TfArg<MailmanagerRuleSetVerdictExpressionAttribute> attribute;
+  final MailmanagerRuleSetVerdictExpressionAttribute attribute;
 
   @override
   String get blockKey => 'attribute';
@@ -1067,13 +1369,27 @@ final class MailmanagerRuleSetVerdictExpressionEvaluateAttribute
 }
 
 /// `attribute` — derived from the provider schema description.
-enum MailmanagerRuleSetVerdictExpressionAttribute implements TerraformEnum {
-  spf('SPF'),
-  dkim('DKIM');
+extension type const MailmanagerRuleSetVerdictExpressionAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MailmanagerRuleSetVerdictExpressionAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerRuleSetVerdictExpressionAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerRuleSetVerdictExpressionAttribute.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerRuleSetVerdictExpressionAttribute(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const spf = MailmanagerRuleSetVerdictExpressionAttribute._(
+    TfArgLiteral('SPF'),
+  );
+  static const dkim = MailmanagerRuleSetVerdictExpressionAttribute._(
+    TfArgLiteral('DKIM'),
+  );
+
+  static const List<MailmanagerRuleSetVerdictExpressionAttribute> values = [
+    spf,
+    dkim,
+  ];
 }
 
 /// Typed helper for the `rule.unless` block of

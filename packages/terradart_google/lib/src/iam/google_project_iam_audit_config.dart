@@ -10,14 +10,31 @@ import '../iam/iam_principal.dart' show IamPrincipal;
 const Set<String> _googleProjectIamAuditConfigSensitive = <String>{};
 
 /// Permission type for which IAM audit logging is configured.
-enum ProjectIamAuditConfigAuditLogConfigLogType implements TerraformEnum {
-  dataRead('DATA_READ'),
-  dataWrite('DATA_WRITE'),
-  adminRead('ADMIN_READ');
+extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ProjectIamAuditConfigAuditLogConfigLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  ProjectIamAuditConfigAuditLogConfigLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProjectIamAuditConfigAuditLogConfigLogType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ProjectIamAuditConfigAuditLogConfigLogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataRead = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('DATA_READ'),
+  );
+  static const dataWrite = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('DATA_WRITE'),
+  );
+  static const adminRead = ProjectIamAuditConfigAuditLogConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
+  );
+
+  static const List<ProjectIamAuditConfigAuditLogConfigLogType> values = [
+    dataRead,
+    dataWrite,
+    adminRead,
+  ];
 }
 
 /// Typed helper for the `audit_log_config` block of
@@ -57,9 +74,7 @@ final class ProjectIamAuditConfigAuditLogConfig {
 ///   service: TfArg.literal('storage.googleapis.com'),
 ///   auditLogConfig: [
 ///     ProjectIamAuditConfigAuditLogConfig(
-///       logType: TfArg.literal(
-///         ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,
-///       ),
+///       logType: ProjectIamAuditConfigAuditLogConfigLogType.adminRead,
 ///     ),
 ///   ],
 /// );

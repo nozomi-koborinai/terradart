@@ -8,57 +8,131 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApigatewayv2IntegrationSensitive = <String>{};
 
 /// Apigatewayv2 Integration Connection enum for `connection_type`.
-enum Apigatewayv2IntegrationConnectionType implements TerraformEnum {
-  internet('INTERNET'),
-  vpcLink('VPC_LINK');
+extension type const Apigatewayv2IntegrationConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2IntegrationConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2IntegrationConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2IntegrationConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2IntegrationConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internet = Apigatewayv2IntegrationConnectionType._(
+    TfArgLiteral('INTERNET'),
+  );
+  static const vpcLink = Apigatewayv2IntegrationConnectionType._(
+    TfArgLiteral('VPC_LINK'),
+  );
+
+  static const List<Apigatewayv2IntegrationConnectionType> values = [
+    internet,
+    vpcLink,
+  ];
 }
 
 /// Apigatewayv2 Integration Content Handling enum for `content_handling_strategy`.
-enum Apigatewayv2IntegrationContentHandlingStrategy implements TerraformEnum {
-  convertToBinary('CONVERT_TO_BINARY'),
-  convertToText('CONVERT_TO_TEXT');
+extension type const Apigatewayv2IntegrationContentHandlingStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Apigatewayv2IntegrationContentHandlingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2IntegrationContentHandlingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2IntegrationContentHandlingStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2IntegrationContentHandlingStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const convertToBinary =
+      Apigatewayv2IntegrationContentHandlingStrategy._(
+        TfArgLiteral('CONVERT_TO_BINARY'),
+      );
+  static const convertToText = Apigatewayv2IntegrationContentHandlingStrategy._(
+    TfArgLiteral('CONVERT_TO_TEXT'),
+  );
+
+  static const List<Apigatewayv2IntegrationContentHandlingStrategy> values = [
+    convertToBinary,
+    convertToText,
+  ];
 }
 
 /// Apigatewayv2 Integration enum for `integration_type`.
-enum Apigatewayv2IntegrationType implements TerraformEnum {
-  aws('AWS'),
-  http('HTTP'),
-  mock('MOCK'),
-  httpProxy('HTTP_PROXY'),
-  awsProxy('AWS_PROXY');
+extension type const Apigatewayv2IntegrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2IntegrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2IntegrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2IntegrationType.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2IntegrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aws = Apigatewayv2IntegrationType._(TfArgLiteral('AWS'));
+  static const http = Apigatewayv2IntegrationType._(TfArgLiteral('HTTP'));
+  static const mock = Apigatewayv2IntegrationType._(TfArgLiteral('MOCK'));
+  static const httpProxy = Apigatewayv2IntegrationType._(
+    TfArgLiteral('HTTP_PROXY'),
+  );
+  static const awsProxy = Apigatewayv2IntegrationType._(
+    TfArgLiteral('AWS_PROXY'),
+  );
+
+  static const List<Apigatewayv2IntegrationType> values = [
+    aws,
+    http,
+    mock,
+    httpProxy,
+    awsProxy,
+  ];
 }
 
 /// Apigatewayv2 Integration Passthrough enum for `passthrough_behavior`.
-enum Apigatewayv2IntegrationPassthroughBehavior implements TerraformEnum {
-  whenNoMatch('WHEN_NO_MATCH'),
-  never('NEVER'),
-  whenNoTemplates('WHEN_NO_TEMPLATES');
+extension type const Apigatewayv2IntegrationPassthroughBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Apigatewayv2IntegrationPassthroughBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2IntegrationPassthroughBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2IntegrationPassthroughBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2IntegrationPassthroughBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const whenNoMatch = Apigatewayv2IntegrationPassthroughBehavior._(
+    TfArgLiteral('WHEN_NO_MATCH'),
+  );
+  static const never = Apigatewayv2IntegrationPassthroughBehavior._(
+    TfArgLiteral('NEVER'),
+  );
+  static const whenNoTemplates = Apigatewayv2IntegrationPassthroughBehavior._(
+    TfArgLiteral('WHEN_NO_TEMPLATES'),
+  );
+
+  static const List<Apigatewayv2IntegrationPassthroughBehavior> values = [
+    whenNoMatch,
+    never,
+    whenNoTemplates,
+  ];
 }
 
 /// Apigatewayv2 Integration Payload Format enum for `payload_format_version`.
-enum Apigatewayv2IntegrationPayloadFormatVersion implements TerraformEnum {
-  v1p0('1.0'),
-  v2p0('2.0');
+extension type const Apigatewayv2IntegrationPayloadFormatVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Apigatewayv2IntegrationPayloadFormatVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2IntegrationPayloadFormatVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2IntegrationPayloadFormatVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2IntegrationPayloadFormatVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1p0 = Apigatewayv2IntegrationPayloadFormatVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v2p0 = Apigatewayv2IntegrationPayloadFormatVersion._(
+    TfArgLiteral('2.0'),
+  );
+
+  static const List<Apigatewayv2IntegrationPayloadFormatVersion> values = [
+    v1p0,
+    v2p0,
+  ];
 }
 
 /// Typed helper for the `response_parameters` block of
@@ -101,17 +175,16 @@ final class AwsApigatewayv2Integration extends Resource {
     super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? connectionId,
-    TfArg<Apigatewayv2IntegrationConnectionType>? connectionType,
-    TfArg<Apigatewayv2IntegrationContentHandlingStrategy>?
-    contentHandlingStrategy,
+    Apigatewayv2IntegrationConnectionType? connectionType,
+    Apigatewayv2IntegrationContentHandlingStrategy? contentHandlingStrategy,
     TfArg<String>? credentialsArn,
     TfArg<String>? description,
     TfArg<String>? integrationMethod,
     TfArg<String>? integrationSubtype,
-    required TfArg<Apigatewayv2IntegrationType> integrationType,
+    required Apigatewayv2IntegrationType integrationType,
     TfArg<String>? integrationUri,
-    TfArg<Apigatewayv2IntegrationPassthroughBehavior>? passthroughBehavior,
-    TfArg<Apigatewayv2IntegrationPayloadFormatVersion>? payloadFormatVersion,
+    Apigatewayv2IntegrationPassthroughBehavior? passthroughBehavior,
+    Apigatewayv2IntegrationPayloadFormatVersion? payloadFormatVersion,
     TfArg<String>? region,
     TfArg<Map<String, String>>? requestParameters,
     TfArg<Map<String, String>>? requestTemplates,

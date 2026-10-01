@@ -8,24 +8,44 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDmsDataProviderSensitive = <String>{};
 
 /// Dms Data Provider enum for `engine`.
-enum DmsDataProviderEngine implements TerraformEnum {
-  aurora('aurora'),
-  auroraPostgresql('aurora-postgresql'),
-  db2('db2'),
-  db2Zos('db2-zos'),
-  docdb('docdb'),
-  mariadb('mariadb'),
-  mongodb('mongodb'),
-  mysql('mysql'),
-  oracle('oracle'),
-  postgres('postgres'),
-  redshift('redshift'),
-  sqlserver('sqlserver'),
-  sybase('sybase');
+extension type const DmsDataProviderEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsDataProviderEngine.variable(String name) : this._(TfArg.variable(name));
+  DmsDataProviderEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsDataProviderEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsDataProviderEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aurora = DmsDataProviderEngine._(TfArgLiteral('aurora'));
+  static const auroraPostgresql = DmsDataProviderEngine._(
+    TfArgLiteral('aurora-postgresql'),
+  );
+  static const db2 = DmsDataProviderEngine._(TfArgLiteral('db2'));
+  static const db2Zos = DmsDataProviderEngine._(TfArgLiteral('db2-zos'));
+  static const docdb = DmsDataProviderEngine._(TfArgLiteral('docdb'));
+  static const mariadb = DmsDataProviderEngine._(TfArgLiteral('mariadb'));
+  static const mongodb = DmsDataProviderEngine._(TfArgLiteral('mongodb'));
+  static const mysql = DmsDataProviderEngine._(TfArgLiteral('mysql'));
+  static const oracle = DmsDataProviderEngine._(TfArgLiteral('oracle'));
+  static const postgres = DmsDataProviderEngine._(TfArgLiteral('postgres'));
+  static const redshift = DmsDataProviderEngine._(TfArgLiteral('redshift'));
+  static const sqlserver = DmsDataProviderEngine._(TfArgLiteral('sqlserver'));
+  static const sybase = DmsDataProviderEngine._(TfArgLiteral('sybase'));
+
+  static const List<DmsDataProviderEngine> values = [
+    aurora,
+    auroraPostgresql,
+    db2,
+    db2Zos,
+    docdb,
+    mariadb,
+    mongodb,
+    mysql,
+    oracle,
+    postgres,
+    redshift,
+    sqlserver,
+    sybase,
+  ];
 }
 
 /// Typed helper for the `settings` block of
@@ -303,11 +323,11 @@ final class DmsDataProviderMongoDbSettings {
     this.sslMode,
   });
 
-  final TfArg<DmsDataProviderAuthMechanism>? authMechanism;
+  final DmsDataProviderAuthMechanism? authMechanism;
 
   final TfArg<String>? authSource;
 
-  final TfArg<DmsDataProviderAuthType>? authType;
+  final DmsDataProviderAuthType? authType;
 
   final TfArg<String>? certificateArn;
 
@@ -332,24 +352,43 @@ final class DmsDataProviderMongoDbSettings {
 }
 
 /// `auth_mechanism` — derived from the provider schema description.
-enum DmsDataProviderAuthMechanism implements TerraformEnum {
-  defaultCase('default'),
-  mongodbCr('mongodb_cr'),
-  scramSha1('scram_sha_1');
+extension type const DmsDataProviderAuthMechanism._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsDataProviderAuthMechanism.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsDataProviderAuthMechanism.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsDataProviderAuthMechanism.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsDataProviderAuthMechanism(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = DmsDataProviderAuthMechanism._(
+    TfArgLiteral('default'),
+  );
+  static const mongodbCr = DmsDataProviderAuthMechanism._(
+    TfArgLiteral('mongodb_cr'),
+  );
+  static const scramSha1 = DmsDataProviderAuthMechanism._(
+    TfArgLiteral('scram_sha_1'),
+  );
+
+  static const List<DmsDataProviderAuthMechanism> values = [
+    defaultCase,
+    mongodbCr,
+    scramSha1,
+  ];
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum DmsDataProviderAuthType implements TerraformEnum {
-  no('no'),
-  password('password');
+extension type const DmsDataProviderAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsDataProviderAuthType.variable(String name) : this._(TfArg.variable(name));
+  DmsDataProviderAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsDataProviderAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsDataProviderAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const no = DmsDataProviderAuthType._(TfArgLiteral('no'));
+  static const password = DmsDataProviderAuthType._(TfArgLiteral('password'));
+
+  static const List<DmsDataProviderAuthType> values = [no, password];
 }
 
 /// Typed helper for the `settings.mysql_settings` block of
@@ -562,7 +601,7 @@ final class AwsDmsDataProvider extends Resource {
   AwsDmsDataProvider(
     super.localName, {
     TfArg<String>? description,
-    required TfArg<DmsDataProviderEngine> engine,
+    required DmsDataProviderEngine engine,
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

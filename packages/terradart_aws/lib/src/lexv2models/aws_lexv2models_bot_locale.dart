@@ -13,7 +13,7 @@ const Set<String> _awsLexv2modelsBotLocaleSensitive = <String>{};
 final class Lexv2modelsBotLocaleVoiceSettings {
   const Lexv2modelsBotLocaleVoiceSettings({this.engine, required this.voiceId});
 
-  final TfArg<Lexv2modelsBotLocaleEngine>? engine;
+  final Lexv2modelsBotLocaleEngine? engine;
 
   final TfArg<String> voiceId;
 
@@ -24,15 +24,31 @@ final class Lexv2modelsBotLocaleVoiceSettings {
 }
 
 /// `engine` — derived from the provider schema description.
-enum Lexv2modelsBotLocaleEngine implements TerraformEnum {
-  standard('standard'),
-  neural('neural'),
-  longForm('long-form'),
-  generative('generative');
+extension type const Lexv2modelsBotLocaleEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  Lexv2modelsBotLocaleEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  Lexv2modelsBotLocaleEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const Lexv2modelsBotLocaleEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const Lexv2modelsBotLocaleEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = Lexv2modelsBotLocaleEngine._(
+    TfArgLiteral('standard'),
+  );
+  static const neural = Lexv2modelsBotLocaleEngine._(TfArgLiteral('neural'));
+  static const longForm = Lexv2modelsBotLocaleEngine._(
+    TfArgLiteral('long-form'),
+  );
+  static const generative = Lexv2modelsBotLocaleEngine._(
+    TfArgLiteral('generative'),
+  );
+
+  static const List<Lexv2modelsBotLocaleEngine> values = [
+    standard,
+    neural,
+    longForm,
+    generative,
+  ];
 }
 
 /// Factory wrapper for `aws_lexv2models_bot_locale`.

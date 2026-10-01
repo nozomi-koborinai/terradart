@@ -58,91 +58,105 @@ curatedDoc: |-
   ///   name: TfArg.literal('api-cache'),
   ///   memorySizeGb: TfArg.literal(1),
   ///   region: TfArg.literal('us-central1'),
-  ///   tier: TfArg.literal(RedisInstanceTier.basic),
+  ///   tier: RedisInstanceTier.basic,
   ///   authorizedNetwork: .literal('default'),
   /// );
   /// ```
 
 prelude: |
   /// `tier` — Memorystore service tier.
-  enum RedisInstanceTier implements TerraformEnum {
-    basic('BASIC'),
-    standardHa('STANDARD_HA');
+  extension type const RedisInstanceTier._(TfArg<String> _) implements TfArg<String> {
+    RedisInstanceTier.variable(String name) : this._(TfArg.variable(name));
+    RedisInstanceTier.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstanceTier.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstanceTier(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const basic = RedisInstanceTier._(TfArgLiteral('BASIC'));
+    static const standardHa = RedisInstanceTier._(TfArgLiteral('STANDARD_HA'));
+
+    static const List<RedisInstanceTier> values = [basic, standardHa];
   }
 
   /// `connect_mode` — how clients reach the instance.
-  enum RedisInstanceConnectMode implements TerraformEnum {
-    directPeering('DIRECT_PEERING'),
-    privateServiceAccess('PRIVATE_SERVICE_ACCESS');
+  extension type const RedisInstanceConnectMode._(TfArg<String> _) implements TfArg<String> {
+    RedisInstanceConnectMode.variable(String name) : this._(TfArg.variable(name));
+    RedisInstanceConnectMode.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstanceConnectMode.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstanceConnectMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const directPeering = RedisInstanceConnectMode._(TfArgLiteral('DIRECT_PEERING'));
+    static const privateServiceAccess = RedisInstanceConnectMode._(TfArgLiteral('PRIVATE_SERVICE_ACCESS'));
+
+    static const List<RedisInstanceConnectMode> values = [directPeering, privateServiceAccess];
   }
 
   /// `transit_encryption_mode` — in-transit TLS mode (provider default
   /// `DISABLED`). When `SERVER_AUTHENTICATION` is set, clients verify the
   /// server against [GoogleRedisInstance.serverCaCerts].
-  enum RedisInstanceTransitEncryptionMode implements TerraformEnum {
-    serverAuthentication('SERVER_AUTHENTICATION'),
-    disabled('DISABLED');
+  extension type const RedisInstanceTransitEncryptionMode._(TfArg<String> _) implements TfArg<String> {
+    RedisInstanceTransitEncryptionMode.variable(String name) : this._(TfArg.variable(name));
+    RedisInstanceTransitEncryptionMode.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstanceTransitEncryptionMode.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstanceTransitEncryptionMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const serverAuthentication = RedisInstanceTransitEncryptionMode._(TfArgLiteral('SERVER_AUTHENTICATION'));
+    static const disabled = RedisInstanceTransitEncryptionMode._(TfArgLiteral('DISABLED'));
+
+    static const List<RedisInstanceTransitEncryptionMode> values = [serverAuthentication, disabled];
   }
 
   /// `read_replicas_mode` — read replica support (`STANDARD_HA` tier only;
   /// pair with `replica_count`).
-  enum RedisInstanceReadReplicasMode implements TerraformEnum {
-    readReplicasDisabled('READ_REPLICAS_DISABLED'),
-    readReplicasEnabled('READ_REPLICAS_ENABLED');
+  extension type const RedisInstanceReadReplicasMode._(TfArg<String> _) implements TfArg<String> {
+    RedisInstanceReadReplicasMode.variable(String name) : this._(TfArg.variable(name));
+    RedisInstanceReadReplicasMode.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstanceReadReplicasMode.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstanceReadReplicasMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const readReplicasDisabled = RedisInstanceReadReplicasMode._(TfArgLiteral('READ_REPLICAS_DISABLED'));
+    static const readReplicasEnabled = RedisInstanceReadReplicasMode._(TfArgLiteral('READ_REPLICAS_ENABLED'));
+
+    static const List<RedisInstanceReadReplicasMode> values = [readReplicasDisabled, readReplicasEnabled];
   }
 
   /// `weekly_maintenance_window.day` on `google_redis_instance`.
-  enum RedisInstanceWeeklyMaintenanceDay implements TerraformEnum {
-    dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-    monday('MONDAY'),
-    tuesday('TUESDAY'),
-    wednesday('WEDNESDAY'),
-    thursday('THURSDAY'),
-    friday('FRIDAY'),
-    saturday('SATURDAY'),
-    sunday('SUNDAY');
+  extension type const RedisInstanceWeeklyMaintenanceDay._(TfArg<String> _) implements TfArg<String> {
+    RedisInstanceWeeklyMaintenanceDay.variable(String name) : this._(TfArg.variable(name));
+    RedisInstanceWeeklyMaintenanceDay.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstanceWeeklyMaintenanceDay.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstanceWeeklyMaintenanceDay(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const dayOfWeekUnspecified = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'));
+    static const monday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('MONDAY'));
+    static const tuesday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('TUESDAY'));
+    static const wednesday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('WEDNESDAY'));
+    static const thursday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('THURSDAY'));
+    static const friday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('FRIDAY'));
+    static const saturday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('SATURDAY'));
+    static const sunday = RedisInstanceWeeklyMaintenanceDay._(TfArgLiteral('SUNDAY'));
+
+    static const List<RedisInstanceWeeklyMaintenanceDay> values = [dayOfWeekUnspecified, monday, tuesday, wednesday, thursday, friday, saturday, sunday];
   }
 
   /// `persistence_config.persistence_mode` on `google_redis_instance`.
-  enum RedisInstancePersistenceMode implements TerraformEnum {
-    disabled('DISABLED'),
-    rdb('RDB');
+  extension type const RedisInstancePersistenceMode._(TfArg<String> _) implements TfArg<String> {
+    RedisInstancePersistenceMode.variable(String name) : this._(TfArg.variable(name));
+    RedisInstancePersistenceMode.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstancePersistenceMode.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstancePersistenceMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const disabled = RedisInstancePersistenceMode._(TfArgLiteral('DISABLED'));
+    static const rdb = RedisInstancePersistenceMode._(TfArgLiteral('RDB'));
+
+    static const List<RedisInstancePersistenceMode> values = [disabled, rdb];
   }
 
   /// `persistence_config.rdb_snapshot_period` on `google_redis_instance`.
-  enum RedisInstanceRdbSnapshotPeriod implements TerraformEnum {
-    oneHour('ONE_HOUR'),
-    sixHours('SIX_HOURS'),
-    twelveHours('TWELVE_HOURS'),
-    twentyFourHours('TWENTY_FOUR_HOURS');
+  extension type const RedisInstanceRdbSnapshotPeriod._(TfArg<String> _) implements TfArg<String> {
+    RedisInstanceRdbSnapshotPeriod.variable(String name) : this._(TfArg.variable(name));
+    RedisInstanceRdbSnapshotPeriod.expression(String template) : this._(TfArg.expression(template));
+    const RedisInstanceRdbSnapshotPeriod.arg(TfArg<String> arg) : this._(arg);
 
-    const RedisInstanceRdbSnapshotPeriod(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const oneHour = RedisInstanceRdbSnapshotPeriod._(TfArgLiteral('ONE_HOUR'));
+    static const sixHours = RedisInstanceRdbSnapshotPeriod._(TfArgLiteral('SIX_HOURS'));
+    static const twelveHours = RedisInstanceRdbSnapshotPeriod._(TfArgLiteral('TWELVE_HOURS'));
+    static const twentyFourHours = RedisInstanceRdbSnapshotPeriod._(TfArgLiteral('TWENTY_FOUR_HOURS'));
+
+    static const List<RedisInstanceRdbSnapshotPeriod> values = [oneHour, sixHours, twelveHours, twentyFourHours];
   }
 
   /// `weekly_maintenance_window.start_time` nested block (required, max=1) —
@@ -182,7 +196,7 @@ prelude: |
       required this.startTime,
     });
 
-    final TfArg<RedisInstanceWeeklyMaintenanceDay> day;
+    final RedisInstanceWeeklyMaintenanceDay day;
     final RedisInstanceMaintenanceStartTime startTime;
 
     Map<String, Object?> toArgMap() => {
@@ -215,9 +229,9 @@ prelude: |
       this.rdbSnapshotStartTime,
     });
 
-    final TfArg<RedisInstancePersistenceMode>? persistenceMode;
+    final RedisInstancePersistenceMode? persistenceMode;
 
-    final TfArg<RedisInstanceRdbSnapshotPeriod>? rdbSnapshotPeriod;
+    final RedisInstanceRdbSnapshotPeriod? rdbSnapshotPeriod;
 
     /// RFC3339 timestamp the first snapshot was/will be attempted at, and
     /// to which future snapshots align.

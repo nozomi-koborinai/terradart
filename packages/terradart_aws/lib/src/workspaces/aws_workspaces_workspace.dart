@@ -19,11 +19,11 @@ final class WorkspacesWorkspaceProperties {
     this.userVolumeSizeGib,
   });
 
-  final TfArg<WorkspacesWorkspaceComputeTypeName>? computeTypeName;
+  final WorkspacesWorkspaceComputeTypeName? computeTypeName;
 
   final TfArg<num>? rootVolumeSizeGib;
 
-  final TfArg<WorkspacesWorkspaceRunningMode>? runningMode;
+  final WorkspacesWorkspaceRunningMode? runningMode;
 
   final TfArg<num>? runningModeAutoStopTimeoutInMinutes;
 
@@ -40,44 +40,131 @@ final class WorkspacesWorkspaceProperties {
 }
 
 /// `compute_type_name` — derived from the provider schema description.
-enum WorkspacesWorkspaceComputeTypeName implements TerraformEnum {
-  value('VALUE'),
-  standard('STANDARD'),
-  performance('PERFORMANCE'),
-  power('POWER'),
-  graphics('GRAPHICS'),
-  powerpro('POWERPRO'),
-  generalpurpose4xlarge('GENERALPURPOSE_4XLARGE'),
-  generalpurpose8xlarge('GENERALPURPOSE_8XLARGE'),
-  graphicspro('GRAPHICSPRO'),
-  graphicsG4dn('GRAPHICS_G4DN'),
-  graphicsproG4dn('GRAPHICSPRO_G4DN'),
-  graphicsG6Xlarge('GRAPHICS_G6_XLARGE'),
-  graphicsG62xlarge('GRAPHICS_G6_2XLARGE'),
-  graphicsG64xlarge('GRAPHICS_G6_4XLARGE'),
-  graphicsG68xlarge('GRAPHICS_G6_8XLARGE'),
-  graphicsG616xlarge('GRAPHICS_G6_16XLARGE'),
-  graphicsGr64xlarge('GRAPHICS_GR6_4XLARGE'),
-  graphicsGr68xlarge('GRAPHICS_GR6_8XLARGE'),
-  graphicsG6fLarge('GRAPHICS_G6F_LARGE'),
-  graphicsG6fXlarge('GRAPHICS_G6F_XLARGE'),
-  graphicsG6f2xlarge('GRAPHICS_G6F_2XLARGE'),
-  graphicsG6f4xlarge('GRAPHICS_G6F_4XLARGE'),
-  graphicsGr6f4xlarge('GRAPHICS_GR6F_4XLARGE');
+extension type const WorkspacesWorkspaceComputeTypeName._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesWorkspaceComputeTypeName.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesWorkspaceComputeTypeName.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesWorkspaceComputeTypeName.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesWorkspaceComputeTypeName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const value = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('VALUE'),
+  );
+  static const standard = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const performance = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('PERFORMANCE'),
+  );
+  static const power = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('POWER'),
+  );
+  static const graphics = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS'),
+  );
+  static const powerpro = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('POWERPRO'),
+  );
+  static const generalpurpose4xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GENERALPURPOSE_4XLARGE'),
+  );
+  static const generalpurpose8xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GENERALPURPOSE_8XLARGE'),
+  );
+  static const graphicspro = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICSPRO'),
+  );
+  static const graphicsG4dn = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G4DN'),
+  );
+  static const graphicsproG4dn = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICSPRO_G4DN'),
+  );
+  static const graphicsG6Xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6_XLARGE'),
+  );
+  static const graphicsG62xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6_2XLARGE'),
+  );
+  static const graphicsG64xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6_4XLARGE'),
+  );
+  static const graphicsG68xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6_8XLARGE'),
+  );
+  static const graphicsG616xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6_16XLARGE'),
+  );
+  static const graphicsGr64xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_GR6_4XLARGE'),
+  );
+  static const graphicsGr68xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_GR6_8XLARGE'),
+  );
+  static const graphicsG6fLarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6F_LARGE'),
+  );
+  static const graphicsG6fXlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6F_XLARGE'),
+  );
+  static const graphicsG6f2xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6F_2XLARGE'),
+  );
+  static const graphicsG6f4xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G6F_4XLARGE'),
+  );
+  static const graphicsGr6f4xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_GR6F_4XLARGE'),
+  );
+
+  static const List<WorkspacesWorkspaceComputeTypeName> values = [
+    value,
+    standard,
+    performance,
+    power,
+    graphics,
+    powerpro,
+    generalpurpose4xlarge,
+    generalpurpose8xlarge,
+    graphicspro,
+    graphicsG4dn,
+    graphicsproG4dn,
+    graphicsG6Xlarge,
+    graphicsG62xlarge,
+    graphicsG64xlarge,
+    graphicsG68xlarge,
+    graphicsG616xlarge,
+    graphicsGr64xlarge,
+    graphicsGr68xlarge,
+    graphicsG6fLarge,
+    graphicsG6fXlarge,
+    graphicsG6f2xlarge,
+    graphicsG6f4xlarge,
+    graphicsGr6f4xlarge,
+  ];
 }
 
 /// `running_mode` — derived from the provider schema description.
-enum WorkspacesWorkspaceRunningMode implements TerraformEnum {
-  alwaysOn('ALWAYS_ON'),
-  autoStop('AUTO_STOP');
+extension type const WorkspacesWorkspaceRunningMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesWorkspaceRunningMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesWorkspaceRunningMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesWorkspaceRunningMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesWorkspaceRunningMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alwaysOn = WorkspacesWorkspaceRunningMode._(
+    TfArgLiteral('ALWAYS_ON'),
+  );
+  static const autoStop = WorkspacesWorkspaceRunningMode._(
+    TfArgLiteral('AUTO_STOP'),
+  );
+
+  static const List<WorkspacesWorkspaceRunningMode> values = [
+    alwaysOn,
+    autoStop,
+  ];
 }
 
 /// Factory wrapper for `aws_workspaces_workspace`.

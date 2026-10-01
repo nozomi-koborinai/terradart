@@ -17,6 +17,27 @@ import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
+/// Hand-written enums whose value set differs from the fixture schema on
+/// purpose, with the reason.
+const _curatedEnumValueSets = <String, String>{
+  'TimePartitioningType':
+      'the 7.31 fixture MM lists DAY only; the provider accepts DAY, HOUR, '
+      'MONTH and YEAR',
+  'KmsCryptoKeyVersionState':
+      'PENDING_IMPORT and IMPORT_FAILED are states the API reports for an '
+      'imported version; a config cannot set them',
+};
+
+/// The enums hand-written (or `wrap-promote`-emitted) in an override
+/// `prelude`. Gates 3, 5 and 8 hold these to the TG-2 rules; a derived enum
+/// takes its members from `enumName` / `enumMemberName`, which the naming
+/// tests cover.
+Set<String> preludeEnumNames(LoadedOverrides loaded) => {
+  for (final o in loaded.asLintMap().values)
+    if (o.prelude case final prelude?)
+      for (final e in const EnumExtractor().extract(prelude)) e.name,
+};
+
 void main() {
   group('Universal invariants', () {
     late LoadedOverrides loaded;
@@ -91,12 +112,16 @@ void main() {
               'terradart_google/lib/src not found from '
               'terradart_codegen working dir',
         );
-        // ^[a-z]: must start with lowercase letter.
-        // ([a-z0-9]|[A-Z][a-z0-9]+)*: each capital must be followed by at
-        // least one lowercase letter or digit (no consecutive capitals).
-        // Forbids: ALL_CAPS, leading-digit, snake_case, hyphenated, and
-        // embedded-CAPS runs like addCOSTTOMED.
-        final lowerCamelCase = RegExp(r'^[a-z]([a-z0-9]|[A-Z][a-z0-9]+)*$');
+        // ^[a-z]: must start with lowercase letter; then letters and
+        // digits, with an optional trailing `_` (the reserved-word escape,
+        // `in_`). No run of three capitals: a one-letter word may sit next
+        // to the next word (`caProtectedB`, `randomFirstNAvailable`), an
+        // embedded-CAPS run like addCOSTTOMED may not.
+        // Forbids: ALL_CAPS, leading-digit, snake_case, hyphenated.
+        final lowerCamelCase = RegExp(
+          r'^[a-z](?![a-zA-Z0-9]*[A-Z]{3})[a-zA-Z0-9]*_?$',
+        );
+        final preludeEnums = preludeEnumNames(loaded);
 
         final offenders = <String>[];
         for (final ent in root.listSync(recursive: true)) {
@@ -105,6 +130,7 @@ void main() {
           final src = ent.readAsStringSync();
           final emittedEnums = const EnumExtractor().extract(src);
           for (final enumDecl in emittedEnums) {
+            if (!preludeEnums.contains(enumDecl.name)) continue;
             for (final memberName in enumDecl.members.keys) {
               if (!lowerCamelCase.hasMatch(memberName)) {
                 offenders.add(
@@ -120,7 +146,8 @@ void main() {
           isEmpty,
           reason:
               'Emitted enum member identifier violates lowerCamelCase '
-              '(^[a-z]([a-z0-9]|[A-Z][a-z0-9]+)*\$). This is the TG-2 '
+              '(no `_` but a trailing one, no run of three capitals). '
+              'This is the TG-2 '
               'bug class — wrap-promote ValidValuesEmitter producing '
               'garbage Dart identifiers like `addCOSTTOMED` or `3DES`.\n'
               'Offenders: ${offenders.join(", ")}',
@@ -201,8 +228,9 @@ void main() {
         const walker = PathWalker();
         const extractor = EnumExtractor();
 
-        // Pre-extract every emitted enum across all wrapper + schema files,
+        // Pre-extract every prelude enum across all wrapper + schema files,
         // keyed by Dart enum name.
+        final preludeEnums = preludeEnumNames(loaded);
         final emittedEnums = <String, EmittedEnum>{};
         final root = Directory(p.join('..', 'terradart_google', 'lib', 'src'));
         expect(
@@ -220,7 +248,7 @@ void main() {
           if (ent is! File) continue;
           if (!ent.path.endsWith('.dart')) continue;
           for (final e in extractor.extract(ent.readAsStringSync())) {
-            emittedEnums[e.name] = e;
+            if (preludeEnums.contains(e.name)) emittedEnums[e.name] = e;
           }
         }
 
@@ -258,6 +286,7 @@ void main() {
             }
             final schemaEnumValues = attr.constraints.enumValues?.toSet();
             if (schemaEnumValues == null) return;
+            if (_curatedEnumValueSets.containsKey(bareEnumName)) return;
             // ^ schema has no enum_values for this field; the enum was
             // hand-authored (e.g. KmsKeyPurpose). Gate 3 only enforces
             // round-trip when the schema has the source of truth.
@@ -350,13 +379,20 @@ void main() {
         // Time units
         'day', 'hour',
         // Misc natural words / service acronyms
-        'the', 'vm',
+        'the', 'vm', 'to',
+        // API versions
+        'v1', 'v2',
         'ces',
       };
       final violations = EnumValueLength.scan(
         rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
         minLength: 4,
         allowList: allowList,
+        enumNames: preludeEnumNames(
+          loadWrapperOverrides(
+            rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
+          ),
+        ),
       );
       expect(
         violations,

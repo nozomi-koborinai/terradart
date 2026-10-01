@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesEndpointPolicySensitive = <String>{};
 
 /// Network Services Endpoint Policy enum for `type`.
-enum NetworkServicesEndpointPolicyType implements TerraformEnum {
-  sidecarProxy('SIDECAR_PROXY'),
-  grpcServer('GRPC_SERVER');
+extension type const NetworkServicesEndpointPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesEndpointPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEndpointPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEndpointPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkServicesEndpointPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sidecarProxy = NetworkServicesEndpointPolicyType._(
+    TfArgLiteral('SIDECAR_PROXY'),
+  );
+  static const grpcServer = NetworkServicesEndpointPolicyType._(
+    TfArgLiteral('GRPC_SERVER'),
+  );
+
+  static const List<NetworkServicesEndpointPolicyType> values = [
+    sidecarProxy,
+    grpcServer,
+  ];
 }
 
 /// Typed helper for the `endpoint_matcher` block of
@@ -41,7 +53,7 @@ final class NetworkServicesEndpointPolicyMetadataLabelMatcher {
     this.metadataLabels,
   });
 
-  final TfArg<NetworkServicesEndpointPolicyMetadataLabelMatchCriteria>
+  final NetworkServicesEndpointPolicyMetadataLabelMatchCriteria
   metadataLabelMatchCriteria;
 
   final List<NetworkServicesEndpointPolicyMetadataLabels>? metadataLabels;
@@ -54,16 +66,29 @@ final class NetworkServicesEndpointPolicyMetadataLabelMatcher {
 }
 
 /// `metadata_label_match_criteria` — derived from the provider schema description.
-enum NetworkServicesEndpointPolicyMetadataLabelMatchCriteria
-    implements TerraformEnum {
-  matchAny('MATCH_ANY'),
-  matchAll('MATCH_ALL');
+extension type const NetworkServicesEndpointPolicyMetadataLabelMatchCriteria._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesEndpointPolicyMetadataLabelMatchCriteria.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesEndpointPolicyMetadataLabelMatchCriteria(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const matchAny =
+      NetworkServicesEndpointPolicyMetadataLabelMatchCriteria._(
+        TfArgLiteral('MATCH_ANY'),
+      );
+  static const matchAll =
+      NetworkServicesEndpointPolicyMetadataLabelMatchCriteria._(
+        TfArgLiteral('MATCH_ALL'),
+      );
+
+  static const List<NetworkServicesEndpointPolicyMetadataLabelMatchCriteria>
+  values = [matchAny, matchAll];
 }
 
 /// Typed helper for the `endpoint_matcher.metadata_label_matcher.metadata_labels` block of
@@ -115,7 +140,7 @@ final class GoogleNetworkServicesEndpointPolicy extends Resource {
   GoogleNetworkServicesEndpointPolicy(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<NetworkServicesEndpointPolicyType> type,
+    required NetworkServicesEndpointPolicyType type,
     required NetworkServicesEndpointPolicyEndpointMatcher endpointMatcher,
     NetworkServicesEndpointPolicyTrafficPortSelector? trafficPortSelector,
     TfArg<String>? authorizationPolicy,

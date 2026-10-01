@@ -53,9 +53,8 @@ final class _TypedStack extends Stack {
       GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
         'mirror',
         action: TfArg.literal('mirror'),
-        direction: TfArg.literal(
-          ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.egress,
-        ),
+        direction:
+            ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.egress,
         firewallPolicy: RefTo.literal('policy'),
         priority: TfArg.literal(1000),
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(

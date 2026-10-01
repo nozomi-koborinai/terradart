@@ -32,7 +32,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-pool'),
   ///   location: TfArg.literal('us-central1'),
   ///   network: vpc.ref,
-  ///   serviceLevel: TfArg.literal(NetappStoragePoolServiceLevel.standard),
+  ///   serviceLevel: NetappStoragePoolServiceLevel.standard,
   ///   capacityGib: TfArg.literal('2048'),
   /// );
   /// ```

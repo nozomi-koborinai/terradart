@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsArcregionswitchPlanSensitive = <String>{};
 
 /// Arcregionswitch Plan Recovery enum for `recovery_approach`.
-enum ArcregionswitchPlanRecoveryApproach implements TerraformEnum {
-  activeactive('activeActive'),
-  activepassive('activePassive');
+extension type const ArcregionswitchPlanRecoveryApproach._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanRecoveryApproach.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanRecoveryApproach.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanRecoveryApproach.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArcregionswitchPlanRecoveryApproach(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activeactive = ArcregionswitchPlanRecoveryApproach._(
+    TfArgLiteral('activeActive'),
+  );
+  static const activepassive = ArcregionswitchPlanRecoveryApproach._(
+    TfArgLiteral('activePassive'),
+  );
+
+  static const List<ArcregionswitchPlanRecoveryApproach> values = [
+    activeactive,
+    activepassive,
+  ];
 }
 
 /// Typed helper for the `associated_alarms` block of
@@ -29,7 +42,7 @@ final class ArcregionswitchPlanAssociatedAlarms {
     required this.resourceIdentifier,
   });
 
-  final TfArg<ArcregionswitchPlanAlarmType> alarmType;
+  final ArcregionswitchPlanAlarmType alarmType;
 
   final TfArg<String>? crossAccountRole;
 
@@ -49,13 +62,25 @@ final class ArcregionswitchPlanAssociatedAlarms {
 }
 
 /// `alarm_type` — derived from the provider schema description.
-enum ArcregionswitchPlanAlarmType implements TerraformEnum {
-  applicationhealth('applicationHealth'),
-  trigger('trigger');
+extension type const ArcregionswitchPlanAlarmType._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanAlarmType.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanAlarmType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanAlarmType.arg(TfArg<String> arg) : this._(arg);
 
-  const ArcregionswitchPlanAlarmType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const applicationhealth = ArcregionswitchPlanAlarmType._(
+    TfArgLiteral('applicationHealth'),
+  );
+  static const trigger = ArcregionswitchPlanAlarmType._(
+    TfArgLiteral('trigger'),
+  );
+
+  static const List<ArcregionswitchPlanAlarmType> values = [
+    applicationhealth,
+    trigger,
+  ];
 }
 
 /// Typed helper for the `report_configuration` block of
@@ -117,7 +142,7 @@ final class ArcregionswitchPlanTriggers {
     this.conditions,
   });
 
-  final TfArg<ArcregionswitchPlanAction> action;
+  final ArcregionswitchPlanAction action;
 
   final TfArg<String>? description;
 
@@ -139,14 +164,27 @@ final class ArcregionswitchPlanTriggers {
 }
 
 /// `action` — derived from the provider schema description.
-enum ArcregionswitchPlanAction implements TerraformEnum {
-  activate('activate'),
-  deactivate('deactivate'),
-  postrecovery('postRecovery');
+extension type const ArcregionswitchPlanAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanAction.arg(TfArg<String> arg) : this._(arg);
 
-  const ArcregionswitchPlanAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activate = ArcregionswitchPlanAction._(TfArgLiteral('activate'));
+  static const deactivate = ArcregionswitchPlanAction._(
+    TfArgLiteral('deactivate'),
+  );
+  static const postrecovery = ArcregionswitchPlanAction._(
+    TfArgLiteral('postRecovery'),
+  );
+
+  static const List<ArcregionswitchPlanAction> values = [
+    activate,
+    deactivate,
+    postrecovery,
+  ];
 }
 
 /// Typed helper for the `triggers.conditions` block of
@@ -160,7 +198,7 @@ final class ArcregionswitchPlanConditions {
 
   final TfArg<String> associatedAlarmName;
 
-  final TfArg<ArcregionswitchPlanCondition> condition;
+  final ArcregionswitchPlanCondition condition;
 
   Map<String, Object?> encode() => {
     'associated_alarm_name': associatedAlarmName.toTfJson(),
@@ -169,13 +207,18 @@ final class ArcregionswitchPlanConditions {
 }
 
 /// `condition` — derived from the provider schema description.
-enum ArcregionswitchPlanCondition implements TerraformEnum {
-  red('red'),
-  green('green');
+extension type const ArcregionswitchPlanCondition._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanCondition.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanCondition.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanCondition.arg(TfArg<String> arg) : this._(arg);
 
-  const ArcregionswitchPlanCondition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const red = ArcregionswitchPlanCondition._(TfArgLiteral('red'));
+  static const green = ArcregionswitchPlanCondition._(TfArgLiteral('green'));
+
+  static const List<ArcregionswitchPlanCondition> values = [red, green];
 }
 
 /// Typed helper for the `workflow` block of
@@ -191,7 +234,7 @@ final class ArcregionswitchPlanWorkflow {
 
   final TfArg<String>? workflowDescription;
 
-  final TfArg<ArcregionswitchPlanWorkflowTargetAction> workflowTargetAction;
+  final ArcregionswitchPlanWorkflowTargetAction workflowTargetAction;
 
   final TfArg<String>? workflowTargetRegion;
 
@@ -206,14 +249,30 @@ final class ArcregionswitchPlanWorkflow {
 }
 
 /// `workflow_target_action` — derived from the provider schema description.
-enum ArcregionswitchPlanWorkflowTargetAction implements TerraformEnum {
-  activate('activate'),
-  deactivate('deactivate'),
-  postrecovery('postRecovery');
+extension type const ArcregionswitchPlanWorkflowTargetAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanWorkflowTargetAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanWorkflowTargetAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanWorkflowTargetAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArcregionswitchPlanWorkflowTargetAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activate = ArcregionswitchPlanWorkflowTargetAction._(
+    TfArgLiteral('activate'),
+  );
+  static const deactivate = ArcregionswitchPlanWorkflowTargetAction._(
+    TfArgLiteral('deactivate'),
+  );
+  static const postrecovery = ArcregionswitchPlanWorkflowTargetAction._(
+    TfArgLiteral('postRecovery'),
+  );
+
+  static const List<ArcregionswitchPlanWorkflowTargetAction> values = [
+    activate,
+    deactivate,
+    postrecovery,
+  ];
 }
 
 /// Typed helper for the `workflow.step` block of
@@ -245,7 +304,7 @@ final class ArcregionswitchPlanStep {
 
   final TfArg<String>? description;
 
-  final TfArg<ArcregionswitchPlanExecutionBlockType> executionBlockType;
+  final ArcregionswitchPlanExecutionBlockType executionBlockType;
 
   final TfArg<String> name;
 
@@ -366,29 +425,95 @@ final class ArcregionswitchPlanStep {
 }
 
 /// `execution_block_type` — derived from the provider schema description.
-enum ArcregionswitchPlanExecutionBlockType implements TerraformEnum {
-  customactionlambda('CustomActionLambda'),
-  manualapproval('ManualApproval'),
-  auroraglobaldatabase('AuroraGlobalDatabase'),
-  ec2autoscaling('EC2AutoScaling'),
-  arcroutingcontrol('ARCRoutingControl'),
-  arcregionswitchplan('ARCRegionSwitchPlan'),
-  parallel('Parallel'),
-  ecsservicescaling('ECSServiceScaling'),
-  eksresourcescaling('EKSResourceScaling'),
-  route53healthcheck('Route53HealthCheck'),
-  documentdb('DocumentDb'),
-  rdspromotereadreplica('RdsPromoteReadReplica'),
-  rdscreatecrossregionreplica('RdsCreateCrossRegionReplica'),
-  lambdaeventsourcemapping('LambdaEventSourceMapping'),
-  auroraserverlessscaling('AuroraServerlessScaling'),
-  auroraprovisionedscaling('AuroraProvisionedScaling'),
-  neptuneglobaldatabase('NeptuneGlobalDatabase'),
-  rdsswitchoverreadreplica('RdsSwitchoverReadReplica');
+extension type const ArcregionswitchPlanExecutionBlockType._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanExecutionBlockType.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanExecutionBlockType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanExecutionBlockType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArcregionswitchPlanExecutionBlockType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customactionlambda = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('CustomActionLambda'),
+  );
+  static const manualapproval = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('ManualApproval'),
+  );
+  static const auroraglobaldatabase = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('AuroraGlobalDatabase'),
+  );
+  static const ec2autoscaling = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('EC2AutoScaling'),
+  );
+  static const arcroutingcontrol = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('ARCRoutingControl'),
+  );
+  static const arcregionswitchplan = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('ARCRegionSwitchPlan'),
+  );
+  static const parallel = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('Parallel'),
+  );
+  static const ecsservicescaling = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('ECSServiceScaling'),
+  );
+  static const eksresourcescaling = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('EKSResourceScaling'),
+  );
+  static const route53healthcheck = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('Route53HealthCheck'),
+  );
+  static const documentdb = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('DocumentDb'),
+  );
+  static const rdspromotereadreplica = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('RdsPromoteReadReplica'),
+  );
+  static const rdscreatecrossregionreplica =
+      ArcregionswitchPlanExecutionBlockType._(
+        TfArgLiteral('RdsCreateCrossRegionReplica'),
+      );
+  static const lambdaeventsourcemapping =
+      ArcregionswitchPlanExecutionBlockType._(
+        TfArgLiteral('LambdaEventSourceMapping'),
+      );
+  static const auroraserverlessscaling =
+      ArcregionswitchPlanExecutionBlockType._(
+        TfArgLiteral('AuroraServerlessScaling'),
+      );
+  static const auroraprovisionedscaling =
+      ArcregionswitchPlanExecutionBlockType._(
+        TfArgLiteral('AuroraProvisionedScaling'),
+      );
+  static const neptuneglobaldatabase = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('NeptuneGlobalDatabase'),
+  );
+  static const rdsswitchoverreadreplica =
+      ArcregionswitchPlanExecutionBlockType._(
+        TfArgLiteral('RdsSwitchoverReadReplica'),
+      );
+
+  static const List<ArcregionswitchPlanExecutionBlockType> values = [
+    customactionlambda,
+    manualapproval,
+    auroraglobaldatabase,
+    ec2autoscaling,
+    arcroutingcontrol,
+    arcregionswitchplan,
+    parallel,
+    ecsservicescaling,
+    eksresourcescaling,
+    route53healthcheck,
+    documentdb,
+    rdspromotereadreplica,
+    rdscreatecrossregionreplica,
+    lambdaeventsourcemapping,
+    auroraserverlessscaling,
+    auroraprovisionedscaling,
+    neptuneglobaldatabase,
+    rdsswitchoverreadreplica,
+  ];
 }
 
 /// Typed helper for the `workflow.step.arc_routing_control_config` block of
@@ -456,7 +581,7 @@ final class ArcregionswitchPlanRoutingControl {
 
   final TfArg<String> routingControlArn;
 
-  final TfArg<ArcregionswitchPlanState> state;
+  final ArcregionswitchPlanState state;
 
   Map<String, Object?> encode() => {
     'routing_control_arn': routingControlArn.toTfJson(),
@@ -465,13 +590,17 @@ final class ArcregionswitchPlanRoutingControl {
 }
 
 /// `state` — derived from the provider schema description.
-enum ArcregionswitchPlanState implements TerraformEnum {
-  on('On'),
-  off('Off');
+extension type const ArcregionswitchPlanState._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanState.variable(String name) : this._(TfArg.variable(name));
+  ArcregionswitchPlanState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanState.arg(TfArg<String> arg) : this._(arg);
 
-  const ArcregionswitchPlanState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = ArcregionswitchPlanState._(TfArgLiteral('On'));
+  static const off = ArcregionswitchPlanState._(TfArgLiteral('Off'));
+
+  static const List<ArcregionswitchPlanState> values = [on, off];
 }
 
 /// Typed helper for the `workflow.step.aurora_provisioned_scaling_config` block of
@@ -559,7 +688,7 @@ final class ArcregionswitchPlanCustomActionLambdaConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanRegionToRun> regionToRun;
+  final ArcregionswitchPlanRegionToRun regionToRun;
 
   final TfArg<num> retryIntervalMinutes;
 
@@ -580,15 +709,33 @@ final class ArcregionswitchPlanCustomActionLambdaConfig {
 }
 
 /// `region_to_run` — derived from the provider schema description.
-enum ArcregionswitchPlanRegionToRun implements TerraformEnum {
-  activatingregion('activatingRegion'),
-  deactivatingregion('deactivatingRegion'),
-  activeregion('activeRegion'),
-  inactiveregion('inactiveRegion');
+extension type const ArcregionswitchPlanRegionToRun._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanRegionToRun.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanRegionToRun.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanRegionToRun.arg(TfArg<String> arg) : this._(arg);
 
-  const ArcregionswitchPlanRegionToRun(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activatingregion = ArcregionswitchPlanRegionToRun._(
+    TfArgLiteral('activatingRegion'),
+  );
+  static const deactivatingregion = ArcregionswitchPlanRegionToRun._(
+    TfArgLiteral('deactivatingRegion'),
+  );
+  static const activeregion = ArcregionswitchPlanRegionToRun._(
+    TfArgLiteral('activeRegion'),
+  );
+  static const inactiveregion = ArcregionswitchPlanRegionToRun._(
+    TfArgLiteral('inactiveRegion'),
+  );
+
+  static const List<ArcregionswitchPlanRegionToRun> values = [
+    activatingregion,
+    deactivatingregion,
+    activeregion,
+    inactiveregion,
+  ];
 }
 
 /// Typed helper for the `workflow.step.custom_action_lambda_config.lambda` block of
@@ -624,18 +771,26 @@ final class ArcregionswitchPlanCustomActionLambdaConfigUngraceful {
     required this.behavior,
   });
 
-  final TfArg<ArcregionswitchPlanUngracefulBehavior> behavior;
+  final ArcregionswitchPlanUngracefulBehavior behavior;
 
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
 }
 
 /// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanUngracefulBehavior implements TerraformEnum {
-  skip('skip');
+extension type const ArcregionswitchPlanUngracefulBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanUngracefulBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanUngracefulBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanUngracefulBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArcregionswitchPlanUngracefulBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const skip = ArcregionswitchPlanUngracefulBehavior._(
+    TfArgLiteral('skip'),
+  );
+
+  static const List<ArcregionswitchPlanUngracefulBehavior> values = [skip];
 }
 
 /// Typed helper for the `workflow.step.document_db_config` block of
@@ -653,7 +808,7 @@ final class ArcregionswitchPlanDocumentDbConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanBehavior> behavior;
+  final ArcregionswitchPlanBehavior behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -680,13 +835,25 @@ final class ArcregionswitchPlanDocumentDbConfig {
 }
 
 /// `behavior` — derived from the provider schema description.
-enum ArcregionswitchPlanBehavior implements TerraformEnum {
-  switchoveronly('switchoverOnly'),
-  failover('failover');
+extension type const ArcregionswitchPlanBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const ArcregionswitchPlanBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const switchoveronly = ArcregionswitchPlanBehavior._(
+    TfArgLiteral('switchoverOnly'),
+  );
+  static const failover = ArcregionswitchPlanBehavior._(
+    TfArgLiteral('failover'),
+  );
+
+  static const List<ArcregionswitchPlanBehavior> values = [
+    switchoveronly,
+    failover,
+  ];
 }
 
 /// Typed helper for the `workflow.step.document_db_config.ungraceful` block of
@@ -698,18 +865,28 @@ final class ArcregionswitchPlanDocumentDbConfigUngraceful {
     required this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanUngracefulUngraceful> ungraceful;
+  final ArcregionswitchPlanUngracefulUngraceful ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
 }
 
 /// `ungraceful` — derived from the provider schema description.
-enum ArcregionswitchPlanUngracefulUngraceful implements TerraformEnum {
-  failover('failover');
+extension type const ArcregionswitchPlanUngracefulUngraceful._(TfArg<String> _)
+    implements TfArg<String> {
+  ArcregionswitchPlanUngracefulUngraceful.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanUngracefulUngraceful.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArcregionswitchPlanUngracefulUngraceful.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArcregionswitchPlanUngracefulUngraceful(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const failover = ArcregionswitchPlanUngracefulUngraceful._(
+    TfArgLiteral('failover'),
+  );
+
+  static const List<ArcregionswitchPlanUngracefulUngraceful> values = [
+    failover,
+  ];
 }
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config` block of
@@ -725,9 +902,7 @@ final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
-  >
+  final ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
   capacityMonitoringApproach;
 
   final TfArg<num>? targetPercent;
@@ -750,16 +925,32 @@ final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfig {
 }
 
 /// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
-    implements TerraformEnum {
-  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
-  autoscalingmaxinlast24hours('autoscalingMaxInLast24Hours');
+extension type const ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sampledmaxinlast24hours =
+      ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach._(
+        TfArgLiteral('sampledMaxInLast24Hours'),
+      );
+  static const autoscalingmaxinlast24hours =
+      ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach._(
+        TfArgLiteral('autoscalingMaxInLast24Hours'),
+      );
+
+  static const List<
+    ArcregionswitchPlanEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+  >
+  values = [sampledmaxinlast24hours, autoscalingmaxinlast24hours];
 }
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config.asg` block of
@@ -815,9 +1006,7 @@ final class ArcregionswitchPlanEcsCapacityIncreaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach
-  >
+  final ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach
   capacityMonitoringApproach;
 
   final TfArg<num>? targetPercent;
@@ -840,16 +1029,32 @@ final class ArcregionswitchPlanEcsCapacityIncreaseConfig {
 }
 
 /// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach
-    implements TerraformEnum {
-  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
-  containerinsightsmaxinlast24hours('containerInsightsMaxInLast24Hours');
+extension type const ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sampledmaxinlast24hours =
+      ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach._(
+        TfArgLiteral('sampledMaxInLast24Hours'),
+      );
+  static const containerinsightsmaxinlast24hours =
+      ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach._(
+        TfArgLiteral('containerInsightsMaxInLast24Hours'),
+      );
+
+  static const List<
+    ArcregionswitchPlanEcsCapacityIncreaseConfigCapacityMonitoringApproach
+  >
+  values = [sampledmaxinlast24hours, containerinsightsmaxinlast24hours];
 }
 
 /// Typed helper for the `workflow.step.ecs_capacity_increase_config.service` block of
@@ -895,9 +1100,7 @@ final class ArcregionswitchPlanEksResourceScalingConfig {
     this.ungraceful,
   });
 
-  final TfArg<
-    ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach
-  >
+  final ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach
   capacityMonitoringApproach;
 
   final TfArg<num> targetPercent;
@@ -931,15 +1134,28 @@ final class ArcregionswitchPlanEksResourceScalingConfig {
 }
 
 /// `capacity_monitoring_approach` — derived from the provider schema description.
-enum ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach
-    implements TerraformEnum {
-  sampledmaxinlast24hours('sampledMaxInLast24Hours');
+extension type const ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sampledmaxinlast24hours =
+      ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach._(
+        TfArgLiteral('sampledMaxInLast24Hours'),
+      );
+
+  static const List<
+    ArcregionswitchPlanEksResourceScalingConfigCapacityMonitoringApproach
+  >
+  values = [sampledmaxinlast24hours];
 }
 
 /// Typed helper for the `workflow.step.eks_resource_scaling_config.eks_clusters` block of
@@ -1070,7 +1286,7 @@ final class ArcregionswitchPlanGlobalAuroraConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanBehavior> behavior;
+  final ArcregionswitchPlanBehavior behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1108,7 +1324,7 @@ final class ArcregionswitchPlanLambdaEventSourceMappingConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanLambdaEventSourceMappingConfigAction> action;
+  final ArcregionswitchPlanLambdaEventSourceMappingConfigAction action;
 
   final TfArg<num>? timeoutMinutes;
 
@@ -1130,16 +1346,29 @@ final class ArcregionswitchPlanLambdaEventSourceMappingConfig {
 }
 
 /// `action` — derived from the provider schema description.
-enum ArcregionswitchPlanLambdaEventSourceMappingConfigAction
-    implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const ArcregionswitchPlanLambdaEventSourceMappingConfigAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcregionswitchPlanLambdaEventSourceMappingConfigAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ArcregionswitchPlanLambdaEventSourceMappingConfigAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArcregionswitchPlanLambdaEventSourceMappingConfigAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ArcregionswitchPlanLambdaEventSourceMappingConfigAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enable =
+      ArcregionswitchPlanLambdaEventSourceMappingConfigAction._(
+        TfArgLiteral('enable'),
+      );
+  static const disable =
+      ArcregionswitchPlanLambdaEventSourceMappingConfigAction._(
+        TfArgLiteral('disable'),
+      );
+
+  static const List<ArcregionswitchPlanLambdaEventSourceMappingConfigAction>
+  values = [enable, disable];
 }
 
 /// Typed helper for the `workflow.step.lambda_event_source_mapping_config.region_event_source_mapping` block of
@@ -1185,7 +1414,7 @@ final class ArcregionswitchPlanNeptuneGlobalDatabaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<ArcregionswitchPlanBehavior> behavior;
+  final ArcregionswitchPlanBehavior behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1252,7 +1481,7 @@ final class ArcregionswitchPlanParallelConfigStep {
 
   final TfArg<String>? description;
 
-  final TfArg<ArcregionswitchPlanExecutionBlockType> executionBlockType;
+  final ArcregionswitchPlanExecutionBlockType executionBlockType;
 
   final TfArg<String> name;
 
@@ -1515,7 +1744,7 @@ final class AwsArcregionswitchPlan extends Resource {
     required TfArg<String> executionRole,
     required TfArg<String> name,
     TfArg<String>? primaryRegion,
-    required TfArg<ArcregionswitchPlanRecoveryApproach> recoveryApproach,
+    required ArcregionswitchPlanRecoveryApproach recoveryApproach,
     TfArg<num>? recoveryTimeObjectiveMinutes,
     TfArg<String>? region,
     required TfArg<List<String>> regions,

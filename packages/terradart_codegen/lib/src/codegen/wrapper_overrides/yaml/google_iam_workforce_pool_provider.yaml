@@ -30,13 +30,15 @@ curatedDoc: |-
 prelude: |
   /// `scim_usage` — whether authorization checks use SCIM-managed groups
   /// instead of the `google.groups` attribute mapping.
-  enum IamWorkforcePoolProviderScimUsage implements TerraformEnum {
-    scimUsageUnspecified('SCIM_USAGE_UNSPECIFIED'),
-    enabledForGroups('ENABLED_FOR_GROUPS');
+  extension type const IamWorkforcePoolProviderScimUsage._(TfArg<String> _) implements TfArg<String> {
+    IamWorkforcePoolProviderScimUsage.variable(String name) : this._(TfArg.variable(name));
+    IamWorkforcePoolProviderScimUsage.expression(String template) : this._(TfArg.expression(template));
+    const IamWorkforcePoolProviderScimUsage.arg(TfArg<String> arg) : this._(arg);
 
-    const IamWorkforcePoolProviderScimUsage(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const scimUsageUnspecified = IamWorkforcePoolProviderScimUsage._(TfArgLiteral('SCIM_USAGE_UNSPECIFIED'));
+    static const enabledForGroups = IamWorkforcePoolProviderScimUsage._(TfArgLiteral('ENABLED_FOR_GROUPS'));
+
+    static const List<IamWorkforcePoolProviderScimUsage> values = [scimUsageUnspecified, enabledForGroups];
   }
 
 dartTypeOverrides:

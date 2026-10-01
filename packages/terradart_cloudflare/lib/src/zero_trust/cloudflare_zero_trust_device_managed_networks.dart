@@ -11,12 +11,17 @@ const Set<String> _cloudflareZeroTrustDeviceManagedNetworksSensitive =
     <String>{};
 
 /// Zero Trust Device Managed Networks enum for `type`.
-enum ZeroTrustDeviceManagedNetworksType implements TerraformEnum {
-  tls('tls');
+extension type const ZeroTrustDeviceManagedNetworksType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDeviceManagedNetworksType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustDeviceManagedNetworksType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDeviceManagedNetworksType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustDeviceManagedNetworksType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls = ZeroTrustDeviceManagedNetworksType._(TfArgLiteral('tls'));
+
+  static const List<ZeroTrustDeviceManagedNetworksType> values = [tls];
 }
 
 /// Typed helper for the `config` block of
@@ -50,7 +55,7 @@ final class CloudflareZeroTrustDeviceManagedNetworks extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
-    required TfArg<ZeroTrustDeviceManagedNetworksType> type,
+    required ZeroTrustDeviceManagedNetworksType type,
     required ZeroTrustDeviceManagedNetworksConfig config,
     super.lifecycle,
     super.dependsOn,

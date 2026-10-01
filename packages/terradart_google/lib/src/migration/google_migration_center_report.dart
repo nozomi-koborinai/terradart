@@ -7,25 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleMigrationCenterReportSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center reports.
-enum MigrationCenterReportDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterReportDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterReportDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterReportDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterReportDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterReportDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterReportDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterReportDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterReportDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterReportDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Report type for `google_migration_center_report.type`.
 ///
 /// Required at apply time — the API rejects the default `TYPE_UNSPECIFIED`.
-enum MigrationCenterReportType implements TerraformEnum {
-  totalCostOfOwnership('TOTAL_COST_OF_OWNERSHIP');
+extension type const MigrationCenterReportType._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterReportType.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterReportType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterReportType.arg(TfArg<String> arg) : this._(arg);
 
-  const MigrationCenterReportType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const totalCostOfOwnership = MigrationCenterReportType._(
+    TfArgLiteral('TOTAL_COST_OF_OWNERSHIP'),
+  );
+
+  static const List<MigrationCenterReportType> values = [totalCostOfOwnership];
 }
 
 /// Factory wrapper for `google_migration_center_report`.
@@ -47,10 +70,10 @@ final class GoogleMigrationCenterReport extends Resource {
     required TfArg<String> location,
     required TfArg<String> reportConfig,
     required TfArg<String> reportId,
-    TfArg<MigrationCenterReportType>? type,
+    MigrationCenterReportType? type,
     TfArg<String>? displayName,
     TfArg<String>? description,
-    TfArg<MigrationCenterReportDeletionPolicy>? deletionPolicy,
+    MigrationCenterReportDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

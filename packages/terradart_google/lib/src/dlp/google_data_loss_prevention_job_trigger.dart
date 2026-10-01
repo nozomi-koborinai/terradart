@@ -14,14 +14,29 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleDataLossPreventionJobTriggerSensitive = <String>{};
 
 /// Data Loss Prevention Job Trigger enum for `status`.
-enum DataLossPreventionJobTriggerStatus implements TerraformEnum {
-  paused('PAUSED'),
-  healthy('HEALTHY'),
-  cancelled('CANCELLED');
+extension type const DataLossPreventionJobTriggerStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataLossPreventionJobTriggerStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const paused = DataLossPreventionJobTriggerStatus._(
+    TfArgLiteral('PAUSED'),
+  );
+  static const healthy = DataLossPreventionJobTriggerStatus._(
+    TfArgLiteral('HEALTHY'),
+  );
+  static const cancelled = DataLossPreventionJobTriggerStatus._(
+    TfArgLiteral('CANCELLED'),
+  );
+
+  static const List<DataLossPreventionJobTriggerStatus> values = [
+    paused,
+    healthy,
+    cancelled,
+  ];
 }
 
 /// Typed helper for the `inspect_job` block of
@@ -106,7 +121,7 @@ final class DataLossPreventionJobTriggerDeidentify {
 
   final TfArg<String> cloudStorageOutput;
 
-  final List<TfArg<DataLossPreventionJobTriggerFileTypesToTransform>>?
+  final List<DataLossPreventionJobTriggerFileTypesToTransform>?
   fileTypesToTransform;
 
   final DataLossPreventionJobTriggerTransformationConfig? transformationConfig;
@@ -127,15 +142,35 @@ final class DataLossPreventionJobTriggerDeidentify {
 }
 
 /// `file_types_to_transform` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerFileTypesToTransform implements TerraformEnum {
-  image('IMAGE'),
-  textFile('TEXT_FILE'),
-  csv('CSV'),
-  tsv('TSV');
+extension type const DataLossPreventionJobTriggerFileTypesToTransform._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionJobTriggerFileTypesToTransform.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerFileTypesToTransform.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerFileTypesToTransform.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerFileTypesToTransform(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const image = DataLossPreventionJobTriggerFileTypesToTransform._(
+    TfArgLiteral('IMAGE'),
+  );
+  static const textFile = DataLossPreventionJobTriggerFileTypesToTransform._(
+    TfArgLiteral('TEXT_FILE'),
+  );
+  static const csv = DataLossPreventionJobTriggerFileTypesToTransform._(
+    TfArgLiteral('CSV'),
+  );
+  static const tsv = DataLossPreventionJobTriggerFileTypesToTransform._(
+    TfArgLiteral('TSV'),
+  );
+
+  static const List<DataLossPreventionJobTriggerFileTypesToTransform> values = [
+    image,
+    textFile,
+    csv,
+    tsv,
+  ];
 }
 
 /// Typed helper for the `inspect_job.actions.deidentify.transformation_config` block of
@@ -266,7 +301,7 @@ final class DataLossPreventionJobTriggerOutputConfig {
     this.table,
   });
 
-  final TfArg<DataLossPreventionJobTriggerOutputSchema>? outputSchema;
+  final DataLossPreventionJobTriggerOutputSchema? outputSchema;
 
   final DataLossPreventionJobTriggerStoragePath? storagePath;
 
@@ -280,16 +315,38 @@ final class DataLossPreventionJobTriggerOutputConfig {
 }
 
 /// `output_schema` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerOutputSchema implements TerraformEnum {
-  basicColumns('BASIC_COLUMNS'),
-  gcsColumns('GCS_COLUMNS'),
-  datastoreColumns('DATASTORE_COLUMNS'),
-  bigQueryColumns('BIG_QUERY_COLUMNS'),
-  allColumns('ALL_COLUMNS');
+extension type const DataLossPreventionJobTriggerOutputSchema._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerOutputSchema.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerOutputSchema.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerOutputSchema.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerOutputSchema(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basicColumns = DataLossPreventionJobTriggerOutputSchema._(
+    TfArgLiteral('BASIC_COLUMNS'),
+  );
+  static const gcsColumns = DataLossPreventionJobTriggerOutputSchema._(
+    TfArgLiteral('GCS_COLUMNS'),
+  );
+  static const datastoreColumns = DataLossPreventionJobTriggerOutputSchema._(
+    TfArgLiteral('DATASTORE_COLUMNS'),
+  );
+  static const bigQueryColumns = DataLossPreventionJobTriggerOutputSchema._(
+    TfArgLiteral('BIG_QUERY_COLUMNS'),
+  );
+  static const allColumns = DataLossPreventionJobTriggerOutputSchema._(
+    TfArgLiteral('ALL_COLUMNS'),
+  );
+
+  static const List<DataLossPreventionJobTriggerOutputSchema> values = [
+    basicColumns,
+    gcsColumns,
+    datastoreColumns,
+    bigQueryColumns,
+    allColumns,
+  ];
 }
 
 /// Typed helper for the `inspect_job.actions.save_findings.output_config.storage_path` block of
@@ -321,7 +378,7 @@ final class DataLossPreventionJobTriggerInspectConfig {
 
   final TfArg<bool>? includeQuote;
 
-  final TfArg<DataLossPreventionJobTriggerMinLikelihood>? minLikelihood;
+  final DataLossPreventionJobTriggerMinLikelihood? minLikelihood;
 
   final List<DataLossPreventionJobTriggerCustomInfoTypes>? customInfoTypes;
 
@@ -345,16 +402,39 @@ final class DataLossPreventionJobTriggerInspectConfig {
 }
 
 /// `min_likelihood` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerMinLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionJobTriggerMinLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionJobTriggerMinLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerMinLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerMinLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerMinLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionJobTriggerMinLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionJobTriggerMinLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionJobTriggerMinLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionJobTriggerMinLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionJobTriggerMinLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionJobTriggerMinLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types` block of
@@ -374,7 +454,7 @@ final class DataLossPreventionJobTriggerCustomInfoTypes {
 
   final TfArg<String>? exclusionType;
 
-  final TfArg<DataLossPreventionJobTriggerLikelihood>? likelihood;
+  final DataLossPreventionJobTriggerLikelihood? likelihood;
 
   final DataLossPreventionJobTriggerDictionary? dictionary;
 
@@ -401,16 +481,38 @@ final class DataLossPreventionJobTriggerCustomInfoTypes {
 }
 
 /// `likelihood` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionJobTriggerLikelihood._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionJobTriggerLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionJobTriggerLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionJobTriggerLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionJobTriggerLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionJobTriggerLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionJobTriggerLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.dictionary` block of
@@ -488,20 +590,35 @@ final class DataLossPreventionJobTriggerInfoType {
 final class DataLossPreventionJobTriggerSensitivityScore {
   const DataLossPreventionJobTriggerSensitivityScore({required this.score});
 
-  final TfArg<DataLossPreventionJobTriggerScore> score;
+  final DataLossPreventionJobTriggerScore score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerScore implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
+extension type const DataLossPreventionJobTriggerScore._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerScore.arg(TfArg<String> arg) : this._(arg);
 
-  const DataLossPreventionJobTriggerScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sensitivityLow = DataLossPreventionJobTriggerScore._(
+    TfArgLiteral('SENSITIVITY_LOW'),
+  );
+  static const sensitivityModerate = DataLossPreventionJobTriggerScore._(
+    TfArgLiteral('SENSITIVITY_MODERATE'),
+  );
+  static const sensitivityHigh = DataLossPreventionJobTriggerScore._(
+    TfArgLiteral('SENSITIVITY_HIGH'),
+  );
+
+  static const List<DataLossPreventionJobTriggerScore> values = [
+    sensitivityLow,
+    sensitivityModerate,
+    sensitivityHigh,
+  ];
 }
 
 /// Typed helper for the `inspect_job.inspect_config.custom_info_types.regex` block of
@@ -665,7 +782,7 @@ final class DataLossPreventionJobTriggerExclusionRule {
     this.regex,
   });
 
-  final TfArg<DataLossPreventionJobTriggerMatchingType> matchingType;
+  final DataLossPreventionJobTriggerMatchingType matchingType;
 
   final DataLossPreventionJobTriggerDictionary? dictionary;
 
@@ -685,14 +802,33 @@ final class DataLossPreventionJobTriggerExclusionRule {
 }
 
 /// `matching_type` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerMatchingType implements TerraformEnum {
-  matchingTypeFullMatch('MATCHING_TYPE_FULL_MATCH'),
-  matchingTypePartialMatch('MATCHING_TYPE_PARTIAL_MATCH'),
-  matchingTypeInverseMatch('MATCHING_TYPE_INVERSE_MATCH');
+extension type const DataLossPreventionJobTriggerMatchingType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerMatchingType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerMatchingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerMatchingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerMatchingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const matchingTypeFullMatch =
+      DataLossPreventionJobTriggerMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_FULL_MATCH'),
+      );
+  static const matchingTypePartialMatch =
+      DataLossPreventionJobTriggerMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_PARTIAL_MATCH'),
+      );
+  static const matchingTypeInverseMatch =
+      DataLossPreventionJobTriggerMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_INVERSE_MATCH'),
+      );
+
+  static const List<DataLossPreventionJobTriggerMatchingType> values = [
+    matchingTypeFullMatch,
+    matchingTypePartialMatch,
+    matchingTypeInverseMatch,
+  ];
 }
 
 /// Typed helper for the `inspect_job.inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword` block of
@@ -799,7 +935,7 @@ final class DataLossPreventionJobTriggerLikelihoodAdjustment {
     this.relativeLikelihood,
   });
 
-  final TfArg<DataLossPreventionJobTriggerFixedLikelihood>? fixedLikelihood;
+  final DataLossPreventionJobTriggerFixedLikelihood? fixedLikelihood;
 
   final TfArg<num>? relativeLikelihood;
 
@@ -810,16 +946,39 @@ final class DataLossPreventionJobTriggerLikelihoodAdjustment {
 }
 
 /// `fixed_likelihood` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerFixedLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionJobTriggerFixedLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionJobTriggerFixedLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerFixedLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerFixedLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerFixedLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionJobTriggerFixedLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionJobTriggerFixedLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionJobTriggerFixedLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionJobTriggerFixedLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionJobTriggerFixedLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionJobTriggerFixedLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_job.storage_config` block of
@@ -871,7 +1030,7 @@ final class DataLossPreventionJobTriggerBigQueryOptions {
 
   final TfArg<num>? rowsLimitPercent;
 
-  final TfArg<DataLossPreventionJobTriggerSampleMethod>? sampleMethod;
+  final DataLossPreventionJobTriggerSampleMethod? sampleMethod;
 
   final List<DataLossPreventionJobTriggerExcludedFields>? excludedFields;
 
@@ -896,13 +1055,26 @@ final class DataLossPreventionJobTriggerBigQueryOptions {
 }
 
 /// `sample_method` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerSampleMethod implements TerraformEnum {
-  top('TOP'),
-  randomStart('RANDOM_START');
+extension type const DataLossPreventionJobTriggerSampleMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerSampleMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerSampleMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerSampleMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerSampleMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const top = DataLossPreventionJobTriggerSampleMethod._(
+    TfArgLiteral('TOP'),
+  );
+  static const randomStart = DataLossPreventionJobTriggerSampleMethod._(
+    TfArgLiteral('RANDOM_START'),
+  );
+
+  static const List<DataLossPreventionJobTriggerSampleMethod> values = [
+    top,
+    randomStart,
+  ];
 }
 
 /// Typed helper for the `inspect_job.storage_config.big_query_options.excluded_fields` block of
@@ -979,11 +1151,11 @@ final class DataLossPreventionJobTriggerCloudStorageOptions {
 
   final TfArg<num>? bytesLimitPerFilePercent;
 
-  final List<TfArg<DataLossPreventionJobTriggerFileTypes>>? fileTypes;
+  final List<DataLossPreventionJobTriggerFileTypes>? fileTypes;
 
   final TfArg<num>? filesLimitPercent;
 
-  final TfArg<DataLossPreventionJobTriggerSampleMethod>? sampleMethod;
+  final DataLossPreventionJobTriggerSampleMethod? sampleMethod;
 
   final DataLossPreventionJobTriggerFileSet fileSet;
 
@@ -999,21 +1171,58 @@ final class DataLossPreventionJobTriggerCloudStorageOptions {
 }
 
 /// `file_types` — derived from the provider schema description.
-enum DataLossPreventionJobTriggerFileTypes implements TerraformEnum {
-  binaryFile('BINARY_FILE'),
-  textFile('TEXT_FILE'),
-  image('IMAGE'),
-  word('WORD'),
-  pdf('PDF'),
-  avro('AVRO'),
-  csv('CSV'),
-  tsv('TSV'),
-  powerpoint('POWERPOINT'),
-  excel('EXCEL');
+extension type const DataLossPreventionJobTriggerFileTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionJobTriggerFileTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionJobTriggerFileTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionJobTriggerFileTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionJobTriggerFileTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const binaryFile = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('BINARY_FILE'),
+  );
+  static const textFile = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('TEXT_FILE'),
+  );
+  static const image = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('IMAGE'),
+  );
+  static const word = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('WORD'),
+  );
+  static const pdf = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('PDF'),
+  );
+  static const avro = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('AVRO'),
+  );
+  static const csv = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('CSV'),
+  );
+  static const tsv = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('TSV'),
+  );
+  static const powerpoint = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('POWERPOINT'),
+  );
+  static const excel = DataLossPreventionJobTriggerFileTypes._(
+    TfArgLiteral('EXCEL'),
+  );
+
+  static const List<DataLossPreventionJobTriggerFileTypes> values = [
+    binaryFile,
+    textFile,
+    image,
+    word,
+    pdf,
+    avro,
+    csv,
+    tsv,
+    powerpoint,
+    excel,
+  ];
 }
 
 /// Exactly one of `url`, `regex_file_set` on the `inspect_job.storage_config.cloud_storage_options.file_set` block of `google_data_loss_prevention_job_trigger`: the provider rejects
@@ -1327,7 +1536,7 @@ final class GoogleDataLossPreventionJobTrigger extends Resource {
     TfArg<String>? triggerId,
     TfArg<String>? displayName,
     TfArg<String>? description,
-    TfArg<DataLossPreventionJobTriggerStatus>? status,
+    DataLossPreventionJobTriggerStatus? status,
     required List<DataLossPreventionJobTriggerTriggers> triggers,
     DataLossPreventionJobTriggerInspectJob? inspectJob,
     TfArg<String>? deletionPolicy,

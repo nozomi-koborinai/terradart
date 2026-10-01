@@ -242,7 +242,7 @@ final class AppmeshRouteGrpcRoutePerRetryTimeout {
     required this.value,
   });
 
-  final TfArg<AppmeshRouteUnit> unit;
+  final AppmeshRouteUnit unit;
 
   final TfArg<num> value;
 
@@ -253,13 +253,17 @@ final class AppmeshRouteGrpcRoutePerRetryTimeout {
 }
 
 /// `unit` — derived from the provider schema description.
-enum AppmeshRouteUnit implements TerraformEnum {
-  s('s'),
-  ms('ms');
+extension type const AppmeshRouteUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshRouteUnit.variable(String name) : this._(TfArg.variable(name));
+  AppmeshRouteUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshRouteUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshRouteUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s = AppmeshRouteUnit._(TfArgLiteral('s'));
+  static const ms = AppmeshRouteUnit._(TfArgLiteral('ms'));
+
+  static const List<AppmeshRouteUnit> values = [s, ms];
 }
 
 /// Typed helper for the `spec.grpc_route.timeout` block of
@@ -285,7 +289,7 @@ final class AppmeshRouteGrpcRouteTimeout {
 final class AppmeshRouteGrpcRouteIdle {
   const AppmeshRouteGrpcRouteIdle({required this.unit, required this.value});
 
-  final TfArg<AppmeshRouteUnit> unit;
+  final AppmeshRouteUnit unit;
 
   final TfArg<num> value;
 
@@ -304,7 +308,7 @@ final class AppmeshRouteGrpcRoutePerRequest {
     required this.value,
   });
 
-  final TfArg<AppmeshRouteUnit> unit;
+  final AppmeshRouteUnit unit;
 
   final TfArg<num> value;
 

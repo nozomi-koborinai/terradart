@@ -10,14 +10,22 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareZoneDnsSettingsSensitive = <String>{};
 
 /// Zone Dns Settings Zone enum for `zone_mode`.
-enum ZoneDnsSettingsZoneMode implements TerraformEnum {
-  standard('standard'),
-  cdnOnly('cdn_only'),
-  dnsOnly('dns_only');
+extension type const ZoneDnsSettingsZoneMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneDnsSettingsZoneMode.variable(String name) : this._(TfArg.variable(name));
+  ZoneDnsSettingsZoneMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneDnsSettingsZoneMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneDnsSettingsZoneMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ZoneDnsSettingsZoneMode._(TfArgLiteral('standard'));
+  static const cdnOnly = ZoneDnsSettingsZoneMode._(TfArgLiteral('cdn_only'));
+  static const dnsOnly = ZoneDnsSettingsZoneMode._(TfArgLiteral('dns_only'));
+
+  static const List<ZoneDnsSettingsZoneMode> values = [
+    standard,
+    cdnOnly,
+    dnsOnly,
+  ];
 }
 
 /// Typed helper for the `internal_dns` block of
@@ -41,7 +49,7 @@ final class ZoneDnsSettingsNameservers {
 
   final TfArg<num>? nsSet;
 
-  final TfArg<ZoneDnsSettingsType>? type;
+  final ZoneDnsSettingsType? type;
 
   Map<String, Object?> encode() => {
     'ns_set': ?nsSet?.toTfJson(),
@@ -50,15 +58,30 @@ final class ZoneDnsSettingsNameservers {
 }
 
 /// `type` — derived from the provider schema description.
-enum ZoneDnsSettingsType implements TerraformEnum {
-  cloudflareStandard('cloudflare.standard'),
-  customAccount('custom.account'),
-  customTenant('custom.tenant'),
-  customZone('custom.zone');
+extension type const ZoneDnsSettingsType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneDnsSettingsType.variable(String name) : this._(TfArg.variable(name));
+  ZoneDnsSettingsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneDnsSettingsType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneDnsSettingsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudflareStandard = ZoneDnsSettingsType._(
+    TfArgLiteral('cloudflare.standard'),
+  );
+  static const customAccount = ZoneDnsSettingsType._(
+    TfArgLiteral('custom.account'),
+  );
+  static const customTenant = ZoneDnsSettingsType._(
+    TfArgLiteral('custom.tenant'),
+  );
+  static const customZone = ZoneDnsSettingsType._(TfArgLiteral('custom.zone'));
+
+  static const List<ZoneDnsSettingsType> values = [
+    cloudflareStandard,
+    customAccount,
+    customTenant,
+    customZone,
+  ];
 }
 
 /// Typed helper for the `soa` block of
@@ -117,7 +140,7 @@ final class CloudflareZoneDnsSettings extends Resource {
     TfArg<num>? nsTtl,
     TfArg<bool>? secondaryOverrides,
     required RefTo<CloudflareZone> zoneId,
-    TfArg<ZoneDnsSettingsZoneMode>? zoneMode,
+    ZoneDnsSettingsZoneMode? zoneMode,
     ZoneDnsSettingsInternalDns? internalDns,
     ZoneDnsSettingsNameservers? nameservers,
     ZoneDnsSettingsSoa? soa,

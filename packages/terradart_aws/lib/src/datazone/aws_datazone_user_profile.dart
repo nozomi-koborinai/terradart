@@ -7,27 +7,61 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatazoneUserProfileSensitive = <String>{};
 
 /// Datazone User Profile enum for `status`.
-enum DatazoneUserProfileStatus implements TerraformEnum {
-  assigned('ASSIGNED'),
-  notAssigned('NOT_ASSIGNED'),
-  activated('ACTIVATED'),
-  deactivated('DEACTIVATED');
+extension type const DatazoneUserProfileStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazoneUserProfileStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazoneUserProfileStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazoneUserProfileStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazoneUserProfileStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const assigned = DatazoneUserProfileStatus._(TfArgLiteral('ASSIGNED'));
+  static const notAssigned = DatazoneUserProfileStatus._(
+    TfArgLiteral('NOT_ASSIGNED'),
+  );
+  static const activated = DatazoneUserProfileStatus._(
+    TfArgLiteral('ACTIVATED'),
+  );
+  static const deactivated = DatazoneUserProfileStatus._(
+    TfArgLiteral('DEACTIVATED'),
+  );
+
+  static const List<DatazoneUserProfileStatus> values = [
+    assigned,
+    notAssigned,
+    activated,
+    deactivated,
+  ];
 }
 
 /// Datazone User Profile User enum for `user_type`.
-enum DatazoneUserProfileUserType implements TerraformEnum {
-  iamUser('IAM_USER'),
-  iamRole('IAM_ROLE'),
-  ssoUser('SSO_USER'),
-  iamRoleSession('IAM_ROLE_SESSION');
+extension type const DatazoneUserProfileUserType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazoneUserProfileUserType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazoneUserProfileUserType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazoneUserProfileUserType.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazoneUserProfileUserType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iamUser = DatazoneUserProfileUserType._(
+    TfArgLiteral('IAM_USER'),
+  );
+  static const iamRole = DatazoneUserProfileUserType._(
+    TfArgLiteral('IAM_ROLE'),
+  );
+  static const ssoUser = DatazoneUserProfileUserType._(
+    TfArgLiteral('SSO_USER'),
+  );
+  static const iamRoleSession = DatazoneUserProfileUserType._(
+    TfArgLiteral('IAM_ROLE_SESSION'),
+  );
+
+  static const List<DatazoneUserProfileUserType> values = [
+    iamUser,
+    iamRole,
+    ssoUser,
+    iamRoleSession,
+  ];
 }
 
 /// Factory wrapper for `aws_datazone_user_profile`.
@@ -38,9 +72,9 @@ final class AwsDatazoneUserProfile extends Resource {
     super.localName, {
     required TfArg<String> domainIdentifier,
     TfArg<String>? region,
-    TfArg<DatazoneUserProfileStatus>? status,
+    DatazoneUserProfileStatus? status,
     required TfArg<String> userIdentifier,
-    TfArg<DatazoneUserProfileUserType>? userType,
+    DatazoneUserProfileUserType? userType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

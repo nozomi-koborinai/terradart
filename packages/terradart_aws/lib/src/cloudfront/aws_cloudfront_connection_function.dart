@@ -19,7 +19,7 @@ final class CloudfrontConnectionFunctionConfig {
 
   final TfArg<String> comment;
 
-  final TfArg<CloudfrontConnectionFunctionRuntime> runtime;
+  final CloudfrontConnectionFunctionRuntime runtime;
 
   final List<CloudfrontConnectionFunctionKeyValueStoreAssociation>?
   keyValueStoreAssociation;
@@ -35,13 +35,26 @@ final class CloudfrontConnectionFunctionConfig {
 }
 
 /// `runtime` — derived from the provider schema description.
-enum CloudfrontConnectionFunctionRuntime implements TerraformEnum {
-  cloudfrontJs1p0('cloudfront-js-1.0'),
-  cloudfrontJs2p0('cloudfront-js-2.0');
+extension type const CloudfrontConnectionFunctionRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontConnectionFunctionRuntime.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontConnectionFunctionRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontConnectionFunctionRuntime.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontConnectionFunctionRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfrontJs1p0 = CloudfrontConnectionFunctionRuntime._(
+    TfArgLiteral('cloudfront-js-1.0'),
+  );
+  static const cloudfrontJs2p0 = CloudfrontConnectionFunctionRuntime._(
+    TfArgLiteral('cloudfront-js-2.0'),
+  );
+
+  static const List<CloudfrontConnectionFunctionRuntime> values = [
+    cloudfrontJs1p0,
+    cloudfrontJs2p0,
+  ];
 }
 
 /// Typed helper for the `connection_function_config.key_value_store_association` block of

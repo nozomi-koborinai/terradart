@@ -25,9 +25,7 @@ curatedDoc: |-
   /// GoogleKmsAutokeyConfig(
   ///   'folder_autokey',
   ///   folder: TfArg.literal('folders/123456789012'),
-  ///   keyProjectResolutionMode: TfArg.literal(
-  ///     KmsAutokeyConfigKeyProjectResolutionMode.disabled,
-  ///   ),
+  ///   keyProjectResolutionMode: KmsAutokeyConfigKeyProjectResolutionMode.disabled,
   /// );
   /// ```
 

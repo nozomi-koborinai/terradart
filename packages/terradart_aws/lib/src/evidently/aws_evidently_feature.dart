@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEvidentlyFeatureSensitive = <String>{};
 
 /// Evidently Feature Evaluation enum for `evaluation_strategy`.
-enum EvidentlyFeatureEvaluationStrategy implements TerraformEnum {
-  allRules('ALL_RULES'),
-  defaultVariation('DEFAULT_VARIATION');
+extension type const EvidentlyFeatureEvaluationStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  EvidentlyFeatureEvaluationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  EvidentlyFeatureEvaluationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EvidentlyFeatureEvaluationStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const EvidentlyFeatureEvaluationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allRules = EvidentlyFeatureEvaluationStrategy._(
+    TfArgLiteral('ALL_RULES'),
+  );
+  static const defaultVariation = EvidentlyFeatureEvaluationStrategy._(
+    TfArgLiteral('DEFAULT_VARIATION'),
+  );
+
+  static const List<EvidentlyFeatureEvaluationStrategy> values = [
+    allRules,
+    defaultVariation,
+  ];
 }
 
 /// Typed helper for the `variations` block of
@@ -69,7 +81,7 @@ final class AwsEvidentlyFeature extends Resource {
     TfArg<String>? defaultVariation,
     TfArg<String>? description,
     TfArg<Map<String, String>>? entityOverrides,
-    TfArg<EvidentlyFeatureEvaluationStrategy>? evaluationStrategy,
+    EvidentlyFeatureEvaluationStrategy? evaluationStrategy,
     required TfArg<String> name,
     required TfArg<String> project,
     TfArg<String>? region,

@@ -38,7 +38,7 @@ final class CloudIdentityGroupMembershipRoles {
     this.expiryDetail,
   });
 
-  final TfArg<CloudIdentityGroupMembershipRolesName> name;
+  final CloudIdentityGroupMembershipRolesName name;
 
   final CloudIdentityGroupMembershipExpiryDetail? expiryDetail;
 
@@ -49,14 +49,30 @@ final class CloudIdentityGroupMembershipRoles {
 }
 
 /// `name` — derived from the provider schema description.
-enum CloudIdentityGroupMembershipRolesName implements TerraformEnum {
-  owner('OWNER'),
-  manager('MANAGER'),
-  member('MEMBER');
+extension type const CloudIdentityGroupMembershipRolesName._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudIdentityGroupMembershipRolesName.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudIdentityGroupMembershipRolesName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudIdentityGroupMembershipRolesName.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudIdentityGroupMembershipRolesName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = CloudIdentityGroupMembershipRolesName._(
+    TfArgLiteral('OWNER'),
+  );
+  static const manager = CloudIdentityGroupMembershipRolesName._(
+    TfArgLiteral('MANAGER'),
+  );
+  static const member = CloudIdentityGroupMembershipRolesName._(
+    TfArgLiteral('MEMBER'),
+  );
+
+  static const List<CloudIdentityGroupMembershipRolesName> values = [
+    owner,
+    manager,
+    member,
+  ];
 }
 
 /// Typed helper for the `roles.expiry_detail` block of

@@ -10,33 +10,61 @@ const Set<String> _awsAlbListenerSensitive = <String>{
 };
 
 /// Alb Listener Alpn enum for `alpn_policy`.
-enum AlbListenerAlpnPolicy implements TerraformEnum {
-  http1only('HTTP1Only'),
-  http2only('HTTP2Only'),
-  http2optional('HTTP2Optional'),
-  http2preferred('HTTP2Preferred'),
-  none('None');
+extension type const AlbListenerAlpnPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerAlpnPolicy.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerAlpnPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerAlpnPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerAlpnPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http1only = AlbListenerAlpnPolicy._(TfArgLiteral('HTTP1Only'));
+  static const http2only = AlbListenerAlpnPolicy._(TfArgLiteral('HTTP2Only'));
+  static const http2optional = AlbListenerAlpnPolicy._(
+    TfArgLiteral('HTTP2Optional'),
+  );
+  static const http2preferred = AlbListenerAlpnPolicy._(
+    TfArgLiteral('HTTP2Preferred'),
+  );
+  static const none = AlbListenerAlpnPolicy._(TfArgLiteral('None'));
+
+  static const List<AlbListenerAlpnPolicy> values = [
+    http1only,
+    http2only,
+    http2optional,
+    http2preferred,
+    none,
+  ];
 }
 
 /// Alb Listener enum for `protocol`.
-enum AlbListenerProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP'),
-  tls('TLS'),
-  udp('UDP'),
-  tcpUdp('TCP_UDP'),
-  geneve('GENEVE'),
-  quic('QUIC'),
-  tcpQuic('TCP_QUIC');
+extension type const AlbListenerProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerProtocol.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = AlbListenerProtocol._(TfArgLiteral('HTTP'));
+  static const https = AlbListenerProtocol._(TfArgLiteral('HTTPS'));
+  static const tcp = AlbListenerProtocol._(TfArgLiteral('TCP'));
+  static const tls = AlbListenerProtocol._(TfArgLiteral('TLS'));
+  static const udp = AlbListenerProtocol._(TfArgLiteral('UDP'));
+  static const tcpUdp = AlbListenerProtocol._(TfArgLiteral('TCP_UDP'));
+  static const geneve = AlbListenerProtocol._(TfArgLiteral('GENEVE'));
+  static const quic = AlbListenerProtocol._(TfArgLiteral('QUIC'));
+  static const tcpQuic = AlbListenerProtocol._(TfArgLiteral('TCP_QUIC'));
+
+  static const List<AlbListenerProtocol> values = [
+    http,
+    https,
+    tcp,
+    tls,
+    udp,
+    tcpUdp,
+    geneve,
+    quic,
+    tcpQuic,
+  ];
 }
 
 /// Typed helper for the `default_action` block of
@@ -59,7 +87,7 @@ final class AlbListenerDefaultAction {
 
   final TfArg<String>? targetGroupArn;
 
-  final TfArg<AlbListenerType> type;
+  final AlbListenerType type;
 
   final AlbListenerAuthenticateCognito? authenticateCognito;
 
@@ -87,17 +115,36 @@ final class AlbListenerDefaultAction {
 }
 
 /// `type` — derived from the provider schema description.
-enum AlbListenerType implements TerraformEnum {
-  forward('forward'),
-  authenticateOidc('authenticate-oidc'),
-  authenticateCognito('authenticate-cognito'),
-  redirect('redirect'),
-  fixedResponse('fixed-response'),
-  jwtValidation('jwt-validation');
+extension type const AlbListenerType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerType.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forward = AlbListenerType._(TfArgLiteral('forward'));
+  static const authenticateOidc = AlbListenerType._(
+    TfArgLiteral('authenticate-oidc'),
+  );
+  static const authenticateCognito = AlbListenerType._(
+    TfArgLiteral('authenticate-cognito'),
+  );
+  static const redirect = AlbListenerType._(TfArgLiteral('redirect'));
+  static const fixedResponse = AlbListenerType._(
+    TfArgLiteral('fixed-response'),
+  );
+  static const jwtValidation = AlbListenerType._(
+    TfArgLiteral('jwt-validation'),
+  );
+
+  static const List<AlbListenerType> values = [
+    forward,
+    authenticateOidc,
+    authenticateCognito,
+    redirect,
+    fixedResponse,
+    jwtValidation,
+  ];
 }
 
 /// Typed helper for the `default_action.authenticate_cognito` block of
@@ -117,7 +164,7 @@ final class AlbListenerAuthenticateCognito {
 
   final TfArg<Map<String, String>>? authenticationRequestExtraParams;
 
-  final TfArg<AlbListenerOnUnauthenticatedRequest>? onUnauthenticatedRequest;
+  final AlbListenerOnUnauthenticatedRequest? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -145,14 +192,30 @@ final class AlbListenerAuthenticateCognito {
 }
 
 /// `on_unauthenticated_request` — derived from the provider schema description.
-enum AlbListenerOnUnauthenticatedRequest implements TerraformEnum {
-  deny('deny'),
-  allow('allow'),
-  authenticate('authenticate');
+extension type const AlbListenerOnUnauthenticatedRequest._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerOnUnauthenticatedRequest.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerOnUnauthenticatedRequest.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerOnUnauthenticatedRequest.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AlbListenerOnUnauthenticatedRequest(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deny = AlbListenerOnUnauthenticatedRequest._(
+    TfArgLiteral('deny'),
+  );
+  static const allow = AlbListenerOnUnauthenticatedRequest._(
+    TfArgLiteral('allow'),
+  );
+  static const authenticate = AlbListenerOnUnauthenticatedRequest._(
+    TfArgLiteral('authenticate'),
+  );
+
+  static const List<AlbListenerOnUnauthenticatedRequest> values = [
+    deny,
+    allow,
+    authenticate,
+  ];
 }
 
 /// Typed helper for the `default_action.authenticate_oidc` block of
@@ -183,7 +246,7 @@ final class AlbListenerAuthenticateOidc {
 
   final TfArg<String> issuer;
 
-  final TfArg<AlbListenerOnUnauthenticatedRequest>? onUnauthenticatedRequest;
+  final AlbListenerOnUnauthenticatedRequest? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -221,7 +284,7 @@ final class AlbListenerFixedResponse {
     this.statusCode,
   });
 
-  final TfArg<AlbListenerContentType> contentType;
+  final AlbListenerContentType contentType;
 
   final TfArg<String>? messageBody;
 
@@ -235,16 +298,30 @@ final class AlbListenerFixedResponse {
 }
 
 /// `content_type` — derived from the provider schema description.
-enum AlbListenerContentType implements TerraformEnum {
-  textPlain('text/plain'),
-  textCss('text/css'),
-  textHtml('text/html'),
-  applicationJavascript('application/javascript'),
-  applicationJson('application/json');
+extension type const AlbListenerContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerContentType.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const textPlain = AlbListenerContentType._(TfArgLiteral('text/plain'));
+  static const textCss = AlbListenerContentType._(TfArgLiteral('text/css'));
+  static const textHtml = AlbListenerContentType._(TfArgLiteral('text/html'));
+  static const applicationJavascript = AlbListenerContentType._(
+    TfArgLiteral('application/javascript'),
+  );
+  static const applicationJson = AlbListenerContentType._(
+    TfArgLiteral('application/json'),
+  );
+
+  static const List<AlbListenerContentType> values = [
+    textPlain,
+    textCss,
+    textHtml,
+    applicationJavascript,
+    applicationJson,
+  ];
 }
 
 /// Typed helper for the `default_action.forward` block of
@@ -329,7 +406,7 @@ final class AlbListenerAdditionalClaim {
     required this.values,
   });
 
-  final TfArg<AlbListenerFormat> format;
+  final AlbListenerFormat format;
 
   final TfArg<String> name;
 
@@ -343,14 +420,26 @@ final class AlbListenerAdditionalClaim {
 }
 
 /// `format` — derived from the provider schema description.
-enum AlbListenerFormat implements TerraformEnum {
-  singleString('single-string'),
-  stringArray('string-array'),
-  spaceSeparatedValues('space-separated-values');
+extension type const AlbListenerFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerFormat.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleString = AlbListenerFormat._(
+    TfArgLiteral('single-string'),
+  );
+  static const stringArray = AlbListenerFormat._(TfArgLiteral('string-array'));
+  static const spaceSeparatedValues = AlbListenerFormat._(
+    TfArgLiteral('space-separated-values'),
+  );
+
+  static const List<AlbListenerFormat> values = [
+    singleString,
+    stringArray,
+    spaceSeparatedValues,
+  ];
 }
 
 /// Typed helper for the `default_action.redirect` block of
@@ -372,11 +461,11 @@ final class AlbListenerRedirect {
 
   final TfArg<String>? port;
 
-  final TfArg<AlbListenerRedirectProtocol>? protocol;
+  final AlbListenerRedirectProtocol? protocol;
 
   final TfArg<String>? query;
 
-  final TfArg<AlbListenerStatusCode> statusCode;
+  final AlbListenerStatusCode statusCode;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -389,24 +478,39 @@ final class AlbListenerRedirect {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AlbListenerRedirectProtocol implements TerraformEnum {
-  protocol('#{protocol}'),
-  http('HTTP'),
-  https('HTTPS');
+extension type const AlbListenerRedirectProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRedirectProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRedirectProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRedirectProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRedirectProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const protocol = AlbListenerRedirectProtocol._(
+    TfArgLiteral('#{protocol}'),
+  );
+  static const http = AlbListenerRedirectProtocol._(TfArgLiteral('HTTP'));
+  static const https = AlbListenerRedirectProtocol._(TfArgLiteral('HTTPS'));
+
+  static const List<AlbListenerRedirectProtocol> values = [
+    protocol,
+    http,
+    https,
+  ];
 }
 
 /// `status_code` — derived from the provider schema description.
-enum AlbListenerStatusCode implements TerraformEnum {
-  http301('HTTP_301'),
-  http302('HTTP_302');
+extension type const AlbListenerStatusCode._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerStatusCode.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerStatusCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerStatusCode.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerStatusCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http301 = AlbListenerStatusCode._(TfArgLiteral('HTTP_301'));
+  static const http302 = AlbListenerStatusCode._(TfArgLiteral('HTTP_302'));
+
+  static const List<AlbListenerStatusCode> values = [http301, http302];
 }
 
 /// Typed helper for the `mutual_authentication` block of
@@ -420,12 +524,11 @@ final class AlbListenerMutualAuthentication {
     this.trustStoreArn,
   });
 
-  final TfArg<AlbListenerAdvertiseTrustStoreCaNames>?
-  advertiseTrustStoreCaNames;
+  final AlbListenerAdvertiseTrustStoreCaNames? advertiseTrustStoreCaNames;
 
   final TfArg<bool>? ignoreClientCertificateExpiry;
 
-  final TfArg<AlbListenerMode> mode;
+  final AlbListenerMode mode;
 
   final TfArg<String>? trustStoreArn;
 
@@ -439,24 +542,36 @@ final class AlbListenerMutualAuthentication {
 }
 
 /// `advertise_trust_store_ca_names` — derived from the provider schema description.
-enum AlbListenerAdvertiseTrustStoreCaNames implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const AlbListenerAdvertiseTrustStoreCaNames._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerAdvertiseTrustStoreCaNames.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerAdvertiseTrustStoreCaNames.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerAdvertiseTrustStoreCaNames.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AlbListenerAdvertiseTrustStoreCaNames(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = AlbListenerAdvertiseTrustStoreCaNames._(TfArgLiteral('on'));
+  static const off = AlbListenerAdvertiseTrustStoreCaNames._(
+    TfArgLiteral('off'),
+  );
+
+  static const List<AlbListenerAdvertiseTrustStoreCaNames> values = [on, off];
 }
 
 /// `mode` — derived from the provider schema description.
-enum AlbListenerMode implements TerraformEnum {
-  off('off'),
-  verify('verify'),
-  passthrough('passthrough');
+extension type const AlbListenerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerMode.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = AlbListenerMode._(TfArgLiteral('off'));
+  static const verify = AlbListenerMode._(TfArgLiteral('verify'));
+  static const passthrough = AlbListenerMode._(TfArgLiteral('passthrough'));
+
+  static const List<AlbListenerMode> values = [off, verify, passthrough];
 }
 
 /// Factory wrapper for `aws_alb_listener`.
@@ -465,11 +580,11 @@ final class AwsAlbListener extends Resource {
 
   AwsAlbListener(
     super.localName, {
-    TfArg<AlbListenerAlpnPolicy>? alpnPolicy,
+    AlbListenerAlpnPolicy? alpnPolicy,
     TfArg<String>? certificateArn,
     required TfArg<String> loadBalancerArn,
     TfArg<num>? port,
-    TfArg<AlbListenerProtocol>? protocol,
+    AlbListenerProtocol? protocol,
     TfArg<String>? region,
     TfArg<String>? routingHttpRequestXAmznMtlsClientcertHeaderName,
     TfArg<String>? routingHttpRequestXAmznMtlsClientcertIssuerHeaderName,

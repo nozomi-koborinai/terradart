@@ -287,7 +287,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
         'compute_network_firewall_policy_packet_mirroring_rule',
         action: .literal('mirror'),
-        direction: .literal(.ingress),
+        direction: .ingress,
         firewallPolicy: .literal('terradart-leftover'),
         priority: .literal(1000),
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
@@ -374,9 +374,7 @@ final class BetaLeftoverStack extends Stack {
         membershipId: .literal('terradart-leftover'),
         membershipRbacRoleBindingId: .literal('terradart-leftover'),
         user: .literal('terradart-leftover'),
-        role: GkeHubMembershipRbacRoleBindingRole(
-          predefinedRole: .literal(.admin),
-        ),
+        role: GkeHubMembershipRbacRoleBindingRole(predefinedRole: .admin),
       ),
     );
     add(
@@ -539,7 +537,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleNetworkSecurityAuthorizationPolicy(
         'network_security_authorization_policy',
-        action: .literal(.allow),
+        action: .allow,
         name: .literal('terradart-leftover'),
       ),
     );
@@ -556,7 +554,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleNetworkSecuritySacRealm(
         'network_security_sac_realm',
         name: .literal('terradart-leftover'),
-        securityService: .literal(.securityServiceUnspecified),
+        securityService: .securityServiceUnspecified,
       ),
     );
     add(

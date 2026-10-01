@@ -10,30 +10,65 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleDialogflowCxSecuritySettingsSensitive = <String>{};
 
 /// Dialogflow Cx Security Settings Redaction enum for `redaction_scope`.
-enum DialogflowCxSecuritySettingsRedactionScope implements TerraformEnum {
-  redactDiskStorage('REDACT_DISK_STORAGE');
+extension type const DialogflowCxSecuritySettingsRedactionScope._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowCxSecuritySettingsRedactionScope.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxSecuritySettingsRedactionScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxSecuritySettingsRedactionScope.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxSecuritySettingsRedactionScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redactDiskStorage = DialogflowCxSecuritySettingsRedactionScope._(
+    TfArgLiteral('REDACT_DISK_STORAGE'),
+  );
+
+  static const List<DialogflowCxSecuritySettingsRedactionScope> values = [
+    redactDiskStorage,
+  ];
 }
 
 /// Dialogflow Cx Security Settings Redaction enum for `redaction_strategy`.
-enum DialogflowCxSecuritySettingsRedactionStrategy implements TerraformEnum {
-  redactWithService('REDACT_WITH_SERVICE');
+extension type const DialogflowCxSecuritySettingsRedactionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowCxSecuritySettingsRedactionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxSecuritySettingsRedactionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxSecuritySettingsRedactionStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxSecuritySettingsRedactionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redactWithService =
+      DialogflowCxSecuritySettingsRedactionStrategy._(
+        TfArgLiteral('REDACT_WITH_SERVICE'),
+      );
+
+  static const List<DialogflowCxSecuritySettingsRedactionStrategy> values = [
+    redactWithService,
+  ];
 }
 
 /// Dialogflow Cx Security Settings Retention enum for `retention_strategy`.
-enum DialogflowCxSecuritySettingsRetentionStrategy implements TerraformEnum {
-  removeAfterConversation('REMOVE_AFTER_CONVERSATION');
+extension type const DialogflowCxSecuritySettingsRetentionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowCxSecuritySettingsRetentionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxSecuritySettingsRetentionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxSecuritySettingsRetentionStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxSecuritySettingsRetentionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const removeAfterConversation =
+      DialogflowCxSecuritySettingsRetentionStrategy._(
+        TfArgLiteral('REMOVE_AFTER_CONVERSATION'),
+      );
+
+  static const List<DialogflowCxSecuritySettingsRetentionStrategy> values = [
+    removeAfterConversation,
+  ];
 }
 
 /// At most one of `retention_window_days`, `retention_strategy` on `google_dialogflow_cx_security_settings`: the provider rejects
@@ -51,7 +86,7 @@ sealed class DialogflowCxSecuritySettingsRetention {
 
   /// Sets `retention_strategy`.
   const factory DialogflowCxSecuritySettingsRetention.retentionStrategy(
-    TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy,
+    DialogflowCxSecuritySettingsRetentionStrategy retentionStrategy,
   ) = DialogflowCxSecuritySettingsRetentionStrategyChoice;
 
   /// The Terraform argument this choice sets.
@@ -94,7 +129,7 @@ final class DialogflowCxSecuritySettingsRetentionStrategyChoice
     this.retentionStrategy,
   );
 
-  final TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy;
+  final DialogflowCxSecuritySettingsRetentionStrategy retentionStrategy;
 
   @override
   String get blockKey => 'retention_strategy';
@@ -123,7 +158,7 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
 
   final TfArg<String>? audioExportPattern;
 
-  final TfArg<DialogflowCxSecuritySettingsAudioFormat>? audioFormat;
+  final DialogflowCxSecuritySettingsAudioFormat? audioFormat;
 
   final TfArg<bool>? enableAudioRedaction;
 
@@ -138,14 +173,30 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
 }
 
 /// `audio_format` — derived from the provider schema description.
-enum DialogflowCxSecuritySettingsAudioFormat implements TerraformEnum {
-  mulaw('MULAW'),
-  mp3('MP3'),
-  ogg('OGG');
+extension type const DialogflowCxSecuritySettingsAudioFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxSecuritySettingsAudioFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxSecuritySettingsAudioFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxSecuritySettingsAudioFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxSecuritySettingsAudioFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mulaw = DialogflowCxSecuritySettingsAudioFormat._(
+    TfArgLiteral('MULAW'),
+  );
+  static const mp3 = DialogflowCxSecuritySettingsAudioFormat._(
+    TfArgLiteral('MP3'),
+  );
+  static const ogg = DialogflowCxSecuritySettingsAudioFormat._(
+    TfArgLiteral('OGG'),
+  );
+
+  static const List<DialogflowCxSecuritySettingsAudioFormat> values = [
+    mulaw,
+    mp3,
+    ogg,
+  ];
 }
 
 /// Typed helper for the `insights_export_settings` block of
@@ -188,8 +239,8 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
     super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
-    TfArg<DialogflowCxSecuritySettingsRedactionStrategy>? redactionStrategy,
-    TfArg<DialogflowCxSecuritySettingsRedactionScope>? redactionScope,
+    DialogflowCxSecuritySettingsRedactionStrategy? redactionStrategy,
+    DialogflowCxSecuritySettingsRedactionScope? redactionScope,
     TfArg<String>? inspectTemplate,
     TfArg<String>? deidentifyTemplate,
     DialogflowCxSecuritySettingsRetention? retention,

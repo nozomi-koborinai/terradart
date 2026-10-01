@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlueResourcePolicySensitive = <String>{};
 
 /// Glue Resource Policy Enable enum for `enable_hybrid`.
-enum GlueResourcePolicyEnableHybrid implements TerraformEnum {
-  trueCase('TRUE'),
-  falseCase('FALSE');
+extension type const GlueResourcePolicyEnableHybrid._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueResourcePolicyEnableHybrid.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueResourcePolicyEnableHybrid.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueResourcePolicyEnableHybrid.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueResourcePolicyEnableHybrid(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = GlueResourcePolicyEnableHybrid._(
+    TfArgLiteral('TRUE'),
+  );
+  static const falseCase = GlueResourcePolicyEnableHybrid._(
+    TfArgLiteral('FALSE'),
+  );
+
+  static const List<GlueResourcePolicyEnableHybrid> values = [
+    trueCase,
+    falseCase,
+  ];
 }
 
 /// Factory wrapper for `aws_glue_resource_policy`.
@@ -22,7 +34,7 @@ final class AwsGlueResourcePolicy extends Resource {
 
   AwsGlueResourcePolicy(
     super.localName, {
-    TfArg<GlueResourcePolicyEnableHybrid>? enableHybrid,
+    GlueResourcePolicyEnableHybrid? enableHybrid,
     required TfArg<String> policy,
     TfArg<String>? region,
     super.lifecycle,

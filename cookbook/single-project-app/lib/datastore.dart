@@ -12,7 +12,7 @@ GoogleSqlDatabaseInstance buildSqlInstance({
 }) => GoogleSqlDatabaseInstance(
   'coffee_sql',
   name: .literal('coffee-shop-sql'),
-  databaseVersion: .literal(.postgres15),
+  databaseVersion: .postgres15,
   region: .literal('asia-northeast1'),
   deletionProtection: .literal(false),
   settings: SqlDatabaseInstanceSettings(

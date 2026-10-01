@@ -40,7 +40,7 @@ final class AppHostingStack extends Stack {
         location: .literal('us-central1'),
         appId: .literal('1:1234567890:web:abcdef'),
         serviceAccount: sa.ref,
-        servingLocality: .literal(.regionalStrict),
+        servingLocality: .regionalStrict,
         displayName: .literal('terradart App Hosting quickstart'),
       ),
     );

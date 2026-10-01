@@ -10,85 +10,171 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsAlbTargetGroupSensitive = <String>{};
 
 /// Alb Target Group Ip Address enum for `ip_address_type`.
-enum AlbTargetGroupIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const AlbTargetGroupIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = AlbTargetGroupIpAddressType._(TfArgLiteral('ipv4'));
+  static const ipv6 = AlbTargetGroupIpAddressType._(TfArgLiteral('ipv6'));
+
+  static const List<AlbTargetGroupIpAddressType> values = [ipv4, ipv6];
 }
 
 /// Alb Target Group Load Balancing Algorithm enum for `load_balancing_algorithm_type`.
-enum AlbTargetGroupLoadBalancingAlgorithmType implements TerraformEnum {
-  roundRobin('round_robin'),
-  leastOutstandingRequests('least_outstanding_requests'),
-  weightedRandom('weighted_random');
+extension type const AlbTargetGroupLoadBalancingAlgorithmType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupLoadBalancingAlgorithmType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupLoadBalancingAlgorithmType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupLoadBalancingAlgorithmType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AlbTargetGroupLoadBalancingAlgorithmType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const roundRobin = AlbTargetGroupLoadBalancingAlgorithmType._(
+    TfArgLiteral('round_robin'),
+  );
+  static const leastOutstandingRequests =
+      AlbTargetGroupLoadBalancingAlgorithmType._(
+        TfArgLiteral('least_outstanding_requests'),
+      );
+  static const weightedRandom = AlbTargetGroupLoadBalancingAlgorithmType._(
+    TfArgLiteral('weighted_random'),
+  );
+
+  static const List<AlbTargetGroupLoadBalancingAlgorithmType> values = [
+    roundRobin,
+    leastOutstandingRequests,
+    weightedRandom,
+  ];
 }
 
 /// Alb Target Group Load Balancing Anomaly enum for `load_balancing_anomaly_mitigation`.
-enum AlbTargetGroupLoadBalancingAnomalyMitigation implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const AlbTargetGroupLoadBalancingAnomalyMitigation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AlbTargetGroupLoadBalancingAnomalyMitigation.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupLoadBalancingAnomalyMitigation.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupLoadBalancingAnomalyMitigation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AlbTargetGroupLoadBalancingAnomalyMitigation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = AlbTargetGroupLoadBalancingAnomalyMitigation._(
+    TfArgLiteral('on'),
+  );
+  static const off = AlbTargetGroupLoadBalancingAnomalyMitigation._(
+    TfArgLiteral('off'),
+  );
+
+  static const List<AlbTargetGroupLoadBalancingAnomalyMitigation> values = [
+    on,
+    off,
+  ];
 }
 
 /// Alb Target Group Load Balancing Cross Zone enum for `load_balancing_cross_zone_enabled`.
-enum AlbTargetGroupLoadBalancingCrossZoneEnabled implements TerraformEnum {
-  trueCase('true'),
-  falseCase('false'),
-  useLoadBalancerConfiguration('use_load_balancer_configuration');
+extension type const AlbTargetGroupLoadBalancingCrossZoneEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AlbTargetGroupLoadBalancingCrossZoneEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupLoadBalancingCrossZoneEnabled.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupLoadBalancingCrossZoneEnabled.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AlbTargetGroupLoadBalancingCrossZoneEnabled(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = AlbTargetGroupLoadBalancingCrossZoneEnabled._(
+    TfArgLiteral('true'),
+  );
+  static const falseCase = AlbTargetGroupLoadBalancingCrossZoneEnabled._(
+    TfArgLiteral('false'),
+  );
+  static const useLoadBalancerConfiguration =
+      AlbTargetGroupLoadBalancingCrossZoneEnabled._(
+        TfArgLiteral('use_load_balancer_configuration'),
+      );
+
+  static const List<AlbTargetGroupLoadBalancingCrossZoneEnabled> values = [
+    trueCase,
+    falseCase,
+    useLoadBalancerConfiguration,
+  ];
 }
 
 /// Alb Target Group enum for `protocol`.
-enum AlbTargetGroupProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP'),
-  tls('TLS'),
-  udp('UDP'),
-  tcpUdp('TCP_UDP'),
-  geneve('GENEVE'),
-  quic('QUIC'),
-  tcpQuic('TCP_QUIC');
+extension type const AlbTargetGroupProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupProtocol.variable(String name) : this._(TfArg.variable(name));
+  AlbTargetGroupProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = AlbTargetGroupProtocol._(TfArgLiteral('HTTP'));
+  static const https = AlbTargetGroupProtocol._(TfArgLiteral('HTTPS'));
+  static const tcp = AlbTargetGroupProtocol._(TfArgLiteral('TCP'));
+  static const tls = AlbTargetGroupProtocol._(TfArgLiteral('TLS'));
+  static const udp = AlbTargetGroupProtocol._(TfArgLiteral('UDP'));
+  static const tcpUdp = AlbTargetGroupProtocol._(TfArgLiteral('TCP_UDP'));
+  static const geneve = AlbTargetGroupProtocol._(TfArgLiteral('GENEVE'));
+  static const quic = AlbTargetGroupProtocol._(TfArgLiteral('QUIC'));
+  static const tcpQuic = AlbTargetGroupProtocol._(TfArgLiteral('TCP_QUIC'));
+
+  static const List<AlbTargetGroupProtocol> values = [
+    http,
+    https,
+    tcp,
+    tls,
+    udp,
+    tcpUdp,
+    geneve,
+    quic,
+    tcpQuic,
+  ];
 }
 
 /// Alb Target Group Protocol enum for `protocol_version`.
-enum AlbTargetGroupProtocolVersion implements TerraformEnum {
-  grpc('GRPC'),
-  http1('HTTP1'),
-  http2('HTTP2');
+extension type const AlbTargetGroupProtocolVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupProtocolVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupProtocolVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const grpc = AlbTargetGroupProtocolVersion._(TfArgLiteral('GRPC'));
+  static const http1 = AlbTargetGroupProtocolVersion._(TfArgLiteral('HTTP1'));
+  static const http2 = AlbTargetGroupProtocolVersion._(TfArgLiteral('HTTP2'));
+
+  static const List<AlbTargetGroupProtocolVersion> values = [
+    grpc,
+    http1,
+    http2,
+  ];
 }
 
 /// Alb Target Group Target enum for `target_type`.
-enum AlbTargetGroupTargetType implements TerraformEnum {
-  instance('instance'),
-  ip('ip'),
-  lambda('lambda'),
-  alb('alb');
+extension type const AlbTargetGroupTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupTargetType.variable(String name) : this._(TfArg.variable(name));
+  AlbTargetGroupTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instance = AlbTargetGroupTargetType._(TfArgLiteral('instance'));
+  static const ip = AlbTargetGroupTargetType._(TfArgLiteral('ip'));
+  static const lambda = AlbTargetGroupTargetType._(TfArgLiteral('lambda'));
+  static const alb = AlbTargetGroupTargetType._(TfArgLiteral('alb'));
+
+  static const List<AlbTargetGroupTargetType> values = [
+    instance,
+    ip,
+    lambda,
+    alb,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_alb_target_group`: the provider rejects
@@ -213,7 +299,7 @@ final class AlbTargetGroupStickiness {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<AlbTargetGroupType> type;
+  final AlbTargetGroupType type;
 
   Map<String, Object?> encode() => {
     'cookie_duration': ?cookieDuration?.toTfJson(),
@@ -224,16 +310,30 @@ final class AlbTargetGroupStickiness {
 }
 
 /// `type` — derived from the provider schema description.
-enum AlbTargetGroupType implements TerraformEnum {
-  lbCookie('lb_cookie'),
-  appCookie('app_cookie'),
-  sourceIp('source_ip'),
-  sourceIpDestIp('source_ip_dest_ip'),
-  sourceIpDestIpProto('source_ip_dest_ip_proto');
+extension type const AlbTargetGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupType.variable(String name) : this._(TfArg.variable(name));
+  AlbTargetGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lbCookie = AlbTargetGroupType._(TfArgLiteral('lb_cookie'));
+  static const appCookie = AlbTargetGroupType._(TfArgLiteral('app_cookie'));
+  static const sourceIp = AlbTargetGroupType._(TfArgLiteral('source_ip'));
+  static const sourceIpDestIp = AlbTargetGroupType._(
+    TfArgLiteral('source_ip_dest_ip'),
+  );
+  static const sourceIpDestIpProto = AlbTargetGroupType._(
+    TfArgLiteral('source_ip_dest_ip_proto'),
+  );
+
+  static const List<AlbTargetGroupType> values = [
+    lbCookie,
+    appCookie,
+    sourceIp,
+    sourceIpDestIp,
+    sourceIpDestIpProto,
+  ];
 }
 
 /// Typed helper for the `target_failover` block of
@@ -245,9 +345,9 @@ final class AlbTargetGroupTargetFailover {
     required this.onUnhealthy,
   });
 
-  final TfArg<AlbTargetGroupOnDeregistration> onDeregistration;
+  final AlbTargetGroupOnDeregistration onDeregistration;
 
-  final TfArg<AlbTargetGroupOnUnhealthy> onUnhealthy;
+  final AlbTargetGroupOnUnhealthy onUnhealthy;
 
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
@@ -256,23 +356,47 @@ final class AlbTargetGroupTargetFailover {
 }
 
 /// `on_deregistration` — derived from the provider schema description.
-enum AlbTargetGroupOnDeregistration implements TerraformEnum {
-  rebalance('rebalance'),
-  noRebalance('no_rebalance');
+extension type const AlbTargetGroupOnDeregistration._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupOnDeregistration.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupOnDeregistration.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupOnDeregistration.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupOnDeregistration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rebalance = AlbTargetGroupOnDeregistration._(
+    TfArgLiteral('rebalance'),
+  );
+  static const noRebalance = AlbTargetGroupOnDeregistration._(
+    TfArgLiteral('no_rebalance'),
+  );
+
+  static const List<AlbTargetGroupOnDeregistration> values = [
+    rebalance,
+    noRebalance,
+  ];
 }
 
 /// `on_unhealthy` — derived from the provider schema description.
-enum AlbTargetGroupOnUnhealthy implements TerraformEnum {
-  rebalance('rebalance'),
-  noRebalance('no_rebalance');
+extension type const AlbTargetGroupOnUnhealthy._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbTargetGroupOnUnhealthy.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbTargetGroupOnUnhealthy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbTargetGroupOnUnhealthy.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbTargetGroupOnUnhealthy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rebalance = AlbTargetGroupOnUnhealthy._(
+    TfArgLiteral('rebalance'),
+  );
+  static const noRebalance = AlbTargetGroupOnUnhealthy._(
+    TfArgLiteral('no_rebalance'),
+  );
+
+  static const List<AlbTargetGroupOnUnhealthy> values = [
+    rebalance,
+    noRebalance,
+  ];
 }
 
 /// Typed helper for the `target_group_health` block of
@@ -359,24 +483,23 @@ final class AwsAlbTargetGroup extends Resource {
     super.localName, {
     TfArg<bool>? connectionTermination,
     TfArg<String>? deregistrationDelay,
-    TfArg<AlbTargetGroupIpAddressType>? ipAddressType,
+    AlbTargetGroupIpAddressType? ipAddressType,
     TfArg<bool>? lambdaMultiValueHeadersEnabled,
-    TfArg<AlbTargetGroupLoadBalancingAlgorithmType>? loadBalancingAlgorithmType,
-    TfArg<AlbTargetGroupLoadBalancingAnomalyMitigation>?
+    AlbTargetGroupLoadBalancingAlgorithmType? loadBalancingAlgorithmType,
+    AlbTargetGroupLoadBalancingAnomalyMitigation?
     loadBalancingAnomalyMitigation,
-    TfArg<AlbTargetGroupLoadBalancingCrossZoneEnabled>?
-    loadBalancingCrossZoneEnabled,
+    AlbTargetGroupLoadBalancingCrossZoneEnabled? loadBalancingCrossZoneEnabled,
     AlbTargetGroupName? name,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
-    TfArg<AlbTargetGroupProtocol>? protocol,
-    TfArg<AlbTargetGroupProtocolVersion>? protocolVersion,
+    AlbTargetGroupProtocol? protocol,
+    AlbTargetGroupProtocolVersion? protocolVersion,
     TfArg<bool>? proxyProtocolV2,
     TfArg<String>? region,
     TfArg<num>? slowStart,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? targetControlPort,
-    TfArg<AlbTargetGroupTargetType>? targetType,
+    AlbTargetGroupTargetType? targetType,
     RefTo<AwsVpc>? vpcId,
     AlbTargetGroupHealthCheck? healthCheck,
     AlbTargetGroupStickiness? stickiness,

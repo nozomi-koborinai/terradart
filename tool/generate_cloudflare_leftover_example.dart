@@ -698,14 +698,17 @@ String _literalInner(
 
 const _hex32 = '00000000000000000000000000000001';
 
-/// Every `TerraformEnum` the package declares: name → (member, raw value)
-/// in declaration order.
+/// Every enum the package declares: name → (member, raw value) in
+/// declaration order.
 final _enums = <String, List<(String, String)>>{};
 
 final _enumDecl = RegExp(
-  r'enum\s+(\w+)\s+implements\s+TerraformEnum\s*\{([^;]*);',
+  r'extension\s+type\s+const\s+(\w+)\._\([^)]*\)\s+implements\s+TfArg<String>\s*\{(.*?)static\s+const\s+List<',
+  dotAll: true,
 );
-final _enumEntry = RegExp(r"(\w+)\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)");
+final _enumEntry = RegExp(
+  r"static\s+const\s+(\w+)\s*=\s*\w+\._\(\s*TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'",
+);
 
 void _collectEnums(String source) {
   for (final m in _enumDecl.allMatches(source)) {

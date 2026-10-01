@@ -50,11 +50,11 @@ final class ComputePerInstanceConfigDisk {
     required this.source,
   });
 
-  final TfArg<ComputePerInstanceConfigDeleteRule>? deleteRule;
+  final ComputePerInstanceConfigDeleteRule? deleteRule;
 
   final TfArg<String> deviceName;
 
-  final TfArg<ComputePerInstanceConfigMode>? mode;
+  final ComputePerInstanceConfigMode? mode;
 
   final TfArg<String> source;
 
@@ -67,23 +67,48 @@ final class ComputePerInstanceConfigDisk {
 }
 
 /// `delete_rule` — derived from the provider schema description.
-enum ComputePerInstanceConfigDeleteRule implements TerraformEnum {
-  never('NEVER'),
-  onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
+extension type const ComputePerInstanceConfigDeleteRule._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePerInstanceConfigDeleteRule.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePerInstanceConfigDeleteRule.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePerInstanceConfigDeleteRule.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputePerInstanceConfigDeleteRule(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = ComputePerInstanceConfigDeleteRule._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onPermanentInstanceDeletion =
+      ComputePerInstanceConfigDeleteRule._(
+        TfArgLiteral('ON_PERMANENT_INSTANCE_DELETION'),
+      );
+
+  static const List<ComputePerInstanceConfigDeleteRule> values = [
+    never,
+    onPermanentInstanceDeletion,
+  ];
 }
 
 /// `mode` — derived from the provider schema description.
-enum ComputePerInstanceConfigMode implements TerraformEnum {
-  readOnly('READ_ONLY'),
-  readWrite('READ_WRITE');
+extension type const ComputePerInstanceConfigMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePerInstanceConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePerInstanceConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePerInstanceConfigMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputePerInstanceConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readOnly = ComputePerInstanceConfigMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const readWrite = ComputePerInstanceConfigMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<ComputePerInstanceConfigMode> values = [
+    readOnly,
+    readWrite,
+  ];
 }
 
 /// Typed helper for the `preserved_state.external_ip` block of
@@ -96,7 +121,7 @@ final class ComputePerInstanceConfigExternalIp {
     this.ipAddress,
   });
 
-  final TfArg<ComputePerInstanceConfigAutoDelete>? autoDelete;
+  final ComputePerInstanceConfigAutoDelete? autoDelete;
 
   final TfArg<String> interfaceName;
 
@@ -110,13 +135,26 @@ final class ComputePerInstanceConfigExternalIp {
 }
 
 /// `auto_delete` — derived from the provider schema description.
-enum ComputePerInstanceConfigAutoDelete implements TerraformEnum {
-  never('NEVER'),
-  onPermanentInstanceDeletion('ON_PERMANENT_INSTANCE_DELETION');
+extension type const ComputePerInstanceConfigAutoDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePerInstanceConfigAutoDelete.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePerInstanceConfigAutoDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePerInstanceConfigAutoDelete.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputePerInstanceConfigAutoDelete(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = ComputePerInstanceConfigAutoDelete._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onPermanentInstanceDeletion =
+      ComputePerInstanceConfigAutoDelete._(
+        TfArgLiteral('ON_PERMANENT_INSTANCE_DELETION'),
+      );
+
+  static const List<ComputePerInstanceConfigAutoDelete> values = [
+    never,
+    onPermanentInstanceDeletion,
+  ];
 }
 
 /// Typed helper for the `preserved_state.external_ip.ip_address` block of
@@ -141,7 +179,7 @@ final class ComputePerInstanceConfigInternalIp {
     this.ipAddress,
   });
 
-  final TfArg<ComputePerInstanceConfigAutoDelete>? autoDelete;
+  final ComputePerInstanceConfigAutoDelete? autoDelete;
 
   final TfArg<String> interfaceName;
 

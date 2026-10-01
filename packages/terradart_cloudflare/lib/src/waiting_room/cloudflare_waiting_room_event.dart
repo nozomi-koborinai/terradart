@@ -9,25 +9,51 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareWaitingRoomEventSensitive = <String>{};
 
 /// Waiting Room Event Turnstile enum for `turnstile_action`.
-enum WaitingRoomEventTurnstileAction implements TerraformEnum {
-  log('log'),
-  infiniteQueue('infinite_queue');
+extension type const WaitingRoomEventTurnstileAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomEventTurnstileAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WaitingRoomEventTurnstileAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomEventTurnstileAction.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomEventTurnstileAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = WaitingRoomEventTurnstileAction._(TfArgLiteral('log'));
+  static const infiniteQueue = WaitingRoomEventTurnstileAction._(
+    TfArgLiteral('infinite_queue'),
+  );
+
+  static const List<WaitingRoomEventTurnstileAction> values = [
+    log,
+    infiniteQueue,
+  ];
 }
 
 /// Waiting Room Event Turnstile enum for `turnstile_mode`.
-enum WaitingRoomEventTurnstileMode implements TerraformEnum {
-  off('off'),
-  invisible('invisible'),
-  visibleNonInteractive('visible_non_interactive'),
-  visibleManaged('visible_managed');
+extension type const WaitingRoomEventTurnstileMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomEventTurnstileMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WaitingRoomEventTurnstileMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomEventTurnstileMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomEventTurnstileMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = WaitingRoomEventTurnstileMode._(TfArgLiteral('off'));
+  static const invisible = WaitingRoomEventTurnstileMode._(
+    TfArgLiteral('invisible'),
+  );
+  static const visibleNonInteractive = WaitingRoomEventTurnstileMode._(
+    TfArgLiteral('visible_non_interactive'),
+  );
+  static const visibleManaged = WaitingRoomEventTurnstileMode._(
+    TfArgLiteral('visible_managed'),
+  );
+
+  static const List<WaitingRoomEventTurnstileMode> values = [
+    off,
+    invisible,
+    visibleNonInteractive,
+    visibleManaged,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_waiting_room_event`.
@@ -53,8 +79,8 @@ final class CloudflareWaitingRoomEvent extends Resource {
     TfArg<bool>? shuffleAtEventStart,
     TfArg<bool>? suspended,
     TfArg<num>? totalActiveUsers,
-    TfArg<WaitingRoomEventTurnstileAction>? turnstileAction,
-    TfArg<WaitingRoomEventTurnstileMode>? turnstileMode,
+    WaitingRoomEventTurnstileAction? turnstileAction,
+    WaitingRoomEventTurnstileMode? turnstileMode,
     required TfArg<String> waitingRoomId,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

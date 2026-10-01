@@ -83,7 +83,7 @@ final class StorageInsightsReportConfigFrequencyOptions {
     required this.startDate,
   });
 
-  final TfArg<StorageInsightsReportConfigFrequency> frequency;
+  final StorageInsightsReportConfigFrequency frequency;
 
   final StorageInsightsReportConfigEndDate endDate;
 
@@ -97,13 +97,26 @@ final class StorageInsightsReportConfigFrequencyOptions {
 }
 
 /// `frequency` — derived from the provider schema description.
-enum StorageInsightsReportConfigFrequency implements TerraformEnum {
-  daily('DAILY'),
-  weekly('WEEKLY');
+extension type const StorageInsightsReportConfigFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageInsightsReportConfigFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageInsightsReportConfigFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageInsightsReportConfigFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StorageInsightsReportConfigFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = StorageInsightsReportConfigFrequency._(
+    TfArgLiteral('DAILY'),
+  );
+  static const weekly = StorageInsightsReportConfigFrequency._(
+    TfArgLiteral('WEEKLY'),
+  );
+
+  static const List<StorageInsightsReportConfigFrequency> values = [
+    daily,
+    weekly,
+  ];
 }
 
 /// Typed helper for the `frequency_options.end_date` block of
@@ -232,9 +245,7 @@ final class StorageInsightsReportConfigStorageFilters {
 ///   forceDestroy: TfArg.literal(true),
 ///   format: const StorageInsightsReportConfigCsvFormat(),
 ///   frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
-///     frequency: TfArg.literal(
-///       StorageInsightsReportConfigFrequency.weekly,
-///     ),
+///     frequency: StorageInsightsReportConfigFrequency.weekly,
 ///     startDate: .new(
 ///       year: TfArg.literal(2099),
 ///       month: TfArg.literal(1),

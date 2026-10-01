@@ -9,14 +9,31 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsSesIdentityNotificationTopicSensitive = <String>{};
 
 /// Ses Identity Notification Topic Notification enum for `notification_type`.
-enum SesIdentityNotificationTopicNotificationType implements TerraformEnum {
-  bounce('Bounce'),
-  complaint('Complaint'),
-  delivery('Delivery');
+extension type const SesIdentityNotificationTopicNotificationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SesIdentityNotificationTopicNotificationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SesIdentityNotificationTopicNotificationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesIdentityNotificationTopicNotificationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SesIdentityNotificationTopicNotificationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bounce = SesIdentityNotificationTopicNotificationType._(
+    TfArgLiteral('Bounce'),
+  );
+  static const complaint = SesIdentityNotificationTopicNotificationType._(
+    TfArgLiteral('Complaint'),
+  );
+  static const delivery = SesIdentityNotificationTopicNotificationType._(
+    TfArgLiteral('Delivery'),
+  );
+
+  static const List<SesIdentityNotificationTopicNotificationType> values = [
+    bounce,
+    complaint,
+    delivery,
+  ];
 }
 
 /// Factory wrapper for `aws_ses_identity_notification_topic`.
@@ -27,8 +44,7 @@ final class AwsSesIdentityNotificationTopic extends Resource {
     super.localName, {
     required TfArg<String> identity,
     TfArg<bool>? includeOriginalHeaders,
-    required TfArg<SesIdentityNotificationTopicNotificationType>
-    notificationType,
+    required SesIdentityNotificationTopicNotificationType notificationType,
     TfArg<String>? region,
     RefTo<AwsSnsTopic>? topicArn,
     super.lifecycle,

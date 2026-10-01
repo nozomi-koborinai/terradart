@@ -41,7 +41,7 @@ final class GlueSecurityConfigurationCloudwatchEncryption {
     this.kmsKeyArn,
   });
 
-  final TfArg<GlueSecurityConfigurationCloudwatchEncryptionMode>?
+  final GlueSecurityConfigurationCloudwatchEncryptionMode?
   cloudwatchEncryptionMode;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
@@ -53,14 +53,25 @@ final class GlueSecurityConfigurationCloudwatchEncryption {
 }
 
 /// `cloudwatch_encryption_mode` — derived from the provider schema description.
-enum GlueSecurityConfigurationCloudwatchEncryptionMode
-    implements TerraformEnum {
-  disabled('DISABLED'),
-  sseKms('SSE-KMS');
+extension type const GlueSecurityConfigurationCloudwatchEncryptionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlueSecurityConfigurationCloudwatchEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueSecurityConfigurationCloudwatchEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueSecurityConfigurationCloudwatchEncryptionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlueSecurityConfigurationCloudwatchEncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = GlueSecurityConfigurationCloudwatchEncryptionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const sseKms = GlueSecurityConfigurationCloudwatchEncryptionMode._(
+    TfArgLiteral('SSE-KMS'),
+  );
+
+  static const List<GlueSecurityConfigurationCloudwatchEncryptionMode> values =
+      [disabled, sseKms];
 }
 
 /// Typed helper for the `encryption_configuration.job_bookmarks_encryption` block of
@@ -72,7 +83,7 @@ final class GlueSecurityConfigurationJobBookmarksEncryption {
     this.kmsKeyArn,
   });
 
-  final TfArg<GlueSecurityConfigurationJobBookmarksEncryptionMode>?
+  final GlueSecurityConfigurationJobBookmarksEncryptionMode?
   jobBookmarksEncryptionMode;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
@@ -84,16 +95,27 @@ final class GlueSecurityConfigurationJobBookmarksEncryption {
 }
 
 /// `job_bookmarks_encryption_mode` — derived from the provider schema description.
-enum GlueSecurityConfigurationJobBookmarksEncryptionMode
-    implements TerraformEnum {
-  disabled('DISABLED'),
-  cseKms('CSE-KMS');
+extension type const GlueSecurityConfigurationJobBookmarksEncryptionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlueSecurityConfigurationJobBookmarksEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueSecurityConfigurationJobBookmarksEncryptionMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GlueSecurityConfigurationJobBookmarksEncryptionMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GlueSecurityConfigurationJobBookmarksEncryptionMode(
-    this.terraformValue,
+  static const disabled = GlueSecurityConfigurationJobBookmarksEncryptionMode._(
+    TfArgLiteral('DISABLED'),
   );
-  @override
-  final String terraformValue;
+  static const cseKms = GlueSecurityConfigurationJobBookmarksEncryptionMode._(
+    TfArgLiteral('CSE-KMS'),
+  );
+
+  static const List<GlueSecurityConfigurationJobBookmarksEncryptionMode>
+  values = [disabled, cseKms];
 }
 
 /// Typed helper for the `encryption_configuration.s3_encryption` block of
@@ -107,7 +129,7 @@ final class GlueSecurityConfigurationS3Encryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<GlueSecurityConfigurationS3EncryptionMode>? s3EncryptionMode;
+  final GlueSecurityConfigurationS3EncryptionMode? s3EncryptionMode;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -116,14 +138,31 @@ final class GlueSecurityConfigurationS3Encryption {
 }
 
 /// `s3_encryption_mode` — derived from the provider schema description.
-enum GlueSecurityConfigurationS3EncryptionMode implements TerraformEnum {
-  disabled('DISABLED'),
-  sseKms('SSE-KMS'),
-  sseS3('SSE-S3');
+extension type const GlueSecurityConfigurationS3EncryptionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlueSecurityConfigurationS3EncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueSecurityConfigurationS3EncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueSecurityConfigurationS3EncryptionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlueSecurityConfigurationS3EncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = GlueSecurityConfigurationS3EncryptionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const sseKms = GlueSecurityConfigurationS3EncryptionMode._(
+    TfArgLiteral('SSE-KMS'),
+  );
+  static const sseS3 = GlueSecurityConfigurationS3EncryptionMode._(
+    TfArgLiteral('SSE-S3'),
+  );
+
+  static const List<GlueSecurityConfigurationS3EncryptionMode> values = [
+    disabled,
+    sseKms,
+    sseS3,
+  ];
 }
 
 /// Factory wrapper for `aws_glue_security_configuration`.

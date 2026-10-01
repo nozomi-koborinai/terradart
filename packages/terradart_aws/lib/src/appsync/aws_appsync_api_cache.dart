@@ -7,37 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAppsyncApiCacheSensitive = <String>{};
 
 /// Appsync Api Cache Api Caching enum for `api_caching_behavior`.
-enum AppsyncApiCacheApiCachingBehavior implements TerraformEnum {
-  fullRequestCaching('FULL_REQUEST_CACHING'),
-  perResolverCaching('PER_RESOLVER_CACHING'),
-  operationLevelCaching('OPERATION_LEVEL_CACHING');
+extension type const AppsyncApiCacheApiCachingBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncApiCacheApiCachingBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  AppsyncApiCacheApiCachingBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncApiCacheApiCachingBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncApiCacheApiCachingBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullRequestCaching = AppsyncApiCacheApiCachingBehavior._(
+    TfArgLiteral('FULL_REQUEST_CACHING'),
+  );
+  static const perResolverCaching = AppsyncApiCacheApiCachingBehavior._(
+    TfArgLiteral('PER_RESOLVER_CACHING'),
+  );
+  static const operationLevelCaching = AppsyncApiCacheApiCachingBehavior._(
+    TfArgLiteral('OPERATION_LEVEL_CACHING'),
+  );
+
+  static const List<AppsyncApiCacheApiCachingBehavior> values = [
+    fullRequestCaching,
+    perResolverCaching,
+    operationLevelCaching,
+  ];
 }
 
 /// Appsync Api Cache enum for `type`.
-enum AppsyncApiCacheType implements TerraformEnum {
-  t2Small('T2_SMALL'),
-  t2Medium('T2_MEDIUM'),
-  r4Large('R4_LARGE'),
-  r4Xlarge('R4_XLARGE'),
-  r42xlarge('R4_2XLARGE'),
-  r44xlarge('R4_4XLARGE'),
-  r48xlarge('R4_8XLARGE'),
-  small('SMALL'),
-  medium('MEDIUM'),
-  large('LARGE'),
-  xlarge('XLARGE'),
-  large2x('LARGE_2X'),
-  large4x('LARGE_4X'),
-  large8x('LARGE_8X'),
-  large12x('LARGE_12X');
+extension type const AppsyncApiCacheType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncApiCacheType.variable(String name) : this._(TfArg.variable(name));
+  AppsyncApiCacheType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncApiCacheType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncApiCacheType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const t2Small = AppsyncApiCacheType._(TfArgLiteral('T2_SMALL'));
+  static const t2Medium = AppsyncApiCacheType._(TfArgLiteral('T2_MEDIUM'));
+  static const r4Large = AppsyncApiCacheType._(TfArgLiteral('R4_LARGE'));
+  static const r4Xlarge = AppsyncApiCacheType._(TfArgLiteral('R4_XLARGE'));
+  static const r42xlarge = AppsyncApiCacheType._(TfArgLiteral('R4_2XLARGE'));
+  static const r44xlarge = AppsyncApiCacheType._(TfArgLiteral('R4_4XLARGE'));
+  static const r48xlarge = AppsyncApiCacheType._(TfArgLiteral('R4_8XLARGE'));
+  static const small = AppsyncApiCacheType._(TfArgLiteral('SMALL'));
+  static const medium = AppsyncApiCacheType._(TfArgLiteral('MEDIUM'));
+  static const large = AppsyncApiCacheType._(TfArgLiteral('LARGE'));
+  static const xlarge = AppsyncApiCacheType._(TfArgLiteral('XLARGE'));
+  static const large2x = AppsyncApiCacheType._(TfArgLiteral('LARGE_2X'));
+  static const large4x = AppsyncApiCacheType._(TfArgLiteral('LARGE_4X'));
+  static const large8x = AppsyncApiCacheType._(TfArgLiteral('LARGE_8X'));
+  static const large12x = AppsyncApiCacheType._(TfArgLiteral('LARGE_12X'));
+
+  static const List<AppsyncApiCacheType> values = [
+    t2Small,
+    t2Medium,
+    r4Large,
+    r4Xlarge,
+    r42xlarge,
+    r44xlarge,
+    r48xlarge,
+    small,
+    medium,
+    large,
+    xlarge,
+    large2x,
+    large4x,
+    large8x,
+    large12x,
+  ];
 }
 
 /// Factory wrapper for `aws_appsync_api_cache`.
@@ -46,13 +81,13 @@ final class AwsAppsyncApiCache extends Resource {
 
   AwsAppsyncApiCache(
     super.localName, {
-    required TfArg<AppsyncApiCacheApiCachingBehavior> apiCachingBehavior,
+    required AppsyncApiCacheApiCachingBehavior apiCachingBehavior,
     required TfArg<String> apiId,
     TfArg<bool>? atRestEncryptionEnabled,
     TfArg<String>? region,
     TfArg<bool>? transitEncryptionEnabled,
     required TfArg<num> ttl,
-    required TfArg<AppsyncApiCacheType> type,
+    required AppsyncApiCacheType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

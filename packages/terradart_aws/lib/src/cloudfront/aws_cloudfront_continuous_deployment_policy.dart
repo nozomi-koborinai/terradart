@@ -37,7 +37,7 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
     this.singleWeightConfig,
   });
 
-  final TfArg<CloudfrontContinuousDeploymentPolicyType> type;
+  final CloudfrontContinuousDeploymentPolicyType type;
 
   final List<CloudfrontContinuousDeploymentPolicySingleHeaderConfig>?
   singleHeaderConfig;
@@ -55,13 +55,26 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudfrontContinuousDeploymentPolicyType implements TerraformEnum {
-  singleweight('SingleWeight'),
-  singleheader('SingleHeader');
+extension type const CloudfrontContinuousDeploymentPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontContinuousDeploymentPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontContinuousDeploymentPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontContinuousDeploymentPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontContinuousDeploymentPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleweight = CloudfrontContinuousDeploymentPolicyType._(
+    TfArgLiteral('SingleWeight'),
+  );
+  static const singleheader = CloudfrontContinuousDeploymentPolicyType._(
+    TfArgLiteral('SingleHeader'),
+  );
+
+  static const List<CloudfrontContinuousDeploymentPolicyType> values = [
+    singleweight,
+    singleheader,
+  ];
 }
 
 /// Typed helper for the `traffic_config.single_header_config` block of

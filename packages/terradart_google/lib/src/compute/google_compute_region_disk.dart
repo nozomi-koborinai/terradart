@@ -16,24 +16,70 @@ const Set<String> _googleComputeRegionDiskSensitive = <String>{
 };
 
 /// `guest_os_features[].type` for regional persistent disks.
-enum ComputeRegionDiskGuestOsFeatureType implements TerraformEnum {
-  multiIpSubnet('MULTI_IP_SUBNET'),
-  secureBoot('SECURE_BOOT'),
-  sevCapable('SEV_CAPABLE'),
-  uefiCompatible('UEFI_COMPATIBLE'),
-  virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
-  windows('WINDOWS'),
-  gVnic('GVNIC'),
-  sevLiveMigratable('SEV_LIVE_MIGRATABLE'),
-  sevSnpCapable('SEV_SNP_CAPABLE'),
-  suspendResumeCompatible('SUSPEND_RESUME_COMPATIBLE'),
-  tdxCapable('TDX_CAPABLE'),
-  sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2'),
-  snpSvsmCapable('SNP_SVSM_CAPABLE');
+extension type const ComputeRegionDiskGuestOsFeatureType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionDiskGuestOsFeatureType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionDiskGuestOsFeatureType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionDiskGuestOsFeatureType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionDiskGuestOsFeatureType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiIpSubnet = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('MULTI_IP_SUBNET'),
+  );
+  static const secureBoot = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SECURE_BOOT'),
+  );
+  static const sevCapable = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SEV_CAPABLE'),
+  );
+  static const uefiCompatible = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('UEFI_COMPATIBLE'),
+  );
+  static const virtioScsiMultiqueue = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('VIRTIO_SCSI_MULTIQUEUE'),
+  );
+  static const windows = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('WINDOWS'),
+  );
+  static const gVnic = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('GVNIC'),
+  );
+  static const sevLiveMigratable = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SEV_LIVE_MIGRATABLE'),
+  );
+  static const sevSnpCapable = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SEV_SNP_CAPABLE'),
+  );
+  static const suspendResumeCompatible = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SUSPEND_RESUME_COMPATIBLE'),
+  );
+  static const tdxCapable = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('TDX_CAPABLE'),
+  );
+  static const sevLiveMigratableV2 = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SEV_LIVE_MIGRATABLE_V2'),
+  );
+  static const snpSvsmCapable = ComputeRegionDiskGuestOsFeatureType._(
+    TfArgLiteral('SNP_SVSM_CAPABLE'),
+  );
+
+  static const List<ComputeRegionDiskGuestOsFeatureType> values = [
+    multiIpSubnet,
+    secureBoot,
+    sevCapable,
+    uefiCompatible,
+    virtioScsiMultiqueue,
+    windows,
+    gVnic,
+    sevLiveMigratable,
+    sevSnpCapable,
+    suspendResumeCompatible,
+    tdxCapable,
+    sevLiveMigratableV2,
+    snpSvsmCapable,
+  ];
 }
 
 /// One entry of the `guest_os_features` block (repeatable list).
@@ -43,7 +89,7 @@ class ComputeRegionDiskGuestOsFeature {
 
   final ComputeRegionDiskGuestOsFeatureType type;
 
-  Map<String, Object?> toArgMap() => {'type': type.terraformValue};
+  Map<String, Object?> toArgMap() => {'type': type.toTfJson()};
 }
 
 /// Typed helper for the `async_primary_disk` block of

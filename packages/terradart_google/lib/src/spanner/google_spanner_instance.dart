@@ -11,45 +11,83 @@ import '../spanner/google_spanner_instance_config.dart'
 const Set<String> _googleSpannerInstanceSensitive = <String>{};
 
 /// Spanner Instance Default Backup Schedule enum for `default_backup_schedule_type`.
-enum SpannerInstanceDefaultBackupScheduleType implements TerraformEnum {
-  none('NONE'),
-  automatic('AUTOMATIC');
+extension type const SpannerInstanceDefaultBackupScheduleType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerInstanceDefaultBackupScheduleType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpannerInstanceDefaultBackupScheduleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerInstanceDefaultBackupScheduleType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SpannerInstanceDefaultBackupScheduleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = SpannerInstanceDefaultBackupScheduleType._(
+    TfArgLiteral('NONE'),
+  );
+  static const automatic = SpannerInstanceDefaultBackupScheduleType._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+
+  static const List<SpannerInstanceDefaultBackupScheduleType> values = [
+    none,
+    automatic,
+  ];
 }
 
 /// Spanner Instance enum for `edition`.
-enum SpannerInstanceEdition implements TerraformEnum {
-  editionUnspecified('EDITION_UNSPECIFIED'),
-  standard('STANDARD'),
-  enterprise('ENTERPRISE'),
-  enterprisePlus('ENTERPRISE_PLUS');
+extension type const SpannerInstanceEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerInstanceEdition.variable(String name) : this._(TfArg.variable(name));
+  SpannerInstanceEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerInstanceEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const SpannerInstanceEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const editionUnspecified = SpannerInstanceEdition._(
+    TfArgLiteral('EDITION_UNSPECIFIED'),
+  );
+  static const standard = SpannerInstanceEdition._(TfArgLiteral('STANDARD'));
+  static const enterprise = SpannerInstanceEdition._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const enterprisePlus = SpannerInstanceEdition._(
+    TfArgLiteral('ENTERPRISE_PLUS'),
+  );
+
+  static const List<SpannerInstanceEdition> values = [
+    editionUnspecified,
+    standard,
+    enterprise,
+    enterprisePlus,
+  ];
 }
 
 /// Spanner Instance enum for `instance_type`.
-enum SpannerInstanceType implements TerraformEnum {
-  provisioned('PROVISIONED'),
-  freeInstance('FREE_INSTANCE');
+extension type const SpannerInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerInstanceType.variable(String name) : this._(TfArg.variable(name));
+  SpannerInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SpannerInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const provisioned = SpannerInstanceType._(TfArgLiteral('PROVISIONED'));
+  static const freeInstance = SpannerInstanceType._(
+    TfArgLiteral('FREE_INSTANCE'),
+  );
+
+  static const List<SpannerInstanceType> values = [provisioned, freeInstance];
 }
 
 /// Spanner Instance enum for `state`.
-enum SpannerInstanceState implements TerraformEnum {
-  ready('READY'),
-  creating('CREATING');
+extension type const SpannerInstanceState._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerInstanceState.variable(String name) : this._(TfArg.variable(name));
+  SpannerInstanceState.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerInstanceState.arg(TfArg<String> arg) : this._(arg);
 
-  const SpannerInstanceState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ready = SpannerInstanceState._(TfArgLiteral('READY'));
+  static const creating = SpannerInstanceState._(TfArgLiteral('CREATING'));
+
+  static const List<SpannerInstanceState> values = [ready, creating];
 }
 
 /// Typed helper for the `autoscaling_config` block of
@@ -442,7 +480,7 @@ final class GoogleSpannerInstance extends Resource {
     required TfArg<String> displayName,
     TfArg<num>? numNodes,
     TfArg<num>? processingUnits,
-    TfArg<SpannerInstanceEdition>? edition,
+    SpannerInstanceEdition? edition,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? defaultBackupScheduleType,
     TfArg<bool>? forceDestroy,

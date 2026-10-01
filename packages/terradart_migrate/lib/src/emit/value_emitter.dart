@@ -1059,21 +1059,30 @@ final class ValueEmitter {
       return _enumMember(enumName, folded.value);
     }
 
-    // `TfArg<E>` (wrapped) takes an expression verbatim; a bare `E` cannot.
-    String wrapped(Expr e) =>
-        isExpression(e) ? _expression(e) : _arg('literal(${member(e)})');
-    String bare(Expr e) {
-      if (isExpression(e)) {
-        throw MigrateBlocker(
-          'argument "$path" takes a bare enum value, not an expression',
-        );
+    // An enum is a `TfArg<String>`: a member, `.variable(...)` /
+    // `.expression(...)` (constructors every enum declares), or any other
+    // `TfArg<String>` — a reference, a lifted workspace — through `.arg(...)`.
+    String enumCall(String typedArg) {
+      final own =
+          typedArg.startsWith('.variable(') ||
+          typedArg.startsWith('.expression(');
+      final call = own ? typedArg : '.arg($typedArg)';
+      return _typed ? call : '$enumName$call';
+    }
+
+    String element(Expr e) {
+      if (!isExpression(e)) return member(e);
+      final ref = singleReference(e);
+      if (ref != null) {
+        final r = _inPosition(true, () => _refArg(ref, type: 'String'));
+        if (r != null) return enumCall(r);
       }
-      return member(e);
+      return enumCall(_inPosition(true, () => _expression(e)));
     }
 
     if (slot.repeated) {
-      // The parameter is a Dart list (`List<TfArg<E>>` or `List<E>`), so a
-      // reference to a whole list has no slot to go in.
+      // The parameter is a Dart list (`List<E>`), so a reference to a whole
+      // list has no slot to go in.
       if (value is! TupleExpr && isExpression(value)) {
         throw MigrateBlocker(
           'argument "$path" takes a list of $enumName values, not a '
@@ -1083,8 +1092,7 @@ final class ValueEmitter {
       if (value is! TupleExpr) {
         throw MigrateBlocker('argument "$path" expects a list of $enumName');
       }
-      // `List<TfArg<E>>` when wrapped, `List<E>` when bare.
-      return '[${value.elements.map(slot.wrapped ? wrapped : bare).join(', ')}]';
+      return '[${value.elements.map(element).join(', ')}]';
     }
     // Lifted by `--merge-envs`: the environments name different members of
     // the same enum, so the constant is typed as the enum, not as its wire
@@ -1093,21 +1101,9 @@ final class ValueEmitter {
     if (envExpr != null) {
       envSlotTypes[envExpr] = enumName;
       envValueSources[envExpr] = member(value);
-      return slot.wrapped ? _arg('literal($envExpr)') : envExpr;
+      return envExpr;
     }
-    final ref = singleReference(value);
-    if (ref != null) {
-      final r = _refArg(ref, type: enumName);
-      if (r != null) {
-        if (!slot.wrapped) {
-          throw MigrateBlocker(
-            'argument "$path" takes a bare enum value, not a reference',
-          );
-        }
-        return r;
-      }
-    }
-    return slot.wrapped ? wrapped(value) : bare(value);
+    return element(value);
   }
 
   String _helper(

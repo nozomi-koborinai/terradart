@@ -197,7 +197,7 @@ final class WrapperOverride {
   /// `null` means "no prelude".
   final String? prelude;
 
-  /// Phase A1 migration gate. When `true`, the emitter derives `TerraformEnum`
+  /// Phase A1 migration gate. When `true`, the emitter derives enum
   /// declarations for this resource's enum-valued attributes from the
   /// MM-enriched IR, and the hand-written enum block must be removed from
   /// [prelude]. Defaults to `false` so un-migrated resources are unaffected.
@@ -231,7 +231,7 @@ final class WrapperOverride {
   final String? curatedDoc;
 
   /// `deriveNestedTypes` migration gate. When `true`, the emitter derives a
-  /// typed `@immutable` helper class (plus any attribute `TerraformEnum`s)
+  /// typed `@immutable` helper class (plus any attribute enums)
   /// for each of this resource's TOP-LEVEL nested blocks from the provider
   /// schema — see `nested_types/nested_type_collector.dart` and
   /// `nested_type_emitter.dart` — replacing the generic

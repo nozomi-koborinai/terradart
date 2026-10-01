@@ -58,7 +58,7 @@ final class CognitoRiskConfigurationHighAction {
     required this.notify,
   });
 
-  final TfArg<CognitoRiskConfigurationHighActionEventAction> eventAction;
+  final CognitoRiskConfigurationHighActionEventAction eventAction;
 
   final TfArg<bool> notify;
 
@@ -69,15 +69,36 @@ final class CognitoRiskConfigurationHighAction {
 }
 
 /// `event_action` — derived from the provider schema description.
-enum CognitoRiskConfigurationHighActionEventAction implements TerraformEnum {
-  block('BLOCK'),
-  mfaIfConfigured('MFA_IF_CONFIGURED'),
-  mfaRequired('MFA_REQUIRED'),
-  noAction('NO_ACTION');
+extension type const CognitoRiskConfigurationHighActionEventAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitoRiskConfigurationHighActionEventAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoRiskConfigurationHighActionEventAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoRiskConfigurationHighActionEventAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoRiskConfigurationHighActionEventAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = CognitoRiskConfigurationHighActionEventAction._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const mfaIfConfigured =
+      CognitoRiskConfigurationHighActionEventAction._(
+        TfArgLiteral('MFA_IF_CONFIGURED'),
+      );
+  static const mfaRequired = CognitoRiskConfigurationHighActionEventAction._(
+    TfArgLiteral('MFA_REQUIRED'),
+  );
+  static const noAction = CognitoRiskConfigurationHighActionEventAction._(
+    TfArgLiteral('NO_ACTION'),
+  );
+
+  static const List<CognitoRiskConfigurationHighActionEventAction> values = [
+    block,
+    mfaIfConfigured,
+    mfaRequired,
+    noAction,
+  ];
 }
 
 /// Typed helper for the `account_takeover_risk_configuration.actions.low_action` block of
@@ -89,7 +110,7 @@ final class CognitoRiskConfigurationLowAction {
     required this.notify,
   });
 
-  final TfArg<CognitoRiskConfigurationHighActionEventAction> eventAction;
+  final CognitoRiskConfigurationHighActionEventAction eventAction;
 
   final TfArg<bool> notify;
 
@@ -108,7 +129,7 @@ final class CognitoRiskConfigurationMediumAction {
     required this.notify,
   });
 
-  final TfArg<CognitoRiskConfigurationHighActionEventAction> eventAction;
+  final CognitoRiskConfigurationHighActionEventAction eventAction;
 
   final TfArg<bool> notify;
 
@@ -231,7 +252,7 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
     required this.actions,
   });
 
-  final List<TfArg<CognitoRiskConfigurationEventFilter>>? eventFilter;
+  final List<CognitoRiskConfigurationEventFilter>? eventFilter;
 
   final CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions
   actions;
@@ -244,14 +265,30 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
 }
 
 /// `event_filter` — derived from the provider schema description.
-enum CognitoRiskConfigurationEventFilter implements TerraformEnum {
-  signIn('SIGN_IN'),
-  passwordChange('PASSWORD_CHANGE'),
-  signUp('SIGN_UP');
+extension type const CognitoRiskConfigurationEventFilter._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoRiskConfigurationEventFilter.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoRiskConfigurationEventFilter.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoRiskConfigurationEventFilter.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoRiskConfigurationEventFilter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const signIn = CognitoRiskConfigurationEventFilter._(
+    TfArgLiteral('SIGN_IN'),
+  );
+  static const passwordChange = CognitoRiskConfigurationEventFilter._(
+    TfArgLiteral('PASSWORD_CHANGE'),
+  );
+  static const signUp = CognitoRiskConfigurationEventFilter._(
+    TfArgLiteral('SIGN_UP'),
+  );
+
+  static const List<CognitoRiskConfigurationEventFilter> values = [
+    signIn,
+    passwordChange,
+    signUp,
+  ];
 }
 
 /// Typed helper for the `compromised_credentials_risk_configuration.actions` block of
@@ -262,19 +299,32 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActio
     required this.eventAction,
   });
 
-  final TfArg<CognitoRiskConfigurationEventAction> eventAction;
+  final CognitoRiskConfigurationEventAction eventAction;
 
   Map<String, Object?> encode() => {'event_action': eventAction.toTfJson()};
 }
 
 /// `event_action` — derived from the provider schema description.
-enum CognitoRiskConfigurationEventAction implements TerraformEnum {
-  block('BLOCK'),
-  noAction('NO_ACTION');
+extension type const CognitoRiskConfigurationEventAction._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoRiskConfigurationEventAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoRiskConfigurationEventAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoRiskConfigurationEventAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoRiskConfigurationEventAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = CognitoRiskConfigurationEventAction._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const noAction = CognitoRiskConfigurationEventAction._(
+    TfArgLiteral('NO_ACTION'),
+  );
+
+  static const List<CognitoRiskConfigurationEventAction> values = [
+    block,
+    noAction,
+  ];
 }
 
 /// Typed helper for the `risk_exception_configuration` block of

@@ -21,7 +21,7 @@ final class CloudConnectorRules {
     this.parameters,
   });
 
-  final TfArg<CloudConnectorRulesProvider>? cloudConnectorRulesProvider;
+  final CloudConnectorRulesProvider? cloudConnectorRulesProvider;
 
   final TfArg<String>? description;
 
@@ -41,16 +41,35 @@ final class CloudConnectorRules {
 }
 
 /// `cloud_connector_rules_provider` — derived from the provider schema description.
-enum CloudConnectorRulesProvider implements TerraformEnum {
-  awsS3('aws_s3'),
-  cloudflareR2('cloudflare_r2'),
-  gcpStorage('gcp_storage'),
-  azureStorage('azure_storage'),
-  ociStorage('oci_storage');
+extension type const CloudConnectorRulesProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudConnectorRulesProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudConnectorRulesProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudConnectorRulesProvider.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudConnectorRulesProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsS3 = CloudConnectorRulesProvider._(TfArgLiteral('aws_s3'));
+  static const cloudflareR2 = CloudConnectorRulesProvider._(
+    TfArgLiteral('cloudflare_r2'),
+  );
+  static const gcpStorage = CloudConnectorRulesProvider._(
+    TfArgLiteral('gcp_storage'),
+  );
+  static const azureStorage = CloudConnectorRulesProvider._(
+    TfArgLiteral('azure_storage'),
+  );
+  static const ociStorage = CloudConnectorRulesProvider._(
+    TfArgLiteral('oci_storage'),
+  );
+
+  static const List<CloudConnectorRulesProvider> values = [
+    awsS3,
+    cloudflareR2,
+    gcpStorage,
+    azureStorage,
+    ociStorage,
+  ];
 }
 
 /// Typed helper for the `rules.parameters` block of

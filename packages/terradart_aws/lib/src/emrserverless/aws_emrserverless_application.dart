@@ -13,13 +13,26 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsEmrserverlessApplicationSensitive = <String>{};
 
 /// Emrserverless Application enum for `architecture`.
-enum EmrserverlessApplicationArchitecture implements TerraformEnum {
-  arm64('ARM64'),
-  x8664('X86_64');
+extension type const EmrserverlessApplicationArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrserverlessApplicationArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrserverlessApplicationArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrserverlessApplicationArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EmrserverlessApplicationArchitecture(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arm64 = EmrserverlessApplicationArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+  static const x8664 = EmrserverlessApplicationArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+
+  static const List<EmrserverlessApplicationArchitecture> values = [
+    arm64,
+    x8664,
+  ];
 }
 
 /// Typed helper for the `auto_start_configuration` block of
@@ -379,7 +392,7 @@ final class AwsEmrserverlessApplication extends Resource {
 
   AwsEmrserverlessApplication(
     super.localName, {
-    TfArg<EmrserverlessApplicationArchitecture>? architecture,
+    EmrserverlessApplicationArchitecture? architecture,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> releaseLabel,

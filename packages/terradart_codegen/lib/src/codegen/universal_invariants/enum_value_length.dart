@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'enum_extractor.dart';
+
 /// Gate 8: every enum value identifier across `terradart_google` should
 /// be at least [minLength] characters UNLESS the value is in [allowList].
 ///
@@ -11,58 +13,36 @@ import 'dart:io';
 /// the Terraform wire value — these should NOT be renamed. The
 /// [allowList] excludes them from the violation list.
 ///
+/// A short member that spells its own Terraform value (`a` for `A`, `v1`
+/// for `V1`, `in_` for `IN`) mirrors the wire value and passes too; the
+/// gate flags a short member abbreviated from a longer value.
+///
 /// Returns an empty list when all enum values conform (i.e. are either
-/// >= [minLength] characters OR in the allow-list).
+/// >= [minLength] characters, in the allow-list, or their own value). When [enumNames] is
+/// given, only the enums it names are checked.
 class EnumValueLength {
   static List<String> scan({
     required String rootDir,
     required int minLength,
     Set<String> allowList = const {},
+    Set<String>? enumNames,
   }) {
     final violations = <String>[];
     final dir = Directory(rootDir);
     if (!dir.existsSync()) return violations;
 
-    final enumRe = RegExp(r'enum\s+(\w+)\s*\{([^}]*)\}', multiLine: true);
     for (final entity in dir.listSync(recursive: true)) {
       if (entity is! File || !entity.path.endsWith('.dart')) continue;
       final source = entity.readAsStringSync();
-      for (final match in enumRe.allMatches(source)) {
-        final enumName = match.group(1)!;
-        final body = match.group(2)!;
-        for (final value in body.split(',')) {
-          // Strip dartdoc / line comments + the constructor declaration
-          // before extracting the value identifier. Enum bodies look like:
-          //   /// doc
-          //   foo('FOO'),
-          //   bar('BAR');
-          //   const Enum(this.terraformValue);
-          //   final String terraformValue;
-          // A naive split-by-`,` then split-by-`(` would pick up `///`
-          // and `);` as bogus values.
-          final cleaned = value
-              .split('\n')
-              .map((l) => l.trim())
-              .where(
-                (l) =>
-                    l.isNotEmpty &&
-                    !l.startsWith('///') &&
-                    !l.startsWith('//') &&
-                    !l.startsWith('const ') &&
-                    !l.startsWith('final '),
-              )
-              .join('\n')
-              .trim();
-          if (cleaned.isEmpty) continue;
-          final trimmed = cleaned.split(RegExp(r'[\s(;]')).first;
-          if (trimmed.isEmpty) continue;
-          // Skip lines that start with `)` (constructor close after the
-          // last enum value, e.g. `);`) — these are stray after stripping.
-          if (!RegExp(r'^[a-zA-Z_]').hasMatch(trimmed)) continue;
-          if (allowList.contains(trimmed)) continue;
-          if (trimmed.length < minLength) {
+      for (final e in const EnumExtractor().extract(source)) {
+        if (enumNames != null && !enumNames.contains(e.name)) continue;
+        for (final MapEntry(key: member, :value) in e.members.entries) {
+          if (allowList.contains(member)) continue;
+          if (_spells(member, value)) continue;
+          if (member.length < minLength) {
             violations.add(
-              '${entity.path}: enum $enumName.$trimmed (length ${trimmed.length} < $minLength)',
+              '${entity.path}: enum ${e.name}.$member '
+              '(length ${member.length} < $minLength)',
             );
           }
         }
@@ -71,3 +51,7 @@ class EnumValueLength {
     return violations;
   }
 }
+
+bool _spells(String member, String value) =>
+    member.replaceAll('_', '').toLowerCase() ==
+    value.replaceAll(RegExp('[^A-Za-z0-9]'), '').toLowerCase();

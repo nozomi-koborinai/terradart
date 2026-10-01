@@ -18,8 +18,8 @@ import 'package:test/test.dart';
 /// The de-fatten discovery tracer compares hand-written prelude enums to
 /// IR-derivable enums BY NAME ONLY — the documented blind spot that hid the
 /// `bigquery_routine` constant drift. This probe goes member-level: for every
-/// hand-written `enum X implements TerraformEnum` it compares the derived
-/// enum's Dart member names AND raw `terraformValue` strings, then classifies:
+/// hand-written prelude enum it compares the derived enum's Dart member
+/// names AND raw Terraform values, then classifies:
 ///
 /// - DERIVABLE_EXACT  — name + members + raw values all match; flipping
 ///   `deriveEnums: true` and deleting the hand enum changes only doc comments
@@ -71,13 +71,14 @@ typedef _HandEnum = ({
   String block,
 });
 
-/// Extracts every `enum X implements TerraformEnum { ... }` declaration from
-/// [prelude] with its member names and raw values. Anchoring on
-/// `implements TerraformEnum` matches the discovery tracer (ADR-0016: every
-/// hand-written prelude enum implements it).
+/// Extracts every `extension type const X._(TfArg<String> _)` enum
+/// declaration from [prelude] with its member names and raw values.
 List<_HandEnum> _extractHandEnums(String prelude) {
   final out = <_HandEnum>[];
-  final decl = RegExp(r'\benum (\w+)\s+implements\s+TerraformEnum\s*\{');
+  final decl = RegExp(
+    r'\bextension\s+type\s+const\s+(\w+)\._\([^)]*\)\s*implements\s+'
+    r'TfArg<String>\s*\{',
+  );
   for (final m in decl.allMatches(prelude)) {
     var depth = 1;
     var i = m.end;
@@ -91,8 +92,7 @@ List<_HandEnum> _extractHandEnums(String prelude) {
     final members = <String>[];
     final raws = <String>[];
     for (final c in RegExp(
-      r"^\s*(\w+)\('([^']*)'\)\s*[,;]",
-      multiLine: true,
+      r"static\s+const\s+(\w+)\s*=\s*\w+\._\(\s*TfArgLiteral\('([^']*)'\)\s*\)\s*;",
     ).allMatches(block)) {
       members.add(c.group(1)!);
       raws.add(c.group(2)!);

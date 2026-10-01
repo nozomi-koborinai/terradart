@@ -9,16 +9,29 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareCloudforceOneRequestPrioritySensitive = <String>{};
 
 /// Cloudforce One Request Priority enum for `tlp`.
-enum CloudforceOneRequestPriorityTlp implements TerraformEnum {
-  clear('clear'),
-  amber('amber'),
-  amberStrict('amber-strict'),
-  green('green'),
-  red('red');
+extension type const CloudforceOneRequestPriorityTlp._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudforceOneRequestPriorityTlp.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudforceOneRequestPriorityTlp.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudforceOneRequestPriorityTlp.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudforceOneRequestPriorityTlp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clear = CloudforceOneRequestPriorityTlp._(TfArgLiteral('clear'));
+  static const amber = CloudforceOneRequestPriorityTlp._(TfArgLiteral('amber'));
+  static const amberStrict = CloudforceOneRequestPriorityTlp._(
+    TfArgLiteral('amber-strict'),
+  );
+  static const green = CloudforceOneRequestPriorityTlp._(TfArgLiteral('green'));
+  static const red = CloudforceOneRequestPriorityTlp._(TfArgLiteral('red'));
+
+  static const List<CloudforceOneRequestPriorityTlp> values = [
+    clear,
+    amber,
+    amberStrict,
+    green,
+    red,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_cloudforce_one_request_priority`.
@@ -35,7 +48,7 @@ final class CloudflareCloudforceOneRequestPriority extends Resource {
     required TfArg<List<String>> labels,
     required TfArg<num> priority,
     required TfArg<String> requirement,
-    required TfArg<CloudforceOneRequestPriorityTlp> tlp,
+    required CloudforceOneRequestPriorityTlp tlp,
     super.lifecycle,
     super.dependsOn,
     super.provider,

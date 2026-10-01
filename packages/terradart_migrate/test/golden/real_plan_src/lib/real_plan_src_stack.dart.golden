@@ -54,8 +54,8 @@ final class RealPlanSrcStack extends Stack {
         name: .literal('example-nat'),
         router: router.ref,
         region: .literal('us-central1'),
-        sourceSubnetworkIpRangesToNat: .literal(.allSubnetworksAllIpRanges),
-        natIpAllocateOption: .literal(.autoOnly),
+        sourceSubnetworkIpRangesToNat: .allSubnetworksAllIpRanges,
+        natIpAllocateOption: .autoOnly,
       ),
     );
     // --- Still uncurated in terradart_google (not a required sentinel) ---

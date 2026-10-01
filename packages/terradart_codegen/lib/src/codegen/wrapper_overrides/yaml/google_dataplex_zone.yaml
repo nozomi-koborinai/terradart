@@ -17,14 +17,16 @@ dartTypeOverrides:
 
 prelude: |
   /// `type` on `google_dataplex_zone`.
-  enum DataplexZoneType implements TerraformEnum {
-    typeUnspecified('TYPE_UNSPECIFIED'),
-    raw('RAW'),
-    curated('CURATED');
+  extension type const DataplexZoneType._(TfArg<String> _) implements TfArg<String> {
+    DataplexZoneType.variable(String name) : this._(TfArg.variable(name));
+    DataplexZoneType.expression(String template) : this._(TfArg.expression(template));
+    const DataplexZoneType.arg(TfArg<String> arg) : this._(arg);
 
-    const DataplexZoneType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const typeUnspecified = DataplexZoneType._(TfArgLiteral('TYPE_UNSPECIFIED'));
+    static const raw = DataplexZoneType._(TfArgLiteral('RAW'));
+    static const curated = DataplexZoneType._(TfArgLiteral('CURATED'));
+
+    static const List<DataplexZoneType> values = [typeUnspecified, raw, curated];
   }
 
 paramOrder:

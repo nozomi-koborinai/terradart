@@ -29,9 +29,7 @@ curatedDoc: |-
   ///   enabled: TfArg.literal(true),
   ///   priority: TfArg.literal(1),
   ///   sessionMatcher: TfArg.literal("host() == 'example.com'"),
-  ///   basicProfile: TfArg.literal(
-  ///     NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,
-  ///   ),
+  ///   basicProfile: NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,
   /// );
   /// ```
 

@@ -9,29 +9,57 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareSchemaValidationSettingsSensitive = <String>{};
 
 /// Schema Validation Settings Validation Default Mitigation enum for `validation_default_mitigation_action`.
-enum SchemaValidationSettingsValidationDefaultMitigationAction
-    implements TerraformEnum {
-  none('none'),
-  log('log'),
-  block('block');
+extension type const SchemaValidationSettingsValidationDefaultMitigationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SchemaValidationSettingsValidationDefaultMitigationAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SchemaValidationSettingsValidationDefaultMitigationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SchemaValidationSettingsValidationDefaultMitigationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SchemaValidationSettingsValidationDefaultMitigationAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      SchemaValidationSettingsValidationDefaultMitigationAction._(
+        TfArgLiteral('none'),
+      );
+  static const log =
+      SchemaValidationSettingsValidationDefaultMitigationAction._(
+        TfArgLiteral('log'),
+      );
+  static const block =
+      SchemaValidationSettingsValidationDefaultMitigationAction._(
+        TfArgLiteral('block'),
+      );
+
+  static const List<SchemaValidationSettingsValidationDefaultMitigationAction>
+  values = [none, log, block];
 }
 
 /// Schema Validation Settings Validation Override Mitigation enum for `validation_override_mitigation_action`.
-enum SchemaValidationSettingsValidationOverrideMitigationAction
-    implements TerraformEnum {
-  none('none');
+extension type const SchemaValidationSettingsValidationOverrideMitigationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SchemaValidationSettingsValidationOverrideMitigationAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SchemaValidationSettingsValidationOverrideMitigationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SchemaValidationSettingsValidationOverrideMitigationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SchemaValidationSettingsValidationOverrideMitigationAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      SchemaValidationSettingsValidationOverrideMitigationAction._(
+        TfArgLiteral('none'),
+      );
+
+  static const List<SchemaValidationSettingsValidationOverrideMitigationAction>
+  values = [none];
 }
 
 /// Factory wrapper for `cloudflare_schema_validation_settings`.
@@ -45,9 +73,9 @@ final class CloudflareSchemaValidationSettings extends Resource {
 
   CloudflareSchemaValidationSettings(
     super.localName, {
-    required TfArg<SchemaValidationSettingsValidationDefaultMitigationAction>
+    required SchemaValidationSettingsValidationDefaultMitigationAction
     validationDefaultMitigationAction,
-    TfArg<SchemaValidationSettingsValidationOverrideMitigationAction>?
+    SchemaValidationSettingsValidationOverrideMitigationAction?
     validationOverrideMitigationAction,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

@@ -21,12 +21,8 @@ curatedDoc: |-
   /// GoogleBinaryAuthorizationPolicy(
   ///   'project_policy',
   ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
-  ///     evaluationMode: TfArg.literal(
-  ///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
-  ///     ),
-  ///     enforcementMode: TfArg.literal(
-  ///       BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
-  ///     ),
+  ///     evaluationMode: BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
+  ///     enforcementMode: BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
   ///   ),
   /// );
   /// ```

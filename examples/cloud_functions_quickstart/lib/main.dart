@@ -68,7 +68,7 @@ final class HttpFunctionStack extends Stack {
           timeoutSeconds: .literal(60),
           minInstanceCount: .literal(0),
           maxInstanceCount: .literal(4),
-          ingressSettings: .literal(.allowInternalAndGclb),
+          ingressSettings: .allowInternalAndGclb,
           serviceAccountEmail: .of(runtimeSa),
           environmentVariables: .literal({'LOG_LEVEL': 'info'}),
         ),

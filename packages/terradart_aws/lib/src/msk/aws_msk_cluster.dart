@@ -12,25 +12,47 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsMskClusterSensitive = <String>{};
 
 /// Msk Cluster Enhanced enum for `enhanced_monitoring`.
-enum MskClusterEnhancedMonitoring implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  perBroker('PER_BROKER'),
-  perTopicPerBroker('PER_TOPIC_PER_BROKER'),
-  perTopicPerPartition('PER_TOPIC_PER_PARTITION');
+extension type const MskClusterEnhancedMonitoring._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterEnhancedMonitoring.variable(String name)
+    : this._(TfArg.variable(name));
+  MskClusterEnhancedMonitoring.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterEnhancedMonitoring.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterEnhancedMonitoring(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = MskClusterEnhancedMonitoring._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const perBroker = MskClusterEnhancedMonitoring._(
+    TfArgLiteral('PER_BROKER'),
+  );
+  static const perTopicPerBroker = MskClusterEnhancedMonitoring._(
+    TfArgLiteral('PER_TOPIC_PER_BROKER'),
+  );
+  static const perTopicPerPartition = MskClusterEnhancedMonitoring._(
+    TfArgLiteral('PER_TOPIC_PER_PARTITION'),
+  );
+
+  static const List<MskClusterEnhancedMonitoring> values = [
+    defaultCase,
+    perBroker,
+    perTopicPerBroker,
+    perTopicPerPartition,
+  ];
 }
 
 /// Msk Cluster Storage enum for `storage_mode`.
-enum MskClusterStorageMode implements TerraformEnum {
-  local('LOCAL'),
-  tiered('TIERED');
+extension type const MskClusterStorageMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterStorageMode.variable(String name) : this._(TfArg.variable(name));
+  MskClusterStorageMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterStorageMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterStorageMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const local = MskClusterStorageMode._(TfArgLiteral('LOCAL'));
+  static const tiered = MskClusterStorageMode._(TfArgLiteral('TIERED'));
+
+  static const List<MskClusterStorageMode> values = [local, tiered];
 }
 
 /// Typed helper for the `broker_node_group_info` block of
@@ -46,7 +68,7 @@ final class MskClusterBrokerNodeGroupInfo {
     this.storageInfo,
   });
 
-  final TfArg<MskClusterAzDistribution>? azDistribution;
+  final MskClusterAzDistribution? azDistribution;
 
   final TfArg<List<String>> clientSubnets;
 
@@ -69,12 +91,18 @@ final class MskClusterBrokerNodeGroupInfo {
 }
 
 /// `az_distribution` — derived from the provider schema description.
-enum MskClusterAzDistribution implements TerraformEnum {
-  defaultCase('DEFAULT');
+extension type const MskClusterAzDistribution._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterAzDistribution.variable(String name) : this._(TfArg.variable(name));
+  MskClusterAzDistribution.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterAzDistribution.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterAzDistribution(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = MskClusterAzDistribution._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<MskClusterAzDistribution> values = [defaultCase];
 }
 
 /// Typed helper for the `broker_node_group_info.connectivity_info` block of
@@ -87,7 +115,7 @@ final class MskClusterConnectivityInfo {
     this.vpcConnectivity,
   });
 
-  final TfArg<MskClusterNetworkType>? networkType;
+  final MskClusterNetworkType? networkType;
 
   final MskClusterPublicAccess? publicAccess;
 
@@ -101,13 +129,17 @@ final class MskClusterConnectivityInfo {
 }
 
 /// `network_type` — derived from the provider schema description.
-enum MskClusterNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  dual('DUAL');
+extension type const MskClusterNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterNetworkType.variable(String name) : this._(TfArg.variable(name));
+  MskClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = MskClusterNetworkType._(TfArgLiteral('IPV4'));
+  static const dual = MskClusterNetworkType._(TfArgLiteral('DUAL'));
+
+  static const List<MskClusterNetworkType> values = [ipv4, dual];
 }
 
 /// Typed helper for the `broker_node_group_info.connectivity_info.public_access` block of
@@ -116,19 +148,25 @@ enum MskClusterNetworkType implements TerraformEnum {
 final class MskClusterPublicAccess {
   const MskClusterPublicAccess({this.type});
 
-  final TfArg<MskClusterType>? type;
+  final MskClusterType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum MskClusterType implements TerraformEnum {
-  disabled('DISABLED'),
-  serviceProvidedEips('SERVICE_PROVIDED_EIPS');
+extension type const MskClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterType.variable(String name) : this._(TfArg.variable(name));
+  MskClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterType.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = MskClusterType._(TfArgLiteral('DISABLED'));
+  static const serviceProvidedEips = MskClusterType._(
+    TfArgLiteral('SERVICE_PROVIDED_EIPS'),
+  );
+
+  static const List<MskClusterType> values = [disabled, serviceProvidedEips];
 }
 
 /// Typed helper for the `broker_node_group_info.connectivity_info.vpc_connectivity` block of
@@ -302,7 +340,7 @@ final class MskClusterEncryptionInfo {
 final class MskClusterEncryptionInTransit {
   const MskClusterEncryptionInTransit({this.clientBroker, this.inCluster});
 
-  final TfArg<MskClusterClientBroker>? clientBroker;
+  final MskClusterClientBroker? clientBroker;
 
   final TfArg<bool>? inCluster;
 
@@ -313,14 +351,24 @@ final class MskClusterEncryptionInTransit {
 }
 
 /// `client_broker` — derived from the provider schema description.
-enum MskClusterClientBroker implements TerraformEnum {
-  tls('TLS'),
-  tlsPlaintext('TLS_PLAINTEXT'),
-  plaintext('PLAINTEXT');
+extension type const MskClusterClientBroker._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterClientBroker.variable(String name) : this._(TfArg.variable(name));
+  MskClusterClientBroker.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterClientBroker.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterClientBroker(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls = MskClusterClientBroker._(TfArgLiteral('TLS'));
+  static const tlsPlaintext = MskClusterClientBroker._(
+    TfArgLiteral('TLS_PLAINTEXT'),
+  );
+  static const plaintext = MskClusterClientBroker._(TfArgLiteral('PLAINTEXT'));
+
+  static const List<MskClusterClientBroker> values = [
+    tls,
+    tlsPlaintext,
+    plaintext,
+  ];
 }
 
 /// Typed helper for the `logging_info` block of
@@ -463,19 +511,23 @@ final class MskClusterNodeExporter {
 final class MskClusterRebalancing {
   const MskClusterRebalancing({required this.status});
 
-  final TfArg<MskClusterStatus> status;
+  final MskClusterStatus status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum MskClusterStatus implements TerraformEnum {
-  paused('PAUSED'),
-  active('ACTIVE');
+extension type const MskClusterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  MskClusterStatus.variable(String name) : this._(TfArg.variable(name));
+  MskClusterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskClusterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const MskClusterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const paused = MskClusterStatus._(TfArgLiteral('PAUSED'));
+  static const active = MskClusterStatus._(TfArgLiteral('ACTIVE'));
+
+  static const List<MskClusterStatus> values = [paused, active];
 }
 
 /// Factory wrapper for `aws_msk_cluster`.
@@ -485,11 +537,11 @@ final class AwsMskCluster extends Resource {
   AwsMskCluster(
     super.localName, {
     required TfArg<String> clusterName,
-    TfArg<MskClusterEnhancedMonitoring>? enhancedMonitoring,
+    MskClusterEnhancedMonitoring? enhancedMonitoring,
     required TfArg<String> kafkaVersion,
     required TfArg<num> numberOfBrokerNodes,
     TfArg<String>? region,
-    TfArg<MskClusterStorageMode>? storageMode,
+    MskClusterStorageMode? storageMode,
     TfArg<Map<String, String>>? tags,
     required MskClusterBrokerNodeGroupInfo brokerNodeGroupInfo,
     MskClusterClientAuthentication? clientAuthentication,

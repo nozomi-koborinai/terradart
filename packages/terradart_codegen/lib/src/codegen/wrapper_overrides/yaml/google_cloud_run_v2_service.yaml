@@ -21,7 +21,7 @@ curatedDoc: |-
   ///       ),
   ///     ],
   ///   ),
-  ///   ingress: .literal(.all),
+  ///   ingress: .all,
   /// );
   /// ```
   ///
@@ -64,7 +64,7 @@ curatedDoc: |-
   ///         ),
   ///       ),
   ///     ],
-  ///     executionEnvironment: .literal(.gen2),
+  ///     executionEnvironment: .gen2,
   ///   ),
   /// );
   /// ```
@@ -128,105 +128,121 @@ prelude: |
   /// Ingress restriction for `google_cloud_run_v2_service.ingress`. Controls
   /// which clients can reach the service URL. `all` is the default; the two
   /// `internal*` modes require Direct VPC egress or a load balancer in front.
-  enum Ingress implements TerraformEnum {
-    all('INGRESS_TRAFFIC_ALL'),
-    internalOnly('INGRESS_TRAFFIC_INTERNAL_ONLY'),
-    internalLoadBalancer('INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER');
+  extension type const Ingress._(TfArg<String> _) implements TfArg<String> {
+    Ingress.variable(String name) : this._(TfArg.variable(name));
+    Ingress.expression(String template) : this._(TfArg.expression(template));
+    const Ingress.arg(TfArg<String> arg) : this._(arg);
 
-    const Ingress(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const all = Ingress._(TfArgLiteral('INGRESS_TRAFFIC_ALL'));
+    static const internalOnly = Ingress._(TfArgLiteral('INGRESS_TRAFFIC_INTERNAL_ONLY'));
+    static const internalLoadBalancer = Ingress._(TfArgLiteral('INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER'));
+
+    static const List<Ingress> values = [all, internalOnly, internalLoadBalancer];
   }
 
   /// Launch stage for `google_cloud_run_v2_service.launch_stage`. Setting a
   /// pre-GA stage on input allows preview features in that stage; on read
   /// the field reflects the highest preview level actually used.
-  enum LaunchStage implements TerraformEnum {
-    unimplemented('UNIMPLEMENTED'),
-    prelaunch('PRELAUNCH'),
-    earlyAccess('EARLY_ACCESS'),
-    alpha('ALPHA'),
-    beta('BETA'),
-    ga('GA'),
-    deprecatedStage('DEPRECATED');
+  extension type const LaunchStage._(TfArg<String> _) implements TfArg<String> {
+    LaunchStage.variable(String name) : this._(TfArg.variable(name));
+    LaunchStage.expression(String template) : this._(TfArg.expression(template));
+    const LaunchStage.arg(TfArg<String> arg) : this._(arg);
 
-    const LaunchStage(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unimplemented = LaunchStage._(TfArgLiteral('UNIMPLEMENTED'));
+    static const prelaunch = LaunchStage._(TfArgLiteral('PRELAUNCH'));
+    static const earlyAccess = LaunchStage._(TfArgLiteral('EARLY_ACCESS'));
+    static const alpha = LaunchStage._(TfArgLiteral('ALPHA'));
+    static const beta = LaunchStage._(TfArgLiteral('BETA'));
+    static const ga = LaunchStage._(TfArgLiteral('GA'));
+    static const deprecatedStage = LaunchStage._(TfArgLiteral('DEPRECATED'));
+
+    static const List<LaunchStage> values = [unimplemented, prelaunch, earlyAccess, alpha, beta, ga, deprecatedStage];
   }
 
   /// Egress policy for [CloudRunV2ServiceVpcAccess.egress] (`template.vpc_access.egress`).
   /// `allTraffic` routes every outbound request through the connector or
   /// network interface; `privateRangesOnly` keeps RFC1918 + Google APIs
   /// inside the VPC and bypasses it for the public internet.
-  enum VpcAccessEgress implements TerraformEnum {
-    allTraffic('ALL_TRAFFIC'),
-    privateRangesOnly('PRIVATE_RANGES_ONLY');
+  extension type const VpcAccessEgress._(TfArg<String> _) implements TfArg<String> {
+    VpcAccessEgress.variable(String name) : this._(TfArg.variable(name));
+    VpcAccessEgress.expression(String template) : this._(TfArg.expression(template));
+    const VpcAccessEgress.arg(TfArg<String> arg) : this._(arg);
 
-    const VpcAccessEgress(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const allTraffic = VpcAccessEgress._(TfArgLiteral('ALL_TRAFFIC'));
+    static const privateRangesOnly = VpcAccessEgress._(TfArgLiteral('PRIVATE_RANGES_ONLY'));
+
+    static const List<VpcAccessEgress> values = [allTraffic, privateRangesOnly];
   }
 
   /// Scaling mode shared by service-level [CloudRunV2ServiceScaling] and (when
   /// applicable) other Cloud Run v2 scaling blocks. `automatic` lets the
   /// runtime pick instance count from min/max bounds; `manual` pins to a
   /// fixed [CloudRunV2ServiceScaling.manualInstanceCount].
-  enum ScalingMode implements TerraformEnum {
-    automatic('AUTOMATIC'),
-    manual('MANUAL');
+  extension type const ScalingMode._(TfArg<String> _) implements TfArg<String> {
+    ScalingMode.variable(String name) : this._(TfArg.variable(name));
+    ScalingMode.expression(String template) : this._(TfArg.expression(template));
+    const ScalingMode.arg(TfArg<String> arg) : this._(arg);
 
-    const ScalingMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const automatic = ScalingMode._(TfArgLiteral('AUTOMATIC'));
+    static const manual = ScalingMode._(TfArgLiteral('MANUAL'));
+
+    static const List<ScalingMode> values = [automatic, manual];
   }
 
   /// Container sandbox environment for [CloudRunV2ServiceTemplate.executionEnvironment].
   /// `gen2` enables GCSFuse volumes + larger CPU/memory tiers; `gen1` keeps
   /// the legacy gVisor sandbox.
-  enum ExecutionEnvironment implements TerraformEnum {
-    gen1('EXECUTION_ENVIRONMENT_GEN1'),
-    gen2('EXECUTION_ENVIRONMENT_GEN2');
+  extension type const ExecutionEnvironment._(TfArg<String> _) implements TfArg<String> {
+    ExecutionEnvironment.variable(String name) : this._(TfArg.variable(name));
+    ExecutionEnvironment.expression(String template) : this._(TfArg.expression(template));
+    const ExecutionEnvironment.arg(TfArg<String> arg) : this._(arg);
 
-    const ExecutionEnvironment(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const gen1 = ExecutionEnvironment._(TfArgLiteral('EXECUTION_ENVIRONMENT_GEN1'));
+    static const gen2 = ExecutionEnvironment._(TfArgLiteral('EXECUTION_ENVIRONMENT_GEN2'));
+
+    static const List<ExecutionEnvironment> values = [gen1, gen2];
   }
 
   /// Identity a revision runs as ([CloudRunV2ServiceWorkloadIdentityConfig.identityType]).
-  enum CloudRunV2ServiceWorkloadIdentityType implements TerraformEnum {
-    serviceAccount('IDENTITY_TYPE_SERVICE_ACCOUNT'),
-    workloadIdentity('IDENTITY_TYPE_WORKLOAD_IDENTITY'),
-    agentIdentity('IDENTITY_TYPE_AGENT_IDENTITY');
+  extension type const CloudRunV2ServiceWorkloadIdentityType._(TfArg<String> _) implements TfArg<String> {
+    CloudRunV2ServiceWorkloadIdentityType.variable(String name) : this._(TfArg.variable(name));
+    CloudRunV2ServiceWorkloadIdentityType.expression(String template) : this._(TfArg.expression(template));
+    const CloudRunV2ServiceWorkloadIdentityType.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudRunV2ServiceWorkloadIdentityType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const serviceAccount = CloudRunV2ServiceWorkloadIdentityType._(TfArgLiteral('IDENTITY_TYPE_SERVICE_ACCOUNT'));
+    static const workloadIdentity = CloudRunV2ServiceWorkloadIdentityType._(TfArgLiteral('IDENTITY_TYPE_WORKLOAD_IDENTITY'));
+    static const agentIdentity = CloudRunV2ServiceWorkloadIdentityType._(TfArgLiteral('IDENTITY_TYPE_AGENT_IDENTITY'));
+
+    static const List<CloudRunV2ServiceWorkloadIdentityType> values = [serviceAccount, workloadIdentity, agentIdentity];
   }
 
   /// Allocation type for one [CloudRunV2ServiceTraffic] split. `latest` always points at the
   /// newest Ready revision (so `revision` MUST be omitted); `revision`
   /// pins to the [CloudRunV2ServiceTraffic.revision] name.
-  enum TrafficTargetAllocationType implements TerraformEnum {
-    latest('TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST'),
-    revision('TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION');
+  extension type const TrafficTargetAllocationType._(TfArg<String> _) implements TfArg<String> {
+    TrafficTargetAllocationType.variable(String name) : this._(TfArg.variable(name));
+    TrafficTargetAllocationType.expression(String template) : this._(TfArg.expression(template));
+    const TrafficTargetAllocationType.arg(TfArg<String> arg) : this._(arg);
 
-    const TrafficTargetAllocationType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const latest = TrafficTargetAllocationType._(TfArgLiteral('TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST'));
+    static const revision = TrafficTargetAllocationType._(TfArgLiteral('TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION'));
+
+    static const List<TrafficTargetAllocationType> values = [latest, revision];
   }
 
   /// Storage medium for [CloudRunV2ServiceEmptyDirVolume.medium]. The schema only documents
   /// `MEMORY` for v2 services; encoded as an enum for type-safety and to
   /// keep the door open for `DISK` (MM lists it but the provider rejects
   /// it today).
-  enum EmptyDirMedium implements TerraformEnum {
-    memory('MEMORY'),
-    disk('DISK');
+  extension type const EmptyDirMedium._(TfArg<String> _) implements TfArg<String> {
+    EmptyDirMedium.variable(String name) : this._(TfArg.variable(name));
+    EmptyDirMedium.expression(String template) : this._(TfArg.expression(template));
+    const EmptyDirMedium.arg(TfArg<String> arg) : this._(arg);
 
-    const EmptyDirMedium(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const memory = EmptyDirMedium._(TfArgLiteral('MEMORY'));
+    static const disk = EmptyDirMedium._(TfArgLiteral('DISK'));
+
+    static const List<EmptyDirMedium> values = [memory, disk];
   }
 
   // ===========================================================================

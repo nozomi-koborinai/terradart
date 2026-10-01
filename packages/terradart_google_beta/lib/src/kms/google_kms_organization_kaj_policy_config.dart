@@ -15,7 +15,7 @@ final class KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy {
     this.allowedAccessReasons,
   });
 
-  final List<TfArg<KmsOrganizationKajPolicyConfigAllowedAccessReasons>>?
+  final List<KmsOrganizationKajPolicyConfigAllowedAccessReasons>?
   allowedAccessReasons;
 
   Map<String, Object?> encode() => {
@@ -27,25 +27,76 @@ final class KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy {
 }
 
 /// `allowed_access_reasons` — derived from the provider schema description.
-enum KmsOrganizationKajPolicyConfigAllowedAccessReasons
-    implements TerraformEnum {
-  customerInitiatedSupport('CUSTOMER_INITIATED_SUPPORT'),
-  googleInitiatedService('GOOGLE_INITIATED_SERVICE'),
-  thirdPartyDataRequest('THIRD_PARTY_DATA_REQUEST'),
-  googleInitiatedReview('GOOGLE_INITIATED_REVIEW'),
-  customerInitiatedAccess('CUSTOMER_INITIATED_ACCESS'),
-  googleInitiatedSystemOperation('GOOGLE_INITIATED_SYSTEM_OPERATION'),
-  reasonNotExpected('REASON_NOT_EXPECTED'),
-  modifiedCustomerInitiatedAccess('MODIFIED_CUSTOMER_INITIATED_ACCESS'),
-  modifiedGoogleInitiatedSystemOperation(
-    'MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION',
-  ),
-  googleResponseToProductionAlert('GOOGLE_RESPONSE_TO_PRODUCTION_ALERT'),
-  customerAuthorizedWorkflowServicing('CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING');
+extension type const KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KmsOrganizationKajPolicyConfigAllowedAccessReasons.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsOrganizationKajPolicyConfigAllowedAccessReasons.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsOrganizationKajPolicyConfigAllowedAccessReasons.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KmsOrganizationKajPolicyConfigAllowedAccessReasons(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerInitiatedSupport =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('CUSTOMER_INITIATED_SUPPORT'),
+      );
+  static const googleInitiatedService =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_INITIATED_SERVICE'),
+      );
+  static const thirdPartyDataRequest =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('THIRD_PARTY_DATA_REQUEST'),
+      );
+  static const googleInitiatedReview =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_INITIATED_REVIEW'),
+      );
+  static const customerInitiatedAccess =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('CUSTOMER_INITIATED_ACCESS'),
+      );
+  static const googleInitiatedSystemOperation =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_INITIATED_SYSTEM_OPERATION'),
+      );
+  static const reasonNotExpected =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('REASON_NOT_EXPECTED'),
+      );
+  static const modifiedCustomerInitiatedAccess =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('MODIFIED_CUSTOMER_INITIATED_ACCESS'),
+      );
+  static const modifiedGoogleInitiatedSystemOperation =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION'),
+      );
+  static const googleResponseToProductionAlert =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_RESPONSE_TO_PRODUCTION_ALERT'),
+      );
+  static const customerAuthorizedWorkflowServicing =
+      KmsOrganizationKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING'),
+      );
+
+  static const List<KmsOrganizationKajPolicyConfigAllowedAccessReasons> values =
+      [
+        customerInitiatedSupport,
+        googleInitiatedService,
+        thirdPartyDataRequest,
+        googleInitiatedReview,
+        customerInitiatedAccess,
+        googleInitiatedSystemOperation,
+        reasonNotExpected,
+        modifiedCustomerInitiatedAccess,
+        modifiedGoogleInitiatedSystemOperation,
+        googleResponseToProductionAlert,
+        customerAuthorizedWorkflowServicing,
+      ];
 }
 
 /// Factory wrapper for `google_kms_organization_kaj_policy_config`.

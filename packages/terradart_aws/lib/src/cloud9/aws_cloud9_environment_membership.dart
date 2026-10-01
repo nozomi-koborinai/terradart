@@ -7,14 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloud9EnvironmentMembershipSensitive = <String>{};
 
 /// Cloud9 Environment Membership enum for `permissions`.
-enum Cloud9EnvironmentMembershipPermissions implements TerraformEnum {
-  owner('owner'),
-  readWrite('read-write'),
-  readOnly('read-only');
+extension type const Cloud9EnvironmentMembershipPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  Cloud9EnvironmentMembershipPermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  Cloud9EnvironmentMembershipPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const Cloud9EnvironmentMembershipPermissions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Cloud9EnvironmentMembershipPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = Cloud9EnvironmentMembershipPermissions._(
+    TfArgLiteral('owner'),
+  );
+  static const readWrite = Cloud9EnvironmentMembershipPermissions._(
+    TfArgLiteral('read-write'),
+  );
+  static const readOnly = Cloud9EnvironmentMembershipPermissions._(
+    TfArgLiteral('read-only'),
+  );
+
+  static const List<Cloud9EnvironmentMembershipPermissions> values = [
+    owner,
+    readWrite,
+    readOnly,
+  ];
 }
 
 /// Factory wrapper for `aws_cloud9_environment_membership`.
@@ -24,7 +40,7 @@ final class AwsCloud9EnvironmentMembership extends Resource {
   AwsCloud9EnvironmentMembership(
     super.localName, {
     required TfArg<String> environmentId,
-    required TfArg<Cloud9EnvironmentMembershipPermissions> permissions,
+    required Cloud9EnvironmentMembershipPermissions permissions,
     TfArg<String>? region,
     required TfArg<String> userArn,
     super.lifecycle,

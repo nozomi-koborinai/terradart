@@ -7,23 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeSslPolicySensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
-// directly; TfArg detects `.terraformValue` getter.
+// directly; TfArg detects `.toTfJson()` getter.
 
 /// `profile` — the curated cipher-suite preset. See the class-level
 /// security guidance for picking between [restricted] (compliance
 /// default), [modern] (modern browsers only), [compatible] (permissive
 /// legacy default), [fips202205] (FIPS 202205-pinned), and [custom]
 /// (caller-supplied via [GoogleComputeSslPolicy.customFeatures]).
-enum SslPolicyProfile implements TerraformEnum {
-  compatible('COMPATIBLE'),
-  modern('MODERN'),
-  restricted('RESTRICTED'),
-  custom('CUSTOM'),
-  fips202205('FIPS_202205');
+extension type const SslPolicyProfile._(TfArg<String> _)
+    implements TfArg<String> {
+  SslPolicyProfile.variable(String name) : this._(TfArg.variable(name));
+  SslPolicyProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const SslPolicyProfile.arg(TfArg<String> arg) : this._(arg);
 
-  const SslPolicyProfile(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const compatible = SslPolicyProfile._(TfArgLiteral('COMPATIBLE'));
+  static const modern = SslPolicyProfile._(TfArgLiteral('MODERN'));
+  static const restricted = SslPolicyProfile._(TfArgLiteral('RESTRICTED'));
+  static const custom = SslPolicyProfile._(TfArgLiteral('CUSTOM'));
+  static const fips202205 = SslPolicyProfile._(TfArgLiteral('FIPS_202205'));
+
+  static const List<SslPolicyProfile> values = [
+    compatible,
+    modern,
+    restricted,
+    custom,
+    fips202205,
+  ];
 }
 
 /// `min_tls_version` — the protocol-version floor. TLS 1.3 is always
@@ -31,15 +41,24 @@ enum SslPolicyProfile implements TerraformEnum {
 /// here; the API only exposes the 1.0 / 1.1 / 1.2 floors. To force
 /// TLS 1.3 only, pair [tls12] with [SslPolicyProfile.restricted], which
 /// drops the legacy 1.x suites from the negotiated set.
-enum SslPolicyMinTlsVersion implements TerraformEnum {
-  tls10('TLS_1_0'),
-  tls11('TLS_1_1'),
-  tls12('TLS_1_2'),
-  tls13('TLS_1_3');
+extension type const SslPolicyMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  SslPolicyMinTlsVersion.variable(String name) : this._(TfArg.variable(name));
+  SslPolicyMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const SslPolicyMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const SslPolicyMinTlsVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls10 = SslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_0'));
+  static const tls11 = SslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_1'));
+  static const tls12 = SslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_2'));
+  static const tls13 = SslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_3'));
+
+  static const List<SslPolicyMinTlsVersion> values = [
+    tls10,
+    tls11,
+    tls12,
+    tls13,
+  ];
 }
 
 /// Factory wrapper for `google_compute_ssl_policy`.
@@ -87,8 +106,8 @@ enum SslPolicyMinTlsVersion implements TerraformEnum {
 /// final policy = GoogleComputeSslPolicy(
 ///   'prod_ssl',
 ///   name: TfArg.literal('prod-ssl-policy'),
-///   profile: TfArg.literal(SslPolicyProfile.restricted),
-///   minTlsVersion: TfArg.literal(SslPolicyMinTlsVersion.tls12),
+///   profile: SslPolicyProfile.restricted,
+///   minTlsVersion: SslPolicyMinTlsVersion.tls12,
 /// );
 /// ```
 ///
@@ -97,8 +116,8 @@ enum SslPolicyMinTlsVersion implements TerraformEnum {
 /// final policy = GoogleComputeSslPolicy(
 ///   'custom_ssl',
 ///   name: TfArg.literal('custom-ssl-policy'),
-///   profile: TfArg.literal(SslPolicyProfile.custom),
-///   minTlsVersion: TfArg.literal(SslPolicyMinTlsVersion.tls12),
+///   profile: SslPolicyProfile.custom,
+///   minTlsVersion: SslPolicyMinTlsVersion.tls12,
 ///   customFeatures: TfArg.literal([
 ///     'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256',
 ///     'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384',
@@ -116,8 +135,8 @@ final class GoogleComputeSslPolicy extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
-    TfArg<SslPolicyProfile>? profile,
-    TfArg<SslPolicyMinTlsVersion>? minTlsVersion,
+    SslPolicyProfile? profile,
+    SslPolicyMinTlsVersion? minTlsVersion,
     TfArg<List<String>>? customFeatures,
     TfArg<String>? project,
     super.lifecycle,

@@ -11,13 +11,25 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsCleanroomsMembershipSensitive = <String>{};
 
 /// Cleanrooms Membership Query Log enum for `query_log_status`.
-enum CleanroomsMembershipQueryLogStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CleanroomsMembershipQueryLogStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  CleanroomsMembershipQueryLogStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  CleanroomsMembershipQueryLogStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const CleanroomsMembershipQueryLogStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const CleanroomsMembershipQueryLogStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CleanroomsMembershipQueryLogStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = CleanroomsMembershipQueryLogStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CleanroomsMembershipQueryLogStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `default_result_configuration` block of
@@ -110,7 +122,7 @@ final class AwsCleanroomsMembership extends Resource {
   AwsCleanroomsMembership(
     super.localName, {
     required TfArg<String> collaborationId,
-    required TfArg<CleanroomsMembershipQueryLogStatus> queryLogStatus,
+    required CleanroomsMembershipQueryLogStatus queryLogStatus,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<CleanroomsMembershipDefaultResultConfiguration>?

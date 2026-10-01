@@ -42,7 +42,7 @@ final class MigrationCenterStack extends Stack {
       location: .literal(location),
       sourceId: .literal('terradart-source'),
       displayName: .literal('TerraDart upload source'),
-      type: .literal(.sourceTypeUpload),
+      type: .sourceTypeUpload,
       dependsOn: apiDeps,
     );
     add(uploadSource);
@@ -52,7 +52,7 @@ final class MigrationCenterStack extends Stack {
       location: .literal(location),
       sourceId: .literal('terradart-discovery-source'),
       displayName: .literal('TerraDart discovery source'),
-      type: .literal(.sourceTypeDiscoveryClient),
+      type: .sourceTypeDiscoveryClient,
       dependsOn: apiDeps,
     );
     add(discoverySource);
@@ -97,7 +97,7 @@ final class MigrationCenterStack extends Stack {
         location: .literal(location),
         importJob: .literal(importJobId),
         importDataFileId: .literal('terradart-import-file'),
-        format: .literal(.rvtoolsXlsx),
+        format: .rvtoolsXlsx,
         displayName: .literal('TerraDart import payload'),
         dependsOn: [...apiDeps, importJob],
       ),
@@ -158,7 +158,7 @@ final class MigrationCenterStack extends Stack {
         location: .literal(location),
         reportConfig: .literal(reportConfigId),
         reportId: .literal('terradart-report'),
-        type: .literal(.totalCostOfOwnership),
+        type: .totalCostOfOwnership,
         displayName: .literal('TerraDart assessment report'),
         dependsOn: [...apiDeps, reportConfig],
       ),

@@ -23,9 +23,7 @@ curatedDoc: |-
   ///   region: TfArg.literal('asia-northeast1'),
   ///   priority: TfArg.literal(1000),
   ///   action: TfArg.literal('allow'),
-  ///   direction: TfArg.literal(
-  ///     ComputeRegionNetworkFirewallPolicyRuleDirection.ingress,
-  ///   ),
+  ///   direction: ComputeRegionNetworkFirewallPolicyRuleDirection.ingress,
   ///   match: ComputeRegionNetworkFirewallPolicyRuleMatch(
   ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
   ///     layer4Configs: [

@@ -20,9 +20,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-storage-rep'),
   ///   location: TfArg.literal('us-central1'),
   ///   targetGoogleApi: TfArg.literal('storage.us-central1.rep.googleapis.com'),
-  ///   accessType: TfArg.literal(
-  ///     NetworkConnectivityRegionalEndpointAccessType.regional,
-  ///   ),
+  ///   accessType: NetworkConnectivityRegionalEndpointAccessType.regional,
   ///   network: vpc.ref,
   ///   subnetwork: subnet.ref,
   /// );

@@ -21,7 +21,7 @@ final class Sesv2ConfigurationSetDeliveryOptions {
 
   final TfArg<String>? sendingPoolName;
 
-  final TfArg<Sesv2ConfigurationSetTlsPolicy>? tlsPolicy;
+  final Sesv2ConfigurationSetTlsPolicy? tlsPolicy;
 
   Map<String, Object?> encode() => {
     'max_delivery_seconds': ?maxDeliverySeconds?.toTfJson(),
@@ -31,13 +31,25 @@ final class Sesv2ConfigurationSetDeliveryOptions {
 }
 
 /// `tls_policy` — derived from the provider schema description.
-enum Sesv2ConfigurationSetTlsPolicy implements TerraformEnum {
-  require('REQUIRE'),
-  optional('OPTIONAL');
+extension type const Sesv2ConfigurationSetTlsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  Sesv2ConfigurationSetTlsPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetTlsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetTlsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const Sesv2ConfigurationSetTlsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const require = Sesv2ConfigurationSetTlsPolicy._(
+    TfArgLiteral('REQUIRE'),
+  );
+  static const optional = Sesv2ConfigurationSetTlsPolicy._(
+    TfArgLiteral('OPTIONAL'),
+  );
+
+  static const List<Sesv2ConfigurationSetTlsPolicy> values = [
+    require,
+    optional,
+  ];
 }
 
 /// Typed helper for the `reputation_options` block of
@@ -72,7 +84,7 @@ final class Sesv2ConfigurationSetSendingOptions {
 final class Sesv2ConfigurationSetSuppressionOptions {
   const Sesv2ConfigurationSetSuppressionOptions({this.suppressedReasons});
 
-  final List<TfArg<Sesv2ConfigurationSetSuppressedReasons>>? suppressedReasons;
+  final List<Sesv2ConfigurationSetSuppressedReasons>? suppressedReasons;
 
   Map<String, Object?> encode() => {
     if (suppressedReasons != null)
@@ -81,13 +93,26 @@ final class Sesv2ConfigurationSetSuppressionOptions {
 }
 
 /// `suppressed_reasons` — derived from the provider schema description.
-enum Sesv2ConfigurationSetSuppressedReasons implements TerraformEnum {
-  bounce('BOUNCE'),
-  complaint('COMPLAINT');
+extension type const Sesv2ConfigurationSetSuppressedReasons._(TfArg<String> _)
+    implements TfArg<String> {
+  Sesv2ConfigurationSetSuppressedReasons.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetSuppressedReasons.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetSuppressedReasons.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Sesv2ConfigurationSetSuppressedReasons(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bounce = Sesv2ConfigurationSetSuppressedReasons._(
+    TfArgLiteral('BOUNCE'),
+  );
+  static const complaint = Sesv2ConfigurationSetSuppressedReasons._(
+    TfArgLiteral('COMPLAINT'),
+  );
+
+  static const List<Sesv2ConfigurationSetSuppressedReasons> values = [
+    bounce,
+    complaint,
+  ];
 }
 
 /// Typed helper for the `tracking_options` block of
@@ -101,7 +126,7 @@ final class Sesv2ConfigurationSetTrackingOptions {
 
   final TfArg<String> customRedirectDomain;
 
-  final TfArg<Sesv2ConfigurationSetHttpsPolicy>? httpsPolicy;
+  final Sesv2ConfigurationSetHttpsPolicy? httpsPolicy;
 
   Map<String, Object?> encode() => {
     'custom_redirect_domain': customRedirectDomain.toTfJson(),
@@ -110,14 +135,29 @@ final class Sesv2ConfigurationSetTrackingOptions {
 }
 
 /// `https_policy` — derived from the provider schema description.
-enum Sesv2ConfigurationSetHttpsPolicy implements TerraformEnum {
-  require('REQUIRE'),
-  requireOpenOnly('REQUIRE_OPEN_ONLY'),
-  optional('OPTIONAL');
+extension type const Sesv2ConfigurationSetHttpsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  Sesv2ConfigurationSetHttpsPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetHttpsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetHttpsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const Sesv2ConfigurationSetHttpsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const require = Sesv2ConfigurationSetHttpsPolicy._(
+    TfArgLiteral('REQUIRE'),
+  );
+  static const requireOpenOnly = Sesv2ConfigurationSetHttpsPolicy._(
+    TfArgLiteral('REQUIRE_OPEN_ONLY'),
+  );
+  static const optional = Sesv2ConfigurationSetHttpsPolicy._(
+    TfArgLiteral('OPTIONAL'),
+  );
+
+  static const List<Sesv2ConfigurationSetHttpsPolicy> values = [
+    require,
+    requireOpenOnly,
+    optional,
+  ];
 }
 
 /// Typed helper for the `vdm_options` block of
@@ -145,7 +185,7 @@ final class Sesv2ConfigurationSetVdmOptions {
 final class Sesv2ConfigurationSetDashboardOptions {
   const Sesv2ConfigurationSetDashboardOptions({this.engagementMetrics});
 
-  final TfArg<Sesv2ConfigurationSetEngagementMetrics>? engagementMetrics;
+  final Sesv2ConfigurationSetEngagementMetrics? engagementMetrics;
 
   Map<String, Object?> encode() => {
     'engagement_metrics': ?engagementMetrics?.toTfJson(),
@@ -153,13 +193,26 @@ final class Sesv2ConfigurationSetDashboardOptions {
 }
 
 /// `engagement_metrics` — derived from the provider schema description.
-enum Sesv2ConfigurationSetEngagementMetrics implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const Sesv2ConfigurationSetEngagementMetrics._(TfArg<String> _)
+    implements TfArg<String> {
+  Sesv2ConfigurationSetEngagementMetrics.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetEngagementMetrics.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetEngagementMetrics.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Sesv2ConfigurationSetEngagementMetrics(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = Sesv2ConfigurationSetEngagementMetrics._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = Sesv2ConfigurationSetEngagementMetrics._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<Sesv2ConfigurationSetEngagementMetrics> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `vdm_options.guardian_options` block of
@@ -168,8 +221,7 @@ enum Sesv2ConfigurationSetEngagementMetrics implements TerraformEnum {
 final class Sesv2ConfigurationSetGuardianOptions {
   const Sesv2ConfigurationSetGuardianOptions({this.optimizedSharedDelivery});
 
-  final TfArg<Sesv2ConfigurationSetOptimizedSharedDelivery>?
-  optimizedSharedDelivery;
+  final Sesv2ConfigurationSetOptimizedSharedDelivery? optimizedSharedDelivery;
 
   Map<String, Object?> encode() => {
     'optimized_shared_delivery': ?optimizedSharedDelivery?.toTfJson(),
@@ -177,13 +229,27 @@ final class Sesv2ConfigurationSetGuardianOptions {
 }
 
 /// `optimized_shared_delivery` — derived from the provider schema description.
-enum Sesv2ConfigurationSetOptimizedSharedDelivery implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const Sesv2ConfigurationSetOptimizedSharedDelivery._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Sesv2ConfigurationSetOptimizedSharedDelivery.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2ConfigurationSetOptimizedSharedDelivery.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2ConfigurationSetOptimizedSharedDelivery.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Sesv2ConfigurationSetOptimizedSharedDelivery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = Sesv2ConfigurationSetOptimizedSharedDelivery._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = Sesv2ConfigurationSetOptimizedSharedDelivery._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<Sesv2ConfigurationSetOptimizedSharedDelivery> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_sesv2_configuration_set`.

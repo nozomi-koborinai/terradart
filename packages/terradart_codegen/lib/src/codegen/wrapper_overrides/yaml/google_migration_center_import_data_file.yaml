@@ -22,28 +22,32 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for Migration Center import data files.
-  enum MigrationCenterImportDataFileDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const MigrationCenterImportDataFileDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    MigrationCenterImportDataFileDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    MigrationCenterImportDataFileDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const MigrationCenterImportDataFileDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const MigrationCenterImportDataFileDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = MigrationCenterImportDataFileDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = MigrationCenterImportDataFileDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = MigrationCenterImportDataFileDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<MigrationCenterImportDataFileDeletionPolicy> values = [delete, prevent, abandon];
   }
 
   /// Import payload format for `google_migration_center_import_data_file.format`.
-  enum MigrationCenterImportDataFileFormat implements TerraformEnum {
-    rvtoolsXlsx('IMPORT_JOB_FORMAT_RVTOOLS_XLSX'),
-    rvtoolsCsv('IMPORT_JOB_FORMAT_RVTOOLS_CSV'),
-    exportedAwsCsv('IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV'),
-    exportedAzureCsv('IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV'),
-    stratozoneCsv('IMPORT_JOB_FORMAT_STRATOZONE_CSV'),
-    databaseZip('IMPORT_JOB_FORMAT_DATABASE_ZIP');
+  extension type const MigrationCenterImportDataFileFormat._(TfArg<String> _) implements TfArg<String> {
+    MigrationCenterImportDataFileFormat.variable(String name) : this._(TfArg.variable(name));
+    MigrationCenterImportDataFileFormat.expression(String template) : this._(TfArg.expression(template));
+    const MigrationCenterImportDataFileFormat.arg(TfArg<String> arg) : this._(arg);
 
-    const MigrationCenterImportDataFileFormat(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const rvtoolsXlsx = MigrationCenterImportDataFileFormat._(TfArgLiteral('IMPORT_JOB_FORMAT_RVTOOLS_XLSX'));
+    static const rvtoolsCsv = MigrationCenterImportDataFileFormat._(TfArgLiteral('IMPORT_JOB_FORMAT_RVTOOLS_CSV'));
+    static const exportedAwsCsv = MigrationCenterImportDataFileFormat._(TfArgLiteral('IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV'));
+    static const exportedAzureCsv = MigrationCenterImportDataFileFormat._(TfArgLiteral('IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV'));
+    static const stratozoneCsv = MigrationCenterImportDataFileFormat._(TfArgLiteral('IMPORT_JOB_FORMAT_STRATOZONE_CSV'));
+    static const databaseZip = MigrationCenterImportDataFileFormat._(TfArgLiteral('IMPORT_JOB_FORMAT_DATABASE_ZIP'));
+
+    static const List<MigrationCenterImportDataFileFormat> values = [rvtoolsXlsx, rvtoolsCsv, exportedAwsCsv, exportedAzureCsv, stratozoneCsv, databaseZip];
   }
 
 dartTypeOverrides:

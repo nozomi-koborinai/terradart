@@ -120,7 +120,7 @@ final class ZeroTrustDnsLocationIpv6 {
 final class ZeroTrustDnsLocationMaxTtl {
   const ZeroTrustDnsLocationMaxTtl({required this.mode, this.ttlSecs});
 
-  final TfArg<ZeroTrustDnsLocationMode> mode;
+  final ZeroTrustDnsLocationMode mode;
 
   final TfArg<num>? ttlSecs;
 
@@ -131,14 +131,24 @@ final class ZeroTrustDnsLocationMaxTtl {
 }
 
 /// `mode` — derived from the provider schema description.
-enum ZeroTrustDnsLocationMode implements TerraformEnum {
-  inherit('inherit'),
-  overrideCase('override'),
-  disabled('disabled');
+extension type const ZeroTrustDnsLocationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDnsLocationMode.variable(String name) : this._(TfArg.variable(name));
+  ZeroTrustDnsLocationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDnsLocationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustDnsLocationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inherit = ZeroTrustDnsLocationMode._(TfArgLiteral('inherit'));
+  static const overrideCase = ZeroTrustDnsLocationMode._(
+    TfArgLiteral('override'),
+  );
+  static const disabled = ZeroTrustDnsLocationMode._(TfArgLiteral('disabled'));
+
+  static const List<ZeroTrustDnsLocationMode> values = [
+    inherit,
+    overrideCase,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dns_location`.

@@ -36,7 +36,7 @@ final class StreamLiveInputRecording {
 
   final TfArg<bool>? hideLiveViewerCount;
 
-  final TfArg<StreamLiveInputMode>? mode;
+  final StreamLiveInputMode? mode;
 
   final TfArg<bool>? requireSignedUrls;
 
@@ -52,13 +52,17 @@ final class StreamLiveInputRecording {
 }
 
 /// `mode` — derived from the provider schema description.
-enum StreamLiveInputMode implements TerraformEnum {
-  off('off'),
-  automatic('automatic');
+extension type const StreamLiveInputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  StreamLiveInputMode.variable(String name) : this._(TfArg.variable(name));
+  StreamLiveInputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StreamLiveInputMode.arg(TfArg<String> arg) : this._(arg);
 
-  const StreamLiveInputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = StreamLiveInputMode._(TfArgLiteral('off'));
+  static const automatic = StreamLiveInputMode._(TfArgLiteral('automatic'));
+
+  static const List<StreamLiveInputMode> values = [off, automatic];
 }
 
 /// Factory wrapper for `cloudflare_stream_live_input`.

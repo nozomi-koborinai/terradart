@@ -12,40 +12,61 @@ const Set<String> _appwriteMysqlDatabaseSensitive = <String>{
 };
 
 /// Mysql Database Maintenance Window enum for `maintenance_window_day`.
-enum MysqlDatabaseMaintenanceWindowDay implements TerraformEnum {
-  sun('sun'),
-  mon('mon'),
-  tue('tue'),
-  wed('wed'),
-  thu('thu'),
-  fri('fri'),
-  sat('sat');
+extension type const MysqlDatabaseMaintenanceWindowDay._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlDatabaseMaintenanceWindowDay.variable(String name)
+    : this._(TfArg.variable(name));
+  MysqlDatabaseMaintenanceWindowDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlDatabaseMaintenanceWindowDay.arg(TfArg<String> arg) : this._(arg);
 
-  const MysqlDatabaseMaintenanceWindowDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sun = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('sun'));
+  static const mon = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('mon'));
+  static const tue = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('tue'));
+  static const wed = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('wed'));
+  static const thu = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('thu'));
+  static const fri = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('fri'));
+  static const sat = MysqlDatabaseMaintenanceWindowDay._(TfArgLiteral('sat'));
+
+  static const List<MysqlDatabaseMaintenanceWindowDay> values = [
+    sun,
+    mon,
+    tue,
+    wed,
+    thu,
+    fri,
+    sat,
+  ];
 }
 
 /// Mysql Database enum for `status`.
-enum MysqlDatabaseStatus implements TerraformEnum {
-  ready('ready'),
-  paused('paused'),
-  inactive('inactive');
+extension type const MysqlDatabaseStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlDatabaseStatus.variable(String name) : this._(TfArg.variable(name));
+  MysqlDatabaseStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlDatabaseStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const MysqlDatabaseStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ready = MysqlDatabaseStatus._(TfArgLiteral('ready'));
+  static const paused = MysqlDatabaseStatus._(TfArgLiteral('paused'));
+  static const inactive = MysqlDatabaseStatus._(TfArgLiteral('inactive'));
+
+  static const List<MysqlDatabaseStatus> values = [ready, paused, inactive];
 }
 
 /// Mysql Database Sync enum for `sync_mode`.
-enum MysqlDatabaseSyncMode implements TerraformEnum {
-  async('async'),
-  sync('sync'),
-  quorum('quorum');
+extension type const MysqlDatabaseSyncMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlDatabaseSyncMode.variable(String name) : this._(TfArg.variable(name));
+  MysqlDatabaseSyncMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlDatabaseSyncMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MysqlDatabaseSyncMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const async = MysqlDatabaseSyncMode._(TfArgLiteral('async'));
+  static const sync = MysqlDatabaseSyncMode._(TfArgLiteral('sync'));
+  static const quorum = MysqlDatabaseSyncMode._(TfArgLiteral('quorum'));
+
+  static const List<MysqlDatabaseSyncMode> values = [async, sync, quorum];
 }
 
 /// Factory wrapper for `appwrite_mysql_database`.
@@ -63,7 +84,7 @@ final class AppwriteMysqlDatabase extends Resource {
   AppwriteMysqlDatabase(
     super.localName, {
     TfArg<num>? idleTimeoutMinutes,
-    TfArg<MysqlDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
+    MysqlDatabaseMaintenanceWindowDay? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,
     required TfArg<String> name,
     TfArg<num>? networkIdleTimeoutSeconds,
@@ -78,11 +99,11 @@ final class AppwriteMysqlDatabase extends Resource {
     TfArg<num>? sqlApiMaxBytes,
     TfArg<num>? sqlApiMaxRows,
     TfArg<num>? sqlApiTimeoutSeconds,
-    TfArg<MysqlDatabaseStatus>? status,
+    MysqlDatabaseStatus? status,
     TfArg<bool>? storageAutoscaling,
     TfArg<num>? storageAutoscalingMaxGb,
     TfArg<num>? storageAutoscalingThresholdPercent,
-    TfArg<MysqlDatabaseSyncMode>? syncMode,
+    MysqlDatabaseSyncMode? syncMode,
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,

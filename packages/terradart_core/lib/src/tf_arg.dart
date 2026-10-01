@@ -5,21 +5,6 @@ import 'tf_template.dart';
 
 part 'tf_ref.dart';
 
-/// Implemented by every codegen-emitted Dart enum whose values map to
-/// Terraform string literals (e.g. `KmsKeyPurpose.encryptDecrypt` →
-/// `'ENCRYPT_DECRYPT'`).
-///
-/// `TfArg.literal` dispatches on this interface to encode enum payloads
-/// statically; the duck-typed `dynamic` cast it previously relied on is
-/// retired. The interface is non-generic — the underlying enum type is
-/// encoded by the `enum` declaration that implements it.
-abstract interface class TerraformEnum {
-  /// The Terraform-side string literal this enum value encodes to.
-  /// Convention: emitted exactly as it appears in provider docs (typically
-  /// `SCREAMING_SNAKE_CASE` for GCP).
-  String get terraformValue;
-}
-
 /// A Terraform argument: a Dart-side literal, a reference to another block's
 /// attribute ([TfRef]), a variable or a raw expression.
 ///
@@ -126,28 +111,14 @@ final class TfArgLiteral<T> extends TfArg<T> {
   @override
   Object? toTfJson() {
     final v = value;
-    // v0.11.0 (ADR-0016): enum dispatch goes through the
-    // [TerraformEnum] interface, replacing the prior duck-typed `dynamic`
-    // cast. The interface check sits ahead of the `Enum` check so flow
-    // analysis can narrow `v` directly (a TerraformEnum is always an Enum
-    // in practice, but the language doesn't track that, so we'd otherwise
-    // need an explicit cast after `v is Enum`).
-    if (v is TerraformEnum) {
-      return v.terraformValue;
-    }
     if (v is Enum) {
-      // Dart enums aren't JSON-encodable by default (`dart:convert` would
-      // throw "Converting object to an encodable object failed: Instance
-      // of '<Enum>'"). Any enum that reaches this branch lacks the
-      // [TerraformEnum] interface — that's a hard error, since silent
-      // wrong output is worse than a clear ArgumentError at synth time.
+      // A Dart enum has no Terraform value (and `dart:convert` cannot
+      // encode it); failing here beats a confusing encoder error later.
       throw ArgumentError(
-        'TfArg.literal received an Enum value '
-        '${v.runtimeType}.${v.name} but ${v.runtimeType} does not '
-        'implement `TerraformEnum`. Add `implements TerraformEnum` to '
-        'the enum declaration (with a `final String terraformValue;` '
-        'field and `const X(this.terraformValue);` constructor) or pass '
-        '`TfArg.literal(value.someStringGetter)` explicitly.',
+        'TfArg.literal received the Dart enum value '
+        '${v.runtimeType}.${v.name}, which has no Terraform value. Pass '
+        'the string Terraform expects (`TfArg.literal(\'...\')`); the '
+        'enums the provider packages declare are TfArgs already.',
       );
     }
     return value;

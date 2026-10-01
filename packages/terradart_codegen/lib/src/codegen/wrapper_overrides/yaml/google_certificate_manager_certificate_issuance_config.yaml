@@ -44,9 +44,7 @@ curatedDoc: |-
   ///       caPool: pool.ref,
   ///     ),
   ///   ),
-  ///   keyAlgorithm: TfArg.literal(
-  ///     CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
-  ///   ),
+  ///   keyAlgorithm: CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
   ///   lifetime: TfArg.literal('2592000s'),
   ///   rotationWindowPercentage: TfArg.literal(50),
   /// );
@@ -54,16 +52,15 @@ curatedDoc: |-
 
 prelude: |
   /// `key_algorithm` — private key algorithm for issued certificates.
-  enum CertificateManagerCertificateIssuanceConfigKeyAlgorithm
-      implements TerraformEnum {
-    rsa2048('RSA_2048'),
-    ecdsaP256('ECDSA_P256');
+  extension type const CertificateManagerCertificateIssuanceConfigKeyAlgorithm._(TfArg<String> _) implements TfArg<String> {
+    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.variable(String name) : this._(TfArg.variable(name));
+    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.expression(String template) : this._(TfArg.expression(template));
+    const CertificateManagerCertificateIssuanceConfigKeyAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-    const CertificateManagerCertificateIssuanceConfigKeyAlgorithm(
-      this.terraformValue,
-    );
-    @override
-    final String terraformValue;
+    static const rsa2048 = CertificateManagerCertificateIssuanceConfigKeyAlgorithm._(TfArgLiteral('RSA_2048'));
+    static const ecdsaP256 = CertificateManagerCertificateIssuanceConfigKeyAlgorithm._(TfArgLiteral('ECDSA_P256'));
+
+    static const List<CertificateManagerCertificateIssuanceConfigKeyAlgorithm> values = [rsa2048, ecdsaP256];
   }
 
   /// CAS pool reference inside [CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig].

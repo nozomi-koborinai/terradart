@@ -22,9 +22,9 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
     this.s3Configuration,
   });
 
-  final TfArg<CognitoLogDeliveryConfigurationEventSource> eventSource;
+  final CognitoLogDeliveryConfigurationEventSource eventSource;
 
-  final TfArg<CognitoLogDeliveryConfigurationLogLevel> logLevel;
+  final CognitoLogDeliveryConfigurationLogLevel logLevel;
 
   final List<CognitoLogDeliveryConfigurationCloudWatchLogsConfiguration>?
   cloudWatchLogsConfiguration;
@@ -51,23 +51,50 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
 }
 
 /// `event_source` — derived from the provider schema description.
-enum CognitoLogDeliveryConfigurationEventSource implements TerraformEnum {
-  usernotification('userNotification'),
-  userauthevents('userAuthEvents');
+extension type const CognitoLogDeliveryConfigurationEventSource._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CognitoLogDeliveryConfigurationEventSource.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoLogDeliveryConfigurationEventSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoLogDeliveryConfigurationEventSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoLogDeliveryConfigurationEventSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usernotification = CognitoLogDeliveryConfigurationEventSource._(
+    TfArgLiteral('userNotification'),
+  );
+  static const userauthevents = CognitoLogDeliveryConfigurationEventSource._(
+    TfArgLiteral('userAuthEvents'),
+  );
+
+  static const List<CognitoLogDeliveryConfigurationEventSource> values = [
+    usernotification,
+    userauthevents,
+  ];
 }
 
 /// `log_level` — derived from the provider schema description.
-enum CognitoLogDeliveryConfigurationLogLevel implements TerraformEnum {
-  error('ERROR'),
-  info('INFO');
+extension type const CognitoLogDeliveryConfigurationLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoLogDeliveryConfigurationLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoLogDeliveryConfigurationLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoLogDeliveryConfigurationLogLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoLogDeliveryConfigurationLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const error = CognitoLogDeliveryConfigurationLogLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const info = CognitoLogDeliveryConfigurationLogLevel._(
+    TfArgLiteral('INFO'),
+  );
+
+  static const List<CognitoLogDeliveryConfigurationLogLevel> values = [
+    error,
+    info,
+  ];
 }
 
 /// Typed helper for the `log_configurations.cloud_watch_logs_configuration` block of

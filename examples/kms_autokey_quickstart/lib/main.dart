@@ -30,7 +30,7 @@ final class KmsAutokeyStack extends Stack {
     add(
       GoogleKmsProjectAutokeyConfig(
         'autokey',
-        keyProjectResolutionMode: .literal(.disabled),
+        keyProjectResolutionMode: .disabled,
         dependsOn: [apiKms],
       ),
     );

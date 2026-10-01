@@ -7,23 +7,49 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAppconfigDeploymentStrategySensitive = <String>{};
 
 /// Appconfig Deployment Strategy Growth enum for `growth_type`.
-enum AppconfigDeploymentStrategyGrowthType implements TerraformEnum {
-  linear('LINEAR'),
-  exponential('EXPONENTIAL');
+extension type const AppconfigDeploymentStrategyGrowthType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppconfigDeploymentStrategyGrowthType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppconfigDeploymentStrategyGrowthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppconfigDeploymentStrategyGrowthType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppconfigDeploymentStrategyGrowthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linear = AppconfigDeploymentStrategyGrowthType._(
+    TfArgLiteral('LINEAR'),
+  );
+  static const exponential = AppconfigDeploymentStrategyGrowthType._(
+    TfArgLiteral('EXPONENTIAL'),
+  );
+
+  static const List<AppconfigDeploymentStrategyGrowthType> values = [
+    linear,
+    exponential,
+  ];
 }
 
 /// Appconfig Deployment Strategy Replicate enum for `replicate_to`.
-enum AppconfigDeploymentStrategyReplicateTo implements TerraformEnum {
-  none('NONE'),
-  ssmDocument('SSM_DOCUMENT');
+extension type const AppconfigDeploymentStrategyReplicateTo._(TfArg<String> _)
+    implements TfArg<String> {
+  AppconfigDeploymentStrategyReplicateTo.variable(String name)
+    : this._(TfArg.variable(name));
+  AppconfigDeploymentStrategyReplicateTo.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppconfigDeploymentStrategyReplicateTo.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppconfigDeploymentStrategyReplicateTo(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = AppconfigDeploymentStrategyReplicateTo._(
+    TfArgLiteral('NONE'),
+  );
+  static const ssmDocument = AppconfigDeploymentStrategyReplicateTo._(
+    TfArgLiteral('SSM_DOCUMENT'),
+  );
+
+  static const List<AppconfigDeploymentStrategyReplicateTo> values = [
+    none,
+    ssmDocument,
+  ];
 }
 
 /// Factory wrapper for `aws_appconfig_deployment_strategy`.
@@ -36,10 +62,10 @@ final class AwsAppconfigDeploymentStrategy extends Resource {
     TfArg<String>? description,
     TfArg<num>? finalBakeTimeInMinutes,
     required TfArg<num> growthFactor,
-    TfArg<AppconfigDeploymentStrategyGrowthType>? growthType,
+    AppconfigDeploymentStrategyGrowthType? growthType,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<AppconfigDeploymentStrategyReplicateTo> replicateTo,
+    required AppconfigDeploymentStrategyReplicateTo replicateTo,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

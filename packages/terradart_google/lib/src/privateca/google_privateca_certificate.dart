@@ -106,7 +106,7 @@ final class PrivatecaCertificateConfig {
 final class PrivatecaCertificatePublicKey {
   const PrivatecaCertificatePublicKey({required this.format, this.key});
 
-  final TfArg<PrivatecaCertificateFormat> format;
+  final PrivatecaCertificateFormat format;
 
   final TfArg<String>? key;
 
@@ -117,13 +117,23 @@ final class PrivatecaCertificatePublicKey {
 }
 
 /// `format` — derived from the provider schema description.
-enum PrivatecaCertificateFormat implements TerraformEnum {
-  keyTypeUnspecified('KEY_TYPE_UNSPECIFIED'),
-  pem('PEM');
+extension type const PrivatecaCertificateFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivatecaCertificateFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCertificateFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCertificateFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const PrivatecaCertificateFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keyTypeUnspecified = PrivatecaCertificateFormat._(
+    TfArgLiteral('KEY_TYPE_UNSPECIFIED'),
+  );
+  static const pem = PrivatecaCertificateFormat._(TfArgLiteral('PEM'));
+
+  static const List<PrivatecaCertificateFormat> values = [
+    keyTypeUnspecified,
+    pem,
+  ];
 }
 
 /// Typed helper for the `config.subject_config` block of

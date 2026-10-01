@@ -8,26 +8,62 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataprocMetastoreFederationSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Dataproc Metastore federations.
-enum DataprocMetastoreFederationDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const DataprocMetastoreFederationDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocMetastoreFederationDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreFederationDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreFederationDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreFederationDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = DataprocMetastoreFederationDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = DataprocMetastoreFederationDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = DataprocMetastoreFederationDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<DataprocMetastoreFederationDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Backend metastore type for federation `backend_metastores`.
-enum DataprocMetastoreFederationBackendType implements TerraformEnum {
-  unspecified('METASTORE_TYPE_UNSPECIFIED'),
-  dataprocMetastore('DATAPROC_METASTORE'),
-  bigquery('BIGQUERY'),
-  dataplex('DATAPLEX');
+extension type const DataprocMetastoreFederationBackendType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocMetastoreFederationBackendType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocMetastoreFederationBackendType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocMetastoreFederationBackendType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocMetastoreFederationBackendType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = DataprocMetastoreFederationBackendType._(
+    TfArgLiteral('METASTORE_TYPE_UNSPECIFIED'),
+  );
+  static const dataprocMetastore = DataprocMetastoreFederationBackendType._(
+    TfArgLiteral('DATAPROC_METASTORE'),
+  );
+  static const bigquery = DataprocMetastoreFederationBackendType._(
+    TfArgLiteral('BIGQUERY'),
+  );
+  static const dataplex = DataprocMetastoreFederationBackendType._(
+    TfArgLiteral('DATAPLEX'),
+  );
+
+  static const List<DataprocMetastoreFederationBackendType> values = [
+    unspecified,
+    dataprocMetastore,
+    bigquery,
+    dataplex,
+  ];
 }
 
 /// One `backend_metastores` entry on a federation.
@@ -40,7 +76,7 @@ class DataprocMetastoreFederationBackend {
   });
 
   final TfArg<String> name;
-  final TfArg<DataprocMetastoreFederationBackendType> metastoreType;
+  final DataprocMetastoreFederationBackendType metastoreType;
   final TfArg<int> rank;
 
   Map<String, Object?> toArgMap() => {
@@ -70,7 +106,7 @@ final class GoogleDataprocMetastoreFederation extends Resource {
     required List<DataprocMetastoreFederationBackend> backendMetastores,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
-    TfArg<DataprocMetastoreFederationDeletionPolicy>? deletionPolicy,
+    DataprocMetastoreFederationDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

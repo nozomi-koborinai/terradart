@@ -8,33 +8,62 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsFsxOpenzfsVolumeSensitive = <String>{};
 
 /// Fsx Openzfs Volume Data Compression enum for `data_compression_type`.
-enum FsxOpenzfsVolumeDataCompressionType implements TerraformEnum {
-  none('NONE'),
-  zstd('ZSTD'),
-  lz4('LZ4');
+extension type const FsxOpenzfsVolumeDataCompressionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsVolumeDataCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsVolumeDataCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsVolumeDataCompressionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxOpenzfsVolumeDataCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = FsxOpenzfsVolumeDataCompressionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const zstd = FsxOpenzfsVolumeDataCompressionType._(
+    TfArgLiteral('ZSTD'),
+  );
+  static const lz4 = FsxOpenzfsVolumeDataCompressionType._(TfArgLiteral('LZ4'));
+
+  static const List<FsxOpenzfsVolumeDataCompressionType> values = [
+    none,
+    zstd,
+    lz4,
+  ];
 }
 
 /// Fsx Openzfs Volume Delete Volume enum for `delete_volume_options`.
-enum FsxOpenzfsVolumeDeleteVolumeOptions implements TerraformEnum {
-  deleteChildVolumesAndSnapshots('DELETE_CHILD_VOLUMES_AND_SNAPSHOTS');
+extension type const FsxOpenzfsVolumeDeleteVolumeOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsVolumeDeleteVolumeOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsVolumeDeleteVolumeOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsVolumeDeleteVolumeOptions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxOpenzfsVolumeDeleteVolumeOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deleteChildVolumesAndSnapshots =
+      FsxOpenzfsVolumeDeleteVolumeOptions._(
+        TfArgLiteral('DELETE_CHILD_VOLUMES_AND_SNAPSHOTS'),
+      );
+
+  static const List<FsxOpenzfsVolumeDeleteVolumeOptions> values = [
+    deleteChildVolumesAndSnapshots,
+  ];
 }
 
 /// Fsx Openzfs Volume enum for `volume_type`.
-enum FsxOpenzfsVolumeType implements TerraformEnum {
-  ontap('ONTAP'),
-  openzfs('OPENZFS');
+extension type const FsxOpenzfsVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsVolumeType.variable(String name) : this._(TfArg.variable(name));
+  FsxOpenzfsVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ontap = FsxOpenzfsVolumeType._(TfArgLiteral('ONTAP'));
+  static const openzfs = FsxOpenzfsVolumeType._(TfArgLiteral('OPENZFS'));
+
+  static const List<FsxOpenzfsVolumeType> values = [ontap, openzfs];
 }
 
 /// Typed helper for the `nfs_exports` block of
@@ -78,7 +107,7 @@ final class FsxOpenzfsVolumeOriginSnapshot {
     required this.snapshotArn,
   });
 
-  final TfArg<FsxOpenzfsVolumeCopyStrategy> copyStrategy;
+  final FsxOpenzfsVolumeCopyStrategy copyStrategy;
 
   final TfArg<String> snapshotArn;
 
@@ -89,14 +118,27 @@ final class FsxOpenzfsVolumeOriginSnapshot {
 }
 
 /// `copy_strategy` — derived from the provider schema description.
-enum FsxOpenzfsVolumeCopyStrategy implements TerraformEnum {
-  clone('CLONE'),
-  fullCopy('FULL_COPY'),
-  incrementalCopy('INCREMENTAL_COPY');
+extension type const FsxOpenzfsVolumeCopyStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsVolumeCopyStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsVolumeCopyStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsVolumeCopyStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOpenzfsVolumeCopyStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clone = FsxOpenzfsVolumeCopyStrategy._(TfArgLiteral('CLONE'));
+  static const fullCopy = FsxOpenzfsVolumeCopyStrategy._(
+    TfArgLiteral('FULL_COPY'),
+  );
+  static const incrementalCopy = FsxOpenzfsVolumeCopyStrategy._(
+    TfArgLiteral('INCREMENTAL_COPY'),
+  );
+
+  static const List<FsxOpenzfsVolumeCopyStrategy> values = [
+    clone,
+    fullCopy,
+    incrementalCopy,
+  ];
 }
 
 /// Typed helper for the `user_and_group_quotas` block of
@@ -113,7 +155,7 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<FsxOpenzfsVolumeUserAndGroupQuotasType> type;
+  final FsxOpenzfsVolumeUserAndGroupQuotasType type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -123,13 +165,26 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOpenzfsVolumeUserAndGroupQuotasType implements TerraformEnum {
-  user('USER'),
-  group('GROUP');
+extension type const FsxOpenzfsVolumeUserAndGroupQuotasType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOpenzfsVolumeUserAndGroupQuotasType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOpenzfsVolumeUserAndGroupQuotasType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOpenzfsVolumeUserAndGroupQuotasType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxOpenzfsVolumeUserAndGroupQuotasType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = FsxOpenzfsVolumeUserAndGroupQuotasType._(
+    TfArgLiteral('USER'),
+  );
+  static const group = FsxOpenzfsVolumeUserAndGroupQuotasType._(
+    TfArgLiteral('GROUP'),
+  );
+
+  static const List<FsxOpenzfsVolumeUserAndGroupQuotasType> values = [
+    user,
+    group,
+  ];
 }
 
 /// Factory wrapper for `aws_fsx_openzfs_volume`.
@@ -139,8 +194,8 @@ final class AwsFsxOpenzfsVolume extends Resource {
   AwsFsxOpenzfsVolume(
     super.localName, {
     TfArg<bool>? copyTagsToSnapshots,
-    TfArg<FsxOpenzfsVolumeDataCompressionType>? dataCompressionType,
-    List<TfArg<FsxOpenzfsVolumeDeleteVolumeOptions>>? deleteVolumeOptions,
+    FsxOpenzfsVolumeDataCompressionType? dataCompressionType,
+    List<FsxOpenzfsVolumeDeleteVolumeOptions>? deleteVolumeOptions,
     required TfArg<String> name,
     required TfArg<String> parentVolumeId,
     TfArg<bool>? readOnly,
@@ -149,7 +204,7 @@ final class AwsFsxOpenzfsVolume extends Resource {
     TfArg<num>? storageCapacityQuotaGib,
     TfArg<num>? storageCapacityReservationGib,
     TfArg<Map<String, String>>? tags,
-    TfArg<FsxOpenzfsVolumeType>? volumeType,
+    FsxOpenzfsVolumeType? volumeType,
     FsxOpenzfsVolumeNfsExports? nfsExports,
     FsxOpenzfsVolumeOriginSnapshot? originSnapshot,
     List<FsxOpenzfsVolumeUserAndGroupQuotas>? userAndGroupQuotas,

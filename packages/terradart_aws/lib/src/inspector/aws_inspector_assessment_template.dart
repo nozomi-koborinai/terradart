@@ -18,7 +18,7 @@ final class InspectorAssessmentTemplateEventSubscription {
     required this.topicArn,
   });
 
-  final TfArg<InspectorAssessmentTemplateEvent> event;
+  final InspectorAssessmentTemplateEvent event;
 
   final RefTo<AwsSnsTopic> topicArn;
 
@@ -29,16 +29,37 @@ final class InspectorAssessmentTemplateEventSubscription {
 }
 
 /// `event` — derived from the provider schema description.
-enum InspectorAssessmentTemplateEvent implements TerraformEnum {
-  assessmentRunStarted('ASSESSMENT_RUN_STARTED'),
-  assessmentRunCompleted('ASSESSMENT_RUN_COMPLETED'),
-  assessmentRunStateChanged('ASSESSMENT_RUN_STATE_CHANGED'),
-  findingReported('FINDING_REPORTED'),
-  other('OTHER');
+extension type const InspectorAssessmentTemplateEvent._(TfArg<String> _)
+    implements TfArg<String> {
+  InspectorAssessmentTemplateEvent.variable(String name)
+    : this._(TfArg.variable(name));
+  InspectorAssessmentTemplateEvent.expression(String template)
+    : this._(TfArg.expression(template));
+  const InspectorAssessmentTemplateEvent.arg(TfArg<String> arg) : this._(arg);
 
-  const InspectorAssessmentTemplateEvent(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const assessmentRunStarted = InspectorAssessmentTemplateEvent._(
+    TfArgLiteral('ASSESSMENT_RUN_STARTED'),
+  );
+  static const assessmentRunCompleted = InspectorAssessmentTemplateEvent._(
+    TfArgLiteral('ASSESSMENT_RUN_COMPLETED'),
+  );
+  static const assessmentRunStateChanged = InspectorAssessmentTemplateEvent._(
+    TfArgLiteral('ASSESSMENT_RUN_STATE_CHANGED'),
+  );
+  static const findingReported = InspectorAssessmentTemplateEvent._(
+    TfArgLiteral('FINDING_REPORTED'),
+  );
+  static const other = InspectorAssessmentTemplateEvent._(
+    TfArgLiteral('OTHER'),
+  );
+
+  static const List<InspectorAssessmentTemplateEvent> values = [
+    assessmentRunStarted,
+    assessmentRunCompleted,
+    assessmentRunStateChanged,
+    findingReported,
+    other,
+  ];
 }
 
 /// Factory wrapper for `aws_inspector_assessment_template`.

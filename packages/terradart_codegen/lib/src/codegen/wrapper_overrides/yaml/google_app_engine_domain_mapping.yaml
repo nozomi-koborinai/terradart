@@ -19,11 +19,13 @@ dartTypeOverrides:
 
 prelude: |
   /// `override_strategy` on `google_app_engine_domain_mapping`.
-  enum AppEngineDomainMappingOverrideStrategy implements TerraformEnum {
-    strict('STRICT'),
-    overrideStrategy('OVERRIDE');
+  extension type const AppEngineDomainMappingOverrideStrategy._(TfArg<String> _) implements TfArg<String> {
+    AppEngineDomainMappingOverrideStrategy.variable(String name) : this._(TfArg.variable(name));
+    AppEngineDomainMappingOverrideStrategy.expression(String template) : this._(TfArg.expression(template));
+    const AppEngineDomainMappingOverrideStrategy.arg(TfArg<String> arg) : this._(arg);
 
-    const AppEngineDomainMappingOverrideStrategy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const strict = AppEngineDomainMappingOverrideStrategy._(TfArgLiteral('STRICT'));
+    static const overrideStrategy = AppEngineDomainMappingOverrideStrategy._(TfArgLiteral('OVERRIDE'));
+
+    static const List<AppEngineDomainMappingOverrideStrategy> values = [strict, overrideStrategy];
   }

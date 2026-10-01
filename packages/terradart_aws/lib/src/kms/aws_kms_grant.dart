@@ -10,28 +10,64 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsKmsGrantSensitive = <String>{'grant_token'};
 
 /// Kms Grant enum for `operations`.
-enum KmsGrantOperations implements TerraformEnum {
-  decrypt('Decrypt'),
-  encrypt('Encrypt'),
-  generatedatakey('GenerateDataKey'),
-  generatedatakeywithoutplaintext('GenerateDataKeyWithoutPlaintext'),
-  reencryptfrom('ReEncryptFrom'),
-  reencryptto('ReEncryptTo'),
-  sign('Sign'),
-  verify('Verify'),
-  getpublickey('GetPublicKey'),
-  creategrant('CreateGrant'),
-  retiregrant('RetireGrant'),
-  describekey('DescribeKey'),
-  generatedatakeypair('GenerateDataKeyPair'),
-  generatedatakeypairwithoutplaintext('GenerateDataKeyPairWithoutPlaintext'),
-  generatemac('GenerateMac'),
-  verifymac('VerifyMac'),
-  derivesharedsecret('DeriveSharedSecret');
+extension type const KmsGrantOperations._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsGrantOperations.variable(String name) : this._(TfArg.variable(name));
+  KmsGrantOperations.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsGrantOperations.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsGrantOperations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const decrypt = KmsGrantOperations._(TfArgLiteral('Decrypt'));
+  static const encrypt = KmsGrantOperations._(TfArgLiteral('Encrypt'));
+  static const generatedatakey = KmsGrantOperations._(
+    TfArgLiteral('GenerateDataKey'),
+  );
+  static const generatedatakeywithoutplaintext = KmsGrantOperations._(
+    TfArgLiteral('GenerateDataKeyWithoutPlaintext'),
+  );
+  static const reencryptfrom = KmsGrantOperations._(
+    TfArgLiteral('ReEncryptFrom'),
+  );
+  static const reencryptto = KmsGrantOperations._(TfArgLiteral('ReEncryptTo'));
+  static const sign = KmsGrantOperations._(TfArgLiteral('Sign'));
+  static const verify = KmsGrantOperations._(TfArgLiteral('Verify'));
+  static const getpublickey = KmsGrantOperations._(
+    TfArgLiteral('GetPublicKey'),
+  );
+  static const creategrant = KmsGrantOperations._(TfArgLiteral('CreateGrant'));
+  static const retiregrant = KmsGrantOperations._(TfArgLiteral('RetireGrant'));
+  static const describekey = KmsGrantOperations._(TfArgLiteral('DescribeKey'));
+  static const generatedatakeypair = KmsGrantOperations._(
+    TfArgLiteral('GenerateDataKeyPair'),
+  );
+  static const generatedatakeypairwithoutplaintext = KmsGrantOperations._(
+    TfArgLiteral('GenerateDataKeyPairWithoutPlaintext'),
+  );
+  static const generatemac = KmsGrantOperations._(TfArgLiteral('GenerateMac'));
+  static const verifymac = KmsGrantOperations._(TfArgLiteral('VerifyMac'));
+  static const derivesharedsecret = KmsGrantOperations._(
+    TfArgLiteral('DeriveSharedSecret'),
+  );
+
+  static const List<KmsGrantOperations> values = [
+    decrypt,
+    encrypt,
+    generatedatakey,
+    generatedatakeywithoutplaintext,
+    reencryptfrom,
+    reencryptto,
+    sign,
+    verify,
+    getpublickey,
+    creategrant,
+    retiregrant,
+    describekey,
+    generatedatakeypair,
+    generatedatakeypairwithoutplaintext,
+    generatemac,
+    verifymac,
+    derivesharedsecret,
+  ];
 }
 
 /// Typed helper for the `constraints` block of
@@ -63,7 +99,7 @@ final class AwsKmsGrant extends Resource {
     required TfArg<String> granteePrincipal,
     required RefTo<AwsKmsKey> keyId,
     TfArg<String>? name,
-    required List<TfArg<KmsGrantOperations>> operations,
+    required List<KmsGrantOperations> operations,
     TfArg<String>? region,
     TfArg<bool>? retireOnDelete,
     TfArg<String>? retiringPrincipal,

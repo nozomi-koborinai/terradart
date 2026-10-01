@@ -7,59 +7,167 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2CapacityReservationSensitive = <String>{};
 
 /// Ec2 Capacity Reservation End Date enum for `end_date_type`.
-enum Ec2CapacityReservationEndDateType implements TerraformEnum {
-  unlimited('unlimited'),
-  limited('limited');
+extension type const Ec2CapacityReservationEndDateType._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2CapacityReservationEndDateType.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2CapacityReservationEndDateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2CapacityReservationEndDateType.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2CapacityReservationEndDateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unlimited = Ec2CapacityReservationEndDateType._(
+    TfArgLiteral('unlimited'),
+  );
+  static const limited = Ec2CapacityReservationEndDateType._(
+    TfArgLiteral('limited'),
+  );
+
+  static const List<Ec2CapacityReservationEndDateType> values = [
+    unlimited,
+    limited,
+  ];
 }
 
 /// Ec2 Capacity Reservation Instance Match enum for `instance_match_criteria`.
-enum Ec2CapacityReservationInstanceMatchCriteria implements TerraformEnum {
-  open('open'),
-  targeted('targeted');
+extension type const Ec2CapacityReservationInstanceMatchCriteria._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2CapacityReservationInstanceMatchCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2CapacityReservationInstanceMatchCriteria.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2CapacityReservationInstanceMatchCriteria.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2CapacityReservationInstanceMatchCriteria(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const open = Ec2CapacityReservationInstanceMatchCriteria._(
+    TfArgLiteral('open'),
+  );
+  static const targeted = Ec2CapacityReservationInstanceMatchCriteria._(
+    TfArgLiteral('targeted'),
+  );
+
+  static const List<Ec2CapacityReservationInstanceMatchCriteria> values = [
+    open,
+    targeted,
+  ];
 }
 
 /// Ec2 Capacity Reservation Instance enum for `instance_platform`.
-enum Ec2CapacityReservationInstancePlatform implements TerraformEnum {
-  linuxUnix('Linux/UNIX'),
-  redHatEnterpriseLinux('Red Hat Enterprise Linux'),
-  suseLinux('SUSE Linux'),
-  windows('Windows'),
-  windowsWithSqlServer('Windows with SQL Server'),
-  windowsWithSqlServerEnterprise('Windows with SQL Server Enterprise'),
-  windowsWithSqlServerStandard('Windows with SQL Server Standard'),
-  windowsWithSqlServerWeb('Windows with SQL Server Web'),
-  linuxWithSqlServerStandard('Linux with SQL Server Standard'),
-  linuxWithSqlServerWeb('Linux with SQL Server Web'),
-  linuxWithSqlServerEnterprise('Linux with SQL Server Enterprise'),
-  rhelWithSqlServerStandard('RHEL with SQL Server Standard'),
-  rhelWithSqlServerEnterprise('RHEL with SQL Server Enterprise'),
-  rhelWithSqlServerWeb('RHEL with SQL Server Web'),
-  rhelWithHa('RHEL with HA'),
-  rhelWithHaAndSqlServerStandard('RHEL with HA and SQL Server Standard'),
-  rhelWithHaAndSqlServerEnterprise('RHEL with HA and SQL Server Enterprise'),
-  ubuntuPro('Ubuntu Pro');
+extension type const Ec2CapacityReservationInstancePlatform._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2CapacityReservationInstancePlatform.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2CapacityReservationInstancePlatform.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2CapacityReservationInstancePlatform.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2CapacityReservationInstancePlatform(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linuxUnix = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('Linux/UNIX'),
+  );
+  static const redHatEnterpriseLinux = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('Red Hat Enterprise Linux'),
+  );
+  static const suseLinux = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('SUSE Linux'),
+  );
+  static const windows = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('Windows'),
+  );
+  static const windowsWithSqlServer = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('Windows with SQL Server'),
+  );
+  static const windowsWithSqlServerEnterprise =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server Enterprise'),
+      );
+  static const windowsWithSqlServerStandard =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server Standard'),
+      );
+  static const windowsWithSqlServerWeb =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server Web'),
+      );
+  static const linuxWithSqlServerStandard =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('Linux with SQL Server Standard'),
+      );
+  static const linuxWithSqlServerWeb = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('Linux with SQL Server Web'),
+  );
+  static const linuxWithSqlServerEnterprise =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('Linux with SQL Server Enterprise'),
+      );
+  static const rhelWithSqlServerStandard =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('RHEL with SQL Server Standard'),
+      );
+  static const rhelWithSqlServerEnterprise =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('RHEL with SQL Server Enterprise'),
+      );
+  static const rhelWithSqlServerWeb = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('RHEL with SQL Server Web'),
+  );
+  static const rhelWithHa = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('RHEL with HA'),
+  );
+  static const rhelWithHaAndSqlServerStandard =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('RHEL with HA and SQL Server Standard'),
+      );
+  static const rhelWithHaAndSqlServerEnterprise =
+      Ec2CapacityReservationInstancePlatform._(
+        TfArgLiteral('RHEL with HA and SQL Server Enterprise'),
+      );
+  static const ubuntuPro = Ec2CapacityReservationInstancePlatform._(
+    TfArgLiteral('Ubuntu Pro'),
+  );
+
+  static const List<Ec2CapacityReservationInstancePlatform> values = [
+    linuxUnix,
+    redHatEnterpriseLinux,
+    suseLinux,
+    windows,
+    windowsWithSqlServer,
+    windowsWithSqlServerEnterprise,
+    windowsWithSqlServerStandard,
+    windowsWithSqlServerWeb,
+    linuxWithSqlServerStandard,
+    linuxWithSqlServerWeb,
+    linuxWithSqlServerEnterprise,
+    rhelWithSqlServerStandard,
+    rhelWithSqlServerEnterprise,
+    rhelWithSqlServerWeb,
+    rhelWithHa,
+    rhelWithHaAndSqlServerStandard,
+    rhelWithHaAndSqlServerEnterprise,
+    ubuntuPro,
+  ];
 }
 
 /// Ec2 Capacity Reservation enum for `tenancy`.
-enum Ec2CapacityReservationTenancy implements TerraformEnum {
-  defaultCase('default'),
-  dedicated('dedicated');
+extension type const Ec2CapacityReservationTenancy._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2CapacityReservationTenancy.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2CapacityReservationTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2CapacityReservationTenancy.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2CapacityReservationTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = Ec2CapacityReservationTenancy._(
+    TfArgLiteral('default'),
+  );
+  static const dedicated = Ec2CapacityReservationTenancy._(
+    TfArgLiteral('dedicated'),
+  );
+
+  static const List<Ec2CapacityReservationTenancy> values = [
+    defaultCase,
+    dedicated,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_capacity_reservation`.
@@ -71,17 +179,17 @@ final class AwsEc2CapacityReservation extends Resource {
     required TfArg<String> availabilityZone,
     TfArg<bool>? ebsOptimized,
     TfArg<String>? endDate,
-    TfArg<Ec2CapacityReservationEndDateType>? endDateType,
+    Ec2CapacityReservationEndDateType? endDateType,
     TfArg<bool>? ephemeralStorage,
     required TfArg<num> instanceCount,
-    TfArg<Ec2CapacityReservationInstanceMatchCriteria>? instanceMatchCriteria,
-    required TfArg<Ec2CapacityReservationInstancePlatform> instancePlatform,
+    Ec2CapacityReservationInstanceMatchCriteria? instanceMatchCriteria,
+    required Ec2CapacityReservationInstancePlatform instancePlatform,
     required TfArg<String> instanceType,
     TfArg<String>? outpostArn,
     TfArg<String>? placementGroupArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<Ec2CapacityReservationTenancy>? tenancy,
+    Ec2CapacityReservationTenancy? tenancy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

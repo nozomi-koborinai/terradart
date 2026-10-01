@@ -17,7 +17,7 @@ final class ConnectHoursOfOperationConfig {
     required this.startTime,
   });
 
-  final TfArg<ConnectHoursOfOperationDay> day;
+  final ConnectHoursOfOperationDay day;
 
   final ConnectHoursOfOperationEndTime endTime;
 
@@ -31,18 +31,37 @@ final class ConnectHoursOfOperationConfig {
 }
 
 /// `day` — derived from the provider schema description.
-enum ConnectHoursOfOperationDay implements TerraformEnum {
-  sunday('SUNDAY'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY');
+extension type const ConnectHoursOfOperationDay._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectHoursOfOperationDay.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectHoursOfOperationDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectHoursOfOperationDay.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectHoursOfOperationDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sunday = ConnectHoursOfOperationDay._(TfArgLiteral('SUNDAY'));
+  static const monday = ConnectHoursOfOperationDay._(TfArgLiteral('MONDAY'));
+  static const tuesday = ConnectHoursOfOperationDay._(TfArgLiteral('TUESDAY'));
+  static const wednesday = ConnectHoursOfOperationDay._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = ConnectHoursOfOperationDay._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = ConnectHoursOfOperationDay._(TfArgLiteral('FRIDAY'));
+  static const saturday = ConnectHoursOfOperationDay._(
+    TfArgLiteral('SATURDAY'),
+  );
+
+  static const List<ConnectHoursOfOperationDay> values = [
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+  ];
 }
 
 /// Typed helper for the `config.end_time` block of

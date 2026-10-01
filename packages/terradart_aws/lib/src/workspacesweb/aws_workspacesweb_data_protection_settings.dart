@@ -116,7 +116,7 @@ final class WorkspaceswebDataProtectionSettingsRedactionPlaceHolder {
 
   final TfArg<String>? redactionPlaceHolderText;
 
-  final TfArg<WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType>
+  final WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType
   redactionPlaceHolderType;
 
   Map<String, Object?> encode() => {
@@ -126,15 +126,26 @@ final class WorkspaceswebDataProtectionSettingsRedactionPlaceHolder {
 }
 
 /// `redaction_place_holder_type` — derived from the provider schema description.
-enum WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType
-    implements TerraformEnum {
-  customtext('CustomText');
+extension type const WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const customtext =
+      WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType._(
+        TfArgLiteral('CustomText'),
+      );
+
+  static const List<WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType>
+  values = [customtext];
 }
 
 /// Factory wrapper for `aws_workspacesweb_data_protection_settings`.

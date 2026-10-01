@@ -8,14 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlueUserDefinedFunctionSensitive = <String>{};
 
 /// Glue User Defined Function Owner enum for `owner_type`.
-enum GlueUserDefinedFunctionOwnerType implements TerraformEnum {
-  user('USER'),
-  role('ROLE'),
-  group('GROUP');
+extension type const GlueUserDefinedFunctionOwnerType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueUserDefinedFunctionOwnerType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueUserDefinedFunctionOwnerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueUserDefinedFunctionOwnerType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueUserDefinedFunctionOwnerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = GlueUserDefinedFunctionOwnerType._(TfArgLiteral('USER'));
+  static const role = GlueUserDefinedFunctionOwnerType._(TfArgLiteral('ROLE'));
+  static const group = GlueUserDefinedFunctionOwnerType._(
+    TfArgLiteral('GROUP'),
+  );
+
+  static const List<GlueUserDefinedFunctionOwnerType> values = [
+    user,
+    role,
+    group,
+  ];
 }
 
 /// Typed helper for the `resource_uris` block of
@@ -27,7 +38,7 @@ final class GlueUserDefinedFunctionResourceUris {
     required this.uri,
   });
 
-  final TfArg<GlueUserDefinedFunctionResourceType> resourceType;
+  final GlueUserDefinedFunctionResourceType resourceType;
 
   final TfArg<String> uri;
 
@@ -38,14 +49,28 @@ final class GlueUserDefinedFunctionResourceUris {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum GlueUserDefinedFunctionResourceType implements TerraformEnum {
-  jar('JAR'),
-  file('FILE'),
-  archive('ARCHIVE');
+extension type const GlueUserDefinedFunctionResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueUserDefinedFunctionResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueUserDefinedFunctionResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueUserDefinedFunctionResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlueUserDefinedFunctionResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jar = GlueUserDefinedFunctionResourceType._(TfArgLiteral('JAR'));
+  static const file = GlueUserDefinedFunctionResourceType._(
+    TfArgLiteral('FILE'),
+  );
+  static const archive = GlueUserDefinedFunctionResourceType._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<GlueUserDefinedFunctionResourceType> values = [
+    jar,
+    file,
+    archive,
+  ];
 }
 
 /// Factory wrapper for `aws_glue_user_defined_function`.
@@ -59,7 +84,7 @@ final class AwsGlueUserDefinedFunction extends Resource {
     required TfArg<String> databaseName,
     required TfArg<String> name,
     required TfArg<String> ownerName,
-    required TfArg<GlueUserDefinedFunctionOwnerType> ownerType,
+    required GlueUserDefinedFunctionOwnerType ownerType,
     TfArg<String>? region,
     List<GlueUserDefinedFunctionResourceUris>? resourceUris,
     super.lifecycle,

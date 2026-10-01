@@ -12,17 +12,41 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsCodeconnectionsHostSensitive = <String>{};
 
 /// Codeconnections Host Provider enum for `provider_type`.
-enum CodeconnectionsHostProviderType implements TerraformEnum {
-  bitbucket('Bitbucket'),
-  github('GitHub'),
-  githubenterpriseserver('GitHubEnterpriseServer'),
-  gitlab('GitLab'),
-  gitlabselfmanaged('GitLabSelfManaged'),
-  azuredevops('AzureDevOps');
+extension type const CodeconnectionsHostProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodeconnectionsHostProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodeconnectionsHostProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodeconnectionsHostProviderType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodeconnectionsHostProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bitbucket = CodeconnectionsHostProviderType._(
+    TfArgLiteral('Bitbucket'),
+  );
+  static const github = CodeconnectionsHostProviderType._(
+    TfArgLiteral('GitHub'),
+  );
+  static const githubenterpriseserver = CodeconnectionsHostProviderType._(
+    TfArgLiteral('GitHubEnterpriseServer'),
+  );
+  static const gitlab = CodeconnectionsHostProviderType._(
+    TfArgLiteral('GitLab'),
+  );
+  static const gitlabselfmanaged = CodeconnectionsHostProviderType._(
+    TfArgLiteral('GitLabSelfManaged'),
+  );
+  static const azuredevops = CodeconnectionsHostProviderType._(
+    TfArgLiteral('AzureDevOps'),
+  );
+
+  static const List<CodeconnectionsHostProviderType> values = [
+    bitbucket,
+    github,
+    githubenterpriseserver,
+    gitlab,
+    gitlabselfmanaged,
+    azuredevops,
+  ];
 }
 
 /// Typed helper for the `vpc_configuration` block of
@@ -60,7 +84,7 @@ final class AwsCodeconnectionsHost extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> providerEndpoint,
-    required TfArg<CodeconnectionsHostProviderType> providerType,
+    required CodeconnectionsHostProviderType providerType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<CodeconnectionsHostVpcConfiguration>? vpcConfiguration,

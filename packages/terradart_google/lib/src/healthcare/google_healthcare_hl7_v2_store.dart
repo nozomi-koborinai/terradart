@@ -12,19 +12,35 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleHealthcareHl7V2StoreSensitive = <String>{};
 
 /// HL7v2 message-schema version used by a [HealthcareHl7V2StoreParserConfig].
-enum HealthcareHl7V2StoreParserConfigVersion implements TerraformEnum {
+extension type const HealthcareHl7V2StoreParserConfigVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcareHl7V2StoreParserConfigVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthcareHl7V2StoreParserConfigVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcareHl7V2StoreParserConfigVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
   /// Legacy parser (V1).
-  v1('V1'),
+  static const v1 = HealthcareHl7V2StoreParserConfigVersion._(
+    TfArgLiteral('V1'),
+  );
 
   /// V2 parser.
-  v2('V2'),
+  static const v2 = HealthcareHl7V2StoreParserConfigVersion._(
+    TfArgLiteral('V2'),
+  );
 
   /// V3 parser (recommended).
-  v3('V3');
+  static const v3 = HealthcareHl7V2StoreParserConfigVersion._(
+    TfArgLiteral('V3'),
+  );
 
-  const HealthcareHl7V2StoreParserConfigVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<HealthcareHl7V2StoreParserConfigVersion> values = [
+    v1,
+    v2,
+    v3,
+  ];
 }
 
 /// Typed helper for the `notification_config` block of
@@ -76,7 +92,7 @@ final class HealthcareHl7V2StoreParserConfig {
 
   final TfArg<String>? segmentTerminator;
 
-  final TfArg<HealthcareHl7V2StoreParserConfigVersion>? version;
+  final HealthcareHl7V2StoreParserConfigVersion? version;
 
   Map<String, Object?> encode() => {
     'allow_null_header': ?allowNullHeader?.toTfJson(),

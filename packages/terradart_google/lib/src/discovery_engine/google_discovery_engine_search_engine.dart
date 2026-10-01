@@ -10,24 +10,53 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleDiscoveryEngineSearchEngineSensitive = <String>{};
 
 /// Discovery Engine Search Engine Industry enum for `industry_vertical`.
-enum DiscoveryEngineSearchEngineIndustryVertical implements TerraformEnum {
-  generic('GENERIC'),
-  media('MEDIA'),
-  healthcareFhir('HEALTHCARE_FHIR');
+extension type const DiscoveryEngineSearchEngineIndustryVertical._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineSearchEngineIndustryVertical.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineIndustryVertical.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineIndustryVertical.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineSearchEngineIndustryVertical(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generic = DiscoveryEngineSearchEngineIndustryVertical._(
+    TfArgLiteral('GENERIC'),
+  );
+  static const media = DiscoveryEngineSearchEngineIndustryVertical._(
+    TfArgLiteral('MEDIA'),
+  );
+  static const healthcareFhir = DiscoveryEngineSearchEngineIndustryVertical._(
+    TfArgLiteral('HEALTHCARE_FHIR'),
+  );
+
+  static const List<DiscoveryEngineSearchEngineIndustryVertical> values = [
+    generic,
+    media,
+    healthcareFhir,
+  ];
 }
 
 /// `search_engine_config.search_tier`.
-enum DiscoveryEngineSearchEngineTier implements TerraformEnum {
-  searchTierStandard('SEARCH_TIER_STANDARD'),
-  searchTierEnterprise('SEARCH_TIER_ENTERPRISE');
+extension type const DiscoveryEngineSearchEngineTier._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineSearchEngineTier.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineTier.arg(TfArg<String> arg) : this._(arg);
 
-  const DiscoveryEngineSearchEngineTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const searchTierStandard = DiscoveryEngineSearchEngineTier._(
+    TfArgLiteral('SEARCH_TIER_STANDARD'),
+  );
+  static const searchTierEnterprise = DiscoveryEngineSearchEngineTier._(
+    TfArgLiteral('SEARCH_TIER_ENTERPRISE'),
+  );
+
+  static const List<DiscoveryEngineSearchEngineTier> values = [
+    searchTierStandard,
+    searchTierEnterprise,
+  ];
 }
 
 /// Typed helper for the `common_config` block of
@@ -108,12 +137,12 @@ final class DiscoveryEngineSearchEngineConfig {
     this.searchTier,
   });
 
-  final TfArg<DiscoveryEngineSearchEngineRequiredSubscriptionTier>?
+  final DiscoveryEngineSearchEngineRequiredSubscriptionTier?
   requiredSubscriptionTier;
 
   final TfArg<List<String>>? searchAddOns;
 
-  final TfArg<DiscoveryEngineSearchEngineTier>? searchTier;
+  final DiscoveryEngineSearchEngineTier? searchTier;
 
   Map<String, Object?> encode() => {
     'required_subscription_tier': ?requiredSubscriptionTier?.toTfJson(),
@@ -123,27 +152,87 @@ final class DiscoveryEngineSearchEngineConfig {
 }
 
 /// `required_subscription_tier` — derived from the provider schema description.
-enum DiscoveryEngineSearchEngineRequiredSubscriptionTier
-    implements TerraformEnum {
-  subscriptionTierUnspecified('SUBSCRIPTION_TIER_UNSPECIFIED'),
-  subscriptionTierSearch('SUBSCRIPTION_TIER_SEARCH'),
-  subscriptionTierSearchAndAssistant('SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT'),
-  subscriptionTierFrontlineWorker('SUBSCRIPTION_TIER_FRONTLINE_WORKER'),
-  subscriptionTierAgentspaceStarter('SUBSCRIPTION_TIER_AGENTSPACE_STARTER'),
-  subscriptionTierAgentspaceBusiness('SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS'),
-  subscriptionTierEnterprise('SUBSCRIPTION_TIER_ENTERPRISE'),
-  subscriptionTierEnterpriseEmerging('SUBSCRIPTION_TIER_ENTERPRISE_EMERGING'),
-  subscriptionTierEdu('SUBSCRIPTION_TIER_EDU'),
-  subscriptionTierEduPro('SUBSCRIPTION_TIER_EDU_PRO'),
-  subscriptionTierEduEmerging('SUBSCRIPTION_TIER_EDU_EMERGING'),
-  subscriptionTierEduProEmerging('SUBSCRIPTION_TIER_EDU_PRO_EMERGING'),
-  subscriptionTierFrontlineStarter('SUBSCRIPTION_TIER_FRONTLINE_STARTER');
+extension type const DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineSearchEngineRequiredSubscriptionTier.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineRequiredSubscriptionTier.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineRequiredSubscriptionTier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DiscoveryEngineSearchEngineRequiredSubscriptionTier(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const subscriptionTierUnspecified =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_UNSPECIFIED'),
+      );
+  static const subscriptionTierSearch =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_SEARCH'),
+      );
+  static const subscriptionTierSearchAndAssistant =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT'),
+      );
+  static const subscriptionTierFrontlineWorker =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_FRONTLINE_WORKER'),
+      );
+  static const subscriptionTierAgentspaceStarter =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_AGENTSPACE_STARTER'),
+      );
+  static const subscriptionTierAgentspaceBusiness =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS'),
+      );
+  static const subscriptionTierEnterprise =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_ENTERPRISE'),
+      );
+  static const subscriptionTierEnterpriseEmerging =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_ENTERPRISE_EMERGING'),
+      );
+  static const subscriptionTierEdu =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_EDU'),
+      );
+  static const subscriptionTierEduPro =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_EDU_PRO'),
+      );
+  static const subscriptionTierEduEmerging =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_EDU_EMERGING'),
+      );
+  static const subscriptionTierEduProEmerging =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_EDU_PRO_EMERGING'),
+      );
+  static const subscriptionTierFrontlineStarter =
+      DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
+        TfArgLiteral('SUBSCRIPTION_TIER_FRONTLINE_STARTER'),
+      );
+
+  static const List<DiscoveryEngineSearchEngineRequiredSubscriptionTier>
+  values = [
+    subscriptionTierUnspecified,
+    subscriptionTierSearch,
+    subscriptionTierSearchAndAssistant,
+    subscriptionTierFrontlineWorker,
+    subscriptionTierAgentspaceStarter,
+    subscriptionTierAgentspaceBusiness,
+    subscriptionTierEnterprise,
+    subscriptionTierEnterpriseEmerging,
+    subscriptionTierEdu,
+    subscriptionTierEduPro,
+    subscriptionTierEduEmerging,
+    subscriptionTierEduProEmerging,
+    subscriptionTierFrontlineStarter,
+  ];
 }
 
 /// Factory wrapper for `google_discovery_engine_search_engine`.
@@ -161,7 +250,7 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
     required DiscoveryEngineSearchEngineConfig searchEngineConfig,
-    TfArg<DiscoveryEngineSearchEngineIndustryVertical>? industryVertical,
+    DiscoveryEngineSearchEngineIndustryVertical? industryVertical,
     TfArg<String>? project,
     TfArg<String>? appType,
     TfArg<bool>? disableAnalytics,

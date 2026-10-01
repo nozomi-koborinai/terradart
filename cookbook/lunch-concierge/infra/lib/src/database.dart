@@ -33,15 +33,15 @@ LunchDatabase addDatabase({
     GoogleSqlDatabaseInstance(
       'lunch_sql',
       name: .literal(sqlInstanceName),
-      databaseVersion: .literal(.postgres15),
+      databaseVersion: .postgres15,
       region: .literal(region),
       deletionProtection: .literal(false),
       settings: SqlDatabaseInstanceSettings(
         tier: .literal('db-f1-micro'),
-        availabilityType: .literal(.zonal),
-        edition: .literal(.enterprise),
+        availabilityType: .zonal,
+        edition: .enterprise,
         diskSize: .literal(10),
-        diskType: .literal(.pdSsd),
+        diskType: .pdSsd,
         databaseFlags: [
           .new(
             name: .literal('cloudsql.iam_authentication'),
@@ -73,7 +73,7 @@ LunchDatabase addDatabase({
       'sql_client',
       instance: sql.ref,
       name: .literal(databaseUser),
-      type: .literal(.cloudIamServiceAccount),
+      type: .cloudIamServiceAccount,
       dependsOn: [sql, identity.serviceAccount],
     ),
   );

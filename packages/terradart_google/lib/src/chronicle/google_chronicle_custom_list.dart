@@ -7,14 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleCustomListSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Chronicle custom lists.
-enum ChronicleCustomListDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const ChronicleCustomListDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleCustomListDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleCustomListDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleCustomListDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleCustomListDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ChronicleCustomListDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = ChronicleCustomListDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = ChronicleCustomListDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<ChronicleCustomListDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_chronicle_custom_list`.
@@ -49,7 +64,7 @@ final class GoogleChronicleCustomList extends Resource {
     required TfArg<String> entityIdentifier,
     required TfArg<String> category,
     required TfArg<String> environments,
-    TfArg<ChronicleCustomListDeletionPolicy>? deletionPolicy,
+    ChronicleCustomListDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

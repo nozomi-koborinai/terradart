@@ -21,7 +21,7 @@ final class WafregionalRulePredicate {
 
   final TfArg<bool> negated;
 
-  final TfArg<WafregionalRuleType> type;
+  final WafregionalRuleType type;
 
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
@@ -31,18 +31,34 @@ final class WafregionalRulePredicate {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalRuleType implements TerraformEnum {
-  ipmatch('IPMatch'),
-  bytematch('ByteMatch'),
-  sqlinjectionmatch('SqlInjectionMatch'),
-  geomatch('GeoMatch'),
-  sizeconstraint('SizeConstraint'),
-  xssmatch('XssMatch'),
-  regexmatch('RegexMatch');
+extension type const WafregionalRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalRuleType.variable(String name) : this._(TfArg.variable(name));
+  WafregionalRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafregionalRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipmatch = WafregionalRuleType._(TfArgLiteral('IPMatch'));
+  static const bytematch = WafregionalRuleType._(TfArgLiteral('ByteMatch'));
+  static const sqlinjectionmatch = WafregionalRuleType._(
+    TfArgLiteral('SqlInjectionMatch'),
+  );
+  static const geomatch = WafregionalRuleType._(TfArgLiteral('GeoMatch'));
+  static const sizeconstraint = WafregionalRuleType._(
+    TfArgLiteral('SizeConstraint'),
+  );
+  static const xssmatch = WafregionalRuleType._(TfArgLiteral('XssMatch'));
+  static const regexmatch = WafregionalRuleType._(TfArgLiteral('RegexMatch'));
+
+  static const List<WafregionalRuleType> values = [
+    ipmatch,
+    bytematch,
+    sqlinjectionmatch,
+    geomatch,
+    sizeconstraint,
+    xssmatch,
+    regexmatch,
+  ];
 }
 
 /// Factory wrapper for `aws_wafregional_rule`.

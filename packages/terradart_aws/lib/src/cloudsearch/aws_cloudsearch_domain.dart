@@ -18,7 +18,7 @@ final class CloudsearchDomainEndpointOptions {
 
   final TfArg<bool>? enforceHttps;
 
-  final TfArg<CloudsearchDomainTlsSecurityPolicy>? tlsSecurityPolicy;
+  final CloudsearchDomainTlsSecurityPolicy? tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
     'enforce_https': ?enforceHttps?.toTfJson(),
@@ -27,13 +27,25 @@ final class CloudsearchDomainEndpointOptions {
 }
 
 /// `tls_security_policy` — derived from the provider schema description.
-enum CloudsearchDomainTlsSecurityPolicy implements TerraformEnum {
-  policyMinTls10201907('Policy-Min-TLS-1-0-2019-07'),
-  policyMinTls12201907('Policy-Min-TLS-1-2-2019-07');
+extension type const CloudsearchDomainTlsSecurityPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudsearchDomainTlsSecurityPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudsearchDomainTlsSecurityPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudsearchDomainTlsSecurityPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudsearchDomainTlsSecurityPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const policyMinTls10201907 = CloudsearchDomainTlsSecurityPolicy._(
+    TfArgLiteral('Policy-Min-TLS-1-0-2019-07'),
+  );
+  static const policyMinTls12201907 = CloudsearchDomainTlsSecurityPolicy._(
+    TfArgLiteral('Policy-Min-TLS-1-2-2019-07'),
+  );
+
+  static const List<CloudsearchDomainTlsSecurityPolicy> values = [
+    policyMinTls10201907,
+    policyMinTls12201907,
+  ];
 }
 
 /// Typed helper for the `index_field` block of
@@ -71,7 +83,7 @@ final class CloudsearchDomainIndexField {
 
   final TfArg<String>? sourceFields;
 
-  final TfArg<CloudsearchDomainType> type;
+  final CloudsearchDomainType type;
 
   Map<String, Object?> encode() => {
     'analysis_scheme': ?analysisScheme?.toTfJson(),
@@ -88,22 +100,42 @@ final class CloudsearchDomainIndexField {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudsearchDomainType implements TerraformEnum {
-  int('int'),
-  double('double'),
-  literal('literal'),
-  text('text'),
-  date('date'),
-  latlon('latlon'),
-  intArray('int-array'),
-  doubleArray('double-array'),
-  literalArray('literal-array'),
-  textArray('text-array'),
-  dateArray('date-array');
+extension type const CloudsearchDomainType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudsearchDomainType.variable(String name) : this._(TfArg.variable(name));
+  CloudsearchDomainType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudsearchDomainType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudsearchDomainType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const int = CloudsearchDomainType._(TfArgLiteral('int'));
+  static const double = CloudsearchDomainType._(TfArgLiteral('double'));
+  static const literal = CloudsearchDomainType._(TfArgLiteral('literal'));
+  static const text = CloudsearchDomainType._(TfArgLiteral('text'));
+  static const date = CloudsearchDomainType._(TfArgLiteral('date'));
+  static const latlon = CloudsearchDomainType._(TfArgLiteral('latlon'));
+  static const intArray = CloudsearchDomainType._(TfArgLiteral('int-array'));
+  static const doubleArray = CloudsearchDomainType._(
+    TfArgLiteral('double-array'),
+  );
+  static const literalArray = CloudsearchDomainType._(
+    TfArgLiteral('literal-array'),
+  );
+  static const textArray = CloudsearchDomainType._(TfArgLiteral('text-array'));
+  static const dateArray = CloudsearchDomainType._(TfArgLiteral('date-array'));
+
+  static const List<CloudsearchDomainType> values = [
+    int,
+    double,
+    literal,
+    text,
+    date,
+    latlon,
+    intArray,
+    doubleArray,
+    literalArray,
+    textArray,
+    dateArray,
+  ];
 }
 
 /// Typed helper for the `scaling_parameters` block of
@@ -116,7 +148,7 @@ final class CloudsearchDomainScalingParameters {
     this.desiredReplicationCount,
   });
 
-  final TfArg<CloudsearchDomainDesiredInstanceType>? desiredInstanceType;
+  final CloudsearchDomainDesiredInstanceType? desiredInstanceType;
 
   final TfArg<num>? desiredPartitionCount;
 
@@ -130,28 +162,90 @@ final class CloudsearchDomainScalingParameters {
 }
 
 /// `desired_instance_type` — derived from the provider schema description.
-enum CloudsearchDomainDesiredInstanceType implements TerraformEnum {
-  searchM1Small('search.m1.small'),
-  searchM1Large('search.m1.large'),
-  searchM2Xlarge('search.m2.xlarge'),
-  searchM2p2xlarge('search.m2.2xlarge'),
-  searchM3Medium('search.m3.medium'),
-  searchM3Large('search.m3.large'),
-  searchM3Xlarge('search.m3.xlarge'),
-  searchM3p2xlarge('search.m3.2xlarge'),
-  searchSmall('search.small'),
-  searchMedium('search.medium'),
-  searchLarge('search.large'),
-  searchXlarge('search.xlarge'),
-  search2xlarge('search.2xlarge'),
-  searchPreviousgenerationSmall('search.previousgeneration.small'),
-  searchPreviousgenerationLarge('search.previousgeneration.large'),
-  searchPreviousgenerationXlarge('search.previousgeneration.xlarge'),
-  searchPreviousgeneration2xlarge('search.previousgeneration.2xlarge');
+extension type const CloudsearchDomainDesiredInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudsearchDomainDesiredInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudsearchDomainDesiredInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudsearchDomainDesiredInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudsearchDomainDesiredInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const searchM1Small = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m1.small'),
+  );
+  static const searchM1Large = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m1.large'),
+  );
+  static const searchM2Xlarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m2.xlarge'),
+  );
+  static const searchM2p2xlarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m2.2xlarge'),
+  );
+  static const searchM3Medium = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m3.medium'),
+  );
+  static const searchM3Large = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m3.large'),
+  );
+  static const searchM3Xlarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m3.xlarge'),
+  );
+  static const searchM3p2xlarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.m3.2xlarge'),
+  );
+  static const searchSmall = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.small'),
+  );
+  static const searchMedium = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.medium'),
+  );
+  static const searchLarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.large'),
+  );
+  static const searchXlarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.xlarge'),
+  );
+  static const search2xlarge = CloudsearchDomainDesiredInstanceType._(
+    TfArgLiteral('search.2xlarge'),
+  );
+  static const searchPreviousgenerationSmall =
+      CloudsearchDomainDesiredInstanceType._(
+        TfArgLiteral('search.previousgeneration.small'),
+      );
+  static const searchPreviousgenerationLarge =
+      CloudsearchDomainDesiredInstanceType._(
+        TfArgLiteral('search.previousgeneration.large'),
+      );
+  static const searchPreviousgenerationXlarge =
+      CloudsearchDomainDesiredInstanceType._(
+        TfArgLiteral('search.previousgeneration.xlarge'),
+      );
+  static const searchPreviousgeneration2xlarge =
+      CloudsearchDomainDesiredInstanceType._(
+        TfArgLiteral('search.previousgeneration.2xlarge'),
+      );
+
+  static const List<CloudsearchDomainDesiredInstanceType> values = [
+    searchM1Small,
+    searchM1Large,
+    searchM2Xlarge,
+    searchM2p2xlarge,
+    searchM3Medium,
+    searchM3Large,
+    searchM3Xlarge,
+    searchM3p2xlarge,
+    searchSmall,
+    searchMedium,
+    searchLarge,
+    searchXlarge,
+    search2xlarge,
+    searchPreviousgenerationSmall,
+    searchPreviousgenerationLarge,
+    searchPreviousgenerationXlarge,
+    searchPreviousgeneration2xlarge,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudsearch_domain`.

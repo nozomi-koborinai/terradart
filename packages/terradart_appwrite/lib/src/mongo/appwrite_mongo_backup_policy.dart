@@ -10,13 +10,19 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwriteMongoBackupPolicySensitive = <String>{};
 
 /// Mongo Backup Policy enum for `type`.
-enum MongoBackupPolicyType implements TerraformEnum {
-  full('full'),
-  incremental('incremental');
+extension type const MongoBackupPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoBackupPolicyType.variable(String name) : this._(TfArg.variable(name));
+  MongoBackupPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoBackupPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const MongoBackupPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const full = MongoBackupPolicyType._(TfArgLiteral('full'));
+  static const incremental = MongoBackupPolicyType._(
+    TfArgLiteral('incremental'),
+  );
+
+  static const List<MongoBackupPolicyType> values = [full, incremental];
 }
 
 /// Factory wrapper for `appwrite_mongo_backup_policy`.
@@ -35,7 +41,7 @@ final class AppwriteMongoBackupPolicy extends Resource {
     RefTo<AppwriteProject>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
-    TfArg<MongoBackupPolicyType>? type,
+    MongoBackupPolicyType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

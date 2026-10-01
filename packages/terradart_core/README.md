@@ -10,7 +10,7 @@ This package ships the small set of primitives every TerraDart Stack uses:
 
 - `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
 - `Resource` / `Data` — typed nodes supplied by provider factory packages.
-- `TfArg.literal(...)` / `...` / `TfArg.variable(...)` / `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable, or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums (see below).
+- `TfArg.literal(...)` / `...` / `TfArg.variable(...)` / `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable, or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). A Terraform enum is a `TfArg<String>` itself, so its members pass directly (see below).
 - `RefTo<R>` — what an argument that names another resource takes: the target's generated `ref` getter (`network: vpc.ref`), `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a value outside the Stack, and `.pinned('self_link')` to emit an attribute other than the argument's own.
 - `LifecycleOptions` — `create_before_destroy`, `prevent_destroy`, `ignore_changes`, `replace_triggered_by`.
 - `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and, when the Stack was constructed with `appExports: AppExports(path)`, `dartSource` (the generated Dart file for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` under `outDir`, plus the Dart file at its path.
@@ -42,15 +42,17 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch. R
 
 ## Typed enum serialization
 
-Hand-rolled and wrap-emitted enums implement `TerraformEnum` with a `terraformValue` getter. `TfArgLiteral.toTfJson()` encodes them to Terraform strings; missing conventions throw `ArgumentError` at synth time.
+Wrap-emitted enums are extension types that implement `TfArg<String>`: each member is a `static const` literal, so `type: .standard` passes one directly, and `.variable(...)` / `.expression(...)` / `.arg(...)` cover values that are not known at synth time. A plain Dart `enum` has no Terraform value, so `TfArgLiteral.toTfJson()` throws `ArgumentError` on one at synth time.
 
 ```dart
-enum RoutingMode implements TerraformEnum {
-  regional('REGIONAL'),
-  global('GLOBAL');
+extension type const RoutingMode._(TfArg<String> _) implements TfArg<String> {
+  RoutingMode.variable(String name) : this._(TfArg.variable(name));
+  RoutingMode.expression(String template) : this._(TfArg.expression(template));
+  const RoutingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RoutingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = RoutingMode._(TfArgLiteral('REGIONAL'));
+  static const global = RoutingMode._(TfArgLiteral('GLOBAL'));
+
+  static const List<RoutingMode> values = [regional, global];
 }
 ```

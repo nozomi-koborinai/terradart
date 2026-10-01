@@ -10,37 +10,76 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsAcmpcaCertificateAuthoritySensitive = <String>{};
 
 /// Acmpca Certificate Authority Key Storage Security enum for `key_storage_security_standard`.
-enum AcmpcaCertificateAuthorityKeyStorageSecurityStandard
-    implements TerraformEnum {
-  fips1402Level2OrHigher('FIPS_140_2_LEVEL_2_OR_HIGHER'),
-  fips1402Level3OrHigher('FIPS_140_2_LEVEL_3_OR_HIGHER'),
-  ccpcLevel1OrHigher('CCPC_LEVEL_1_OR_HIGHER');
+extension type const AcmpcaCertificateAuthorityKeyStorageSecurityStandard._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AcmpcaCertificateAuthorityKeyStorageSecurityStandard.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaCertificateAuthorityKeyStorageSecurityStandard.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AcmpcaCertificateAuthorityKeyStorageSecurityStandard.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AcmpcaCertificateAuthorityKeyStorageSecurityStandard(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const fips1402Level2OrHigher =
+      AcmpcaCertificateAuthorityKeyStorageSecurityStandard._(
+        TfArgLiteral('FIPS_140_2_LEVEL_2_OR_HIGHER'),
+      );
+  static const fips1402Level3OrHigher =
+      AcmpcaCertificateAuthorityKeyStorageSecurityStandard._(
+        TfArgLiteral('FIPS_140_2_LEVEL_3_OR_HIGHER'),
+      );
+  static const ccpcLevel1OrHigher =
+      AcmpcaCertificateAuthorityKeyStorageSecurityStandard._(
+        TfArgLiteral('CCPC_LEVEL_1_OR_HIGHER'),
+      );
+
+  static const List<AcmpcaCertificateAuthorityKeyStorageSecurityStandard>
+  values = [fips1402Level2OrHigher, fips1402Level3OrHigher, ccpcLevel1OrHigher];
 }
 
 /// Acmpca Certificate Authority enum for `type`.
-enum AcmpcaCertificateAuthorityType implements TerraformEnum {
-  root('ROOT'),
-  subordinate('SUBORDINATE');
+extension type const AcmpcaCertificateAuthorityType._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmpcaCertificateAuthorityType.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaCertificateAuthorityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaCertificateAuthorityType.arg(TfArg<String> arg) : this._(arg);
 
-  const AcmpcaCertificateAuthorityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const root = AcmpcaCertificateAuthorityType._(TfArgLiteral('ROOT'));
+  static const subordinate = AcmpcaCertificateAuthorityType._(
+    TfArgLiteral('SUBORDINATE'),
+  );
+
+  static const List<AcmpcaCertificateAuthorityType> values = [
+    root,
+    subordinate,
+  ];
 }
 
 /// Acmpca Certificate Authority Usage enum for `usage_mode`.
-enum AcmpcaCertificateAuthorityUsageMode implements TerraformEnum {
-  generalPurpose('GENERAL_PURPOSE'),
-  shortLivedCertificate('SHORT_LIVED_CERTIFICATE');
+extension type const AcmpcaCertificateAuthorityUsageMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmpcaCertificateAuthorityUsageMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaCertificateAuthorityUsageMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaCertificateAuthorityUsageMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AcmpcaCertificateAuthorityUsageMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generalPurpose = AcmpcaCertificateAuthorityUsageMode._(
+    TfArgLiteral('GENERAL_PURPOSE'),
+  );
+  static const shortLivedCertificate = AcmpcaCertificateAuthorityUsageMode._(
+    TfArgLiteral('SHORT_LIVED_CERTIFICATE'),
+  );
+
+  static const List<AcmpcaCertificateAuthorityUsageMode> values = [
+    generalPurpose,
+    shortLivedCertificate,
+  ];
 }
 
 /// Typed helper for the `certificate_authority_configuration` block of
@@ -53,9 +92,9 @@ final class AcmpcaCertificateAuthorityConfiguration {
     required this.subject,
   });
 
-  final TfArg<AcmpcaCertificateAuthorityKeyAlgorithm> keyAlgorithm;
+  final AcmpcaCertificateAuthorityKeyAlgorithm keyAlgorithm;
 
-  final TfArg<AcmpcaCertificateAuthoritySigningAlgorithm> signingAlgorithm;
+  final AcmpcaCertificateAuthoritySigningAlgorithm signingAlgorithm;
 
   final AcmpcaCertificateAuthoritySubject subject;
 
@@ -67,42 +106,126 @@ final class AcmpcaCertificateAuthorityConfiguration {
 }
 
 /// `key_algorithm` — derived from the provider schema description.
-enum AcmpcaCertificateAuthorityKeyAlgorithm implements TerraformEnum {
-  rsa2048('RSA_2048'),
-  rsa3072('RSA_3072'),
-  rsa4096('RSA_4096'),
-  ecPrime256v1('EC_prime256v1'),
-  ecSecp384r1('EC_secp384r1'),
-  ecSecp521r1('EC_secp521r1'),
-  mlDsa44('ML_DSA_44'),
-  mlDsa65('ML_DSA_65'),
-  mlDsa87('ML_DSA_87'),
-  sm2('SM2');
+extension type const AcmpcaCertificateAuthorityKeyAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmpcaCertificateAuthorityKeyAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaCertificateAuthorityKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaCertificateAuthorityKeyAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AcmpcaCertificateAuthorityKeyAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa2048 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_2048'),
+  );
+  static const rsa3072 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_3072'),
+  );
+  static const rsa4096 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_4096'),
+  );
+  static const ecPrime256v1 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('EC_prime256v1'),
+  );
+  static const ecSecp384r1 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('EC_secp384r1'),
+  );
+  static const ecSecp521r1 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('EC_secp521r1'),
+  );
+  static const mlDsa44 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('ML_DSA_44'),
+  );
+  static const mlDsa65 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('ML_DSA_65'),
+  );
+  static const mlDsa87 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('ML_DSA_87'),
+  );
+  static const sm2 = AcmpcaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('SM2'),
+  );
+
+  static const List<AcmpcaCertificateAuthorityKeyAlgorithm> values = [
+    rsa2048,
+    rsa3072,
+    rsa4096,
+    ecPrime256v1,
+    ecSecp384r1,
+    ecSecp521r1,
+    mlDsa44,
+    mlDsa65,
+    mlDsa87,
+    sm2,
+  ];
 }
 
 /// `signing_algorithm` — derived from the provider schema description.
-enum AcmpcaCertificateAuthoritySigningAlgorithm implements TerraformEnum {
-  sha256withecdsa('SHA256WITHECDSA'),
-  sha384withecdsa('SHA384WITHECDSA'),
-  sha512withecdsa('SHA512WITHECDSA'),
-  sha256withrsa('SHA256WITHRSA'),
-  sha384withrsa('SHA384WITHRSA'),
-  sha512withrsa('SHA512WITHRSA'),
-  sha256withrsaPss('SHA256WITHRSA_PSS'),
-  sha384withrsaPss('SHA384WITHRSA_PSS'),
-  sha512withrsaPss('SHA512WITHRSA_PSS'),
-  sm3withsm2('SM3WITHSM2'),
-  mlDsa44('ML_DSA_44'),
-  mlDsa65('ML_DSA_65'),
-  mlDsa87('ML_DSA_87');
+extension type const AcmpcaCertificateAuthoritySigningAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AcmpcaCertificateAuthoritySigningAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaCertificateAuthoritySigningAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaCertificateAuthoritySigningAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AcmpcaCertificateAuthoritySigningAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha256withecdsa = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA256WITHECDSA'),
+  );
+  static const sha384withecdsa = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA384WITHECDSA'),
+  );
+  static const sha512withecdsa = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA512WITHECDSA'),
+  );
+  static const sha256withrsa = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA256WITHRSA'),
+  );
+  static const sha384withrsa = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA384WITHRSA'),
+  );
+  static const sha512withrsa = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA512WITHRSA'),
+  );
+  static const sha256withrsaPss = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA256WITHRSA_PSS'),
+  );
+  static const sha384withrsaPss = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA384WITHRSA_PSS'),
+  );
+  static const sha512withrsaPss = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SHA512WITHRSA_PSS'),
+  );
+  static const sm3withsm2 = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('SM3WITHSM2'),
+  );
+  static const mlDsa44 = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('ML_DSA_44'),
+  );
+  static const mlDsa65 = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('ML_DSA_65'),
+  );
+  static const mlDsa87 = AcmpcaCertificateAuthoritySigningAlgorithm._(
+    TfArgLiteral('ML_DSA_87'),
+  );
+
+  static const List<AcmpcaCertificateAuthoritySigningAlgorithm> values = [
+    sha256withecdsa,
+    sha384withecdsa,
+    sha512withecdsa,
+    sha256withrsa,
+    sha384withrsa,
+    sha512withrsa,
+    sha256withrsaPss,
+    sha384withrsaPss,
+    sha512withrsaPss,
+    sm3withsm2,
+    mlDsa44,
+    mlDsa65,
+    mlDsa87,
+  ];
 }
 
 /// Typed helper for the `certificate_authority_configuration.subject` block of
@@ -210,7 +333,7 @@ final class AcmpcaCertificateAuthorityCrlConfiguration {
 
   final RefTo<AwsS3Bucket>? s3BucketName;
 
-  final TfArg<AcmpcaCertificateAuthorityS3ObjectAcl>? s3ObjectAcl;
+  final AcmpcaCertificateAuthorityS3ObjectAcl? s3ObjectAcl;
 
   Map<String, Object?> encode() => {
     'custom_cname': ?customCname?.toTfJson(),
@@ -223,13 +346,26 @@ final class AcmpcaCertificateAuthorityCrlConfiguration {
 }
 
 /// `s3_object_acl` — derived from the provider schema description.
-enum AcmpcaCertificateAuthorityS3ObjectAcl implements TerraformEnum {
-  publicRead('PUBLIC_READ'),
-  bucketOwnerFullControl('BUCKET_OWNER_FULL_CONTROL');
+extension type const AcmpcaCertificateAuthorityS3ObjectAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmpcaCertificateAuthorityS3ObjectAcl.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaCertificateAuthorityS3ObjectAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaCertificateAuthorityS3ObjectAcl.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AcmpcaCertificateAuthorityS3ObjectAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const publicRead = AcmpcaCertificateAuthorityS3ObjectAcl._(
+    TfArgLiteral('PUBLIC_READ'),
+  );
+  static const bucketOwnerFullControl = AcmpcaCertificateAuthorityS3ObjectAcl._(
+    TfArgLiteral('BUCKET_OWNER_FULL_CONTROL'),
+  );
+
+  static const List<AcmpcaCertificateAuthorityS3ObjectAcl> values = [
+    publicRead,
+    bucketOwnerFullControl,
+  ];
 }
 
 /// Typed helper for the `revocation_configuration.ocsp_configuration` block of
@@ -258,13 +394,13 @@ final class AwsAcmpcaCertificateAuthority extends Resource {
   AwsAcmpcaCertificateAuthority(
     super.localName, {
     TfArg<bool>? enabled,
-    TfArg<AcmpcaCertificateAuthorityKeyStorageSecurityStandard>?
+    AcmpcaCertificateAuthorityKeyStorageSecurityStandard?
     keyStorageSecurityStandard,
     TfArg<num>? permanentDeletionTimeInDays,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<AcmpcaCertificateAuthorityType>? type,
-    TfArg<AcmpcaCertificateAuthorityUsageMode>? usageMode,
+    AcmpcaCertificateAuthorityType? type,
+    AcmpcaCertificateAuthorityUsageMode? usageMode,
     required AcmpcaCertificateAuthorityConfiguration
     certificateAuthorityConfiguration,
     AcmpcaCertificateAuthorityRevocationConfiguration? revocationConfiguration,

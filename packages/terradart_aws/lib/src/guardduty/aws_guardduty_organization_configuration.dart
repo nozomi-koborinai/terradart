@@ -8,17 +8,36 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyOrganizationConfigurationSensitive = <String>{};
 
 /// Guardduty Organization Configuration Auto Enable Organization enum for `auto_enable_organization_members`.
-enum GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
-    implements TerraformEnum {
-  newCase('NEW'),
-  all('ALL'),
-  none('NONE');
+extension type const GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const newCase =
+      GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers._(
+        TfArgLiteral('NEW'),
+      );
+  static const all =
+      GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers._(
+        TfArgLiteral('ALL'),
+      );
+  static const none =
+      GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers._(
+        TfArgLiteral('NONE'),
+      );
+
+  static const List<
+    GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
+  >
+  values = [newCase, all, none];
 }
 
 /// Typed helper for the `datasources` block of
@@ -125,9 +144,7 @@ final class AwsGuarddutyOrganizationConfiguration extends Resource {
 
   AwsGuarddutyOrganizationConfiguration(
     super.localName, {
-    required TfArg<
-      GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
-    >
+    required GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
     autoEnableOrganizationMembers,
     required TfArg<String> detectorId,
     TfArg<String>? region,

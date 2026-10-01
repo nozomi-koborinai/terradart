@@ -9,14 +9,31 @@ const Set<String> _googleApigeeKeystoresAliasesSelfSignedCertSensitive =
     <String>{};
 
 /// Apigee Keystores Aliases Self Signed Cert enum for `type`.
-enum ApigeeKeystoresAliasesSelfSignedCertType implements TerraformEnum {
-  aliasTypeUnspecified('ALIAS_TYPE_UNSPECIFIED'),
-  cert('CERT'),
-  keyCert('KEY_CERT');
+extension type const ApigeeKeystoresAliasesSelfSignedCertType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeKeystoresAliasesSelfSignedCertType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeKeystoresAliasesSelfSignedCertType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeKeystoresAliasesSelfSignedCertType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApigeeKeystoresAliasesSelfSignedCertType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aliasTypeUnspecified =
+      ApigeeKeystoresAliasesSelfSignedCertType._(
+        TfArgLiteral('ALIAS_TYPE_UNSPECIFIED'),
+      );
+  static const cert = ApigeeKeystoresAliasesSelfSignedCertType._(
+    TfArgLiteral('CERT'),
+  );
+  static const keyCert = ApigeeKeystoresAliasesSelfSignedCertType._(
+    TfArgLiteral('KEY_CERT'),
+  );
+
+  static const List<ApigeeKeystoresAliasesSelfSignedCertType> values = [
+    aliasTypeUnspecified,
+    cert,
+    keyCert,
+  ];
 }
 
 /// Typed helper for the `subject` block of

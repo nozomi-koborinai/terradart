@@ -59,7 +59,7 @@ final class TimestreamwriteTableS3Configuration {
 
   final RefTo<AwsS3Bucket>? bucketName;
 
-  final TfArg<TimestreamwriteTableEncryptionOption>? encryptionOption;
+  final TimestreamwriteTableEncryptionOption? encryptionOption;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
@@ -74,13 +74,26 @@ final class TimestreamwriteTableS3Configuration {
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum TimestreamwriteTableEncryptionOption implements TerraformEnum {
-  sseS3('SSE_S3'),
-  sseKms('SSE_KMS');
+extension type const TimestreamwriteTableEncryptionOption._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreamwriteTableEncryptionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreamwriteTableEncryptionOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreamwriteTableEncryptionOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreamwriteTableEncryptionOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sseS3 = TimestreamwriteTableEncryptionOption._(
+    TfArgLiteral('SSE_S3'),
+  );
+  static const sseKms = TimestreamwriteTableEncryptionOption._(
+    TfArgLiteral('SSE_KMS'),
+  );
+
+  static const List<TimestreamwriteTableEncryptionOption> values = [
+    sseS3,
+    sseKms,
+  ];
 }
 
 /// Typed helper for the `retention_properties` block of
@@ -127,11 +140,11 @@ final class TimestreamwriteTableCompositePartitionKey {
     required this.type,
   });
 
-  final TfArg<TimestreamwriteTableEnforcementInRecord>? enforcementInRecord;
+  final TimestreamwriteTableEnforcementInRecord? enforcementInRecord;
 
   final TfArg<String>? name;
 
-  final TfArg<TimestreamwriteTableType> type;
+  final TimestreamwriteTableType type;
 
   Map<String, Object?> encode() => {
     'enforcement_in_record': ?enforcementInRecord?.toTfJson(),
@@ -141,23 +154,42 @@ final class TimestreamwriteTableCompositePartitionKey {
 }
 
 /// `enforcement_in_record` — derived from the provider schema description.
-enum TimestreamwriteTableEnforcementInRecord implements TerraformEnum {
-  required('REQUIRED'),
-  optional('OPTIONAL');
+extension type const TimestreamwriteTableEnforcementInRecord._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreamwriteTableEnforcementInRecord.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreamwriteTableEnforcementInRecord.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreamwriteTableEnforcementInRecord.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreamwriteTableEnforcementInRecord(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const required = TimestreamwriteTableEnforcementInRecord._(
+    TfArgLiteral('REQUIRED'),
+  );
+  static const optional = TimestreamwriteTableEnforcementInRecord._(
+    TfArgLiteral('OPTIONAL'),
+  );
+
+  static const List<TimestreamwriteTableEnforcementInRecord> values = [
+    required,
+    optional,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum TimestreamwriteTableType implements TerraformEnum {
-  dimension('DIMENSION'),
-  measure('MEASURE');
+extension type const TimestreamwriteTableType._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreamwriteTableType.variable(String name) : this._(TfArg.variable(name));
+  TimestreamwriteTableType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreamwriteTableType.arg(TfArg<String> arg) : this._(arg);
 
-  const TimestreamwriteTableType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dimension = TimestreamwriteTableType._(
+    TfArgLiteral('DIMENSION'),
+  );
+  static const measure = TimestreamwriteTableType._(TfArgLiteral('MEASURE'));
+
+  static const List<TimestreamwriteTableType> values = [dimension, measure];
 }
 
 /// Factory wrapper for `aws_timestreamwrite_table`.

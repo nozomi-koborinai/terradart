@@ -25,7 +25,7 @@ final class DataEmailSecurityAllowPolicyFilter {
     this.verifySender,
   });
 
-  final TfArg<DataEmailSecurityAllowPolicyDirection>? direction;
+  final DataEmailSecurityAllowPolicyDirection? direction;
 
   final TfArg<bool>? isAcceptableSender;
 
@@ -33,11 +33,11 @@ final class DataEmailSecurityAllowPolicyFilter {
 
   final TfArg<bool>? isTrustedSender;
 
-  final TfArg<DataEmailSecurityAllowPolicyOrder>? order;
+  final DataEmailSecurityAllowPolicyOrder? order;
 
   final TfArg<String>? pattern;
 
-  final TfArg<DataEmailSecurityAllowPolicyFilterPatternType>? patternType;
+  final DataEmailSecurityAllowPolicyFilterPatternType? patternType;
 
   final TfArg<String>? search;
 
@@ -57,35 +57,77 @@ final class DataEmailSecurityAllowPolicyFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityAllowPolicyDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataEmailSecurityAllowPolicyDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityAllowPolicyDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityAllowPolicyDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityAllowPolicyDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityAllowPolicyDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataEmailSecurityAllowPolicyDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityAllowPolicyDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityAllowPolicyDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityAllowPolicyOrder implements TerraformEnum {
-  pattern('pattern'),
-  createdAt('created_at');
+extension type const DataEmailSecurityAllowPolicyOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityAllowPolicyOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityAllowPolicyOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityAllowPolicyOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataEmailSecurityAllowPolicyOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pattern = DataEmailSecurityAllowPolicyOrder._(
+    TfArgLiteral('pattern'),
+  );
+  static const createdAt = DataEmailSecurityAllowPolicyOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityAllowPolicyOrder> values = [
+    pattern,
+    createdAt,
+  ];
 }
 
 /// `pattern_type` — derived from the provider schema description.
-enum DataEmailSecurityAllowPolicyFilterPatternType implements TerraformEnum {
-  email('EMAIL'),
-  domain('DOMAIN'),
-  ip('IP'),
-  unknown('UNKNOWN');
+extension type const DataEmailSecurityAllowPolicyFilterPatternType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityAllowPolicyFilterPatternType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityAllowPolicyFilterPatternType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityAllowPolicyFilterPatternType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityAllowPolicyFilterPatternType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const email = DataEmailSecurityAllowPolicyFilterPatternType._(
+    TfArgLiteral('EMAIL'),
+  );
+  static const domain = DataEmailSecurityAllowPolicyFilterPatternType._(
+    TfArgLiteral('DOMAIN'),
+  );
+  static const ip = DataEmailSecurityAllowPolicyFilterPatternType._(
+    TfArgLiteral('IP'),
+  );
+  static const unknown = DataEmailSecurityAllowPolicyFilterPatternType._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<DataEmailSecurityAllowPolicyFilterPatternType> values = [
+    email,
+    domain,
+    ip,
+    unknown,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_allow_policy`.

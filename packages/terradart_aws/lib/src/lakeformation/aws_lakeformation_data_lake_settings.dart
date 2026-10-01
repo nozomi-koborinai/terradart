@@ -16,7 +16,7 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
     this.principal,
   });
 
-  final List<TfArg<LakeformationDataLakeSettingsPermissions>>? permissions;
+  final List<LakeformationDataLakeSettingsPermissions>? permissions;
 
   final TfArg<String>? principal;
 
@@ -28,27 +28,84 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum LakeformationDataLakeSettingsPermissions implements TerraformEnum {
-  all('ALL'),
-  select('SELECT'),
-  alter('ALTER'),
-  drop('DROP'),
-  delete('DELETE'),
-  insert('INSERT'),
-  describe('DESCRIBE'),
-  createDatabase('CREATE_DATABASE'),
-  createTable('CREATE_TABLE'),
-  dataLocationAccess('DATA_LOCATION_ACCESS'),
-  createLfTag('CREATE_LF_TAG'),
-  associate('ASSOCIATE'),
-  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
-  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
-  createCatalog('CREATE_CATALOG'),
-  superUser('SUPER_USER');
+extension type const LakeformationDataLakeSettingsPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  LakeformationDataLakeSettingsPermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  LakeformationDataLakeSettingsPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const LakeformationDataLakeSettingsPermissions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LakeformationDataLakeSettingsPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('ALL'),
+  );
+  static const select = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('SELECT'),
+  );
+  static const alter = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('ALTER'),
+  );
+  static const drop = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('DROP'),
+  );
+  static const delete = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('DELETE'),
+  );
+  static const insert = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('INSERT'),
+  );
+  static const describe = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('DESCRIBE'),
+  );
+  static const createDatabase = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('CREATE_DATABASE'),
+  );
+  static const createTable = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('CREATE_TABLE'),
+  );
+  static const dataLocationAccess = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('DATA_LOCATION_ACCESS'),
+  );
+  static const createLfTag = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('CREATE_LF_TAG'),
+  );
+  static const associate = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('ASSOCIATE'),
+  );
+  static const grantWithLfTagExpression =
+      LakeformationDataLakeSettingsPermissions._(
+        TfArgLiteral('GRANT_WITH_LF_TAG_EXPRESSION'),
+      );
+  static const createLfTagExpression =
+      LakeformationDataLakeSettingsPermissions._(
+        TfArgLiteral('CREATE_LF_TAG_EXPRESSION'),
+      );
+  static const createCatalog = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('CREATE_CATALOG'),
+  );
+  static const superUser = LakeformationDataLakeSettingsPermissions._(
+    TfArgLiteral('SUPER_USER'),
+  );
+
+  static const List<LakeformationDataLakeSettingsPermissions> values = [
+    all,
+    select,
+    alter,
+    drop,
+    delete,
+    insert,
+    describe,
+    createDatabase,
+    createTable,
+    dataLocationAccess,
+    createLfTag,
+    associate,
+    grantWithLfTagExpression,
+    createLfTagExpression,
+    createCatalog,
+    superUser,
+  ];
 }
 
 /// Typed helper for the `create_table_default_permissions` block of
@@ -60,7 +117,7 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
     this.principal,
   });
 
-  final List<TfArg<LakeformationDataLakeSettingsPermissions>>? permissions;
+  final List<LakeformationDataLakeSettingsPermissions>? permissions;
 
   final TfArg<String>? principal;
 

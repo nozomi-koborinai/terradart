@@ -29,7 +29,7 @@ final class AlbListenerRuleAction {
 
   final TfArg<String>? targetGroupArn;
 
-  final TfArg<AlbListenerRuleActionType> type;
+  final AlbListenerRuleActionType type;
 
   final AlbListenerRuleAuthenticateCognito? authenticateCognito;
 
@@ -57,17 +57,37 @@ final class AlbListenerRuleAction {
 }
 
 /// `type` — derived from the provider schema description.
-enum AlbListenerRuleActionType implements TerraformEnum {
-  forward('forward'),
-  authenticateOidc('authenticate-oidc'),
-  authenticateCognito('authenticate-cognito'),
-  redirect('redirect'),
-  fixedResponse('fixed-response'),
-  jwtValidation('jwt-validation');
+extension type const AlbListenerRuleActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRuleActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forward = AlbListenerRuleActionType._(TfArgLiteral('forward'));
+  static const authenticateOidc = AlbListenerRuleActionType._(
+    TfArgLiteral('authenticate-oidc'),
+  );
+  static const authenticateCognito = AlbListenerRuleActionType._(
+    TfArgLiteral('authenticate-cognito'),
+  );
+  static const redirect = AlbListenerRuleActionType._(TfArgLiteral('redirect'));
+  static const fixedResponse = AlbListenerRuleActionType._(
+    TfArgLiteral('fixed-response'),
+  );
+  static const jwtValidation = AlbListenerRuleActionType._(
+    TfArgLiteral('jwt-validation'),
+  );
+
+  static const List<AlbListenerRuleActionType> values = [
+    forward,
+    authenticateOidc,
+    authenticateCognito,
+    redirect,
+    fixedResponse,
+    jwtValidation,
+  ];
 }
 
 /// Typed helper for the `action.authenticate_cognito` block of
@@ -87,8 +107,7 @@ final class AlbListenerRuleAuthenticateCognito {
 
   final TfArg<Map<String, String>>? authenticationRequestExtraParams;
 
-  final TfArg<AlbListenerRuleOnUnauthenticatedRequest>?
-  onUnauthenticatedRequest;
+  final AlbListenerRuleOnUnauthenticatedRequest? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -116,14 +135,30 @@ final class AlbListenerRuleAuthenticateCognito {
 }
 
 /// `on_unauthenticated_request` — derived from the provider schema description.
-enum AlbListenerRuleOnUnauthenticatedRequest implements TerraformEnum {
-  deny('deny'),
-  allow('allow'),
-  authenticate('authenticate');
+extension type const AlbListenerRuleOnUnauthenticatedRequest._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleOnUnauthenticatedRequest.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRuleOnUnauthenticatedRequest.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleOnUnauthenticatedRequest.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AlbListenerRuleOnUnauthenticatedRequest(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deny = AlbListenerRuleOnUnauthenticatedRequest._(
+    TfArgLiteral('deny'),
+  );
+  static const allow = AlbListenerRuleOnUnauthenticatedRequest._(
+    TfArgLiteral('allow'),
+  );
+  static const authenticate = AlbListenerRuleOnUnauthenticatedRequest._(
+    TfArgLiteral('authenticate'),
+  );
+
+  static const List<AlbListenerRuleOnUnauthenticatedRequest> values = [
+    deny,
+    allow,
+    authenticate,
+  ];
 }
 
 /// Typed helper for the `action.authenticate_oidc` block of
@@ -154,8 +189,7 @@ final class AlbListenerRuleAuthenticateOidc {
 
   final TfArg<String> issuer;
 
-  final TfArg<AlbListenerRuleOnUnauthenticatedRequest>?
-  onUnauthenticatedRequest;
+  final AlbListenerRuleOnUnauthenticatedRequest? onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -193,7 +227,7 @@ final class AlbListenerRuleFixedResponse {
     this.statusCode,
   });
 
-  final TfArg<AlbListenerRuleContentType> contentType;
+  final AlbListenerRuleContentType contentType;
 
   final TfArg<String>? messageBody;
 
@@ -207,16 +241,35 @@ final class AlbListenerRuleFixedResponse {
 }
 
 /// `content_type` — derived from the provider schema description.
-enum AlbListenerRuleContentType implements TerraformEnum {
-  textPlain('text/plain'),
-  textCss('text/css'),
-  textHtml('text/html'),
-  applicationJavascript('application/javascript'),
-  applicationJson('application/json');
+extension type const AlbListenerRuleContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRuleContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const textPlain = AlbListenerRuleContentType._(
+    TfArgLiteral('text/plain'),
+  );
+  static const textCss = AlbListenerRuleContentType._(TfArgLiteral('text/css'));
+  static const textHtml = AlbListenerRuleContentType._(
+    TfArgLiteral('text/html'),
+  );
+  static const applicationJavascript = AlbListenerRuleContentType._(
+    TfArgLiteral('application/javascript'),
+  );
+  static const applicationJson = AlbListenerRuleContentType._(
+    TfArgLiteral('application/json'),
+  );
+
+  static const List<AlbListenerRuleContentType> values = [
+    textPlain,
+    textCss,
+    textHtml,
+    applicationJavascript,
+    applicationJson,
+  ];
 }
 
 /// Typed helper for the `action.forward` block of
@@ -301,7 +354,7 @@ final class AlbListenerRuleAdditionalClaim {
     required this.values,
   });
 
-  final TfArg<AlbListenerRuleFormat> format;
+  final AlbListenerRuleFormat format;
 
   final TfArg<String> name;
 
@@ -315,14 +368,28 @@ final class AlbListenerRuleAdditionalClaim {
 }
 
 /// `format` — derived from the provider schema description.
-enum AlbListenerRuleFormat implements TerraformEnum {
-  singleString('single-string'),
-  stringArray('string-array'),
-  spaceSeparatedValues('space-separated-values');
+extension type const AlbListenerRuleFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleFormat.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerRuleFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleString = AlbListenerRuleFormat._(
+    TfArgLiteral('single-string'),
+  );
+  static const stringArray = AlbListenerRuleFormat._(
+    TfArgLiteral('string-array'),
+  );
+  static const spaceSeparatedValues = AlbListenerRuleFormat._(
+    TfArgLiteral('space-separated-values'),
+  );
+
+  static const List<AlbListenerRuleFormat> values = [
+    singleString,
+    stringArray,
+    spaceSeparatedValues,
+  ];
 }
 
 /// Typed helper for the `action.redirect` block of
@@ -344,11 +411,11 @@ final class AlbListenerRuleRedirect {
 
   final TfArg<String>? port;
 
-  final TfArg<AlbListenerRuleProtocol>? protocol;
+  final AlbListenerRuleProtocol? protocol;
 
   final TfArg<String>? query;
 
-  final TfArg<AlbListenerRuleStatusCode> statusCode;
+  final AlbListenerRuleStatusCode statusCode;
 
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
@@ -361,24 +428,35 @@ final class AlbListenerRuleRedirect {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AlbListenerRuleProtocol implements TerraformEnum {
-  protocol('#{protocol}'),
-  http('HTTP'),
-  https('HTTPS');
+extension type const AlbListenerRuleProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleProtocol.variable(String name) : this._(TfArg.variable(name));
+  AlbListenerRuleProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const protocol = AlbListenerRuleProtocol._(
+    TfArgLiteral('#{protocol}'),
+  );
+  static const http = AlbListenerRuleProtocol._(TfArgLiteral('HTTP'));
+  static const https = AlbListenerRuleProtocol._(TfArgLiteral('HTTPS'));
+
+  static const List<AlbListenerRuleProtocol> values = [protocol, http, https];
 }
 
 /// `status_code` — derived from the provider schema description.
-enum AlbListenerRuleStatusCode implements TerraformEnum {
-  http301('HTTP_301'),
-  http302('HTTP_302');
+extension type const AlbListenerRuleStatusCode._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleStatusCode.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRuleStatusCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleStatusCode.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleStatusCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http301 = AlbListenerRuleStatusCode._(TfArgLiteral('HTTP_301'));
+  static const http302 = AlbListenerRuleStatusCode._(TfArgLiteral('HTTP_302'));
+
+  static const List<AlbListenerRuleStatusCode> values = [http301, http302];
 }
 
 /// Typed helper for the `condition` block of
@@ -505,7 +583,7 @@ final class AlbListenerRuleQueryString {
 final class AlbListenerRuleSourceIp {
   const AlbListenerRuleSourceIp({this.ipAddressType, this.values});
 
-  final TfArg<AlbListenerRuleIpAddressType>? ipAddressType;
+  final AlbListenerRuleIpAddressType? ipAddressType;
 
   final TfArg<List<String>>? values;
 
@@ -516,13 +594,18 @@ final class AlbListenerRuleSourceIp {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum AlbListenerRuleIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const AlbListenerRuleIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRuleIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = AlbListenerRuleIpAddressType._(TfArgLiteral('ipv4'));
+  static const ipv6 = AlbListenerRuleIpAddressType._(TfArgLiteral('ipv6'));
+
+  static const List<AlbListenerRuleIpAddressType> values = [ipv4, ipv6];
 }
 
 /// Typed helper for the `transform` block of
@@ -535,7 +618,7 @@ final class AlbListenerRuleTransform {
     this.urlRewriteConfig,
   });
 
-  final TfArg<AlbListenerRuleTransformType> type;
+  final AlbListenerRuleTransformType type;
 
   final AlbListenerRuleHostHeaderRewriteConfig? hostHeaderRewriteConfig;
 
@@ -549,13 +632,25 @@ final class AlbListenerRuleTransform {
 }
 
 /// `type` — derived from the provider schema description.
-enum AlbListenerRuleTransformType implements TerraformEnum {
-  hostHeaderRewrite('host-header-rewrite'),
-  urlRewrite('url-rewrite');
+extension type const AlbListenerRuleTransformType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbListenerRuleTransformType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbListenerRuleTransformType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbListenerRuleTransformType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbListenerRuleTransformType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hostHeaderRewrite = AlbListenerRuleTransformType._(
+    TfArgLiteral('host-header-rewrite'),
+  );
+  static const urlRewrite = AlbListenerRuleTransformType._(
+    TfArgLiteral('url-rewrite'),
+  );
+
+  static const List<AlbListenerRuleTransformType> values = [
+    hostHeaderRewrite,
+    urlRewrite,
+  ];
 }
 
 /// Typed helper for the `transform.host_header_rewrite_config` block of

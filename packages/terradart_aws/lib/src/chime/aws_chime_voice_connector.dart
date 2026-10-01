@@ -7,21 +7,57 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsChimeVoiceConnectorSensitive = <String>{};
 
 /// Chime Voice Connector Aws enum for `aws_region`.
-enum ChimeVoiceConnectorAwsRegion implements TerraformEnum {
-  usEast1('us-east-1'),
-  usWest2('us-west-2'),
-  caCentral1('ca-central-1'),
-  euCentral1('eu-central-1'),
-  euWest1('eu-west-1'),
-  euWest2('eu-west-2'),
-  apNortheast2('ap-northeast-2'),
-  apNortheast1('ap-northeast-1'),
-  apSoutheast1('ap-southeast-1'),
-  apSoutheast2('ap-southeast-2');
+extension type const ChimeVoiceConnectorAwsRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  ChimeVoiceConnectorAwsRegion.variable(String name)
+    : this._(TfArg.variable(name));
+  ChimeVoiceConnectorAwsRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChimeVoiceConnectorAwsRegion.arg(TfArg<String> arg) : this._(arg);
 
-  const ChimeVoiceConnectorAwsRegion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usEast1 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('us-east-1'),
+  );
+  static const usWest2 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('us-west-2'),
+  );
+  static const caCentral1 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('ca-central-1'),
+  );
+  static const euCentral1 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('eu-central-1'),
+  );
+  static const euWest1 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('eu-west-1'),
+  );
+  static const euWest2 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('eu-west-2'),
+  );
+  static const apNortheast2 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('ap-northeast-2'),
+  );
+  static const apNortheast1 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('ap-northeast-1'),
+  );
+  static const apSoutheast1 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('ap-southeast-1'),
+  );
+  static const apSoutheast2 = ChimeVoiceConnectorAwsRegion._(
+    TfArgLiteral('ap-southeast-2'),
+  );
+
+  static const List<ChimeVoiceConnectorAwsRegion> values = [
+    usEast1,
+    usWest2,
+    caCentral1,
+    euCentral1,
+    euWest1,
+    euWest2,
+    apNortheast2,
+    apNortheast1,
+    apSoutheast1,
+    apSoutheast2,
+  ];
 }
 
 /// Factory wrapper for `aws_chime_voice_connector`.
@@ -30,7 +66,7 @@ final class AwsChimeVoiceConnector extends Resource {
 
   AwsChimeVoiceConnector(
     super.localName, {
-    TfArg<ChimeVoiceConnectorAwsRegion>? awsRegion,
+    ChimeVoiceConnectorAwsRegion? awsRegion,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<bool> requireEncryption,

@@ -7,16 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpclatticeAccessLogSubscriptionSensitive = <String>{};
 
 /// Vpclattice Access Log Subscription Service Network Log enum for `service_network_log_type`.
-enum VpclatticeAccessLogSubscriptionServiceNetworkLogType
-    implements TerraformEnum {
-  service('SERVICE'),
-  resource('RESOURCE');
+extension type const VpclatticeAccessLogSubscriptionServiceNetworkLogType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpclatticeAccessLogSubscriptionServiceNetworkLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeAccessLogSubscriptionServiceNetworkLogType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VpclatticeAccessLogSubscriptionServiceNetworkLogType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const VpclatticeAccessLogSubscriptionServiceNetworkLogType(
-    this.terraformValue,
+  static const service = VpclatticeAccessLogSubscriptionServiceNetworkLogType._(
+    TfArgLiteral('SERVICE'),
   );
-  @override
-  final String terraformValue;
+  static const resource =
+      VpclatticeAccessLogSubscriptionServiceNetworkLogType._(
+        TfArgLiteral('RESOURCE'),
+      );
+
+  static const List<VpclatticeAccessLogSubscriptionServiceNetworkLogType>
+  values = [service, resource];
 }
 
 /// Factory wrapper for `aws_vpclattice_access_log_subscription`.
@@ -28,8 +40,7 @@ final class AwsVpclatticeAccessLogSubscription extends Resource {
     required TfArg<String> destinationArn,
     TfArg<String>? region,
     required TfArg<String> resourceIdentifier,
-    TfArg<VpclatticeAccessLogSubscriptionServiceNetworkLogType>?
-    serviceNetworkLogType,
+    VpclatticeAccessLogSubscriptionServiceNetworkLogType? serviceNetworkLogType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

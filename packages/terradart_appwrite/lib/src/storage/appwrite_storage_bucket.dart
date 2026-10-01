@@ -9,14 +9,18 @@ import '../auth/appwrite_permission.dart' show AppwritePermission;
 const Set<String> _appwriteStorageBucketSensitive = <String>{};
 
 /// Storage Bucket enum for `compression`.
-enum StorageBucketCompression implements TerraformEnum {
-  none('none'),
-  gzip('gzip'),
-  zstd('zstd');
+extension type const StorageBucketCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketCompression.variable(String name) : this._(TfArg.variable(name));
+  StorageBucketCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageBucketCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = StorageBucketCompression._(TfArgLiteral('none'));
+  static const gzip = StorageBucketCompression._(TfArgLiteral('gzip'));
+  static const zstd = StorageBucketCompression._(TfArgLiteral('zstd'));
+
+  static const List<StorageBucketCompression> values = [none, gzip, zstd];
 }
 
 /// Factory wrapper for `appwrite_storage_bucket`.
@@ -39,7 +43,7 @@ final class AppwriteStorageBucket extends Resource {
     TfArg<bool>? fileSecurity,
     TfArg<num>? maximumFileSize,
     TfArg<List<String>>? allowedFileExtensions,
-    TfArg<StorageBucketCompression>? compression,
+    StorageBucketCompression? compression,
     TfArg<bool>? encryption,
     TfArg<bool>? antivirus,
     TfArg<List<AppwritePermission>>? permissions,

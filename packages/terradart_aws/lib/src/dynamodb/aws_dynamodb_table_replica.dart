@@ -9,13 +9,27 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDynamodbTableReplicaSensitive = <String>{};
 
 /// Dynamodb Table Replica Table Class enum for `table_class_override`.
-enum DynamodbTableReplicaTableClassOverride implements TerraformEnum {
-  standard('STANDARD'),
-  standardInfrequentAccess('STANDARD_INFREQUENT_ACCESS');
+extension type const DynamodbTableReplicaTableClassOverride._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbTableReplicaTableClassOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbTableReplicaTableClassOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbTableReplicaTableClassOverride.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DynamodbTableReplicaTableClassOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = DynamodbTableReplicaTableClassOverride._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardInfrequentAccess =
+      DynamodbTableReplicaTableClassOverride._(
+        TfArgLiteral('STANDARD_INFREQUENT_ACCESS'),
+      );
+
+  static const List<DynamodbTableReplicaTableClassOverride> values = [
+    standard,
+    standardInfrequentAccess,
+  ];
 }
 
 /// Factory wrapper for `aws_dynamodb_table_replica`.
@@ -29,7 +43,7 @@ final class AwsDynamodbTableReplica extends Resource {
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<bool>? pointInTimeRecovery,
     TfArg<String>? region,
-    TfArg<DynamodbTableReplicaTableClassOverride>? tableClassOverride,
+    DynamodbTableReplicaTableClassOverride? tableClassOverride,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

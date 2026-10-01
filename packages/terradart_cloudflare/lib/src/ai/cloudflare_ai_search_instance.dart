@@ -10,35 +10,62 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareAiSearchInstanceSensitive = <String>{};
 
 /// Ai Search Instance Cache enum for `cache_threshold`.
-enum AiSearchInstanceCacheThreshold implements TerraformEnum {
-  superStrictMatch('super_strict_match'),
-  closeEnough('close_enough'),
-  flexibleFriend('flexible_friend'),
-  anythingGoes('anything_goes');
+extension type const AiSearchInstanceCacheThreshold._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceCacheThreshold.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceCacheThreshold.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceCacheThreshold.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceCacheThreshold(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const superStrictMatch = AiSearchInstanceCacheThreshold._(
+    TfArgLiteral('super_strict_match'),
+  );
+  static const closeEnough = AiSearchInstanceCacheThreshold._(
+    TfArgLiteral('close_enough'),
+  );
+  static const flexibleFriend = AiSearchInstanceCacheThreshold._(
+    TfArgLiteral('flexible_friend'),
+  );
+  static const anythingGoes = AiSearchInstanceCacheThreshold._(
+    TfArgLiteral('anything_goes'),
+  );
+
+  static const List<AiSearchInstanceCacheThreshold> values = [
+    superStrictMatch,
+    closeEnough,
+    flexibleFriend,
+    anythingGoes,
+  ];
 }
 
 /// Ai Search Instance Fusion enum for `fusion_method`.
-enum AiSearchInstanceFusionMethod implements TerraformEnum {
-  max('max'),
-  rrf('rrf');
+extension type const AiSearchInstanceFusionMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceFusionMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceFusionMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceFusionMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceFusionMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const max = AiSearchInstanceFusionMethod._(TfArgLiteral('max'));
+  static const rrf = AiSearchInstanceFusionMethod._(TfArgLiteral('rrf'));
+
+  static const List<AiSearchInstanceFusionMethod> values = [max, rrf];
 }
 
 /// Ai Search Instance enum for `type`.
-enum AiSearchInstanceType implements TerraformEnum {
-  r2('r2'),
-  webCrawler('web-crawler');
+extension type const AiSearchInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceType.variable(String name) : this._(TfArg.variable(name));
+  AiSearchInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const r2 = AiSearchInstanceType._(TfArgLiteral('r2'));
+  static const webCrawler = AiSearchInstanceType._(TfArgLiteral('web-crawler'));
+
+  static const List<AiSearchInstanceType> values = [r2, webCrawler];
 }
 
 /// Typed helper for the `custom_metadata` block of
@@ -50,7 +77,7 @@ final class AiSearchInstanceCustomMetadata {
     required this.fieldName,
   });
 
-  final TfArg<AiSearchInstanceDataType> dataType;
+  final AiSearchInstanceDataType dataType;
 
   final TfArg<String> fieldName;
 
@@ -61,15 +88,24 @@ final class AiSearchInstanceCustomMetadata {
 }
 
 /// `data_type` — derived from the provider schema description.
-enum AiSearchInstanceDataType implements TerraformEnum {
-  text('text'),
-  number('number'),
-  boolean('boolean'),
-  datetime('datetime');
+extension type const AiSearchInstanceDataType._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceDataType.variable(String name) : this._(TfArg.variable(name));
+  AiSearchInstanceDataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceDataType.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceDataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = AiSearchInstanceDataType._(TfArgLiteral('text'));
+  static const number = AiSearchInstanceDataType._(TfArgLiteral('number'));
+  static const boolean = AiSearchInstanceDataType._(TfArgLiteral('boolean'));
+  static const datetime = AiSearchInstanceDataType._(TfArgLiteral('datetime'));
+
+  static const List<AiSearchInstanceDataType> values = [
+    text,
+    number,
+    boolean,
+    datetime,
+  ];
 }
 
 /// Typed helper for the `index_method` block of
@@ -97,7 +133,7 @@ final class AiSearchInstanceIndexMethod {
 final class AiSearchInstanceIndexingOptions {
   const AiSearchInstanceIndexingOptions({this.keywordTokenizer, this.useOcr});
 
-  final TfArg<AiSearchInstanceKeywordTokenizer>? keywordTokenizer;
+  final AiSearchInstanceKeywordTokenizer? keywordTokenizer;
 
   final TfArg<bool>? useOcr;
 
@@ -108,13 +144,25 @@ final class AiSearchInstanceIndexingOptions {
 }
 
 /// `keyword_tokenizer` — derived from the provider schema description.
-enum AiSearchInstanceKeywordTokenizer implements TerraformEnum {
-  porter('porter'),
-  trigram('trigram');
+extension type const AiSearchInstanceKeywordTokenizer._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceKeywordTokenizer.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceKeywordTokenizer.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceKeywordTokenizer.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceKeywordTokenizer(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const porter = AiSearchInstanceKeywordTokenizer._(
+    TfArgLiteral('porter'),
+  );
+  static const trigram = AiSearchInstanceKeywordTokenizer._(
+    TfArgLiteral('trigram'),
+  );
+
+  static const List<AiSearchInstanceKeywordTokenizer> values = [
+    porter,
+    trigram,
+  ];
 }
 
 /// Typed helper for the `metadata` block of
@@ -220,7 +268,7 @@ final class AiSearchInstanceRateLimit {
 
   final TfArg<num>? requests;
 
-  final TfArg<AiSearchInstanceTechnique>? technique;
+  final AiSearchInstanceTechnique? technique;
 
   Map<String, Object?> encode() => {
     'period_ms': ?periodMs?.toTfJson(),
@@ -230,13 +278,18 @@ final class AiSearchInstanceRateLimit {
 }
 
 /// `technique` — derived from the provider schema description.
-enum AiSearchInstanceTechnique implements TerraformEnum {
-  fixed('fixed'),
-  sliding('sliding');
+extension type const AiSearchInstanceTechnique._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceTechnique.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceTechnique.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceTechnique.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceTechnique(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixed = AiSearchInstanceTechnique._(TfArgLiteral('fixed'));
+  static const sliding = AiSearchInstanceTechnique._(TfArgLiteral('sliding'));
+
+  static const List<AiSearchInstanceTechnique> values = [fixed, sliding];
 }
 
 /// Typed helper for the `public_endpoint_params.search_endpoint` block of
@@ -256,7 +309,7 @@ final class AiSearchInstanceSearchEndpoint {
 final class AiSearchInstanceRetrievalOptions {
   const AiSearchInstanceRetrievalOptions({this.keywordMatchMode, this.boostBy});
 
-  final TfArg<AiSearchInstanceKeywordMatchMode>? keywordMatchMode;
+  final AiSearchInstanceKeywordMatchMode? keywordMatchMode;
 
   final List<AiSearchInstanceBoostBy>? boostBy;
 
@@ -267,13 +320,18 @@ final class AiSearchInstanceRetrievalOptions {
 }
 
 /// `keyword_match_mode` — derived from the provider schema description.
-enum AiSearchInstanceKeywordMatchMode implements TerraformEnum {
-  and('and'),
-  or('or');
+extension type const AiSearchInstanceKeywordMatchMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceKeywordMatchMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceKeywordMatchMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceKeywordMatchMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceKeywordMatchMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const and = AiSearchInstanceKeywordMatchMode._(TfArgLiteral('and'));
+  static const or = AiSearchInstanceKeywordMatchMode._(TfArgLiteral('or'));
+
+  static const List<AiSearchInstanceKeywordMatchMode> values = [and, or];
 }
 
 /// Typed helper for the `retrieval_options.boost_by` block of
@@ -282,7 +340,7 @@ enum AiSearchInstanceKeywordMatchMode implements TerraformEnum {
 final class AiSearchInstanceBoostBy {
   const AiSearchInstanceBoostBy({this.direction, required this.field});
 
-  final TfArg<AiSearchInstanceDirection>? direction;
+  final AiSearchInstanceDirection? direction;
 
   final TfArg<String> field;
 
@@ -293,15 +351,27 @@ final class AiSearchInstanceBoostBy {
 }
 
 /// `direction` — derived from the provider schema description.
-enum AiSearchInstanceDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc'),
-  exists('exists'),
-  notExists('not_exists');
+extension type const AiSearchInstanceDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = AiSearchInstanceDirection._(TfArgLiteral('asc'));
+  static const desc = AiSearchInstanceDirection._(TfArgLiteral('desc'));
+  static const exists = AiSearchInstanceDirection._(TfArgLiteral('exists'));
+  static const notExists = AiSearchInstanceDirection._(
+    TfArgLiteral('not_exists'),
+  );
+
+  static const List<AiSearchInstanceDirection> values = [
+    asc,
+    desc,
+    exists,
+    notExists,
+  ];
 }
 
 /// Typed helper for the `source_params` block of
@@ -345,7 +415,7 @@ final class AiSearchInstanceWebCrawler {
     this.parseOptions,
   });
 
-  final TfArg<AiSearchInstanceParseType>? parseType;
+  final AiSearchInstanceParseType? parseType;
 
   final AiSearchInstanceDiscoverOptions? discoverOptions;
 
@@ -359,13 +429,18 @@ final class AiSearchInstanceWebCrawler {
 }
 
 /// `parse_type` — derived from the provider schema description.
-enum AiSearchInstanceParseType implements TerraformEnum {
-  sitemap('sitemap'),
-  discover('discover');
+extension type const AiSearchInstanceParseType._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceParseType.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceParseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceParseType.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchInstanceParseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sitemap = AiSearchInstanceParseType._(TfArgLiteral('sitemap'));
+  static const discover = AiSearchInstanceParseType._(TfArgLiteral('discover'));
+
+  static const List<AiSearchInstanceParseType> values = [sitemap, discover];
 }
 
 /// Typed helper for the `source_params.web_crawler.discover_options` block of
@@ -391,7 +466,7 @@ final class AiSearchInstanceDiscoverOptions {
 
   final TfArg<num>? maxAge;
 
-  final TfArg<AiSearchInstanceDiscoverOptionsSource>? source;
+  final AiSearchInstanceDiscoverOptionsSource? source;
 
   Map<String, Object?> encode() => {
     'depth': ?depth?.toTfJson(),
@@ -404,14 +479,30 @@ final class AiSearchInstanceDiscoverOptions {
 }
 
 /// `source` — derived from the provider schema description.
-enum AiSearchInstanceDiscoverOptionsSource implements TerraformEnum {
-  all('all'),
-  sitemaps('sitemaps'),
-  links('links');
+extension type const AiSearchInstanceDiscoverOptionsSource._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchInstanceDiscoverOptionsSource.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceDiscoverOptionsSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceDiscoverOptionsSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AiSearchInstanceDiscoverOptionsSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = AiSearchInstanceDiscoverOptionsSource._(
+    TfArgLiteral('all'),
+  );
+  static const sitemaps = AiSearchInstanceDiscoverOptionsSource._(
+    TfArgLiteral('sitemaps'),
+  );
+  static const links = AiSearchInstanceDiscoverOptionsSource._(
+    TfArgLiteral('links'),
+  );
+
+  static const List<AiSearchInstanceDiscoverOptionsSource> values = [
+    all,
+    sitemaps,
+    links,
+  ];
 }
 
 /// Typed helper for the `source_params.web_crawler.parse_options` block of
@@ -475,13 +566,13 @@ final class CloudflareAiSearchInstance extends Resource {
     TfArg<String>? aiGatewayId,
     TfArg<String>? aisearchModel,
     TfArg<bool>? cache,
-    TfArg<AiSearchInstanceCacheThreshold>? cacheThreshold,
+    AiSearchInstanceCacheThreshold? cacheThreshold,
     TfArg<num>? cacheTtl,
     TfArg<bool>? chunk,
     TfArg<num>? chunkOverlap,
     TfArg<num>? chunkSize,
     TfArg<String>? embeddingModel,
-    TfArg<AiSearchInstanceFusionMethod>? fusionMethod,
+    AiSearchInstanceFusionMethod? fusionMethod,
     TfArg<bool>? hybridSearchEnabled,
     required TfArg<String> id,
     TfArg<num>? maxNumResults,
@@ -499,7 +590,7 @@ final class CloudflareAiSearchInstance extends Resource {
     TfArg<String>? systemPromptIndexSummarization,
     TfArg<String>? systemPromptRewriteQuery,
     TfArg<String>? tokenId,
-    TfArg<AiSearchInstanceType>? type,
+    AiSearchInstanceType? type,
     List<AiSearchInstanceCustomMetadata>? customMetadata,
     AiSearchInstanceIndexMethod? indexMethod,
     AiSearchInstanceIndexingOptions? indexingOptions,

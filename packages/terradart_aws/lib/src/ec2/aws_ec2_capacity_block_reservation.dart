@@ -7,29 +7,104 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2CapacityBlockReservationSensitive = <String>{};
 
 /// Ec2 Capacity Block Reservation Instance enum for `instance_platform`.
-enum Ec2CapacityBlockReservationInstancePlatform implements TerraformEnum {
-  linuxUnix('Linux/UNIX'),
-  redHatEnterpriseLinux('Red Hat Enterprise Linux'),
-  suseLinux('SUSE Linux'),
-  windows('Windows'),
-  windowsWithSqlServer('Windows with SQL Server'),
-  windowsWithSqlServerEnterprise('Windows with SQL Server Enterprise'),
-  windowsWithSqlServerStandard('Windows with SQL Server Standard'),
-  windowsWithSqlServerWeb('Windows with SQL Server Web'),
-  linuxWithSqlServerStandard('Linux with SQL Server Standard'),
-  linuxWithSqlServerWeb('Linux with SQL Server Web'),
-  linuxWithSqlServerEnterprise('Linux with SQL Server Enterprise'),
-  rhelWithSqlServerStandard('RHEL with SQL Server Standard'),
-  rhelWithSqlServerEnterprise('RHEL with SQL Server Enterprise'),
-  rhelWithSqlServerWeb('RHEL with SQL Server Web'),
-  rhelWithHa('RHEL with HA'),
-  rhelWithHaAndSqlServerStandard('RHEL with HA and SQL Server Standard'),
-  rhelWithHaAndSqlServerEnterprise('RHEL with HA and SQL Server Enterprise'),
-  ubuntuPro('Ubuntu Pro');
+extension type const Ec2CapacityBlockReservationInstancePlatform._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2CapacityBlockReservationInstancePlatform.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2CapacityBlockReservationInstancePlatform.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2CapacityBlockReservationInstancePlatform.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2CapacityBlockReservationInstancePlatform(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linuxUnix = Ec2CapacityBlockReservationInstancePlatform._(
+    TfArgLiteral('Linux/UNIX'),
+  );
+  static const redHatEnterpriseLinux =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Red Hat Enterprise Linux'),
+      );
+  static const suseLinux = Ec2CapacityBlockReservationInstancePlatform._(
+    TfArgLiteral('SUSE Linux'),
+  );
+  static const windows = Ec2CapacityBlockReservationInstancePlatform._(
+    TfArgLiteral('Windows'),
+  );
+  static const windowsWithSqlServer =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server'),
+      );
+  static const windowsWithSqlServerEnterprise =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server Enterprise'),
+      );
+  static const windowsWithSqlServerStandard =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server Standard'),
+      );
+  static const windowsWithSqlServerWeb =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Windows with SQL Server Web'),
+      );
+  static const linuxWithSqlServerStandard =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Linux with SQL Server Standard'),
+      );
+  static const linuxWithSqlServerWeb =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Linux with SQL Server Web'),
+      );
+  static const linuxWithSqlServerEnterprise =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('Linux with SQL Server Enterprise'),
+      );
+  static const rhelWithSqlServerStandard =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('RHEL with SQL Server Standard'),
+      );
+  static const rhelWithSqlServerEnterprise =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('RHEL with SQL Server Enterprise'),
+      );
+  static const rhelWithSqlServerWeb =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('RHEL with SQL Server Web'),
+      );
+  static const rhelWithHa = Ec2CapacityBlockReservationInstancePlatform._(
+    TfArgLiteral('RHEL with HA'),
+  );
+  static const rhelWithHaAndSqlServerStandard =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('RHEL with HA and SQL Server Standard'),
+      );
+  static const rhelWithHaAndSqlServerEnterprise =
+      Ec2CapacityBlockReservationInstancePlatform._(
+        TfArgLiteral('RHEL with HA and SQL Server Enterprise'),
+      );
+  static const ubuntuPro = Ec2CapacityBlockReservationInstancePlatform._(
+    TfArgLiteral('Ubuntu Pro'),
+  );
+
+  static const List<Ec2CapacityBlockReservationInstancePlatform> values = [
+    linuxUnix,
+    redHatEnterpriseLinux,
+    suseLinux,
+    windows,
+    windowsWithSqlServer,
+    windowsWithSqlServerEnterprise,
+    windowsWithSqlServerStandard,
+    windowsWithSqlServerWeb,
+    linuxWithSqlServerStandard,
+    linuxWithSqlServerWeb,
+    linuxWithSqlServerEnterprise,
+    rhelWithSqlServerStandard,
+    rhelWithSqlServerEnterprise,
+    rhelWithSqlServerWeb,
+    rhelWithHa,
+    rhelWithHaAndSqlServerStandard,
+    rhelWithHaAndSqlServerEnterprise,
+    ubuntuPro,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_capacity_block_reservation`.
@@ -39,8 +114,7 @@ final class AwsEc2CapacityBlockReservation extends Resource {
   AwsEc2CapacityBlockReservation(
     super.localName, {
     required TfArg<String> capacityBlockOfferingId,
-    required TfArg<Ec2CapacityBlockReservationInstancePlatform>
-    instancePlatform,
+    required Ec2CapacityBlockReservationInstancePlatform instancePlatform,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

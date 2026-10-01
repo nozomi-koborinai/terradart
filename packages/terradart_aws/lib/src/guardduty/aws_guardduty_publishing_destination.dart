@@ -9,12 +9,17 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsGuarddutyPublishingDestinationSensitive = <String>{};
 
 /// Guardduty Publishing Destination enum for `destination_type`.
-enum GuarddutyPublishingDestinationType implements TerraformEnum {
-  s3('S3');
+extension type const GuarddutyPublishingDestinationType._(TfArg<String> _)
+    implements TfArg<String> {
+  GuarddutyPublishingDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyPublishingDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyPublishingDestinationType.arg(TfArg<String> arg) : this._(arg);
 
-  const GuarddutyPublishingDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = GuarddutyPublishingDestinationType._(TfArgLiteral('S3'));
+
+  static const List<GuarddutyPublishingDestinationType> values = [s3];
 }
 
 /// Factory wrapper for `aws_guardduty_publishing_destination`.
@@ -24,7 +29,7 @@ final class AwsGuarddutyPublishingDestination extends Resource {
   AwsGuarddutyPublishingDestination(
     super.localName, {
     required TfArg<String> destinationArn,
-    TfArg<GuarddutyPublishingDestinationType>? destinationType,
+    GuarddutyPublishingDestinationType? destinationType,
     required TfArg<String> detectorId,
     required RefTo<AwsKmsKey> kmsKeyArn,
     TfArg<String>? region,

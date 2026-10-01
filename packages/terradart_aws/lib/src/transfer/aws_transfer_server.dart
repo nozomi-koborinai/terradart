@@ -16,110 +16,237 @@ const Set<String> _awsTransferServerSensitive = <String>{
 };
 
 /// Transfer Server enum for `domain`.
-enum TransferServerDomain implements TerraformEnum {
-  s3('S3'),
-  efs('EFS');
+extension type const TransferServerDomain._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerDomain.variable(String name) : this._(TfArg.variable(name));
+  TransferServerDomain.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerDomain.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerDomain(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = TransferServerDomain._(TfArgLiteral('S3'));
+  static const efs = TransferServerDomain._(TfArgLiteral('EFS'));
+
+  static const List<TransferServerDomain> values = [s3, efs];
 }
 
 /// Transfer Server Endpoint enum for `endpoint_type`.
-enum TransferServerEndpointType implements TerraformEnum {
-  public('PUBLIC'),
-  vpc('VPC'),
-  vpcEndpoint('VPC_ENDPOINT');
+extension type const TransferServerEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = TransferServerEndpointType._(TfArgLiteral('PUBLIC'));
+  static const vpc = TransferServerEndpointType._(TfArgLiteral('VPC'));
+  static const vpcEndpoint = TransferServerEndpointType._(
+    TfArgLiteral('VPC_ENDPOINT'),
+  );
+
+  static const List<TransferServerEndpointType> values = [
+    public,
+    vpc,
+    vpcEndpoint,
+  ];
 }
 
 /// Transfer Server Identity Provider enum for `identity_provider_type`.
-enum TransferServerIdentityProviderType implements TerraformEnum {
-  serviceManaged('SERVICE_MANAGED'),
-  apiGateway('API_GATEWAY'),
-  awsDirectoryService('AWS_DIRECTORY_SERVICE'),
-  awsLambda('AWS_LAMBDA');
+extension type const TransferServerIdentityProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerIdentityProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerIdentityProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerIdentityProviderType.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerIdentityProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceManaged = TransferServerIdentityProviderType._(
+    TfArgLiteral('SERVICE_MANAGED'),
+  );
+  static const apiGateway = TransferServerIdentityProviderType._(
+    TfArgLiteral('API_GATEWAY'),
+  );
+  static const awsDirectoryService = TransferServerIdentityProviderType._(
+    TfArgLiteral('AWS_DIRECTORY_SERVICE'),
+  );
+  static const awsLambda = TransferServerIdentityProviderType._(
+    TfArgLiteral('AWS_LAMBDA'),
+  );
+
+  static const List<TransferServerIdentityProviderType> values = [
+    serviceManaged,
+    apiGateway,
+    awsDirectoryService,
+    awsLambda,
+  ];
 }
 
 /// Transfer Server Ip Address enum for `ip_address_type`.
-enum TransferServerIpAddressType implements TerraformEnum {
-  ipv4('IPV4'),
-  dualstack('DUALSTACK');
+extension type const TransferServerIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = TransferServerIpAddressType._(TfArgLiteral('IPV4'));
+  static const dualstack = TransferServerIpAddressType._(
+    TfArgLiteral('DUALSTACK'),
+  );
+
+  static const List<TransferServerIpAddressType> values = [ipv4, dualstack];
 }
 
 /// Transfer Server enum for `protocols`.
-enum TransferServerProtocols implements TerraformEnum {
-  sftp('SFTP'),
-  ftp('FTP'),
-  ftps('FTPS'),
-  as2('AS2');
+extension type const TransferServerProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerProtocols.variable(String name) : this._(TfArg.variable(name));
+  TransferServerProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerProtocols.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerProtocols(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sftp = TransferServerProtocols._(TfArgLiteral('SFTP'));
+  static const ftp = TransferServerProtocols._(TfArgLiteral('FTP'));
+  static const ftps = TransferServerProtocols._(TfArgLiteral('FTPS'));
+  static const as2 = TransferServerProtocols._(TfArgLiteral('AS2'));
+
+  static const List<TransferServerProtocols> values = [sftp, ftp, ftps, as2];
 }
 
 /// Transfer Server Security Policy enum for `security_policy_name`.
-enum TransferServerSecurityPolicyName implements TerraformEnum {
-  transfersecuritypolicy201811('TransferSecurityPolicy-2018-11'),
-  transfersecuritypolicy202006('TransferSecurityPolicy-2020-06'),
-  transfersecuritypolicy202203('TransferSecurityPolicy-2022-03'),
-  transfersecuritypolicy202305('TransferSecurityPolicy-2023-05'),
-  transfersecuritypolicy202401('TransferSecurityPolicy-2024-01'),
-  transfersecuritypolicy202503('TransferSecurityPolicy-2025-03'),
-  transfersecuritypolicyFips202006('TransferSecurityPolicy-FIPS-2020-06'),
-  transfersecuritypolicyFips202305('TransferSecurityPolicy-FIPS-2023-05'),
-  transfersecuritypolicyFips202401('TransferSecurityPolicy-FIPS-2024-01'),
-  transfersecuritypolicyFips202405('TransferSecurityPolicy-FIPS-2024-05'),
-  transfersecuritypolicyFips202503('TransferSecurityPolicy-FIPS-2025-03'),
-  transfersecuritypolicyPqSshExperimental202304(
-    'TransferSecurityPolicy-PQ-SSH-Experimental-2023-04',
-  ),
-  transfersecuritypolicyPqSshFipsExperimental202304(
-    'TransferSecurityPolicy-PQ-SSH-FIPS-Experimental-2023-04',
-  ),
-  transfersecuritypolicyRestricted201811(
-    'TransferSecurityPolicy-Restricted-2018-11',
-  ),
-  transfersecuritypolicyRestricted202006(
-    'TransferSecurityPolicy-Restricted-2020-06',
-  ),
-  transfersecuritypolicyRestricted202406(
-    'TransferSecurityPolicy-Restricted-2024-06',
-  ),
-  transfersecuritypolicySshauditcompliant202502(
-    'TransferSecurityPolicy-SshAuditCompliant-2025-02',
-  ),
-  transfersecuritypolicyAs2restricted202507(
-    'TransferSecurityPolicy-AS2Restricted-2025-07',
-  );
+extension type const TransferServerSecurityPolicyName._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerSecurityPolicyName.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerSecurityPolicyName.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerSecurityPolicyName.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerSecurityPolicyName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transfersecuritypolicy201811 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-2018-11'),
+      );
+  static const transfersecuritypolicy202006 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-2020-06'),
+      );
+  static const transfersecuritypolicy202203 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-2022-03'),
+      );
+  static const transfersecuritypolicy202305 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-2023-05'),
+      );
+  static const transfersecuritypolicy202401 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-2024-01'),
+      );
+  static const transfersecuritypolicy202503 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-2025-03'),
+      );
+  static const transfersecuritypolicyFips202006 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-FIPS-2020-06'),
+      );
+  static const transfersecuritypolicyFips202305 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-FIPS-2023-05'),
+      );
+  static const transfersecuritypolicyFips202401 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-FIPS-2024-01'),
+      );
+  static const transfersecuritypolicyFips202405 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-FIPS-2024-05'),
+      );
+  static const transfersecuritypolicyFips202503 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-FIPS-2025-03'),
+      );
+  static const transfersecuritypolicyPqSshExperimental202304 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-PQ-SSH-Experimental-2023-04'),
+      );
+  static const transfersecuritypolicyPqSshFipsExperimental202304 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-PQ-SSH-FIPS-Experimental-2023-04'),
+      );
+  static const transfersecuritypolicyRestricted201811 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-Restricted-2018-11'),
+      );
+  static const transfersecuritypolicyRestricted202006 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-Restricted-2020-06'),
+      );
+  static const transfersecuritypolicyRestricted202406 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-Restricted-2024-06'),
+      );
+  static const transfersecuritypolicySshauditcompliant202502 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-SshAuditCompliant-2025-02'),
+      );
+  static const transfersecuritypolicyAs2restricted202507 =
+      TransferServerSecurityPolicyName._(
+        TfArgLiteral('TransferSecurityPolicy-AS2Restricted-2025-07'),
+      );
+
+  static const List<TransferServerSecurityPolicyName> values = [
+    transfersecuritypolicy201811,
+    transfersecuritypolicy202006,
+    transfersecuritypolicy202203,
+    transfersecuritypolicy202305,
+    transfersecuritypolicy202401,
+    transfersecuritypolicy202503,
+    transfersecuritypolicyFips202006,
+    transfersecuritypolicyFips202305,
+    transfersecuritypolicyFips202401,
+    transfersecuritypolicyFips202405,
+    transfersecuritypolicyFips202503,
+    transfersecuritypolicyPqSshExperimental202304,
+    transfersecuritypolicyPqSshFipsExperimental202304,
+    transfersecuritypolicyRestricted201811,
+    transfersecuritypolicyRestricted202006,
+    transfersecuritypolicyRestricted202406,
+    transfersecuritypolicySshauditcompliant202502,
+    transfersecuritypolicyAs2restricted202507,
+  ];
 }
 
 /// Transfer Server Sftp Authentication enum for `sftp_authentication_methods`.
-enum TransferServerSftpAuthenticationMethods implements TerraformEnum {
-  password('PASSWORD'),
-  publicKey('PUBLIC_KEY'),
-  publicKeyOrPassword('PUBLIC_KEY_OR_PASSWORD'),
-  publicKeyAndPassword('PUBLIC_KEY_AND_PASSWORD');
+extension type const TransferServerSftpAuthenticationMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerSftpAuthenticationMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerSftpAuthenticationMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerSftpAuthenticationMethods.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TransferServerSftpAuthenticationMethods(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const password = TransferServerSftpAuthenticationMethods._(
+    TfArgLiteral('PASSWORD'),
+  );
+  static const publicKey = TransferServerSftpAuthenticationMethods._(
+    TfArgLiteral('PUBLIC_KEY'),
+  );
+  static const publicKeyOrPassword = TransferServerSftpAuthenticationMethods._(
+    TfArgLiteral('PUBLIC_KEY_OR_PASSWORD'),
+  );
+  static const publicKeyAndPassword = TransferServerSftpAuthenticationMethods._(
+    TfArgLiteral('PUBLIC_KEY_AND_PASSWORD'),
+  );
+
+  static const List<TransferServerSftpAuthenticationMethods> values = [
+    password,
+    publicKey,
+    publicKeyOrPassword,
+    publicKeyAndPassword,
+  ];
 }
 
 /// Typed helper for the `endpoint_details` block of
@@ -164,13 +291,13 @@ final class TransferServerProtocolDetails {
     this.tlsSessionResumptionMode,
   });
 
-  final List<TfArg<TransferServerAs2Transports>>? as2Transports;
+  final List<TransferServerAs2Transports>? as2Transports;
 
   final TfArg<String>? passiveIp;
 
-  final TfArg<TransferServerSetStatOption>? setStatOption;
+  final TransferServerSetStatOption? setStatOption;
 
-  final TfArg<TransferServerTlsSessionResumptionMode>? tlsSessionResumptionMode;
+  final TransferServerTlsSessionResumptionMode? tlsSessionResumptionMode;
 
   Map<String, Object?> encode() => {
     if (as2Transports != null)
@@ -182,33 +309,66 @@ final class TransferServerProtocolDetails {
 }
 
 /// `as2_transports` — derived from the provider schema description.
-enum TransferServerAs2Transports implements TerraformEnum {
-  http('HTTP');
+extension type const TransferServerAs2Transports._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerAs2Transports.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerAs2Transports.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerAs2Transports.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerAs2Transports(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = TransferServerAs2Transports._(TfArgLiteral('HTTP'));
+
+  static const List<TransferServerAs2Transports> values = [http];
 }
 
 /// `set_stat_option` — derived from the provider schema description.
-enum TransferServerSetStatOption implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  enableNoOp('ENABLE_NO_OP');
+extension type const TransferServerSetStatOption._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerSetStatOption.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerSetStatOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerSetStatOption.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferServerSetStatOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = TransferServerSetStatOption._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const enableNoOp = TransferServerSetStatOption._(
+    TfArgLiteral('ENABLE_NO_OP'),
+  );
+
+  static const List<TransferServerSetStatOption> values = [
+    defaultCase,
+    enableNoOp,
+  ];
 }
 
 /// `tls_session_resumption_mode` — derived from the provider schema description.
-enum TransferServerTlsSessionResumptionMode implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  enforced('ENFORCED');
+extension type const TransferServerTlsSessionResumptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferServerTlsSessionResumptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerTlsSessionResumptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerTlsSessionResumptionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TransferServerTlsSessionResumptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = TransferServerTlsSessionResumptionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = TransferServerTlsSessionResumptionMode._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const enforced = TransferServerTlsSessionResumptionMode._(
+    TfArgLiteral('ENFORCED'),
+  );
+
+  static const List<TransferServerTlsSessionResumptionMode> values = [
+    disabled,
+    enabled,
+    enforced,
+  ];
 }
 
 /// Typed helper for the `s3_storage_options` block of
@@ -217,7 +377,7 @@ enum TransferServerTlsSessionResumptionMode implements TerraformEnum {
 final class TransferServerS3StorageOptions {
   const TransferServerS3StorageOptions({this.directoryListingOptimization});
 
-  final TfArg<TransferServerDirectoryListingOptimization>?
+  final TransferServerDirectoryListingOptimization?
   directoryListingOptimization;
 
   Map<String, Object?> encode() => {
@@ -226,13 +386,27 @@ final class TransferServerS3StorageOptions {
 }
 
 /// `directory_listing_optimization` — derived from the provider schema description.
-enum TransferServerDirectoryListingOptimization implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const TransferServerDirectoryListingOptimization._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TransferServerDirectoryListingOptimization.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferServerDirectoryListingOptimization.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferServerDirectoryListingOptimization.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TransferServerDirectoryListingOptimization(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = TransferServerDirectoryListingOptimization._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = TransferServerDirectoryListingOptimization._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<TransferServerDirectoryListingOptimization> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `workflow_details` block of
@@ -297,21 +471,21 @@ final class AwsTransferServer extends Resource {
     super.localName, {
     TfArg<String>? certificate,
     TfArg<String>? directoryId,
-    TfArg<TransferServerDomain>? domain,
-    TfArg<TransferServerEndpointType>? endpointType,
+    TransferServerDomain? domain,
+    TransferServerEndpointType? endpointType,
     TfArg<bool>? forceDestroy,
     TfArg<String>? function,
     TfArg<String>? hostKey,
-    TfArg<TransferServerIdentityProviderType>? identityProviderType,
+    TransferServerIdentityProviderType? identityProviderType,
     TfArg<String>? invocationRole,
-    TfArg<TransferServerIpAddressType>? ipAddressType,
+    TransferServerIpAddressType? ipAddressType,
     TfArg<String>? loggingRole,
     TfArg<String>? postAuthenticationLoginBanner,
     TfArg<String>? preAuthenticationLoginBanner,
-    List<TfArg<TransferServerProtocols>>? protocols,
+    List<TransferServerProtocols>? protocols,
     TfArg<String>? region,
-    TfArg<TransferServerSecurityPolicyName>? securityPolicyName,
-    TfArg<TransferServerSftpAuthenticationMethods>? sftpAuthenticationMethods,
+    TransferServerSecurityPolicyName? securityPolicyName,
+    TransferServerSftpAuthenticationMethods? sftpAuthenticationMethods,
     TfArg<List<String>>? structuredLogDestinations,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? url,

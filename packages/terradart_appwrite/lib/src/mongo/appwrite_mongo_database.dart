@@ -12,40 +12,61 @@ const Set<String> _appwriteMongoDatabaseSensitive = <String>{
 };
 
 /// Mongo Database Maintenance Window enum for `maintenance_window_day`.
-enum MongoDatabaseMaintenanceWindowDay implements TerraformEnum {
-  sun('sun'),
-  mon('mon'),
-  tue('tue'),
-  wed('wed'),
-  thu('thu'),
-  fri('fri'),
-  sat('sat');
+extension type const MongoDatabaseMaintenanceWindowDay._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoDatabaseMaintenanceWindowDay.variable(String name)
+    : this._(TfArg.variable(name));
+  MongoDatabaseMaintenanceWindowDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoDatabaseMaintenanceWindowDay.arg(TfArg<String> arg) : this._(arg);
 
-  const MongoDatabaseMaintenanceWindowDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sun = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('sun'));
+  static const mon = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('mon'));
+  static const tue = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('tue'));
+  static const wed = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('wed'));
+  static const thu = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('thu'));
+  static const fri = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('fri'));
+  static const sat = MongoDatabaseMaintenanceWindowDay._(TfArgLiteral('sat'));
+
+  static const List<MongoDatabaseMaintenanceWindowDay> values = [
+    sun,
+    mon,
+    tue,
+    wed,
+    thu,
+    fri,
+    sat,
+  ];
 }
 
 /// Mongo Database enum for `status`.
-enum MongoDatabaseStatus implements TerraformEnum {
-  ready('ready'),
-  paused('paused'),
-  inactive('inactive');
+extension type const MongoDatabaseStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoDatabaseStatus.variable(String name) : this._(TfArg.variable(name));
+  MongoDatabaseStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoDatabaseStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const MongoDatabaseStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ready = MongoDatabaseStatus._(TfArgLiteral('ready'));
+  static const paused = MongoDatabaseStatus._(TfArgLiteral('paused'));
+  static const inactive = MongoDatabaseStatus._(TfArgLiteral('inactive'));
+
+  static const List<MongoDatabaseStatus> values = [ready, paused, inactive];
 }
 
 /// Mongo Database Sync enum for `sync_mode`.
-enum MongoDatabaseSyncMode implements TerraformEnum {
-  async('async'),
-  sync('sync'),
-  quorum('quorum');
+extension type const MongoDatabaseSyncMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoDatabaseSyncMode.variable(String name) : this._(TfArg.variable(name));
+  MongoDatabaseSyncMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoDatabaseSyncMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MongoDatabaseSyncMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const async = MongoDatabaseSyncMode._(TfArgLiteral('async'));
+  static const sync = MongoDatabaseSyncMode._(TfArgLiteral('sync'));
+  static const quorum = MongoDatabaseSyncMode._(TfArgLiteral('quorum'));
+
+  static const List<MongoDatabaseSyncMode> values = [async, sync, quorum];
 }
 
 /// Factory wrapper for `appwrite_mongo_database`.
@@ -63,7 +84,7 @@ final class AppwriteMongoDatabase extends Resource {
   AppwriteMongoDatabase(
     super.localName, {
     TfArg<num>? idleTimeoutMinutes,
-    TfArg<MongoDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
+    MongoDatabaseMaintenanceWindowDay? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,
     required TfArg<String> name,
     TfArg<num>? networkIdleTimeoutSeconds,
@@ -78,11 +99,11 @@ final class AppwriteMongoDatabase extends Resource {
     TfArg<num>? sqlApiMaxBytes,
     TfArg<num>? sqlApiMaxRows,
     TfArg<num>? sqlApiTimeoutSeconds,
-    TfArg<MongoDatabaseStatus>? status,
+    MongoDatabaseStatus? status,
     TfArg<bool>? storageAutoscaling,
     TfArg<num>? storageAutoscalingMaxGb,
     TfArg<num>? storageAutoscalingThresholdPercent,
-    TfArg<MongoDatabaseSyncMode>? syncMode,
+    MongoDatabaseSyncMode? syncMode,
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,

@@ -10,14 +10,29 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsS3filesMountTargetSensitive = <String>{};
 
 /// S3files Mount Target Ip Address enum for `ip_address_type`.
-enum S3filesMountTargetIpAddressType implements TerraformEnum {
-  ipv4Only('IPV4_ONLY'),
-  ipv6Only('IPV6_ONLY'),
-  dualStack('DUAL_STACK');
+extension type const S3filesMountTargetIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3filesMountTargetIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  S3filesMountTargetIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3filesMountTargetIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3filesMountTargetIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Only = S3filesMountTargetIpAddressType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = S3filesMountTargetIpAddressType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+  static const dualStack = S3filesMountTargetIpAddressType._(
+    TfArgLiteral('DUAL_STACK'),
+  );
+
+  static const List<S3filesMountTargetIpAddressType> values = [
+    ipv4Only,
+    ipv6Only,
+    dualStack,
+  ];
 }
 
 /// Factory wrapper for `aws_s3files_mount_target`.
@@ -27,7 +42,7 @@ final class AwsS3filesMountTarget extends Resource {
   AwsS3filesMountTarget(
     super.localName, {
     required TfArg<String> fileSystemId,
-    TfArg<S3filesMountTargetIpAddressType>? ipAddressType,
+    S3filesMountTargetIpAddressType? ipAddressType,
     TfArg<String>? ipv4Address,
     TfArg<String>? ipv6Address,
     TfArg<String>? region,

@@ -42,13 +42,15 @@ paramOrder:
 prelude: |
   /// `advertise_mode` — BGP prefix advertisement mode of this peer.
   /// Default (when unset) is [ComputeRouterPeerAdvertiseMode.defaultMode].
-  enum ComputeRouterPeerAdvertiseMode implements TerraformEnum {
-    defaultMode('DEFAULT'),
-    custom('CUSTOM');
+  extension type const ComputeRouterPeerAdvertiseMode._(TfArg<String> _) implements TfArg<String> {
+    ComputeRouterPeerAdvertiseMode.variable(String name) : this._(TfArg.variable(name));
+    ComputeRouterPeerAdvertiseMode.expression(String template) : this._(TfArg.expression(template));
+    const ComputeRouterPeerAdvertiseMode.arg(TfArg<String> arg) : this._(arg);
 
-    const ComputeRouterPeerAdvertiseMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const defaultMode = ComputeRouterPeerAdvertiseMode._(TfArgLiteral('DEFAULT'));
+    static const custom = ComputeRouterPeerAdvertiseMode._(TfArgLiteral('CUSTOM'));
+
+    static const List<ComputeRouterPeerAdvertiseMode> values = [defaultMode, custom];
   }
 
 extraGetters: |2

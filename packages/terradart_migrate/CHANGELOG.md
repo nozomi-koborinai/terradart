@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A migrated enum value is the member itself (`routingMode: .regional`, `[.http, .https]`); a reference or an expression in an enum slot is `.arg(...)` / `.expression(...)`.
 - Migrated factories and module calls pass the local name positionally (`GooglePubsubTopic('orders', ...)`), and a generated module wrapper takes `super.localName` first.
 - A migrated data source is registered with `add(...)`.
 - A migrated `depends_on` lists the Dart objects (`dependsOn: [schema, api]`).

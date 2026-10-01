@@ -13,16 +13,29 @@ const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
 
 /// `list_managed_instances_results` — pagination for the
 /// `listManagedInstances` API on this regional MIG.
-enum RegionInstanceGroupManagerListManagedInstancesResults
-    implements TerraformEnum {
-  pageless('PAGELESS'),
-  paginated('PAGINATED');
+extension type const RegionInstanceGroupManagerListManagedInstancesResults._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerListManagedInstancesResults.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerListManagedInstancesResults.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerListManagedInstancesResults.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const RegionInstanceGroupManagerListManagedInstancesResults(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const pageless =
+      RegionInstanceGroupManagerListManagedInstancesResults._(
+        TfArgLiteral('PAGELESS'),
+      );
+  static const paginated =
+      RegionInstanceGroupManagerListManagedInstancesResults._(
+        TfArgLiteral('PAGINATED'),
+      );
+
+  static const List<RegionInstanceGroupManagerListManagedInstancesResults>
+  values = [pageless, paginated];
 }
 
 // ===========================================================================
@@ -42,18 +55,35 @@ enum RegionInstanceGroupManagerListManagedInstancesResults
 /// Note: `ANY` is not a Dart reserved word — bare [any] is safe; we
 /// avoid a method-name clash on `Iterable.any` because this is a
 /// value of an enum, not a method.
-enum RegionInstanceGroupManagerDistributionPolicyTargetShape
-    implements TerraformEnum {
-  even('EVEN'),
-  balanced('BALANCED'),
-  any('ANY'),
-  anySingleZone('ANY_SINGLE_ZONE');
+extension type const RegionInstanceGroupManagerDistributionPolicyTargetShape._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerDistributionPolicyTargetShape.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerDistributionPolicyTargetShape.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerDistributionPolicyTargetShape.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const RegionInstanceGroupManagerDistributionPolicyTargetShape(
-    this.terraformValue,
+  static const even = RegionInstanceGroupManagerDistributionPolicyTargetShape._(
+    TfArgLiteral('EVEN'),
   );
-  @override
-  final String terraformValue;
+  static const balanced =
+      RegionInstanceGroupManagerDistributionPolicyTargetShape._(
+        TfArgLiteral('BALANCED'),
+      );
+  static const any = RegionInstanceGroupManagerDistributionPolicyTargetShape._(
+    TfArgLiteral('ANY'),
+  );
+  static const anySingleZone =
+      RegionInstanceGroupManagerDistributionPolicyTargetShape._(
+        TfArgLiteral('ANY_SINGLE_ZONE'),
+      );
+
+  static const List<RegionInstanceGroupManagerDistributionPolicyTargetShape>
+  values = [even, balanced, any, anySingleZone];
 }
 
 // ===========================================================================
@@ -63,56 +93,115 @@ enum RegionInstanceGroupManagerDistributionPolicyTargetShape
 /// `update_policy.type`. Controls whether the MIG actively performs
 /// the rolling update or waits for an external action (resize,
 /// recreate-instances) to apply it.
-enum RegionInstanceGroupManagerUpdatePolicyType implements TerraformEnum {
-  opportunistic('OPPORTUNISTIC'),
-  proactive('PROACTIVE');
+extension type const RegionInstanceGroupManagerUpdatePolicyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerUpdatePolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerUpdatePolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerUpdatePolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionInstanceGroupManagerUpdatePolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const opportunistic = RegionInstanceGroupManagerUpdatePolicyType._(
+    TfArgLiteral('OPPORTUNISTIC'),
+  );
+  static const proactive = RegionInstanceGroupManagerUpdatePolicyType._(
+    TfArgLiteral('PROACTIVE'),
+  );
+
+  static const List<RegionInstanceGroupManagerUpdatePolicyType> values = [
+    opportunistic,
+    proactive,
+  ];
 }
 
 /// `update_policy.instance_redistribution_type` (regional only).
 /// `PROACTIVE` (default) keeps zones balanced as VMs come and go;
 /// `NONE` disables proactive rebalancing.
-enum RegionInstanceGroupManagerInstanceRedistributionType
-    implements TerraformEnum {
-  proactive('PROACTIVE'),
-  none('NONE');
+extension type const RegionInstanceGroupManagerInstanceRedistributionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerInstanceRedistributionType.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerInstanceRedistributionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerInstanceRedistributionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const RegionInstanceGroupManagerInstanceRedistributionType(
-    this.terraformValue,
+  static const proactive =
+      RegionInstanceGroupManagerInstanceRedistributionType._(
+        TfArgLiteral('PROACTIVE'),
+      );
+  static const none = RegionInstanceGroupManagerInstanceRedistributionType._(
+    TfArgLiteral('NONE'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<RegionInstanceGroupManagerInstanceRedistributionType>
+  values = [proactive, none];
 }
 
 /// `update_policy.minimal_action` / `update_policy.most_disruptive_allowed_action`.
 /// Shared enum — both fields accept the same value set.
-enum RegionInstanceGroupManagerUpdatePolicyAction implements TerraformEnum {
-  none('NONE'),
-  refresh('REFRESH'),
-  restart('RESTART'),
-  replace('REPLACE');
+extension type const RegionInstanceGroupManagerUpdatePolicyAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerUpdatePolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerUpdatePolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerUpdatePolicyAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RegionInstanceGroupManagerUpdatePolicyAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RegionInstanceGroupManagerUpdatePolicyAction._(
+    TfArgLiteral('NONE'),
+  );
+  static const refresh = RegionInstanceGroupManagerUpdatePolicyAction._(
+    TfArgLiteral('REFRESH'),
+  );
+  static const restart = RegionInstanceGroupManagerUpdatePolicyAction._(
+    TfArgLiteral('RESTART'),
+  );
+  static const replace = RegionInstanceGroupManagerUpdatePolicyAction._(
+    TfArgLiteral('REPLACE'),
+  );
+
+  static const List<RegionInstanceGroupManagerUpdatePolicyAction> values = [
+    none,
+    refresh,
+    restart,
+    replace,
+  ];
 }
 
 /// `update_policy.replacement_method`. `SUBSTITUTE` (default) replaces
 /// VMs with newly-named ones; `RECREATE` preserves instance names but
 /// requires `max_unavailable_*` > 0.
-enum RegionInstanceGroupManagerUpdatePolicyReplacementMethod
-    implements TerraformEnum {
-  substitute('SUBSTITUTE'),
-  recreate('RECREATE');
+extension type const RegionInstanceGroupManagerUpdatePolicyReplacementMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RegionInstanceGroupManagerUpdatePolicyReplacementMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionInstanceGroupManagerUpdatePolicyReplacementMethod.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const RegionInstanceGroupManagerUpdatePolicyReplacementMethod.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const RegionInstanceGroupManagerUpdatePolicyReplacementMethod(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const substitute =
+      RegionInstanceGroupManagerUpdatePolicyReplacementMethod._(
+        TfArgLiteral('SUBSTITUTE'),
+      );
+  static const recreate =
+      RegionInstanceGroupManagerUpdatePolicyReplacementMethod._(
+        TfArgLiteral('RECREATE'),
+      );
+
+  static const List<RegionInstanceGroupManagerUpdatePolicyReplacementMethod>
+  values = [substitute, recreate];
 }
 
 // ===========================================================================
@@ -263,14 +352,12 @@ class ComputeRegionInstanceGroupManagerUpdatePolicy {
   replacementMethod;
 
   Map<String, Object?> toArgMap() => {
-    'minimal_action': minimalAction.terraformValue,
-    'type': type.terraformValue,
+    'minimal_action': minimalAction.toTfJson(),
+    'type': type.toTfJson(),
     if (instanceRedistributionType != null)
-      'instance_redistribution_type':
-          instanceRedistributionType!.terraformValue,
+      'instance_redistribution_type': instanceRedistributionType!.toTfJson(),
     if (mostDisruptiveAllowedAction != null)
-      'most_disruptive_allowed_action':
-          mostDisruptiveAllowedAction!.terraformValue,
+      'most_disruptive_allowed_action': mostDisruptiveAllowedAction!.toTfJson(),
     if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed!.toTfJson(),
     if (maxSurgePercent != null)
       'max_surge_percent': maxSurgePercent!.toTfJson(),
@@ -279,7 +366,7 @@ class ComputeRegionInstanceGroupManagerUpdatePolicy {
     if (maxUnavailablePercent != null)
       'max_unavailable_percent': maxUnavailablePercent!.toTfJson(),
     if (replacementMethod != null)
-      'replacement_method': replacementMethod!.terraformValue,
+      'replacement_method': replacementMethod!.toTfJson(),
   };
 }
 
@@ -601,9 +688,7 @@ class ComputeRegionInstanceGroupManagerResourcePolicies {
 ///     'asia-northeast1-a',
 ///     'asia-northeast1-b',
 ///   ]),
-///   distributionPolicyTargetShape: TfArg.literal(
-///     RegionInstanceGroupManagerDistributionPolicyTargetShape.even,
-///   ),
+///   distributionPolicyTargetShape: RegionInstanceGroupManagerDistributionPolicyTargetShape.even,
 ///   versions: [
 ///     ComputeRegionInstanceGroupManagerVersion(
 ///       instanceTemplate: TfArg.literal(
@@ -650,12 +735,12 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     TfArg<num>? targetSize,
     TfArg<num>? targetStoppedSize,
     TfArg<num>? targetSuspendedSize,
-    TfArg<RegionInstanceGroupManagerListManagedInstancesResults>?
+    RegionInstanceGroupManagerListManagedInstancesResults?
     listManagedInstancesResults,
     TfArg<bool>? waitForInstances,
     TfArg<String>? waitForInstancesStatus,
     TfArg<List<String>>? distributionPolicyZones,
-    TfArg<RegionInstanceGroupManagerDistributionPolicyTargetShape>?
+    RegionInstanceGroupManagerDistributionPolicyTargetShape?
     distributionPolicyTargetShape,
     TfArg<List<RefTo<GoogleComputeTargetPool>>>? targetPools,
     required List<ComputeRegionInstanceGroupManagerVersion> versions,

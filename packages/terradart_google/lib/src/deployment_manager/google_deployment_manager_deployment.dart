@@ -8,23 +8,49 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDeploymentManagerDeploymentSensitive = <String>{};
 
 /// Deployment Manager Deployment Create enum for `create_policy`.
-enum DeploymentManagerDeploymentCreatePolicy implements TerraformEnum {
-  acquire('ACQUIRE'),
-  createOrAcquire('CREATE_OR_ACQUIRE');
+extension type const DeploymentManagerDeploymentCreatePolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  DeploymentManagerDeploymentCreatePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DeploymentManagerDeploymentCreatePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DeploymentManagerDeploymentCreatePolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DeploymentManagerDeploymentCreatePolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const acquire = DeploymentManagerDeploymentCreatePolicy._(
+    TfArgLiteral('ACQUIRE'),
+  );
+  static const createOrAcquire = DeploymentManagerDeploymentCreatePolicy._(
+    TfArgLiteral('CREATE_OR_ACQUIRE'),
+  );
+
+  static const List<DeploymentManagerDeploymentCreatePolicy> values = [
+    acquire,
+    createOrAcquire,
+  ];
 }
 
 /// Deployment Manager Deployment Delete enum for `delete_policy`.
-enum DeploymentManagerDeploymentDeletePolicy implements TerraformEnum {
-  abandon('ABANDON'),
-  delete('DELETE');
+extension type const DeploymentManagerDeploymentDeletePolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  DeploymentManagerDeploymentDeletePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  DeploymentManagerDeploymentDeletePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DeploymentManagerDeploymentDeletePolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DeploymentManagerDeploymentDeletePolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const abandon = DeploymentManagerDeploymentDeletePolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+  static const delete = DeploymentManagerDeploymentDeletePolicy._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<DeploymentManagerDeploymentDeletePolicy> values = [
+    abandon,
+    delete,
+  ];
 }
 
 /// Typed helper for the `labels` block of
@@ -102,8 +128,8 @@ final class GoogleDeploymentManagerDeployment extends Resource {
 
   GoogleDeploymentManagerDeployment(
     super.localName, {
-    TfArg<DeploymentManagerDeploymentCreatePolicy>? createPolicy,
-    TfArg<DeploymentManagerDeploymentDeletePolicy>? deletePolicy,
+    DeploymentManagerDeploymentCreatePolicy? createPolicy,
+    DeploymentManagerDeploymentDeletePolicy? deletePolicy,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> name,

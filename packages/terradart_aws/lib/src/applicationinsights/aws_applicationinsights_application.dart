@@ -7,12 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApplicationinsightsApplicationSensitive = <String>{};
 
 /// Applicationinsights Application Grouping enum for `grouping_type`.
-enum ApplicationinsightsApplicationGroupingType implements TerraformEnum {
-  accountBased('ACCOUNT_BASED');
+extension type const ApplicationinsightsApplicationGroupingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApplicationinsightsApplicationGroupingType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationinsightsApplicationGroupingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationinsightsApplicationGroupingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApplicationinsightsApplicationGroupingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accountBased = ApplicationinsightsApplicationGroupingType._(
+    TfArgLiteral('ACCOUNT_BASED'),
+  );
+
+  static const List<ApplicationinsightsApplicationGroupingType> values = [
+    accountBased,
+  ];
 }
 
 /// Factory wrapper for `aws_applicationinsights_application`.
@@ -24,7 +35,7 @@ final class AwsApplicationinsightsApplication extends Resource {
     TfArg<bool>? autoConfigEnabled,
     TfArg<bool>? autoCreate,
     TfArg<bool>? cweMonitorEnabled,
-    TfArg<ApplicationinsightsApplicationGroupingType>? groupingType,
+    ApplicationinsightsApplicationGroupingType? groupingType,
     TfArg<bool>? opsCenterEnabled,
     TfArg<String>? opsItemSnsTopicArn,
     TfArg<String>? region,

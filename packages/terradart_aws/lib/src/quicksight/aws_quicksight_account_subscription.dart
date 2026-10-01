@@ -7,27 +7,61 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightAccountSubscriptionSensitive = <String>{};
 
 /// Quicksight Account Subscription Authentication enum for `authentication_method`.
-enum QuicksightAccountSubscriptionAuthenticationMethod
-    implements TerraformEnum {
-  iamAndQuicksight('IAM_AND_QUICKSIGHT'),
-  iamOnly('IAM_ONLY'),
-  activeDirectory('ACTIVE_DIRECTORY'),
-  iamIdentityCenter('IAM_IDENTITY_CENTER');
+extension type const QuicksightAccountSubscriptionAuthenticationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  QuicksightAccountSubscriptionAuthenticationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightAccountSubscriptionAuthenticationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightAccountSubscriptionAuthenticationMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const QuicksightAccountSubscriptionAuthenticationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iamAndQuicksight =
+      QuicksightAccountSubscriptionAuthenticationMethod._(
+        TfArgLiteral('IAM_AND_QUICKSIGHT'),
+      );
+  static const iamOnly = QuicksightAccountSubscriptionAuthenticationMethod._(
+    TfArgLiteral('IAM_ONLY'),
+  );
+  static const activeDirectory =
+      QuicksightAccountSubscriptionAuthenticationMethod._(
+        TfArgLiteral('ACTIVE_DIRECTORY'),
+      );
+  static const iamIdentityCenter =
+      QuicksightAccountSubscriptionAuthenticationMethod._(
+        TfArgLiteral('IAM_IDENTITY_CENTER'),
+      );
+
+  static const List<QuicksightAccountSubscriptionAuthenticationMethod> values =
+      [iamAndQuicksight, iamOnly, activeDirectory, iamIdentityCenter];
 }
 
 /// Quicksight Account Subscription enum for `edition`.
-enum QuicksightAccountSubscriptionEdition implements TerraformEnum {
-  standard('STANDARD'),
-  enterprise('ENTERPRISE'),
-  enterpriseAndQ('ENTERPRISE_AND_Q');
+extension type const QuicksightAccountSubscriptionEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightAccountSubscriptionEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightAccountSubscriptionEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightAccountSubscriptionEdition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const QuicksightAccountSubscriptionEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = QuicksightAccountSubscriptionEdition._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const enterprise = QuicksightAccountSubscriptionEdition._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const enterpriseAndQ = QuicksightAccountSubscriptionEdition._(
+    TfArgLiteral('ENTERPRISE_AND_Q'),
+  );
+
+  static const List<QuicksightAccountSubscriptionEdition> values = [
+    standard,
+    enterprise,
+    enterpriseAndQ,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_account_subscription`.
@@ -40,14 +74,14 @@ final class AwsQuicksightAccountSubscription extends Resource {
     TfArg<String>? activeDirectoryName,
     TfArg<List<String>>? adminGroup,
     TfArg<List<String>>? adminProGroup,
-    required TfArg<QuicksightAccountSubscriptionAuthenticationMethod>
+    required QuicksightAccountSubscriptionAuthenticationMethod
     authenticationMethod,
     TfArg<List<String>>? authorGroup,
     TfArg<List<String>>? authorProGroup,
     TfArg<String>? awsAccountId,
     TfArg<String>? contactNumber,
     TfArg<String>? directoryId,
-    required TfArg<QuicksightAccountSubscriptionEdition> edition,
+    required QuicksightAccountSubscriptionEdition edition,
     TfArg<String>? emailAddress,
     TfArg<String>? firstName,
     TfArg<String>? iamIdentityCenterInstanceArn,

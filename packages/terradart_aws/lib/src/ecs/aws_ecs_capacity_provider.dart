@@ -25,9 +25,9 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 
   final TfArg<String> autoScalingGroupArn;
 
-  final TfArg<EcsCapacityProviderManagedDraining>? managedDraining;
+  final EcsCapacityProviderManagedDraining? managedDraining;
 
-  final TfArg<EcsCapacityProviderManagedTerminationProtection>?
+  final EcsCapacityProviderManagedTerminationProtection?
   managedTerminationProtection;
 
   final EcsCapacityProviderManagedScaling? managedScaling;
@@ -41,23 +41,49 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 }
 
 /// `managed_draining` — derived from the provider schema description.
-enum EcsCapacityProviderManagedDraining implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsCapacityProviderManagedDraining._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderManagedDraining.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderManagedDraining.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderManagedDraining.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderManagedDraining(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsCapacityProviderManagedDraining._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EcsCapacityProviderManagedDraining._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EcsCapacityProviderManagedDraining> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `managed_termination_protection` — derived from the provider schema description.
-enum EcsCapacityProviderManagedTerminationProtection implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsCapacityProviderManagedTerminationProtection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EcsCapacityProviderManagedTerminationProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderManagedTerminationProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderManagedTerminationProtection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderManagedTerminationProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsCapacityProviderManagedTerminationProtection._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EcsCapacityProviderManagedTerminationProtection._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EcsCapacityProviderManagedTerminationProtection> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `auto_scaling_group_provider.managed_scaling` block of
@@ -78,7 +104,7 @@ final class EcsCapacityProviderManagedScaling {
 
   final TfArg<num>? minimumScalingStepSize;
 
-  final TfArg<EcsCapacityProviderStatus>? status;
+  final EcsCapacityProviderStatus? status;
 
   final TfArg<num>? targetCapacity;
 
@@ -92,13 +118,18 @@ final class EcsCapacityProviderManagedScaling {
 }
 
 /// `status` — derived from the provider schema description.
-enum EcsCapacityProviderStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsCapacityProviderStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsCapacityProviderStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = EcsCapacityProviderStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<EcsCapacityProviderStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `managed_instances_provider` block of
@@ -115,7 +146,7 @@ final class EcsCapacityProviderManagedInstancesProvider {
 
   final RefTo<AwsIamRole> infrastructureRoleArn;
 
-  final TfArg<EcsCapacityProviderPropagateTags>? propagateTags;
+  final EcsCapacityProviderPropagateTags? propagateTags;
 
   final EcsCapacityProviderAutoRepairConfiguration? autoRepairConfiguration;
 
@@ -134,13 +165,23 @@ final class EcsCapacityProviderManagedInstancesProvider {
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum EcsCapacityProviderPropagateTags implements TerraformEnum {
-  capacityProvider('CAPACITY_PROVIDER'),
-  none('NONE');
+extension type const EcsCapacityProviderPropagateTags._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderPropagateTags.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderPropagateTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderPropagateTags.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderPropagateTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacityProvider = EcsCapacityProviderPropagateTags._(
+    TfArgLiteral('CAPACITY_PROVIDER'),
+  );
+  static const none = EcsCapacityProviderPropagateTags._(TfArgLiteral('NONE'));
+
+  static const List<EcsCapacityProviderPropagateTags> values = [
+    capacityProvider,
+    none,
+  ];
 }
 
 /// Typed helper for the `managed_instances_provider.auto_repair_configuration` block of
@@ -149,7 +190,7 @@ enum EcsCapacityProviderPropagateTags implements TerraformEnum {
 final class EcsCapacityProviderAutoRepairConfiguration {
   const EcsCapacityProviderAutoRepairConfiguration({this.actionsStatus});
 
-  final TfArg<EcsCapacityProviderActionsStatus>? actionsStatus;
+  final EcsCapacityProviderActionsStatus? actionsStatus;
 
   Map<String, Object?> encode() => {
     'actions_status': ?actionsStatus?.toTfJson(),
@@ -157,13 +198,25 @@ final class EcsCapacityProviderAutoRepairConfiguration {
 }
 
 /// `actions_status` — derived from the provider schema description.
-enum EcsCapacityProviderActionsStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsCapacityProviderActionsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderActionsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderActionsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderActionsStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderActionsStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsCapacityProviderActionsStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EcsCapacityProviderActionsStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EcsCapacityProviderActionsStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `managed_instances_provider.infrastructure_optimization` block of
@@ -194,11 +247,11 @@ final class EcsCapacityProviderInstanceLaunchTemplate {
     this.storageConfiguration,
   });
 
-  final TfArg<EcsCapacityProviderCapacityOptionType>? capacityOptionType;
+  final EcsCapacityProviderCapacityOptionType? capacityOptionType;
 
   final TfArg<String> ec2InstanceProfileArn;
 
-  final TfArg<EcsCapacityProviderMonitoring>? monitoring;
+  final EcsCapacityProviderMonitoring? monitoring;
 
   final EcsCapacityProviderCapacityReservations? capacityReservations;
 
@@ -223,24 +276,47 @@ final class EcsCapacityProviderInstanceLaunchTemplate {
 }
 
 /// `capacity_option_type` — derived from the provider schema description.
-enum EcsCapacityProviderCapacityOptionType implements TerraformEnum {
-  onDemand('ON_DEMAND'),
-  spot('SPOT'),
-  reserved('RESERVED');
+extension type const EcsCapacityProviderCapacityOptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderCapacityOptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderCapacityOptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderCapacityOptionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderCapacityOptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onDemand = EcsCapacityProviderCapacityOptionType._(
+    TfArgLiteral('ON_DEMAND'),
+  );
+  static const spot = EcsCapacityProviderCapacityOptionType._(
+    TfArgLiteral('SPOT'),
+  );
+  static const reserved = EcsCapacityProviderCapacityOptionType._(
+    TfArgLiteral('RESERVED'),
+  );
+
+  static const List<EcsCapacityProviderCapacityOptionType> values = [
+    onDemand,
+    spot,
+    reserved,
+  ];
 }
 
 /// `monitoring` — derived from the provider schema description.
-enum EcsCapacityProviderMonitoring implements TerraformEnum {
-  basic('BASIC'),
-  detailed('DETAILED');
+extension type const EcsCapacityProviderMonitoring._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderMonitoring.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderMonitoring.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderMonitoring.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderMonitoring(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = EcsCapacityProviderMonitoring._(TfArgLiteral('BASIC'));
+  static const detailed = EcsCapacityProviderMonitoring._(
+    TfArgLiteral('DETAILED'),
+  );
+
+  static const List<EcsCapacityProviderMonitoring> values = [basic, detailed];
 }
 
 /// Typed helper for the `managed_instances_provider.instance_launch_template.capacity_reservations` block of
@@ -254,7 +330,7 @@ final class EcsCapacityProviderCapacityReservations {
 
   final TfArg<String>? reservationGroupArn;
 
-  final TfArg<EcsCapacityProviderReservationPreference>? reservationPreference;
+  final EcsCapacityProviderReservationPreference? reservationPreference;
 
   Map<String, Object?> encode() => {
     'reservation_group_arn': ?reservationGroupArn?.toTfJson(),
@@ -263,14 +339,31 @@ final class EcsCapacityProviderCapacityReservations {
 }
 
 /// `reservation_preference` — derived from the provider schema description.
-enum EcsCapacityProviderReservationPreference implements TerraformEnum {
-  reservationsOnly('RESERVATIONS_ONLY'),
-  reservationsFirst('RESERVATIONS_FIRST'),
-  reservationsExcluded('RESERVATIONS_EXCLUDED');
+extension type const EcsCapacityProviderReservationPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderReservationPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderReservationPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderReservationPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderReservationPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const reservationsOnly = EcsCapacityProviderReservationPreference._(
+    TfArgLiteral('RESERVATIONS_ONLY'),
+  );
+  static const reservationsFirst = EcsCapacityProviderReservationPreference._(
+    TfArgLiteral('RESERVATIONS_FIRST'),
+  );
+  static const reservationsExcluded =
+      EcsCapacityProviderReservationPreference._(
+        TfArgLiteral('RESERVATIONS_EXCLUDED'),
+      );
+
+  static const List<EcsCapacityProviderReservationPreference> values = [
+    reservationsOnly,
+    reservationsFirst,
+    reservationsExcluded,
+  ];
 }
 
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements` block of
@@ -304,29 +397,28 @@ final class EcsCapacityProviderInstanceRequirements {
     required this.vcpuCount,
   });
 
-  final List<TfArg<EcsCapacityProviderAcceleratorManufacturers>>?
+  final List<EcsCapacityProviderAcceleratorManufacturers>?
   acceleratorManufacturers;
 
-  final List<TfArg<EcsCapacityProviderAcceleratorNames>>? acceleratorNames;
+  final List<EcsCapacityProviderAcceleratorNames>? acceleratorNames;
 
-  final List<TfArg<EcsCapacityProviderAcceleratorTypes>>? acceleratorTypes;
+  final List<EcsCapacityProviderAcceleratorTypes>? acceleratorTypes;
 
   final TfArg<List<String>>? allowedInstanceTypes;
 
-  final TfArg<EcsCapacityProviderBareMetal>? bareMetal;
+  final EcsCapacityProviderBareMetal? bareMetal;
 
-  final TfArg<EcsCapacityProviderBurstablePerformance>? burstablePerformance;
+  final EcsCapacityProviderBurstablePerformance? burstablePerformance;
 
-  final List<TfArg<EcsCapacityProviderCpuManufacturers>>? cpuManufacturers;
+  final List<EcsCapacityProviderCpuManufacturers>? cpuManufacturers;
 
   final TfArg<List<String>>? excludedInstanceTypes;
 
-  final List<TfArg<EcsCapacityProviderInstanceGenerations>>?
-  instanceGenerations;
+  final List<EcsCapacityProviderInstanceGenerations>? instanceGenerations;
 
-  final TfArg<EcsCapacityProviderLocalStorage>? localStorage;
+  final EcsCapacityProviderLocalStorage? localStorage;
 
-  final List<TfArg<EcsCapacityProviderLocalStorageTypes>>? localStorageTypes;
+  final List<EcsCapacityProviderLocalStorageTypes>? localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -396,111 +488,267 @@ final class EcsCapacityProviderInstanceRequirements {
 }
 
 /// `accelerator_manufacturers` — derived from the provider schema description.
-enum EcsCapacityProviderAcceleratorManufacturers implements TerraformEnum {
-  amazonWebServices('amazon-web-services'),
-  amd('amd'),
-  nvidia('nvidia'),
-  xilinx('xilinx'),
-  habana('habana');
+extension type const EcsCapacityProviderAcceleratorManufacturers._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EcsCapacityProviderAcceleratorManufacturers.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderAcceleratorManufacturers.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderAcceleratorManufacturers.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderAcceleratorManufacturers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amazonWebServices =
+      EcsCapacityProviderAcceleratorManufacturers._(
+        TfArgLiteral('amazon-web-services'),
+      );
+  static const amd = EcsCapacityProviderAcceleratorManufacturers._(
+    TfArgLiteral('amd'),
+  );
+  static const nvidia = EcsCapacityProviderAcceleratorManufacturers._(
+    TfArgLiteral('nvidia'),
+  );
+  static const xilinx = EcsCapacityProviderAcceleratorManufacturers._(
+    TfArgLiteral('xilinx'),
+  );
+  static const habana = EcsCapacityProviderAcceleratorManufacturers._(
+    TfArgLiteral('habana'),
+  );
+
+  static const List<EcsCapacityProviderAcceleratorManufacturers> values = [
+    amazonWebServices,
+    amd,
+    nvidia,
+    xilinx,
+    habana,
+  ];
 }
 
 /// `accelerator_names` — derived from the provider schema description.
-enum EcsCapacityProviderAcceleratorNames implements TerraformEnum {
-  a100('a100'),
-  inferentia('inferentia'),
-  k520('k520'),
-  k80('k80'),
-  m60('m60'),
-  radeonProV520('radeon-pro-v520'),
-  t4('t4'),
-  vu9p('vu9p'),
-  v100('v100'),
-  a10g('a10g'),
-  h100('h100'),
-  t4g('t4g');
+extension type const EcsCapacityProviderAcceleratorNames._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderAcceleratorNames.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderAcceleratorNames.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderAcceleratorNames.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderAcceleratorNames(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a100 = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('a100'),
+  );
+  static const inferentia = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('inferentia'),
+  );
+  static const k520 = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('k520'),
+  );
+  static const k80 = EcsCapacityProviderAcceleratorNames._(TfArgLiteral('k80'));
+  static const m60 = EcsCapacityProviderAcceleratorNames._(TfArgLiteral('m60'));
+  static const radeonProV520 = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('radeon-pro-v520'),
+  );
+  static const t4 = EcsCapacityProviderAcceleratorNames._(TfArgLiteral('t4'));
+  static const vu9p = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('vu9p'),
+  );
+  static const v100 = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('v100'),
+  );
+  static const a10g = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('a10g'),
+  );
+  static const h100 = EcsCapacityProviderAcceleratorNames._(
+    TfArgLiteral('h100'),
+  );
+  static const t4g = EcsCapacityProviderAcceleratorNames._(TfArgLiteral('t4g'));
+
+  static const List<EcsCapacityProviderAcceleratorNames> values = [
+    a100,
+    inferentia,
+    k520,
+    k80,
+    m60,
+    radeonProV520,
+    t4,
+    vu9p,
+    v100,
+    a10g,
+    h100,
+    t4g,
+  ];
 }
 
 /// `accelerator_types` — derived from the provider schema description.
-enum EcsCapacityProviderAcceleratorTypes implements TerraformEnum {
-  gpu('gpu'),
-  fpga('fpga'),
-  inference('inference');
+extension type const EcsCapacityProviderAcceleratorTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderAcceleratorTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderAcceleratorTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderAcceleratorTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderAcceleratorTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gpu = EcsCapacityProviderAcceleratorTypes._(TfArgLiteral('gpu'));
+  static const fpga = EcsCapacityProviderAcceleratorTypes._(
+    TfArgLiteral('fpga'),
+  );
+  static const inference = EcsCapacityProviderAcceleratorTypes._(
+    TfArgLiteral('inference'),
+  );
+
+  static const List<EcsCapacityProviderAcceleratorTypes> values = [
+    gpu,
+    fpga,
+    inference,
+  ];
 }
 
 /// `bare_metal` — derived from the provider schema description.
-enum EcsCapacityProviderBareMetal implements TerraformEnum {
-  included('included'),
-  required('required'),
-  excluded('excluded');
+extension type const EcsCapacityProviderBareMetal._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderBareMetal.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderBareMetal.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderBareMetal.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderBareMetal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = EcsCapacityProviderBareMetal._(
+    TfArgLiteral('included'),
+  );
+  static const required = EcsCapacityProviderBareMetal._(
+    TfArgLiteral('required'),
+  );
+  static const excluded = EcsCapacityProviderBareMetal._(
+    TfArgLiteral('excluded'),
+  );
+
+  static const List<EcsCapacityProviderBareMetal> values = [
+    included,
+    required,
+    excluded,
+  ];
 }
 
 /// `burstable_performance` — derived from the provider schema description.
-enum EcsCapacityProviderBurstablePerformance implements TerraformEnum {
-  included('included'),
-  required('required'),
-  excluded('excluded');
+extension type const EcsCapacityProviderBurstablePerformance._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderBurstablePerformance.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderBurstablePerformance.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderBurstablePerformance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderBurstablePerformance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = EcsCapacityProviderBurstablePerformance._(
+    TfArgLiteral('included'),
+  );
+  static const required = EcsCapacityProviderBurstablePerformance._(
+    TfArgLiteral('required'),
+  );
+  static const excluded = EcsCapacityProviderBurstablePerformance._(
+    TfArgLiteral('excluded'),
+  );
+
+  static const List<EcsCapacityProviderBurstablePerformance> values = [
+    included,
+    required,
+    excluded,
+  ];
 }
 
 /// `cpu_manufacturers` — derived from the provider schema description.
-enum EcsCapacityProviderCpuManufacturers implements TerraformEnum {
-  intel('intel'),
-  amd('amd'),
-  amazonWebServices('amazon-web-services');
+extension type const EcsCapacityProviderCpuManufacturers._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderCpuManufacturers.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderCpuManufacturers.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderCpuManufacturers.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderCpuManufacturers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const intel = EcsCapacityProviderCpuManufacturers._(
+    TfArgLiteral('intel'),
+  );
+  static const amd = EcsCapacityProviderCpuManufacturers._(TfArgLiteral('amd'));
+  static const amazonWebServices = EcsCapacityProviderCpuManufacturers._(
+    TfArgLiteral('amazon-web-services'),
+  );
+
+  static const List<EcsCapacityProviderCpuManufacturers> values = [
+    intel,
+    amd,
+    amazonWebServices,
+  ];
 }
 
 /// `instance_generations` — derived from the provider schema description.
-enum EcsCapacityProviderInstanceGenerations implements TerraformEnum {
-  current('current'),
-  previous('previous');
+extension type const EcsCapacityProviderInstanceGenerations._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderInstanceGenerations.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderInstanceGenerations.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderInstanceGenerations.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderInstanceGenerations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const current = EcsCapacityProviderInstanceGenerations._(
+    TfArgLiteral('current'),
+  );
+  static const previous = EcsCapacityProviderInstanceGenerations._(
+    TfArgLiteral('previous'),
+  );
+
+  static const List<EcsCapacityProviderInstanceGenerations> values = [
+    current,
+    previous,
+  ];
 }
 
 /// `local_storage` — derived from the provider schema description.
-enum EcsCapacityProviderLocalStorage implements TerraformEnum {
-  included('included'),
-  required('required'),
-  excluded('excluded');
+extension type const EcsCapacityProviderLocalStorage._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderLocalStorage.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderLocalStorage.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderLocalStorage.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsCapacityProviderLocalStorage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = EcsCapacityProviderLocalStorage._(
+    TfArgLiteral('included'),
+  );
+  static const required = EcsCapacityProviderLocalStorage._(
+    TfArgLiteral('required'),
+  );
+  static const excluded = EcsCapacityProviderLocalStorage._(
+    TfArgLiteral('excluded'),
+  );
+
+  static const List<EcsCapacityProviderLocalStorage> values = [
+    included,
+    required,
+    excluded,
+  ];
 }
 
 /// `local_storage_types` — derived from the provider schema description.
-enum EcsCapacityProviderLocalStorageTypes implements TerraformEnum {
-  hdd('hdd'),
-  ssd('ssd');
+extension type const EcsCapacityProviderLocalStorageTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsCapacityProviderLocalStorageTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsCapacityProviderLocalStorageTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsCapacityProviderLocalStorageTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsCapacityProviderLocalStorageTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hdd = EcsCapacityProviderLocalStorageTypes._(
+    TfArgLiteral('hdd'),
+  );
+  static const ssd = EcsCapacityProviderLocalStorageTypes._(
+    TfArgLiteral('ssd'),
+  );
+
+  static const List<EcsCapacityProviderLocalStorageTypes> values = [hdd, ssd];
 }
 
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.accelerator_count` block of

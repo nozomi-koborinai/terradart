@@ -35,9 +35,7 @@ curatedDoc: |-
   ///   forceDestroy: TfArg.literal(true),
   ///   format: const StorageInsightsReportConfigCsvFormat(),
   ///   frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
-  ///     frequency: TfArg.literal(
-  ///       StorageInsightsReportConfigFrequency.weekly,
-  ///     ),
+  ///     frequency: StorageInsightsReportConfigFrequency.weekly,
   ///     startDate: .new(
   ///       year: TfArg.literal(2099),
   ///       month: TfArg.literal(1),

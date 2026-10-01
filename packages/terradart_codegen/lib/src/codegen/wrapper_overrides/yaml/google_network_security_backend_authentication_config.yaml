@@ -26,9 +26,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-backend-auth'),
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('TerraDart smoke backend authentication'),
-  ///   wellKnownRoots: TfArg.literal(
-  ///     NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,
-  ///   ),
+  ///   wellKnownRoots: NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,
   /// );
   /// ```
 

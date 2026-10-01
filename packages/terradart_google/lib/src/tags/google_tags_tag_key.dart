@@ -7,13 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleTagsTagKeySensitive = <String>{};
 
 /// Tags Tag Key enum for `purpose`.
-enum TagsTagKeyPurpose implements TerraformEnum {
-  gceFirewall('GCE_FIREWALL'),
-  dataGovernance('DATA_GOVERNANCE');
+extension type const TagsTagKeyPurpose._(TfArg<String> _)
+    implements TfArg<String> {
+  TagsTagKeyPurpose.variable(String name) : this._(TfArg.variable(name));
+  TagsTagKeyPurpose.expression(String template)
+    : this._(TfArg.expression(template));
+  const TagsTagKeyPurpose.arg(TfArg<String> arg) : this._(arg);
 
-  const TagsTagKeyPurpose(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gceFirewall = TagsTagKeyPurpose._(TfArgLiteral('GCE_FIREWALL'));
+  static const dataGovernance = TagsTagKeyPurpose._(
+    TfArgLiteral('DATA_GOVERNANCE'),
+  );
+
+  static const List<TagsTagKeyPurpose> values = [gceFirewall, dataGovernance];
 }
 
 /// Factory wrapper for `google_tags_tag_key`.
@@ -27,7 +33,7 @@ final class GoogleTagsTagKey extends Resource {
     required TfArg<String> shortName,
     required TfArg<String> parent,
     TfArg<String>? description,
-    TfArg<TagsTagKeyPurpose>? purpose,
+    TagsTagKeyPurpose? purpose,
     TfArg<Map<String, String>>? purposeData,
     TfArg<String>? allowedValuesRegex,
     TfArg<String>? deletionPolicy,

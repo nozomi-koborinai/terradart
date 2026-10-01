@@ -12,13 +12,17 @@ const Set<String> _awsElasticacheUserSensitive = <String>{
 };
 
 /// Elasticache User enum for `engine`.
-enum ElasticacheUserEngine implements TerraformEnum {
-  redis('redis'),
-  valkey('valkey');
+extension type const ElasticacheUserEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheUserEngine.variable(String name) : this._(TfArg.variable(name));
+  ElasticacheUserEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheUserEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheUserEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redis = ElasticacheUserEngine._(TfArgLiteral('redis'));
+  static const valkey = ElasticacheUserEngine._(TfArgLiteral('valkey'));
+
+  static const List<ElasticacheUserEngine> values = [redis, valkey];
 }
 
 /// Typed helper for the `authentication_mode` block of
@@ -29,7 +33,7 @@ final class ElasticacheUserAuthenticationMode {
 
   final TfArg<List<String>>? passwords;
 
-  final TfArg<ElasticacheUserType> type;
+  final ElasticacheUserType type;
 
   Map<String, Object?> encode() => {
     'passwords': ?passwords?.toTfJson(),
@@ -38,14 +42,24 @@ final class ElasticacheUserAuthenticationMode {
 }
 
 /// `type` — derived from the provider schema description.
-enum ElasticacheUserType implements TerraformEnum {
-  password('password'),
-  noPasswordRequired('no-password-required'),
-  iam('iam');
+extension type const ElasticacheUserType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheUserType.variable(String name) : this._(TfArg.variable(name));
+  ElasticacheUserType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheUserType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheUserType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const password = ElasticacheUserType._(TfArgLiteral('password'));
+  static const noPasswordRequired = ElasticacheUserType._(
+    TfArgLiteral('no-password-required'),
+  );
+  static const iam = ElasticacheUserType._(TfArgLiteral('iam'));
+
+  static const List<ElasticacheUserType> values = [
+    password,
+    noPasswordRequired,
+    iam,
+  ];
 }
 
 /// Factory wrapper for `aws_elasticache_user`.
@@ -55,7 +69,7 @@ final class AwsElasticacheUser extends Resource {
   AwsElasticacheUser(
     super.localName, {
     required TfArg<String> accessString,
-    required TfArg<ElasticacheUserEngine> engine,
+    required ElasticacheUserEngine engine,
     TfArg<bool>? noPasswordRequired,
     TfArg<List<String>>? passwords,
     TfArg<String>? passwordsWo,

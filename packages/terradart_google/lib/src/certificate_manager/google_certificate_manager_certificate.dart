@@ -13,15 +13,33 @@ const Set<String> _googleCertificateManagerCertificateSensitive = <String>{
 
 /// `scope` — where the certificate may be served (default / edge / all
 /// regions / client-auth mTLS).
-enum CertificateManagerCertificateScope implements TerraformEnum {
-  defaultScope('DEFAULT'),
-  edgeCache('EDGE_CACHE'),
-  allRegions('ALL_REGIONS'),
-  clientAuth('CLIENT_AUTH');
+extension type const CertificateManagerCertificateScope._(TfArg<String> _)
+    implements TfArg<String> {
+  CertificateManagerCertificateScope.variable(String name)
+    : this._(TfArg.variable(name));
+  CertificateManagerCertificateScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const CertificateManagerCertificateScope.arg(TfArg<String> arg) : this._(arg);
 
-  const CertificateManagerCertificateScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultScope = CertificateManagerCertificateScope._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const edgeCache = CertificateManagerCertificateScope._(
+    TfArgLiteral('EDGE_CACHE'),
+  );
+  static const allRegions = CertificateManagerCertificateScope._(
+    TfArgLiteral('ALL_REGIONS'),
+  );
+  static const clientAuth = CertificateManagerCertificateScope._(
+    TfArgLiteral('CLIENT_AUTH'),
+  );
+
+  static const List<CertificateManagerCertificateScope> values = [
+    defaultScope,
+    edgeCache,
+    allRegions,
+    clientAuth,
+  ];
 }
 
 /// Exactly one of `self_managed`, `managed` on `google_certificate_manager_certificate`: the provider rejects
@@ -314,7 +332,7 @@ final class GoogleCertificateManagerCertificate extends Resource {
     required CertificateManagerCertificateProvisioning provisioning,
     TfArg<String>? description,
     TfArg<String>? location,
-    TfArg<CertificateManagerCertificateScope>? scope,
+    CertificateManagerCertificateScope? scope,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     super.lifecycle,

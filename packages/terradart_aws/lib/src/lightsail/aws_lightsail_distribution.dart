@@ -99,7 +99,7 @@ final class LightsailDistributionForwardedHeaders {
 
   final TfArg<List<String>>? headersAllowList;
 
-  final TfArg<LightsailDistributionOption>? option;
+  final LightsailDistributionOption? option;
 
   Map<String, Object?> encode() => {
     'headers_allow_list': ?headersAllowList?.toTfJson(),
@@ -108,14 +108,27 @@ final class LightsailDistributionForwardedHeaders {
 }
 
 /// `option` — derived from the provider schema description.
-enum LightsailDistributionOption implements TerraformEnum {
-  defaultCase('default'),
-  allowList('allow-list'),
-  all('all');
+extension type const LightsailDistributionOption._(TfArg<String> _)
+    implements TfArg<String> {
+  LightsailDistributionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  LightsailDistributionOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const LightsailDistributionOption.arg(TfArg<String> arg) : this._(arg);
 
-  const LightsailDistributionOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = LightsailDistributionOption._(
+    TfArgLiteral('default'),
+  );
+  static const allowList = LightsailDistributionOption._(
+    TfArgLiteral('allow-list'),
+  );
+  static const all = LightsailDistributionOption._(TfArgLiteral('all'));
+
+  static const List<LightsailDistributionOption> values = [
+    defaultCase,
+    allowList,
+    all,
+  ];
 }
 
 /// Typed helper for the `cache_behavior_settings.forwarded_query_strings` block of

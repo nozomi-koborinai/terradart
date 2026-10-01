@@ -25,9 +25,7 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
 
   final TfArg<String>? limit;
 
-  final TfArg<
-    NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation
-  >?
+  final NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation?
   producerInstanceLocation;
 
   final TfArg<List<String>> subnetworks;
@@ -42,16 +40,32 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
 }
 
 /// `producer_instance_location` — derived from the provider schema description.
-enum NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation
-    implements TerraformEnum {
-  producerInstanceLocationUnspecified('PRODUCER_INSTANCE_LOCATION_UNSPECIFIED'),
-  customResourceHierarchyLevels('CUSTOM_RESOURCE_HIERARCHY_LEVELS');
+extension type const NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const producerInstanceLocationUnspecified =
+      NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation._(
+        TfArgLiteral('PRODUCER_INSTANCE_LOCATION_UNSPECIFIED'),
+      );
+  static const customResourceHierarchyLevels =
+      NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation._(
+        TfArgLiteral('CUSTOM_RESOURCE_HIERARCHY_LEVELS'),
+      );
+
+  static const List<
+    NetworkConnectivityServiceConnectionPolicyProducerInstanceLocation
+  >
+  values = [producerInstanceLocationUnspecified, customResourceHierarchyLevels];
 }
 
 /// Factory wrapper for `google_network_connectivity_service_connection_policy`.

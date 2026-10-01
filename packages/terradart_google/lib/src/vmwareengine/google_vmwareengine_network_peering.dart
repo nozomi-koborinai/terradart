@@ -7,18 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVmwareengineNetworkPeeringSensitive = <String>{};
 
 /// Vmwareengine Network Peering Peer Network enum for `peer_network_type`.
-enum VmwareengineNetworkPeeringPeerNetworkType implements TerraformEnum {
-  standard('STANDARD'),
-  vmwareEngineNetwork('VMWARE_ENGINE_NETWORK'),
-  privateServicesAccess('PRIVATE_SERVICES_ACCESS'),
-  netappCloudVolumes('NETAPP_CLOUD_VOLUMES'),
-  thirdPartyService('THIRD_PARTY_SERVICE'),
-  dellPowerscale('DELL_POWERSCALE'),
-  googleCloudNetappVolumes('GOOGLE_CLOUD_NETAPP_VOLUMES');
+extension type const VmwareengineNetworkPeeringPeerNetworkType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VmwareengineNetworkPeeringPeerNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  VmwareengineNetworkPeeringPeerNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareengineNetworkPeeringPeerNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VmwareengineNetworkPeeringPeerNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = VmwareengineNetworkPeeringPeerNetworkType._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const vmwareEngineNetwork =
+      VmwareengineNetworkPeeringPeerNetworkType._(
+        TfArgLiteral('VMWARE_ENGINE_NETWORK'),
+      );
+  static const privateServicesAccess =
+      VmwareengineNetworkPeeringPeerNetworkType._(
+        TfArgLiteral('PRIVATE_SERVICES_ACCESS'),
+      );
+  static const netappCloudVolumes = VmwareengineNetworkPeeringPeerNetworkType._(
+    TfArgLiteral('NETAPP_CLOUD_VOLUMES'),
+  );
+  static const thirdPartyService = VmwareengineNetworkPeeringPeerNetworkType._(
+    TfArgLiteral('THIRD_PARTY_SERVICE'),
+  );
+  static const dellPowerscale = VmwareengineNetworkPeeringPeerNetworkType._(
+    TfArgLiteral('DELL_POWERSCALE'),
+  );
+  static const googleCloudNetappVolumes =
+      VmwareengineNetworkPeeringPeerNetworkType._(
+        TfArgLiteral('GOOGLE_CLOUD_NETAPP_VOLUMES'),
+      );
+
+  static const List<VmwareengineNetworkPeeringPeerNetworkType> values = [
+    standard,
+    vmwareEngineNetwork,
+    privateServicesAccess,
+    netappCloudVolumes,
+    thirdPartyService,
+    dellPowerscale,
+    googleCloudNetappVolumes,
+  ];
 }
 
 /// Factory wrapper for `google_vmwareengine_network_peering`.
@@ -47,7 +79,7 @@ final class GoogleVmwareengineNetworkPeering extends Resource {
     required TfArg<String> name,
     required TfArg<String> vmwareEngineNetwork,
     required TfArg<String> peerNetwork,
-    required TfArg<VmwareengineNetworkPeeringPeerNetworkType> peerNetworkType,
+    required VmwareengineNetworkPeeringPeerNetworkType peerNetworkType,
     TfArg<String>? description,
     TfArg<bool>? exportCustomRoutes,
     TfArg<bool>? exportCustomRoutesWithPublicIp,

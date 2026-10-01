@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsXrayTraceSegmentDestinationSensitive = <String>{};
 
 /// Xray Trace Segment enum for `destination`.
-enum XrayTraceSegmentDestination implements TerraformEnum {
-  xray('XRay'),
-  cloudwatchlogs('CloudWatchLogs');
+extension type const XrayTraceSegmentDestination._(TfArg<String> _)
+    implements TfArg<String> {
+  XrayTraceSegmentDestination.variable(String name)
+    : this._(TfArg.variable(name));
+  XrayTraceSegmentDestination.expression(String template)
+    : this._(TfArg.expression(template));
+  const XrayTraceSegmentDestination.arg(TfArg<String> arg) : this._(arg);
 
-  const XrayTraceSegmentDestination(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const xray = XrayTraceSegmentDestination._(TfArgLiteral('XRay'));
+  static const cloudwatchlogs = XrayTraceSegmentDestination._(
+    TfArgLiteral('CloudWatchLogs'),
+  );
+
+  static const List<XrayTraceSegmentDestination> values = [
+    xray,
+    cloudwatchlogs,
+  ];
 }
 
 /// Factory wrapper for `aws_xray_trace_segment_destination`.
@@ -22,7 +32,7 @@ final class AwsXrayTraceSegmentDestination extends Resource {
 
   AwsXrayTraceSegmentDestination(
     super.localName, {
-    required TfArg<XrayTraceSegmentDestination> destination,
+    required XrayTraceSegmentDestination destination,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

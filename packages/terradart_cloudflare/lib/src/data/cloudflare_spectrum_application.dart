@@ -15,9 +15,9 @@ const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
 final class DataSpectrumApplicationFilter {
   const DataSpectrumApplicationFilter({this.direction, this.order});
 
-  final TfArg<DataSpectrumApplicationDirection>? direction;
+  final DataSpectrumApplicationDirection? direction;
 
-  final TfArg<DataSpectrumApplicationOrder>? order;
+  final DataSpectrumApplicationOrder? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -26,26 +26,48 @@ final class DataSpectrumApplicationFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataSpectrumApplicationDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataSpectrumApplicationDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSpectrumApplicationDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSpectrumApplicationDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSpectrumApplicationDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataSpectrumApplicationDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataSpectrumApplicationDirection._(TfArgLiteral('asc'));
+  static const desc = DataSpectrumApplicationDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSpectrumApplicationDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataSpectrumApplicationOrder implements TerraformEnum {
-  protocol('protocol'),
-  appId('app_id'),
-  createdOn('created_on'),
-  modifiedOn('modified_on'),
-  dns('dns');
+extension type const DataSpectrumApplicationOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSpectrumApplicationOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSpectrumApplicationOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSpectrumApplicationOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataSpectrumApplicationOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const protocol = DataSpectrumApplicationOrder._(
+    TfArgLiteral('protocol'),
+  );
+  static const appId = DataSpectrumApplicationOrder._(TfArgLiteral('app_id'));
+  static const createdOn = DataSpectrumApplicationOrder._(
+    TfArgLiteral('created_on'),
+  );
+  static const modifiedOn = DataSpectrumApplicationOrder._(
+    TfArgLiteral('modified_on'),
+  );
+  static const dns = DataSpectrumApplicationOrder._(TfArgLiteral('dns'));
+
+  static const List<DataSpectrumApplicationOrder> values = [
+    protocol,
+    appId,
+    createdOn,
+    modifiedOn,
+    dns,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_spectrum_application`.

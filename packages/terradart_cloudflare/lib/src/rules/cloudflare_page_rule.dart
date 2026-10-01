@@ -10,13 +10,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflarePageRuleSensitive = <String>{};
 
 /// Page Rule enum for `status`.
-enum PageRuleStatus implements TerraformEnum {
-  active('active'),
-  disabled('disabled');
+extension type const PageRuleStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleStatus.variable(String name) : this._(TfArg.variable(name));
+  PageRuleStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = PageRuleStatus._(TfArgLiteral('active'));
+  static const disabled = PageRuleStatus._(TfArgLiteral('disabled'));
+
+  static const List<PageRuleStatus> values = [active, disabled];
 }
 
 /// Typed helper for the `actions` block of
@@ -62,19 +66,19 @@ final class PageRuleActions {
 
   final TfArg<bool>? alwaysUseHttps;
 
-  final TfArg<PageRuleAutomaticHttpsRewrites>? automaticHttpsRewrites;
+  final PageRuleAutomaticHttpsRewrites? automaticHttpsRewrites;
 
   final TfArg<num>? browserCacheTtl;
 
-  final TfArg<PageRuleBrowserCheck>? browserCheck;
+  final PageRuleBrowserCheck? browserCheck;
 
   final TfArg<String>? bypassCacheOnCookie;
 
-  final TfArg<PageRuleCacheByDeviceType>? cacheByDeviceType;
+  final PageRuleCacheByDeviceType? cacheByDeviceType;
 
-  final TfArg<PageRuleCacheDeceptionArmor>? cacheDeceptionArmor;
+  final PageRuleCacheDeceptionArmor? cacheDeceptionArmor;
 
-  final TfArg<PageRuleCacheLevel>? cacheLevel;
+  final PageRuleCacheLevel? cacheLevel;
 
   final TfArg<String>? cacheOnCookie;
 
@@ -90,39 +94,39 @@ final class PageRuleActions {
 
   final TfArg<num>? edgeCacheTtl;
 
-  final TfArg<PageRuleEmailObfuscation>? emailObfuscation;
+  final PageRuleEmailObfuscation? emailObfuscation;
 
-  final TfArg<PageRuleExplicitCacheControl>? explicitCacheControl;
+  final PageRuleExplicitCacheControl? explicitCacheControl;
 
   final TfArg<String>? hostHeaderOverride;
 
-  final TfArg<PageRuleIpGeolocation>? ipGeolocation;
+  final PageRuleIpGeolocation? ipGeolocation;
 
-  final TfArg<PageRuleMirage>? mirage;
+  final PageRuleMirage? mirage;
 
-  final TfArg<PageRuleOpportunisticEncryption>? opportunisticEncryption;
+  final PageRuleOpportunisticEncryption? opportunisticEncryption;
 
-  final TfArg<PageRuleOriginErrorPagePassThru>? originErrorPagePassThru;
+  final PageRuleOriginErrorPagePassThru? originErrorPagePassThru;
 
-  final TfArg<PageRulePolish>? polish;
+  final PageRulePolish? polish;
 
   final TfArg<String>? resolveOverride;
 
-  final TfArg<PageRuleRespectStrongEtag>? respectStrongEtag;
+  final PageRuleRespectStrongEtag? respectStrongEtag;
 
-  final TfArg<PageRuleResponseBuffering>? responseBuffering;
+  final PageRuleResponseBuffering? responseBuffering;
 
-  final TfArg<PageRuleRocketLoader>? rocketLoader;
+  final PageRuleRocketLoader? rocketLoader;
 
-  final TfArg<PageRuleSecurityLevel>? securityLevel;
+  final PageRuleSecurityLevel? securityLevel;
 
-  final TfArg<PageRuleSortQueryStringForCache>? sortQueryStringForCache;
+  final PageRuleSortQueryStringForCache? sortQueryStringForCache;
 
-  final TfArg<PageRuleSsl>? ssl;
+  final PageRuleSsl? ssl;
 
-  final TfArg<PageRuleTrueClientIpHeader>? trueClientIpHeader;
+  final PageRuleTrueClientIpHeader? trueClientIpHeader;
 
-  final TfArg<PageRuleWaf>? waf;
+  final PageRuleWaf? waf;
 
   final PageRuleCacheKeyFields? cacheKeyFields;
 
@@ -167,214 +171,325 @@ final class PageRuleActions {
 }
 
 /// `automatic_https_rewrites` — derived from the provider schema description.
-enum PageRuleAutomaticHttpsRewrites implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleAutomaticHttpsRewrites._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleAutomaticHttpsRewrites.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleAutomaticHttpsRewrites.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleAutomaticHttpsRewrites.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleAutomaticHttpsRewrites(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleAutomaticHttpsRewrites._(TfArgLiteral('on'));
+  static const off = PageRuleAutomaticHttpsRewrites._(TfArgLiteral('off'));
+
+  static const List<PageRuleAutomaticHttpsRewrites> values = [on, off];
 }
 
 /// `browser_check` — derived from the provider schema description.
-enum PageRuleBrowserCheck implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleBrowserCheck._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleBrowserCheck.variable(String name) : this._(TfArg.variable(name));
+  PageRuleBrowserCheck.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleBrowserCheck.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleBrowserCheck(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleBrowserCheck._(TfArgLiteral('on'));
+  static const off = PageRuleBrowserCheck._(TfArgLiteral('off'));
+
+  static const List<PageRuleBrowserCheck> values = [on, off];
 }
 
 /// `cache_by_device_type` — derived from the provider schema description.
-enum PageRuleCacheByDeviceType implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleCacheByDeviceType._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleCacheByDeviceType.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleCacheByDeviceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleCacheByDeviceType.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleCacheByDeviceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleCacheByDeviceType._(TfArgLiteral('on'));
+  static const off = PageRuleCacheByDeviceType._(TfArgLiteral('off'));
+
+  static const List<PageRuleCacheByDeviceType> values = [on, off];
 }
 
 /// `cache_deception_armor` — derived from the provider schema description.
-enum PageRuleCacheDeceptionArmor implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleCacheDeceptionArmor._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleCacheDeceptionArmor.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleCacheDeceptionArmor.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleCacheDeceptionArmor.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleCacheDeceptionArmor(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleCacheDeceptionArmor._(TfArgLiteral('on'));
+  static const off = PageRuleCacheDeceptionArmor._(TfArgLiteral('off'));
+
+  static const List<PageRuleCacheDeceptionArmor> values = [on, off];
 }
 
 /// `cache_level` — derived from the provider schema description.
-enum PageRuleCacheLevel implements TerraformEnum {
-  bypass('bypass'),
-  basic('basic'),
-  simplified('simplified'),
-  aggressive('aggressive'),
-  cacheEverything('cache_everything');
+extension type const PageRuleCacheLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleCacheLevel.variable(String name) : this._(TfArg.variable(name));
+  PageRuleCacheLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleCacheLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleCacheLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bypass = PageRuleCacheLevel._(TfArgLiteral('bypass'));
+  static const basic = PageRuleCacheLevel._(TfArgLiteral('basic'));
+  static const simplified = PageRuleCacheLevel._(TfArgLiteral('simplified'));
+  static const aggressive = PageRuleCacheLevel._(TfArgLiteral('aggressive'));
+  static const cacheEverything = PageRuleCacheLevel._(
+    TfArgLiteral('cache_everything'),
+  );
+
+  static const List<PageRuleCacheLevel> values = [
+    bypass,
+    basic,
+    simplified,
+    aggressive,
+    cacheEverything,
+  ];
 }
 
 /// `email_obfuscation` — derived from the provider schema description.
-enum PageRuleEmailObfuscation implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleEmailObfuscation._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleEmailObfuscation.variable(String name) : this._(TfArg.variable(name));
+  PageRuleEmailObfuscation.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleEmailObfuscation.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleEmailObfuscation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleEmailObfuscation._(TfArgLiteral('on'));
+  static const off = PageRuleEmailObfuscation._(TfArgLiteral('off'));
+
+  static const List<PageRuleEmailObfuscation> values = [on, off];
 }
 
 /// `explicit_cache_control` — derived from the provider schema description.
-enum PageRuleExplicitCacheControl implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleExplicitCacheControl._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleExplicitCacheControl.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleExplicitCacheControl.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleExplicitCacheControl.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleExplicitCacheControl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleExplicitCacheControl._(TfArgLiteral('on'));
+  static const off = PageRuleExplicitCacheControl._(TfArgLiteral('off'));
+
+  static const List<PageRuleExplicitCacheControl> values = [on, off];
 }
 
 /// `ip_geolocation` — derived from the provider schema description.
-enum PageRuleIpGeolocation implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleIpGeolocation._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleIpGeolocation.variable(String name) : this._(TfArg.variable(name));
+  PageRuleIpGeolocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleIpGeolocation.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleIpGeolocation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleIpGeolocation._(TfArgLiteral('on'));
+  static const off = PageRuleIpGeolocation._(TfArgLiteral('off'));
+
+  static const List<PageRuleIpGeolocation> values = [on, off];
 }
 
 /// `mirage` — derived from the provider schema description.
-enum PageRuleMirage implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleMirage._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleMirage.variable(String name) : this._(TfArg.variable(name));
+  PageRuleMirage.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleMirage.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleMirage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleMirage._(TfArgLiteral('on'));
+  static const off = PageRuleMirage._(TfArgLiteral('off'));
+
+  static const List<PageRuleMirage> values = [on, off];
 }
 
 /// `opportunistic_encryption` — derived from the provider schema description.
-enum PageRuleOpportunisticEncryption implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleOpportunisticEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleOpportunisticEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleOpportunisticEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleOpportunisticEncryption.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleOpportunisticEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleOpportunisticEncryption._(TfArgLiteral('on'));
+  static const off = PageRuleOpportunisticEncryption._(TfArgLiteral('off'));
+
+  static const List<PageRuleOpportunisticEncryption> values = [on, off];
 }
 
 /// `origin_error_page_pass_thru` — derived from the provider schema description.
-enum PageRuleOriginErrorPagePassThru implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleOriginErrorPagePassThru._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleOriginErrorPagePassThru.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleOriginErrorPagePassThru.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleOriginErrorPagePassThru.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleOriginErrorPagePassThru(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleOriginErrorPagePassThru._(TfArgLiteral('on'));
+  static const off = PageRuleOriginErrorPagePassThru._(TfArgLiteral('off'));
+
+  static const List<PageRuleOriginErrorPagePassThru> values = [on, off];
 }
 
 /// `polish` — derived from the provider schema description.
-enum PageRulePolish implements TerraformEnum {
-  off('off'),
-  lossless('lossless'),
-  lossy('lossy');
+extension type const PageRulePolish._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRulePolish.variable(String name) : this._(TfArg.variable(name));
+  PageRulePolish.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRulePolish.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRulePolish(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = PageRulePolish._(TfArgLiteral('off'));
+  static const lossless = PageRulePolish._(TfArgLiteral('lossless'));
+  static const lossy = PageRulePolish._(TfArgLiteral('lossy'));
+
+  static const List<PageRulePolish> values = [off, lossless, lossy];
 }
 
 /// `respect_strong_etag` — derived from the provider schema description.
-enum PageRuleRespectStrongEtag implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleRespectStrongEtag._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleRespectStrongEtag.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleRespectStrongEtag.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleRespectStrongEtag.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleRespectStrongEtag(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleRespectStrongEtag._(TfArgLiteral('on'));
+  static const off = PageRuleRespectStrongEtag._(TfArgLiteral('off'));
+
+  static const List<PageRuleRespectStrongEtag> values = [on, off];
 }
 
 /// `response_buffering` — derived from the provider schema description.
-enum PageRuleResponseBuffering implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleResponseBuffering._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleResponseBuffering.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleResponseBuffering.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleResponseBuffering.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleResponseBuffering(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleResponseBuffering._(TfArgLiteral('on'));
+  static const off = PageRuleResponseBuffering._(TfArgLiteral('off'));
+
+  static const List<PageRuleResponseBuffering> values = [on, off];
 }
 
 /// `rocket_loader` — derived from the provider schema description.
-enum PageRuleRocketLoader implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleRocketLoader._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleRocketLoader.variable(String name) : this._(TfArg.variable(name));
+  PageRuleRocketLoader.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleRocketLoader.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleRocketLoader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleRocketLoader._(TfArgLiteral('on'));
+  static const off = PageRuleRocketLoader._(TfArgLiteral('off'));
+
+  static const List<PageRuleRocketLoader> values = [on, off];
 }
 
 /// `security_level` — derived from the provider schema description.
-enum PageRuleSecurityLevel implements TerraformEnum {
-  off('off'),
-  essentiallyOff('essentially_off'),
-  low('low'),
-  medium('medium'),
-  high('high'),
-  underAttack('under_attack');
+extension type const PageRuleSecurityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleSecurityLevel.variable(String name) : this._(TfArg.variable(name));
+  PageRuleSecurityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleSecurityLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleSecurityLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = PageRuleSecurityLevel._(TfArgLiteral('off'));
+  static const essentiallyOff = PageRuleSecurityLevel._(
+    TfArgLiteral('essentially_off'),
+  );
+  static const low = PageRuleSecurityLevel._(TfArgLiteral('low'));
+  static const medium = PageRuleSecurityLevel._(TfArgLiteral('medium'));
+  static const high = PageRuleSecurityLevel._(TfArgLiteral('high'));
+  static const underAttack = PageRuleSecurityLevel._(
+    TfArgLiteral('under_attack'),
+  );
+
+  static const List<PageRuleSecurityLevel> values = [
+    off,
+    essentiallyOff,
+    low,
+    medium,
+    high,
+    underAttack,
+  ];
 }
 
 /// `sort_query_string_for_cache` — derived from the provider schema description.
-enum PageRuleSortQueryStringForCache implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleSortQueryStringForCache._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleSortQueryStringForCache.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleSortQueryStringForCache.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleSortQueryStringForCache.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleSortQueryStringForCache(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleSortQueryStringForCache._(TfArgLiteral('on'));
+  static const off = PageRuleSortQueryStringForCache._(TfArgLiteral('off'));
+
+  static const List<PageRuleSortQueryStringForCache> values = [on, off];
 }
 
 /// `ssl` — derived from the provider schema description.
-enum PageRuleSsl implements TerraformEnum {
-  off('off'),
-  flexible('flexible'),
-  full('full'),
-  strict('strict'),
-  originPull('origin_pull');
+extension type const PageRuleSsl._(TfArg<String> _) implements TfArg<String> {
+  PageRuleSsl.variable(String name) : this._(TfArg.variable(name));
+  PageRuleSsl.expression(String template) : this._(TfArg.expression(template));
+  const PageRuleSsl.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleSsl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = PageRuleSsl._(TfArgLiteral('off'));
+  static const flexible = PageRuleSsl._(TfArgLiteral('flexible'));
+  static const full = PageRuleSsl._(TfArgLiteral('full'));
+  static const strict = PageRuleSsl._(TfArgLiteral('strict'));
+  static const originPull = PageRuleSsl._(TfArgLiteral('origin_pull'));
+
+  static const List<PageRuleSsl> values = [
+    off,
+    flexible,
+    full,
+    strict,
+    originPull,
+  ];
 }
 
 /// `true_client_ip_header` — derived from the provider schema description.
-enum PageRuleTrueClientIpHeader implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleTrueClientIpHeader._(TfArg<String> _)
+    implements TfArg<String> {
+  PageRuleTrueClientIpHeader.variable(String name)
+    : this._(TfArg.variable(name));
+  PageRuleTrueClientIpHeader.expression(String template)
+    : this._(TfArg.expression(template));
+  const PageRuleTrueClientIpHeader.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleTrueClientIpHeader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleTrueClientIpHeader._(TfArgLiteral('on'));
+  static const off = PageRuleTrueClientIpHeader._(TfArgLiteral('off'));
+
+  static const List<PageRuleTrueClientIpHeader> values = [on, off];
 }
 
 /// `waf` — derived from the provider schema description.
-enum PageRuleWaf implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const PageRuleWaf._(TfArg<String> _) implements TfArg<String> {
+  PageRuleWaf.variable(String name) : this._(TfArg.variable(name));
+  PageRuleWaf.expression(String template) : this._(TfArg.expression(template));
+  const PageRuleWaf.arg(TfArg<String> arg) : this._(arg);
 
-  const PageRuleWaf(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = PageRuleWaf._(TfArgLiteral('on'));
+  static const off = PageRuleWaf._(TfArgLiteral('off'));
+
+  static const List<PageRuleWaf> values = [on, off];
 }
 
 /// Typed helper for the `actions.cache_key_fields` block of
@@ -527,7 +642,7 @@ final class CloudflarePageRule extends Resource {
   CloudflarePageRule(
     super.localName, {
     TfArg<num>? priority,
-    TfArg<PageRuleStatus>? status,
+    PageRuleStatus? status,
     required TfArg<String> target,
     required RefTo<CloudflareZone> zoneId,
     required PageRuleActions actions,

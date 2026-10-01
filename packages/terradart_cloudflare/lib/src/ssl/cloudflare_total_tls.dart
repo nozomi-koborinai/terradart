@@ -9,14 +9,25 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareTotalTlsSensitive = <String>{};
 
 /// Total Tls Certificate enum for `certificate_authority`.
-enum TotalTlsCertificateAuthority implements TerraformEnum {
-  google('google'),
-  letsEncrypt('lets_encrypt'),
-  sslCom('ssl_com');
+extension type const TotalTlsCertificateAuthority._(TfArg<String> _)
+    implements TfArg<String> {
+  TotalTlsCertificateAuthority.variable(String name)
+    : this._(TfArg.variable(name));
+  TotalTlsCertificateAuthority.expression(String template)
+    : this._(TfArg.expression(template));
+  const TotalTlsCertificateAuthority.arg(TfArg<String> arg) : this._(arg);
 
-  const TotalTlsCertificateAuthority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const google = TotalTlsCertificateAuthority._(TfArgLiteral('google'));
+  static const letsEncrypt = TotalTlsCertificateAuthority._(
+    TfArgLiteral('lets_encrypt'),
+  );
+  static const sslCom = TotalTlsCertificateAuthority._(TfArgLiteral('ssl_com'));
+
+  static const List<TotalTlsCertificateAuthority> values = [
+    google,
+    letsEncrypt,
+    sslCom,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_total_tls`.
@@ -29,7 +40,7 @@ final class CloudflareTotalTls extends Resource {
 
   CloudflareTotalTls(
     super.localName, {
-    TfArg<TotalTlsCertificateAuthority>? certificateAuthority,
+    TotalTlsCertificateAuthority? certificateAuthority,
     required TfArg<bool> enabled,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

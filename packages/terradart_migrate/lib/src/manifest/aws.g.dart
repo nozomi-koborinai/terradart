@@ -212318,7 +212318,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'AlbListenerRedirectProtocol',
         ),
@@ -212846,7 +212846,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'AlbListenerRuleProtocol',
         ),
@@ -298880,7 +298880,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'LbListenerRedirectProtocol',
         ),
@@ -299408,7 +299408,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'LbListenerRuleProtocol',
         ),
@@ -402101,6 +402101,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'TCP_QUIC': 'tcpQuic',
       },
     ),
+    'AlbListenerRedirectProtocol': MigrateEnum(
+      name: 'AlbListenerRedirectProtocol',
+      members: <String, String>{
+        '#{protocol}': 'protocol',
+        'HTTP': 'http',
+        'HTTPS': 'https',
+      },
+    ),
     'AlbListenerRuleActionType': MigrateEnum(
       name: 'AlbListenerRuleActionType',
       members: <String, String>{
@@ -402140,6 +402148,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'deny': 'deny',
         'allow': 'allow',
         'authenticate': 'authenticate',
+      },
+    ),
+    'AlbListenerRuleProtocol': MigrateEnum(
+      name: 'AlbListenerRuleProtocol',
+      members: <String, String>{
+        '#{protocol}': 'protocol',
+        'HTTP': 'http',
+        'HTTPS': 'https',
       },
     ),
     'AlbListenerRuleStatusCode': MigrateEnum(
@@ -414585,6 +414601,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'TCP_QUIC': 'tcpQuic',
       },
     ),
+    'LbListenerRedirectProtocol': MigrateEnum(
+      name: 'LbListenerRedirectProtocol',
+      members: <String, String>{
+        '#{protocol}': 'protocol',
+        'HTTP': 'http',
+        'HTTPS': 'https',
+      },
+    ),
     'LbListenerRuleActionType': MigrateEnum(
       name: 'LbListenerRuleActionType',
       members: <String, String>{
@@ -414624,6 +414648,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'deny': 'deny',
         'allow': 'allow',
         'authenticate': 'authenticate',
+      },
+    ),
+    'LbListenerRuleProtocol': MigrateEnum(
+      name: 'LbListenerRuleProtocol',
+      members: <String, String>{
+        '#{protocol}': 'protocol',
+        'HTTP': 'http',
+        'HTTPS': 'https',
       },
     ),
     'LbListenerRuleStatusCode': MigrateEnum(

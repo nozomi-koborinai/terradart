@@ -10,24 +10,47 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsEksAddonSensitive = <String>{};
 
 /// Eks Addon Resolve Conflicts On enum for `resolve_conflicts_on_create`.
-enum EksAddonResolveConflictsOnCreate implements TerraformEnum {
-  none('NONE'),
-  overwrite('OVERWRITE');
+extension type const EksAddonResolveConflictsOnCreate._(TfArg<String> _)
+    implements TfArg<String> {
+  EksAddonResolveConflictsOnCreate.variable(String name)
+    : this._(TfArg.variable(name));
+  EksAddonResolveConflictsOnCreate.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksAddonResolveConflictsOnCreate.arg(TfArg<String> arg) : this._(arg);
 
-  const EksAddonResolveConflictsOnCreate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = EksAddonResolveConflictsOnCreate._(TfArgLiteral('NONE'));
+  static const overwrite = EksAddonResolveConflictsOnCreate._(
+    TfArgLiteral('OVERWRITE'),
+  );
+
+  static const List<EksAddonResolveConflictsOnCreate> values = [
+    none,
+    overwrite,
+  ];
 }
 
 /// Eks Addon Resolve Conflicts On enum for `resolve_conflicts_on_update`.
-enum EksAddonResolveConflictsOnUpdate implements TerraformEnum {
-  overwrite('OVERWRITE'),
-  none('NONE'),
-  preserve('PRESERVE');
+extension type const EksAddonResolveConflictsOnUpdate._(TfArg<String> _)
+    implements TfArg<String> {
+  EksAddonResolveConflictsOnUpdate.variable(String name)
+    : this._(TfArg.variable(name));
+  EksAddonResolveConflictsOnUpdate.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksAddonResolveConflictsOnUpdate.arg(TfArg<String> arg) : this._(arg);
 
-  const EksAddonResolveConflictsOnUpdate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const overwrite = EksAddonResolveConflictsOnUpdate._(
+    TfArgLiteral('OVERWRITE'),
+  );
+  static const none = EksAddonResolveConflictsOnUpdate._(TfArgLiteral('NONE'));
+  static const preserve = EksAddonResolveConflictsOnUpdate._(
+    TfArgLiteral('PRESERVE'),
+  );
+
+  static const List<EksAddonResolveConflictsOnUpdate> values = [
+    overwrite,
+    none,
+    preserve,
+  ];
 }
 
 /// Typed helper for the `namespace_config` block of
@@ -72,8 +95,8 @@ final class AwsEksAddon extends Resource {
     TfArg<String>? configurationValues,
     TfArg<bool>? preserve,
     TfArg<String>? region,
-    TfArg<EksAddonResolveConflictsOnCreate>? resolveConflictsOnCreate,
-    TfArg<EksAddonResolveConflictsOnUpdate>? resolveConflictsOnUpdate,
+    EksAddonResolveConflictsOnCreate? resolveConflictsOnCreate,
+    EksAddonResolveConflictsOnUpdate? resolveConflictsOnUpdate,
     TfArg<String>? serviceAccountRoleArn,
     TfArg<Map<String, String>>? tags,
     EksAddonNamespaceConfig? namespaceConfig,

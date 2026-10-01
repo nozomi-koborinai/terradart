@@ -7,37 +7,88 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPinpointsmsvoicev2PhoneNumberSensitive = <String>{};
 
 /// Pinpointsmsvoicev2 Phone Number Message enum for `message_type`.
-enum Pinpointsmsvoicev2PhoneNumberMessageType implements TerraformEnum {
-  transactional('TRANSACTIONAL'),
-  promotional('PROMOTIONAL');
+extension type const Pinpointsmsvoicev2PhoneNumberMessageType._(TfArg<String> _)
+    implements TfArg<String> {
+  Pinpointsmsvoicev2PhoneNumberMessageType.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2PhoneNumberMessageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2PhoneNumberMessageType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Pinpointsmsvoicev2PhoneNumberMessageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transactional = Pinpointsmsvoicev2PhoneNumberMessageType._(
+    TfArgLiteral('TRANSACTIONAL'),
+  );
+  static const promotional = Pinpointsmsvoicev2PhoneNumberMessageType._(
+    TfArgLiteral('PROMOTIONAL'),
+  );
+
+  static const List<Pinpointsmsvoicev2PhoneNumberMessageType> values = [
+    transactional,
+    promotional,
+  ];
 }
 
 /// Pinpointsmsvoicev2 Phone Number enum for `number_capabilities`.
-enum Pinpointsmsvoicev2PhoneNumberCapabilities implements TerraformEnum {
-  sms('SMS'),
-  voice('VOICE'),
-  mms('MMS'),
-  rcs('RCS');
+extension type const Pinpointsmsvoicev2PhoneNumberCapabilities._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Pinpointsmsvoicev2PhoneNumberCapabilities.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2PhoneNumberCapabilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2PhoneNumberCapabilities.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Pinpointsmsvoicev2PhoneNumberCapabilities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sms = Pinpointsmsvoicev2PhoneNumberCapabilities._(
+    TfArgLiteral('SMS'),
+  );
+  static const voice = Pinpointsmsvoicev2PhoneNumberCapabilities._(
+    TfArgLiteral('VOICE'),
+  );
+  static const mms = Pinpointsmsvoicev2PhoneNumberCapabilities._(
+    TfArgLiteral('MMS'),
+  );
+  static const rcs = Pinpointsmsvoicev2PhoneNumberCapabilities._(
+    TfArgLiteral('RCS'),
+  );
+
+  static const List<Pinpointsmsvoicev2PhoneNumberCapabilities> values = [
+    sms,
+    voice,
+    mms,
+    rcs,
+  ];
 }
 
 /// Pinpointsmsvoicev2 Phone Number enum for `number_type`.
-enum Pinpointsmsvoicev2PhoneNumberType implements TerraformEnum {
-  longCode('LONG_CODE'),
-  tollFree('TOLL_FREE'),
-  tenDlc('TEN_DLC'),
-  simulator('SIMULATOR');
+extension type const Pinpointsmsvoicev2PhoneNumberType._(TfArg<String> _)
+    implements TfArg<String> {
+  Pinpointsmsvoicev2PhoneNumberType.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2PhoneNumberType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2PhoneNumberType.arg(TfArg<String> arg) : this._(arg);
 
-  const Pinpointsmsvoicev2PhoneNumberType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const longCode = Pinpointsmsvoicev2PhoneNumberType._(
+    TfArgLiteral('LONG_CODE'),
+  );
+  static const tollFree = Pinpointsmsvoicev2PhoneNumberType._(
+    TfArgLiteral('TOLL_FREE'),
+  );
+  static const tenDlc = Pinpointsmsvoicev2PhoneNumberType._(
+    TfArgLiteral('TEN_DLC'),
+  );
+  static const simulator = Pinpointsmsvoicev2PhoneNumberType._(
+    TfArgLiteral('SIMULATOR'),
+  );
+
+  static const List<Pinpointsmsvoicev2PhoneNumberType> values = [
+    longCode,
+    tollFree,
+    tenDlc,
+    simulator,
+  ];
 }
 
 /// Factory wrapper for `aws_pinpointsmsvoicev2_phone_number`.
@@ -49,10 +100,9 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<bool>? forceDisassociate,
     required TfArg<String> isoCountryCode,
-    required TfArg<Pinpointsmsvoicev2PhoneNumberMessageType> messageType,
-    required List<TfArg<Pinpointsmsvoicev2PhoneNumberCapabilities>>
-    numberCapabilities,
-    required TfArg<Pinpointsmsvoicev2PhoneNumberType> numberType,
+    required Pinpointsmsvoicev2PhoneNumberMessageType messageType,
+    required List<Pinpointsmsvoicev2PhoneNumberCapabilities> numberCapabilities,
+    required Pinpointsmsvoicev2PhoneNumberType numberType,
     TfArg<String>? optOutListName,
     TfArg<String>? region,
     TfArg<String>? registrationId,

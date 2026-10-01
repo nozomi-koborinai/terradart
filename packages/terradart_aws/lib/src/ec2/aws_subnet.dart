@@ -9,13 +9,26 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsSubnetSensitive = <String>{};
 
 /// Subnet Private Dns Hostname Type On enum for `private_dns_hostname_type_on_launch`.
-enum SubnetPrivateDnsHostnameTypeOnLaunch implements TerraformEnum {
-  ipName('ip-name'),
-  resourceName('resource-name');
+extension type const SubnetPrivateDnsHostnameTypeOnLaunch._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetPrivateDnsHostnameTypeOnLaunch.variable(String name)
+    : this._(TfArg.variable(name));
+  SubnetPrivateDnsHostnameTypeOnLaunch.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetPrivateDnsHostnameTypeOnLaunch.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SubnetPrivateDnsHostnameTypeOnLaunch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipName = SubnetPrivateDnsHostnameTypeOnLaunch._(
+    TfArgLiteral('ip-name'),
+  );
+  static const resourceName = SubnetPrivateDnsHostnameTypeOnLaunch._(
+    TfArgLiteral('resource-name'),
+  );
+
+  static const List<SubnetPrivateDnsHostnameTypeOnLaunch> values = [
+    ipName,
+    resourceName,
+  ];
 }
 
 /// At most one of `availability_zone`, `availability_zone_id` on `aws_subnet`: the provider rejects
@@ -172,7 +185,7 @@ final class AwsSubnet extends Resource {
     TfArg<bool>? mapCustomerOwnedIpOnLaunch,
     TfArg<bool>? mapPublicIpOnLaunch,
     TfArg<String>? outpostArn,
-    TfArg<SubnetPrivateDnsHostnameTypeOnLaunch>? privateDnsHostnameTypeOnLaunch,
+    SubnetPrivateDnsHostnameTypeOnLaunch? privateDnsHostnameTypeOnLaunch,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required RefTo<AwsVpc> vpcId,

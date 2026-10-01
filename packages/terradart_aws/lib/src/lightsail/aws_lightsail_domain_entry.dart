@@ -7,19 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLightsailDomainEntrySensitive = <String>{};
 
 /// Lightsail Domain Entry enum for `type`.
-enum LightsailDomainEntryType implements TerraformEnum {
-  a('A'),
-  aaaa('AAAA'),
-  cname('CNAME'),
-  mx('MX'),
-  ns('NS'),
-  soa('SOA'),
-  srv('SRV'),
-  txt('TXT');
+extension type const LightsailDomainEntryType._(TfArg<String> _)
+    implements TfArg<String> {
+  LightsailDomainEntryType.variable(String name) : this._(TfArg.variable(name));
+  LightsailDomainEntryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LightsailDomainEntryType.arg(TfArg<String> arg) : this._(arg);
 
-  const LightsailDomainEntryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a = LightsailDomainEntryType._(TfArgLiteral('A'));
+  static const aaaa = LightsailDomainEntryType._(TfArgLiteral('AAAA'));
+  static const cname = LightsailDomainEntryType._(TfArgLiteral('CNAME'));
+  static const mx = LightsailDomainEntryType._(TfArgLiteral('MX'));
+  static const ns = LightsailDomainEntryType._(TfArgLiteral('NS'));
+  static const soa = LightsailDomainEntryType._(TfArgLiteral('SOA'));
+  static const srv = LightsailDomainEntryType._(TfArgLiteral('SRV'));
+  static const txt = LightsailDomainEntryType._(TfArgLiteral('TXT'));
+
+  static const List<LightsailDomainEntryType> values = [
+    a,
+    aaaa,
+    cname,
+    mx,
+    ns,
+    soa,
+    srv,
+    txt,
+  ];
 }
 
 /// Factory wrapper for `aws_lightsail_domain_entry`.
@@ -33,7 +46,7 @@ final class AwsLightsailDomainEntry extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> target,
-    required TfArg<LightsailDomainEntryType> type,
+    required LightsailDomainEntryType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

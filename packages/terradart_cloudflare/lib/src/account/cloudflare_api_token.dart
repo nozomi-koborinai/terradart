@@ -8,14 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareApiTokenSensitive = <String>{'value'};
 
 /// Api Token enum for `status`.
-enum ApiTokenStatus implements TerraformEnum {
-  active('active'),
-  disabled('disabled'),
-  expired('expired');
+extension type const ApiTokenStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiTokenStatus.variable(String name) : this._(TfArg.variable(name));
+  ApiTokenStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiTokenStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiTokenStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ApiTokenStatus._(TfArgLiteral('active'));
+  static const disabled = ApiTokenStatus._(TfArgLiteral('disabled'));
+  static const expired = ApiTokenStatus._(TfArgLiteral('expired'));
+
+  static const List<ApiTokenStatus> values = [active, disabled, expired];
 }
 
 /// Typed helper for the `condition` block of
@@ -55,7 +59,7 @@ final class ApiTokenPolicies {
     required this.permissionGroups,
   });
 
-  final TfArg<ApiTokenEffect> effect;
+  final ApiTokenEffect effect;
 
   final TfArg<String> resources;
 
@@ -69,13 +73,17 @@ final class ApiTokenPolicies {
 }
 
 /// `effect` — derived from the provider schema description.
-enum ApiTokenEffect implements TerraformEnum {
-  allow('allow'),
-  deny('deny');
+extension type const ApiTokenEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiTokenEffect.variable(String name) : this._(TfArg.variable(name));
+  ApiTokenEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiTokenEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiTokenEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = ApiTokenEffect._(TfArgLiteral('allow'));
+  static const deny = ApiTokenEffect._(TfArgLiteral('deny'));
+
+  static const List<ApiTokenEffect> values = [allow, deny];
 }
 
 /// Typed helper for the `policies.permission_groups` block of
@@ -102,7 +110,7 @@ final class CloudflareApiToken extends Resource {
     TfArg<String>? expiresOn,
     required TfArg<String> name,
     TfArg<String>? notBefore,
-    TfArg<ApiTokenStatus>? status,
+    ApiTokenStatus? status,
     ApiTokenCondition? condition,
     required List<ApiTokenPolicies> policies,
     super.lifecycle,

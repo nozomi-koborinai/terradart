@@ -18,7 +18,7 @@ final class KeyspacesKeyspaceReplicationSpecification {
 
   final TfArg<List<String>>? regionList;
 
-  final TfArg<KeyspacesKeyspaceReplicationStrategy>? replicationStrategy;
+  final KeyspacesKeyspaceReplicationStrategy? replicationStrategy;
 
   Map<String, Object?> encode() => {
     'region_list': ?regionList?.toTfJson(),
@@ -27,13 +27,26 @@ final class KeyspacesKeyspaceReplicationSpecification {
 }
 
 /// `replication_strategy` — derived from the provider schema description.
-enum KeyspacesKeyspaceReplicationStrategy implements TerraformEnum {
-  singleRegion('SINGLE_REGION'),
-  multiRegion('MULTI_REGION');
+extension type const KeyspacesKeyspaceReplicationStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyspacesKeyspaceReplicationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyspacesKeyspaceReplicationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyspacesKeyspaceReplicationStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KeyspacesKeyspaceReplicationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleRegion = KeyspacesKeyspaceReplicationStrategy._(
+    TfArgLiteral('SINGLE_REGION'),
+  );
+  static const multiRegion = KeyspacesKeyspaceReplicationStrategy._(
+    TfArgLiteral('MULTI_REGION'),
+  );
+
+  static const List<KeyspacesKeyspaceReplicationStrategy> values = [
+    singleRegion,
+    multiRegion,
+  ];
 }
 
 /// Factory wrapper for `aws_keyspaces_keyspace`.

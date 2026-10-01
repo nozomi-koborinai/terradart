@@ -93,7 +93,7 @@ final class Route53recoverycontrolconfigSafetyRuleConfig {
 
   final TfArg<num> threshold;
 
-  final TfArg<Route53recoverycontrolconfigSafetyRuleType> type;
+  final Route53recoverycontrolconfigSafetyRuleType type;
 
   Map<String, Object?> encode() => {
     'inverted': inverted.toTfJson(),
@@ -103,14 +103,31 @@ final class Route53recoverycontrolconfigSafetyRuleConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum Route53recoverycontrolconfigSafetyRuleType implements TerraformEnum {
-  atleast('ATLEAST'),
-  and('AND'),
-  or('OR');
+extension type const Route53recoverycontrolconfigSafetyRuleType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53recoverycontrolconfigSafetyRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53recoverycontrolconfigSafetyRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53recoverycontrolconfigSafetyRuleType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53recoverycontrolconfigSafetyRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const atleast = Route53recoverycontrolconfigSafetyRuleType._(
+    TfArgLiteral('ATLEAST'),
+  );
+  static const and = Route53recoverycontrolconfigSafetyRuleType._(
+    TfArgLiteral('AND'),
+  );
+  static const or = Route53recoverycontrolconfigSafetyRuleType._(
+    TfArgLiteral('OR'),
+  );
+
+  static const List<Route53recoverycontrolconfigSafetyRuleType> values = [
+    atleast,
+    and,
+    or,
+  ];
 }
 
 /// Factory wrapper for `aws_route53recoverycontrolconfig_safety_rule`.

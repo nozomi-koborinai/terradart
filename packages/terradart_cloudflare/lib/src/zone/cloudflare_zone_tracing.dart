@@ -9,14 +9,25 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareZoneTracingSensitive = <String>{};
 
 /// Zone Tracing Propagation enum for `propagation_policy`.
-enum ZoneTracingPropagationPolicy implements TerraformEnum {
-  accept('accept'),
-  authenticated('authenticated'),
-  reject('reject');
+extension type const ZoneTracingPropagationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneTracingPropagationPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ZoneTracingPropagationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneTracingPropagationPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneTracingPropagationPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accept = ZoneTracingPropagationPolicy._(TfArgLiteral('accept'));
+  static const authenticated = ZoneTracingPropagationPolicy._(
+    TfArgLiteral('authenticated'),
+  );
+  static const reject = ZoneTracingPropagationPolicy._(TfArgLiteral('reject'));
+
+  static const List<ZoneTracingPropagationPolicy> values = [
+    accept,
+    authenticated,
+    reject,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zone_tracing`.
@@ -34,7 +45,7 @@ final class CloudflareZoneTracing extends Resource {
     TfArg<bool>? enabled,
     TfArg<num>? samplingRatio,
     TfArg<List<String>>? destinations,
-    TfArg<ZoneTracingPropagationPolicy>? propagationPolicy,
+    ZoneTracingPropagationPolicy? propagationPolicy,
     TfArg<bool>? forwardContext,
     TfArg<bool>? persist,
     super.lifecycle,

@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareZoneDnssecSensitive = <String>{};
 
 /// Zone Dnssec enum for `status`.
-enum ZoneDnssecStatus implements TerraformEnum {
-  active('active'),
-  disabled('disabled');
+extension type const ZoneDnssecStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneDnssecStatus.variable(String name) : this._(TfArg.variable(name));
+  ZoneDnssecStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneDnssecStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneDnssecStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ZoneDnssecStatus._(TfArgLiteral('active'));
+  static const disabled = ZoneDnssecStatus._(TfArgLiteral('disabled'));
+
+  static const List<ZoneDnssecStatus> values = [active, disabled];
 }
 
 /// Factory wrapper for `cloudflare_zone_dnssec`.
@@ -31,7 +35,7 @@ final class CloudflareZoneDnssec extends Resource {
     TfArg<bool>? dnssecMultiSigner,
     TfArg<bool>? dnssecPresigned,
     TfArg<bool>? dnssecUseNsec3,
-    TfArg<ZoneDnssecStatus>? status,
+    ZoneDnssecStatus? status,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

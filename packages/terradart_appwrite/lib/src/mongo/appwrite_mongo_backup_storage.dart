@@ -13,14 +13,19 @@ const Set<String> _appwriteMongoBackupStorageSensitive = <String>{
 };
 
 /// Mongo Backup Storage enum for `storage_provider`.
-enum MongoBackupStorageProvider implements TerraformEnum {
-  s3('s3'),
-  gcs('gcs'),
-  azure('azure');
+extension type const MongoBackupStorageProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  MongoBackupStorageProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  MongoBackupStorageProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const MongoBackupStorageProvider.arg(TfArg<String> arg) : this._(arg);
 
-  const MongoBackupStorageProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = MongoBackupStorageProvider._(TfArgLiteral('s3'));
+  static const gcs = MongoBackupStorageProvider._(TfArgLiteral('gcs'));
+  static const azure = MongoBackupStorageProvider._(TfArgLiteral('azure'));
+
+  static const List<MongoBackupStorageProvider> values = [s3, gcs, azure];
 }
 
 /// Factory wrapper for `appwrite_mongo_backup_storage`.
@@ -50,7 +55,7 @@ final class AppwriteMongoBackupStorage extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<MongoBackupStorageProvider> storageProvider,
+    required MongoBackupStorageProvider storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

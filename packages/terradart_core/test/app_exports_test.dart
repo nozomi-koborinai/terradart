@@ -4,13 +4,8 @@ import 'package:test/test.dart';
 import 'helpers/fake_resources.dart';
 import 'helpers/synth_issues.dart';
 
-enum _Tier implements TerraformEnum {
-  standard('STANDARD');
-
-  const _Tier(this.terraformValue);
-
-  @override
-  final String terraformValue;
+extension type const _Tier._(TfArg<String> _) implements TfArg<String> {
+  static const _Tier standard = _Tier._(TfArgLiteral('STANDARD'));
 }
 
 const _provider = FakeStackProvider(
@@ -83,7 +78,7 @@ void main() {
         'labels': TfArg.literal<Map<String, TfArg<String>>>({
           'env': const TfArgLiteral('prod'),
         }),
-        'tier': const TfArgLiteral<_Tier>(_Tier.standard),
+        'tier': _Tier.standard,
       });
       stack
         ..addConstant(

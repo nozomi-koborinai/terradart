@@ -7,13 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSchemasSchemaSensitive = <String>{};
 
 /// Schemas Schema enum for `type`.
-enum SchemasSchemaType implements TerraformEnum {
-  openapi3('OpenApi3'),
-  jsonschemadraft4('JSONSchemaDraft4');
+extension type const SchemasSchemaType._(TfArg<String> _)
+    implements TfArg<String> {
+  SchemasSchemaType.variable(String name) : this._(TfArg.variable(name));
+  SchemasSchemaType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SchemasSchemaType.arg(TfArg<String> arg) : this._(arg);
 
-  const SchemasSchemaType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openapi3 = SchemasSchemaType._(TfArgLiteral('OpenApi3'));
+  static const jsonschemadraft4 = SchemasSchemaType._(
+    TfArgLiteral('JSONSchemaDraft4'),
+  );
+
+  static const List<SchemasSchemaType> values = [openapi3, jsonschemadraft4];
 }
 
 /// Factory wrapper for `aws_schemas_schema`.
@@ -28,7 +34,7 @@ final class AwsSchemasSchema extends Resource {
     TfArg<String>? region,
     required TfArg<String> registryName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<SchemasSchemaType> type,
+    required SchemasSchemaType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

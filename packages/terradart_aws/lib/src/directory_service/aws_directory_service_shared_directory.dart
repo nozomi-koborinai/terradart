@@ -10,13 +10,26 @@ const Set<String> _awsDirectoryServiceSharedDirectorySensitive = <String>{
 };
 
 /// Directory Service Shared Directory enum for `method`.
-enum DirectoryServiceSharedDirectoryMethod implements TerraformEnum {
-  organizations('ORGANIZATIONS'),
-  handshake('HANDSHAKE');
+extension type const DirectoryServiceSharedDirectoryMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceSharedDirectoryMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceSharedDirectoryMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceSharedDirectoryMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DirectoryServiceSharedDirectoryMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const organizations = DirectoryServiceSharedDirectoryMethod._(
+    TfArgLiteral('ORGANIZATIONS'),
+  );
+  static const handshake = DirectoryServiceSharedDirectoryMethod._(
+    TfArgLiteral('HANDSHAKE'),
+  );
+
+  static const List<DirectoryServiceSharedDirectoryMethod> values = [
+    organizations,
+    handshake,
+  ];
 }
 
 /// Typed helper for the `target` block of
@@ -27,7 +40,7 @@ final class DirectoryServiceSharedDirectoryTarget {
 
   final TfArg<String> id;
 
-  final TfArg<DirectoryServiceSharedDirectoryType>? type;
+  final DirectoryServiceSharedDirectoryType? type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -36,12 +49,20 @@ final class DirectoryServiceSharedDirectoryTarget {
 }
 
 /// `type` — derived from the provider schema description.
-enum DirectoryServiceSharedDirectoryType implements TerraformEnum {
-  account('ACCOUNT');
+extension type const DirectoryServiceSharedDirectoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceSharedDirectoryType.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceSharedDirectoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceSharedDirectoryType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DirectoryServiceSharedDirectoryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const account = DirectoryServiceSharedDirectoryType._(
+    TfArgLiteral('ACCOUNT'),
+  );
+
+  static const List<DirectoryServiceSharedDirectoryType> values = [account];
 }
 
 /// Factory wrapper for `aws_directory_service_shared_directory`.
@@ -51,7 +72,7 @@ final class AwsDirectoryServiceSharedDirectory extends Resource {
   AwsDirectoryServiceSharedDirectory(
     super.localName, {
     required TfArg<String> directoryId,
-    TfArg<DirectoryServiceSharedDirectoryMethod>? method,
+    DirectoryServiceSharedDirectoryMethod? method,
     TfArg<String>? notes,
     TfArg<String>? region,
     required DirectoryServiceSharedDirectoryTarget target,

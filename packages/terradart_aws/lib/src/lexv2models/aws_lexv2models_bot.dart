@@ -10,13 +10,17 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsLexv2modelsBotSensitive = <String>{};
 
 /// Lexv2models Bot enum for `type`.
-enum Lexv2modelsBotType implements TerraformEnum {
-  bot('Bot'),
-  botnetwork('BotNetwork');
+extension type const Lexv2modelsBotType._(TfArg<String> _)
+    implements TfArg<String> {
+  Lexv2modelsBotType.variable(String name) : this._(TfArg.variable(name));
+  Lexv2modelsBotType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Lexv2modelsBotType.arg(TfArg<String> arg) : this._(arg);
 
-  const Lexv2modelsBotType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bot = Lexv2modelsBotType._(TfArgLiteral('Bot'));
+  static const botnetwork = Lexv2modelsBotType._(TfArgLiteral('BotNetwork'));
+
+  static const List<Lexv2modelsBotType> values = [bot, botnetwork];
 }
 
 /// Typed helper for the `data_privacy` block of
@@ -74,7 +78,7 @@ final class AwsLexv2modelsBot extends Resource {
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<Map<String, String>>? testBotAliasTags,
-    TfArg<Lexv2modelsBotType>? type,
+    Lexv2modelsBotType? type,
     List<Lexv2modelsBotDataPrivacy>? dataPrivacy,
     List<Lexv2modelsBotMembers>? members,
     super.lifecycle,

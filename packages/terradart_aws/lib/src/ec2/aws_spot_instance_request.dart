@@ -12,14 +12,27 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsSpotInstanceRequestSensitive = <String>{};
 
 /// Spot Instance Request enum for `tenancy`.
-enum SpotInstanceRequestTenancy implements TerraformEnum {
-  defaultCase('default'),
-  dedicated('dedicated'),
-  host('host');
+extension type const SpotInstanceRequestTenancy._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestTenancy.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestTenancy.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = SpotInstanceRequestTenancy._(
+    TfArgLiteral('default'),
+  );
+  static const dedicated = SpotInstanceRequestTenancy._(
+    TfArgLiteral('dedicated'),
+  );
+  static const host = SpotInstanceRequestTenancy._(TfArgLiteral('host'));
+
+  static const List<SpotInstanceRequestTenancy> values = [
+    defaultCase,
+    dedicated,
+    host,
+  ];
 }
 
 /// At most one of `host_resource_group_arn`, `placement_group`, `placement_group_id` on `aws_spot_instance_request`: the provider rejects
@@ -192,7 +205,7 @@ sealed class SpotInstanceRequestCapacityReservationSpecification {
 
   /// Sets `capacity_reservation_preference`.
   const factory SpotInstanceRequestCapacityReservationSpecification.capacityReservationPreference(
-    TfArg<SpotInstanceRequestCapacityReservationPreference>
+    SpotInstanceRequestCapacityReservationPreference
     capacityReservationPreference,
   ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference;
 
@@ -214,7 +227,7 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
     this.capacityReservationPreference,
   );
 
-  final TfArg<SpotInstanceRequestCapacityReservationPreference>
+  final SpotInstanceRequestCapacityReservationPreference
   capacityReservationPreference;
 
   @override
@@ -245,14 +258,32 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
 }
 
 /// `capacity_reservation_preference` — derived from the provider schema description.
-enum SpotInstanceRequestCapacityReservationPreference implements TerraformEnum {
-  capacityReservationsOnly('capacity-reservations-only'),
-  open('open'),
-  none('none');
+extension type const SpotInstanceRequestCapacityReservationPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SpotInstanceRequestCapacityReservationPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestCapacityReservationPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestCapacityReservationPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SpotInstanceRequestCapacityReservationPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacityReservationsOnly =
+      SpotInstanceRequestCapacityReservationPreference._(
+        TfArgLiteral('capacity-reservations-only'),
+      );
+  static const open = SpotInstanceRequestCapacityReservationPreference._(
+    TfArgLiteral('open'),
+  );
+  static const none = SpotInstanceRequestCapacityReservationPreference._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<SpotInstanceRequestCapacityReservationPreference> values = [
+    capacityReservationsOnly,
+    open,
+    none,
+  ];
 }
 
 /// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_spot_instance_request`: the provider rejects
@@ -327,11 +358,11 @@ final class SpotInstanceRequestCpuOptions {
     this.threadsPerCore,
   });
 
-  final TfArg<SpotInstanceRequestAmdSevSnp>? amdSevSnp;
+  final SpotInstanceRequestAmdSevSnp? amdSevSnp;
 
   final TfArg<num>? coreCount;
 
-  final TfArg<SpotInstanceRequestNestedVirtualization>? nestedVirtualization;
+  final SpotInstanceRequestNestedVirtualization? nestedVirtualization;
 
   final TfArg<num>? threadsPerCore;
 
@@ -344,23 +375,45 @@ final class SpotInstanceRequestCpuOptions {
 }
 
 /// `amd_sev_snp` — derived from the provider schema description.
-enum SpotInstanceRequestAmdSevSnp implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const SpotInstanceRequestAmdSevSnp._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestAmdSevSnp.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestAmdSevSnp.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestAmdSevSnp.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestAmdSevSnp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SpotInstanceRequestAmdSevSnp._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = SpotInstanceRequestAmdSevSnp._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<SpotInstanceRequestAmdSevSnp> values = [enabled, disabled];
 }
 
 /// `nested_virtualization` — derived from the provider schema description.
-enum SpotInstanceRequestNestedVirtualization implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const SpotInstanceRequestNestedVirtualization._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestNestedVirtualization.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestNestedVirtualization.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestNestedVirtualization.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SpotInstanceRequestNestedVirtualization(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SpotInstanceRequestNestedVirtualization._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = SpotInstanceRequestNestedVirtualization._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<SpotInstanceRequestNestedVirtualization> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `credit_specification` block of
@@ -369,19 +422,31 @@ enum SpotInstanceRequestNestedVirtualization implements TerraformEnum {
 final class SpotInstanceRequestCreditSpecification {
   const SpotInstanceRequestCreditSpecification({this.cpuCredits});
 
-  final TfArg<SpotInstanceRequestCpuCredits>? cpuCredits;
+  final SpotInstanceRequestCpuCredits? cpuCredits;
 
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
 /// `cpu_credits` — derived from the provider schema description.
-enum SpotInstanceRequestCpuCredits implements TerraformEnum {
-  standard('standard'),
-  unlimited('unlimited');
+extension type const SpotInstanceRequestCpuCredits._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestCpuCredits.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestCpuCredits.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestCpuCredits.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestCpuCredits(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = SpotInstanceRequestCpuCredits._(
+    TfArgLiteral('standard'),
+  );
+  static const unlimited = SpotInstanceRequestCpuCredits._(
+    TfArgLiteral('unlimited'),
+  );
+
+  static const List<SpotInstanceRequestCpuCredits> values = [
+    standard,
+    unlimited,
+  ];
 }
 
 /// Typed helper for the `ebs_block_device` block of
@@ -422,7 +487,7 @@ final class SpotInstanceRequestEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<SpotInstanceRequestVolumeType>? volumeType;
+  final SpotInstanceRequestVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -440,18 +505,33 @@ final class SpotInstanceRequestEbsBlockDevice {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum SpotInstanceRequestVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
+extension type const SpotInstanceRequestVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = SpotInstanceRequestVolumeType._(
+    TfArgLiteral('standard'),
+  );
+  static const io1 = SpotInstanceRequestVolumeType._(TfArgLiteral('io1'));
+  static const io2 = SpotInstanceRequestVolumeType._(TfArgLiteral('io2'));
+  static const gp2 = SpotInstanceRequestVolumeType._(TfArgLiteral('gp2'));
+  static const sc1 = SpotInstanceRequestVolumeType._(TfArgLiteral('sc1'));
+  static const st1 = SpotInstanceRequestVolumeType._(TfArgLiteral('st1'));
+  static const gp3 = SpotInstanceRequestVolumeType._(TfArgLiteral('gp3'));
+
+  static const List<SpotInstanceRequestVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    sc1,
+    st1,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `enclave_options` block of
@@ -562,19 +642,31 @@ final class SpotInstanceRequestIdentifierName
 final class SpotInstanceRequestMaintenanceOptions {
   const SpotInstanceRequestMaintenanceOptions({this.autoRecovery});
 
-  final TfArg<SpotInstanceRequestAutoRecovery>? autoRecovery;
+  final SpotInstanceRequestAutoRecovery? autoRecovery;
 
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
 /// `auto_recovery` — derived from the provider schema description.
-enum SpotInstanceRequestAutoRecovery implements TerraformEnum {
-  disabled('disabled'),
-  defaultCase('default');
+extension type const SpotInstanceRequestAutoRecovery._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestAutoRecovery.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestAutoRecovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestAutoRecovery.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestAutoRecovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = SpotInstanceRequestAutoRecovery._(
+    TfArgLiteral('disabled'),
+  );
+  static const defaultCase = SpotInstanceRequestAutoRecovery._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<SpotInstanceRequestAutoRecovery> values = [
+    disabled,
+    defaultCase,
+  ];
 }
 
 /// Typed helper for the `metadata_options` block of
@@ -589,15 +681,15 @@ final class SpotInstanceRequestMetadataOptions {
     this.instanceMetadataTags,
   });
 
-  final TfArg<SpotInstanceRequestHttpEndpoint>? httpEndpoint;
+  final SpotInstanceRequestHttpEndpoint? httpEndpoint;
 
-  final TfArg<SpotInstanceRequestHttpProtocolIpv6>? httpProtocolIpv6;
+  final SpotInstanceRequestHttpProtocolIpv6? httpProtocolIpv6;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<SpotInstanceRequestHttpTokens>? httpTokens;
+  final SpotInstanceRequestHttpTokens? httpTokens;
 
-  final TfArg<SpotInstanceRequestInstanceMetadataTags>? instanceMetadataTags;
+  final SpotInstanceRequestInstanceMetadataTags? instanceMetadataTags;
 
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
@@ -609,43 +701,93 @@ final class SpotInstanceRequestMetadataOptions {
 }
 
 /// `http_endpoint` — derived from the provider schema description.
-enum SpotInstanceRequestHttpEndpoint implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const SpotInstanceRequestHttpEndpoint._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestHttpEndpoint.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestHttpEndpoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestHttpEndpoint.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestHttpEndpoint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = SpotInstanceRequestHttpEndpoint._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = SpotInstanceRequestHttpEndpoint._(
+    TfArgLiteral('enabled'),
+  );
+
+  static const List<SpotInstanceRequestHttpEndpoint> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// `http_protocol_ipv6` — derived from the provider schema description.
-enum SpotInstanceRequestHttpProtocolIpv6 implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const SpotInstanceRequestHttpProtocolIpv6._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestHttpProtocolIpv6.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestHttpProtocolIpv6.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestHttpProtocolIpv6.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SpotInstanceRequestHttpProtocolIpv6(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = SpotInstanceRequestHttpProtocolIpv6._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = SpotInstanceRequestHttpProtocolIpv6._(
+    TfArgLiteral('enabled'),
+  );
+
+  static const List<SpotInstanceRequestHttpProtocolIpv6> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum SpotInstanceRequestHttpTokens implements TerraformEnum {
-  optional('optional'),
-  required('required');
+extension type const SpotInstanceRequestHttpTokens._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestHttpTokens.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestHttpTokens.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestHttpTokens.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestHttpTokens(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const optional = SpotInstanceRequestHttpTokens._(
+    TfArgLiteral('optional'),
+  );
+  static const required = SpotInstanceRequestHttpTokens._(
+    TfArgLiteral('required'),
+  );
+
+  static const List<SpotInstanceRequestHttpTokens> values = [
+    optional,
+    required,
+  ];
 }
 
 /// `instance_metadata_tags` — derived from the provider schema description.
-enum SpotInstanceRequestInstanceMetadataTags implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const SpotInstanceRequestInstanceMetadataTags._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestInstanceMetadataTags.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestInstanceMetadataTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestInstanceMetadataTags.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SpotInstanceRequestInstanceMetadataTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = SpotInstanceRequestInstanceMetadataTags._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = SpotInstanceRequestInstanceMetadataTags._(
+    TfArgLiteral('enabled'),
+  );
+
+  static const List<SpotInstanceRequestInstanceMetadataTags> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Typed helper for the `network_interface` block of
@@ -685,7 +827,7 @@ final class SpotInstanceRequestPrivateDnsNameOptions {
 
   final TfArg<bool>? enableResourceNameDnsAaaaRecord;
 
-  final TfArg<SpotInstanceRequestHostnameType>? hostnameType;
+  final SpotInstanceRequestHostnameType? hostnameType;
 
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
@@ -697,13 +839,25 @@ final class SpotInstanceRequestPrivateDnsNameOptions {
 }
 
 /// `hostname_type` — derived from the provider schema description.
-enum SpotInstanceRequestHostnameType implements TerraformEnum {
-  ipName('ip-name'),
-  resourceName('resource-name');
+extension type const SpotInstanceRequestHostnameType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestHostnameType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestHostnameType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestHostnameType.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestHostnameType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipName = SpotInstanceRequestHostnameType._(
+    TfArgLiteral('ip-name'),
+  );
+  static const resourceName = SpotInstanceRequestHostnameType._(
+    TfArgLiteral('resource-name'),
+  );
+
+  static const List<SpotInstanceRequestHostnameType> values = [
+    ipName,
+    resourceName,
+  ];
 }
 
 /// Typed helper for the `root_block_device` block of
@@ -738,7 +892,7 @@ final class SpotInstanceRequestRootBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<SpotInstanceRequestVolumeType>? volumeType;
+  final SpotInstanceRequestVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -770,7 +924,7 @@ final class SpotInstanceRequestSecondaryNetworkInterface {
 
   final TfArg<num>? deviceIndex;
 
-  final TfArg<SpotInstanceRequestInterfaceType>? interfaceType;
+  final SpotInstanceRequestInterfaceType? interfaceType;
 
   final TfArg<num> networkCardIndex;
 
@@ -789,12 +943,19 @@ final class SpotInstanceRequestSecondaryNetworkInterface {
 }
 
 /// `interface_type` — derived from the provider schema description.
-enum SpotInstanceRequestInterfaceType implements TerraformEnum {
-  secondary('secondary');
+extension type const SpotInstanceRequestInterfaceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpotInstanceRequestInterfaceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpotInstanceRequestInterfaceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpotInstanceRequestInterfaceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SpotInstanceRequestInterfaceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secondary = SpotInstanceRequestInterfaceType._(
+    TfArgLiteral('secondary'),
+  );
+
+  static const List<SpotInstanceRequestInterfaceType> values = [secondary];
 }
 
 /// Factory wrapper for `aws_spot_instance_request`.
@@ -834,7 +995,7 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<String>? spotType,
     RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<SpotInstanceRequestTenancy>? tenancy,
+    SpotInstanceRequestTenancy? tenancy,
     SpotInstanceRequestUserData? userData,
     TfArg<bool>? userDataReplaceOnChange,
     TfArg<String>? validFrom,

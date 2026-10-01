@@ -9,34 +9,63 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareCertificatePackSensitive = <String>{};
 
 /// Certificate Pack Certificate enum for `certificate_authority`.
-enum CertificatePackCertificateAuthority implements TerraformEnum {
-  google('google'),
-  letsEncrypt('lets_encrypt'),
-  sslCom('ssl_com');
+extension type const CertificatePackCertificateAuthority._(TfArg<String> _)
+    implements TfArg<String> {
+  CertificatePackCertificateAuthority.variable(String name)
+    : this._(TfArg.variable(name));
+  CertificatePackCertificateAuthority.expression(String template)
+    : this._(TfArg.expression(template));
+  const CertificatePackCertificateAuthority.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CertificatePackCertificateAuthority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const google = CertificatePackCertificateAuthority._(
+    TfArgLiteral('google'),
+  );
+  static const letsEncrypt = CertificatePackCertificateAuthority._(
+    TfArgLiteral('lets_encrypt'),
+  );
+  static const sslCom = CertificatePackCertificateAuthority._(
+    TfArgLiteral('ssl_com'),
+  );
+
+  static const List<CertificatePackCertificateAuthority> values = [
+    google,
+    letsEncrypt,
+    sslCom,
+  ];
 }
 
 /// Certificate Pack enum for `type`.
-enum CertificatePackType implements TerraformEnum {
-  advanced('advanced');
+extension type const CertificatePackType._(TfArg<String> _)
+    implements TfArg<String> {
+  CertificatePackType.variable(String name) : this._(TfArg.variable(name));
+  CertificatePackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CertificatePackType.arg(TfArg<String> arg) : this._(arg);
 
-  const CertificatePackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const advanced = CertificatePackType._(TfArgLiteral('advanced'));
+
+  static const List<CertificatePackType> values = [advanced];
 }
 
 /// Certificate Pack Validation enum for `validation_method`.
-enum CertificatePackValidationMethod implements TerraformEnum {
-  txt('txt'),
-  http('http'),
-  email('email');
+extension type const CertificatePackValidationMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CertificatePackValidationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CertificatePackValidationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CertificatePackValidationMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const CertificatePackValidationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const txt = CertificatePackValidationMethod._(TfArgLiteral('txt'));
+  static const http = CertificatePackValidationMethod._(TfArgLiteral('http'));
+  static const email = CertificatePackValidationMethod._(TfArgLiteral('email'));
+
+  static const List<CertificatePackValidationMethod> values = [
+    txt,
+    http,
+    email,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_certificate_pack`.
@@ -49,11 +78,11 @@ final class CloudflareCertificatePack extends Resource {
 
   CloudflareCertificatePack(
     super.localName, {
-    required TfArg<CertificatePackCertificateAuthority> certificateAuthority,
+    required CertificatePackCertificateAuthority certificateAuthority,
     TfArg<bool>? cloudflareBranding,
     TfArg<List<String>>? hosts,
-    required TfArg<CertificatePackType> type,
-    required TfArg<CertificatePackValidationMethod> validationMethod,
+    required CertificatePackType type,
+    required CertificatePackValidationMethod validationMethod,
     required TfArg<num> validityDays,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

@@ -32,9 +32,7 @@ curatedDoc: |-
   ///   'bi',
   ///   name: TfArg.literal('terradart-looker'),
   ///   region: TfArg.literal('us-central1'),
-  ///   platformEdition: TfArg.literal(
-  ///     LookerInstancePlatformEdition.lookerCoreTrialStandard,
-  ///   ),
+  ///   platformEdition: LookerInstancePlatformEdition.lookerCoreTrialStandard,
   ///   oauthConfig: LookerInstanceOauthConfig(
   ///     clientId: TfArg.literal('…'),
   ///     clientSecret: TfArg.literal('…'),

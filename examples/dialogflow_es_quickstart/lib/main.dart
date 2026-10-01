@@ -36,9 +36,9 @@ final class DialogflowEsStack extends Stack {
         defaultLanguageCode: .literal('en'),
         timeZone: .literal('America/New_York'),
         description: .literal('TerraDart Dialogflow ES smoke agent'),
-        matchMode: .literal(.hybrid),
-        apiVersion: .literal(.v2),
-        tier: .literal(.standard),
+        matchMode: .hybrid,
+        apiVersion: .v2,
+        tier: .standard,
         dependsOn: apiDeps,
       ),
     );
@@ -67,7 +67,7 @@ final class DialogflowEsStack extends Stack {
       GoogleDialogflowEntityType(
         'color',
         displayName: .literal('terradart-color'),
-        kind: .literal(.kindMap),
+        kind: .kindMap,
         entities: [
           DialogflowEntityTypeEntities(
             value: .literal('red'),

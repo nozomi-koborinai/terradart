@@ -18,7 +18,7 @@ final class AppconfigExtensionActionPoint {
     required this.action,
   });
 
-  final TfArg<AppconfigExtensionPoint> point;
+  final AppconfigExtensionPoint point;
 
   final List<AppconfigExtensionAction> action;
 
@@ -29,21 +29,48 @@ final class AppconfigExtensionActionPoint {
 }
 
 /// `point` — derived from the provider schema description.
-enum AppconfigExtensionPoint implements TerraformEnum {
-  preCreateHostedConfigurationVersion(
-    'PRE_CREATE_HOSTED_CONFIGURATION_VERSION',
-  ),
-  preStartDeployment('PRE_START_DEPLOYMENT'),
-  atDeploymentTick('AT_DEPLOYMENT_TICK'),
-  onDeploymentStart('ON_DEPLOYMENT_START'),
-  onDeploymentStep('ON_DEPLOYMENT_STEP'),
-  onDeploymentBaking('ON_DEPLOYMENT_BAKING'),
-  onDeploymentComplete('ON_DEPLOYMENT_COMPLETE'),
-  onDeploymentRolledBack('ON_DEPLOYMENT_ROLLED_BACK');
+extension type const AppconfigExtensionPoint._(TfArg<String> _)
+    implements TfArg<String> {
+  AppconfigExtensionPoint.variable(String name) : this._(TfArg.variable(name));
+  AppconfigExtensionPoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppconfigExtensionPoint.arg(TfArg<String> arg) : this._(arg);
 
-  const AppconfigExtensionPoint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const preCreateHostedConfigurationVersion = AppconfigExtensionPoint._(
+    TfArgLiteral('PRE_CREATE_HOSTED_CONFIGURATION_VERSION'),
+  );
+  static const preStartDeployment = AppconfigExtensionPoint._(
+    TfArgLiteral('PRE_START_DEPLOYMENT'),
+  );
+  static const atDeploymentTick = AppconfigExtensionPoint._(
+    TfArgLiteral('AT_DEPLOYMENT_TICK'),
+  );
+  static const onDeploymentStart = AppconfigExtensionPoint._(
+    TfArgLiteral('ON_DEPLOYMENT_START'),
+  );
+  static const onDeploymentStep = AppconfigExtensionPoint._(
+    TfArgLiteral('ON_DEPLOYMENT_STEP'),
+  );
+  static const onDeploymentBaking = AppconfigExtensionPoint._(
+    TfArgLiteral('ON_DEPLOYMENT_BAKING'),
+  );
+  static const onDeploymentComplete = AppconfigExtensionPoint._(
+    TfArgLiteral('ON_DEPLOYMENT_COMPLETE'),
+  );
+  static const onDeploymentRolledBack = AppconfigExtensionPoint._(
+    TfArgLiteral('ON_DEPLOYMENT_ROLLED_BACK'),
+  );
+
+  static const List<AppconfigExtensionPoint> values = [
+    preCreateHostedConfigurationVersion,
+    preStartDeployment,
+    atDeploymentTick,
+    onDeploymentStart,
+    onDeploymentStep,
+    onDeploymentBaking,
+    onDeploymentComplete,
+    onDeploymentRolledBack,
+  ];
 }
 
 /// Typed helper for the `action_point.action` block of

@@ -28,9 +28,7 @@ curatedDoc: |-
   /// GoogleComputePreviewFeature(
   ///   'alpha',
   ///   name: TfArg.literal('alpha-api-access'),
-  ///   activationStatus: TfArg.literal(
-  ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
-  ///   ),
+  ///   activationStatus: ComputePreviewFeatureActivationStatus.activationStateUnspecified,
   ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
   ///     rolloutInput: .new(
   ///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),

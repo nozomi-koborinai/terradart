@@ -350,10 +350,8 @@ final Map<String, Object Function()> _syntheticInstances = {
         TfArg.literal('10.0.0.10'),
       ),
   'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice': () =>
-      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice(
-        TfArg.literal(
-          NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
-        ),
+      const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice(
+        NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
       ),
 
   // --- NetworkSecurityMirroringEndpointGroupDeploymentLink (2) — OOB ------

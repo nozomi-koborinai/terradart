@@ -11,15 +11,35 @@ const Set<String> _cloudflareZeroTrustAccessAiControlsMcpPortalSensitive =
     <String>{};
 
 /// Zero Trust Access Ai Controls Mcp Portal Code enum for `code_mode`.
-enum ZeroTrustAccessAiControlsMcpPortalCodeMode implements TerraformEnum {
-  off('off'),
-  optIn('opt_in'),
-  defaultOn('default_on'),
-  enforced('enforced');
+extension type const ZeroTrustAccessAiControlsMcpPortalCodeMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessAiControlsMcpPortalCodeMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessAiControlsMcpPortalCodeMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessAiControlsMcpPortalCodeMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessAiControlsMcpPortalCodeMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = ZeroTrustAccessAiControlsMcpPortalCodeMode._(
+    TfArgLiteral('off'),
+  );
+  static const optIn = ZeroTrustAccessAiControlsMcpPortalCodeMode._(
+    TfArgLiteral('opt_in'),
+  );
+  static const defaultOn = ZeroTrustAccessAiControlsMcpPortalCodeMode._(
+    TfArgLiteral('default_on'),
+  );
+  static const enforced = ZeroTrustAccessAiControlsMcpPortalCodeMode._(
+    TfArgLiteral('enforced'),
+  );
+
+  static const List<ZeroTrustAccessAiControlsMcpPortalCodeMode> values = [
+    off,
+    optIn,
+    defaultOn,
+    enforced,
+  ];
 }
 
 /// Typed helper for the `servers` block of
@@ -122,7 +142,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowCodeMode,
-    TfArg<ZeroTrustAccessAiControlsMcpPortalCodeMode>? codeMode,
+    ZeroTrustAccessAiControlsMcpPortalCodeMode? codeMode,
     TfArg<String>? description,
     required TfArg<String> hostname,
     required TfArg<String> id,

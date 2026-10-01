@@ -107,29 +107,33 @@ prelude: |
   /// block was set), so callers don't set this directly — they pick the
   /// matching `*HealthCheck` block. Listed here for use in `==`
   /// comparisons against the derived `type` getter.
-  enum RegionHealthCheckType implements TerraformEnum {
-    http('HTTP'),
-    https('HTTPS'),
-    tcp('TCP'),
-    ssl('SSL'),
-    http2('HTTP2'),
-    grpc('GRPC'),
-    grpcWithTls('GRPC_WITH_TLS');
+  extension type const RegionHealthCheckType._(TfArg<String> _) implements TfArg<String> {
+    RegionHealthCheckType.variable(String name) : this._(TfArg.variable(name));
+    RegionHealthCheckType.expression(String template) : this._(TfArg.expression(template));
+    const RegionHealthCheckType.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionHealthCheckType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const http = RegionHealthCheckType._(TfArgLiteral('HTTP'));
+    static const https = RegionHealthCheckType._(TfArgLiteral('HTTPS'));
+    static const tcp = RegionHealthCheckType._(TfArgLiteral('TCP'));
+    static const ssl = RegionHealthCheckType._(TfArgLiteral('SSL'));
+    static const http2 = RegionHealthCheckType._(TfArgLiteral('HTTP2'));
+    static const grpc = RegionHealthCheckType._(TfArgLiteral('GRPC'));
+    static const grpcWithTls = RegionHealthCheckType._(TfArgLiteral('GRPC_WITH_TLS'));
+
+    static const List<RegionHealthCheckType> values = [http, https, tcp, ssl, http2, grpc, grpcWithTls];
   }
 
   /// `proxy_header` value used inside the per-protocol HTTP-shaped blocks
   /// (HTTP, HTTPS, HTTP2, TCP, SSL). Defaults to [none] on the GCP API.
-  enum RegionHealthCheckProxyHeader implements TerraformEnum {
-    none('NONE'),
-    proxyV1('PROXY_V1');
+  extension type const RegionHealthCheckProxyHeader._(TfArg<String> _) implements TfArg<String> {
+    RegionHealthCheckProxyHeader.variable(String name) : this._(TfArg.variable(name));
+    RegionHealthCheckProxyHeader.expression(String template) : this._(TfArg.expression(template));
+    const RegionHealthCheckProxyHeader.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionHealthCheckProxyHeader(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const none = RegionHealthCheckProxyHeader._(TfArgLiteral('NONE'));
+    static const proxyV1 = RegionHealthCheckProxyHeader._(TfArgLiteral('PROXY_V1'));
+
+    static const List<RegionHealthCheckProxyHeader> values = [none, proxyV1];
   }
 
   /// `port_specification` value shared by every per-protocol config block.
@@ -140,14 +144,16 @@ prelude: |
   /// - [useServingPort]: for Network Endpoint Groups, use each endpoint's
   ///   declared port; for other backends, use the Backend Service's
   ///   `port` / `port_name`.
-  enum RegionHealthCheckPortSpecification implements TerraformEnum {
-    useFixedPort('USE_FIXED_PORT'),
-    useNamedPort('USE_NAMED_PORT'),
-    useServingPort('USE_SERVING_PORT');
+  extension type const RegionHealthCheckPortSpecification._(TfArg<String> _) implements TfArg<String> {
+    RegionHealthCheckPortSpecification.variable(String name) : this._(TfArg.variable(name));
+    RegionHealthCheckPortSpecification.expression(String template) : this._(TfArg.expression(template));
+    const RegionHealthCheckPortSpecification.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionHealthCheckPortSpecification(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const useFixedPort = RegionHealthCheckPortSpecification._(TfArgLiteral('USE_FIXED_PORT'));
+    static const useNamedPort = RegionHealthCheckPortSpecification._(TfArgLiteral('USE_NAMED_PORT'));
+    static const useServingPort = RegionHealthCheckPortSpecification._(TfArgLiteral('USE_SERVING_PORT'));
+
+    static const List<RegionHealthCheckPortSpecification> values = [useFixedPort, useNamedPort, useServingPort];
   }
 
   // ===========================================================================
@@ -280,9 +286,9 @@ prelude: |
       if (response != null) 'response': response!.toTfJson(),
       if (port != null) 'port': port!.toTfJson(),
       if (portName != null) 'port_name': portName!.toTfJson(),
-      if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+      if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
     };
 
     @override
@@ -321,9 +327,9 @@ prelude: |
       if (response != null) 'response': response!.toTfJson(),
       if (port != null) 'port': port!.toTfJson(),
       if (portName != null) 'port_name': portName!.toTfJson(),
-      if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+      if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
     };
 
     @override
@@ -362,9 +368,9 @@ prelude: |
       if (response != null) 'response': response!.toTfJson(),
       if (port != null) 'port': port!.toTfJson(),
       if (portName != null) 'port_name': portName!.toTfJson(),
-      if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+      if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
     };
 
     @override
@@ -405,9 +411,9 @@ prelude: |
       if (response != null) 'response': response!.toTfJson(),
       if (port != null) 'port': port!.toTfJson(),
       if (portName != null) 'port_name': portName!.toTfJson(),
-      if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+      if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
     };
 
     @override
@@ -443,9 +449,9 @@ prelude: |
       if (response != null) 'response': response!.toTfJson(),
       if (port != null) 'port': port!.toTfJson(),
       if (portName != null) 'port_name': portName!.toTfJson(),
-      if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+      if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
     };
 
     @override
@@ -482,7 +488,7 @@ prelude: |
       if (port != null) 'port': port!.toTfJson(),
       if (portName != null) 'port_name': portName!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
       if (grpcServiceName != null) 'grpc_service_name': grpcServiceName!.toTfJson(),
     };
 
@@ -515,7 +521,7 @@ prelude: |
     Map<String, Object?> toArgMap() => {
       if (port != null) 'port': port!.toTfJson(),
       if (portSpecification != null)
-        'port_specification': portSpecification!.terraformValue,
+        'port_specification': portSpecification!.toTfJson(),
       if (grpcServiceName != null) 'grpc_service_name': grpcServiceName!.toTfJson(),
     };
 

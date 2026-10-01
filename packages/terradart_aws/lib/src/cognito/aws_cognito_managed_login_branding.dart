@@ -88,11 +88,11 @@ final class CognitoManagedLoginBrandingAsset {
 
   final TfArg<String>? bytes;
 
-  final TfArg<CognitoManagedLoginBrandingCategory> category;
+  final CognitoManagedLoginBrandingCategory category;
 
-  final TfArg<CognitoManagedLoginBrandingColorMode> colorMode;
+  final CognitoManagedLoginBrandingColorMode colorMode;
 
-  final TfArg<CognitoManagedLoginBrandingExtension> extension;
+  final CognitoManagedLoginBrandingExtension extension;
 
   final TfArg<String>? resourceId;
 
@@ -106,50 +106,140 @@ final class CognitoManagedLoginBrandingAsset {
 }
 
 /// `category` — derived from the provider schema description.
-enum CognitoManagedLoginBrandingCategory implements TerraformEnum {
-  faviconIco('FAVICON_ICO'),
-  faviconSvg('FAVICON_SVG'),
-  emailGraphic('EMAIL_GRAPHIC'),
-  smsGraphic('SMS_GRAPHIC'),
-  authAppGraphic('AUTH_APP_GRAPHIC'),
-  passwordGraphic('PASSWORD_GRAPHIC'),
-  passkeyGraphic('PASSKEY_GRAPHIC'),
-  pageHeaderLogo('PAGE_HEADER_LOGO'),
-  pageHeaderBackground('PAGE_HEADER_BACKGROUND'),
-  pageFooterLogo('PAGE_FOOTER_LOGO'),
-  pageFooterBackground('PAGE_FOOTER_BACKGROUND'),
-  pageBackground('PAGE_BACKGROUND'),
-  formBackground('FORM_BACKGROUND'),
-  formLogo('FORM_LOGO'),
-  idpButtonIcon('IDP_BUTTON_ICON');
+extension type const CognitoManagedLoginBrandingCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoManagedLoginBrandingCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedLoginBrandingCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoManagedLoginBrandingCategory.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoManagedLoginBrandingCategory(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const faviconIco = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('FAVICON_ICO'),
+  );
+  static const faviconSvg = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('FAVICON_SVG'),
+  );
+  static const emailGraphic = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('EMAIL_GRAPHIC'),
+  );
+  static const smsGraphic = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('SMS_GRAPHIC'),
+  );
+  static const authAppGraphic = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('AUTH_APP_GRAPHIC'),
+  );
+  static const passwordGraphic = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PASSWORD_GRAPHIC'),
+  );
+  static const passkeyGraphic = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PASSKEY_GRAPHIC'),
+  );
+  static const pageHeaderLogo = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PAGE_HEADER_LOGO'),
+  );
+  static const pageHeaderBackground = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PAGE_HEADER_BACKGROUND'),
+  );
+  static const pageFooterLogo = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PAGE_FOOTER_LOGO'),
+  );
+  static const pageFooterBackground = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PAGE_FOOTER_BACKGROUND'),
+  );
+  static const pageBackground = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('PAGE_BACKGROUND'),
+  );
+  static const formBackground = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('FORM_BACKGROUND'),
+  );
+  static const formLogo = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('FORM_LOGO'),
+  );
+  static const idpButtonIcon = CognitoManagedLoginBrandingCategory._(
+    TfArgLiteral('IDP_BUTTON_ICON'),
+  );
+
+  static const List<CognitoManagedLoginBrandingCategory> values = [
+    faviconIco,
+    faviconSvg,
+    emailGraphic,
+    smsGraphic,
+    authAppGraphic,
+    passwordGraphic,
+    passkeyGraphic,
+    pageHeaderLogo,
+    pageHeaderBackground,
+    pageFooterLogo,
+    pageFooterBackground,
+    pageBackground,
+    formBackground,
+    formLogo,
+    idpButtonIcon,
+  ];
 }
 
 /// `color_mode` — derived from the provider schema description.
-enum CognitoManagedLoginBrandingColorMode implements TerraformEnum {
-  light('LIGHT'),
-  dark('DARK'),
-  dynamic('DYNAMIC');
+extension type const CognitoManagedLoginBrandingColorMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoManagedLoginBrandingColorMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedLoginBrandingColorMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoManagedLoginBrandingColorMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoManagedLoginBrandingColorMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const light = CognitoManagedLoginBrandingColorMode._(
+    TfArgLiteral('LIGHT'),
+  );
+  static const dark = CognitoManagedLoginBrandingColorMode._(
+    TfArgLiteral('DARK'),
+  );
+  static const dynamic = CognitoManagedLoginBrandingColorMode._(
+    TfArgLiteral('DYNAMIC'),
+  );
+
+  static const List<CognitoManagedLoginBrandingColorMode> values = [
+    light,
+    dark,
+    dynamic,
+  ];
 }
 
 /// `extension` — derived from the provider schema description.
-enum CognitoManagedLoginBrandingExtension implements TerraformEnum {
-  ico('ICO'),
-  jpeg('JPEG'),
-  png('PNG'),
-  svg('SVG'),
-  webp('WEBP');
+extension type const CognitoManagedLoginBrandingExtension._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoManagedLoginBrandingExtension.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoManagedLoginBrandingExtension.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoManagedLoginBrandingExtension.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CognitoManagedLoginBrandingExtension(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ico = CognitoManagedLoginBrandingExtension._(
+    TfArgLiteral('ICO'),
+  );
+  static const jpeg = CognitoManagedLoginBrandingExtension._(
+    TfArgLiteral('JPEG'),
+  );
+  static const png = CognitoManagedLoginBrandingExtension._(
+    TfArgLiteral('PNG'),
+  );
+  static const svg = CognitoManagedLoginBrandingExtension._(
+    TfArgLiteral('SVG'),
+  );
+  static const webp = CognitoManagedLoginBrandingExtension._(
+    TfArgLiteral('WEBP'),
+  );
+
+  static const List<CognitoManagedLoginBrandingExtension> values = [
+    ico,
+    jpeg,
+    png,
+    svg,
+    webp,
+  ];
 }
 
 /// Factory wrapper for `aws_cognito_managed_login_branding`.

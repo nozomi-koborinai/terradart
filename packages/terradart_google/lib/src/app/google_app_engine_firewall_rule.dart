@@ -7,14 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAppEngineFirewallRuleSensitive = <String>{};
 
 /// App Engine Firewall Rule enum for `action`.
-enum AppEngineFirewallRuleAction implements TerraformEnum {
-  unspecifiedAction('UNSPECIFIED_ACTION'),
-  allow('ALLOW'),
-  deny('DENY');
+extension type const AppEngineFirewallRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineFirewallRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFirewallRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFirewallRuleAction.arg(TfArg<String> arg) : this._(arg);
 
-  const AppEngineFirewallRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecifiedAction = AppEngineFirewallRuleAction._(
+    TfArgLiteral('UNSPECIFIED_ACTION'),
+  );
+  static const allow = AppEngineFirewallRuleAction._(TfArgLiteral('ALLOW'));
+  static const deny = AppEngineFirewallRuleAction._(TfArgLiteral('DENY'));
+
+  static const List<AppEngineFirewallRuleAction> values = [
+    unspecifiedAction,
+    allow,
+    deny,
+  ];
 }
 
 /// Factory wrapper for `google_app_engine_firewall_rule`.
@@ -27,7 +38,7 @@ final class GoogleAppEngineFirewallRule extends Resource {
   GoogleAppEngineFirewallRule(
     super.localName, {
     TfArg<num>? priority,
-    required TfArg<AppEngineFirewallRuleAction> action,
+    required AppEngineFirewallRuleAction action,
     required TfArg<String> sourceRange,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,

@@ -86,7 +86,7 @@ final class HyperdriveConfigOrigin {
 
   final TfArg<num>? port;
 
-  final TfArg<HyperdriveConfigScheme> scheme;
+  final HyperdriveConfigScheme scheme;
 
   final TfArg<String>? serviceId;
 
@@ -106,14 +106,24 @@ final class HyperdriveConfigOrigin {
 }
 
 /// `scheme` — derived from the provider schema description.
-enum HyperdriveConfigScheme implements TerraformEnum {
-  postgres('postgres'),
-  postgresql('postgresql'),
-  mysql('mysql');
+extension type const HyperdriveConfigScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  HyperdriveConfigScheme.variable(String name) : this._(TfArg.variable(name));
+  HyperdriveConfigScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const HyperdriveConfigScheme.arg(TfArg<String> arg) : this._(arg);
 
-  const HyperdriveConfigScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const postgres = HyperdriveConfigScheme._(TfArgLiteral('postgres'));
+  static const postgresql = HyperdriveConfigScheme._(
+    TfArgLiteral('postgresql'),
+  );
+  static const mysql = HyperdriveConfigScheme._(TfArgLiteral('mysql'));
+
+  static const List<HyperdriveConfigScheme> values = [
+    postgres,
+    postgresql,
+    mysql,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_hyperdrive_config`.

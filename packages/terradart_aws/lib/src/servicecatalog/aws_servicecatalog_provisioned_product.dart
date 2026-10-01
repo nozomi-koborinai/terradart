@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogProvisionedProductSensitive = <String>{};
 
 /// Servicecatalog Provisioned Product Accept enum for `accept_language`.
-enum ServicecatalogProvisionedProductAcceptLanguage implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogProvisionedProductAcceptLanguage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogProvisionedProductAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogProvisionedProductAcceptLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogProvisionedProductAcceptLanguage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogProvisionedProductAcceptLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ServicecatalogProvisionedProductAcceptLanguage._(
+    TfArgLiteral('en'),
+  );
+  static const jp = ServicecatalogProvisionedProductAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogProvisionedProductAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogProvisionedProductAcceptLanguage> values = [
+    en,
+    jp,
+    zh,
+  ];
 }
 
 /// Exactly one of `product_id`, `product_name` on `aws_servicecatalog_provisioned_product`: the provider rejects
@@ -388,7 +405,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
 
   AwsServicecatalogProvisionedProduct(
     super.localName, {
-    TfArg<ServicecatalogProvisionedProductAcceptLanguage>? acceptLanguage,
+    ServicecatalogProvisionedProductAcceptLanguage? acceptLanguage,
     TfArg<bool>? ignoreErrors,
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,

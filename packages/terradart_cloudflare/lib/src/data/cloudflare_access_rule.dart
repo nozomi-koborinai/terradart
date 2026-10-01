@@ -23,15 +23,15 @@ final class DataAccessRuleFilter {
     this.configuration,
   });
 
-  final TfArg<DataAccessRuleDirection>? direction;
+  final DataAccessRuleDirection? direction;
 
-  final TfArg<DataAccessRuleMatch>? match;
+  final DataAccessRuleMatch? match;
 
-  final TfArg<DataAccessRuleFilterMode>? mode;
+  final DataAccessRuleFilterMode? mode;
 
   final TfArg<String>? notes;
 
-  final TfArg<DataAccessRuleOrder>? order;
+  final DataAccessRuleOrder? order;
 
   final DataAccessRuleConfiguration? configuration;
 
@@ -46,47 +46,85 @@ final class DataAccessRuleFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataAccessRuleDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataAccessRuleDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRuleDirection.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRuleDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRuleDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccessRuleDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataAccessRuleDirection._(TfArgLiteral('asc'));
+  static const desc = DataAccessRuleDirection._(TfArgLiteral('desc'));
+
+  static const List<DataAccessRuleDirection> values = [asc, desc];
 }
 
 /// `match` — derived from the provider schema description.
-enum DataAccessRuleMatch implements TerraformEnum {
-  any('any'),
-  all('all');
+extension type const DataAccessRuleMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRuleMatch.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRuleMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRuleMatch.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccessRuleMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = DataAccessRuleMatch._(TfArgLiteral('any'));
+  static const all = DataAccessRuleMatch._(TfArgLiteral('all'));
+
+  static const List<DataAccessRuleMatch> values = [any, all];
 }
 
 /// `mode` — derived from the provider schema description.
-enum DataAccessRuleFilterMode implements TerraformEnum {
-  block('block'),
-  challenge('challenge'),
-  whitelist('whitelist'),
-  jsChallenge('js_challenge'),
-  managedChallenge('managed_challenge');
+extension type const DataAccessRuleFilterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRuleFilterMode.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRuleFilterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRuleFilterMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccessRuleFilterMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = DataAccessRuleFilterMode._(TfArgLiteral('block'));
+  static const challenge = DataAccessRuleFilterMode._(
+    TfArgLiteral('challenge'),
+  );
+  static const whitelist = DataAccessRuleFilterMode._(
+    TfArgLiteral('whitelist'),
+  );
+  static const jsChallenge = DataAccessRuleFilterMode._(
+    TfArgLiteral('js_challenge'),
+  );
+  static const managedChallenge = DataAccessRuleFilterMode._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<DataAccessRuleFilterMode> values = [
+    block,
+    challenge,
+    whitelist,
+    jsChallenge,
+    managedChallenge,
+  ];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataAccessRuleOrder implements TerraformEnum {
-  configurationTarget('configuration.target'),
-  configurationValue('configuration.value'),
-  mode('mode');
+extension type const DataAccessRuleOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRuleOrder.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRuleOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRuleOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccessRuleOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const configurationTarget = DataAccessRuleOrder._(
+    TfArgLiteral('configuration.target'),
+  );
+  static const configurationValue = DataAccessRuleOrder._(
+    TfArgLiteral('configuration.value'),
+  );
+  static const mode = DataAccessRuleOrder._(TfArgLiteral('mode'));
+
+  static const List<DataAccessRuleOrder> values = [
+    configurationTarget,
+    configurationValue,
+    mode,
+  ];
 }
 
 /// Typed helper for the `filter.configuration` block of
@@ -95,7 +133,7 @@ enum DataAccessRuleOrder implements TerraformEnum {
 final class DataAccessRuleConfiguration {
   const DataAccessRuleConfiguration({this.target, this.value});
 
-  final TfArg<DataAccessRuleTarget>? target;
+  final DataAccessRuleTarget? target;
 
   final TfArg<String>? value;
 
@@ -106,15 +144,19 @@ final class DataAccessRuleConfiguration {
 }
 
 /// `target` — derived from the provider schema description.
-enum DataAccessRuleTarget implements TerraformEnum {
-  ip('ip'),
-  ipRange('ip_range'),
-  asn('asn'),
-  country('country');
+extension type const DataAccessRuleTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRuleTarget.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRuleTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRuleTarget.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccessRuleTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = DataAccessRuleTarget._(TfArgLiteral('ip'));
+  static const ipRange = DataAccessRuleTarget._(TfArgLiteral('ip_range'));
+  static const asn = DataAccessRuleTarget._(TfArgLiteral('asn'));
+  static const country = DataAccessRuleTarget._(TfArgLiteral('country'));
+
+  static const List<DataAccessRuleTarget> values = [ip, ipRange, asn, country];
 }
 
 /// Factory wrapper for `cloudflare_access_rule`.

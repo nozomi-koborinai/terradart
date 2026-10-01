@@ -7,23 +7,44 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRekognitionProjectSensitive = <String>{};
 
 /// Rekognition Project Auto enum for `auto_update`.
-enum RekognitionProjectAutoUpdate implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const RekognitionProjectAutoUpdate._(TfArg<String> _)
+    implements TfArg<String> {
+  RekognitionProjectAutoUpdate.variable(String name)
+    : this._(TfArg.variable(name));
+  RekognitionProjectAutoUpdate.expression(String template)
+    : this._(TfArg.expression(template));
+  const RekognitionProjectAutoUpdate.arg(TfArg<String> arg) : this._(arg);
 
-  const RekognitionProjectAutoUpdate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = RekognitionProjectAutoUpdate._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = RekognitionProjectAutoUpdate._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<RekognitionProjectAutoUpdate> values = [enabled, disabled];
 }
 
 /// Rekognition Project enum for `feature`.
-enum RekognitionProjectFeature implements TerraformEnum {
-  contentModeration('CONTENT_MODERATION'),
-  customLabels('CUSTOM_LABELS');
+extension type const RekognitionProjectFeature._(TfArg<String> _)
+    implements TfArg<String> {
+  RekognitionProjectFeature.variable(String name)
+    : this._(TfArg.variable(name));
+  RekognitionProjectFeature.expression(String template)
+    : this._(TfArg.expression(template));
+  const RekognitionProjectFeature.arg(TfArg<String> arg) : this._(arg);
 
-  const RekognitionProjectFeature(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contentModeration = RekognitionProjectFeature._(
+    TfArgLiteral('CONTENT_MODERATION'),
+  );
+  static const customLabels = RekognitionProjectFeature._(
+    TfArgLiteral('CUSTOM_LABELS'),
+  );
+
+  static const List<RekognitionProjectFeature> values = [
+    contentModeration,
+    customLabels,
+  ];
 }
 
 /// Factory wrapper for `aws_rekognition_project`.
@@ -32,8 +53,8 @@ final class AwsRekognitionProject extends Resource {
 
   AwsRekognitionProject(
     super.localName, {
-    TfArg<RekognitionProjectAutoUpdate>? autoUpdate,
-    TfArg<RekognitionProjectFeature>? feature,
+    RekognitionProjectAutoUpdate? autoUpdate,
+    RekognitionProjectFeature? feature,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -8,13 +8,27 @@ const Set<String>
 _awsArczonalshiftAutoshiftObserverNotificationStatusSensitive = <String>{};
 
 /// Arczonalshift Autoshift Observer Notification enum for `status`.
-enum ArczonalshiftAutoshiftObserverNotificationStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const ArczonalshiftAutoshiftObserverNotificationStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArczonalshiftAutoshiftObserverNotificationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ArczonalshiftAutoshiftObserverNotificationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArczonalshiftAutoshiftObserverNotificationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArczonalshiftAutoshiftObserverNotificationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ArczonalshiftAutoshiftObserverNotificationStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ArczonalshiftAutoshiftObserverNotificationStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ArczonalshiftAutoshiftObserverNotificationStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_arczonalshift_autoshift_observer_notification_status`.
@@ -26,7 +40,7 @@ final class AwsArczonalshiftAutoshiftObserverNotificationStatus
   AwsArczonalshiftAutoshiftObserverNotificationStatus(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<ArczonalshiftAutoshiftObserverNotificationStatus> status,
+    required ArczonalshiftAutoshiftObserverNotificationStatus status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

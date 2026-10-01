@@ -18,7 +18,7 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
     this.kmsKeyArn,
   });
 
-  final TfArg<BedrockagentcoreTokenVaultCmkKeyType> keyType;
+  final BedrockagentcoreTokenVaultCmkKeyType keyType;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
@@ -29,13 +29,26 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
 }
 
 /// `key_type` — derived from the provider schema description.
-enum BedrockagentcoreTokenVaultCmkKeyType implements TerraformEnum {
-  customermanagedkey('CustomerManagedKey'),
-  servicemanagedkey('ServiceManagedKey');
+extension type const BedrockagentcoreTokenVaultCmkKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreTokenVaultCmkKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreTokenVaultCmkKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreTokenVaultCmkKeyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreTokenVaultCmkKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customermanagedkey = BedrockagentcoreTokenVaultCmkKeyType._(
+    TfArgLiteral('CustomerManagedKey'),
+  );
+  static const servicemanagedkey = BedrockagentcoreTokenVaultCmkKeyType._(
+    TfArgLiteral('ServiceManagedKey'),
+  );
+
+  static const List<BedrockagentcoreTokenVaultCmkKeyType> values = [
+    customermanagedkey,
+    servicemanagedkey,
+  ];
 }
 
 /// Factory wrapper for `aws_bedrockagentcore_token_vault_cmk`.

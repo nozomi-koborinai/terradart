@@ -8,14 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleDataTableSensitive = <String>{};
 
 /// Chronicle Data Table Update enum for `update_source`.
-enum ChronicleDataTableUpdateSource implements TerraformEnum {
-  user('USER'),
-  rule('RULE'),
-  search('SEARCH');
+extension type const ChronicleDataTableUpdateSource._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleDataTableUpdateSource.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleDataTableUpdateSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleDataTableUpdateSource.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleDataTableUpdateSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = ChronicleDataTableUpdateSource._(TfArgLiteral('USER'));
+  static const rule = ChronicleDataTableUpdateSource._(TfArgLiteral('RULE'));
+  static const search = ChronicleDataTableUpdateSource._(
+    TfArgLiteral('SEARCH'),
+  );
+
+  static const List<ChronicleDataTableUpdateSource> values = [
+    user,
+    rule,
+    search,
+  ];
 }
 
 /// Typed helper for the `column_info` block of
@@ -33,7 +44,7 @@ final class ChronicleDataTableColumnInfo {
 
   final TfArg<num> columnIndex;
 
-  final TfArg<ChronicleDataTableColumnType>? columnType;
+  final ChronicleDataTableColumnType? columnType;
 
   final TfArg<bool>? keyColumn;
 
@@ -54,15 +65,25 @@ final class ChronicleDataTableColumnInfo {
 }
 
 /// `column_type` — derived from the provider schema description.
-enum ChronicleDataTableColumnType implements TerraformEnum {
-  string('STRING'),
-  regex('REGEX'),
-  cidr('CIDR'),
-  number('NUMBER');
+extension type const ChronicleDataTableColumnType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleDataTableColumnType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleDataTableColumnType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleDataTableColumnType.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleDataTableColumnType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = ChronicleDataTableColumnType._(TfArgLiteral('STRING'));
+  static const regex = ChronicleDataTableColumnType._(TfArgLiteral('REGEX'));
+  static const cidr = ChronicleDataTableColumnType._(TfArgLiteral('CIDR'));
+  static const number = ChronicleDataTableColumnType._(TfArgLiteral('NUMBER'));
+
+  static const List<ChronicleDataTableColumnType> values = [
+    string,
+    regex,
+    cidr,
+    number,
+  ];
 }
 
 /// Typed helper for the `scope_info` block of

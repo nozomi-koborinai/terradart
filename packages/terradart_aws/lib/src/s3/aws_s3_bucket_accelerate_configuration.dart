@@ -9,13 +9,26 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsS3BucketAccelerateConfigurationSensitive = <String>{};
 
 /// S3 Bucket Accelerate Configuration enum for `status`.
-enum S3BucketAccelerateConfigurationStatus implements TerraformEnum {
-  enabled('Enabled'),
-  suspended('Suspended');
+extension type const S3BucketAccelerateConfigurationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketAccelerateConfigurationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketAccelerateConfigurationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketAccelerateConfigurationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketAccelerateConfigurationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketAccelerateConfigurationStatus._(
+    TfArgLiteral('Enabled'),
+  );
+  static const suspended = S3BucketAccelerateConfigurationStatus._(
+    TfArgLiteral('Suspended'),
+  );
+
+  static const List<S3BucketAccelerateConfigurationStatus> values = [
+    enabled,
+    suspended,
+  ];
 }
 
 /// Factory wrapper for `aws_s3_bucket_accelerate_configuration`.
@@ -27,7 +40,7 @@ final class AwsS3BucketAccelerateConfiguration extends Resource {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    required TfArg<S3BucketAccelerateConfigurationStatus> status,
+    required S3BucketAccelerateConfigurationStatus status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

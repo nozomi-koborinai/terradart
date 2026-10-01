@@ -9,25 +9,53 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCloudformationStackSensitive = <String>{};
 
 /// Cloudformation Stack enum for `capabilities`.
-enum CloudformationStackCapabilities implements TerraformEnum {
-  capabilityIam('CAPABILITY_IAM'),
-  capabilityNamedIam('CAPABILITY_NAMED_IAM'),
-  capabilityAutoExpand('CAPABILITY_AUTO_EXPAND');
+extension type const CloudformationStackCapabilities._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudformationStackCapabilities.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudformationStackCapabilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationStackCapabilities.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudformationStackCapabilities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capabilityIam = CloudformationStackCapabilities._(
+    TfArgLiteral('CAPABILITY_IAM'),
+  );
+  static const capabilityNamedIam = CloudformationStackCapabilities._(
+    TfArgLiteral('CAPABILITY_NAMED_IAM'),
+  );
+  static const capabilityAutoExpand = CloudformationStackCapabilities._(
+    TfArgLiteral('CAPABILITY_AUTO_EXPAND'),
+  );
+
+  static const List<CloudformationStackCapabilities> values = [
+    capabilityIam,
+    capabilityNamedIam,
+    capabilityAutoExpand,
+  ];
 }
 
 /// Cloudformation Stack On enum for `on_failure`.
-enum CloudformationStackOnFailure implements TerraformEnum {
-  doNothing('DO_NOTHING'),
-  rollback('ROLLBACK'),
-  delete('DELETE');
+extension type const CloudformationStackOnFailure._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudformationStackOnFailure.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudformationStackOnFailure.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationStackOnFailure.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudformationStackOnFailure(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const doNothing = CloudformationStackOnFailure._(
+    TfArgLiteral('DO_NOTHING'),
+  );
+  static const rollback = CloudformationStackOnFailure._(
+    TfArgLiteral('ROLLBACK'),
+  );
+  static const delete = CloudformationStackOnFailure._(TfArgLiteral('DELETE'));
+
+  static const List<CloudformationStackOnFailure> values = [
+    doNothing,
+    rollback,
+    delete,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudformation_stack`.
@@ -36,12 +64,12 @@ final class AwsCloudformationStack extends Resource {
 
   AwsCloudformationStack(
     super.localName, {
-    List<TfArg<CloudformationStackCapabilities>>? capabilities,
+    List<CloudformationStackCapabilities>? capabilities,
     TfArg<bool>? disableRollback,
     RefTo<AwsIamRole>? iamRoleArn,
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,
-    TfArg<CloudformationStackOnFailure>? onFailure,
+    CloudformationStackOnFailure? onFailure,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? policyBody,
     TfArg<String>? policyUrl,

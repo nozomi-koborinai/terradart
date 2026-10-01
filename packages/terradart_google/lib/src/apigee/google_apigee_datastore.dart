@@ -10,23 +10,35 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleApigeeDatastoreSensitive = <String>{};
 
 /// Target backend for `google_apigee_datastore`.
-enum ApigeeDatastoreTargetType implements TerraformEnum {
-  gcs('gcs'),
-  bigquery('bigquery');
+extension type const ApigeeDatastoreTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeDatastoreTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeDatastoreTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeDatastoreTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeDatastoreTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gcs = ApigeeDatastoreTargetType._(TfArgLiteral('gcs'));
+  static const bigquery = ApigeeDatastoreTargetType._(TfArgLiteral('bigquery'));
+
+  static const List<ApigeeDatastoreTargetType> values = [gcs, bigquery];
 }
 
 /// Terraform `deletion_policy` for Apigee datastores.
-enum ApigeeDatastoreDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  abandon('ABANDON');
+extension type const ApigeeDatastoreDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeDatastoreDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeDatastoreDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeDatastoreDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeDatastoreDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ApigeeDatastoreDeletionPolicy._(TfArgLiteral('DELETE'));
+  static const abandon = ApigeeDatastoreDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<ApigeeDatastoreDeletionPolicy> values = [delete, abandon];
 }
 
 /// Typed helper for the `datastore_config` block of
@@ -72,9 +84,9 @@ final class GoogleApigeeDatastore extends Resource {
     super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> displayName,
-    required TfArg<ApigeeDatastoreTargetType> targetType,
+    required ApigeeDatastoreTargetType targetType,
     required ApigeeDatastoreConfig datastoreConfig,
-    TfArg<ApigeeDatastoreDeletionPolicy>? deletionPolicy,
+    ApigeeDatastoreDeletionPolicy? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

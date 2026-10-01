@@ -15,9 +15,9 @@ const Set<String> _cloudflareCustomSslSensitive = <String>{};
 final class DataCustomSslFilter {
   const DataCustomSslFilter({this.match, this.status});
 
-  final TfArg<DataCustomSslMatch>? match;
+  final DataCustomSslMatch? match;
 
-  final TfArg<DataCustomSslFilterStatus>? status;
+  final DataCustomSslFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'match': ?match?.toTfJson(),
@@ -26,26 +26,43 @@ final class DataCustomSslFilter {
 }
 
 /// `match` — derived from the provider schema description.
-enum DataCustomSslMatch implements TerraformEnum {
-  any('any'),
-  all('all');
+extension type const DataCustomSslMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomSslMatch.variable(String name) : this._(TfArg.variable(name));
+  DataCustomSslMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomSslMatch.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCustomSslMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = DataCustomSslMatch._(TfArgLiteral('any'));
+  static const all = DataCustomSslMatch._(TfArgLiteral('all'));
+
+  static const List<DataCustomSslMatch> values = [any, all];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataCustomSslFilterStatus implements TerraformEnum {
-  active('active'),
-  expired('expired'),
-  deleted('deleted'),
-  pending('pending'),
-  initializing('initializing');
+extension type const DataCustomSslFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomSslFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomSslFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomSslFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCustomSslFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = DataCustomSslFilterStatus._(TfArgLiteral('active'));
+  static const expired = DataCustomSslFilterStatus._(TfArgLiteral('expired'));
+  static const deleted = DataCustomSslFilterStatus._(TfArgLiteral('deleted'));
+  static const pending = DataCustomSslFilterStatus._(TfArgLiteral('pending'));
+  static const initializing = DataCustomSslFilterStatus._(
+    TfArgLiteral('initializing'),
+  );
+
+  static const List<DataCustomSslFilterStatus> values = [
+    active,
+    expired,
+    deleted,
+    pending,
+    initializing,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_custom_ssl`.

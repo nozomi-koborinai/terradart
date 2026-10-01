@@ -11,14 +11,18 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCloudformationTypeSensitive = <String>{};
 
 /// Cloudformation enum for `type`.
-enum CloudformationType implements TerraformEnum {
-  resource('RESOURCE'),
-  module('MODULE'),
-  hook('HOOK');
+extension type const CloudformationType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudformationType.variable(String name) : this._(TfArg.variable(name));
+  CloudformationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudformationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const resource = CloudformationType._(TfArgLiteral('RESOURCE'));
+  static const module = CloudformationType._(TfArgLiteral('MODULE'));
+  static const hook = CloudformationType._(TfArgLiteral('HOOK'));
+
+  static const List<CloudformationType> values = [resource, module, hook];
 }
 
 /// Typed helper for the `logging_config` block of
@@ -49,7 +53,7 @@ final class AwsCloudformationType extends Resource {
     RefTo<AwsIamRole>? executionRoleArn,
     TfArg<String>? region,
     required TfArg<String> schemaHandlerPackage,
-    TfArg<CloudformationType>? type,
+    CloudformationType? type,
     required TfArg<String> typeName,
     CloudformationTypeLoggingConfig? loggingConfig,
     super.lifecycle,

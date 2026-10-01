@@ -11,18 +11,43 @@ import '../gkeonprem/google_gkeonprem_bare_metal_cluster.dart'
 const Set<String> _googleGkeonpremBareMetalNodePoolSensitive = <String>{};
 
 /// Gkeonprem Bare Metal Node Pool enum for `state`.
-enum GkeonpremBareMetalNodePoolState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  provisioning('PROVISIONING'),
-  running('RUNNING'),
-  reconciling('RECONCILING'),
-  stopping('STOPPING'),
-  error('ERROR'),
-  degraded('DEGRADED');
+extension type const GkeonpremBareMetalNodePoolState._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalNodePoolState.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalNodePoolState.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalNodePoolState.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremBareMetalNodePoolState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = GkeonpremBareMetalNodePoolState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const provisioning = GkeonpremBareMetalNodePoolState._(
+    TfArgLiteral('PROVISIONING'),
+  );
+  static const running = GkeonpremBareMetalNodePoolState._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const reconciling = GkeonpremBareMetalNodePoolState._(
+    TfArgLiteral('RECONCILING'),
+  );
+  static const stopping = GkeonpremBareMetalNodePoolState._(
+    TfArgLiteral('STOPPING'),
+  );
+  static const error = GkeonpremBareMetalNodePoolState._(TfArgLiteral('ERROR'));
+  static const degraded = GkeonpremBareMetalNodePoolState._(
+    TfArgLiteral('DEGRADED'),
+  );
+
+  static const List<GkeonpremBareMetalNodePoolState> values = [
+    stateUnspecified,
+    provisioning,
+    running,
+    reconciling,
+    stopping,
+    error,
+    degraded,
+  ];
 }
 
 /// Typed helper for the `node_pool_config` block of
@@ -74,7 +99,7 @@ final class GkeonpremBareMetalNodePoolNodeConfigs {
 final class GkeonpremBareMetalNodePoolTaints {
   const GkeonpremBareMetalNodePoolTaints({this.effect, this.key, this.value});
 
-  final TfArg<GkeonpremBareMetalNodePoolEffect>? effect;
+  final GkeonpremBareMetalNodePoolEffect? effect;
 
   final TfArg<String>? key;
 
@@ -88,14 +113,29 @@ final class GkeonpremBareMetalNodePoolTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremBareMetalNodePoolEffect implements TerraformEnum {
-  effectUnspecified('EFFECT_UNSPECIFIED'),
-  preferNoSchedule('PREFER_NO_SCHEDULE'),
-  noExecute('NO_EXECUTE');
+extension type const GkeonpremBareMetalNodePoolEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalNodePoolEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalNodePoolEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalNodePoolEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremBareMetalNodePoolEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const effectUnspecified = GkeonpremBareMetalNodePoolEffect._(
+    TfArgLiteral('EFFECT_UNSPECIFIED'),
+  );
+  static const preferNoSchedule = GkeonpremBareMetalNodePoolEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = GkeonpremBareMetalNodePoolEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<GkeonpremBareMetalNodePoolEffect> values = [
+    effectUnspecified,
+    preferNoSchedule,
+    noExecute,
+  ];
 }
 
 /// Factory wrapper for `google_gkeonprem_bare_metal_node_pool`.

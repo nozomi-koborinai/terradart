@@ -9,59 +9,105 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
 
 /// Turnstile Widget Clearance enum for `clearance_level`.
-enum TurnstileWidgetClearanceLevel implements TerraformEnum {
-  noClearance('no_clearance'),
-  jschallenge('jschallenge'),
-  managed('managed'),
-  interactive('interactive');
+extension type const TurnstileWidgetClearanceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  TurnstileWidgetClearanceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  TurnstileWidgetClearanceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const TurnstileWidgetClearanceLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const TurnstileWidgetClearanceLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noClearance = TurnstileWidgetClearanceLevel._(
+    TfArgLiteral('no_clearance'),
+  );
+  static const jschallenge = TurnstileWidgetClearanceLevel._(
+    TfArgLiteral('jschallenge'),
+  );
+  static const managed = TurnstileWidgetClearanceLevel._(
+    TfArgLiteral('managed'),
+  );
+  static const interactive = TurnstileWidgetClearanceLevel._(
+    TfArgLiteral('interactive'),
+  );
+
+  static const List<TurnstileWidgetClearanceLevel> values = [
+    noClearance,
+    jschallenge,
+    managed,
+    interactive,
+  ];
 }
 
 /// Turnstile Widget enum for `direction`.
-enum TurnstileWidgetDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const TurnstileWidgetDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  TurnstileWidgetDirection.variable(String name) : this._(TfArg.variable(name));
+  TurnstileWidgetDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const TurnstileWidgetDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const TurnstileWidgetDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = TurnstileWidgetDirection._(TfArgLiteral('asc'));
+  static const desc = TurnstileWidgetDirection._(TfArgLiteral('desc'));
+
+  static const List<TurnstileWidgetDirection> values = [asc, desc];
 }
 
 /// Turnstile Widget enum for `mode`.
-enum TurnstileWidgetMode implements TerraformEnum {
-  nonInteractive('non-interactive'),
-  invisible('invisible'),
-  managed('managed');
+extension type const TurnstileWidgetMode._(TfArg<String> _)
+    implements TfArg<String> {
+  TurnstileWidgetMode.variable(String name) : this._(TfArg.variable(name));
+  TurnstileWidgetMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const TurnstileWidgetMode.arg(TfArg<String> arg) : this._(arg);
 
-  const TurnstileWidgetMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nonInteractive = TurnstileWidgetMode._(
+    TfArgLiteral('non-interactive'),
+  );
+  static const invisible = TurnstileWidgetMode._(TfArgLiteral('invisible'));
+  static const managed = TurnstileWidgetMode._(TfArgLiteral('managed'));
+
+  static const List<TurnstileWidgetMode> values = [
+    nonInteractive,
+    invisible,
+    managed,
+  ];
 }
 
 /// Turnstile Widget enum for `order`.
-enum TurnstileWidgetOrder implements TerraformEnum {
-  id('id'),
-  sitekey('sitekey'),
-  name('name'),
-  createdOn('created_on'),
-  modifiedOn('modified_on');
+extension type const TurnstileWidgetOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  TurnstileWidgetOrder.variable(String name) : this._(TfArg.variable(name));
+  TurnstileWidgetOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const TurnstileWidgetOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const TurnstileWidgetOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const id = TurnstileWidgetOrder._(TfArgLiteral('id'));
+  static const sitekey = TurnstileWidgetOrder._(TfArgLiteral('sitekey'));
+  static const name = TurnstileWidgetOrder._(TfArgLiteral('name'));
+  static const createdOn = TurnstileWidgetOrder._(TfArgLiteral('created_on'));
+  static const modifiedOn = TurnstileWidgetOrder._(TfArgLiteral('modified_on'));
+
+  static const List<TurnstileWidgetOrder> values = [
+    id,
+    sitekey,
+    name,
+    createdOn,
+    modifiedOn,
+  ];
 }
 
 /// Turnstile Widget enum for `region`.
-enum TurnstileWidgetRegion implements TerraformEnum {
-  world('world'),
-  china('china');
+extension type const TurnstileWidgetRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  TurnstileWidgetRegion.variable(String name) : this._(TfArg.variable(name));
+  TurnstileWidgetRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const TurnstileWidgetRegion.arg(TfArg<String> arg) : this._(arg);
 
-  const TurnstileWidgetRegion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const world = TurnstileWidgetRegion._(TfArgLiteral('world'));
+  static const china = TurnstileWidgetRegion._(TfArgLiteral('china'));
+
+  static const List<TurnstileWidgetRegion> values = [world, china];
 }
 
 /// Factory wrapper for `cloudflare_turnstile_widget`.
@@ -77,18 +123,18 @@ final class CloudflareTurnstileWidget extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? botFightMode,
-    TfArg<TurnstileWidgetClearanceLevel>? clearanceLevel,
-    TfArg<TurnstileWidgetDirection>? direction,
+    TurnstileWidgetClearanceLevel? clearanceLevel,
+    TurnstileWidgetDirection? direction,
     required TfArg<List<String>> domains,
     TfArg<bool>? ephemeralId,
     TfArg<String>? filter,
-    required TfArg<TurnstileWidgetMode> mode,
+    required TurnstileWidgetMode mode,
     required TfArg<String> name,
     TfArg<bool>? offlabel,
-    TfArg<TurnstileWidgetOrder>? order,
+    TurnstileWidgetOrder? order,
     TfArg<num>? page,
     TfArg<num>? perPage,
-    TfArg<TurnstileWidgetRegion>? region,
+    TurnstileWidgetRegion? region,
     super.lifecycle,
     super.dependsOn,
     super.provider,

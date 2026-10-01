@@ -11,26 +11,52 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsGlueCatalogSensitive = <String>{};
 
 /// Glue Catalog Allow Full Table External Data enum for `allow_full_table_external_data_access`.
-enum GlueCatalogAllowFullTableExternalDataAccess implements TerraformEnum {
-  trueCase('True'),
-  falseCase('False');
+extension type const GlueCatalogAllowFullTableExternalDataAccess._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlueCatalogAllowFullTableExternalDataAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogAllowFullTableExternalDataAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogAllowFullTableExternalDataAccess.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlueCatalogAllowFullTableExternalDataAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = GlueCatalogAllowFullTableExternalDataAccess._(
+    TfArgLiteral('True'),
+  );
+  static const falseCase = GlueCatalogAllowFullTableExternalDataAccess._(
+    TfArgLiteral('False'),
+  );
+
+  static const List<GlueCatalogAllowFullTableExternalDataAccess> values = [
+    trueCase,
+    falseCase,
+  ];
 }
 
 /// Glue Catalog Overwrite Child Resource Permissions With enum for `overwrite_child_resource_permissions_with_default`.
-enum GlueCatalogOverwriteChildResourcePermissionsWithDefault
-    implements TerraformEnum {
-  accept('Accept'),
-  deny('Deny');
+extension type const GlueCatalogOverwriteChildResourcePermissionsWithDefault._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlueCatalogOverwriteChildResourcePermissionsWithDefault.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogOverwriteChildResourcePermissionsWithDefault.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GlueCatalogOverwriteChildResourcePermissionsWithDefault.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GlueCatalogOverwriteChildResourcePermissionsWithDefault(
-    this.terraformValue,
+  static const accept =
+      GlueCatalogOverwriteChildResourcePermissionsWithDefault._(
+        TfArgLiteral('Accept'),
+      );
+  static const deny = GlueCatalogOverwriteChildResourcePermissionsWithDefault._(
+    TfArgLiteral('Deny'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<GlueCatalogOverwriteChildResourcePermissionsWithDefault>
+  values = [accept, deny];
 }
 
 /// Typed helper for the `catalog_properties` block of
@@ -211,11 +237,11 @@ final class AwsGlueCatalog extends Resource {
 
   AwsGlueCatalog(
     super.localName, {
-    TfArg<GlueCatalogAllowFullTableExternalDataAccess>?
+    GlueCatalogAllowFullTableExternalDataAccess?
     allowFullTableExternalDataAccess,
     TfArg<String>? description,
     required TfArg<String> name,
-    TfArg<GlueCatalogOverwriteChildResourcePermissionsWithDefault>?
+    GlueCatalogOverwriteChildResourcePermissionsWithDefault?
     overwriteChildResourcePermissionsWithDefault,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,

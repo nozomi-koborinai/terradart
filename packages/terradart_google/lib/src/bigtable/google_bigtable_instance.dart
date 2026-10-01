@@ -10,33 +10,55 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleBigtableInstanceSensitive = <String>{};
 
 /// `instance_type` on `google_bigtable_instance`.
-enum BigtableInstanceType implements TerraformEnum {
-  development('DEVELOPMENT'),
-  production('PRODUCTION');
+extension type const BigtableInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigtableInstanceType.variable(String name) : this._(TfArg.variable(name));
+  BigtableInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigtableInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigtableInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const development = BigtableInstanceType._(
+    TfArgLiteral('DEVELOPMENT'),
+  );
+  static const production = BigtableInstanceType._(TfArgLiteral('PRODUCTION'));
+
+  static const List<BigtableInstanceType> values = [development, production];
 }
 
 /// `edition` on `google_bigtable_instance`.
-enum BigtableInstanceEdition implements TerraformEnum {
-  enterprise('ENTERPRISE'),
-  enterprisePlus('ENTERPRISE_PLUS');
+extension type const BigtableInstanceEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  BigtableInstanceEdition.variable(String name) : this._(TfArg.variable(name));
+  BigtableInstanceEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigtableInstanceEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const BigtableInstanceEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enterprise = BigtableInstanceEdition._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const enterprisePlus = BigtableInstanceEdition._(
+    TfArgLiteral('ENTERPRISE_PLUS'),
+  );
+
+  static const List<BigtableInstanceEdition> values = [
+    enterprise,
+    enterprisePlus,
+  ];
 }
 
 /// `storage_type` on a Bigtable cluster.
-enum BigtableClusterStorageType implements TerraformEnum {
-  ssd('SSD'),
-  hdd('HDD');
+extension type const BigtableClusterStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigtableClusterStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigtableClusterStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigtableClusterStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigtableClusterStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssd = BigtableClusterStorageType._(TfArgLiteral('SSD'));
+  static const hdd = BigtableClusterStorageType._(TfArgLiteral('HDD'));
+
+  static const List<BigtableClusterStorageType> values = [ssd, hdd];
 }
 
 /// Typed helper for the `cluster` block of
@@ -61,7 +83,7 @@ final class BigtableInstanceCluster {
 
   final TfArg<num>? numNodes;
 
-  final TfArg<BigtableClusterStorageType>? storageType;
+  final BigtableClusterStorageType? storageType;
 
   final TfArg<String>? zone;
 
@@ -121,7 +143,7 @@ final class BigtableInstanceAutoscalingConfig {
 /// GoogleBigtableInstance(
 ///   'events',
 ///   name: TfArg.literal('events-dev'),
-///   instanceType: TfArg.literal(BigtableInstanceType.development),
+///   instanceType: BigtableInstanceType.development,
 ///   cluster: [
 ///     BigtableInstanceCluster(
 ///       clusterId: TfArg.literal('events-c1'),
@@ -139,8 +161,8 @@ final class GoogleBigtableInstance extends Resource {
     required TfArg<String> name,
     List<BigtableInstanceCluster>? cluster,
     TfArg<String>? displayName,
-    TfArg<BigtableInstanceType>? instanceType,
-    TfArg<BigtableInstanceEdition>? edition,
+    BigtableInstanceType? instanceType,
+    BigtableInstanceEdition? edition,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? deletionProtection,

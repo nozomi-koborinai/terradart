@@ -8,16 +8,38 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSignerSigningProfileSensitive = <String>{};
 
 /// Signer Signing Profile Platform enum for `platform_id`.
-enum SignerSigningProfilePlatformId implements TerraformEnum {
-  awslambdaSha384Ecdsa('AWSLambda-SHA384-ECDSA'),
-  notationOciSha384Ecdsa('Notation-OCI-SHA384-ECDSA'),
-  awsiotdevicemanagementSha256Ecdsa('AWSIoTDeviceManagement-SHA256-ECDSA'),
-  amazonfreertosTiCc3220sf('AmazonFreeRTOS-TI-CC3220SF'),
-  amazonfreertosDefault('AmazonFreeRTOS-Default');
+extension type const SignerSigningProfilePlatformId._(TfArg<String> _)
+    implements TfArg<String> {
+  SignerSigningProfilePlatformId.variable(String name)
+    : this._(TfArg.variable(name));
+  SignerSigningProfilePlatformId.expression(String template)
+    : this._(TfArg.expression(template));
+  const SignerSigningProfilePlatformId.arg(TfArg<String> arg) : this._(arg);
 
-  const SignerSigningProfilePlatformId(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awslambdaSha384Ecdsa = SignerSigningProfilePlatformId._(
+    TfArgLiteral('AWSLambda-SHA384-ECDSA'),
+  );
+  static const notationOciSha384Ecdsa = SignerSigningProfilePlatformId._(
+    TfArgLiteral('Notation-OCI-SHA384-ECDSA'),
+  );
+  static const awsiotdevicemanagementSha256Ecdsa =
+      SignerSigningProfilePlatformId._(
+        TfArgLiteral('AWSIoTDeviceManagement-SHA256-ECDSA'),
+      );
+  static const amazonfreertosTiCc3220sf = SignerSigningProfilePlatformId._(
+    TfArgLiteral('AmazonFreeRTOS-TI-CC3220SF'),
+  );
+  static const amazonfreertosDefault = SignerSigningProfilePlatformId._(
+    TfArgLiteral('AmazonFreeRTOS-Default'),
+  );
+
+  static const List<SignerSigningProfilePlatformId> values = [
+    awslambdaSha384Ecdsa,
+    notationOciSha384Ecdsa,
+    awsiotdevicemanagementSha256Ecdsa,
+    amazonfreertosTiCc3220sf,
+    amazonfreertosDefault,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_signer_signing_profile`: the provider rejects
@@ -87,7 +109,7 @@ final class SignerSigningProfileSignatureValidityPeriod {
     required this.value,
   });
 
-  final TfArg<SignerSigningProfileType> type;
+  final SignerSigningProfileType type;
 
   final TfArg<num> value;
 
@@ -98,14 +120,18 @@ final class SignerSigningProfileSignatureValidityPeriod {
 }
 
 /// `type` — derived from the provider schema description.
-enum SignerSigningProfileType implements TerraformEnum {
-  days('DAYS'),
-  months('MONTHS'),
-  years('YEARS');
+extension type const SignerSigningProfileType._(TfArg<String> _)
+    implements TfArg<String> {
+  SignerSigningProfileType.variable(String name) : this._(TfArg.variable(name));
+  SignerSigningProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SignerSigningProfileType.arg(TfArg<String> arg) : this._(arg);
 
-  const SignerSigningProfileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = SignerSigningProfileType._(TfArgLiteral('DAYS'));
+  static const months = SignerSigningProfileType._(TfArgLiteral('MONTHS'));
+  static const years = SignerSigningProfileType._(TfArgLiteral('YEARS'));
+
+  static const List<SignerSigningProfileType> values = [days, months, years];
 }
 
 /// Typed helper for the `signing_material` block of
@@ -128,7 +154,7 @@ final class AwsSignerSigningProfile extends Resource {
   AwsSignerSigningProfile(
     super.localName, {
     SignerSigningProfileName? name,
-    required TfArg<SignerSigningProfilePlatformId> platformId,
+    required SignerSigningProfilePlatformId platformId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? signingParameters,
     TfArg<Map<String, String>>? tags,

@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2ImageBlockPublicAccessSensitive = <String>{};
 
 /// Ec2 Image Block Public Access enum for `state`.
-enum Ec2ImageBlockPublicAccessState implements TerraformEnum {
-  blockNewSharing('block-new-sharing'),
-  unblocked('unblocked');
+extension type const Ec2ImageBlockPublicAccessState._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ImageBlockPublicAccessState.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2ImageBlockPublicAccessState.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ImageBlockPublicAccessState.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2ImageBlockPublicAccessState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blockNewSharing = Ec2ImageBlockPublicAccessState._(
+    TfArgLiteral('block-new-sharing'),
+  );
+  static const unblocked = Ec2ImageBlockPublicAccessState._(
+    TfArgLiteral('unblocked'),
+  );
+
+  static const List<Ec2ImageBlockPublicAccessState> values = [
+    blockNewSharing,
+    unblocked,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_image_block_public_access`.
@@ -23,7 +35,7 @@ final class AwsEc2ImageBlockPublicAccess extends Resource {
   AwsEc2ImageBlockPublicAccess(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<Ec2ImageBlockPublicAccessState> state,
+    required Ec2ImageBlockPublicAccessState state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

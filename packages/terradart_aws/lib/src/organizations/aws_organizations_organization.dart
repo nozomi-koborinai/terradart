@@ -7,34 +7,99 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOrganizationsOrganizationSensitive = <String>{};
 
 /// Organizations Organization Enabled Policy enum for `enabled_policy_types`.
-enum OrganizationsOrganizationEnabledPolicyTypes implements TerraformEnum {
-  serviceControlPolicy('SERVICE_CONTROL_POLICY'),
-  resourceControlPolicy('RESOURCE_CONTROL_POLICY'),
-  tagPolicy('TAG_POLICY'),
-  backupPolicy('BACKUP_POLICY'),
-  aiservicesOptOutPolicy('AISERVICES_OPT_OUT_POLICY'),
-  chatbotPolicy('CHATBOT_POLICY'),
-  declarativePolicyEc2('DECLARATIVE_POLICY_EC2'),
-  securityhubPolicy('SECURITYHUB_POLICY'),
-  inspectorPolicy('INSPECTOR_POLICY'),
-  upgradeRolloutPolicy('UPGRADE_ROLLOUT_POLICY'),
-  bedrockPolicy('BEDROCK_POLICY'),
-  s3Policy('S3_POLICY'),
-  networkSecurityDirectorPolicy('NETWORK_SECURITY_DIRECTOR_POLICY');
+extension type const OrganizationsOrganizationEnabledPolicyTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrganizationsOrganizationEnabledPolicyTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  OrganizationsOrganizationEnabledPolicyTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrganizationsOrganizationEnabledPolicyTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OrganizationsOrganizationEnabledPolicyTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceControlPolicy =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('SERVICE_CONTROL_POLICY'),
+      );
+  static const resourceControlPolicy =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('RESOURCE_CONTROL_POLICY'),
+      );
+  static const tagPolicy = OrganizationsOrganizationEnabledPolicyTypes._(
+    TfArgLiteral('TAG_POLICY'),
+  );
+  static const backupPolicy = OrganizationsOrganizationEnabledPolicyTypes._(
+    TfArgLiteral('BACKUP_POLICY'),
+  );
+  static const aiservicesOptOutPolicy =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('AISERVICES_OPT_OUT_POLICY'),
+      );
+  static const chatbotPolicy = OrganizationsOrganizationEnabledPolicyTypes._(
+    TfArgLiteral('CHATBOT_POLICY'),
+  );
+  static const declarativePolicyEc2 =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('DECLARATIVE_POLICY_EC2'),
+      );
+  static const securityhubPolicy =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('SECURITYHUB_POLICY'),
+      );
+  static const inspectorPolicy = OrganizationsOrganizationEnabledPolicyTypes._(
+    TfArgLiteral('INSPECTOR_POLICY'),
+  );
+  static const upgradeRolloutPolicy =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('UPGRADE_ROLLOUT_POLICY'),
+      );
+  static const bedrockPolicy = OrganizationsOrganizationEnabledPolicyTypes._(
+    TfArgLiteral('BEDROCK_POLICY'),
+  );
+  static const s3Policy = OrganizationsOrganizationEnabledPolicyTypes._(
+    TfArgLiteral('S3_POLICY'),
+  );
+  static const networkSecurityDirectorPolicy =
+      OrganizationsOrganizationEnabledPolicyTypes._(
+        TfArgLiteral('NETWORK_SECURITY_DIRECTOR_POLICY'),
+      );
+
+  static const List<OrganizationsOrganizationEnabledPolicyTypes> values = [
+    serviceControlPolicy,
+    resourceControlPolicy,
+    tagPolicy,
+    backupPolicy,
+    aiservicesOptOutPolicy,
+    chatbotPolicy,
+    declarativePolicyEc2,
+    securityhubPolicy,
+    inspectorPolicy,
+    upgradeRolloutPolicy,
+    bedrockPolicy,
+    s3Policy,
+    networkSecurityDirectorPolicy,
+  ];
 }
 
 /// Organizations Organization Feature enum for `feature_set`.
-enum OrganizationsOrganizationFeatureSet implements TerraformEnum {
-  all('ALL'),
-  consolidatedBilling('CONSOLIDATED_BILLING');
+extension type const OrganizationsOrganizationFeatureSet._(TfArg<String> _)
+    implements TfArg<String> {
+  OrganizationsOrganizationFeatureSet.variable(String name)
+    : this._(TfArg.variable(name));
+  OrganizationsOrganizationFeatureSet.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrganizationsOrganizationFeatureSet.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OrganizationsOrganizationFeatureSet(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = OrganizationsOrganizationFeatureSet._(TfArgLiteral('ALL'));
+  static const consolidatedBilling = OrganizationsOrganizationFeatureSet._(
+    TfArgLiteral('CONSOLIDATED_BILLING'),
+  );
+
+  static const List<OrganizationsOrganizationFeatureSet> values = [
+    all,
+    consolidatedBilling,
+  ];
 }
 
 /// Factory wrapper for `aws_organizations_organization`.
@@ -44,9 +109,8 @@ final class AwsOrganizationsOrganization extends Resource {
   AwsOrganizationsOrganization(
     super.localName, {
     TfArg<List<String>>? awsServiceAccessPrincipals,
-    List<TfArg<OrganizationsOrganizationEnabledPolicyTypes>>?
-    enabledPolicyTypes,
-    TfArg<OrganizationsOrganizationFeatureSet>? featureSet,
+    List<OrganizationsOrganizationEnabledPolicyTypes>? enabledPolicyTypes,
+    OrganizationsOrganizationFeatureSet? featureSet,
     TfArg<bool>? returnOrganizationOnly,
     super.lifecycle,
     super.dependsOn,

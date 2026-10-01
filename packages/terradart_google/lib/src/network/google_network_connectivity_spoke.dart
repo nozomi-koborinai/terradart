@@ -213,7 +213,7 @@ final class NetworkConnectivitySpokeGateway {
     required this.ipRangeReservations,
   });
 
-  final TfArg<NetworkConnectivitySpokeCapacity> capacity;
+  final NetworkConnectivitySpokeCapacity capacity;
 
   final List<NetworkConnectivitySpokeIpRangeReservations> ipRangeReservations;
 
@@ -224,14 +224,29 @@ final class NetworkConnectivitySpokeGateway {
 }
 
 /// `capacity` — derived from the provider schema description.
-enum NetworkConnectivitySpokeCapacity implements TerraformEnum {
-  capacity1Gbps('CAPACITY_1_GBPS'),
-  capacity10Gbps('CAPACITY_10_GBPS'),
-  capacity100Gbps('CAPACITY_100_GBPS');
+extension type const NetworkConnectivitySpokeCapacity._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivitySpokeCapacity.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivitySpokeCapacity.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivitySpokeCapacity.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkConnectivitySpokeCapacity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacity1Gbps = NetworkConnectivitySpokeCapacity._(
+    TfArgLiteral('CAPACITY_1_GBPS'),
+  );
+  static const capacity10Gbps = NetworkConnectivitySpokeCapacity._(
+    TfArgLiteral('CAPACITY_10_GBPS'),
+  );
+  static const capacity100Gbps = NetworkConnectivitySpokeCapacity._(
+    TfArgLiteral('CAPACITY_100_GBPS'),
+  );
+
+  static const List<NetworkConnectivitySpokeCapacity> values = [
+    capacity1Gbps,
+    capacity10Gbps,
+    capacity100Gbps,
+  ];
 }
 
 /// Typed helper for the `gateway.ip_range_reservations` block of

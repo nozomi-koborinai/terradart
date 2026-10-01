@@ -53,7 +53,7 @@ final class OracleDbSystemStack extends Stack {
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(odbSubnetId),
       cidrRange: .literal('10.40.0.0/24'),
-      purpose: .literal(.clientSubnet),
+      purpose: .clientSubnet,
       dependsOn: [...apiDeps, odbNetwork],
     );
     add(odbSubnet);
@@ -69,9 +69,9 @@ final class OracleDbSystemStack extends Stack {
         properties: OracleDatabaseDbSystemProperties(
           shape: .literal('VM.Standard2.1'),
           computeCount: .literal(2),
-          databaseEdition: .literal(.enterpriseEdition),
+          databaseEdition: .enterpriseEdition,
           initialDataStorageSizeGb: .literal(256),
-          licenseModel: .literal(.licenseIncluded),
+          licenseModel: .licenseIncluded,
           sshPublicKeys: .literal([_placeholderSshPublicKey]),
           dbHome: .new(
             dbVersion: .literal('19'),

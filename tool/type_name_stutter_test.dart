@@ -22,7 +22,7 @@ import 'type_name_length_test.dart' show lanePackages;
 const _ledgerPath = 'tool/type_name_stutter_debt.yaml';
 const _header = '// GENERATED FILE - DO NOT EDIT';
 final _decl = RegExp(
-  r'^(?:sealed class|final class|abstract class|class|enum) (\w+)',
+  r'^(?:sealed class|final class|abstract class|class|enum|extension type const) (\w+)',
   multiLine: true,
 );
 

@@ -26,8 +26,7 @@ final class AccessContextManagerServicePerimeters {
 
   final TfArg<String> name;
 
-  final TfArg<AccessContextManagerServicePerimetersPerimeterType>?
-  perimeterType;
+  final AccessContextManagerServicePerimetersPerimeterType? perimeterType;
 
   final TfArg<String> title;
 
@@ -49,14 +48,28 @@ final class AccessContextManagerServicePerimeters {
 }
 
 /// `perimeter_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimetersPerimeterType
-    implements TerraformEnum {
-  perimeterTypeRegular('PERIMETER_TYPE_REGULAR'),
-  perimeterTypeBridge('PERIMETER_TYPE_BRIDGE');
+extension type const AccessContextManagerServicePerimetersPerimeterType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimetersPerimeterType.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimetersPerimeterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimetersPerimeterType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimetersPerimeterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const perimeterTypeRegular =
+      AccessContextManagerServicePerimetersPerimeterType._(
+        TfArgLiteral('PERIMETER_TYPE_REGULAR'),
+      );
+  static const perimeterTypeBridge =
+      AccessContextManagerServicePerimetersPerimeterType._(
+        TfArgLiteral('PERIMETER_TYPE_BRIDGE'),
+      );
+
+  static const List<AccessContextManagerServicePerimetersPerimeterType> values =
+      [perimeterTypeRegular, perimeterTypeBridge];
 }
 
 /// Typed helper for the `service_perimeters.spec` block of
@@ -137,9 +150,9 @@ final class AccessContextManagerServicePerimetersEgressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<AccessContextManagerServicePerimetersIdentityType>? identityType;
+  final AccessContextManagerServicePerimetersIdentityType? identityType;
 
-  final TfArg<AccessContextManagerServicePerimetersSourceRestriction>?
+  final AccessContextManagerServicePerimetersSourceRestriction?
   sourceRestriction;
 
   final List<AccessContextManagerServicePerimetersSources>? sources;
@@ -153,30 +166,69 @@ final class AccessContextManagerServicePerimetersEgressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimetersIdentityType
-    implements TerraformEnum {
-  identityTypeUnspecified('IDENTITY_TYPE_UNSPECIFIED'),
-  anyIdentity('ANY_IDENTITY'),
-  anyUserAccount('ANY_USER_ACCOUNT'),
-  anyServiceAccount('ANY_SERVICE_ACCOUNT');
+extension type const AccessContextManagerServicePerimetersIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimetersIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimetersIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimetersIdentityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AccessContextManagerServicePerimetersIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const identityTypeUnspecified =
+      AccessContextManagerServicePerimetersIdentityType._(
+        TfArgLiteral('IDENTITY_TYPE_UNSPECIFIED'),
+      );
+  static const anyIdentity =
+      AccessContextManagerServicePerimetersIdentityType._(
+        TfArgLiteral('ANY_IDENTITY'),
+      );
+  static const anyUserAccount =
+      AccessContextManagerServicePerimetersIdentityType._(
+        TfArgLiteral('ANY_USER_ACCOUNT'),
+      );
+  static const anyServiceAccount =
+      AccessContextManagerServicePerimetersIdentityType._(
+        TfArgLiteral('ANY_SERVICE_ACCOUNT'),
+      );
+
+  static const List<AccessContextManagerServicePerimetersIdentityType> values =
+      [identityTypeUnspecified, anyIdentity, anyUserAccount, anyServiceAccount];
 }
 
 /// `source_restriction` — derived from the provider schema description.
-enum AccessContextManagerServicePerimetersSourceRestriction
-    implements TerraformEnum {
-  sourceRestrictionUnspecified('SOURCE_RESTRICTION_UNSPECIFIED'),
-  sourceRestrictionEnabled('SOURCE_RESTRICTION_ENABLED'),
-  sourceRestrictionDisabled('SOURCE_RESTRICTION_DISABLED');
+extension type const AccessContextManagerServicePerimetersSourceRestriction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimetersSourceRestriction.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimetersSourceRestriction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimetersSourceRestriction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimetersSourceRestriction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sourceRestrictionUnspecified =
+      AccessContextManagerServicePerimetersSourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_UNSPECIFIED'),
+      );
+  static const sourceRestrictionEnabled =
+      AccessContextManagerServicePerimetersSourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_ENABLED'),
+      );
+  static const sourceRestrictionDisabled =
+      AccessContextManagerServicePerimetersSourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_DISABLED'),
+      );
+
+  static const List<AccessContextManagerServicePerimetersSourceRestriction>
+  values = [
+    sourceRestrictionUnspecified,
+    sourceRestrictionEnabled,
+    sourceRestrictionDisabled,
+  ];
 }
 
 /// Typed helper for the `service_perimeters.spec.egress_policies.egress_from.sources` block of
@@ -325,7 +377,7 @@ final class AccessContextManagerServicePerimetersIngressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<AccessContextManagerServicePerimetersIdentityType>? identityType;
+  final AccessContextManagerServicePerimetersIdentityType? identityType;
 
   final List<AccessContextManagerServicePerimetersSources>? sources;
 

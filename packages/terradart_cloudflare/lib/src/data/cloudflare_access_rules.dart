@@ -15,7 +15,7 @@ const Set<String> _cloudflareAccessRulesSensitive = <String>{};
 final class DataAccessRulesConfiguration {
   const DataAccessRulesConfiguration({this.target, this.value});
 
-  final TfArg<DataAccessRulesTarget>? target;
+  final DataAccessRulesTarget? target;
 
   final TfArg<String>? value;
 
@@ -26,15 +26,19 @@ final class DataAccessRulesConfiguration {
 }
 
 /// `target` — derived from the provider schema description.
-enum DataAccessRulesTarget implements TerraformEnum {
-  ip('ip'),
-  ipRange('ip_range'),
-  asn('asn'),
-  country('country');
+extension type const DataAccessRulesTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccessRulesTarget.variable(String name) : this._(TfArg.variable(name));
+  DataAccessRulesTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccessRulesTarget.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccessRulesTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = DataAccessRulesTarget._(TfArgLiteral('ip'));
+  static const ipRange = DataAccessRulesTarget._(TfArgLiteral('ip_range'));
+  static const asn = DataAccessRulesTarget._(TfArgLiteral('asn'));
+  static const country = DataAccessRulesTarget._(TfArgLiteral('country'));
+
+  static const List<DataAccessRulesTarget> values = [ip, ipRange, asn, country];
 }
 
 /// Factory wrapper for `cloudflare_access_rules`.

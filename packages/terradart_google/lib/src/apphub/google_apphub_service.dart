@@ -63,21 +63,33 @@ final class ApphubServiceBusinessOwners {
 final class ApphubServiceCriticality {
   const ApphubServiceCriticality({required this.type});
 
-  final TfArg<ApphubServiceCriticalityType> type;
+  final ApphubServiceCriticalityType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubServiceCriticalityType implements TerraformEnum {
-  missionCritical('MISSION_CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const ApphubServiceCriticalityType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubServiceCriticalityType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApphubServiceCriticalityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubServiceCriticalityType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubServiceCriticalityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const missionCritical = ApphubServiceCriticalityType._(
+    TfArgLiteral('MISSION_CRITICAL'),
+  );
+  static const high = ApphubServiceCriticalityType._(TfArgLiteral('HIGH'));
+  static const medium = ApphubServiceCriticalityType._(TfArgLiteral('MEDIUM'));
+  static const low = ApphubServiceCriticalityType._(TfArgLiteral('LOW'));
+
+  static const List<ApphubServiceCriticalityType> values = [
+    missionCritical,
+    high,
+    medium,
+    low,
+  ];
 }
 
 /// Typed helper for the `attributes.developer_owners` block of
@@ -102,21 +114,37 @@ final class ApphubServiceDeveloperOwners {
 final class ApphubServiceEnvironment {
   const ApphubServiceEnvironment({required this.type});
 
-  final TfArg<ApphubServiceEnvironmentType> type;
+  final ApphubServiceEnvironmentType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubServiceEnvironmentType implements TerraformEnum {
-  production('PRODUCTION'),
-  staging('STAGING'),
-  test('TEST'),
-  development('DEVELOPMENT');
+extension type const ApphubServiceEnvironmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubServiceEnvironmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApphubServiceEnvironmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubServiceEnvironmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubServiceEnvironmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const production = ApphubServiceEnvironmentType._(
+    TfArgLiteral('PRODUCTION'),
+  );
+  static const staging = ApphubServiceEnvironmentType._(
+    TfArgLiteral('STAGING'),
+  );
+  static const test = ApphubServiceEnvironmentType._(TfArgLiteral('TEST'));
+  static const development = ApphubServiceEnvironmentType._(
+    TfArgLiteral('DEVELOPMENT'),
+  );
+
+  static const List<ApphubServiceEnvironmentType> values = [
+    production,
+    staging,
+    test,
+    development,
+  ];
 }
 
 /// Typed helper for the `attributes.operator_owners` block of
