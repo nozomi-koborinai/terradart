@@ -356,11 +356,11 @@ resource "aws_s3_bucket" "logs" {
       expect(
         src,
         contains(
-          "members: .literal([.user(r'a@example.com'), "
-          ".group(r'sre@example.com'), ",
+          "members: .literal([.user('a@example.com'), "
+          ".group('sre@example.com'), ",
         ),
       );
-      expect(src, contains(".literal(r'deleted:user:b@example.com?uid=1')"));
+      expect(src, contains(".literal('deleted:user:b@example.com?uid=1')"));
       expect(src, contains('runtime.principal]'));
     });
 
@@ -371,7 +371,7 @@ resource "aws_s3_bucket" "logs" {
           r"member: .arg(.expression(r'serviceAccount:${google_service_account.runtime.email}')))",
         ),
       );
-      expect(src, contains("members: .variable(r'admins'))"));
+      expect(src, contains("members: .variable('admins'))"));
     });
   });
 
