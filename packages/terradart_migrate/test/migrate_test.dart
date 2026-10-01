@@ -1419,7 +1419,7 @@ resource "aws_cloudwatch_log_group" "fn" {
     test('a variable whose type is unreadable stays in the sidecar', () {
       final r = _migrateJson({
         'terraform': _google,
-        'provider': {'google': {}},
+        'provider': {'google': <String, Object?>{}},
         'variable': {
           'odd': {'type': 'strin(g'},
         },
