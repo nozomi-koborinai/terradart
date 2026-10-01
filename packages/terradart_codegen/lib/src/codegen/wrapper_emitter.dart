@@ -9,6 +9,7 @@ import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
+import 'nested_types/nested_type_names.dart';
 import 'provider_enums.dart';
 import 'references/reference_slots.dart';
 import 'references/reference_targets.dart';
@@ -55,6 +56,7 @@ class WrapperEmitter {
     this.resourceProvider,
     this.providerEnums = ProviderEnums.off,
     this.references = const {},
+    this.laneInputs = const {},
   });
 
   /// The `--provider-enums` gate; supplies the nested helpers' enum values.
@@ -64,6 +66,9 @@ class WrapperEmitter {
   /// resource that input references. A matched string input is typed
   /// `RefTo<Target>` unless the override already types it.
   final Map<String, Map<String, ResolvedReference>> references;
+
+  /// The stem of every type the lane wraps (`joinStem`).
+  final Map<String, Set<String>> laneInputs;
 
   /// `<resource type>.<path>` of every input the last [emit] typed as a
   /// reference.
@@ -148,6 +153,7 @@ class WrapperEmitter {
               def.terraformType,
               override,
             ),
+            laneInputs: laneInputs,
           )
         : const <NestedBlockSpec>[];
     final nestedTypeKeys = {...?override?.nestedDartTypeOverrides.keys};
@@ -306,6 +312,11 @@ class WrapperEmitter {
     // replacing the hand-written `prelude` enum block. Nested-block enums are
     // out of scope for A1 (top-level attributes only).
     if (override?.deriveEnums ?? false) {
+      final names = topLevelTypeNames(
+        shortResourcePascal(def.terraformType),
+        def.root.attributes.map((a) => a.name),
+        laneInputs: laneInputs,
+      );
       for (final attr in def.root.attributes) {
         final values = attr.constraints.enumValues;
         if (values == null || values.isEmpty) continue;
@@ -313,6 +324,7 @@ class WrapperEmitter {
           resourceType: def.terraformType,
           fieldPath: attr.name,
           members: values,
+          dartName: names[attr.name],
         );
         buf.writeln(emitEnumDeclaration(en));
       }

@@ -178,7 +178,7 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 ///
 /// Each class is named by [conciseTypeNames]: [resourcePrefix] plus the
 /// shortest trailing part of its path no other type of the resource takes
-/// — neither a top-level input's `<prefix><Input>` nor a name in [reserved]
+/// — neither a top-level input's name ([topLevelTypeNames]) nor a name in [reserved]
 /// (see [rootSealedTypeNames]).
 ///
 /// [enumValues] decides each leaf attribute's enum value set from its
@@ -199,6 +199,8 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// [typeOverrides] maps a leaf input's dotted path to the Dart type its
 /// field takes instead (a hand-written enum in the override's prelude) —
 /// the override's `dartTypeOverrides` entries whose key has a dot.
+///
+/// [laneInputs] maps every stem of the lane to its input names ([joinStem]).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -212,6 +214,7 @@ List<NestedBlockSpec> collectNestedTypes({
   ReferenceResolver references = _noReferences,
   Map<String, String> typeOverrides = const {},
   Set<String> reserved = const {},
+  Map<String, Set<String>> laneInputs = const {},
 }) {
   final rootKeys = {
     ..._optionalMap(resourceBlock['attributes'], context: 'attributes').keys,
@@ -234,14 +237,15 @@ List<NestedBlockSpec> collectNestedTypes({
     scan.children,
     acrossNames: shareIdenticalShapes,
   );
-  return _renameConcisely(specs, resourcePrefix, {
+  return _renameConcisely(specs, resourcePrefix, laneInputs, {
     ...reserved,
-    for (final MapEntry(:key, :value) in _optionalMap(
-      resourceBlock['attributes'],
-      context: 'attributes',
-    ).entries)
-      if (value is! Map || !value.containsKey('nested_type'))
-        resourcePrefix + snakeToPascal(key),
+    ...topLevelTypeNames(resourcePrefix, laneInputs: laneInputs, [
+      for (final MapEntry(:key, :value) in _optionalMap(
+        resourceBlock['attributes'],
+        context: 'attributes',
+      ).entries)
+        if (value is! Map || !value.containsKey('nested_type')) key,
+    ]).values,
   });
 }
 
@@ -251,6 +255,7 @@ List<NestedBlockSpec> collectNestedTypes({
 List<NestedBlockSpec> _renameConcisely(
   List<NestedBlockSpec> specs,
   String stem,
+  Map<String, Set<String>> laneInputs,
   Set<String> reserved,
 ) {
   final classes = <String, NestedBlockSpec>{};
@@ -295,11 +300,20 @@ List<NestedBlockSpec> _renameConcisely(
       groupPaths.add(path);
     }
   }
-  final names = conciseTypeNames(stem, [
-    for (final k in classKeys) classes[k]!.path,
-    for (final k in enumKeys) enums[k]!,
-    ...groupPaths,
-  ], reserved: reserved);
+  final names = conciseTypeNames(
+    stem,
+    [
+      for (final k in classKeys) classes[k]!.path,
+      for (final k in enumKeys) enums[k]!,
+      ...groupPaths,
+    ],
+    reserved: reserved,
+    laneInputs: laneInputs,
+    stemless: {
+      for (var i = 0; i < groupPaths.length; i++)
+        classKeys.length + enumKeys.length + i,
+    },
+  );
   final classNames = {
     for (var i = 0; i < classKeys.length; i++) classKeys[i]: names[i],
   };

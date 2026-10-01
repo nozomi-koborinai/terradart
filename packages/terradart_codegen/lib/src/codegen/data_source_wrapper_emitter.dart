@@ -61,7 +61,11 @@ class DataSourceWrapperEmitter {
     this.providerEnums = ProviderEnums.off,
     this.resourceDirs = const {},
     this.references = const {},
+    this.laneInputs = const {},
   });
+
+  /// The stem of every type the lane wraps (`joinStem`).
+  final Map<String, Set<String>> laneInputs;
 
   /// `--typed-references`: data source type → dotted input path → the
   /// resource that input references. A matched string input is typed
@@ -144,6 +148,7 @@ class DataSourceWrapperEmitter {
             shareIdenticalShapes: override.dedupeNestedTypes,
             enumValues: providerEnums.resolver(null),
             references: (path) => refs[path.join('.')],
+            laneInputs: laneInputs,
           )
         : const <NestedBlockSpec>[];
     final dartTypeOverrides =

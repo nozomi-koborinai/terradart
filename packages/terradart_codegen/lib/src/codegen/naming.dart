@@ -86,10 +86,14 @@ String shortResourcePascal(String terraformType) {
 /// `PubsubTopicEncoding`.
 ///
 /// Members are SCREAMING_SNAKE_CASE → camelCase.
+///
+/// [dartName], when given, replaces the derived name (a top-level input's
+/// `topLevelTypeNames` entry).
 EnumName enumName({
   required String resourceType,
   required String fieldPath,
   required List<String> members,
+  String? dartName,
 }) {
   // Use the **leaf** field name for the enum suffix (encoding, not
   // schema_settings.encoding) — short and distinctive.
@@ -97,7 +101,7 @@ EnumName enumName({
   final leafPascal = snakeToPascal(leaf);
   final dartMembers = enumMemberNames(members);
   return EnumName(
-    dartName: '${shortResourcePascal(resourceType)}$leafPascal',
+    dartName: dartName ?? '${shortResourcePascal(resourceType)}$leafPascal',
     dartMembers: dartMembers,
     rawValues: List<String>.from(members),
     fieldPath: fieldPath,
