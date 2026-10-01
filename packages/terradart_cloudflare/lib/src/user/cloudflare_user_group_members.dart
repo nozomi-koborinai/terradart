@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../account/cloudflare_account_member.dart' show CloudflareAccountMember;
+import '../user/cloudflare_user_group.dart' show CloudflareUserGroup;
 
 /// Sensitive field paths for `cloudflare_user_group_members`.
 const Set<String> _cloudflareUserGroupMembersSensitive = <String>{};
@@ -25,9 +27,9 @@ enum UserGroupMembersDirection implements TerraformEnum {
 final class UserGroupMembers {
   const UserGroupMembers({required this.id});
 
-  final TfArg<String> id;
+  final RefTo<CloudflareAccountMember> id;
 
-  Map<String, Object?> encode() => {'id': id.toTfJson()};
+  Map<String, Object?> encode() => {'id': id.encodeAs('id').toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_user_group_members`.
@@ -45,7 +47,7 @@ final class CloudflareUserGroupMembers extends Resource {
     TfArg<String>? fuzzyEmail,
     TfArg<num>? page,
     TfArg<num>? perPage,
-    required TfArg<String> userGroupId,
+    required RefTo<CloudflareUserGroup> userGroupId,
     required List<UserGroupMembers> members,
     super.lifecycle,
     super.dependsOn,
@@ -59,7 +61,7 @@ final class CloudflareUserGroupMembers extends Resource {
            'fuzzy_email': ?fuzzyEmail,
            'page': ?page,
            'per_page': ?perPage,
-           'user_group_id': userGroupId,
+           'user_group_id': userGroupId.encodeAs('id'),
            'members': TfArg.literal([for (final e in members) e.encode()]),
          },
        );

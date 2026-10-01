@@ -7089,7 +7089,7 @@ final class AwsLeftoverStack extends Stack {
       AwsIamGroupPolicyAttachmentsExclusive(
         localName: 'iam_group_policy_attachments_exclusive',
         groupName: .literal(leftover),
-        policyArns: .literal([arn]),
+        policyArns: .literal([.literal(arn)]),
       ),
     );
 
@@ -7148,7 +7148,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsIamRolePolicyAttachmentsExclusive(
         localName: 'iam_role_policy_attachments_exclusive',
-        policyArns: .literal([arn]),
+        policyArns: .literal([.literal(arn)]),
         roleName: .literal(leftover),
       ),
     );
@@ -7243,7 +7243,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsIamUserPolicyAttachmentsExclusive(
         localName: 'iam_user_policy_attachments_exclusive',
-        policyArns: .literal([arn]),
+        policyArns: .literal([.literal(arn)]),
         userName: .literal(leftover),
       ),
     );

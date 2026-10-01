@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
+
 /// Sensitive field paths for `aws_iam_user_policy_attachments_exclusive`.
 const Set<String> _awsIamUserPolicyAttachmentsExclusiveSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsIamUserPolicyAttachmentsExclusive extends Resource {
 
   AwsIamUserPolicyAttachmentsExclusive({
     required super.localName,
-    required TfArg<List<String>> policyArns,
+    required TfArg<List<RefTo<AwsIamPolicy>>> policyArns,
     required TfArg<String> userName,
     super.lifecycle,
     super.dependsOn,
@@ -20,7 +22,10 @@ final class AwsIamUserPolicyAttachmentsExclusive extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'policy_arns': policyArns, 'user_name': userName},
+         argMap: {
+           'policy_arns': policyArns.encodeAs('arn'),
+           'user_name': userName,
+         },
        );
 
   @override

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
+
 /// Sensitive field paths for `aws_iam_role`.
 const Set<String> _awsIamRoleSensitive = <String>{};
 
@@ -97,11 +99,11 @@ final class AwsIamRole extends Resource {
     required TfArg<String> assumeRolePolicy,
     TfArg<String>? description,
     TfArg<bool>? forceDetachPolicies,
-    TfArg<List<String>>? managedPolicyArns,
+    TfArg<List<RefTo<AwsIamPolicy>>>? managedPolicyArns,
     TfArg<num>? maxSessionDuration,
     IamRoleName? name,
     TfArg<String>? path,
-    TfArg<String>? permissionsBoundary,
+    RefTo<AwsIamPolicy>? permissionsBoundary,
     TfArg<Map<String, String>>? tags,
     List<IamRoleInlinePolicy>? inlinePolicy,
     super.lifecycle,
@@ -114,11 +116,11 @@ final class AwsIamRole extends Resource {
            'assume_role_policy': assumeRolePolicy,
            'description': ?description,
            'force_detach_policies': ?forceDetachPolicies,
-           'managed_policy_arns': ?managedPolicyArns,
+           'managed_policy_arns': ?managedPolicyArns?.encodeAs('arn'),
            'max_session_duration': ?maxSessionDuration,
            ...?name?.argMap,
            'path': ?path,
-           'permissions_boundary': ?permissionsBoundary,
+           'permissions_boundary': ?permissionsBoundary?.encodeAs('arn'),
            'tags': ?tags,
            if (inlinePolicy != null)
              'inline_policy': TfArg.literal([

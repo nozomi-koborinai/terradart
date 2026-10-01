@@ -57,7 +57,7 @@ The app reads the host it is served from as `EdgeStackConstants.apiHost` instead
 - **Enums.** Inputs with a fixed value set, such as a DNS record's `type`, are Dart enums (`.literal(.cname)`). The sets come from the provider's documentation and its Go validators, re-extracted on every schema bump.
 - **Sealed choices.** Arguments the provider declares mutually exclusive are one sealed argument: a DNS record has `content` *or* structured `data`, written `content: .content(...)` or `content: .data(...)`.
 - **Typed nested objects.** The plugin-framework provider describes objects as nested attributes; each becomes a helper class (`ZoneAccount`) rather than a `Map`.
-- **References.** `zoneId: zone.ref`, `accountId: account.ref`: an argument that names another resource takes that resource.
+- **References.** `zoneId: zone.ref`, `accountId: account.ref`: an argument that names another resource takes that resource. A user group's members take the account member (`CloudflareUserGroupMembers(userGroupId: group.ref, members: [.new(id: member.ref)])`).
 
 ## Examples
 

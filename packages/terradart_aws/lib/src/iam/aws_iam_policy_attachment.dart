@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_iam_policy_attachment`.
@@ -16,7 +17,7 @@ final class AwsIamPolicyAttachment extends Resource {
     required super.localName,
     TfArg<List<String>>? groups,
     required TfArg<String> name,
-    required TfArg<String> policyArn,
+    required RefTo<AwsIamPolicy> policyArn,
     TfArg<List<RefTo<AwsIamRole>>>? roles,
     TfArg<List<String>>? users,
     super.lifecycle,
@@ -28,7 +29,7 @@ final class AwsIamPolicyAttachment extends Resource {
          argMap: {
            'groups': ?groups,
            'name': name,
-           'policy_arn': policyArn,
+           'policy_arn': policyArn.encodeAs('arn'),
            'roles': ?roles?.encodeAs('name'),
            'users': ?users,
          },

@@ -32429,9 +32429,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'user_group_id',
           dartName: 'userGroupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareUserGroup',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -32500,9 +32501,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'user_group_id',
           dartName: 'userGroupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareUserGroup',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -65699,9 +65701,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'id',
           dartName: 'id',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'CloudflareAccountMember',
+          attribute: 'id',
         ),
       ],
     ),
