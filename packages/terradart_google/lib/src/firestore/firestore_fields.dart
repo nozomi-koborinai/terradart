@@ -10,11 +10,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Embed inside the map passed to [FirestoreFields.encode]:
 ///
 /// ```dart
-/// FirestoreFields.encode({
+/// final fields = FirestoreFields.encode({
 ///   'preferred_plan': FirestoreReference(
 ///     'projects/my-project/databases/(default)/documents/plans/premium',
 ///   ),
-/// })
+/// });
 /// ```
 ///
 /// The encoder detects this sentinel and emits
@@ -42,11 +42,11 @@ final class FirestoreReference {
 /// Embed inside the map passed to [FirestoreFields.encode]:
 ///
 /// ```dart
-/// FirestoreFields.encode({
+/// final fields = FirestoreFields.encode({
 ///   'office_location': FirestoreGeoPoint(
 ///     latitude: 35.6762, longitude: 139.6503,
 ///   ),
-/// })
+/// });
 /// ```
 ///
 /// The encoder emits
@@ -75,7 +75,7 @@ final class FirestoreGeoPoint {
 /// Dart map and produces a `TfArg<String>` ready to assign:
 ///
 /// ```dart
-/// fields: FirestoreFields.encode({
+/// final fields = FirestoreFields.encode({
 ///   'tier': 'premium',
 ///   'monthly_price': 19.99,
 ///   'active': true,
@@ -85,7 +85,7 @@ final class FirestoreGeoPoint {
 ///   'preferred_plan': FirestoreReference(
 ///     'projects/p/databases/(default)/documents/plans/premium',
 ///   ),
-/// })
+/// });
 /// ```
 ///
 /// Type coverage:

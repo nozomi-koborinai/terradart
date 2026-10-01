@@ -88,7 +88,7 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 /// regional external or internal HTTP(S) load-balancer chain. The full
 /// chain is:
 ///
-/// ```
+/// ```text
 /// google_compute_forwarding_rule.target
 ///   → google_compute_region_target_https_proxy
 ///     → google_compute_region_target_https_proxy.url_map

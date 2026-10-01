@@ -11,7 +11,8 @@ import 'package:meta/meta.dart';
 /// ```dart
 /// add(GoogleSqlDatabaseInstance(
 ///   localName: 'primary',
-///   name: TfArg.literal('app-postgres'),
+///   name: .literal('app-postgres'),
+///   databaseVersion: .literal(.postgres16),
 ///   timeouts: const TfTimeouts(create: '45m', update: '45m', delete: '45m'),
 /// ));
 /// ```

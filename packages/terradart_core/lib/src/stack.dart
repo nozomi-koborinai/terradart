@@ -256,7 +256,9 @@ abstract base class Stack {
   /// ```dart
   /// addOutput('orders_topic_id', .ref(topic.id));
   /// final service = add(GoogleCloudRunV2Service(
-  ///   // ...
+  ///   localName: 'orders',
+  ///   name: .literal('orders'),
+  ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(containers: [
   ///     CloudRunV2ServiceContainers(
   ///       image: .literal(image),
@@ -551,12 +553,12 @@ abstract base class Stack {
   /// instance, so the call site can read the module's outputs from it:
   ///
   /// ```dart
-  /// final sa = addModule(ServiceAccountModule(
+  /// final sa = addModule(ModuleCall(
   ///   localName: 'sa_bff',
   ///   source: '../modules/service_account',
-  ///   accountId: TfArg.literal('app-bff-sa'),
+  ///   inputs: {'account_id': .literal('app-bff-sa')},
   /// ));
-  /// // ... member: TfArg.ref(sa.member)
+  /// addOutput('bff_member', .ref(sa.output<String>('member')));
   /// ```
   ///
   /// Throws [DuplicateModuleError] when a call of the same

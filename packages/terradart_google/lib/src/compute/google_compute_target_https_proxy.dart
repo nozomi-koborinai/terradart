@@ -126,7 +126,7 @@ final class ComputeTargetHttpsProxySslCertificates
 /// A global HTTPS target proxy — the TLS-terminating node in the GCP
 /// external HTTP(S) load-balancer chain. The full chain is:
 ///
-/// ```
+/// ```text
 /// google_compute_global_forwarding_rule.target
 ///   → google_compute_target_https_proxy
 ///     → google_compute_target_https_proxy.url_map

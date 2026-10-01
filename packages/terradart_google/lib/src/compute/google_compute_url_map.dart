@@ -1945,7 +1945,7 @@ final class ComputeUrlMapHeaders {
 ///
 /// Matching pipeline (request flow):
 ///
-/// ```
+/// ```text
 /// incoming request
 ///   -> match Host: header against host_rule.hosts[]
 ///        -> dispatch to path_matcher named host_rule.path_matcher

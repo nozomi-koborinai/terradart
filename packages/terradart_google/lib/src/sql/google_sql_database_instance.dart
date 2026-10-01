@@ -1048,7 +1048,7 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 ///
 /// Private-IP wiring (the canonical Wave 5 chain):
 ///
-/// ```
+/// ```text
 /// google_compute_network              ┐
 /// google_compute_global_address       ├─ build the peering bridge first
 /// google_service_networking_connection┘

@@ -54,17 +54,35 @@ A single-module `--dir` synthesizes into `tf-out/` directly. A directory where n
 **`--merge-envs`** folds each group of environment siblings into one Stack instead of one per root:
 
 ```dart
+// lib/app_stack.dart
+enum Env {
+  dev(path: 'dev', assetsName: 'app-dev-assets', backendBucket: 'app-dev-tfstate', backendPrefix: 'infra/dev'),
+  prod(path: 'prod', assetsName: 'app-prod-assets', backendBucket: 'app-prod-tfstate', backendPrefix: 'infra/prod', isProd: true);
+
+  const Env({required this.path, required this.assetsName, required this.backendBucket, required this.backendPrefix, this.isProd = false});
+
+  final String path;
+  final String assetsName;
+  final String backendBucket;
+  final String backendPrefix;
+  final bool isProd;
+}
+
 final class AppStack extends Stack {
   AppStack({required this.env})
     : super(providers: [const GoogleProvider()],
             backend: GcsBackend(bucket: env.backendBucket, prefix: env.backendPrefix)) {
-    final assets = add(GoogleStorageBucket(
+    add(GoogleStorageBucket(
       localName: 'assets',
       name: .literal(env.assetsName),   // "app-dev-assets" / "app-prod-assets"
       location: .variable('region'),
     ));
     if (env.isProd) {
-      add(GoogleStorageBucket(localName: 'backups', ...));
+      add(GoogleStorageBucket(
+        localName: 'backups',
+        name: .literal('app-prod-backups'),
+        location: .variable('region'),
+      ));
     }
   }
 
@@ -83,22 +101,26 @@ The merge is refused — leaving one Stack per root, with the reason in `MIGRATI
 ## Library
 
 ```dart
+import 'dart:io';
+
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 
-final module = loadTfModule(Directory('infra/dev'));
-final result = migrateModule(module, name: 'dev');
+void main() {
+  final module = loadTfModule(Directory('infra/dev'));
+  final result = migrateModule(module, name: 'dev');
 
-result.files['lib/dev_stack.dart'];            // final class DevStack extends Stack { ... }
-result.files['bin/infra.dart'];                // synth entry point
-result.files['pubspec.yaml'];                  // lockstep pins on terradart_core + the provider packages used
-result.files['tf-out/terradart_leftover.tf'];  // the sidecar: what stays in Terraform, verbatim
-print(result.report.renderText());             // what became Dart, what stays in Terraform and why
+  result.files['lib/dev_stack.dart'];            // final class DevStack extends Stack { ... }
+  result.files['bin/infra.dart'];                // synth entry point
+  result.files['pubspec.yaml'];                  // lockstep pins on terradart_core + the provider packages used
+  result.files['tf-out/terradart_leftover.tf'];  // the sidecar: what stays in Terraform, verbatim
+  print(result.report.renderText());             // what became Dart, what stays in Terraform and why
 
-// A whole tree, as the CLI does it:
-final project = migrateTree(scanModuleTree(Directory('infra')), name: 'infra');
-project.files;   // every Stack and module wrapper, bin/infra.dart, pubspec.yaml, tf-out/**/sidecars, MIGRATION.md
-project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
+  // A whole tree, as the CLI does it:
+  final project = migrateTree(scanModuleTree(Directory('infra')), name: 'infra');
+  project.files;   // every Stack and module wrapper, bin/infra.dart, pubspec.yaml, tf-out/**/sidecars, MIGRATION.md
+  project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
+}
 ```
 
 **Translation is resource-atomic.** A resource whose arguments all translate becomes a curated factory call; one untranslatable argument keeps the whole block in Terraform, listed in `report.kept` with the reason — nothing is dropped silently. Resource addresses are preserved (`localName` is the Terraform name), so a migrated Stack plans with *No changes* once the leftover blocks sit beside its `main.tf.json`.
@@ -141,10 +163,12 @@ The runtime types are hand-written (`lib/src/migrate_manifest.dart`); the `*.g.d
 ```dart
 import 'package:terradart_migrate/terradart_migrate.dart';
 
-final hit = findMigrateEntry('google_pubsub_topic', CatalogKind.resource)!;
-print('${hit.manifest.package}: ${hit.entry.className}'); // terradart_google: GooglePubsubTopic
-for (final slot in hit.entry.slots) {
-  print('${slot.tfName} -> ${slot.dartName} (${slot.kind.name})');
+void main() {
+  final hit = findMigrateEntry('google_pubsub_topic', CatalogKind.resource)!;
+  print('${hit.manifest.package}: ${hit.entry.className}'); // terradart_google: GooglePubsubTopic
+  for (final slot in hit.entry.slots) {
+    print('${slot.tfName} -> ${slot.dartName} (${slot.kind.name})');
+  }
 }
 ```
 
