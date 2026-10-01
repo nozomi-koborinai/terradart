@@ -46,7 +46,7 @@ final class PrivatecaCaPoolIamMemberCondition {
 /// ```dart
 /// GooglePrivatecaCaPoolIamMember(
 ///   localName: 'pool_auditor',
-///   caPool: TfArg.ref(caPool.id),
+///   caPool: caPool.ref,
 ///   role: TfArg.literal('roles/privateca.auditor'),
 ///   member: TfArg.literal('group:security@example.com'),
 /// );

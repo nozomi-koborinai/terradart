@@ -378,8 +378,7 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 /// ```dart
 /// GoogleCesDeployment(
 ///   localName: 'api',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   appVersion: version.ref,
 ///   displayName: TfArg.literal('terradart-ces-deploy'),
 ///   channelProfile: CesDeploymentChannelProfile(

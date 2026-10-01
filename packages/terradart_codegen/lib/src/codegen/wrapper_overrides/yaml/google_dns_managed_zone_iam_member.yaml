@@ -31,12 +31,12 @@ curatedDoc: |-
   /// - [localName]: Terraform local name.
   /// - `managedZone`: the target zone's `name` attribute (the short zone
   ///   name, *not* the DNS name with trailing dot — e.g. `'internal-corp'`,
-  ///   not `'internal.corp.'`). Pass `TfArg.ref(zone.nameRef)`.
+  ///   not `'internal.corp.'`). Pass `zone.ref`.
   /// - `role`: role name, e.g. `'roles/dns.admin'` (full record CRUD) or
   ///   `'roles/dns.reader'` (read-only inspection).
   /// - `member`: principal in IAM v1 string form.
   ///
-  /// `project` is optional and defaults to the provider project.
+  /// `project` is optional and defaults to the zone's project.
   ///
   /// Optional `condition` is a single IAM Condition block (CEL
   /// `expression`, `title`, optional `description`).
@@ -45,7 +45,7 @@ curatedDoc: |-
   /// ```dart
   /// final zoneAdmin = GoogleDnsManagedZoneIamMember(
   ///   localName: 'zone_admin',
-  ///   managedZone: TfArg.ref(zone.nameRef),
+  ///   managedZone: zone.ref,
   ///   role: TfArg.literal('roles/dns.admin'),
   ///   member: TfArg.literal('group:sre-team-a@example.com'),
   /// );

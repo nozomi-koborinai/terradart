@@ -940,8 +940,7 @@ enum CesToolType implements TerraformEnum {
 /// ```dart
 /// GoogleCesTool(
 ///   localName: 'search',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   toolId: TfArg.literal('terradart-ces-search'),
 ///   googleSearchTool: CesToolGoogleSearchTool(
 ///     name: TfArg.literal('google_search'),

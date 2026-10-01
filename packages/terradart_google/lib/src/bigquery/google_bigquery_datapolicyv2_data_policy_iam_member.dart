@@ -43,7 +43,7 @@ final class BigqueryDatapolicyv2DataPolicyIamMemberCondition {
 /// ```dart
 /// GoogleBigqueryDatapolicyv2DataPolicyIamMember(
 ///   localName: 'raw_reader',
-///   dataPolicyId: TfArg.literal('raw-access'),
+///   dataPolicy: .literal('raw-access'),
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
 ///   member: TfArg.ref(reader.iamMember),

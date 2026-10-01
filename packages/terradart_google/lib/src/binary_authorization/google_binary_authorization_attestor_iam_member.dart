@@ -43,7 +43,7 @@ final class BinaryAuthorizationAttestorIamMemberCondition {
 /// ```dart
 /// GoogleBinaryAuthorizationAttestorIamMember(
 ///   localName: 'attestor_viewer',
-///   attestor: TfArg.ref(attestor.nameRef),
+///   attestor: attestor.ref,
 ///   role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
 ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
 /// );

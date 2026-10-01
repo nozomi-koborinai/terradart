@@ -456,8 +456,7 @@ enum CesGuardrailThreshold implements TerraformEnum {
 /// ```dart
 /// GoogleCesGuardrail(
 ///   localName: 'safety',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   guardrailId: TfArg.literal('terradart-ces-guardrail'),
 ///   displayName: TfArg.literal('terradart-ces-guardrail'),
 ///   enabled: TfArg.literal(true),

@@ -43,7 +43,7 @@ final class StorageManagedFolderIamMemberCondition {
 /// GoogleStorageManagedFolderIamMember(
 ///   localName: 'folder_viewer',
 ///   bucket: assets.ref,
-///   managedFolder: TfArg.ref(folder.nameRef),
+///   managedFolder: folder.ref,
 ///   role: TfArg.literal('roles/storage.objectViewer'),
 ///   member: TfArg.ref(reader.iamMember),
 /// );

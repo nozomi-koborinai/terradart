@@ -41,8 +41,7 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 /// ```dart
 /// GoogleCesAppRootAgentAssociation(
 ///   localName: 'root',
-///   location: TfArg.ref(app.locationRef),
-///   appId: TfArg.ref(app.appIdRef),
+///   appId: app.ref,
 ///   agentId: TfArg.ref(agent.agentIdRef),
 /// );
 /// ```

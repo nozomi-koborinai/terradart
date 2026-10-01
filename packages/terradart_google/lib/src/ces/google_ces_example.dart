@@ -203,8 +203,7 @@ final class CesExampleToolResponse {
 /// ```dart
 /// GoogleCesExample(
 ///   localName: 'greeting',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   exampleId: TfArg.literal('terradart-ces-example'),
 ///   displayName: TfArg.literal('terradart-ces-example'),
 ///   entryAgent: agent.ref,

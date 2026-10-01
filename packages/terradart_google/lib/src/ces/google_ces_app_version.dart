@@ -28,8 +28,7 @@ const Set<String> _googleCesAppVersionSensitive = <String>{};
 /// ```dart
 /// GoogleCesAppVersion(
 ///   localName: 'v1',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   appVersionId: TfArg.literal('v1'),
 ///   displayName: TfArg.literal('terradart-ces-v1'),
 /// );

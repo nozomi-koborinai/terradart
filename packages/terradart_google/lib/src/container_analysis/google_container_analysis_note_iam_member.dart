@@ -42,7 +42,7 @@ final class ContainerAnalysisNoteIamMemberCondition {
 /// ```dart
 /// GoogleContainerAnalysisNoteIamMember(
 ///   localName: 'note_viewer',
-///   note: TfArg.ref(note.nameRef),
+///   note: note.ref,
 ///   role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
 ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
 /// );

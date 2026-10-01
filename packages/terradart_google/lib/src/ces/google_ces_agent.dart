@@ -341,8 +341,7 @@ final class CesAgentDisablePlannerTransfer {
 /// ```dart
 /// GoogleCesAgent(
 ///   localName: 'agent',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   agentId: TfArg.literal('terradart-ces-agent'),
 ///   displayName: TfArg.literal('terradart-ces-agent'),
 ///   instruction: TfArg.literal('You are a helpful assistant.'),
