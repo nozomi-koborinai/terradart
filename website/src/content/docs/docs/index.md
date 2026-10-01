@@ -1,39 +1,40 @@
 ---
 title: Documentation
-description: Guides for TerraDart — type-safe infrastructure-as-code for Dart.
+description: Guides for TerraDart — type-safe infrastructure-as-code for Dart, from the Stack to the app.
 ---
 
-Welcome to the TerraDart docs.
+TerraDart lets you write your infrastructure and your app in one typed Dart codebase. A `Stack` synthesizes standard Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and the values your app needs reach it as a generated Dart file instead of copied strings.
 
-Guides track the **0.31.x** line on pub.dev. The repo [README](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) stay the deepest references; this site mirrors onboarding and release expectations.
+Guides track the **0.31.x** line on pub.dev. Every Dart snippet on this site compiles against it in CI.
 
-## Packages
+## Start
 
-TerraDart is organized as a multi-package monorepo:
+- [Getting Started](/docs/getting-started/) — install, define a Stack for your provider, synth, apply, and read the values from your app
+- [Why TerraDart](/docs/why-terradart/) — the problem, the design, and how it compares with HCL, CDKTF and Pulumi
 
-- **[`terradart_core`](https://pub.dev/packages/terradart_core)** — Core runtime primitives (`Stack`, `Resource`, `Provider`, `Data`, `TfArg`, synth/write behavior).
-- **[`terradart_google`](https://pub.dev/packages/terradart_google)** — Curated factories for Google Cloud (`hashicorp/google`).
-- **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — Curated factories for beta-only Google Cloud resources (`hashicorp/google-beta`).
-- **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — Curated factories for Appwrite (`appwrite/appwrite`).
-- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at the current pin).
-- **[`terradart_aws`](https://pub.dev/packages/terradart_aws)** — Curated factories for AWS (`hashicorp/aws`, filled at the current pin).
-- **[`terradart_time`](https://pub.dev/packages/terradart_time)** — `TimeProvider` / `TimeSleep` (`hashicorp/time`), the propagation wait for stacks on any provider package.
-- **[`terradart_codegen`](https://pub.dev/packages/terradart_codegen)** — Maintainer generation CLI (`terradart wrap`).
-- **[`terradart_migrate`](https://pub.dev/packages/terradart_migrate)** — HCL → Dart migrator (`dart pub global activate terradart_migrate`), reading Terraform through **[`terradart_hcl`](https://pub.dev/packages/terradart_hcl)**.
+## Concepts
 
-## Guides
+- [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, typed references, outputs and constants, `outputEnvironment()`
+- [How it's built](/docs/how-its-built/) — the generation pipeline and verification harness behind the factories
 
-- [Getting Started](/docs/getting-started/) — install, first `*.tf.json`, boundary export
-- [Why TerraDart](/docs/why-terradart/) — motivation, comparison, and curated coverage
-- [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, outputs and constants
-- [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
-- [How it's built](/docs/how-its-built/) — the generation pipeline, verification harness, and sustainability
-- [Dart apps on AWS](/docs/aws/) — Lambda custom runtime, ECS Express Mode, and Flutter Web on S3 + CloudFront with `terradart_aws`
-- [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart-migrate`: bring an existing Terraform tree into TerraDart with a plan that reports *No changes*
-- [Migrating](/docs/migrating/) — breaking-change guides for minor bumps
-- [Status & versioning](/docs/status/) — alpha, path to beta, 1.0
+## Providers
 
-## For AI assistants
+- [Google Cloud](/docs/providers/google/) — `terradart_google` and `terradart_google_beta`; the [coverage list](/docs/coverage/) has every factory
+- [AWS](/docs/providers/aws/) — `terradart_aws`: Lambda, ECS Express Mode, Flutter Web on S3 + CloudFront
+- [Cloudflare](/docs/providers/cloudflare/) — `terradart_cloudflare`: the DNS and edge in front of your app
+- [Appwrite](/docs/providers/appwrite/) — `terradart_appwrite`: the backend of a Flutter app
 
+[`terradart_time`](https://pub.dev/packages/terradart_time) adds `TimeSleep`, the propagation wait any Stack can use, and everything builds on [`terradart_core`](https://pub.dev/packages/terradart_core).
+
+## Tools
+
+- [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart-migrate` (on [pub.dev](https://pub.dev/packages/terradart_migrate), reading Terraform through [`terradart_hcl`](https://pub.dev/packages/terradart_hcl)) brings an existing Terraform tree over with a plan that reports *No changes*
 - [Coding agents](/docs/agents/) — the TerraDart Agent Skill: how an agent finds the right factory
 - [llms.txt](/llms.txt) — condensed site map for LLM crawlers
+- [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) — the maintainer CLI (`terradart wrap`) that generates the provider packages
+
+## Project
+
+- [Upgrading](/docs/upgrading/) — breaking changes in the current minor; read before every minor bump
+- [Status & versioning](/docs/status/) — alpha, path to beta, 1.0
+- [README](https://github.com/nozomi-koborinai/terradart/blob/main/README.md), [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) on GitHub

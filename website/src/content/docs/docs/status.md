@@ -50,7 +50,7 @@ Beta is the alpha change policy **proven against real external usage**. We will 
 
 Toward **1.0.0** (does not block beta):
 
-- [x] **`MIGRATING.md` / site migration guide** — [Migrating](/docs/migrating/) mirrors the `0.27.0 → 0.28.0` and `0.12.9 → 0.12.10` breaking changes; [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) remains canonical for older releases. *Two-minor depth across minors remains a quality bar for current and future minor releases.*
+- [x] **`MIGRATING.md` / site migration guide** — [Upgrading](/docs/upgrading/) covers the current minor's breaking changes; [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) remains canonical for older releases. *Two-minor depth across minors remains a quality bar for current and future minor releases.*
 - [ ] **1.0.0 criteria** drafted (what “stable” means for curated names and `terradart_core` API).
 
 ## What alpha does *not* mean

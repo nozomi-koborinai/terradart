@@ -43,19 +43,30 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Guide",
+          label: "Start",
+          items: ["docs/getting-started", "docs/why-terradart"],
+        },
+        {
+          label: "Concepts",
+          items: ["docs/architecture", "docs/how-its-built"],
+        },
+        {
+          label: "Providers",
           items: [
-            "docs/getting-started",
-            "docs/why-terradart",
-            "docs/architecture",
-            "docs/how-its-built",
-            "docs/coverage",
-            "docs/aws",
-            "docs/migrate-from-hcl",
-            "docs/agents",
-            "docs/migrating",
-            "docs/status",
+            { label: "Google Cloud", slug: "docs/providers/google" },
+            { label: "AWS", slug: "docs/providers/aws" },
+            { label: "Cloudflare", slug: "docs/providers/cloudflare" },
+            { label: "Appwrite", slug: "docs/providers/appwrite" },
+            { label: "Google coverage", slug: "docs/coverage" },
           ],
+        },
+        {
+          label: "Tools",
+          items: ["docs/migrate-from-hcl", "docs/agents"],
+        },
+        {
+          label: "Project",
+          items: ["docs/upgrading", "docs/status"],
         },
       ],
       plugins: [starlightLlmsTxt()],
@@ -102,6 +113,8 @@ export default defineConfig({
     ],
   },
   redirects: {
+    "/docs/aws/": "/docs/providers/aws/",
+    "/docs/migrating/": "/docs/upgrading/",
     "/docs/how-it-works/": "/docs/architecture/",
     "/docs/agent/": "/docs/agents/",
     "/docs/agent/install/": "/docs/agents/",

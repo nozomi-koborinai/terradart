@@ -5,14 +5,14 @@ description: Why Dart teams adopt TerraDart — the infra/app boundary, Terrafor
 
 If you read the [landing page](/) first: TerraDart keeps **Terraform as the execution layer** while you **author infrastructure in Dart**. This page goes deeper on motivation, the type system, and where TerraDart sits next to other IaC tools.
 
-If your team ships Flutter on the client and Dart on the server (**Cloud Run**, **Cloud Run functions**, backend APIs), there is usually one layer left where Dart's tooling does not reach: **infrastructure definitions** — often maintained in HCL, a Terraform-compatible pipeline, or cloud consoles. TerraDart closes that gap without asking you to give up Terraform itself.
+If your team ships Flutter on the client and Dart on the server — on **Cloud Run**, **Lambda**, **ECS**, an **Appwrite** backend, or any other host — there is usually one layer left where Dart's tooling does not reach: **infrastructure definitions** — often maintained in HCL, a Terraform-compatible pipeline, or cloud consoles. TerraDart closes that gap without asking you to give up Terraform itself.
 
 ## The last non-Dart layer
 
 | Layer | Already Dart? |
 | --- | --- |
 | Mobile UI (Flutter) | ✅ |
-| Backend handlers (Cloud Run / Cloud Run functions / Shelf) | ✅ |
+| Backend handlers (Cloud Run / Lambda / Shelf) | ✅ |
 | Application business logic | ✅ |
 | Infrastructure definitions | ❌ — HCL, Terraform-compatible tooling, or console |
 
@@ -20,9 +20,9 @@ That bottom row is what people mean by the **last non-Dart layer**: everything a
 
 ### A boundary held together by string literals
 
-Topic names typed in HCL or the console and again in your Cloud Run functions handlers. Renames do not reach subscribers via `dart fix`. IAM member strings drift with no compiler visibility. Infra values flowing into app code are often the place Dart's type system never sees.
+Topic names typed in HCL or the console and again in your function handlers. Renames do not reach subscribers via `dart fix`. IAM member strings drift with no compiler visibility. Infra values flowing into app code are often the place Dart's type system never sees.
 
-TerraDart pulls infrastructure into the same authoring surface as the rest of your code. `dart analyze` catches resource-name typos. Refactoring a Stack class is the same operation as refactoring any other Dart class. The same `final` / `sealed` discipline that already protects your domain model can protect your network topology.
+TerraDart pulls infrastructure into the same authoring surface as the rest of your code, and hands its values back: `addConstant` and `addOutput` become a generated Dart file the app imports, so a topic name or a service URL has one source. `dart analyze` catches resource-name typos. Refactoring a Stack class is the same operation as refactoring any other Dart class. The same `final` / `sealed` discipline that already protects your domain model can protect your network topology.
 
 ## Terraform stays the execution layer
 
@@ -95,7 +95,8 @@ TerraDart fits teams already centered on **Dart**, already running **Terraform**
 
 | | TerraDart | HCL | CDKTF | Pulumi |
 | --- | --- | --- | --- | --- |
-| Dart authoring | Yes | No | No | No |
+| Dart authoring | Yes | No | No (TypeScript, Python, Java, Go) | Community runtime only |
+| Type-safe handoff to your app | Yes, compile-time | No (`terraform output` + parse) | No Dart | No typed Dart export |
 | Drop-in for `terraform apply` | Yes | Yes | Yes | Different model |
 | Curated Dart factories | Yes | No | No | No |
 | Project status | Alpha | Mature | Archived 2025 | Active |
@@ -108,17 +109,17 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 **Pulumi** is a different model entirely: its own runtime, its own state, and its own resource graph. If your team is already invested in Pulumi and wants to author in Dart, consider [Pulumi Dart](https://github.com/kingwill101/pulumi-dart) (`kingwill101/pulumi-dart`), an active community language runtime for Pulumi. TerraDart is for teams who already use **Terraform** and want type-safe Dart authoring without replacing their Terraform state or execution pipeline.
 
-**TerraDart** makes sense when you are already centered on Dart (Flutter + Cloud Run / backend apps), already using Terraform (or heading there), and the gap between those two — IaC stuck outside your Dart repo — is the part that hurts.
+**TerraDart** makes sense when you are already centered on Dart (Flutter plus a Dart backend, on whichever cloud), already using Terraform (or heading there), and the gap between those two — IaC stuck outside your Dart repo — is the part that hurts.
 
-## Curated provider coverage
+## Provider coverage
 
 - [`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1366 curated resource factories + 468 data sources** (1834 catalog entries).
 - [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) wraps beta-only types (112 resource factories).
 - [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) wraps official `appwrite/appwrite` provider resources (filled at `2.0.0-beta.1`: 38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) wraps official `cloudflare/cloudflare` provider resources (filled at the current pin: every resource and data source).
-- [`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) wraps the HashiCorp `aws` provider (filled at the current pin: every resource and data source). See [Dart apps on AWS](/docs/aws/).
+- [`terradart_aws`](https://pub.dev/packages/terradart_aws) wraps the HashiCorp `aws` provider (filled at the current pin: every resource and data source). See [AWS](/docs/providers/aws/).
 
-The full factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Migrating](/docs/migrating/) first.
+Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and the Google factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Upgrading](/docs/upgrading/) first.
 
 ## Non-goals
 
