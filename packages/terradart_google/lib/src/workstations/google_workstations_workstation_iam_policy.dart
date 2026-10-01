@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../workstations/google_workstations_workstation.dart'
+    show GoogleWorkstationsWorkstation;
+
 /// Sensitive field paths for `google_workstations_workstation_iam_policy`.
 const Set<String> _googleWorkstationsWorkstationIamPolicySensitive = <String>{};
 
@@ -19,9 +22,9 @@ final class GoogleWorkstationsWorkstationIamPolicy extends Resource {
 
   GoogleWorkstationsWorkstationIamPolicy({
     required super.localName,
-    required TfArg<String> workstationClusterId,
-    required TfArg<String> workstationConfigId,
-    required TfArg<String> workstationId,
+    TfArg<String>? workstationClusterId,
+    TfArg<String>? workstationConfigId,
+    required RefTo<GoogleWorkstationsWorkstation> workstation,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -32,12 +35,16 @@ final class GoogleWorkstationsWorkstationIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workstation_cluster_id': workstationClusterId,
-           'workstation_config_id': workstationConfigId,
-           'workstation_id': workstationId,
+           'workstation_cluster_id':
+               ?(workstationClusterId ??
+               workstation.alsoAs('workstation_cluster_id')),
+           'workstation_config_id':
+               ?(workstationConfigId ??
+               workstation.alsoAs('workstation_config_id')),
+           'workstation_id': workstation.encodeAs('workstation_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? workstation.alsoAs('location')),
+           'project': ?(project ?? workstation.alsoAs('project')),
          },
        );
 

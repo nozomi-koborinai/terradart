@@ -115,7 +115,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsCryptoKeyIamMember(
         localName: 'payments_encrypter_binding',
-        cryptoKeyId: .ref(paymentsKey.id),
+        cryptoKey: paymentsKey.ref,
         role: .literal('roles/cloudkms.cryptoKeyEncrypter'),
         member: .ref(encrypter.iamMember),
       ),
@@ -138,7 +138,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsKeyRingIamMember(
         localName: 'ring_inventory_binding',
-        keyRingId: .ref(ring.id),
+        keyRing: ring.ref,
         role: .literal('roles/cloudkms.viewer'),
         member: .ref(ringInventory.iamMember),
       ),

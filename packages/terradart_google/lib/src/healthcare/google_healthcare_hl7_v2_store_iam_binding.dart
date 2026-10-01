@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_hl7_v2_store.dart'
+    show GoogleHealthcareHl7V2Store;
+
 /// Sensitive field paths for `google_healthcare_hl7_v2_store_iam_binding`.
 const Set<String> _googleHealthcareHl7V2StoreIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
 
   GoogleHealthcareHl7V2StoreIamBinding({
     required super.localName,
-    required TfArg<String> hl7V2StoreId,
+    required RefTo<GoogleHealthcareHl7V2Store> hl7V2Store,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     HealthcareHl7V2StoreIamBindingCondition? condition,
@@ -53,7 +56,7 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'hl7_v2_store_id': hl7V2StoreId,
+           'hl7_v2_store_id': hl7V2Store.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

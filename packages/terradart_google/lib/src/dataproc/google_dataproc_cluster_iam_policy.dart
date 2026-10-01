@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_cluster.dart' show GoogleDataprocCluster;
+
 /// Sensitive field paths for `google_dataproc_cluster_iam_policy`.
 const Set<String> _googleDataprocClusterIamPolicySensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class GoogleDataprocClusterIamPolicy extends Resource {
 
   GoogleDataprocClusterIamPolicy({
     required super.localName,
-    required TfArg<String> cluster,
+    required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -30,10 +32,10 @@ final class GoogleDataprocClusterIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('name'),
            'policy_data': policyData,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? cluster.alsoAs('region')),
+           'project': ?(project ?? cluster.alsoAs('project')),
          },
        );
 

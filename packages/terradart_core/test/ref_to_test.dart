@@ -71,6 +71,22 @@ void main() {
     expect(pinned.encodeAs('self_link').toTfJson(), r'${fake_network.main.id}');
   });
 
+  test('alsoAs reads another attribute of a block, never of a value', () {
+    expect(
+      vpc.ref.alsoAs('project')?.toTfJson(),
+      r'${fake_network.main.project}',
+    );
+    expect(
+      vpc.ref.pinned('id').alsoAs('project')?.toTfJson(),
+      r'${fake_network.main.project}',
+    );
+    expect(
+      _FakeNetworkData(localName: 'd').ref.alsoAs('project')?.toTfJson(),
+      r'${data.fake_network.d.project}',
+    );
+    expect(RefTo<_FakeNetwork>.literal('n').alsoAs('project'), isNull);
+  });
+
   test('values pass through unchanged', () {
     expect(
       RefTo<_FakeNetwork>.literal(

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../service_directory/google_service_directory_service.dart'
+    show GoogleServiceDirectoryService;
+
 /// Sensitive field paths for `google_service_directory_service_iam_member`.
 const Set<String> _googleServiceDirectoryServiceIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleServiceDirectoryServiceIamMember extends Resource {
 
   GoogleServiceDirectoryServiceIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleServiceDirectoryService> service,
     required TfArg<String> role,
     required TfArg<String> member,
     ServiceDirectoryServiceIamMemberCondition? condition,
@@ -47,7 +50,7 @@ final class GoogleServiceDirectoryServiceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': service.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

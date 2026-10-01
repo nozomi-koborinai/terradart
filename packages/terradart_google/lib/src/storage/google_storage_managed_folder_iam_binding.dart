@@ -4,7 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+import '../storage/google_storage_managed_folder.dart'
+    show GoogleStorageManagedFolder;
 
 /// Sensitive field paths for `google_storage_managed_folder_iam_binding`.
 const Set<String> _googleStorageManagedFolderIamBindingSensitive = <String>{};
@@ -45,8 +46,8 @@ final class GoogleStorageManagedFolderIamBinding extends Resource {
 
   GoogleStorageManagedFolderIamBinding({
     required super.localName,
-    required RefTo<GoogleStorageBucket> bucket,
-    required TfArg<String> managedFolder,
+    TfArg<String>? bucket,
+    required RefTo<GoogleStorageManagedFolder> managedFolder,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     StorageManagedFolderIamBindingCondition? condition,
@@ -57,8 +58,8 @@ final class GoogleStorageManagedFolderIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket.encodeAs('name'),
-           'managed_folder': managedFolder,
+           'bucket': ?(bucket ?? managedFolder.alsoAs('bucket')),
+           'managed_folder': managedFolder.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)

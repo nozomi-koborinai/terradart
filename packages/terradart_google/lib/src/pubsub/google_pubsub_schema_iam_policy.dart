@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_schema.dart' show GooglePubsubSchema;
+
 /// Sensitive field paths for `google_pubsub_schema_iam_policy`.
 const Set<String> _googlePubsubSchemaIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GooglePubsubSchemaIamPolicy extends Resource {
 
   GooglePubsubSchemaIamPolicy({
     required super.localName,
-    required TfArg<String> schema,
+    required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,7 +29,7 @@ final class GooglePubsubSchemaIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'schema': schema,
+           'schema': schema.encodeAs('id'),
            'policy_data': policyData,
            'project': ?project,
          },

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_machine_image.dart'
+    show GoogleComputeMachineImage;
+
 /// Sensitive field paths for `google_compute_machine_image_iam_binding`.
 const Set<String> _googleComputeMachineImageIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleComputeMachineImageIamBinding extends Resource {
 
   GoogleComputeMachineImageIamBinding({
     required super.localName,
-    required TfArg<String> machineImage,
+    required RefTo<GoogleComputeMachineImage> machineImage,
     required TfArg<List<String>> members,
     TfArg<String>? project,
     required TfArg<String> role,
@@ -54,9 +57,9 @@ final class GoogleComputeMachineImageIamBinding extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'machine_image': machineImage,
+           'machine_image': machineImage.encodeAs('name'),
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? machineImage.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

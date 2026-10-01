@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sourcerepo/google_sourcerepo_repository.dart'
+    show GoogleSourcerepoRepository;
+
 /// Sensitive field paths for `google_sourcerepo_repository_iam_policy`.
 const Set<String> _googleSourcerepoRepositoryIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleSourcerepoRepositoryIamPolicy extends Resource {
 
   GoogleSourcerepoRepositoryIamPolicy({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleSourcerepoRepository> repository,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,9 +30,9 @@ final class GoogleSourcerepoRepositoryIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

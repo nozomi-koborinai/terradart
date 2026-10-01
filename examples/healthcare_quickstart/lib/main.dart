@@ -105,7 +105,7 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareDatasetIamMember(
         localName: 'dataset_viewer',
-        datasetId: .ref(dataset.id),
+        dataset: dataset.ref,
         role: .literal('roles/healthcare.datasetViewer'),
         member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(dataset), ResourceDependency(analyst)],
@@ -116,7 +116,7 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareDicomStoreIamMember(
         localName: 'dicom_viewer',
-        dicomStoreId: .ref(dicom.id),
+        dicomStore: dicom.ref,
         role: .literal('roles/healthcare.dicomViewer'),
         member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(dicom), ResourceDependency(analyst)],
@@ -126,7 +126,7 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareHl7V2StoreIamMember(
         localName: 'hl7_consumer',
-        hl7V2StoreId: .ref(hl7.id),
+        hl7V2Store: hl7.ref,
         role: .literal('roles/healthcare.hl7V2Consumer'),
         member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(hl7), ResourceDependency(analyst)],
@@ -136,8 +136,7 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareConsentStoreIamMember(
         localName: 'consent_viewer',
-        consentStoreId: .ref(consent.id),
-        dataset: .ref(dataset.id),
+        consentStore: consent.ref,
         role: .literal('roles/healthcare.consentStoreViewer'),
         member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(consent), ResourceDependency(analyst)],
@@ -147,7 +146,7 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareFhirStoreIamMember(
         localName: 'fhir_viewer',
-        fhirStoreId: .ref(fhir.id),
+        fhirStore: fhir.ref,
         role: .literal('roles/healthcare.fhirResourceReader'),
         member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(fhir), ResourceDependency(analyst)],

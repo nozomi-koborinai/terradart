@@ -151,7 +151,7 @@ final class GkeQuickstartStack extends Stack {
     add(
       GoogleGkeHubMembershipIamMember(
         localName: 'membership_viewer',
-        membershipId: .literal('main-cluster'),
+        membership: .literal('main-cluster'),
         role: .literal('roles/viewer'),
         member: .ref(backupOperator.iamMember),
         dependsOn: [
@@ -219,8 +219,7 @@ final class GkeQuickstartStack extends Stack {
     add(
       GoogleGkeBackupBackupPlanIamMember(
         localName: 'viewer',
-        name: .ref(backupPlan.nameRef),
-        location: .literal(region),
+        backupPlan: backupPlan.ref,
         role: .literal('roles/gkebackup.viewer'),
         member: .ref(backupOperator.iamMember),
         dependsOn: [ResourceDependency(backupOperator)],

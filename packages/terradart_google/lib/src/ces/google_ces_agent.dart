@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
 import '../ces/google_ces_toolset.dart' show GoogleCesToolset;
 
 /// Sensitive field paths for `google_ces_agent`.
@@ -340,8 +341,7 @@ final class CesAgentDisablePlannerTransfer {
 /// ```dart
 /// GoogleCesAgent(
 ///   localName: 'agent',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   agentId: TfArg.literal('terradart-ces-agent'),
 ///   displayName: TfArg.literal('terradart-ces-agent'),
 ///   instruction: TfArg.literal('You are a helpful assistant.'),
@@ -353,8 +353,8 @@ final class GoogleCesAgent extends Resource {
 
   GoogleCesAgent({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required TfArg<String> displayName,
     TfArg<String>? agentId,
     TfArg<String>? description,
@@ -382,8 +382,8 @@ final class GoogleCesAgent extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'display_name': displayName,
            'agent_id': ?agentId,
            'description': ?description,
@@ -425,7 +425,7 @@ final class GoogleCesAgent extends Resource {
                for (final e in afterToolCallbacks) e.encode(),
              ]),
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
            if (transferRules != null)
              'transfer_rules': TfArg.literal([
                for (final e in transferRules) e.encode(),

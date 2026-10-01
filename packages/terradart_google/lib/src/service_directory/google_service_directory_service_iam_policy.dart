@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../service_directory/google_service_directory_service.dart'
+    show GoogleServiceDirectoryService;
+
 /// Sensitive field paths for `google_service_directory_service_iam_policy`.
 const Set<String> _googleServiceDirectoryServiceIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleServiceDirectoryServiceIamPolicy extends Resource {
 
   GoogleServiceDirectoryServiceIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleServiceDirectoryService> service,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +28,7 @@ final class GoogleServiceDirectoryServiceIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'policy_data': policyData},
+         argMap: {'name': service.encodeAs('id'), 'policy_data': policyData},
        );
 
   @override

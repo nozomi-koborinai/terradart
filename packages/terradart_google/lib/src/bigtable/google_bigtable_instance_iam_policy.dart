@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_instance_iam_policy`.
 const Set<String> _googleBigtableInstanceIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleBigtableInstanceIamPolicy extends Resource {
 
   GoogleBigtableInstanceIamPolicy({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleBigtableInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,9 +29,9 @@ final class GoogleBigtableInstanceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

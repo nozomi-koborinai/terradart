@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../api_gateway/google_api_gateway_gateway.dart'
+    show GoogleApiGatewayGateway;
+
 /// Sensitive field paths for `google_api_gateway_gateway_iam_member`.
 const Set<String> _googleApiGatewayGatewayIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleApiGatewayGatewayIamMember extends Resource {
 
   GoogleApiGatewayGatewayIamMember({
     required super.localName,
-    required TfArg<String> gateway,
+    required RefTo<GoogleApiGatewayGateway> gateway,
     required TfArg<String> member,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -50,10 +53,10 @@ final class GoogleApiGatewayGatewayIamMember extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'gateway': gateway,
+           'gateway': gateway.encodeAs('name'),
            'member': member,
-           'project': ?project,
-           'region': ?region,
+           'project': ?(project ?? gateway.alsoAs('project')),
+           'region': ?(region ?? gateway.alsoAs('region')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

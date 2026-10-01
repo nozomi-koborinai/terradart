@@ -136,7 +136,7 @@ final class EndpointsStack extends Stack {
     add(
       GoogleEndpointsServiceIamMember(
         localName: 'viewer',
-        serviceName: .literal(serviceName),
+        service: .literal(serviceName),
         role: .literal('roles/viewer'),
         member: .ref(sa.iamMember),
         dependsOn: [ResourceDependency(service), ResourceDependency(sa)],

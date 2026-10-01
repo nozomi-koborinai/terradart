@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
+
 /// Sensitive field paths for `google_dns_managed_zone_iam_policy`.
 const Set<String> _googleDnsManagedZoneIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleDnsManagedZoneIamPolicy extends Resource {
 
   GoogleDnsManagedZoneIamPolicy({
     required super.localName,
-    required TfArg<String> managedZone,
+    required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,9 +29,9 @@ final class GoogleDnsManagedZoneIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'managed_zone': managedZone,
+           'managed_zone': managedZone.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? managedZone.alsoAs('project')),
          },
        );
 

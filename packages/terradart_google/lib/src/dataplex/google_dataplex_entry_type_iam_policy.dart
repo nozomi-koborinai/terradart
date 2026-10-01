@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_entry_type.dart'
+    show GoogleDataplexEntryType;
+
 /// Sensitive field paths for `google_dataplex_entry_type_iam_policy`.
 const Set<String> _googleDataplexEntryTypeIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataplexEntryTypeIamPolicy extends Resource {
 
   GoogleDataplexEntryTypeIamPolicy({
     required super.localName,
-    required TfArg<String> entryTypeId,
+    required RefTo<GoogleDataplexEntryType> entryType,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleDataplexEntryTypeIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'entry_type_id': entryTypeId,
+           'entry_type_id': entryType.encodeAs('entry_type_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? entryType.alsoAs('location')),
+           'project': ?(project ?? entryType.alsoAs('project')),
          },
        );
 

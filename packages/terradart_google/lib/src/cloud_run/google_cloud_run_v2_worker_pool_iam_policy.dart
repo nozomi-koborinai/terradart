@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_v2_worker_pool.dart'
+    show GoogleCloudRunV2WorkerPool;
+
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool_iam_policy`.
 const Set<String> _googleCloudRunV2WorkerPoolIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleCloudRunV2WorkerPoolIamPolicy extends Resource {
 
   GoogleCloudRunV2WorkerPoolIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleCloudRunV2WorkerPoolIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': workerPool.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? workerPool.alsoAs('location')),
+           'project': ?(project ?? workerPool.alsoAs('project')),
          },
        );
 

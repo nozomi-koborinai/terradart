@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
+
 /// Sensitive field paths for `google_dns_managed_zone_iam_member`.
 const Set<String> _googleDnsManagedZoneIamMemberSensitive = <String>{};
 
@@ -57,12 +59,12 @@ final class DnsManagedZoneIamMemberCondition {
 /// - [localName]: Terraform local name.
 /// - `managedZone`: the target zone's `name` attribute (the short zone
 ///   name, *not* the DNS name with trailing dot — e.g. `'internal-corp'`,
-///   not `'internal.corp.'`). Pass `TfArg.ref(zone.nameRef)`.
+///   not `'internal.corp.'`). Pass `zone.ref`.
 /// - `role`: role name, e.g. `'roles/dns.admin'` (full record CRUD) or
 ///   `'roles/dns.reader'` (read-only inspection).
 /// - `member`: principal in IAM v1 string form.
 ///
-/// `project` is optional and defaults to the provider project.
+/// `project` is optional and defaults to the zone's project.
 ///
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
@@ -71,7 +73,7 @@ final class DnsManagedZoneIamMemberCondition {
 /// ```dart
 /// final zoneAdmin = GoogleDnsManagedZoneIamMember(
 ///   localName: 'zone_admin',
-///   managedZone: TfArg.ref(zone.nameRef),
+///   managedZone: zone.ref,
 ///   role: TfArg.literal('roles/dns.admin'),
 ///   member: TfArg.literal('group:sre-team-a@example.com'),
 /// );
@@ -81,7 +83,7 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
 
   GoogleDnsManagedZoneIamMember({
     required super.localName,
-    required TfArg<String> managedZone,
+    required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> role,
     required TfArg<String> member,
     DnsManagedZoneIamMemberCondition? condition,
@@ -93,12 +95,12 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'managed_zone': managedZone,
+           'managed_zone': managedZone.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? managedZone.alsoAs('project')),
          },
        );
 

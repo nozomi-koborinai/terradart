@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../artifact_registry/google_artifact_registry_repository.dart'
+    show GoogleArtifactRegistryRepository;
+
 /// Sensitive field paths for `google_artifact_registry_repository_iam_member`.
 const Set<String> _googleArtifactRegistryRepositoryIamMemberSensitive =
     <String>{};
@@ -37,7 +40,7 @@ final class GoogleArtifactRegistryRepositoryIamMember extends Resource {
 
   GoogleArtifactRegistryRepositoryIamMember({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleArtifactRegistryRepository> repository,
     required TfArg<String> role,
     required TfArg<String> member,
     ArtifactRegistryRepositoryIamMemberCondition? condition,
@@ -50,13 +53,13 @@ final class GoogleArtifactRegistryRepositoryIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? repository.alsoAs('location')),
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

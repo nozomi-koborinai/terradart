@@ -57,8 +57,7 @@ final class GkeHubFeatureStack extends Stack {
     add(
       GoogleGkeHubFeatureIamMember(
         localName: 'mcsd_viewer',
-        name: .ref(feature.nameRef),
-        location: .literal('global'),
+        feature: feature.ref,
         role: .literal('roles/viewer'),
         member: .ref(fleetReader.iamMember),
         dependsOn: [

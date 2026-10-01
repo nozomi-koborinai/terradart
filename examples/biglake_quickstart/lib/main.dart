@@ -177,7 +177,7 @@ final class MetastoreStack extends Stack {
     add(
       GoogleBiglakeIcebergCatalogIamMember(
         localName: 'catalog_reader',
-        name: .ref(icebergCatalog.nameRef),
+        catalog: icebergCatalog.ref,
         role: .literal('roles/viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [
@@ -190,8 +190,7 @@ final class MetastoreStack extends Stack {
     add(
       GoogleBiglakeIcebergNamespaceIamMember(
         localName: 'namespace_reader',
-        catalog: .ref(icebergCatalog.nameRef),
-        namespaceId: .ref(icebergNamespace.namespaceIdRef),
+        namespace: icebergNamespace.ref,
         role: .literal('roles/viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [
@@ -204,9 +203,7 @@ final class MetastoreStack extends Stack {
     add(
       GoogleBiglakeIcebergTableIamMember(
         localName: 'table_reader',
-        catalog: .ref(icebergCatalog.nameRef),
-        namespace: .ref(icebergNamespace.namespaceIdRef),
-        name: .ref(icebergTable.nameRef),
+        table: icebergTable.ref,
         role: .literal('roles/viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [

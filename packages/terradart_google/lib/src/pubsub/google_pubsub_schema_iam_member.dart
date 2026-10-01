@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_schema.dart' show GooglePubsubSchema;
+
 /// Sensitive field paths for `google_pubsub_schema_iam_member`.
 const Set<String> _googlePubsubSchemaIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GooglePubsubSchemaIamMember extends Resource {
 
   GooglePubsubSchemaIamMember({
     required super.localName,
-    required TfArg<String> schema,
+    required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> role,
     required TfArg<String> member,
     PubsubSchemaIamMemberCondition? condition,
@@ -48,7 +50,7 @@ final class GooglePubsubSchemaIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'schema': schema,
+           'schema': schema.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

@@ -96,7 +96,7 @@ final class VmComplianceStack extends Stack {
     add(
       GoogleBinaryAuthorizationAttestorIamMember(
         localName: 'ci_attestor_viewer',
-        attestor: .ref(attestor.nameRef),
+        attestor: attestor.ref,
         role: .literal('roles/viewer'),
         member: .ref(ciSigner.iamMember),
         dependsOn: [ResourceDependency(attestor), ResourceDependency(ciSigner)],

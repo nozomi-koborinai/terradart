@@ -193,7 +193,7 @@ final class ConfigTreeStack extends Stack {
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: 'bff_invoker',
-        name: .ref(cloudRunBff.serviceName),
+        service: .arg(.ref(cloudRunBff.serviceName)),
         role: .literal('roles/run.invoker'),
         member: .literal('allUsers'),
       ),
@@ -209,7 +209,7 @@ final class ConfigTreeStack extends Stack {
     add(
       GoogleServiceAccountIamMember(
         localName: 'agent_user',
-        serviceAccountId: .arg(.ref(saAdkAgent.id)),
+        serviceAccount: .arg(.ref(saAdkAgent.id)),
         role: .literal('roles/iam.serviceAccountUser'),
         member: .ref(saBff.member),
       ),

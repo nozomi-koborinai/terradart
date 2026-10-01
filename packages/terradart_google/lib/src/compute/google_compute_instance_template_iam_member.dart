@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_template.dart'
+    show GoogleComputeInstanceTemplate;
+
 /// Sensitive field paths for `google_compute_instance_template_iam_member`.
 const Set<String> _googleComputeInstanceTemplateIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleComputeInstanceTemplateIamMember extends Resource {
 
   GoogleComputeInstanceTemplateIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeInstanceTemplate> instanceTemplate,
     required TfArg<String> role,
     required TfArg<String> member,
     ComputeInstanceTemplateIamMemberCondition? condition,
@@ -48,12 +51,12 @@ final class GoogleComputeInstanceTemplateIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instanceTemplate.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? instanceTemplate.alsoAs('project')),
          },
        );
 

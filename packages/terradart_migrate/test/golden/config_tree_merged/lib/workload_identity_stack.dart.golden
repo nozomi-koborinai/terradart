@@ -32,7 +32,7 @@ final class WorkloadIdentityStack extends Stack {
     add(
       GoogleServiceAccountIamMember(
         localName: 'github_actions',
-        serviceAccountId: .literal(
+        serviceAccount: .literal(
           'projects/example-project/serviceAccounts/gha-deploy@example-project.iam.gserviceaccount.com',
         ),
         role: .literal('roles/iam.workloadIdentityUser'),

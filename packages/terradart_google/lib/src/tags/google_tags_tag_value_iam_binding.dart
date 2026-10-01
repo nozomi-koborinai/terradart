@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../tags/google_tags_tag_value.dart' show GoogleTagsTagValue;
+
 /// Sensitive field paths for `google_tags_tag_value_iam_binding`.
 const Set<String> _googleTagsTagValueIamBindingSensitive = <String>{};
 
@@ -42,7 +44,7 @@ final class GoogleTagsTagValueIamBinding extends Resource {
 
   GoogleTagsTagValueIamBinding({
     required super.localName,
-    required TfArg<String> tagValue,
+    required RefTo<GoogleTagsTagValue> tagValue,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TagsTagValueIamBindingCondition? condition,
@@ -53,7 +55,7 @@ final class GoogleTagsTagValueIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'tag_value': tagValue,
+           'tag_value': tagValue.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

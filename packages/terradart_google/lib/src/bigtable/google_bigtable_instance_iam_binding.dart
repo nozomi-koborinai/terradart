@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_instance_iam_binding`.
 const Set<String> _googleBigtableInstanceIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleBigtableInstanceIamBinding extends Resource {
 
   GoogleBigtableInstanceIamBinding({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleBigtableInstance> instance,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     BigtableInstanceIamBindingCondition? condition,
@@ -53,12 +55,12 @@ final class GoogleBigtableInstanceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

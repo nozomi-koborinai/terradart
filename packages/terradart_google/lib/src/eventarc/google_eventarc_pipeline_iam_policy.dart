@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+
 /// Sensitive field paths for `google_eventarc_pipeline_iam_policy`.
 const Set<String> _googleEventarcPipelineIamPolicySensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class GoogleEventarcPipelineIamPolicy extends Resource {
 
   GoogleEventarcPipelineIamPolicy({
     required super.localName,
-    required TfArg<String> pipelineId,
+    required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -29,10 +31,10 @@ final class GoogleEventarcPipelineIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'pipeline_id': pipelineId,
+           'pipeline_id': pipeline.encodeAs('pipeline_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? pipeline.alsoAs('location')),
+           'project': ?(project ?? pipeline.alsoAs('project')),
          },
        );
 

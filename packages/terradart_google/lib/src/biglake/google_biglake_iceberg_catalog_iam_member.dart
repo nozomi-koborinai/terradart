@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_iceberg_catalog.dart'
+    show GoogleBiglakeIcebergCatalog;
+
 /// Sensitive field paths for `google_biglake_iceberg_catalog_iam_member`.
 const Set<String> _googleBiglakeIcebergCatalogIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleBiglakeIcebergCatalogIamMember extends Resource {
 
   GoogleBiglakeIcebergCatalogIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? project,
@@ -48,10 +51,10 @@ final class GoogleBiglakeIcebergCatalogIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': catalog.encodeAs('name'),
            'role': role,
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? catalog.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

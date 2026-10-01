@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataform/google_dataform_repository.dart'
+    show GoogleDataformRepository;
+
 /// Sensitive field paths for `google_dataform_repository_iam_policy`.
 const Set<String> _googleDataformRepositoryIamPolicySensitive = <String>{};
 
@@ -18,7 +21,7 @@ final class GoogleDataformRepositoryIamPolicy extends Resource {
 
   GoogleDataformRepositoryIamPolicy({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleDataformRepository> repository,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -29,10 +32,10 @@ final class GoogleDataformRepositoryIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'policy_data': policyData,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? repository.alsoAs('region')),
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

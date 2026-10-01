@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gke_backup/google_gke_backup_backup_plan.dart'
+    show GoogleGkeBackupBackupPlan;
+
 /// Sensitive field paths for `google_gke_backup_backup_plan_iam_member`.
 const Set<String> _googleGkeBackupBackupPlanIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleGkeBackupBackupPlanIamMember extends Resource {
 
   GoogleGkeBackupBackupPlanIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleGkeBackupBackupPlan> backupPlan,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -49,13 +52,13 @@ final class GoogleGkeBackupBackupPlanIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': backupPlan.encodeAs('name'),
            'role': role,
            'member': member,
-           'location': ?location,
+           'location': ?(location ?? backupPlan.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? backupPlan.alsoAs('project')),
          },
        );
 

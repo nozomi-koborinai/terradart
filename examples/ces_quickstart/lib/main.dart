@@ -53,8 +53,7 @@ final class CesStack extends Stack {
     final search = add(
       GoogleCesTool(
         localName: 'search',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         toolId: .literal('terradart-ces-search'),
         googleSearchTool: CesToolGoogleSearchTool(
           name: .literal('google_search'),
@@ -66,8 +65,7 @@ final class CesStack extends Stack {
     final openapi = add(
       GoogleCesToolset(
         localName: 'openapi',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         toolsetId: .literal('terradart-ces-toolset'),
         displayName: .literal('terradart-ces-toolset'),
         openApiToolset: CesToolsetOpenApiToolset(
@@ -92,8 +90,7 @@ final class CesStack extends Stack {
     final safety = add(
       GoogleCesGuardrail(
         localName: 'safety',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         guardrailId: .literal('terradart-ces-guardrail'),
         displayName: .literal('terradart-ces-guardrail'),
         enabled: .literal(true),
@@ -122,8 +119,7 @@ final class CesStack extends Stack {
     final agent = add(
       GoogleCesAgent(
         localName: 'agent',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         agentId: .literal('terradart-ces-agent'),
         displayName: .literal('terradart-ces-agent'),
         instruction: .literal('You are a helpful assistant.'),
@@ -143,8 +139,7 @@ final class CesStack extends Stack {
     final association = add(
       GoogleCesAppRootAgentAssociation(
         localName: 'root',
-        location: .ref(app.locationRef),
-        appId: .ref(app.appIdRef),
+        appId: app.ref,
         agentId: .ref(agent.agentIdRef),
         dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
       ),
@@ -153,8 +148,7 @@ final class CesStack extends Stack {
     add(
       GoogleCesExample(
         localName: 'greeting',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         exampleId: .literal('terradart-ces-example'),
         displayName: .literal('terradart-ces-example'),
         description: .literal('TerraDart CES smoke few-shot'),
@@ -172,8 +166,7 @@ final class CesStack extends Stack {
     final version = add(
       GoogleCesAppVersion(
         localName: 'v1',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         appVersionId: .literal('v1'),
         displayName: .literal('terradart-ces-v1'),
         dependsOn: [
@@ -189,8 +182,7 @@ final class CesStack extends Stack {
     add(
       GoogleCesDeployment(
         localName: 'api',
-        location: .ref(app.locationRef),
-        app: .ref(app.appIdRef),
+        app: app.ref,
         appVersion: version.ref,
         displayName: .literal('terradart-ces-deploy'),
         channelProfile: CesDeploymentChannelProfile(

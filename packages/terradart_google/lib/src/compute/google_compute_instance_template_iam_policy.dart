@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_template.dart'
+    show GoogleComputeInstanceTemplate;
+
 /// Sensitive field paths for `google_compute_instance_template_iam_policy`.
 const Set<String> _googleComputeInstanceTemplateIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleComputeInstanceTemplateIamPolicy extends Resource {
 
   GoogleComputeInstanceTemplateIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeInstanceTemplate> instanceTemplate,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -26,7 +29,11 @@ final class GoogleComputeInstanceTemplateIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'name': instanceTemplate.encodeAs('name'),
+           'policy_data': policyData,
+           'project': ?(project ?? instanceTemplate.alsoAs('project')),
+         },
        );
 
   @override

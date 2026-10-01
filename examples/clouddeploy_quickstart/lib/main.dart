@@ -112,8 +112,7 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployTargetIamMember(
         localName: 'deployer_target_viewer',
-        name: .ref(runTarget.nameRef),
-        location: .literal('us-central1'),
+        target: runTarget.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: .ref(deployer.iamMember),
         dependsOn: [
@@ -126,8 +125,7 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployDeliveryPipelineIamMember(
         localName: 'deployer_pipeline_viewer',
-        name: .ref(pipeline.nameRef),
-        location: .literal('us-central1'),
+        deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: .ref(deployer.iamMember),
         dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
@@ -137,8 +135,7 @@ final class DeployStack extends Stack {
     final pipelineReleaser = add(
       GoogleClouddeployDeliveryPipelineIamMember(
         localName: 'deployer_pipeline_releaser',
-        name: .ref(pipeline.nameRef),
-        location: .literal('us-central1'),
+        deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.releaser'),
         member: .ref(deployer.iamMember),
         dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
@@ -149,7 +146,7 @@ final class DeployStack extends Stack {
     final deployerActAs = add(
       GoogleServiceAccountIamMember(
         localName: 'deployer_actas',
-        serviceAccountId: deployer.ref,
+        serviceAccount: deployer.ref,
         role: .literal('roles/iam.serviceAccountUser'),
         member: .literal(
           'serviceAccount:service-${current.number.interpolation}'
@@ -162,8 +159,7 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployCustomTargetTypeIamMember(
         localName: 'deployer_custom_type_viewer',
-        name: .ref(customType.nameRef),
-        location: .literal('us-central1'),
+        customTargetType: customType.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: .ref(deployer.iamMember),
         dependsOn: [

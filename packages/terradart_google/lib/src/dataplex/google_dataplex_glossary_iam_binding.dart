@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
+
 /// Sensitive field paths for `google_dataplex_glossary_iam_binding`.
 const Set<String> _googleDataplexGlossaryIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleDataplexGlossaryIamBinding extends Resource {
 
   GoogleDataplexGlossaryIamBinding({
     required super.localName,
-    required TfArg<String> glossaryId,
+    required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DataplexGlossaryIamBindingCondition? condition,
@@ -54,13 +56,13 @@ final class GoogleDataplexGlossaryIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'glossary_id': glossaryId,
+           'glossary_id': glossary.encodeAs('glossary_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? glossary.alsoAs('location')),
+           'project': ?(project ?? glossary.alsoAs('project')),
          },
        );
 

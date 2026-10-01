@@ -78,8 +78,7 @@ final class HttpFunctionStack extends Stack {
     add(
       GoogleCloudfunctions2FunctionIamMember(
         localName: 'hello_http_invoker',
-        cloudFunction: .ref(helloHttp.nameRef),
-        location: .literal('asia-northeast1'),
+        function: helloHttp.ref,
         role: .literal('roles/cloudfunctions.invoker'),
         member: .literal('allAuthenticatedUsers'),
       ),

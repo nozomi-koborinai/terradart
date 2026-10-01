@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../runtimeconfig/google_runtimeconfig_config.dart'
+    show GoogleRuntimeconfigConfig;
+
 /// Sensitive field paths for `google_runtimeconfig_config_iam_policy`.
 const Set<String> _googleRuntimeconfigConfigIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleRuntimeconfigConfigIamPolicy extends Resource {
 
   GoogleRuntimeconfigConfigIamPolicy({
     required super.localName,
-    required TfArg<String> config,
+    required RefTo<GoogleRuntimeconfigConfig> config,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -28,9 +31,9 @@ final class GoogleRuntimeconfigConfigIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'config': config,
+           'config': config.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? config.alsoAs('project')),
          },
        );
 

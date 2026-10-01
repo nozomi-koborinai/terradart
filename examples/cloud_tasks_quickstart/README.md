@@ -59,7 +59,8 @@ terraform apply
         "name": "${google_cloud_tasks_queue.email_jobs.name}",
         "location": "${google_cloud_tasks_queue.email_jobs.location}",
         "role": "roles/cloudtasks.enqueuer",
-        "member": "serviceAccount:enqueuer@YOUR-PROJECT-ID.iam.gserviceaccount.com"
+        "member": "serviceAccount:enqueuer@YOUR-PROJECT-ID.iam.gserviceaccount.com",
+        "project": "${google_cloud_tasks_queue.email_jobs.project}"
       }
     }
   }
@@ -72,4 +73,4 @@ terradart's curated factories use **additive** `_iam_member` resources only -- t
 
 ## Note on Cloud Tasks IAM identity
 
-`google_cloud_tasks_queue_iam_member` is identified by **`name + location`** (not the resource `id`). The factory exposes both as typed `TfRef` getters: `queue.nameRef`, `queue.locationRef`.
+`google_cloud_tasks_queue_iam_member` is identified by **`name + location`** (not the resource `id`). The factory takes the queue itself (`queue: queue.ref`) and emits all three keys from it — `name`, `location` and `project` — so the grant cannot drift from the queue it names.

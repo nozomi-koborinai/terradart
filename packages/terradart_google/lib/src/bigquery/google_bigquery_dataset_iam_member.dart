@@ -38,7 +38,7 @@ final class GoogleBigqueryDatasetIamMember extends Resource {
 
   GoogleBigqueryDatasetIamMember({
     required super.localName,
-    required RefTo<GoogleBigqueryDataset> datasetId,
+    required RefTo<GoogleBigqueryDataset> dataset,
     required TfArg<String> role,
     required TfArg<String> member,
     BigqueryDatasetIamMemberCondition? condition,
@@ -50,12 +50,12 @@ final class GoogleBigqueryDatasetIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId.encodeAs('dataset_id'),
+           'dataset_id': dataset.encodeAs('dataset_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? dataset.alsoAs('project')),
          },
        );
 

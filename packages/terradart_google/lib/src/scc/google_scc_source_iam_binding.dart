@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../scc/google_scc_source.dart' show GoogleSccSource;
+
 /// Sensitive field paths for `google_scc_source_iam_binding`.
 const Set<String> _googleSccSourceIamBindingSensitive = <String>{};
 
@@ -41,8 +43,8 @@ final class GoogleSccSourceIamBinding extends Resource {
 
   GoogleSccSourceIamBinding({
     required super.localName,
-    required TfArg<String> source,
-    required TfArg<String> organization,
+    required RefTo<GoogleSccSource> source,
+    TfArg<String>? organization,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     SccSourceIamBindingCondition? condition,
@@ -53,8 +55,8 @@ final class GoogleSccSourceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'source': source,
-           'organization': organization,
+           'source': source.encodeAs('name'),
+           'organization': ?(organization ?? source.alsoAs('organization')),
            'role': role,
            'members': members,
            if (condition != null)

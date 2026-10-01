@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_security_address_group.dart'
+    show GoogleNetworkSecurityAddressGroup;
+
 /// Sensitive field paths for `google_network_security_address_group_iam_member`.
 const Set<String> _googleNetworkSecurityAddressGroupIamMemberSensitive =
     <String>{};
@@ -38,7 +41,7 @@ final class GoogleNetworkSecurityAddressGroupIamMember extends Resource {
 
   GoogleNetworkSecurityAddressGroupIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleNetworkSecurityAddressGroup> addressGroup,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<String> member,
@@ -51,8 +54,8 @@ final class GoogleNetworkSecurityAddressGroupIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': ?location,
+           'name': addressGroup.encodeAs('name'),
+           'location': ?(location ?? addressGroup.alsoAs('location')),
            'role': role,
            'member': member,
            'project': ?project,

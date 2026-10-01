@@ -44,7 +44,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
 
   GoogleServiceAccountIamBinding({
     required super.localName,
-    required RefTo<GoogleServiceAccount> serviceAccountId,
+    required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ServiceAccountIamBindingCondition? condition,
@@ -55,7 +55,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_account_id': serviceAccountId.encodeAs('name'),
+           'service_account_id': serviceAccount.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_zone.dart' show GoogleDataplexZone;
+
 /// Sensitive field paths for `google_dataplex_zone_iam_member`.
 const Set<String> _googleDataplexZoneIamMemberSensitive = <String>{};
 
@@ -36,8 +38,8 @@ final class GoogleDataplexZoneIamMember extends Resource {
 
   GoogleDataplexZoneIamMember({
     required super.localName,
-    required TfArg<String> dataplexZone,
-    required TfArg<String> lake,
+    required RefTo<GoogleDataplexZone> zone,
+    TfArg<String>? lake,
     required TfArg<String> role,
     required TfArg<String> member,
     DataplexZoneIamMemberCondition? condition,
@@ -50,14 +52,14 @@ final class GoogleDataplexZoneIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataplex_zone': dataplexZone,
-           'lake': lake,
+           'dataplex_zone': zone.encodeAs('name'),
+           'lake': ?(lake ?? zone.alsoAs('lake')),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? zone.alsoAs('location')),
+           'project': ?(project ?? zone.alsoAs('project')),
          },
        );
 

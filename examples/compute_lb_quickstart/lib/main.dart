@@ -231,7 +231,7 @@ final class ComputeLbStack extends Stack {
     add(
       GooglePrivatecaCaPoolIamMember(
         localName: 'cm_ca_pool_auditor',
-        caPool: .ref(cmCaPool.id),
+        caPool: cmCaPool.ref,
         role: .literal('roles/privateca.auditor'),
         member: .literal('group:security-admins@example.com'),
         dependsOn: [ResourceDependency(cmCaPool)],
@@ -241,8 +241,7 @@ final class ComputeLbStack extends Stack {
     add(
       GooglePrivatecaCertificateTemplateIamMember(
         localName: 'cm_cert_template_user',
-        certificateTemplate: .ref(cmCertTemplate.nameRef),
-        location: .literal(region),
+        certificateTemplate: cmCertTemplate.ref,
         role: .literal('roles/privateca.templateUser'),
         member: .literal('group:security-admins@example.com'),
         dependsOn: [ResourceDependency(cmCertTemplate)],

@@ -70,7 +70,7 @@ final class GoogleServiceAccountIamMember extends Resource {
 
   GoogleServiceAccountIamMember({
     required super.localName,
-    required RefTo<GoogleServiceAccount> serviceAccountId,
+    required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<String> role,
     required TfArg<String> member,
     ServiceAccountIamMemberCondition? condition,
@@ -81,7 +81,7 @@ final class GoogleServiceAccountIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_account_id': serviceAccountId.encodeAs('name'),
+           'service_account_id': serviceAccount.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)

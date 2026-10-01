@@ -85,8 +85,7 @@ final class OrdersStack extends Stack {
     final pushSa = add(GoogleServiceAccount(localName: 'push', accountId: .literal('orders-push')));
     add(GoogleCloudRunV2ServiceIamMember(
       localName: 'push_invokes_api',
-      name: .ref(api.nameRef),
-      location: .ref(api.locationRef),
+      service: api.ref, // emits the service's name, location and project
       role: .literal('roles/run.invoker'),
       member: .ref(pushSa.iamMember),
     ));

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_subscription.dart'
+    show GooglePubsubSubscription;
+
 /// Sensitive field paths for `google_pubsub_subscription_iam_member`.
 const Set<String> _googlePubsubSubscriptionIamMemberSensitive = <String>{};
 
@@ -40,7 +43,7 @@ final class GooglePubsubSubscriptionIamMember extends Resource {
 
   GooglePubsubSubscriptionIamMember({
     required super.localName,
-    required TfArg<String> subscription,
+    required RefTo<GooglePubsubSubscription> subscription,
     required TfArg<String> role,
     required TfArg<String> member,
     PubsubSubscriptionIamMemberCondition? condition,
@@ -52,12 +55,12 @@ final class GooglePubsubSubscriptionIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'subscription': subscription,
+           'subscription': subscription.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? subscription.alsoAs('project')),
          },
        );
 

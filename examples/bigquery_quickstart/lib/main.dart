@@ -97,7 +97,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatasetIamMember(
         localName: 'analytics_reader_binding',
-        datasetId: dataset.ref,
+        dataset: dataset.ref,
         role: .literal('roles/bigquery.dataViewer'),
         member: .ref(reader.iamMember),
       ),
@@ -120,8 +120,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryTableIamMember(
         localName: 'events_ingestor_binding',
-        datasetId: dataset.ref,
-        tableId: .ref(eventsTable.tableIdRef),
+        table: eventsTable.ref,
         role: .literal('roles/bigquery.dataEditor'),
         member: .ref(ingestor.iamMember),
       ),
@@ -153,7 +152,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatapolicyDataPolicyIamMember(
         localName: 'mask_email_reader',
-        dataPolicyId: .literal('mask-email'),
+        dataPolicy: .literal('mask-email'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/bigquerydatapolicy.maskedReader'),
         member: .ref(reader.iamMember),
@@ -219,7 +218,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryAnalyticsHubDataExchangeIamMember(
         localName: 'exchange_subscriber',
-        dataExchangeId: .literal('shared-exchange'),
+        dataExchange: .literal('shared-exchange'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/analyticshub.subscriber'),
         member: .ref(reader.iamMember),
@@ -230,7 +229,7 @@ final class AnalyticsStack extends Stack {
       GoogleBigqueryAnalyticsHubListingIamMember(
         localName: 'listing_viewer',
         dataExchangeId: .literal('shared-exchange'),
-        listingId: .literal('events-listing'),
+        listing: .literal('events-listing'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/analyticshub.viewer'),
         member: .ref(reader.iamMember),
@@ -267,7 +266,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryConnectionIamMember(
         localName: 'connection_user',
-        connectionId: .literal('cloud-resource-link'),
+        connection: .literal('cloud-resource-link'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/bigquery.connectionUser'),
         member: .ref(ingestor.iamMember),
@@ -320,8 +319,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryRoutineIamMember(
         localName: 'add_one_reader',
-        datasetId: dataset.ref,
-        routineId: .ref(addOneRoutine.routineIdRef),
+        routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataViewer'),
         member: .ref(reader.iamMember),
       ),
@@ -330,8 +328,7 @@ final class AnalyticsStack extends Stack {
     final addOneBinding = add(
       GoogleBigqueryRoutineIamBinding(
         localName: 'add_one_binding',
-        datasetId: dataset.ref,
-        routineId: .ref(addOneRoutine.routineIdRef),
+        routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataEditor'),
         members: .literal([reader.iamMember.interpolation]),
         dependsOn: [ResourceDependency(addOneRoutine)],
@@ -341,8 +338,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryRoutineIamPolicy(
         localName: 'add_one_policy',
-        datasetId: dataset.ref,
-        routineId: .ref(addOneRoutine.routineIdRef),
+        routine: addOneRoutine.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/bigquery.dataViewer',

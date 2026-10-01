@@ -120,12 +120,7 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingLogViewIamMember(
         localName: 'audit_view_viewer',
-        bucket: .ref(auditBucket.bucketIdRef),
-        location: .literal(location),
-        name: .ref(auditView.nameRef),
-        parent: .literal(
-          'projects/$projectId/locations/$location/buckets/$bucketId/views/$viewName',
-        ),
+        logView: auditView.ref,
         role: .literal('roles/logging.viewer'),
         member: .literal('group:security-auditors@example.com'),
         dependsOn: [ResourceDependency(auditView)],
@@ -260,7 +255,7 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleSpannerInstanceIamMember(
         localName: 'spanner_instance_viewer',
-        instance: .ref(spanner.nameRef),
+        instance: spanner.ref,
         role: .literal('roles/spanner.viewer'),
         member: .literal('group:audit-readers@example.com'),
         dependsOn: [ResourceDependency(spanner)],
@@ -270,8 +265,7 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleSpannerDatabaseIamMember(
         localName: 'spanner_db_reader',
-        instance: .ref(spanner.nameRef),
-        database: .ref(spannerDb.nameRef),
+        database: spannerDb.ref,
         role: .literal('roles/spanner.databaseReader'),
         member: .literal('group:audit-readers@example.com'),
         dependsOn: [ResourceDependency(spannerDb)],

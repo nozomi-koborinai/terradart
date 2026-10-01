@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_hl7_v2_store.dart'
+    show GoogleHealthcareHl7V2Store;
+
 /// Sensitive field paths for `google_healthcare_hl7_v2_store_iam_policy`.
 const Set<String> _googleHealthcareHl7V2StoreIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleHealthcareHl7V2StoreIamPolicy extends Resource {
 
   GoogleHealthcareHl7V2StoreIamPolicy({
     required super.localName,
-    required TfArg<String> hl7V2StoreId,
+    required RefTo<GoogleHealthcareHl7V2Store> hl7V2Store,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +28,10 @@ final class GoogleHealthcareHl7V2StoreIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'hl7_v2_store_id': hl7V2StoreId, 'policy_data': policyData},
+         argMap: {
+           'hl7_v2_store_id': hl7V2Store.encodeAs('id'),
+           'policy_data': policyData,
+         },
        );
 
   @override

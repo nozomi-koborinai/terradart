@@ -72,8 +72,7 @@ final class EmailJobsStack extends Stack {
       GoogleCloudTasksQueueIamMember(
         localName: 'email_jobs_enqueuer',
         // Cloud Tasks queue IAM identity = name + location pair (NOT id).
-        name: .ref(queue.nameRef),
-        location: .ref(queue.locationRef),
+        queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),
         member: .ref(enqueuerSa.iamMember),
         dependsOn: [ResourceDependency(enqueuerSa)],

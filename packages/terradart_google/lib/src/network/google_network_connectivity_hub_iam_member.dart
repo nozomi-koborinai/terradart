@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_connectivity_hub.dart'
+    show GoogleNetworkConnectivityHub;
+
 /// Sensitive field paths for `google_network_connectivity_hub_iam_member`.
 const Set<String> _googleNetworkConnectivityHubIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleNetworkConnectivityHubIamMember extends Resource {
 
   GoogleNetworkConnectivityHubIamMember({
     required super.localName,
-    required TfArg<String> hub,
+    required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? project,
@@ -48,7 +51,7 @@ final class GoogleNetworkConnectivityHubIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'hub': hub,
+           'hub': hub.encodeAs('id'),
            'role': role,
            'member': member,
            'project': ?project,

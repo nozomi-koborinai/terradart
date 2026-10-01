@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
+
 /// Sensitive field paths for `google_healthcare_dataset_iam_member`.
 const Set<String> _googleHealthcareDatasetIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
 
   GoogleHealthcareDatasetIamMember({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> role,
     required TfArg<String> member,
     HealthcareDatasetIamMemberCondition? condition,
@@ -47,7 +50,7 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': dataset.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

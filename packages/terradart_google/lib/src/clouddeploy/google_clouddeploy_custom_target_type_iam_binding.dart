@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_custom_target_type.dart'
+    show GoogleClouddeployCustomTargetType;
+
 /// Sensitive field paths for `google_clouddeploy_custom_target_type_iam_binding`.
 const Set<String> _googleClouddeployCustomTargetTypeIamBindingSensitive =
     <String>{};
@@ -44,7 +47,7 @@ final class GoogleClouddeployCustomTargetTypeIamBinding extends Resource {
 
   GoogleClouddeployCustomTargetTypeIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleClouddeployCustomTargetType> customTargetType,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ClouddeployCustomTargetTypeIamBindingCondition? condition,
@@ -57,13 +60,13 @@ final class GoogleClouddeployCustomTargetTypeIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': customTargetType.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? customTargetType.alsoAs('location')),
+           'project': ?(project ?? customTargetType.alsoAs('project')),
          },
        );
 

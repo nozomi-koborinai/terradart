@@ -71,7 +71,7 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubSchemaIamMember(
         localName: 'orders_schema_publisher',
-        schema: .ref(ordersSchema.id),
+        schema: ordersSchema.ref,
         // `roles/pubsub.schemaAdmin` is a project-level role and is NOT
         // grantable on an individual schema resource (apply fails with
         // "Role ... is not supported for this resource"). At the schema
@@ -90,7 +90,7 @@ final class OrdersStack extends Stack {
     final schemaViewerBinding = add(
       GooglePubsubSchemaIamBinding(
         localName: 'orders_schema_viewer_binding',
-        schema: .ref(ordersSchema.id),
+        schema: ordersSchema.ref,
         role: .literal('roles/pubsub.viewer'),
         members: .literal([ordersPublisher.iamMember.interpolation]),
         dependsOn: [
@@ -103,7 +103,7 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubSchemaIamPolicy(
         localName: 'orders_schema_viewer_policy',
-        schema: .ref(ordersSchema.id),
+        schema: ordersSchema.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/pubsub.viewer',

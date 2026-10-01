@@ -143,7 +143,7 @@ final class NetworkRouteStack extends Stack {
     final edgeBinding = add(
       GoogleComputeNetworkFirewallPolicyIamBinding(
         localName: 'edge_policy_viewer',
-        name: .ref(edgePolicy.nameRef),
+        firewallPolicy: edgePolicy.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([edgeViewer.iamMember.interpolation]),
         dependsOn: [
@@ -156,7 +156,7 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeNetworkFirewallPolicyIamPolicy(
         localName: 'edge_policy_policy',
-        name: .ref(edgePolicy.nameRef),
+        firewallPolicy: edgePolicy.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/compute.viewer',
@@ -184,8 +184,7 @@ final class NetworkRouteStack extends Stack {
     final regionalEdgeBinding = add(
       GoogleComputeRegionNetworkFirewallPolicyIamBinding(
         localName: 'regional_edge_policy_viewer',
-        name: .ref(regionalEdgePolicy.nameRef),
-        region: .literal('us-central1'),
+        firewallPolicy: regionalEdgePolicy.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([edgeViewer.iamMember.interpolation]),
         dependsOn: [
@@ -198,8 +197,7 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeRegionNetworkFirewallPolicyIamPolicy(
         localName: 'regional_edge_policy_policy',
-        name: .ref(regionalEdgePolicy.nameRef),
-        region: .literal('us-central1'),
+        firewallPolicy: regionalEdgePolicy.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/compute.viewer',

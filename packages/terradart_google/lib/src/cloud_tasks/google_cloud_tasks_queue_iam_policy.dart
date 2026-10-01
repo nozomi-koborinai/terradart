@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_tasks/google_cloud_tasks_queue.dart'
+    show GoogleCloudTasksQueue;
+
 /// Sensitive field paths for `google_cloud_tasks_queue_iam_policy`.
 const Set<String> _googleCloudTasksQueueIamPolicySensitive = <String>{};
 
@@ -17,8 +20,8 @@ final class GoogleCloudTasksQueueIamPolicy extends Resource {
 
   GoogleCloudTasksQueueIamPolicy({
     required super.localName,
-    required TfArg<String> name,
-    required TfArg<String> location,
+    required RefTo<GoogleCloudTasksQueue> queue,
+    TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -28,10 +31,10 @@ final class GoogleCloudTasksQueueIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': location,
+           'name': queue.encodeAs('name'),
+           'location': ?(location ?? queue.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? queue.alsoAs('project')),
          },
        );
 

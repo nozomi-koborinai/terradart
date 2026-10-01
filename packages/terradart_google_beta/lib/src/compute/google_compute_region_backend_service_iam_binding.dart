@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeRegionBackendService;
+
 /// Sensitive field paths for `google_compute_region_backend_service_iam_binding`.
 const Set<String> _googleComputeRegionBackendServiceIamBindingSensitive =
     <String>{};
@@ -44,7 +47,7 @@ final class GoogleComputeRegionBackendServiceIamBinding extends Resource {
   GoogleComputeRegionBackendServiceIamBinding({
     required super.localName,
     required TfArg<List<String>> members,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeRegionBackendService> backendService,
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,
@@ -58,9 +61,9 @@ final class GoogleComputeRegionBackendServiceIamBinding extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'members': members,
-           'name': name,
-           'project': ?project,
-           'region': ?region,
+           'name': backendService.encodeAs('name'),
+           'project': ?(project ?? backendService.alsoAs('project')),
+           'region': ?(region ?? backendService.alsoAs('region')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

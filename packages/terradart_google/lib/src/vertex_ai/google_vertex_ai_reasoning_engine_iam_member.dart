@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../vertex_ai/google_vertex_ai_reasoning_engine.dart'
+    show GoogleVertexAiReasoningEngine;
+
 /// Sensitive field paths for `google_vertex_ai_reasoning_engine_iam_member`.
 const Set<String> _googleVertexAiReasoningEngineIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleVertexAiReasoningEngineIamMember extends Resource {
 
   GoogleVertexAiReasoningEngineIamMember({
     required super.localName,
-    required TfArg<String> reasoningEngine,
+    required RefTo<GoogleVertexAiReasoningEngine> reasoningEngine,
     required TfArg<String> role,
     required TfArg<String> member,
     VertexAiReasoningEngineIamMemberCondition? condition,
@@ -49,13 +52,13 @@ final class GoogleVertexAiReasoningEngineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'reasoning_engine': reasoningEngine,
+           'reasoning_engine': reasoningEngine.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? reasoningEngine.alsoAs('region')),
+           'project': ?(project ?? reasoningEngine.alsoAs('project')),
          },
        );
 

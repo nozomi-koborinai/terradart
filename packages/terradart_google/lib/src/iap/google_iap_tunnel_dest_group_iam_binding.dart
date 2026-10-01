@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iap/google_iap_tunnel_dest_group.dart' show GoogleIapTunnelDestGroup;
+
 /// Sensitive field paths for `google_iap_tunnel_dest_group_iam_binding`.
 const Set<String> _googleIapTunnelDestGroupIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleIapTunnelDestGroupIamBinding extends Resource {
 
   GoogleIapTunnelDestGroupIamBinding({
     required super.localName,
-    required TfArg<String> destGroup,
+    required RefTo<GoogleIapTunnelDestGroup> destGroup,
     TfArg<String>? region,
     required TfArg<String> role,
     required TfArg<List<String>> members,
@@ -54,11 +56,11 @@ final class GoogleIapTunnelDestGroupIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dest_group': destGroup,
-           'region': ?region,
+           'dest_group': destGroup.encodeAs('name'),
+           'region': ?(region ?? destGroup.alsoAs('region')),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? destGroup.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_v2_job.dart' show GoogleCloudRunV2Job;
+
 /// Sensitive field paths for `google_cloud_run_v2_job_iam_policy`.
 const Set<String> _googleCloudRunV2JobIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleCloudRunV2JobIamPolicy extends Resource {
 
   GoogleCloudRunV2JobIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudRunV2Job> job,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleCloudRunV2JobIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': job.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? job.alsoAs('location')),
+           'project': ?(project ?? job.alsoAs('project')),
          },
        );
 

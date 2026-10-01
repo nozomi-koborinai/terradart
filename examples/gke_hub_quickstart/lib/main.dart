@@ -101,7 +101,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeIamMember(
         localName: 'team_scope_viewer',
-        scopeId: .ref(scope.scopeIdRef),
+        scope: scope.ref,
         role: .literal('roles/viewer'),
         member: .ref(teamReader.iamMember),
         dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],

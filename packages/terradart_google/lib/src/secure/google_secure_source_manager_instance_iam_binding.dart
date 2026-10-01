@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secure/google_secure_source_manager_instance.dart'
+    show GoogleSecureSourceManagerInstance;
+
 /// Sensitive field paths for `google_secure_source_manager_instance_iam_binding`.
 const Set<String> _googleSecureSourceManagerInstanceIamBindingSensitive =
     <String>{};
@@ -45,7 +48,7 @@ final class GoogleSecureSourceManagerInstanceIamBinding extends Resource {
 
   GoogleSecureSourceManagerInstanceIamBinding({
     required super.localName,
-    required TfArg<String> instanceId,
+    required RefTo<GoogleSecureSourceManagerInstance> instance,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? location,
@@ -58,11 +61,11 @@ final class GoogleSecureSourceManagerInstanceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_id': instanceId,
+           'instance_id': instance.encodeAs('instance_id'),
            'role': role,
            'members': members,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? instance.alsoAs('location')),
+           'project': ?(project ?? instance.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

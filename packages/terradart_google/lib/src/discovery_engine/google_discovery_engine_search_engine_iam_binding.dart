@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_search_engine.dart'
+    show GoogleDiscoveryEngineSearchEngine;
+
 /// Sensitive field paths for `google_discovery_engine_search_engine_iam_binding`.
 const Set<String> _googleDiscoveryEngineSearchEngineIamBindingSensitive =
     <String>{};
@@ -45,8 +48,8 @@ final class GoogleDiscoveryEngineSearchEngineIamBinding extends Resource {
   GoogleDiscoveryEngineSearchEngineIamBinding({
     required super.localName,
     TfArg<String>? location,
-    required TfArg<String> collectionId,
-    required TfArg<String> engineId,
+    TfArg<String>? collectionId,
+    required RefTo<GoogleDiscoveryEngineSearchEngine> engine,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DiscoveryEngineSearchEngineIamBindingCondition? condition,
@@ -58,14 +61,14 @@ final class GoogleDiscoveryEngineSearchEngineIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': ?location,
-           'collection_id': collectionId,
-           'engine_id': engineId,
+           'location': ?(location ?? engine.alsoAs('location')),
+           'collection_id': ?(collectionId ?? engine.alsoAs('collection_id')),
+           'engine_id': engine.encodeAs('engine_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? engine.alsoAs('project')),
          },
        );
 

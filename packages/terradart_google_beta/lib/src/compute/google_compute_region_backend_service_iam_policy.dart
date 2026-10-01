@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeRegionBackendService;
+
 /// Sensitive field paths for `google_compute_region_backend_service_iam_policy`.
 const Set<String> _googleComputeRegionBackendServiceIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleComputeRegionBackendServiceIamPolicy extends Resource {
 
   GoogleComputeRegionBackendServiceIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeRegionBackendService> backendService,
     required TfArg<String> policyData,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -31,10 +34,10 @@ final class GoogleComputeRegionBackendServiceIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'name': name,
+           'name': backendService.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
-           'region': ?region,
+           'project': ?(project ?? backendService.alsoAs('project')),
+           'region': ?(region ?? backendService.alsoAs('region')),
          },
        );
 

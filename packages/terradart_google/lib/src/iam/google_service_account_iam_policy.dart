@@ -19,7 +19,7 @@ final class GoogleServiceAccountIamPolicy extends Resource {
 
   GoogleServiceAccountIamPolicy({
     required super.localName,
-    required RefTo<GoogleServiceAccount> serviceAccountId,
+    required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -28,7 +28,7 @@ final class GoogleServiceAccountIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_account_id': serviceAccountId.encodeAs('name'),
+           'service_account_id': serviceAccount.encodeAs('name'),
            'policy_data': policyData,
          },
        );

@@ -4,7 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/terradart_google.dart' show GoogleCesToolset;
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleCesApp, GoogleCesToolset;
 
 /// Sensitive field paths for `google_ces_evaluation`.
 const Set<String> _googleCesEvaluationSensitive = <String>{};
@@ -616,12 +617,12 @@ final class GoogleCesEvaluation extends Resource {
 
   GoogleCesEvaluation({
     required super.localName,
-    required TfArg<String> app,
+    required RefTo<GoogleCesApp> app,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> displayName,
     required TfArg<String> evaluationId,
-    required TfArg<String> location,
+    TfArg<String>? location,
     TfArg<String>? project,
     TfArg<List<String>>? tags,
     CesEvaluationGolden? golden,
@@ -634,13 +635,13 @@ final class GoogleCesEvaluation extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'app': app,
+           'app': app.encodeAs('app_id'),
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
            'display_name': displayName,
            'evaluation_id': evaluationId,
-           'location': location,
-           'project': ?project,
+           'location': ?(location ?? app.alsoAs('location')),
+           'project': ?(project ?? app.alsoAs('project')),
            'tags': ?tags,
            if (golden != null) 'golden': TfArg.literal(golden.encode()),
            if (scenario != null) 'scenario': TfArg.literal(scenario.encode()),

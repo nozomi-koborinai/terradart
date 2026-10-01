@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../colab/google_colab_runtime_template.dart'
+    show GoogleColabRuntimeTemplate;
+
 /// Sensitive field paths for `google_colab_runtime_template_iam_policy`.
 const Set<String> _googleColabRuntimeTemplateIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleColabRuntimeTemplateIamPolicy extends Resource {
 
   GoogleColabRuntimeTemplateIamPolicy({
     required super.localName,
-    required TfArg<String> runtimeTemplate,
+    required RefTo<GoogleColabRuntimeTemplate> runtimeTemplate,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleColabRuntimeTemplateIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'runtime_template': runtimeTemplate,
+           'runtime_template': runtimeTemplate.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? runtimeTemplate.alsoAs('location')),
+           'project': ?(project ?? runtimeTemplate.alsoAs('project')),
          },
        );
 

@@ -4,7 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../bigquery/google_bigquery_table.dart' show GoogleBigqueryTable;
 
 /// Sensitive field paths for `google_bigquery_table_iam_binding`.
 const Set<String> _googleBigqueryTableIamBindingSensitive = <String>{};
@@ -44,8 +44,8 @@ final class GoogleBigqueryTableIamBinding extends Resource {
 
   GoogleBigqueryTableIamBinding({
     required super.localName,
-    required RefTo<GoogleBigqueryDataset> datasetId,
-    required TfArg<String> tableId,
+    TfArg<String>? datasetId,
+    required RefTo<GoogleBigqueryTable> table,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     BigqueryTableIamBindingCondition? condition,
@@ -57,13 +57,13 @@ final class GoogleBigqueryTableIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId.encodeAs('dataset_id'),
-           'table_id': tableId,
+           'dataset_id': ?(datasetId ?? table.alsoAs('dataset_id')),
+           'table_id': table.encodeAs('table_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? table.alsoAs('project')),
          },
        );
 
