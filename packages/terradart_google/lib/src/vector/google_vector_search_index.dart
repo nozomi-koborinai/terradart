@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../vector/google_vector_search_collection.dart'
+    show GoogleVectorSearchCollection;
+
 /// Sensitive field paths for `google_vector_search_index`.
 const Set<String> _googleVectorSearchIndexSensitive = <String>{};
 
@@ -113,7 +116,7 @@ final class GoogleVectorSearchIndex extends Resource {
   GoogleVectorSearchIndex({
     required super.localName,
     required TfArg<String> location,
-    required TfArg<String> collectionId,
+    required RefTo<GoogleVectorSearchCollection> collectionId,
     required TfArg<String> indexId,
     required TfArg<String> indexField,
     TfArg<String>? displayName,
@@ -134,7 +137,7 @@ final class GoogleVectorSearchIndex extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'collection_id': collectionId,
+           'collection_id': collectionId.encodeAs('collection_id'),
            'index_id': indexId,
            'index_field': indexField,
            'display_name': ?displayName,

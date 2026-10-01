@@ -129,7 +129,7 @@ final class CesStack extends Stack {
         instruction: .literal('You are a helpful assistant.'),
         llmAgent: const CesAgentLlmAgent(),
         tools: .literal([search.nameRef.interpolation]),
-        toolsets: [CesAgentToolsets(toolset: .ref(openapi.nameRef))],
+        toolsets: [CesAgentToolsets(toolset: openapi.ref)],
         guardrails: .literal([safety.nameRef.interpolation]),
         dependsOn: [
           ResourceDependency(app),
@@ -158,7 +158,7 @@ final class CesStack extends Stack {
         exampleId: .literal('terradart-ces-example'),
         displayName: .literal('terradart-ces-example'),
         description: .literal('TerraDart CES smoke few-shot'),
-        entryAgent: .ref(agent.nameRef),
+        entryAgent: agent.ref,
         messages: [
           CesExampleMessages(
             role: .literal('user'),
@@ -191,7 +191,7 @@ final class CesStack extends Stack {
         localName: 'api',
         location: .ref(app.locationRef),
         app: .ref(app.appIdRef),
-        appVersion: .ref(version.nameRef),
+        appVersion: version.ref,
         displayName: .literal('terradart-ces-deploy'),
         channelProfile: CesDeploymentChannelProfile(
           channelType: .literal('API'),

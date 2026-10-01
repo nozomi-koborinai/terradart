@@ -163,7 +163,7 @@ void main() {
       stack.add(
         GoogleSecretManagerSecretVersion(
           localName: 'api_key_v1',
-          secret: TfArg.ref(secret.id),
+          secret: secret.ref,
           payload: SecretManagerSecretVersionWriteOnlyPayload(
             secretDataWo: TfArg.literal('REPLACE_ME'),
             secretDataWoVersion: TfArg.literal('1'),

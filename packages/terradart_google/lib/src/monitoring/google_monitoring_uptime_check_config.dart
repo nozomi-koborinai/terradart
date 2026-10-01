@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../monitoring/google_monitoring_group.dart' show GoogleMonitoringGroup;
+
 /// Sensitive field paths for `google_monitoring_uptime_check_config`.
 const Set<String> _googleMonitoringUptimeCheckConfigSensitive = <String>{
   'http_check.auth_info.password',
@@ -528,12 +530,12 @@ final class MonitoringUptimeCheckConfigResourceGroup {
     this.resourceType,
   });
 
-  final TfArg<String>? groupId;
+  final RefTo<GoogleMonitoringGroup>? groupId;
 
   final TfArg<MonitoringUptimeCheckResourceType>? resourceType;
 
   Map<String, Object?> encode() => {
-    'group_id': ?groupId?.toTfJson(),
+    'group_id': ?groupId?.encodeAs('name').toTfJson(),
     'resource_type': ?resourceType?.toTfJson(),
   };
 }

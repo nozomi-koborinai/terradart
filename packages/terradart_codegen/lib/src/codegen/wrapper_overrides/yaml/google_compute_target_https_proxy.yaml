@@ -44,11 +44,11 @@ curatedDoc: |-
   /// final httpsProxy = GoogleComputeTargetHttpsProxy(
   ///   localName: 'lb_https',
   ///   name: TfArg.literal('lb-https-proxy'),
-  ///   urlMap: TfArg.ref(urlMap.selfLink),
+  ///   urlMap: urlMap.ref,
   ///   certificates: .sslCertificates(
   ///     TfArg.literal(const ['projects/my-proj/global/sslCertificates/my-cert']),
   ///   ),
-  ///   sslPolicy: TfArg.ref(sslPolicy.selfLink),
+  ///   sslPolicy: sslPolicy.ref,
   ///   quicOverride: TfArg.literal(QuicOverride.enable),
   /// );
   /// ```

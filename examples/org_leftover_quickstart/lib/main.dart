@@ -66,7 +66,7 @@ final class OrgLeftoverStack extends Stack {
       GoogleComputeOrganizationSecurityPolicyAssociation(
         localName: 'org_armor_assoc',
         name: .literal('terradart-org-armor-assoc'),
-        policyId: .ref(policy.id),
+        policyId: policy.ref,
         attachmentId: .literal(org),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
@@ -75,7 +75,7 @@ final class OrgLeftoverStack extends Stack {
     add(
       GoogleComputeOrganizationSecurityPolicyRule(
         localName: 'org_armor_rule',
-        policyId: .ref(policy.id),
+        policyId: policy.ref,
         action: .literal('allow'),
         priority: .literal(1000),
         match: ComputeOrganizationSecurityPolicyRuleMatch(
@@ -104,7 +104,7 @@ final class OrgLeftoverStack extends Stack {
         name: .literal('terradart-pdp'),
         region: .literal('us-central1'),
         ipCidrRange: .literal('1.2.3.0/25'),
-        parentPrefix: .ref(advertised.id),
+        parentPrefix: advertised.ref,
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(advertised)],
       ),

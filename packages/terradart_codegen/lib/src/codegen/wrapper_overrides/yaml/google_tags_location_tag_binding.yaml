@@ -23,7 +23,7 @@ curatedDoc: |-
   ///     '${project.number.interpolation}/locations/asia-northeast1/'
   ///     'repositories/${repo.repositoryIdRef.interpolation}',
   ///   ),
-  ///   tagValue: TfArg.ref(value.id),
+  ///   tagValue: value.ref,
   ///   location: TfArg.literal('asia-northeast1'),
   /// );
   /// ```

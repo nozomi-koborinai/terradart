@@ -47,7 +47,7 @@ curatedDoc: |-
   /// GooglePrivatecaCertificateAuthority(
   ///   localName: 'app_ca',
   ///   certificateAuthorityId: TfArg.literal('app-root-ca'),
-  ///   pool: TfArg.ref(caPool.id),
+  ///   pool: caPool.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   config: PrivatecaCertificateAuthorityConfig(
   ///     subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(

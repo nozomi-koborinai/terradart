@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../acm/aws_acm_certificate.dart' show AwsAcmCertificate;
+import '../cloudfront/aws_cloudfront_cache_policy.dart'
+    show AwsCloudfrontCachePolicy;
+import '../cloudfront/aws_cloudfront_origin_access_control.dart'
+    show AwsCloudfrontOriginAccessControl;
 import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 
 /// Sensitive field paths for `aws_cloudfront_multitenant_distribution`.
@@ -63,7 +68,7 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
     this.trustedKeyGroups,
   });
 
-  final TfArg<String>? cachePolicyId;
+  final RefTo<AwsCloudfrontCachePolicy>? cachePolicyId;
 
   final TfArg<bool>? compress;
 
@@ -94,7 +99,7 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
   trustedKeyGroups;
 
   Map<String, Object?> encode() => {
-    'cache_policy_id': ?cachePolicyId?.toTfJson(),
+    'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
     'compress': ?compress?.toTfJson(),
     'field_level_encryption_id': ?fieldLevelEncryptionId?.toTfJson(),
     'origin_request_policy_id': ?originRequestPolicyId?.toTfJson(),
@@ -290,7 +295,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
     this.trustedKeyGroups,
   });
 
-  final TfArg<String>? cachePolicyId;
+  final RefTo<AwsCloudfrontCachePolicy>? cachePolicyId;
 
   final TfArg<bool>? compress;
 
@@ -319,7 +324,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
   trustedKeyGroups;
 
   Map<String, Object?> encode() => {
-    'cache_policy_id': ?cachePolicyId?.toTfJson(),
+    'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
     'compress': ?compress?.toTfJson(),
     'field_level_encryption_id': ?fieldLevelEncryptionId?.toTfJson(),
     'origin_request_policy_id': ?originRequestPolicyId?.toTfJson(),
@@ -368,7 +373,7 @@ final class CloudfrontMultitenantDistributionOrigin {
 
   final TfArg<String> id;
 
-  final TfArg<String>? originAccessControlId;
+  final RefTo<AwsCloudfrontOriginAccessControl>? originAccessControlId;
 
   final TfArg<String>? originPath;
 
@@ -388,7 +393,9 @@ final class CloudfrontMultitenantDistributionOrigin {
     'connection_timeout': ?connectionTimeout?.toTfJson(),
     'domain_name': domainName.toTfJson(),
     'id': id.toTfJson(),
-    'origin_access_control_id': ?originAccessControlId?.toTfJson(),
+    'origin_access_control_id': ?originAccessControlId
+        ?.encodeAs('id')
+        .toTfJson(),
     'origin_path': ?originPath?.toTfJson(),
     'response_completion_timeout': ?responseCompletionTimeout?.toTfJson(),
     if (customHeader != null)
@@ -745,7 +752,7 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
     this.sslSupportMethod,
   });
 
-  final TfArg<String>? acmCertificateArn;
+  final RefTo<AwsAcmCertificate>? acmCertificateArn;
 
   final TfArg<bool>? cloudfrontDefaultCertificate;
 
@@ -756,7 +763,7 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
   sslSupportMethod;
 
   Map<String, Object?> encode() => {
-    'acm_certificate_arn': ?acmCertificateArn?.toTfJson(),
+    'acm_certificate_arn': ?acmCertificateArn?.encodeAs('arn').toTfJson(),
     'cloudfront_default_certificate': ?cloudfrontDefaultCertificate?.toTfJson(),
     'minimum_protocol_version': ?minimumProtocolVersion?.toTfJson(),
     'ssl_support_method': ?sslSupportMethod?.toTfJson(),

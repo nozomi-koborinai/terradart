@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_service_perimeter.dart'
+    show GoogleAccessContextManagerServicePerimeter;
+
 /// Sensitive field paths for `google_access_context_manager_ingress_policy`.
 const Set<String> _googleAccessContextManagerIngressPolicySensitive =
     <String>{};
@@ -23,7 +26,8 @@ final class GoogleAccessContextManagerIngressPolicy extends Resource {
   GoogleAccessContextManagerIngressPolicy({
     required super.localName,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> ingressPolicyName,
+    required RefTo<GoogleAccessContextManagerServicePerimeter>
+    ingressPolicyName,
     required TfArg<String> resource,
     super.lifecycle,
     super.dependsOn,
@@ -33,7 +37,7 @@ final class GoogleAccessContextManagerIngressPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'deletion_policy': ?deletionPolicy,
-           'ingress_policy_name': ingressPolicyName,
+           'ingress_policy_name': ingressPolicyName.encodeAs('name'),
            'resource': resource,
          },
        );

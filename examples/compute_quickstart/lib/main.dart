@@ -162,7 +162,7 @@ final class NetworkStack extends Stack {
       GoogleComputeRouterInterface(
         localName: 'edge_router_if0',
         name: .literal('edge-router-if0'),
-        router: .ref(edgeRouter.nameRef),
+        router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
         ipRange: .literal('169.254.0.1/30'),
         dependsOn: [ResourceDependency(edgeRouter)],
@@ -173,7 +173,7 @@ final class NetworkStack extends Stack {
       GoogleComputeRouterPeer(
         localName: 'edge_router_peer0',
         name: .literal('edge-router-peer0'),
-        router: .ref(edgeRouter.nameRef),
+        router: edgeRouter.ref,
         interface: .literal('edge-router-if0'),
         peerAsn: .literal(65001),
         region: .literal('asia-northeast1'),
@@ -206,10 +206,10 @@ final class NetworkStack extends Stack {
       GoogleComputeRouterNat(
         localName: 'egress_nat',
         name: .literal('egress-nat'),
-        router: .ref(edgeRouter.nameRef),
+        router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
         natIpAllocateOption: .literal(.manualOnly),
-        initialNatIps: .literal([egressNatIp0.selfLink.interpolation]),
+        initialNatIps: .literal([egressNatIp0.ref]),
         sourceSubnetworkIpRangesToNat: .literal(
           ComputeRouterNatSourceSubnetworkIpRangesToNat
               .allSubnetworksAllIpRanges,
@@ -224,10 +224,10 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRouterNatAddress(
         localName: 'egress_nat_extra_ip',
-        router: .ref(edgeRouter.nameRef),
-        routerNat: .ref(egressNat.nameRef),
+        router: edgeRouter.ref,
+        routerNat: egressNat.ref,
         region: .literal('asia-northeast1'),
-        natIps: .literal([egressNatIp1.selfLink.interpolation]),
+        natIps: .literal([egressNatIp1.ref]),
         dependsOn: [
           ResourceDependency(egressNat),
           ResourceDependency(egressNatIp1),
@@ -239,7 +239,7 @@ final class NetworkStack extends Stack {
       GoogleComputeRouterRoutePolicy(
         localName: 'edge_export_policy',
         name: .literal('edge-export-policy'),
-        router: .ref(edgeRouter.nameRef),
+        router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
         type: .literal(.routePolicyTypeExport),
         terms: [
@@ -293,7 +293,7 @@ final class NetworkStack extends Stack {
         localName: 'share_backup',
         name: .literal('share-backup-1'),
         location: .literal('asia-northeast1'),
-        sourceInstance: .ref(sharedNfs.id),
+        sourceInstance: sharedNfs.ref,
         sourceFileShare: .literal('share1'),
       ),
     );
@@ -414,7 +414,7 @@ final class NetworkStack extends Stack {
       GoogleComputeRegionInstantSnapshot(
         localName: 'bastion_instant',
         name: .literal('bastion-instant-1'),
-        sourceDisk: .ref(backupDisk.selfLink),
+        sourceDisk: backupDisk.ref,
         region: .literal('asia-northeast1'),
         dependsOn: [ResourceDependency(backupDisk)],
       ),
@@ -504,7 +504,7 @@ final class NetworkStack extends Stack {
       GoogleComputeInstantSnapshot(
         localName: 'scratch_instant',
         name: .literal('ops-scratch-instant'),
-        sourceDisk: .ref(scratchDisk.selfLink),
+        sourceDisk: scratchDisk.ref,
         zone: .literal('asia-northeast1-a'),
         dependsOn: [ResourceDependency(scratchDisk)],
       ),
@@ -639,7 +639,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeBulkPerInstanceConfig(
         localName: 'bulk_workers_cfg',
-        instanceGroupManager: .ref(bulkWorkersMig.nameRef),
+        instanceGroupManager: bulkWorkersMig.ref,
         zone: .literal('asia-northeast1-a'),
         instances: [
           ComputeBulkPerInstanceConfigInstances(
@@ -671,7 +671,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputePerInstanceConfig(
         localName: 'pic_demo_1',
-        instanceGroupManager: .ref(picDemoMig.nameRef),
+        instanceGroupManager: picDemoMig.ref,
         name: .literal('pic-demo-1'),
         zone: .literal('asia-northeast1-a'),
         preservedState: ComputePerInstanceConfigPreservedState(
@@ -713,8 +713,8 @@ final class NetworkStack extends Stack {
       GoogleComputeNetworkFirewallPolicyAssociation(
         localName: 'ops_edge_policy_assoc',
         name: .literal('ops-edge-policy-assoc'),
-        firewallPolicy: .ref(edgeFirewallPolicy.nameRef),
-        attachmentTarget: .ref(mainVpc.selfLink),
+        firewallPolicy: edgeFirewallPolicy.ref,
+        attachmentTarget: mainVpc.ref,
         dependsOn: [
           ResourceDependency(edgeFirewallPolicy),
           ResourceDependency(mainVpc),
@@ -725,7 +725,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeNetworkFirewallPolicyRule(
         localName: 'ops_edge_allow_https',
-        firewallPolicy: .ref(edgeFirewallPolicy.nameRef),
+        firewallPolicy: edgeFirewallPolicy.ref,
         priority: .literal(1000),
         action: .literal('allow'),
         direction: .literal(.ingress),
@@ -780,7 +780,7 @@ final class NetworkStack extends Stack {
         name: .literal('ops-psc-attachment'),
         region: .literal('asia-northeast1'),
         connectionPreference: .literal(.acceptAutomatic),
-        subnetworks: .literal([workloadSubnet.selfLink.interpolation]),
+        subnetworks: .literal([workloadSubnet.ref]),
         dependsOn: [ResourceDependency(workloadSubnet), ...apiDeps],
       ),
     );
@@ -801,11 +801,11 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeNetworkEndpoints(
         localName: 'ops_bastion_neg_eps',
-        networkEndpointGroup: .ref(bastionNeg.nameRef),
+        networkEndpointGroup: bastionNeg.ref,
         zone: .literal('asia-northeast1-a'),
         networkEndpoints: [
           ComputeNetworkEndpoints(
-            instance: .ref(bastion.nameRef),
+            instance: bastion.ref,
             port: .literal(80),
           ),
         ],
@@ -855,7 +855,7 @@ final class NetworkStack extends Stack {
       GoogleComputeTargetInstance(
         localName: 'ops_bastion_target',
         name: .literal('ops-bastion-target'),
-        instance: .ref(bastion.selfLink),
+        instance: bastion.ref,
         zone: .literal('asia-northeast1-a'),
         description: .literal('Protocol-forwarding target for the bastion'),
         natPolicy: .literal(.noNat),
@@ -883,7 +883,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionNetworkFirewallPolicyRule(
         localName: 'ops_regional_allow_https',
-        firewallPolicy: .ref(regionalFirewallPolicy.nameRef),
+        firewallPolicy: regionalFirewallPolicy.ref,
         region: .literal('asia-northeast1'),
         priority: .literal(1000),
         action: .literal('allow'),
@@ -921,8 +921,8 @@ final class NetworkStack extends Stack {
       GoogleComputeRegionNetworkFirewallPolicyAssociation(
         localName: 'ops_regional_edge_policy_assoc',
         name: .literal('ops-regional-edge-policy-assoc'),
-        firewallPolicy: .ref(regionalFirewallPolicy.nameRef),
-        attachmentTarget: .ref(mainVpc.selfLink),
+        firewallPolicy: regionalFirewallPolicy.ref,
+        attachmentTarget: mainVpc.ref,
         region: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(regionalFirewallPolicy),
@@ -1014,8 +1014,8 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeInstanceGroupMembership(
         localName: 'ops_unmanaged_bastion',
-        instance: .ref(bastion.selfLink),
-        instanceGroup: .ref(opsUnmanagedGroup.nameRef),
+        instance: bastion.ref,
+        instanceGroup: opsUnmanagedGroup.ref,
         zone: .literal('asia-northeast1-a'),
         dependsOn: [
           ResourceDependency(bastion),
@@ -1027,7 +1027,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeInstanceGroupNamedPort(
         localName: 'ops_unmanaged_http',
-        group: .ref(opsUnmanagedGroup.selfLink),
+        group: opsUnmanagedGroup.ref,
         name: .literal('http'),
         port: .literal(80),
         zone: .literal('asia-northeast1-a'),
@@ -1138,7 +1138,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionPerInstanceConfig(
         localName: 'regional_pic_1',
-        regionInstanceGroupManager: .ref(regionalPicMig.nameRef),
+        regionInstanceGroupManager: regionalPicMig.ref,
         name: .literal('regional-pic-1'),
         region: .literal('asia-northeast1'),
         preservedState: ComputeRegionPerInstanceConfigPreservedState(
@@ -1172,8 +1172,8 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeResourcePolicyAttachment(
         localName: 'bastion_schedule_attach',
-        instance: .ref(bastion.nameRef),
-        name: .ref(bastionSchedulePolicy.nameRef),
+        instance: bastion.ref,
+        name: bastionSchedulePolicy.ref,
         zone: .literal('asia-northeast1-a'),
         deletionPolicy: .literal('ABANDON'),
         dependsOn: [
@@ -1209,8 +1209,8 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionDiskResourcePolicyAttachment(
         localName: 'backup_disk_snapshots',
-        disk: .ref(backupDisk.nameRef),
-        name: .ref(backupSnapshotPolicy.nameRef),
+        disk: backupDisk.ref,
+        name: backupSnapshotPolicy.ref,
         region: .literal('asia-northeast1'),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
+
 /// Sensitive field paths for `google_sql_user`.
 const Set<String> _googleSqlUserSensitive = <String>{'password'};
 
@@ -108,7 +111,7 @@ final class SqlUserPasswordPolicy {
 /// );
 /// final appUser = GoogleSqlUser(
 ///   localName: 'app',
-///   instance: TfArg.ref(primary.nameRef),
+///   instance: primary.ref,
 ///   name: TfArg.literal('app'),
 ///   type: TfArg.literal(SqlUserType.builtIn),
 ///   password: TfArg.variable('db_password'),
@@ -119,7 +122,7 @@ final class SqlUserPasswordPolicy {
 /// ```dart
 /// final ciUser = GoogleSqlUser(
 ///   localName: 'ci',
-///   instance: TfArg.ref(primary.nameRef),
+///   instance: primary.ref,
 ///   name: TfArg.literal('ci-runner@my-project.iam.gserviceaccount.com'),
 ///   type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
 /// );
@@ -130,7 +133,7 @@ final class GoogleSqlUser extends Resource {
   GoogleSqlUser({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<SqlUserType>? type,
     TfArg<String>? password,
     TfArg<String>? passwordWo,
@@ -148,7 +151,7 @@ final class GoogleSqlUser extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'type': ?type,
            'password': ?password,
            'password_wo': ?passwordWo,

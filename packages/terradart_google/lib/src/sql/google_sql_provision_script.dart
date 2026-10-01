@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
+
 /// Sensitive field paths for `google_sql_provision_script`.
 const Set<String> _googleSqlProvisionScriptSensitive = <String>{};
 
@@ -22,7 +25,7 @@ final class GoogleSqlProvisionScript extends Resource {
     TfArg<String>? database,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     required TfArg<String> script,
     super.lifecycle,
@@ -35,7 +38,7 @@ final class GoogleSqlProvisionScript extends Resource {
            'database': ?database,
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'project': ?project,
            'script': script,
          },

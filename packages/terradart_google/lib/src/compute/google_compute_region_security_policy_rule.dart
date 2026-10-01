@@ -9,6 +9,9 @@ import 'package:terradart_google/src/compute/google_compute_security_policy.dart
         SecurityPolicyWafExclusionOperator;
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_security_policy.dart'
+    show GoogleComputeRegionSecurityPolicy;
+
 /// Sensitive field paths for `google_compute_region_security_policy_rule`.
 const Set<String> _googleComputeRegionSecurityPolicyRuleSensitive = <String>{};
 
@@ -210,7 +213,7 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
     required TfArg<num> priority,
     TfArg<String>? project,
     required TfArg<String> region,
-    required TfArg<String> securityPolicy,
+    required RefTo<GoogleComputeRegionSecurityPolicy> securityPolicy,
     ComputeRegionSecurityPolicyRuleMatch? match,
     ComputeRegionSecurityPolicyRuleNetworkMatch? networkMatch,
     ComputeRegionSecurityPolicyRulePreconfiguredWafConfig?
@@ -229,7 +232,7 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
            'priority': priority,
            'project': ?project,
            'region': region,
-           'security_policy': securityPolicy,
+           'security_policy': securityPolicy.encodeAs('name'),
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
            if (networkMatch != null)
              'network_match': TfArg.literal(networkMatch.encode()),

@@ -23,7 +23,7 @@ curatedDoc: |-
   /// ```dart
   /// final githubProvider = GoogleIamWorkloadIdentityPoolProvider(
   ///   localName: 'github_provider',
-  ///   workloadIdentityPoolId: .ref(pool.nameRef),
+  ///   workloadIdentityPoolId: pool.ref,
   ///   workloadIdentityPoolProviderId: .literal('github-actions'),
   ///   displayName: .literal('GitHub Actions'),
   ///   attributeCondition: .literal('assertion.repository_owner == "my-org"'),

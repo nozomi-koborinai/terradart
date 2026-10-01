@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../service_directory/google_service_directory_namespace.dart'
+    show GoogleServiceDirectoryNamespace;
+
 /// Sensitive field paths for `google_service_directory_service`.
 const Set<String> _googleServiceDirectoryServiceSensitive = <String>{};
 
@@ -15,7 +18,7 @@ final class GoogleServiceDirectoryService extends Resource {
   GoogleServiceDirectoryService({
     required super.localName,
     required TfArg<String> serviceId,
-    required TfArg<String> namespace,
+    required RefTo<GoogleServiceDirectoryNamespace> namespace,
     TfArg<Map<String, String>>? metadata,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -26,7 +29,7 @@ final class GoogleServiceDirectoryService extends Resource {
          terraformType: tfType,
          argMap: {
            'service_id': serviceId,
-           'namespace': namespace,
+           'namespace': namespace.encodeAs('id'),
            'metadata': ?metadata,
            'deletion_policy': ?deletionPolicy,
          },

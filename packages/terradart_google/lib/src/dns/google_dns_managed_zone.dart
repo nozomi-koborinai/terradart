@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_dns_managed_zone`.
 const Set<String> _googleDnsManagedZoneSensitive = <String>{};
 
@@ -112,8 +114,10 @@ class DnsManagedZonePrivateVisibilityGkeCluster {
 /// One entry inside `private_visibility_config.networks`.
 class DnsManagedZonePrivateVisibilityNetwork {
   const DnsManagedZonePrivateVisibilityNetwork({required this.networkUrl});
-  final TfArg<String> networkUrl;
-  Map<String, Object?> toArgMap() => {'network_url': networkUrl};
+  final RefTo<GoogleComputeNetwork> networkUrl;
+  Map<String, Object?> toArgMap() => {
+    'network_url': networkUrl.encodeAs('id').toTfJson(),
+  };
 }
 
 /// `dnssec_config` block. `kind` is rarely overridden; defaults to
@@ -170,8 +174,10 @@ class DnsManagedZonePeeringConfig {
 /// `peering_config.target_network` single sub-block (`max_items=1`).
 class DnsManagedZonePeeringTargetNetwork {
   const DnsManagedZonePeeringTargetNetwork({required this.networkUrl});
-  final TfArg<String> networkUrl;
-  Map<String, Object?> toArgMap() => {'network_url': networkUrl};
+  final RefTo<GoogleComputeNetwork> networkUrl;
+  Map<String, Object?> toArgMap() => {
+    'network_url': networkUrl.encodeAs('id').toTfJson(),
+  };
 }
 
 /// `forwarding_config` block. At least one `targetNameServers` entry.

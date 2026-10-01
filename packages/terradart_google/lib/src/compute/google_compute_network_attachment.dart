@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_network_attachment`.
 const Set<String> _googleComputeNetworkAttachmentSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleComputeNetworkAttachment extends Resource {
     TfArg<String>? region,
     required TfArg<ComputeNetworkAttachmentConnectionPreference>
     connectionPreference,
-    required TfArg<List<String>> subnetworks,
+    required TfArg<List<RefTo<GoogleComputeSubnetwork>>> subnetworks,
     TfArg<String>? description,
     TfArg<List<String>>? producerAcceptLists,
     TfArg<List<String>>? producerRejectLists,
@@ -52,7 +54,7 @@ final class GoogleComputeNetworkAttachment extends Resource {
            'name': name,
            'region': ?region,
            'connection_preference': connectionPreference,
-           'subnetworks': subnetworks,
+           'subnetworks': subnetworks.encodeAs('self_link'),
            'description': ?description,
            'producer_accept_lists': ?producerAcceptLists,
            'producer_reject_lists': ?producerRejectLists,

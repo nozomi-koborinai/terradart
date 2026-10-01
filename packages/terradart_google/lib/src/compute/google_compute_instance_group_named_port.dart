@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_group.dart'
+    show GoogleComputeInstanceGroup;
+
 /// Sensitive field paths for `google_compute_instance_group_named_port`.
 const Set<String> _googleComputeInstanceGroupNamedPortSensitive = <String>{};
 
@@ -20,7 +23,7 @@ final class GoogleComputeInstanceGroupNamedPort extends Resource {
 
   GoogleComputeInstanceGroupNamedPort({
     required super.localName,
-    required TfArg<String> group,
+    required RefTo<GoogleComputeInstanceGroup> group,
     required TfArg<String> name,
     required TfArg<num> port,
     TfArg<String>? zone,
@@ -33,7 +36,7 @@ final class GoogleComputeInstanceGroupNamedPort extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'group': group,
+           'group': group.encodeAs('name'),
            'name': name,
            'port': port,
            'zone': ?zone,

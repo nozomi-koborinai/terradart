@@ -20,7 +20,7 @@ GoogleSqlDatabaseInstance buildSqlInstance({
     tier: .literal('db-f1-micro'),
     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
       ipv4Enabled: .literal(false),
-      privateNetwork: .ref(vpc.selfLink),
+      privateNetwork: vpc.ref,
     ),
   ),
   // SQL instance requires PSA peering active; declared via the typed
@@ -33,7 +33,7 @@ GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>
     GoogleSqlDatabase(
       localName: 'coffee_db',
       name: .literal('coffee_orders'),
-      instance: .ref(sqlInstance.nameRef),
+      instance: sqlInstance.ref,
     );
 
 GoogleSqlUser buildSqlUser(
@@ -42,7 +42,7 @@ GoogleSqlUser buildSqlUser(
 ) => GoogleSqlUser(
   localName: 'coffee_user',
   name: .literal('coffee_app'),
-  instance: .ref(sqlInstance.nameRef),
+  instance: sqlInstance.ref,
   passwordWo: .literal(dbPassword),
   passwordWoVersion: .literal(1),
 );
@@ -58,7 +58,7 @@ GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(
   String dbPassword,
 ) => GoogleSecretManagerSecretVersion(
   localName: 'db_password_v1',
-  secret: .ref(secret.id),
+  secret: secret.ref,
   payload: .writeOnly(
     secretDataWo: .literal(dbPassword),
     secretDataWoVersion: .literal('1'),

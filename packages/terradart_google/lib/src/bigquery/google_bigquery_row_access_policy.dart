@@ -4,6 +4,7 @@
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../bigquery/google_bigquery_table.dart' show GoogleBigqueryTable;
 
 /// Sensitive field paths for `google_bigquery_row_access_policy`.
 const Set<String> _googleBigqueryRowAccessPolicySensitive = <String>{};
@@ -23,7 +24,7 @@ final class GoogleBigqueryRowAccessPolicy extends Resource {
     TfArg<List<String>>? grantees,
     required TfArg<String> policyId,
     TfArg<String>? project,
-    required TfArg<String> tableId,
+    required RefTo<GoogleBigqueryTable> tableId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -36,7 +37,7 @@ final class GoogleBigqueryRowAccessPolicy extends Resource {
            'grantees': ?grantees,
            'policy_id': policyId,
            'project': ?project,
-           'table_id': tableId,
+           'table_id': tableId.encodeAs('table_id'),
          },
        );
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_service_perimeter.dart'
+    show GoogleAccessContextManagerServicePerimeter;
+
 /// Sensitive field paths for `google_access_context_manager_service_perimeter_dry_run_resource`.
 const Set<String>
 _googleAccessContextManagerServicePerimeterDryRunResourceSensitive = <String>{};
@@ -42,7 +45,7 @@ _googleAccessContextManagerServicePerimeterDryRunResourceSensitive = <String>{};
 /// ```dart
 /// GoogleAccessContextManagerServicePerimeterDryRunResource(
 ///   localName: 'dry_run_project',
-///   perimeterName: TfArg.ref(dryRun.nameRef),
+///   perimeterName: dryRun.ref,
 ///   resource: TfArg.literal('projects/987654321'),
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );
@@ -54,7 +57,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunResource
 
   GoogleAccessContextManagerServicePerimeterDryRunResource({
     required super.localName,
-    required TfArg<String> perimeterName,
+    required RefTo<GoogleAccessContextManagerServicePerimeter> perimeterName,
     required TfArg<String> resource,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -64,7 +67,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunResource
   }) : super(
          terraformType: tfType,
          argMap: {
-           'perimeter_name': perimeterName,
+           'perimeter_name': perimeterName.encodeAs('name'),
            'resource': resource,
            'deletion_policy': ?deletionPolicy,
          },

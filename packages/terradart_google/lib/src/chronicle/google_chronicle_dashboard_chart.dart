@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../chronicle/google_chronicle_native_dashboard.dart'
+    show GoogleChronicleNativeDashboard;
+
 /// Sensitive field paths for `google_chronicle_dashboard_chart`.
 const Set<String> _googleChronicleDashboardChartSensitive = <String>{};
 
@@ -503,7 +506,7 @@ final class GoogleChronicleDashboardChart extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> instance,
-    TfArg<String>? nativeDashboard,
+    RefTo<GoogleChronicleNativeDashboard>? nativeDashboard,
     ChronicleDashboardChartLayout? chartLayout,
     required ChronicleDashboardChartSpec dashboardChart,
     ChronicleDashboardChartQuery? dashboardQuery,
@@ -518,7 +521,7 @@ final class GoogleChronicleDashboardChart extends Resource {
          argMap: {
            'location': location,
            'instance': instance,
-           'native_dashboard': ?nativeDashboard,
+           'native_dashboard': ?nativeDashboard?.encodeAs('name'),
            if (chartLayout != null)
              'chart_layout': TfArg.literal([chartLayout.toArgMap()]),
            'dashboard_chart': TfArg.literal([dashboardChart.toArgMap()]),

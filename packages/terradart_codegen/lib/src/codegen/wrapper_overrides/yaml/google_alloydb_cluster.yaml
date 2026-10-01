@@ -60,7 +60,7 @@ curatedDoc: |-
   ///   location: .literal('asia-northeast1'),
   ///   networkConfig: AlloydbClusterNetworkConfig(
   ///     network: vpc.ref,
-  ///     allocatedIpRange: .ref(psaRange.nameRef),
+  ///     allocatedIpRange: psaRange.ref,
   ///   ),
   ///   initialUser: AlloydbClusterInitialUser(
   ///     user: .literal('postgres'),

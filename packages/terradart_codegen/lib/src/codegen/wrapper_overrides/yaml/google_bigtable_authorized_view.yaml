@@ -19,8 +19,8 @@ curatedDoc: |-
   /// ```dart
   /// GoogleBigtableAuthorizedView(
   ///   localName: 'tenant_a',
-  ///   instanceName: TfArg.ref(instance.nameRef),
-  ///   tableName: TfArg.ref(table.nameRef),
+  ///   instanceName: instance.ref,
+  ///   tableName: table.ref,
   ///   name: TfArg.literal('tenant-a'),
   ///   subsetView: BigtableAuthorizedViewSubsetView(
   ///     rowPrefixes: [TfArg.literal('tenant-a#')],

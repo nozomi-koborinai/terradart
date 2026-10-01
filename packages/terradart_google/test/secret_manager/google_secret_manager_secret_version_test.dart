@@ -22,7 +22,7 @@ void main() {
     );
     final v = GoogleSecretManagerSecretVersion(
       localName: 'api_key_v1',
-      secret: TfArg.ref(secret.id),
+      secret: secret.ref,
       payload: SecretManagerSecretVersionWriteOnlyPayload(
         secretDataWo: TfArg.ref(secret.id),
         secretDataWoVersion: TfArg.literal('1'),
@@ -49,7 +49,7 @@ void main() {
     // `write_only`, not sensitive).
     final v = GoogleSecretManagerSecretVersion(
       localName: 'v',
-      secret: TfArg.literal('projects/p/secrets/s'),
+      secret: RefTo.literal('projects/p/secrets/s'),
       payload: SecretManagerSecretVersionPlaintextPayload(
         secretData: TfArg.literal('legacy-value'),
       ),
@@ -60,7 +60,7 @@ void main() {
   test('plaintext payload still works (with deprecation)', () {
     final v = GoogleSecretManagerSecretVersion(
       localName: 'v',
-      secret: TfArg.literal('projects/p/secrets/s'),
+      secret: RefTo.literal('projects/p/secrets/s'),
       payload: SecretManagerSecretVersionPlaintextPayload(
         secretData: TfArg.literal('legacy-value'),
       ),
@@ -73,7 +73,7 @@ void main() {
     GoogleSecretManagerSecretVersion plaintext(TfArg<String> data) =>
         GoogleSecretManagerSecretVersion(
           localName: 'v',
-          secret: TfArg.literal('projects/p/secrets/s'),
+          secret: RefTo.literal('projects/p/secrets/s'),
           payload: SecretManagerSecretVersionPlaintextPayload(secretData: data),
         );
 
@@ -103,7 +103,7 @@ void main() {
       stack.add(
         GoogleSecretManagerSecretVersion(
           localName: 'v',
-          secret: TfArg.literal('projects/p/secrets/s'),
+          secret: RefTo.literal('projects/p/secrets/s'),
           payload: SecretManagerSecretVersionWriteOnlyPayload(
             secretDataWo: TfArg.variable('missing'),
             secretDataWoVersion: TfArg.literal('1'),

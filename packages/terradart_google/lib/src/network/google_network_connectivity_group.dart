@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_connectivity_hub.dart'
+    show GoogleNetworkConnectivityHub;
+
 /// Sensitive field paths for `google_network_connectivity_group`.
 const Set<String> _googleNetworkConnectivityGroupSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class NetworkConnectivityGroupAutoAccept {
 /// ```dart
 /// GoogleNetworkConnectivityGroup(
 ///   localName: 'center',
-///   hub: TfArg.ref(hub.id),
+///   hub: hub.ref,
 ///   name: TfArg.literal(NetworkConnectivityGroupName.center),
 /// );
 /// ```
@@ -50,7 +53,7 @@ final class GoogleNetworkConnectivityGroup extends Resource {
 
   GoogleNetworkConnectivityGroup({
     required super.localName,
-    required TfArg<String> hub,
+    required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<NetworkConnectivityGroupName> name,
     TfArg<String>? description,
     NetworkConnectivityGroupAutoAccept? autoAccept,
@@ -64,7 +67,7 @@ final class GoogleNetworkConnectivityGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'hub': hub,
+           'hub': hub.encodeAs('id'),
            'name': name,
            'description': ?description,
            if (autoAccept != null)

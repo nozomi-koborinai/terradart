@@ -26,7 +26,7 @@ curatedDoc: |-
   /// GoogleComputeRouterNamedSet(
   ///   localName: 'prefixes',
   ///   name: TfArg.literal('terradart-prefixes'),
-  ///   router: TfArg.ref(router.nameRef),
+  ///   router: router.ref,
   ///   region: TfArg.literal('us-central1'),
   ///   type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
   ///   elements: [

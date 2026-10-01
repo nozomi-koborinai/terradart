@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../dlp/google_data_loss_prevention_inspect_template.dart'
+    show GoogleDataLossPreventionInspectTemplate;
 import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
@@ -33,7 +35,7 @@ final class DataLossPreventionJobTriggerInspectJob {
     required this.storageConfig,
   });
 
-  final TfArg<String>? inspectTemplateName;
+  final RefTo<GoogleDataLossPreventionInspectTemplate>? inspectTemplateName;
 
   final List<DataLossPreventionJobTriggerActions>? actions;
 
@@ -42,7 +44,7 @@ final class DataLossPreventionJobTriggerInspectJob {
   final DataLossPreventionJobTriggerStorageConfig storageConfig;
 
   Map<String, Object?> encode() => {
-    'inspect_template_name': ?inspectTemplateName?.toTfJson(),
+    'inspect_template_name': ?inspectTemplateName?.encodeAs('name').toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
     'inspect_config': ?inspectConfig?.encode(),
     'storage_config': storageConfig.encode(),

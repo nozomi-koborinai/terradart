@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_group_manager.dart'
+    show GoogleComputeInstanceGroupManager;
+
 /// Sensitive field paths for `google_compute_per_instance_config`.
 const Set<String> _googleComputePerInstanceConfigSensitive = <String>{};
 
@@ -167,7 +170,7 @@ final class GoogleComputePerInstanceConfig extends Resource {
 
   GoogleComputePerInstanceConfig({
     required super.localName,
-    required TfArg<String> instanceGroupManager,
+    required RefTo<GoogleComputeInstanceGroupManager> instanceGroupManager,
     required TfArg<String> name,
     TfArg<String>? zone,
     ComputePerInstanceConfigPreservedState? preservedState,
@@ -184,7 +187,7 @@ final class GoogleComputePerInstanceConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_group_manager': instanceGroupManager,
+           'instance_group_manager': instanceGroupManager.encodeAs('name'),
            'name': name,
            'zone': ?zone,
            if (preservedState != null)

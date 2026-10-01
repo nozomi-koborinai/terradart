@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_instance_group_manager.dart'
+    show GoogleComputeRegionInstanceGroupManager;
+
 /// Sensitive field paths for `google_compute_region_per_instance_config`.
 const Set<String> _googleComputeRegionPerInstanceConfigSensitive = <String>{};
 
@@ -166,7 +169,8 @@ final class GoogleComputeRegionPerInstanceConfig extends Resource {
 
   GoogleComputeRegionPerInstanceConfig({
     required super.localName,
-    required TfArg<String> regionInstanceGroupManager,
+    required RefTo<GoogleComputeRegionInstanceGroupManager>
+    regionInstanceGroupManager,
     required TfArg<String> name,
     TfArg<String>? region,
     ComputeRegionPerInstanceConfigPreservedState? preservedState,
@@ -183,7 +187,9 @@ final class GoogleComputeRegionPerInstanceConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'region_instance_group_manager': regionInstanceGroupManager,
+           'region_instance_group_manager': regionInstanceGroupManager.encodeAs(
+             'name',
+           ),
            'name': name,
            'region': ?region,
            if (preservedState != null)

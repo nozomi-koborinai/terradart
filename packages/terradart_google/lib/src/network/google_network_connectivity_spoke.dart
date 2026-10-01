@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../network/google_network_connectivity_hub.dart'
+    show GoogleNetworkConnectivityHub;
 
 /// Sensitive field paths for `google_network_connectivity_spoke`.
 const Set<String> _googleNetworkConnectivitySpokeSensitive = <String>{};
@@ -373,12 +375,12 @@ final class NetworkConnectivitySpokeLinkedVpcNetwork {
 
   final TfArg<List<String>>? includeExportRanges;
 
-  final TfArg<String> uri;
+  final RefTo<GoogleComputeNetwork> uri;
 
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
     'include_export_ranges': ?includeExportRanges?.toTfJson(),
-    'uri': uri.toTfJson(),
+    'uri': uri.encodeAs('id').toTfJson(),
   };
 }
 
@@ -432,9 +434,9 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
 ///   localName: 'vpc_spoke',
 ///   name: .literal('vpc-spoke'),
 ///   location: .literal('global'),
-///   hub: .ref(hub.id),
+///   hub: hub.ref,
 ///   attachment: .linkedVpcNetwork(
-///     NetworkConnectivitySpokeLinkedVpcNetwork(uri: .ref(vpc.id)),
+///     NetworkConnectivitySpokeLinkedVpcNetwork(uri: vpc.ref),
 ///   ),
 /// );
 /// ```
@@ -445,7 +447,7 @@ final class GoogleNetworkConnectivitySpoke extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> hub,
+    required RefTo<GoogleNetworkConnectivityHub> hub,
     required NetworkConnectivitySpokeAttachment attachment,
     TfArg<String>? group,
     TfArg<String>? description,
@@ -461,7 +463,7 @@ final class GoogleNetworkConnectivitySpoke extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'hub': hub,
+           'hub': hub.encodeAs('id'),
            ...attachment.argMap,
            'group': ?group,
            'description': ?description,

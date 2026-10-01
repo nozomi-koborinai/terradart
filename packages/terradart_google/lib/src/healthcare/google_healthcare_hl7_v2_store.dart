@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
 import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_healthcare_hl7_v2_store`.
@@ -95,7 +97,7 @@ final class GoogleHealthcareHl7V2Store extends Resource {
   GoogleHealthcareHl7V2Store({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> dataset,
+    required RefTo<GoogleHealthcareDataset> dataset,
     TfArg<bool>? rejectDuplicateMessage,
     HealthcareHl7V2StoreParserConfig? parserConfig,
     TfArg<Map<String, String>>? labels,
@@ -109,7 +111,7 @@ final class GoogleHealthcareHl7V2Store extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'dataset': dataset,
+           'dataset': dataset.encodeAs('self_link'),
            'reject_duplicate_message': ?rejectDuplicateMessage,
            if (parserConfig != null)
              'parser_config': TfArg.literal(parserConfig.encode()),

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_target_pool.dart'
+    show GoogleComputeTargetPool;
+
 /// Sensitive field paths for `google_compute_region_instance_group_manager`.
 const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
     <String>{};
@@ -654,7 +657,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     TfArg<List<String>>? distributionPolicyZones,
     TfArg<RegionInstanceGroupManagerDistributionPolicyTargetShape>?
     distributionPolicyTargetShape,
-    TfArg<List<String>>? targetPools,
+    TfArg<List<RefTo<GoogleComputeTargetPool>>>? targetPools,
     required List<ComputeRegionInstanceGroupManagerVersion> versions,
     List<ComputeRegionInstanceGroupManagerNamedPort>? namedPorts,
     ComputeRegionInstanceGroupManagerAutoHealingPolicy? autoHealingPolicies,
@@ -690,7 +693,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
            'wait_for_instances_status': ?waitForInstancesStatus,
            'distribution_policy_zones': ?distributionPolicyZones,
            'distribution_policy_target_shape': ?distributionPolicyTargetShape,
-           'target_pools': ?targetPools,
+           'target_pools': ?targetPools?.encodeAs('self_link'),
            'version': TfArg.literal(versions.map((v) => v.toArgMap()).toList()),
            if (namedPorts != null)
              'named_port': TfArg.literal(

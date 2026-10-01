@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../logging/google_logging_project_bucket_config.dart'
+    show GoogleLoggingProjectBucketConfig;
+
 /// Sensitive field paths for `google_logging_log_view`.
 const Set<String> _googleLoggingLogViewSensitive = <String>{};
 
@@ -18,7 +21,7 @@ const Set<String> _googleLoggingLogViewSensitive = <String>{};
 /// ```dart
 /// final auditView = GoogleLoggingLogView(
 ///   localName: 'audit_view',
-///   bucket: TfArg.ref(auditBucket.bucketIdRef),
+///   bucket: auditBucket.ref,
 ///   name: TfArg.literal('audit-only'),
 ///   filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
 /// );
@@ -28,7 +31,7 @@ final class GoogleLoggingLogView extends Resource {
 
   GoogleLoggingLogView({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleLoggingProjectBucketConfig> bucket,
     required TfArg<String> name,
     TfArg<String>? filter,
     TfArg<String>? description,
@@ -41,7 +44,7 @@ final class GoogleLoggingLogView extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'name': name,
            'filter': ?filter,
            'description': ?description,

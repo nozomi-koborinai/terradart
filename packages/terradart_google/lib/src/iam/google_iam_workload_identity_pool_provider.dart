@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workload_identity_pool.dart'
+    show GoogleIamWorkloadIdentityPool;
+
 /// Sensitive field paths for `google_iam_workload_identity_pool_provider`.
 const Set<String> _googleIamWorkloadIdentityPoolProviderSensitive = <String>{};
 
@@ -245,7 +248,7 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 /// ```dart
 /// final githubProvider = GoogleIamWorkloadIdentityPoolProvider(
 ///   localName: 'github_provider',
-///   workloadIdentityPoolId: .ref(pool.nameRef),
+///   workloadIdentityPoolId: pool.ref,
 ///   workloadIdentityPoolProviderId: .literal('github-actions'),
 ///   displayName: .literal('GitHub Actions'),
 ///   attributeCondition: .literal('assertion.repository_owner == "my-org"'),
@@ -266,7 +269,7 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
 
   GoogleIamWorkloadIdentityPoolProvider({
     required super.localName,
-    required TfArg<String> workloadIdentityPoolId,
+    required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolProviderId,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -282,7 +285,9 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workload_identity_pool_id': workloadIdentityPoolId,
+           'workload_identity_pool_id': workloadIdentityPoolId.encodeAs(
+             'workload_identity_pool_id',
+           ),
            'workload_identity_pool_provider_id': workloadIdentityPoolProviderId,
            'display_name': ?displayName,
            'description': ?description,

@@ -53,7 +53,7 @@ curatedDoc: |-
   /// final urlMap = GoogleComputeUrlMap(
   ///   localName: 'urlmap',
   ///   name: TfArg.literal('urlmap-prod'),
-  ///   defaultService: TfArg.ref(login.selfLink),
+  ///   defaultService: login.ref,
   ///   hostRule: [
   ///     ComputeUrlMapHostRule(
   ///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
@@ -63,15 +63,15 @@ curatedDoc: |-
   ///   pathMatcher: [
   ///     ComputeUrlMapPathMatcher(
   ///       name: TfArg.literal('allpaths'),
-  ///       defaultService: TfArg.ref(login.selfLink),
+  ///       defaultService: login.ref,
   ///       pathRule: [
   ///         ComputeUrlMapPathRule(
   ///           paths: TfArg.literal(const ['/home']),
-  ///           service: TfArg.ref(login.selfLink),
+  ///           service: login.ref,
   ///         ),
   ///         ComputeUrlMapPathRule(
   ///           paths: TfArg.literal(const ['/static']),
-  ///           service: TfArg.ref(staticBucket.selfLink),
+  ///           service: staticBucket.ref,
   ///         ),
   ///       ],
   ///     ),

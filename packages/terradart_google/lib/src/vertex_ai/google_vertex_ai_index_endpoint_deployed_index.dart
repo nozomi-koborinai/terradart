@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../vertex_ai/google_vertex_ai_index_endpoint.dart'
+    show GoogleVertexAiIndexEndpoint;
+
 /// Sensitive field paths for `google_vertex_ai_index_endpoint_deployed_index`.
 const Set<String> _googleVertexAiIndexEndpointDeployedIndexSensitive =
     <String>{};
@@ -130,7 +133,7 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
   GoogleVertexAiIndexEndpointDeployedIndex({
     required super.localName,
     required TfArg<String> deployedIndexId,
-    required TfArg<String> indexEndpoint,
+    required RefTo<GoogleVertexAiIndexEndpoint> indexEndpoint,
     required TfArg<String> index,
     TfArg<String>? region,
     TfArg<String>? displayName,
@@ -149,7 +152,7 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
          terraformType: tfType,
          argMap: {
            'deployed_index_id': deployedIndexId,
-           'index_endpoint': indexEndpoint,
+           'index_endpoint': indexEndpoint.encodeAs('name'),
            'index': index,
            'region': ?region,
            'display_name': ?displayName,

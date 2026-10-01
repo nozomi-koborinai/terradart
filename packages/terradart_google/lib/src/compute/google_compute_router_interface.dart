@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 
 /// Sensitive field paths for `google_compute_router_interface`.
@@ -15,7 +16,7 @@ final class GoogleComputeRouterInterface extends Resource {
   GoogleComputeRouterInterface({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> router,
+    required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,
     TfArg<String>? ipRange,
     TfArg<String>? ipVersion,
@@ -34,7 +35,7 @@ final class GoogleComputeRouterInterface extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'router': router,
+           'router': router.encodeAs('name'),
            'region': ?region,
            'ip_range': ?ipRange,
            'ip_version': ?ipVersion,

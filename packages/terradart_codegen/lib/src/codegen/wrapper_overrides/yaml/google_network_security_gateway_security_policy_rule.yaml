@@ -25,7 +25,7 @@ curatedDoc: |-
   ///   localName: 'allow_example',
   ///   name: TfArg.literal('terradart-allow-example'),
   ///   location: TfArg.literal('us-central1'),
-  ///   gatewaySecurityPolicy: TfArg.ref(policy.nameRef),
+  ///   gatewaySecurityPolicy: policy.ref,
   ///   enabled: TfArg.literal(true),
   ///   priority: TfArg.literal(1),
   ///   sessionMatcher: TfArg.literal("host() == 'example.com'"),

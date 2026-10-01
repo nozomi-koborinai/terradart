@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
 
 /// Sensitive field paths for `google_sql_database_instance_latest_recovery_time`.
 const Set<String> _googleSqlDatabaseInstanceLatestRecoveryTimeSensitive =
@@ -17,7 +19,7 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
 
   DataGoogleSqlDatabaseInstanceLatestRecoveryTime({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     TfArg<String>? sourceInstanceDeletionTime,
     super.provider,
@@ -25,7 +27,7 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'project': ?project,
            'source_instance_deletion_time': ?sourceInstanceDeletionTime,
          },

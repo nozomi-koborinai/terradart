@@ -100,7 +100,7 @@ curatedDoc: |-
   ///   localName: 'daily_gcs_import',
   ///   displayName: TfArg.literal('Daily GCS export -> BigQuery'),
   ///   dataSourceId: TfArg.literal('google_cloud_storage'),
-  ///   destinationDatasetId: TfArg.ref(analytics.datasetIdRef),
+  ///   destinationDatasetId: analytics.ref,
   ///   location: TfArg.literal('US'),
   ///   schedule: TfArg.literal('every day 03:00'),
   ///   params: TfArg.literal(const {

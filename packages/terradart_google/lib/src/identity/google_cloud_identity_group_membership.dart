@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../identity/google_cloud_identity_group.dart'
+    show GoogleCloudIdentityGroup;
+
 /// Sensitive field paths for `google_cloud_identity_group_membership`.
 const Set<String> _googleCloudIdentityGroupMembershipSensitive = <String>{};
 
@@ -85,7 +88,7 @@ final class GoogleCloudIdentityGroupMembership extends Resource {
     required super.localName,
     TfArg<bool>? createIgnoreAlreadyExists,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> group,
+    required RefTo<GoogleCloudIdentityGroup> group,
     CloudIdentityGroupMembershipPreferredMemberKey? preferredMemberKey,
     required List<CloudIdentityGroupMembershipRoles> roles,
     super.lifecycle,
@@ -97,7 +100,7 @@ final class GoogleCloudIdentityGroupMembership extends Resource {
          argMap: {
            'create_ignore_already_exists': ?createIgnoreAlreadyExists,
            'deletion_policy': ?deletionPolicy,
-           'group': group,
+           'group': group.encodeAs('name'),
            if (preferredMemberKey != null)
              'preferred_member_key': TfArg.literal(preferredMemberKey.encode()),
            'roles': TfArg.literal([for (final e in roles) e.encode()]),

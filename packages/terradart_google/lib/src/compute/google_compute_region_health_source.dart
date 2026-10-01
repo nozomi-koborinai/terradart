@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_backend_service.dart'
+    show GoogleComputeRegionBackendService;
+
 /// Sensitive field paths for `google_compute_region_health_source`.
 const Set<String> _googleComputeRegionHealthSourceSensitive = <String>{};
 
@@ -34,7 +37,7 @@ final class GoogleComputeRegionHealthSource extends Resource {
     required TfArg<String> region,
     required TfArg<ComputeRegionHealthSourceType> sourceType,
     TfArg<String>? healthAggregationPolicy,
-    TfArg<List<String>>? sources,
+    TfArg<List<RefTo<GoogleComputeRegionBackendService>>>? sources,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -49,7 +52,7 @@ final class GoogleComputeRegionHealthSource extends Resource {
            'region': region,
            'source_type': sourceType,
            'health_aggregation_policy': ?healthAggregationPolicy,
-           'sources': ?sources,
+           'sources': ?sources?.encodeAs('self_link'),
            'description': ?description,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

@@ -38,7 +38,7 @@ curatedDoc: |-
   /// final httpProxy = GoogleComputeRegionTargetHttpProxy(
   ///   localName: 'lb_http',
   ///   name: TfArg.literal('lb-http-proxy'),
-  ///   urlMap: TfArg.ref(regionUrlMap.selfLink),
+  ///   urlMap: regionUrlMap.ref,
   ///   region: TfArg.literal('us-central1'),
   /// );
   /// ```

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../service_directory/google_service_directory_service.dart'
+    show GoogleServiceDirectoryService;
+
 /// Sensitive field paths for `google_service_directory_endpoint`.
 const Set<String> _googleServiceDirectoryEndpointSensitive = <String>{};
 
@@ -15,7 +18,7 @@ final class GoogleServiceDirectoryEndpoint extends Resource {
   GoogleServiceDirectoryEndpoint({
     required super.localName,
     required TfArg<String> endpointId,
-    required TfArg<String> service,
+    required RefTo<GoogleServiceDirectoryService> service,
     TfArg<String>? address,
     TfArg<num>? port,
     TfArg<String>? network,
@@ -29,7 +32,7 @@ final class GoogleServiceDirectoryEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'endpoint_id': endpointId,
-           'service': service,
+           'service': service.encodeAs('id'),
            'address': ?address,
            'port': ?port,
            'network': ?network,

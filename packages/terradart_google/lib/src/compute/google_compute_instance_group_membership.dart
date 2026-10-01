@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../compute/google_compute_instance_group.dart'
+    show GoogleComputeInstanceGroup;
+
 /// Sensitive field paths for `google_compute_instance_group_membership`.
 const Set<String> _googleComputeInstanceGroupMembershipSensitive = <String>{};
 
@@ -29,8 +33,8 @@ final class GoogleComputeInstanceGroupMembership extends Resource {
 
   GoogleComputeInstanceGroupMembership({
     required super.localName,
-    required TfArg<String> instance,
-    required TfArg<String> instanceGroup,
+    required RefTo<GoogleComputeInstance> instance,
+    required RefTo<GoogleComputeInstanceGroup> instanceGroup,
     TfArg<String>? zone,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -41,8 +45,8 @@ final class GoogleComputeInstanceGroupMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
-           'instance_group': instanceGroup,
+           'instance': instance.encodeAs('self_link'),
+           'instance_group': instanceGroup.encodeAs('name'),
            'zone': ?zone,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

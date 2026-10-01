@@ -24,7 +24,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleVertexAiFeatureGroupFeature(
   ///   localName: 'score',
-  ///   featureGroup: TfArg.ref(group.nameRef),
+  ///   featureGroup: group.ref,
   ///   name: TfArg.literal('feature_score'),
   ///   region: TfArg.literal('us-central1'),
   ///   versionColumnName: TfArg.literal('feature_score'),

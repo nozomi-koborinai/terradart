@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_ftp_user`.
@@ -81,7 +82,7 @@ final class GoogleStorageFtpUser extends Resource {
     required TfArg<String> serverId,
     required TfArg<String> userId,
     required TfArg<String> location,
-    required TfArg<String> customerServiceAccount,
+    required RefTo<GoogleServiceAccount> customerServiceAccount,
     List<StorageFtpUserStorageDirectoryMappings>? storageDirectoryMappings,
     StorageFtpUserCredentials? userCredentials,
     TfArg<Map<String, String>>? labels,
@@ -97,7 +98,7 @@ final class GoogleStorageFtpUser extends Resource {
            'server_id': serverId,
            'user_id': userId,
            'location': location,
-           'customer_service_account': customerServiceAccount,
+           'customer_service_account': customerServiceAccount.encodeAs('email'),
            if (storageDirectoryMappings != null)
              'storage_directory_mappings': TfArg.literal([
                for (final e in storageDirectoryMappings) e.encode(),

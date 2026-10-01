@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub_lite/google_pubsub_lite_reservation.dart'
+    show GooglePubsubLiteReservation;
+
 /// Sensitive field paths for `google_pubsub_lite_topic`.
 const Set<String> _googlePubsubLiteTopicSensitive = <String>{};
 
@@ -48,10 +51,12 @@ final class PubsubLiteTopicCapacity {
 final class PubsubLiteTopicReservationConfig {
   const PubsubLiteTopicReservationConfig({this.throughputReservation});
 
-  final TfArg<String>? throughputReservation;
+  final RefTo<GooglePubsubLiteReservation>? throughputReservation;
 
   Map<String, Object?> encode() => {
-    'throughput_reservation': ?throughputReservation?.toTfJson(),
+    'throughput_reservation': ?throughputReservation
+        ?.encodeAs('name')
+        .toTfJson(),
   };
 }
 

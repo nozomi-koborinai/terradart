@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
+
 /// Sensitive field paths for `google_sql_database`.
 const Set<String> _googleSqlDatabaseSensitive = <String>{};
 
@@ -28,7 +31,7 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 /// ```dart
 /// final orders = GoogleSqlDatabase(
 ///   localName: 'orders',
-///   instance: TfArg.ref(primary.nameRef),
+///   instance: primary.ref,
 ///   name: TfArg.literal('orders'),
 ///   charset: TfArg.literal('UTF8'),
 /// );
@@ -39,7 +42,7 @@ final class GoogleSqlDatabase extends Resource {
   GoogleSqlDatabase({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? charset,
     TfArg<String>? collation,
     TfArg<String>? deletionPolicy,
@@ -52,7 +55,7 @@ final class GoogleSqlDatabase extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'charset': ?charset,
            'collation': ?collation,
            'deletion_policy': ?deletionPolicy,

@@ -44,7 +44,7 @@ curatedDoc: |-
   /// );
   /// final appUser = GoogleSqlUser(
   ///   localName: 'app',
-  ///   instance: TfArg.ref(primary.nameRef),
+  ///   instance: primary.ref,
   ///   name: TfArg.literal('app'),
   ///   type: TfArg.literal(SqlUserType.builtIn),
   ///   password: TfArg.variable('db_password'),
@@ -55,7 +55,7 @@ curatedDoc: |-
   /// ```dart
   /// final ciUser = GoogleSqlUser(
   ///   localName: 'ci',
-  ///   instance: TfArg.ref(primary.nameRef),
+  ///   instance: primary.ref,
   ///   name: TfArg.literal('ci-runner@my-project.iam.gserviceaccount.com'),
   ///   type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
   /// );

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workload_identity_pool.dart'
+    show GoogleIamWorkloadIdentityPool;
+
 /// Sensitive field paths for `google_iam_workload_identity_pool_namespace`.
 const Set<String> _googleIamWorkloadIdentityPoolNamespaceSensitive = <String>{};
 
@@ -25,7 +28,7 @@ const Set<String> _googleIamWorkloadIdentityPoolNamespaceSensitive = <String>{};
 /// ```dart
 /// GoogleIamWorkloadIdentityPoolNamespace(
 ///   localName: 'apps',
-///   workloadIdentityPoolId: TfArg.literal('terradart-trust'),
+///   workloadIdentityPoolId: .literal('terradart-trust'),
 ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
 /// );
 /// ```
@@ -34,7 +37,7 @@ final class GoogleIamWorkloadIdentityPoolNamespace extends Resource {
 
   GoogleIamWorkloadIdentityPoolNamespace({
     required super.localName,
-    required TfArg<String> workloadIdentityPoolId,
+    required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolNamespaceId,
     TfArg<String>? description,
     TfArg<bool>? disabled,
@@ -47,7 +50,9 @@ final class GoogleIamWorkloadIdentityPoolNamespace extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workload_identity_pool_id': workloadIdentityPoolId,
+           'workload_identity_pool_id': workloadIdentityPoolId.encodeAs(
+             'workload_identity_pool_id',
+           ),
            'workload_identity_pool_namespace_id':
                workloadIdentityPoolNamespaceId,
            'description': ?description,

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_global_network_endpoint_group.dart'
+    show GoogleComputeGlobalNetworkEndpointGroup;
+
 /// Sensitive field paths for `google_compute_global_network_endpoint`.
 const Set<String> _googleComputeGlobalNetworkEndpointSensitive = <String>{};
 
@@ -17,7 +20,8 @@ final class GoogleComputeGlobalNetworkEndpoint extends Resource {
   GoogleComputeGlobalNetworkEndpoint({
     required super.localName,
     TfArg<String>? fqdn,
-    required TfArg<String> globalNetworkEndpointGroup,
+    required RefTo<GoogleComputeGlobalNetworkEndpointGroup>
+    globalNetworkEndpointGroup,
     TfArg<String>? ipAddress,
     required TfArg<num> port,
     TfArg<String>? project,
@@ -29,7 +33,9 @@ final class GoogleComputeGlobalNetworkEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'fqdn': ?fqdn,
-           'global_network_endpoint_group': globalNetworkEndpointGroup,
+           'global_network_endpoint_group': globalNetworkEndpointGroup.encodeAs(
+             'name',
+           ),
            'ip_address': ?ipAddress,
            'port': port,
            'project': ?project,

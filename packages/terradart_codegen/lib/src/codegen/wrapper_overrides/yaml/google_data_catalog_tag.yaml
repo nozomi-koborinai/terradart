@@ -30,7 +30,7 @@ curatedDoc: |-
   /// GoogleDataCatalogTag(
   ///   localName: 'entry_source',
   ///   parent: TfArg.ref(entry.id),
-  ///   template: TfArg.ref(template.id),
+  ///   template: template.ref,
   ///   fields: [
   ///     DataCatalogTagField(
   ///       fieldName: TfArg.literal('source'),

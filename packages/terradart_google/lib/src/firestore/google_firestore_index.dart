@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firestore/google_firestore_database.dart'
+    show GoogleFirestoreDatabase;
+
 /// Sensitive field paths for `google_firestore_index`.
 const Set<String> _googleFirestoreIndexSensitive = <String>{};
 
@@ -309,7 +312,7 @@ final class GoogleFirestoreIndex extends Resource {
     required super.localName,
     required TfArg<String> collection,
     required List<FirestoreIndexField> fields,
-    TfArg<String>? database,
+    RefTo<GoogleFirestoreDatabase>? database,
     TfArg<FirestoreIndexQueryScope>? queryScope,
     TfArg<FirestoreIndexApiScope>? apiScope,
     TfArg<FirestoreIndexDensity>? density,
@@ -327,7 +330,7 @@ final class GoogleFirestoreIndex extends Resource {
          argMap: {
            'collection': collection,
            'fields': TfArg.literal(fields.map((f) => f.encode()).toList()),
-           'database': ?database,
+           'database': ?database?.encodeAs('name'),
            'query_scope': ?queryScope,
            'api_scope': ?apiScope,
            'density': ?density,

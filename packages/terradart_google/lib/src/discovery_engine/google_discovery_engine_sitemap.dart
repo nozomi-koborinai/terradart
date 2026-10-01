@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_data_store.dart'
+    show GoogleDiscoveryEngineDataStore;
+
 /// Sensitive field paths for `google_discovery_engine_sitemap`.
 const Set<String> _googleDiscoveryEngineSitemapSensitive = <String>{};
 
@@ -26,7 +29,7 @@ final class GoogleDiscoveryEngineSitemap extends Resource {
   GoogleDiscoveryEngineSitemap({
     required super.localName,
     required TfArg<String> location,
-    required TfArg<String> dataStoreId,
+    required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     TfArg<String>? uri,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -38,7 +41,7 @@ final class GoogleDiscoveryEngineSitemap extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'data_store_id': dataStoreId,
+           'data_store_id': dataStoreId.encodeAs('data_store_id'),
            'uri': ?uri,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

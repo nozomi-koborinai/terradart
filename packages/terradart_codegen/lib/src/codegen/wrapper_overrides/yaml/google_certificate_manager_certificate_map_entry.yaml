@@ -52,7 +52,7 @@ curatedDoc: |-
   /// GoogleCertificateManagerCertificateMapEntry(
   ///   localName: 'app_entry',
   ///   name: TfArg.literal('app-entry'),
-  ///   map: TfArg.ref(certMap.id),
+  ///   map: certMap.ref,
   ///   match: CertificateManagerCertificateMapEntryMatch.hostname(
   ///     TfArg.literal('app.example.com'),
   ///   ),

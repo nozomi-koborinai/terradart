@@ -94,7 +94,7 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingLinkedDataset(
         localName: 'audit_analytics',
-        bucket: .ref(auditBucket.bucketIdRef),
+        bucket: auditBucket.ref,
         linkId: .literal('audit-analytics'),
         bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
           datasetId: .ref(dataset.datasetIdRef),
@@ -108,7 +108,7 @@ final class AuditPipelineStack extends Stack {
 
     final auditView = GoogleLoggingLogView(
       localName: 'audit_view',
-      bucket: .ref(auditBucket.bucketIdRef),
+      bucket: auditBucket.ref,
       name: .literal(viewName),
       location: .literal(location),
       filter: .literal('logName:"cloudaudit.googleapis.com"'),
@@ -168,7 +168,7 @@ final class AuditPipelineStack extends Stack {
         filter: .literal(
           'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
         ),
-        bucketName: .ref(auditBucket.bucketIdRef),
+        bucketName: auditBucket.ref,
         metricDescriptor: LoggingMetricDescriptor(
           metricKind: .literal(.delta),
           valueType: .literal(.int64),
@@ -250,7 +250,7 @@ final class AuditPipelineStack extends Stack {
     final spannerDb = add(
       GoogleSpannerDatabase(
         localName: 'audit_meta',
-        instance: .ref(spanner.nameRef),
+        instance: spanner.ref,
         name: .literal('audit_meta'),
         versionRetentionPeriod: .literal('86400s'),
         dependsOn: [ResourceDependency(spanner)],

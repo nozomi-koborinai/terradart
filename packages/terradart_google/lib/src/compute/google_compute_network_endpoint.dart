@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../compute/google_compute_network_endpoint_group.dart'
+    show GoogleComputeNetworkEndpointGroup;
+
 /// Sensitive field paths for `google_compute_network_endpoint`.
 const Set<String> _googleComputeNetworkEndpointSensitive = <String>{};
 
@@ -25,7 +29,7 @@ const Set<String> _googleComputeNetworkEndpointSensitive = <String>{};
 /// ```dart
 /// GoogleComputeNetworkEndpoint(
 ///   localName: 'onprem_vm',
-///   networkEndpointGroup: TfArg.ref(neg.id),
+///   networkEndpointGroup: neg.ref,
 ///   ipAddress: TfArg.literal('10.0.0.5'),
 ///   port: TfArg.literal(8080),
 ///   zone: TfArg.literal('asia-northeast1-a'),
@@ -36,10 +40,10 @@ final class GoogleComputeNetworkEndpoint extends Resource {
 
   GoogleComputeNetworkEndpoint({
     required super.localName,
-    required TfArg<String> networkEndpointGroup,
+    required RefTo<GoogleComputeNetworkEndpointGroup> networkEndpointGroup,
     required TfArg<String> ipAddress,
     TfArg<num>? port,
-    TfArg<String>? instance,
+    RefTo<GoogleComputeInstance>? instance,
     TfArg<String>? zone,
     TfArg<String>? project,
     super.lifecycle,
@@ -49,10 +53,10 @@ final class GoogleComputeNetworkEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'network_endpoint_group': networkEndpointGroup,
+           'network_endpoint_group': networkEndpointGroup.encodeAs('name'),
            'ip_address': ipAddress,
            'port': ?port,
-           'instance': ?instance,
+           'instance': ?instance?.encodeAs('name'),
            'zone': ?zone,
            'project': ?project,
          },

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_security_policy.dart'
+    show GoogleComputeSecurityPolicy;
+
 /// Sensitive field paths for `google_compute_backend_service`.
 const Set<String> _googleComputeBackendServiceSensitive = <String>{
   'iap.oauth2_client_id',
@@ -1142,7 +1145,7 @@ final class ComputeBackendServiceSubjectAltNames {
 ///     // self-link from Batch 2.
 ///     'projects/p/global/healthChecks/api-hc',
 ///   ]),
-///   securityPolicy: TfArg.literal(
+///   securityPolicy: .literal(
 ///     // var.security_policy_id — see Cloud Armor curation in Batch 4.
 ///     'projects/p/global/securityPolicies/edge-deny-all',
 ///   ),
@@ -1199,7 +1202,7 @@ final class GoogleComputeBackendService extends Resource {
     TfArg<List<String>>? customRequestHeaders,
     TfArg<List<String>>? customResponseHeaders,
     TfArg<List<String>>? healthChecks,
-    TfArg<String>? securityPolicy,
+    RefTo<GoogleComputeSecurityPolicy>? securityPolicy,
     TfArg<String>? edgeSecurityPolicy,
     TfArg<String>? serviceLbPolicy,
     TfArg<ExternalManagedMigrationState>? externalManagedMigrationState,
@@ -1243,7 +1246,7 @@ final class GoogleComputeBackendService extends Resource {
            'custom_request_headers': ?customRequestHeaders,
            'custom_response_headers': ?customResponseHeaders,
            'health_checks': ?healthChecks,
-           'security_policy': ?securityPolicy,
+           'security_policy': ?securityPolicy?.encodeAs('self_link'),
            'edge_security_policy': ?edgeSecurityPolicy,
            'service_lb_policy': ?serviceLbPolicy,
            'external_managed_migration_state': ?externalManagedMigrationState,

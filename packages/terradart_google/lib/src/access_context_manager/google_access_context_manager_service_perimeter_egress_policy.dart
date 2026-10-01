@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_service_perimeter.dart'
+    show GoogleAccessContextManagerServicePerimeter;
+
 /// Sensitive field paths for `google_access_context_manager_service_perimeter_egress_policy`.
 const Set<String>
 _googleAccessContextManagerServicePerimeterEgressPolicySensitive = <String>{};
@@ -206,7 +209,7 @@ final class GoogleAccessContextManagerServicePerimeterEgressPolicy
   GoogleAccessContextManagerServicePerimeterEgressPolicy({
     required super.localName,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> perimeter,
+    required RefTo<GoogleAccessContextManagerServicePerimeter> perimeter,
     TfArg<String>? title,
     AccessContextManagerServicePerimeterEgressPolicyEgressFrom? egressFrom,
     AccessContextManagerServicePerimeterEgressPolicyEgressTo? egressTo,
@@ -218,7 +221,7 @@ final class GoogleAccessContextManagerServicePerimeterEgressPolicy
          terraformType: tfType,
          argMap: {
            'deletion_policy': ?deletionPolicy,
-           'perimeter': perimeter,
+           'perimeter': perimeter.encodeAs('name'),
            'title': ?title,
            if (egressFrom != null)
              'egress_from': TfArg.literal(egressFrom.encode()),

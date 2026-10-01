@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_backend_service.dart'
+    show GoogleComputeBackendService;
+import '../compute/google_compute_region_backend_service.dart'
+    show GoogleComputeRegionBackendService;
+
 /// Sensitive field paths for `google_compute_region_url_map`.
 const Set<String> _googleComputeRegionUrlMapSensitive = <String>{};
 
@@ -297,10 +302,10 @@ final class ComputeRegionUrlMapFixedDelay {
 final class ComputeRegionUrlMapRequestMirrorPolicy {
   const ComputeRegionUrlMapRequestMirrorPolicy({this.backendService});
 
-  final TfArg<String>? backendService;
+  final RefTo<GoogleComputeRegionBackendService>? backendService;
 
   Map<String, Object?> encode() => {
-    'backend_service': ?backendService?.toTfJson(),
+    'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
   };
 }
 
@@ -384,7 +389,6 @@ final class ComputeRegionUrlMapUrlRewrite {
 
 /// Typed helper for the `default_route_action.weighted_backend_services` block of
 /// `google_compute_region_url_map` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeRegionUrlMapWeightedBackendServices {
   const ComputeRegionUrlMapWeightedBackendServices({
@@ -393,14 +397,14 @@ final class ComputeRegionUrlMapWeightedBackendServices {
     this.headerAction,
   });
 
-  final TfArg<String>? backendService;
+  final RefTo<GoogleComputeRegionBackendService>? backendService;
 
   final TfArg<num>? weight;
 
   final ComputeRegionUrlMapHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
-    'backend_service': ?backendService?.toTfJson(),
+    'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
     'weight': ?weight?.toTfJson(),
     'header_action': ?headerAction?.encode(),
   };
@@ -562,7 +566,7 @@ final class ComputeRegionUrlMapPathMatcher {
     this.routeRules,
   });
 
-  final TfArg<String>? defaultService;
+  final RefTo<GoogleComputeRegionBackendService>? defaultService;
 
   final TfArg<String>? description;
 
@@ -579,7 +583,7 @@ final class ComputeRegionUrlMapPathMatcher {
   final List<ComputeRegionUrlMapRouteRules>? routeRules;
 
   Map<String, Object?> encode() => {
-    'default_service': ?defaultService?.toTfJson(),
+    'default_service': ?defaultService?.encodeAs('self_link').toTfJson(),
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     'default_route_action': ?defaultRouteAction?.encode(),
@@ -621,7 +625,7 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteAction {
 
   final ComputeRegionUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
 
-  final List<ComputeRegionUrlMapWeightedBackendServices>?
+  final List<ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
   Map<String, Object?> encode() => {
@@ -660,17 +664,16 @@ final class ComputeRegionUrlMapMaxStreamDuration {
 
 /// Typed helper for the `path_matcher.default_route_action.request_mirror_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
   const ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy({
     required this.backendService,
   });
 
-  final TfArg<String> backendService;
+  final RefTo<GoogleComputeBackendService> backendService;
 
   Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
+    'backend_service': backendService.encodeAs('self_link').toTfJson(),
   };
 }
 
@@ -698,6 +701,29 @@ final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
   };
 }
 
+/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices {
+  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices({
+    this.backendService,
+    this.weight,
+    this.headerAction,
+  });
+
+  final RefTo<GoogleComputeBackendService>? backendService;
+
+  final TfArg<num>? weight;
+
+  final ComputeRegionUrlMapHeaderAction? headerAction;
+
+  Map<String, Object?> encode() => {
+    'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
+    'weight': ?weight?.toTfJson(),
+    'header_action': ?headerAction?.encode(),
+  };
+}
+
 /// Typed helper for the `path_matcher.path_rule` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
@@ -711,7 +737,7 @@ final class ComputeRegionUrlMapPathRule {
 
   final TfArg<List<String>> paths;
 
-  final TfArg<String>? service;
+  final RefTo<GoogleComputeRegionBackendService>? service;
 
   final ComputeRegionUrlMapPathRuleRouteAction? routeAction;
 
@@ -719,7 +745,7 @@ final class ComputeRegionUrlMapPathRule {
 
   Map<String, Object?> encode() => {
     'paths': paths.toTfJson(),
-    'service': ?service?.toTfJson(),
+    'service': ?service?.encodeAs('self_link').toTfJson(),
     'route_action': ?routeAction?.encode(),
     'url_redirect': ?urlRedirect?.encode(),
   };
@@ -743,8 +769,7 @@ final class ComputeRegionUrlMapPathRuleRouteAction {
 
   final ComputeRegionUrlMapPathRuleFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
-  requestMirrorPolicy;
+  final ComputeRegionUrlMapRouteActionRequestMirrorPolicy? requestMirrorPolicy;
 
   final ComputeRegionUrlMapPathRuleRetryPolicy? retryPolicy;
 
@@ -886,6 +911,22 @@ final class ComputeRegionUrlMapDelayFixedDelay {
   };
 }
 
+/// Typed helper for the `path_matcher.path_rule.route_action.request_mirror_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ComputeRegionUrlMapRouteActionRequestMirrorPolicy {
+  const ComputeRegionUrlMapRouteActionRequestMirrorPolicy({
+    required this.backendService,
+  });
+
+  final RefTo<GoogleComputeRegionBackendService> backendService;
+
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.encodeAs('self_link').toTfJson(),
+  };
+}
+
 /// Typed helper for the `path_matcher.path_rule.route_action.retry_policy` block of
 /// `google_compute_region_url_map` (derived from provider schema).
 @immutable
@@ -960,14 +1001,14 @@ final class ComputeRegionUrlMapRouteActionWeightedBackendServices {
     this.headerAction,
   });
 
-  final TfArg<String> backendService;
+  final RefTo<GoogleComputeRegionBackendService> backendService;
 
   final TfArg<num> weight;
 
   final ComputeRegionUrlMapRouteRulesHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
+    'backend_service': backendService.encodeAs('self_link').toTfJson(),
     'weight': weight.toTfJson(),
     'header_action': ?headerAction?.encode(),
   };
@@ -1107,7 +1148,7 @@ final class ComputeRegionUrlMapRouteRules {
 
   final TfArg<num> priority;
 
-  final TfArg<String>? service;
+  final RefTo<GoogleComputeRegionBackendService>? service;
 
   final ComputeRegionUrlMapRouteRulesHeaderAction? headerAction;
 
@@ -1119,7 +1160,7 @@ final class ComputeRegionUrlMapRouteRules {
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
-    'service': ?service?.toTfJson(),
+    'service': ?service?.encodeAs('self_link').toTfJson(),
     'header_action': ?headerAction?.encode(),
     if (matchRules != null)
       'match_rules': [for (final e in matchRules!) e.encode()],
@@ -1321,8 +1362,7 @@ final class ComputeRegionUrlMapRouteRulesRouteAction {
 
   final ComputeRegionUrlMapRouteRulesFaultInjectionPolicy? faultInjectionPolicy;
 
-  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
-  requestMirrorPolicy;
+  final ComputeRegionUrlMapRouteActionRequestMirrorPolicy? requestMirrorPolicy;
 
   final ComputeRegionUrlMapRouteRulesRetryPolicy? retryPolicy;
 
@@ -1457,13 +1497,13 @@ final class ComputeRegionUrlMapTest {
 
   final TfArg<String> path;
 
-  final TfArg<String> service;
+  final RefTo<GoogleComputeRegionBackendService> service;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'host': host.toTfJson(),
     'path': path.toTfJson(),
-    'service': service.toTfJson(),
+    'service': service.encodeAs('self_link').toTfJson(),
   };
 }
 
@@ -1533,7 +1573,7 @@ final class ComputeRegionUrlMapTest {
 ///   localName: 'urlmap',
 ///   name: TfArg.literal('regionurlmap-prod'),
 ///   region: TfArg.literal('us-central1'),
-///   defaultService: TfArg.ref(login.selfLink),
+///   defaultService: login.ref,
 ///   hostRule: [
 ///     ComputeRegionUrlMapHostRule(
 ///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
@@ -1543,15 +1583,15 @@ final class ComputeRegionUrlMapTest {
 ///   pathMatcher: [
 ///     ComputeRegionUrlMapPathMatcher(
 ///       name: TfArg.literal('allpaths'),
-///       defaultService: TfArg.ref(login.selfLink),
+///       defaultService: login.ref,
 ///       pathRule: [
 ///         ComputeRegionUrlMapPathRule(
 ///           paths: TfArg.literal(const ['/home']),
-///           service: TfArg.ref(login.selfLink),
+///           service: login.ref,
 ///         ),
 ///         ComputeRegionUrlMapPathRule(
 ///           paths: TfArg.literal(const ['/static']),
-///           service: TfArg.ref(staticBucket.selfLink),
+///           service: staticBucket.ref,
 ///         ),
 ///       ],
 ///     ),
@@ -1560,7 +1600,7 @@ final class ComputeRegionUrlMapTest {
 ///     ComputeRegionUrlMapTest(
 ///       host: TfArg.literal('mysite.com'),
 ///       path: TfArg.literal('/home'),
-///       service: TfArg.ref(login.selfLink),
+///       service: login.ref,
 ///     ),
 ///   ],
 /// );
@@ -1589,7 +1629,7 @@ final class GoogleComputeRegionUrlMap extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? defaultService,
+    RefTo<GoogleComputeRegionBackendService>? defaultService,
     TfArg<String>? description,
     List<ComputeRegionUrlMapHostRule>? hostRule,
     List<ComputeRegionUrlMapPathMatcher>? pathMatcher,
@@ -1606,7 +1646,7 @@ final class GoogleComputeRegionUrlMap extends Resource {
          argMap: {
            'name': name,
            'region': ?region,
-           'default_service': ?defaultService,
+           'default_service': ?defaultService?.encodeAs('self_link'),
            'description': ?description,
            if (hostRule != null)
              'host_rule': TfArg.literal([for (final e in hostRule) e.encode()]),
