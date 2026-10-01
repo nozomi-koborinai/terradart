@@ -4,7 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+import '../storage/google_storage_managed_folder.dart'
+    show GoogleStorageManagedFolder;
 
 /// Sensitive field paths for `google_storage_managed_folder_iam_member`.
 const Set<String> _googleStorageManagedFolderIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class StorageManagedFolderIamMemberCondition {
 /// GoogleStorageManagedFolderIamMember(
 ///   localName: 'folder_viewer',
 ///   bucket: assets.ref,
-///   managedFolder: TfArg.ref(folder.nameRef),
+///   managedFolder: folder.ref,
 ///   role: TfArg.literal('roles/storage.objectViewer'),
 ///   member: TfArg.ref(reader.iamMember),
 /// );
@@ -52,8 +53,8 @@ final class GoogleStorageManagedFolderIamMember extends Resource {
 
   GoogleStorageManagedFolderIamMember({
     required super.localName,
-    required RefTo<GoogleStorageBucket> bucket,
-    required TfArg<String> managedFolder,
+    TfArg<String>? bucket,
+    required RefTo<GoogleStorageManagedFolder> managedFolder,
     required TfArg<String> role,
     required TfArg<String> member,
     StorageManagedFolderIamMemberCondition? condition,
@@ -64,8 +65,8 @@ final class GoogleStorageManagedFolderIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket.encodeAs('name'),
-           'managed_folder': managedFolder,
+           'bucket': ?(bucket ?? managedFolder.alsoAs('bucket')),
+           'managed_folder': managedFolder.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)

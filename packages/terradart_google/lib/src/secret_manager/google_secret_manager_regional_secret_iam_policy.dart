@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secret_manager/google_secret_manager_regional_secret.dart'
+    show GoogleSecretManagerRegionalSecret;
+
 /// Sensitive field paths for `google_secret_manager_regional_secret_iam_policy`.
 const Set<String> _googleSecretManagerRegionalSecretIamPolicySensitive =
     <String>{};
@@ -20,7 +23,7 @@ final class GoogleSecretManagerRegionalSecretIamPolicy extends Resource {
 
   GoogleSecretManagerRegionalSecretIamPolicy({
     required super.localName,
-    required TfArg<String> secretId,
+    required RefTo<GoogleSecretManagerRegionalSecret> secret,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -31,10 +34,10 @@ final class GoogleSecretManagerRegionalSecretIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret_id': secretId,
-           'location': ?location,
+           'secret_id': secret.encodeAs('secret_id'),
+           'location': ?(location ?? secret.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? secret.alsoAs('project')),
          },
        );
 

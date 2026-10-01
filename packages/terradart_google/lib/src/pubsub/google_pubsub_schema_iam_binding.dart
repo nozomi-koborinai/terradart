@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_schema.dart' show GooglePubsubSchema;
+
 /// Sensitive field paths for `google_pubsub_schema_iam_binding`.
 const Set<String> _googlePubsubSchemaIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GooglePubsubSchemaIamBinding extends Resource {
 
   GooglePubsubSchemaIamBinding({
     required super.localName,
-    required TfArg<String> schema,
+    required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     PubsubSchemaIamBindingCondition? condition,
@@ -53,7 +55,7 @@ final class GooglePubsubSchemaIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'schema': schema,
+           'schema': schema.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

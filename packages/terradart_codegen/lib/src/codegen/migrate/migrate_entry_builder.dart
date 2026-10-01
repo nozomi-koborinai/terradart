@@ -224,6 +224,18 @@ MigrateEntryBuild buildMigrateEntry({
       ? orderedDataSourceConstructorParams(def, override.paramOrder)
       : orderedConstructorParams(def, override.paramOrder);
 
+  // A key a parent reference fills → that reference's Dart name.
+  final defaultsFrom = <String, String>{
+    if (!isDataSource)
+      for (final MapEntry(key: name, value: ref) in references.entries)
+        if (!name.contains('.') &&
+            !customSlots.containsKey(name) &&
+            !dartTypeOverrides.containsKey(name))
+          for (final key in ref.absorbed)
+            if (!customSlots.containsKey(key) &&
+                !dartTypeOverrides.containsKey(key))
+              key: ref.dartName ?? snakeToDartIdent(name),
+  };
   final slots = <MigrateSlotData>[];
   for (final name in order) {
     final custom = customSlots[name];
@@ -267,6 +279,7 @@ MigrateEntryBuild buildMigrateEntry({
           dartTypeOverrides,
           ctx,
           reference: references[name],
+          defaultsFrom: defaultsFrom[name],
         ),
       );
     } else if (block != null) {
@@ -336,13 +349,24 @@ MigrateSlotData _attributeSlot(
   Map<String, String> dartTypeOverrides,
   ShapeContext ctx, {
   ResolvedReference? reference,
+  String? defaultsFrom,
 }) {
   final required =
       attr.constraints.required || requiredOverrides.contains(attr.name);
-  if (reference != null && !dartTypeOverrides.containsKey(attr.name)) {
+  if (defaultsFrom != null) {
     return MigrateSlotData(
       tfName: attr.name,
       dartName: snakeToDartIdent(attr.name),
+      kind: MigrateSlotKind.scalar,
+      required: false,
+      dartType: 'String',
+      defaultsFrom: defaultsFrom,
+    );
+  }
+  if (reference != null && !dartTypeOverrides.containsKey(attr.name)) {
+    return MigrateSlotData(
+      tfName: attr.name,
+      dartName: reference.dartName ?? snakeToDartIdent(attr.name),
       kind: MigrateSlotKind.reference,
       required: required,
       repeated: reference.list,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secret_manager/google_secret_manager_secret.dart'
+    show GoogleSecretManagerSecret;
+
 /// Sensitive field paths for `google_secret_manager_secret_iam_member`.
 const Set<String> _googleSecretManagerSecretIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleSecretManagerSecretIamMember extends Resource {
 
   GoogleSecretManagerSecretIamMember({
     required super.localName,
-    required TfArg<String> secretId,
+    required RefTo<GoogleSecretManagerSecret> secret,
     required TfArg<String> role,
     required TfArg<String> member,
     SecretManagerSecretIamMemberCondition? condition,
@@ -48,12 +51,12 @@ final class GoogleSecretManagerSecretIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret_id': secretId,
+           'secret_id': secret.encodeAs('secret_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? secret.alsoAs('project')),
          },
        );
 

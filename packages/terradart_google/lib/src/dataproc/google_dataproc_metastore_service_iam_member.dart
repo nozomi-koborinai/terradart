@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_metastore_service.dart'
+    show GoogleDataprocMetastoreService;
+
 /// Sensitive field paths for `google_dataproc_metastore_service_iam_member`.
 const Set<String> _googleDataprocMetastoreServiceIamMemberSensitive =
     <String>{};
@@ -42,7 +45,7 @@ final class GoogleDataprocMetastoreServiceIamMember extends Resource {
 
   GoogleDataprocMetastoreServiceIamMember({
     required super.localName,
-    required TfArg<String> serviceId,
+    required RefTo<GoogleDataprocMetastoreService> service,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -55,13 +58,13 @@ final class GoogleDataprocMetastoreServiceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_id': serviceId,
+           'service_id': service.encodeAs('service_id'),
            'role': role,
            'member': member,
-           'location': ?location,
+           'location': ?(location ?? service.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? service.alsoAs('project')),
          },
        );
 

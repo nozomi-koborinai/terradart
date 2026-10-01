@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataform/google_dataform_repository.dart'
+    show GoogleDataformRepository;
+
 /// Sensitive field paths for `google_dataform_repository_iam_member`.
 const Set<String> _googleDataformRepositoryIamMemberSensitive = <String>{};
 
@@ -44,7 +47,7 @@ final class GoogleDataformRepositoryIamMember extends Resource {
 
   GoogleDataformRepositoryIamMember({
     required super.localName,
-    required TfArg<String> repository,
+    required RefTo<GoogleDataformRepository> repository,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? region,
@@ -57,11 +60,11 @@ final class GoogleDataformRepositoryIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
            'role': role,
            'member': member,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? repository.alsoAs('region')),
+           'project': ?(project ?? repository.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

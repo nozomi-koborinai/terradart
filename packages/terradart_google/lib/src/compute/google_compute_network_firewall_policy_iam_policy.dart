@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network_firewall_policy.dart'
+    show GoogleComputeNetworkFirewallPolicy;
+
 /// Sensitive field paths for `google_compute_network_firewall_policy_iam_policy`.
 const Set<String> _googleComputeNetworkFirewallPolicyIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleComputeNetworkFirewallPolicyIamPolicy extends Resource {
 
   GoogleComputeNetworkFirewallPolicyIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -28,7 +31,11 @@ final class GoogleComputeNetworkFirewallPolicyIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'name': firewallPolicy.encodeAs('name'),
+           'policy_data': policyData,
+           'project': ?(project ?? firewallPolicy.alsoAs('project')),
+         },
        );
 
   @override

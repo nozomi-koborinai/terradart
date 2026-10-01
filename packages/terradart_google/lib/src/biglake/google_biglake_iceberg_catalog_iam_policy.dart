@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_iceberg_catalog.dart'
+    show GoogleBiglakeIcebergCatalog;
+
 /// Sensitive field paths for `google_biglake_iceberg_catalog_iam_policy`.
 const Set<String> _googleBiglakeIcebergCatalogIamPolicySensitive = <String>{};
 
@@ -18,7 +21,7 @@ final class GoogleBiglakeIcebergCatalogIamPolicy extends Resource {
 
   GoogleBiglakeIcebergCatalogIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,7 +30,11 @@ final class GoogleBiglakeIcebergCatalogIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'name': catalog.encodeAs('name'),
+           'policy_data': policyData,
+           'project': ?(project ?? catalog.alsoAs('project')),
+         },
        );
 
   @override

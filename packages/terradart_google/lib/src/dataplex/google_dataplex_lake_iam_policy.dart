@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
+
 /// Sensitive field paths for `google_dataplex_lake_iam_policy`.
 const Set<String> _googleDataplexLakeIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleDataplexLakeIamPolicy extends Resource {
 
   GoogleDataplexLakeIamPolicy({
     required super.localName,
-    required TfArg<String> lake,
+    required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleDataplexLakeIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'lake': lake,
+           'lake': lake.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? lake.alsoAs('location')),
+           'project': ?(project ?? lake.alsoAs('project')),
          },
        );
 

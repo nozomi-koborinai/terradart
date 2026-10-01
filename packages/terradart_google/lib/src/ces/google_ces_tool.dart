@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
+
 /// Sensitive field paths for `google_ces_tool`.
 const Set<String> _googleCesToolSensitive = <String>{};
 
@@ -938,8 +940,7 @@ enum CesToolType implements TerraformEnum {
 /// ```dart
 /// GoogleCesTool(
 ///   localName: 'search',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   toolId: TfArg.literal('terradart-ces-search'),
 ///   googleSearchTool: CesToolGoogleSearchTool(
 ///     name: TfArg.literal('google_search'),
@@ -951,8 +952,8 @@ final class GoogleCesTool extends Resource {
 
   GoogleCesTool({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required TfArg<String> toolId,
     TfArg<String>? executionType,
     TfArg<String>? timeout,
@@ -973,8 +974,8 @@ final class GoogleCesTool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'tool_id': toolId,
            'execution_type': ?executionType,
            'timeout': ?timeout,
@@ -995,7 +996,7 @@ final class GoogleCesTool extends Resource {
            if (toolFakeConfig != null)
              'tool_fake_config': TfArg.literal(toolFakeConfig.encode()),
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_image.dart' show GoogleComputeImage;
+
 /// Sensitive field paths for `google_compute_image_iam_binding`.
 const Set<String> _googleComputeImageIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleComputeImageIamBinding extends Resource {
 
   GoogleComputeImageIamBinding({
     required super.localName,
-    required TfArg<String> image,
+    required RefTo<GoogleComputeImage> image,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ComputeImageIamBindingCondition? condition,
@@ -53,12 +55,12 @@ final class GoogleComputeImageIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'image': image,
+           'image': image.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? image.alsoAs('project')),
          },
        );
 

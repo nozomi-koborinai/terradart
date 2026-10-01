@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudfunctions/google_cloudfunctions_function.dart'
+    show GoogleCloudfunctionsFunction;
+
 /// Sensitive field paths for `google_cloudfunctions_function_iam_member`.
 const Set<String> _googleCloudfunctionsFunctionIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleCloudfunctionsFunctionIamMember extends Resource {
 
   GoogleCloudfunctionsFunctionIamMember({
     required super.localName,
-    required TfArg<String> cloudFunction,
+    required RefTo<GoogleCloudfunctionsFunction> function,
     required TfArg<String> role,
     required TfArg<String> member,
     CloudfunctionsFunctionIamMemberCondition? condition,
@@ -49,13 +52,13 @@ final class GoogleCloudfunctionsFunctionIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cloud_function': cloudFunction,
+           'cloud_function': function.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? function.alsoAs('region')),
+           'project': ?(project ?? function.alsoAs('project')),
          },
        );
 

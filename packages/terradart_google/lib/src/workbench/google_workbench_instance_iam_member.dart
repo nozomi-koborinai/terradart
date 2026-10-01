@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../workbench/google_workbench_instance.dart'
+    show GoogleWorkbenchInstance;
+
 /// Sensitive field paths for `google_workbench_instance_iam_member`.
 const Set<String> _googleWorkbenchInstanceIamMemberSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleWorkbenchInstanceIamMember extends Resource {
 
   GoogleWorkbenchInstanceIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -54,11 +57,11 @@ final class GoogleWorkbenchInstanceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instance.encodeAs('name'),
            'role': role,
            'member': member,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? instance.alsoAs('location')),
+           'project': ?(project ?? instance.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../scc/google_scc_v2_organization_source.dart'
+    show GoogleSccV2OrganizationSource;
+
 /// Sensitive field paths for `google_scc_v2_organization_source_iam_member`.
 const Set<String> _googleSccV2OrganizationSourceIamMemberSensitive = <String>{};
 
@@ -36,8 +39,8 @@ final class GoogleSccV2OrganizationSourceIamMember extends Resource {
 
   GoogleSccV2OrganizationSourceIamMember({
     required super.localName,
-    required TfArg<String> source,
-    required TfArg<String> organization,
+    required RefTo<GoogleSccV2OrganizationSource> source,
+    TfArg<String>? organization,
     required TfArg<String> role,
     required TfArg<String> member,
     SccV2OrganizationSourceIamMemberCondition? condition,
@@ -48,8 +51,8 @@ final class GoogleSccV2OrganizationSourceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'source': source,
-           'organization': organization,
+           'source': source.encodeAs('name'),
+           'organization': ?(organization ?? source.alsoAs('organization')),
            'role': role,
            'member': member,
            if (condition != null)

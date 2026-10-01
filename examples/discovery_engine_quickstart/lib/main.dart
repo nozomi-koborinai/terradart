@@ -75,9 +75,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final searchReaderMember = add(
       GoogleDiscoveryEngineSearchEngineIamMember(
         localName: 'search_reader_viewer',
-        location: .literal('global'),
-        collectionId: .literal('default_collection'),
-        engineId: .ref(searchEngine.engineIdRef),
+        engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [
@@ -90,9 +88,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final searchReaderBinding = add(
       GoogleDiscoveryEngineSearchEngineIamBinding(
         localName: 'search_reader_binding',
-        location: .literal('global'),
-        collectionId: .literal('default_collection'),
-        engineId: .ref(searchEngine.engineIdRef),
+        engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
         members: .literal([reader.iamMember.interpolation]),
         dependsOn: [
@@ -106,9 +102,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineSearchEngineIamPolicy(
         localName: 'search_reader_policy',
-        location: .literal('global'),
-        collectionId: .literal('default_collection'),
-        engineId: .ref(searchEngine.engineIdRef),
+        engine: searchEngine.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/discoveryengine.viewer',

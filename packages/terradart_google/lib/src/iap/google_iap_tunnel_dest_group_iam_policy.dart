@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iap/google_iap_tunnel_dest_group.dart' show GoogleIapTunnelDestGroup;
+
 /// Sensitive field paths for `google_iap_tunnel_dest_group_iam_policy`.
 const Set<String> _googleIapTunnelDestGroupIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleIapTunnelDestGroupIamPolicy extends Resource {
 
   GoogleIapTunnelDestGroupIamPolicy({
     required super.localName,
-    required TfArg<String> destGroup,
+    required RefTo<GoogleIapTunnelDestGroup> destGroup,
     TfArg<String>? region,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleIapTunnelDestGroupIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dest_group': destGroup,
-           'region': ?region,
+           'dest_group': destGroup.encodeAs('name'),
+           'region': ?(region ?? destGroup.alsoAs('region')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? destGroup.alsoAs('project')),
          },
        );
 

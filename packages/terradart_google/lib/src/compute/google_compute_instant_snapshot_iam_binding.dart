@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instant_snapshot.dart'
+    show GoogleComputeInstantSnapshot;
+
 /// Sensitive field paths for `google_compute_instant_snapshot_iam_binding`.
 const Set<String> _googleComputeInstantSnapshotIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleComputeInstantSnapshotIamBinding extends Resource {
 
   GoogleComputeInstantSnapshotIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeInstantSnapshot> instantSnapshot,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ComputeInstantSnapshotIamBindingCondition? condition,
@@ -54,13 +57,13 @@ final class GoogleComputeInstantSnapshotIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instantSnapshot.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? instantSnapshot.alsoAs('zone')),
+           'project': ?(project ?? instantSnapshot.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_connectivity_hub.dart'
+    show GoogleNetworkConnectivityHub;
+
 /// Sensitive field paths for `google_network_connectivity_hub_iam_binding`.
 const Set<String> _googleNetworkConnectivityHubIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleNetworkConnectivityHubIamBinding extends Resource {
 
   GoogleNetworkConnectivityHubIamBinding({
     required super.localName,
-    required TfArg<String> hub,
+    required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? project,
@@ -54,7 +57,7 @@ final class GoogleNetworkConnectivityHubIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'hub': hub,
+           'hub': hub.encodeAs('id'),
            'role': role,
            'members': members,
            'project': ?project,

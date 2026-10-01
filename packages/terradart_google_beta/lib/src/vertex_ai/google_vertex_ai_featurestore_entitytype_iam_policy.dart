@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleVertexAiFeaturestoreEntitytype;
+
 /// Sensitive field paths for `google_vertex_ai_featurestore_entitytype_iam_policy`.
 const Set<String> _googleVertexAiFeaturestoreEntitytypeIamPolicySensitive =
     <String>{};
@@ -19,8 +22,8 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamPolicy extends Resource {
 
   GoogleVertexAiFeaturestoreEntitytypeIamPolicy({
     required super.localName,
-    required TfArg<String> entitytype,
-    required TfArg<String> featurestore,
+    required RefTo<GoogleVertexAiFeaturestoreEntitytype> entitytype,
+    TfArg<String>? featurestore,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -30,8 +33,8 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'entitytype': entitytype,
-           'featurestore': featurestore,
+           'entitytype': entitytype.encodeAs('name'),
+           'featurestore': ?(featurestore ?? entitytype.alsoAs('featurestore')),
            'policy_data': policyData,
          },
        );

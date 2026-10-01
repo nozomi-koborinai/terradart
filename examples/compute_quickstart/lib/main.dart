@@ -349,7 +349,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeInstanceIamMember(
         localName: 'bastion_admin',
-        instanceName: .ref(bastion.nameRef),
+        instance: bastion.ref,
         role: .literal('roles/compute.instanceAdmin.v1'),
         // Google Groups can't be created via Terraform, so a `group:` member
         // referencing a non-existent group fails apply. Bind an in-stack SA
@@ -399,10 +399,9 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionDiskIamMember(
         localName: 'backup_disk_viewer',
-        name: .ref(backupDisk.nameRef),
+        disk: backupDisk.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
-        region: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(backupDisk),
           ResourceDependency(oncallSre),
@@ -423,10 +422,9 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionInstantSnapshotIamMember(
         localName: 'bastion_instant_viewer',
-        name: .ref(bastionInstant.nameRef),
+        instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
-        region: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(bastionInstant),
@@ -437,10 +435,9 @@ final class NetworkStack extends Stack {
     final bastionInstantBinding = add(
       GoogleComputeRegionInstantSnapshotIamBinding(
         localName: 'bastion_instant_binding',
-        name: .ref(bastionInstant.nameRef),
+        instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([oncallSre.iamMember.interpolation]),
-        region: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(bastionInstant),
@@ -451,7 +448,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionInstantSnapshotIamPolicy(
         localName: 'bastion_instant_policy',
-        name: .ref(bastionInstant.nameRef),
+        instantSnapshot: bastionInstant.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/compute.viewer',
@@ -459,7 +456,6 @@ final class NetworkStack extends Stack {
                 'serviceAccount:oncall-sre@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        region: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(bastionInstant),
           ResourceDependency(bastionInstantBinding),
@@ -487,10 +483,9 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeDiskIamMember(
         localName: 'scratch_disk_viewer',
-        name: .ref(scratchDisk.nameRef),
+        disk: scratchDisk.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
-        zone: .literal('asia-northeast1-a'),
         dependsOn: [
           ResourceDependency(scratchDisk),
           ResourceDependency(oncallSre),
@@ -513,10 +508,9 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeInstantSnapshotIamMember(
         localName: 'scratch_instant_viewer',
-        name: .ref(scratchInstant.nameRef),
+        instantSnapshot: scratchInstant.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
-        zone: .literal('asia-northeast1-a'),
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(scratchInstant),
@@ -539,7 +533,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeSnapshotIamMember(
         localName: 'scratch_snapshot_viewer',
-        name: .ref(scratchSnapshot.nameRef),
+        snapshot: scratchSnapshot.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
         dependsOn: [
@@ -564,7 +558,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeImageIamMember(
         localName: 'scratch_image_viewer',
-        image: .ref(scratchImage.nameRef),
+        image: scratchImage.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
         dependsOn: [
@@ -605,7 +599,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeInstanceTemplateIamMember(
         localName: 'bulk_worker_template_viewer',
-        name: .ref(bulkWorkerTemplate.nameRef),
+        instanceTemplate: bulkWorkerTemplate.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
         dependsOn: [
@@ -699,7 +693,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeNetworkFirewallPolicyIamMember(
         localName: 'ops_edge_policy_viewer',
-        name: .ref(edgeFirewallPolicy.nameRef),
+        firewallPolicy: edgeFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
         dependsOn: [
@@ -804,10 +798,7 @@ final class NetworkStack extends Stack {
         networkEndpointGroup: bastionNeg.ref,
         zone: .literal('asia-northeast1-a'),
         networkEndpoints: [
-          ComputeNetworkEndpoints(
-            instance: bastion.ref,
-            port: .literal(80),
-          ),
+          ComputeNetworkEndpoints(instance: bastion.ref, port: .literal(80)),
         ],
         dependsOn: [
           ResourceDependency(bastionNeg),
@@ -906,8 +897,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeRegionNetworkFirewallPolicyIamMember(
         localName: 'ops_regional_edge_policy_viewer',
-        name: .ref(regionalFirewallPolicy.nameRef),
-        region: .literal('asia-northeast1'),
+        firewallPolicy: regionalFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
         member: .ref(oncallSre.iamMember),
         dependsOn: [

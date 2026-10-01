@@ -81,7 +81,7 @@ final class DbCredentialsStack extends Stack {
       GoogleSecretManagerSecretIamMember(
         localName: 'db_password_accessor',
         // Secret IAM identity is `secret_id` (NOT `id` / `name`).
-        secretId: .ref(secret.secretIdRef),
+        secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: .ref(appSa.iamMember),
         dependsOn: [ResourceDependency(appSa)],
@@ -94,7 +94,7 @@ final class DbCredentialsStack extends Stack {
     final secretAccessorBinding = add(
       GoogleSecretManagerSecretIamBinding(
         localName: 'db_password_accessor_binding',
-        secretId: .ref(secret.secretIdRef),
+        secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         members: .literal([appSa.iamMember.interpolation]),
         dependsOn: [ResourceDependency(secret), ResourceDependency(appSa)],
@@ -104,7 +104,7 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerSecretIamPolicy(
         localName: 'db_password_accessor_policy',
-        secretId: .ref(secret.secretIdRef),
+        secret: secret.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/secretmanager.secretAccessor',
@@ -144,8 +144,7 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerRegionalSecretIamMember(
         localName: 'db_password_regional_accessor',
-        secretId: .ref(regionalSecret.secretIdRef),
-        location: .literal('us-central1'),
+        secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: .ref(appSa.iamMember),
         dependsOn: [
@@ -158,8 +157,7 @@ final class DbCredentialsStack extends Stack {
     final regionalAccessorBinding = add(
       GoogleSecretManagerRegionalSecretIamBinding(
         localName: 'db_password_regional_accessor_binding',
-        secretId: .ref(regionalSecret.secretIdRef),
-        location: .literal('us-central1'),
+        secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         members: .literal([appSa.iamMember.interpolation]),
         dependsOn: [
@@ -172,8 +170,7 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerRegionalSecretIamPolicy(
         localName: 'db_password_regional_accessor_policy',
-        secretId: .ref(regionalSecret.secretIdRef),
-        location: .literal('us-central1'),
+        secret: regionalSecret.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/secretmanager.secretAccessor',

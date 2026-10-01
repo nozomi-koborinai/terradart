@@ -88,8 +88,7 @@ final class ListsStack extends Stack {
     add(
       GoogleNetworkSecurityAddressGroupIamMember(
         localName: 'blocklist_auditor',
-        name: .ref(blocklist.nameRef),
-        location: .literal('us-central1'),
+        addressGroup: blocklist.ref,
         role: .literal('roles/viewer'),
         member: .ref(auditor.iamMember),
         dependsOn: [ResourceDependency(blocklist), ResourceDependency(auditor)],

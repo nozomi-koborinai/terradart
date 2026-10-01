@@ -98,8 +98,7 @@ GoogleCloudRunV2Service addCloudRunService({
   stack.add(
     GoogleCloudRunV2ServiceIamMember(
       localName: 'speaker_invoker',
-      name: .ref(service.nameRef),
-      location: .literal(region),
+      service: service.ref,
       role: .literal('roles/run.invoker'),
       member: .literal('user:$invokerEmail'),
       dependsOn: [ResourceDependency(service)],
@@ -114,8 +113,7 @@ GoogleCloudRunV2Service addCloudRunService({
   stack.add(
     GoogleCloudRunV2ServiceIamMember(
       localName: 'iap_agent_invoker',
-      name: .ref(service.nameRef),
-      location: .literal(region),
+      service: service.ref,
       role: .literal('roles/run.invoker'),
       member: .literal(
         'serviceAccount:service-${project.number.interpolation}'

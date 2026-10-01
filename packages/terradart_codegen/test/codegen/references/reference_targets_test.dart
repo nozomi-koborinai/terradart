@@ -904,4 +904,234 @@ class XVmNic {
       }
     });
   });
+
+  group('IAM adjunct parents', () {
+    Map<String, dynamic> block(Map<String, Map<String, Object>> attrs) => {
+      'attributes': attrs,
+    };
+    const str = {'type': 'string', 'optional': true};
+    const req = {'type': 'string', 'required': true};
+    const out = {'type': 'string', 'computed': true};
+    const computedStr = {'type': 'string', 'optional': true, 'computed': true};
+    final resources = <String, Map<String, dynamic>>{
+      'google_y_service': block({
+        'name': req,
+        'location': req,
+        'project': computedStr,
+        'id': computedStr,
+      }),
+      'google_y_service_iam_member': block({
+        'name': req,
+        'location': str,
+        'project': str,
+        'role': req,
+        'member': req,
+        'id': computedStr,
+      }),
+      'google_y_key': block({'name': req, 'id': out}),
+      'google_y_key_iam_member': block({
+        'crypto_key_id': req,
+        'other_id': str,
+        'role': req,
+        'member': req,
+      }),
+      'google_y_app': block({'app_id': req, 'location': req, 'project': str}),
+      'google_y_agent': block({
+        'app': req,
+        'location': req,
+        'project': str,
+        'zone': str,
+      }),
+    };
+    final data = <String, Map<String, dynamic>>{
+      'google_y_service': block({'name': req, 'location': req, 'id': out}),
+    };
+
+    ReferenceResolution resolve({
+      ParentReferenceRule parentRule = const ParentReferenceRule(),
+      List<ReferenceRule> rules = const [],
+      Iterable<String> curated = const [
+        'google_y_service',
+        'google_y_service_iam_member',
+      ],
+    }) => resolveReferences(
+      rules: rules,
+      resourceSchemas: resources,
+      curated: curated,
+      targetDirs: {for (final t in curated) t: 'y'},
+      dataSourceSchemas: data,
+      parentRule: parentRule,
+    );
+
+    test('the parent names the adjunct and fills the keys both export', () {
+      final r = resolve();
+      expect(r.errors, isEmpty);
+      final ref = r.byResource['google_y_service_iam_member']!['name']!;
+      expect(ref.dartType, 'RefTo<GoogleYService>');
+      expect(ref.attribute, 'name');
+      expect(ref.dartName, 'service');
+      // The data source does not export `project`, so a ref built from it
+      // could not fill it.
+      expect(ref.absorbed, ['location']);
+    });
+
+    test('the adjunct takes the parent and fills the rest from it', () {
+      final ir = const SchemaJsonParser().parseString(
+        jsonEncode({
+          'format_version': '1.0',
+          'provider_schemas': {
+            'registry.terraform.io/hashicorp/google': {
+              'resource_schemas': {
+                for (final e in resources.entries) e.key: {'block': e.value},
+              },
+            },
+          },
+        }),
+      );
+      const override = WrapperOverride(outputDir: 'y');
+      final references = resolve().byResource;
+      final def = ir.resources['google_y_service_iam_member']!;
+      final src =
+          DartFormatter(
+            languageVersion: DartFormatter.latestLanguageVersion,
+          ).format(
+            WrapperEmitter(
+              overrides: const {'google_y_service_iam_member': override},
+              references: references,
+            ).emit(def, providerSource: 'hashicorp/google'),
+          );
+      expect(src, contains('required RefTo<GoogleYService> service,'));
+      expect(src, contains('TfArg<String>? location,'));
+      expect(src, contains("'name': service.encodeAs('name'),"));
+      expect(
+        src,
+        contains("'location': ?(location ?? service.alsoAs('location')),"),
+      );
+      final slots = buildMigrateEntry(
+        tfType: 'google_y_service_iam_member',
+        override: override,
+        def: def,
+        kind: 'resource',
+        emittedSource: src,
+        references: references['google_y_service_iam_member']!,
+      ).entry.slots;
+      final name = slots.singleWhere((s) => s.tfName == 'name');
+      expect(name.dartName, 'service');
+      expect(name.kind, MigrateSlotKind.reference);
+      final location = slots.singleWhere((s) => s.tfName == 'location');
+      expect(location.defaultsFrom, 'service');
+      expect(location.required, isFalse);
+      expect(
+        slots.singleWhere((s) => s.tfName == 'project').defaultsFrom,
+        isNull,
+      );
+    });
+
+    test('an id attribute fills nothing else', () {
+      final r = resolve(
+        parentRule: const ParentReferenceRule(
+          attributes: {'google_y_service': 'id'},
+        ),
+      );
+      final ref = r.byResource['google_y_service_iam_member']!['name']!;
+      expect(ref.attribute, 'id');
+      expect(ref.absorbed, isEmpty);
+    });
+
+    test('a key set it cannot tell apart asks for an identity entry', () {
+      const curated = ['google_y_key', 'google_y_key_iam_member'];
+      expect(
+        resolve(curated: curated).errors.single,
+        contains('add an identity entry'),
+      );
+      final r = resolve(
+        curated: curated,
+        parentRule: const ParentReferenceRule(
+          identity: {'google_y_key': 'crypto_key_id'},
+          attributes: {'google_y_key': 'id'},
+          names: {'google_y_key': 'cryptoKey'},
+        ),
+      );
+      expect(r.errors, isEmpty);
+      final ref = r.byResource['google_y_key_iam_member']!['crypto_key_id']!;
+      expect(ref.dartName, 'cryptoKey');
+      expect(ref.attribute, 'id');
+    });
+
+    test('explicit rules leave the claimed keys alone', () {
+      final r = resolve(
+        rules: [
+          ReferenceRule(
+            target: 'google_y_service',
+            attribute: 'name',
+            slots: RegExp(r'^name$'),
+          ),
+        ],
+      );
+      expect(r.errors.single, contains('matches no curated input'));
+    });
+
+    test('an exclude keeps the keys strings, and stale entries fail', () {
+      final r = resolve(
+        parentRule: const ParentReferenceRule(
+          exclude: {'google_y_service'},
+          names: {'google_y_gone': 'gone'},
+        ),
+      );
+      expect(r.byResource['google_y_service_iam_member'], isNull);
+      expect(r.errors.single, contains('"google_y_gone" is not the curated'));
+    });
+
+    test('with: fills the sibling keys the target exports', () {
+      final r = resolveReferences(
+        rules: [
+          ReferenceRule(
+            target: 'google_y_app',
+            attribute: 'app_id',
+            slots: RegExp(r'^app$'),
+            withKeys: const ['location', 'project', 'zone'],
+          ),
+        ],
+        resourceSchemas: resources,
+        curated: const ['google_y_app', 'google_y_agent'],
+        targetDirs: const {'google_y_app': 'y', 'google_y_agent': 'y'},
+      );
+      expect(r.errors, isEmpty);
+      final ref = r.byResource['google_y_agent']!['app']!;
+      expect(ref.dartName, isNull);
+      expect(ref.absorbed, ['location', 'project']);
+    });
+
+    test('the loader reads the entry and rejects unknown keys', () {
+      final dir = Directory.systemTemp.createTempSync('parents_');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      final ledger = File(p.join(dir.path, 'refs.yaml'))
+        ..writeAsStringSync(r'''
+hashicorp/google:
+  - parents: iam-adjuncts
+    identity: {google_y_key: key_id}
+    names: {google_y_key: cryptoKey}
+    exclude: [google_y_job]
+  - target: google_y_app
+    attribute: app_id
+    slots: '^app$'
+    with: [location]
+''');
+      final rule = loadParentReferenceRule(ledger.path, 'hashicorp/google')!;
+      expect(rule.identity, {'google_y_key': 'key_id'});
+      expect(rule.names, {'google_y_key': 'cryptoKey'});
+      expect(rule.exclude, {'google_y_job'});
+      final rules = loadReferenceRules(ledger.path, 'hashicorp/google');
+      expect(rules.single.withKeys, ['location']);
+      ledger.writeAsStringSync('''
+hashicorp/google:
+  - parents: iam-adjuncts
+    renames: {}
+''');
+      expect(
+        () => loadParentReferenceRule(ledger.path, 'hashicorp/google'),
+        throwsFormatException,
+      );
+    });
+  });
 }

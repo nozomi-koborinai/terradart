@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_ces_toolset`.
@@ -443,8 +444,7 @@ final class CesToolsetCodeBlock {
 /// ```dart
 /// GoogleCesToolset(
 ///   localName: 'openapi',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   toolsetId: TfArg.literal('terradart-ces-toolset'),
 ///   displayName: TfArg.literal('terradart-ces-toolset'),
 ///   openApiToolset: CesToolsetOpenApiToolset(
@@ -459,8 +459,8 @@ final class GoogleCesToolset extends Resource {
 
   GoogleCesToolset({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required TfArg<String> toolsetId,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -479,8 +479,8 @@ final class GoogleCesToolset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'toolset_id': toolsetId,
            'display_name': ?displayName,
            'description': ?description,
@@ -492,7 +492,7 @@ final class GoogleCesToolset extends Resource {
            if (toolFakeConfig != null)
              'tool_fake_config': TfArg.literal(toolFakeConfig.encode()),
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
            'timeout': ?timeout,
            if (connectorToolset != null)
              'connector_toolset': TfArg.literal(connectorToolset.encode()),

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_datapolicy_data_policy.dart'
+    show GoogleBigqueryDatapolicyDataPolicy;
+
 /// Sensitive field paths for `google_bigquery_datapolicy_data_policy_iam_binding`.
 const Set<String> _googleBigqueryDatapolicyDataPolicyIamBindingSensitive =
     <String>{};
@@ -43,7 +46,7 @@ final class GoogleBigqueryDatapolicyDataPolicyIamBinding extends Resource {
 
   GoogleBigqueryDatapolicyDataPolicyIamBinding({
     required super.localName,
-    required TfArg<String> dataPolicyId,
+    required RefTo<GoogleBigqueryDatapolicyDataPolicy> dataPolicy,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     BigqueryDatapolicyDataPolicyIamBindingCondition? condition,
@@ -56,13 +59,13 @@ final class GoogleBigqueryDatapolicyDataPolicyIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_policy_id': dataPolicyId,
+           'data_policy_id': dataPolicy.encodeAs('data_policy_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? dataPolicy.alsoAs('location')),
+           'project': ?(project ?? dataPolicy.alsoAs('project')),
          },
        );
 

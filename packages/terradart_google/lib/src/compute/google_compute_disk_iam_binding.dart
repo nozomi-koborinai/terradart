@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+
 /// Sensitive field paths for `google_compute_disk_iam_binding`.
 const Set<String> _googleComputeDiskIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleComputeDiskIamBinding extends Resource {
 
   GoogleComputeDiskIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeDisk> disk,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ComputeDiskIamBindingCondition? condition,
@@ -54,13 +56,13 @@ final class GoogleComputeDiskIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': disk.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? disk.alsoAs('zone')),
+           'project': ?(project ?? disk.alsoAs('project')),
          },
        );
 

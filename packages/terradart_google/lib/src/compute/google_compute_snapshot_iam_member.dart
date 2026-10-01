@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_snapshot.dart' show GoogleComputeSnapshot;
+
 /// Sensitive field paths for `google_compute_snapshot_iam_member`.
 const Set<String> _googleComputeSnapshotIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleComputeSnapshotIamMember extends Resource {
 
   GoogleComputeSnapshotIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeSnapshot> snapshot,
     required TfArg<String> role,
     required TfArg<String> member,
     ComputeSnapshotIamMemberCondition? condition,
@@ -48,12 +50,12 @@ final class GoogleComputeSnapshotIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': snapshot.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? snapshot.alsoAs('project')),
          },
        );
 

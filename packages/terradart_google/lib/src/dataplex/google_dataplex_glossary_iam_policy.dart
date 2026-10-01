@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
+
 /// Sensitive field paths for `google_dataplex_glossary_iam_policy`.
 const Set<String> _googleDataplexGlossaryIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleDataplexGlossaryIamPolicy extends Resource {
 
   GoogleDataplexGlossaryIamPolicy({
     required super.localName,
-    required TfArg<String> glossaryId,
+    required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleDataplexGlossaryIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'glossary_id': glossaryId,
+           'glossary_id': glossary.encodeAs('glossary_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? glossary.alsoAs('location')),
+           'project': ?(project ?? glossary.alsoAs('project')),
          },
        );
 

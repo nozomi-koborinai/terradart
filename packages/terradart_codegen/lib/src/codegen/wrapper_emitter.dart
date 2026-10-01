@@ -394,14 +394,30 @@ class WrapperEmitter {
       final attr = def.root.attributes.firstWhere((a) => a.name == name);
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(name);
+      final dartName = ref.dartName ?? snakeToDartIdent(name);
       final slot = referenceSlot(
         tfName: name,
-        dartName: snakeToDartIdent(name),
+        dartName: dartName,
         reference: ref,
         required: isRequired,
       );
       paramsByName[name] = _deprecated(slot.param, deprecations[name]);
       argMapByName[name] = slot.argMapEntry;
+      for (final key in ref.absorbed) {
+        if (!paramOrder.contains(key) ||
+            customSlots.containsKey(key) ||
+            dartTypeOverrides.containsKey(key)) {
+          continue;
+        }
+        final fill = absorbedSlot(
+          tfName: key,
+          dartName: snakeToDartIdent(key),
+          from: dartName,
+          fromRequired: isRequired,
+        );
+        paramsByName[key] = _deprecated(fill.param, deprecations[key]);
+        argMapByName[key] = fill.argMapEntry;
+      }
     }
     for (final entry in customSlots.entries) {
       paramsByName[entry.key] = entry.value.paramDeclaration;

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../api_gateway/google_api_gateway_api_config.dart'
+    show GoogleApiGatewayApiConfig;
+
 /// Sensitive field paths for `google_api_gateway_api_config_iam_member`.
 const Set<String> _googleApiGatewayApiConfigIamMemberSensitive = <String>{};
 
@@ -36,8 +39,8 @@ final class GoogleApiGatewayApiConfigIamMember extends Resource {
 
   GoogleApiGatewayApiConfigIamMember({
     required super.localName,
-    required TfArg<String> api,
-    required TfArg<String> apiConfig,
+    TfArg<String>? api,
+    required RefTo<GoogleApiGatewayApiConfig> apiConfig,
     required TfArg<String> member,
     TfArg<String>? project,
     required TfArg<String> role,
@@ -50,10 +53,10 @@ final class GoogleApiGatewayApiConfigIamMember extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'api': api,
-           'api_config': apiConfig,
+           'api': ?(api ?? apiConfig.alsoAs('api')),
+           'api_config': apiConfig.encodeAs('name'),
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? apiConfig.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleVertexAiFeatureOnlineStoreFeatureview;
+
 /// Sensitive field paths for `google_vertex_ai_feature_online_store_featureview_iam_binding`.
 const Set<String>
 _googleVertexAiFeatureOnlineStoreFeatureviewIamBindingSensitive = <String>{};
@@ -44,8 +47,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
 
   GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding({
     required super.localName,
-    required TfArg<String> featureOnlineStore,
-    required TfArg<String> featureView,
+    TfArg<String>? featureOnlineStore,
+    required RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview> featureView,
     required TfArg<List<String>> members,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -59,11 +62,13 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'feature_online_store': featureOnlineStore,
-           'feature_view': featureView,
+           'feature_online_store':
+               ?(featureOnlineStore ??
+               featureView.alsoAs('feature_online_store')),
+           'feature_view': featureView.encodeAs('name'),
            'members': members,
-           'project': ?project,
-           'region': ?region,
+           'project': ?(project ?? featureView.alsoAs('project')),
+           'region': ?(region ?? featureView.alsoAs('region')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

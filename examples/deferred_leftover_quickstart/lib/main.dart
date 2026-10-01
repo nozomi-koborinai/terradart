@@ -1083,7 +1083,7 @@ final class DeferredLeftoverStack extends Stack {
       GoogleBiglakeHiveCatalogIamBinding(
         localName: 'biglake_hive_catalog_iam_binding',
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        catalog: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -1091,14 +1091,14 @@ final class DeferredLeftoverStack extends Stack {
       GoogleBiglakeHiveCatalogIamMember(
         localName: 'biglake_hive_catalog_iam_member',
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        catalog: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveCatalogIamPolicy(
         localName: 'biglake_hive_catalog_iam_policy',
-        name: .literal('terradart-leftover'),
+        catalog: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );
@@ -1114,7 +1114,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'biglake_hive_database_iam_binding',
         catalog: .literal('terradart-leftover'),
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -1123,7 +1123,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'biglake_hive_database_iam_member',
         catalog: .literal('terradart-leftover'),
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -1131,7 +1131,7 @@ final class DeferredLeftoverStack extends Stack {
       GoogleBiglakeHiveDatabaseIamPolicy(
         localName: 'biglake_hive_database_iam_policy',
         catalog: .literal('terradart-leftover'),
-        name: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );
@@ -1158,7 +1158,7 @@ final class DeferredLeftoverStack extends Stack {
         catalog: .literal('terradart-leftover'),
         database: .literal('terradart-leftover'),
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        table: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -1168,7 +1168,7 @@ final class DeferredLeftoverStack extends Stack {
         catalog: .literal('terradart-leftover'),
         database: .literal('terradart-leftover'),
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        table: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -1177,7 +1177,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'biglake_hive_table_iam_policy',
         catalog: .literal('terradart-leftover'),
         database: .literal('terradart-leftover'),
-        name: .literal('terradart-leftover'),
+        table: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );
@@ -1353,7 +1353,7 @@ final class DeferredLeftoverStack extends Stack {
       GoogleEventarcPipelineIamBinding(
         localName: 'eventarc_pipeline_iam_binding',
         location: .literal('us-central1'),
-        pipelineId: .literal('terradart-leftover'),
+        pipeline: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
         members: .literal([
           'serviceAccount:terradart@$projectId.iam.gserviceaccount.com',
@@ -1364,7 +1364,7 @@ final class DeferredLeftoverStack extends Stack {
       GoogleEventarcPipelineIamPolicy(
         localName: 'eventarc_pipeline_iam_policy',
         location: .literal('us-central1'),
-        pipelineId: .literal('terradart-leftover-policy'),
+        pipeline: .literal('terradart-leftover-policy'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../api_gateway/google_api_gateway_api_config.dart'
+    show GoogleApiGatewayApiConfig;
+
 /// Sensitive field paths for `google_api_gateway_api_config_iam_binding`.
 const Set<String> _googleApiGatewayApiConfigIamBindingSensitive = <String>{};
 
@@ -41,8 +44,8 @@ final class GoogleApiGatewayApiConfigIamBinding extends Resource {
 
   GoogleApiGatewayApiConfigIamBinding({
     required super.localName,
-    required TfArg<String> api,
-    required TfArg<String> apiConfig,
+    TfArg<String>? api,
+    required RefTo<GoogleApiGatewayApiConfig> apiConfig,
     required TfArg<List<String>> members,
     TfArg<String>? project,
     required TfArg<String> role,
@@ -55,10 +58,10 @@ final class GoogleApiGatewayApiConfigIamBinding extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'api': api,
-           'api_config': apiConfig,
+           'api': ?(api ?? apiConfig.alsoAs('api')),
+           'api_config': apiConfig.encodeAs('name'),
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? apiConfig.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_analytics_hub_data_exchange.dart'
+    show GoogleBigqueryAnalyticsHubDataExchange;
+
 /// Sensitive field paths for `google_bigquery_analytics_hub_data_exchange_iam_policy`.
 const Set<String> _googleBigqueryAnalyticsHubDataExchangeIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Resource {
 
   GoogleBigqueryAnalyticsHubDataExchangeIamPolicy({
     required super.localName,
-    required TfArg<String> dataExchangeId,
+    required RefTo<GoogleBigqueryAnalyticsHubDataExchange> dataExchange,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_exchange_id': dataExchangeId,
-           'location': ?location,
+           'data_exchange_id': dataExchange.encodeAs('data_exchange_id'),
+           'location': ?(location ?? dataExchange.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? dataExchange.alsoAs('project')),
          },
        );
 

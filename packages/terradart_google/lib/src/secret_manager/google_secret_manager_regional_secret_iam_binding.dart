@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secret_manager/google_secret_manager_regional_secret.dart'
+    show GoogleSecretManagerRegionalSecret;
+
 /// Sensitive field paths for `google_secret_manager_regional_secret_iam_binding`.
 const Set<String> _googleSecretManagerRegionalSecretIamBindingSensitive =
     <String>{};
@@ -44,7 +47,7 @@ final class GoogleSecretManagerRegionalSecretIamBinding extends Resource {
 
   GoogleSecretManagerRegionalSecretIamBinding({
     required super.localName,
-    required TfArg<String> secretId,
+    required RefTo<GoogleSecretManagerRegionalSecret> secret,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<List<String>> members,
@@ -57,13 +60,13 @@ final class GoogleSecretManagerRegionalSecretIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret_id': secretId,
-           'location': ?location,
+           'secret_id': secret.encodeAs('secret_id'),
+           'location': ?(location ?? secret.alsoAs('location')),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? secret.alsoAs('project')),
          },
        );
 

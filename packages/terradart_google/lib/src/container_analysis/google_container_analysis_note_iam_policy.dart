@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container_analysis/google_container_analysis_note.dart'
+    show GoogleContainerAnalysisNote;
+
 /// Sensitive field paths for `google_container_analysis_note_iam_policy`.
 const Set<String> _googleContainerAnalysisNoteIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleContainerAnalysisNoteIamPolicy extends Resource {
 
   GoogleContainerAnalysisNoteIamPolicy({
     required super.localName,
-    required TfArg<String> note,
+    required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -26,7 +29,11 @@ final class GoogleContainerAnalysisNoteIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'note': note, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'note': note.encodeAs('name'),
+           'policy_data': policyData,
+           'project': ?(project ?? note.alsoAs('project')),
+         },
        );
 
   @override

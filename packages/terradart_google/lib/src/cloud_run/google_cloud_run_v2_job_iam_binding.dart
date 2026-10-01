@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_run/google_cloud_run_v2_job.dart' show GoogleCloudRunV2Job;
+
 /// Sensitive field paths for `google_cloud_run_v2_job_iam_binding`.
 const Set<String> _googleCloudRunV2JobIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleCloudRunV2JobIamBinding extends Resource {
 
   GoogleCloudRunV2JobIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudRunV2Job> job,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     CloudRunV2JobIamBindingCondition? condition,
@@ -54,13 +56,13 @@ final class GoogleCloudRunV2JobIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': job.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? job.alsoAs('location')),
+           'project': ?(project ?? job.alsoAs('project')),
          },
        );
 

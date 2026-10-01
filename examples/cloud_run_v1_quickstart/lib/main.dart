@@ -67,8 +67,7 @@ final class CloudRunV1Stack extends Stack {
     add(
       GoogleCloudRunServiceIamMember(
         localName: 'invoker',
-        service: .ref(hello.nameRef),
-        location: .literal('us-central1'),
+        service: hello.ref,
         role: .literal('roles/run.invoker'),
         member: .ref(invoker.iamMember),
         dependsOn: [

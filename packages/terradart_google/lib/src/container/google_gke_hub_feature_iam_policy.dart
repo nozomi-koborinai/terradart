@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_feature.dart' show GoogleGkeHubFeature;
+
 /// Sensitive field paths for `google_gke_hub_feature_iam_policy`.
 const Set<String> _googleGkeHubFeatureIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleGkeHubFeatureIamPolicy extends Resource {
 
   GoogleGkeHubFeatureIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleGkeHubFeature> feature,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleGkeHubFeatureIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': ?location,
+           'name': feature.encodeAs('name'),
+           'location': ?(location ?? feature.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? feature.alsoAs('project')),
          },
        );
 

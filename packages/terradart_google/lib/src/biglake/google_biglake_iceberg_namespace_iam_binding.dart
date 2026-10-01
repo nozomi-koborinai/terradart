@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_iceberg_namespace.dart'
+    show GoogleBiglakeIcebergNamespace;
+
 /// Sensitive field paths for `google_biglake_iceberg_namespace_iam_binding`.
 const Set<String> _googleBiglakeIcebergNamespaceIamBindingSensitive =
     <String>{};
@@ -44,8 +47,8 @@ final class GoogleBiglakeIcebergNamespaceIamBinding extends Resource {
 
   GoogleBiglakeIcebergNamespaceIamBinding({
     required super.localName,
-    required TfArg<String> catalog,
-    required TfArg<String> namespaceId,
+    TfArg<String>? catalog,
+    required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? project,
@@ -57,11 +60,11 @@ final class GoogleBiglakeIcebergNamespaceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'catalog': catalog,
-           'namespace_id': namespaceId,
+           'catalog': ?(catalog ?? namespace.alsoAs('catalog')),
+           'namespace_id': namespace.encodeAs('namespace_id'),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? namespace.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

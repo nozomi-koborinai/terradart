@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../logging/google_logging_log_view.dart' show GoogleLoggingLogView;
+
 /// Sensitive field paths for `google_logging_log_view_iam_policy`.
 const Set<String> _googleLoggingLogViewIamPolicySensitive = <String>{};
 
@@ -17,10 +19,10 @@ final class GoogleLoggingLogViewIamPolicy extends Resource {
 
   GoogleLoggingLogViewIamPolicy({
     required super.localName,
-    required TfArg<String> bucket,
+    TfArg<String>? bucket,
     TfArg<String>? location,
-    required TfArg<String> name,
-    required TfArg<String> parent,
+    required RefTo<GoogleLoggingLogView> logView,
+    TfArg<String>? parent,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -29,10 +31,10 @@ final class GoogleLoggingLogViewIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
-           'location': ?location,
-           'name': name,
-           'parent': parent,
+           'bucket': ?(bucket ?? logView.alsoAs('bucket')),
+           'location': ?(location ?? logView.alsoAs('location')),
+           'name': logView.encodeAs('name'),
+           'parent': ?(parent ?? logView.alsoAs('parent')),
            'policy_data': policyData,
          },
        );

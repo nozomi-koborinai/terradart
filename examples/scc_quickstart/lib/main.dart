@@ -77,8 +77,7 @@ final class SccLeftoverStack extends Stack {
     add(
       GoogleSccSourceIamMember(
         localName: 'source_viewer',
-        source: .ref(source.nameRef),
-        organization: .literal(org),
+        source: source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
         member: .ref(sa.iamMember),
         dependsOn: [ResourceDependency(source), ResourceDependency(sa)],
@@ -96,8 +95,7 @@ final class SccLeftoverStack extends Stack {
     add(
       GoogleSccV2OrganizationSourceIamMember(
         localName: 'v2_source_viewer',
-        source: .ref(v2Source.nameRef),
-        organization: .literal(org),
+        source: v2Source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
         member: .ref(sa.iamMember),
         dependsOn: [ResourceDependency(v2Source), ResourceDependency(sa)],

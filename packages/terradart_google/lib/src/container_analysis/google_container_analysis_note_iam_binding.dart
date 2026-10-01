@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container_analysis/google_container_analysis_note.dart'
+    show GoogleContainerAnalysisNote;
+
 /// Sensitive field paths for `google_container_analysis_note_iam_binding`.
 const Set<String> _googleContainerAnalysisNoteIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleContainerAnalysisNoteIamBinding extends Resource {
 
   GoogleContainerAnalysisNoteIamBinding({
     required super.localName,
-    required TfArg<String> note,
+    required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ContainerAnalysisNoteIamBindingCondition? condition,
@@ -54,12 +57,12 @@ final class GoogleContainerAnalysisNoteIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'note': note,
+           'note': note.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? note.alsoAs('project')),
          },
        );
 

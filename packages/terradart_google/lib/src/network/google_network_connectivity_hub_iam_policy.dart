@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_connectivity_hub.dart'
+    show GoogleNetworkConnectivityHub;
+
 /// Sensitive field paths for `google_network_connectivity_hub_iam_policy`.
 const Set<String> _googleNetworkConnectivityHubIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleNetworkConnectivityHubIamPolicy extends Resource {
 
   GoogleNetworkConnectivityHubIamPolicy({
     required super.localName,
-    required TfArg<String> hub,
+    required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -26,7 +29,11 @@ final class GoogleNetworkConnectivityHubIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'hub': hub, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'hub': hub.encodeAs('id'),
+           'policy_data': policyData,
+           'project': ?project,
+         },
        );
 
   @override

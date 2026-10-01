@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_disk.dart'
+    show GoogleComputeRegionDisk;
+
 /// Sensitive field paths for `google_compute_region_disk_iam_policy`.
 const Set<String> _googleComputeRegionDiskIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleComputeRegionDiskIamPolicy extends Resource {
 
   GoogleComputeRegionDiskIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeRegionDisk> disk,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleComputeRegionDiskIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': disk.encodeAs('name'),
            'policy_data': policyData,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? disk.alsoAs('region')),
+           'project': ?(project ?? disk.alsoAs('project')),
          },
        );
 

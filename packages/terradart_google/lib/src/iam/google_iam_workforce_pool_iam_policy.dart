@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workforce_pool.dart' show GoogleIamWorkforcePool;
+
 /// Sensitive field paths for `google_iam_workforce_pool_iam_policy`.
 const Set<String> _googleIamWorkforcePoolIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleIamWorkforcePoolIamPolicy extends Resource {
 
   GoogleIamWorkforcePoolIamPolicy({
     required super.localName,
-    required TfArg<String> workforcePoolId,
+    required RefTo<GoogleIamWorkforcePool> workforcePool,
     required TfArg<String> policyData,
     TfArg<String>? location,
     super.lifecycle,
@@ -27,9 +29,9 @@ final class GoogleIamWorkforcePoolIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workforce_pool_id': workforcePoolId,
+           'workforce_pool_id': workforcePool.encodeAs('workforce_pool_id'),
            'policy_data': policyData,
-           'location': ?location,
+           'location': ?(location ?? workforcePool.alsoAs('location')),
          },
        );
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_instance_iam_member`.
 const Set<String> _googleBigtableInstanceIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleBigtableInstanceIamMember extends Resource {
 
   GoogleBigtableInstanceIamMember({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleBigtableInstance> instance,
     required TfArg<String> role,
     required TfArg<String> member,
     BigtableInstanceIamMemberCondition? condition,
@@ -48,12 +50,12 @@ final class GoogleBigtableInstanceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

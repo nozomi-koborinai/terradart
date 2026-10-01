@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
+
 /// Sensitive field paths for `google_ces_app_root_agent_association`.
 const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 
@@ -39,8 +41,7 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 /// ```dart
 /// GoogleCesAppRootAgentAssociation(
 ///   localName: 'root',
-///   location: TfArg.ref(app.locationRef),
-///   appId: TfArg.ref(app.appIdRef),
+///   appId: app.ref,
 ///   agentId: TfArg.ref(agent.agentIdRef),
 /// );
 /// ```
@@ -49,8 +50,8 @@ final class GoogleCesAppRootAgentAssociation extends Resource {
 
   GoogleCesAppRootAgentAssociation({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> appId,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> appId,
     required TfArg<String> agentId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -61,11 +62,11 @@ final class GoogleCesAppRootAgentAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app_id': appId,
+           'location': ?(location ?? appId.alsoAs('location')),
+           'app_id': appId.encodeAs('app_id'),
            'agent_id': agentId,
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? appId.alsoAs('project')),
          },
        );
 

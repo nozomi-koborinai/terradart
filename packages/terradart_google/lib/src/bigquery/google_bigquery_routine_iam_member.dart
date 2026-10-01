@@ -4,7 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../bigquery/google_bigquery_routine.dart' show GoogleBigqueryRoutine;
 
 /// Sensitive field paths for `google_bigquery_routine_iam_member`.
 const Set<String> _googleBigqueryRoutineIamMemberSensitive = <String>{};
@@ -38,8 +38,8 @@ final class GoogleBigqueryRoutineIamMember extends Resource {
 
   GoogleBigqueryRoutineIamMember({
     required super.localName,
-    required RefTo<GoogleBigqueryDataset> datasetId,
-    required TfArg<String> routineId,
+    TfArg<String>? datasetId,
+    required RefTo<GoogleBigqueryRoutine> routine,
     required TfArg<String> role,
     required TfArg<String> member,
     BigqueryRoutineIamMemberCondition? condition,
@@ -51,13 +51,13 @@ final class GoogleBigqueryRoutineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId.encodeAs('dataset_id'),
-           'routine_id': routineId,
+           'dataset_id': ?(datasetId ?? routine.alsoAs('dataset_id')),
+           'routine_id': routine.encodeAs('routine_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? routine.alsoAs('project')),
          },
        );
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instant_snapshot.dart'
+    show GoogleComputeInstantSnapshot;
+
 /// Sensitive field paths for `google_compute_instant_snapshot_iam_policy`.
 const Set<String> _googleComputeInstantSnapshotIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleComputeInstantSnapshotIamPolicy extends Resource {
 
   GoogleComputeInstantSnapshotIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeInstantSnapshot> instantSnapshot,
     required TfArg<String> policyData,
     TfArg<String>? zone,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleComputeInstantSnapshotIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instantSnapshot.encodeAs('name'),
            'policy_data': policyData,
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? instantSnapshot.alsoAs('zone')),
+           'project': ?(project ?? instantSnapshot.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_iceberg_catalog.dart'
+    show GoogleBiglakeIcebergCatalog;
+
 /// Sensitive field paths for `google_biglake_iceberg_catalog_iam_binding`.
 const Set<String> _googleBiglakeIcebergCatalogIamBindingSensitive = <String>{};
 
@@ -43,7 +46,7 @@ final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
 
   GoogleBiglakeIcebergCatalogIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? project,
@@ -55,10 +58,10 @@ final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': catalog.encodeAs('name'),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? catalog.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

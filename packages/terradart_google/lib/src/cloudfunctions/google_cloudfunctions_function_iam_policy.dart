@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudfunctions/google_cloudfunctions_function.dart'
+    show GoogleCloudfunctionsFunction;
+
 /// Sensitive field paths for `google_cloudfunctions_function_iam_policy`.
 const Set<String> _googleCloudfunctionsFunctionIamPolicySensitive = <String>{};
 
@@ -18,7 +21,7 @@ final class GoogleCloudfunctionsFunctionIamPolicy extends Resource {
 
   GoogleCloudfunctionsFunctionIamPolicy({
     required super.localName,
-    required TfArg<String> cloudFunction,
+    required RefTo<GoogleCloudfunctionsFunction> function,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -29,10 +32,10 @@ final class GoogleCloudfunctionsFunctionIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cloud_function': cloudFunction,
+           'cloud_function': function.encodeAs('name'),
            'policy_data': policyData,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? function.alsoAs('region')),
+           'project': ?(project ?? function.alsoAs('project')),
          },
        );
 

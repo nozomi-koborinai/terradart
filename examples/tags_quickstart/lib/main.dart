@@ -90,7 +90,7 @@ final class TagsStack extends Stack {
     final envViewer = add(
       GoogleTagsTagKeyIamMember(
         localName: 'env_viewer',
-        tagKey: .ref(envKey.id),
+        tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
         member: .ref(tagger.iamMember),
         dependsOn: [ResourceDependency(envKey), ResourceDependency(tagger)],
@@ -100,7 +100,7 @@ final class TagsStack extends Stack {
     final envViewerBinding = add(
       GoogleTagsTagKeyIamBinding(
         localName: 'env_viewer_binding',
-        tagKey: .ref(envKey.id),
+        tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
         members: .literal([tagger.iamMember.interpolation]),
         dependsOn: [ResourceDependency(envKey), ResourceDependency(envViewer)],
@@ -110,7 +110,7 @@ final class TagsStack extends Stack {
     add(
       GoogleTagsTagKeyIamPolicy(
         localName: 'env_viewer_policy',
-        tagKey: .ref(envKey.id),
+        tagKey: envKey.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/resourcemanager.tagViewer',
@@ -129,7 +129,7 @@ final class TagsStack extends Stack {
     final prodUser = add(
       GoogleTagsTagValueIamMember(
         localName: 'prod_user',
-        tagValue: .ref(prodValue.id),
+        tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
         member: .ref(tagger.iamMember),
         dependsOn: [ResourceDependency(prodValue), ResourceDependency(tagger)],
@@ -139,7 +139,7 @@ final class TagsStack extends Stack {
     final prodUserBinding = add(
       GoogleTagsTagValueIamBinding(
         localName: 'prod_user_binding',
-        tagValue: .ref(prodValue.id),
+        tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
         members: .literal([tagger.iamMember.interpolation]),
         dependsOn: [
@@ -152,7 +152,7 @@ final class TagsStack extends Stack {
     add(
       GoogleTagsTagValueIamPolicy(
         localName: 'prod_user_policy',
-        tagValue: .ref(prodValue.id),
+        tagValue: prodValue.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/resourcemanager.tagUser',

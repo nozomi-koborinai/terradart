@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_ekm_connection.dart' show GoogleKmsEkmConnection;
+
 /// Sensitive field paths for `google_kms_ekm_connection_iam_policy`.
 const Set<String> _googleKmsEkmConnectionIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleKmsEkmConnectionIamPolicy extends Resource {
 
   GoogleKmsEkmConnectionIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleKmsEkmConnection> connection,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleKmsEkmConnectionIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': connection.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? connection.alsoAs('location')),
+           'project': ?(project ?? connection.alsoAs('project')),
          },
        );
 

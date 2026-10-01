@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_taxonomy.dart'
+    show GoogleDataCatalogTaxonomy;
+
 /// Sensitive field paths for `google_data_catalog_taxonomy_iam_binding`.
 const Set<String> _googleDataCatalogTaxonomyIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleDataCatalogTaxonomyIamBinding extends Resource {
 
   GoogleDataCatalogTaxonomyIamBinding({
     required super.localName,
-    required TfArg<String> taxonomy,
+    required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DataCatalogTaxonomyIamBindingCondition? condition,
@@ -55,7 +58,7 @@ final class GoogleDataCatalogTaxonomyIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'taxonomy': taxonomy,
+           'taxonomy': taxonomy.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

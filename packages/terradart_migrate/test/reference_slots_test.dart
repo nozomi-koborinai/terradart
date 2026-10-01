@@ -95,6 +95,14 @@ const _manifest = MigrateManifest(
           dartType: 'GoogleXNetwork',
           attribute: 'self_link',
         ),
+        MigrateSlot(
+          tfName: 'zone',
+          dartName: 'zone',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+          defaultsFrom: 'network',
+        ),
       ],
       getters: [],
     ),
@@ -149,6 +157,38 @@ String _stack(MigrationResult r) {
 }
 
 void main() {
+  group('a key the reference fills', () {
+    test('is left out when the source reads it off the same block', () {
+      final r = _migrate({
+        'network': r'${google_x_network.main.self_link}',
+        'zone': r'${google_x_network.main.zone}',
+      });
+      expect(_stack(r), contains('network: main.ref'));
+      expect(_stack(r), isNot(contains('zone:')));
+    });
+
+    test('stays when it is a literal or reads another block', () {
+      final literal = _migrate({
+        'network': r'${google_x_network.main.self_link}',
+        'zone': 'us-central1-a',
+      });
+      expect(_stack(literal), contains("zone: .literal(r'us-central1-a')"));
+      final other = _migrate({
+        'network': r'${google_x_network.main.self_link}',
+        'zone': r'${google_x_bucket.b.zone}',
+      });
+      expect(_stack(other), contains('zone: .ref('));
+    });
+
+    test('stays when the reference is not a migrated block', () {
+      final r = _migrate({
+        'network': 'projects/p/global/networks/n',
+        'zone': r'${google_x_network.main.zone}',
+      });
+      expect(_stack(r), contains('zone: .ref('));
+    });
+  });
+
   group('a reference slot', () {
     test("takes the block's ref when it reads the attribute it emits", () {
       final r = _migrate({'network': r'${google_x_network.main.self_link}'});

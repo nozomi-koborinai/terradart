@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../binary_authorization/google_binary_authorization_attestor.dart'
+    show GoogleBinaryAuthorizationAttestor;
+
 /// Sensitive field paths for `google_binary_authorization_attestor_iam_policy`.
 const Set<String> _googleBinaryAuthorizationAttestorIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleBinaryAuthorizationAttestorIamPolicy extends Resource {
 
   GoogleBinaryAuthorizationAttestorIamPolicy({
     required super.localName,
-    required TfArg<String> attestor,
+    required RefTo<GoogleBinaryAuthorizationAttestor> attestor,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -29,9 +32,9 @@ final class GoogleBinaryAuthorizationAttestorIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'attestor': attestor,
+           'attestor': attestor.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? attestor.alsoAs('project')),
          },
        );
 

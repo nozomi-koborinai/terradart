@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_image.dart' show GoogleComputeImage;
+
 /// Sensitive field paths for `google_compute_image_iam_policy`.
 const Set<String> _googleComputeImageIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleComputeImageIamPolicy extends Resource {
 
   GoogleComputeImageIamPolicy({
     required super.localName,
-    required TfArg<String> image,
+    required RefTo<GoogleComputeImage> image,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,9 +29,9 @@ final class GoogleComputeImageIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'image': image,
+           'image': image.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? image.alsoAs('project')),
          },
        );
 

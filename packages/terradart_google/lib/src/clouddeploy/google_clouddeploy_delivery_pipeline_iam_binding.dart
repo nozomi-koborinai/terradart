@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_delivery_pipeline.dart'
+    show GoogleClouddeployDeliveryPipeline;
+
 /// Sensitive field paths for `google_clouddeploy_delivery_pipeline_iam_binding`.
 const Set<String> _googleClouddeployDeliveryPipelineIamBindingSensitive =
     <String>{};
@@ -44,7 +47,7 @@ final class GoogleClouddeployDeliveryPipelineIamBinding extends Resource {
 
   GoogleClouddeployDeliveryPipelineIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ClouddeployDeliveryPipelineIamBindingCondition? condition,
@@ -57,13 +60,13 @@ final class GoogleClouddeployDeliveryPipelineIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': deliveryPipeline.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? deliveryPipeline.alsoAs('location')),
+           'project': ?(project ?? deliveryPipeline.alsoAs('project')),
          },
        );
 

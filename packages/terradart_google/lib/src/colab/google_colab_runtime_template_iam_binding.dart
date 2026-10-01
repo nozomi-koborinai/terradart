@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../colab/google_colab_runtime_template.dart'
+    show GoogleColabRuntimeTemplate;
+
 /// Sensitive field paths for `google_colab_runtime_template_iam_binding`.
 const Set<String> _googleColabRuntimeTemplateIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
 
   GoogleColabRuntimeTemplateIamBinding({
     required super.localName,
-    required TfArg<String> runtimeTemplate,
+    required RefTo<GoogleColabRuntimeTemplate> runtimeTemplate,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? location,
@@ -55,13 +58,13 @@ final class GoogleColabRuntimeTemplateIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'runtime_template': runtimeTemplate,
+           'runtime_template': runtimeTemplate.encodeAs('name'),
            'role': role,
            'members': members,
-           'location': ?location,
+           'location': ?(location ?? runtimeTemplate.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? runtimeTemplate.alsoAs('project')),
          },
        );
 

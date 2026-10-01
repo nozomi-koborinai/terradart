@@ -26,7 +26,7 @@ final class PubsubStack extends Stack {
     add(
       GoogleServiceAccountIamMember(
         localName: r'publisher',
-        serviceAccountId: .literal(
+        serviceAccount: .literal(
           r'projects/example-project/serviceAccounts/publisher@example-project.iam.gserviceaccount.com',
         ),
         role: .literal(r'roles/iam.serviceAccountTokenCreator'),
