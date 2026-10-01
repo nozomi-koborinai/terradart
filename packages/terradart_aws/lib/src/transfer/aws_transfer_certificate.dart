@@ -37,10 +37,10 @@ final class AwsTransferCertificate extends Resource {
 
   AwsTransferCertificate(
     super.localName, {
-    required TfArg<String> certificate,
-    TfArg<String>? certificateChain,
+    required Sensitive<String> certificate,
+    Sensitive<String>? certificateChain,
     TfArg<String>? description,
-    TfArg<String>? privateKey,
+    Sensitive<String>? privateKey,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TransferCertificateUsage usage,

@@ -24,7 +24,7 @@ sealed class ComputeVpnTunnelSharedSecret {
 
   /// Sets `shared_secret`.
   const factory ComputeVpnTunnelSharedSecret.sharedSecret(
-    TfArg<String> sharedSecret,
+    Sensitive<String> sharedSecret,
   ) = ComputeVpnTunnelSharedSecretChoice;
 
   /// Sets `shared_secret_wo`.
@@ -47,7 +47,7 @@ final class ComputeVpnTunnelSharedSecretChoice
     extends ComputeVpnTunnelSharedSecret {
   const ComputeVpnTunnelSharedSecretChoice(this.sharedSecret);
 
-  final TfArg<String> sharedSecret;
+  final Sensitive<String> sharedSecret;
 
   @override
   String get blockKey => 'shared_secret';

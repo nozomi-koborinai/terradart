@@ -83,11 +83,11 @@ sealed class SsmParameterValue {
       SsmParameterInsecureValue;
 
   /// Sets `value`.
-  const factory SsmParameterValue.value(TfArg<String> value) =
+  const factory SsmParameterValue.value(Sensitive<String> value) =
       SsmParameterValueChoice;
 
   /// Sets `value_wo`.
-  const factory SsmParameterValue.valueWo(TfArg<String> valueWo) =
+  const factory SsmParameterValue.valueWo(Sensitive<String> valueWo) =
       SsmParameterValueWo;
 
   /// The Terraform argument this choice sets.
@@ -120,7 +120,7 @@ final class SsmParameterInsecureValue extends SsmParameterValue {
 final class SsmParameterValueChoice extends SsmParameterValue {
   const SsmParameterValueChoice(this.value);
 
-  final TfArg<String> value;
+  final Sensitive<String> value;
 
   @override
   String get blockKey => 'value';
@@ -136,7 +136,7 @@ final class SsmParameterValueChoice extends SsmParameterValue {
 final class SsmParameterValueWo extends SsmParameterValue {
   const SsmParameterValueWo(this.valueWo);
 
-  final TfArg<String> valueWo;
+  final Sensitive<String> valueWo;
 
   @override
   String get blockKey => 'value_wo';

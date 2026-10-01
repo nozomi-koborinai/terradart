@@ -249,11 +249,11 @@ sealed class DbInstancePassword {
   ) = DbInstanceManageMasterUserPassword;
 
   /// Sets `password`.
-  const factory DbInstancePassword.password(TfArg<String> password) =
+  const factory DbInstancePassword.password(Sensitive<String> password) =
       DbInstancePasswordChoice;
 
   /// Sets `password_wo`.
-  const factory DbInstancePassword.passwordWo(TfArg<String> passwordWo) =
+  const factory DbInstancePassword.passwordWo(Sensitive<String> passwordWo) =
       DbInstancePasswordWo;
 
   /// The Terraform argument this choice sets.
@@ -290,7 +290,7 @@ final class DbInstanceManageMasterUserPassword extends DbInstancePassword {
 final class DbInstancePasswordChoice extends DbInstancePassword {
   const DbInstancePasswordChoice(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';
@@ -306,7 +306,7 @@ final class DbInstancePasswordChoice extends DbInstancePassword {
 final class DbInstancePasswordWo extends DbInstancePassword {
   const DbInstancePasswordWo(this.passwordWo);
 
-  final TfArg<String> passwordWo;
+  final Sensitive<String> passwordWo;
 
   @override
   String get blockKey => 'password_wo';

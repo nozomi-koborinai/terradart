@@ -222,7 +222,7 @@ final class DatabaseMigrationServiceConnectionProfileInitialUser {
     required this.user,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> user;
 
@@ -325,7 +325,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 
   final DatabaseMigrationServiceConnectionProfileEdition? edition;
 
-  final TfArg<String>? rootPassword;
+  final Sensitive<String>? rootPassword;
 
   final TfArg<String> sourceId;
 
@@ -557,7 +557,7 @@ final class DatabaseMigrationServiceConnectionProfileMysql {
 
   final TfArg<String>? host;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? port;
 
@@ -587,11 +587,11 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
     this.type,
   });
 
-  final TfArg<String>? caCertificate;
+  final Sensitive<String>? caCertificate;
 
-  final TfArg<String>? clientCertificate;
+  final Sensitive<String>? clientCertificate;
 
-  final TfArg<String>? clientKey;
+  final Sensitive<String>? clientKey;
 
   final DatabaseMigrationServiceConnectionProfileType? type;
 
@@ -653,7 +653,7 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 
   final TfArg<String> host;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<num> port;
 
@@ -798,12 +798,12 @@ sealed class DatabaseMigrationServiceConnectionProfileCredential {
 
   /// Sets `password`.
   const factory DatabaseMigrationServiceConnectionProfileCredential.password(
-    TfArg<String> password,
+    Sensitive<String> password,
   ) = DatabaseMigrationServiceConnectionProfileCredentialPassword;
 
   /// Sets `private_key`.
   const factory DatabaseMigrationServiceConnectionProfileCredential.privateKey(
-    TfArg<String> privateKey,
+    Sensitive<String> privateKey,
   ) = DatabaseMigrationServiceConnectionProfileCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
@@ -819,7 +819,7 @@ final class DatabaseMigrationServiceConnectionProfileCredentialPassword
     this.password,
   );
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';
@@ -835,7 +835,7 @@ final class DatabaseMigrationServiceConnectionProfileCredentialPrivateKey
     this.privateKey,
   );
 
-  final TfArg<String> privateKey;
+  final Sensitive<String> privateKey;
 
   @override
   String get blockKey => 'private_key';
@@ -870,11 +870,11 @@ final class DatabaseMigrationServiceConnectionProfileOracleSsl {
     this.clientKey,
   });
 
-  final TfArg<String>? caCertificate;
+  final Sensitive<String>? caCertificate;
 
-  final TfArg<String>? clientCertificate;
+  final Sensitive<String>? clientCertificate;
 
-  final TfArg<String>? clientKey;
+  final Sensitive<String>? clientKey;
 
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
@@ -916,7 +916,7 @@ final class DatabaseMigrationServiceConnectionProfilePostgresql {
 
   final TfArg<String>? host;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? port;
 

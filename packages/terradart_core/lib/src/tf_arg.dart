@@ -126,8 +126,33 @@ final class TfArgLiteral<T> extends TfArg<T> {
   }
 }
 
+/// What an argument Terraform marks sensitive takes: a variable, an
+/// expression or an attribute getter — a value Terraform resolves, never a
+/// Dart literal that would be written into `main.tf.json`.
+///
+/// ```dart
+/// final dbPassword = variable<String>('db_password', sensitive: true);
+/// add(
+///   GoogleSqlUser(
+///     'app',
+///     instance: primary.ref,
+///     name: .literal('app'),
+///     password: dbPassword, // or .variable('db_password')
+///   ),
+/// );
+/// ```
+///
+/// There is no `.literal`: `password: .literal('pw')` does not compile.
+sealed class Sensitive<T> implements TfArg<T> {
+  /// `var.<name>`, as [TfArg.variable].
+  factory Sensitive.variable(String name) = TfArgVariable<T>;
+
+  /// A Terraform expression, as [TfArg.expression].
+  factory Sensitive.expression(String template) = TfArgExpression<T>;
+}
+
 @immutable
-final class TfArgVariable<T> extends TfArg<T> {
+final class TfArgVariable<T> extends TfArg<T> implements Sensitive<T> {
   TfArgVariable(this.name) {
     if (name.isEmpty) {
       throw ArgumentError.value(name, 'name', 'must not be empty');
@@ -156,7 +181,7 @@ final class TfArgVariable<T> extends TfArg<T> {
 /// pattern-match on it (`switch (arg) { case TfArgExpression(): ... }`) and
 /// grep for it.
 @immutable
-final class TfArgExpression<T> extends TfArg<T> {
+final class TfArgExpression<T> extends TfArg<T> implements Sensitive<T> {
   TfArgExpression(this.template) {
     if (!hasTemplateSequence(template)) {
       throw ArgumentError.value(

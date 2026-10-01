@@ -20,7 +20,7 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
   GoogleSecretManagerRegionalSecretVersion(
     super.localName, {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
-    required TfArg<String> secretData,
+    required Sensitive<String> secretData,
     TfArg<bool>? enabled,
     TfArg<bool>? isSecretDataBase64,
     TfArg<String>? deletionPolicy,

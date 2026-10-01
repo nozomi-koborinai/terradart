@@ -17,7 +17,7 @@ final class CloudflareAuthenticatedOriginPullsCertificate extends Resource {
   CloudflareAuthenticatedOriginPullsCertificate(
     super.localName, {
     required TfArg<String> certificate,
-    required TfArg<String> privateKey,
+    required Sensitive<String> privateKey,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

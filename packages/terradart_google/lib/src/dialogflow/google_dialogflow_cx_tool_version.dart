@@ -179,7 +179,7 @@ final class DialogflowCxToolVersionApiKeyConfig {
     this.secretVersionForApiKey,
   });
 
-  final TfArg<String>? apiKey;
+  final Sensitive<String>? apiKey;
 
   final TfArg<String> keyName;
 
@@ -206,7 +206,7 @@ final class DialogflowCxToolVersionBearerTokenConfig {
 
   final TfArg<String>? secretVersionForToken;
 
-  final TfArg<String>? token;
+  final Sensitive<String>? token;
 
   Map<String, Object?> encode() => {
     'secret_version_for_token': ?secretVersionForToken?.toTfJson(),
@@ -229,7 +229,7 @@ final class DialogflowCxToolVersionOauthConfig {
 
   final TfArg<String> clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String> oauthGrantType;
 

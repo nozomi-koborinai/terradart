@@ -42,7 +42,7 @@ final class AppconfigConfigurationProfileValidator {
     required this.type,
   });
 
-  final TfArg<String>? content;
+  final Sensitive<String>? content;
 
   final AppconfigConfigurationProfileValidatorType type;
 

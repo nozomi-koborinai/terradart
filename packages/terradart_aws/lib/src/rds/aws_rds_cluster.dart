@@ -252,12 +252,12 @@ sealed class RdsClusterMasterPassword {
 
   /// Sets `master_password`.
   const factory RdsClusterMasterPassword.masterPassword(
-    TfArg<String> masterPassword,
+    Sensitive<String> masterPassword,
   ) = RdsClusterMasterPasswordChoice;
 
   /// Sets `master_password_wo`.
   const factory RdsClusterMasterPassword.masterPasswordWo(
-    TfArg<String> masterPasswordWo,
+    Sensitive<String> masterPasswordWo,
   ) = RdsClusterMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
@@ -297,7 +297,7 @@ final class RdsClusterMasterPasswordManageMasterUserPassword
 final class RdsClusterMasterPasswordChoice extends RdsClusterMasterPassword {
   const RdsClusterMasterPasswordChoice(this.masterPassword);
 
-  final TfArg<String> masterPassword;
+  final Sensitive<String> masterPassword;
 
   @override
   String get blockKey => 'master_password';
@@ -315,7 +315,7 @@ final class RdsClusterMasterPasswordChoice extends RdsClusterMasterPassword {
 final class RdsClusterMasterPasswordWo extends RdsClusterMasterPassword {
   const RdsClusterMasterPasswordWo(this.masterPasswordWo);
 
-  final TfArg<String> masterPasswordWo;
+  final Sensitive<String> masterPasswordWo;
 
   @override
   String get blockKey => 'master_password_wo';

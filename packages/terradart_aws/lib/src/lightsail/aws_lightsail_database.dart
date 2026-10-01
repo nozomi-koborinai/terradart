@@ -19,7 +19,7 @@ final class AwsLightsailDatabase extends Resource {
     required TfArg<String> bundleId,
     TfArg<String>? finalSnapshotName,
     required TfArg<String> masterDatabaseName,
-    required TfArg<String> masterPassword,
+    required Sensitive<String> masterPassword,
     required TfArg<String> masterUsername,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,

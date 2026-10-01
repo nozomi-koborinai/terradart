@@ -299,7 +299,7 @@ final class CloudflareLogpushJob extends Resource {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     LogpushJobDataset? dataset,
-    required TfArg<String> destinationConf,
+    required Sensitive<String> destinationConf,
     TfArg<bool>? enabled,
     TfArg<String>? filter,
     TfArg<bool>? filterAttackTraffic,
@@ -310,7 +310,7 @@ final class CloudflareLogpushJob extends Resource {
     TfArg<num>? maxUploadIntervalSeconds,
     TfArg<num>? maxUploadRecords,
     TfArg<String>? name,
-    TfArg<String>? ownershipChallenge,
+    Sensitive<String>? ownershipChallenge,
     RefTo<CloudflareZone>? zoneId,
     LogpushJobOutputOptions? outputOptions,
     super.lifecycle,

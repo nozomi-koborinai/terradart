@@ -16,8 +16,8 @@ final class AwsPinpointAdmChannel extends Resource {
   AwsPinpointAdmChannel(
     super.localName, {
     required TfArg<String> applicationId,
-    required TfArg<String> clientId,
-    required TfArg<String> clientSecret,
+    required Sensitive<String> clientId,
+    required Sensitive<String> clientSecret,
     TfArg<bool>? enabled,
     TfArg<String>? region,
     super.lifecycle,

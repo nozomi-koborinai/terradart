@@ -219,7 +219,7 @@ final class AwsApiGatewayDomainName extends Resource {
     TfArg<String>? certificateBody,
     TfArg<String>? certificateChain,
     TfArg<String>? certificateName,
-    TfArg<String>? certificatePrivateKey,
+    Sensitive<String>? certificatePrivateKey,
     required TfArg<String> domainName,
     ApiGatewayDomainNameEndpointAccessMode? endpointAccessMode,
     TfArg<String>? ownershipVerificationCertificateArn,

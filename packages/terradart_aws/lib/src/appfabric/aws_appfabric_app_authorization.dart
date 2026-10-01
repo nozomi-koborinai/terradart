@@ -59,7 +59,7 @@ final class AppfabricAppAuthorizationCredential {
 final class AppfabricAppAuthorizationApiKeyCredential {
   const AppfabricAppAuthorizationApiKeyCredential({required this.apiKey});
 
-  final TfArg<String> apiKey;
+  final Sensitive<String> apiKey;
 
   Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
 }
@@ -75,7 +75,7 @@ final class AppfabricAppAuthorizationOauth2Credential {
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),

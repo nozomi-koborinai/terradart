@@ -41,7 +41,7 @@ final class AwsAmplifyBranch extends Resource {
     super.localName, {
     required TfArg<String> appId,
     TfArg<String>? backendEnvironmentArn,
-    TfArg<String>? basicAuthCredentials,
+    Sensitive<String>? basicAuthCredentials,
     required TfArg<String> branchName,
     TfArg<String>? description,
     TfArg<String>? displayName,

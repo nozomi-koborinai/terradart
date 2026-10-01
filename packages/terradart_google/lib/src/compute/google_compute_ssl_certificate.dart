@@ -18,7 +18,7 @@ sealed class ComputeSslCertificatePrivateKey {
 
   /// Sets `private_key`.
   const factory ComputeSslCertificatePrivateKey.privateKey(
-    TfArg<String> privateKey,
+    Sensitive<String> privateKey,
   ) = ComputeSslCertificatePrivateKeyChoice;
 
   /// Sets `private_key_wo`.
@@ -41,7 +41,7 @@ final class ComputeSslCertificatePrivateKeyChoice
     extends ComputeSslCertificatePrivateKey {
   const ComputeSslCertificatePrivateKeyChoice(this.privateKey);
 
-  final TfArg<String> privateKey;
+  final Sensitive<String> privateKey;
 
   @override
   String get blockKey => 'private_key';
@@ -106,13 +106,13 @@ final class ComputeSslCertificatePrivateKeyWo
 /// Lifecycle: certificates are **immutable** — any change forces
 /// replacement. Use `namePrefix` for certs expected to rotate.
 ///
-/// Example (namePrefix, literal PEMs):
+/// Example (namePrefix; the key from a variable):
 /// ```dart
 /// final cert = GoogleComputeSslCertificate(
 ///   'lb_cert',
 ///   namePrefix: TfArg.literal('lb-cert-'),
-///   certificate: TfArg.literal(certPem),
-///   privateKey: .privateKey(.literal(keyPem)),
+///   certificate: .variable('lb_cert_pem'),
+///   privateKey: .privateKey(.variable('lb_cert_private_key')),
 /// );
 /// ```
 ///
@@ -133,7 +133,7 @@ final class GoogleComputeSslCertificate extends Resource {
     super.localName, {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
-    required TfArg<String> certificate,
+    required Sensitive<String> certificate,
     required ComputeSslCertificatePrivateKey privateKey,
     TfArg<String>? privateKeyWoVersion,
     TfArg<String>? description,

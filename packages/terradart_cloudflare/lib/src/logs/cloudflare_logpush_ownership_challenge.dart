@@ -22,7 +22,7 @@ final class CloudflareLogpushOwnershipChallenge extends Resource {
   CloudflareLogpushOwnershipChallenge(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    required TfArg<String> destinationConf,
+    required Sensitive<String> destinationConf,
     RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,

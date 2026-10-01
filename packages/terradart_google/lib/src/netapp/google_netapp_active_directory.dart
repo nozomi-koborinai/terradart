@@ -30,7 +30,7 @@ final class GoogleNetappActiveDirectory extends Resource {
     required TfArg<String> dns,
     required TfArg<String> netBiosPrefix,
     required TfArg<String> username,
-    required TfArg<String> password,
+    required Sensitive<String> password,
     TfArg<String>? organizationalUnit,
     TfArg<String>? site,
     TfArg<List<String>>? administrators,

@@ -18,7 +18,7 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
     super.localName, {
     required TfArg<String> appId,
     TfArg<String>? project,
-    required TfArg<String> siteSecret,
+    required Sensitive<String> siteSecret,
     TfArg<String>? tokenTtl,
     super.lifecycle,
     super.dependsOn,

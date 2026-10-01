@@ -49,12 +49,12 @@ sealed class CognitoUserPassword {
   const CognitoUserPassword();
 
   /// Sets `password`.
-  const factory CognitoUserPassword.password(TfArg<String> password) =
+  const factory CognitoUserPassword.password(Sensitive<String> password) =
       CognitoUserPasswordChoice;
 
   /// Sets `temporary_password`.
   const factory CognitoUserPassword.temporaryPassword(
-    TfArg<String> temporaryPassword,
+    Sensitive<String> temporaryPassword,
   ) = CognitoUserTemporaryPassword;
 
   /// The Terraform argument this choice sets.
@@ -71,7 +71,7 @@ sealed class CognitoUserPassword {
 final class CognitoUserPasswordChoice extends CognitoUserPassword {
   const CognitoUserPasswordChoice(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';
@@ -87,7 +87,7 @@ final class CognitoUserPasswordChoice extends CognitoUserPassword {
 final class CognitoUserTemporaryPassword extends CognitoUserPassword {
   const CognitoUserTemporaryPassword(this.temporaryPassword);
 
-  final TfArg<String> temporaryPassword;
+  final Sensitive<String> temporaryPassword;
 
   @override
   String get blockKey => 'temporary_password';

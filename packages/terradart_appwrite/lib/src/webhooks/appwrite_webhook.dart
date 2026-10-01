@@ -19,7 +19,7 @@ final class AppwriteWebhook extends Resource {
 
   AppwriteWebhook(
     super.localName, {
-    TfArg<String>? authPassword,
+    Sensitive<String>? authPassword,
     TfArg<String>? authUsername,
     TfArg<bool>? enabled,
     required TfArg<List<String>> events,

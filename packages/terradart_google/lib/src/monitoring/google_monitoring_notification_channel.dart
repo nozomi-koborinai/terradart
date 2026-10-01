@@ -47,7 +47,7 @@ sealed class MonitoringNotificationChannelCredential {
 
   /// Sets `auth_token`.
   const factory MonitoringNotificationChannelCredential.authToken(
-    TfArg<String> authToken,
+    Sensitive<String> authToken,
   ) = MonitoringNotificationChannelCredentialAuthToken;
 
   /// Sets `auth_token_wo`.
@@ -57,7 +57,7 @@ sealed class MonitoringNotificationChannelCredential {
 
   /// Sets `password`.
   const factory MonitoringNotificationChannelCredential.password(
-    TfArg<String> password,
+    Sensitive<String> password,
   ) = MonitoringNotificationChannelCredentialPassword;
 
   /// Sets `password_wo`.
@@ -67,7 +67,7 @@ sealed class MonitoringNotificationChannelCredential {
 
   /// Sets `service_key`.
   const factory MonitoringNotificationChannelCredential.serviceKey(
-    TfArg<String> serviceKey,
+    Sensitive<String> serviceKey,
   ) = MonitoringNotificationChannelCredentialServiceKey;
 
   /// Sets `service_key_wo`.
@@ -86,7 +86,7 @@ final class MonitoringNotificationChannelCredentialAuthToken
     extends MonitoringNotificationChannelCredential {
   const MonitoringNotificationChannelCredentialAuthToken(this.authToken);
 
-  final TfArg<String> authToken;
+  final Sensitive<String> authToken;
 
   @override
   String get blockKey => 'auth_token';
@@ -114,7 +114,7 @@ final class MonitoringNotificationChannelCredentialPassword
     extends MonitoringNotificationChannelCredential {
   const MonitoringNotificationChannelCredentialPassword(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';
@@ -142,7 +142,7 @@ final class MonitoringNotificationChannelCredentialServiceKey
     extends MonitoringNotificationChannelCredential {
   const MonitoringNotificationChannelCredentialServiceKey(this.serviceKey);
 
-  final TfArg<String> serviceKey;
+  final Sensitive<String> serviceKey;
 
   @override
   String get blockKey => 'service_key';

@@ -819,7 +819,7 @@ final class DataLossPreventionDeidentifyTemplateTransient {
 final class DataLossPreventionDeidentifyTemplateUnwrapped {
   const DataLossPreventionDeidentifyTemplateUnwrapped({required this.key});
 
-  final TfArg<String> key;
+  final Sensitive<String> key;
 
   Map<String, Object?> encode() => {'key': key.toTfJson()};
 }

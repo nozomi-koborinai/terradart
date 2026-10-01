@@ -44,7 +44,7 @@ final class CodepipelineWebhookAuthenticationConfiguration {
 
   final TfArg<String>? allowedIpRange;
 
-  final TfArg<String>? secretToken;
+  final Sensitive<String>? secretToken;
 
   Map<String, Object?> encode() => {
     'allowed_ip_range': ?allowedIpRange?.toTfJson(),

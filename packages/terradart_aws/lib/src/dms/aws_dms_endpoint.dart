@@ -212,7 +212,7 @@ final class DmsEndpointKafkaSettings {
 
   final DmsEndpointSaslMechanism? saslMechanism;
 
-  final TfArg<String>? saslPassword;
+  final Sensitive<String>? saslPassword;
 
   final TfArg<String>? saslUsername;
 
@@ -224,7 +224,7 @@ final class DmsEndpointKafkaSettings {
 
   final TfArg<String>? sslClientKeyArn;
 
-  final TfArg<String>? sslClientKeyPassword;
+  final Sensitive<String>? sslClientKeyPassword;
 
   final TfArg<String>? topic;
 
@@ -612,7 +612,7 @@ final class DmsEndpointOracleSettings {
 
   final TfArg<bool>? archivedLogsOnly;
 
-  final TfArg<String>? asmPassword;
+  final Sensitive<String>? asmPassword;
 
   final TfArg<String>? asmServer;
 
@@ -654,7 +654,7 @@ final class DmsEndpointOracleSettings {
 
   final TfArg<String>? secretsManagerOracleAsmSecretId;
 
-  final TfArg<String>? securityDbEncryption;
+  final Sensitive<String>? securityDbEncryption;
 
   final TfArg<String>? securityDbEncryptionName;
 
@@ -919,7 +919,7 @@ final class DmsEndpointRedisSettings {
     this.sslSecurityProtocol,
   });
 
-  final TfArg<String>? authPassword;
+  final Sensitive<String>? authPassword;
 
   final DmsEndpointRedisSettingsAuthType authType;
 
@@ -1050,7 +1050,7 @@ final class AwsDmsEndpoint extends Resource {
     required DmsEndpointEngineName engineName,
     TfArg<String>? extraConnectionAttributes,
     RefTo<AwsKmsKey>? kmsKeyArn,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<bool>? pauseReplicationTasks,
     TfArg<num>? port,
     TfArg<String>? region,

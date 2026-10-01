@@ -85,7 +85,7 @@ final class AwsConnectUser extends Resource {
     TfArg<String>? hierarchyGroupId,
     required TfArg<String> instanceId,
     required TfArg<String> name,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<String>? region,
     required TfArg<String> routingProfileId,
     required TfArg<List<String>> securityProfileIds,

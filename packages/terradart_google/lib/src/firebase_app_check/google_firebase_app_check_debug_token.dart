@@ -53,7 +53,7 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
     super.localName, {
     required TfArg<String> appId,
     required TfArg<String> displayName,
-    required TfArg<String> token,
+    required Sensitive<String> token,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

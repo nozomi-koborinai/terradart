@@ -42,7 +42,7 @@ final class AwsDatasyncLocationObjectStorage extends Resource {
     TfArg<List<String>>? agentArns,
     required TfArg<String> bucketName,
     TfArg<String>? region,
-    TfArg<String>? secretKey,
+    Sensitive<String>? secretKey,
     TfArg<String>? serverCertificate,
     required TfArg<String> serverHostname,
     TfArg<num>? serverPort,

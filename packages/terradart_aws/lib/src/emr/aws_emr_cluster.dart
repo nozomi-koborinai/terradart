@@ -514,13 +514,13 @@ final class EmrClusterKerberosAttributes {
     required this.realm,
   });
 
-  final TfArg<String>? adDomainJoinPassword;
+  final Sensitive<String>? adDomainJoinPassword;
 
   final TfArg<String>? adDomainJoinUser;
 
-  final TfArg<String>? crossRealmTrustPrincipalPassword;
+  final Sensitive<String>? crossRealmTrustPrincipalPassword;
 
-  final TfArg<String> kdcAdminPassword;
+  final Sensitive<String> kdcAdminPassword;
 
   final TfArg<String> realm;
 

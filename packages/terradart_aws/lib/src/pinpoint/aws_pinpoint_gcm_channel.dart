@@ -41,12 +41,12 @@ sealed class PinpointGcmChannelCredentials {
   const PinpointGcmChannelCredentials();
 
   /// Sets `api_key`.
-  const factory PinpointGcmChannelCredentials.apiKey(TfArg<String> apiKey) =
+  const factory PinpointGcmChannelCredentials.apiKey(Sensitive<String> apiKey) =
       PinpointGcmChannelCredentialsApiKey;
 
   /// Sets `service_json`.
   const factory PinpointGcmChannelCredentials.serviceJson(
-    TfArg<String> serviceJson,
+    Sensitive<String> serviceJson,
   ) = PinpointGcmChannelCredentialsServiceJson;
 
   /// The Terraform argument this choice sets.
@@ -64,7 +64,7 @@ final class PinpointGcmChannelCredentialsApiKey
     extends PinpointGcmChannelCredentials {
   const PinpointGcmChannelCredentialsApiKey(this.apiKey);
 
-  final TfArg<String> apiKey;
+  final Sensitive<String> apiKey;
 
   @override
   String get blockKey => 'api_key';
@@ -81,7 +81,7 @@ final class PinpointGcmChannelCredentialsServiceJson
     extends PinpointGcmChannelCredentials {
   const PinpointGcmChannelCredentialsServiceJson(this.serviceJson);
 
-  final TfArg<String> serviceJson;
+  final Sensitive<String> serviceJson;
 
   @override
   String get blockKey => 'service_json';

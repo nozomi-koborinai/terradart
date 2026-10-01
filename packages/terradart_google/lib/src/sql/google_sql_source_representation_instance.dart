@@ -27,7 +27,7 @@ final class GoogleSqlSourceRepresentationInstance extends Resource {
     TfArg<String>? dumpFilePath,
     required TfArg<String> host,
     required TfArg<String> name,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<num>? port,
     TfArg<String>? project,
     TfArg<String>? region,

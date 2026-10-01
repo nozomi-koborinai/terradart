@@ -74,7 +74,7 @@ bool _isPlainValueType(DartTypeShape type) {
 ///
 /// - `RefTo<C>` / `TfArg<List<RefTo<C>>>` → a reference to `C`, `repeated`
 ///   for the list; [withAttribute] adds the attribute from the encoding.
-/// - `TfArg<T>` → scalar / passthrough on `T`.
+/// - `TfArg<T>` or `Sensitive<T>` → scalar / passthrough on `T`.
 /// - `List<TfArg<T>>` → the same, `repeated`.
 /// - `Helper` / `List<Helper>` / `Map<String, Helper>` → helper (the class
 ///   must exist in [ctx]), `repeated` / `keyed` for the collections.
@@ -111,7 +111,8 @@ SlotShape _classify(
         ? SlotShape.manual('bare list of references `${type.render()}`')
         : SlotShape(kind: MigrateSlotKind.reference, dartType: target);
   }
-  if (type.name == 'TfArg' && type.args.length == 1) {
+  if ((type.name == 'TfArg' || type.name == 'Sensitive') &&
+      type.args.length == 1) {
     final payload = type.args.single.nonNullable;
     if (payload.name == 'List' && payload.args.length == 1) {
       final element = payload.args.single;

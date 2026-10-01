@@ -69,7 +69,7 @@ sealed class AcmCertificateSource {
       AcmCertificateSourceDomainName;
 
   /// Sets `private_key`.
-  const factory AcmCertificateSource.privateKey(TfArg<String> privateKey) =
+  const factory AcmCertificateSource.privateKey(Sensitive<String> privateKey) =
       AcmCertificateSourcePrivateKey;
 
   /// Sets `private_key_wo`.
@@ -106,7 +106,7 @@ final class AcmCertificateSourceDomainName extends AcmCertificateSource {
 final class AcmCertificateSourcePrivateKey extends AcmCertificateSource {
   const AcmCertificateSourcePrivateKey(this.privateKey);
 
-  final TfArg<String> privateKey;
+  final Sensitive<String> privateKey;
 
   @override
   String get blockKey => 'private_key';

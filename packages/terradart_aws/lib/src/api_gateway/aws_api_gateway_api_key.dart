@@ -18,7 +18,7 @@ final class AwsApiGatewayApiKey extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? value,
+    Sensitive<String>? value,
     super.lifecycle,
     super.dependsOn,
     super.provider,

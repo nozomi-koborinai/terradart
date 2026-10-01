@@ -93,7 +93,7 @@ sealed class BigqueryDataTransferConfigSecretAccessKey {
 
   /// Sets `secret_access_key`.
   const factory BigqueryDataTransferConfigSecretAccessKey.secretAccessKey(
-    TfArg<String> secretAccessKey,
+    Sensitive<String> secretAccessKey,
   ) = BigqueryDataTransferConfigSecretAccessKeyChoice;
 
   /// Sets `secret_access_key_wo`.
@@ -112,7 +112,7 @@ final class BigqueryDataTransferConfigSecretAccessKeyChoice
     extends BigqueryDataTransferConfigSecretAccessKey {
   const BigqueryDataTransferConfigSecretAccessKeyChoice(this.secretAccessKey);
 
-  final TfArg<String> secretAccessKey;
+  final Sensitive<String> secretAccessKey;
 
   @override
   String get blockKey => 'secret_access_key';

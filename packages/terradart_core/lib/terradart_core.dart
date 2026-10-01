@@ -33,6 +33,7 @@ export 'src/tf_arg.dart'
         AttributeRef,
         DataRef,
         ResourceRef,
+        Sensitive,
         TfAddressed,
         TfArg,
         TfArgExpression,

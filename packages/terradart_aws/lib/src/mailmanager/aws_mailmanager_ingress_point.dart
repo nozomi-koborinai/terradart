@@ -87,7 +87,7 @@ final class MailmanagerIngressPointConfiguration {
 
   final TfArg<String>? secretArn;
 
-  final TfArg<String>? smtpPasswordWo;
+  final Sensitive<String>? smtpPasswordWo;
 
   final TfArg<num>? smtpPasswordWoVersion;
 

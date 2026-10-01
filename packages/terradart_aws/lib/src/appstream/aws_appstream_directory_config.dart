@@ -66,7 +66,7 @@ final class AppstreamDirectoryConfigServiceAccountCredentials {
 
   final TfArg<String> accountName;
 
-  final TfArg<String> accountPassword;
+  final Sensitive<String> accountPassword;
 
   Map<String, Object?> encode() => {
     'account_name': accountName.toTfJson(),

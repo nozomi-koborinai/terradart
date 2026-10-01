@@ -37,7 +37,7 @@ const Set<String> _googleKmsSecretCiphertextSensitive = <String>{
 /// GoogleKmsSecretCiphertext(
 ///   'db_password',
 ///   cryptoKey: paymentsKey.ref,
-///   plaintext: TfArg.literal('change-me'),
+///   plaintext: .variable('db_password'),
 /// );
 /// ```
 final class GoogleKmsSecretCiphertext extends Resource {
@@ -46,8 +46,8 @@ final class GoogleKmsSecretCiphertext extends Resource {
   GoogleKmsSecretCiphertext(
     super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
-    required TfArg<String> plaintext,
-    TfArg<String>? additionalAuthenticatedData,
+    required Sensitive<String> plaintext,
+    Sensitive<String>? additionalAuthenticatedData,
     super.lifecycle,
     super.dependsOn,
     super.provider,

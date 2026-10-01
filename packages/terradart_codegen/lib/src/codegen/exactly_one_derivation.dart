@@ -251,7 +251,7 @@ WrapperOverride _derive(
       return (
         tfName: m,
         ident: ident,
-        fieldType: argTypeFor(dartType),
+        fieldType: argTypeFor(dartType, sensitive: takesSensitive(attr)),
         encodeExpr: '$ident.toTfJson()',
         argMapExpr: ident,
         deprecation: deprecation,

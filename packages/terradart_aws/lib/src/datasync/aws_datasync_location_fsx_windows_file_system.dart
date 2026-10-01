@@ -16,7 +16,7 @@ final class AwsDatasyncLocationFsxWindowsFileSystem extends Resource {
     super.localName, {
     TfArg<String>? domain,
     required TfArg<String> fsxFilesystemArn,
-    required TfArg<String> password,
+    required Sensitive<String> password,
     TfArg<String>? region,
     required TfArg<List<String>> securityGroupArns,
     TfArg<String>? subdirectory,

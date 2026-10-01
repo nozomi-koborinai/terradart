@@ -15,7 +15,7 @@ const Set<String> _awsMemorydbUserSensitive = <String>{
 final class MemorydbUserAuthenticationMode {
   const MemorydbUserAuthenticationMode({this.passwords, required this.type});
 
-  final TfArg<List<String>>? passwords;
+  final Sensitive<List<String>>? passwords;
 
   final MemorydbUserType type;
 

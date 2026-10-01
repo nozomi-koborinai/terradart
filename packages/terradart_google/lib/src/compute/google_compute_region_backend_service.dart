@@ -899,7 +899,7 @@ final class ComputeRegionBackendServiceIap {
 
   final TfArg<String>? oauth2ClientId;
 
-  final TfArg<String>? oauth2ClientSecret;
+  final Sensitive<String>? oauth2ClientSecret;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -1272,8 +1272,8 @@ final class ComputeRegionBackendServiceSubjectAltNames {
 ///   iap: ComputeRegionBackendServiceIap(
 ///     enabled: TfArg.literal(true),
 ///     oauth2ClientId: TfArg.literal('xxx.apps.googleusercontent.com'),
-///     // sensitive — masked at synth.
-///     oauth2ClientSecret: TfArg.literal('super-secret'),
+///     // sensitive — a variable or an expression, never a literal.
+///     oauth2ClientSecret: .variable('iap_client_secret'),
 ///   ),
 ///   logConfig: ComputeRegionBackendServiceLogConfig(
 ///     enable: TfArg.literal(true),

@@ -115,9 +115,9 @@ final class ComputeDiskEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
@@ -154,7 +154,7 @@ final class ComputeDiskSourceImageEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
@@ -177,7 +177,7 @@ final class ComputeDiskSourceSnapshotEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),

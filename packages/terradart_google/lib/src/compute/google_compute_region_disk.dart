@@ -115,9 +115,9 @@ final class ComputeRegionDiskEncryptionKey {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -141,9 +141,9 @@ final class ComputeRegionDiskSourceImageEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -159,7 +159,7 @@ final class ComputeRegionDiskSourceImageEncryptionKey {
 final class ComputeRegionDiskSourceSnapshotEncryptionKey {
   const ComputeRegionDiskSourceSnapshotEncryptionKey({this.rawKey});
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
   Map<String, Object?> encode() => {'raw_key': ?rawKey?.toTfJson()};
 }

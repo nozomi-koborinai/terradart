@@ -25,7 +25,7 @@ final class GoogleComputeBackendBucketSignedUrlKey extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeBackendBucket> backendBucket,
-    required TfArg<String> keyValue,
+    required Sensitive<String> keyValue,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

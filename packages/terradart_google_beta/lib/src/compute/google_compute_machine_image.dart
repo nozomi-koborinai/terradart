@@ -26,7 +26,7 @@ final class ComputeMachineImageEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),

@@ -20,7 +20,7 @@ final class AppwriteAuthUser extends Resource {
     TfArg<bool>? emailVerification,
     TfArg<List<String>>? labels,
     TfArg<String>? name,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<String>? phone,
     TfArg<bool>? phoneVerification,
     RefTo<AppwriteProject>? projectId,

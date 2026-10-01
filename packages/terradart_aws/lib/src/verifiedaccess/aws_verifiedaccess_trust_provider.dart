@@ -111,7 +111,7 @@ final class VerifiedaccessTrustProviderNativeApplicationOidcOptions {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final TfArg<String>? issuer;
 
@@ -153,7 +153,7 @@ final class VerifiedaccessTrustProviderOidcOptions {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final TfArg<String>? issuer;
 

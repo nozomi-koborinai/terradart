@@ -55,7 +55,7 @@ final class AwsDirectoryServiceRadiusSettings extends Resource {
     required TfArg<List<String>> radiusServers,
     required TfArg<num> radiusTimeout,
     TfArg<String>? region,
-    required TfArg<String> sharedSecret,
+    required Sensitive<String> sharedSecret,
     TfArg<bool>? useSameUsername,
     super.lifecycle,
     super.dependsOn,

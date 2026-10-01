@@ -169,7 +169,7 @@ sealed class WorkersScriptSource {
       WorkersScriptSourceDirectory;
 
   /// Sets `jwt`.
-  const factory WorkersScriptSource.jwt(TfArg<String> jwt) =
+  const factory WorkersScriptSource.jwt(Sensitive<String> jwt) =
       WorkersScriptSourceJwt;
 
   /// The Terraform argument this choice sets.
@@ -195,7 +195,7 @@ final class WorkersScriptSourceDirectory extends WorkersScriptSource {
 final class WorkersScriptSourceJwt extends WorkersScriptSource {
   const WorkersScriptSourceJwt(this.jwt);
 
-  final TfArg<String> jwt;
+  final Sensitive<String> jwt;
 
   @override
   String get blockKey => 'jwt';
@@ -383,9 +383,9 @@ final class WorkersScriptBindings {
 
   final WorkersScriptJurisdiction? jurisdiction;
 
-  final TfArg<String>? keyBase64;
+  final Sensitive<String>? keyBase64;
 
-  final TfArg<String>? keyJwk;
+  final Sensitive<String>? keyJwk;
 
   final TfArg<String> name;
 
@@ -415,7 +415,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? stream;
 
-  final TfArg<String>? text;
+  final Sensitive<String>? text;
 
   final TfArg<String>? tunnelId;
 

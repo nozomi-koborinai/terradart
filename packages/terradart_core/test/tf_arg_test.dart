@@ -214,6 +214,33 @@ void main() {
       expect(name.toTfJson(), equals(r'${terraform.workspace}'));
     });
   });
+  group('Sensitive', () {
+    test('takes a variable, an expression or a getter', () {
+      final Sensitive<String> fromVariable = .variable('db_password');
+      final Sensitive<String> fromExpression = .expression(
+        r'${sensitive("x")}',
+      );
+      final Sensitive<String> fromGetter = TfRef.attribute<String>(
+        _FakeAddressed('google_secret_manager_secret_version.v'),
+        'secret_data',
+      );
+      expect(fromVariable.toTfJson(), r'${var.db_password}');
+      expect(fromExpression.toTfJson(), r'${sensitive("x")}');
+      expect(
+        fromGetter.toTfJson(),
+        r'${google_secret_manager_secret_version.v.secret_data}',
+      );
+    });
+
+    test('is a TfArg', () {
+      final TfArg<String> arg = Sensitive<String>.variable('x');
+      expect(arg, isA<TfArgVariable<String>>());
+    });
+
+    test('a literal is not Sensitive', () {
+      expect(TfArg.literal('pw'), isNot(isA<Sensitive<String>>()));
+    });
+  });
 }
 
 /// The shape every provider package declares its enums in.

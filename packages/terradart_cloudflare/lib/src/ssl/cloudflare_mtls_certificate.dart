@@ -18,7 +18,7 @@ final class CloudflareMtlsCertificate extends Resource {
     required TfArg<bool> ca,
     required TfArg<String> certificates,
     TfArg<String>? name,
-    TfArg<String>? privateKey,
+    Sensitive<String>? privateKey,
     super.lifecycle,
     super.dependsOn,
     super.provider,

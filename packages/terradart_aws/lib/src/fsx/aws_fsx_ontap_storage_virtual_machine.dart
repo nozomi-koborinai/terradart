@@ -79,7 +79,7 @@ final class FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration
 
   final TfArg<String>? organizationalUnitDistinguishedName;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -106,7 +106,7 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
     TfArg<String>? region,
     FsxOntapStorageVirtualMachineRootVolumeSecurityStyle?
     rootVolumeSecurityStyle,
-    TfArg<String>? svmAdminPassword,
+    Sensitive<String>? svmAdminPassword,
     TfArg<Map<String, String>>? tags,
     FsxOntapStorageVirtualMachineActiveDirectoryConfiguration?
     activeDirectoryConfiguration,

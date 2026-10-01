@@ -33,7 +33,7 @@ final class DataAwsElasticacheUser extends Data {
     TfArg<String>? accessString,
     TfArg<String>? engine,
     TfArg<bool>? noPasswordRequired,
-    TfArg<List<String>>? passwords,
+    Sensitive<List<String>>? passwords,
     TfArg<String>? region,
     required TfArg<String> userId,
     TfArg<String>? userName,

@@ -174,9 +174,9 @@ final class QuicksightDataSourceCredentialPair {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
-  final TfArg<String> username;
+  final Sensitive<String> username;
 
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),

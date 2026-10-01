@@ -74,7 +74,7 @@ final class AwsIamServerCertificate extends Resource {
     TfArg<String>? certificateChain,
     IamServerCertificateName? name,
     TfArg<String>? path,
-    required TfArg<String> privateKey,
+    required Sensitive<String> privateKey,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

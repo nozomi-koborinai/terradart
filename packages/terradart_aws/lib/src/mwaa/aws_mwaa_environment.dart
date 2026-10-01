@@ -245,7 +245,7 @@ final class AwsMwaaEnvironment extends Resource {
 
   AwsMwaaEnvironment(
     super.localName, {
-    TfArg<Map<String, String>>? airflowConfigurationOptions,
+    Sensitive<Map<String, String>>? airflowConfigurationOptions,
     TfArg<String>? airflowVersion,
     required TfArg<String> dagS3Path,
     MwaaEnvironmentEndpointManagement? endpointManagement,

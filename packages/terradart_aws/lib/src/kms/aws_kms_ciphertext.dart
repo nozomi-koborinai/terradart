@@ -19,12 +19,13 @@ sealed class KmsCiphertextPlaintext {
   const KmsCiphertextPlaintext();
 
   /// Sets `plaintext`.
-  const factory KmsCiphertextPlaintext.plaintext(TfArg<String> plaintext) =
+  const factory KmsCiphertextPlaintext.plaintext(Sensitive<String> plaintext) =
       KmsCiphertextPlaintextChoice;
 
   /// Sets `plaintext_wo`.
-  const factory KmsCiphertextPlaintext.plaintextWo(TfArg<String> plaintextWo) =
-      KmsCiphertextPlaintextWo;
+  const factory KmsCiphertextPlaintext.plaintextWo(
+    Sensitive<String> plaintextWo,
+  ) = KmsCiphertextPlaintextWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,7 +41,7 @@ sealed class KmsCiphertextPlaintext {
 final class KmsCiphertextPlaintextChoice extends KmsCiphertextPlaintext {
   const KmsCiphertextPlaintextChoice(this.plaintext);
 
-  final TfArg<String> plaintext;
+  final Sensitive<String> plaintext;
 
   @override
   String get blockKey => 'plaintext';
@@ -56,7 +57,7 @@ final class KmsCiphertextPlaintextChoice extends KmsCiphertextPlaintext {
 final class KmsCiphertextPlaintextWo extends KmsCiphertextPlaintext {
   const KmsCiphertextPlaintextWo(this.plaintextWo);
 
-  final TfArg<String> plaintextWo;
+  final Sensitive<String> plaintextWo;
 
   @override
   String get blockKey => 'plaintext_wo';

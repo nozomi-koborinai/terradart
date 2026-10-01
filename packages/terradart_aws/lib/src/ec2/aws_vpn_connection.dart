@@ -582,7 +582,7 @@ final class AwsVpnConnection extends Resource {
     List<VpnConnectionTunnel1Phase2IntegrityAlgorithms>?
     tunnel1Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase2LifetimeSeconds,
-    TfArg<String>? tunnel1PresharedKey,
+    Sensitive<String>? tunnel1PresharedKey,
     TfArg<num>? tunnel1RekeyFuzzPercentage,
     TfArg<num>? tunnel1RekeyMarginTimeSeconds,
     TfArg<num>? tunnel1ReplayWindowSize,
@@ -605,7 +605,7 @@ final class AwsVpnConnection extends Resource {
     List<VpnConnectionTunnel2Phase2IntegrityAlgorithms>?
     tunnel2Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase2LifetimeSeconds,
-    TfArg<String>? tunnel2PresharedKey,
+    Sensitive<String>? tunnel2PresharedKey,
     TfArg<num>? tunnel2RekeyFuzzPercentage,
     TfArg<num>? tunnel2RekeyMarginTimeSeconds,
     TfArg<num>? tunnel2ReplayWindowSize,

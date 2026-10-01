@@ -43,7 +43,7 @@ final class GoogleSecureSourceManagerHook extends Resource {
     required TfArg<String> targetUri,
     TfArg<List<String>>? events,
     TfArg<bool>? disabled,
-    TfArg<String>? sensitiveQueryString,
+    Sensitive<String>? sensitiveQueryString,
     SecureSourceManagerHookPushOption? pushOption,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

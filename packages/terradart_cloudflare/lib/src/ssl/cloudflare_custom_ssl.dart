@@ -99,7 +99,7 @@ final class CloudflareCustomSsl extends Resource {
     TfArg<String>? customCsrId,
     CustomSslDeploy? deploy,
     TfArg<String>? policy,
-    TfArg<String>? privateKey,
+    Sensitive<String>? privateKey,
     CustomSslType? type,
     required RefTo<CloudflareZone> zoneId,
     CustomSslGeoRestrictions? geoRestrictions,

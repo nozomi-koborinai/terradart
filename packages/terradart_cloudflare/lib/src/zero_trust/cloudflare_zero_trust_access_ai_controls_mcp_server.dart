@@ -104,9 +104,9 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   CloudflareZeroTrustAccessAiControlsMcpServer(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? authCredentials,
+    Sensitive<String>? authCredentials,
     required ZeroTrustAccessAiControlsMcpServerAuthType authType,
-    TfArg<String>? clientSecret,
+    Sensitive<String>? clientSecret,
     TfArg<String>? description,
     required TfArg<String> hostname,
     required TfArg<String> id,
