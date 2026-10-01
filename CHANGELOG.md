@@ -48,6 +48,20 @@ Per-package changelogs live alongside each package and are the system of record 
 - **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
 - **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
 
+### Fixed
+
+- **Every Dart example in a doc comment or a package README compiles**
+  — `tool/doc_snippets.dart` now also checks the `///` doc comments of the
+  published packages and the package and cookbook READMEs, and the
+  examples it caught are fixed: `GoogleSqlUser` passes its password as a
+  sensitive variable instead of a literal synth rejects,
+  `GoogleServiceAccount` reads `iamMember`, the `terradart_aws` README
+  builds its Lambda with `code: .filename(...)` and a runtime enum, and the
+  `terradart_core` examples (`TfTimeouts`, `TfMoved`, `ModuleCall`,
+  `outputEnvironment`, `S3Backend.r2`, …) name every required argument.
+  ASCII diagrams in the Compute and Cloud SQL docs are ```` ```text ````
+  fences, so dartdoc no longer highlights them as Dart.
+
 ## [0.31.0] - 2026-10-01
 
 Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits a different attribute. Every exactly-one and at-most-one input group is a sealed type named by concept and built with a Dart 3.10 dot shorthand (`code: .filename(...)`); arguments that name another resource take `RefTo<R>` (`network: vpc.ref`); `addOutput` / `addConstant` replace `addExport`, with a typed `<Stack>Outputs` reader and `outputEnvironment()`; Google blocks take derived helper classes (no `TfArg<Map>` block is left); generated type names are short; and every package requires Dart 3.10. Read the upgrade guide in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1366 curated resource factories + 468 data sources** (1834 entries).

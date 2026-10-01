@@ -48,7 +48,7 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 ///
 /// A global NEG is a leaf in the external Application LB chain:
 ///
-/// ```
+/// ```text
 /// google_compute_global_forwarding_rule
 ///   → google_compute_target_https_proxy
 ///     → google_compute_url_map

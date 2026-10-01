@@ -96,7 +96,7 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 /// regional external or internal HTTP(S) load-balancer chain. The full
 /// chain is:
 ///
-/// ```
+/// ```text
 /// google_compute_forwarding_rule.target
 ///   → google_compute_region_target_https_proxy
 ///     → google_compute_region_target_https_proxy.url_map
@@ -122,13 +122,10 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///   `TfArg.literal('us-central1')` or `TfArg.ref(var.region)`.
 ///
 /// TLS material — exactly one of:
-/// - `sslCertificates`: list of self-links to **regional** SSL
-///   certificate resources (`google_compute_region_ssl_certificate`).
-///   Note: the regional SSL certificate wrapper is not curated in this
-///   wave (a follow-up wave will add it). Until then, pass self-links
-///   as literal strings, e.g.
-///   `TfArg.literal(const ['projects/my-proj/regions/us-central1/sslCertificates/my-cert'])`.
-///   The classic certificate path; works for EXTERNAL_MANAGED and
+/// - `sslCertificates`: list of **regional** SSL certificates
+///   (`GoogleComputeRegionSslCertificate`): `cert.ref`, or
+///   `.literal('projects/my-proj/regions/us-central1/sslCertificates/my-cert')`
+///   for one outside the stack. The classic certificate path; works for EXTERNAL_MANAGED and
 ///   INTERNAL_MANAGED regional load-balancing schemes.
 /// - `certificateManagerCertificates`: list of Certificate Manager
 ///   certificate URLs (the
@@ -144,11 +141,7 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: regionUrlMap.ref,
 ///   region: TfArg.literal('us-central1'),
-///   certificates: .sslCertificates(
-///     TfArg.literal(const [
-///       'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
-///     ]),
-///   ),
+///   certificates: .sslCertificates(.literal([cert.ref])),
 ///   sslPolicy: regionSslPolicy.ref,
 /// );
 /// ```

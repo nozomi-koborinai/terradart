@@ -394,7 +394,7 @@ class ComputeAutoscalerScalingSchedule {
 ///   schema; the GCP API rejects an autoscaler with no policy block.
 ///
 /// Cross-resource chain:
-/// ```
+/// ```text
 /// google_compute_instance_template  (the per-VM blueprint)
 ///   -> google_compute_instance_group_manager  (zonal MIG)
 ///        -> google_compute_autoscaler  (this resource)

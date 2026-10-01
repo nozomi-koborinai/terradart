@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Every Dart example in a generated doc comment compiles (`tool/doc_snippets.dart`): `GoogleSqlUser` passes its password as a sensitive variable instead of a literal synth rejects, `GoogleServiceAccount` reads `iamMember`, and the Compute and Cloud SQL diagrams are `text` fences. Doc comments only; the API and synth output are unchanged.
+
 ## 0.31.0 - 2026-10-01
 
 - **Breaking** — generated type names are short: a derived helper, enum or nested sealed type is named after its resource and its own block or attribute instead of the whole block path, a name two blocks would share takes the nearest parent that tells them apart, identical blocks share one helper, and no name repeats the words its resource stem ends with. 5,364 types are renamed (`CloudRunV2ServiceSecretKeyRef`, not `CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef`), and the hand-written override classes that said their resource twice drop the repeat (`ComputeSecurityPolicySecurityPolicyRule<Block>` → `ComputeSecurityPolicyRules<Block>`, `FirestoreIndexIndex<Block>` → `FirestoreIndex<Block>`, ...). Arguments, variant constructors and synth output are unchanged; `dart analyze` lists the old names. See [MIGRATING.md](../../MIGRATING.md#generated-type-names-are-short).

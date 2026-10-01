@@ -93,11 +93,11 @@ final class S3Backend implements StackBackend {
   /// needs because it implements no AWS metadata or STS surface.
   ///
   /// ```dart
-  /// S3Backend.r2(
+  /// final backend = S3Backend.r2(
   ///   accountId: '<cloudflare account id>',
   ///   bucket: 'my-tfstate',
   ///   key: 'site/terraform.tfstate',
-  /// )
+  /// );
   /// ```
   ///
   /// Credentials come from `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`

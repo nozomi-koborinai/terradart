@@ -1,6 +1,7 @@
-// doc_snippets.dart — compiles every ```dart fence in the README and the
-// website docs against the workspace packages, so a guide cannot show code
-// the current release rejects.
+// doc_snippets.dart — compiles every ```dart fence in the README, the
+// website docs, the package and cookbook READMEs, and the `///` doc comments
+// of the published packages against the workspace packages, so a guide or a
+// dartdoc page cannot show code the current release rejects.
 //
 // Run from repo root: dart tool/doc_snippets.dart
 // tool/doc_snippets_test.dart runs the same check (CI: `dart test tool/`).
@@ -20,17 +21,41 @@
 //   `outputEnvironment()` resolve.
 // - `bin/*.dart` fences with a `main` run first, in document order, so a
 //   synth writes the generated file the app fences import.
+// - In a README, `<!-- doc-snippets: skip: <reason> -->` on the line before
+//   a fence leaves it out — only for code that needs a package outside the
+//   workspace (a cookbook recipe's Genkit server), which the recipe's own
+//   build compiles (tool/check_cookbook.sh).
 //
 // Then one `dart analyze` checks every sandbox; an error or warning fails.
+//
+// Doc-comment fences share one sandbox per package, a file per fence. An
+// example there shows one resource and may name a value it does not build
+// (`instance: .ref(primary.nameRef)`): a lowerCamel name the fence leaves
+// undefined becomes a `dynamic` stand-in, so the rest of the fence — class,
+// parameter, enum and helper names — must still resolve. A doc-comment fence
+// needs a language: dartdoc renders an unlabeled one as Dart, so a diagram
+// is ```text.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
-/// The documents whose Dart fences must compile, relative to the repo root.
+/// The documents whose Dart fences must compile, relative to the repo root:
+/// the README, the website docs, and the package and cookbook READMEs.
 List<String> snippetDocuments(String root) {
   final docs = <String>['README.md'];
+  for (final dir in ['packages', 'cookbook']) {
+    final base = Directory(p.join(root, dir));
+    if (!base.existsSync()) continue;
+    docs.addAll(
+      [
+        for (final d in base.listSync().whereType<Directory>())
+          if (File(p.join(d.path, 'README.md')).existsSync())
+            p.relative(p.join(d.path, 'README.md'), from: root),
+      ]..sort(),
+    );
+  }
   final site = Directory(p.join(root, 'website/src/content/docs'));
   if (site.existsSync()) {
     final pages = [
@@ -102,6 +127,7 @@ List<Snippet> extractSnippets(String doc, String text) {
   for (var i = 0; i < lines.length; i++) {
     final m = open.firstMatch(lines[i]);
     if (m == null) continue;
+    final skip = i > 0 && _skip.firstMatch(lines[i - 1]) != null;
     final indent = m.group(1)!.length;
     final fence = m.group(2)!;
     final close = RegExp(
@@ -117,10 +143,66 @@ List<Snippet> extractSnippets(String doc, String text) {
             : l.trimLeft(),
       );
     }
-    out.add(Snippet(doc: doc, line: i + 2, code: body.join('\n')));
+    if (!skip) out.add(Snippet(doc: doc, line: i + 2, code: body.join('\n')));
     i = j;
   }
   return out;
+}
+
+/// `<!-- doc-snippets: skip: <reason> -->` on the line before a fence; a
+/// marker without a reason does not match.
+final _skip = RegExp(r'^\s*<!--\s*doc-snippets:\s*skip:\s*\S.*-->\s*$');
+
+/// The packages whose `///` doc comments are a user's dartdoc pages.
+const docCommentPackages = [
+  'terradart_core',
+  'terradart_google',
+  'terradart_google_beta',
+  'terradart_aws',
+  'terradart_cloudflare',
+  'terradart_appwrite',
+  'terradart_time',
+  'terradart_hcl',
+  'terradart_migrate',
+];
+
+/// The ```dart fences in the `///` doc comments of [file] ([text] its
+/// content), and one message per fence that names no language.
+({List<Snippet> snippets, List<String> unlabeled}) extractDocCommentSnippets(
+  String file,
+  String text,
+) {
+  final lines = text.split('\n');
+  final snippets = <Snippet>[];
+  final unlabeled = <String>[];
+  final doc = RegExp(r'^\s*/// ?(.*)$');
+  final open = RegExp(r'^(`{3,}|~{3,})\s*(\S*)');
+  for (var i = 0; i < lines.length; i++) {
+    final m = doc.firstMatch(lines[i]);
+    if (m == null) continue;
+    final o = open.firstMatch(m.group(1)!);
+    if (o == null) continue;
+    final fence = o.group(1)!;
+    final language = o.group(2)!;
+    final close = RegExp('^${RegExp.escape(fence[0])}{${fence.length},}\\s*\$');
+    final body = <String>[];
+    var j = i + 1;
+    for (; j < lines.length; j++) {
+      final d = doc.firstMatch(lines[j]);
+      if (d == null || close.hasMatch(d.group(1)!)) break;
+      body.add(d.group(1)!);
+    }
+    if (language.isEmpty) {
+      unlabeled.add(
+        '$file:${i + 1}: a doc-comment fence needs a language; dartdoc '
+        'renders an unlabeled one as Dart (use ```text for a diagram)',
+      );
+    } else if (language == 'dart') {
+      snippets.add(Snippet(doc: file, line: i + 2, code: body.join('\n')));
+    }
+    i = j;
+  }
+  return (snippets: snippets, unlabeled: unlabeled);
 }
 
 /// A sandbox file built from a [snippet], with [prefix] lines before the
@@ -132,6 +214,14 @@ final class SnippetFile {
   final String contents;
   final Snippet snippet;
   final int prefix;
+
+  /// This file with a `dynamic` stand-in declared for each of [names],
+  /// on one line before the snippet.
+  SnippetFile withStandIns(Iterable<String> names) {
+    final lines = contents.split('\n');
+    lines.insert(prefix, 'dynamic ${names.join(', ')};');
+    return SnippetFile(path, lines.join('\n'), snippet, prefix + 1);
+  }
 
   /// The document line of sandbox line [line] (1-based).
   int docLine(int line) {
@@ -190,6 +280,7 @@ const _packages = [
   'terradart_appwrite',
   'terradart_time',
   'terradart_hcl',
+  'terradart_migrate',
 ];
 
 String _pubspec(String root) {
@@ -211,31 +302,72 @@ String _pubspec(String root) {
   return b.toString();
 }
 
-/// Compiles the Dart fences of [docs] (default: [snippetDocuments]) and
-/// returns one message per failure.
-Future<List<String>> checkDocSnippets(String root, {List<String>? docs}) async {
+/// One sandbox package: the fences of one document, or of one package's
+/// doc comments ([standIns]).
+typedef _Unit = ({String name, List<Snippet> snippets, bool standIns});
+
+/// Compiles the Dart fences of [docs] (default: [snippetDocuments]) and of
+/// the `///` doc comments under [libs] (default: the `lib/` of each of
+/// [docCommentPackages]); returns one message per failure.
+Future<List<String>> checkDocSnippets(
+  String root, {
+  List<String>? docs,
+  List<String>? libs,
+}) async {
   docs ??= snippetDocuments(root);
+  libs ??= [for (final pkg in docCommentPackages) 'packages/$pkg/lib'];
   final failures = <String>[];
+  final units = <_Unit>[
+    for (final doc in docs)
+      (
+        name: doc,
+        snippets: extractSnippets(
+          doc,
+          File(p.join(root, doc)).readAsStringSync(),
+        ),
+        standIns: false,
+      ),
+  ];
+  for (final dir in libs) {
+    final lib = Directory(p.join(root, dir));
+    if (!lib.existsSync()) continue;
+    final snippets = <Snippet>[];
+    final files = [
+      for (final f in lib.listSync(recursive: true).whereType<File>())
+        if (f.path.endsWith('.dart')) f,
+    ]..sort((a, b) => a.path.compareTo(b.path));
+    for (final f in files) {
+      final found = extractDocCommentSnippets(
+        p.relative(f.path, from: root),
+        f.readAsStringSync(),
+      );
+      snippets.addAll(found.snippets);
+      failures.addAll(found.unlabeled);
+    }
+    units.add((name: dir, snippets: snippets, standIns: true));
+  }
+
   final sandbox = await Directory.systemTemp.createTemp('doc_snippets_');
   try {
     final files = <String, SnippetFile>{};
+    final standInFiles = <String>{};
     final runs = <(String, String, Snippet)>[];
     final dirs = <String>[];
-    for (final doc in docs) {
-      final snippets = extractSnippets(
-        doc,
-        File(p.join(root, doc)).readAsStringSync(),
-      );
-      if (snippets.isEmpty) continue;
+    for (final unit in units) {
+      if (unit.snippets.isEmpty) continue;
       final dir = p.join(
         sandbox.path,
-        doc.replaceAll(RegExp(r'[^\w]+'), '_').toLowerCase(),
+        unit.name.replaceAll(RegExp(r'[^\w]+'), '_').toLowerCase(),
       );
       dirs.add(dir);
       Directory(dir).createSync(recursive: true);
       File(p.join(dir, 'pubspec.yaml')).writeAsStringSync(_pubspec(root));
-      for (final (i, s) in snippets.indexed) {
-        final f = renderSnippet(s, i + 1);
+      for (final (i, s) in unit.snippets.indexed) {
+        var f = renderSnippet(s, i + 1);
+        if (unit.standIns && !s.isLibrary) {
+          final shadowed = stackMembers.where((m) => _readsUndeclared(s, m));
+          if (shadowed.isNotEmpty) f = f.withStandIns(shadowed);
+        }
         final out = File(p.join(dir, f.path));
         if (out.existsSync()) {
           failures.add(
@@ -247,7 +379,9 @@ Future<List<String>> checkDocSnippets(String root, {List<String>? docs}) async {
         out
           ..createSync(recursive: true)
           ..writeAsStringSync(f.contents);
-        files[p.canonicalize(out.path)] = f;
+        final key = p.canonicalize(out.path);
+        files[key] = f;
+        if (unit.standIns) standInFiles.add(key);
         if (f.path.startsWith('bin/') &&
             RegExp(r'\bmain\s*\(').hasMatch(s.code)) {
           runs.add((dir, f.path, s));
@@ -280,29 +414,37 @@ Future<List<String>> checkDocSnippets(String root, {List<String>? docs}) async {
         );
       }
     }
-    final analyze = await Process.run('dart', [
-      'analyze',
-      '--format=machine',
-      sandbox.path,
-    ], workingDirectory: sandbox.path);
-    for (final line in '${analyze.stdout}\n${analyze.stderr}'.split('\n')) {
-      final parts = line.split('|');
-      if (parts.length < 8) continue;
-      final severity = parts[0];
-      if (severity != 'ERROR' && severity != 'WARNING') continue;
-      final file = files[p.canonicalize(parts[3])];
-      final message = '${parts.sublist(7).join('|')} (${parts[2]})';
-      if (file == null) {
-        failures.add('${parts[3]}:${parts[4]}: $message');
+
+    var diagnostics = await _analyze(sandbox.path);
+    // A lowerCamel name a doc-comment fence leaves undefined stands for a
+    // value the example does not build; declare it and analyze again.
+    final undefined = <String, Set<String>>{};
+    for (final d in diagnostics) {
+      if (!standInFiles.contains(d.file)) continue;
+      if (d.code != 'UNDEFINED_IDENTIFIER' && d.code != 'UNDEFINED_FUNCTION') {
         continue;
       }
-      final at = file.docLine(int.parse(parts[4]));
-      failures.add('${file.snippet.doc}:$at: $message');
+      final name = RegExp(r"'([a-z_]\w*)'").firstMatch(d.message)?.group(1);
+      if (name != null) undefined.putIfAbsent(d.file, () => {}).add(name);
     }
-    if (analyze.exitCode != 0 &&
-        failures.isEmpty &&
-        !'${analyze.stdout}'.contains('|')) {
-      failures.add('dart analyze failed:\n${analyze.stdout}${analyze.stderr}');
+    if (undefined.isNotEmpty) {
+      for (final MapEntry(key: path, value: names) in undefined.entries) {
+        final f = files[path]!.withStandIns(names.toList()..sort());
+        files[path] = f;
+        File(path).writeAsStringSync(f.contents);
+      }
+      diagnostics = await _analyze(sandbox.path);
+    }
+
+    for (final d in diagnostics) {
+      if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
+      final message = '${d.message} (${d.code})';
+      final file = files[d.file];
+      if (file == null) {
+        failures.add('${d.file}:${d.line}: $message');
+        continue;
+      }
+      failures.add('${file.snippet.doc}:${file.docLine(d.line)}: $message');
     }
   } finally {
     sandbox.deleteSync(recursive: true);
@@ -310,12 +452,78 @@ Future<List<String>> checkDocSnippets(String root, {List<String>? docs}) async {
   return failures;
 }
 
+/// The getters of `Stack`. A doc-comment fence that reads one of these names
+/// without declaring it means a value of its own (`backend.backendIdRef`),
+/// not the member the Stack-body wrapper would resolve it to.
+const stackMembers = [
+  'appExports',
+  'backend',
+  'constants',
+  'dataSources',
+  'devMode',
+  'externalBlocks',
+  'externalVariables',
+  'modules',
+  'moved',
+  'outputs',
+  'providers',
+  'requiredVersion',
+  'resources',
+  'variables',
+];
+
+bool _readsUndeclared(Snippet s, String name) {
+  final read = RegExp('(?<![\\w.\$\'"])$name(?![\\w\$]|\\s*:)');
+  final declared = RegExp(
+    '\\b(final|var|const|late)\\s+([\\w<>?, ]+\\s+)?$name\\s*[=;]',
+  );
+  return read.hasMatch(s.code) && !declared.hasMatch(s.code);
+}
+
+typedef _Diagnostic = ({
+  String severity,
+  String code,
+  String file,
+  int line,
+  String message,
+});
+
+/// The machine-format diagnostics of `dart analyze` over [dir].
+Future<List<_Diagnostic>> _analyze(String dir) async {
+  final analyze = await Process.run('dart', [
+    'analyze',
+    '--format=machine',
+    dir,
+  ], workingDirectory: dir);
+  final out = <_Diagnostic>[];
+  for (final line in '${analyze.stdout}\n${analyze.stderr}'.split('\n')) {
+    final parts = line.split('|');
+    if (parts.length < 8) continue;
+    out.add((
+      severity: parts[0],
+      code: parts[2],
+      file: p.canonicalize(parts[3]),
+      line: int.parse(parts[4]),
+      message: parts.sublist(7).join('|'),
+    ));
+  }
+  if (analyze.exitCode != 0 && out.isEmpty) {
+    throw StateError(
+      'dart analyze failed:\n${analyze.stdout}${analyze.stderr}',
+    );
+  }
+  return out;
+}
+
 Future<void> main() async {
   final root = Directory.current.path;
   final docs = snippetDocuments(root);
   final failures = await checkDocSnippets(root, docs: docs);
   if (failures.isEmpty) {
-    print('doc_snippets: OK (${docs.length} documents)');
+    print(
+      'doc_snippets: OK (${docs.length} documents, doc comments of '
+      '${docCommentPackages.length} packages)',
+    );
     return;
   }
   stderr.writeln('doc_snippets: FAILED');

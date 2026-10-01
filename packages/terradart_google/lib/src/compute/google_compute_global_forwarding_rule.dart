@@ -233,7 +233,7 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 /// `url_map` and one or more backend services. The full external HTTP(S)
 /// LB chain looks like:
 ///
-/// ```
+/// ```text
 /// google_compute_global_forwarding_rule
 ///   → google_compute_target_https_proxy
 ///     → google_compute_url_map
