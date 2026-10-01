@@ -573,9 +573,7 @@ resource "aws_s3_bucket" "logs" {
       expect(r.report.migratedAddresses, contains('google_x_job.j'));
       expect(
         r.files['lib/demo_stack.dart'],
-        contains(
-          "configuration: .query(.new(query: .literal(r'SELECT 1')))",
-        ),
+        contains("configuration: .query(.new(query: .literal(r'SELECT 1')))"),
       );
     });
 
