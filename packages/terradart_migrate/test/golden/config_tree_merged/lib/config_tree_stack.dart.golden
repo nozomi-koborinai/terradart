@@ -94,7 +94,7 @@ final class ConfigTreeStack extends Stack {
         template: CloudRunV2JobTemplate(
           template: CloudRunV2JobTemplateTemplate(
             containers: [
-              CloudRunV2JobTemplateTemplateContainers(
+              CloudRunV2JobContainers(
                 image: .literal(r'gcr.io/example-project/db-migrate:latest'),
               ),
             ],

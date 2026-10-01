@@ -19,7 +19,7 @@ final class CloudRunStack extends Stack {
         location: .literal(r'asia-northeast1'),
         template: CloudRunV2ServiceTemplate(
           containers: [
-            CloudRunV2ServiceTemplateContainers(
+            CloudRunV2ServiceContainers(
               image: .expression(r'gcr.io/example-project/${var.name}:latest'),
             ),
           ],
