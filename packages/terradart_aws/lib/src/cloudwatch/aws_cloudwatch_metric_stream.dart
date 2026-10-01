@@ -235,8 +235,8 @@ final class CloudwatchMetricStreamIncludeMetric {
 final class AwsCloudwatchMetricStream extends Resource {
   static const String tfType = 'aws_cloudwatch_metric_stream';
 
-  AwsCloudwatchMetricStream({
-    required super.localName,
+  AwsCloudwatchMetricStream(
+    super.localName, {
     required TfArg<String> firehoseArn,
     TfArg<bool>? includeLinkedAccountsMetrics,
     CloudwatchMetricStreamName? name,

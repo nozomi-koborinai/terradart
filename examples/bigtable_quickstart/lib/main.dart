@@ -32,7 +32,7 @@ final class EventsStack extends Stack {
 
     final instance = add(
       GoogleBigtableInstance(
-        localName: 'events',
+        'events',
         name: .literal('quickstart-events'),
         instanceType: .literal(.production),
         deletionPolicy: .literal('DELETE'),
@@ -50,7 +50,7 @@ final class EventsStack extends Stack {
 
     final table = add(
       GoogleBigtableTable(
-        localName: 'events',
+        'events',
         instanceName: instance.ref,
         name: .literal('events'),
         columnFamily: [BigtableTableColumnFamily(family: .literal('cf1'))],
@@ -60,7 +60,7 @@ final class EventsStack extends Stack {
 
     final gcPolicy = add(
       GoogleBigtableGcPolicy(
-        localName: 'cf1_gc',
+        'cf1_gc',
         instanceName: instance.ref,
         table: table.ref,
         columnFamily: .literal('cf1'),
@@ -71,7 +71,7 @@ final class EventsStack extends Stack {
 
     final authorizedView = add(
       GoogleBigtableAuthorizedView(
-        localName: 'tenant_a',
+        'tenant_a',
         instanceName: instance.ref,
         tableName: table.ref,
         name: .literal('tenant-a'),
@@ -86,7 +86,7 @@ final class EventsStack extends Stack {
 
     final tableReady = add(
       TimeSleep(
-        localName: 'table_propagation',
+        'table_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 90)),
         triggers: .literal({
           'events_table': table.name.interpolation,
@@ -99,7 +99,7 @@ final class EventsStack extends Stack {
 
     add(
       GoogleBigtableAppProfile(
-        localName: 'routing',
+        'routing',
         appProfileId: .literal('quickstart-routing'),
         instance: instance.ref,
         routing: .singleClusterRouting(.new(clusterId: .literal('events-c1'))),
@@ -110,7 +110,7 @@ final class EventsStack extends Stack {
 
     final logicalView = add(
       GoogleBigtableLogicalView(
-        localName: 'recent',
+        'recent',
         logicalViewId: .literal('recent-events'),
         instance: instance.ref,
         query: .literal('SELECT _key, cf1 FROM `events`'),
@@ -121,7 +121,7 @@ final class EventsStack extends Stack {
 
     final materializedView = add(
       GoogleBigtableMaterializedView(
-        localName: 'counts',
+        'counts',
         materializedViewId: .literal('event-counts'),
         instance: instance.ref,
         query: .literal(
@@ -135,7 +135,7 @@ final class EventsStack extends Stack {
 
     final readerSa = add(
       GoogleServiceAccount(
-        localName: 'reader',
+        'reader',
         accountId: .literal('bt-reader'),
         displayName: .literal('Bigtable reader'),
       ),
@@ -143,7 +143,7 @@ final class EventsStack extends Stack {
 
     add(
       GoogleBigtableInstanceIamMember(
-        localName: 'instance_viewer',
+        'instance_viewer',
         instance: instance.ref,
         role: .literal('roles/bigtable.viewer'),
         member: readerSa.principal,
@@ -153,7 +153,7 @@ final class EventsStack extends Stack {
 
     add(
       GoogleBigtableTableIamMember(
-        localName: 'table_reader',
+        'table_reader',
         table: table.ref,
         role: .literal('roles/bigtable.reader'),
         member: readerSa.principal,

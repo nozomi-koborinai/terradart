@@ -49,7 +49,7 @@ curatedDoc: |-
   /// Example (basic HDD on an existing VPC):
   /// ```dart
   /// GoogleFilestoreInstance(
-  ///   localName: 'nfs',
+  ///   'nfs',
   ///   name: .literal('shared-nfs'),
   ///   tier: .literal(.basicHdd),
   ///   location: .literal('asia-northeast1'),

@@ -79,7 +79,7 @@ final class ComputeNetworkParams {
 /// Example:
 /// ```dart
 /// final vpc = GoogleComputeNetwork(
-///   localName: 'main',
+///   'main',
 ///   name: TfArg.literal('main-vpc'),
 ///   autoCreateSubnetworks: TfArg.literal(false),
 ///   routingMode: TfArg.literal(RoutingMode.regional),
@@ -88,8 +88,8 @@ final class ComputeNetworkParams {
 final class GoogleComputeNetwork extends Resource {
   static const String tfType = 'google_compute_network';
 
-  GoogleComputeNetwork({
-    required super.localName,
+  GoogleComputeNetwork(
+    super.localName, {
     required TfArg<String> name,
     TfArg<bool>? autoCreateSubnetworks,
     TfArg<RoutingMode>? routingMode,

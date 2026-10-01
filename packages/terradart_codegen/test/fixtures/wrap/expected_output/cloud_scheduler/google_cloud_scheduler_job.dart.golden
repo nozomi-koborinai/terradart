@@ -207,11 +207,11 @@ final class CloudSchedulerJobRetryConfig {
 /// Example:
 /// ```dart
 /// final orders = GooglePubsubTopic(
-///   localName: 'orders',
+///   'orders',
 ///   name: .literal('orders'),
 /// );
 /// final job = GoogleCloudSchedulerJob(
-///   localName: 'nightly',
+///   'nightly',
 ///   name: .literal('nightly'),
 ///   region: .literal('us-central1'),
 ///   schedule: .literal('0 0 * * *'),
@@ -223,8 +223,8 @@ final class CloudSchedulerJobRetryConfig {
 final class GoogleCloudSchedulerJob extends Resource {
   static const String tfType = 'google_cloud_scheduler_job';
 
-  GoogleCloudSchedulerJob({
-    required super.localName,
+  GoogleCloudSchedulerJob(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     CloudSchedulerJobPubsubTarget? pubsubTarget,

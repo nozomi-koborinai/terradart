@@ -45,8 +45,8 @@ final class ServiceDirectoryServiceIamBindingCondition {
 final class GoogleServiceDirectoryServiceIamBinding extends Resource {
   static const String tfType = 'google_service_directory_service_iam_binding';
 
-  GoogleServiceDirectoryServiceIamBinding({
-    required super.localName,
+  GoogleServiceDirectoryServiceIamBinding(
+    super.localName, {
     required RefTo<GoogleServiceDirectoryService> service,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

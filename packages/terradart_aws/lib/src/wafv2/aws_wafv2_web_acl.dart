@@ -386,8 +386,8 @@ final class Wafv2WebAclVisibilityConfig {
 final class AwsWafv2WebAcl extends Resource {
   static const String tfType = 'aws_wafv2_web_acl';
 
-  AwsWafv2WebAcl({
-    required super.localName,
+  AwsWafv2WebAcl(
+    super.localName, {
     TfArg<String>? description,
     Wafv2WebAclName? name,
     TfArg<String>? region,

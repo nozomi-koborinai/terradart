@@ -26,8 +26,8 @@ const Set<String> _googleApihubHostProjectRegistrationSensitive = <String>{};
 final class GoogleApihubHostProjectRegistration extends Resource {
   static const String tfType = 'google_apihub_host_project_registration';
 
-  GoogleApihubHostProjectRegistration({
-    required super.localName,
+  GoogleApihubHostProjectRegistration(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> hostProjectRegistrationId,
     required TfArg<String> gcpProject,

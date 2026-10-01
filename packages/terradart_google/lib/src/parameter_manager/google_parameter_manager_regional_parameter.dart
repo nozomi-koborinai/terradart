@@ -29,8 +29,8 @@ enum ParameterManagerRegionalParameterFormat implements TerraformEnum {
 final class GoogleParameterManagerRegionalParameter extends Resource {
   static const String tfType = 'google_parameter_manager_regional_parameter';
 
-  GoogleParameterManagerRegionalParameter({
-    required super.localName,
+  GoogleParameterManagerRegionalParameter(
+    super.localName, {
     required TfArg<String> parameterId,
     required TfArg<String> location,
     TfArg<ParameterManagerRegionalParameterFormat>? format,

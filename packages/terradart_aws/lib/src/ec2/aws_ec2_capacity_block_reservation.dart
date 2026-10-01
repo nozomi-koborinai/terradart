@@ -36,8 +36,8 @@ enum Ec2CapacityBlockReservationInstancePlatform implements TerraformEnum {
 final class AwsEc2CapacityBlockReservation extends Resource {
   static const String tfType = 'aws_ec2_capacity_block_reservation';
 
-  AwsEc2CapacityBlockReservation({
-    required super.localName,
+  AwsEc2CapacityBlockReservation(
+    super.localName, {
     required TfArg<String> capacityBlockOfferingId,
     required TfArg<Ec2CapacityBlockReservationInstancePlatform>
     instancePlatform,

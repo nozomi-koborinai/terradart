@@ -23,7 +23,7 @@ const Set<String> _googleDataCatalogTaxonomySensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleDataCatalogTaxonomy(
-///   localName: 'pii',
+///   'pii',
 ///   displayName: TfArg.literal('PII taxonomy'),
 ///   description: TfArg.literal('Policy tags for PII columns'),
 ///   activatedPolicyTypes: TfArg.literal(['FINE_GRAINED_ACCESS_CONTROL']),
@@ -33,8 +33,8 @@ const Set<String> _googleDataCatalogTaxonomySensitive = <String>{};
 final class GoogleDataCatalogTaxonomy extends Resource {
   static const String tfType = 'google_data_catalog_taxonomy';
 
-  GoogleDataCatalogTaxonomy({
-    required super.localName,
+  GoogleDataCatalogTaxonomy(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? description,
     TfArg<List<String>>? activatedPolicyTypes,

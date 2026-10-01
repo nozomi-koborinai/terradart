@@ -55,7 +55,7 @@ curatedDoc: |-
   /// proactive update policy):
   /// ```dart
   /// final mig = GoogleComputeInstanceGroupManager(
-  ///   localName: 'web',
+  ///   'web',
   ///   name: TfArg.literal('web-mig'),
   ///   zone: TfArg.literal('asia-northeast1-a'),
   ///   baseInstanceName: TfArg.literal('web'),

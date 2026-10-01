@@ -27,8 +27,8 @@ final class DataEc2SpotPriceFilter {
 final class DataAwsEc2SpotPrice extends Data {
   static const String tfType = 'aws_ec2_spot_price';
 
-  DataAwsEc2SpotPrice({
-    required super.localName,
+  DataAwsEc2SpotPrice(
+    super.localName, {
     TfArg<String>? availabilityZone,
     TfArg<String>? instanceType,
     TfArg<String>? region,

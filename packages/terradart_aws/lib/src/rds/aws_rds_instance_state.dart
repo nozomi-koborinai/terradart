@@ -20,8 +20,8 @@ enum RdsInstanceState implements TerraformEnum {
 final class AwsRdsInstanceState extends Resource {
   static const String tfType = 'aws_rds_instance_state';
 
-  AwsRdsInstanceState({
-    required super.localName,
+  AwsRdsInstanceState(
+    super.localName, {
     required TfArg<String> identifier,
     TfArg<String>? region,
     required TfArg<RdsInstanceState> state,

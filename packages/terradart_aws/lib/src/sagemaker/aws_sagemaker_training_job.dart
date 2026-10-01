@@ -1273,8 +1273,8 @@ final class SagemakerTrainingJobVpcConfig {
 final class AwsSagemakerTrainingJob extends Resource {
   static const String tfType = 'aws_sagemaker_training_job';
 
-  AwsSagemakerTrainingJob({
-    required super.localName,
+  AwsSagemakerTrainingJob(
+    super.localName, {
     TfArg<bool>? deleteModelPackagesOnDestroy,
     TfArg<bool>? deleteVpcEnisOnDestroy,
     TfArg<bool>? enableInterContainerTrafficEncryption,

@@ -49,8 +49,8 @@ enum WafregionalRuleType implements TerraformEnum {
 final class AwsWafregionalRule extends Resource {
   static const String tfType = 'aws_wafregional_rule';
 
-  AwsWafregionalRule({
-    required super.localName,
+  AwsWafregionalRule(
+    super.localName, {
     required TfArg<String> metricName,
     required TfArg<String> name,
     TfArg<String>? region,

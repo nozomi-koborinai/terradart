@@ -79,7 +79,7 @@ final class NetappBackupVaultBackupRetentionPolicy {
 /// Example:
 /// ```dart
 /// GoogleNetappBackupVault(
-///   localName: 'vault',
+///   'vault',
 ///   name: TfArg.literal('terradart-vault'),
 ///   location: TfArg.literal('us-central1'),
 /// );
@@ -87,8 +87,8 @@ final class NetappBackupVaultBackupRetentionPolicy {
 final class GoogleNetappBackupVault extends Resource {
   static const String tfType = 'google_netapp_backup_vault';
 
-  GoogleNetappBackupVault({
-    required super.localName,
+  GoogleNetappBackupVault(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? description,

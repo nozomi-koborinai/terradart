@@ -25,8 +25,8 @@ const Set<String> _cloudflareAccountPermissionGroupsSensitive = <String>{};
 final class DataCloudflareAccountPermissionGroups extends Data {
   static const String tfType = 'cloudflare_account_permission_groups';
 
-  DataCloudflareAccountPermissionGroups({
-    required super.localName,
+  DataCloudflareAccountPermissionGroups(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? label,
     TfArg<num>? maxItems,

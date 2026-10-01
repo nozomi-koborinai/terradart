@@ -734,8 +734,8 @@ enum NetworkServicesEdgeCacheServiceRedirectResponseCode
 final class GoogleNetworkServicesEdgeCacheService extends Resource {
   static const String tfType = 'google_network_services_edge_cache_service';
 
-  GoogleNetworkServicesEdgeCacheService({
-    required super.localName,
+  GoogleNetworkServicesEdgeCacheService(
+    super.localName, {
     required TfArg<String> name,
     required NetworkServicesEdgeCacheServiceRouting routing,
     TfArg<String>? description,

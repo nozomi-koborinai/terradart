@@ -28,8 +28,8 @@ final class ContentScanningExpressionBody {
 final class CloudflareContentScanningExpression extends Resource {
   static const String tfType = 'cloudflare_content_scanning_expression';
 
-  CloudflareContentScanningExpression({
-    required super.localName,
+  CloudflareContentScanningExpression(
+    super.localName, {
     TfArg<String>? payload,
     required RefTo<CloudflareZone> zoneId,
     required List<ContentScanningExpressionBody> body,

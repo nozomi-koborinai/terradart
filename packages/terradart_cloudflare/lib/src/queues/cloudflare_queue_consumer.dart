@@ -110,8 +110,8 @@ final class QueueConsumerWebhooks {
 final class CloudflareQueueConsumer extends Resource {
   static const String tfType = 'cloudflare_queue_consumer';
 
-  CloudflareQueueConsumer({
-    required super.localName,
+  CloudflareQueueConsumer(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? deadLetterQueue,
     required TfArg<String> queueId,

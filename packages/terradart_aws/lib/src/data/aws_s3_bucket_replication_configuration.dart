@@ -12,8 +12,8 @@ const Set<String> _awsS3BucketReplicationConfigurationSensitive = <String>{};
 final class DataAwsS3BucketReplicationConfiguration extends Data {
   static const String tfType = 'aws_s3_bucket_replication_configuration';
 
-  DataAwsS3BucketReplicationConfiguration({
-    required super.localName,
+  DataAwsS3BucketReplicationConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
     super.provider,

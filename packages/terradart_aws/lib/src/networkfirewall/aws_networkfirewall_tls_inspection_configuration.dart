@@ -234,8 +234,8 @@ final class AwsNetworkfirewallTlsInspectionConfiguration extends Resource {
   static const String tfType =
       'aws_networkfirewall_tls_inspection_configuration';
 
-  AwsNetworkfirewallTlsInspectionConfiguration({
-    required super.localName,
+  AwsNetworkfirewallTlsInspectionConfiguration(
+    super.localName, {
     TfArg<String>? description,
     TfArg<List<Map<String, Object?>>>? encryptionConfiguration,
     required TfArg<String> name,

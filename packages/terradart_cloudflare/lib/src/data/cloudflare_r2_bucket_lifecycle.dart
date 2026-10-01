@@ -12,8 +12,8 @@ const Set<String> _cloudflareR2BucketLifecycleSensitive = <String>{};
 final class DataCloudflareR2BucketLifecycle extends Data {
   static const String tfType = 'cloudflare_r2_bucket_lifecycle';
 
-  DataCloudflareR2BucketLifecycle({
-    required super.localName,
+  DataCloudflareR2BucketLifecycle(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     super.provider,

@@ -20,8 +20,8 @@ enum DxBgpPeerAddressFamily implements TerraformEnum {
 final class AwsDxBgpPeer extends Resource {
   static const String tfType = 'aws_dx_bgp_peer';
 
-  AwsDxBgpPeer({
-    required super.localName,
+  AwsDxBgpPeer(
+    super.localName, {
     required TfArg<DxBgpPeerAddressFamily> addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,

@@ -12,8 +12,8 @@ const Set<String> _cloudflareR2BucketSensitive = <String>{};
 final class DataCloudflareR2Bucket extends Data {
   static const String tfType = 'cloudflare_r2_bucket';
 
-  DataCloudflareR2Bucket({
-    required super.localName,
+  DataCloudflareR2Bucket(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> bucketName,
     super.provider,

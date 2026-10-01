@@ -23,8 +23,8 @@ enum SagemakerMlflowTrackingServerSize implements TerraformEnum {
 final class AwsSagemakerMlflowTrackingServer extends Resource {
   static const String tfType = 'aws_sagemaker_mlflow_tracking_server';
 
-  AwsSagemakerMlflowTrackingServer({
-    required super.localName,
+  AwsSagemakerMlflowTrackingServer(
+    super.localName, {
     required TfArg<String> artifactStoreUri,
     TfArg<bool>? automaticModelRegistration,
     TfArg<String>? mlflowVersion,

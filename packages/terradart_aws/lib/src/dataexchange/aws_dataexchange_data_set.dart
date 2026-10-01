@@ -23,8 +23,8 @@ enum DataexchangeDataSetAssetType implements TerraformEnum {
 final class AwsDataexchangeDataSet extends Resource {
   static const String tfType = 'aws_dataexchange_data_set';
 
-  AwsDataexchangeDataSet({
-    required super.localName,
+  AwsDataexchangeDataSet(
+    super.localName, {
     required TfArg<DataexchangeDataSetAssetType> assetType,
     required TfArg<String> description,
     required TfArg<String> name,

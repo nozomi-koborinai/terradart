@@ -10,8 +10,8 @@ const Set<String> _awsDxGatewayAssociationSensitive = <String>{};
 final class AwsDxGatewayAssociation extends Resource {
   static const String tfType = 'aws_dx_gateway_association';
 
-  AwsDxGatewayAssociation({
-    required super.localName,
+  AwsDxGatewayAssociation(
+    super.localName, {
     TfArg<List<String>>? allowedPrefixes,
     TfArg<String>? associatedGatewayId,
     TfArg<String>? associatedGatewayOwnerAccountId,

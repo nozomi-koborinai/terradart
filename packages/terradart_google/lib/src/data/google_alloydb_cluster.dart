@@ -14,8 +14,8 @@ const Set<String> _googleAlloydbClusterSensitive = <String>{};
 final class DataGoogleAlloydbCluster extends Data {
   static const String tfType = 'google_alloydb_cluster';
 
-  DataGoogleAlloydbCluster({
-    required super.localName,
+  DataGoogleAlloydbCluster(
+    super.localName, {
     required TfArg<String> clusterId,
     TfArg<String>? location,
     TfArg<String>? project,

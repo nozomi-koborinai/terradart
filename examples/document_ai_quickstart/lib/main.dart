@@ -26,7 +26,7 @@ final class DocAiStack extends Stack {
       ) {
     final apiDocumentAi = add(
       GoogleProjectService(
-        localName: 'api_documentai',
+        'api_documentai',
         service: .literal('documentai.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -34,7 +34,7 @@ final class DocAiStack extends Stack {
 
     final ocr = add(
       GoogleDocumentAiProcessor(
-        localName: 'ocr',
+        'ocr',
         // Document AI processors live in a multi-region (`us` or `eu`), not a
         // compute region.
         location: .literal('us'),
@@ -46,7 +46,7 @@ final class DocAiStack extends Stack {
 
     add(
       GoogleDocumentAiProcessorDefaultVersion(
-        localName: 'ocr_default',
+        'ocr_default',
         processor: ocr.ref,
         version: .literal('${ocr.id.interpolation}/processorVersions/stable'),
         // `stable` resolves to the latest channel version; ignore the
@@ -58,7 +58,7 @@ final class DocAiStack extends Stack {
 
     add(
       GoogleDocumentAiSchema(
-        localName: 'fields',
+        'fields',
         location: .literal('us'),
         displayName: .literal('terradart-schema'),
         dependsOn: [apiDocumentAi],

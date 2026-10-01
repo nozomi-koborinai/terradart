@@ -395,8 +395,8 @@ class ComputeRegionSecurityPolicyUserDefinedField {
 final class GoogleComputeRegionSecurityPolicy extends Resource {
   static const String tfType = 'google_compute_region_security_policy';
 
-  GoogleComputeRegionSecurityPolicy({
-    required super.localName,
+  GoogleComputeRegionSecurityPolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? project,

@@ -12,8 +12,8 @@ const Set<String> _awsAuditmanagerAccountRegistrationSensitive = <String>{};
 final class AwsAuditmanagerAccountRegistration extends Resource {
   static const String tfType = 'aws_auditmanager_account_registration';
 
-  AwsAuditmanagerAccountRegistration({
-    required super.localName,
+  AwsAuditmanagerAccountRegistration(
+    super.localName, {
     TfArg<String>? delegatedAdminAccount,
     TfArg<bool>? deregisterOnDestroy,
     RefTo<AwsKmsKey>? kmsKey,

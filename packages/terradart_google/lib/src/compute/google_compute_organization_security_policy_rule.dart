@@ -262,8 +262,8 @@ final class GoogleComputeOrganizationSecurityPolicyRule extends Resource {
   static const String tfType =
       'google_compute_organization_security_policy_rule';
 
-  GoogleComputeOrganizationSecurityPolicyRule({
-    required super.localName,
+  GoogleComputeOrganizationSecurityPolicyRule(
+    super.localName, {
     required TfArg<String> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

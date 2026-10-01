@@ -21,8 +21,8 @@ enum EbsSnapshotBlockPublicAccessState implements TerraformEnum {
 final class AwsEbsSnapshotBlockPublicAccess extends Resource {
   static const String tfType = 'aws_ebs_snapshot_block_public_access';
 
-  AwsEbsSnapshotBlockPublicAccess({
-    required super.localName,
+  AwsEbsSnapshotBlockPublicAccess(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<EbsSnapshotBlockPublicAccessState> state,
     super.lifecycle,

@@ -26,8 +26,8 @@ enum EmailRoutingAddressStatus implements TerraformEnum {
 final class CloudflareEmailRoutingAddress extends Resource {
   static const String tfType = 'cloudflare_email_routing_address';
 
-  CloudflareEmailRoutingAddress({
-    required super.localName,
+  CloudflareEmailRoutingAddress(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> email,
     TfArg<EmailRoutingAddressStatus>? status,

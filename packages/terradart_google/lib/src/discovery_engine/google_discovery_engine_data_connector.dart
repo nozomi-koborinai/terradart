@@ -218,8 +218,8 @@ final class DiscoveryEngineDataConnectorMetadata {
 final class GoogleDiscoveryEngineDataConnector extends Resource {
   static const String tfType = 'google_discovery_engine_data_connector';
 
-  GoogleDiscoveryEngineDataConnector({
-    required super.localName,
+  GoogleDiscoveryEngineDataConnector(
+    super.localName, {
     TfArg<bool>? autoRunDisabled,
     required TfArg<String> collectionDisplayName,
     required TfArg<String> collectionId,

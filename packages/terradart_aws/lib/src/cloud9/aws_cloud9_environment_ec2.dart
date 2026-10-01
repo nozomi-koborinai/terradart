@@ -50,8 +50,8 @@ enum Cloud9EnvironmentEc2ImageId implements TerraformEnum {
 final class AwsCloud9EnvironmentEc2 extends Resource {
   static const String tfType = 'aws_cloud9_environment_ec2';
 
-  AwsCloud9EnvironmentEc2({
-    required super.localName,
+  AwsCloud9EnvironmentEc2(
+    super.localName, {
     TfArg<num>? automaticStopTimeMinutes,
     TfArg<Cloud9EnvironmentEc2ConnectionType>? connectionType,
     TfArg<String>? description,

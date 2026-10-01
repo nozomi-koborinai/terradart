@@ -16,8 +16,8 @@ const Set<String> _cloudflareZoneSettingSensitive = <String>{};
 final class DataCloudflareZoneSetting extends Data {
   static const String tfType = 'cloudflare_zone_setting';
 
-  DataCloudflareZoneSetting({
-    required super.localName,
+  DataCloudflareZoneSetting(
+    super.localName, {
     required TfArg<String> settingId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

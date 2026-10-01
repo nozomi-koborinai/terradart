@@ -32,7 +32,7 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 ///
 /// ```dart
 /// final flag = GoogleFirestoreDocument(
-///   localName: 'dark_mode',
+///   'dark_mode',
 ///   collection: TfArg.literal('feature_flags'),
 ///   documentId: TfArg.literal('dark_mode'),
 ///   fields: FirestoreFields.encode({
@@ -60,8 +60,8 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 final class GoogleFirestoreDocument extends Resource {
   static const String tfType = 'google_firestore_document';
 
-  GoogleFirestoreDocument({
-    required super.localName,
+  GoogleFirestoreDocument(
+    super.localName, {
     required TfArg<String> collection,
     required TfArg<String> documentId,
     required TfArg<String> fields,

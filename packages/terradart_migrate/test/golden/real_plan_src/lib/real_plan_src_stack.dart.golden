@@ -26,23 +26,23 @@ final class RealPlanSrcStack extends Stack {
     // --- Curated by terradart_google (expected: supported) ---
     add(
       GoogleStorageBucket(
-        localName: 'assets',
+        'assets',
         name: .literal('example-dogfood-assets'),
         location: .literal('US'),
         forceDestroy: .literal(true),
       ),
     );
-    add(GooglePubsubTopic(localName: 'events', name: .literal('events')));
+    add(GooglePubsubTopic('events', name: .literal('events')));
     add(
       GoogleServiceAccount(
-        localName: 'ci',
+        'ci',
         accountId: .literal('ci-runner'),
         displayName: .literal('CI Runner'),
       ),
     );
     final router = add(
       GoogleComputeRouter(
-        localName: 'router',
+        'router',
         name: .literal('example-router'),
         network: .network(.literal('default')),
         region: .literal('us-central1'),
@@ -50,7 +50,7 @@ final class RealPlanSrcStack extends Stack {
     );
     add(
       GoogleComputeRouterNat(
-        localName: 'nat',
+        'nat',
         name: .literal('example-nat'),
         router: router.ref,
         region: .literal('us-central1'),
@@ -61,12 +61,12 @@ final class RealPlanSrcStack extends Stack {
     // --- Still uncurated in terradart_google (not a required sentinel) ---
     add(
       GoogleIdentityPlatformOauthIdpConfig(
-        localName: 'hello',
+        'hello',
         name: .literal('oidc.hello'),
         issuer: .literal('https://accounts.example.com'),
         clientId: .literal('dummy'),
       ),
     );
-    addModule(ModuleCall(localName: 'network', source: './modules/network'));
+    addModule(ModuleCall('network', source: './modules/network'));
   }
 }

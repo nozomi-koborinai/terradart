@@ -30,8 +30,8 @@ final class SaasRuntimeUnitMaintenance {
 final class GoogleSaasRuntimeUnit extends Resource {
   static const String tfType = 'google_saas_runtime_unit';
 
-  GoogleSaasRuntimeUnit({
-    required super.localName,
+  GoogleSaasRuntimeUnit(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,

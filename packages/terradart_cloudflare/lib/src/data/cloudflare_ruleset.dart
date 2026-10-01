@@ -13,8 +13,8 @@ const Set<String> _cloudflareRulesetSensitive = <String>{};
 final class DataCloudflareRuleset extends Data {
   static const String tfType = 'cloudflare_ruleset';
 
-  DataCloudflareRuleset({
-    required super.localName,
+  DataCloudflareRuleset(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? rulesetId,
     RefTo<CloudflareZone>? zoneId,

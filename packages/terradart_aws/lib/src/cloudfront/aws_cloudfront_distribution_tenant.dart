@@ -184,8 +184,8 @@ final class CloudfrontDistributionTenantParameter {
 final class AwsCloudfrontDistributionTenant extends Resource {
   static const String tfType = 'aws_cloudfront_distribution_tenant';
 
-  AwsCloudfrontDistributionTenant({
-    required super.localName,
+  AwsCloudfrontDistributionTenant(
+    super.localName, {
     TfArg<String>? connectionGroupId,
     required TfArg<String> distributionId,
     TfArg<bool>? enabled,

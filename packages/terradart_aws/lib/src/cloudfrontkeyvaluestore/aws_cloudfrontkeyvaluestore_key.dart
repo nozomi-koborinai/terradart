@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontkeyvaluestoreKeySensitive = <String>{};
 final class AwsCloudfrontkeyvaluestoreKey extends Resource {
   static const String tfType = 'aws_cloudfrontkeyvaluestore_key';
 
-  AwsCloudfrontkeyvaluestoreKey({
-    required super.localName,
+  AwsCloudfrontkeyvaluestoreKey(
+    super.localName, {
     required TfArg<String> key,
     required TfArg<String> keyValueStoreArn,
     required TfArg<String> value,

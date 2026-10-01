@@ -63,8 +63,8 @@ enum Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType
 final class AwsEc2TransitGatewayMeteringPolicyEntry extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_metering_policy_entry';
 
-  AwsEc2TransitGatewayMeteringPolicyEntry({
-    required super.localName,
+  AwsEc2TransitGatewayMeteringPolicyEntry(
+    super.localName, {
     TfArg<String>? destinationCidrBlock,
     TfArg<String>? destinationPortRange,
     TfArg<String>? destinationTransitGatewayAttachmentId,

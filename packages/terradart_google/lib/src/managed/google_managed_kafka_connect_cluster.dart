@@ -90,7 +90,7 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 /// Example:
 /// ```dart
 /// GoogleManagedKafkaConnectCluster(
-///   localName: 'connect',
+///   'connect',
 ///   connectClusterId: TfArg.literal('terradart-connect'),
 ///   kafkaCluster: cluster.name,
 ///   location: TfArg.literal('us-central1'),
@@ -112,8 +112,8 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 final class GoogleManagedKafkaConnectCluster extends Resource {
   static const String tfType = 'google_managed_kafka_connect_cluster';
 
-  GoogleManagedKafkaConnectCluster({
-    required super.localName,
+  GoogleManagedKafkaConnectCluster(
+    super.localName, {
     required TfArg<String> connectClusterId,
     required TfArg<String> kafkaCluster,
     required TfArg<String> location,

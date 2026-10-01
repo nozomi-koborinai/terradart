@@ -30,8 +30,8 @@ enum AcmpcaPermissionPrincipal implements TerraformEnum {
 final class AwsAcmpcaPermission extends Resource {
   static const String tfType = 'aws_acmpca_permission';
 
-  AwsAcmpcaPermission({
-    required super.localName,
+  AwsAcmpcaPermission(
+    super.localName, {
     required List<TfArg<AcmpcaPermissionActions>> actions,
     required TfArg<String> certificateAuthorityArn,
     required TfArg<AcmpcaPermissionPrincipal> principal,

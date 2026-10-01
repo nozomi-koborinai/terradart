@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeNetworkEndpoint(
-  ///   localName: 'onprem_vm',
+  ///   'onprem_vm',
   ///   networkEndpointGroup: neg.ref,
   ///   ipAddress: TfArg.literal('10.0.0.5'),
   ///   port: TfArg.literal(8080),

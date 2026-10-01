@@ -12,8 +12,8 @@ const Set<String> _cloudflareZoneTracingSensitive = <String>{};
 final class DataCloudflareZoneTracing extends Data {
   static const String tfType = 'cloudflare_zone_tracing';
 
-  DataCloudflareZoneTracing({
-    required super.localName,
+  DataCloudflareZoneTracing(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

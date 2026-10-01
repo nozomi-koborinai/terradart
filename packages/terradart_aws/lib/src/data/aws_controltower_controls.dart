@@ -10,8 +10,8 @@ const Set<String> _awsControltowerControlsSensitive = <String>{};
 final class DataAwsControltowerControls extends Data {
   static const String tfType = 'aws_controltower_controls';
 
-  DataAwsControltowerControls({
-    required super.localName,
+  DataAwsControltowerControls(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> targetIdentifier,
     super.provider,

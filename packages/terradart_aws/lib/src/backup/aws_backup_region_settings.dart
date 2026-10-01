@@ -10,8 +10,8 @@ const Set<String> _awsBackupRegionSettingsSensitive = <String>{};
 final class AwsBackupRegionSettings extends Resource {
   static const String tfType = 'aws_backup_region_settings';
 
-  AwsBackupRegionSettings({
-    required super.localName,
+  AwsBackupRegionSettings(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, bool>>? resourceTypeManagementPreference,
     required TfArg<Map<String, bool>> resourceTypeOptInPreference,

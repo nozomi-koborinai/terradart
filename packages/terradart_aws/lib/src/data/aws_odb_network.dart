@@ -11,8 +11,8 @@ const Set<String> _awsOdbNetworkSensitive = <String>{};
 final class DataAwsOdbNetwork extends Data {
   static const String tfType = 'aws_odb_network';
 
-  DataAwsOdbNetwork({
-    required super.localName,
+  DataAwsOdbNetwork(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

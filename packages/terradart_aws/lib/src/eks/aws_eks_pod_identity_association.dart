@@ -12,8 +12,8 @@ const Set<String> _awsEksPodIdentityAssociationSensitive = <String>{};
 final class AwsEksPodIdentityAssociation extends Resource {
   static const String tfType = 'aws_eks_pod_identity_association';
 
-  AwsEksPodIdentityAssociation({
-    required super.localName,
+  AwsEksPodIdentityAssociation(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<bool>? disableSessionTags,
     required TfArg<String> namespace,

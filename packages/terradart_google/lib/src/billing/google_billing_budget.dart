@@ -303,8 +303,8 @@ enum BillingBudgetSpendBasis implements TerraformEnum {
 final class GoogleBillingBudget extends Resource {
   static const String tfType = 'google_billing_budget';
 
-  GoogleBillingBudget({
-    required super.localName,
+  GoogleBillingBudget(
+    super.localName, {
     required TfArg<String> billingAccount,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

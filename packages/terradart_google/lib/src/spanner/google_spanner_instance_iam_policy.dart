@@ -17,8 +17,8 @@ const Set<String> _googleSpannerInstanceIamPolicySensitive = <String>{};
 final class GoogleSpannerInstanceIamPolicy extends Resource {
   static const String tfType = 'google_spanner_instance_iam_policy';
 
-  GoogleSpannerInstanceIamPolicy({
-    required super.localName,
+  GoogleSpannerInstanceIamPolicy(
+    super.localName, {
     required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? project,

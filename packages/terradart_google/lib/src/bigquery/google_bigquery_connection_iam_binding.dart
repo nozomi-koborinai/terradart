@@ -44,8 +44,8 @@ final class BigqueryConnectionIamBindingCondition {
 final class GoogleBigqueryConnectionIamBinding extends Resource {
   static const String tfType = 'google_bigquery_connection_iam_binding';
 
-  GoogleBigqueryConnectionIamBinding({
-    required super.localName,
+  GoogleBigqueryConnectionIamBinding(
+    super.localName, {
     required RefTo<GoogleBigqueryConnection> connection,
     TfArg<String>? location,
     required TfArg<String> role,

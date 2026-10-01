@@ -169,8 +169,8 @@ final class TranscribeLanguageModelInputDataConfig {
 final class AwsTranscribeLanguageModel extends Resource {
   static const String tfType = 'aws_transcribe_language_model';
 
-  AwsTranscribeLanguageModel({
-    required super.localName,
+  AwsTranscribeLanguageModel(
+    super.localName, {
     required TfArg<TranscribeLanguageModelBaseModelName> baseModelName,
     required TfArg<TranscribeLanguageModelLanguageCode> languageCode,
     required TfArg<String> modelName,

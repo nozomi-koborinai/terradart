@@ -252,8 +252,8 @@ final class ContainerAzureClusterNetworking {
 final class GoogleContainerAzureCluster extends Resource {
   static const String tfType = 'google_container_azure_cluster';
 
-  GoogleContainerAzureCluster({
-    required super.localName,
+  GoogleContainerAzureCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> azureRegion,

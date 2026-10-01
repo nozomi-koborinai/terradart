@@ -12,8 +12,8 @@ const Set<String> _awsBedrockagentcorePolicyEngineSensitive = <String>{};
 final class AwsBedrockagentcorePolicyEngine extends Resource {
   static const String tfType = 'aws_bedrockagentcore_policy_engine';
 
-  AwsBedrockagentcorePolicyEngine({
-    required super.localName,
+  AwsBedrockagentcorePolicyEngine(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<String> name,

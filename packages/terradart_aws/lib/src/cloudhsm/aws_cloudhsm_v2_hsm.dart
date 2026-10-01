@@ -79,8 +79,8 @@ final class CloudhsmV2HsmPlacementSubnetId extends CloudhsmV2HsmPlacement {
 final class AwsCloudhsmV2Hsm extends Resource {
   static const String tfType = 'aws_cloudhsm_v2_hsm';
 
-  AwsCloudhsmV2Hsm({
-    required super.localName,
+  AwsCloudhsmV2Hsm(
+    super.localName, {
     required CloudhsmV2HsmPlacement placement,
     required TfArg<String> clusterId,
     TfArg<String>? ipAddress,

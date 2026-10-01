@@ -10,8 +10,8 @@ const Set<String> _awsGrafanaWorkspaceSamlConfigurationSensitive = <String>{};
 final class AwsGrafanaWorkspaceSamlConfiguration extends Resource {
   static const String tfType = 'aws_grafana_workspace_saml_configuration';
 
-  AwsGrafanaWorkspaceSamlConfiguration({
-    required super.localName,
+  AwsGrafanaWorkspaceSamlConfiguration(
+    super.localName, {
     TfArg<List<String>>? adminRoleValues,
     TfArg<List<String>>? allowedOrganizations,
     required TfArg<List<String>> editorRoleValues,

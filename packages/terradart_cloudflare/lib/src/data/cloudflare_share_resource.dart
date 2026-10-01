@@ -55,8 +55,8 @@ enum DataShareResourceFilterStatus implements TerraformEnum {
 final class DataCloudflareShareResource extends Data {
   static const String tfType = 'cloudflare_share_resource';
 
-  DataCloudflareShareResource({
-    required super.localName,
+  DataCloudflareShareResource(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> shareId,
     TfArg<String>? shareResourceId,

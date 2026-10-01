@@ -10,8 +10,8 @@ const Set<String> _awsLocationTrackerAssociationSensitive = <String>{};
 final class AwsLocationTrackerAssociation extends Resource {
   static const String tfType = 'aws_location_tracker_association';
 
-  AwsLocationTrackerAssociation({
-    required super.localName,
+  AwsLocationTrackerAssociation(
+    super.localName, {
     required TfArg<String> consumerArn,
     TfArg<String>? region,
     required TfArg<String> trackerName,

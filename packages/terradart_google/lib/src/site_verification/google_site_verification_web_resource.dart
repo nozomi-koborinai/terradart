@@ -72,8 +72,8 @@ enum SiteVerificationWebResourceType implements TerraformEnum {
 final class GoogleSiteVerificationWebResource extends Resource {
   static const String tfType = 'google_site_verification_web_resource';
 
-  GoogleSiteVerificationWebResource({
-    required super.localName,
+  GoogleSiteVerificationWebResource(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<SiteVerificationWebResourceVerificationMethod>
     verificationMethod,

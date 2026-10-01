@@ -17,8 +17,8 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
   static const String tfType =
       'google_sql_database_instance_latest_recovery_time';
 
-  DataGoogleSqlDatabaseInstanceLatestRecoveryTime({
-    required super.localName,
+  DataGoogleSqlDatabaseInstanceLatestRecoveryTime(
+    super.localName, {
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     TfArg<String>? sourceInstanceDeletionTime,

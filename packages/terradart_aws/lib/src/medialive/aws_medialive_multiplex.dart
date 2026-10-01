@@ -40,8 +40,8 @@ final class MedialiveMultiplexSettings {
 final class AwsMedialiveMultiplex extends Resource {
   static const String tfType = 'aws_medialive_multiplex';
 
-  AwsMedialiveMultiplex({
-    required super.localName,
+  AwsMedialiveMultiplex(
+    super.localName, {
     required TfArg<List<String>> availabilityZones,
     required TfArg<String> name,
     TfArg<String>? region,

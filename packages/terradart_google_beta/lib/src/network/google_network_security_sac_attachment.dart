@@ -44,8 +44,8 @@ final class NetworkSecuritySacAttachmentSymantecOptions {
 final class GoogleNetworkSecuritySacAttachment extends Resource {
   static const String tfType = 'google_network_security_sac_attachment';
 
-  GoogleNetworkSecuritySacAttachment({
-    required super.localName,
+  GoogleNetworkSecuritySacAttachment(
+    super.localName, {
     TfArg<String>? country,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,

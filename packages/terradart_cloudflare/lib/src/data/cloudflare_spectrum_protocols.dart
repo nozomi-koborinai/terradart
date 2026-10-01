@@ -15,8 +15,8 @@ const Set<String> _cloudflareSpectrumProtocolsSensitive = <String>{};
 final class DataCloudflareSpectrumProtocols extends Data {
   static const String tfType = 'cloudflare_spectrum_protocols';
 
-  DataCloudflareSpectrumProtocols({
-    required super.localName,
+  DataCloudflareSpectrumProtocols(
+    super.localName, {
     TfArg<num>? maxItems,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

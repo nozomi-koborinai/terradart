@@ -12,8 +12,8 @@ const Set<String> _awsOdbIamRoleAssociationSensitive = <String>{};
 final class DataAwsOdbIamRoleAssociation extends Data {
   static const String tfType = 'aws_odb_iam_role_association';
 
-  DataAwsOdbIamRoleAssociation({
-    required super.localName,
+  DataAwsOdbIamRoleAssociation(
+    super.localName, {
     required RefTo<AwsIamRole> iamRoleArn,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

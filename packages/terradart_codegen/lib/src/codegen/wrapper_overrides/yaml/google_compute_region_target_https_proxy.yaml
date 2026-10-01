@@ -50,7 +50,7 @@ curatedDoc: |-
   /// Example (classic regional SSL certificate, regional HTTPS LB):
   /// ```dart
   /// final httpsProxy = GoogleComputeRegionTargetHttpsProxy(
-  ///   localName: 'lb_https',
+  ///   'lb_https',
   ///   name: TfArg.literal('lb-https-proxy'),
   ///   urlMap: regionUrlMap.ref,
   ///   region: TfArg.literal('us-central1'),

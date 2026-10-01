@@ -32,7 +32,7 @@ final class DialogflowSipTrunkStack extends Stack {
     // before the CX SIP trunk; both share the dialogflow API enablement.
     add(
       GoogleDialogflowAgent(
-        localName: 'agent',
+        'agent',
         displayName: .literal('terradart-agent'),
         defaultLanguageCode: .literal('en'),
         timeZone: .literal('Europe/Berlin'),
@@ -47,7 +47,7 @@ final class DialogflowSipTrunkStack extends Stack {
 
     add(
       GoogleDialogflowSipTrunk(
-        localName: 'carrier_trunk',
+        'carrier_trunk',
         location: .literal('europe-west3'),
         expectedHostname: .literal(['terradart-carrier.example.com']),
         displayName: .literal('terradart-carrier-trunk'),
@@ -59,7 +59,7 @@ final class DialogflowSipTrunkStack extends Stack {
     // or notifications — creating this does not start a conversation.
     add(
       GoogleDialogflowConversationProfile(
-        localName: 'demo_profile',
+        'demo_profile',
         displayName: .literal('terradart-profile'),
         location: .literal('global'),
         deletionPolicy: .literal('DELETE'),
@@ -71,7 +71,7 @@ final class DialogflowSipTrunkStack extends Stack {
     // not run the LLM. No published_model / inference / few-shot.
     add(
       GoogleDialogflowGenerator(
-        localName: 'demo_summarizer',
+        'demo_summarizer',
         location: .literal('global'),
         description: .literal('terradart summarization generator'),
         triggerEvent: .literal(.manualCall),
@@ -87,7 +87,7 @@ final class DialogflowSipTrunkStack extends Stack {
     // Apply-excluded leftover: location CMEK spec. Placeholder KMS key.
     add(
       GoogleDialogflowEncryptionSpec(
-        localName: 'cmek',
+        'cmek',
         location: .literal('europe-west3'),
         encryptionSpec: DialogflowEncryptionSpec(
           kmsKey: .literal(

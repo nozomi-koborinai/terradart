@@ -18,8 +18,8 @@ final class GoogleGeminiGibqObservabilitySettingBinding extends Resource {
   static const String tfType =
       'google_gemini_gibq_observability_setting_binding';
 
-  GoogleGeminiGibqObservabilitySettingBinding({
-    required super.localName,
+  GoogleGeminiGibqObservabilitySettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiGibqObservabilitySetting>
     gibqObservabilitySettingId,
     required TfArg<String> settingBindingId,

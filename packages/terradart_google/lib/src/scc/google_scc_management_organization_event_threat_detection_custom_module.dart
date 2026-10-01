@@ -37,8 +37,8 @@ final class GoogleSccManagementOrganizationEventThreatDetectionCustomModule
   static const String tfType =
       'google_scc_management_organization_event_threat_detection_custom_module';
 
-  GoogleSccManagementOrganizationEventThreatDetectionCustomModule({
-    required super.localName,
+  GoogleSccManagementOrganizationEventThreatDetectionCustomModule(
+    super.localName, {
     TfArg<String>? config,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

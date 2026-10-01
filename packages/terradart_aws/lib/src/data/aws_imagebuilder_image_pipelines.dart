@@ -30,8 +30,8 @@ final class DataImagebuilderImagePipelinesFilter {
 final class DataAwsImagebuilderImagePipelines extends Data {
   static const String tfType = 'aws_imagebuilder_image_pipelines';
 
-  DataAwsImagebuilderImagePipelines({
-    required super.localName,
+  DataAwsImagebuilderImagePipelines(
+    super.localName, {
     TfArg<String>? region,
     List<DataImagebuilderImagePipelinesFilter>? filter,
     super.provider,

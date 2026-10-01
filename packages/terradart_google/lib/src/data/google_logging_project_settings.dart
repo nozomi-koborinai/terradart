@@ -13,8 +13,8 @@ const Set<String> _googleLoggingProjectSettingsSensitive = <String>{};
 final class DataGoogleLoggingProjectSettings extends Data {
   static const String tfType = 'google_logging_project_settings';
 
-  DataGoogleLoggingProjectSettings({
-    required super.localName,
+  DataGoogleLoggingProjectSettings(
+    super.localName, {
     required TfArg<String> project,
     super.provider,
     super.timeouts,

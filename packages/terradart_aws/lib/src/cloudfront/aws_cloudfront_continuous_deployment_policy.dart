@@ -129,8 +129,8 @@ final class CloudfrontContinuousDeploymentPolicySessionStickinessConfig {
 final class AwsCloudfrontContinuousDeploymentPolicy extends Resource {
   static const String tfType = 'aws_cloudfront_continuous_deployment_policy';
 
-  AwsCloudfrontContinuousDeploymentPolicy({
-    required super.localName,
+  AwsCloudfrontContinuousDeploymentPolicy(
+    super.localName, {
     required TfArg<bool> enabled,
     List<CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNames>?
     stagingDistributionDnsNames,

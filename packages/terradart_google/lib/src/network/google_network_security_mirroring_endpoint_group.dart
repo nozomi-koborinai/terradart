@@ -94,8 +94,8 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
   static const String tfType =
       'google_network_security_mirroring_endpoint_group';
 
-  GoogleNetworkSecurityMirroringEndpointGroup({
-    required super.localName,
+  GoogleNetworkSecurityMirroringEndpointGroup(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> mirroringEndpointGroupId,
     required NetworkSecurityMirroringEndpointGroupDeploymentLink deploymentLink,

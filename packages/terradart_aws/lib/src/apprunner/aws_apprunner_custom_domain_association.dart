@@ -10,8 +10,8 @@ const Set<String> _awsApprunnerCustomDomainAssociationSensitive = <String>{};
 final class AwsApprunnerCustomDomainAssociation extends Resource {
   static const String tfType = 'aws_apprunner_custom_domain_association';
 
-  AwsApprunnerCustomDomainAssociation({
-    required super.localName,
+  AwsApprunnerCustomDomainAssociation(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<bool>? enableWwwSubdomain,
     TfArg<String>? region,

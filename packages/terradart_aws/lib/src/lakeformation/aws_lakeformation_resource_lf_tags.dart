@@ -208,8 +208,8 @@ final class LakeformationResourceLfTagsTableWithColumns {
 final class AwsLakeformationResourceLfTags extends Resource {
   static const String tfType = 'aws_lakeformation_resource_lf_tags';
 
-  AwsLakeformationResourceLfTags({
-    required super.localName,
+  AwsLakeformationResourceLfTags(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? region,
     required LakeformationResourceLfTagsResource resource,

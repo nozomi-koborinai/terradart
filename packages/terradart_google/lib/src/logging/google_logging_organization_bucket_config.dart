@@ -52,8 +52,8 @@ final class LoggingOrganizationBucketConfigIndexConfigs {
 final class GoogleLoggingOrganizationBucketConfig extends Resource {
   static const String tfType = 'google_logging_organization_bucket_config';
 
-  GoogleLoggingOrganizationBucketConfig({
-    required super.localName,
+  GoogleLoggingOrganizationBucketConfig(
+    super.localName, {
     required TfArg<String> bucketId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

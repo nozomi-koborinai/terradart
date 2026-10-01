@@ -10,8 +10,8 @@ const Set<String> _awsRoute53DelegationSetSensitive = <String>{};
 final class AwsRoute53DelegationSet extends Resource {
   static const String tfType = 'aws_route53_delegation_set';
 
-  AwsRoute53DelegationSet({
-    required super.localName,
+  AwsRoute53DelegationSet(
+    super.localName, {
     TfArg<String>? referenceName,
     super.lifecycle,
     super.dependsOn,

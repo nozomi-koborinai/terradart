@@ -20,8 +20,8 @@ const Set<String> _googleComputeTargetGrpcProxySensitive = <String>{};
 final class GoogleComputeTargetGrpcProxy extends Resource {
   static const String tfType = 'google_compute_target_grpc_proxy';
 
-  GoogleComputeTargetGrpcProxy({
-    required super.localName,
+  GoogleComputeTargetGrpcProxy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? urlMap,
     TfArg<String>? description,

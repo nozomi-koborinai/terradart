@@ -286,8 +286,8 @@ final class CustomerprofilesDomainMatchingRules {
 final class AwsCustomerprofilesDomain extends Resource {
   static const String tfType = 'aws_customerprofiles_domain';
 
-  AwsCustomerprofilesDomain({
-    required super.localName,
+  AwsCustomerprofilesDomain(
+    super.localName, {
     TfArg<String>? deadLetterQueueUrl,
     TfArg<String>? defaultEncryptionKey,
     required TfArg<num> defaultExpirationDays,

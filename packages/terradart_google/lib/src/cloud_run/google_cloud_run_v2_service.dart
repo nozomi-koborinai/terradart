@@ -1300,7 +1300,7 @@ final class CloudRunV2ServiceTraffic {
 /// Example (minimal hello-world service):
 /// ```dart
 /// final svc = GoogleCloudRunV2Service(
-///   localName: 'hello',
+///   'hello',
 ///   name: .literal('hello-svc'),
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2ServiceTemplate(
@@ -1320,7 +1320,7 @@ final class CloudRunV2ServiceTraffic {
 /// Example (with secret-backed env var + GCS volume):
 /// ```dart
 /// final api = GoogleCloudRunV2Service(
-///   localName: 'api',
+///   'api',
 ///   name: .literal('api'),
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2ServiceTemplate(
@@ -1363,8 +1363,8 @@ final class CloudRunV2ServiceTraffic {
 final class GoogleCloudRunV2Service extends Resource {
   static const String tfType = 'google_cloud_run_v2_service';
 
-  GoogleCloudRunV2Service({
-    required super.localName,
+  GoogleCloudRunV2Service(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required CloudRunV2ServiceTemplate template,

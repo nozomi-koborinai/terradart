@@ -117,8 +117,8 @@ enum HealthcheckTcpConfigMethod implements TerraformEnum {
 final class CloudflareHealthcheck extends Resource {
   static const String tfType = 'cloudflare_healthcheck';
 
-  CloudflareHealthcheck({
-    required super.localName,
+  CloudflareHealthcheck(
+    super.localName, {
     required TfArg<String> address,
     List<TfArg<HealthcheckCheckRegions>>? checkRegions,
     TfArg<num>? consecutiveFails,

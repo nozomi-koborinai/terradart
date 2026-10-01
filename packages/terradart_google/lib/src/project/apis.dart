@@ -40,7 +40,7 @@ abstract final class Apis {
     return [
       for (final endpoint in sorted)
         GoogleProjectService(
-          localName: _localName(localNamePrefix, endpoint),
+          _localName(localNamePrefix, endpoint),
           service: TfArg.literal(endpoint),
           disableOnDestroy: disableOnDestroy ?? TfArg.literal(false),
         ),
@@ -59,7 +59,7 @@ abstract final class Apis {
   ///
   /// add(
   ///   GoogleRedisInstance(
-  ///     localName: 'cache',
+  ///     'cache',
   ///     name: .literal('cache'),
   ///     memorySizeGb: .literal(1),
   ///     dependsOn: apiDeps,
@@ -128,7 +128,7 @@ abstract final class Apis {
     }
     final sleep = stack.add(
       TimeSleep(
-        localName: propagationLocalName ?? '${localNamePrefix}_propagation',
+        propagationLocalName ?? '${localNamePrefix}_propagation',
         createDuration: createDuration,
         triggers: TfArg.literal({
           for (final api in services) api.localName: api.id.interpolation,

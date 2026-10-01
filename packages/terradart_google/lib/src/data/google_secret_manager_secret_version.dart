@@ -16,8 +16,8 @@ const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
 final class DataGoogleSecretManagerSecretVersion extends Data {
   static const String tfType = 'google_secret_manager_secret_version';
 
-  DataGoogleSecretManagerSecretVersion({
-    required super.localName,
+  DataGoogleSecretManagerSecretVersion(
+    super.localName, {
     TfArg<bool>? fetchSecretData,
     TfArg<bool>? isSecretDataBase64,
     TfArg<String>? project,

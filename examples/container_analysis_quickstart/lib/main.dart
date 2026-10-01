@@ -40,7 +40,7 @@ final class ContainerAnalysisStack extends Stack {
     );
 
     final note = GoogleContainerAnalysisNote(
-      localName: 'attestor',
+      'attestor',
       name: .literal('terradart-attestor-note'),
       shortDescription: .literal('TerraDart Container Analysis note'),
       attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
@@ -51,7 +51,7 @@ final class ContainerAnalysisStack extends Stack {
     add(note);
 
     final viewer = GoogleServiceAccount(
-      localName: 'note_viewer',
+      'note_viewer',
       accountId: .literal('ca-note-viewer'),
       displayName: .literal('Container Analysis note viewer'),
     );
@@ -59,7 +59,7 @@ final class ContainerAnalysisStack extends Stack {
 
     add(
       GoogleContainerAnalysisNoteIamMember(
-        localName: 'note_viewer',
+        'note_viewer',
         note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
         member: viewer.principal,
@@ -69,7 +69,7 @@ final class ContainerAnalysisStack extends Stack {
 
     final noteBinding = add(
       GoogleContainerAnalysisNoteIamBinding(
-        localName: 'note_viewer_binding',
+        'note_viewer_binding',
         note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
         members: .literal([viewer.principal]),
@@ -79,7 +79,7 @@ final class ContainerAnalysisStack extends Stack {
 
     add(
       GoogleContainerAnalysisNoteIamPolicy(
-        localName: 'note_viewer_policy',
+        'note_viewer_policy',
         note: note.ref,
         policyData: .literal(
           _iamPolicyDataJson(

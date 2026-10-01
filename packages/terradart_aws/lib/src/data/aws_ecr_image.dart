@@ -10,8 +10,8 @@ const Set<String> _awsEcrImageSensitive = <String>{};
 final class DataAwsEcrImage extends Data {
   static const String tfType = 'aws_ecr_image';
 
-  DataAwsEcrImage({
-    required super.localName,
+  DataAwsEcrImage(
+    super.localName, {
     TfArg<String>? imageDigest,
     TfArg<String>? imageTag,
     TfArg<bool>? mostRecent,

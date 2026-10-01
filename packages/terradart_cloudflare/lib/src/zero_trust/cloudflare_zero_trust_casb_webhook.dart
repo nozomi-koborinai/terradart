@@ -63,8 +63,8 @@ final class ZeroTrustCasbWebhookHeaders {
 final class CloudflareZeroTrustCasbWebhook extends Resource {
   static const String tfType = 'cloudflare_zero_trust_casb_webhook';
 
-  CloudflareZeroTrustCasbWebhook({
-    required super.localName,
+  CloudflareZeroTrustCasbWebhook(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> label,
     required TfArg<String> destinationUrl,

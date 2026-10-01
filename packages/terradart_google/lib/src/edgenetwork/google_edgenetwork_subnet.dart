@@ -41,8 +41,8 @@ enum EdgenetworkSubnetState implements TerraformEnum {
 final class GoogleEdgenetworkSubnet extends Resource {
   static const String tfType = 'google_edgenetwork_subnet';
 
-  GoogleEdgenetworkSubnet({
-    required super.localName,
+  GoogleEdgenetworkSubnet(
+    super.localName, {
     required TfArg<String> subnetId,
     required RefTo<GoogleEdgenetworkNetwork> network,
     required TfArg<String> location,

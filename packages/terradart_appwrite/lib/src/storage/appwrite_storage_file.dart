@@ -20,8 +20,8 @@ const Set<String> _appwriteStorageFileSensitive = <String>{};
 final class AppwriteStorageFile extends Resource {
   static const String tfType = 'appwrite_storage_file';
 
-  AppwriteStorageFile({
-    required super.localName,
+  AppwriteStorageFile(
+    super.localName, {
     required RefTo<AppwriteStorageBucket> bucketId,
     required TfArg<String> filePath,
     TfArg<String>? name,

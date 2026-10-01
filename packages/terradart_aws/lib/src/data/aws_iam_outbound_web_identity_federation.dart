@@ -11,8 +11,8 @@ const Set<String> _awsIamOutboundWebIdentityFederationSensitive = <String>{};
 final class DataAwsIamOutboundWebIdentityFederation extends Data {
   static const String tfType = 'aws_iam_outbound_web_identity_federation';
 
-  DataAwsIamOutboundWebIdentityFederation({
-    required super.localName,
+  DataAwsIamOutboundWebIdentityFederation(
+    super.localName, {
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

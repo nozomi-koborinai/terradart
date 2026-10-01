@@ -12,8 +12,8 @@ final class AwsCloudtrailOrganizationDelegatedAdminAccount extends Resource {
   static const String tfType =
       'aws_cloudtrail_organization_delegated_admin_account';
 
-  AwsCloudtrailOrganizationDelegatedAdminAccount({
-    required super.localName,
+  AwsCloudtrailOrganizationDelegatedAdminAccount(
+    super.localName, {
     required TfArg<String> accountId,
     super.lifecycle,
     super.dependsOn,

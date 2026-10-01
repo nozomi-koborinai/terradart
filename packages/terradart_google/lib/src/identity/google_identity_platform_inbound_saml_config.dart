@@ -86,8 +86,8 @@ final class IdentityPlatformInboundSamlConfigSpConfig {
 final class GoogleIdentityPlatformInboundSamlConfig extends Resource {
   static const String tfType = 'google_identity_platform_inbound_saml_config';
 
-  GoogleIdentityPlatformInboundSamlConfig({
-    required super.localName,
+  GoogleIdentityPlatformInboundSamlConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     TfArg<bool>? enabled,

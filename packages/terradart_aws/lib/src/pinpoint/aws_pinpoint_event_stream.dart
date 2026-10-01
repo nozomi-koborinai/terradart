@@ -12,8 +12,8 @@ const Set<String> _awsPinpointEventStreamSensitive = <String>{};
 final class AwsPinpointEventStream extends Resource {
   static const String tfType = 'aws_pinpoint_event_stream';
 
-  AwsPinpointEventStream({
-    required super.localName,
+  AwsPinpointEventStream(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> destinationStreamArn,
     TfArg<String>? region,

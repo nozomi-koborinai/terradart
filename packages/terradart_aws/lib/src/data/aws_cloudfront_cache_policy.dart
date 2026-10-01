@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontCachePolicySensitive = <String>{};
 final class DataAwsCloudfrontCachePolicy extends Data {
   static const String tfType = 'aws_cloudfront_cache_policy';
 
-  DataAwsCloudfrontCachePolicy({
-    required super.localName,
+  DataAwsCloudfrontCachePolicy(
+    super.localName, {
     TfArg<String>? name,
     super.provider,
     super.timeouts,

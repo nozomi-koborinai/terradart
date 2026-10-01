@@ -20,8 +20,8 @@ enum VpclatticeServiceNetworkAuthType implements TerraformEnum {
 final class AwsVpclatticeServiceNetwork extends Resource {
   static const String tfType = 'aws_vpclattice_service_network';
 
-  AwsVpclatticeServiceNetwork({
-    required super.localName,
+  AwsVpclatticeServiceNetwork(
+    super.localName, {
     TfArg<VpclatticeServiceNetworkAuthType>? authType,
     required TfArg<String> name,
     TfArg<String>? region,

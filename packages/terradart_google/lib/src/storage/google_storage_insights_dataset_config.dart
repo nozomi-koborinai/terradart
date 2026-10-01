@@ -389,7 +389,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 /// Example (project scope, unlinked):
 /// ```dart
 /// GoogleStorageInsightsDatasetConfig(
-///   localName: 'inventory',
+///   'inventory',
 ///   datasetConfigId: TfArg.literal('terradart-insights'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   retentionPeriodDays: TfArg.literal(1),
@@ -406,8 +406,8 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 final class GoogleStorageInsightsDatasetConfig extends Resource {
   static const String tfType = 'google_storage_insights_dataset_config';
 
-  GoogleStorageInsightsDatasetConfig({
-    required super.localName,
+  GoogleStorageInsightsDatasetConfig(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> datasetConfigId,
     required TfArg<num> retentionPeriodDays,

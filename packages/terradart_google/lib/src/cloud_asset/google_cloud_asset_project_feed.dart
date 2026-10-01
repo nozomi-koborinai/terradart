@@ -100,7 +100,7 @@ final class CloudAssetProjectFeedPubsubDestination {
 /// Example:
 /// ```dart
 /// GoogleCloudAssetProjectFeed(
-///   localName: 'project_feed',
+///   'project_feed',
 ///   feedId: TfArg.literal('terradart-project-feed'),
 ///   assetTypes: TfArg.literal(const [
 ///     'cloudresourcemanager.googleapis.com/Project',
@@ -116,8 +116,8 @@ final class CloudAssetProjectFeedPubsubDestination {
 final class GoogleCloudAssetProjectFeed extends Resource {
   static const String tfType = 'google_cloud_asset_project_feed';
 
-  GoogleCloudAssetProjectFeed({
-    required super.localName,
+  GoogleCloudAssetProjectFeed(
+    super.localName, {
     required TfArg<String> feedId,
     TfArg<List<String>>? assetTypes,
     TfArg<List<String>>? assetNames,

@@ -11,8 +11,8 @@ const Set<String> _awsSesDomainIdentitySensitive = <String>{};
 final class DataAwsSesDomainIdentity extends Data {
   static const String tfType = 'aws_ses_domain_identity';
 
-  DataAwsSesDomainIdentity({
-    required super.localName,
+  DataAwsSesDomainIdentity(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? region,
     super.provider,

@@ -42,8 +42,8 @@ final class CloudRunV2JobIamBindingCondition {
 final class GoogleCloudRunV2JobIamBinding extends Resource {
   static const String tfType = 'google_cloud_run_v2_job_iam_binding';
 
-  GoogleCloudRunV2JobIamBinding({
-    required super.localName,
+  GoogleCloudRunV2JobIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudRunV2Job> job,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

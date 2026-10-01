@@ -11,8 +11,8 @@ const Set<String> _awsGlueCatalogSensitive = <String>{};
 final class DataAwsGlueCatalog extends Data {
   static const String tfType = 'aws_glue_catalog';
 
-  DataAwsGlueCatalog({
-    required super.localName,
+  DataAwsGlueCatalog(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

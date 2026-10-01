@@ -14,8 +14,8 @@ const Set<String> _googleEventarcGoogleChannelConfigSensitive = <String>{};
 final class GoogleEventarcGoogleChannelConfig extends Resource {
   static const String tfType = 'google_eventarc_google_channel_config';
 
-  GoogleEventarcGoogleChannelConfig({
-    required super.localName,
+  GoogleEventarcGoogleChannelConfig(
+    super.localName, {
     RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     required TfArg<String> location,
     required TfArg<String> name,

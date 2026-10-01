@@ -28,8 +28,8 @@ final class GoogleNetworkSecurityMirroringDeploymentGroup extends Resource {
   static const String tfType =
       'google_network_security_mirroring_deployment_group';
 
-  GoogleNetworkSecurityMirroringDeploymentGroup({
-    required super.localName,
+  GoogleNetworkSecurityMirroringDeploymentGroup(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> mirroringDeploymentGroupId,
     required RefTo<GoogleComputeNetwork> network,

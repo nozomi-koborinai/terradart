@@ -12,8 +12,8 @@ final class AwsWorkspaceswebDataProtectionSettingsAssociation extends Resource {
   static const String tfType =
       'aws_workspacesweb_data_protection_settings_association';
 
-  AwsWorkspaceswebDataProtectionSettingsAssociation({
-    required super.localName,
+  AwsWorkspaceswebDataProtectionSettingsAssociation(
+    super.localName, {
     required TfArg<String> dataProtectionSettingsArn,
     required TfArg<String> portalArn,
     TfArg<String>? region,

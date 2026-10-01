@@ -47,8 +47,8 @@ final class ApigeeAppGroupAttributes {
 final class GoogleApigeeAppGroup extends Resource {
   static const String tfType = 'google_apigee_app_group';
 
-  GoogleApigeeAppGroup({
-    required super.localName,
+  GoogleApigeeAppGroup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     TfArg<String>? displayName,

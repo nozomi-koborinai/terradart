@@ -13,8 +13,8 @@ const Set<String> _googleDataplexGlossaryCategorySensitive = <String>{};
 final class GoogleDataplexGlossaryCategory extends Resource {
   static const String tfType = 'google_dataplex_glossary_category';
 
-  GoogleDataplexGlossaryCategory({
-    required super.localName,
+  GoogleDataplexGlossaryCategory(
+    super.localName, {
     TfArg<String>? categoryId,
     TfArg<String>? glossaryId,
     required TfArg<String> parent,

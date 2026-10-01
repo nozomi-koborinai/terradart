@@ -11,8 +11,8 @@ const Set<String> _awsEksAddonSensitive = <String>{};
 final class DataAwsEksAddon extends Data {
   static const String tfType = 'aws_eks_addon';
 
-  DataAwsEksAddon({
-    required super.localName,
+  DataAwsEksAddon(
+    super.localName, {
     required TfArg<String> addonName,
     required TfArg<String> clusterName,
     TfArg<String>? region,

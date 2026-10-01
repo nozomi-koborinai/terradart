@@ -71,8 +71,8 @@ final class DevopsguruNotificationChannelSns {
 final class AwsDevopsguruNotificationChannel extends Resource {
   static const String tfType = 'aws_devopsguru_notification_channel';
 
-  AwsDevopsguruNotificationChannel({
-    required super.localName,
+  AwsDevopsguruNotificationChannel(
+    super.localName, {
     TfArg<String>? region,
     List<DevopsguruNotificationChannelFilters>? filters,
     List<DevopsguruNotificationChannelSns>? sns,

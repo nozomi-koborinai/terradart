@@ -12,8 +12,8 @@ const Set<String> _awsLambdaProvisionedConcurrencyConfigSensitive = <String>{};
 final class AwsLambdaProvisionedConcurrencyConfig extends Resource {
   static const String tfType = 'aws_lambda_provisioned_concurrency_config';
 
-  AwsLambdaProvisionedConcurrencyConfig({
-    required super.localName,
+  AwsLambdaProvisionedConcurrencyConfig(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<num> provisionedConcurrentExecutions,
     required TfArg<String> qualifier,

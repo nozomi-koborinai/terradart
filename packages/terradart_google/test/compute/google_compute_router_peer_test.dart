@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   test('advertiseMode is a typed enum and serializes raw', () {
     final peer = GoogleComputeRouterPeer(
-      localName: 'peer',
+      'peer',
       name: TfArg.literal('peer'),
       router: RefTo.literal('router'),
       interface: TfArg.literal('if-0'),

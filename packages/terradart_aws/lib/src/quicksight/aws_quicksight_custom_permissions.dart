@@ -122,8 +122,8 @@ final class QuicksightCustomPermissionsCapabilities {
 final class AwsQuicksightCustomPermissions extends Resource {
   static const String tfType = 'aws_quicksight_custom_permissions';
 
-  AwsQuicksightCustomPermissions({
-    required super.localName,
+  AwsQuicksightCustomPermissions(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> customPermissionsName,
     TfArg<String>? region,

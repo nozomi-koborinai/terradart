@@ -16,8 +16,8 @@ const Set<String> _googleIapWebCloudRunServiceIamPolicySensitive = <String>{};
 final class GoogleIapWebCloudRunServiceIamPolicy extends Resource {
   static const String tfType = 'google_iap_web_cloud_run_service_iam_policy';
 
-  GoogleIapWebCloudRunServiceIamPolicy({
-    required super.localName,
+  GoogleIapWebCloudRunServiceIamPolicy(
+    super.localName, {
     required TfArg<String> cloudRunServiceName,
     required TfArg<String> policyData,
     TfArg<String>? location,

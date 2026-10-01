@@ -24,8 +24,8 @@ final class DataplexLakeMetastore {
 final class GoogleDataplexLake extends Resource {
   static const String tfType = 'google_dataplex_lake';
 
-  GoogleDataplexLake({
-    required super.localName,
+  GoogleDataplexLake(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? displayName,

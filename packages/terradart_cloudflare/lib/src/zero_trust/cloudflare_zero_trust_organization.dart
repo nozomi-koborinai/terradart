@@ -209,8 +209,8 @@ enum ZeroTrustOrganizationAction implements TerraformEnum {
 final class CloudflareZeroTrustOrganization extends Resource {
   static const String tfType = 'cloudflare_zero_trust_organization';
 
-  CloudflareZeroTrustOrganization({
-    required super.localName,
+  CloudflareZeroTrustOrganization(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<bool>? allowAuthenticateViaWarp,
     TfArg<String>? authDomain,

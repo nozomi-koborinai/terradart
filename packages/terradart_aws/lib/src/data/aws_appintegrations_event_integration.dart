@@ -11,8 +11,8 @@ const Set<String> _awsAppintegrationsEventIntegrationSensitive = <String>{};
 final class DataAwsAppintegrationsEventIntegration extends Data {
   static const String tfType = 'aws_appintegrations_event_integration';
 
-  DataAwsAppintegrationsEventIntegration({
-    required super.localName,
+  DataAwsAppintegrationsEventIntegration(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

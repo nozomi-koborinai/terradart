@@ -38,8 +38,8 @@ final class DataCatalogTagTemplateIamMemberCondition {
 final class GoogleDataCatalogTagTemplateIamMember extends Resource {
   static const String tfType = 'google_data_catalog_tag_template_iam_member';
 
-  GoogleDataCatalogTagTemplateIamMember({
-    required super.localName,
+  GoogleDataCatalogTagTemplateIamMember(
+    super.localName, {
     required RefTo<GoogleDataCatalogTagTemplate> tagTemplate,
     TfArg<String>? region,
     required TfArg<String> role,

@@ -61,7 +61,7 @@ curatedDoc: |-
   /// Example (internal application LB backend, IAP-protected):
   /// ```dart
   /// final api = GoogleComputeRegionBackendService(
-  ///   localName: 'api',
+  ///   'api',
   ///   name: TfArg.literal('api-rbs'),
   ///   region: TfArg.literal('asia-northeast1'),
   ///   protocol: TfArg.literal(RegionBackendServiceProtocol.https),

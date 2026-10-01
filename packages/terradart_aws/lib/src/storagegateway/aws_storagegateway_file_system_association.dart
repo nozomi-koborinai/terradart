@@ -28,8 +28,8 @@ final class StoragegatewayFileSystemAssociationCacheAttributes {
 final class AwsStoragegatewayFileSystemAssociation extends Resource {
   static const String tfType = 'aws_storagegateway_file_system_association';
 
-  AwsStoragegatewayFileSystemAssociation({
-    required super.localName,
+  AwsStoragegatewayFileSystemAssociation(
+    super.localName, {
     TfArg<String>? auditDestinationArn,
     required TfArg<String> gatewayArn,
     required TfArg<String> locationArn,

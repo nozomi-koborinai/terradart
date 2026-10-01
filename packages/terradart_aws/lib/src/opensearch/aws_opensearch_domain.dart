@@ -759,8 +759,8 @@ final class OpensearchDomainVpcOptions {
 final class AwsOpensearchDomain extends Resource {
   static const String tfType = 'aws_opensearch_domain';
 
-  AwsOpensearchDomain({
-    required super.localName,
+  AwsOpensearchDomain(
+    super.localName, {
     TfArg<String>? accessPolicies,
     TfArg<Map<String, String>>? advancedOptions,
     required TfArg<String> domainName,

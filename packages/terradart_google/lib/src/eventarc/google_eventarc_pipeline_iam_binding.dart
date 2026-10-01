@@ -43,8 +43,8 @@ final class EventarcPipelineIamBindingCondition {
 final class GoogleEventarcPipelineIamBinding extends Resource {
   static const String tfType = 'google_eventarc_pipeline_iam_binding';
 
-  GoogleEventarcPipelineIamBinding({
-    required super.localName,
+  GoogleEventarcPipelineIamBinding(
+    super.localName, {
     required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

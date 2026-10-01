@@ -15,8 +15,8 @@ const Set<String> _cloudflareEmailSecurityDomainsSensitive = <String>{};
 final class DataCloudflareEmailSecurityDomains extends Data {
   static const String tfType = 'cloudflare_email_security_domains';
 
-  DataCloudflareEmailSecurityDomains({
-    required super.localName,
+  DataCloudflareEmailSecurityDomains(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? activeDeliveryMode,
     TfArg<String>? allowedDeliveryMode,

@@ -309,8 +309,8 @@ final class ContainerAwsNodePoolSurgeSettings {
 final class GoogleContainerAwsNodePool extends Resource {
   static const String tfType = 'google_container_aws_node_pool';
 
-  GoogleContainerAwsNodePool({
-    required super.localName,
+  GoogleContainerAwsNodePool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> cluster,

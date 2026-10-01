@@ -21,8 +21,8 @@ enum ConnectInstanceIdentityManagementType implements TerraformEnum {
 final class AwsConnectInstance extends Resource {
   static const String tfType = 'aws_connect_instance';
 
-  AwsConnectInstance({
-    required super.localName,
+  AwsConnectInstance(
+    super.localName, {
     TfArg<bool>? autoResolveBestVoicesEnabled,
     TfArg<bool>? contactFlowLogsEnabled,
     TfArg<bool>? contactLensEnabled,

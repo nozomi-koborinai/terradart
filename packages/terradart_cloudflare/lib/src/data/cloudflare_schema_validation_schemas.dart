@@ -31,8 +31,8 @@ final class DataSchemaValidationSchemasFilter {
 final class DataCloudflareSchemaValidationSchemas extends Data {
   static const String tfType = 'cloudflare_schema_validation_schemas';
 
-  DataCloudflareSchemaValidationSchemas({
-    required super.localName,
+  DataCloudflareSchemaValidationSchemas(
+    super.localName, {
     TfArg<bool>? omitSource,
     TfArg<String>? schemaId,
     RefTo<CloudflareZone>? zoneId,

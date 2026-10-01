@@ -42,7 +42,7 @@ final class ContainerAnalysisNoteIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleContainerAnalysisNoteIamMember(
-///   localName: 'note_viewer',
+///   'note_viewer',
 ///   note: note.ref,
 ///   role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
 ///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),
@@ -51,8 +51,8 @@ final class ContainerAnalysisNoteIamMemberCondition {
 final class GoogleContainerAnalysisNoteIamMember extends Resource {
   static const String tfType = 'google_container_analysis_note_iam_member';
 
-  GoogleContainerAnalysisNoteIamMember({
-    required super.localName,
+  GoogleContainerAnalysisNoteIamMember(
+    super.localName, {
     required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> role,
     required IamPrincipal member,

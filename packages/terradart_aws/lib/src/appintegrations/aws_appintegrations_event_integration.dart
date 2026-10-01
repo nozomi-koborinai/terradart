@@ -22,8 +22,8 @@ final class AppintegrationsEventIntegrationEventFilter {
 final class AwsAppintegrationsEventIntegration extends Resource {
   static const String tfType = 'aws_appintegrations_event_integration';
 
-  AwsAppintegrationsEventIntegration({
-    required super.localName,
+  AwsAppintegrationsEventIntegration(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> eventbridgeBus,
     required TfArg<String> name,

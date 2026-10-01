@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesAppRootAgentAssociation(
-  ///   localName: 'root',
+  ///   'root',
   ///   appId: app.ref,
   ///   agentId: agent.agentId,
   /// );

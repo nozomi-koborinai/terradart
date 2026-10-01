@@ -11,8 +11,8 @@ const Set<String> _awsRoute53DelegationSetSensitive = <String>{};
 final class DataAwsRoute53DelegationSet extends Data {
   static const String tfType = 'aws_route53_delegation_set';
 
-  DataAwsRoute53DelegationSet({
-    required super.localName,
+  DataAwsRoute53DelegationSet(
+    super.localName, {
     required TfArg<String> id,
     super.provider,
     super.timeouts,

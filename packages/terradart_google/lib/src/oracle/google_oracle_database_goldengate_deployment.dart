@@ -170,8 +170,8 @@ final class OracleDatabaseGoldengateDeploymentOggData {
 final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
   static const String tfType = 'google_oracle_database_goldengate_deployment';
 
-  GoogleOracleDatabaseGoldengateDeployment({
-    required super.localName,
+  GoogleOracleDatabaseGoldengateDeployment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> goldengateDeploymentId,
     required TfArg<String> displayName,

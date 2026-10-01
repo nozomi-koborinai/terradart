@@ -12,8 +12,8 @@ final class AwsEc2TransitGatewayPeeringAttachmentAccepter extends Resource {
   static const String tfType =
       'aws_ec2_transit_gateway_peering_attachment_accepter';
 
-  AwsEc2TransitGatewayPeeringAttachmentAccepter({
-    required super.localName,
+  AwsEc2TransitGatewayPeeringAttachmentAccepter(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayAttachmentId,

@@ -175,8 +175,8 @@ final class SccProjectCustomModuleResourceSelector {
 final class GoogleSccProjectCustomModule extends Resource {
   static const String tfType = 'google_scc_project_custom_module';
 
-  GoogleSccProjectCustomModule({
-    required super.localName,
+  GoogleSccProjectCustomModule(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required TfArg<SccProjectCustomModuleEnablementState> enablementState,

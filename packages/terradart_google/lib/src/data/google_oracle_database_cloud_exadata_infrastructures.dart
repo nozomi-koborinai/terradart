@@ -15,8 +15,8 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructures extends Data {
   static const String tfType =
       'google_oracle_database_cloud_exadata_infrastructures';
 
-  DataGoogleOracleDatabaseCloudExadataInfrastructures({
-    required super.localName,
+  DataGoogleOracleDatabaseCloudExadataInfrastructures(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

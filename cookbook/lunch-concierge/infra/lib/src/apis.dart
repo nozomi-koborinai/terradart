@@ -30,7 +30,7 @@ LunchApis addApisAndRepository(Stack stack) {
 
   final vertexApi = stack.add(
     GoogleProjectService(
-      localName: 'api_aiplatform',
+      'api_aiplatform',
       service: .literal('aiplatform.googleapis.com'),
       disableOnDestroy: .literal(false),
     ),
@@ -38,7 +38,7 @@ LunchApis addApisAndRepository(Stack stack) {
 
   final iapApi = stack.add(
     GoogleProjectService(
-      localName: 'api_iap',
+      'api_iap',
       service: .literal('iap.googleapis.com'),
       disableOnDestroy: .literal(false),
     ),
@@ -46,7 +46,7 @@ LunchApis addApisAndRepository(Stack stack) {
 
   stack.add(
     GoogleArtifactRegistryRepository(
-      localName: 'app_images',
+      'app_images',
       repositoryId: .literal(repositoryId),
       format: .literal('DOCKER'),
       location: .literal(region),

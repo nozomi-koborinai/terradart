@@ -11,8 +11,8 @@ const Set<String> _awsLambdaLayerVersionSensitive = <String>{};
 final class DataAwsLambdaLayerVersion extends Data {
   static const String tfType = 'aws_lambda_layer_version';
 
-  DataAwsLambdaLayerVersion({
-    required super.localName,
+  DataAwsLambdaLayerVersion(
+    super.localName, {
     TfArg<String>? compatibleArchitecture,
     TfArg<String>? compatibleRuntime,
     TfArg<String>? layerName,

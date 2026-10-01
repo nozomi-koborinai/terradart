@@ -14,8 +14,8 @@ const Set<String> _awsRdsExportTaskSensitive = <String>{};
 final class AwsRdsExportTask extends Resource {
   static const String tfType = 'aws_rds_export_task';
 
-  AwsRdsExportTask({
-    required super.localName,
+  AwsRdsExportTask(
+    super.localName, {
     TfArg<List<String>>? exportOnly,
     required TfArg<String> exportTaskIdentifier,
     required RefTo<AwsIamRole> iamRoleArn,

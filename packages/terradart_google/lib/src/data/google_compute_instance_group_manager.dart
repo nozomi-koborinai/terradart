@@ -14,8 +14,8 @@ const Set<String> _googleComputeInstanceGroupManagerSensitive = <String>{};
 final class DataGoogleComputeInstanceGroupManager extends Data {
   static const String tfType = 'google_compute_instance_group_manager';
 
-  DataGoogleComputeInstanceGroupManager({
-    required super.localName,
+  DataGoogleComputeInstanceGroupManager(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLink,

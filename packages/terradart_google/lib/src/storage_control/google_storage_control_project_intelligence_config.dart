@@ -255,7 +255,7 @@ final class StorageControlProjectIntelligenceConfigIncludedCloudStorageLocations
 /// Example:
 /// ```dart
 /// GoogleStorageControlProjectIntelligenceConfig(
-///   localName: 'intelligence',
+///   'intelligence',
 ///   name: TfArg.literal(projectId),
 ///   editionConfig: TfArg.literal(
 ///     StorageControlProjectIntelligenceConfigEditionConfig.disabled,
@@ -266,8 +266,8 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
   static const String tfType =
       'google_storage_control_project_intelligence_config';
 
-  GoogleStorageControlProjectIntelligenceConfig({
-    required super.localName,
+  GoogleStorageControlProjectIntelligenceConfig(
+    super.localName, {
     required TfArg<String> name,
     TfArg<StorageControlProjectIntelligenceConfigEditionConfig>? editionConfig,
     StorageControlProjectIntelligenceConfigFilter? filter,

@@ -10,8 +10,8 @@ const Set<String> _awsVpcEndpointPolicySensitive = <String>{};
 final class AwsVpcEndpointPolicy extends Resource {
   static const String tfType = 'aws_vpc_endpoint_policy';
 
-  AwsVpcEndpointPolicy({
-    required super.localName,
+  AwsVpcEndpointPolicy(
+    super.localName, {
     TfArg<String>? policy,
     TfArg<String>? region,
     required TfArg<String> vpcEndpointId,

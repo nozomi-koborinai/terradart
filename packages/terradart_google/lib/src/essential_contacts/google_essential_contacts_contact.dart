@@ -12,8 +12,8 @@ const Set<String> _googleEssentialContactsContactSensitive = <String>{};
 final class GoogleEssentialContactsContact extends Resource {
   static const String tfType = 'google_essential_contacts_contact';
 
-  GoogleEssentialContactsContact({
-    required super.localName,
+  GoogleEssentialContactsContact(
+    super.localName, {
     required TfArg<String> parent,
     required TfArg<String> email,
     required TfArg<String> languageTag,

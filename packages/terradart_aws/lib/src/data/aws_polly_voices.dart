@@ -20,8 +20,8 @@ final class DataPollyVoices {
 final class DataAwsPollyVoices extends Data {
   static const String tfType = 'aws_polly_voices';
 
-  DataAwsPollyVoices({
-    required super.localName,
+  DataAwsPollyVoices(
+    super.localName, {
     TfArg<String>? engine,
     TfArg<bool>? includeAdditionalLanguageCodes,
     TfArg<String>? languageCode,

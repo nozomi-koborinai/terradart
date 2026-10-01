@@ -44,8 +44,8 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_access_mtls_hostname_settings';
 
-  CloudflareZeroTrustAccessMtlsHostnameSettings({
-    required super.localName,
+  CloudflareZeroTrustAccessMtlsHostnameSettings(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     RefTo<CloudflareZone>? zoneId,
     required List<ZeroTrustAccessMtlsHostnameSettings> settings,

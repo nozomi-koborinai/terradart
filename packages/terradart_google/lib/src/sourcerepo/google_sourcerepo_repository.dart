@@ -55,8 +55,8 @@ enum SourcerepoRepositoryMessageFormat implements TerraformEnum {
 final class GoogleSourcerepoRepository extends Resource {
   static const String tfType = 'google_sourcerepo_repository';
 
-  GoogleSourcerepoRepository({
-    required super.localName,
+  GoogleSourcerepoRepository(
+    super.localName, {
     required TfArg<String> name,
     TfArg<bool>? createIgnoreAlreadyExists,
     List<SourcerepoRepositoryPubsubConfigs>? pubsubConfigs,

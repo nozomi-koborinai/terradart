@@ -64,7 +64,7 @@ curatedDoc: |-
   /// Example (external HTTPS L7 Application LB frontend):
   /// ```dart
   /// final feFwd = GoogleComputeGlobalForwardingRule(
-  ///   localName: 'fe',
+  ///   'fe',
   ///   name: TfArg.literal('lb-https-frontend'),
   ///   target: httpsProxy.selfLink,
   ///   ipAddress: lbVip.selfLink,

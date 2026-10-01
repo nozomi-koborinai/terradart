@@ -40,8 +40,8 @@ final class DataMoqRelayFilter {
 final class DataCloudflareMoqRelay extends Data {
   static const String tfType = 'cloudflare_moq_relay';
 
-  DataCloudflareMoqRelay({
-    required super.localName,
+  DataCloudflareMoqRelay(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? relayId,
     DataMoqRelayFilter? filter,

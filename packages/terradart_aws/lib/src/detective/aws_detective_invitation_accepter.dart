@@ -10,8 +10,8 @@ const Set<String> _awsDetectiveInvitationAccepterSensitive = <String>{};
 final class AwsDetectiveInvitationAccepter extends Resource {
   static const String tfType = 'aws_detective_invitation_accepter';
 
-  AwsDetectiveInvitationAccepter({
-    required super.localName,
+  AwsDetectiveInvitationAccepter(
+    super.localName, {
     required TfArg<String> graphArn,
     TfArg<String>? region,
     super.lifecycle,

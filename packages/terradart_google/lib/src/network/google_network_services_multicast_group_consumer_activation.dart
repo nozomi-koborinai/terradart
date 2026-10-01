@@ -42,8 +42,8 @@ final class GoogleNetworkServicesMulticastGroupConsumerActivation
   static const String tfType =
       'google_network_services_multicast_group_consumer_activation';
 
-  GoogleNetworkServicesMulticastGroupConsumerActivation({
-    required super.localName,
+  GoogleNetworkServicesMulticastGroupConsumerActivation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastGroupConsumerActivationId,
     required TfArg<String> multicastConsumerAssociation,

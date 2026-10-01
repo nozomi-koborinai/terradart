@@ -181,8 +181,8 @@ final class BiglakeIcebergCatalogRestrictedLocationsConfig {
 final class GoogleBiglakeIcebergCatalog extends Resource {
   static const String tfType = 'google_biglake_iceberg_catalog';
 
-  GoogleBiglakeIcebergCatalog({
-    required super.localName,
+  GoogleBiglakeIcebergCatalog(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<BiglakeIcebergCatalogType> catalogType,
     TfArg<BiglakeIcebergCatalogCredentialMode>? credentialMode,

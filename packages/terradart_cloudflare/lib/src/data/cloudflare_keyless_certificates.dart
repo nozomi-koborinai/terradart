@@ -15,8 +15,8 @@ const Set<String> _cloudflareKeylessCertificatesSensitive = <String>{};
 final class DataCloudflareKeylessCertificates extends Data {
   static const String tfType = 'cloudflare_keyless_certificates';
 
-  DataCloudflareKeylessCertificates({
-    required super.localName,
+  DataCloudflareKeylessCertificates(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

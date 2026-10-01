@@ -23,7 +23,7 @@ final class DataPolicyV2Stack extends Stack {
       ) {
     final api = add(
       GoogleProjectService(
-        localName: 'api_bigquerydatapolicy',
+        'api_bigquerydatapolicy',
         service: .literal('bigquerydatapolicy.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -31,7 +31,7 @@ final class DataPolicyV2Stack extends Stack {
 
     add(
       GoogleBigqueryDatapolicyv2DataPolicy(
-        localName: 'raw_access',
+        'raw_access',
         location: .literal('us-central1'),
         dataPolicyId: .literal('raw-access'),
         dataPolicyType: .literal(.rawDataAccessPolicy),
@@ -42,7 +42,7 @@ final class DataPolicyV2Stack extends Stack {
 
     final emailMask = add(
       GoogleBigqueryDatapolicyv2DataPolicy(
-        localName: 'email_mask_v2',
+        'email_mask_v2',
         location: .literal('us-central1'),
         dataPolicyId: .literal('email-mask-v2'),
         dataPolicyType: .literal(.dataMaskingPolicy),
@@ -58,7 +58,7 @@ final class DataPolicyV2Stack extends Stack {
 
     final reader = add(
       GoogleServiceAccount(
-        localName: 'mask_reader',
+        'mask_reader',
         accountId: .literal('mask-reader-v2'),
         displayName: .literal('Data Policy V2 masked reader'),
       ),
@@ -66,7 +66,7 @@ final class DataPolicyV2Stack extends Stack {
 
     add(
       GoogleBigqueryDatapolicyv2DataPolicyIamMember(
-        localName: 'email_mask_reader',
+        'email_mask_reader',
         dataPolicy: .literal('email-mask-v2'),
         location: .literal('us-central1'),
         role: .literal('roles/bigquerydatapolicy.maskedReader'),

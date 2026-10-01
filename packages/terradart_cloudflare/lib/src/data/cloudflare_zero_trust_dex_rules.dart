@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDexRulesSensitive = <String>{};
 final class DataCloudflareZeroTrustDexRules extends Data {
   static const String tfType = 'cloudflare_zero_trust_dex_rules';
 
-  DataCloudflareZeroTrustDexRules({
-    required super.localName,
+  DataCloudflareZeroTrustDexRules(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

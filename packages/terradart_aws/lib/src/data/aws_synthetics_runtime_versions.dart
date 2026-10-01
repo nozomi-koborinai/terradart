@@ -10,8 +10,8 @@ const Set<String> _awsSyntheticsRuntimeVersionsSensitive = <String>{};
 final class DataAwsSyntheticsRuntimeVersions extends Data {
   static const String tfType = 'aws_synthetics_runtime_versions';
 
-  DataAwsSyntheticsRuntimeVersions({
-    required super.localName,
+  DataAwsSyntheticsRuntimeVersions(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

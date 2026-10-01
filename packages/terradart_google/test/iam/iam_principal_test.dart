@@ -40,7 +40,7 @@ void main() {
 
     test('a service account principal reads its member attribute', () {
       final sa = GoogleServiceAccount(
-        localName: 'runtime',
+        'runtime',
         accountId: TfArg.literal('runtime'),
       );
       expect(
@@ -51,7 +51,7 @@ void main() {
 
     test('a workload identity pool principal names the pool', () {
       final pool = GoogleIamWorkloadIdentityPool(
-        localName: 'ci',
+        'ci',
         workloadIdentityPoolId: TfArg.literal('github'),
       );
       expect(
@@ -78,17 +78,17 @@ void main() {
       );
       final bucket = stack.add(
         GoogleStorageBucket(
-          localName: 'assets',
+          'assets',
           name: .literal('assets'),
           location: .literal('US'),
         ),
       );
       final sa = stack.add(
-        GoogleServiceAccount(localName: 'runtime', accountId: .literal('rt')),
+        GoogleServiceAccount('runtime', accountId: .literal('rt')),
       );
       stack.add(
         GoogleStorageBucketIamMember(
-          localName: 'public',
+          'public',
           bucket: bucket.ref,
           role: .literal('roles/storage.objectViewer'),
           member: .allUsers,
@@ -96,7 +96,7 @@ void main() {
       );
       stack.add(
         GoogleStorageBucketIamBinding(
-          localName: 'admins',
+          'admins',
           bucket: bucket.ref,
           role: .literal('roles/storage.admin'),
           members: .literal([.group('sre@example.com'), sa.principal]),

@@ -144,8 +144,8 @@ final class AmiEphemeralBlockDevice {
 final class AwsAmi extends Resource {
   static const String tfType = 'aws_ami';
 
-  AwsAmi({
-    required super.localName,
+  AwsAmi(
+    super.localName, {
     TfArg<AmiArchitecture>? architecture,
     TfArg<AmiBootMode>? bootMode,
     TfArg<String>? deprecationTime,

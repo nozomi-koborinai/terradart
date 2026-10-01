@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayDocumentationVersionSensitive = <String>{};
 final class AwsApiGatewayDocumentationVersion extends Resource {
   static const String tfType = 'aws_api_gateway_documentation_version';
 
-  AwsApiGatewayDocumentationVersion({
-    required super.localName,
+  AwsApiGatewayDocumentationVersion(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     required TfArg<String> restApiId,

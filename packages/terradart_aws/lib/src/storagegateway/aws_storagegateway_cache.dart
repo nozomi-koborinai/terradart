@@ -10,8 +10,8 @@ const Set<String> _awsStoragegatewayCacheSensitive = <String>{};
 final class AwsStoragegatewayCache extends Resource {
   static const String tfType = 'aws_storagegateway_cache';
 
-  AwsStoragegatewayCache({
-    required super.localName,
+  AwsStoragegatewayCache(
+    super.localName, {
     required TfArg<String> diskId,
     required TfArg<String> gatewayArn,
     TfArg<String>? region,

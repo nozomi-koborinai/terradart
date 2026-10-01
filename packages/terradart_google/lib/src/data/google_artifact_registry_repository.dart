@@ -14,8 +14,8 @@ const Set<String> _googleArtifactRegistryRepositorySensitive = <String>{};
 final class DataGoogleArtifactRegistryRepository extends Data {
   static const String tfType = 'google_artifact_registry_repository';
 
-  DataGoogleArtifactRegistryRepository({
-    required super.localName,
+  DataGoogleArtifactRegistryRepository(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> repositoryId,

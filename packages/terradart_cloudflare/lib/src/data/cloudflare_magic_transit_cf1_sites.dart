@@ -16,8 +16,8 @@ const Set<String> _cloudflareMagicTransitCf1SitesSensitive = <String>{};
 final class DataCloudflareMagicTransitCf1Sites extends Data {
   static const String tfType = 'cloudflare_magic_transit_cf1_sites';
 
-  DataCloudflareMagicTransitCf1Sites({
-    required super.localName,
+  DataCloudflareMagicTransitCf1Sites(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

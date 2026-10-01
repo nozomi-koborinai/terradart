@@ -20,8 +20,8 @@ const Set<String> _googleWorkstationsWorkstationIamPolicySensitive = <String>{};
 final class GoogleWorkstationsWorkstationIamPolicy extends Resource {
   static const String tfType = 'google_workstations_workstation_iam_policy';
 
-  GoogleWorkstationsWorkstationIamPolicy({
-    required super.localName,
+  GoogleWorkstationsWorkstationIamPolicy(
+    super.localName, {
     TfArg<String>? workstationClusterId,
     TfArg<String>? workstationConfigId,
     required RefTo<GoogleWorkstationsWorkstation> workstation,

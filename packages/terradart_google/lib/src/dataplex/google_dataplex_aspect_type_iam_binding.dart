@@ -43,8 +43,8 @@ final class DataplexAspectTypeIamBindingCondition {
 final class GoogleDataplexAspectTypeIamBinding extends Resource {
   static const String tfType = 'google_dataplex_aspect_type_iam_binding';
 
-  GoogleDataplexAspectTypeIamBinding({
-    required super.localName,
+  GoogleDataplexAspectTypeIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexAspectType> aspectType,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

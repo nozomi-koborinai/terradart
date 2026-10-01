@@ -14,8 +14,8 @@ const Set<String> _googleComputeGlobalAddressSensitive = <String>{};
 final class DataGoogleComputeGlobalAddress extends Data {
   static const String tfType = 'google_compute_global_address';
 
-  DataGoogleComputeGlobalAddress({
-    required super.localName,
+  DataGoogleComputeGlobalAddress(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

@@ -43,8 +43,8 @@ final class ComputeSubnetworkIamBindingCondition {
 final class GoogleComputeSubnetworkIamBinding extends Resource {
   static const String tfType = 'google_compute_subnetwork_iam_binding';
 
-  GoogleComputeSubnetworkIamBinding({
-    required super.localName,
+  GoogleComputeSubnetworkIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeSubnetwork> subnetwork,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

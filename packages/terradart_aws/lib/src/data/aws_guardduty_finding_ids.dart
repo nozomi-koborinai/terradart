@@ -10,8 +10,8 @@ const Set<String> _awsGuarddutyFindingIdsSensitive = <String>{};
 final class DataAwsGuarddutyFindingIds extends Data {
   static const String tfType = 'aws_guardduty_finding_ids';
 
-  DataAwsGuarddutyFindingIds({
-    required super.localName,
+  DataAwsGuarddutyFindingIds(
+    super.localName, {
     required TfArg<String> detectorId,
     TfArg<String>? region,
     super.provider,

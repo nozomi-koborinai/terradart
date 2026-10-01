@@ -11,8 +11,8 @@ const Set<String> _awsLexIntentSensitive = <String>{};
 final class DataAwsLexIntent extends Data {
   static const String tfType = 'aws_lex_intent';
 
-  DataAwsLexIntent({
-    required super.localName,
+  DataAwsLexIntent(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? version,

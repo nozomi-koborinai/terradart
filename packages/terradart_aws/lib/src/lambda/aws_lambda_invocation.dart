@@ -22,8 +22,8 @@ enum LambdaInvocationLifecycleScope implements TerraformEnum {
 final class AwsLambdaInvocation extends Resource {
   static const String tfType = 'aws_lambda_invocation';
 
-  AwsLambdaInvocation({
-    required super.localName,
+  AwsLambdaInvocation(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> input,
     TfArg<LambdaInvocationLifecycleScope>? lifecycleScope,

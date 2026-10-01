@@ -75,8 +75,8 @@ final class ComputeHaVpnGatewayVpnInterfaces {
 final class GoogleComputeHaVpnGateway extends Resource {
   static const String tfType = 'google_compute_ha_vpn_gateway';
 
-  GoogleComputeHaVpnGateway({
-    required super.localName,
+  GoogleComputeHaVpnGateway(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? region,

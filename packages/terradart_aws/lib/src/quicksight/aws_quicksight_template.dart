@@ -10474,8 +10474,8 @@ final class QuicksightTemplateSourceTemplate {
 final class AwsQuicksightTemplate extends Resource {
   static const String tfType = 'aws_quicksight_template';
 
-  AwsQuicksightTemplate({
-    required super.localName,
+  AwsQuicksightTemplate(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> name,
     TfArg<String>? region,

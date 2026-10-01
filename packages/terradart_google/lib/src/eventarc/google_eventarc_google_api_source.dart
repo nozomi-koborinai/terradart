@@ -18,8 +18,8 @@ const Set<String> _googleEventarcGoogleApiSourceSensitive = <String>{};
 final class GoogleEventarcGoogleApiSource extends Resource {
   static const String tfType = 'google_eventarc_google_api_source';
 
-  GoogleEventarcGoogleApiSource({
-    required super.localName,
+  GoogleEventarcGoogleApiSource(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     required RefTo<GoogleEventarcMessageBus> destination,

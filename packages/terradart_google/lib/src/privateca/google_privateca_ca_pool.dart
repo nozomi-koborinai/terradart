@@ -521,14 +521,14 @@ enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
 /// Example:
 /// ```dart
 /// final pool = GooglePrivatecaCaPool(
-///   localName: 'app_pool',
+///   'app_pool',
 ///   name: TfArg.literal('app-pool'),
 ///   location: TfArg.literal('us-central1'),
 ///   tier: TfArg.literal(PrivatecaCaPoolTier.devops),
 /// );
 ///
 /// GoogleCertificateManagerCertificateIssuanceConfig(
-///   localName: 'issuance',
+///   'issuance',
 ///   name: TfArg.literal('app-issuance'),
 ///   certificateAuthorityConfig:
 ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
@@ -546,8 +546,8 @@ enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
 final class GooglePrivatecaCaPool extends Resource {
   static const String tfType = 'google_privateca_ca_pool';
 
-  GooglePrivatecaCaPool({
-    required super.localName,
+  GooglePrivatecaCaPool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<PrivatecaCaPoolTier> tier,

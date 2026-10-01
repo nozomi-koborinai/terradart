@@ -32,7 +32,7 @@ curatedDoc: |-
   /// Example (enforce App Check on one iOS OAuth client):
   /// ```dart
   /// final iosOauthEnforcement = GoogleFirebaseAppCheckResourcePolicy(
-  ///   localName: 'ios_oauth_enforce',
+  ///   'ios_oauth_enforce',
   ///   serviceId: TfArg.literal('oauth2.googleapis.com'),
   ///   targetResource: TfArg.literal(
   ///     '//oauth2.googleapis.com/projects/123456789/oauthClients/abc-def-ghi',

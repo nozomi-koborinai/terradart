@@ -41,7 +41,7 @@ enum PubsubSchemaType implements TerraformEnum {
 /// Example (Avro schema for an order event):
 /// ```dart
 /// final orderSchema = GooglePubsubSchema(
-///   localName: 'orders_v1',
+///   'orders_v1',
 ///   name: TfArg.literal('orders-v1'),
 ///   type: TfArg.literal(PubsubSchemaType.avro),
 ///   definition: TfArg.literal(
@@ -55,8 +55,8 @@ enum PubsubSchemaType implements TerraformEnum {
 final class GooglePubsubSchema extends Resource {
   static const String tfType = 'google_pubsub_schema';
 
-  GooglePubsubSchema({
-    required super.localName,
+  GooglePubsubSchema(
+    super.localName, {
     required TfArg<String> name,
     TfArg<PubsubSchemaType>? type,
     TfArg<String>? definition,

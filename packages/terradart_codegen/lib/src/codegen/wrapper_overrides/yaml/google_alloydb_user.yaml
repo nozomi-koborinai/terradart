@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleAlloydbUser(
-  ///   localName: 'app',
+  ///   'app',
   ///   cluster: cluster.ref,
   ///   userId: TfArg.literal('app'),
   ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),

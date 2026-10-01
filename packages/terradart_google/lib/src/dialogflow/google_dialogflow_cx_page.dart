@@ -776,8 +776,8 @@ final class DialogflowCxPageTransitionRoutes {
 final class GoogleDialogflowCxPage extends Resource {
   static const String tfType = 'google_dialogflow_cx_page';
 
-  GoogleDialogflowCxPage({
-    required super.localName,
+  GoogleDialogflowCxPage(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? languageCode,

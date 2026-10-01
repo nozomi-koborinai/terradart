@@ -52,8 +52,8 @@ enum DataCertificatePackFilterStatus implements TerraformEnum {
 final class DataCloudflareCertificatePack extends Data {
   static const String tfType = 'cloudflare_certificate_pack';
 
-  DataCloudflareCertificatePack({
-    required super.localName,
+  DataCloudflareCertificatePack(
+    super.localName, {
     TfArg<String>? certificatePackId,
     RefTo<CloudflareZone>? zoneId,
     DataCertificatePackFilter? filter,

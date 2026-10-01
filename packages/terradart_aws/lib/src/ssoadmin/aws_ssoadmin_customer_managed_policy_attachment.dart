@@ -32,8 +32,8 @@ final class AwsSsoadminCustomerManagedPolicyAttachment extends Resource {
   static const String tfType =
       'aws_ssoadmin_customer_managed_policy_attachment';
 
-  AwsSsoadminCustomerManagedPolicyAttachment({
-    required super.localName,
+  AwsSsoadminCustomerManagedPolicyAttachment(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<String> permissionSetArn,
     TfArg<String>? region,

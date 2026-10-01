@@ -49,8 +49,8 @@ enum DataClientCertificateFilterStatus implements TerraformEnum {
 final class DataCloudflareClientCertificate extends Data {
   static const String tfType = 'cloudflare_client_certificate';
 
-  DataCloudflareClientCertificate({
-    required super.localName,
+  DataCloudflareClientCertificate(
+    super.localName, {
     TfArg<String>? clientCertificateId,
     RefTo<CloudflareZone>? zoneId,
     DataClientCertificateFilter? filter,

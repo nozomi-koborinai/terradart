@@ -85,8 +85,8 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
   static const String tfType =
       'google_oracle_database_exascale_db_storage_vault';
 
-  GoogleOracleDatabaseExascaleDbStorageVault({
-    required super.localName,
+  GoogleOracleDatabaseExascaleDbStorageVault(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> exascaleDbStorageVaultId,
     required TfArg<String> displayName,

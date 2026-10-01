@@ -14,8 +14,8 @@ final class AwsEc2TransitGatewayMulticastDomainAssociation extends Resource {
   static const String tfType =
       'aws_ec2_transit_gateway_multicast_domain_association';
 
-  AwsEc2TransitGatewayMulticastDomainAssociation({
-    required super.localName,
+  AwsEc2TransitGatewayMulticastDomainAssociation(
+    super.localName, {
     TfArg<String>? region,
     required RefTo<AwsSubnet> subnetId,
     required TfArg<String> transitGatewayAttachmentId,

@@ -10,8 +10,8 @@ const Set<String> _awsLightsailDiskAttachmentSensitive = <String>{};
 final class AwsLightsailDiskAttachment extends Resource {
   static const String tfType = 'aws_lightsail_disk_attachment';
 
-  AwsLightsailDiskAttachment({
-    required super.localName,
+  AwsLightsailDiskAttachment(
+    super.localName, {
     required TfArg<String> diskName,
     required TfArg<String> diskPath,
     required TfArg<String> instanceName,

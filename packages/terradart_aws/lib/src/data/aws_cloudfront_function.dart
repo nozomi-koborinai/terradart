@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontFunctionSensitive = <String>{};
 final class DataAwsCloudfrontFunction extends Data {
   static const String tfType = 'aws_cloudfront_function';
 
-  DataAwsCloudfrontFunction({
-    required super.localName,
+  DataAwsCloudfrontFunction(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> stage,
     super.provider,

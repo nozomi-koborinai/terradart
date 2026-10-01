@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example (zonal VM-IP+port NEG fronting a regional internal L7 LB):
   /// ```dart
   /// final neg = GoogleComputeNetworkEndpointGroup(
-  ///   localName: 'app_neg',
+  ///   'app_neg',
   ///   name: TfArg.literal('app-neg-usc1a'),
   ///   zone: TfArg.literal('us-central1-a'),
   ///   network: vpc.ref,

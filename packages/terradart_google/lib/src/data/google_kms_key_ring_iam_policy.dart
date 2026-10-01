@@ -14,8 +14,8 @@ const Set<String> _googleKmsKeyRingIamPolicySensitive = <String>{};
 final class DataGoogleKmsKeyRingIamPolicy extends Data {
   static const String tfType = 'google_kms_key_ring_iam_policy';
 
-  DataGoogleKmsKeyRingIamPolicy({
-    required super.localName,
+  DataGoogleKmsKeyRingIamPolicy(
+    super.localName, {
     required TfArg<String> keyRingId,
     super.provider,
     super.timeouts,

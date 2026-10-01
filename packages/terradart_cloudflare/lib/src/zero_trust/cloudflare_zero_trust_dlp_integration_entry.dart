@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpIntegrationEntrySensitive = <String>{};
 final class CloudflareZeroTrustDlpIntegrationEntry extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_integration_entry';
 
-  CloudflareZeroTrustDlpIntegrationEntry({
-    required super.localName,
+  CloudflareZeroTrustDlpIntegrationEntry(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> enabled,
     required TfArg<String> entryId,

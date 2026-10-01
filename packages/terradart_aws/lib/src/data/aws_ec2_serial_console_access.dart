@@ -11,8 +11,8 @@ const Set<String> _awsEc2SerialConsoleAccessSensitive = <String>{};
 final class DataAwsEc2SerialConsoleAccess extends Data {
   static const String tfType = 'aws_ec2_serial_console_access';
 
-  DataAwsEc2SerialConsoleAccess({
-    required super.localName,
+  DataAwsEc2SerialConsoleAccess(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

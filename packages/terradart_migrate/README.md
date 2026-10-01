@@ -73,13 +73,13 @@ final class AppStack extends Stack {
     : super(providers: [const GoogleProvider()],
             backend: GcsBackend(bucket: env.backendBucket, prefix: env.backendPrefix)) {
     add(GoogleStorageBucket(
-      localName: 'assets',
+      'assets',
       name: .literal(env.assetsName),   // "app-dev-assets" / "app-prod-assets"
       location: .variable('region'),
     ));
     if (env.isProd) {
       add(GoogleStorageBucket(
-        localName: 'backups',
+        'backups',
         name: .literal('app-prod-backups'),
         location: .variable('region'),
       ));
@@ -130,7 +130,7 @@ What translates (the conversion rules of [#655](https://github.com/nozomi-kobori
 - literals (`.literal(...)`, `${` / `%{` re-escaped), enum members from the manifest (`.literal(.postgres15)`), typed nested helpers (single, repeated, exactly-one-of variants), opaque passthrough maps;
 - a reference in an argument that names another resource (`RefTo<C>`) as `x.ref` (`x.ref.pinned('attr')` when it reads another attribute than the argument emits); other references to migrated resources and data sources as typed `x.id` (or `TfRef.attribute<T>(...)` when the wrapper has no getter), `var.x` as `.variable`, `module.x.out` as a `TfRef` on the call (see below), a bare `terraform.workspace` as `.workspace()`, everything else — templates, function calls, conditionals, `local.x` — verbatim as `.expression` on any `TfArg`-typed argument (string, number, bool, enum, list or sensitive), the variables inside it declared like references;
 - `depends_on`, `lifecycle` and `timeouts` (`const TfTimeouts(create: '30m', ...)`), `terraform.required_version`, `backend "gcs" | "local" | "s3"` — a partial configuration (`backend "gcs" {}`, for `terraform init -backend-config`) included — `provider` blocks of the five providers (and `time`; `default_tags`, `assume_role`, `ignore_tags` and `endpoints` included for `aws`, credentials dropped) — aliased ones included, registered as `GoogleProvider(alias: 'eu', ...)` and selected per resource as `provider: 'google.eu'` (`provider = google-beta` on a GA type works the same way) — `variable` blocks as `addVariable`, single-attribute `output`s as `addOutput`;
-- `module` calls: a call into a local directory of the tree uses the typed wrapper generated from that module's `variable` and `output` blocks (`CloudRunModule(localName: 'cloud_run_bff', source: '../modules/cloud_run', name: .literal('app-bff'))`, `bff.serviceName`), everything else a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map, whose values spell out `TfArg.literal(...)` because an `Object?` value has no type to resolve a dot shorthand against; `module.x.out` reads like a resource attribute, and the call is ordered with the blocks around it;
+- `module` calls: a call into a local directory of the tree uses the typed wrapper generated from that module's `variable` and `output` blocks (`CloudRunModule('cloud_run_bff', source: '../modules/cloud_run', name: .literal('app-bff'))`, `bff.serviceName`), everything else a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map, whose values spell out `TfArg.literal(...)` because an `Object?` value has no type to resolve a dot shorthand against; `module.x.out` reads like a resource attribute, and the call is ordered with the blocks around it;
 - a literal `count` / `for_each` unrolled into one resource per instance (`google_pubsub_topic.t[0]` → `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` → `google_pubsub_topic.t_eu`): `count.index` / `each.key` / `each.value` substituted, every reference in the module — indexed, splat or bare — pointed at the new addresses (in blocks that stay in Terraform too), and a `moved` entry per instance (`addMoved`) so the plan shows moves only; the module's own `moved` blocks follow their targets into the Stack;
 - blockers, always with a reason: types outside every catalog, a `count` / `for_each` that is not a literal (its instances cannot be known without evaluating it) or one on a `module` call (whose instances are addressed `module.x[0]`), `dynamic` / `provisioner`, a `timeouts` key that is not a Terraform operation or whose value is not a duration string, a `provider = x.alias` the module does not configure (or inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter — an input the called module does not declare included, a non-literal `source`, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
 

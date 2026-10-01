@@ -12,8 +12,8 @@ const Set<String> _awsDmsReplicationSubnetGroupSensitive = <String>{};
 final class AwsDmsReplicationSubnetGroup extends Resource {
   static const String tfType = 'aws_dms_replication_subnet_group';
 
-  AwsDmsReplicationSubnetGroup({
-    required super.localName,
+  AwsDmsReplicationSubnetGroup(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationSubnetGroupDescription,
     required TfArg<String> replicationSubnetGroupId,

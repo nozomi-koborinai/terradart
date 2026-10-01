@@ -107,8 +107,8 @@ final class CleanroomsMembershipQueryCompute {
 final class AwsCleanroomsMembership extends Resource {
   static const String tfType = 'aws_cleanrooms_membership';
 
-  AwsCleanroomsMembership({
-    required super.localName,
+  AwsCleanroomsMembership(
+    super.localName, {
     required TfArg<String> collaborationId,
     required TfArg<CleanroomsMembershipQueryLogStatus> queryLogStatus,
     TfArg<String>? region,

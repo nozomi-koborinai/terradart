@@ -197,8 +197,8 @@ enum RbinRuleRetentionPeriodUnit implements TerraformEnum {
 final class AwsRbinRule extends Resource {
   static const String tfType = 'aws_rbin_rule';
 
-  AwsRbinRule({
-    required super.localName,
+  AwsRbinRule(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     required TfArg<RbinRuleResourceType> resourceType,

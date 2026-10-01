@@ -10,8 +10,8 @@ const Set<String> _awsIamSamlProviderSensitive = <String>{};
 final class AwsIamSamlProvider extends Resource {
   static const String tfType = 'aws_iam_saml_provider';
 
-  AwsIamSamlProvider({
-    required super.localName,
+  AwsIamSamlProvider(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> samlMetadataDocument,
     TfArg<Map<String, String>>? tags,

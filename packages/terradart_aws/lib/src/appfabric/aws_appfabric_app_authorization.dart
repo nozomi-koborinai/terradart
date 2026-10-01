@@ -94,8 +94,8 @@ final class AppfabricAppAuthorizationTenant {
 final class AwsAppfabricAppAuthorization extends Resource {
   static const String tfType = 'aws_appfabric_app_authorization';
 
-  AwsAppfabricAppAuthorization({
-    required super.localName,
+  AwsAppfabricAppAuthorization(
+    super.localName, {
     required TfArg<String> app,
     required TfArg<String> appBundleArn,
     required TfArg<AppfabricAppAuthorizationAuthType> authType,

@@ -19,8 +19,8 @@ enum VpnConcentratorType implements TerraformEnum {
 final class AwsVpnConcentrator extends Resource {
   static const String tfType = 'aws_vpn_concentrator';
 
-  AwsVpnConcentrator({
-    required super.localName,
+  AwsVpnConcentrator(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayId,

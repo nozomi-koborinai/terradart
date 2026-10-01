@@ -16,7 +16,7 @@ const Set<String> _googleLoggingLogScopeSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleLoggingLogScope(
-///   localName: 'audit_scope',
+///   'audit_scope',
 ///   name: TfArg.literal('audit-scope'),
 ///   resourceNames: TfArg.literal([
 ///     'projects/my-proj/locations/global/buckets/audit-logs',
@@ -26,8 +26,8 @@ const Set<String> _googleLoggingLogScopeSensitive = <String>{};
 final class GoogleLoggingLogScope extends Resource {
   static const String tfType = 'google_logging_log_scope';
 
-  GoogleLoggingLogScope({
-    required super.localName,
+  GoogleLoggingLogScope(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<List<String>> resourceNames,
     TfArg<String>? description,

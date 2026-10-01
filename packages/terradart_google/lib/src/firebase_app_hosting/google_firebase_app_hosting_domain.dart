@@ -73,7 +73,7 @@ class FirebaseAppHostingDomainRedirect {
 /// Example (custom domain serving the backend's live content):
 /// ```dart
 /// final www = GoogleFirebaseAppHostingDomain(
-///   localName: 'www',
+///   'www',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('www.example.com'),
@@ -83,7 +83,7 @@ class FirebaseAppHostingDomainRedirect {
 /// Example (apex domain redirecting to `www`):
 /// ```dart
 /// final apex = GoogleFirebaseAppHostingDomain(
-///   localName: 'apex',
+///   'apex',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('example.com'),
@@ -104,8 +104,8 @@ class FirebaseAppHostingDomainRedirect {
 final class GoogleFirebaseAppHostingDomain extends Resource {
   static const String tfType = 'google_firebase_app_hosting_domain';
 
-  GoogleFirebaseAppHostingDomain({
-    required super.localName,
+  GoogleFirebaseAppHostingDomain(
+    super.localName, {
     required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required TfArg<String> domainId,

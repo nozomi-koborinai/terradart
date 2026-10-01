@@ -11,8 +11,8 @@ const Set<String> _awsCloudsearchDomainServiceAccessPolicySensitive =
 final class AwsCloudsearchDomainServiceAccessPolicy extends Resource {
   static const String tfType = 'aws_cloudsearch_domain_service_access_policy';
 
-  AwsCloudsearchDomainServiceAccessPolicy({
-    required super.localName,
+  AwsCloudsearchDomainServiceAccessPolicy(
+    super.localName, {
     required TfArg<String> accessPolicy,
     required TfArg<String> domainName,
     TfArg<String>? region,

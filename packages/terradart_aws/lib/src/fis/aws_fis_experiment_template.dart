@@ -346,8 +346,8 @@ final class FisExperimentTemplateResourceTag {
 final class AwsFisExperimentTemplate extends Resource {
   static const String tfType = 'aws_fis_experiment_template';
 
-  AwsFisExperimentTemplate({
-    required super.localName,
+  AwsFisExperimentTemplate(
+    super.localName, {
     required TfArg<String> description,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

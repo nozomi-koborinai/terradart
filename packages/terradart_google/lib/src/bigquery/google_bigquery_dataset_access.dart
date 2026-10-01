@@ -344,7 +344,7 @@ final class BigqueryDatasetAccessGranteeRoutine
 /// Example (grant a group READER):
 /// ```dart
 /// GoogleBigqueryDatasetAccess(
-///   localName: 'analysts_reader',
+///   'analysts_reader',
 ///   datasetId: dataset.ref,
 ///   role: .literal('READER'),
 ///   grantee: .groupByEmail(.literal('analysts@example.com')),
@@ -353,8 +353,8 @@ final class BigqueryDatasetAccessGranteeRoutine
 final class GoogleBigqueryDatasetAccess extends Resource {
   static const String tfType = 'google_bigquery_dataset_access';
 
-  GoogleBigqueryDatasetAccess({
-    required super.localName,
+  GoogleBigqueryDatasetAccess(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? role,
     required BigqueryDatasetAccessGrantee grantee,

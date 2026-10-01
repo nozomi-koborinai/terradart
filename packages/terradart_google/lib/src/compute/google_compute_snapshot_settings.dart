@@ -75,7 +75,7 @@ final class ComputeSnapshotSettingsLocations {
 /// Example:
 /// ```dart
 /// GoogleComputeSnapshotSettings(
-///   localName: 'defaults',
+///   'defaults',
 ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
 ///     policy: TfArg.literal(
 ///       ComputeSnapshotSettingsPolicy.localRegion,
@@ -86,8 +86,8 @@ final class ComputeSnapshotSettingsLocations {
 final class GoogleComputeSnapshotSettings extends Resource {
   static const String tfType = 'google_compute_snapshot_settings';
 
-  GoogleComputeSnapshotSettings({
-    required super.localName,
+  GoogleComputeSnapshotSettings(
+    super.localName, {
     required ComputeSnapshotSettingsStorageLocation storageLocation,
     TfArg<String>? project,
     super.lifecycle,

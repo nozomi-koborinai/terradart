@@ -10,8 +10,8 @@ const Set<String> _awsIotThingSensitive = <String>{};
 final class AwsIotThing extends Resource {
   static const String tfType = 'aws_iot_thing';
 
-  AwsIotThing({
-    required super.localName,
+  AwsIotThing(
+    super.localName, {
     TfArg<Map<String, String>>? attributes,
     required TfArg<String> name,
     TfArg<String>? region,

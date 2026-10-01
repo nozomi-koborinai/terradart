@@ -85,8 +85,8 @@ final class CodestarconnectionsConnectionHostProviderType
 final class AwsCodestarconnectionsConnection extends Resource {
   static const String tfType = 'aws_codestarconnections_connection';
 
-  AwsCodestarconnectionsConnection({
-    required super.localName,
+  AwsCodestarconnectionsConnection(
+    super.localName, {
     CodestarconnectionsConnectionHost? host,
     required TfArg<String> name,
     TfArg<String>? region,

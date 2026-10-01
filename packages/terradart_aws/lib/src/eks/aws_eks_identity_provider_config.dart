@@ -54,8 +54,8 @@ final class EksIdentityProviderConfigOidc {
 final class AwsEksIdentityProviderConfig extends Resource {
   static const String tfType = 'aws_eks_identity_provider_config';
 
-  AwsEksIdentityProviderConfig({
-    required super.localName,
+  AwsEksIdentityProviderConfig(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

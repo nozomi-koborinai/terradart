@@ -52,8 +52,8 @@ class MigrationCenterReportConfigGroupPreferencesetAssignment {
 final class GoogleMigrationCenterReportConfig extends Resource {
   static const String tfType = 'google_migration_center_report_config';
 
-  GoogleMigrationCenterReportConfig({
-    required super.localName,
+  GoogleMigrationCenterReportConfig(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> reportConfigId,
     TfArg<String>? displayName,

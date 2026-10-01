@@ -8,7 +8,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final assets = GoogleStorageBucket(
-  ///   localName: 'assets',
+  ///   'assets',
   ///   name: TfArg.literal('my-app-assets-prod'),
   ///   location: TfArg.literal('ASIA-NORTHEAST1'),
   ///   storageClass: TfArg.literal(BucketStorageClass.standard),

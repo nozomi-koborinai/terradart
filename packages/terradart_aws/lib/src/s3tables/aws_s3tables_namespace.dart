@@ -10,8 +10,8 @@ const Set<String> _awsS3tablesNamespaceSensitive = <String>{};
 final class AwsS3tablesNamespace extends Resource {
   static const String tfType = 'aws_s3tables_namespace';
 
-  AwsS3tablesNamespace({
-    required super.localName,
+  AwsS3tablesNamespace(
+    super.localName, {
     required TfArg<String> namespace,
     TfArg<String>? region,
     required TfArg<String> tableBucketArn,

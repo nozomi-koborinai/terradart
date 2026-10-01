@@ -1702,8 +1702,8 @@ final class DataLossPreventionDiscoveryConfigSecretsTarget {
 final class GoogleDataLossPreventionDiscoveryConfig extends Resource {
   static const String tfType = 'google_data_loss_prevention_discovery_config';
 
-  GoogleDataLossPreventionDiscoveryConfig({
-    required super.localName,
+  GoogleDataLossPreventionDiscoveryConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
     TfArg<List<String>>? inspectTemplates,

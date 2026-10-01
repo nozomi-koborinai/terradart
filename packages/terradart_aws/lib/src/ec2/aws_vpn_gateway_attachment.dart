@@ -12,8 +12,8 @@ const Set<String> _awsVpnGatewayAttachmentSensitive = <String>{};
 final class AwsVpnGatewayAttachment extends Resource {
   static const String tfType = 'aws_vpn_gateway_attachment';
 
-  AwsVpnGatewayAttachment({
-    required super.localName,
+  AwsVpnGatewayAttachment(
+    super.localName, {
     TfArg<String>? region,
     required RefTo<AwsVpc> vpcId,
     required TfArg<String> vpnGatewayId,

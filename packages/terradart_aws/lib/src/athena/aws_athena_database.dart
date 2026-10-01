@@ -64,8 +64,8 @@ enum AthenaDatabaseEncryptionOption implements TerraformEnum {
 final class AwsAthenaDatabase extends Resource {
   static const String tfType = 'aws_athena_database';
 
-  AwsAthenaDatabase({
-    required super.localName,
+  AwsAthenaDatabase(
+    super.localName, {
     RefTo<AwsS3Bucket>? bucket,
     TfArg<String>? comment,
     TfArg<String>? expectedBucketOwner,

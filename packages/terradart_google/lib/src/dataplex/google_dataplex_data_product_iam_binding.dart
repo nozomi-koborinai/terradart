@@ -43,8 +43,8 @@ final class DataplexDataProductIamBindingCondition {
 final class GoogleDataplexDataProductIamBinding extends Resource {
   static const String tfType = 'google_dataplex_data_product_iam_binding';
 
-  GoogleDataplexDataProductIamBinding({
-    required super.localName,
+  GoogleDataplexDataProductIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexDataProduct> dataProduct,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

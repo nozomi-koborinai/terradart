@@ -10,8 +10,8 @@ const Set<String> _awsArnSensitive = <String>{};
 final class DataAwsArn extends Data {
   static const String tfType = 'aws_arn';
 
-  DataAwsArn({
-    required super.localName,
+  DataAwsArn(
+    super.localName, {
     required TfArg<String> arn,
     super.provider,
     super.timeouts,

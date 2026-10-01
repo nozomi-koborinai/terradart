@@ -8,12 +8,9 @@ import 'package:test/test.dart';
 
 void main() {
   test('topic IAM member emits topic + role + member', () {
-    final topic = GooglePubsubTopic(
-      localName: 'orders',
-      name: TfArg.literal('orders'),
-    );
+    final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
     final iam = GooglePubsubTopicIamMember(
-      localName: 'orders_publisher',
+      'orders_publisher',
       topic: topic.ref,
       role: TfArg.literal('roles/pubsub.publisher'),
       member: .serviceAccount('publisher@p.iam.gserviceaccount.com'),
@@ -36,12 +33,9 @@ void main() {
   });
 
   test('etag ref interpolation', () {
-    final topic = GooglePubsubTopic(
-      localName: 'orders',
-      name: TfArg.literal('orders'),
-    );
+    final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
     final iam = GooglePubsubTopicIamMember(
-      localName: 'binding',
+      'binding',
       topic: topic.ref,
       role: TfArg.literal('roles/pubsub.publisher'),
       member: .serviceAccount('x'),

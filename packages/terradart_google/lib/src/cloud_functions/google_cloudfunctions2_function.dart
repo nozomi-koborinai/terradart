@@ -674,7 +674,7 @@ final class Cloudfunctions2FunctionVersions {
 /// Example (HTTP-triggered Python function backed by a GCS source archive):
 /// ```dart
 /// final fn = GoogleCloudfunctions2Function(
-///   localName: 'http_fn',
+///   'http_fn',
 ///   name: .literal('hello-http'),
 ///   location: .literal('asia-northeast1'),
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
@@ -701,7 +701,7 @@ final class Cloudfunctions2FunctionVersions {
 /// Example (Pub/Sub event-triggered function):
 /// ```dart
 /// final fn = GoogleCloudfunctions2Function(
-///   localName: 'sub_fn',
+///   'sub_fn',
 ///   name: .literal('order-handler'),
 ///   location: .literal('asia-northeast1'),
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
@@ -727,8 +727,8 @@ final class Cloudfunctions2FunctionVersions {
 final class GoogleCloudfunctions2Function extends Resource {
   static const String tfType = 'google_cloudfunctions2_function';
 
-  GoogleCloudfunctions2Function({
-    required super.localName,
+  GoogleCloudfunctions2Function(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? description,

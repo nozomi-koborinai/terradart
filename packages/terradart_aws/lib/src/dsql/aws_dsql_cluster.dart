@@ -27,8 +27,8 @@ final class DsqlClusterMultiRegionProperties {
 final class AwsDsqlCluster extends Resource {
   static const String tfType = 'aws_dsql_cluster';
 
-  AwsDsqlCluster({
-    required super.localName,
+  AwsDsqlCluster(
+    super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<bool>? forceDestroy,
     TfArg<String>? kmsEncryptionKey,

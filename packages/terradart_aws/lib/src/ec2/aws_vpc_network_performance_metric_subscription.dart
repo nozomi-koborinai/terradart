@@ -30,8 +30,8 @@ final class AwsVpcNetworkPerformanceMetricSubscription extends Resource {
   static const String tfType =
       'aws_vpc_network_performance_metric_subscription';
 
-  AwsVpcNetworkPerformanceMetricSubscription({
-    required super.localName,
+  AwsVpcNetworkPerformanceMetricSubscription(
+    super.localName, {
     required TfArg<String> destination,
     TfArg<VpcNetworkPerformanceMetricSubscriptionMetric>? metric,
     TfArg<String>? region,

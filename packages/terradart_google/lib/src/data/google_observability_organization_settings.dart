@@ -15,8 +15,8 @@ const Set<String> _googleObservabilityOrganizationSettingsSensitive =
 final class DataGoogleObservabilityOrganizationSettings extends Data {
   static const String tfType = 'google_observability_organization_settings';
 
-  DataGoogleObservabilityOrganizationSettings({
-    required super.localName,
+  DataGoogleObservabilityOrganizationSettings(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> organization,
     super.provider,

@@ -39,21 +39,21 @@ final class AwsStaticSiteStack extends Stack {
         ],
       ) {
     final zone = DataAwsRoute53Zone(
-      localName: 'site',
+      'site',
       name: .literal(hostedZone),
       privateZone: .literal(false),
     );
     add(zone);
 
     final bucket = AwsS3Bucket(
-      localName: 'site',
+      'site',
       name: .bucketPrefix(.literal('terradart-site-')),
       forceDestroy: .literal(true),
     );
     add(bucket);
     add(
       AwsS3BucketPublicAccessBlock(
-        localName: 'site',
+        'site',
         bucket: bucket.ref,
         blockPublicAcls: .literal(true),
         blockPublicPolicy: .literal(true),
@@ -63,7 +63,7 @@ final class AwsStaticSiteStack extends Stack {
     );
 
     final oac = AwsCloudfrontOriginAccessControl(
-      localName: 'site',
+      'site',
       name: .literal('terradart-static-site'),
       description: .literal('CloudFront reads the site bucket'),
       originAccessControlOriginType: .literal(.s3),
@@ -73,7 +73,7 @@ final class AwsStaticSiteStack extends Stack {
     add(oac);
 
     final cert = AwsAcmCertificate(
-      localName: 'site',
+      'site',
       source: .domainName(.literal(siteDomain)),
       validationMethod: .literal(.dns),
       lifecycle: const LifecycleOptions(createBeforeDestroy: true),
@@ -84,7 +84,7 @@ final class AwsStaticSiteStack extends Stack {
     // domain_validation_options is a set, so index it through tolist().
     final option = 'tolist(${cert.domainValidationOptions.bareAddress})[0]';
     final validationRecord = AwsRoute53Record(
-      localName: 'site_validation',
+      'site_validation',
       zoneId: zone.ref,
       name: TfArg.expression('\${$option.resource_record_name}'),
       type: TfArg.expression('\${$option.resource_record_type}'),
@@ -95,20 +95,20 @@ final class AwsStaticSiteStack extends Stack {
     add(validationRecord);
 
     final validation = AwsAcmCertificateValidation(
-      localName: 'site',
+      'site',
       certificateArn: cert.ref,
       validationRecordFqdns: .literal([validationRecord.fqdn.interpolation]),
     );
     add(validation);
 
     final cachingOptimized = DataAwsCloudfrontCachePolicy(
-      localName: 'caching_optimized',
+      'caching_optimized',
       name: .literal('Managed-CachingOptimized'),
     );
     add(cachingOptimized);
 
     final distribution = AwsCloudfrontDistribution(
-      localName: 'site',
+      'site',
       enabled: .literal(true),
       isIpv6Enabled: .literal(true),
       comment: .literal(siteDomain),
@@ -157,7 +157,7 @@ final class AwsStaticSiteStack extends Stack {
     add(distribution);
 
     final readFromCloudFront = DataAwsIamPolicyDocument(
-      localName: 'site_bucket',
+      'site_bucket',
       statement: [
         DataIamPolicyDocumentStatement(
           sid: .literal('AllowCloudFrontRead'),
@@ -183,7 +183,7 @@ final class AwsStaticSiteStack extends Stack {
     add(readFromCloudFront);
     add(
       AwsS3BucketPolicy(
-        localName: 'site',
+        'site',
         bucket: bucket.ref,
         policy: readFromCloudFront.json,
       ),
@@ -192,7 +192,7 @@ final class AwsStaticSiteStack extends Stack {
     for (final type in [Route53RecordType.a, Route53RecordType.aaaa]) {
       add(
         AwsRoute53Record(
-          localName: 'site_${type.name}',
+          'site_${type.name}',
           zoneId: zone.ref,
           name: .literal(siteDomain),
           type: .literal(type),

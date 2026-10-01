@@ -13,8 +13,8 @@ const Set<String> _googleAgentRegistryEndpointSensitive = <String>{};
 final class DataGoogleAgentRegistryEndpoint extends Data {
   static const String tfType = 'google_agent_registry_endpoint';
 
-  DataGoogleAgentRegistryEndpoint({
-    required super.localName,
+  DataGoogleAgentRegistryEndpoint(
+    super.localName, {
     TfArg<String>? endpointId,
     TfArg<String>? filter,
     required TfArg<String> location,

@@ -10,8 +10,8 @@ const Set<String> _awsAppstreamFleetStackAssociationSensitive = <String>{};
 final class AwsAppstreamFleetStackAssociation extends Resource {
   static const String tfType = 'aws_appstream_fleet_stack_association';
 
-  AwsAppstreamFleetStackAssociation({
-    required super.localName,
+  AwsAppstreamFleetStackAssociation(
+    super.localName, {
     required TfArg<String> fleetName,
     TfArg<String>? region,
     required TfArg<String> stackName,

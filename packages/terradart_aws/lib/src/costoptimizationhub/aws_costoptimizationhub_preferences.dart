@@ -36,8 +36,8 @@ enum CostoptimizationhubPreferencesSavingsEstimationMode
 final class AwsCostoptimizationhubPreferences extends Resource {
   static const String tfType = 'aws_costoptimizationhub_preferences';
 
-  AwsCostoptimizationhubPreferences({
-    required super.localName,
+  AwsCostoptimizationhubPreferences(
+    super.localName, {
     TfArg<CostoptimizationhubPreferencesMemberAccountDiscountVisibility>?
     memberAccountDiscountVisibility,
     TfArg<CostoptimizationhubPreferencesSavingsEstimationMode>?

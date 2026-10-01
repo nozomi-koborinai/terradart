@@ -11,8 +11,8 @@ const Set<String> _awsIamServerCertificateSensitive = <String>{};
 final class DataAwsIamServerCertificate extends Data {
   static const String tfType = 'aws_iam_server_certificate';
 
-  DataAwsIamServerCertificate({
-    required super.localName,
+  DataAwsIamServerCertificate(
+    super.localName, {
     TfArg<bool>? latest,
     TfArg<String>? name,
     TfArg<String>? namePrefix,

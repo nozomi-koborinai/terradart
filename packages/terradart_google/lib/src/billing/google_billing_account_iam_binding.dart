@@ -41,8 +41,8 @@ final class BillingAccountIamBindingCondition {
 final class GoogleBillingAccountIamBinding extends Resource {
   static const String tfType = 'google_billing_account_iam_binding';
 
-  GoogleBillingAccountIamBinding({
-    required super.localName,
+  GoogleBillingAccountIamBinding(
+    super.localName, {
     required TfArg<String> billingAccountId,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

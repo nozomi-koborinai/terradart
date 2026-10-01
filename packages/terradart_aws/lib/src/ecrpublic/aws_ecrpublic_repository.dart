@@ -46,8 +46,8 @@ final class EcrpublicRepositoryCatalogData {
 final class AwsEcrpublicRepository extends Resource {
   static const String tfType = 'aws_ecrpublic_repository';
 
-  AwsEcrpublicRepository({
-    required super.localName,
+  AwsEcrpublicRepository(
+    super.localName, {
     TfArg<bool>? forceDestroy,
     TfArg<String>? region,
     required TfArg<String> repositoryName,

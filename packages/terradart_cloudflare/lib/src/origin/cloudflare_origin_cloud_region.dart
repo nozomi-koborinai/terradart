@@ -24,8 +24,8 @@ enum OriginCloudRegionVendor implements TerraformEnum {
 final class CloudflareOriginCloudRegion extends Resource {
   static const String tfType = 'cloudflare_origin_cloud_region';
 
-  CloudflareOriginCloudRegion({
-    required super.localName,
+  CloudflareOriginCloudRegion(
+    super.localName, {
     required TfArg<String> originIp,
     required TfArg<String> region,
     required TfArg<OriginCloudRegionVendor> vendor,

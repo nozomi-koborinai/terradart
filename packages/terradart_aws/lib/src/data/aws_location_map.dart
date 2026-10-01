@@ -11,8 +11,8 @@ const Set<String> _awsLocationMapSensitive = <String>{};
 final class DataAwsLocationMap extends Data {
   static const String tfType = 'aws_location_map';
 
-  DataAwsLocationMap({
-    required super.localName,
+  DataAwsLocationMap(
+    super.localName, {
     required TfArg<String> mapName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -65,8 +65,8 @@ final class TransferAccessPosixProfile {
 final class AwsTransferAccess extends Resource {
   static const String tfType = 'aws_transfer_access';
 
-  AwsTransferAccess({
-    required super.localName,
+  AwsTransferAccess(
+    super.localName, {
     required TfArg<String> externalId,
     TfArg<String>? homeDirectory,
     TfArg<TransferAccessHomeDirectoryType>? homeDirectoryType,

@@ -291,8 +291,8 @@ final class S3BucketLifecycleConfigurationTransition {
 final class AwsS3BucketLifecycleConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_lifecycle_configuration';
 
-  AwsS3BucketLifecycleConfiguration({
-    required super.localName,
+  AwsS3BucketLifecycleConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

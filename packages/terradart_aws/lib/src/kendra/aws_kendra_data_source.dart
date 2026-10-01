@@ -540,8 +540,8 @@ final class KendraDataSourcePreExtractionHookConfiguration {
 final class AwsKendraDataSource extends Resource {
   static const String tfType = 'aws_kendra_data_source';
 
-  AwsKendraDataSource({
-    required super.localName,
+  AwsKendraDataSource(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> indexId,
     TfArg<String>? languageCode,

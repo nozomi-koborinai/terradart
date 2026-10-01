@@ -85,8 +85,8 @@ final class NetworkmanagerDeviceLocation {
 final class AwsNetworkmanagerDevice extends Resource {
   static const String tfType = 'aws_networkmanager_device';
 
-  AwsNetworkmanagerDevice({
-    required super.localName,
+  AwsNetworkmanagerDevice(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> globalNetworkId,
     TfArg<String>? model,

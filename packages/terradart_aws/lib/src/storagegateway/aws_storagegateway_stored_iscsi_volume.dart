@@ -12,8 +12,8 @@ const Set<String> _awsStoragegatewayStoredIscsiVolumeSensitive = <String>{};
 final class AwsStoragegatewayStoredIscsiVolume extends Resource {
   static const String tfType = 'aws_storagegateway_stored_iscsi_volume';
 
-  AwsStoragegatewayStoredIscsiVolume({
-    required super.localName,
+  AwsStoragegatewayStoredIscsiVolume(
+    super.localName, {
     required TfArg<String> diskId,
     required TfArg<String> gatewayArn,
     TfArg<bool>? kmsEncrypted,

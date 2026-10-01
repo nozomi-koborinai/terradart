@@ -11,8 +11,8 @@ const Set<String> _awsNetworkmanagerSiteSensitive = <String>{};
 final class DataAwsNetworkmanagerSite extends Data {
   static const String tfType = 'aws_networkmanager_site';
 
-  DataAwsNetworkmanagerSite({
-    required super.localName,
+  DataAwsNetworkmanagerSite(
+    super.localName, {
     required TfArg<String> globalNetworkId,
     required TfArg<String> siteId,
     TfArg<Map<String, String>>? tags,

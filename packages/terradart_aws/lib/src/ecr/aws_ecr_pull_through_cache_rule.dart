@@ -10,8 +10,8 @@ const Set<String> _awsEcrPullThroughCacheRuleSensitive = <String>{};
 final class AwsEcrPullThroughCacheRule extends Resource {
   static const String tfType = 'aws_ecr_pull_through_cache_rule';
 
-  AwsEcrPullThroughCacheRule({
-    required super.localName,
+  AwsEcrPullThroughCacheRule(
+    super.localName, {
     TfArg<String>? credentialArn,
     TfArg<String>? customRoleArn,
     required TfArg<String> ecrRepositoryPrefix,

@@ -12,8 +12,8 @@ const Set<String> _awsS3BucketPublicAccessBlockSensitive = <String>{};
 final class AwsS3BucketPublicAccessBlock extends Resource {
   static const String tfType = 'aws_s3_bucket_public_access_block';
 
-  AwsS3BucketPublicAccessBlock({
-    required super.localName,
+  AwsS3BucketPublicAccessBlock(
+    super.localName, {
     TfArg<bool>? blockPublicAcls,
     TfArg<bool>? blockPublicPolicy,
     required RefTo<AwsS3Bucket> bucket,

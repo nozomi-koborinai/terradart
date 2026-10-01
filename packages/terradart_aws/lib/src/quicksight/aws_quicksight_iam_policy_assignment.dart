@@ -40,8 +40,8 @@ final class QuicksightIamPolicyAssignmentIdentities {
 final class AwsQuicksightIamPolicyAssignment extends Resource {
   static const String tfType = 'aws_quicksight_iam_policy_assignment';
 
-  AwsQuicksightIamPolicyAssignment({
-    required super.localName,
+  AwsQuicksightIamPolicyAssignment(
+    super.localName, {
     required TfArg<String> assignmentName,
     required TfArg<QuicksightIamPolicyAssignmentStatus> assignmentStatus,
     TfArg<String>? awsAccountId,

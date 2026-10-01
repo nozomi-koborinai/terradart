@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleManagedKafkaConnector(
-  ///   localName: 'sink',
+  ///   'sink',
   ///   connectorId: TfArg.literal('gcs-sink'),
   ///   connectCluster: connect.connectClusterId,
   ///   location: TfArg.literal('us-central1'),

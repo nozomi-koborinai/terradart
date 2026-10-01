@@ -47,8 +47,8 @@ final class DataprocGdcApplicationEnvironmentSparkApplicationEnvironmentConfig {
 final class GoogleDataprocGdcApplicationEnvironment extends Resource {
   static const String tfType = 'google_dataproc_gdc_application_environment';
 
-  GoogleDataprocGdcApplicationEnvironment({
-    required super.localName,
+  GoogleDataprocGdcApplicationEnvironment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> serviceinstance,
     TfArg<String>? applicationEnvironmentId,

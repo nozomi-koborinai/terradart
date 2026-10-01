@@ -10,8 +10,8 @@ const Set<String> _awsDynamodbTablesSensitive = <String>{};
 final class DataAwsDynamodbTables extends Data {
   static const String tfType = 'aws_dynamodb_tables';
 
-  DataAwsDynamodbTables({
-    required super.localName,
+  DataAwsDynamodbTables(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

@@ -14,8 +14,8 @@ const Set<String> _googleProjectIamCustomRoleSensitive = <String>{};
 final class DataGoogleProjectIamCustomRole extends Data {
   static const String tfType = 'google_project_iam_custom_role';
 
-  DataGoogleProjectIamCustomRole({
-    required super.localName,
+  DataGoogleProjectIamCustomRole(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> roleId,
     super.provider,

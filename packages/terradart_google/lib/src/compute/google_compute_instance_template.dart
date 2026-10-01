@@ -810,7 +810,7 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 /// Example (minimal):
 /// ```dart
 /// final tmpl = GoogleComputeInstanceTemplate(
-///   localName: 'web',
+///   'web',
 ///   namePrefix: .literal('web-'),
 ///   machineType: .literal('e2-medium'),
 ///   disk: [
@@ -838,8 +838,8 @@ final class ComputeInstanceTemplateWorkloadIdentityConfig {
 final class GoogleComputeInstanceTemplate extends Resource {
   static const String tfType = 'google_compute_instance_template';
 
-  GoogleComputeInstanceTemplate({
-    required super.localName,
+  GoogleComputeInstanceTemplate(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     required TfArg<String> machineType,

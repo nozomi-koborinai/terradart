@@ -65,8 +65,8 @@ final class TransferUserPosixProfile {
 final class AwsTransferUser extends Resource {
   static const String tfType = 'aws_transfer_user';
 
-  AwsTransferUser({
-    required super.localName,
+  AwsTransferUser(
+    super.localName, {
     TfArg<String>? homeDirectory,
     TfArg<TransferUserHomeDirectoryType>? homeDirectoryType,
     TfArg<String>? policy,

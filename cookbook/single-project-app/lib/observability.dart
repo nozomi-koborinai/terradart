@@ -6,10 +6,8 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/pubsub.dart';
 
-GooglePubsubTopic buildOrderTopic() => GooglePubsubTopic(
-  localName: 'orders_topic',
-  name: .literal('coffee-orders'),
-);
+GooglePubsubTopic buildOrderTopic() =>
+    GooglePubsubTopic('orders_topic', name: .literal('coffee-orders'));
 
 /// Push subscription invokes the Cloud Run service with an OIDC token signed
 /// for the runSa identity. The Cloud Run invoker IAM in Tier 5 was set to
@@ -24,7 +22,7 @@ GooglePubsubSubscription buildOrderSubscription({
   required GoogleCloudRunV2Service coffeeService,
   required GoogleServiceAccount runSa,
 }) => GooglePubsubSubscription(
-  localName: 'orders_subscription',
+  'orders_subscription',
   name: .literal('coffee-orders-sub'),
   topic: orderTopic.ref,
   delivery: .pushConfig(
@@ -37,7 +35,7 @@ GooglePubsubSubscription buildOrderSubscription({
 
 GoogleMonitoringNotificationChannel buildEmailChannel(String alertEmail) =>
     GoogleMonitoringNotificationChannel(
-      localName: 'email_channel',
+      'email_channel',
       displayName: .literal('Coffee Shop email'),
       type: .literal('email'),
       labels: .literal({'email_address': alertEmail}),
@@ -46,7 +44,7 @@ GoogleMonitoringNotificationChannel buildEmailChannel(String alertEmail) =>
 GoogleMonitoringUptimeCheckConfig buildUptimeCheck(
   GoogleCloudRunV2Service coffeeService,
 ) => GoogleMonitoringUptimeCheckConfig(
-  localName: 'coffee_uptime',
+  'coffee_uptime',
   displayName: .literal('Coffee Shop uptime'),
   timeout: .literal('10s'),
   period: .literal('60s'),
@@ -69,7 +67,7 @@ GoogleMonitoringUptimeCheckConfig buildUptimeCheck(
 GoogleMonitoringAlertPolicy buildDownAlert(
   GoogleMonitoringNotificationChannel emailChannel,
 ) => GoogleMonitoringAlertPolicy(
-  localName: 'coffee_down',
+  'coffee_down',
   displayName: .literal('Coffee Shop down'),
   combiner: .literal(.or),
   conditions: [

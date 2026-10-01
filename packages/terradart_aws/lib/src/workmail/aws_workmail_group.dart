@@ -10,8 +10,8 @@ const Set<String> _awsWorkmailGroupSensitive = <String>{};
 final class AwsWorkmailGroup extends Resource {
   static const String tfType = 'aws_workmail_group';
 
-  AwsWorkmailGroup({
-    required super.localName,
+  AwsWorkmailGroup(
+    super.localName, {
     required TfArg<String> email,
     TfArg<bool>? hiddenFromGlobalAddressList,
     required TfArg<String> name,

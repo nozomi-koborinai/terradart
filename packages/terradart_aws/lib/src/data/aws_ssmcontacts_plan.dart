@@ -11,8 +11,8 @@ const Set<String> _awsSsmcontactsPlanSensitive = <String>{};
 final class DataAwsSsmcontactsPlan extends Data {
   static const String tfType = 'aws_ssmcontacts_plan';
 
-  DataAwsSsmcontactsPlan({
-    required super.localName,
+  DataAwsSsmcontactsPlan(
+    super.localName, {
     required TfArg<String> contactId,
     TfArg<String>? region,
     super.provider,

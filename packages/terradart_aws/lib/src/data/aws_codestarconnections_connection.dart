@@ -11,8 +11,8 @@ const Set<String> _awsCodestarconnectionsConnectionSensitive = <String>{};
 final class DataAwsCodestarconnectionsConnection extends Data {
   static const String tfType = 'aws_codestarconnections_connection';
 
-  DataAwsCodestarconnectionsConnection({
-    required super.localName,
+  DataAwsCodestarconnectionsConnection(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

@@ -11,8 +11,8 @@ const Set<String> _awsPrometheusWorkspaceSensitive = <String>{};
 final class DataAwsPrometheusWorkspace extends Data {
   static const String tfType = 'aws_prometheus_workspace';
 
-  DataAwsPrometheusWorkspace({
-    required super.localName,
+  DataAwsPrometheusWorkspace(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> workspaceId,

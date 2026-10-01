@@ -11,8 +11,8 @@ const Set<String> _awsDxConnectionSensitive = <String>{};
 final class DataAwsDxConnection extends Data {
   static const String tfType = 'aws_dx_connection';
 
-  DataAwsDxConnection({
-    required super.localName,
+  DataAwsDxConnection(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

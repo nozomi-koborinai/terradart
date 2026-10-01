@@ -19,8 +19,8 @@ enum TranscribeMedicalVocabularyLanguageCode implements TerraformEnum {
 final class AwsTranscribeMedicalVocabulary extends Resource {
   static const String tfType = 'aws_transcribe_medical_vocabulary';
 
-  AwsTranscribeMedicalVocabulary({
-    required super.localName,
+  AwsTranscribeMedicalVocabulary(
+    super.localName, {
     required TfArg<TranscribeMedicalVocabularyLanguageCode> languageCode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

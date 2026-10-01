@@ -21,8 +21,8 @@ enum CodedeployAppComputePlatform implements TerraformEnum {
 final class AwsCodedeployApp extends Resource {
   static const String tfType = 'aws_codedeploy_app';
 
-  AwsCodedeployApp({
-    required super.localName,
+  AwsCodedeployApp(
+    super.localName, {
     TfArg<CodedeployAppComputePlatform>? computePlatform,
     required TfArg<String> name,
     TfArg<String>? region,

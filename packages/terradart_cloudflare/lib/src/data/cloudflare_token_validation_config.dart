@@ -17,8 +17,8 @@ const Set<String> _cloudflareTokenValidationConfigSensitive = <String>{};
 final class DataCloudflareTokenValidationConfig extends Data {
   static const String tfType = 'cloudflare_token_validation_config';
 
-  DataCloudflareTokenValidationConfig({
-    required super.localName,
+  DataCloudflareTokenValidationConfig(
+    super.localName, {
     required TfArg<String> configId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

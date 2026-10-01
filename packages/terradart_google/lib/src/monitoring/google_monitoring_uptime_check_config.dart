@@ -635,7 +635,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 /// Example (HTTPS uptime check against a public URL):
 /// ```dart
 /// final apiUptime = GoogleMonitoringUptimeCheckConfig(
-///   localName: 'api_uptime',
+///   'api_uptime',
 ///   displayName: TfArg.literal('Public API healthz'),
 ///   timeout: TfArg.literal('10s'),
 ///   period: TfArg.literal('60s'),
@@ -668,8 +668,8 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 final class GoogleMonitoringUptimeCheckConfig extends Resource {
   static const String tfType = 'google_monitoring_uptime_check_config';
 
-  GoogleMonitoringUptimeCheckConfig({
-    required super.localName,
+  GoogleMonitoringUptimeCheckConfig(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> timeout,
     TfArg<String>? period,

@@ -119,8 +119,8 @@ final class BedrockModelInvocationJobVpcConfig {
 final class AwsBedrockModelInvocationJob extends Resource {
   static const String tfType = 'aws_bedrock_model_invocation_job';
 
-  AwsBedrockModelInvocationJob({
-    required super.localName,
+  AwsBedrockModelInvocationJob(
+    super.localName, {
     required TfArg<String> jobName,
     required TfArg<String> modelId,
     TfArg<String>? region,

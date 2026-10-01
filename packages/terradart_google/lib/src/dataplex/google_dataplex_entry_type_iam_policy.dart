@@ -18,8 +18,8 @@ const Set<String> _googleDataplexEntryTypeIamPolicySensitive = <String>{};
 final class GoogleDataplexEntryTypeIamPolicy extends Resource {
   static const String tfType = 'google_dataplex_entry_type_iam_policy';
 
-  GoogleDataplexEntryTypeIamPolicy({
-    required super.localName,
+  GoogleDataplexEntryTypeIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataplexEntryType> entryType,
     required TfArg<String> policyData,
     TfArg<String>? location,

@@ -30,8 +30,8 @@ final class WafGeoMatchSetGeoMatchConstraint {
 final class AwsWafGeoMatchSet extends Resource {
   static const String tfType = 'aws_waf_geo_match_set';
 
-  AwsWafGeoMatchSet({
-    required super.localName,
+  AwsWafGeoMatchSet(
+    super.localName, {
     required TfArg<String> name,
     List<WafGeoMatchSetGeoMatchConstraint>? geoMatchConstraint,
     super.lifecycle,

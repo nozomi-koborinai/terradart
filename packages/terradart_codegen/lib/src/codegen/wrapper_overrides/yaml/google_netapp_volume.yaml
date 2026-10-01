@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetappVolume(
-  ///   localName: 'vol',
+  ///   'vol',
   ///   name: TfArg.literal('data'),
   ///   location: TfArg.literal('us-central1'),
   ///   storagePool: pool.name,

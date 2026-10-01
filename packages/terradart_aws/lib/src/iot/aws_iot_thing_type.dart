@@ -27,8 +27,8 @@ final class IotThingTypeProperties {
 final class AwsIotThingType extends Resource {
   static const String tfType = 'aws_iot_thing_type';
 
-  AwsIotThingType({
-    required super.localName,
+  AwsIotThingType(
+    super.localName, {
     TfArg<bool>? deprecated,
     required TfArg<String> name,
     TfArg<String>? region,

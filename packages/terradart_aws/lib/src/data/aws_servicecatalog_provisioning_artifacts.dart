@@ -10,8 +10,8 @@ const Set<String> _awsServicecatalogProvisioningArtifactsSensitive = <String>{};
 final class DataAwsServicecatalogProvisioningArtifacts extends Data {
   static const String tfType = 'aws_servicecatalog_provisioning_artifacts';
 
-  DataAwsServicecatalogProvisioningArtifacts({
-    required super.localName,
+  DataAwsServicecatalogProvisioningArtifacts(
+    super.localName, {
     TfArg<String>? acceptLanguage,
     required TfArg<String> productId,
     TfArg<String>? region,

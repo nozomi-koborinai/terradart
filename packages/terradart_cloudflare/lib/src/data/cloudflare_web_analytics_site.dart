@@ -38,8 +38,8 @@ enum DataWebAnalyticsSiteOrderBy implements TerraformEnum {
 final class DataCloudflareWebAnalyticsSite extends Data {
   static const String tfType = 'cloudflare_web_analytics_site';
 
-  DataCloudflareWebAnalyticsSite({
-    required super.localName,
+  DataCloudflareWebAnalyticsSite(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? siteId,
     DataWebAnalyticsSiteFilter? filter,

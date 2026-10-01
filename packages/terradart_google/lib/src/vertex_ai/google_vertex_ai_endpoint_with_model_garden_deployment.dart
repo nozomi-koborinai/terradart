@@ -696,7 +696,7 @@ final class VertexAiEndpointWithModelGardenDeploymentStartupProbe {
 /// Example:
 /// ```dart
 /// GoogleVertexAiEndpointWithModelGardenDeployment(
-///   localName: 'garden',
+///   'garden',
 ///   location: TfArg.literal('us-central1'),
 ///   model: VertexAiEndpointWithModelGardenDeploymentPublisherModel(
 ///     publisherModelName: TfArg.literal(
@@ -709,8 +709,8 @@ final class GoogleVertexAiEndpointWithModelGardenDeployment extends Resource {
   static const String tfType =
       'google_vertex_ai_endpoint_with_model_garden_deployment';
 
-  GoogleVertexAiEndpointWithModelGardenDeployment({
-    required super.localName,
+  GoogleVertexAiEndpointWithModelGardenDeployment(
+    super.localName, {
     required TfArg<String> location,
     required VertexAiEndpointWithModelGardenDeploymentModel model,
     VertexAiEndpointWithModelGardenDeploymentModelConfig? modelConfig,

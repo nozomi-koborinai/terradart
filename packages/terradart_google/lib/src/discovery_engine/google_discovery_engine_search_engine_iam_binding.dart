@@ -46,8 +46,8 @@ final class GoogleDiscoveryEngineSearchEngineIamBinding extends Resource {
   static const String tfType =
       'google_discovery_engine_search_engine_iam_binding';
 
-  GoogleDiscoveryEngineSearchEngineIamBinding({
-    required super.localName,
+  GoogleDiscoveryEngineSearchEngineIamBinding(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engine,

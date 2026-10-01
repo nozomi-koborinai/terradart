@@ -99,8 +99,8 @@ final class AccountTokenPermissionGroups {
 final class CloudflareAccountToken extends Resource {
   static const String tfType = 'cloudflare_account_token';
 
-  CloudflareAccountToken({
-    required super.localName,
+  CloudflareAccountToken(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? expiresOn,
     required TfArg<String> name,

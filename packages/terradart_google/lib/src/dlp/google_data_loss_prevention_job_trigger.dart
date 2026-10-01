@@ -1321,8 +1321,8 @@ final class DataLossPreventionJobTriggerSchedule {
 final class GoogleDataLossPreventionJobTrigger extends Resource {
   static const String tfType = 'google_data_loss_prevention_job_trigger';
 
-  GoogleDataLossPreventionJobTrigger({
-    required super.localName,
+  GoogleDataLossPreventionJobTrigger(
+    super.localName, {
     required TfArg<String> parent,
     TfArg<String>? triggerId,
     TfArg<String>? displayName,

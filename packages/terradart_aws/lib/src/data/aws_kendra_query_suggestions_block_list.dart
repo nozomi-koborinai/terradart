@@ -11,8 +11,8 @@ const Set<String> _awsKendraQuerySuggestionsBlockListSensitive = <String>{};
 final class DataAwsKendraQuerySuggestionsBlockList extends Data {
   static const String tfType = 'aws_kendra_query_suggestions_block_list';
 
-  DataAwsKendraQuerySuggestionsBlockList({
-    required super.localName,
+  DataAwsKendraQuerySuggestionsBlockList(
+    super.localName, {
     required TfArg<String> indexId,
     required TfArg<String> querySuggestionsBlockListId,
     TfArg<String>? region,

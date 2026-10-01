@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final analyticsRes = GoogleBigqueryReservation(
-  ///   localName: 'analytics',
+  ///   'analytics',
   ///   name: TfArg.literal('analytics-pool'),
   ///   location: TfArg.literal('US'),
   ///   slotCapacity: TfArg.literal(500),

@@ -12,8 +12,8 @@ const Set<String> _awsBackupVaultSensitive = <String>{};
 final class AwsBackupVault extends Resource {
   static const String tfType = 'aws_backup_vault';
 
-  AwsBackupVault({
-    required super.localName,
+  AwsBackupVault(
+    super.localName, {
     TfArg<bool>? forceDestroy,
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,

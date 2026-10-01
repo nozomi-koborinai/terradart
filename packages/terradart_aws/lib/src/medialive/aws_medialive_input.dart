@@ -111,8 +111,8 @@ final class MedialiveInputVpc {
 final class AwsMedialiveInput extends Resource {
   static const String tfType = 'aws_medialive_input';
 
-  AwsMedialiveInput({
-    required super.localName,
+  AwsMedialiveInput(
+    super.localName, {
     TfArg<List<String>>? inputSecurityGroups,
     required TfArg<String> name,
     TfArg<String>? region,

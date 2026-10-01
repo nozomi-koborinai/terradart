@@ -251,8 +251,8 @@ final class FsxWindowsFileSystemSelfManagedActiveDirectory {
 final class AwsFsxWindowsFileSystem extends Resource {
   static const String tfType = 'aws_fsx_windows_file_system';
 
-  AwsFsxWindowsFileSystem({
-    required super.localName,
+  AwsFsxWindowsFileSystem(
+    super.localName, {
     FsxWindowsFileSystemActiveDirectory? activeDirectory,
     TfArg<List<String>>? aliases,
     TfArg<num>? automaticBackupRetentionDays,

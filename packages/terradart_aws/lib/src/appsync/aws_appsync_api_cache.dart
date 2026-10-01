@@ -44,8 +44,8 @@ enum AppsyncApiCacheType implements TerraformEnum {
 final class AwsAppsyncApiCache extends Resource {
   static const String tfType = 'aws_appsync_api_cache';
 
-  AwsAppsyncApiCache({
-    required super.localName,
+  AwsAppsyncApiCache(
+    super.localName, {
     required TfArg<AppsyncApiCacheApiCachingBehavior> apiCachingBehavior,
     required TfArg<String> apiId,
     TfArg<bool>? atRestEncryptionEnabled,

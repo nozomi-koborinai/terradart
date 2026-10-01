@@ -33,8 +33,8 @@ final class DataCloudIdentityGroupLookupGroupKey {
 final class DataGoogleCloudIdentityGroupLookup extends Data {
   static const String tfType = 'google_cloud_identity_group_lookup';
 
-  DataGoogleCloudIdentityGroupLookup({
-    required super.localName,
+  DataGoogleCloudIdentityGroupLookup(
+    super.localName, {
     required DataCloudIdentityGroupLookupGroupKey groupKey,
     super.provider,
     super.timeouts,

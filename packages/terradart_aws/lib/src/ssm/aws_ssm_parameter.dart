@@ -122,8 +122,8 @@ final class SsmParameterValueWo extends SsmParameterValue {
 final class AwsSsmParameter extends Resource {
   static const String tfType = 'aws_ssm_parameter';
 
-  AwsSsmParameter({
-    required super.localName,
+  AwsSsmParameter(
+    super.localName, {
     TfArg<String>? allowedPattern,
     TfArg<String>? arn,
     TfArg<SsmParameterDataType>? dataType,

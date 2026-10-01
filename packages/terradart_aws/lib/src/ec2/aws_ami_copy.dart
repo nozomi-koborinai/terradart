@@ -31,8 +31,8 @@ final class AmiCopyEphemeralBlockDevice {
 final class AwsAmiCopy extends Resource {
   static const String tfType = 'aws_ami_copy';
 
-  AwsAmiCopy({
-    required super.localName,
+  AwsAmiCopy(
+    super.localName, {
     TfArg<String>? deprecationTime,
     TfArg<String>? description,
     TfArg<String>? destinationOutpostArn,

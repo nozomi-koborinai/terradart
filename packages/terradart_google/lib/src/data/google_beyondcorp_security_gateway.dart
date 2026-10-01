@@ -14,8 +14,8 @@ const Set<String> _googleBeyondcorpSecurityGatewaySensitive = <String>{};
 final class DataGoogleBeyondcorpSecurityGateway extends Data {
   static const String tfType = 'google_beyondcorp_security_gateway';
 
-  DataGoogleBeyondcorpSecurityGateway({
-    required super.localName,
+  DataGoogleBeyondcorpSecurityGateway(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,
     super.provider,

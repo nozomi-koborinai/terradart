@@ -37,8 +37,8 @@ final class ApigeeDeveloperAttributes {
 final class GoogleApigeeDeveloper extends Resource {
   static const String tfType = 'google_apigee_developer';
 
-  GoogleApigeeDeveloper({
-    required super.localName,
+  GoogleApigeeDeveloper(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> email,
     required TfArg<String> userName,

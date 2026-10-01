@@ -41,8 +41,8 @@ enum OrganizationsOrganizationFeatureSet implements TerraformEnum {
 final class AwsOrganizationsOrganization extends Resource {
   static const String tfType = 'aws_organizations_organization';
 
-  AwsOrganizationsOrganization({
-    required super.localName,
+  AwsOrganizationsOrganization(
+    super.localName, {
     TfArg<List<String>>? awsServiceAccessPrincipals,
     List<TfArg<OrganizationsOrganizationEnabledPolicyTypes>>?
     enabledPolicyTypes,

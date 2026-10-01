@@ -40,7 +40,7 @@ enum StorageDefaultObjectAccessControlRole implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleStorageDefaultObjectAccessControl(
-///   localName: 'default_reader',
+///   'default_reader',
 ///   bucket: legacy.ref,
 ///   entity: .literal('allAuthenticatedUsers'),
 ///   role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
@@ -49,8 +49,8 @@ enum StorageDefaultObjectAccessControlRole implements TerraformEnum {
 final class GoogleStorageDefaultObjectAccessControl extends Resource {
   static const String tfType = 'google_storage_default_object_access_control';
 
-  GoogleStorageDefaultObjectAccessControl({
-    required super.localName,
+  GoogleStorageDefaultObjectAccessControl(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> entity,
     required TfArg<StorageDefaultObjectAccessControlRole> role,

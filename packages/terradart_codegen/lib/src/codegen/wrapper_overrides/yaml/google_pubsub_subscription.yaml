@@ -11,7 +11,7 @@ curatedDoc: |-
   /// Example (push subscription):
   /// ```dart
   /// final push = GooglePubsubSubscription(
-  ///   localName: 'orders_push',
+  ///   'orders_push',
   ///   name: .literal('orders-push'),
   ///   topic: .of(orders),
   ///   delivery: .pushConfig(

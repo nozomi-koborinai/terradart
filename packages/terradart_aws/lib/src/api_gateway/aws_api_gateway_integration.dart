@@ -68,8 +68,8 @@ final class ApiGatewayIntegrationTlsConfig {
 final class AwsApiGatewayIntegration extends Resource {
   static const String tfType = 'aws_api_gateway_integration';
 
-  AwsApiGatewayIntegration({
-    required super.localName,
+  AwsApiGatewayIntegration(
+    super.localName, {
     TfArg<List<String>>? cacheKeyParameters,
     TfArg<String>? cacheNamespace,
     TfArg<String>? connectionId,

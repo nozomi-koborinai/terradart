@@ -11,8 +11,8 @@ const Set<String> _awsRedshiftserverlessNamespaceSensitive = <String>{};
 final class DataAwsRedshiftserverlessNamespace extends Data {
   static const String tfType = 'aws_redshiftserverless_namespace';
 
-  DataAwsRedshiftserverlessNamespace({
-    required super.localName,
+  DataAwsRedshiftserverlessNamespace(
+    super.localName, {
     required TfArg<String> namespaceName,
     TfArg<String>? region,
     super.provider,

@@ -46,8 +46,8 @@ final class ZeroTrustDeviceManagedNetworksConfig {
 final class CloudflareZeroTrustDeviceManagedNetworks extends Resource {
   static const String tfType = 'cloudflare_zero_trust_device_managed_networks';
 
-  CloudflareZeroTrustDeviceManagedNetworks({
-    required super.localName,
+  CloudflareZeroTrustDeviceManagedNetworks(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<ZeroTrustDeviceManagedNetworksType> type,

@@ -92,8 +92,8 @@ enum EmailRoutingRuleMatchersType implements TerraformEnum {
 final class CloudflareEmailRoutingRule extends Resource {
   static const String tfType = 'cloudflare_email_routing_rule';
 
-  CloudflareEmailRoutingRule({
-    required super.localName,
+  CloudflareEmailRoutingRule(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<String>? name,
     TfArg<String>? ownerWorkerTag,

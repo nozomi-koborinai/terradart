@@ -57,8 +57,8 @@ final class OrganizationProfile {
 final class CloudflareOrganization extends Resource {
   static const String tfType = 'cloudflare_organization';
 
-  CloudflareOrganization({
-    required super.localName,
+  CloudflareOrganization(
+    super.localName, {
     required TfArg<String> name,
     OrganizationParent? parent,
     OrganizationProfile? profile,

@@ -127,8 +127,8 @@ final class IvschatLoggingConfigurationS3 {
 final class AwsIvschatLoggingConfiguration extends Resource {
   static const String tfType = 'aws_ivschat_logging_configuration';
 
-  AwsIvschatLoggingConfiguration({
-    required super.localName,
+  AwsIvschatLoggingConfiguration(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

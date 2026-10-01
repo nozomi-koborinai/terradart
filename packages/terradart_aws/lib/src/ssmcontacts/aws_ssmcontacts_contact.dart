@@ -10,8 +10,8 @@ const Set<String> _awsSsmcontactsContactSensitive = <String>{};
 final class AwsSsmcontactsContact extends Resource {
   static const String tfType = 'aws_ssmcontacts_contact';
 
-  AwsSsmcontactsContact({
-    required super.localName,
+  AwsSsmcontactsContact(
+    super.localName, {
     required TfArg<String> alias,
     TfArg<String>? displayName,
     TfArg<String>? region,

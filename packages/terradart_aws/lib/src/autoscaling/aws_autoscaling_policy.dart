@@ -758,8 +758,8 @@ final class AutoscalingPolicyPredefinedMetricSpecification {
 final class AwsAutoscalingPolicy extends Resource {
   static const String tfType = 'aws_autoscaling_policy';
 
-  AwsAutoscalingPolicy({
-    required super.localName,
+  AwsAutoscalingPolicy(
+    super.localName, {
     TfArg<String>? adjustmentType,
     required TfArg<String> autoscalingGroupName,
     TfArg<num>? cooldown,

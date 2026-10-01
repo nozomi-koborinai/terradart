@@ -10,8 +10,8 @@ const Set<String> _awsFsxOpenzfsSnapshotSensitive = <String>{};
 final class AwsFsxOpenzfsSnapshot extends Resource {
   static const String tfType = 'aws_fsx_openzfs_snapshot';
 
-  AwsFsxOpenzfsSnapshot({
-    required super.localName,
+  AwsFsxOpenzfsSnapshot(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

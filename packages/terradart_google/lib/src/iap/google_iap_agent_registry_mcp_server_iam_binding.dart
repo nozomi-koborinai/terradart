@@ -45,8 +45,8 @@ final class GoogleIapAgentRegistryMcpServerIamBinding extends Resource {
   static const String tfType =
       'google_iap_agent_registry_mcp_server_iam_binding';
 
-  GoogleIapAgentRegistryMcpServerIamBinding({
-    required super.localName,
+  GoogleIapAgentRegistryMcpServerIamBinding(
+    super.localName, {
     required TfArg<String> mcpServerId,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

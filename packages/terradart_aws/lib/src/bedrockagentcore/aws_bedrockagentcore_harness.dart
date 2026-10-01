@@ -1184,8 +1184,8 @@ final class BedrockagentcoreHarnessRemoteMcp {
 final class AwsBedrockagentcoreHarness extends Resource {
   static const String tfType = 'aws_bedrockagentcore_harness';
 
-  AwsBedrockagentcoreHarness({
-    required super.localName,
+  AwsBedrockagentcoreHarness(
+    super.localName, {
     TfArg<List<String>>? allowedTools,
     TfArg<Map<String, String>>? environmentVariables,
     required RefTo<AwsIamRole> executionRoleArn,

@@ -73,8 +73,8 @@ final class EfsAccessPointCreationInfo {
 final class AwsEfsAccessPoint extends Resource {
   static const String tfType = 'aws_efs_access_point';
 
-  AwsEfsAccessPoint({
-    required super.localName,
+  AwsEfsAccessPoint(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -44,8 +44,8 @@ final class ContainerAnalysisNoteIamBindingCondition {
 final class GoogleContainerAnalysisNoteIamBinding extends Resource {
   static const String tfType = 'google_container_analysis_note_iam_binding';
 
-  GoogleContainerAnalysisNoteIamBinding({
-    required super.localName,
+  GoogleContainerAnalysisNoteIamBinding(
+    super.localName, {
     required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

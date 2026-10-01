@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example (custom domain serving the backend's live content):
   /// ```dart
   /// final www = GoogleFirebaseAppHostingDomain(
-  ///   localName: 'www',
+  ///   'www',
   ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   domainId: TfArg.literal('www.example.com'),
@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example (apex domain redirecting to `www`):
   /// ```dart
   /// final apex = GoogleFirebaseAppHostingDomain(
-  ///   localName: 'apex',
+  ///   'apex',
   ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   domainId: TfArg.literal('example.com'),

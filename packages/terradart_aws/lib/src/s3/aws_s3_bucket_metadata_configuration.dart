@@ -157,8 +157,8 @@ enum S3BucketMetadataConfigurationExpiration implements TerraformEnum {
 final class AwsS3BucketMetadataConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_metadata_configuration';
 
-  AwsS3BucketMetadataConfiguration({
-    required super.localName,
+  AwsS3BucketMetadataConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

@@ -27,8 +27,8 @@ final class DataPricingProductFilters {
 final class DataAwsPricingProduct extends Data {
   static const String tfType = 'aws_pricing_product';
 
-  DataAwsPricingProduct({
-    required super.localName,
+  DataAwsPricingProduct(
+    super.localName, {
     required TfArg<String> serviceCode,
     required List<DataPricingProductFilters> filters,
     super.provider,

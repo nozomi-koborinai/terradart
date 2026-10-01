@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDialogflowGenerator(
-  ///   localName: 'demo_summarizer',
+  ///   'demo_summarizer',
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('terradart summarization generator'),
   ///   triggerEvent: TfArg.literal(

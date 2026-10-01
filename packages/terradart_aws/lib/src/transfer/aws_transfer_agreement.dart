@@ -10,8 +10,8 @@ const Set<String> _awsTransferAgreementSensitive = <String>{};
 final class AwsTransferAgreement extends Resource {
   static const String tfType = 'aws_transfer_agreement';
 
-  AwsTransferAgreement({
-    required super.localName,
+  AwsTransferAgreement(
+    super.localName, {
     required TfArg<String> accessRole,
     required TfArg<String> baseDirectory,
     TfArg<String>? description,

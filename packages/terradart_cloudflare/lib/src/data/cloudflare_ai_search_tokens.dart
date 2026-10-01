@@ -11,8 +11,8 @@ const Set<String> _cloudflareAiSearchTokensSensitive = <String>{};
 final class DataCloudflareAiSearchTokens extends Data {
   static const String tfType = 'cloudflare_ai_search_tokens';
 
-  DataCloudflareAiSearchTokens({
-    required super.localName,
+  DataCloudflareAiSearchTokens(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,

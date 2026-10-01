@@ -16,8 +16,8 @@ const Set<String> _cloudflarePageShieldConnectionsSensitive = <String>{};
 final class DataCloudflarePageShieldConnections extends Data {
   static const String tfType = 'cloudflare_page_shield_connections';
 
-  DataCloudflarePageShieldConnections({
-    required super.localName,
+  DataCloudflarePageShieldConnections(
+    super.localName, {
     required TfArg<String> connectionId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

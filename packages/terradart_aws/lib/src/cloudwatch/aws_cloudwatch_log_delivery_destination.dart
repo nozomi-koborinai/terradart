@@ -51,8 +51,8 @@ final class CloudwatchLogDeliveryDestinationConfiguration {
 final class AwsCloudwatchLogDeliveryDestination extends Resource {
   static const String tfType = 'aws_cloudwatch_log_delivery_destination';
 
-  AwsCloudwatchLogDeliveryDestination({
-    required super.localName,
+  AwsCloudwatchLogDeliveryDestination(
+    super.localName, {
     TfArg<CloudwatchLogDeliveryDestinationType>? deliveryDestinationType,
     required TfArg<String> name,
     TfArg<CloudwatchLogDeliveryDestinationOutputFormat>? outputFormat,

@@ -15,8 +15,8 @@ const Set<String> _googleArtifactRegistryMavenArtifactsSensitive = <String>{};
 final class DataGoogleArtifactRegistryMavenArtifacts extends Data {
   static const String tfType = 'google_artifact_registry_maven_artifacts';
 
-  DataGoogleArtifactRegistryMavenArtifacts({
-    required super.localName,
+  DataGoogleArtifactRegistryMavenArtifacts(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,

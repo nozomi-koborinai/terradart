@@ -11,8 +11,8 @@ const Set<String> _awsIamUserSshKeySensitive = <String>{};
 final class DataAwsIamUserSshKey extends Data {
   static const String tfType = 'aws_iam_user_ssh_key';
 
-  DataAwsIamUserSshKey({
-    required super.localName,
+  DataAwsIamUserSshKey(
+    super.localName, {
     required TfArg<String> encoding,
     required TfArg<String> sshPublicKeyId,
     required TfArg<String> username,

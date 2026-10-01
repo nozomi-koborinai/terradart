@@ -12,8 +12,8 @@ final class AwsVpclatticeServiceNetworkServiceAssociation extends Resource {
   static const String tfType =
       'aws_vpclattice_service_network_service_association';
 
-  AwsVpclatticeServiceNetworkServiceAssociation({
-    required super.localName,
+  AwsVpclatticeServiceNetworkServiceAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceIdentifier,
     required TfArg<String> serviceNetworkIdentifier,

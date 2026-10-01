@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayUsagePlanKeySensitive = <String>{};
 final class AwsApiGatewayUsagePlanKey extends Resource {
   static const String tfType = 'aws_api_gateway_usage_plan_key';
 
-  AwsApiGatewayUsagePlanKey({
-    required super.localName,
+  AwsApiGatewayUsagePlanKey(
+    super.localName, {
     required TfArg<String> keyId,
     required TfArg<String> keyType,
     TfArg<String>? region,

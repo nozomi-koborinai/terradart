@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIntegrationsClient(
-  ///   localName: 'client',
+  ///   'client',
   ///   location: TfArg.literal('us-central1'),
   /// );
   /// ```

@@ -80,8 +80,8 @@ enum DataEmailSecurityBlockSenderFilterPatternType implements TerraformEnum {
 final class DataCloudflareEmailSecurityBlockSender extends Data {
   static const String tfType = 'cloudflare_email_security_block_sender';
 
-  DataCloudflareEmailSecurityBlockSender({
-    required super.localName,
+  DataCloudflareEmailSecurityBlockSender(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? patternId,
     DataEmailSecurityBlockSenderFilter? filter,

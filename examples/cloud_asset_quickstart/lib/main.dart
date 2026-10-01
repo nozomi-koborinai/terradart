@@ -39,7 +39,7 @@ final class CloudAssetStack extends Stack {
     // google-beta identity exists.
     final assetSa = add(
       GoogleProjectServiceIdentity(
-        localName: 'cloudasset',
+        'cloudasset',
         service: .literal('cloudasset.googleapis.com'),
         dependsOn: apiDeps,
       ),
@@ -47,7 +47,7 @@ final class CloudAssetStack extends Stack {
 
     final topic = add(
       GooglePubsubTopic(
-        localName: 'feed_output',
+        'feed_output',
         name: .literal('terradart-asset-feed'),
         dependsOn: apiDeps,
       ),
@@ -55,7 +55,7 @@ final class CloudAssetStack extends Stack {
 
     final publisher = add(
       GooglePubsubTopicIamMember(
-        localName: 'cloudasset_publisher',
+        'cloudasset_publisher',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: assetSa.principal,
@@ -66,7 +66,7 @@ final class CloudAssetStack extends Stack {
     // Topic IAM is eventually consistent; feed-create checks publish.
     final feedIamReady = add(
       TimeSleep(
-        localName: 'feed_iam_propagation',
+        'feed_iam_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 30)),
         dependsOn: [publisher],
       ),
@@ -74,7 +74,7 @@ final class CloudAssetStack extends Stack {
 
     add(
       GoogleCloudAssetProjectFeed(
-        localName: 'project_feed',
+        'project_feed',
         feedId: .literal('terradart-project-feed'),
         assetTypes: .literal(const [
           'cloudresourcemanager.googleapis.com/Project',

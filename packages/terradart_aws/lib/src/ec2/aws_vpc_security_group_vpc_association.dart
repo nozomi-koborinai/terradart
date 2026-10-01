@@ -13,8 +13,8 @@ const Set<String> _awsVpcSecurityGroupVpcAssociationSensitive = <String>{};
 final class AwsVpcSecurityGroupVpcAssociation extends Resource {
   static const String tfType = 'aws_vpc_security_group_vpc_association';
 
-  AwsVpcSecurityGroupVpcAssociation({
-    required super.localName,
+  AwsVpcSecurityGroupVpcAssociation(
+    super.localName, {
     TfArg<String>? region,
     required RefTo<AwsSecurityGroup> securityGroupId,
     required RefTo<AwsVpc> vpcId,

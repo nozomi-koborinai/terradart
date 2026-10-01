@@ -890,8 +890,8 @@ final class SagemakerEndpointConfigurationShadowProductionVariantsCoreDumpConfig
 final class AwsSagemakerEndpointConfiguration extends Resource {
   static const String tfType = 'aws_sagemaker_endpoint_configuration';
 
-  AwsSagemakerEndpointConfiguration({
-    required super.localName,
+  AwsSagemakerEndpointConfiguration(
+    super.localName, {
     RefTo<AwsIamRole>? executionRoleArn,
     RefTo<AwsKmsKey>? kmsKeyArn,
     SagemakerEndpointConfigurationName? name,

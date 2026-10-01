@@ -42,8 +42,8 @@ enum ConfigDeliveryChannelDeliveryFrequency implements TerraformEnum {
 final class AwsConfigDeliveryChannel extends Resource {
   static const String tfType = 'aws_config_delivery_channel';
 
-  AwsConfigDeliveryChannel({
-    required super.localName,
+  AwsConfigDeliveryChannel(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     required RefTo<AwsS3Bucket> s3BucketName,

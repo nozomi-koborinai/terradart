@@ -86,8 +86,8 @@ enum AuditmanagerControlSourceType implements TerraformEnum {
 final class AwsAuditmanagerControl extends Resource {
   static const String tfType = 'aws_auditmanager_control';
 
-  AwsAuditmanagerControl({
-    required super.localName,
+  AwsAuditmanagerControl(
+    super.localName, {
     TfArg<String>? actionPlanInstructions,
     TfArg<String>? actionPlanTitle,
     TfArg<String>? description,

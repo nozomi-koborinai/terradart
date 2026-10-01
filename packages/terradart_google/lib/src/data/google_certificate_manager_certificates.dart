@@ -13,8 +13,8 @@ const Set<String> _googleCertificateManagerCertificatesSensitive = <String>{};
 final class DataGoogleCertificateManagerCertificates extends Data {
   static const String tfType = 'google_certificate_manager_certificates';
 
-  DataGoogleCertificateManagerCertificates({
-    required super.localName,
+  DataGoogleCertificateManagerCertificates(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? region,
     super.provider,

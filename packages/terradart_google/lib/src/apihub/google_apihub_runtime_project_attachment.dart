@@ -26,8 +26,8 @@ const Set<String> _googleApihubRuntimeProjectAttachmentSensitive = <String>{};
 final class GoogleApihubRuntimeProjectAttachment extends Resource {
   static const String tfType = 'google_apihub_runtime_project_attachment';
 
-  GoogleApihubRuntimeProjectAttachment({
-    required super.localName,
+  GoogleApihubRuntimeProjectAttachment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> runtimeProjectAttachmentId,
     required TfArg<String> runtimeProject,

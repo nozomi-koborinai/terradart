@@ -120,8 +120,8 @@ final class SecuritylakeSubscriberIdentity {
 final class AwsSecuritylakeSubscriber extends Resource {
   static const String tfType = 'aws_securitylake_subscriber';
 
-  AwsSecuritylakeSubscriber({
-    required super.localName,
+  AwsSecuritylakeSubscriber(
+    super.localName, {
     TfArg<SecuritylakeSubscriberAccessType>? accessType,
     TfArg<String>? region,
     TfArg<String>? subscriberDescription,

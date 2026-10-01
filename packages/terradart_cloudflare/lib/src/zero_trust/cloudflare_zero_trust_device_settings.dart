@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDeviceSettingsSensitive = <String>{};
 final class CloudflareZeroTrustDeviceSettings extends Resource {
   static const String tfType = 'cloudflare_zero_trust_device_settings';
 
-  CloudflareZeroTrustDeviceSettings({
-    required super.localName,
+  CloudflareZeroTrustDeviceSettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? disableForTime,
     TfArg<bool>? externalEmergencySignalEnabled,

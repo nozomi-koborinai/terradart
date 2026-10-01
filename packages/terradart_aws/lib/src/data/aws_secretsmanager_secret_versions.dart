@@ -10,8 +10,8 @@ const Set<String> _awsSecretsmanagerSecretVersionsSensitive = <String>{};
 final class DataAwsSecretsmanagerSecretVersions extends Data {
   static const String tfType = 'aws_secretsmanager_secret_versions';
 
-  DataAwsSecretsmanagerSecretVersions({
-    required super.localName,
+  DataAwsSecretsmanagerSecretVersions(
+    super.localName, {
     TfArg<bool>? includeDeprecated,
     TfArg<String>? region,
     required TfArg<String> secretId,

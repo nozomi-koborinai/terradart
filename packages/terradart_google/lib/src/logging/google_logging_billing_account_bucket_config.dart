@@ -55,8 +55,8 @@ final class LoggingBillingAccountBucketConfigIndexConfigs {
 final class GoogleLoggingBillingAccountBucketConfig extends Resource {
   static const String tfType = 'google_logging_billing_account_bucket_config';
 
-  GoogleLoggingBillingAccountBucketConfig({
-    required super.localName,
+  GoogleLoggingBillingAccountBucketConfig(
+    super.localName, {
     required TfArg<String> billingAccount,
     required TfArg<String> bucketId,
     TfArg<String>? deletionPolicy,

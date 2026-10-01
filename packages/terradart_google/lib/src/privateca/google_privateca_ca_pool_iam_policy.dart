@@ -17,8 +17,8 @@ const Set<String> _googlePrivatecaCaPoolIamPolicySensitive = <String>{};
 final class GooglePrivatecaCaPoolIamPolicy extends Resource {
   static const String tfType = 'google_privateca_ca_pool_iam_policy';
 
-  GooglePrivatecaCaPoolIamPolicy({
-    required super.localName,
+  GooglePrivatecaCaPoolIamPolicy(
+    super.localName, {
     required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> policyData,
     super.lifecycle,

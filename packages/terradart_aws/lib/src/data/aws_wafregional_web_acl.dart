@@ -11,8 +11,8 @@ const Set<String> _awsWafregionalWebAclSensitive = <String>{};
 final class DataAwsWafregionalWebAcl extends Data {
   static const String tfType = 'aws_wafregional_web_acl';
 
-  DataAwsWafregionalWebAcl({
-    required super.localName,
+  DataAwsWafregionalWebAcl(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

@@ -182,8 +182,8 @@ enum ComputeNodeTemplateType implements TerraformEnum {
 final class GoogleComputeNodeTemplate extends Resource {
   static const String tfType = 'google_compute_node_template';
 
-  GoogleComputeNodeTemplate({
-    required super.localName,
+  GoogleComputeNodeTemplate(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     ComputeNodeTemplateNodeType? nodeType,

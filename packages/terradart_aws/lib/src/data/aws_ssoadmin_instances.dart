@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminInstancesSensitive = <String>{};
 final class DataAwsSsoadminInstances extends Data {
   static const String tfType = 'aws_ssoadmin_instances';
 
-  DataAwsSsoadminInstances({
-    required super.localName,
+  DataAwsSsoadminInstances(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

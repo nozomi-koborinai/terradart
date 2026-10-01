@@ -10,8 +10,8 @@ const Set<String> _awsRamPermissionSensitive = <String>{};
 final class AwsRamPermission extends Resource {
   static const String tfType = 'aws_ram_permission';
 
-  AwsRamPermission({
-    required super.localName,
+  AwsRamPermission(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> policyTemplate,
     TfArg<String>? region,

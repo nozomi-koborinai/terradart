@@ -10,8 +10,8 @@ const Set<String> _awsPinpointsmsvoicev2ResourcePolicySensitive = <String>{};
 final class AwsPinpointsmsvoicev2ResourcePolicy extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_resource_policy';
 
-  AwsPinpointsmsvoicev2ResourcePolicy({
-    required super.localName,
+  AwsPinpointsmsvoicev2ResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

@@ -18,8 +18,8 @@ const Set<String> _googleSecretManagerSecretIamPolicySensitive = <String>{};
 final class GoogleSecretManagerSecretIamPolicy extends Resource {
   static const String tfType = 'google_secret_manager_secret_iam_policy';
 
-  GoogleSecretManagerSecretIamPolicy({
-    required super.localName,
+  GoogleSecretManagerSecretIamPolicy(
+    super.localName, {
     required RefTo<GoogleSecretManagerSecret> secret,
     required TfArg<String> policyData,
     TfArg<String>? project,

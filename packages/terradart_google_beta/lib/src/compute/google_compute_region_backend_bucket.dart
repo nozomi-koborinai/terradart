@@ -40,8 +40,8 @@ enum ComputeRegionBackendBucketLoadBalancingScheme implements TerraformEnum {
 final class GoogleComputeRegionBackendBucket extends Resource {
   static const String tfType = 'google_compute_region_backend_bucket';
 
-  GoogleComputeRegionBackendBucket({
-    required super.localName,
+  GoogleComputeRegionBackendBucket(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

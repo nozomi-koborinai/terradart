@@ -56,8 +56,8 @@ final class NetappBackupOntapSource {
 final class GoogleNetappBackup extends Resource {
   static const String tfType = 'google_netapp_backup';
 
-  GoogleNetappBackup({
-    required super.localName,
+  GoogleNetappBackup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> vaultName,

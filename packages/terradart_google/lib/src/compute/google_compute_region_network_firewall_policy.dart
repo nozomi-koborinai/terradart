@@ -25,8 +25,8 @@ enum ComputeRegionNetworkFirewallPolicyType implements TerraformEnum {
 final class GoogleComputeRegionNetworkFirewallPolicy extends Resource {
   static const String tfType = 'google_compute_region_network_firewall_policy';
 
-  GoogleComputeRegionNetworkFirewallPolicy({
-    required super.localName,
+  GoogleComputeRegionNetworkFirewallPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,

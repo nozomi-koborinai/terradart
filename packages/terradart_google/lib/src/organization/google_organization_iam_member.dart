@@ -36,8 +36,8 @@ final class OrganizationIamMemberCondition {
 final class GoogleOrganizationIamMember extends Resource {
   static const String tfType = 'google_organization_iam_member';
 
-  GoogleOrganizationIamMember({
-    required super.localName,
+  GoogleOrganizationIamMember(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> role,
     required IamPrincipal member,

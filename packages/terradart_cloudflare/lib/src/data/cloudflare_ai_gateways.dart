@@ -15,8 +15,8 @@ const Set<String> _cloudflareAiGatewaysSensitive = <String>{};
 final class DataCloudflareAiGateways extends Data {
   static const String tfType = 'cloudflare_ai_gateways';
 
-  DataCloudflareAiGateways({
-    required super.localName,
+  DataCloudflareAiGateways(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,

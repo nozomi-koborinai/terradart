@@ -240,8 +240,8 @@ final class ModelArmorFloorsettingGoogleMcpServerFloorSetting {
 final class GoogleModelArmorFloorsetting extends Resource {
   static const String tfType = 'google_model_armor_floorsetting';
 
-  GoogleModelArmorFloorsetting({
-    required super.localName,
+  GoogleModelArmorFloorsetting(
+    super.localName, {
     TfArg<bool>? enableFloorSettingEnforcement,
     TfArg<List<String>>? integratedServices,
     required TfArg<String> location,

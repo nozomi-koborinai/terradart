@@ -11,8 +11,8 @@ const Set<String> _awsCloudformationStackSensitive = <String>{};
 final class DataAwsCloudformationStack extends Data {
   static const String tfType = 'aws_cloudformation_stack';
 
-  DataAwsCloudformationStack({
-    required super.localName,
+  DataAwsCloudformationStack(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -10,8 +10,8 @@ const Set<String> _awsOpensearchserverlessCollectionSensitive = <String>{};
 final class AwsOpensearchserverlessCollection extends Resource {
   static const String tfType = 'aws_opensearchserverless_collection';
 
-  AwsOpensearchserverlessCollection({
-    required super.localName,
+  AwsOpensearchserverlessCollection(
+    super.localName, {
     TfArg<String>? collectionGroupName,
     TfArg<String>? description,
     TfArg<List<Map<String, Object?>>>? encryptionConfig,

@@ -30,8 +30,8 @@ final class VertexAiTensorboardEncryptionSpec {
 final class GoogleVertexAiTensorboard extends Resource {
   static const String tfType = 'google_vertex_ai_tensorboard';
 
-  GoogleVertexAiTensorboard({
-    required super.localName,
+  GoogleVertexAiTensorboard(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? description,
     TfArg<String>? region,

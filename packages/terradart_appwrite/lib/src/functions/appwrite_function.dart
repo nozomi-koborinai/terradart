@@ -14,8 +14,8 @@ const Set<String> _appwriteFunctionSensitive = <String>{};
 final class AppwriteFunction extends Resource {
   static const String tfType = 'appwrite_function';
 
-  AppwriteFunction({
-    required super.localName,
+  AppwriteFunction(
+    super.localName, {
     TfArg<String>? buildSpecification,
     TfArg<String>? commands,
     TfArg<num>? deploymentRetention,

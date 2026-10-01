@@ -27,8 +27,8 @@ final class DataVpcsFilter {
 final class DataAwsVpcs extends Data {
   static const String tfType = 'aws_vpcs';
 
-  DataAwsVpcs({
-    required super.localName,
+  DataAwsVpcs(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataVpcsFilter>? filter,

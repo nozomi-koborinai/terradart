@@ -11,8 +11,8 @@ const Set<String> _awsConnectUserSensitive = <String>{};
 final class DataAwsConnectUser extends Data {
   static const String tfType = 'aws_connect_user';
 
-  DataAwsConnectUser({
-    required super.localName,
+  DataAwsConnectUser(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? name,
     TfArg<String>? region,

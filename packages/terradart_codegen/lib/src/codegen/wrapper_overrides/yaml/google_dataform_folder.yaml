@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataformFolder(
-  ///   localName: 'apps',
+  ///   'apps',
   ///   displayName: TfArg.literal('terradart-apps'),
   ///   region: TfArg.literal('us-central1'),
   /// );

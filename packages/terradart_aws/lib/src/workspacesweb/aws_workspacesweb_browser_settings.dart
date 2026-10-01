@@ -10,8 +10,8 @@ const Set<String> _awsWorkspaceswebBrowserSettingsSensitive = <String>{};
 final class AwsWorkspaceswebBrowserSettings extends Resource {
   static const String tfType = 'aws_workspacesweb_browser_settings';
 
-  AwsWorkspaceswebBrowserSettings({
-    required super.localName,
+  AwsWorkspaceswebBrowserSettings(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     required TfArg<String> browserPolicy,
     TfArg<String>? customerManagedKey,

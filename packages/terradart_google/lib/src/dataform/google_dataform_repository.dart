@@ -187,7 +187,7 @@ final class DataformRepositoryWorkspaceCompilationOverrides {
 /// Example:
 /// ```dart
 /// GoogleDataformRepository(
-///   localName: 'analytics',
+///   'analytics',
 ///   name: TfArg.literal('terradart-analytics'),
 ///   region: TfArg.literal('us-central1'),
 ///   displayName: TfArg.literal('TerraDart analytics'),
@@ -196,8 +196,8 @@ final class DataformRepositoryWorkspaceCompilationOverrides {
 final class GoogleDataformRepository extends Resource {
   static const String tfType = 'google_dataform_repository';
 
-  GoogleDataformRepository({
-    required super.localName,
+  GoogleDataformRepository(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? displayName,

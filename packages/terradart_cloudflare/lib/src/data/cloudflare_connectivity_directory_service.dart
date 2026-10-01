@@ -34,8 +34,8 @@ enum DataConnectivityDirectoryServiceFilterType implements TerraformEnum {
 final class DataCloudflareConnectivityDirectoryService extends Data {
   static const String tfType = 'cloudflare_connectivity_directory_service';
 
-  DataCloudflareConnectivityDirectoryService({
-    required super.localName,
+  DataCloudflareConnectivityDirectoryService(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? serviceId,
     DataConnectivityDirectoryServiceFilter? filter,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftDataShareAuthorizationSensitive = <String>{};
 final class AwsRedshiftDataShareAuthorization extends Resource {
   static const String tfType = 'aws_redshift_data_share_authorization';
 
-  AwsRedshiftDataShareAuthorization({
-    required super.localName,
+  AwsRedshiftDataShareAuthorization(
+    super.localName, {
     TfArg<bool>? allowWrites,
     required TfArg<String> consumerIdentifier,
     required TfArg<String> dataShareArn,

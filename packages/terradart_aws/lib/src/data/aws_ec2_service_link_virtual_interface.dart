@@ -30,8 +30,8 @@ final class DataEc2ServiceLinkVirtualInterfaceFilter {
 final class DataAwsEc2ServiceLinkVirtualInterface extends Data {
   static const String tfType = 'aws_ec2_service_link_virtual_interface';
 
-  DataAwsEc2ServiceLinkVirtualInterface({
-    required super.localName,
+  DataAwsEc2ServiceLinkVirtualInterface(
+    super.localName, {
     TfArg<String>? region,
     List<DataEc2ServiceLinkVirtualInterfaceFilter>? filter,
     super.provider,

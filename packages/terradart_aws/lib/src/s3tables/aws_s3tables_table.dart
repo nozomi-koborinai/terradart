@@ -85,8 +85,8 @@ final class S3tablesTableField {
 final class AwsS3tablesTable extends Resource {
   static const String tfType = 'aws_s3tables_table';
 
-  AwsS3tablesTable({
-    required super.localName,
+  AwsS3tablesTable(
+    super.localName, {
     TfArg<Map<String, Object?>>? encryptionConfiguration,
     required TfArg<S3tablesTableFormat> format,
     TfArg<Map<String, Object?>>? maintenanceConfiguration,

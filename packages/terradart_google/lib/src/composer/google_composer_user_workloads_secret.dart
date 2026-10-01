@@ -19,7 +19,7 @@ const Set<String> _googleComposerUserWorkloadsSecretSensitive = <String>{
 /// Example:
 /// ```dart
 /// GoogleComposerUserWorkloadsSecret(
-///   localName: 'sec',
+///   'sec',
 ///   name: TfArg.literal('app-secret'),
 ///   environment: env.name,
 ///   region: TfArg.literal('us-central1'),
@@ -31,8 +31,8 @@ const Set<String> _googleComposerUserWorkloadsSecretSensitive = <String>{
 final class GoogleComposerUserWorkloadsSecret extends Resource {
   static const String tfType = 'google_composer_user_workloads_secret';
 
-  GoogleComposerUserWorkloadsSecret({
-    required super.localName,
+  GoogleComposerUserWorkloadsSecret(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> environment,
     TfArg<String>? region,

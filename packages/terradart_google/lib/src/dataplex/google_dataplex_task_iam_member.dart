@@ -37,8 +37,8 @@ final class DataplexTaskIamMemberCondition {
 final class GoogleDataplexTaskIamMember extends Resource {
   static const String tfType = 'google_dataplex_task_iam_member';
 
-  GoogleDataplexTaskIamMember({
-    required super.localName,
+  GoogleDataplexTaskIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexTask> task,
     TfArg<String>? lake,
     required TfArg<String> role,

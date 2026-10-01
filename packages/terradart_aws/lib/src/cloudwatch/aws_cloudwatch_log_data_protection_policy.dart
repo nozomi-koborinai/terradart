@@ -12,8 +12,8 @@ const Set<String> _awsCloudwatchLogDataProtectionPolicySensitive = <String>{};
 final class AwsCloudwatchLogDataProtectionPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_data_protection_policy';
 
-  AwsCloudwatchLogDataProtectionPolicy({
-    required super.localName,
+  AwsCloudwatchLogDataProtectionPolicy(
+    super.localName, {
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> policyDocument,
     TfArg<String>? region,

@@ -44,8 +44,8 @@ final class FinspaceKxDataviewSegmentConfigurations {
 final class AwsFinspaceKxDataview extends Resource {
   static const String tfType = 'aws_finspace_kx_dataview';
 
-  AwsFinspaceKxDataview({
-    required super.localName,
+  AwsFinspaceKxDataview(
+    super.localName, {
     required TfArg<bool> autoUpdate,
     TfArg<String>? availabilityZoneId,
     required TfArg<FinspaceKxDataviewAzMode> azMode,

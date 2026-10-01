@@ -31,8 +31,8 @@ final class DataZonesAccount {
 final class DataCloudflareZones extends Data {
   static const String tfType = 'cloudflare_zones';
 
-  DataCloudflareZones({
-    required super.localName,
+  DataCloudflareZones(
+    super.localName, {
     TfArg<String>? direction,
     TfArg<String>? match,
     TfArg<num>? maxItems,

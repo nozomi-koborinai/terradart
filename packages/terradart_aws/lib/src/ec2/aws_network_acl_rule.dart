@@ -79,8 +79,8 @@ final class NetworkAclRuleCidrIpv6CidrBlock extends NetworkAclRuleCidr {
 final class AwsNetworkAclRule extends Resource {
   static const String tfType = 'aws_network_acl_rule';
 
-  AwsNetworkAclRule({
-    required super.localName,
+  AwsNetworkAclRule(
+    super.localName, {
     required NetworkAclRuleCidr cidr,
     TfArg<bool>? egress,
     TfArg<num>? fromPort,

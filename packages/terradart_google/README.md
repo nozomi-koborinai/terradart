@@ -32,7 +32,7 @@ final class AssetsStack extends Stack {
           GoogleProvider(project: projectId, region: 'asia-northeast1'),
         ]) {
     add(GoogleStorageBucket(
-      localName: 'assets',
+      'assets',
       name: .literal('my-app-assets-prod'),
       location: .literal('ASIA-NORTHEAST1'),
       storageClass: .literal(.standard),

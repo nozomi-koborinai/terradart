@@ -19,8 +19,8 @@ const Set<String> _cloudflareHyperdriveConfigSensitive = <String>{
 final class DataCloudflareHyperdriveConfig extends Data {
   static const String tfType = 'cloudflare_hyperdrive_config';
 
-  DataCloudflareHyperdriveConfig({
-    required super.localName,
+  DataCloudflareHyperdriveConfig(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> hyperdriveId,
     super.provider,

@@ -76,8 +76,8 @@ enum CloudRunDomainMappingCertificateMode implements TerraformEnum {
 final class GoogleCloudRunDomainMapping extends Resource {
   static const String tfType = 'google_cloud_run_domain_mapping';
 
-  GoogleCloudRunDomainMapping({
-    required super.localName,
+  GoogleCloudRunDomainMapping(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> location,
     required TfArg<String> name,

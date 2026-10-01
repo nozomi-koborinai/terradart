@@ -60,8 +60,8 @@ final class PrometheusScraperLoggingConfigurationCloudwatchLogs {
 final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   static const String tfType = 'aws_prometheus_scraper_logging_configuration';
 
-  AwsPrometheusScraperLoggingConfiguration({
-    required super.localName,
+  AwsPrometheusScraperLoggingConfiguration(
+    super.localName, {
     TfArg<String>? region,
     List<TfArg<PrometheusScraperLoggingConfigurationScraperComponents>>?
     scraperComponents,

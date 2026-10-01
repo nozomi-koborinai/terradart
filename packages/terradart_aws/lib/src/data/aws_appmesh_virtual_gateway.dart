@@ -11,8 +11,8 @@ const Set<String> _awsAppmeshVirtualGatewaySensitive = <String>{};
 final class DataAwsAppmeshVirtualGateway extends Data {
   static const String tfType = 'aws_appmesh_virtual_gateway';
 
-  DataAwsAppmeshVirtualGateway({
-    required super.localName,
+  DataAwsAppmeshVirtualGateway(
+    super.localName, {
     required TfArg<String> meshName,
     required TfArg<String> name,
     TfArg<String>? region,

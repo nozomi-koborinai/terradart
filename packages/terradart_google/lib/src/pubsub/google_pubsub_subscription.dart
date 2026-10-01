@@ -470,7 +470,7 @@ final class PubsubSubscriptionRetryPolicy {
 /// Example (push subscription):
 /// ```dart
 /// final push = GooglePubsubSubscription(
-///   localName: 'orders_push',
+///   'orders_push',
 ///   name: .literal('orders-push'),
 ///   topic: .of(orders),
 ///   delivery: .pushConfig(
@@ -483,8 +483,8 @@ final class PubsubSubscriptionRetryPolicy {
 final class GooglePubsubSubscription extends Resource {
   static const String tfType = 'google_pubsub_subscription';
 
-  GooglePubsubSubscription({
-    required super.localName,
+  GooglePubsubSubscription(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GooglePubsubTopic> topic,
     TfArg<Map<String, String>>? labels,

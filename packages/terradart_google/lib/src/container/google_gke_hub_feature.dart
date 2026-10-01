@@ -694,7 +694,7 @@ final class GkeHubFeatureWorkloadidentity {
 /// Example:
 /// ```dart
 /// GoogleGkeHubFeature(
-///   localName: 'mcsd',
+///   'mcsd',
 ///   name: TfArg.literal('multiclusterservicediscovery'),
 ///   location: TfArg.literal('global'),
 /// );
@@ -702,8 +702,8 @@ final class GkeHubFeatureWorkloadidentity {
 final class GoogleGkeHubFeature extends Resource {
   static const String tfType = 'google_gke_hub_feature';
 
-  GoogleGkeHubFeature({
-    required super.localName,
+  GoogleGkeHubFeature(
+    super.localName, {
     TfArg<String>? name,
     required TfArg<String> location,
     TfArg<Map<String, String>>? labels,

@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleGeminiDataSharingWithGoogleSettingBinding(
-  ///   localName: 'sharing_bind',
+  ///   'sharing_bind',
   ///   dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
   ///   settingBindingId: TfArg.literal('terradart-sharing-bind'),
   ///   location: TfArg.literal('global'),

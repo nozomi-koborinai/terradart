@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustConnectivitySettingsSensitive =
 final class CloudflareZeroTrustConnectivitySettings extends Resource {
   static const String tfType = 'cloudflare_zero_trust_connectivity_settings';
 
-  CloudflareZeroTrustConnectivitySettings({
-    required super.localName,
+  CloudflareZeroTrustConnectivitySettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? icmpProxyEnabled,
     TfArg<bool>? offrampWarpEnabled,

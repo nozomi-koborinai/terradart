@@ -16,8 +16,8 @@ const Set<String> _cloudflareEmailSecurityTrustedDomainsListSensitive =
 final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
   static const String tfType = 'cloudflare_email_security_trusted_domains_list';
 
-  DataCloudflareEmailSecurityTrustedDomainsList({
-    required super.localName,
+  DataCloudflareEmailSecurityTrustedDomainsList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<bool>? isRecent,

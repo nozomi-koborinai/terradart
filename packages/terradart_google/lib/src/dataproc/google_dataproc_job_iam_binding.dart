@@ -41,8 +41,8 @@ final class DataprocJobIamBindingCondition {
 final class GoogleDataprocJobIamBinding extends Resource {
   static const String tfType = 'google_dataproc_job_iam_binding';
 
-  GoogleDataprocJobIamBinding({
-    required super.localName,
+  GoogleDataprocJobIamBinding(
+    super.localName, {
     required TfArg<String> jobId,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

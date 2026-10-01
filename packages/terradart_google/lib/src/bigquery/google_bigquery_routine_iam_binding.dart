@@ -43,8 +43,8 @@ final class BigqueryRoutineIamBindingCondition {
 final class GoogleBigqueryRoutineIamBinding extends Resource {
   static const String tfType = 'google_bigquery_routine_iam_binding';
 
-  GoogleBigqueryRoutineIamBinding({
-    required super.localName,
+  GoogleBigqueryRoutineIamBinding(
+    super.localName, {
     TfArg<String>? datasetId,
     required RefTo<GoogleBigqueryRoutine> routine,
     required TfArg<String> role,

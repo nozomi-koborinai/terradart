@@ -14,7 +14,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleContactCenterInsightsEncryptionSpec(
-  ///   localName: 'insights_cmek',
+  ///   'insights_cmek',
   ///   location: TfArg.literal('asia-northeast1'),
   ///   kmsKey: paymentsKey.ref,
   /// );

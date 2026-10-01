@@ -11,8 +11,8 @@ const Set<String> _awsBatchJobDefinitionSensitive = <String>{};
 final class DataAwsBatchJobDefinition extends Data {
   static const String tfType = 'aws_batch_job_definition';
 
-  DataAwsBatchJobDefinition({
-    required super.localName,
+  DataAwsBatchJobDefinition(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

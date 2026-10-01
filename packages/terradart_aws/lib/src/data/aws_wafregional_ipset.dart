@@ -11,8 +11,8 @@ const Set<String> _awsWafregionalIpsetSensitive = <String>{};
 final class DataAwsWafregionalIpset extends Data {
   static const String tfType = 'aws_wafregional_ipset';
 
-  DataAwsWafregionalIpset({
-    required super.localName,
+  DataAwsWafregionalIpset(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

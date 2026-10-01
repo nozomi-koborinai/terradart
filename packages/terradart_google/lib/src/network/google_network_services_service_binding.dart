@@ -22,8 +22,8 @@ const Set<String> _googleNetworkServicesServiceBindingSensitive = <String>{};
 final class GoogleNetworkServicesServiceBinding extends Resource {
   static const String tfType = 'google_network_services_service_binding';
 
-  GoogleNetworkServicesServiceBinding({
-    required super.localName,
+  GoogleNetworkServicesServiceBinding(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> service,
     TfArg<String>? description,

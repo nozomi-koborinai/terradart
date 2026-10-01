@@ -10,8 +10,8 @@ const Set<String> _awsLightsailCertificateSensitive = <String>{};
 final class AwsLightsailCertificate extends Resource {
   static const String tfType = 'aws_lightsail_certificate';
 
-  AwsLightsailCertificate({
-    required super.localName,
+  AwsLightsailCertificate(
+    super.localName, {
     TfArg<String>? domainName,
     required TfArg<String> name,
     TfArg<String>? region,

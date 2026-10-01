@@ -252,7 +252,7 @@ final class AlloydbInstanceReadPoolConfig {
 /// Example:
 /// ```dart
 /// GoogleAlloydbInstance(
-///   localName: 'primary',
+///   'primary',
 ///   cluster: cluster.ref,
 ///   instanceId: TfArg.literal('primary'),
 ///   instanceType: TfArg.literal(AlloydbInstanceType.primary),
@@ -264,8 +264,8 @@ final class AlloydbInstanceReadPoolConfig {
 final class GoogleAlloydbInstance extends Resource {
   static const String tfType = 'google_alloydb_instance';
 
-  GoogleAlloydbInstance({
-    required super.localName,
+  GoogleAlloydbInstance(
+    super.localName, {
     required RefTo<GoogleAlloydbCluster> cluster,
     required TfArg<String> instanceId,
     required TfArg<AlloydbInstanceType> instanceType,

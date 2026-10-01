@@ -108,8 +108,8 @@ final class AppsyncFunctionLambdaConflictHandlerConfig {
 final class AwsAppsyncFunction extends Resource {
   static const String tfType = 'aws_appsync_function';
 
-  AwsAppsyncFunction({
-    required super.localName,
+  AwsAppsyncFunction(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? code,
     required TfArg<String> dataSource,

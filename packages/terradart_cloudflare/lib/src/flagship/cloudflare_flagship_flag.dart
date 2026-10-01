@@ -287,8 +287,8 @@ final class FlagshipFlagRollout {
 final class CloudflareFlagshipFlag extends Resource {
   static const String tfType = 'cloudflare_flagship_flag';
 
-  CloudflareFlagshipFlag({
-    required super.localName,
+  CloudflareFlagshipFlag(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
     required TfArg<String> defaultVariation,

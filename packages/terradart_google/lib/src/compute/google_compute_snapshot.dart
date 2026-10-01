@@ -167,8 +167,8 @@ final class ComputeSnapshotSourceDiskEncryptionKey {
 final class GoogleComputeSnapshot extends Resource {
   static const String tfType = 'google_compute_snapshot';
 
-  GoogleComputeSnapshot({
-    required super.localName,
+  GoogleComputeSnapshot(
+    super.localName, {
     required TfArg<String> name,
     required ComputeSnapshotSource source,
     TfArg<String>? description,

@@ -22,8 +22,8 @@ const Set<String> _googleApigeeNatAddressSensitive = <String>{};
 final class GoogleApigeeNatAddress extends Resource {
   static const String tfType = 'google_apigee_nat_address';
 
-  GoogleApigeeNatAddress({
-    required super.localName,
+  GoogleApigeeNatAddress(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> instanceId,
     TfArg<bool>? activate,

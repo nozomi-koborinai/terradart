@@ -10,8 +10,8 @@ const Set<String> _awsChatbotSlackWorkspaceSensitive = <String>{};
 final class DataAwsChatbotSlackWorkspace extends Data {
   static const String tfType = 'aws_chatbot_slack_workspace';
 
-  DataAwsChatbotSlackWorkspace({
-    required super.localName,
+  DataAwsChatbotSlackWorkspace(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> slackTeamName,
     super.provider,

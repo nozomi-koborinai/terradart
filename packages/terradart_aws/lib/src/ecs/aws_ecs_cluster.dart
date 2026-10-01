@@ -154,8 +154,8 @@ enum EcsClusterSettingName implements TerraformEnum {
 final class AwsEcsCluster extends Resource {
   static const String tfType = 'aws_ecs_cluster';
 
-  AwsEcsCluster({
-    required super.localName,
+  AwsEcsCluster(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

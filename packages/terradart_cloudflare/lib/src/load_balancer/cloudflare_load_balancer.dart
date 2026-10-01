@@ -342,8 +342,8 @@ enum LoadBalancerZeroDowntimeFailover implements TerraformEnum {
 final class CloudflareLoadBalancer extends Resource {
   static const String tfType = 'cloudflare_load_balancer';
 
-  CloudflareLoadBalancer({
-    required super.localName,
+  CloudflareLoadBalancer(
+    super.localName, {
     TfArg<Map<String, List<String>>>? countryPools,
     required TfArg<List<String>> defaultPools,
     TfArg<String>? description,

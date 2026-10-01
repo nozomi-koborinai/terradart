@@ -96,7 +96,7 @@ curatedDoc: |-
   /// Example (Regional Internal Application LB frontend):
   /// ```dart
   /// final ilbFwd = GoogleComputeForwardingRule(
-  ///   localName: 'ilb',
+  ///   'ilb',
   ///   name: TfArg.literal('ilb-https-frontend'),
   ///   region: TfArg.literal('us-central1'),
   ///   target: regionTargetHttpsProxy.selfLink,

@@ -12,8 +12,8 @@ const Set<String> _cloudflareOriginTlsComplianceModesSensitive = <String>{};
 final class DataCloudflareOriginTlsComplianceModes extends Data {
   static const String tfType = 'cloudflare_origin_tls_compliance_modes';
 
-  DataCloudflareOriginTlsComplianceModes({
-    required super.localName,
+  DataCloudflareOriginTlsComplianceModes(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

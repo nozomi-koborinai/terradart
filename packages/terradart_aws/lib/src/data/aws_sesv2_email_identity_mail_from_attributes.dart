@@ -12,8 +12,8 @@ const Set<String> _awsSesv2EmailIdentityMailFromAttributesSensitive =
 final class DataAwsSesv2EmailIdentityMailFromAttributes extends Data {
   static const String tfType = 'aws_sesv2_email_identity_mail_from_attributes';
 
-  DataAwsSesv2EmailIdentityMailFromAttributes({
-    required super.localName,
+  DataAwsSesv2EmailIdentityMailFromAttributes(
+    super.localName, {
     required TfArg<String> emailIdentity,
     TfArg<String>? region,
     super.provider,

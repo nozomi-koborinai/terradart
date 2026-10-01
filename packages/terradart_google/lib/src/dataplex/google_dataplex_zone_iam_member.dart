@@ -37,8 +37,8 @@ final class DataplexZoneIamMemberCondition {
 final class GoogleDataplexZoneIamMember extends Resource {
   static const String tfType = 'google_dataplex_zone_iam_member';
 
-  GoogleDataplexZoneIamMember({
-    required super.localName,
+  GoogleDataplexZoneIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexZone> zone,
     TfArg<String>? lake,
     required TfArg<String> role,

@@ -62,8 +62,8 @@ final class Ec2TransitGatewayPolicyTableEntryMetadata {
 final class AwsEc2TransitGatewayPolicyTableEntry extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_policy_table_entry';
 
-  AwsEc2TransitGatewayPolicyTableEntry({
-    required super.localName,
+  AwsEc2TransitGatewayPolicyTableEntry(
+    super.localName, {
     required TfArg<String> policyRuleNumber,
     TfArg<String>? region,
     required TfArg<String> targetRouteTableId,

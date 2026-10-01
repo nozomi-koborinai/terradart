@@ -24,8 +24,8 @@ enum IamServiceSpecificCredentialStatus implements TerraformEnum {
 final class AwsIamServiceSpecificCredential extends Resource {
   static const String tfType = 'aws_iam_service_specific_credential';
 
-  AwsIamServiceSpecificCredential({
-    required super.localName,
+  AwsIamServiceSpecificCredential(
+    super.localName, {
     TfArg<num>? credentialAgeDays,
     required TfArg<String> serviceName,
     TfArg<IamServiceSpecificCredentialStatus>? status,

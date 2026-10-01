@@ -106,8 +106,8 @@ enum NetappVolumeReplicationTierAction implements TerraformEnum {
 final class GoogleNetappVolumeReplication extends Resource {
   static const String tfType = 'google_netapp_volume_replication';
 
-  GoogleNetappVolumeReplication({
-    required super.localName,
+  GoogleNetappVolumeReplication(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> volumeName,

@@ -46,7 +46,7 @@ final class IapLocationWebIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleIapLocationWebIamMember(
-///   localName: 'location_web_invoker',
+///   'location_web_invoker',
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
 ///   member: sa.principal,
@@ -55,8 +55,8 @@ final class IapLocationWebIamMemberCondition {
 final class GoogleIapLocationWebIamMember extends Resource {
   static const String tfType = 'google_iap_location_web_iam_member';
 
-  GoogleIapLocationWebIamMember({
-    required super.localName,
+  GoogleIapLocationWebIamMember(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> role,
     required IamPrincipal member,

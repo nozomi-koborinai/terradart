@@ -24,8 +24,8 @@ final class DataplexEntryTypeRequiredAspects {
 final class GoogleDataplexEntryType extends Resource {
   static const String tfType = 'google_dataplex_entry_type';
 
-  GoogleDataplexEntryType({
-    required super.localName,
+  GoogleDataplexEntryType(
+    super.localName, {
     TfArg<String>? entryTypeId,
     TfArg<String>? location,
     TfArg<String>? displayName,

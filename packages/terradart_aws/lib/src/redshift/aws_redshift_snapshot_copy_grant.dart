@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftSnapshotCopyGrantSensitive = <String>{};
 final class AwsRedshiftSnapshotCopyGrant extends Resource {
   static const String tfType = 'aws_redshift_snapshot_copy_grant';
 
-  AwsRedshiftSnapshotCopyGrant({
-    required super.localName,
+  AwsRedshiftSnapshotCopyGrant(
+    super.localName, {
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     required TfArg<String> snapshotCopyGrantName,

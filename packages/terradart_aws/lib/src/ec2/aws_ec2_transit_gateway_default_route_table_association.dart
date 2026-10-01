@@ -12,8 +12,8 @@ final class AwsEc2TransitGatewayDefaultRouteTableAssociation extends Resource {
   static const String tfType =
       'aws_ec2_transit_gateway_default_route_table_association';
 
-  AwsEc2TransitGatewayDefaultRouteTableAssociation({
-    required super.localName,
+  AwsEc2TransitGatewayDefaultRouteTableAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> transitGatewayId,
     required TfArg<String> transitGatewayRouteTableId,

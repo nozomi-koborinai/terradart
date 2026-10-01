@@ -12,8 +12,8 @@ const Set<String> _awsStoragegatewayCachedIscsiVolumeSensitive = <String>{};
 final class AwsStoragegatewayCachedIscsiVolume extends Resource {
   static const String tfType = 'aws_storagegateway_cached_iscsi_volume';
 
-  AwsStoragegatewayCachedIscsiVolume({
-    required super.localName,
+  AwsStoragegatewayCachedIscsiVolume(
+    super.localName, {
     required TfArg<String> gatewayArn,
     TfArg<bool>? kmsEncrypted,
     RefTo<AwsKmsKey>? kmsKey,

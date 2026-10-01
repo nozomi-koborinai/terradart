@@ -31,7 +31,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataformRepository(
-  ///   localName: 'analytics',
+  ///   'analytics',
   ///   name: TfArg.literal('terradart-analytics'),
   ///   region: TfArg.literal('us-central1'),
   ///   displayName: TfArg.literal('TerraDart analytics'),

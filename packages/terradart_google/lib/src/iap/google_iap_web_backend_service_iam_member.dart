@@ -36,8 +36,8 @@ final class IapWebBackendServiceIamMemberCondition {
 final class GoogleIapWebBackendServiceIamMember extends Resource {
   static const String tfType = 'google_iap_web_backend_service_iam_member';
 
-  GoogleIapWebBackendServiceIamMember({
-    required super.localName,
+  GoogleIapWebBackendServiceIamMember(
+    super.localName, {
     required IamPrincipal member,
     TfArg<String>? project,
     required TfArg<String> role,

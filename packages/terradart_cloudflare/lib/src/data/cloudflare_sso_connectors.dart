@@ -15,8 +15,8 @@ const Set<String> _cloudflareSsoConnectorsSensitive = <String>{};
 final class DataCloudflareSsoConnectors extends Data {
   static const String tfType = 'cloudflare_sso_connectors';
 
-  DataCloudflareSsoConnectors({
-    required super.localName,
+  DataCloudflareSsoConnectors(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

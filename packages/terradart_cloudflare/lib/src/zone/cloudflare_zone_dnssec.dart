@@ -26,8 +26,8 @@ enum ZoneDnssecStatus implements TerraformEnum {
 final class CloudflareZoneDnssec extends Resource {
   static const String tfType = 'cloudflare_zone_dnssec';
 
-  CloudflareZoneDnssec({
-    required super.localName,
+  CloudflareZoneDnssec(
+    super.localName, {
     TfArg<bool>? dnssecMultiSigner,
     TfArg<bool>? dnssecPresigned,
     TfArg<bool>? dnssecUseNsec3,

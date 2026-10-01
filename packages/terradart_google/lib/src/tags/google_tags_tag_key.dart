@@ -22,8 +22,8 @@ enum TagsTagKeyPurpose implements TerraformEnum {
 final class GoogleTagsTagKey extends Resource {
   static const String tfType = 'google_tags_tag_key';
 
-  GoogleTagsTagKey({
-    required super.localName,
+  GoogleTagsTagKey(
+    super.localName, {
     required TfArg<String> shortName,
     required TfArg<String> parent,
     TfArg<String>? description,

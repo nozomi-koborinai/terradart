@@ -97,8 +97,8 @@ final class Apigatewayv2IntegrationTlsConfig {
 final class AwsApigatewayv2Integration extends Resource {
   static const String tfType = 'aws_apigatewayv2_integration';
 
-  AwsApigatewayv2Integration({
-    required super.localName,
+  AwsApigatewayv2Integration(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? connectionId,
     TfArg<Apigatewayv2IntegrationConnectionType>? connectionType,

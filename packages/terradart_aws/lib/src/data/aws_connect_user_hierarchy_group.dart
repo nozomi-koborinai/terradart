@@ -11,8 +11,8 @@ const Set<String> _awsConnectUserHierarchyGroupSensitive = <String>{};
 final class DataAwsConnectUserHierarchyGroup extends Data {
   static const String tfType = 'aws_connect_user_hierarchy_group';
 
-  DataAwsConnectUserHierarchyGroup({
-    required super.localName,
+  DataAwsConnectUserHierarchyGroup(
+    super.localName, {
     TfArg<String>? hierarchyGroupId,
     required TfArg<String> instanceId,
     TfArg<String>? name,

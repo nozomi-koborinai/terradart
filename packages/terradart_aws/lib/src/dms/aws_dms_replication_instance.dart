@@ -47,8 +47,8 @@ final class DmsReplicationInstanceKerberosAuthenticationSettings {
 final class AwsDmsReplicationInstance extends Resource {
   static const String tfType = 'aws_dms_replication_instance';
 
-  AwsDmsReplicationInstance({
-    required super.localName,
+  AwsDmsReplicationInstance(
+    super.localName, {
     TfArg<num>? allocatedStorage,
     TfArg<bool>? allowMajorVersionUpgrade,
     TfArg<bool>? applyImmediately,

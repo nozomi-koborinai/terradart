@@ -100,8 +100,8 @@ final class AppmeshVirtualServiceVirtualRouter {
 final class AwsAppmeshVirtualService extends Resource {
   static const String tfType = 'aws_appmesh_virtual_service';
 
-  AwsAppmeshVirtualService({
-    required super.localName,
+  AwsAppmeshVirtualService(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

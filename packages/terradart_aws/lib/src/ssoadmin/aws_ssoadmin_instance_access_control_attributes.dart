@@ -43,8 +43,8 @@ final class AwsSsoadminInstanceAccessControlAttributes extends Resource {
   static const String tfType =
       'aws_ssoadmin_instance_access_control_attributes';
 
-  AwsSsoadminInstanceAccessControlAttributes({
-    required super.localName,
+  AwsSsoadminInstanceAccessControlAttributes(
+    super.localName, {
     required TfArg<String> instanceArn,
     TfArg<String>? region,
     required List<SsoadminInstanceAccessControlAttributesAttribute> attribute,

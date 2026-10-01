@@ -39,8 +39,8 @@ final class FolderIamAuditConfigAuditLogConfig {
 final class GoogleFolderIamAuditConfig extends Resource {
   static const String tfType = 'google_folder_iam_audit_config';
 
-  GoogleFolderIamAuditConfig({
-    required super.localName,
+  GoogleFolderIamAuditConfig(
+    super.localName, {
     required TfArg<String> folder,
     required TfArg<String> service,
     required List<FolderIamAuditConfigAuditLogConfig> auditLogConfig,

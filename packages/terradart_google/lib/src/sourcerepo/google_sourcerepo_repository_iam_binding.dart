@@ -44,8 +44,8 @@ final class SourcerepoRepositoryIamBindingCondition {
 final class GoogleSourcerepoRepositoryIamBinding extends Resource {
   static const String tfType = 'google_sourcerepo_repository_iam_binding';
 
-  GoogleSourcerepoRepositoryIamBinding({
-    required super.localName,
+  GoogleSourcerepoRepositoryIamBinding(
+    super.localName, {
     required RefTo<GoogleSourcerepoRepository> repository,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

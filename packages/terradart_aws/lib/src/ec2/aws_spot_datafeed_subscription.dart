@@ -12,8 +12,8 @@ const Set<String> _awsSpotDatafeedSubscriptionSensitive = <String>{};
 final class AwsSpotDatafeedSubscription extends Resource {
   static const String tfType = 'aws_spot_datafeed_subscription';
 
-  AwsSpotDatafeedSubscription({
-    required super.localName,
+  AwsSpotDatafeedSubscription(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? prefix,
     TfArg<String>? region,

@@ -49,8 +49,8 @@ enum WafregionalRateBasedRuleType implements TerraformEnum {
 final class AwsWafregionalRateBasedRule extends Resource {
   static const String tfType = 'aws_wafregional_rate_based_rule';
 
-  AwsWafregionalRateBasedRule({
-    required super.localName,
+  AwsWafregionalRateBasedRule(
+    super.localName, {
     required TfArg<String> metricName,
     required TfArg<String> name,
     required TfArg<String> rateKey,

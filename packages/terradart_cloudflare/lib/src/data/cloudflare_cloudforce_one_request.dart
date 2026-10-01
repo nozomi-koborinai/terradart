@@ -92,8 +92,8 @@ enum DataCloudforceOneRequestFilterStatus implements TerraformEnum {
 final class DataCloudflareCloudforceOneRequest extends Data {
   static const String tfType = 'cloudflare_cloudforce_one_request';
 
-  DataCloudflareCloudforceOneRequest({
-    required super.localName,
+  DataCloudflareCloudforceOneRequest(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? requestId,
     DataCloudforceOneRequestFilter? filter,

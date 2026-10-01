@@ -18,8 +18,8 @@ const Set<String> _cloudflareZeroTrustNetworkHostnameRouteSensitive =
 final class CloudflareZeroTrustNetworkHostnameRoute extends Resource {
   static const String tfType = 'cloudflare_zero_trust_network_hostname_route';
 
-  CloudflareZeroTrustNetworkHostnameRoute({
-    required super.localName,
+  CloudflareZeroTrustNetworkHostnameRoute(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comment,
     TfArg<String>? hostname,

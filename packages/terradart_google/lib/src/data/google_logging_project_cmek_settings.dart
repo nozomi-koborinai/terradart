@@ -14,8 +14,8 @@ const Set<String> _googleLoggingProjectCmekSettingsSensitive = <String>{};
 final class DataGoogleLoggingProjectCmekSettings extends Data {
   static const String tfType = 'google_logging_project_cmek_settings';
 
-  DataGoogleLoggingProjectCmekSettings({
-    required super.localName,
+  DataGoogleLoggingProjectCmekSettings(
+    super.localName, {
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> project,
     super.provider,

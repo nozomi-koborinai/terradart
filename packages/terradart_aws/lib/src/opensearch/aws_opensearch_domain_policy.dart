@@ -10,8 +10,8 @@ const Set<String> _awsOpensearchDomainPolicySensitive = <String>{};
 final class AwsOpensearchDomainPolicy extends Resource {
   static const String tfType = 'aws_opensearch_domain_policy';
 
-  AwsOpensearchDomainPolicy({
-    required super.localName,
+  AwsOpensearchDomainPolicy(
+    super.localName, {
     required TfArg<String> accessPolicies,
     required TfArg<String> domainName,
     TfArg<String>? region,

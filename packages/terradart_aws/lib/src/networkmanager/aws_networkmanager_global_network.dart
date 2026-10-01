@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerGlobalNetworkSensitive = <String>{};
 final class AwsNetworkmanagerGlobalNetwork extends Resource {
   static const String tfType = 'aws_networkmanager_global_network';
 
-  AwsNetworkmanagerGlobalNetwork({
-    required super.localName,
+  AwsNetworkmanagerGlobalNetwork(
+    super.localName, {
     TfArg<String>? description,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

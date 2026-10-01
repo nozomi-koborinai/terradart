@@ -41,8 +41,8 @@ final class VpcPeeringConnectionAccepterRequester {
 final class AwsVpcPeeringConnectionAccepter extends Resource {
   static const String tfType = 'aws_vpc_peering_connection_accepter';
 
-  AwsVpcPeeringConnectionAccepter({
-    required super.localName,
+  AwsVpcPeeringConnectionAccepter(
+    super.localName, {
     TfArg<bool>? autoAccept,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

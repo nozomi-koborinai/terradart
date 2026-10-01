@@ -13,8 +13,8 @@ const Set<String> _googleNetworkSecurityUrlListsSensitive = <String>{};
 final class GoogleNetworkSecurityUrlLists extends Resource {
   static const String tfType = 'google_network_security_url_lists';
 
-  GoogleNetworkSecurityUrlLists({
-    required super.localName,
+  GoogleNetworkSecurityUrlLists(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<List<String>> values,

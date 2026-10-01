@@ -14,8 +14,8 @@ const Set<String> _googleGkeHubScopeIamPolicySensitive = <String>{};
 final class DataGoogleGkeHubScopeIamPolicy extends Data {
   static const String tfType = 'google_gke_hub_scope_iam_policy';
 
-  DataGoogleGkeHubScopeIamPolicy({
-    required super.localName,
+  DataGoogleGkeHubScopeIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> scopeId,
     super.provider,

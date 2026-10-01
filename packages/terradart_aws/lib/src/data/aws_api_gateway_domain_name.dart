@@ -11,8 +11,8 @@ const Set<String> _awsApiGatewayDomainNameSensitive = <String>{};
 final class DataAwsApiGatewayDomainName extends Data {
   static const String tfType = 'aws_api_gateway_domain_name';
 
-  DataAwsApiGatewayDomainName({
-    required super.localName,
+  DataAwsApiGatewayDomainName(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? domainNameId,
     TfArg<String>? region,

@@ -18,8 +18,8 @@ const Set<String> _googleVertexAiFeatureGroupIamPolicySensitive = <String>{};
 final class GoogleVertexAiFeatureGroupIamPolicy extends Resource {
   static const String tfType = 'google_vertex_ai_feature_group_iam_policy';
 
-  GoogleVertexAiFeatureGroupIamPolicy({
-    required super.localName,
+  GoogleVertexAiFeatureGroupIamPolicy(
+    super.localName, {
     required RefTo<GoogleVertexAiFeatureGroup> featureGroup,
     required TfArg<String> policyData,
     TfArg<String>? project,

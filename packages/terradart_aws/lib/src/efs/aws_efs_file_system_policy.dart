@@ -10,8 +10,8 @@ const Set<String> _awsEfsFileSystemPolicySensitive = <String>{};
 final class AwsEfsFileSystemPolicy extends Resource {
   static const String tfType = 'aws_efs_file_system_policy';
 
-  AwsEfsFileSystemPolicy({
-    required super.localName,
+  AwsEfsFileSystemPolicy(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     required TfArg<String> fileSystemId,
     required TfArg<String> policy,

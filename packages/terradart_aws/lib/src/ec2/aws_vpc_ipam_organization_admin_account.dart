@@ -10,8 +10,8 @@ const Set<String> _awsVpcIpamOrganizationAdminAccountSensitive = <String>{};
 final class AwsVpcIpamOrganizationAdminAccount extends Resource {
   static const String tfType = 'aws_vpc_ipam_organization_admin_account';
 
-  AwsVpcIpamOrganizationAdminAccount({
-    required super.localName,
+  AwsVpcIpamOrganizationAdminAccount(
+    super.localName, {
     required TfArg<String> delegatedAdminAccountId,
     super.lifecycle,
     super.dependsOn,

@@ -10,8 +10,8 @@ const Set<String> _awsMskconnectWorkerConfigurationSensitive = <String>{};
 final class AwsMskconnectWorkerConfiguration extends Resource {
   static const String tfType = 'aws_mskconnect_worker_configuration';
 
-  AwsMskconnectWorkerConfiguration({
-    required super.localName,
+  AwsMskconnectWorkerConfiguration(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> propertiesFileContent,

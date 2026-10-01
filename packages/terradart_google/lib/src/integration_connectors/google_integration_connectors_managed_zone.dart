@@ -24,8 +24,8 @@ const Set<String> _googleIntegrationConnectorsManagedZoneSensitive = <String>{};
 final class GoogleIntegrationConnectorsManagedZone extends Resource {
   static const String tfType = 'google_integration_connectors_managed_zone';
 
-  GoogleIntegrationConnectorsManagedZone({
-    required super.localName,
+  GoogleIntegrationConnectorsManagedZone(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> dns,
     required TfArg<String> targetProject,

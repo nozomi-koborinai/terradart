@@ -83,21 +83,21 @@ final class EndpointsStack extends Stack {
     // the APIs Google's Endpoints setup lists without editing that map.
     final apiServiceManagement = add(
       GoogleProjectService(
-        localName: 'api_servicemanagement',
+        'api_servicemanagement',
         service: .literal('servicemanagement.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiServiceControl = add(
       GoogleProjectService(
-        localName: 'api_servicecontrol',
+        'api_servicecontrol',
         service: .literal('servicecontrol.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiEndpoints = add(
       GoogleProjectService(
-        localName: 'api_endpoints',
+        'api_endpoints',
         service: .literal('endpoints.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -105,7 +105,7 @@ final class EndpointsStack extends Stack {
 
     final apiWait = add(
       TimeSleep(
-        localName: 'api_propagation',
+        'api_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 60)),
         dependsOn: [apiServiceManagement, apiServiceControl, apiEndpoints],
       ),
@@ -113,7 +113,7 @@ final class EndpointsStack extends Stack {
 
     final service = add(
       GoogleEndpointsService(
-        localName: 'echo',
+        'echo',
         serviceName: .literal(serviceName),
         openapiConfig: .literal(_openapiConfig(serviceName)),
         deletionPolicy: .literal('DELETE'),
@@ -123,7 +123,7 @@ final class EndpointsStack extends Stack {
 
     final sa = add(
       GoogleServiceAccount(
-        localName: 'viewer',
+        'viewer',
         accountId: .literal('ep-viewer'),
         displayName: .literal('Endpoints leftover viewer'),
       ),
@@ -131,7 +131,7 @@ final class EndpointsStack extends Stack {
 
     add(
       GoogleEndpointsServiceIamMember(
-        localName: 'viewer',
+        'viewer',
         service: .literal(serviceName),
         role: .literal('roles/viewer'),
         member: sa.principal,

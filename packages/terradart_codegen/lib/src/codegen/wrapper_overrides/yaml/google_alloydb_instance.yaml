@@ -41,7 +41,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleAlloydbInstance(
-  ///   localName: 'primary',
+  ///   'primary',
   ///   cluster: cluster.ref,
   ///   instanceId: TfArg.literal('primary'),
   ///   instanceType: TfArg.literal(AlloydbInstanceType.primary),

@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example (Avro schema for an order event):
   /// ```dart
   /// final orderSchema = GooglePubsubSchema(
-  ///   localName: 'orders_v1',
+  ///   'orders_v1',
   ///   name: TfArg.literal('orders-v1'),
   ///   type: TfArg.literal(PubsubSchemaType.avro),
   ///   definition: TfArg.literal(

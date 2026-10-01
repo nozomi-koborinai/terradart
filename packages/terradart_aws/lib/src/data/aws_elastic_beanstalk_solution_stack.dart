@@ -10,8 +10,8 @@ const Set<String> _awsElasticBeanstalkSolutionStackSensitive = <String>{};
 final class DataAwsElasticBeanstalkSolutionStack extends Data {
   static const String tfType = 'aws_elastic_beanstalk_solution_stack';
 
-  DataAwsElasticBeanstalkSolutionStack({
-    required super.localName,
+  DataAwsElasticBeanstalkSolutionStack(
+    super.localName, {
     TfArg<bool>? mostRecent,
     required TfArg<String> nameRegex,
     TfArg<String>? region,

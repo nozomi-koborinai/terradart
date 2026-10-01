@@ -12,8 +12,8 @@ const Set<String> _awsDefaultSecurityGroupSensitive = <String>{};
 final class AwsDefaultSecurityGroup extends Resource {
   static const String tfType = 'aws_default_security_group';
 
-  AwsDefaultSecurityGroup({
-    required super.localName,
+  AwsDefaultSecurityGroup(
+    super.localName, {
     TfArg<List<Map<String, Object?>>>? egress,
     TfArg<List<Map<String, Object?>>>? ingress,
     TfArg<String>? region,

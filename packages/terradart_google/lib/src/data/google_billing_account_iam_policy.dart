@@ -14,8 +14,8 @@ const Set<String> _googleBillingAccountIamPolicySensitive = <String>{};
 final class DataGoogleBillingAccountIamPolicy extends Data {
   static const String tfType = 'google_billing_account_iam_policy';
 
-  DataGoogleBillingAccountIamPolicy({
-    required super.localName,
+  DataGoogleBillingAccountIamPolicy(
+    super.localName, {
     required TfArg<String> billingAccountId,
     super.provider,
     super.timeouts,

@@ -42,8 +42,8 @@ enum ActiveDirectoryDomainTrustType implements TerraformEnum {
 final class GoogleActiveDirectoryDomainTrust extends Resource {
   static const String tfType = 'google_active_directory_domain_trust';
 
-  GoogleActiveDirectoryDomainTrust({
-    required super.localName,
+  GoogleActiveDirectoryDomainTrust(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> domain,
     TfArg<String>? project,

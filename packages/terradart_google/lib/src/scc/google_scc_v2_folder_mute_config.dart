@@ -21,8 +21,8 @@ const Set<String> _googleSccV2FolderMuteConfigSensitive = <String>{};
 final class GoogleSccV2FolderMuteConfig extends Resource {
   static const String tfType = 'google_scc_v2_folder_mute_config';
 
-  GoogleSccV2FolderMuteConfig({
-    required super.localName,
+  GoogleSccV2FolderMuteConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> filter,

@@ -36,8 +36,8 @@ final class IapWebCloudRunServiceIamMemberCondition {
 final class GoogleIapWebCloudRunServiceIamMember extends Resource {
   static const String tfType = 'google_iap_web_cloud_run_service_iam_member';
 
-  GoogleIapWebCloudRunServiceIamMember({
-    required super.localName,
+  GoogleIapWebCloudRunServiceIamMember(
+    super.localName, {
     required TfArg<String> cloudRunServiceName,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -28,8 +28,8 @@ final class DataAmiFilter {
 final class DataAwsAmi extends Data {
   static const String tfType = 'aws_ami';
 
-  DataAwsAmi({
-    required super.localName,
+  DataAwsAmi(
+    super.localName, {
     TfArg<bool>? allowUnsafeFilter,
     TfArg<List<String>>? executableUsers,
     TfArg<bool>? includeDeprecated,

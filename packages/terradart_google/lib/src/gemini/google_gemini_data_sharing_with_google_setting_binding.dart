@@ -31,7 +31,7 @@ const Set<String> _googleGeminiDataSharingWithGoogleSettingBindingSensitive =
 /// Example:
 /// ```dart
 /// GoogleGeminiDataSharingWithGoogleSettingBinding(
-///   localName: 'sharing_bind',
+///   'sharing_bind',
 ///   dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
 ///   settingBindingId: TfArg.literal('terradart-sharing-bind'),
 ///   location: TfArg.literal('global'),
@@ -42,8 +42,8 @@ final class GoogleGeminiDataSharingWithGoogleSettingBinding extends Resource {
   static const String tfType =
       'google_gemini_data_sharing_with_google_setting_binding';
 
-  GoogleGeminiDataSharingWithGoogleSettingBinding({
-    required super.localName,
+  GoogleGeminiDataSharingWithGoogleSettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiDataSharingWithGoogleSetting>
     dataSharingWithGoogleSettingId,
     required TfArg<String> settingBindingId,

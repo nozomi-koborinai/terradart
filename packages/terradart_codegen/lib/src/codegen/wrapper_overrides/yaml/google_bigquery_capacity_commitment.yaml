@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final yearly = GoogleBigqueryCapacityCommitment(
-  ///   localName: 'yearly',
+  ///   'yearly',
   ///   capacityCommitmentId: TfArg.literal('yearly-1k'),
   ///   location: TfArg.literal('US'),
   ///   slotCount: TfArg.literal(1000),

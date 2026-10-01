@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example (keep daily backups for 7 days):
   /// ```dart
   /// final daily = GoogleFirestoreBackupSchedule(
-  ///   localName: 'daily',
+  ///   'daily',
   ///   database: db.ref,
   ///   retention: TfArg.literal('604800s'),
   ///   recurrence: const FirestoreBackupScheduleDailyRecurrence(),
@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example (weekly backup every Monday, retained 4 weeks):
   /// ```dart
   /// final weekly = GoogleFirestoreBackupSchedule(
-  ///   localName: 'weekly',
+  ///   'weekly',
   ///   database: db.ref,
   ///   retention: TfArg.literal('2419200s'),
   ///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(day: BackupDayOfWeek.monday),

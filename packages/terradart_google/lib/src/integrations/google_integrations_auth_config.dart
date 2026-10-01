@@ -518,7 +518,7 @@ final class IntegrationsAuthConfigUsernameAndPassword {
 /// Example (dummy username/password — not a real secret):
 /// ```dart
 /// GoogleIntegrationsAuthConfig(
-///   localName: 'auth_config',
+///   'auth_config',
 ///   displayName: TfArg.literal('terradart-dummy-basic'),
 ///   location: TfArg.literal('us-east1'),
 ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
@@ -536,8 +536,8 @@ final class IntegrationsAuthConfigUsernameAndPassword {
 final class GoogleIntegrationsAuthConfig extends Resource {
   static const String tfType = 'google_integrations_auth_config';
 
-  GoogleIntegrationsAuthConfig({
-    required super.localName,
+  GoogleIntegrationsAuthConfig(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
     TfArg<String>? description,

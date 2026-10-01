@@ -59,7 +59,7 @@ final class IamShowcaseStack extends Stack {
 
     final wifPool = add(
       GoogleIamWorkloadIdentityPool(
-        localName: 'ci',
+        'ci',
         workloadIdentityPoolId: .literal('github-actions'),
         displayName: .literal('GitHub Actions CI/CD'),
       ),
@@ -67,7 +67,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIamWorkloadIdentityPoolProvider(
-        localName: 'github_provider',
+        'github_provider',
         workloadIdentityPoolId: wifPool.ref,
         workloadIdentityPoolProviderId: .literal('github-actions'),
         displayName: .literal('GitHub Actions OIDC'),
@@ -94,7 +94,7 @@ final class IamShowcaseStack extends Stack {
 
     final sa = add(
       GoogleServiceAccount(
-        localName: 'demo',
+        'demo',
         accountId: .literal('demo-sa'),
         displayName: .literal('IAM quickstart demo SA'),
       ),
@@ -104,7 +104,7 @@ final class IamShowcaseStack extends Stack {
     // metadata without granting the authoritative pool policy.
     add(
       GoogleIamWorkloadIdentityPoolIamMember(
-        localName: 'wif_pool_viewer',
+        'wif_pool_viewer',
         workloadIdentityPool: wifPool.ref,
         role: .literal('roles/iam.workloadIdentityPoolViewer'),
         member: sa.principal,
@@ -114,28 +114,28 @@ final class IamShowcaseStack extends Stack {
 
     final apiPubsub = add(
       GoogleProjectService(
-        localName: 'api_pubsub',
+        'api_pubsub',
         service: .literal('pubsub.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiCloudTasks = add(
       GoogleProjectService(
-        localName: 'api_cloudtasks',
+        'api_cloudtasks',
         service: .literal('cloudtasks.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiSecretManager = add(
       GoogleProjectService(
-        localName: 'api_secretmanager',
+        'api_secretmanager',
         service: .literal('secretmanager.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiIap = add(
       GoogleProjectService(
-        localName: 'api_iap',
+        'api_iap',
         service: .literal('iap.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -145,7 +145,7 @@ final class IamShowcaseStack extends Stack {
 
     final topic = add(
       GooglePubsubTopic(
-        localName: 'demo',
+        'demo',
         name: .literal('demo-topic'),
         dependsOn: [apiPubsub],
       ),
@@ -153,7 +153,7 @@ final class IamShowcaseStack extends Stack {
 
     final subscription = add(
       GooglePubsubSubscription(
-        localName: 'demo_sub',
+        'demo_sub',
         name: .literal('demo-sub'),
         // topic.id (NOT topic.name) -- subscriptions need full path.
         topic: topic.ref,
@@ -163,7 +163,7 @@ final class IamShowcaseStack extends Stack {
 
     final queue = add(
       GoogleCloudTasksQueue(
-        localName: 'demo_queue',
+        'demo_queue',
         name: .literal('demo-queue'),
         location: .literal('us-central1'),
         dependsOn: [apiCloudTasks],
@@ -172,7 +172,7 @@ final class IamShowcaseStack extends Stack {
 
     final secret = add(
       GoogleSecretManagerSecret(
-        localName: 'demo_secret',
+        'demo_secret',
         secretId: .literal('demo-secret'),
         replication: const .auto(.new()),
         dependsOn: [apiSecretManager],
@@ -183,7 +183,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GooglePubsubTopicIamMember(
-        localName: 'topic_publisher',
+        'topic_publisher',
         // Topic IAM identifies the topic by its **name** (not id).
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
@@ -195,7 +195,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GooglePubsubSubscriptionIamMember(
-        localName: 'sub_subscriber',
+        'sub_subscriber',
         // Subscription IAM uses the subscription **name**.
         subscription: subscription.ref,
         role: .literal('roles/pubsub.subscriber'),
@@ -207,7 +207,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleCloudTasksQueueIamMember(
-        localName: 'queue_enqueuer',
+        'queue_enqueuer',
         // Queue IAM identifies via **name + location** (not id).
         queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),
@@ -219,7 +219,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleSecretManagerSecretIamMember(
-        localName: 'secret_accessor',
+        'secret_accessor',
         // Secret IAM identifies via **secret_id** (not id / name).
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
@@ -234,7 +234,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapAppEngineServiceIamMember(
-        localName: 'gae_service_invoker',
+        'gae_service_invoker',
         appId: .literal(projectId),
         service: .literal('default'),
         role: .literal('roles/iap.httpsResourceAccessor'),
@@ -245,7 +245,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapAppEngineVersionIamMember(
-        localName: 'gae_version_invoker',
+        'gae_version_invoker',
         appId: .literal(projectId),
         service: .literal('default'),
         versionId: .literal('v1'),
@@ -257,7 +257,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapWebTypeAppEngineIamMember(
-        localName: 'gae_app_invoker',
+        'gae_app_invoker',
         appId: .literal(projectId),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
@@ -272,7 +272,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapAgentRegistryIamMember(
-        localName: 'agent_registry_invoker',
+        'agent_registry_invoker',
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
@@ -282,7 +282,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapLocationWebIamMember(
-        localName: 'location_web_invoker',
+        'location_web_invoker',
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
@@ -295,7 +295,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapWebIamMember(
-        localName: 'web_invoker',
+        'web_invoker',
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
         dependsOn: [apiIap],
@@ -304,7 +304,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIapWebTypeComputeIamMember(
-        localName: 'web_type_compute_invoker',
+        'web_type_compute_invoker',
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
         dependsOn: [apiIap],
@@ -319,7 +319,7 @@ final class IamShowcaseStack extends Stack {
 
     final customRole = add(
       GoogleProjectIamCustomRole(
-        localName: 'gcs_observer',
+        'gcs_observer',
         roleId: .literal('gcsObserver'),
         title: .literal('GCS Observer'),
         permissions: .literal([
@@ -341,7 +341,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleProjectIamMember(
-        localName: 'demo_sa_observer',
+        'demo_sa_observer',
         project: .literal(projectId),
         // Reference the custom role's full path so Terraform binds against
         // the created resource (not just a string literal).
@@ -359,7 +359,7 @@ final class IamShowcaseStack extends Stack {
 
     final impersonator = add(
       GoogleServiceAccount(
-        localName: 'impersonator',
+        'impersonator',
         accountId: .literal('demo-impersonator'),
         displayName: .literal('Demo SA impersonator'),
       ),
@@ -367,7 +367,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleServiceAccountIamMember(
-        localName: 'demo_sa_user',
+        'demo_sa_user',
         // Target SA is the demo SA; identified by its full resource path.
         serviceAccount: sa.ref,
         role: .literal('roles/iam.serviceAccountUser'),
@@ -383,7 +383,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleServiceAccountKey(
-        localName: 'demo_sa_key',
+        'demo_sa_key',
         serviceAccountId: sa.ref,
         keyAlgorithm: .literal(.rsa2048),
         privateKeyType: .literal(.googleCredentialsFile),
@@ -397,7 +397,7 @@ final class IamShowcaseStack extends Stack {
 
     final apiOsLogin = add(
       GoogleProjectService(
-        localName: 'api_oslogin',
+        'api_oslogin',
         service: .literal('oslogin.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -405,7 +405,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleOsLoginSshPublicKey(
-        localName: 'demo_ssh',
+        'demo_ssh',
         user: sa.email,
         key: .literal(
           'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
@@ -421,11 +421,11 @@ final class IamShowcaseStack extends Stack {
     // grant IAM. MM exclude_delete: destroy drops state; Google-owned
     // SAs remain. The wrap fixture has no deletion_policy attribute.
 
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final apiWorkloadIdentity = add(
       GoogleProjectService(
-        localName: 'api_workloadidentity',
+        'api_workloadidentity',
         service: .literal('workloadidentity.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -433,7 +433,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleWorkloadIdentityServiceAgent(
-        localName: 'pubsub_agents',
+        'pubsub_agents',
         parent: .literal(
           'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
         ),
@@ -448,7 +448,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIamOauthClient(
-        localName: 'demo_oauth',
+        'demo_oauth',
         oauthClientId: .literal('terradart-oauth'),
         location: .literal('global'),
         allowedGrantTypes: .literal(['AUTHORIZATION_CODE_GRANT']),
@@ -463,7 +463,7 @@ final class IamShowcaseStack extends Stack {
     // placeholder id); see the README's "Before you apply" section.
     final workforce = add(
       GoogleIamWorkforcePool(
-        localName: 'workforce',
+        'workforce',
         location: .literal('global'),
         parent: .literal('organizations/123456789'),
         workforcePoolId: .literal('terradart-wf'),
@@ -474,7 +474,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIamWorkforcePoolIamMember(
-        localName: 'workforce_viewer',
+        'workforce_viewer',
         workforcePool: .literal('terradart-wf'),
         location: .literal('global'),
         role: .literal('roles/iam.workforcePoolViewer'),
@@ -485,7 +485,7 @@ final class IamShowcaseStack extends Stack {
 
     final wfProvider = add(
       GoogleIamWorkforcePoolProvider(
-        localName: 'workforce_oidc',
+        'workforce_oidc',
         location: .literal('global'),
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
@@ -502,7 +502,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIamWorkforcePoolProviderKey(
-        localName: 'workforce_key',
+        'workforce_key',
         location: .literal('global'),
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
@@ -516,7 +516,7 @@ final class IamShowcaseStack extends Stack {
 
     final scim = add(
       GoogleIamWorkforcePoolProviderScimTenant(
-        localName: 'workforce_scim',
+        'workforce_scim',
         location: .literal('global'),
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
@@ -532,7 +532,7 @@ final class IamShowcaseStack extends Stack {
 
     add(
       GoogleIamWorkforcePoolProviderScimToken(
-        localName: 'workforce_scim_token',
+        'workforce_scim_token',
         location: .literal('global'),
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
@@ -547,7 +547,7 @@ final class IamShowcaseStack extends Stack {
     // demo SA on one Eventarc permission.
     add(
       GoogleIamProjectAccessPolicy(
-        localName: 'project_access_policy',
+        'project_access_policy',
         accessPolicyId: .literal('terradart-access-policy'),
         location: .literal('global'),
         displayName: .literal('IAM quickstart access policy'),

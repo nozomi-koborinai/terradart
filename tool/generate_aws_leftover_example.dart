@@ -142,7 +142,7 @@ void main() {
     final local = _uniqueLocal(f.type, f.kind, usedLocals);
     body.writeln('    add(');
     body.writeln('      ${f.className}(');
-    body.writeln("        localName: '$local',");
+    body.writeln("        '$local',");
     for (final p in f.requiredParams) {
       body.writeln(
         '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
@@ -352,10 +352,11 @@ Map<String, String> _parseFields(String body) {
       optional: const [],
     );
   }
-  final needle = '$className({';
-  final start = body.indexOf(needle);
-  if (start < 0) return (required: const [], optional: const []);
-  final open = start + needle.length - 1;
+  final ctor = RegExp(
+    '${RegExp.escape(className)}\\(\\s*(?:super\\.localName,\\s*)?\\{',
+  ).firstMatch(body);
+  if (ctor == null) return (required: const [], optional: const []);
+  final open = ctor.end - 1;
   final close = _matchBrace(body, open);
   if (close < 0) return (required: const [], optional: const []);
   final paramsSrc = body.substring(open + 1, close);

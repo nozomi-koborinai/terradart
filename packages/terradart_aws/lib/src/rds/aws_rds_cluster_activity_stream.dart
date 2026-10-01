@@ -22,8 +22,8 @@ enum RdsClusterActivityStreamMode implements TerraformEnum {
 final class AwsRdsClusterActivityStream extends Resource {
   static const String tfType = 'aws_rds_cluster_activity_stream';
 
-  AwsRdsClusterActivityStream({
-    required super.localName,
+  AwsRdsClusterActivityStream(
+    super.localName, {
     TfArg<bool>? engineNativeAuditFieldsIncluded,
     required RefTo<AwsKmsKey> kmsKeyId,
     required TfArg<RdsClusterActivityStreamMode> mode,

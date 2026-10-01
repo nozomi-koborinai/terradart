@@ -28,8 +28,8 @@ const Set<String> _googleDataflowJobSensitive = <String>{};
 final class GoogleDataflowJob extends Resource {
   static const String tfType = 'google_dataflow_job';
 
-  GoogleDataflowJob({
-    required super.localName,
+  GoogleDataflowJob(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> templateGcsPath,
     required TfArg<String> tempGcsLocation,

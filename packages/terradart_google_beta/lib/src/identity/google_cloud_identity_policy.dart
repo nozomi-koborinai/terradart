@@ -56,8 +56,8 @@ final class CloudIdentityPolicySetting {
 final class GoogleCloudIdentityPolicy extends Resource {
   static const String tfType = 'google_cloud_identity_policy';
 
-  GoogleCloudIdentityPolicy({
-    required super.localName,
+  GoogleCloudIdentityPolicy(
+    super.localName, {
     required TfArg<String> customer,
     TfArg<String>? deletionPolicy,
     required CloudIdentityPolicyQuery policyQuery,

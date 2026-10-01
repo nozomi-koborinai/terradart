@@ -73,8 +73,8 @@ enum MediaConvertQueueRenewalType implements TerraformEnum {
 final class AwsMediaConvertQueue extends Resource {
   static const String tfType = 'aws_media_convert_queue';
 
-  AwsMediaConvertQueue({
-    required super.localName,
+  AwsMediaConvertQueue(
+    super.localName, {
     TfArg<num>? concurrentJobs,
     TfArg<String>? description,
     required TfArg<String> name,

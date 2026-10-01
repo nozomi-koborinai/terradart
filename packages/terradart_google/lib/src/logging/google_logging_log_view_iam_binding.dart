@@ -43,8 +43,8 @@ final class LoggingLogViewIamBindingCondition {
 final class GoogleLoggingLogViewIamBinding extends Resource {
   static const String tfType = 'google_logging_log_view_iam_binding';
 
-  GoogleLoggingLogViewIamBinding({
-    required super.localName,
+  GoogleLoggingLogViewIamBinding(
+    super.localName, {
     TfArg<String>? bucket,
     TfArg<String>? location,
     required RefTo<GoogleLoggingLogView> logView,

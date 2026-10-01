@@ -11,8 +11,8 @@ const Set<String> _awsIamRolePolicyAttachmentsSensitive = <String>{};
 final class DataAwsIamRolePolicyAttachments extends Data {
   static const String tfType = 'aws_iam_role_policy_attachments';
 
-  DataAwsIamRolePolicyAttachments({
-    required super.localName,
+  DataAwsIamRolePolicyAttachments(
+    super.localName, {
     TfArg<String>? pathPrefix,
     required RefTo<AwsIamRole> roleName,
     super.provider,

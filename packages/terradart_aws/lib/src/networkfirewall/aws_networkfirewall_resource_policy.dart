@@ -10,8 +10,8 @@ const Set<String> _awsNetworkfirewallResourcePolicySensitive = <String>{};
 final class AwsNetworkfirewallResourcePolicy extends Resource {
   static const String tfType = 'aws_networkfirewall_resource_policy';
 
-  AwsNetworkfirewallResourcePolicy({
-    required super.localName,
+  AwsNetworkfirewallResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

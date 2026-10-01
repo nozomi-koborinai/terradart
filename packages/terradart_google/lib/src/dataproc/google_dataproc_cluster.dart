@@ -1141,7 +1141,7 @@ final class DataprocClusterKubernetesSoftwareConfig {
 /// Example:
 /// ```dart
 /// GoogleDataprocCluster(
-///   localName: 'spark',
+///   'spark',
 ///   name: TfArg.literal('terradart-dataproc'),
 ///   region: TfArg.literal('us-central1'),
 ///   clusterConfig: DataprocClusterConfig(
@@ -1159,8 +1159,8 @@ final class DataprocClusterKubernetesSoftwareConfig {
 final class GoogleDataprocCluster extends Resource {
   static const String tfType = 'google_dataproc_cluster';
 
-  GoogleDataprocCluster({
-    required super.localName,
+  GoogleDataprocCluster(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     DataprocClusterConfig? clusterConfig,

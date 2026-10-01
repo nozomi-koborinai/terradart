@@ -14,8 +14,8 @@ const Set<String> _googleDataLineageConfigSensitive = <String>{};
 final class DataGoogleDataLineageConfig extends Data {
   static const String tfType = 'google_data_lineage_config';
 
-  DataGoogleDataLineageConfig({
-    required super.localName,
+  DataGoogleDataLineageConfig(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> parent,
     super.provider,

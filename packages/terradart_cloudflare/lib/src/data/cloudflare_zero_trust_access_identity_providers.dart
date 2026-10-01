@@ -19,8 +19,8 @@ final class DataCloudflareZeroTrustAccessIdentityProviders extends Data {
   static const String tfType =
       'cloudflare_zero_trust_access_identity_providers';
 
-  DataCloudflareZeroTrustAccessIdentityProviders({
-    required super.localName,
+  DataCloudflareZeroTrustAccessIdentityProviders(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? scimEnabled,

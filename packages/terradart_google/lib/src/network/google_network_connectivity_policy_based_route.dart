@@ -240,7 +240,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 /// Example:
 /// ```dart
 /// GoogleNetworkConnectivityPolicyBasedRoute(
-///   localName: 'default_pbr',
+///   'default_pbr',
 ///   name: TfArg.literal('terradart-pbr'),
 ///   network: vpc.ref,
 ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
@@ -263,8 +263,8 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
   static const String tfType = 'google_network_connectivity_policy_based_route';
 
-  GoogleNetworkConnectivityPolicyBasedRoute({
-    required super.localName,
+  GoogleNetworkConnectivityPolicyBasedRoute(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     required NetworkConnectivityPolicyBasedRouteFilter filter,

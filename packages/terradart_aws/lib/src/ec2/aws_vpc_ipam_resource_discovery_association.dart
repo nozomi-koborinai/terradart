@@ -10,8 +10,8 @@ const Set<String> _awsVpcIpamResourceDiscoveryAssociationSensitive = <String>{};
 final class AwsVpcIpamResourceDiscoveryAssociation extends Resource {
   static const String tfType = 'aws_vpc_ipam_resource_discovery_association';
 
-  AwsVpcIpamResourceDiscoveryAssociation({
-    required super.localName,
+  AwsVpcIpamResourceDiscoveryAssociation(
+    super.localName, {
     required TfArg<String> ipamId,
     required TfArg<String> ipamResourceDiscoveryId,
     TfArg<String>? region,

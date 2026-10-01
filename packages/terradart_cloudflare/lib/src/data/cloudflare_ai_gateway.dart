@@ -28,8 +28,8 @@ final class DataAiGatewayFilter {
 final class DataCloudflareAiGateway extends Data {
   static const String tfType = 'cloudflare_ai_gateway';
 
-  DataCloudflareAiGateway({
-    required super.localName,
+  DataCloudflareAiGateway(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataAiGatewayFilter? filter,
     super.provider,

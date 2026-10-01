@@ -12,8 +12,8 @@ final class AwsNetworkmanagerCustomerGatewayAssociation extends Resource {
   static const String tfType =
       'aws_networkmanager_customer_gateway_association';
 
-  AwsNetworkmanagerCustomerGatewayAssociation({
-    required super.localName,
+  AwsNetworkmanagerCustomerGatewayAssociation(
+    super.localName, {
     required TfArg<String> customerGatewayArn,
     required TfArg<String> deviceId,
     required TfArg<String> globalNetworkId,

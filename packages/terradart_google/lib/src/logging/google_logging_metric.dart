@@ -209,7 +209,7 @@ class LoggingMetricBucketOptions {
 /// Example (DELTA counter on error log entries):
 /// ```dart
 /// final errors = GoogleLoggingMetric(
-///   localName: 'error_count',
+///   'error_count',
 ///   name: TfArg.literal('error_count'),
 ///   filter: TfArg.literal(
 ///     'resource.type="k8s_container" AND severity>=ERROR',
@@ -225,7 +225,7 @@ class LoggingMetricBucketOptions {
 /// Example (DISTRIBUTION metric with extracted latency):
 /// ```dart
 /// final latency = GoogleLoggingMetric(
-///   localName: 'request_latency',
+///   'request_latency',
 ///   name: TfArg.literal('request_latency'),
 ///   filter: TfArg.literal('resource.type="http_load_balancer"'),
 ///   valueExtractor: TfArg.literal('EXTRACT(httpRequest.latency)'),
@@ -246,8 +246,8 @@ class LoggingMetricBucketOptions {
 final class GoogleLoggingMetric extends Resource {
   static const String tfType = 'google_logging_metric';
 
-  GoogleLoggingMetric({
-    required super.localName,
+  GoogleLoggingMetric(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> filter,
     TfArg<String>? description,

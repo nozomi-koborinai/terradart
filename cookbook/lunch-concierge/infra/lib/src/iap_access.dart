@@ -6,8 +6,8 @@ import 'package:terradart_core/terradart_core.dart';
 final class IapWebCloudRunServiceIamMember extends Resource {
   static const String tfType = 'google_iap_web_cloud_run_service_iam_member';
 
-  IapWebCloudRunServiceIamMember({
-    required super.localName,
+  IapWebCloudRunServiceIamMember(
+    super.localName, {
     required TfArg<String> cloudRunServiceName,
     required TfArg<String> role,
     required TfArg<String> member,

@@ -38,8 +38,8 @@ enum VpclatticeResourceGatewayResourceConfigDnsResolution
 final class AwsVpclatticeResourceGateway extends Resource {
   static const String tfType = 'aws_vpclattice_resource_gateway';
 
-  AwsVpclatticeResourceGateway({
-    required super.localName,
+  AwsVpclatticeResourceGateway(
+    super.localName, {
     TfArg<VpclatticeResourceGatewayIpAddressType>? ipAddressType,
     TfArg<num>? ipv4AddressesPerEni,
     required TfArg<String> name,

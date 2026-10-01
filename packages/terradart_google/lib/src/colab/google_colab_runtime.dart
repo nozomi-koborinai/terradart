@@ -55,8 +55,8 @@ final class ColabRuntimeNotebookRuntimeTemplateRef {
 final class GoogleColabRuntime extends Resource {
   static const String tfType = 'google_colab_runtime';
 
-  GoogleColabRuntime({
-    required super.localName,
+  GoogleColabRuntime(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> displayName,
     required TfArg<String> runtimeUser,

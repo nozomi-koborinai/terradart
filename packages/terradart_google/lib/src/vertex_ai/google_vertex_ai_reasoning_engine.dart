@@ -1394,7 +1394,7 @@ final class VertexAiReasoningEnginePythonSpec {
 /// Example:
 /// ```dart
 /// GoogleVertexAiReasoningEngine(
-///   localName: 'agent',
+///   'agent',
 ///   displayName: TfArg.literal('terradart-agent'),
 ///   region: TfArg.literal('us-central1'),
 /// );
@@ -1402,8 +1402,8 @@ final class VertexAiReasoningEnginePythonSpec {
 final class GoogleVertexAiReasoningEngine extends Resource {
   static const String tfType = 'google_vertex_ai_reasoning_engine';
 
-  GoogleVertexAiReasoningEngine({
-    required super.localName,
+  GoogleVertexAiReasoningEngine(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? region,
     TfArg<String>? description,

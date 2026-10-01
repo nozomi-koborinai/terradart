@@ -27,8 +27,8 @@ const Set<String> _googleGeminiCodeRepositoryIndexSensitive = <String>{};
 final class GoogleGeminiCodeRepositoryIndex extends Resource {
   static const String tfType = 'google_gemini_code_repository_index';
 
-  GoogleGeminiCodeRepositoryIndex({
-    required super.localName,
+  GoogleGeminiCodeRepositoryIndex(
+    super.localName, {
     required TfArg<String> codeRepositoryIndexId,
     required TfArg<String> location,
     RefTo<GoogleKmsCryptoKey>? kmsKey,

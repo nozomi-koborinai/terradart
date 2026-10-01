@@ -125,7 +125,7 @@ final class VertexAiEndpointPscAutomationConfigs {
 /// Example:
 /// ```dart
 /// GoogleVertexAiEndpoint(
-///   localName: 'ep',
+///   'ep',
 ///   name: TfArg.literal('1234567890'),
 ///   displayName: TfArg.literal('terradart-ep'),
 ///   location: TfArg.literal('us-central1'),
@@ -134,8 +134,8 @@ final class VertexAiEndpointPscAutomationConfigs {
 final class GoogleVertexAiEndpoint extends Resource {
   static const String tfType = 'google_vertex_ai_endpoint';
 
-  GoogleVertexAiEndpoint({
-    required super.localName,
+  GoogleVertexAiEndpoint(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> displayName,
     required TfArg<String> location,

@@ -30,8 +30,8 @@ final class SfnAliasRoutingConfiguration {
 final class AwsSfnAlias extends Resource {
   static const String tfType = 'aws_sfn_alias';
 
-  AwsSfnAlias({
-    required super.localName,
+  AwsSfnAlias(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

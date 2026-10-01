@@ -20,8 +20,8 @@ const Set<String> _googleApigeeEnvgroupSensitive = <String>{};
 final class GoogleApigeeEnvgroup extends Resource {
   static const String tfType = 'google_apigee_envgroup';
 
-  GoogleApigeeEnvgroup({
-    required super.localName,
+  GoogleApigeeEnvgroup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     TfArg<List<String>>? hostnames,

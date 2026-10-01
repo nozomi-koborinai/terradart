@@ -14,8 +14,8 @@ final class CloudflareAuthenticatedOriginPullsCertificate extends Resource {
   static const String tfType =
       'cloudflare_authenticated_origin_pulls_certificate';
 
-  CloudflareAuthenticatedOriginPullsCertificate({
-    required super.localName,
+  CloudflareAuthenticatedOriginPullsCertificate(
+    super.localName, {
     required TfArg<String> certificate,
     required TfArg<String> privateKey,
     required RefTo<CloudflareZone> zoneId,

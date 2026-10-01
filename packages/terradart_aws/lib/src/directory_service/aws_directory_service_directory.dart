@@ -93,8 +93,8 @@ final class DirectoryServiceDirectoryVpcSettings {
 final class AwsDirectoryServiceDirectory extends Resource {
   static const String tfType = 'aws_directory_service_directory';
 
-  AwsDirectoryServiceDirectory({
-    required super.localName,
+  AwsDirectoryServiceDirectory(
+    super.localName, {
     TfArg<String>? alias,
     TfArg<String>? description,
     TfArg<num>? desiredNumberOfDomainControllers,

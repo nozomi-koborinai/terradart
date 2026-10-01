@@ -110,8 +110,8 @@ final class TpuV2QueuedResourceNetworkConfig {
 final class GoogleTpuV2QueuedResource extends Resource {
   static const String tfType = 'google_tpu_v2_queued_resource';
 
-  GoogleTpuV2QueuedResource({
-    required super.localName,
+  GoogleTpuV2QueuedResource(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> name,
     TfArg<String>? project,

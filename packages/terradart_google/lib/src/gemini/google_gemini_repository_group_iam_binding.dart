@@ -43,8 +43,8 @@ final class GeminiRepositoryGroupIamBindingCondition {
 final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
   static const String tfType = 'google_gemini_repository_group_iam_binding';
 
-  GoogleGeminiRepositoryGroupIamBinding({
-    required super.localName,
+  GoogleGeminiRepositoryGroupIamBinding(
+    super.localName, {
     required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
     TfArg<String>? codeRepositoryIndex,
     required TfArg<String> role,

@@ -10,8 +10,8 @@ const Set<String> _awsServiceDiscoveryInstanceSensitive = <String>{};
 final class AwsServiceDiscoveryInstance extends Resource {
   static const String tfType = 'aws_service_discovery_instance';
 
-  AwsServiceDiscoveryInstance({
-    required super.localName,
+  AwsServiceDiscoveryInstance(
+    super.localName, {
     required TfArg<Map<String, String>> attributes,
     required TfArg<String> instanceId,
     TfArg<String>? region,

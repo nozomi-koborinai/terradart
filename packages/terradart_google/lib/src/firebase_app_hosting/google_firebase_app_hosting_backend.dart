@@ -80,7 +80,7 @@ class FirebaseAppHostingBackendCodebase {
 /// Example (regional backend bound to a Developer Connect repo):
 /// ```dart
 /// final backend = GoogleFirebaseAppHostingBackend(
-///   localName: 'web',
+///   'web',
 ///   backendId: TfArg.literal('web-backend'),
 ///   location: TfArg.literal('us-central1'),
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
@@ -104,8 +104,8 @@ class FirebaseAppHostingBackendCodebase {
 final class GoogleFirebaseAppHostingBackend extends Resource {
   static const String tfType = 'google_firebase_app_hosting_backend';
 
-  GoogleFirebaseAppHostingBackend({
-    required super.localName,
+  GoogleFirebaseAppHostingBackend(
+    super.localName, {
     required TfArg<String> backendId,
     required TfArg<String> location,
     required TfArg<String> appId,

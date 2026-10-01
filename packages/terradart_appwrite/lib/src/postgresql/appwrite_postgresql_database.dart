@@ -60,8 +60,8 @@ enum PostgresqlDatabaseSyncMode implements TerraformEnum {
 final class AppwritePostgresqlDatabase extends Resource {
   static const String tfType = 'appwrite_postgresql_database';
 
-  AppwritePostgresqlDatabase({
-    required super.localName,
+  AppwritePostgresqlDatabase(
+    super.localName, {
     TfArg<num>? idleTimeoutMinutes,
     TfArg<PostgresqlDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,

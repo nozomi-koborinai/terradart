@@ -39,8 +39,8 @@ final class ApigeeDnsZonePeeringConfig {
 final class GoogleApigeeDnsZone extends Resource {
   static const String tfType = 'google_apigee_dns_zone';
 
-  GoogleApigeeDnsZone({
-    required super.localName,
+  GoogleApigeeDnsZone(
+    super.localName, {
     required TfArg<String> dnsZoneId,
     required TfArg<String> orgId,
     required TfArg<String> domain,

@@ -237,8 +237,8 @@ final class BeyondcorpSecurityGatewayApplicationUserInfo {
 final class GoogleBeyondcorpSecurityGatewayApplication extends Resource {
   static const String tfType = 'google_beyondcorp_security_gateway_application';
 
-  GoogleBeyondcorpSecurityGatewayApplication({
-    required super.localName,
+  GoogleBeyondcorpSecurityGatewayApplication(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> securityGatewayId,
     TfArg<String>? displayName,

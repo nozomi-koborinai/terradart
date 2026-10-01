@@ -37,8 +37,8 @@ final class FolderIamMemberCondition {
 final class GoogleFolderIamMember extends Resource {
   static const String tfType = 'google_folder_iam_member';
 
-  GoogleFolderIamMember({
-    required super.localName,
+  GoogleFolderIamMember(
+    super.localName, {
     required RefTo<GoogleFolder> folder,
     required TfArg<String> role,
     required IamPrincipal member,

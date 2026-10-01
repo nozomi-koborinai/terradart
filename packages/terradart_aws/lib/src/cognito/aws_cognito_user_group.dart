@@ -12,8 +12,8 @@ const Set<String> _awsCognitoUserGroupSensitive = <String>{};
 final class AwsCognitoUserGroup extends Resource {
   static const String tfType = 'aws_cognito_user_group';
 
-  AwsCognitoUserGroup({
-    required super.localName,
+  AwsCognitoUserGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<num>? precedence,

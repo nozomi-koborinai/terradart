@@ -96,8 +96,8 @@ final class AwsS3BucketServerSideEncryptionConfiguration extends Resource {
   static const String tfType =
       'aws_s3_bucket_server_side_encryption_configuration';
 
-  AwsS3BucketServerSideEncryptionConfiguration({
-    required super.localName,
+  AwsS3BucketServerSideEncryptionConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

@@ -30,8 +30,8 @@ final class WorkspaceswebIpAccessSettingsIpRule {
 final class AwsWorkspaceswebIpAccessSettings extends Resource {
   static const String tfType = 'aws_workspacesweb_ip_access_settings';
 
-  AwsWorkspaceswebIpAccessSettings({
-    required super.localName,
+  AwsWorkspaceswebIpAccessSettings(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<String>? customerManagedKey,
     TfArg<String>? description,

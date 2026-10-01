@@ -20,8 +20,8 @@ const Set<String> _googleComputeRegionNetworkEndpointSensitive = <String>{};
 final class GoogleComputeRegionNetworkEndpoint extends Resource {
   static const String tfType = 'google_compute_region_network_endpoint';
 
-  GoogleComputeRegionNetworkEndpoint({
-    required super.localName,
+  GoogleComputeRegionNetworkEndpoint(
+    super.localName, {
     TfArg<num>? clientDestinationPort,
     TfArg<String>? fqdn,
     RefTo<GoogleComputeInstance>? instance,

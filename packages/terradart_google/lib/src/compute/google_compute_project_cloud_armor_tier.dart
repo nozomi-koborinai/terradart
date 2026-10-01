@@ -38,7 +38,7 @@ enum ComputeProjectCloudArmorTier implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleComputeProjectCloudArmorTier(
-///   localName: 'armor_tier',
+///   'armor_tier',
 ///   cloudArmorTier: TfArg.literal(
 ///     ComputeProjectCloudArmorTier.caStandard,
 ///   ),
@@ -47,8 +47,8 @@ enum ComputeProjectCloudArmorTier implements TerraformEnum {
 final class GoogleComputeProjectCloudArmorTier extends Resource {
   static const String tfType = 'google_compute_project_cloud_armor_tier';
 
-  GoogleComputeProjectCloudArmorTier({
-    required super.localName,
+  GoogleComputeProjectCloudArmorTier(
+    super.localName, {
     required TfArg<ComputeProjectCloudArmorTier> cloudArmorTier,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

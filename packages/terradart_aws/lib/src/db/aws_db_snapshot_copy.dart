@@ -12,8 +12,8 @@ const Set<String> _awsDbSnapshotCopySensitive = <String>{};
 final class AwsDbSnapshotCopy extends Resource {
   static const String tfType = 'aws_db_snapshot_copy';
 
-  AwsDbSnapshotCopy({
-    required super.localName,
+  AwsDbSnapshotCopy(
+    super.localName, {
     TfArg<bool>? copyTags,
     TfArg<String>? destinationRegion,
     RefTo<AwsKmsKey>? kmsKeyId,

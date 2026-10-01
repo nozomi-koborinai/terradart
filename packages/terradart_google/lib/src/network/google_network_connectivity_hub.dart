@@ -12,8 +12,8 @@ const Set<String> _googleNetworkConnectivityHubSensitive = <String>{};
 final class GoogleNetworkConnectivityHub extends Resource {
   static const String tfType = 'google_network_connectivity_hub';
 
-  GoogleNetworkConnectivityHub({
-    required super.localName,
+  GoogleNetworkConnectivityHub(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? description,
     TfArg<String>? policyMode,

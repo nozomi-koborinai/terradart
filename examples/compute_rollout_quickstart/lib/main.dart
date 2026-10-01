@@ -24,11 +24,11 @@ final class ComputeRolloutStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -36,7 +36,7 @@ final class ComputeRolloutStack extends Stack {
 
     final plan = add(
       GoogleComputeRolloutPlan(
-        localName: 'smoke_plan',
+        'smoke_plan',
         name: .literal('terradart-smoke-rollout'),
         description: .literal('TerraDart smoke rollout plan'),
         locationScope: .literal(.zonal),
@@ -72,7 +72,7 @@ final class ComputeRolloutStack extends Stack {
 
     add(
       GoogleComputeGlobalVmExtensionPolicy(
-        localName: 'ops_agent_global',
+        'ops_agent_global',
         name: .literal('terradart-global-ops-agent'),
         description: .literal(
           'Global Ops Agent policy (label-gated; no matching VMs)',

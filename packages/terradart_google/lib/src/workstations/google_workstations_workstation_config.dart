@@ -432,7 +432,7 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 /// Example:
 /// ```dart
 /// GoogleWorkstationsWorkstationConfig(
-///   localName: 'cfg',
+///   'cfg',
 ///   workstationConfigId: TfArg.literal('dev'),
 ///   workstationClusterId: cluster.workstationClusterId,
 ///   location: TfArg.literal('us-central1'),
@@ -447,8 +447,8 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 final class GoogleWorkstationsWorkstationConfig extends Resource {
   static const String tfType = 'google_workstations_workstation_config';
 
-  GoogleWorkstationsWorkstationConfig({
-    required super.localName,
+  GoogleWorkstationsWorkstationConfig(
+    super.localName, {
     required TfArg<String> workstationConfigId,
     required TfArg<String> workstationClusterId,
     required TfArg<String> location,

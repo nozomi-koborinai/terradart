@@ -13,8 +13,8 @@ const Set<String> _googleComputeServiceAttachmentsSensitive = <String>{};
 final class DataGoogleComputeServiceAttachments extends Data {
   static const String tfType = 'google_compute_service_attachments';
 
-  DataGoogleComputeServiceAttachments({
-    required super.localName,
+  DataGoogleComputeServiceAttachments(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     TfArg<String>? region,

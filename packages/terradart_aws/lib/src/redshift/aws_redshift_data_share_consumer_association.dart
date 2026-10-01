@@ -102,8 +102,8 @@ final class RedshiftDataShareConsumerAssociationConsumerRegion
 final class AwsRedshiftDataShareConsumerAssociation extends Resource {
   static const String tfType = 'aws_redshift_data_share_consumer_association';
 
-  AwsRedshiftDataShareConsumerAssociation({
-    required super.localName,
+  AwsRedshiftDataShareConsumerAssociation(
+    super.localName, {
     TfArg<bool>? allowWrites,
     required RedshiftDataShareConsumerAssociationConsumer consumer,
     required TfArg<String> dataShareArn,

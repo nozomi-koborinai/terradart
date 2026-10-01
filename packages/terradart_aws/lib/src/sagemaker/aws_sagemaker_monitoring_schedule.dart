@@ -555,8 +555,8 @@ final class SagemakerMonitoringScheduleScheduleConfig {
 final class AwsSagemakerMonitoringSchedule extends Resource {
   static const String tfType = 'aws_sagemaker_monitoring_schedule';
 
-  AwsSagemakerMonitoringSchedule({
-    required super.localName,
+  AwsSagemakerMonitoringSchedule(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

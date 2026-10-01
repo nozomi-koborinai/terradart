@@ -75,8 +75,8 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
 final class AwsLakeformationDataLakeSettings extends Resource {
   static const String tfType = 'aws_lakeformation_data_lake_settings';
 
-  AwsLakeformationDataLakeSettings({
-    required super.localName,
+  AwsLakeformationDataLakeSettings(
+    super.localName, {
     TfArg<List<String>>? admins,
     TfArg<bool>? allowExternalDataFiltering,
     TfArg<bool>? allowFullTableExternalDataAccess,

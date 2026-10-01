@@ -73,8 +73,8 @@ final class GeminiCodeToolsSettingConfig {
 final class GoogleGeminiCodeToolsSetting extends Resource {
   static const String tfType = 'google_gemini_code_tools_setting';
 
-  GoogleGeminiCodeToolsSetting({
-    required super.localName,
+  GoogleGeminiCodeToolsSetting(
+    super.localName, {
     required TfArg<String> codeToolsSettingId,
     required List<GeminiCodeToolsSettingEnabledTool> enabledTool,
     TfArg<String>? location,

@@ -36,8 +36,8 @@ final class DataprocMetastoreTableIamMemberCondition {
 final class GoogleDataprocMetastoreTableIamMember extends Resource {
   static const String tfType = 'google_dataproc_metastore_table_iam_member';
 
-  GoogleDataprocMetastoreTableIamMember({
-    required super.localName,
+  GoogleDataprocMetastoreTableIamMember(
+    super.localName, {
     required TfArg<String> serviceId,
     required TfArg<String> databaseId,
     required TfArg<String> table,

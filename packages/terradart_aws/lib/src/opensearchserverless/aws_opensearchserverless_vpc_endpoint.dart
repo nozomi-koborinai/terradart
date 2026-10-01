@@ -14,8 +14,8 @@ const Set<String> _awsOpensearchserverlessVpcEndpointSensitive = <String>{};
 final class AwsOpensearchserverlessVpcEndpoint extends Resource {
   static const String tfType = 'aws_opensearchserverless_vpc_endpoint';
 
-  AwsOpensearchserverlessVpcEndpoint({
-    required super.localName,
+  AwsOpensearchserverlessVpcEndpoint(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,

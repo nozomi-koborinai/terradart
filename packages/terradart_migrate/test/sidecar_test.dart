@@ -119,7 +119,7 @@ output "label" {
         r.stackSource,
         allOf(
           contains(
-            "GooglePubsubSubscription(localName: 'many_0', "
+            "GooglePubsubSubscription('many_0', "
             "name: .literal('s-0'), topic: t.ref.pinned('name'))",
           ),
           contains(

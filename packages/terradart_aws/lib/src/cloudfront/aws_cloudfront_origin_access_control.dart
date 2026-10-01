@@ -43,8 +43,8 @@ enum CloudfrontOriginAccessControlSigningProtocol implements TerraformEnum {
 final class AwsCloudfrontOriginAccessControl extends Resource {
   static const String tfType = 'aws_cloudfront_origin_access_control';
 
-  AwsCloudfrontOriginAccessControl({
-    required super.localName,
+  AwsCloudfrontOriginAccessControl(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<CloudfrontOriginAccessControlOriginType>

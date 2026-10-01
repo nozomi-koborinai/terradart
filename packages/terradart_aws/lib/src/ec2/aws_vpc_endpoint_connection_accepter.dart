@@ -10,8 +10,8 @@ const Set<String> _awsVpcEndpointConnectionAccepterSensitive = <String>{};
 final class AwsVpcEndpointConnectionAccepter extends Resource {
   static const String tfType = 'aws_vpc_endpoint_connection_accepter';
 
-  AwsVpcEndpointConnectionAccepter({
-    required super.localName,
+  AwsVpcEndpointConnectionAccepter(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> vpcEndpointId,
     required TfArg<String> vpcEndpointServiceId,

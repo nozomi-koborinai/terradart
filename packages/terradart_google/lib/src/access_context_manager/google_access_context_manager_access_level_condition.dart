@@ -187,7 +187,7 @@ final class AccessContextManagerAccessLevelConditionVpcSubnetwork {
 /// Example:
 /// ```dart
 /// GoogleAccessContextManagerAccessLevelCondition(
-///   localName: 'chromeos_condition',
+///   'chromeos_condition',
 ///   accessLevel: chromeos.ref,
 ///   ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
 ///   members: TfArg.literal([
@@ -216,8 +216,8 @@ final class GoogleAccessContextManagerAccessLevelCondition extends Resource {
   static const String tfType =
       'google_access_context_manager_access_level_condition';
 
-  GoogleAccessContextManagerAccessLevelCondition({
-    required super.localName,
+  GoogleAccessContextManagerAccessLevelCondition(
+    super.localName, {
     required RefTo<GoogleAccessContextManagerAccessLevel> accessLevel,
     TfArg<List<String>>? ipSubnetworks,
     TfArg<List<String>>? members,

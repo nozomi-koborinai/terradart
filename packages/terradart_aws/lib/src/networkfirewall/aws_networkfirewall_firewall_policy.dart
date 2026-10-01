@@ -337,8 +337,8 @@ final class NetworkfirewallFirewallPolicyStatelessRuleGroupReference {
 final class AwsNetworkfirewallFirewallPolicy extends Resource {
   static const String tfType = 'aws_networkfirewall_firewall_policy';
 
-  AwsNetworkfirewallFirewallPolicy({
-    required super.localName,
+  AwsNetworkfirewallFirewallPolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

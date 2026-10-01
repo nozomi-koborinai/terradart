@@ -198,8 +198,8 @@ final class DataAwsCloudwatchLogDataProtectionPolicyDocument extends Data {
   static const String tfType =
       'aws_cloudwatch_log_data_protection_policy_document';
 
-  DataAwsCloudwatchLogDataProtectionPolicyDocument({
-    required super.localName,
+  DataAwsCloudwatchLogDataProtectionPolicyDocument(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? version,

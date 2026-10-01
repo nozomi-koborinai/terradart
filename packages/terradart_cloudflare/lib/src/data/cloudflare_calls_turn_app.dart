@@ -16,8 +16,8 @@ const Set<String> _cloudflareCallsTurnAppSensitive = <String>{};
 final class DataCloudflareCallsTurnApp extends Data {
   static const String tfType = 'cloudflare_calls_turn_app';
 
-  DataCloudflareCallsTurnApp({
-    required super.localName,
+  DataCloudflareCallsTurnApp(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> keyId,
     super.provider,

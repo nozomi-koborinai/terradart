@@ -10,8 +10,8 @@ const Set<String> _awsConfigConfigurationRecorderStatusSensitive = <String>{};
 final class AwsConfigConfigurationRecorderStatus extends Resource {
   static const String tfType = 'aws_config_configuration_recorder_status';
 
-  AwsConfigConfigurationRecorderStatus({
-    required super.localName,
+  AwsConfigConfigurationRecorderStatus(
+    super.localName, {
     required TfArg<bool> isEnabled,
     required TfArg<String> name,
     TfArg<String>? region,

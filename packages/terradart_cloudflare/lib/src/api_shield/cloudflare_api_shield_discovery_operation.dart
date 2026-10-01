@@ -26,8 +26,8 @@ enum ApiShieldDiscoveryOperationState implements TerraformEnum {
 final class CloudflareApiShieldDiscoveryOperation extends Resource {
   static const String tfType = 'cloudflare_api_shield_discovery_operation';
 
-  CloudflareApiShieldDiscoveryOperation({
-    required super.localName,
+  CloudflareApiShieldDiscoveryOperation(
+    super.localName, {
     required TfArg<String> operationId,
     TfArg<ApiShieldDiscoveryOperationState>? state,
     RefTo<CloudflareZone>? zoneId,

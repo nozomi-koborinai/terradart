@@ -123,8 +123,8 @@ final class GuarddutyOrganizationConfigurationS3Logs {
 final class AwsGuarddutyOrganizationConfiguration extends Resource {
   static const String tfType = 'aws_guardduty_organization_configuration';
 
-  AwsGuarddutyOrganizationConfiguration({
-    required super.localName,
+  AwsGuarddutyOrganizationConfiguration(
+    super.localName, {
     required TfArg<
       GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
     >

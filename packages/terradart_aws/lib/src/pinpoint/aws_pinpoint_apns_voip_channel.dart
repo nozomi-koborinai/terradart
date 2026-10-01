@@ -17,8 +17,8 @@ const Set<String> _awsPinpointApnsVoipChannelSensitive = <String>{
 final class AwsPinpointApnsVoipChannel extends Resource {
   static const String tfType = 'aws_pinpoint_apns_voip_channel';
 
-  AwsPinpointApnsVoipChannel({
-    required super.localName,
+  AwsPinpointApnsVoipChannel(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? bundleId,
     TfArg<String>? certificate,

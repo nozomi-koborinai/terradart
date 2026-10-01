@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComposerUserWorkloadsConfigMap(
-  ///   localName: 'cfg',
+  ///   'cfg',
   ///   name: TfArg.literal('app-config'),
   ///   environment: env.name,
   ///   region: TfArg.literal('us-central1'),

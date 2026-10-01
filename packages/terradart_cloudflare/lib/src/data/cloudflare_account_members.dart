@@ -15,8 +15,8 @@ const Set<String> _cloudflareAccountMembersSensitive = <String>{};
 final class DataCloudflareAccountMembers extends Data {
   static const String tfType = 'cloudflare_account_members';
 
-  DataCloudflareAccountMembers({
-    required super.localName,
+  DataCloudflareAccountMembers(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,

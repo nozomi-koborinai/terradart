@@ -20,8 +20,8 @@ enum Macie2MemberStatus implements TerraformEnum {
 final class AwsMacie2Member extends Resource {
   static const String tfType = 'aws_macie2_member';
 
-  AwsMacie2Member({
-    required super.localName,
+  AwsMacie2Member(
+    super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> email,
     TfArg<bool>? invitationDisableEmailNotification,

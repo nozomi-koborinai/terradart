@@ -10,8 +10,8 @@ const Set<String> _awsWafregionalSubscribedRuleGroupSensitive = <String>{};
 final class DataAwsWafregionalSubscribedRuleGroup extends Data {
   static const String tfType = 'aws_wafregional_subscribed_rule_group';
 
-  DataAwsWafregionalSubscribedRuleGroup({
-    required super.localName,
+  DataAwsWafregionalSubscribedRuleGroup(
+    super.localName, {
     TfArg<String>? metricName,
     TfArg<String>? name,
     TfArg<String>? region,

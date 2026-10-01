@@ -37,8 +37,8 @@ final class CloudRunServiceIamMemberCondition {
 final class GoogleCloudRunServiceIamMember extends Resource {
   static const String tfType = 'google_cloud_run_service_iam_member';
 
-  GoogleCloudRunServiceIamMember({
-    required super.localName,
+  GoogleCloudRunServiceIamMember(
+    super.localName, {
     required RefTo<GoogleCloudRunService> service,
     required TfArg<String> role,
     required IamPrincipal member,

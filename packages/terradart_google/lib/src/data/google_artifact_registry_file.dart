@@ -15,8 +15,8 @@ const Set<String> _googleArtifactRegistryFileSensitive = <String>{};
 final class DataGoogleArtifactRegistryFile extends Data {
   static const String tfType = 'google_artifact_registry_file';
 
-  DataGoogleArtifactRegistryFile({
-    required super.localName,
+  DataGoogleArtifactRegistryFile(
+    super.localName, {
     required TfArg<String> fileId,
     required TfArg<String> location,
     required TfArg<String> outputPath,

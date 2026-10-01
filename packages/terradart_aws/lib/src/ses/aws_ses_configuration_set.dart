@@ -45,8 +45,8 @@ final class SesConfigurationSetTrackingOptions {
 final class AwsSesConfigurationSet extends Resource {
   static const String tfType = 'aws_ses_configuration_set';
 
-  AwsSesConfigurationSet({
-    required super.localName,
+  AwsSesConfigurationSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? reputationMetricsEnabled,

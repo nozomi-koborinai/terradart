@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamAudioTrackSensitive = <String>{};
 final class DataCloudflareStreamAudioTrack extends Data {
   static const String tfType = 'cloudflare_stream_audio_track';
 
-  DataCloudflareStreamAudioTrack({
-    required super.localName,
+  DataCloudflareStreamAudioTrack(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
     super.provider,

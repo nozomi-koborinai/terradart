@@ -43,8 +43,8 @@ final class ComputeStoragePoolIamBindingCondition {
 final class GoogleComputeStoragePoolIamBinding extends Resource {
   static const String tfType = 'google_compute_storage_pool_iam_binding';
 
-  GoogleComputeStoragePoolIamBinding({
-    required super.localName,
+  GoogleComputeStoragePoolIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeStoragePool> storagePool,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

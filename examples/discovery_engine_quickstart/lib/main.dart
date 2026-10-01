@@ -38,7 +38,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final reader = add(
       GoogleServiceAccount(
-        localName: 'search_reader',
+        'search_reader',
         accountId: .literal('vertex-search-reader'),
         displayName: .literal('Vertex AI Search reader'),
       ),
@@ -46,7 +46,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final dataStore = add(
       GoogleDiscoveryEngineDataStore(
-        localName: 'docs_store',
+        'docs_store',
         location: .literal('global'),
         dataStoreId: .literal('terradart-search-docs'),
         displayName: .literal('Quickstart documents'),
@@ -59,7 +59,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final searchEngine = add(
       GoogleDiscoveryEngineSearchEngine(
-        localName: 'site_search',
+        'site_search',
         location: .literal('global'),
         collectionId: .literal('default_collection'),
         engineId: .literal('quickstart-search'),
@@ -74,7 +74,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final searchReaderMember = add(
       GoogleDiscoveryEngineSearchEngineIamMember(
-        localName: 'search_reader_viewer',
+        'search_reader_viewer',
         engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
         member: reader.principal,
@@ -84,7 +84,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final searchReaderBinding = add(
       GoogleDiscoveryEngineSearchEngineIamBinding(
-        localName: 'search_reader_binding',
+        'search_reader_binding',
         engine: searchEngine.ref,
         role: .literal('roles/discoveryengine.viewer'),
         members: .literal([reader.principal]),
@@ -94,7 +94,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     add(
       GoogleDiscoveryEngineSearchEngineIamPolicy(
-        localName: 'search_reader_policy',
+        'search_reader_policy',
         engine: searchEngine.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -109,7 +109,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final schemaStore = add(
       GoogleDiscoveryEngineDataStore(
-        localName: 'schema_store',
+        'schema_store',
         location: .literal('global'),
         dataStoreId: .literal('terradart-search-schema'),
         displayName: .literal('Quickstart schema store'),
@@ -123,7 +123,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     add(
       GoogleDiscoveryEngineSchema(
-        localName: 'docs_schema',
+        'docs_schema',
         location: .literal('global'),
         dataStoreId: schemaStore.ref,
         schemaId: .literal('terradart-docs'),
@@ -136,7 +136,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     final synonyms = add(
       GoogleDiscoveryEngineControl(
-        localName: 'synonyms',
+        'synonyms',
         location: .literal('global'),
         collectionId: .literal('default_collection'),
         engineId: searchEngine.ref,
@@ -153,7 +153,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     add(
       GoogleDiscoveryEngineServingConfig(
-        localName: 'default_search',
+        'default_search',
         location: .literal('global'),
         collectionId: .literal('default_collection'),
         engineId: searchEngine.ref,
@@ -167,7 +167,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     // (placeholder ids; see the README's "Before you apply").
     add(
       GoogleDiscoveryEngineCmekConfig(
-        localName: 'cmek',
+        'cmek',
         location: .literal('us'),
         cmekConfigId: .literal('terradart-cmek'),
         kmsKey: .literal(
@@ -181,7 +181,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
 
     add(
       GoogleDiscoveryEngineDataConnector(
-        localName: 'jira',
+        'jira',
         location: .literal('global'),
         collectionId: .literal('terradart-jira'),
         collectionDisplayName: .literal('terradart jira'),

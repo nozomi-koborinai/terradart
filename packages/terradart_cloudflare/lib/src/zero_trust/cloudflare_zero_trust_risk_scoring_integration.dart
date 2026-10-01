@@ -26,8 +26,8 @@ enum ZeroTrustRiskScoringIntegrationType implements TerraformEnum {
 final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
   static const String tfType = 'cloudflare_zero_trust_risk_scoring_integration';
 
-  CloudflareZeroTrustRiskScoringIntegration({
-    required super.localName,
+  CloudflareZeroTrustRiskScoringIntegration(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? active,
     required TfArg<ZeroTrustRiskScoringIntegrationType> integrationType,

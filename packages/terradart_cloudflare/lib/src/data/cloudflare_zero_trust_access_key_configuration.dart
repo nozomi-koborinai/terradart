@@ -18,8 +18,8 @@ const Set<String> _cloudflareZeroTrustAccessKeyConfigurationSensitive =
 final class DataCloudflareZeroTrustAccessKeyConfiguration extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_key_configuration';
 
-  DataCloudflareZeroTrustAccessKeyConfiguration({
-    required super.localName,
+  DataCloudflareZeroTrustAccessKeyConfiguration(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

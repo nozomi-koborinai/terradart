@@ -43,8 +43,8 @@ final class StorageBucketIamBindingCondition {
 final class GoogleStorageBucketIamBinding extends Resource {
   static const String tfType = 'google_storage_bucket_iam_binding';
 
-  GoogleStorageBucketIamBinding({
-    required super.localName,
+  GoogleStorageBucketIamBinding(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

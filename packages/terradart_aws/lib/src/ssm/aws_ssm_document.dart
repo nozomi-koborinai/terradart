@@ -81,8 +81,8 @@ enum SsmDocumentKey implements TerraformEnum {
 final class AwsSsmDocument extends Resource {
   static const String tfType = 'aws_ssm_document';
 
-  AwsSsmDocument({
-    required super.localName,
+  AwsSsmDocument(
+    super.localName, {
     required TfArg<String> content,
     TfArg<SsmDocumentFormat>? documentFormat,
     required TfArg<SsmDocumentType> documentType,

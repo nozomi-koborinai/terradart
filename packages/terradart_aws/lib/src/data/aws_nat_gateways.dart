@@ -28,8 +28,8 @@ final class DataNatGatewaysFilter {
 final class DataAwsNatGateways extends Data {
   static const String tfType = 'aws_nat_gateways';
 
-  DataAwsNatGateways({
-    required super.localName,
+  DataAwsNatGateways(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,

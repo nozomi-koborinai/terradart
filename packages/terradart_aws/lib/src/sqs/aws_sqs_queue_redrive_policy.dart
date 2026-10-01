@@ -10,8 +10,8 @@ const Set<String> _awsSqsQueueRedrivePolicySensitive = <String>{};
 final class AwsSqsQueueRedrivePolicy extends Resource {
   static const String tfType = 'aws_sqs_queue_redrive_policy';
 
-  AwsSqsQueueRedrivePolicy({
-    required super.localName,
+  AwsSqsQueueRedrivePolicy(
+    super.localName, {
     required TfArg<String> queueUrl,
     required TfArg<String> redrivePolicy,
     TfArg<String>? region,

@@ -19,8 +19,8 @@ enum ApplicationinsightsApplicationGroupingType implements TerraformEnum {
 final class AwsApplicationinsightsApplication extends Resource {
   static const String tfType = 'aws_applicationinsights_application';
 
-  AwsApplicationinsightsApplication({
-    required super.localName,
+  AwsApplicationinsightsApplication(
+    super.localName, {
     TfArg<bool>? autoConfigEnabled,
     TfArg<bool>? autoCreate,
     TfArg<bool>? cweMonitorEnabled,

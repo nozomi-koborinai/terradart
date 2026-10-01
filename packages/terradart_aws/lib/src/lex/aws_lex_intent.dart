@@ -345,8 +345,8 @@ final class LexIntentValueElicitationPrompt {
 final class AwsLexIntent extends Resource {
   static const String tfType = 'aws_lex_intent';
 
-  AwsLexIntent({
-    required super.localName,
+  AwsLexIntent(
+    super.localName, {
     TfArg<bool>? createVersion,
     TfArg<String>? description,
     required TfArg<String> name,

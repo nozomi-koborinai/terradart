@@ -40,8 +40,8 @@ final class GoogleNetworkConnectivityMulticloudDataTransferConfig
   static const String tfType =
       'google_network_connectivity_multicloud_data_transfer_config';
 
-  GoogleNetworkConnectivityMulticloudDataTransferConfig({
-    required super.localName,
+  GoogleNetworkConnectivityMulticloudDataTransferConfig(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? description,

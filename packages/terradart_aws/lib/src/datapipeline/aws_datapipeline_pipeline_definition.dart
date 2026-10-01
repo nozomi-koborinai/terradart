@@ -115,8 +115,8 @@ final class DatapipelinePipelineDefinitionField {
 final class AwsDatapipelinePipelineDefinition extends Resource {
   static const String tfType = 'aws_datapipeline_pipeline_definition';
 
-  AwsDatapipelinePipelineDefinition({
-    required super.localName,
+  AwsDatapipelinePipelineDefinition(
+    super.localName, {
     required TfArg<String> pipelineId,
     TfArg<String>? region,
     List<DatapipelinePipelineDefinitionParameterObject>? parameterObject,

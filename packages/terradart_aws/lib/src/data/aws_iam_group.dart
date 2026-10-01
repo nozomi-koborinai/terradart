@@ -11,8 +11,8 @@ const Set<String> _awsIamGroupSensitive = <String>{};
 final class DataAwsIamGroup extends Data {
   static const String tfType = 'aws_iam_group';
 
-  DataAwsIamGroup({
-    required super.localName,
+  DataAwsIamGroup(
+    super.localName, {
     required TfArg<String> groupName,
     super.provider,
     super.timeouts,

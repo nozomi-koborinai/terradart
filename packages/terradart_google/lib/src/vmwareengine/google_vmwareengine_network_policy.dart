@@ -49,8 +49,8 @@ final class VmwareengineNetworkPolicyInternetAccess {
 final class GoogleVmwareengineNetworkPolicy extends Resource {
   static const String tfType = 'google_vmwareengine_network_policy';
 
-  GoogleVmwareengineNetworkPolicy({
-    required super.localName,
+  GoogleVmwareengineNetworkPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> edgeServicesCidr,

@@ -101,7 +101,7 @@ class GkeHubFleetDefaultClusterConfig {
 /// Example:
 /// ```dart
 /// final fleet = GoogleGkeHubFleet(
-///   localName: 'default',
+///   'default',
 ///   displayName: TfArg.literal('Production fleet'),
 ///   defaultClusterConfig: GkeHubFleetDefaultClusterConfig(
 ///     securityPostureConfig: .new(
@@ -113,8 +113,8 @@ class GkeHubFleetDefaultClusterConfig {
 final class GoogleGkeHubFleet extends Resource {
   static const String tfType = 'google_gke_hub_fleet';
 
-  GoogleGkeHubFleet({
-    required super.localName,
+  GoogleGkeHubFleet(
+    super.localName, {
     TfArg<String>? displayName,
     TfArg<String>? project,
     GkeHubFleetDefaultClusterConfig? defaultClusterConfig,

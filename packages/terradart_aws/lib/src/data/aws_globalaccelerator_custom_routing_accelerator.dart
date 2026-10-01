@@ -13,8 +13,8 @@ final class DataAwsGlobalacceleratorCustomRoutingAccelerator extends Data {
   static const String tfType =
       'aws_globalaccelerator_custom_routing_accelerator';
 
-  DataAwsGlobalacceleratorCustomRoutingAccelerator({
-    required super.localName,
+  DataAwsGlobalacceleratorCustomRoutingAccelerator(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<Map<String, String>>? tags,

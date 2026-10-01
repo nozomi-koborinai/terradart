@@ -29,8 +29,8 @@ final class DataSecurityGroupFilter {
 final class DataAwsSecurityGroup extends Data {
   static const String tfType = 'aws_security_group';
 
-  DataAwsSecurityGroup({
-    required super.localName,
+  DataAwsSecurityGroup(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

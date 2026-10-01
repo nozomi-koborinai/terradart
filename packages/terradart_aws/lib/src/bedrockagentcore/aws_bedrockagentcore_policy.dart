@@ -45,8 +45,8 @@ final class BedrockagentcorePolicyCedar {
 final class AwsBedrockagentcorePolicy extends Resource {
   static const String tfType = 'aws_bedrockagentcore_policy';
 
-  AwsBedrockagentcorePolicy({
-    required super.localName,
+  AwsBedrockagentcorePolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> policyEngineId,

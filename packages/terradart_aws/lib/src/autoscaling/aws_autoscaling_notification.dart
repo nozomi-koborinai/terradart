@@ -12,8 +12,8 @@ const Set<String> _awsAutoscalingNotificationSensitive = <String>{};
 final class AwsAutoscalingNotification extends Resource {
   static const String tfType = 'aws_autoscaling_notification';
 
-  AwsAutoscalingNotification({
-    required super.localName,
+  AwsAutoscalingNotification(
+    super.localName, {
     required TfArg<List<String>> groupNames,
     required TfArg<List<String>> notifications,
     TfArg<String>? region,

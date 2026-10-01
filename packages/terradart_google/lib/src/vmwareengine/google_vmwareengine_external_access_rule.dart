@@ -73,8 +73,8 @@ final class VmwareengineExternalAccessRuleSourceIpRanges {
 final class GoogleVmwareengineExternalAccessRule extends Resource {
   static const String tfType = 'google_vmwareengine_external_access_rule';
 
-  GoogleVmwareengineExternalAccessRule({
-    required super.localName,
+  GoogleVmwareengineExternalAccessRule(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     required TfArg<VmwareengineExternalAccessRuleAction> action,

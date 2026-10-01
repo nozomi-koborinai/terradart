@@ -102,8 +102,8 @@ final class AwsLightsailContainerServiceDeploymentVersion extends Resource {
   static const String tfType =
       'aws_lightsail_container_service_deployment_version';
 
-  AwsLightsailContainerServiceDeploymentVersion({
-    required super.localName,
+  AwsLightsailContainerServiceDeploymentVersion(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceName,
     required List<LightsailContainerServiceDeploymentVersionContainer>

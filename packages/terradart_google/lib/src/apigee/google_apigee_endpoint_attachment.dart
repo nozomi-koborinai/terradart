@@ -26,8 +26,8 @@ const Set<String> _googleApigeeEndpointAttachmentSensitive = <String>{};
 final class GoogleApigeeEndpointAttachment extends Resource {
   static const String tfType = 'google_apigee_endpoint_attachment';
 
-  GoogleApigeeEndpointAttachment({
-    required super.localName,
+  GoogleApigeeEndpointAttachment(
+    super.localName, {
     required TfArg<String> endpointAttachmentId,
     required TfArg<String> location,
     required TfArg<String> orgId,

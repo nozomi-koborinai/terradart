@@ -16,8 +16,8 @@ const Set<String> _cloudflareWorkersDeploymentSensitive = <String>{};
 final class DataCloudflareWorkersDeployment extends Data {
   static const String tfType = 'cloudflare_workers_deployment';
 
-  DataCloudflareWorkersDeployment({
-    required super.localName,
+  DataCloudflareWorkersDeployment(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> deploymentId,
     required TfArg<String> scriptName,

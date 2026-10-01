@@ -27,8 +27,8 @@ final class GluePartitionIndex {
 final class AwsGluePartitionIndex extends Resource {
   static const String tfType = 'aws_glue_partition_index';
 
-  AwsGluePartitionIndex({
-    required super.localName,
+  AwsGluePartitionIndex(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> databaseName,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsEbsSnapshotSensitive = <String>{};
 final class AwsEbsSnapshot extends Resource {
   static const String tfType = 'aws_ebs_snapshot';
 
-  AwsEbsSnapshot({
-    required super.localName,
+  AwsEbsSnapshot(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? outpostArn,
     TfArg<bool>? permanentRestore,

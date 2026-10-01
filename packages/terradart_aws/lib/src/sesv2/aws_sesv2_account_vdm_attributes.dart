@@ -70,8 +70,8 @@ enum Sesv2AccountVdmAttributesOptimizedSharedDelivery implements TerraformEnum {
 final class AwsSesv2AccountVdmAttributes extends Resource {
   static const String tfType = 'aws_sesv2_account_vdm_attributes';
 
-  AwsSesv2AccountVdmAttributes({
-    required super.localName,
+  AwsSesv2AccountVdmAttributes(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<Sesv2AccountVdmAttributesVdmEnabled> vdmEnabled,
     Sesv2AccountVdmAttributesDashboardAttributes? dashboardAttributes,

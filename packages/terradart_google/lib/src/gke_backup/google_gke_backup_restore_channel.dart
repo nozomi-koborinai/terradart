@@ -23,8 +23,8 @@ const Set<String> _googleGkeBackupRestoreChannelSensitive = <String>{};
 final class GoogleGkeBackupRestoreChannel extends Resource {
   static const String tfType = 'google_gke_backup_restore_channel';
 
-  GoogleGkeBackupRestoreChannel({
-    required super.localName,
+  GoogleGkeBackupRestoreChannel(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> destinationProject,

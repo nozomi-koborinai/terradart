@@ -42,8 +42,8 @@ final class VertexAiFeaturestoreIamBindingCondition {
 final class GoogleVertexAiFeaturestoreIamBinding extends Resource {
   static const String tfType = 'google_vertex_ai_featurestore_iam_binding';
 
-  GoogleVertexAiFeaturestoreIamBinding({
-    required super.localName,
+  GoogleVertexAiFeaturestoreIamBinding(
+    super.localName, {
     required RefTo<GoogleVertexAiFeaturestore> featurestore,
     required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,

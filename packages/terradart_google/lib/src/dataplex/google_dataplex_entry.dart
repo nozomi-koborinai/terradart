@@ -115,8 +115,8 @@ final class DataplexEntryAncestors {
 final class GoogleDataplexEntry extends Resource {
   static const String tfType = 'google_dataplex_entry';
 
-  GoogleDataplexEntry({
-    required super.localName,
+  GoogleDataplexEntry(
+    super.localName, {
     TfArg<String>? entryGroupId,
     TfArg<String>? entryId,
     required TfArg<String> entryType,

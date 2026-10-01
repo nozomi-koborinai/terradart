@@ -62,8 +62,8 @@ enum DialogflowAgentTier implements TerraformEnum {
 final class GoogleDialogflowAgent extends Resource {
   static const String tfType = 'google_dialogflow_agent';
 
-  GoogleDialogflowAgent({
-    required super.localName,
+  GoogleDialogflowAgent(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> defaultLanguageCode,
     required TfArg<String> timeZone,

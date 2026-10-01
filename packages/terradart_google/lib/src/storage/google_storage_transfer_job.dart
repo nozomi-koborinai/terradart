@@ -692,7 +692,7 @@ final class StorageTransferJobTransferManifest {
 /// Example (disabled GCS→GCS, no bytes moved):
 /// ```dart
 /// GoogleStorageTransferJob(
-///   localName: 'copy',
+///   'copy',
 ///   description: TfArg.literal('terradart disabled gcs copy'),
 ///   status: TfArg.literal('DISABLED'),
 ///   transferSpec: StorageTransferJobTransferSpec(
@@ -708,8 +708,8 @@ final class StorageTransferJobTransferManifest {
 final class GoogleStorageTransferJob extends Resource {
   static const String tfType = 'google_storage_transfer_job';
 
-  GoogleStorageTransferJob({
-    required super.localName,
+  GoogleStorageTransferJob(
+    super.localName, {
     required TfArg<String> description,
     StorageTransferJobTransferSpec? transferSpec,
     StorageTransferJobSchedule? schedule,

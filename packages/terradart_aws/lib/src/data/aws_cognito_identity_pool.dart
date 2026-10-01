@@ -11,8 +11,8 @@ const Set<String> _awsCognitoIdentityPoolSensitive = <String>{};
 final class DataAwsCognitoIdentityPool extends Data {
   static const String tfType = 'aws_cognito_identity_pool';
 
-  DataAwsCognitoIdentityPool({
-    required super.localName,
+  DataAwsCognitoIdentityPool(
+    super.localName, {
     required TfArg<String> identityPoolName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -186,8 +186,8 @@ final class SpannerBackupScheduleCronSpec {
 final class GoogleSpannerBackupSchedule extends Resource {
   static const String tfType = 'google_spanner_backup_schedule';
 
-  GoogleSpannerBackupSchedule({
-    required super.localName,
+  GoogleSpannerBackupSchedule(
+    super.localName, {
     required RefTo<GoogleSpannerInstance> instance,
     required RefTo<GoogleSpannerDatabase> database,
     required TfArg<String> retentionDuration,

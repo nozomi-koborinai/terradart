@@ -14,8 +14,8 @@ const Set<String> _googleSaasRuntimeTenantSensitive = <String>{};
 final class GoogleSaasRuntimeTenant extends Resource {
   static const String tfType = 'google_saas_runtime_tenant';
 
-  GoogleSaasRuntimeTenant({
-    required super.localName,
+  GoogleSaasRuntimeTenant(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? consumerResource,
     TfArg<String>? deletionPolicy,

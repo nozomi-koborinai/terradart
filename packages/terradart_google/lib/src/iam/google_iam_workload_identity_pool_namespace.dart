@@ -27,7 +27,7 @@ const Set<String> _googleIamWorkloadIdentityPoolNamespaceSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleIamWorkloadIdentityPoolNamespace(
-///   localName: 'apps',
+///   'apps',
 ///   workloadIdentityPoolId: .literal('terradart-trust'),
 ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
 /// );
@@ -35,8 +35,8 @@ const Set<String> _googleIamWorkloadIdentityPoolNamespaceSensitive = <String>{};
 final class GoogleIamWorkloadIdentityPoolNamespace extends Resource {
   static const String tfType = 'google_iam_workload_identity_pool_namespace';
 
-  GoogleIamWorkloadIdentityPoolNamespace({
-    required super.localName,
+  GoogleIamWorkloadIdentityPoolNamespace(
+    super.localName, {
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolNamespaceId,
     TfArg<String>? description,

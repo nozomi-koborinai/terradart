@@ -10,8 +10,8 @@ const Set<String> _awsPrometheusAlertManagerDefinitionSensitive = <String>{};
 final class AwsPrometheusAlertManagerDefinition extends Resource {
   static const String tfType = 'aws_prometheus_alert_manager_definition';
 
-  AwsPrometheusAlertManagerDefinition({
-    required super.localName,
+  AwsPrometheusAlertManagerDefinition(
+    super.localName, {
     required TfArg<String> definition,
     TfArg<String>? region,
     required TfArg<String> workspaceId,

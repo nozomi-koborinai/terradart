@@ -30,7 +30,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiFeaturestore(
-  ///   localName: 'fs',
+  ///   'fs',
   ///   name: TfArg.literal('terradart_fs'),
   ///   region: TfArg.literal('us-central1'),
   ///   onlineServingConfig: .fixedNodeCount(TfArg.literal(1)),

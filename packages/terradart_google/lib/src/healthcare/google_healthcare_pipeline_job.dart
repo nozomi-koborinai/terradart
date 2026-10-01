@@ -316,8 +316,8 @@ final class HealthcarePipelineJobMergeConfig {
 final class GoogleHealthcarePipelineJob extends Resource {
   static const String tfType = 'google_healthcare_pipeline_job';
 
-  GoogleHealthcarePipelineJob({
-    required super.localName,
+  GoogleHealthcarePipelineJob(
+    super.localName, {
     required TfArg<String> dataset,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? disableLineage,

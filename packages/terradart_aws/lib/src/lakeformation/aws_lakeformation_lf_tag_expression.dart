@@ -32,8 +32,8 @@ final class LakeformationLfTagExpression {
 final class AwsLakeformationLfTagExpression extends Resource {
   static const String tfType = 'aws_lakeformation_lf_tag_expression';
 
-  AwsLakeformationLfTagExpression({
-    required super.localName,
+  AwsLakeformationLfTagExpression(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? description,
     required TfArg<String> name,

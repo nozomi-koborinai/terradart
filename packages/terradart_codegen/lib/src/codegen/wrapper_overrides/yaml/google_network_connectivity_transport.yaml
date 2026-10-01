@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkConnectivityTransport(
-  ///   localName: 'aws_cci',
+  ///   'aws_cci',
   ///   name: TfArg.literal('my-transport'),
   ///   region: TfArg.literal('us-east4'),
   ///   network: vpc.ref,

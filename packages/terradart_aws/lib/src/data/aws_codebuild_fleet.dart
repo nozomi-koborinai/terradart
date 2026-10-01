@@ -11,8 +11,8 @@ const Set<String> _awsCodebuildFleetSensitive = <String>{};
 final class DataAwsCodebuildFleet extends Data {
   static const String tfType = 'aws_codebuild_fleet';
 
-  DataAwsCodebuildFleet({
-    required super.localName,
+  DataAwsCodebuildFleet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

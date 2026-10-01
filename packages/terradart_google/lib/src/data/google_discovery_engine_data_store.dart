@@ -14,8 +14,8 @@ const Set<String> _googleDiscoveryEngineDataStoreSensitive = <String>{};
 final class DataGoogleDiscoveryEngineDataStore extends Data {
   static const String tfType = 'google_discovery_engine_data_store';
 
-  DataGoogleDiscoveryEngineDataStore({
-    required super.localName,
+  DataGoogleDiscoveryEngineDataStore(
+    super.localName, {
     TfArg<String>? dataStoreId,
     TfArg<String>? displayName,
     TfArg<String>? location,

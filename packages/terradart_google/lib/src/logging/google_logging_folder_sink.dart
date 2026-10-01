@@ -48,7 +48,7 @@ class LoggingFolderSinkExclusion {
 /// Example:
 /// ```dart
 /// final sink = GoogleLoggingFolderSink(
-///   localName: 'folder_audit_to_bq',
+///   'folder_audit_to_bq',
 ///   name: TfArg.literal('folder-audit-to-bq'),
 ///   folder: TfArg.literal('folders/123456789012'),
 ///   destination: TfArg.literal(
@@ -61,8 +61,8 @@ class LoggingFolderSinkExclusion {
 final class GoogleLoggingFolderSink extends Resource {
   static const String tfType = 'google_logging_folder_sink';
 
-  GoogleLoggingFolderSink({
-    required super.localName,
+  GoogleLoggingFolderSink(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> folder,
     required TfArg<String> destination,

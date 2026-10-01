@@ -10,8 +10,8 @@ const Set<String> _awsCloudtrailServiceAccountSensitive = <String>{};
 final class DataAwsCloudtrailServiceAccount extends Data {
   static const String tfType = 'aws_cloudtrail_service_account';
 
-  DataAwsCloudtrailServiceAccount({
-    required super.localName,
+  DataAwsCloudtrailServiceAccount(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

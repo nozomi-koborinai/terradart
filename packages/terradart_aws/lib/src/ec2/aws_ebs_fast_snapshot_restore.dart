@@ -10,8 +10,8 @@ const Set<String> _awsEbsFastSnapshotRestoreSensitive = <String>{};
 final class AwsEbsFastSnapshotRestore extends Resource {
   static const String tfType = 'aws_ebs_fast_snapshot_restore';
 
-  AwsEbsFastSnapshotRestore({
-    required super.localName,
+  AwsEbsFastSnapshotRestore(
+    super.localName, {
     required TfArg<String> availabilityZone,
     TfArg<String>? region,
     required TfArg<String> snapshotId,

@@ -35,8 +35,8 @@ enum DialogflowIntentWebhookState implements TerraformEnum {
 final class GoogleDialogflowIntent extends Resource {
   static const String tfType = 'google_dialogflow_intent';
 
-  GoogleDialogflowIntent({
-    required super.localName,
+  GoogleDialogflowIntent(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? action,
     TfArg<List<String>>? defaultResponsePlatforms,

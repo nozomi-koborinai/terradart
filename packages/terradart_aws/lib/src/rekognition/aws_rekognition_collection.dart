@@ -10,8 +10,8 @@ const Set<String> _awsRekognitionCollectionSensitive = <String>{};
 final class AwsRekognitionCollection extends Resource {
   static const String tfType = 'aws_rekognition_collection';
 
-  AwsRekognitionCollection({
-    required super.localName,
+  AwsRekognitionCollection(
+    super.localName, {
     required TfArg<String> collectionId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeRegionSslCertificate(
-  ///   localName: 'regional_cert',
+  ///   'regional_cert',
   ///   name: TfArg.literal('regional-cert'),
   ///   certificate: TfArg.literal(pemCertificate),
   ///   privateKey: .privateKey(.literal(pemPrivateKey)),

@@ -38,8 +38,8 @@ final class ClouddeployTargetIamMemberCondition {
 final class GoogleClouddeployTargetIamMember extends Resource {
   static const String tfType = 'google_clouddeploy_target_iam_member';
 
-  GoogleClouddeployTargetIamMember({
-    required super.localName,
+  GoogleClouddeployTargetIamMember(
+    super.localName, {
     required RefTo<GoogleClouddeployTarget> target,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -571,8 +571,8 @@ final class CodepipelineVariable {
 final class AwsCodepipeline extends Resource {
   static const String tfType = 'aws_codepipeline';
 
-  AwsCodepipeline({
-    required super.localName,
+  AwsCodepipeline(
+    super.localName, {
     TfArg<CodepipelineExecutionMode>? executionMode,
     required TfArg<String> name,
     TfArg<CodepipelinePipelineType>? pipelineType,

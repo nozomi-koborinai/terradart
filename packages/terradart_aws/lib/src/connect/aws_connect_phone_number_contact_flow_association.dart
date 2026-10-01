@@ -12,8 +12,8 @@ final class AwsConnectPhoneNumberContactFlowAssociation extends Resource {
   static const String tfType =
       'aws_connect_phone_number_contact_flow_association';
 
-  AwsConnectPhoneNumberContactFlowAssociation({
-    required super.localName,
+  AwsConnectPhoneNumberContactFlowAssociation(
+    super.localName, {
     required TfArg<String> contactFlowId,
     required TfArg<String> instanceId,
     required TfArg<String> phoneNumberId,

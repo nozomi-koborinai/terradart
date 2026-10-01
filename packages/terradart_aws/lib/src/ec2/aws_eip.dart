@@ -20,8 +20,8 @@ enum EipDomain implements TerraformEnum {
 final class AwsEip extends Resource {
   static const String tfType = 'aws_eip';
 
-  AwsEip({
-    required super.localName,
+  AwsEip(
+    super.localName, {
     TfArg<String>? address,
     TfArg<String>? associateWithPrivateIp,
     TfArg<String>? customerOwnedIpv4Pool,

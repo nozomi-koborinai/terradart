@@ -75,8 +75,8 @@ final class ListItemRedirect {
 final class CloudflareListItem extends Resource {
   static const String tfType = 'cloudflare_list_item';
 
-  CloudflareListItem({
-    required super.localName,
+  CloudflareListItem(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? asn,
     TfArg<String>? comment,

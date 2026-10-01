@@ -13,8 +13,8 @@ const Set<String> _googleContainerRegistryRepositorySensitive = <String>{};
 final class DataGoogleContainerRegistryRepository extends Data {
   static const String tfType = 'google_container_registry_repository';
 
-  DataGoogleContainerRegistryRepository({
-    required super.localName,
+  DataGoogleContainerRegistryRepository(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
     super.provider,

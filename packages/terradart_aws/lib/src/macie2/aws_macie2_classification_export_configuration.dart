@@ -38,8 +38,8 @@ final class Macie2ClassificationExportConfigurationS3Destination {
 final class AwsMacie2ClassificationExportConfiguration extends Resource {
   static const String tfType = 'aws_macie2_classification_export_configuration';
 
-  AwsMacie2ClassificationExportConfiguration({
-    required super.localName,
+  AwsMacie2ClassificationExportConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required Macie2ClassificationExportConfigurationS3Destination s3Destination,
     super.lifecycle,

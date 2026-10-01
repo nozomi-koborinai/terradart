@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final auditBucket = GoogleLoggingProjectBucketConfig(
-  ///   localName: 'audit_bucket',
+  ///   'audit_bucket',
   ///   project: .literal('my-project'),
   ///   bucketId: .literal('audit-logs'),
   ///   location: .literal('global'),

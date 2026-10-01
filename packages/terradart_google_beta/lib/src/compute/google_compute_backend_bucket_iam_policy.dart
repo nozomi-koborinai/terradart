@@ -18,8 +18,8 @@ const Set<String> _googleComputeBackendBucketIamPolicySensitive = <String>{};
 final class GoogleComputeBackendBucketIamPolicy extends Resource {
   static const String tfType = 'google_compute_backend_bucket_iam_policy';
 
-  GoogleComputeBackendBucketIamPolicy({
-    required super.localName,
+  GoogleComputeBackendBucketIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeBackendBucket> backendBucket,
     required TfArg<String> policyData,
     TfArg<String>? project,

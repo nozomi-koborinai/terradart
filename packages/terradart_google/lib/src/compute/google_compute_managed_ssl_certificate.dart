@@ -85,7 +85,7 @@ class ComputeManagedSslCertificateConfig {
 /// Example:
 /// ```dart
 /// final lbCert = GoogleComputeManagedSslCertificate(
-///   localName: 'lb_cert',
+///   'lb_cert',
 ///   name: TfArg.literal('lb-managed-cert'),
 ///   managed: const ComputeManagedSslCertificateConfig(
 ///     domains: ['api.example.com', 'www.example.com'],
@@ -95,8 +95,8 @@ class ComputeManagedSslCertificateConfig {
 final class GoogleComputeManagedSslCertificate extends Resource {
   static const String tfType = 'google_compute_managed_ssl_certificate';
 
-  GoogleComputeManagedSslCertificate({
-    required super.localName,
+  GoogleComputeManagedSslCertificate(
+    super.localName, {
     TfArg<String>? name,
     ComputeManagedSslCertificateConfig? managed,
     TfArg<ManagedSslCertificateType>? type,

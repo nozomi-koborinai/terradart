@@ -12,8 +12,8 @@ const Set<String> _awsPinpointEmailChannelSensitive = <String>{};
 final class AwsPinpointEmailChannel extends Resource {
   static const String tfType = 'aws_pinpoint_email_channel';
 
-  AwsPinpointEmailChannel({
-    required super.localName,
+  AwsPinpointEmailChannel(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? configurationSet,
     TfArg<bool>? enabled,

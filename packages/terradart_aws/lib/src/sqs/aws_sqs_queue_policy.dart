@@ -10,8 +10,8 @@ const Set<String> _awsSqsQueuePolicySensitive = <String>{};
 final class AwsSqsQueuePolicy extends Resource {
   static const String tfType = 'aws_sqs_queue_policy';
 
-  AwsSqsQueuePolicy({
-    required super.localName,
+  AwsSqsQueuePolicy(
+    super.localName, {
     required TfArg<String> policy,
     required TfArg<String> queueUrl,
     TfArg<String>? region,

@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example (custom service identified by [serviceId] only):
   /// ```dart
   /// final svc = GoogleMonitoringService(
-  ///   localName: 'checkout_api',
+  ///   'checkout_api',
   ///   serviceId: TfArg.literal('checkout-api'),
   ///   displayName: TfArg.literal('Checkout API'),
   ///   userLabels: TfArg.literal(const {'team': 'payments'}),
@@ -39,7 +39,7 @@ curatedDoc: |-
   /// instance that emits the monitoring data):
   /// ```dart
   /// final svc = GoogleMonitoringService(
-  ///   localName: 'app_engine_default',
+  ///   'app_engine_default',
   ///   serviceId: TfArg.literal('appengine-default'),
   ///   displayName: TfArg.literal('App Engine default service'),
   ///   basicService: MonitoringServiceBasicService(

@@ -11,8 +11,8 @@ const Set<String> _awsShieldProtectionHealthCheckAssociationSensitive =
 final class AwsShieldProtectionHealthCheckAssociation extends Resource {
   static const String tfType = 'aws_shield_protection_health_check_association';
 
-  AwsShieldProtectionHealthCheckAssociation({
-    required super.localName,
+  AwsShieldProtectionHealthCheckAssociation(
+    super.localName, {
     required TfArg<String> healthCheckArn,
     required TfArg<String> shieldProtectionId,
     super.lifecycle,

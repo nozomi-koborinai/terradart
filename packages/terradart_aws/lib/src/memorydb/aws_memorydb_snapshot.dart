@@ -70,8 +70,8 @@ final class MemorydbSnapshotNamePrefix extends MemorydbSnapshotName {
 final class AwsMemorydbSnapshot extends Resource {
   static const String tfType = 'aws_memorydb_snapshot';
 
-  AwsMemorydbSnapshot({
-    required super.localName,
+  AwsMemorydbSnapshot(
+    super.localName, {
     required TfArg<String> clusterName,
     RefTo<AwsKmsKey>? kmsKeyArn,
     MemorydbSnapshotName? name,

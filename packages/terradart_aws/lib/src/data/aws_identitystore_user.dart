@@ -69,8 +69,8 @@ final class DataIdentitystoreUserUniqueAttribute {
 final class DataAwsIdentitystoreUser extends Data {
   static const String tfType = 'aws_identitystore_user';
 
-  DataAwsIdentitystoreUser({
-    required super.localName,
+  DataAwsIdentitystoreUser(
+    super.localName, {
     required TfArg<String> identityStoreId,
     TfArg<String>? region,
     TfArg<String>? userId,

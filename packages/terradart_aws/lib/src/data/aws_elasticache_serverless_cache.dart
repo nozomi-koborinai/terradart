@@ -11,8 +11,8 @@ const Set<String> _awsElasticacheServerlessCacheSensitive = <String>{};
 final class DataAwsElasticacheServerlessCache extends Data {
   static const String tfType = 'aws_elasticache_serverless_cache';
 
-  DataAwsElasticacheServerlessCache({
-    required super.localName,
+  DataAwsElasticacheServerlessCache(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

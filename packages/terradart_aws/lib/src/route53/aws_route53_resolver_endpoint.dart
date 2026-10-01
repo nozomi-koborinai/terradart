@@ -70,8 +70,8 @@ final class Route53ResolverEndpointIpAddress {
 final class AwsRoute53ResolverEndpoint extends Resource {
   static const String tfType = 'aws_route53_resolver_endpoint';
 
-  AwsRoute53ResolverEndpoint({
-    required super.localName,
+  AwsRoute53ResolverEndpoint(
+    super.localName, {
     required TfArg<Route53ResolverEndpointDirection> direction,
     TfArg<String>? name,
     List<TfArg<Route53ResolverEndpointProtocols>>? protocols,

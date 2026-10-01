@@ -28,8 +28,8 @@ final class ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfiguration {
 final class AwsChimesdkvoiceVoiceProfileDomain extends Resource {
   static const String tfType = 'aws_chimesdkvoice_voice_profile_domain';
 
-  AwsChimesdkvoiceVoiceProfileDomain({
-    required super.localName,
+  AwsChimesdkvoiceVoiceProfileDomain(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

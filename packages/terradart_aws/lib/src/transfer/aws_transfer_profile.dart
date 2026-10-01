@@ -20,8 +20,8 @@ enum TransferProfileType implements TerraformEnum {
 final class AwsTransferProfile extends Resource {
   static const String tfType = 'aws_transfer_profile';
 
-  AwsTransferProfile({
-    required super.localName,
+  AwsTransferProfile(
+    super.localName, {
     required TfArg<String> as2Id,
     TfArg<List<String>>? certificateIds,
     required TfArg<TransferProfileType> profileType,

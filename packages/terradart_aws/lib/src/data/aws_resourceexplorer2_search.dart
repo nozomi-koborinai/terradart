@@ -10,8 +10,8 @@ const Set<String> _awsResourceexplorer2SearchSensitive = <String>{};
 final class DataAwsResourceexplorer2Search extends Data {
   static const String tfType = 'aws_resourceexplorer2_search';
 
-  DataAwsResourceexplorer2Search({
-    required super.localName,
+  DataAwsResourceexplorer2Search(
+    super.localName, {
     required TfArg<String> queryString,
     TfArg<String>? region,
     TfArg<String>? viewArn,

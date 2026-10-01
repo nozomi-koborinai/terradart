@@ -21,7 +21,7 @@ GoogleCloudRunV2Service addCloudRunService({
 }) {
   final service = stack.add(
     GoogleCloudRunV2Service(
-      localName: 'lunch_concierge',
+      'lunch_concierge',
       name: .literal(serviceName),
       location: .literal(region),
       ingress: .literal(.all),
@@ -92,7 +92,7 @@ GoogleCloudRunV2Service addCloudRunService({
 
   stack.add(
     GoogleCloudRunV2ServiceIamMember(
-      localName: 'speaker_invoker',
+      'speaker_invoker',
       service: service.ref,
       role: .literal('roles/run.invoker'),
       member: .user(invokerEmail),
@@ -100,14 +100,14 @@ GoogleCloudRunV2Service addCloudRunService({
     ),
   );
 
-  final project = stack.add(GoogleProject(localName: 'project'));
+  final project = stack.add(GoogleProject('project'));
 
   // IAP fronts the run.app URL, so the IAP service agent is the caller
   // Cloud Run must authorize. The agent exists once the IAP API identity
   // is provisioned (see README bootstrap note).
   stack.add(
     GoogleCloudRunV2ServiceIamMember(
-      localName: 'iap_agent_invoker',
+      'iap_agent_invoker',
       service: service.ref,
       role: .literal('roles/run.invoker'),
       member: .serviceAccount(
@@ -120,7 +120,7 @@ GoogleCloudRunV2Service addCloudRunService({
 
   stack.add(
     IapWebCloudRunServiceIamMember(
-      localName: 'speaker_iap_access',
+      'speaker_iap_access',
       cloudRunServiceName: service.name,
       location: .literal(region),
       role: .literal('roles/iap.httpsResourceAccessor'),

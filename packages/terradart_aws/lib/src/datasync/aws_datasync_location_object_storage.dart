@@ -22,8 +22,8 @@ enum DatasyncLocationObjectStorageServerProtocol implements TerraformEnum {
 final class AwsDatasyncLocationObjectStorage extends Resource {
   static const String tfType = 'aws_datasync_location_object_storage';
 
-  AwsDatasyncLocationObjectStorage({
-    required super.localName,
+  AwsDatasyncLocationObjectStorage(
+    super.localName, {
     TfArg<String>? accessKey,
     TfArg<List<String>>? agentArns,
     required TfArg<String> bucketName,

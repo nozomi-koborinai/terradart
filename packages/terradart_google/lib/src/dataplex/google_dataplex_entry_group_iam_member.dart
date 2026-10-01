@@ -38,8 +38,8 @@ final class DataplexEntryGroupIamMemberCondition {
 final class GoogleDataplexEntryGroupIamMember extends Resource {
   static const String tfType = 'google_dataplex_entry_group_iam_member';
 
-  GoogleDataplexEntryGroupIamMember({
-    required super.localName,
+  GoogleDataplexEntryGroupIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexEntryGroup> entryGroup,
     required TfArg<String> role,
     required IamPrincipal member,

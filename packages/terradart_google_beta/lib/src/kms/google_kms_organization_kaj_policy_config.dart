@@ -60,8 +60,8 @@ enum KmsOrganizationKajPolicyConfigAllowedAccessReasons
 final class GoogleKmsOrganizationKajPolicyConfig extends Resource {
   static const String tfType = 'google_kms_organization_kaj_policy_config';
 
-  GoogleKmsOrganizationKajPolicyConfig({
-    required super.localName,
+  GoogleKmsOrganizationKajPolicyConfig(
+    super.localName, {
     required TfArg<String> organization,
     KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy?
     defaultKeyAccessJustificationPolicy,

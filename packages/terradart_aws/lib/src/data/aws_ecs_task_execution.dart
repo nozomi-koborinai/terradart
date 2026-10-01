@@ -209,8 +209,8 @@ final class DataEcsTaskExecutionPlacementStrategy {
 final class DataAwsEcsTaskExecution extends Data {
   static const String tfType = 'aws_ecs_task_execution';
 
-  DataAwsEcsTaskExecution({
-    required super.localName,
+  DataAwsEcsTaskExecution(
+    super.localName, {
     TfArg<String>? clientToken,
     required RefTo<AwsEcsCluster> cluster,
     TfArg<num>? desiredCount,

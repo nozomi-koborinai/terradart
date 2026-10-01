@@ -22,7 +22,7 @@ const Set<String> _googleNetworkServicesMeshSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleNetworkServicesMesh(
-///   localName: 'app',
+///   'app',
 ///   name: TfArg.literal('terradart-mesh'),
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('TerraDart smoke mesh'),
@@ -31,8 +31,8 @@ const Set<String> _googleNetworkServicesMeshSensitive = <String>{};
 final class GoogleNetworkServicesMesh extends Resource {
   static const String tfType = 'google_network_services_mesh';
 
-  GoogleNetworkServicesMesh({
-    required super.localName,
+  GoogleNetworkServicesMesh(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? description,

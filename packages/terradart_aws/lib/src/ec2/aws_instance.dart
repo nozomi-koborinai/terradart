@@ -834,8 +834,8 @@ final class InstanceSecondaryNetworkInterface {
 final class AwsInstance extends Resource {
   static const String tfType = 'aws_instance';
 
-  AwsInstance({
-    required super.localName,
+  AwsInstance(
+    super.localName, {
     TfArg<String>? ami,
     TfArg<bool>? associatePublicIpAddress,
     TfArg<String>? availabilityZone,

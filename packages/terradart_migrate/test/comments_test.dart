@@ -99,8 +99,8 @@ resource "google_pubsub_topic" "t" {
 }
 ''');
       expect('// One topic per shard.'.allMatches(source), hasLength(1));
-      expect(source, contains("localName: 't_0'"));
-      expect(source, contains("localName: 't_1'"));
+      expect(source, contains("'t_0'"));
+      expect(source, contains("'t_1'"));
     });
 
     test('a block with no comment gets none', () {

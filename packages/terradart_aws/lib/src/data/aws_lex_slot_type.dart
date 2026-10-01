@@ -11,8 +11,8 @@ const Set<String> _awsLexSlotTypeSensitive = <String>{};
 final class DataAwsLexSlotType extends Data {
   static const String tfType = 'aws_lex_slot_type';
 
-  DataAwsLexSlotType({
-    required super.localName,
+  DataAwsLexSlotType(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? version,

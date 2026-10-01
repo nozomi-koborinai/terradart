@@ -21,8 +21,8 @@ enum SecurityhubStandardsControlAssociationStatus implements TerraformEnum {
 final class AwsSecurityhubStandardsControlAssociation extends Resource {
   static const String tfType = 'aws_securityhub_standards_control_association';
 
-  AwsSecurityhubStandardsControlAssociation({
-    required super.localName,
+  AwsSecurityhubStandardsControlAssociation(
+    super.localName, {
     required TfArg<SecurityhubStandardsControlAssociationStatus>
     associationStatus,
     TfArg<String>? region,

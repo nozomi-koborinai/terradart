@@ -22,7 +22,7 @@ final class NetworkServicesMeshStack extends Stack {
       ) {
     final apiNetworkServices = add(
       GoogleProjectService(
-        localName: 'api_networkservices',
+        'api_networkservices',
         service: .literal('networkservices.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class NetworkServicesMeshStack extends Stack {
 
     final mesh = add(
       GoogleNetworkServicesMesh(
-        localName: 'app',
+        'app',
         name: .literal('terradart-mesh'),
         location: .literal('global'),
         description: .literal('TerraDart smoke mesh'),
@@ -43,7 +43,7 @@ final class NetworkServicesMeshStack extends Stack {
 
     add(
       GoogleNetworkServicesHttpRoute(
-        localName: 'http',
+        'http',
         name: .literal('terradart-http-route'),
         hostnames: .literal(['example']),
         meshes: meshId,
@@ -68,7 +68,7 @@ final class NetworkServicesMeshStack extends Stack {
 
     add(
       GoogleNetworkServicesGrpcRoute(
-        localName: 'grpc',
+        'grpc',
         name: .literal('terradart-grpc-route'),
         hostnames: .literal(['example.com']),
         meshes: meshId,
@@ -103,7 +103,7 @@ final class NetworkServicesMeshStack extends Stack {
     // `0.0.0.0/0` is the documented any-IPv4 form.
     add(
       GoogleNetworkServicesTcpRoute(
-        localName: 'tcp',
+        'tcp',
         name: .literal('terradart-tcp-route'),
         meshes: meshId,
         rules: [
@@ -120,7 +120,7 @@ final class NetworkServicesMeshStack extends Stack {
 
     add(
       GoogleNetworkServicesEndpointPolicy(
-        localName: 'ep',
+        'ep',
         name: .literal('terradart-ep'),
         type: .literal(.sidecarProxy),
         endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(

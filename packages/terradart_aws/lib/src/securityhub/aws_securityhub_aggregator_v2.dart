@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubAggregatorV2Sensitive = <String>{};
 final class AwsSecurityhubAggregatorV2 extends Resource {
   static const String tfType = 'aws_securityhub_aggregator_v2';
 
-  AwsSecurityhubAggregatorV2({
-    required super.localName,
+  AwsSecurityhubAggregatorV2(
+    super.localName, {
     TfArg<List<String>>? linkedRegions,
     TfArg<String>? region,
     required TfArg<String> regionLinkingMode,

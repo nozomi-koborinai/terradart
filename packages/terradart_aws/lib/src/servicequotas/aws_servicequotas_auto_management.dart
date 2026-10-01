@@ -29,8 +29,8 @@ enum ServicequotasAutoManagementOptInType implements TerraformEnum {
 final class AwsServicequotasAutoManagement extends Resource {
   static const String tfType = 'aws_servicequotas_auto_management';
 
-  AwsServicequotasAutoManagement({
-    required super.localName,
+  AwsServicequotasAutoManagement(
+    super.localName, {
     TfArg<Map<String, List<String>>>? exclusionList,
     TfArg<String>? notificationArn,
     required TfArg<ServicequotasAutoManagementOptInLevel> optInLevel,

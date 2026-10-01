@@ -113,8 +113,8 @@ final class IamFolderAccessPolicyOperation {
 final class GoogleIamFolderAccessPolicy extends Resource {
   static const String tfType = 'google_iam_folder_access_policy';
 
-  GoogleIamFolderAccessPolicy({
-    required super.localName,
+  GoogleIamFolderAccessPolicy(
+    super.localName, {
     required TfArg<String> accessPolicyId,
     required TfArg<String> location,
     required TfArg<String> folder,

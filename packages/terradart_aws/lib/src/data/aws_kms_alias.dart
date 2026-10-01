@@ -11,8 +11,8 @@ const Set<String> _awsKmsAliasSensitive = <String>{};
 final class DataAwsKmsAlias extends Data {
   static const String tfType = 'aws_kms_alias';
 
-  DataAwsKmsAlias({
-    required super.localName,
+  DataAwsKmsAlias(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

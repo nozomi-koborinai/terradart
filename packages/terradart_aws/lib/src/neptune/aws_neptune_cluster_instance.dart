@@ -85,8 +85,8 @@ final class NeptuneClusterInstanceIdentifierPrefix
 final class AwsNeptuneClusterInstance extends Resource {
   static const String tfType = 'aws_neptune_cluster_instance';
 
-  AwsNeptuneClusterInstance({
-    required super.localName,
+  AwsNeptuneClusterInstance(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,

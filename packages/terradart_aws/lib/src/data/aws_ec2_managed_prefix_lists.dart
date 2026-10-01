@@ -30,8 +30,8 @@ final class DataEc2ManagedPrefixListsFilter {
 final class DataAwsEc2ManagedPrefixLists extends Data {
   static const String tfType = 'aws_ec2_managed_prefix_lists';
 
-  DataAwsEc2ManagedPrefixLists({
-    required super.localName,
+  DataAwsEc2ManagedPrefixLists(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2ManagedPrefixListsFilter>? filter,

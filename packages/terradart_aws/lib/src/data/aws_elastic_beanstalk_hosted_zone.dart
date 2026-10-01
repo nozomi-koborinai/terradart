@@ -10,8 +10,8 @@ const Set<String> _awsElasticBeanstalkHostedZoneSensitive = <String>{};
 final class DataAwsElasticBeanstalkHostedZone extends Data {
   static const String tfType = 'aws_elastic_beanstalk_hosted_zone';
 
-  DataAwsElasticBeanstalkHostedZone({
-    required super.localName,
+  DataAwsElasticBeanstalkHostedZone(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

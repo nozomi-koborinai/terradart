@@ -59,8 +59,8 @@ final class CloudfrontFieldLevelEncryptionProfileFieldPatterns {
 final class AwsCloudfrontFieldLevelEncryptionProfile extends Resource {
   static const String tfType = 'aws_cloudfront_field_level_encryption_profile';
 
-  AwsCloudfrontFieldLevelEncryptionProfile({
-    required super.localName,
+  AwsCloudfrontFieldLevelEncryptionProfile(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> name,
     required CloudfrontFieldLevelEncryptionProfileEncryptionEntities

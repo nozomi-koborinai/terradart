@@ -296,8 +296,8 @@ enum BedrockagentAgentActionGroupType implements TerraformEnum {
 final class AwsBedrockagentAgentActionGroup extends Resource {
   static const String tfType = 'aws_bedrockagent_agent_action_group';
 
-  AwsBedrockagentAgentActionGroup({
-    required super.localName,
+  AwsBedrockagentAgentActionGroup(
+    super.localName, {
     required TfArg<String> actionGroupName,
     TfArg<BedrockagentAgentActionGroupState>? actionGroupState,
     required TfArg<String> agentId,

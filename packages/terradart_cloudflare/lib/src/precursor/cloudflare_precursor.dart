@@ -65,8 +65,8 @@ enum PrecursorMode implements TerraformEnum {
 final class CloudflarePrecursor extends Resource {
   static const String tfType = 'cloudflare_precursor';
 
-  CloudflarePrecursor({
-    required super.localName,
+  CloudflarePrecursor(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     TfArg<PrecursorDefaultMode>? defaultMode,
     List<PrecursorEnforcementRules>? enforcementRules,

@@ -114,7 +114,7 @@ void main() {
       expect(
         File(p.join(out, 'lib/real_plan_src_stack.dart')).readAsStringSync(),
         contains(
-          "addModule(ModuleCall(localName: 'network', "
+          "addModule(ModuleCall('network', "
           "source: './modules/network'));",
         ),
       );

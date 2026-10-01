@@ -30,8 +30,8 @@ enum RekognitionProjectFeature implements TerraformEnum {
 final class AwsRekognitionProject extends Resource {
   static const String tfType = 'aws_rekognition_project';
 
-  AwsRekognitionProject({
-    required super.localName,
+  AwsRekognitionProject(
+    super.localName, {
     TfArg<RekognitionProjectAutoUpdate>? autoUpdate,
     TfArg<RekognitionProjectFeature>? feature,
     required TfArg<String> name,

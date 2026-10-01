@@ -49,8 +49,8 @@ final class DataZeroTrustAccessApplicationFilter {
 final class DataCloudflareZeroTrustAccessApplication extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_application';
 
-  DataCloudflareZeroTrustAccessApplication({
-    required super.localName,
+  DataCloudflareZeroTrustAccessApplication(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? appId,
     RefTo<CloudflareZone>? zoneId,

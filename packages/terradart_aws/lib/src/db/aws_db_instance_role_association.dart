@@ -12,8 +12,8 @@ const Set<String> _awsDbInstanceRoleAssociationSensitive = <String>{};
 final class AwsDbInstanceRoleAssociation extends Resource {
   static const String tfType = 'aws_db_instance_role_association';
 
-  AwsDbInstanceRoleAssociation({
-    required super.localName,
+  AwsDbInstanceRoleAssociation(
+    super.localName, {
     required TfArg<String> dbInstanceIdentifier,
     required TfArg<String> featureName,
     TfArg<String>? region,

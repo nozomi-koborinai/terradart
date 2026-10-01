@@ -11,8 +11,8 @@ const Set<String> _awsElasticacheReservedCacheNodeOfferingSensitive =
 final class DataAwsElasticacheReservedCacheNodeOffering extends Data {
   static const String tfType = 'aws_elasticache_reserved_cache_node_offering';
 
-  DataAwsElasticacheReservedCacheNodeOffering({
-    required super.localName,
+  DataAwsElasticacheReservedCacheNodeOffering(
+    super.localName, {
     required TfArg<String> cacheNodeType,
     required TfArg<String> duration,
     required TfArg<String> offeringType,

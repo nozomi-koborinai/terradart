@@ -14,8 +14,8 @@ final class DataCloudflareZeroTrustDevicePostureIntegration extends Data {
   static const String tfType =
       'cloudflare_zero_trust_device_posture_integration';
 
-  DataCloudflareZeroTrustDevicePostureIntegration({
-    required super.localName,
+  DataCloudflareZeroTrustDevicePostureIntegration(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> integrationId,
     super.provider,

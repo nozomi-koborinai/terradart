@@ -67,8 +67,8 @@ final class SwfDomainNamePrefix extends SwfDomainName {
 final class AwsSwfDomain extends Resource {
   static const String tfType = 'aws_swf_domain';
 
-  AwsSwfDomain({
-    required super.localName,
+  AwsSwfDomain(
+    super.localName, {
     TfArg<String>? description,
     SwfDomainName? name,
     TfArg<String>? region,

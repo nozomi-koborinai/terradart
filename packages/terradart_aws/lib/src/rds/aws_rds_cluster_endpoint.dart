@@ -85,8 +85,8 @@ final class RdsClusterEndpointStaticMembers extends RdsClusterEndpointMembers {
 final class AwsRdsClusterEndpoint extends Resource {
   static const String tfType = 'aws_rds_cluster_endpoint';
 
-  AwsRdsClusterEndpoint({
-    required super.localName,
+  AwsRdsClusterEndpoint(
+    super.localName, {
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
     required TfArg<RdsClusterEndpointCustomEndpointType> customEndpointType,

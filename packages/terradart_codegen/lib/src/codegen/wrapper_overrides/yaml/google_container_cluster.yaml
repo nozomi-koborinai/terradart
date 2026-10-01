@@ -9,7 +9,7 @@ curatedDoc: |-
   /// Example (GKE Standard on an existing VPC / subnetwork):
   /// ```dart
   /// final cluster = GoogleContainerCluster(
-  ///   localName: 'main',
+  ///   'main',
   ///   name: TfArg.literal('main-gke'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   initialNodeCount: TfArg.literal(1),

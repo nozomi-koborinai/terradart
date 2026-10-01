@@ -44,8 +44,8 @@ final class IamWorkloadIdentityPoolIamBindingCondition {
 final class GoogleIamWorkloadIdentityPoolIamBinding extends Resource {
   static const String tfType = 'google_iam_workload_identity_pool_iam_binding';
 
-  GoogleIamWorkloadIdentityPoolIamBinding({
-    required super.localName,
+  GoogleIamWorkloadIdentityPoolIamBinding(
+    super.localName, {
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPool,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

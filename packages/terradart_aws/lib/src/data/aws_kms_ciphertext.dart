@@ -12,8 +12,8 @@ const Set<String> _awsKmsCiphertextSensitive = <String>{'plaintext'};
 final class DataAwsKmsCiphertext extends Data {
   static const String tfType = 'aws_kms_ciphertext';
 
-  DataAwsKmsCiphertext({
-    required super.localName,
+  DataAwsKmsCiphertext(
+    super.localName, {
     TfArg<Map<String, String>>? context,
     required RefTo<AwsKmsKey> keyId,
     required TfArg<String> plaintext,

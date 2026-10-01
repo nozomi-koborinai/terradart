@@ -34,8 +34,8 @@ final class CloudflareApiShieldOperationSchemaValidationSettings
   static const String tfType =
       'cloudflare_api_shield_operation_schema_validation_settings';
 
-  CloudflareApiShieldOperationSchemaValidationSettings({
-    required super.localName,
+  CloudflareApiShieldOperationSchemaValidationSettings(
+    super.localName, {
     TfArg<ApiShieldOperationSchemaValidationSettingsMitigationAction>?
     mitigationAction,
     required TfArg<String> operationId,

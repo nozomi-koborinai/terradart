@@ -23,14 +23,14 @@ import 'package:terradart_core/terradart_core.dart';
 final class CloudflareDnsStack extends Stack {
   CloudflareDnsStack() : super(providers: [const CloudflareProvider()]) {
     final zone = CloudflareZone(
-      localName: 'main',
+      'main',
       name: .literal('terradart-demo.example'),
       account: ZoneAccount(id: .literal('terradart-demo-account')),
     );
     add(zone);
     add(
       CloudflareDnsRecord(
-        localName: 'api',
+        'api',
         zoneId: zone.ref,
         name: .literal('api.terradart-demo.example'),
         type: .literal(.cname),

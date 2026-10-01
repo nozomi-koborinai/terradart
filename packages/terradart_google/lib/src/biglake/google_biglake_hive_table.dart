@@ -240,8 +240,8 @@ final class BiglakeHiveTableSortCols {
 final class GoogleBiglakeHiveTable extends Resource {
   static const String tfType = 'google_biglake_hive_table';
 
-  GoogleBiglakeHiveTable({
-    required super.localName,
+  GoogleBiglakeHiveTable(
+    super.localName, {
     required TfArg<String> catalog,
     required TfArg<String> database,
     TfArg<String>? deletionPolicy,

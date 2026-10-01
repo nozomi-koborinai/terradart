@@ -30,8 +30,8 @@ final class DataImagebuilderComponentsFilter {
 final class DataAwsImagebuilderComponents extends Data {
   static const String tfType = 'aws_imagebuilder_components';
 
-  DataAwsImagebuilderComponents({
-    required super.localName,
+  DataAwsImagebuilderComponents(
+    super.localName, {
     TfArg<String>? owner,
     TfArg<String>? region,
     List<DataImagebuilderComponentsFilter>? filter,

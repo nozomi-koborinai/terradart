@@ -10,8 +10,8 @@ const Set<String> _awsSsmPatchGroupSensitive = <String>{};
 final class AwsSsmPatchGroup extends Resource {
   static const String tfType = 'aws_ssm_patch_group';
 
-  AwsSsmPatchGroup({
-    required super.localName,
+  AwsSsmPatchGroup(
+    super.localName, {
     required TfArg<String> baselineId,
     required TfArg<String> patchGroup,
     TfArg<String>? region,

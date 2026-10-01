@@ -43,8 +43,8 @@ final class VertexAiFeatureGroupBigQuerySource {
 final class GoogleVertexAiFeatureGroup extends Resource {
   static const String tfType = 'google_vertex_ai_feature_group';
 
-  GoogleVertexAiFeatureGroup({
-    required super.localName,
+  GoogleVertexAiFeatureGroup(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     VertexAiFeatureGroupBigQuery? bigQuery,

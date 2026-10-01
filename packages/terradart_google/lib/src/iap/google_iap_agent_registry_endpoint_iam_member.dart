@@ -44,8 +44,8 @@ final class IapAgentRegistryEndpointIamMemberCondition {
 final class GoogleIapAgentRegistryEndpointIamMember extends Resource {
   static const String tfType = 'google_iap_agent_registry_endpoint_iam_member';
 
-  GoogleIapAgentRegistryEndpointIamMember({
-    required super.localName,
+  GoogleIapAgentRegistryEndpointIamMember(
+    super.localName, {
     required TfArg<String> endpointId,
     required TfArg<String> role,
     required IamPrincipal member,

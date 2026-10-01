@@ -49,7 +49,7 @@ final class LoggingProjectBucketConfigIndexConfigs {
 /// Example:
 /// ```dart
 /// final auditBucket = GoogleLoggingProjectBucketConfig(
-///   localName: 'audit_bucket',
+///   'audit_bucket',
 ///   project: .literal('my-project'),
 ///   bucketId: .literal('audit-logs'),
 ///   location: .literal('global'),
@@ -60,8 +60,8 @@ final class LoggingProjectBucketConfigIndexConfigs {
 final class GoogleLoggingProjectBucketConfig extends Resource {
   static const String tfType = 'google_logging_project_bucket_config';
 
-  GoogleLoggingProjectBucketConfig({
-    required super.localName,
+  GoogleLoggingProjectBucketConfig(
+    super.localName, {
     required TfArg<String> bucketId,
     required TfArg<String> location,
     required TfArg<String> project,

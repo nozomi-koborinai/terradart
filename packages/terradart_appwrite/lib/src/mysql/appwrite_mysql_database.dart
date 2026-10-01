@@ -60,8 +60,8 @@ enum MysqlDatabaseSyncMode implements TerraformEnum {
 final class AppwriteMysqlDatabase extends Resource {
   static const String tfType = 'appwrite_mysql_database';
 
-  AppwriteMysqlDatabase({
-    required super.localName,
+  AppwriteMysqlDatabase(
+    super.localName, {
     TfArg<num>? idleTimeoutMinutes,
     TfArg<MysqlDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,

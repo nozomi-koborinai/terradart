@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpSettingsSensitive = <String>{};
 final class DataCloudflareZeroTrustDlpSettings extends Data {
   static const String tfType = 'cloudflare_zero_trust_dlp_settings';
 
-  DataCloudflareZeroTrustDlpSettings({
-    required super.localName,
+  DataCloudflareZeroTrustDlpSettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     super.provider,
     super.timeouts,

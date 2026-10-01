@@ -2032,8 +2032,8 @@ final class GoogleDataLossPreventionDeidentifyTemplate extends Resource {
   static const String tfType =
       'google_data_loss_prevention_deidentify_template';
 
-  GoogleDataLossPreventionDeidentifyTemplate({
-    required super.localName,
+  GoogleDataLossPreventionDeidentifyTemplate(
+    super.localName, {
     required TfArg<String> parent,
     TfArg<String>? templateId,
     TfArg<String>? displayName,

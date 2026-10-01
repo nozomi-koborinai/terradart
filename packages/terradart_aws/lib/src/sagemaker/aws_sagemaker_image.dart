@@ -12,8 +12,8 @@ const Set<String> _awsSagemakerImageSensitive = <String>{};
 final class AwsSagemakerImage extends Resource {
   static const String tfType = 'aws_sagemaker_image';
 
-  AwsSagemakerImage({
-    required super.localName,
+  AwsSagemakerImage(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? displayName,
     required TfArg<String> imageName,

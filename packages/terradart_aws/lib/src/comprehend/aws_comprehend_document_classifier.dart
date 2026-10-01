@@ -318,8 +318,8 @@ final class ComprehendDocumentClassifierVpcConfig {
 final class AwsComprehendDocumentClassifier extends Resource {
   static const String tfType = 'aws_comprehend_document_classifier';
 
-  AwsComprehendDocumentClassifier({
-    required super.localName,
+  AwsComprehendDocumentClassifier(
+    super.localName, {
     required TfArg<String> dataAccessRoleArn,
     required TfArg<ComprehendDocumentClassifierLanguageCode> languageCode,
     TfArg<ComprehendDocumentClassifierMode>? mode,

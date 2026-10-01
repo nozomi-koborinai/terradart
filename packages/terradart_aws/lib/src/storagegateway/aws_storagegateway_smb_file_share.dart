@@ -76,8 +76,8 @@ final class StoragegatewaySmbFileShareCacheAttributes {
 final class AwsStoragegatewaySmbFileShare extends Resource {
   static const String tfType = 'aws_storagegateway_smb_file_share';
 
-  AwsStoragegatewaySmbFileShare({
-    required super.localName,
+  AwsStoragegatewaySmbFileShare(
+    super.localName, {
     TfArg<bool>? accessBasedEnumeration,
     TfArg<List<String>>? adminUserList,
     TfArg<String>? auditDestinationArn,

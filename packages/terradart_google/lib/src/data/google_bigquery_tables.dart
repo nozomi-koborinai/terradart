@@ -14,8 +14,8 @@ const Set<String> _googleBigqueryTablesSensitive = <String>{};
 final class DataGoogleBigqueryTables extends Data {
   static const String tfType = 'google_bigquery_tables';
 
-  DataGoogleBigqueryTables({
-    required super.localName,
+  DataGoogleBigqueryTables(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? project,
     super.provider,

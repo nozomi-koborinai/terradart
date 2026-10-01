@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerLinkAssociationSensitive = <String>{};
 final class AwsNetworkmanagerLinkAssociation extends Resource {
   static const String tfType = 'aws_networkmanager_link_association';
 
-  AwsNetworkmanagerLinkAssociation({
-    required super.localName,
+  AwsNetworkmanagerLinkAssociation(
+    super.localName, {
     required TfArg<String> deviceId,
     required TfArg<String> globalNetworkId,
     required TfArg<String> linkId,

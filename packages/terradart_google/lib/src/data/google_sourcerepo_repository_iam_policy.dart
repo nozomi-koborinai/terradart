@@ -14,8 +14,8 @@ const Set<String> _googleSourcerepoRepositoryIamPolicySensitive = <String>{};
 final class DataGoogleSourcerepoRepositoryIamPolicy extends Data {
   static const String tfType = 'google_sourcerepo_repository_iam_policy';
 
-  DataGoogleSourcerepoRepositoryIamPolicy({
-    required super.localName,
+  DataGoogleSourcerepoRepositoryIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> repository,
     super.provider,

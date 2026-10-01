@@ -12,8 +12,8 @@ const Set<String> _awsS3BucketObjectLockConfigurationSensitive = <String>{};
 final class DataAwsS3BucketObjectLockConfiguration extends Data {
   static const String tfType = 'aws_s3_bucket_object_lock_configuration';
 
-  DataAwsS3BucketObjectLockConfiguration({
-    required super.localName,
+  DataAwsS3BucketObjectLockConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

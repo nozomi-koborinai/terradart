@@ -30,8 +30,8 @@ enum ZeroTrustTunnelCloudflaredConfigSrc implements TerraformEnum {
 final class CloudflareZeroTrustTunnelCloudflared extends Resource {
   static const String tfType = 'cloudflare_zero_trust_tunnel_cloudflared';
 
-  CloudflareZeroTrustTunnelCloudflared({
-    required super.localName,
+  CloudflareZeroTrustTunnelCloudflared(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<ZeroTrustTunnelCloudflaredConfigSrc>? configSrc,
     required TfArg<String> name,

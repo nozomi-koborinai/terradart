@@ -120,7 +120,7 @@ final class VertexAiFeaturestoreScaling {
 /// Example:
 /// ```dart
 /// GoogleVertexAiFeaturestore(
-///   localName: 'fs',
+///   'fs',
 ///   name: TfArg.literal('terradart_fs'),
 ///   region: TfArg.literal('us-central1'),
 ///   onlineServingConfig: .fixedNodeCount(TfArg.literal(1)),
@@ -129,8 +129,8 @@ final class VertexAiFeaturestoreScaling {
 final class GoogleVertexAiFeaturestore extends Resource {
   static const String tfType = 'google_vertex_ai_featurestore';
 
-  GoogleVertexAiFeaturestore({
-    required super.localName,
+  GoogleVertexAiFeaturestore(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     VertexAiFeaturestoreOnlineServingConfig? onlineServingConfig,

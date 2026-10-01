@@ -10,8 +10,8 @@ const Set<String> _awsEksClusterVersionsSensitive = <String>{};
 final class DataAwsEksClusterVersions extends Data {
   static const String tfType = 'aws_eks_cluster_versions';
 
-  DataAwsEksClusterVersions({
-    required super.localName,
+  DataAwsEksClusterVersions(
+    super.localName, {
     TfArg<String>? clusterType,
     TfArg<List<String>>? clusterVersionsOnly,
     TfArg<bool>? defaultOnly,

@@ -123,8 +123,8 @@ enum BotManagementSbfmVerifiedBots implements TerraformEnum {
 final class CloudflareBotManagement extends Resource {
   static const String tfType = 'cloudflare_bot_management';
 
-  CloudflareBotManagement({
-    required super.localName,
+  CloudflareBotManagement(
+    super.localName, {
     TfArg<bool>? aiBotsMigrationOptOut,
     TfArg<BotManagementAiBotsProtection>? aiBotsProtection,
     TfArg<BotManagementAiTraining>? aiTraining,

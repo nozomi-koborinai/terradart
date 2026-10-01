@@ -17,8 +17,8 @@ const Set<String> _googleDataflowFlexTemplateJobSensitive = <String>{};
 final class GoogleDataflowFlexTemplateJob extends Resource {
   static const String tfType = 'google_dataflow_flex_template_job';
 
-  GoogleDataflowFlexTemplateJob({
-    required super.localName,
+  GoogleDataflowFlexTemplateJob(
+    super.localName, {
     TfArg<List<String>>? additionalExperiments,
     TfArg<List<String>>? additionalPipelineOptions,
     TfArg<String>? autoscalingAlgorithm,

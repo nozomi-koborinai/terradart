@@ -18,8 +18,8 @@ const Set<String> _cloudflareNotificationPolicyWebhooksListSensitive = <String>{
 final class DataCloudflareNotificationPolicyWebhooksList extends Data {
   static const String tfType = 'cloudflare_notification_policy_webhooks_list';
 
-  DataCloudflareNotificationPolicyWebhooksList({
-    required super.localName,
+  DataCloudflareNotificationPolicyWebhooksList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

@@ -11,8 +11,8 @@ const Set<String> _awsAcmCertificateSensitive = <String>{};
 final class DataAwsAcmCertificate extends Data {
   static const String tfType = 'aws_acm_certificate';
 
-  DataAwsAcmCertificate({
-    required super.localName,
+  DataAwsAcmCertificate(
+    super.localName, {
     TfArg<String>? domain,
     TfArg<List<String>>? keyTypes,
     TfArg<bool>? mostRecent,

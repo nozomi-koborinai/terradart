@@ -23,7 +23,7 @@ const Set<String> _googleBigtableMaterializedViewSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleBigtableMaterializedView(
-///   localName: 'daily_counts',
+///   'daily_counts',
 ///   materializedViewId: TfArg.literal('daily-counts'),
 ///   instance: instance.ref,
 ///   query: TfArg.literal(
@@ -34,8 +34,8 @@ const Set<String> _googleBigtableMaterializedViewSensitive = <String>{};
 final class GoogleBigtableMaterializedView extends Resource {
   static const String tfType = 'google_bigtable_materialized_view';
 
-  GoogleBigtableMaterializedView({
-    required super.localName,
+  GoogleBigtableMaterializedView(
+    super.localName, {
     required TfArg<String> materializedViewId,
     required TfArg<String> query,
     RefTo<GoogleBigtableInstance>? instance,

@@ -142,8 +142,8 @@ final class EvidentlyLaunchSegmentOverrides {
 final class AwsEvidentlyLaunch extends Resource {
   static const String tfType = 'aws_evidently_launch';
 
-  AwsEvidentlyLaunch({
-    required super.localName,
+  AwsEvidentlyLaunch(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> project,

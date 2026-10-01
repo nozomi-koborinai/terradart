@@ -41,7 +41,7 @@ final class AppCheckStack extends Stack {
     // provider for that specific app.
     add(
       GoogleFirebaseAppCheckRecaptchaEnterpriseConfig(
-        localName: 'web_recaptcha',
+        'web_recaptcha',
         appId: .literal('1:1234567890:web:abcdef'),
         siteKey: .literal('6LdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
       ),
@@ -49,7 +49,7 @@ final class AppCheckStack extends Stack {
 
     add(
       GoogleFirebaseAppCheckRecaptchaV3Config(
-        localName: 'web_recaptcha_v3',
+        'web_recaptcha_v3',
         appId: .literal('1:1234567890:web:abcdef'),
         siteSecret: TfArg.variable('recaptcha_v3_site_secret'),
       ),
@@ -61,7 +61,7 @@ final class AppCheckStack extends Stack {
     // metrics before enabling full enforcement.
     add(
       GoogleFirebaseAppCheckServiceConfig(
-        localName: 'firestore_enforcement',
+        'firestore_enforcement',
         serviceId: .literal('firestore.googleapis.com'),
         enforcementMode: .literal(.enforced),
       ),
@@ -71,14 +71,14 @@ final class AppCheckStack extends Stack {
 
     add(
       GoogleFirebaseAppCheckAppAttestConfig(
-        localName: 'ios_app_attest',
+        'ios_app_attest',
         appId: .literal('1:1234567890:ios:abcdef'),
       ),
     );
 
     add(
       GoogleFirebaseAppCheckDeviceCheckConfig(
-        localName: 'ios_device_check',
+        'ios_device_check',
         appId: .literal('1:1234567890:ios:legacy'),
         keyId: .literal('ABCDEFGHIJ'),
         privateKey: TfArg.variable('device_check_private_key'),
@@ -87,14 +87,14 @@ final class AppCheckStack extends Stack {
 
     add(
       GoogleFirebaseAppCheckPlayIntegrityConfig(
-        localName: 'android_play_integrity',
+        'android_play_integrity',
         appId: .literal('1:1234567890:android:abcdef'),
       ),
     );
 
     add(
       GoogleFirebaseAppCheckDebugToken(
-        localName: 'ci_debug_token',
+        'ci_debug_token',
         appId: .literal('1:1234567890:web:abcdef'),
         displayName: .literal('CI debug token'),
         token: TfArg.variable('app_check_debug_token'),
@@ -103,7 +103,7 @@ final class AppCheckStack extends Stack {
 
     add(
       GoogleFirebaseAppCheckResourcePolicy(
-        localName: 'ios_oauth_policy',
+        'ios_oauth_policy',
         serviceId: .literal('oauth2.googleapis.com'),
         targetResource: .literal(
           '//oauth2.googleapis.com/projects/123456789/oauthClients/example-client',

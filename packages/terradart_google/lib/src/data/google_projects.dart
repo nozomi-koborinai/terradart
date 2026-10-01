@@ -13,8 +13,8 @@ const Set<String> _googleProjectsSensitive = <String>{};
 final class DataGoogleProjects extends Data {
   static const String tfType = 'google_projects';
 
-  DataGoogleProjects({
-    required super.localName,
+  DataGoogleProjects(
+    super.localName, {
     required TfArg<String> filter,
     super.provider,
     super.timeouts,

@@ -10,8 +10,8 @@ const Set<String> _awsSyntheticsGroupSensitive = <String>{};
 final class AwsSyntheticsGroup extends Resource {
   static const String tfType = 'aws_synthetics_group';
 
-  AwsSyntheticsGroup({
-    required super.localName,
+  AwsSyntheticsGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

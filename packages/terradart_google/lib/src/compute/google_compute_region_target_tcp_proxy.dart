@@ -26,8 +26,8 @@ enum RegionTargetTcpProxyProxyHeader implements TerraformEnum {
 final class GoogleComputeRegionTargetTcpProxy extends Resource {
   static const String tfType = 'google_compute_region_target_tcp_proxy';
 
-  GoogleComputeRegionTargetTcpProxy({
-    required super.localName,
+  GoogleComputeRegionTargetTcpProxy(
+    super.localName, {
     RefTo<GoogleComputeRegionBackendService>? backendService,
     TfArg<String>? description,
     required TfArg<String> name,

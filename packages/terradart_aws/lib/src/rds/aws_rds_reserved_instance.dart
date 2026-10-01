@@ -10,8 +10,8 @@ const Set<String> _awsRdsReservedInstanceSensitive = <String>{};
 final class AwsRdsReservedInstance extends Resource {
   static const String tfType = 'aws_rds_reserved_instance';
 
-  AwsRdsReservedInstance({
-    required super.localName,
+  AwsRdsReservedInstance(
+    super.localName, {
     TfArg<num>? instanceCount,
     required TfArg<String> offeringId,
     TfArg<String>? region,

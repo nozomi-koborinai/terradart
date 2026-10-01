@@ -44,8 +44,8 @@ final class ColabRuntimeTemplateIamBindingCondition {
 final class GoogleColabRuntimeTemplateIamBinding extends Resource {
   static const String tfType = 'google_colab_runtime_template_iam_binding';
 
-  GoogleColabRuntimeTemplateIamBinding({
-    required super.localName,
+  GoogleColabRuntimeTemplateIamBinding(
+    super.localName, {
     required RefTo<GoogleColabRuntimeTemplate> runtimeTemplate,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

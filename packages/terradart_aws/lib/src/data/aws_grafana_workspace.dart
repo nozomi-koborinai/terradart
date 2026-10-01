@@ -11,8 +11,8 @@ const Set<String> _awsGrafanaWorkspaceSensitive = <String>{};
 final class DataAwsGrafanaWorkspace extends Data {
   static const String tfType = 'aws_grafana_workspace';
 
-  DataAwsGrafanaWorkspace({
-    required super.localName,
+  DataAwsGrafanaWorkspace(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> workspaceId,

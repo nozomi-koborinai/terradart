@@ -14,8 +14,8 @@ const Set<String> _googleHealthcareDatasetIamPolicySensitive = <String>{};
 final class DataGoogleHealthcareDatasetIamPolicy extends Data {
   static const String tfType = 'google_healthcare_dataset_iam_policy';
 
-  DataGoogleHealthcareDatasetIamPolicy({
-    required super.localName,
+  DataGoogleHealthcareDatasetIamPolicy(
+    super.localName, {
     required TfArg<String> datasetId,
     super.provider,
     super.timeouts,

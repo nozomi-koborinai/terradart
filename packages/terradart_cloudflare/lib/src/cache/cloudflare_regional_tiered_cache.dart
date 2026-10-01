@@ -26,8 +26,8 @@ enum RegionalTieredCacheValue implements TerraformEnum {
 final class CloudflareRegionalTieredCache extends Resource {
   static const String tfType = 'cloudflare_regional_tiered_cache';
 
-  CloudflareRegionalTieredCache({
-    required super.localName,
+  CloudflareRegionalTieredCache(
+    super.localName, {
     TfArg<RegionalTieredCacheValue>? value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

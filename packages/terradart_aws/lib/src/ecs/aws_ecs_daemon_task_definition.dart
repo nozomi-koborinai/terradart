@@ -622,8 +622,8 @@ final class EcsDaemonTaskDefinitionHost {
 final class AwsEcsDaemonTaskDefinition extends Resource {
   static const String tfType = 'aws_ecs_daemon_task_definition';
 
-  AwsEcsDaemonTaskDefinition({
-    required super.localName,
+  AwsEcsDaemonTaskDefinition(
+    super.localName, {
     TfArg<String>? cpu,
     RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> family,

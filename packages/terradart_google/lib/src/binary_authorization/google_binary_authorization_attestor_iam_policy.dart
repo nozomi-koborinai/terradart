@@ -20,8 +20,8 @@ final class GoogleBinaryAuthorizationAttestorIamPolicy extends Resource {
   static const String tfType =
       'google_binary_authorization_attestor_iam_policy';
 
-  GoogleBinaryAuthorizationAttestorIamPolicy({
-    required super.localName,
+  GoogleBinaryAuthorizationAttestorIamPolicy(
+    super.localName, {
     required RefTo<GoogleBinaryAuthorizationAttestor> attestor,
     required TfArg<String> policyData,
     TfArg<String>? project,

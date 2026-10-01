@@ -11,8 +11,8 @@ const Set<String> _awsDmsReplicationSubnetGroupSensitive = <String>{};
 final class DataAwsDmsReplicationSubnetGroup extends Data {
   static const String tfType = 'aws_dms_replication_subnet_group';
 
-  DataAwsDmsReplicationSubnetGroup({
-    required super.localName,
+  DataAwsDmsReplicationSubnetGroup(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationSubnetGroupId,
     TfArg<Map<String, String>>? tags,

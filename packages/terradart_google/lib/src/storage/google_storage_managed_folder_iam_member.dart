@@ -42,7 +42,7 @@ final class StorageManagedFolderIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleStorageManagedFolderIamMember(
-///   localName: 'folder_viewer',
+///   'folder_viewer',
 ///   bucket: assets.ref,
 ///   managedFolder: folder.ref,
 ///   role: TfArg.literal('roles/storage.objectViewer'),
@@ -52,8 +52,8 @@ final class StorageManagedFolderIamMemberCondition {
 final class GoogleStorageManagedFolderIamMember extends Resource {
   static const String tfType = 'google_storage_managed_folder_iam_member';
 
-  GoogleStorageManagedFolderIamMember({
-    required super.localName,
+  GoogleStorageManagedFolderIamMember(
+    super.localName, {
     TfArg<String>? bucket,
     required RefTo<GoogleStorageManagedFolder> managedFolder,
     required TfArg<String> role,

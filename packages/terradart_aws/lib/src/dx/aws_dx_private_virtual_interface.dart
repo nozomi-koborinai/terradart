@@ -81,8 +81,8 @@ final class DxPrivateVirtualInterfaceVpnGatewayId
 final class AwsDxPrivateVirtualInterface extends Resource {
   static const String tfType = 'aws_dx_private_virtual_interface';
 
-  AwsDxPrivateVirtualInterface({
-    required super.localName,
+  AwsDxPrivateVirtualInterface(
+    super.localName, {
     required TfArg<DxPrivateVirtualInterfaceAddressFamily> addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,

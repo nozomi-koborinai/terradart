@@ -10,8 +10,8 @@ const Set<String> _awsNetworkInterfaceAttachmentSensitive = <String>{};
 final class AwsNetworkInterfaceAttachment extends Resource {
   static const String tfType = 'aws_network_interface_attachment';
 
-  AwsNetworkInterfaceAttachment({
-    required super.localName,
+  AwsNetworkInterfaceAttachment(
+    super.localName, {
     required TfArg<num> deviceIndex,
     required TfArg<String> instanceId,
     TfArg<num>? networkCardIndex,

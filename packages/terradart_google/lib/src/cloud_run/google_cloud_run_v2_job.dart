@@ -922,7 +922,7 @@ final class CloudRunV2JobNetworkInterfaces {
 /// Example (minimal one-shot batch job):
 /// ```dart
 /// final etl = GoogleCloudRunV2Job(
-///   localName: 'etl',
+///   'etl',
 ///   name: .literal('nightly-etl'),
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2JobTemplate(
@@ -939,8 +939,8 @@ final class CloudRunV2JobNetworkInterfaces {
 final class GoogleCloudRunV2Job extends Resource {
   static const String tfType = 'google_cloud_run_v2_job';
 
-  GoogleCloudRunV2Job({
-    required super.localName,
+  GoogleCloudRunV2Job(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required CloudRunV2JobTemplate template,

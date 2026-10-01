@@ -10,8 +10,8 @@ const Set<String> _awsOdbDbNodesSensitive = <String>{};
 final class DataAwsOdbDbNodes extends Data {
   static const String tfType = 'aws_odb_db_nodes';
 
-  DataAwsOdbDbNodes({
-    required super.localName,
+  DataAwsOdbDbNodes(
+    super.localName, {
     required TfArg<String> cloudVmClusterId,
     TfArg<String>? region,
     super.provider,

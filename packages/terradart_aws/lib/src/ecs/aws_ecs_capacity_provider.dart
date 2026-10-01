@@ -696,8 +696,8 @@ final class EcsCapacityProviderStorageConfiguration {
 final class AwsEcsCapacityProvider extends Resource {
   static const String tfType = 'aws_ecs_capacity_provider';
 
-  AwsEcsCapacityProvider({
-    required super.localName,
+  AwsEcsCapacityProvider(
+    super.localName, {
     RefTo<AwsEcsCluster>? cluster,
     required TfArg<String> name,
     TfArg<String>? region,

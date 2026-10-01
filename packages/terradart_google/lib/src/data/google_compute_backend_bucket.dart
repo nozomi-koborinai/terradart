@@ -14,8 +14,8 @@ const Set<String> _googleComputeBackendBucketSensitive = <String>{};
 final class DataGoogleComputeBackendBucket extends Data {
   static const String tfType = 'google_compute_backend_bucket';
 
-  DataGoogleComputeBackendBucket({
-    required super.localName,
+  DataGoogleComputeBackendBucket(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

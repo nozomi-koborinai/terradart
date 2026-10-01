@@ -38,8 +38,8 @@ final class ComputeStoragePoolIamMemberCondition {
 final class GoogleComputeStoragePoolIamMember extends Resource {
   static const String tfType = 'google_compute_storage_pool_iam_member';
 
-  GoogleComputeStoragePoolIamMember({
-    required super.localName,
+  GoogleComputeStoragePoolIamMember(
+    super.localName, {
     required RefTo<GoogleComputeStoragePool> storagePool,
     required TfArg<String> role,
     required IamPrincipal member,

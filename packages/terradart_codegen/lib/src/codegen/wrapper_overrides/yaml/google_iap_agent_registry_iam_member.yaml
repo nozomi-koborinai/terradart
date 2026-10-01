@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIapAgentRegistryIamMember(
-  ///   localName: 'agent_registry_invoker',
+  ///   'agent_registry_invoker',
   ///   location: TfArg.literal('us-central1'),
   ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
   ///   member: sa.principal,

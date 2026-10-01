@@ -21,7 +21,7 @@ final class SpannerInstanceConfigStack extends Stack {
       ) {
     final apiSpanner = add(
       GoogleProjectService(
-        localName: 'api_spanner',
+        'api_spanner',
         service: .literal('spanner.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -29,7 +29,7 @@ final class SpannerInstanceConfigStack extends Stack {
 
     add(
       GoogleSpannerInstanceConfig(
-        localName: 'custom_nam11',
+        'custom_nam11',
         name: .literal('custom-td-nam11-ro'),
         displayName: .literal('TerraDart nam11 + us-west1 RO'),
         baseConfig: .literal('nam11'),

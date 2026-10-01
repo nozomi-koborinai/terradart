@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftClusterSnapshotSensitive = <String>{};
 final class AwsRedshiftClusterSnapshot extends Resource {
   static const String tfType = 'aws_redshift_cluster_snapshot';
 
-  AwsRedshiftClusterSnapshot({
-    required super.localName,
+  AwsRedshiftClusterSnapshot(
+    super.localName, {
     required TfArg<String> clusterIdentifier,
     TfArg<num>? manualSnapshotRetentionPeriod,
     TfArg<String>? region,

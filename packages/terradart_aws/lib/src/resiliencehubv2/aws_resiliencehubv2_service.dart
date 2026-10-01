@@ -81,8 +81,8 @@ final class Resiliencehubv2ServiceCrossAccountRole {
 final class AwsResiliencehubv2Service extends Resource {
   static const String tfType = 'aws_resiliencehubv2_service';
 
-  AwsResiliencehubv2Service({
-    required super.localName,
+  AwsResiliencehubv2Service(
+    super.localName, {
     TfArg<Resiliencehubv2ServiceDependencyDiscovery>? dependencyDiscovery,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,

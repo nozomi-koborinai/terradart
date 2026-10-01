@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiEndpoint(
-  ///   localName: 'ep',
+  ///   'ep',
   ///   name: TfArg.literal('1234567890'),
   ///   displayName: TfArg.literal('terradart-ep'),
   ///   location: TfArg.literal('us-central1'),

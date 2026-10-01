@@ -673,8 +673,8 @@ final class ColabScheduleRuntimeConfig {
 final class GoogleColabSchedule extends Resource {
   static const String tfType = 'google_colab_schedule';
 
-  GoogleColabSchedule({
-    required super.localName,
+  GoogleColabSchedule(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> displayName,
     required TfArg<String> cron,

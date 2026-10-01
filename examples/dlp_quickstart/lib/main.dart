@@ -29,7 +29,7 @@ final class DlpStack extends Stack {
 
     final apiDlp = add(
       GoogleProjectService(
-        localName: 'api_dlp',
+        'api_dlp',
         service: .literal('dlp.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -37,7 +37,7 @@ final class DlpStack extends Stack {
 
     final apiStorage = add(
       GoogleProjectService(
-        localName: 'api_storage',
+        'api_storage',
         service: .literal('storage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -45,7 +45,7 @@ final class DlpStack extends Stack {
 
     final inspect = add(
       GoogleDataLossPreventionInspectTemplate(
-        localName: 'email_inspect',
+        'email_inspect',
         parent: .literal(parent),
         templateId: .literal('terradart-email-inspect'),
         displayName: .literal('terradart-email-inspect'),
@@ -60,7 +60,7 @@ final class DlpStack extends Stack {
 
     final deidentify = add(
       GoogleDataLossPreventionDeidentifyTemplate(
-        localName: 'email_redact',
+        'email_redact',
         parent: .literal(parent),
         templateId: .literal('terradart-email-redact'),
         displayName: .literal('terradart-email-redact'),
@@ -83,7 +83,7 @@ final class DlpStack extends Stack {
 
     final stored = add(
       GoogleDataLossPreventionStoredInfoType(
-        localName: 'patient_id',
+        'patient_id',
         parent: .literal(parent),
         storedInfoTypeId: .literal('terradart-patient-id'),
         displayName: .literal('terradart-patient-id'),
@@ -97,7 +97,7 @@ final class DlpStack extends Stack {
     // so `terraform destroy` stays clean if any object appears.
     final scanBucket = add(
       GoogleStorageBucket(
-        localName: 'dlp_scan',
+        'dlp_scan',
         name: .literal('$projectId-terradart-dlp-scan'),
         location: .literal('US'),
         forceDestroy: .literal(true),
@@ -108,7 +108,7 @@ final class DlpStack extends Stack {
 
     final trigger = add(
       GoogleDataLossPreventionJobTrigger(
-        localName: 'paused_gcs',
+        'paused_gcs',
         parent: .literal(parent),
         triggerId: .literal('terradart-paused-gcs'),
         displayName: .literal('terradart-paused-gcs'),
@@ -137,7 +137,7 @@ final class DlpStack extends Stack {
     // verdict: block content with an email address, allow everything else.
     add(
       GoogleDataLossPreventionContentPolicy(
-        localName: 'block_emails',
+        'block_emails',
         parent: .literal('$parent/locations/us-central1'),
         displayName: .literal('terradart-block-emails'),
         inspectConfig: DataLossPreventionContentPolicyInspectConfig(

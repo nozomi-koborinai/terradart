@@ -22,25 +22,25 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAccessRule(
-        localName: 'access_rule',
+        'access_rule',
         mode: .literal(.block),
         configuration: AccessRuleConfiguration(target: .literal(.ip)),
         accountId: .literal(accountId),
       ),
     );
 
-    add(CloudflareAccount(localName: 'account', name: .literal(leftover)));
+    add(CloudflareAccount('account', name: .literal(leftover)));
 
     add(
       CloudflareAccountDnsSettings(
-        localName: 'account_dns_settings',
+        'account_dns_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareAccountDnsSettingsInternalView(
-        localName: 'account_dns_settings_internal_view',
+        'account_dns_settings_internal_view',
         accountId: .literal(accountId),
         name: .literal(leftover),
         zones: .literal([leftover]),
@@ -49,7 +49,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAccountMember(
-        localName: 'account_member',
+        'account_member',
         accountId: .literal(accountId),
         email: .literal('leftover@example.com'),
         access: .roles(.literal([leftover])),
@@ -58,14 +58,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAccountSubscription(
-        localName: 'account_subscription',
+        'account_subscription',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareAccountToken(
-        localName: 'account_token',
+        'account_token',
         accountId: .literal(accountId),
         name: .literal(leftover),
         policies: [
@@ -80,16 +80,11 @@ final class CloudflareLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      CloudflareAddressMap(
-        localName: 'address_map',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(CloudflareAddressMap('address_map', accountId: .literal(accountId)));
 
     add(
       CloudflareAiGateway(
-        localName: 'ai_gateway',
+        'ai_gateway',
         accountId: .literal(accountId),
         cacheInvalidateOnUpdate: .literal(true),
         cacheTtl: .literal(200),
@@ -102,7 +97,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAiGatewayDynamicRouting(
-        localName: 'ai_gateway_dynamic_routing',
+        'ai_gateway_dynamic_routing',
         accountId: .literal(accountId),
         gatewayId: .literal('00000000000000000000000000000001'),
         name: .literal(leftover),
@@ -120,7 +115,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAiSearchInstance(
-        localName: 'ai_search_instance',
+        'ai_search_instance',
         accountId: .literal(accountId),
         id: .literal('00000000000000000000000000000001'),
       ),
@@ -128,7 +123,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAiSearchNamespace(
-        localName: 'ai_search_namespace',
+        'ai_search_namespace',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -136,7 +131,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAiSearchToken(
-        localName: 'ai_search_token',
+        'ai_search_token',
         accountId: .literal(accountId),
         cfApiId: .literal('00000000000000000000000000000001'),
         cfApiKey: .variable('leftover_secret'),
@@ -146,7 +141,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiShield(
-        localName: 'api_shield',
+        'api_shield',
         zoneId: .literal(zoneId),
         authIdCharacteristics: [
           ApiShieldAuthIdCharacteristics(
@@ -159,7 +154,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiShieldDiscoveryOperation(
-        localName: 'api_shield_discovery_operation',
+        'api_shield_discovery_operation',
         operationId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -167,7 +162,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiShieldOperation(
-        localName: 'api_shield_operation',
+        'api_shield_operation',
         endpoint: .literal(leftover),
         host: .literal(leftover),
         method: .literal(.get),
@@ -177,7 +172,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiShieldOperationSchemaValidationSettings(
-        localName: 'api_shield_operation_schema_validation_settings',
+        'api_shield_operation_schema_validation_settings',
         operationId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -185,7 +180,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiShieldSchema(
-        localName: 'api_shield_schema',
+        'api_shield_schema',
         file: .literal(leftover),
         kind: .literal(.openapiV3),
         zoneId: .literal(zoneId),
@@ -194,7 +189,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiShieldSchemaValidationSettings(
-        localName: 'api_shield_schema_validation_settings',
+        'api_shield_schema_validation_settings',
         validationDefaultMitigationAction: .literal(.none),
         zoneId: .literal(zoneId),
       ),
@@ -202,7 +197,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareApiToken(
-        localName: 'api_token',
+        'api_token',
         name: .literal(leftover),
         policies: [
           ApiTokenPolicies(
@@ -218,7 +213,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareArgoSmartRouting(
-        localName: 'argo_smart_routing',
+        'argo_smart_routing',
         value: .literal(.on),
         zoneId: .literal(zoneId),
       ),
@@ -226,7 +221,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareArgoTieredCaching(
-        localName: 'argo_tiered_caching',
+        'argo_tiered_caching',
         value: .literal(.on),
         zoneId: .literal(zoneId),
       ),
@@ -234,7 +229,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAuthenticatedOriginPulls(
-        localName: 'authenticated_origin_pulls',
+        'authenticated_origin_pulls',
         zoneId: .literal(zoneId),
         config: [
           AuthenticatedOriginPullsConfig(
@@ -246,7 +241,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAuthenticatedOriginPullsCertificate(
-        localName: 'authenticated_origin_pulls_certificate',
+        'authenticated_origin_pulls_certificate',
         certificate: .literal(leftover),
         privateKey: .variable('leftover_secret'),
         zoneId: .literal(zoneId),
@@ -255,7 +250,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAuthenticatedOriginPullsHostnameCertificate(
-        localName: 'authenticated_origin_pulls_hostname_certificate',
+        'authenticated_origin_pulls_hostname_certificate',
         certificate: .literal(leftover),
         privateKey: .variable('leftover_secret'),
         zoneId: .literal(zoneId),
@@ -264,52 +259,39 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareAuthenticatedOriginPullsSettings(
-        localName: 'authenticated_origin_pulls_settings',
+        'authenticated_origin_pulls_settings',
         enabled: .literal(true),
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      CloudflareBotManagement(
-        localName: 'bot_management',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(CloudflareBotManagement('bot_management', zoneId: .literal(zoneId)));
 
     add(
       CloudflareByoIpPrefix(
-        localName: 'byo_ip_prefix',
+        'byo_ip_prefix',
         accountId: .literal(accountId),
         asn: .literal(200),
         cidr: .literal('192.0.2.0/24'),
       ),
     );
 
-    add(
-      CloudflareCallsSfuApp(
-        localName: 'calls_sfu_app',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(CloudflareCallsSfuApp('calls_sfu_app', accountId: .literal(accountId)));
 
     add(
-      CloudflareCallsTurnApp(
-        localName: 'calls_turn_app',
-        accountId: .literal(accountId),
-      ),
+      CloudflareCallsTurnApp('calls_turn_app', accountId: .literal(accountId)),
     );
 
     add(
       CloudflareCertificateAuthoritiesHostnameAssociations(
-        localName: 'certificate_authorities_hostname_associations',
+        'certificate_authorities_hostname_associations',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareCertificatePack(
-        localName: 'certificate_pack',
+        'certificate_pack',
         certificateAuthority: .literal(.google),
         type: .literal(.advanced),
         validationMethod: .literal(.txt),
@@ -320,7 +302,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareClientCertificate(
-        localName: 'client_certificate',
+        'client_certificate',
         csr: .literal(leftover),
         validityDays: .literal(200),
         zoneId: .literal(zoneId),
@@ -329,21 +311,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCloudConnectorRules(
-        localName: 'cloud_connector_rules',
+        'cloud_connector_rules',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareCloudforceOneRequest(
-        localName: 'cloudforce_one_request',
+        'cloudforce_one_request',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareCloudforceOneRequestAsset(
-        localName: 'cloudforce_one_request_asset',
+        'cloudforce_one_request_asset',
         accountId: .literal(accountId),
         page: .literal(200),
         perPage: .literal(200),
@@ -353,7 +335,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCloudforceOneRequestMessage(
-        localName: 'cloudforce_one_request_message',
+        'cloudforce_one_request_message',
         accountId: .literal(accountId),
         requestId: .literal('00000000000000000000000000000001'),
       ),
@@ -361,7 +343,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCloudforceOneRequestPriority(
-        localName: 'cloudforce_one_request_priority',
+        'cloudforce_one_request_priority',
         accountId: .literal(accountId),
         labels: .literal([leftover]),
         priority: .literal(200),
@@ -372,7 +354,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareConnectivityDirectoryService(
-        localName: 'connectivity_directory_service',
+        'connectivity_directory_service',
         accountId: .literal(accountId),
         name: .literal(leftover),
         type: .literal(.tcp),
@@ -382,7 +364,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareContentScanning(
-        localName: 'content_scanning',
+        'content_scanning',
         value: .literal(.enabled),
         zoneId: .literal(zoneId),
       ),
@@ -390,7 +372,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareContentScanningExpression(
-        localName: 'content_scanning_expression',
+        'content_scanning_expression',
         zoneId: .literal(zoneId),
         body: [ContentScanningExpressionBody(payload: .literal(leftover))],
       ),
@@ -398,7 +380,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCtAlerting(
-        localName: 'ct_alerting',
+        'ct_alerting',
         zoneId: .literal(zoneId),
         enabled: .literal(true),
       ),
@@ -406,7 +388,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomCsr(
-        localName: 'custom_csr',
+        'custom_csr',
         commonName: .literal(leftover),
         country: .literal(leftover),
         locality: .literal(leftover),
@@ -419,7 +401,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomHostname(
-        localName: 'custom_hostname',
+        'custom_hostname',
         hostname: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -427,7 +409,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomHostnameFallbackOrigin(
-        localName: 'custom_hostname_fallback_origin',
+        'custom_hostname_fallback_origin',
         origin: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -435,7 +417,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomOriginTrustStore(
-        localName: 'custom_origin_trust_store',
+        'custom_origin_trust_store',
         certificate: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -443,7 +425,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomPageAsset(
-        localName: 'custom_page_asset',
+        'custom_page_asset',
         description: .literal(leftover),
         name: .literal(leftover),
         url: .literal('https://example.com'),
@@ -453,7 +435,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomPages(
-        localName: 'custom_pages',
+        'custom_pages',
         identifier: .literal(.v1000Errors),
         state: .literal(.defaultCase),
         accountId: .literal(accountId),
@@ -462,7 +444,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareCustomSsl(
-        localName: 'custom_ssl',
+        'custom_ssl',
         certificate: .literal(leftover),
         zoneId: .literal(zoneId),
         customCsrId: .literal('00000000000000000000000000000001'),
@@ -471,7 +453,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareD1Database(
-        localName: 'd1_database',
+        'd1_database',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -479,7 +461,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDlsPrefixBinding(
-        localName: 'dls_prefix_binding',
+        'dls_prefix_binding',
         accountId: .literal(accountId),
         cidr: .literal('192.0.2.0/24'),
         prefixId: .literal('192.0.2.0/24'),
@@ -489,7 +471,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDnsFirewall(
-        localName: 'dns_firewall',
+        'dns_firewall',
         accountId: .literal(accountId),
         name: .literal(leftover),
         upstreamIps: .literal([leftover]),
@@ -498,7 +480,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDnsZoneTransfersAcl(
-        localName: 'dns_zone_transfers_acl',
+        'dns_zone_transfers_acl',
         accountId: .literal(accountId),
         ipRange: .literal(leftover),
         name: .literal(leftover),
@@ -507,7 +489,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDnsZoneTransfersIncoming(
-        localName: 'dns_zone_transfers_incoming',
+        'dns_zone_transfers_incoming',
         name: .literal(leftover),
         peers: .literal([leftover]),
         zoneId: .literal(zoneId),
@@ -516,7 +498,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDnsZoneTransfersOutgoing(
-        localName: 'dns_zone_transfers_outgoing',
+        'dns_zone_transfers_outgoing',
         name: .literal(leftover),
         peers: .literal([leftover]),
         zoneId: .literal(zoneId),
@@ -525,7 +507,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDnsZoneTransfersPeer(
-        localName: 'dns_zone_transfers_peer',
+        'dns_zone_transfers_peer',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -533,7 +515,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareDnsZoneTransfersTsig(
-        localName: 'dns_zone_transfers_tsig',
+        'dns_zone_transfers_tsig',
         accountId: .literal(accountId),
         algo: .literal(leftover),
         name: .literal(leftover),
@@ -543,7 +525,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailRoutingAddress(
-        localName: 'email_routing_address',
+        'email_routing_address',
         accountId: .literal(accountId),
         email: .literal('leftover@example.com'),
       ),
@@ -551,7 +533,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailRoutingCatchAll(
-        localName: 'email_routing_catch_all',
+        'email_routing_catch_all',
         zoneId: .literal(zoneId),
         actions: [EmailRoutingCatchAllActions(type: .literal(.drop))],
         matchers: [EmailRoutingCatchAllMatchers(type: .literal(.all))],
@@ -559,15 +541,12 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
-      CloudflareEmailRoutingDns(
-        localName: 'email_routing_dns',
-        zoneId: .literal(zoneId),
-      ),
+      CloudflareEmailRoutingDns('email_routing_dns', zoneId: .literal(zoneId)),
     );
 
     add(
       CloudflareEmailRoutingRule(
-        localName: 'email_routing_rule',
+        'email_routing_rule',
         zoneId: .literal(zoneId),
         actions: [EmailRoutingRuleActions(type: .literal(.drop))],
         matchers: [EmailRoutingRuleMatchers(type: .literal(.all))],
@@ -576,14 +555,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailRoutingSettings(
-        localName: 'email_routing_settings',
+        'email_routing_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareEmailSecurityAllowPolicy(
-        localName: 'email_security_allow_policy',
+        'email_security_allow_policy',
         accountId: .literal(accountId),
         pattern: .literal(leftover),
         patternType: .literal(.email),
@@ -597,7 +576,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailSecurityBlockSender(
-        localName: 'email_security_block_sender',
+        'email_security_block_sender',
         accountId: .literal(accountId),
         isRegex: .literal(true),
         pattern: .literal(leftover),
@@ -607,7 +586,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailSecurityDomain(
-        localName: 'email_security_domain',
+        'email_security_domain',
         accountId: .literal(accountId),
         domain: .literal(leftover),
         allowedDeliveryModes: .literal([leftover]),
@@ -619,7 +598,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailSecurityImpersonationRegistry(
-        localName: 'email_security_impersonation_registry',
+        'email_security_impersonation_registry',
         accountId: .literal(accountId),
         email: .literal('leftover@example.com'),
         isEmailRegex: .literal(true),
@@ -629,7 +608,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailSecurityTrustedDomains(
-        localName: 'email_security_trusted_domains',
+        'email_security_trusted_domains',
         accountId: .literal(accountId),
         pattern: .literal(leftover),
       ),
@@ -637,7 +616,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareEmailSendingSubdomain(
-        localName: 'email_sending_subdomain',
+        'email_sending_subdomain',
         zoneId: .literal(zoneId),
         name: .literal(leftover),
       ),
@@ -645,7 +624,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareFieldExtractor(
-        localName: 'field_extractor',
+        'field_extractor',
         accountId: .literal(accountId),
         extractor: .literal(leftover),
         rules: [
@@ -661,7 +640,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareFilter(
-        localName: 'filter',
+        'filter',
         zoneId: .literal(zoneId),
         body: [FilterBody(description: .literal(leftover))],
       ),
@@ -669,7 +648,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareFirewallRule(
-        localName: 'firewall_rule',
+        'firewall_rule',
         zoneId: .literal(zoneId),
         action: FirewallRuleAction(mode: .literal(.simulate)),
         filter: FirewallRuleFilter(description: .literal(leftover)),
@@ -678,7 +657,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareFlagshipApp(
-        localName: 'flagship_app',
+        'flagship_app',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -686,7 +665,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareFlagshipFlag(
-        localName: 'flagship_flag',
+        'flagship_flag',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
         defaultVariation: .literal(leftover),
@@ -705,7 +684,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareGoogleTagGateway(
-        localName: 'google_tag_gateway',
+        'google_tag_gateway',
         enabled: .literal(true),
         endpoint: .literal(leftover),
         hideOriginalIp: .literal(true),
@@ -716,7 +695,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareHealthcheck(
-        localName: 'healthcheck',
+        'healthcheck',
         address: .literal('192.0.2.1'),
         name: .literal(leftover),
         zoneId: .literal(zoneId),
@@ -725,7 +704,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareHostnameTlsSetting(
-        localName: 'hostname_tls_setting',
+        'hostname_tls_setting',
         hostname: .literal(leftover),
         settingId: .literal(.ciphers),
         value: .literal(leftover),
@@ -735,7 +714,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareHyperdriveConfig(
-        localName: 'hyperdrive_config',
+        'hyperdrive_config',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -743,7 +722,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareImage(
-        localName: 'image',
+        'image',
         accountId: .literal(accountId),
         id: .literal('00000000000000000000000000000001'),
         url: .literal('https://example.com'),
@@ -752,7 +731,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareImageVariant(
-        localName: 'image_variant',
+        'image_variant',
         accountId: .literal(accountId),
         id: .literal('00000000000000000000000000000001'),
         options: ImageVariantOptions(
@@ -766,7 +745,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareKeylessCertificate(
-        localName: 'keyless_certificate',
+        'keyless_certificate',
         certificate: .literal(leftover),
         host: .literal(leftover),
         zoneId: .literal(zoneId),
@@ -775,21 +754,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareLeakedCredentialCheck(
-        localName: 'leaked_credential_check',
+        'leaked_credential_check',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareLeakedCredentialCheckRule(
-        localName: 'leaked_credential_check_rule',
+        'leaked_credential_check_rule',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareList(
-        localName: 'list',
+        'list',
         accountId: .literal(accountId),
         kind: .literal(.ip),
         name: .literal(leftover),
@@ -798,7 +777,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareListItem(
-        localName: 'list_item',
+        'list_item',
         accountId: .literal(accountId),
         listId: .literal('00000000000000000000000000000001'),
       ),
@@ -806,7 +785,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareLoadBalancer(
-        localName: 'load_balancer',
+        'load_balancer',
         defaultPools: .literal([leftover]),
         fallbackPool: .literal(leftover),
         name: .literal(leftover),
@@ -816,14 +795,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareLoadBalancerMonitor(
-        localName: 'load_balancer_monitor',
+        'load_balancer_monitor',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareLoadBalancerMonitorGroup(
-        localName: 'load_balancer_monitor_group',
+        'load_balancer_monitor_group',
         accountId: .literal(accountId),
         description: .literal(leftover),
         members: [
@@ -839,7 +818,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareLoadBalancerPool(
-        localName: 'load_balancer_pool',
+        'load_balancer_pool',
         accountId: .literal(accountId),
         name: .literal(leftover),
         origins: [LoadBalancerPoolOrigins(address: .literal('192.0.2.1'))],
@@ -847,15 +826,12 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
-      CloudflareLogpullRetention(
-        localName: 'logpull_retention',
-        zoneId: .literal(zoneId),
-      ),
+      CloudflareLogpullRetention('logpull_retention', zoneId: .literal(zoneId)),
     );
 
     add(
       CloudflareLogpushJob(
-        localName: 'logpush_job',
+        'logpush_job',
         destinationConf: .variable('leftover_secret'),
         accountId: .literal(accountId),
         filter: .literal(leftover),
@@ -864,7 +840,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareLogpushOwnershipChallenge(
-        localName: 'logpush_ownership_challenge',
+        'logpush_ownership_challenge',
         destinationConf: .variable('leftover_secret'),
         accountId: .literal(accountId),
       ),
@@ -872,7 +848,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicNetworkMonitoringConfiguration(
-        localName: 'magic_network_monitoring_configuration',
+        'magic_network_monitoring_configuration',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -880,7 +856,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicNetworkMonitoringRule(
-        localName: 'magic_network_monitoring_rule',
+        'magic_network_monitoring_rule',
         accountId: .literal(accountId),
         automaticAdvertisement: .literal(true),
         name: .literal(leftover),
@@ -891,7 +867,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicTransitCf1Site(
-        localName: 'magic_transit_cf1_site',
+        'magic_transit_cf1_site',
         accountId: .literal(accountId),
         body: [MagicTransitCf1SiteBody(name: .literal(leftover))],
       ),
@@ -899,7 +875,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicTransitConnector(
-        localName: 'magic_transit_connector',
+        'magic_transit_connector',
         accountId: .literal(accountId),
         device: MagicTransitConnectorDevice(
           id: .literal('00000000000000000000000000000001'),
@@ -909,7 +885,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicTransitSite(
-        localName: 'magic_transit_site',
+        'magic_transit_site',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -917,7 +893,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicTransitSiteAcl(
-        localName: 'magic_transit_site_acl',
+        'magic_transit_site_acl',
         accountId: .literal(accountId),
         name: .literal(leftover),
         siteId: .literal('00000000000000000000000000000001'),
@@ -932,7 +908,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicTransitSiteLan(
-        localName: 'magic_transit_site_lan',
+        'magic_transit_site_lan',
         accountId: .literal(accountId),
         siteId: .literal('00000000000000000000000000000001'),
       ),
@@ -940,7 +916,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicTransitSiteWan(
-        localName: 'magic_transit_site_wan',
+        'magic_transit_site_wan',
         accountId: .literal(accountId),
         physport: .literal(200),
         siteId: .literal('00000000000000000000000000000001'),
@@ -949,7 +925,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicWanBgpFilterProfile(
-        localName: 'magic_wan_bgp_filter_profile',
+        'magic_wan_bgp_filter_profile',
         accountId: .literal(accountId),
         name: .literal(leftover),
         matchAction: .literal(.allow),
@@ -959,7 +935,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicWanGreTunnel(
-        localName: 'magic_wan_gre_tunnel',
+        'magic_wan_gre_tunnel',
         accountId: .literal(accountId),
         cloudflareGreEndpoint: .literal(leftover),
         customerGreEndpoint: .literal(leftover),
@@ -970,7 +946,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicWanIpsecTunnel(
-        localName: 'magic_wan_ipsec_tunnel',
+        'magic_wan_ipsec_tunnel',
         accountId: .literal(accountId),
         cloudflareEndpoint: .literal(leftover),
         interfaceAddress: .literal('192.0.2.1'),
@@ -980,7 +956,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMagicWanStaticRoute(
-        localName: 'magic_wan_static_route',
+        'magic_wan_static_route',
         accountId: .literal(accountId),
         nexthop: .literal(leftover),
         prefix: .literal('192.0.2.0/24'),
@@ -990,14 +966,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareManagedTransforms(
-        localName: 'managed_transforms',
+        'managed_transforms',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareMoqRelay(
-        localName: 'moq_relay',
+        'moq_relay',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1005,7 +981,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareMtlsCertificate(
-        localName: 'mtls_certificate',
+        'mtls_certificate',
         accountId: .literal(accountId),
         ca: .literal(true),
         certificates: .literal(leftover),
@@ -1014,7 +990,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareNelSetting(
-        localName: 'nel_setting',
+        'nel_setting',
         zoneId: .literal(zoneId),
         value: NelSettingValue(enabled: .literal(true)),
       ),
@@ -1022,7 +998,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareNotificationPolicy(
-        localName: 'notification_policy',
+        'notification_policy',
         accountId: .literal(accountId),
         alertType: .literal(.abuseReportAlert),
         name: .literal(leftover),
@@ -1034,7 +1010,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareNotificationPolicyWebhooks(
-        localName: 'notification_policy_webhooks',
+        'notification_policy_webhooks',
         accountId: .literal(accountId),
         name: .literal(leftover),
         url: .literal('https://example.com'),
@@ -1043,7 +1019,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareOauthClient(
-        localName: 'oauth_client',
+        'oauth_client',
         accountId: .literal(accountId),
         clientName: .literal(leftover),
         grantTypes: [.literal(.authorizationCode)],
@@ -1056,22 +1032,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareObservatoryScheduledTest(
-        localName: 'observatory_scheduled_test',
+        'observatory_scheduled_test',
         url: .literal('https://example.com'),
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      CloudflareOrganization(
-        localName: 'organization',
-        name: .literal(leftover),
-      ),
-    );
+    add(CloudflareOrganization('organization', name: .literal(leftover)));
 
     add(
       CloudflareOrganizationProfile(
-        localName: 'organization_profile',
+        'organization_profile',
         businessAddress: .literal('192.0.2.1'),
         businessEmail: .literal('leftover@example.com'),
         businessName: .literal(leftover),
@@ -1083,7 +1054,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareOriginCaCertificate(
-        localName: 'origin_ca_certificate',
+        'origin_ca_certificate',
         csr: .literal(leftover),
         hostnames: .literal([leftover]),
         requestType: .literal(.originRsa),
@@ -1092,7 +1063,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareOriginCloudRegion(
-        localName: 'origin_cloud_region',
+        'origin_cloud_region',
         originIp: .literal('192.0.2.1'),
         region: .literal(leftover),
         vendor: .literal(.aws),
@@ -1102,7 +1073,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareOriginTlsComplianceModes(
-        localName: 'origin_tls_compliance_modes',
+        'origin_tls_compliance_modes',
         value: .literal([leftover]),
         zoneId: .literal(zoneId),
       ),
@@ -1110,7 +1081,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePageRule(
-        localName: 'page_rule',
+        'page_rule',
         target: .literal('ethereum'),
         zoneId: .literal(zoneId),
         actions: PageRuleActions(alwaysUseHttps: .literal(true)),
@@ -1119,7 +1090,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePageShieldPolicy(
-        localName: 'page_shield_policy',
+        'page_shield_policy',
         action: .literal(.allow),
         description: .literal(leftover),
         enabled: .literal(true),
@@ -1131,7 +1102,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePagesDomain(
-        localName: 'pages_domain',
+        'pages_domain',
         accountId: .literal(accountId),
         name: .literal(leftover),
         projectName: .literal(leftover),
@@ -1140,7 +1111,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePagesProject(
-        localName: 'pages_project',
+        'pages_project',
         accountId: .literal(accountId),
         name: .literal(leftover),
         productionBranch: .literal(leftover),
@@ -1149,7 +1120,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePipeline(
-        localName: 'pipeline',
+        'pipeline',
         accountId: .literal(accountId),
         name: .literal(leftover),
         sql: .literal(leftover),
@@ -1158,7 +1129,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePipelineSink(
-        localName: 'pipeline_sink',
+        'pipeline_sink',
         accountId: .literal(accountId),
         name: .literal(leftover),
         type: .literal(.r2),
@@ -1167,17 +1138,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflarePipelineStream(
-        localName: 'pipeline_stream',
+        'pipeline_stream',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
     );
 
-    add(CloudflarePrecursor(localName: 'precursor', zoneId: .literal(zoneId)));
+    add(CloudflarePrecursor('precursor', zoneId: .literal(zoneId)));
 
     add(
       CloudflareQueue(
-        localName: 'queue',
+        'queue',
         accountId: .literal(accountId),
         queueName: .literal(leftover),
       ),
@@ -1185,7 +1156,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareQueueConsumer(
-        localName: 'queue_consumer',
+        'queue_consumer',
         accountId: .literal(accountId),
         queueId: .literal('00000000000000000000000000000001'),
         type: .literal(.worker),
@@ -1194,7 +1165,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2Bucket(
-        localName: 'r2_bucket',
+        'r2_bucket',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1202,7 +1173,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2BucketCors(
-        localName: 'r2_bucket_cors',
+        'r2_bucket_cors',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -1210,7 +1181,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2BucketEventNotification(
-        localName: 'r2_bucket_event_notification',
+        'r2_bucket_event_notification',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
         queueId: .literal('00000000000000000000000000000001'),
@@ -1222,7 +1193,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2BucketLifecycle(
-        localName: 'r2_bucket_lifecycle',
+        'r2_bucket_lifecycle',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -1230,7 +1201,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2BucketLock(
-        localName: 'r2_bucket_lock',
+        'r2_bucket_lock',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -1238,7 +1209,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2BucketSippy(
-        localName: 'r2_bucket_sippy',
+        'r2_bucket_sippy',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -1246,7 +1217,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2CustomDomain(
-        localName: 'r2_custom_domain',
+        'r2_custom_domain',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
         domain: .literal(leftover),
@@ -1257,7 +1228,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2DataCatalog(
-        localName: 'r2_data_catalog',
+        'r2_data_catalog',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -1265,7 +1236,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareR2ManagedDomain(
-        localName: 'r2_managed_domain',
+        'r2_managed_domain',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
         enabled: .literal(true),
@@ -1274,7 +1245,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareRateLimit(
-        localName: 'rate_limit',
+        'rate_limit',
         period: .literal(200),
         threshold: .literal(200),
         zoneId: .literal(zoneId),
@@ -1285,7 +1256,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareRegionalHostname(
-        localName: 'regional_hostname',
+        'regional_hostname',
         hostname: .literal(leftover),
         regionKey: .literal(leftover),
         zoneId: .literal(zoneId),
@@ -1294,14 +1265,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareRegionalTieredCache(
-        localName: 'regional_tiered_cache',
+        'regional_tiered_cache',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareRegistrarDomain(
-        localName: 'registrar_domain',
+        'registrar_domain',
         accountId: .literal(accountId),
         domainName: .literal(leftover),
       ),
@@ -1309,7 +1280,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareRuleset(
-        localName: 'ruleset',
+        'ruleset',
         scope: .zoneId(.literal(zoneId)),
         kind: .literal(.zone),
         name: .literal(leftover),
@@ -1319,7 +1290,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSchemaValidationOperationSettings(
-        localName: 'schema_validation_operation_settings',
+        'schema_validation_operation_settings',
         mitigationAction: .literal(.none),
         operationId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
@@ -1328,7 +1299,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSchemaValidationSchemas(
-        localName: 'schema_validation_schemas',
+        'schema_validation_schemas',
         kind: .literal(.openapiV3),
         name: .literal(leftover),
         source: .literal(leftover),
@@ -1339,7 +1310,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSchemaValidationSettings(
-        localName: 'schema_validation_settings',
+        'schema_validation_settings',
         validationDefaultMitigationAction: .literal(.none),
         zoneId: .literal(zoneId),
       ),
@@ -1347,7 +1318,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSecretsStore(
-        localName: 'secrets_store',
+        'secrets_store',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1355,7 +1326,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSecretsStoreSecret(
-        localName: 'secrets_store_secret',
+        'secrets_store_secret',
         accountId: .literal(accountId),
         name: .literal(leftover),
         scopes: .literal([leftover]),
@@ -1366,7 +1337,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareShare(
-        localName: 'share',
+        'share',
         accountId: .literal(accountId),
         name: .literal(leftover),
         recipients: [
@@ -1387,7 +1358,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareShareRecipient(
-        localName: 'share_recipient',
+        'share_recipient',
         accountId: .literal(accountId),
         shareId: .literal('00000000000000000000000000000001'),
       ),
@@ -1395,7 +1366,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareShareResource(
-        localName: 'share_resource',
+        'share_resource',
         accountId: .literal(accountId),
         meta: .literal('{}'),
         resourceAccountId: .literal('00000000000000000000000000000001'),
@@ -1407,7 +1378,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSnippet(
-        localName: 'snippet',
+        'snippet',
         files: .literal([
           {'name': 'main.js', 'content': 'export default {};'},
         ]),
@@ -1419,7 +1390,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSnippetRules(
-        localName: 'snippet_rules',
+        'snippet_rules',
         zoneId: .literal(zoneId),
         rules: [
           SnippetRules(
@@ -1432,7 +1403,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSnippets(
-        localName: 'snippets',
+        'snippets',
         files: .literal([leftover]),
         snippetName: .literal(leftover),
         zoneId: .literal(zoneId),
@@ -1442,7 +1413,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSpectrumApplication(
-        localName: 'spectrum_application',
+        'spectrum_application',
         protocol: .literal(leftover),
         zoneId: .literal(zoneId),
         dns: SpectrumApplicationDns(name: .literal(leftover)),
@@ -1451,17 +1422,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareSsoConnector(
-        localName: 'sso_connector',
+        'sso_connector',
         accountId: .literal(accountId),
         emailDomain: .literal('leftover@example.com'),
       ),
     );
 
-    add(CloudflareStream(localName: 'stream', accountId: .literal(accountId)));
+    add(CloudflareStream('stream', accountId: .literal(accountId)));
 
     add(
       CloudflareStreamAudioTrack(
-        localName: 'stream_audio_track',
+        'stream_audio_track',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
       ),
@@ -1469,7 +1440,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareStreamCaptionLanguage(
-        localName: 'stream_caption_language',
+        'stream_caption_language',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
         language: .literal(leftover),
@@ -1478,43 +1449,35 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareStreamDownload(
-        localName: 'stream_download',
+        'stream_download',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
       ),
     );
 
-    add(
-      CloudflareStreamKey(
-        localName: 'stream_key',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(CloudflareStreamKey('stream_key', accountId: .literal(accountId)));
 
     add(
       CloudflareStreamLiveInput(
-        localName: 'stream_live_input',
+        'stream_live_input',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareStreamWatermark(
-        localName: 'stream_watermark',
+        'stream_watermark',
         accountId: .literal(accountId),
       ),
     );
 
     add(
-      CloudflareStreamWebhook(
-        localName: 'stream_webhook',
-        accountId: .literal(accountId),
-      ),
+      CloudflareStreamWebhook('stream_webhook', accountId: .literal(accountId)),
     );
 
     add(
       CloudflareTieredCache(
-        localName: 'tiered_cache',
+        'tiered_cache',
         value: .literal(.on),
         zoneId: .literal(zoneId),
       ),
@@ -1522,7 +1485,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareTokenValidationConfig(
-        localName: 'token_validation_config',
+        'token_validation_config',
         description: .literal(leftover),
         title: .literal(leftover),
         tokenSources: .literal([leftover]),
@@ -1542,7 +1505,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareTokenValidationRules(
-        localName: 'token_validation_rules',
+        'token_validation_rules',
         action: .literal(.log),
         description: .literal(leftover),
         enabled: .literal(true),
@@ -1559,7 +1522,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareTotalTls(
-        localName: 'total_tls',
+        'total_tls',
         enabled: .literal(true),
         zoneId: .literal(zoneId),
       ),
@@ -1567,7 +1530,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareTurnstileWidget(
-        localName: 'turnstile_widget',
+        'turnstile_widget',
         accountId: .literal(accountId),
         domains: .literal([leftover]),
         mode: .literal(.nonInteractive),
@@ -1578,25 +1541,25 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareUniversalSslSetting(
-        localName: 'universal_ssl_setting',
+        'universal_ssl_setting',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareUrlNormalizationSettings(
-        localName: 'url_normalization_settings',
+        'url_normalization_settings',
         scope: .literal(.incoming),
         type: .literal(.cloudflare),
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(CloudflareUser(localName: 'user'));
+    add(CloudflareUser('user'));
 
     add(
       CloudflareUserAgentBlockingRule(
-        localName: 'user_agent_blocking_rule',
+        'user_agent_blocking_rule',
         mode: .literal(.block),
         zoneId: .literal(zoneId),
         configuration: UserAgentBlockingRuleConfiguration(
@@ -1607,7 +1570,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareUserGroup(
-        localName: 'user_group',
+        'user_group',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1615,7 +1578,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareUserGroupMembers(
-        localName: 'user_group_members',
+        'user_group_members',
         accountId: .literal(accountId),
         userGroupId: .literal('00000000000000000000000000000001'),
         members: [
@@ -1626,7 +1589,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareVulnerabilityScannerCredential(
-        localName: 'vulnerability_scanner_credential',
+        'vulnerability_scanner_credential',
         accountId: .literal(accountId),
         credentialSetId: .literal('00000000000000000000000000000001'),
         location: .literal(.header),
@@ -1638,7 +1601,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareVulnerabilityScannerCredentialSet(
-        localName: 'vulnerability_scanner_credential_set',
+        'vulnerability_scanner_credential_set',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1646,7 +1609,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareVulnerabilityScannerTargetEnvironment(
-        localName: 'vulnerability_scanner_target_environment',
+        'vulnerability_scanner_target_environment',
         accountId: .literal(accountId),
         name: .literal(leftover),
         target: VulnerabilityScannerTargetEnvironmentTarget(
@@ -1658,7 +1621,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWaitingRoom(
-        localName: 'waiting_room',
+        'waiting_room',
         host: .literal(leftover),
         name: .literal(leftover),
         newUsersPerMinute: .literal(200),
@@ -1669,7 +1632,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWaitingRoomEvent(
-        localName: 'waiting_room_event',
+        'waiting_room_event',
         eventEndTime: .literal(leftover),
         eventStartTime: .literal(leftover),
         name: .literal(leftover),
@@ -1680,7 +1643,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWaitingRoomRules(
-        localName: 'waiting_room_rules',
+        'waiting_room_rules',
         waitingRoomId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
         rules: [
@@ -1694,14 +1657,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWaitingRoomSettings(
-        localName: 'waiting_room_settings',
+        'waiting_room_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareWeb3Hostname(
-        localName: 'web3_hostname',
+        'web3_hostname',
         name: .literal(leftover),
         target: .literal(.ethereum),
         zoneId: .literal(zoneId),
@@ -1710,7 +1673,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWebAnalyticsRule(
-        localName: 'web_analytics_rule',
+        'web_analytics_rule',
         accountId: .literal(accountId),
         rulesetId: .literal('00000000000000000000000000000001'),
       ),
@@ -1718,14 +1681,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWebAnalyticsSite(
-        localName: 'web_analytics_site',
+        'web_analytics_site',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareWorker(
-        localName: 'worker',
+        'worker',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1733,7 +1696,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkerVersion(
-        localName: 'worker_version',
+        'worker_version',
         accountId: .literal(accountId),
         workerId: .literal('00000000000000000000000000000001'),
       ),
@@ -1741,7 +1704,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersCronTrigger(
-        localName: 'workers_cron_trigger',
+        'workers_cron_trigger',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
         schedules: [WorkersCronTriggerSchedules(cron: .literal('* * * * *'))],
@@ -1750,7 +1713,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersCustomDomain(
-        localName: 'workers_custom_domain',
+        'workers_custom_domain',
         accountId: .literal(accountId),
         hostname: .literal(leftover),
         service: .literal(leftover),
@@ -1760,7 +1723,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersDeployment(
-        localName: 'workers_deployment',
+        'workers_deployment',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
         strategy: .literal(.percentage),
@@ -1775,14 +1738,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersForPlatformsDispatchNamespace(
-        localName: 'workers_for_platforms_dispatch_namespace',
+        'workers_for_platforms_dispatch_namespace',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareWorkersKv(
-        localName: 'workers_kv',
+        'workers_kv',
         accountId: .literal(accountId),
         keyName: .literal(leftover),
         namespaceId: .literal('00000000000000000000000000000001'),
@@ -1792,7 +1755,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersKvNamespace(
-        localName: 'workers_kv_namespace',
+        'workers_kv_namespace',
         accountId: .literal(accountId),
         title: .literal(leftover),
       ),
@@ -1800,7 +1763,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersRoute(
-        localName: 'workers_route',
+        'workers_route',
         pattern: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -1808,7 +1771,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersScript(
-        localName: 'workers_script',
+        'workers_script',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
         content: .content(.literal(leftover)),
@@ -1817,7 +1780,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkersScriptSubdomain(
-        localName: 'workers_script_subdomain',
+        'workers_script_subdomain',
         accountId: .literal(accountId),
         enabled: .literal(true),
         scriptName: .literal(leftover),
@@ -1826,7 +1789,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareWorkflow(
-        localName: 'workflow',
+        'workflow',
         accountId: .literal(accountId),
         className: .literal(leftover),
         scriptName: .literal(leftover),
@@ -1836,7 +1799,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessAiControlsMcpPortal(
-        localName: 'zero_trust_access_ai_controls_mcp_portal',
+        'zero_trust_access_ai_controls_mcp_portal',
         accountId: .literal(accountId),
         hostname: .literal(leftover),
         id: .literal('00000000000000000000000000000001'),
@@ -1846,7 +1809,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessAiControlsMcpServer(
-        localName: 'zero_trust_access_ai_controls_mcp_server',
+        'zero_trust_access_ai_controls_mcp_server',
         accountId: .literal(accountId),
         authType: .literal(.unauthenticated),
         hostname: .literal(leftover),
@@ -1857,14 +1820,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessApplication(
-        localName: 'zero_trust_access_application',
+        'zero_trust_access_application',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustAccessCustomPage(
-        localName: 'zero_trust_access_custom_page',
+        'zero_trust_access_custom_page',
         accountId: .literal(accountId),
         customHtml: .literal(leftover),
         name: .literal(leftover),
@@ -1874,7 +1837,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessGroup(
-        localName: 'zero_trust_access_group',
+        'zero_trust_access_group',
         name: .literal(leftover),
         include: [ZeroTrustAccessGroupInclude(anyValidServiceToken: .new())],
         accountId: .literal(accountId),
@@ -1883,7 +1846,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessIdentityProvider(
-        localName: 'zero_trust_access_identity_provider',
+        'zero_trust_access_identity_provider',
         name: .literal(leftover),
         type: .literal(.googleApps),
         config: ZeroTrustAccessIdentityProviderConfig(
@@ -1895,7 +1858,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessInfrastructureTarget(
-        localName: 'zero_trust_access_infrastructure_target',
+        'zero_trust_access_infrastructure_target',
         accountId: .literal(accountId),
         hostname: .literal(leftover),
         ip: ZeroTrustAccessInfrastructureTargetIp(
@@ -1906,7 +1869,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessKeyConfiguration(
-        localName: 'zero_trust_access_key_configuration',
+        'zero_trust_access_key_configuration',
         accountId: .literal(accountId),
         keyRotationIntervalDays: .literal(200),
       ),
@@ -1914,7 +1877,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessMtlsCertificate(
-        localName: 'zero_trust_access_mtls_certificate',
+        'zero_trust_access_mtls_certificate',
         certificate: .literal(leftover),
         name: .literal(leftover),
         accountId: .literal(accountId),
@@ -1923,7 +1886,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessMtlsHostnameSettings(
-        localName: 'zero_trust_access_mtls_hostname_settings',
+        'zero_trust_access_mtls_hostname_settings',
         settings: [
           ZeroTrustAccessMtlsHostnameSettings(
             chinaNetwork: .literal(true),
@@ -1937,7 +1900,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessPolicy(
-        localName: 'zero_trust_access_policy',
+        'zero_trust_access_policy',
         accountId: .literal(accountId),
         decision: .literal(.allow),
         name: .literal(leftover),
@@ -1946,7 +1909,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessServiceToken(
-        localName: 'zero_trust_access_service_token',
+        'zero_trust_access_service_token',
         name: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -1954,7 +1917,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessShortLivedCertificate(
-        localName: 'zero_trust_access_short_lived_certificate',
+        'zero_trust_access_short_lived_certificate',
         appId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -1962,7 +1925,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustAccessTag(
-        localName: 'zero_trust_access_tag',
+        'zero_trust_access_tag',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -1970,7 +1933,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustCasbPolicy(
-        localName: 'zero_trust_casb_policy',
+        'zero_trust_casb_policy',
         accountId: .literal(accountId),
         displayName: .literal(leftover),
         findingTypeId: .literal('00000000000000000000000000000001'),
@@ -1988,7 +1951,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustCasbWebhook(
-        localName: 'zero_trust_casb_webhook',
+        'zero_trust_casb_webhook',
         accountId: .literal(accountId),
         label: .literal(leftover),
         destinationUrl: .literal('https://example.com'),
@@ -1998,14 +1961,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustConnectivitySettings(
-        localName: 'zero_trust_connectivity_settings',
+        'zero_trust_connectivity_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustDeviceCustomProfile(
-        localName: 'zero_trust_device_custom_profile',
+        'zero_trust_device_custom_profile',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2013,7 +1976,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceCustomProfileLocalDomainFallback(
-        localName: 'zero_trust_device_custom_profile_local_domain_fa',
+        'zero_trust_device_custom_profile_local_domain_fa',
         accountId: .literal(accountId),
         policyId: .literal('00000000000000000000000000000001'),
         domains: [
@@ -2026,14 +1989,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceDefaultProfile(
-        localName: 'zero_trust_device_default_profile',
+        'zero_trust_device_default_profile',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustDeviceDefaultProfileCertificates(
-        localName: 'zero_trust_device_default_profile_certificates',
+        'zero_trust_device_default_profile_certificates',
         enabled: .literal(true),
         zoneId: .literal(zoneId),
       ),
@@ -2041,7 +2004,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback(
-        localName: 'zero_trust_device_default_profile_local_domain_f',
+        'zero_trust_device_default_profile_local_domain_f',
         accountId: .literal(accountId),
         domains: [
           ZeroTrustDeviceDefaultProfileLocalDomainFallbackDomains(
@@ -2053,7 +2016,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceDeploymentGroups(
-        localName: 'zero_trust_device_deployment_groups',
+        'zero_trust_device_deployment_groups',
         accountId: .literal(accountId),
         name: .literal(leftover),
         versionConfig: [
@@ -2067,7 +2030,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceIpProfile(
-        localName: 'zero_trust_device_ip_profile',
+        'zero_trust_device_ip_profile',
         accountId: .literal(accountId),
         match: .literal(leftover),
         name: .literal(leftover),
@@ -2078,7 +2041,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceManagedNetworks(
-        localName: 'zero_trust_device_managed_networks',
+        'zero_trust_device_managed_networks',
         accountId: .literal(accountId),
         name: .literal(leftover),
         type: .literal(.tls),
@@ -2090,7 +2053,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDevicePostureIntegration(
-        localName: 'zero_trust_device_posture_integration',
+        'zero_trust_device_posture_integration',
         accountId: .literal(accountId),
         interval: .literal(leftover),
         name: .literal(leftover),
@@ -2103,7 +2066,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDevicePostureRule(
-        localName: 'zero_trust_device_posture_rule',
+        'zero_trust_device_posture_rule',
         accountId: .literal(accountId),
         type: .literal(.file),
       ),
@@ -2111,14 +2074,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDeviceSettings(
-        localName: 'zero_trust_device_settings',
+        'zero_trust_device_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustDeviceSubnet(
-        localName: 'zero_trust_device_subnet',
+        'zero_trust_device_subnet',
         accountId: .literal(accountId),
         name: .literal(leftover),
         network: .literal(leftover),
@@ -2127,7 +2090,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDexRule(
-        localName: 'zero_trust_dex_rule',
+        'zero_trust_dex_rule',
         accountId: .literal(accountId),
         match: .literal(leftover),
         name: .literal(leftover),
@@ -2136,7 +2099,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDexTest(
-        localName: 'zero_trust_dex_test',
+        'zero_trust_dex_test',
         accountId: .literal(accountId),
         enabled: .literal(true),
         interval: .literal(leftover),
@@ -2147,7 +2110,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpCustomEntry(
-        localName: 'zero_trust_dlp_custom_entry',
+        'zero_trust_dlp_custom_entry',
         accountId: .literal(accountId),
         enabled: .literal(true),
         name: .literal(leftover),
@@ -2157,7 +2120,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpCustomProfile(
-        localName: 'zero_trust_dlp_custom_profile',
+        'zero_trust_dlp_custom_profile',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2165,7 +2128,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpDataClass(
-        localName: 'zero_trust_dlp_data_class',
+        'zero_trust_dlp_data_class',
         accountId: .literal(accountId),
         dataTags: .literal([leftover]),
         expression: .literal(leftover),
@@ -2181,7 +2144,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpDataTag(
-        localName: 'zero_trust_dlp_data_tag',
+        'zero_trust_dlp_data_tag',
         accountId: .literal(accountId),
         categoryId: .literal('00000000000000000000000000000001'),
         name: .literal(leftover),
@@ -2190,7 +2153,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpDataTagCategory(
-        localName: 'zero_trust_dlp_data_tag_category',
+        'zero_trust_dlp_data_tag_category',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2198,7 +2161,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpDataset(
-        localName: 'zero_trust_dlp_dataset',
+        'zero_trust_dlp_dataset',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2206,7 +2169,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpEntry(
-        localName: 'zero_trust_dlp_entry',
+        'zero_trust_dlp_entry',
         accountId: .literal(accountId),
         enabled: .literal(true),
         name: .literal(leftover),
@@ -2216,7 +2179,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpIntegrationEntry(
-        localName: 'zero_trust_dlp_integration_entry',
+        'zero_trust_dlp_integration_entry',
         accountId: .literal(accountId),
         enabled: .literal(true),
         entryId: .literal('00000000000000000000000000000001'),
@@ -2225,7 +2188,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpPredefinedEntry(
-        localName: 'zero_trust_dlp_predefined_entry',
+        'zero_trust_dlp_predefined_entry',
         accountId: .literal(accountId),
         enabled: .literal(true),
         entryId: .literal('00000000000000000000000000000001'),
@@ -2234,7 +2197,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpPredefinedProfile(
-        localName: 'zero_trust_dlp_predefined_profile',
+        'zero_trust_dlp_predefined_profile',
         accountId: .literal(accountId),
         profileId: .literal('00000000000000000000000000000001'),
       ),
@@ -2242,7 +2205,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpSensitivityGroup(
-        localName: 'zero_trust_dlp_sensitivity_group',
+        'zero_trust_dlp_sensitivity_group',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2250,7 +2213,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpSensitivityLevel(
-        localName: 'zero_trust_dlp_sensitivity_level',
+        'zero_trust_dlp_sensitivity_level',
         accountId: .literal(accountId),
         name: .literal(leftover),
         sensitivityGroupId: .literal('00000000000000000000000000000001'),
@@ -2259,7 +2222,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpSensitivityLevelOrder(
-        localName: 'zero_trust_dlp_sensitivity_level_order',
+        'zero_trust_dlp_sensitivity_level_order',
         accountId: .literal(accountId),
         levelIds: .literal([leftover]),
         sensitivityGroupId: .literal('00000000000000000000000000000001'),
@@ -2268,14 +2231,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustDlpSettings(
-        localName: 'zero_trust_dlp_settings',
+        'zero_trust_dlp_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustDnsLocation(
-        localName: 'zero_trust_dns_location',
+        'zero_trust_dns_location',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2283,21 +2246,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustGatewayCertificate(
-        localName: 'zero_trust_gateway_certificate',
+        'zero_trust_gateway_certificate',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustGatewayLogging(
-        localName: 'zero_trust_gateway_logging',
+        'zero_trust_gateway_logging',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustGatewayPacfile(
-        localName: 'zero_trust_gateway_pacfile',
+        'zero_trust_gateway_pacfile',
         accountId: .literal(accountId),
         contents: .literal(leftover),
         name: .literal(leftover),
@@ -2306,7 +2269,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustGatewayPolicy(
-        localName: 'zero_trust_gateway_policy',
+        'zero_trust_gateway_policy',
         accountId: .literal(accountId),
         action: .literal(.allow),
         name: .literal(leftover),
@@ -2315,7 +2278,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustGatewayProxyEndpoint(
-        localName: 'zero_trust_gateway_proxy_endpoint',
+        'zero_trust_gateway_proxy_endpoint',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2323,14 +2286,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustGatewaySettings(
-        localName: 'zero_trust_gateway_settings',
+        'zero_trust_gateway_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustList(
-        localName: 'zero_trust_list',
+        'zero_trust_list',
         accountId: .literal(accountId),
         name: .literal(leftover),
         type: .literal(.serial),
@@ -2339,28 +2302,28 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustNetworkHostnameRoute(
-        localName: 'zero_trust_network_hostname_route',
+        'zero_trust_network_hostname_route',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustOrganization(
-        localName: 'zero_trust_organization',
+        'zero_trust_organization',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustResourceLibraryApplication(
-        localName: 'zero_trust_resource_library_application',
+        'zero_trust_resource_library_application',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       CloudflareZeroTrustRiskBehavior(
-        localName: 'zero_trust_risk_behavior',
+        'zero_trust_risk_behavior',
         accountId: .literal(accountId),
         behaviors: {
           'k': ZeroTrustRiskBehaviorBehaviors(
@@ -2373,7 +2336,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustRiskScoringIntegration(
-        localName: 'zero_trust_risk_scoring_integration',
+        'zero_trust_risk_scoring_integration',
         accountId: .literal(accountId),
         integrationType: .literal(.okta),
         tenantUrl: .literal('https://example.com'),
@@ -2382,7 +2345,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustTunnelCloudflared(
-        localName: 'zero_trust_tunnel_cloudflared',
+        'zero_trust_tunnel_cloudflared',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2390,7 +2353,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustTunnelCloudflaredConfig(
-        localName: 'zero_trust_tunnel_cloudflared_config',
+        'zero_trust_tunnel_cloudflared_config',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -2398,7 +2361,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustTunnelCloudflaredRoute(
-        localName: 'zero_trust_tunnel_cloudflared_route',
+        'zero_trust_tunnel_cloudflared_route',
         accountId: .literal(accountId),
         network: .literal(leftover),
         tunnelId: .literal('00000000000000000000000000000001'),
@@ -2407,7 +2370,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustTunnelCloudflaredVirtualNetwork(
-        localName: 'zero_trust_tunnel_cloudflared_virtual_network',
+        'zero_trust_tunnel_cloudflared_virtual_network',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2415,7 +2378,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustTunnelWarpConnector(
-        localName: 'zero_trust_tunnel_warp_connector',
+        'zero_trust_tunnel_warp_connector',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2423,7 +2386,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZeroTrustTunnelWarpConnectorConfig(
-        localName: 'zero_trust_tunnel_warp_connector_config',
+        'zero_trust_tunnel_warp_connector_config',
         accountId: .literal(accountId),
         haMode: .literal(.none),
         tunnelId: .literal('00000000000000000000000000000001'),
@@ -2432,7 +2395,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZoneAutoOriginTlsKex(
-        localName: 'zone_auto_origin_tls_kex',
+        'zone_auto_origin_tls_kex',
         enabled: .literal(true),
         zoneId: .literal(zoneId),
       ),
@@ -2440,35 +2403,30 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZoneCacheReserve(
-        localName: 'zone_cache_reserve',
+        'zone_cache_reserve',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       CloudflareZoneCacheVariants(
-        localName: 'zone_cache_variants',
+        'zone_cache_variants',
         zoneId: .literal(zoneId),
         value: ZoneCacheVariantsValue(avif: .literal([leftover])),
       ),
     );
 
     add(
-      CloudflareZoneDnsSettings(
-        localName: 'zone_dns_settings',
-        zoneId: .literal(zoneId),
-      ),
+      CloudflareZoneDnsSettings('zone_dns_settings', zoneId: .literal(zoneId)),
     );
 
-    add(
-      CloudflareZoneDnssec(localName: 'zone_dnssec', zoneId: .literal(zoneId)),
-    );
+    add(CloudflareZoneDnssec('zone_dnssec', zoneId: .literal(zoneId)));
 
-    add(CloudflareZoneHold(localName: 'zone_hold', zoneId: .literal(zoneId)));
+    add(CloudflareZoneHold('zone_hold', zoneId: .literal(zoneId)));
 
     add(
       CloudflareZoneLockdown(
-        localName: 'zone_lockdown',
+        'zone_lockdown',
         urls: .literal([leftover]),
         zoneId: .literal(zoneId),
         configurations: [ZoneLockdownConfigurations(target: .literal(.ip))],
@@ -2477,7 +2435,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       CloudflareZoneSetting(
-        localName: 'zone_setting',
+        'zone_setting',
         settingId: .literal('ciphers'),
         value: .literal(leftover),
         zoneId: .literal(zoneId),
@@ -2485,22 +2443,14 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
-      CloudflareZoneSubscription(
-        localName: 'zone_subscription',
-        zoneId: .literal(zoneId),
-      ),
+      CloudflareZoneSubscription('zone_subscription', zoneId: .literal(zoneId)),
     );
 
-    add(
-      CloudflareZoneTracing(
-        localName: 'zone_tracing',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(CloudflareZoneTracing('zone_tracing', zoneId: .literal(zoneId)));
 
     add(
       CloudflareZoneTracingRules(
-        localName: 'zone_tracing_rules',
+        'zone_tracing_rules',
         zoneId: .literal(zoneId),
         rules: [
           ZoneTracingRules(
@@ -2516,7 +2466,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccessRule(
-        localName: 'd_access_rule',
+        'd_access_rule',
         accountId: .literal(accountId),
         ruleId: .literal('00000000000000000000000000000001'),
       ),
@@ -2524,42 +2474,37 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccessRules(
-        localName: 'd_access_rules',
+        'd_access_rules',
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareAccount(
-        localName: 'd_account',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(DataCloudflareAccount('d_account', accountId: .literal(accountId)));
 
     add(
       DataCloudflareAccountApiTokenPermissionGroups(
-        localName: 'd_account_api_token_permission_groups',
+        'd_account_api_token_permission_groups',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountApiTokenPermissionGroupsList(
-        localName: 'd_account_api_token_permission_groups_list',
+        'd_account_api_token_permission_groups_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountDnsSettings(
-        localName: 'd_account_dns_settings',
+        'd_account_dns_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountDnsSettingsInternalView(
-        localName: 'd_account_dns_settings_internal_view',
+        'd_account_dns_settings_internal_view',
         accountId: .literal(accountId),
         viewId: .literal('00000000000000000000000000000001'),
       ),
@@ -2567,14 +2512,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccountDnsSettingsInternalViews(
-        localName: 'd_account_dns_settings_internal_views',
+        'd_account_dns_settings_internal_views',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountMember(
-        localName: 'd_account_member',
+        'd_account_member',
         accountId: .literal(accountId),
         memberId: .literal('00000000000000000000000000000001'),
       ),
@@ -2582,14 +2527,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccountMembers(
-        localName: 'd_account_members',
+        'd_account_members',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountPermissionGroup(
-        localName: 'd_account_permission_group',
+        'd_account_permission_group',
         accountId: .literal(accountId),
         permissionGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -2597,14 +2542,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccountPermissionGroups(
-        localName: 'd_account_permission_groups',
+        'd_account_permission_groups',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountRole(
-        localName: 'd_account_role',
+        'd_account_role',
         accountId: .literal(accountId),
         roleId: .literal('00000000000000000000000000000001'),
       ),
@@ -2612,21 +2557,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccountRoles(
-        localName: 'd_account_roles',
+        'd_account_roles',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountSubscription(
-        localName: 'd_account_subscription',
+        'd_account_subscription',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAccountToken(
-        localName: 'd_account_token',
+        'd_account_token',
         accountId: .literal(accountId),
         tokenId: .literal('00000000000000000000000000000001'),
       ),
@@ -2634,16 +2579,16 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAccountTokens(
-        localName: 'd_account_tokens',
+        'd_account_tokens',
         accountId: .literal(accountId),
       ),
     );
 
-    add(DataCloudflareAccounts(localName: 'd_accounts'));
+    add(DataCloudflareAccounts('d_accounts'));
 
     add(
       DataCloudflareAddressMap(
-        localName: 'd_address_map',
+        'd_address_map',
         addressMapId: .literal('192.0.2.1'),
         accountId: .literal(accountId),
       ),
@@ -2651,14 +2596,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAddressMaps(
-        localName: 'd_address_maps',
+        'd_address_maps',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAiGateway(
-        localName: 'd_ai_gateway',
+        'd_ai_gateway',
         accountId: .literal(accountId),
         filter: DataAiGatewayFilter(search: .literal(leftover)),
       ),
@@ -2666,7 +2611,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAiGatewayDynamicRouting(
-        localName: 'd_ai_gateway_dynamic_routing',
+        'd_ai_gateway_dynamic_routing',
         gatewayId: .literal('00000000000000000000000000000001'),
         id: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
@@ -2674,15 +2619,12 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
-      DataCloudflareAiGateways(
-        localName: 'd_ai_gateways',
-        accountId: .literal(accountId),
-      ),
+      DataCloudflareAiGateways('d_ai_gateways', accountId: .literal(accountId)),
     );
 
     add(
       DataCloudflareAiSearchInstance(
-        localName: 'd_ai_search_instance',
+        'd_ai_search_instance',
         accountId: .literal(accountId),
         filter: DataAiSearchInstanceFilter(namespace: .literal(leftover)),
       ),
@@ -2690,14 +2632,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAiSearchInstances(
-        localName: 'd_ai_search_instances',
+        'd_ai_search_instances',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAiSearchNamespace(
-        localName: 'd_ai_search_namespace',
+        'd_ai_search_namespace',
         accountId: .literal(accountId),
         name: .literal(leftover),
       ),
@@ -2705,14 +2647,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAiSearchNamespaces(
-        localName: 'd_ai_search_namespaces',
+        'd_ai_search_namespaces',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareAiSearchToken(
-        localName: 'd_ai_search_token',
+        'd_ai_search_token',
         accountId: .literal(accountId),
         filter: DataAiSearchTokenFilter(search: .literal(leftover)),
       ),
@@ -2720,28 +2662,23 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAiSearchTokens(
-        localName: 'd_ai_search_tokens',
+        'd_ai_search_tokens',
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareApiShield(
-        localName: 'd_api_shield',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareApiShield('d_api_shield', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareApiShieldDiscoveryOperations(
-        localName: 'd_api_shield_discovery_operations',
+        'd_api_shield_discovery_operations',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareApiShieldOperation(
-        localName: 'd_api_shield_operation',
+        'd_api_shield_operation',
         zoneId: .literal(zoneId),
         operationId: .literal('00000000000000000000000000000001'),
       ),
@@ -2749,7 +2686,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareApiShieldOperationSchemaValidationSettings(
-        localName: 'd_api_shield_operation_schema_validation_setting',
+        'd_api_shield_operation_schema_validation_setting',
         operationId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -2757,14 +2694,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareApiShieldOperations(
-        localName: 'd_api_shield_operations',
+        'd_api_shield_operations',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareApiShieldSchema(
-        localName: 'd_api_shield_schema',
+        'd_api_shield_schema',
         schemaId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -2772,50 +2709,50 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareApiShieldSchemaValidationSettings(
-        localName: 'd_api_shield_schema_validation_settings',
+        'd_api_shield_schema_validation_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareApiShieldSchemas(
-        localName: 'd_api_shield_schemas',
+        'd_api_shield_schemas',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareApiToken(
-        localName: 'd_api_token',
+        'd_api_token',
         tokenId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
       DataCloudflareApiTokenPermissionGroupsList(
-        localName: 'd_api_token_permission_groups_list',
+        'd_api_token_permission_groups_list',
       ),
     );
 
-    add(DataCloudflareApiTokens(localName: 'd_api_tokens'));
+    add(DataCloudflareApiTokens('d_api_tokens'));
 
     add(
       DataCloudflareArgoSmartRouting(
-        localName: 'd_argo_smart_routing',
+        'd_argo_smart_routing',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareArgoTieredCaching(
-        localName: 'd_argo_tiered_caching',
+        'd_argo_tiered_caching',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareAuthenticatedOriginPulls(
-        localName: 'd_authenticated_origin_pulls',
+        'd_authenticated_origin_pulls',
         hostname: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -2823,7 +2760,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAuthenticatedOriginPullsCertificate(
-        localName: 'd_authenticated_origin_pulls_certificate',
+        'd_authenticated_origin_pulls_certificate',
         certificateId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -2831,14 +2768,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAuthenticatedOriginPullsCertificates(
-        localName: 'd_authenticated_origin_pulls_certificates',
+        'd_authenticated_origin_pulls_certificates',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareAuthenticatedOriginPullsHostnameCertificate(
-        localName: 'd_authenticated_origin_pulls_hostname_certificat',
+        'd_authenticated_origin_pulls_hostname_certificat',
         certificateId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -2846,35 +2783,32 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareAuthenticatedOriginPullsHostnameCertificates(
-        localName: 'd_authenticated_origin_pulls_hostname_certific_2',
+        'd_authenticated_origin_pulls_hostname_certific_2',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareAuthenticatedOriginPullsSettings(
-        localName: 'd_authenticated_origin_pulls_settings',
+        'd_authenticated_origin_pulls_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
-      DataCloudflareBotManagement(
-        localName: 'd_bot_management',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareBotManagement('d_bot_management', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareBotnetFeedConfigAsn(
-        localName: 'd_botnet_feed_config_asn',
+        'd_botnet_feed_config_asn',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareByoIpPrefix(
-        localName: 'd_byo_ip_prefix',
+        'd_byo_ip_prefix',
         prefixId: .literal('192.0.2.0/24'),
         accountId: .literal(accountId),
       ),
@@ -2882,14 +2816,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareByoIpPrefixes(
-        localName: 'd_byo_ip_prefixes',
+        'd_byo_ip_prefixes',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareCallsSfuApp(
-        localName: 'd_calls_sfu_app',
+        'd_calls_sfu_app',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
       ),
@@ -2897,14 +2831,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCallsSfuApps(
-        localName: 'd_calls_sfu_apps',
+        'd_calls_sfu_apps',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareCallsTurnApp(
-        localName: 'd_calls_turn_app',
+        'd_calls_turn_app',
         accountId: .literal(accountId),
         keyId: .literal('00000000000000000000000000000001'),
       ),
@@ -2912,14 +2846,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCallsTurnApps(
-        localName: 'd_calls_turn_apps',
+        'd_calls_turn_apps',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareCertificateAuthoritiesHostnameAssociations(
-        localName: 'd_certificate_authorities_hostname_associations',
+        'd_certificate_authorities_hostname_associations',
         zoneId: .literal(zoneId),
         mtlsCertificateId: .literal('00000000000000000000000000000001'),
       ),
@@ -2927,7 +2861,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCertificatePack(
-        localName: 'd_certificate_pack',
+        'd_certificate_pack',
         zoneId: .literal(zoneId),
         certificatePackId: .literal('00000000000000000000000000000001'),
       ),
@@ -2935,14 +2869,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCertificatePacks(
-        localName: 'd_certificate_packs',
+        'd_certificate_packs',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareClientCertificate(
-        localName: 'd_client_certificate',
+        'd_client_certificate',
         zoneId: .literal(zoneId),
         clientCertificateId: .literal('00000000000000000000000000000001'),
       ),
@@ -2950,21 +2884,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareClientCertificates(
-        localName: 'd_client_certificates',
+        'd_client_certificates',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareCloudConnectorRules(
-        localName: 'd_cloud_connector_rules',
+        'd_cloud_connector_rules',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareCloudforceOneRequest(
-        localName: 'd_cloudforce_one_request',
+        'd_cloudforce_one_request',
         accountId: .literal(accountId),
         requestId: .literal('00000000000000000000000000000001'),
       ),
@@ -2972,7 +2906,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCloudforceOneRequestAsset(
-        localName: 'd_cloudforce_one_request_asset',
+        'd_cloudforce_one_request_asset',
         accountId: .literal(accountId),
         assetId: .literal('00000000000000000000000000000001'),
         requestId: .literal('00000000000000000000000000000001'),
@@ -2981,7 +2915,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCloudforceOneRequestMessage(
-        localName: 'd_cloudforce_one_request_message',
+        'd_cloudforce_one_request_message',
         page: .literal(200),
         perPage: .literal(200),
         requestId: .literal('00000000000000000000000000000001'),
@@ -2991,7 +2925,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCloudforceOneRequestPriority(
-        localName: 'd_cloudforce_one_request_priority',
+        'd_cloudforce_one_request_priority',
         priorityId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -2999,7 +2933,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCloudforceOneRequests(
-        localName: 'd_cloudforce_one_requests',
+        'd_cloudforce_one_requests',
         page: .literal(200),
         perPage: .literal(200),
         accountId: .literal(accountId),
@@ -3008,7 +2942,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareConnectivityDirectoryService(
-        localName: 'd_connectivity_directory_service',
+        'd_connectivity_directory_service',
         accountId: .literal(accountId),
         serviceId: .literal('00000000000000000000000000000001'),
       ),
@@ -3016,50 +2950,42 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareConnectivityDirectoryServices(
-        localName: 'd_connectivity_directory_services',
+        'd_connectivity_directory_services',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareContentScanning(
-        localName: 'd_content_scanning',
+        'd_content_scanning',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareContentScanningExpressions(
-        localName: 'd_content_scanning_expressions',
+        'd_content_scanning_expressions',
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      DataCloudflareCtAlerting(
-        localName: 'd_ct_alerting',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareCtAlerting('d_ct_alerting', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareCustomCsr(
-        localName: 'd_custom_csr',
+        'd_custom_csr',
         accountId: .literal(accountId),
         customCsrId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
-      DataCloudflareCustomCsrs(
-        localName: 'd_custom_csrs',
-        accountId: .literal(accountId),
-      ),
+      DataCloudflareCustomCsrs('d_custom_csrs', accountId: .literal(accountId)),
     );
 
     add(
       DataCloudflareCustomHostname(
-        localName: 'd_custom_hostname',
+        'd_custom_hostname',
         zoneId: .literal(zoneId),
         customHostnameId: .literal('00000000000000000000000000000001'),
       ),
@@ -3067,21 +2993,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCustomHostnameFallbackOrigin(
-        localName: 'd_custom_hostname_fallback_origin',
+        'd_custom_hostname_fallback_origin',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareCustomHostnames(
-        localName: 'd_custom_hostnames',
+        'd_custom_hostnames',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareCustomOriginTrustStore(
-        localName: 'd_custom_origin_trust_store',
+        'd_custom_origin_trust_store',
         zoneId: .literal(zoneId),
         customOriginTrustStoreId: .literal('00000000000000000000000000000001'),
       ),
@@ -3089,14 +3015,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCustomOriginTrustStores(
-        localName: 'd_custom_origin_trust_stores',
+        'd_custom_origin_trust_stores',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareCustomPageAsset(
-        localName: 'd_custom_page_asset',
+        'd_custom_page_asset',
         assetName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -3104,14 +3030,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCustomPageAssets(
-        localName: 'd_custom_page_assets',
+        'd_custom_page_assets',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareCustomPages(
-        localName: 'd_custom_pages',
+        'd_custom_pages',
         identifier: .literal('1000_errors'),
         accountId: .literal(accountId),
       ),
@@ -3119,29 +3045,24 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareCustomPagesList(
-        localName: 'd_custom_pages_list',
+        'd_custom_pages_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareCustomSsl(
-        localName: 'd_custom_ssl',
+        'd_custom_ssl',
         zoneId: .literal(zoneId),
         customCertificateId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareCustomSsls(
-        localName: 'd_custom_ssls',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareCustomSsls('d_custom_ssls', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareD1Database(
-        localName: 'd_d1_database',
+        'd_d1_database',
         accountId: .literal(accountId),
         databaseId: .literal('00000000000000000000000000000001'),
       ),
@@ -3149,21 +3070,18 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareD1Databases(
-        localName: 'd_d1_databases',
+        'd_d1_databases',
         accountId: .literal(accountId),
       ),
     );
 
     add(
-      DataCloudflareDcvDelegation(
-        localName: 'd_dcv_delegation',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareDcvDelegation('d_dcv_delegation', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareDlsPrefixBinding(
-        localName: 'd_dls_prefix_binding',
+        'd_dls_prefix_binding',
         accountId: .literal(accountId),
         bindingId: .literal('00000000000000000000000000000001'),
       ),
@@ -3171,14 +3089,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareDlsPrefixBindings(
-        localName: 'd_dls_prefix_bindings',
+        'd_dls_prefix_bindings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareDnsFirewall(
-        localName: 'd_dns_firewall',
+        'd_dns_firewall',
         dnsFirewallId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3186,29 +3104,24 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareDnsFirewalls(
-        localName: 'd_dns_firewalls',
+        'd_dns_firewalls',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareDnsRecord(
-        localName: 'd_dns_record',
+        'd_dns_record',
         zoneId: .literal(zoneId),
         dnsRecordId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareDnsRecords(
-        localName: 'd_dns_records',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareDnsRecords('d_dns_records', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareDnsZoneTransfersAcl(
-        localName: 'd_dns_zone_transfers_acl',
+        'd_dns_zone_transfers_acl',
         aclId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3216,28 +3129,28 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareDnsZoneTransfersAcls(
-        localName: 'd_dns_zone_transfers_acls',
+        'd_dns_zone_transfers_acls',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareDnsZoneTransfersIncoming(
-        localName: 'd_dns_zone_transfers_incoming',
+        'd_dns_zone_transfers_incoming',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareDnsZoneTransfersOutgoing(
-        localName: 'd_dns_zone_transfers_outgoing',
+        'd_dns_zone_transfers_outgoing',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareDnsZoneTransfersPeer(
-        localName: 'd_dns_zone_transfers_peer',
+        'd_dns_zone_transfers_peer',
         peerId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3245,14 +3158,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareDnsZoneTransfersPeers(
-        localName: 'd_dns_zone_transfers_peers',
+        'd_dns_zone_transfers_peers',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareDnsZoneTransfersTsig(
-        localName: 'd_dns_zone_transfers_tsig',
+        'd_dns_zone_transfers_tsig',
         tsigId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3260,14 +3173,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareDnsZoneTransfersTsigs(
-        localName: 'd_dns_zone_transfers_tsigs',
+        'd_dns_zone_transfers_tsigs',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareEmailRoutingAddress(
-        localName: 'd_email_routing_address',
+        'd_email_routing_address',
         accountId: .literal(accountId),
         destinationAddressIdentifier: .literal('192.0.2.1'),
       ),
@@ -3275,28 +3188,28 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailRoutingAddresses(
-        localName: 'd_email_routing_addresses',
+        'd_email_routing_addresses',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareEmailRoutingCatchAll(
-        localName: 'd_email_routing_catch_all',
+        'd_email_routing_catch_all',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareEmailRoutingDns(
-        localName: 'd_email_routing_dns',
+        'd_email_routing_dns',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareEmailRoutingRule(
-        localName: 'd_email_routing_rule',
+        'd_email_routing_rule',
         zoneId: .literal(zoneId),
         ruleIdentifier: .literal(leftover),
       ),
@@ -3304,28 +3217,28 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailRoutingRules(
-        localName: 'd_email_routing_rules',
+        'd_email_routing_rules',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareEmailRoutingSettings(
-        localName: 'd_email_routing_settings',
+        'd_email_routing_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareEmailSecurityAllowPolicies(
-        localName: 'd_email_security_allow_policies',
+        'd_email_security_allow_policies',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareEmailSecurityAllowPolicy(
-        localName: 'd_email_security_allow_policy',
+        'd_email_security_allow_policy',
         accountId: .literal(accountId),
         policyId: .literal('00000000000000000000000000000001'),
       ),
@@ -3333,7 +3246,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSecurityBlockSender(
-        localName: 'd_email_security_block_sender',
+        'd_email_security_block_sender',
         accountId: .literal(accountId),
         patternId: .literal('00000000000000000000000000000001'),
       ),
@@ -3341,14 +3254,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSecurityBlockSenders(
-        localName: 'd_email_security_block_senders',
+        'd_email_security_block_senders',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareEmailSecurityDomain(
-        localName: 'd_email_security_domain',
+        'd_email_security_domain',
         accountId: .literal(accountId),
         domainId: .literal('00000000000000000000000000000001'),
       ),
@@ -3356,7 +3269,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSecurityDomains(
-        localName: 'd_email_security_domains',
+        'd_email_security_domains',
         accountId: .literal(accountId),
         integrationId: .literal('00000000000000000000000000000001'),
       ),
@@ -3364,14 +3277,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSecurityImpersonationRegistries(
-        localName: 'd_email_security_impersonation_registries',
+        'd_email_security_impersonation_registries',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareEmailSecurityImpersonationRegistry(
-        localName: 'd_email_security_impersonation_registry',
+        'd_email_security_impersonation_registry',
         accountId: .literal(accountId),
         impersonationRegistryId: .literal('00000000000000000000000000000001'),
       ),
@@ -3379,7 +3292,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSecurityTrustedDomains(
-        localName: 'd_email_security_trusted_domains',
+        'd_email_security_trusted_domains',
         accountId: .literal(accountId),
         trustedDomainId: .literal('00000000000000000000000000000001'),
       ),
@@ -3387,14 +3300,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSecurityTrustedDomainsList(
-        localName: 'd_email_security_trusted_domains_list',
+        'd_email_security_trusted_domains_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareEmailSendingSubdomain(
-        localName: 'd_email_sending_subdomain',
+        'd_email_sending_subdomain',
         subdomainId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -3402,14 +3315,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareEmailSendingSubdomains(
-        localName: 'd_email_sending_subdomains',
+        'd_email_sending_subdomains',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareFieldExtractor(
-        localName: 'd_field_extractor',
+        'd_field_extractor',
         accountId: .literal(accountId),
         extractor: .literal(leftover),
       ),
@@ -3417,26 +3330,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareFilter(
-        localName: 'd_filter',
+        'd_filter',
         zoneId: .literal(zoneId),
         filterId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareFilters(localName: 'd_filters', zoneId: .literal(zoneId)),
-    );
+    add(DataCloudflareFilters('d_filters', zoneId: .literal(zoneId)));
 
     add(
-      DataCloudflareFirewallRules(
-        localName: 'd_firewall_rules',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareFirewallRules('d_firewall_rules', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareFlagshipApp(
-        localName: 'd_flagship_app',
+        'd_flagship_app',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
       ),
@@ -3444,14 +3352,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareFlagshipApps(
-        localName: 'd_flagship_apps',
+        'd_flagship_apps',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareFlagshipFlag(
-        localName: 'd_flagship_flag',
+        'd_flagship_flag',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
         filter: DataFlagshipFlagFilter(limit: .literal(leftover)),
@@ -3460,7 +3368,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareFlagshipFlags(
-        localName: 'd_flagship_flags',
+        'd_flagship_flags',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
       ),
@@ -3468,29 +3376,24 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareGoogleTagGateway(
-        localName: 'd_google_tag_gateway',
+        'd_google_tag_gateway',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareHealthcheck(
-        localName: 'd_healthcheck',
+        'd_healthcheck',
         healthcheckId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      DataCloudflareHealthchecks(
-        localName: 'd_healthchecks',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareHealthchecks('d_healthchecks', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareHostnameTlsSetting(
-        localName: 'd_hostname_tls_setting',
+        'd_hostname_tls_setting',
         hostname: .literal(leftover),
         settingId: .literal('ciphers'),
         zoneId: .literal(zoneId),
@@ -3499,7 +3402,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareHostnameTlsSettings(
-        localName: 'd_hostname_tls_settings',
+        'd_hostname_tls_settings',
         settingId: .literal('ciphers'),
         zoneId: .literal(zoneId),
       ),
@@ -3507,7 +3410,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareHyperdriveConfig(
-        localName: 'd_hyperdrive_config',
+        'd_hyperdrive_config',
         hyperdriveId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3515,14 +3418,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareHyperdriveConfigs(
-        localName: 'd_hyperdrive_configs',
+        'd_hyperdrive_configs',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareImage(
-        localName: 'd_image',
+        'd_image',
         imageId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3530,24 +3433,19 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareImageVariant(
-        localName: 'd_image_variant',
+        'd_image_variant',
         variantId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareImages(
-        localName: 'd_images',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(DataCloudflareImages('d_images', accountId: .literal(accountId)));
 
-    add(DataCloudflareIpRanges(localName: 'd_ip_ranges'));
+    add(DataCloudflareIpRanges('d_ip_ranges'));
 
     add(
       DataCloudflareKeylessCertificate(
-        localName: 'd_keyless_certificate',
+        'd_keyless_certificate',
         keylessCertificateId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -3555,21 +3453,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareKeylessCertificates(
-        localName: 'd_keyless_certificates',
+        'd_keyless_certificates',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareLeakedCredentialCheck(
-        localName: 'd_leaked_credential_check',
+        'd_leaked_credential_check',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareLeakedCredentialCheckRule(
-        localName: 'd_leaked_credential_check_rule',
+        'd_leaked_credential_check_rule',
         detectionId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -3577,14 +3475,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLeakedCredentialCheckRules(
-        localName: 'd_leaked_credential_check_rules',
+        'd_leaked_credential_check_rules',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareList(
-        localName: 'd_list',
+        'd_list',
         listId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3592,7 +3490,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareListItem(
-        localName: 'd_list_item',
+        'd_list_item',
         itemId: .literal('00000000000000000000000000000001'),
         listId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
@@ -3601,19 +3499,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareListItems(
-        localName: 'd_list_items',
+        'd_list_items',
         listId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareLists(localName: 'd_lists', accountId: .literal(accountId)),
-    );
+    add(DataCloudflareLists('d_lists', accountId: .literal(accountId)));
 
     add(
       DataCloudflareLoadBalancer(
-        localName: 'd_load_balancer',
+        'd_load_balancer',
         loadBalancerId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -3621,7 +3517,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLoadBalancerMonitor(
-        localName: 'd_load_balancer_monitor',
+        'd_load_balancer_monitor',
         monitorId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3629,7 +3525,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLoadBalancerMonitorGroup(
-        localName: 'd_load_balancer_monitor_group',
+        'd_load_balancer_monitor_group',
         accountId: .literal(accountId),
         monitorGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -3637,21 +3533,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLoadBalancerMonitorGroups(
-        localName: 'd_load_balancer_monitor_groups',
+        'd_load_balancer_monitor_groups',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareLoadBalancerMonitors(
-        localName: 'd_load_balancer_monitors',
+        'd_load_balancer_monitors',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareLoadBalancerPool(
-        localName: 'd_load_balancer_pool',
+        'd_load_balancer_pool',
         accountId: .literal(accountId),
         poolId: .literal('00000000000000000000000000000001'),
       ),
@@ -3659,28 +3555,25 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLoadBalancerPools(
-        localName: 'd_load_balancer_pools',
+        'd_load_balancer_pools',
         accountId: .literal(accountId),
       ),
     );
 
     add(
-      DataCloudflareLoadBalancers(
-        localName: 'd_load_balancers',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareLoadBalancers('d_load_balancers', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareLogpullRetention(
-        localName: 'd_logpull_retention',
+        'd_logpull_retention',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareLogpushDatasetField(
-        localName: 'd_logpush_dataset_field',
+        'd_logpush_dataset_field',
         accountId: .literal(accountId),
         datasetId: .literal('audit_logs'),
       ),
@@ -3688,7 +3581,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLogpushDatasetJob(
-        localName: 'd_logpush_dataset_job',
+        'd_logpush_dataset_job',
         accountId: .literal(accountId),
         datasetId: .literal('audit_logs'),
       ),
@@ -3696,7 +3589,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLogpushJob(
-        localName: 'd_logpush_job',
+        'd_logpush_job',
         jobId: .literal(200),
         accountId: .literal(accountId),
       ),
@@ -3704,21 +3597,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLogpushJobs(
-        localName: 'd_logpush_jobs',
+        'd_logpush_jobs',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicNetworkMonitoringConfiguration(
-        localName: 'd_magic_network_monitoring_configuration',
+        'd_magic_network_monitoring_configuration',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicNetworkMonitoringRule(
-        localName: 'd_magic_network_monitoring_rule',
+        'd_magic_network_monitoring_rule',
         ruleId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3726,14 +3619,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicNetworkMonitoringRules(
-        localName: 'd_magic_network_monitoring_rules',
+        'd_magic_network_monitoring_rules',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicTransitCf1Site(
-        localName: 'd_magic_transit_cf1_site',
+        'd_magic_transit_cf1_site',
         accountId: .literal(accountId),
         cf1SiteId: .literal('00000000000000000000000000000001'),
       ),
@@ -3741,14 +3634,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitCf1Sites(
-        localName: 'd_magic_transit_cf1_sites',
+        'd_magic_transit_cf1_sites',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicTransitConnector(
-        localName: 'd_magic_transit_connector',
+        'd_magic_transit_connector',
         accountId: .literal(accountId),
         connectorId: .literal('00000000000000000000000000000001'),
       ),
@@ -3756,14 +3649,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitConnectors(
-        localName: 'd_magic_transit_connectors',
+        'd_magic_transit_connectors',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicTransitSite(
-        localName: 'd_magic_transit_site',
+        'd_magic_transit_site',
         accountId: .literal(accountId),
         siteId: .literal('00000000000000000000000000000001'),
       ),
@@ -3771,7 +3664,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSiteAcl(
-        localName: 'd_magic_transit_site_acl',
+        'd_magic_transit_site_acl',
         accountId: .literal(accountId),
         aclId: .literal('00000000000000000000000000000001'),
         siteId: .literal('00000000000000000000000000000001'),
@@ -3780,7 +3673,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSiteAcls(
-        localName: 'd_magic_transit_site_acls',
+        'd_magic_transit_site_acls',
         siteId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3788,7 +3681,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSiteLan(
-        localName: 'd_magic_transit_site_lan',
+        'd_magic_transit_site_lan',
         accountId: .literal(accountId),
         lanId: .literal('00000000000000000000000000000001'),
         siteId: .literal('00000000000000000000000000000001'),
@@ -3797,7 +3690,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSiteLans(
-        localName: 'd_magic_transit_site_lans',
+        'd_magic_transit_site_lans',
         siteId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3805,7 +3698,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSiteWan(
-        localName: 'd_magic_transit_site_wan',
+        'd_magic_transit_site_wan',
         accountId: .literal(accountId),
         siteId: .literal('00000000000000000000000000000001'),
         wanId: .literal('00000000000000000000000000000001'),
@@ -3814,7 +3707,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSiteWans(
-        localName: 'd_magic_transit_site_wans',
+        'd_magic_transit_site_wans',
         siteId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3822,14 +3715,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicTransitSites(
-        localName: 'd_magic_transit_sites',
+        'd_magic_transit_sites',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicWanBgpFilterProfile(
-        localName: 'd_magic_wan_bgp_filter_profile',
+        'd_magic_wan_bgp_filter_profile',
         accountId: .literal(accountId),
         profileId: .literal('00000000000000000000000000000001'),
       ),
@@ -3837,14 +3730,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicWanBgpFilterProfiles(
-        localName: 'd_magic_wan_bgp_filter_profiles',
+        'd_magic_wan_bgp_filter_profiles',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareMagicWanGreTunnel(
-        localName: 'd_magic_wan_gre_tunnel',
+        'd_magic_wan_gre_tunnel',
         greTunnelId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3852,7 +3745,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicWanIpsecTunnel(
-        localName: 'd_magic_wan_ipsec_tunnel',
+        'd_magic_wan_ipsec_tunnel',
         ipsecTunnelId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3860,7 +3753,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMagicWanStaticRoute(
-        localName: 'd_magic_wan_static_route',
+        'd_magic_wan_static_route',
         routeId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3868,29 +3761,26 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareManagedTransforms(
-        localName: 'd_managed_transforms',
+        'd_managed_transforms',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareMoqRelay(
-        localName: 'd_moq_relay',
+        'd_moq_relay',
         accountId: .literal(accountId),
         relayId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
-      DataCloudflareMoqRelays(
-        localName: 'd_moq_relays',
-        accountId: .literal(accountId),
-      ),
+      DataCloudflareMoqRelays('d_moq_relays', accountId: .literal(accountId)),
     );
 
     add(
       DataCloudflareMtlsCertificate(
-        localName: 'd_mtls_certificate',
+        'd_mtls_certificate',
         accountId: .literal(accountId),
         mtlsCertificateId: .literal('00000000000000000000000000000001'),
       ),
@@ -3898,7 +3788,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMtlsCertificateAssociations(
-        localName: 'd_mtls_certificate_associations',
+        'd_mtls_certificate_associations',
         accountId: .literal(accountId),
         mtlsCertificateId: .literal('00000000000000000000000000000001'),
       ),
@@ -3906,28 +3796,23 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareMtlsCertificates(
-        localName: 'd_mtls_certificates',
+        'd_mtls_certificates',
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareNelSetting(
-        localName: 'd_nel_setting',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareNelSetting('d_nel_setting', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareNotificationPolicies(
-        localName: 'd_notification_policies',
+        'd_notification_policies',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareNotificationPolicy(
-        localName: 'd_notification_policy',
+        'd_notification_policy',
         policyId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3935,7 +3820,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareNotificationPolicyWebhooks(
-        localName: 'd_notification_policy_webhooks',
+        'd_notification_policy_webhooks',
         webhookId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -3943,14 +3828,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareNotificationPolicyWebhooksList(
-        localName: 'd_notification_policy_webhooks_list',
+        'd_notification_policy_webhooks_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareOauthClient(
-        localName: 'd_oauth_client',
+        'd_oauth_client',
         accountId: .literal(accountId),
         oauthClientId: .literal('00000000000000000000000000000001'),
       ),
@@ -3958,16 +3843,16 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareOauthClients(
-        localName: 'd_oauth_clients',
+        'd_oauth_clients',
         accountId: .literal(accountId),
       ),
     );
 
-    add(DataCloudflareOauthScopes(localName: 'd_oauth_scopes'));
+    add(DataCloudflareOauthScopes('d_oauth_scopes'));
 
     add(
       DataCloudflareObservatoryScheduledTest(
-        localName: 'd_observatory_scheduled_test',
+        'd_observatory_scheduled_test',
         url: .literal('https://example.com'),
         zoneId: .literal(zoneId),
       ),
@@ -3975,37 +3860,37 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareOrganization(
-        localName: 'd_organization',
+        'd_organization',
         organizationId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
       DataCloudflareOrganizationProfile(
-        localName: 'd_organization_profile',
+        'd_organization_profile',
         organizationId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(DataCloudflareOrganizations(localName: 'd_organizations'));
+    add(DataCloudflareOrganizations('d_organizations'));
 
     add(
       DataCloudflareOriginCaCertificate(
-        localName: 'd_origin_ca_certificate',
+        'd_origin_ca_certificate',
         certificateId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
       DataCloudflareOriginCaCertificates(
-        localName: 'd_origin_ca_certificates',
+        'd_origin_ca_certificates',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareOriginCloudRegion(
-        localName: 'd_origin_cloud_region',
+        'd_origin_cloud_region',
         originIp: .literal('192.0.2.1'),
         zoneId: .literal(zoneId),
       ),
@@ -4013,21 +3898,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareOriginCloudRegions(
-        localName: 'd_origin_cloud_regions',
+        'd_origin_cloud_regions',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareOriginTlsComplianceModes(
-        localName: 'd_origin_tls_compliance_modes',
+        'd_origin_tls_compliance_modes',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflarePageRule(
-        localName: 'd_page_rule',
+        'd_page_rule',
         pageruleId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4035,7 +3920,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePageShieldConnections(
-        localName: 'd_page_shield_connections',
+        'd_page_shield_connections',
         connectionId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4043,14 +3928,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePageShieldConnectionsList(
-        localName: 'd_page_shield_connections_list',
+        'd_page_shield_connections_list',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflarePageShieldCookies(
-        localName: 'd_page_shield_cookies',
+        'd_page_shield_cookies',
         cookieId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4058,21 +3943,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePageShieldCookiesList(
-        localName: 'd_page_shield_cookies_list',
+        'd_page_shield_cookies_list',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflarePageShieldPolicies(
-        localName: 'd_page_shield_policies',
+        'd_page_shield_policies',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflarePageShieldPolicy(
-        localName: 'd_page_shield_policy',
+        'd_page_shield_policy',
         policyId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4080,7 +3965,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePageShieldScripts(
-        localName: 'd_page_shield_scripts',
+        'd_page_shield_scripts',
         scriptId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4088,14 +3973,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePageShieldScriptsList(
-        localName: 'd_page_shield_scripts_list',
+        'd_page_shield_scripts_list',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflarePagesDomain(
-        localName: 'd_pages_domain',
+        'd_pages_domain',
         accountId: .literal(accountId),
         domainName: .literal(leftover),
         projectName: .literal(leftover),
@@ -4104,7 +3989,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePagesDomains(
-        localName: 'd_pages_domains',
+        'd_pages_domains',
         projectName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -4112,7 +3997,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePagesProject(
-        localName: 'd_pages_project',
+        'd_pages_project',
         projectName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -4120,14 +4005,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePagesProjects(
-        localName: 'd_pages_projects',
+        'd_pages_projects',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflarePipeline(
-        localName: 'd_pipeline',
+        'd_pipeline',
         pipelineId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -4135,7 +4020,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePipelineSink(
-        localName: 'd_pipeline_sink',
+        'd_pipeline_sink',
         accountId: .literal(accountId),
         sinkId: .literal('00000000000000000000000000000001'),
       ),
@@ -4143,7 +4028,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePipelineSinks(
-        localName: 'd_pipeline_sinks',
+        'd_pipeline_sinks',
         accountId: .literal(accountId),
         pipelineId: .literal('00000000000000000000000000000001'),
       ),
@@ -4151,7 +4036,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePipelineStream(
-        localName: 'd_pipeline_stream',
+        'd_pipeline_stream',
         accountId: .literal(accountId),
         streamId: .literal('00000000000000000000000000000001'),
       ),
@@ -4159,22 +4044,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflarePipelineStreams(
-        localName: 'd_pipeline_streams',
+        'd_pipeline_streams',
         accountId: .literal(accountId),
         pipelineId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflarePrecursor(
-        localName: 'd_precursor',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflarePrecursor('d_precursor', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareQueue(
-        localName: 'd_queue',
+        'd_queue',
         queueId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -4182,7 +4062,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareQueueConsumer(
-        localName: 'd_queue_consumer',
+        'd_queue_consumer',
         accountId: .literal(accountId),
         queueId: .literal('00000000000000000000000000000001'),
       ),
@@ -4190,22 +4070,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareQueueConsumers(
-        localName: 'd_queue_consumers',
+        'd_queue_consumers',
         queueId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareQueues(
-        localName: 'd_queues',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(DataCloudflareQueues('d_queues', accountId: .literal(accountId)));
 
     add(
       DataCloudflareR2Bucket(
-        localName: 'd_r2_bucket',
+        'd_r2_bucket',
         bucketName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -4213,7 +4088,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2BucketCors(
-        localName: 'd_r2_bucket_cors',
+        'd_r2_bucket_cors',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -4221,7 +4096,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2BucketEventNotification(
-        localName: 'd_r2_bucket_event_notification',
+        'd_r2_bucket_event_notification',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
         queueId: .literal('00000000000000000000000000000001'),
@@ -4230,7 +4105,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2BucketLifecycle(
-        localName: 'd_r2_bucket_lifecycle',
+        'd_r2_bucket_lifecycle',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -4238,7 +4113,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2BucketLock(
-        localName: 'd_r2_bucket_lock',
+        'd_r2_bucket_lock',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -4246,7 +4121,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2BucketSippy(
-        localName: 'd_r2_bucket_sippy',
+        'd_r2_bucket_sippy',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
       ),
@@ -4254,7 +4129,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2CustomDomain(
-        localName: 'd_r2_custom_domain',
+        'd_r2_custom_domain',
         accountId: .literal(accountId),
         bucketName: .literal(leftover),
         domain: .literal(leftover),
@@ -4263,7 +4138,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareR2DataCatalog(
-        localName: 'd_r2_data_catalog',
+        'd_r2_data_catalog',
         bucketName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -4271,7 +4146,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareRateLimit(
-        localName: 'd_rate_limit',
+        'd_rate_limit',
         rateLimitId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4279,7 +4154,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareRegionalHostname(
-        localName: 'd_regional_hostname',
+        'd_regional_hostname',
         hostname: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -4287,21 +4162,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareRegionalHostnames(
-        localName: 'd_regional_hostnames',
+        'd_regional_hostnames',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareRegionalTieredCache(
-        localName: 'd_regional_tiered_cache',
+        'd_regional_tiered_cache',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareRegistrarDomain(
-        localName: 'd_registrar_domain',
+        'd_registrar_domain',
         accountId: .literal(accountId),
         domainName: .literal(leftover),
       ),
@@ -4309,14 +4184,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareRegistrarDomains(
-        localName: 'd_registrar_domains',
+        'd_registrar_domains',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareResourceGroup(
-        localName: 'd_resource_group',
+        'd_resource_group',
         accountId: .literal(accountId),
         resourceGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -4324,26 +4199,24 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareResourceGroups(
-        localName: 'd_resource_groups',
+        'd_resource_groups',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareRuleset(
-        localName: 'd_ruleset',
+        'd_ruleset',
         zoneId: .literal(zoneId),
         rulesetId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareRulesets(localName: 'd_rulesets', zoneId: .literal(zoneId)),
-    );
+    add(DataCloudflareRulesets('d_rulesets', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareSchemaValidationOperationSettings(
-        localName: 'd_schema_validation_operation_settings',
+        'd_schema_validation_operation_settings',
         operationId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4351,14 +4224,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSchemaValidationOperationSettingsList(
-        localName: 'd_schema_validation_operation_settings_list',
+        'd_schema_validation_operation_settings_list',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareSchemaValidationSchemas(
-        localName: 'd_schema_validation_schemas',
+        'd_schema_validation_schemas',
         zoneId: .literal(zoneId),
         schemaId: .literal('00000000000000000000000000000001'),
       ),
@@ -4366,21 +4239,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSchemaValidationSchemasList(
-        localName: 'd_schema_validation_schemas_list',
+        'd_schema_validation_schemas_list',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareSchemaValidationSettings(
-        localName: 'd_schema_validation_settings',
+        'd_schema_validation_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareSecretsStore(
-        localName: 'd_secrets_store',
+        'd_secrets_store',
         accountId: .literal(accountId),
         storeId: .literal('00000000000000000000000000000001'),
       ),
@@ -4388,7 +4261,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSecretsStoreSecret(
-        localName: 'd_secrets_store_secret',
+        'd_secrets_store_secret',
         accountId: .literal(accountId),
         storeId: .literal('00000000000000000000000000000001'),
         secretId: .literal('00000000000000000000000000000001'),
@@ -4397,7 +4270,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSecretsStoreSecrets(
-        localName: 'd_secrets_store_secrets',
+        'd_secrets_store_secrets',
         accountId: .literal(accountId),
         storeId: .literal('00000000000000000000000000000001'),
       ),
@@ -4405,14 +4278,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSecretsStores(
-        localName: 'd_secrets_stores',
+        'd_secrets_stores',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareShare(
-        localName: 'd_share',
+        'd_share',
         accountId: .literal(accountId),
         shareId: .literal('00000000000000000000000000000001'),
       ),
@@ -4420,7 +4293,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareShareRecipient(
-        localName: 'd_share_recipient',
+        'd_share_recipient',
         accountId: .literal(accountId),
         recipientId: .literal('00000000000000000000000000000001'),
         shareId: .literal('00000000000000000000000000000001'),
@@ -4429,7 +4302,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareShareRecipients(
-        localName: 'd_share_recipients',
+        'd_share_recipients',
         accountId: .literal(accountId),
         shareId: .literal('00000000000000000000000000000001'),
       ),
@@ -4437,7 +4310,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareShareResource(
-        localName: 'd_share_resource',
+        'd_share_resource',
         accountId: .literal(accountId),
         shareId: .literal('00000000000000000000000000000001'),
         shareResourceId: .literal('00000000000000000000000000000001'),
@@ -4446,66 +4319,50 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareShareResources(
-        localName: 'd_share_resources',
+        'd_share_resources',
         accountId: .literal(accountId),
         shareId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareShares(
-        localName: 'd_shares',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(DataCloudflareShares('d_shares', accountId: .literal(accountId)));
 
     add(
       DataCloudflareSnippet(
-        localName: 'd_snippet',
+        'd_snippet',
         snippetName: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      DataCloudflareSnippetList(
-        localName: 'd_snippet_list',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareSnippetList('d_snippet_list', zoneId: .literal(zoneId)));
 
     add(
-      DataCloudflareSnippetRules(
-        localName: 'd_snippet_rules',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareSnippetRules('d_snippet_rules', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareSnippetRulesList(
-        localName: 'd_snippet_rules_list',
+        'd_snippet_rules_list',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareSnippets(
-        localName: 'd_snippets',
+        'd_snippets',
         snippetName: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
-      DataCloudflareSnippetsList(
-        localName: 'd_snippets_list',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareSnippetsList('d_snippets_list', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareSpectrumApplication(
-        localName: 'd_spectrum_application',
+        'd_spectrum_application',
         zoneId: .literal(zoneId),
         appId: .literal('00000000000000000000000000000001'),
       ),
@@ -4513,21 +4370,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSpectrumApplications(
-        localName: 'd_spectrum_applications',
+        'd_spectrum_applications',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareSpectrumProtocols(
-        localName: 'd_spectrum_protocols',
+        'd_spectrum_protocols',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareSsoConnector(
-        localName: 'd_sso_connector',
+        'd_sso_connector',
         ssoConnectorId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -4535,14 +4392,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareSsoConnectors(
-        localName: 'd_sso_connectors',
+        'd_sso_connectors',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareStream(
-        localName: 'd_stream',
+        'd_stream',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
       ),
@@ -4550,7 +4407,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareStreamAudioTrack(
-        localName: 'd_stream_audio_track',
+        'd_stream_audio_track',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
       ),
@@ -4558,7 +4415,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareStreamCaptionLanguage(
-        localName: 'd_stream_caption_language',
+        'd_stream_caption_language',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
         language: .literal(leftover),
@@ -4567,22 +4424,19 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareStreamDownload(
-        localName: 'd_stream_download',
+        'd_stream_download',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
       ),
     );
 
     add(
-      DataCloudflareStreamKey(
-        localName: 'd_stream_key',
-        accountId: .literal(accountId),
-      ),
+      DataCloudflareStreamKey('d_stream_key', accountId: .literal(accountId)),
     );
 
     add(
       DataCloudflareStreamLiveInput(
-        localName: 'd_stream_live_input',
+        'd_stream_live_input',
         accountId: .literal(accountId),
         liveInputIdentifier: .literal(leftover),
       ),
@@ -4590,7 +4444,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareStreamWatermark(
-        localName: 'd_stream_watermark',
+        'd_stream_watermark',
         accountId: .literal(accountId),
         identifier: .literal('1000_errors'),
       ),
@@ -4598,36 +4452,31 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareStreamWatermarks(
-        localName: 'd_stream_watermarks',
+        'd_stream_watermarks',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareStreamWebhook(
-        localName: 'd_stream_webhook',
+        'd_stream_webhook',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareStreams(
-        localName: 'd_streams',
+        'd_streams',
         accountId: .literal(accountId),
         liveInputId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareTieredCache(
-        localName: 'd_tiered_cache',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareTieredCache('d_tiered_cache', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareTokenValidationConfig(
-        localName: 'd_token_validation_config',
+        'd_token_validation_config',
         configId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4635,14 +4484,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareTokenValidationConfigs(
-        localName: 'd_token_validation_configs',
+        'd_token_validation_configs',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareTokenValidationRules(
-        localName: 'd_token_validation_rules',
+        'd_token_validation_rules',
         zoneId: .literal(zoneId),
         ruleId: .literal('00000000000000000000000000000001'),
       ),
@@ -4650,22 +4499,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareTokenValidationRulesList(
-        localName: 'd_token_validation_rules_list',
+        'd_token_validation_rules_list',
         zoneId: .literal(zoneId),
         ruleId: .literal('00000000000000000000000000000001'),
       ),
     );
 
-    add(
-      DataCloudflareTotalTls(
-        localName: 'd_total_tls',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareTotalTls('d_total_tls', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareTurnstileWidget(
-        localName: 'd_turnstile_widget',
+        'd_turnstile_widget',
         accountId: .literal(accountId),
         sitekey: .literal(leftover),
       ),
@@ -4673,7 +4517,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareTurnstileWidgets(
-        localName: 'd_turnstile_widgets',
+        'd_turnstile_widgets',
         accountId: .literal(accountId),
         filter: .literal(leftover),
       ),
@@ -4681,23 +4525,23 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareUniversalSslSetting(
-        localName: 'd_universal_ssl_setting',
+        'd_universal_ssl_setting',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareUrlNormalizationSettings(
-        localName: 'd_url_normalization_settings',
+        'd_url_normalization_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(DataCloudflareUser(localName: 'd_user'));
+    add(DataCloudflareUser('d_user'));
 
     add(
       DataCloudflareUserAgentBlockingRule(
-        localName: 'd_user_agent_blocking_rule',
+        'd_user_agent_blocking_rule',
         zoneId: .literal(zoneId),
         uaRuleId: .literal('00000000000000000000000000000001'),
       ),
@@ -4705,14 +4549,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareUserAgentBlockingRules(
-        localName: 'd_user_agent_blocking_rules',
+        'd_user_agent_blocking_rules',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareUserGroup(
-        localName: 'd_user_group',
+        'd_user_group',
         accountId: .literal(accountId),
         userGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -4720,22 +4564,19 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareUserGroupMembers(
-        localName: 'd_user_group_members',
+        'd_user_group_members',
         accountId: .literal(accountId),
         userGroupId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
-      DataCloudflareUserGroups(
-        localName: 'd_user_groups',
-        accountId: .literal(accountId),
-      ),
+      DataCloudflareUserGroups('d_user_groups', accountId: .literal(accountId)),
     );
 
     add(
       DataCloudflareVulnerabilityScannerCredential(
-        localName: 'd_vulnerability_scanner_credential',
+        'd_vulnerability_scanner_credential',
         credentialId: .literal('00000000000000000000000000000001'),
         credentialSetId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
@@ -4744,7 +4585,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareVulnerabilityScannerCredentialSet(
-        localName: 'd_vulnerability_scanner_credential_set',
+        'd_vulnerability_scanner_credential_set',
         credentialSetId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -4752,14 +4593,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareVulnerabilityScannerCredentialSets(
-        localName: 'd_vulnerability_scanner_credential_sets',
+        'd_vulnerability_scanner_credential_sets',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareVulnerabilityScannerCredentials(
-        localName: 'd_vulnerability_scanner_credentials',
+        'd_vulnerability_scanner_credentials',
         credentialSetId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -4767,7 +4608,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareVulnerabilityScannerTargetEnvironment(
-        localName: 'd_vulnerability_scanner_target_environment',
+        'd_vulnerability_scanner_target_environment',
         targetEnvironmentId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -4775,14 +4616,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareVulnerabilityScannerTargetEnvironments(
-        localName: 'd_vulnerability_scanner_target_environments',
+        'd_vulnerability_scanner_target_environments',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWaitingRoom(
-        localName: 'd_waiting_room',
+        'd_waiting_room',
         waitingRoomId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4790,7 +4631,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWaitingRoomEvent(
-        localName: 'd_waiting_room_event',
+        'd_waiting_room_event',
         eventId: .literal('00000000000000000000000000000001'),
         waitingRoomId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
@@ -4799,7 +4640,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWaitingRoomEvents(
-        localName: 'd_waiting_room_events',
+        'd_waiting_room_events',
         waitingRoomId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4807,7 +4648,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWaitingRoomRules(
-        localName: 'd_waiting_room_rules',
+        'd_waiting_room_rules',
         waitingRoomId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -4815,36 +4656,33 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWaitingRoomSettings(
-        localName: 'd_waiting_room_settings',
+        'd_waiting_room_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareWaitingRooms(
-        localName: 'd_waiting_rooms',
+        'd_waiting_rooms',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWeb3Hostname(
-        localName: 'd_web3_hostname',
+        'd_web3_hostname',
         identifier: .literal('1000_errors'),
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
-      DataCloudflareWeb3Hostnames(
-        localName: 'd_web3_hostnames',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareWeb3Hostnames('d_web3_hostnames', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareWebAnalyticsSite(
-        localName: 'd_web_analytics_site',
+        'd_web_analytics_site',
         accountId: .literal(accountId),
         siteId: .literal('00000000000000000000000000000001'),
       ),
@@ -4852,14 +4690,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWebAnalyticsSites(
-        localName: 'd_web_analytics_sites',
+        'd_web_analytics_sites',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWorker(
-        localName: 'd_worker',
+        'd_worker',
         accountId: .literal(accountId),
         workerId: .literal('00000000000000000000000000000001'),
       ),
@@ -4867,7 +4705,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkerVersion(
-        localName: 'd_worker_version',
+        'd_worker_version',
         accountId: .literal(accountId),
         versionId: .literal('00000000000000000000000000000001'),
         workerId: .literal('00000000000000000000000000000001'),
@@ -4876,22 +4714,17 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkerVersions(
-        localName: 'd_worker_versions',
+        'd_worker_versions',
         workerId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
     );
 
-    add(
-      DataCloudflareWorkers(
-        localName: 'd_workers',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(DataCloudflareWorkers('d_workers', accountId: .literal(accountId)));
 
     add(
       DataCloudflareWorkersCronTrigger(
-        localName: 'd_workers_cron_trigger',
+        'd_workers_cron_trigger',
         scriptName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -4899,7 +4732,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersCustomDomain(
-        localName: 'd_workers_custom_domain',
+        'd_workers_custom_domain',
         accountId: .literal(accountId),
         domainId: .literal('00000000000000000000000000000001'),
       ),
@@ -4907,14 +4740,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersCustomDomains(
-        localName: 'd_workers_custom_domains',
+        'd_workers_custom_domains',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWorkersDeployment(
-        localName: 'd_workers_deployment',
+        'd_workers_deployment',
         accountId: .literal(accountId),
         deploymentId: .literal('00000000000000000000000000000001'),
         scriptName: .literal(leftover),
@@ -4923,7 +4756,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersDeployments(
-        localName: 'd_workers_deployments',
+        'd_workers_deployments',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
       ),
@@ -4931,7 +4764,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersForPlatformsDispatchNamespace(
-        localName: 'd_workers_for_platforms_dispatch_namespace',
+        'd_workers_for_platforms_dispatch_namespace',
         dispatchNamespace: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -4939,14 +4772,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersForPlatformsDispatchNamespaces(
-        localName: 'd_workers_for_platforms_dispatch_namespaces',
+        'd_workers_for_platforms_dispatch_namespaces',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWorkersKv(
-        localName: 'd_workers_kv',
+        'd_workers_kv',
         accountId: .literal(accountId),
         keyName: .literal(leftover),
         namespaceId: .literal('00000000000000000000000000000001'),
@@ -4955,7 +4788,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersKvNamespace(
-        localName: 'd_workers_kv_namespace',
+        'd_workers_kv_namespace',
         accountId: .literal(accountId),
         namespaceId: .literal('00000000000000000000000000000001'),
       ),
@@ -4963,29 +4796,26 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersKvNamespaces(
-        localName: 'd_workers_kv_namespaces',
+        'd_workers_kv_namespaces',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWorkersRoute(
-        localName: 'd_workers_route',
+        'd_workers_route',
         routeId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
-      DataCloudflareWorkersRoutes(
-        localName: 'd_workers_routes',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareWorkersRoutes('d_workers_routes', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareWorkersScript(
-        localName: 'd_workers_script',
+        'd_workers_script',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
       ),
@@ -4993,7 +4823,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersScriptSubdomain(
-        localName: 'd_workers_script_subdomain',
+        'd_workers_script_subdomain',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
       ),
@@ -5001,29 +4831,24 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareWorkersScripts(
-        localName: 'd_workers_scripts',
+        'd_workers_scripts',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareWorkflow(
-        localName: 'd_workflow',
+        'd_workflow',
         accountId: .literal(accountId),
         workflowName: .literal(leftover),
       ),
     );
 
-    add(
-      DataCloudflareWorkflows(
-        localName: 'd_workflows',
-        accountId: .literal(accountId),
-      ),
-    );
+    add(DataCloudflareWorkflows('d_workflows', accountId: .literal(accountId)));
 
     add(
       DataCloudflareZeroTrustAccessAiControlsMcpPortal(
-        localName: 'd_zero_trust_access_ai_controls_mcp_portal',
+        'd_zero_trust_access_ai_controls_mcp_portal',
         accountId: .literal(accountId),
         filter: DataZeroTrustAccessAiControlsMcpPortalFilter(
           search: .literal(leftover),
@@ -5033,14 +4858,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessAiControlsMcpPortals(
-        localName: 'd_zero_trust_access_ai_controls_mcp_portals',
+        'd_zero_trust_access_ai_controls_mcp_portals',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessAiControlsMcpServer(
-        localName: 'd_zero_trust_access_ai_controls_mcp_server',
+        'd_zero_trust_access_ai_controls_mcp_server',
         accountId: .literal(accountId),
         filter: DataZeroTrustAccessAiControlsMcpServerFilter(
           search: .literal(leftover),
@@ -5050,14 +4875,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessAiControlsMcpServers(
-        localName: 'd_zero_trust_access_ai_controls_mcp_servers',
+        'd_zero_trust_access_ai_controls_mcp_servers',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessApplication(
-        localName: 'd_zero_trust_access_application',
+        'd_zero_trust_access_application',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
       ),
@@ -5065,14 +4890,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessApplications(
-        localName: 'd_zero_trust_access_applications',
+        'd_zero_trust_access_applications',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessCustomPage(
-        localName: 'd_zero_trust_access_custom_page',
+        'd_zero_trust_access_custom_page',
         customPageId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5080,14 +4905,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessCustomPages(
-        localName: 'd_zero_trust_access_custom_pages',
+        'd_zero_trust_access_custom_pages',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessGroup(
-        localName: 'd_zero_trust_access_group',
+        'd_zero_trust_access_group',
         accountId: .literal(accountId),
         groupId: .literal('00000000000000000000000000000001'),
       ),
@@ -5095,14 +4920,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessGroups(
-        localName: 'd_zero_trust_access_groups',
+        'd_zero_trust_access_groups',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessIdentityProvider(
-        localName: 'd_zero_trust_access_identity_provider',
+        'd_zero_trust_access_identity_provider',
         accountId: .literal(accountId),
         identityProviderId: .literal('00000000000000000000000000000001'),
       ),
@@ -5110,14 +4935,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessIdentityProviders(
-        localName: 'd_zero_trust_access_identity_providers',
+        'd_zero_trust_access_identity_providers',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessInfrastructureTarget(
-        localName: 'd_zero_trust_access_infrastructure_target',
+        'd_zero_trust_access_infrastructure_target',
         accountId: .literal(accountId),
         targetId: .literal('00000000000000000000000000000001'),
       ),
@@ -5125,7 +4950,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessInfrastructureTargets(
-        localName: 'd_zero_trust_access_infrastructure_targets',
+        'd_zero_trust_access_infrastructure_targets',
         accountId: .literal(accountId),
         virtualNetworkId: .literal('00000000000000000000000000000001'),
       ),
@@ -5133,14 +4958,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessKeyConfiguration(
-        localName: 'd_zero_trust_access_key_configuration',
+        'd_zero_trust_access_key_configuration',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessMtlsCertificate(
-        localName: 'd_zero_trust_access_mtls_certificate',
+        'd_zero_trust_access_mtls_certificate',
         certificateId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5148,28 +4973,28 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessMtlsCertificates(
-        localName: 'd_zero_trust_access_mtls_certificates',
+        'd_zero_trust_access_mtls_certificates',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessMtlsHostnameSettings(
-        localName: 'd_zero_trust_access_mtls_hostname_settings',
+        'd_zero_trust_access_mtls_hostname_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessPolicies(
-        localName: 'd_zero_trust_access_policies',
+        'd_zero_trust_access_policies',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessPolicy(
-        localName: 'd_zero_trust_access_policy',
+        'd_zero_trust_access_policy',
         policyId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5177,7 +5002,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessServiceToken(
-        localName: 'd_zero_trust_access_service_token',
+        'd_zero_trust_access_service_token',
         accountId: .literal(accountId),
         serviceTokenId: .literal('00000000000000000000000000000001'),
       ),
@@ -5185,14 +5010,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessServiceTokens(
-        localName: 'd_zero_trust_access_service_tokens',
+        'd_zero_trust_access_service_tokens',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessShortLivedCertificate(
-        localName: 'd_zero_trust_access_short_lived_certificate',
+        'd_zero_trust_access_short_lived_certificate',
         appId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5200,14 +5025,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessShortLivedCertificates(
-        localName: 'd_zero_trust_access_short_lived_certificates',
+        'd_zero_trust_access_short_lived_certificates',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustAccessTag(
-        localName: 'd_zero_trust_access_tag',
+        'd_zero_trust_access_tag',
         tagName: .literal(leftover),
         accountId: .literal(accountId),
       ),
@@ -5215,21 +5040,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustAccessTags(
-        localName: 'd_zero_trust_access_tags',
+        'd_zero_trust_access_tags',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustCasbPolicies(
-        localName: 'd_zero_trust_casb_policies',
+        'd_zero_trust_casb_policies',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustCasbPolicy(
-        localName: 'd_zero_trust_casb_policy',
+        'd_zero_trust_casb_policy',
         accountId: .literal(accountId),
         policyId: .literal('00000000000000000000000000000001'),
       ),
@@ -5237,7 +5062,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustCasbWebhook(
-        localName: 'd_zero_trust_casb_webhook',
+        'd_zero_trust_casb_webhook',
         accountId: .literal(accountId),
         webhookId: .literal('00000000000000000000000000000001'),
       ),
@@ -5245,21 +5070,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustCasbWebhooks(
-        localName: 'd_zero_trust_casb_webhooks',
+        'd_zero_trust_casb_webhooks',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustConnectivitySettings(
-        localName: 'd_zero_trust_connectivity_settings',
+        'd_zero_trust_connectivity_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceCustomProfile(
-        localName: 'd_zero_trust_device_custom_profile',
+        'd_zero_trust_device_custom_profile',
         accountId: .literal(accountId),
         policyId: .literal('00000000000000000000000000000001'),
       ),
@@ -5267,7 +5092,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback(
-        localName: 'd_zero_trust_device_custom_profile_local_domain_',
+        'd_zero_trust_device_custom_profile_local_domain_',
         policyId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5275,35 +5100,35 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDeviceCustomProfiles(
-        localName: 'd_zero_trust_device_custom_profiles',
+        'd_zero_trust_device_custom_profiles',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceDefaultProfile(
-        localName: 'd_zero_trust_device_default_profile',
+        'd_zero_trust_device_default_profile',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceDefaultProfileCertificates(
-        localName: 'd_zero_trust_device_default_profile_certificates',
+        'd_zero_trust_device_default_profile_certificates',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback(
-        localName: 'd_zero_trust_device_default_profile_local_domain',
+        'd_zero_trust_device_default_profile_local_domain',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceDeploymentGroups(
-        localName: 'd_zero_trust_device_deployment_groups',
+        'd_zero_trust_device_deployment_groups',
         accountId: .literal(accountId),
         groupId: .literal('00000000000000000000000000000001'),
       ),
@@ -5311,14 +5136,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDeviceDeploymentGroupsList(
-        localName: 'd_zero_trust_device_deployment_groups_list',
+        'd_zero_trust_device_deployment_groups_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceIpProfile(
-        localName: 'd_zero_trust_device_ip_profile',
+        'd_zero_trust_device_ip_profile',
         accountId: .literal(accountId),
         profileId: .literal('00000000000000000000000000000001'),
       ),
@@ -5326,14 +5151,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDeviceIpProfiles(
-        localName: 'd_zero_trust_device_ip_profiles',
+        'd_zero_trust_device_ip_profiles',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceManagedNetworks(
-        localName: 'd_zero_trust_device_managed_networks',
+        'd_zero_trust_device_managed_networks',
         networkId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5341,14 +5166,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDeviceManagedNetworksList(
-        localName: 'd_zero_trust_device_managed_networks_list',
+        'd_zero_trust_device_managed_networks_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDevicePostureIntegration(
-        localName: 'd_zero_trust_device_posture_integration',
+        'd_zero_trust_device_posture_integration',
         integrationId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5356,14 +5181,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDevicePostureIntegrations(
-        localName: 'd_zero_trust_device_posture_integrations',
+        'd_zero_trust_device_posture_integrations',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDevicePostureRule(
-        localName: 'd_zero_trust_device_posture_rule',
+        'd_zero_trust_device_posture_rule',
         ruleId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5371,21 +5196,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDevicePostureRules(
-        localName: 'd_zero_trust_device_posture_rules',
+        'd_zero_trust_device_posture_rules',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceSettings(
-        localName: 'd_zero_trust_device_settings',
+        'd_zero_trust_device_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDeviceSubnet(
-        localName: 'd_zero_trust_device_subnet',
+        'd_zero_trust_device_subnet',
         subnetId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5393,7 +5218,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDexRule(
-        localName: 'd_zero_trust_dex_rule',
+        'd_zero_trust_dex_rule',
         ruleId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5401,14 +5226,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDexRules(
-        localName: 'd_zero_trust_dex_rules',
+        'd_zero_trust_dex_rules',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDexTest(
-        localName: 'd_zero_trust_dex_test',
+        'd_zero_trust_dex_test',
         accountId: .literal(accountId),
         dexTestId: .literal('00000000000000000000000000000001'),
       ),
@@ -5416,21 +5241,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDexTests(
-        localName: 'd_zero_trust_dex_tests',
+        'd_zero_trust_dex_tests',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpCustomEntries(
-        localName: 'd_zero_trust_dlp_custom_entries',
+        'd_zero_trust_dlp_custom_entries',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpCustomEntry(
-        localName: 'd_zero_trust_dlp_custom_entry',
+        'd_zero_trust_dlp_custom_entry',
         entryId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5438,7 +5263,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpCustomProfile(
-        localName: 'd_zero_trust_dlp_custom_profile',
+        'd_zero_trust_dlp_custom_profile',
         profileId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5446,7 +5271,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpCustomPromptTopic(
-        localName: 'd_zero_trust_dlp_custom_prompt_topic',
+        'd_zero_trust_dlp_custom_prompt_topic',
         accountId: .literal(accountId),
         entryId: .literal('00000000000000000000000000000001'),
       ),
@@ -5454,14 +5279,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpCustomPromptTopics(
-        localName: 'd_zero_trust_dlp_custom_prompt_topics',
+        'd_zero_trust_dlp_custom_prompt_topics',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpDataClass(
-        localName: 'd_zero_trust_dlp_data_class',
+        'd_zero_trust_dlp_data_class',
         accountId: .literal(accountId),
         dataClassId: .literal('00000000000000000000000000000001'),
       ),
@@ -5469,14 +5294,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpDataClasses(
-        localName: 'd_zero_trust_dlp_data_classes',
+        'd_zero_trust_dlp_data_classes',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpDataTag(
-        localName: 'd_zero_trust_dlp_data_tag',
+        'd_zero_trust_dlp_data_tag',
         accountId: .literal(accountId),
         categoryId: .literal('00000000000000000000000000000001'),
         tagId: .literal('00000000000000000000000000000001'),
@@ -5485,14 +5310,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpDataTagCategories(
-        localName: 'd_zero_trust_dlp_data_tag_categories',
+        'd_zero_trust_dlp_data_tag_categories',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpDataTagCategory(
-        localName: 'd_zero_trust_dlp_data_tag_category',
+        'd_zero_trust_dlp_data_tag_category',
         accountId: .literal(accountId),
         categoryId: .literal('00000000000000000000000000000001'),
       ),
@@ -5500,7 +5325,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpDataTags(
-        localName: 'd_zero_trust_dlp_data_tags',
+        'd_zero_trust_dlp_data_tags',
         accountId: .literal(accountId),
         categoryId: .literal('00000000000000000000000000000001'),
       ),
@@ -5508,7 +5333,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpDataset(
-        localName: 'd_zero_trust_dlp_dataset',
+        'd_zero_trust_dlp_dataset',
         datasetId: .literal('audit_logs'),
         accountId: .literal(accountId),
       ),
@@ -5516,21 +5341,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpDatasets(
-        localName: 'd_zero_trust_dlp_datasets',
+        'd_zero_trust_dlp_datasets',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpEntries(
-        localName: 'd_zero_trust_dlp_entries',
+        'd_zero_trust_dlp_entries',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpEntry(
-        localName: 'd_zero_trust_dlp_entry',
+        'd_zero_trust_dlp_entry',
         entryId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5538,14 +5363,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpIntegrationEntries(
-        localName: 'd_zero_trust_dlp_integration_entries',
+        'd_zero_trust_dlp_integration_entries',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpIntegrationEntry(
-        localName: 'd_zero_trust_dlp_integration_entry',
+        'd_zero_trust_dlp_integration_entry',
         entryId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5553,14 +5378,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpPredefinedEntries(
-        localName: 'd_zero_trust_dlp_predefined_entries',
+        'd_zero_trust_dlp_predefined_entries',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpPredefinedEntry(
-        localName: 'd_zero_trust_dlp_predefined_entry',
+        'd_zero_trust_dlp_predefined_entry',
         entryId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5568,7 +5393,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpPredefinedProfile(
-        localName: 'd_zero_trust_dlp_predefined_profile',
+        'd_zero_trust_dlp_predefined_profile',
         profileId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5576,7 +5401,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpSensitivityGroup(
-        localName: 'd_zero_trust_dlp_sensitivity_group',
+        'd_zero_trust_dlp_sensitivity_group',
         accountId: .literal(accountId),
         sensitivityGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -5584,14 +5409,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpSensitivityGroups(
-        localName: 'd_zero_trust_dlp_sensitivity_groups',
+        'd_zero_trust_dlp_sensitivity_groups',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDlpSensitivityLevel(
-        localName: 'd_zero_trust_dlp_sensitivity_level',
+        'd_zero_trust_dlp_sensitivity_level',
         accountId: .literal(accountId),
         sensitivityGroupId: .literal('00000000000000000000000000000001'),
         sensitivityLevelId: .literal('00000000000000000000000000000001'),
@@ -5600,7 +5425,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpSensitivityLevelOrder(
-        localName: 'd_zero_trust_dlp_sensitivity_level_order',
+        'd_zero_trust_dlp_sensitivity_level_order',
         accountId: .literal(accountId),
         sensitivityGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -5608,7 +5433,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpSensitivityLevels(
-        localName: 'd_zero_trust_dlp_sensitivity_levels',
+        'd_zero_trust_dlp_sensitivity_levels',
         accountId: .literal(accountId),
         sensitivityGroupId: .literal('00000000000000000000000000000001'),
       ),
@@ -5616,14 +5441,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDlpSettings(
-        localName: 'd_zero_trust_dlp_settings',
+        'd_zero_trust_dlp_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustDnsLocation(
-        localName: 'd_zero_trust_dns_location',
+        'd_zero_trust_dns_location',
         accountId: .literal(accountId),
         locationId: .literal('00000000000000000000000000000001'),
       ),
@@ -5631,7 +5456,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustDnsLocations(
-        localName: 'd_zero_trust_dns_locations',
+        'd_zero_trust_dns_locations',
         accountId: .literal(accountId),
         filter: .literal([leftover]),
       ),
@@ -5639,21 +5464,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewayAppTypesList(
-        localName: 'd_zero_trust_gateway_app_types_list',
+        'd_zero_trust_gateway_app_types_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustGatewayCategoriesList(
-        localName: 'd_zero_trust_gateway_categories_list',
+        'd_zero_trust_gateway_categories_list',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustGatewayCertificate(
-        localName: 'd_zero_trust_gateway_certificate',
+        'd_zero_trust_gateway_certificate',
         certificateId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5661,21 +5486,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewayCertificates(
-        localName: 'd_zero_trust_gateway_certificates',
+        'd_zero_trust_gateway_certificates',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustGatewayLogging(
-        localName: 'd_zero_trust_gateway_logging',
+        'd_zero_trust_gateway_logging',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustGatewayPacfile(
-        localName: 'd_zero_trust_gateway_pacfile',
+        'd_zero_trust_gateway_pacfile',
         pacfileId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5683,14 +5508,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewayPacfiles(
-        localName: 'd_zero_trust_gateway_pacfiles',
+        'd_zero_trust_gateway_pacfiles',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustGatewayPolicies(
-        localName: 'd_zero_trust_gateway_policies',
+        'd_zero_trust_gateway_policies',
         accountId: .literal(accountId),
         filter: .literal([leftover]),
       ),
@@ -5698,7 +5523,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewayPolicy(
-        localName: 'd_zero_trust_gateway_policy',
+        'd_zero_trust_gateway_policy',
         accountId: .literal(accountId),
         ruleId: .literal('00000000000000000000000000000001'),
       ),
@@ -5706,7 +5531,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewayProxyEndpoint(
-        localName: 'd_zero_trust_gateway_proxy_endpoint',
+        'd_zero_trust_gateway_proxy_endpoint',
         accountId: .literal(accountId),
         proxyEndpointId: .literal('00000000000000000000000000000001'),
       ),
@@ -5714,7 +5539,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewayProxyEndpoints(
-        localName: 'd_zero_trust_gateway_proxy_endpoints',
+        'd_zero_trust_gateway_proxy_endpoints',
         accountId: .literal(accountId),
         filter: .literal([leftover]),
       ),
@@ -5722,14 +5547,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustGatewaySettings(
-        localName: 'd_zero_trust_gateway_settings',
+        'd_zero_trust_gateway_settings',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustList(
-        localName: 'd_zero_trust_list',
+        'd_zero_trust_list',
         accountId: .literal(accountId),
         listId: .literal('00000000000000000000000000000001'),
       ),
@@ -5737,7 +5562,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustLists(
-        localName: 'd_zero_trust_lists',
+        'd_zero_trust_lists',
         accountId: .literal(accountId),
         filter: .literal([leftover]),
       ),
@@ -5745,7 +5570,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustNetworkHostnameRoute(
-        localName: 'd_zero_trust_network_hostname_route',
+        'd_zero_trust_network_hostname_route',
         accountId: .literal(accountId),
         hostnameRouteId: .literal('00000000000000000000000000000001'),
       ),
@@ -5753,7 +5578,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustNetworkHostnameRoutes(
-        localName: 'd_zero_trust_network_hostname_routes',
+        'd_zero_trust_network_hostname_routes',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5761,14 +5586,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustOrganization(
-        localName: 'd_zero_trust_organization',
+        'd_zero_trust_organization',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustResourceLibraryApplication(
-        localName: 'd_zero_trust_resource_library_application',
+        'd_zero_trust_resource_library_application',
         accountId: .literal(accountId),
         filter: DataZeroTrustResourceLibraryApplicationFilter(
           fields: .literal(leftover),
@@ -5778,7 +5603,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustResourceLibraryApplications(
-        localName: 'd_zero_trust_resource_library_applications',
+        'd_zero_trust_resource_library_applications',
         accountId: .literal(accountId),
         filter: .literal(leftover),
       ),
@@ -5786,14 +5611,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustResourceLibraryCategories(
-        localName: 'd_zero_trust_resource_library_categories',
+        'd_zero_trust_resource_library_categories',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustResourceLibraryCategory(
-        localName: 'd_zero_trust_resource_library_category',
+        'd_zero_trust_resource_library_category',
         accountId: .literal(accountId),
         id: .literal(200),
       ),
@@ -5801,14 +5626,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustRiskBehavior(
-        localName: 'd_zero_trust_risk_behavior',
+        'd_zero_trust_risk_behavior',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustRiskScoringIntegration(
-        localName: 'd_zero_trust_risk_scoring_integration',
+        'd_zero_trust_risk_scoring_integration',
         integrationId: .literal('00000000000000000000000000000001'),
         accountId: .literal(accountId),
       ),
@@ -5816,14 +5641,14 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustRiskScoringIntegrations(
-        localName: 'd_zero_trust_risk_scoring_integrations',
+        'd_zero_trust_risk_scoring_integrations',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustTunnelCloudflared(
-        localName: 'd_zero_trust_tunnel_cloudflared',
+        'd_zero_trust_tunnel_cloudflared',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5831,7 +5656,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelCloudflaredConfig(
-        localName: 'd_zero_trust_tunnel_cloudflared_config',
+        'd_zero_trust_tunnel_cloudflared_config',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5839,7 +5664,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelCloudflaredRoute(
-        localName: 'd_zero_trust_tunnel_cloudflared_route',
+        'd_zero_trust_tunnel_cloudflared_route',
         accountId: .literal(accountId),
         routeId: .literal('00000000000000000000000000000001'),
       ),
@@ -5847,7 +5672,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelCloudflaredRoutes(
-        localName: 'd_zero_trust_tunnel_cloudflared_routes',
+        'd_zero_trust_tunnel_cloudflared_routes',
         accountId: .literal(accountId),
         routeId: .literal('00000000000000000000000000000001'),
       ),
@@ -5855,7 +5680,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelCloudflaredToken(
-        localName: 'd_zero_trust_tunnel_cloudflared_token',
+        'd_zero_trust_tunnel_cloudflared_token',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5863,7 +5688,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork(
-        localName: 'd_zero_trust_tunnel_cloudflared_virtual_network',
+        'd_zero_trust_tunnel_cloudflared_virtual_network',
         accountId: .literal(accountId),
         virtualNetworkId: .literal('00000000000000000000000000000001'),
       ),
@@ -5871,21 +5696,21 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks(
-        localName: 'd_zero_trust_tunnel_cloudflared_virtual_networks',
+        'd_zero_trust_tunnel_cloudflared_virtual_networks',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustTunnelCloudflareds(
-        localName: 'd_zero_trust_tunnel_cloudflareds',
+        'd_zero_trust_tunnel_cloudflareds',
         accountId: .literal(accountId),
       ),
     );
 
     add(
       DataCloudflareZeroTrustTunnelWarpConnector(
-        localName: 'd_zero_trust_tunnel_warp_connector',
+        'd_zero_trust_tunnel_warp_connector',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5893,7 +5718,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelWarpConnectorConfig(
-        localName: 'd_zero_trust_tunnel_warp_connector_config',
+        'd_zero_trust_tunnel_warp_connector_config',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5901,7 +5726,7 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelWarpConnectorToken(
-        localName: 'd_zero_trust_tunnel_warp_connector_token',
+        'd_zero_trust_tunnel_warp_connector_token',
         accountId: .literal(accountId),
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
@@ -5909,73 +5734,60 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZeroTrustTunnelWarpConnectors(
-        localName: 'd_zero_trust_tunnel_warp_connectors',
+        'd_zero_trust_tunnel_warp_connectors',
         accountId: .literal(accountId),
       ),
     );
 
-    add(DataCloudflareZone(localName: 'd_zone', zoneId: .literal(zoneId)));
+    add(DataCloudflareZone('d_zone', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareZoneAutoOriginTlsKex(
-        localName: 'd_zone_auto_origin_tls_kex',
+        'd_zone_auto_origin_tls_kex',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareZoneCacheReserve(
-        localName: 'd_zone_cache_reserve',
+        'd_zone_cache_reserve',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareZoneCacheVariants(
-        localName: 'd_zone_cache_variants',
+        'd_zone_cache_variants',
         zoneId: .literal(zoneId),
       ),
     );
 
     add(
       DataCloudflareZoneDnsSettings(
-        localName: 'd_zone_dns_settings',
+        'd_zone_dns_settings',
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      DataCloudflareZoneDnssec(
-        localName: 'd_zone_dnssec',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareZoneDnssec('d_zone_dnssec', zoneId: .literal(zoneId)));
 
-    add(
-      DataCloudflareZoneHold(
-        localName: 'd_zone_hold',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareZoneHold('d_zone_hold', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareZoneLockdown(
-        localName: 'd_zone_lockdown',
+        'd_zone_lockdown',
         zoneId: .literal(zoneId),
         lockDownsId: .literal('00000000000000000000000000000001'),
       ),
     );
 
     add(
-      DataCloudflareZoneLockdowns(
-        localName: 'd_zone_lockdowns',
-        zoneId: .literal(zoneId),
-      ),
+      DataCloudflareZoneLockdowns('d_zone_lockdowns', zoneId: .literal(zoneId)),
     );
 
     add(
       DataCloudflareZoneSetting(
-        localName: 'd_zone_setting',
+        'd_zone_setting',
         settingId: .literal('ciphers'),
         zoneId: .literal(zoneId),
       ),
@@ -5983,25 +5795,20 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareZoneSubscription(
-        localName: 'd_zone_subscription',
+        'd_zone_subscription',
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(
-      DataCloudflareZoneTracing(
-        localName: 'd_zone_tracing',
-        zoneId: .literal(zoneId),
-      ),
-    );
+    add(DataCloudflareZoneTracing('d_zone_tracing', zoneId: .literal(zoneId)));
 
     add(
       DataCloudflareZoneTracingRules(
-        localName: 'd_zone_tracing_rules',
+        'd_zone_tracing_rules',
         zoneId: .literal(zoneId),
       ),
     );
 
-    add(DataCloudflareZones(localName: 'd_zones'));
+    add(DataCloudflareZones('d_zones'));
   }
 }

@@ -251,7 +251,7 @@ class BigqueryRoutineSparkOptions {
 /// Example:
 /// ```dart
 /// final addOne = GoogleBigqueryRoutine(
-///   localName: 'add_one',
+///   'add_one',
 ///   datasetId: dataset.ref,
 ///   routineId: TfArg.literal('add_one'),
 ///   routineType: TfArg.literal(BigqueryRoutineType.scalarFunction),
@@ -269,8 +269,8 @@ class BigqueryRoutineSparkOptions {
 final class GoogleBigqueryRoutine extends Resource {
   static const String tfType = 'google_bigquery_routine';
 
-  GoogleBigqueryRoutine({
-    required super.localName,
+  GoogleBigqueryRoutine(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> routineId,
     required TfArg<BigqueryRoutineType> routineType,

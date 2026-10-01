@@ -33,8 +33,8 @@ enum ServicecatalogPortfolioShareType implements TerraformEnum {
 final class AwsServicecatalogPortfolioShare extends Resource {
   static const String tfType = 'aws_servicecatalog_portfolio_share';
 
-  AwsServicecatalogPortfolioShare({
-    required super.localName,
+  AwsServicecatalogPortfolioShare(
+    super.localName, {
     TfArg<ServicecatalogPortfolioShareAcceptLanguage>? acceptLanguage,
     required TfArg<String> portfolioId,
     required TfArg<String> principalId,

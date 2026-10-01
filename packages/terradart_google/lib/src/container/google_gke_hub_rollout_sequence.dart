@@ -84,8 +84,8 @@ final class GkeHubRolloutSequenceClusterSelector {
 final class GoogleGkeHubRolloutSequence extends Resource {
   static const String tfType = 'google_gke_hub_rollout_sequence';
 
-  GoogleGkeHubRolloutSequence({
-    required super.localName,
+  GoogleGkeHubRolloutSequence(
+    super.localName, {
     required TfArg<String> rolloutSequenceId,
     required List<GkeHubRolloutSequenceStages> stages,
     TfArg<String>? displayName,

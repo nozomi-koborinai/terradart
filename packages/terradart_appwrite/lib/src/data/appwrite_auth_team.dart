@@ -14,8 +14,8 @@ const Set<String> _appwriteAuthTeamSensitive = <String>{};
 final class DataAppwriteAuthTeam extends Data {
   static const String tfType = 'appwrite_auth_team';
 
-  DataAppwriteAuthTeam({
-    required super.localName,
+  DataAppwriteAuthTeam(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

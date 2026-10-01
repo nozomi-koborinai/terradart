@@ -30,8 +30,8 @@ final class DataEc2TransitGatewayVpcAttachmentsFilter {
 final class DataAwsEc2TransitGatewayVpcAttachments extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_vpc_attachments';
 
-  DataAwsEc2TransitGatewayVpcAttachments({
-    required super.localName,
+  DataAwsEc2TransitGatewayVpcAttachments(
+    super.localName, {
     TfArg<String>? region,
     List<DataEc2TransitGatewayVpcAttachmentsFilter>? filter,
     super.provider,

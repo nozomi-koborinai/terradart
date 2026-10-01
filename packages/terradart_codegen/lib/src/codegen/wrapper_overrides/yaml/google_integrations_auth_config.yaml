@@ -32,7 +32,7 @@ curatedDoc: |-
   /// Example (dummy username/password — not a real secret):
   /// ```dart
   /// GoogleIntegrationsAuthConfig(
-  ///   localName: 'auth_config',
+  ///   'auth_config',
   ///   displayName: TfArg.literal('terradart-dummy-basic'),
   ///   location: TfArg.literal('us-east1'),
   ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(

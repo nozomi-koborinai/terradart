@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageInsightsReportConfig(
-  ///   localName: 'inventory',
+  ///   'inventory',
   ///   location: TfArg.literal('asia-northeast1'),
   ///   displayName: TfArg.literal('terradart-inventory'),
   ///   forceDestroy: TfArg.literal(true),

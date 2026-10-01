@@ -37,8 +37,8 @@ final class KmsKeyRingIamMemberCondition {
 final class GoogleKmsKeyRingIamMember extends Resource {
   static const String tfType = 'google_kms_key_ring_iam_member';
 
-  GoogleKmsKeyRingIamMember({
-    required super.localName,
+  GoogleKmsKeyRingIamMember(
+    super.localName, {
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> role,
     required IamPrincipal member,

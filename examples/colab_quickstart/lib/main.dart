@@ -28,7 +28,7 @@ final class ColabStack extends Stack {
 
     final apiAi = add(
       GoogleProjectService(
-        localName: 'api_aiplatform',
+        'api_aiplatform',
         service: .literal('aiplatform.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -36,7 +36,7 @@ final class ColabStack extends Stack {
 
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -44,7 +44,7 @@ final class ColabStack extends Stack {
 
     final apiStorage = add(
       GoogleProjectService(
-        localName: 'api_storage',
+        'api_storage',
         service: .literal('storage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -54,7 +54,7 @@ final class ColabStack extends Stack {
     // explicit network + subnet (default network returns 404).
     final network = add(
       GoogleComputeNetwork(
-        localName: 'colab_vpc',
+        'colab_vpc',
         name: .literal('terradart-colab-vpc'),
         autoCreateSubnetworks: .literal(false),
         dependsOn: [apiCompute],
@@ -63,7 +63,7 @@ final class ColabStack extends Stack {
 
     final subnet = add(
       GoogleComputeSubnetwork(
-        localName: 'colab_subnet',
+        'colab_subnet',
         name: .literal('terradart-colab-subnet'),
         region: .literal(location),
         network: network.ref,
@@ -75,7 +75,7 @@ final class ColabStack extends Stack {
 
     final runner = add(
       GoogleServiceAccount(
-        localName: 'colab_runner',
+        'colab_runner',
         accountId: .literal('terradart-colab-runner'),
         displayName: .literal('Colab schedule runner'),
       ),
@@ -86,7 +86,7 @@ final class ColabStack extends Stack {
     // stable id that is unlikely to collide with a soft-deleted prior name.
     final template = add(
       GoogleColabRuntimeTemplate(
-        localName: 'basic',
+        'basic',
         name: .literal('terradart-colab-rt'),
         displayName: .literal('TerraDart Colab runtime template'),
         location: .literal(location),
@@ -104,7 +104,7 @@ final class ColabStack extends Stack {
 
     add(
       GoogleColabRuntimeTemplateIamMember(
-        localName: 'runner_viewer',
+        'runner_viewer',
         runtimeTemplate: template.ref,
         role: .literal('roles/viewer'),
         member: runner.principal,
@@ -114,7 +114,7 @@ final class ColabStack extends Stack {
 
     final bucket = add(
       GoogleStorageBucket(
-        localName: 'colab_io',
+        'colab_io',
         name: .literal(bucketName),
         location: .literal('US-CENTRAL1'),
         forceDestroy: .literal(true),
@@ -125,7 +125,7 @@ final class ColabStack extends Stack {
 
     final notebook = add(
       GoogleStorageBucketObject(
-        localName: 'hello_ipynb',
+        'hello_ipynb',
         bucket: bucket.ref,
         name: .literal('hello_world.ipynb'),
         body: .source(source: .literal('../hello_world.ipynb')),
@@ -140,7 +140,7 @@ final class ColabStack extends Stack {
 
     add(
       GoogleColabSchedule(
-        localName: 'paused_hello',
+        'paused_hello',
         displayName: .literal('terradart-paused-hello'),
         location: .literal(location),
         cron: .literal('0 0 1 1 *'),

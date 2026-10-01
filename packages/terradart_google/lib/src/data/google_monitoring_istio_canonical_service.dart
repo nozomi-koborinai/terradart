@@ -13,8 +13,8 @@ const Set<String> _googleMonitoringIstioCanonicalServiceSensitive = <String>{};
 final class DataGoogleMonitoringIstioCanonicalService extends Data {
   static const String tfType = 'google_monitoring_istio_canonical_service';
 
-  DataGoogleMonitoringIstioCanonicalService({
-    required super.localName,
+  DataGoogleMonitoringIstioCanonicalService(
+    super.localName, {
     required TfArg<String> canonicalService,
     required TfArg<String> canonicalServiceNamespace,
     required TfArg<String> meshUid,

@@ -14,8 +14,8 @@ final class AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter
   static const String tfType =
       'aws_networkfirewall_firewall_transit_gateway_attachment_accepter';
 
-  AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter({
-    required super.localName,
+  AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> transitGatewayAttachmentId,
     super.lifecycle,

@@ -25,8 +25,8 @@ enum IotLoggingOptionsDefaultLogLevel implements TerraformEnum {
 final class AwsIotLoggingOptions extends Resource {
   static const String tfType = 'aws_iot_logging_options';
 
-  AwsIotLoggingOptions({
-    required super.localName,
+  AwsIotLoggingOptions(
+    super.localName, {
     required TfArg<IotLoggingOptionsDefaultLogLevel> defaultLogLevel,
     TfArg<bool>? disableAllLogs,
     TfArg<String>? region,

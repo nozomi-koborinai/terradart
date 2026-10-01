@@ -10,8 +10,8 @@ const Set<String> _awsCognitoUserPoolDomainSensitive = <String>{};
 final class AwsCognitoUserPoolDomain extends Resource {
   static const String tfType = 'aws_cognito_user_pool_domain';
 
-  AwsCognitoUserPoolDomain({
-    required super.localName,
+  AwsCognitoUserPoolDomain(
+    super.localName, {
     TfArg<String>? certificateArn,
     required TfArg<String> domain,
     TfArg<num>? managedLoginVersion,

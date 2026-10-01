@@ -10,8 +10,8 @@ const Set<String> _awsLicensemanagerAssociationSensitive = <String>{};
 final class AwsLicensemanagerAssociation extends Resource {
   static const String tfType = 'aws_licensemanager_association';
 
-  AwsLicensemanagerAssociation({
-    required super.localName,
+  AwsLicensemanagerAssociation(
+    super.localName, {
     required TfArg<String> licenseConfigurationArn,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

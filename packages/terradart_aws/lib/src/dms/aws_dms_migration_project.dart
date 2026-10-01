@@ -76,8 +76,8 @@ final class DmsMigrationProjectTargetDataProviderDescriptor {
 final class AwsDmsMigrationProject extends Resource {
   static const String tfType = 'aws_dms_migration_project';
 
-  AwsDmsMigrationProject({
-    required super.localName,
+  AwsDmsMigrationProject(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> instanceProfileArn,
     TfArg<String>? name,

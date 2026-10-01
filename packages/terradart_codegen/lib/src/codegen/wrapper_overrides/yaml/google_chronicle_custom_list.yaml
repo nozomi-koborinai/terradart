@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleChronicleCustomList(
-  ///   localName: 'approved_files',
+  ///   'approved_files',
   ///   location: TfArg.literal('us'),
   ///   instance: TfArg.literal('00000000-0000-0000-0000-000000000000'),
   ///   entityIdentifier: TfArg.literal('filename.bin'),

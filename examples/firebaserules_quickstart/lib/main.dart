@@ -22,7 +22,7 @@ final class FirebaserulesStack extends Stack {
       ) {
     final apiRules = add(
       GoogleProjectService(
-        localName: 'api_firebaserules',
+        'api_firebaserules',
         service: .literal('firebaserules.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class FirebaserulesStack extends Stack {
 
     add(
       GoogleFirebaserulesRuleset(
-        localName: 'deny_all',
+        'deny_all',
         deletionPolicy: .literal('DELETE'),
         source: FirebaserulesRulesetSource(
           files: [

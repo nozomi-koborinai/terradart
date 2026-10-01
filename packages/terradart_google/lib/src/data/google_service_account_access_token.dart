@@ -15,8 +15,8 @@ const Set<String> _googleServiceAccountAccessTokenSensitive = <String>{
 final class DataGoogleServiceAccountAccessToken extends Data {
   static const String tfType = 'google_service_account_access_token';
 
-  DataGoogleServiceAccountAccessToken({
-    required super.localName,
+  DataGoogleServiceAccountAccessToken(
+    super.localName, {
     TfArg<List<String>>? delegates,
     TfArg<String>? lifetime,
     required TfArg<List<String>> scopes,

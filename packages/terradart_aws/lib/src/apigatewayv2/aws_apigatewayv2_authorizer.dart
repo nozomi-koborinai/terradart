@@ -47,8 +47,8 @@ final class Apigatewayv2AuthorizerJwtConfiguration {
 final class AwsApigatewayv2Authorizer extends Resource {
   static const String tfType = 'aws_apigatewayv2_authorizer';
 
-  AwsApigatewayv2Authorizer({
-    required super.localName,
+  AwsApigatewayv2Authorizer(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? authorizerCredentialsArn,
     TfArg<Apigatewayv2AuthorizerPayloadFormatVersion>?

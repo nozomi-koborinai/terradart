@@ -25,8 +25,8 @@ const Set<String> _googleComputeFirewallPolicyAssociationSensitive = <String>{};
 final class GoogleComputeFirewallPolicyAssociation extends Resource {
   static const String tfType = 'google_compute_firewall_policy_association';
 
-  GoogleComputeFirewallPolicyAssociation({
-    required super.localName,
+  GoogleComputeFirewallPolicyAssociation(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<String> attachmentTarget,

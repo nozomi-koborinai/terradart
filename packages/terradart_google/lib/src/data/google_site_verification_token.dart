@@ -13,8 +13,8 @@ const Set<String> _googleSiteVerificationTokenSensitive = <String>{};
 final class DataGoogleSiteVerificationToken extends Data {
   static const String tfType = 'google_site_verification_token';
 
-  DataGoogleSiteVerificationToken({
-    required super.localName,
+  DataGoogleSiteVerificationToken(
+    super.localName, {
     required TfArg<String> identifier,
     required TfArg<String> type,
     required TfArg<String> verificationMethod,

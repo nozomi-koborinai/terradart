@@ -42,8 +42,8 @@ final class DnsResponsePolicyNetworks {
 final class GoogleDnsResponsePolicy extends Resource {
   static const String tfType = 'google_dns_response_policy';
 
-  GoogleDnsResponsePolicy({
-    required super.localName,
+  GoogleDnsResponsePolicy(
+    super.localName, {
     required TfArg<String> responsePolicyName,
     TfArg<String>? description,
     TfArg<String>? project,

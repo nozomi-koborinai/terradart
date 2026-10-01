@@ -16,8 +16,8 @@ const Set<String> _cloudflareSsoConnectorSensitive = <String>{};
 final class CloudflareSsoConnector extends Resource {
   static const String tfType = 'cloudflare_sso_connector';
 
-  CloudflareSsoConnector({
-    required super.localName,
+  CloudflareSsoConnector(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? beginVerification,
     required TfArg<String> emailDomain,

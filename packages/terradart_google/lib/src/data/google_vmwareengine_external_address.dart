@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineExternalAddressSensitive = <String>{};
 final class DataGoogleVmwareengineExternalAddress extends Data {
   static const String tfType = 'google_vmwareengine_external_address';
 
-  DataGoogleVmwareengineExternalAddress({
-    required super.localName,
+  DataGoogleVmwareengineExternalAddress(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     super.provider,

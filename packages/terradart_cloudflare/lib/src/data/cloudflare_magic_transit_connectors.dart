@@ -15,8 +15,8 @@ const Set<String> _cloudflareMagicTransitConnectorsSensitive = <String>{};
 final class DataCloudflareMagicTransitConnectors extends Data {
   static const String tfType = 'cloudflare_magic_transit_connectors';
 
-  DataCloudflareMagicTransitConnectors({
-    required super.localName,
+  DataCloudflareMagicTransitConnectors(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? deviceType,
     TfArg<num>? maxItems,

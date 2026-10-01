@@ -26,15 +26,15 @@ const Set<String> _googleCertificateManagerCertificateMapSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final certMap = GoogleCertificateManagerCertificateMap(
-///   localName: 'app_map',
+///   'app_map',
 ///   name: TfArg.literal('app-cert-map'),
 /// );
 /// ```
 final class GoogleCertificateManagerCertificateMap extends Resource {
   static const String tfType = 'google_certificate_manager_certificate_map';
 
-  GoogleCertificateManagerCertificateMap({
-    required super.localName,
+  GoogleCertificateManagerCertificateMap(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

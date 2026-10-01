@@ -42,8 +42,8 @@ final class PubsubSubscriptionIamMemberCondition {
 final class GooglePubsubSubscriptionIamMember extends Resource {
   static const String tfType = 'google_pubsub_subscription_iam_member';
 
-  GooglePubsubSubscriptionIamMember({
-    required super.localName,
+  GooglePubsubSubscriptionIamMember(
+    super.localName, {
     required RefTo<GooglePubsubSubscription> subscription,
     required TfArg<String> role,
     required IamPrincipal member,

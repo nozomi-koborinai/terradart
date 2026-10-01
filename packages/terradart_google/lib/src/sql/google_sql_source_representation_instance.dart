@@ -18,8 +18,8 @@ const Set<String> _googleSqlSourceRepresentationInstanceSensitive = <String>{
 final class GoogleSqlSourceRepresentationInstance extends Resource {
   static const String tfType = 'google_sql_source_representation_instance';
 
-  GoogleSqlSourceRepresentationInstance({
-    required super.localName,
+  GoogleSqlSourceRepresentationInstance(
+    super.localName, {
     TfArg<String>? caCertificate,
     TfArg<String>? clientCertificate,
     TfArg<String>? clientKey,

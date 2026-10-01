@@ -193,8 +193,8 @@ final class BedrockagentcoreOnlineEvaluationConfigSessionConfig {
 final class AwsBedrockagentcoreOnlineEvaluationConfig extends Resource {
   static const String tfType = 'aws_bedrockagentcore_online_evaluation_config';
 
-  AwsBedrockagentcoreOnlineEvaluationConfig({
-    required super.localName,
+  AwsBedrockagentcoreOnlineEvaluationConfig(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<bool> enableOnCreate,
     required TfArg<String> evaluationExecutionRoleArn,

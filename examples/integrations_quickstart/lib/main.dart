@@ -36,21 +36,21 @@ final class IntegrationsStack extends Stack {
     // alone reports enabled.
     final apiIntegrations = add(
       GoogleProjectService(
-        localName: 'api_integrations',
+        'api_integrations',
         service: .literal('integrations.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiSecretManager = add(
       GoogleProjectService(
-        localName: 'api_secretmanager',
+        'api_secretmanager',
         service: .literal('secretmanager.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiConnectors = add(
       GoogleProjectService(
-        localName: 'api_connectors',
+        'api_connectors',
         service: .literal('connectors.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -58,7 +58,7 @@ final class IntegrationsStack extends Stack {
 
     final apiWait = add(
       TimeSleep(
-        localName: 'api_propagation',
+        'api_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 60)),
         dependsOn: [apiIntegrations, apiSecretManager, apiConnectors],
       ),
@@ -66,7 +66,7 @@ final class IntegrationsStack extends Stack {
 
     final client = add(
       GoogleIntegrationsClient(
-        localName: 'client',
+        'client',
         location: .literal('us-east1'),
         dependsOn: [apiWait],
       ),
@@ -74,7 +74,7 @@ final class IntegrationsStack extends Stack {
 
     add(
       GoogleIntegrationsAuthConfig(
-        localName: 'auth_config',
+        'auth_config',
         displayName: .literal('terradart-dummy-basic'),
         location: .literal('us-east1'),
         description: .literal(

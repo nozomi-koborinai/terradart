@@ -110,7 +110,7 @@ final class FirebaseAppHostingBuildContainer {
 /// Example (build from a git branch HEAD):
 /// ```dart
 /// final build = GoogleFirebaseAppHostingBuild(
-///   localName: 'v1',
+///   'v1',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
@@ -124,7 +124,7 @@ final class FirebaseAppHostingBuildContainer {
 /// Example (build from a prebuilt image):
 /// ```dart
 /// final build = GoogleFirebaseAppHostingBuild(
-///   localName: 'v1',
+///   'v1',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
@@ -145,8 +145,8 @@ final class FirebaseAppHostingBuildContainer {
 final class GoogleFirebaseAppHostingBuild extends Resource {
   static const String tfType = 'google_firebase_app_hosting_build';
 
-  GoogleFirebaseAppHostingBuild({
-    required super.localName,
+  GoogleFirebaseAppHostingBuild(
+    super.localName, {
     required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required TfArg<String> buildId,

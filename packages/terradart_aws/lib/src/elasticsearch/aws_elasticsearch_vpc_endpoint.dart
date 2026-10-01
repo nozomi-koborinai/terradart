@@ -33,8 +33,8 @@ final class ElasticsearchVpcEndpointVpcOptions {
 final class AwsElasticsearchVpcEndpoint extends Resource {
   static const String tfType = 'aws_elasticsearch_vpc_endpoint';
 
-  AwsElasticsearchVpcEndpoint({
-    required super.localName,
+  AwsElasticsearchVpcEndpoint(
+    super.localName, {
     required TfArg<String> domainArn,
     TfArg<String>? region,
     required ElasticsearchVpcEndpointVpcOptions vpcOptions,

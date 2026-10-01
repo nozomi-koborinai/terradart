@@ -175,8 +175,8 @@ final class SccFolderCustomModuleResourceSelector {
 final class GoogleSccFolderCustomModule extends Resource {
   static const String tfType = 'google_scc_folder_custom_module';
 
-  GoogleSccFolderCustomModule({
-    required super.localName,
+  GoogleSccFolderCustomModule(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required TfArg<SccFolderCustomModuleEnablementState> enablementState,

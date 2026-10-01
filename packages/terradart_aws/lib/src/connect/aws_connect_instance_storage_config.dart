@@ -185,8 +185,8 @@ final class ConnectInstanceStorageConfigS3Config {
 final class AwsConnectInstanceStorageConfig extends Resource {
   static const String tfType = 'aws_connect_instance_storage_config';
 
-  AwsConnectInstanceStorageConfig({
-    required super.localName,
+  AwsConnectInstanceStorageConfig(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required TfArg<ConnectInstanceStorageConfigResourceType> resourceType,

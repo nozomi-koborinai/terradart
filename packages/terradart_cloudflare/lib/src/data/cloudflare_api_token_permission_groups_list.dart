@@ -14,8 +14,8 @@ const Set<String> _cloudflareApiTokenPermissionGroupsListSensitive = <String>{};
 final class DataCloudflareApiTokenPermissionGroupsList extends Data {
   static const String tfType = 'cloudflare_api_token_permission_groups_list';
 
-  DataCloudflareApiTokenPermissionGroupsList({
-    required super.localName,
+  DataCloudflareApiTokenPermissionGroupsList(
+    super.localName, {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     TfArg<String>? scope,

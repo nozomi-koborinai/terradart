@@ -73,8 +73,8 @@ final class EipAssociationTargetNetworkInterfaceId
 final class AwsEipAssociation extends Resource {
   static const String tfType = 'aws_eip_association';
 
-  AwsEipAssociation({
-    required super.localName,
+  AwsEipAssociation(
+    super.localName, {
     TfArg<String>? allocationId,
     TfArg<bool>? allowReassociation,
     required EipAssociationTarget target,

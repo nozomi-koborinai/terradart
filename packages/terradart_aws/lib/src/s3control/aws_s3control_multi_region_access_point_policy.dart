@@ -31,8 +31,8 @@ final class S3controlMultiRegionAccessPointPolicyDetails {
 final class AwsS3controlMultiRegionAccessPointPolicy extends Resource {
   static const String tfType = 'aws_s3control_multi_region_access_point_policy';
 
-  AwsS3controlMultiRegionAccessPointPolicy({
-    required super.localName,
+  AwsS3controlMultiRegionAccessPointPolicy(
+    super.localName, {
     TfArg<String>? accountId,
     TfArg<String>? region,
     required S3controlMultiRegionAccessPointPolicyDetails details,

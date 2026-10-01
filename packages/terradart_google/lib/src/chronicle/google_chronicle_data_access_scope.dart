@@ -101,8 +101,8 @@ final class ChronicleDataAccessScopeDeniedDataAccessLabels {
 final class GoogleChronicleDataAccessScope extends Resource {
   static const String tfType = 'google_chronicle_data_access_scope';
 
-  GoogleChronicleDataAccessScope({
-    required super.localName,
+  GoogleChronicleDataAccessScope(
+    super.localName, {
     required TfArg<String> dataAccessScopeId,
     required TfArg<String> location,
     required TfArg<String> instance,

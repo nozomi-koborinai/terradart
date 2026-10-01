@@ -10,8 +10,8 @@ const Set<String> _googleTagsTagBindingCollectionSensitive = <String>{};
 final class GoogleTagsTagBindingCollection extends Resource {
   static const String tfType = 'google_tags_tag_binding_collection';
 
-  GoogleTagsTagBindingCollection({
-    required super.localName,
+  GoogleTagsTagBindingCollection(
+    super.localName, {
     required TfArg<String> fullResourceName,
     TfArg<String>? location,
     required TfArg<Map<String, String>> tags,

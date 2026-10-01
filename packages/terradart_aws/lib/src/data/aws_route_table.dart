@@ -30,8 +30,8 @@ final class DataRouteTableFilter {
 final class DataAwsRouteTable extends Data {
   static const String tfType = 'aws_route_table';
 
-  DataAwsRouteTable({
-    required super.localName,
+  DataAwsRouteTable(
+    super.localName, {
     TfArg<String>? gatewayId,
     TfArg<String>? region,
     TfArg<String>? routeTableId,

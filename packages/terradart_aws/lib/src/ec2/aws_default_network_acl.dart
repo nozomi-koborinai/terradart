@@ -107,8 +107,8 @@ final class DefaultNetworkAclIngress {
 final class AwsDefaultNetworkAcl extends Resource {
   static const String tfType = 'aws_default_network_acl';
 
-  AwsDefaultNetworkAcl({
-    required super.localName,
+  AwsDefaultNetworkAcl(
+    super.localName, {
     required TfArg<String> defaultNetworkAclId,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,

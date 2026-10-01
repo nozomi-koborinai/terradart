@@ -44,8 +44,8 @@ final class StreamPublicDetails {
 final class CloudflareStream extends Resource {
   static const String tfType = 'cloudflare_stream';
 
-  CloudflareStream({
-    required super.localName,
+  CloudflareStream(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? allowedOrigins,
     TfArg<String>? creator,

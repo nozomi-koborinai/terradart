@@ -127,8 +127,8 @@ enum TokenValidationConfigKty implements TerraformEnum {
 final class CloudflareTokenValidationConfig extends Resource {
   static const String tfType = 'cloudflare_token_validation_config';
 
-  CloudflareTokenValidationConfig({
-    required super.localName,
+  CloudflareTokenValidationConfig(
+    super.localName, {
     required TfArg<String> description,
     required TfArg<String> title,
     required TfArg<List<String>> tokenSources,

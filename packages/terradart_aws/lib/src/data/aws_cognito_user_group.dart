@@ -11,8 +11,8 @@ const Set<String> _awsCognitoUserGroupSensitive = <String>{};
 final class DataAwsCognitoUserGroup extends Data {
   static const String tfType = 'aws_cognito_user_group';
 
-  DataAwsCognitoUserGroup({
-    required super.localName,
+  DataAwsCognitoUserGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> userPoolId,

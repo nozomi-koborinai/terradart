@@ -42,8 +42,8 @@ final class S3tablesTableReplicationDestination {
 final class AwsS3tablesTableReplication extends Resource {
   static const String tfType = 'aws_s3tables_table_replication';
 
-  AwsS3tablesTableReplication({
-    required super.localName,
+  AwsS3tablesTableReplication(
+    super.localName, {
     TfArg<String>? region,
     required RefTo<AwsIamRole> role,
     required TfArg<String> tableArn,

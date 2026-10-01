@@ -10,8 +10,8 @@ const Set<String> _awsDatapipelinePipelineSensitive = <String>{};
 final class AwsDatapipelinePipeline extends Resource {
   static const String tfType = 'aws_datapipeline_pipeline';
 
-  AwsDatapipelinePipeline({
-    required super.localName,
+  AwsDatapipelinePipeline(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

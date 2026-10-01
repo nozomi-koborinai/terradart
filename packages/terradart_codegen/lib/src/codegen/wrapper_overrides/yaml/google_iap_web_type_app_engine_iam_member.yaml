@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIapWebTypeAppEngineIamMember(
-  ///   localName: 'app_invoker',
+  ///   'app_invoker',
   ///   appId: TfArg.literal(projectId),
   ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
   ///   member: sa.principal,

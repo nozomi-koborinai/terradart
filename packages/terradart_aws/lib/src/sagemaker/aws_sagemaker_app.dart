@@ -305,8 +305,8 @@ enum SagemakerAppInstanceType implements TerraformEnum {
 final class AwsSagemakerApp extends Resource {
   static const String tfType = 'aws_sagemaker_app';
 
-  AwsSagemakerApp({
-    required super.localName,
+  AwsSagemakerApp(
+    super.localName, {
     required TfArg<String> appName,
     required TfArg<SagemakerAppType> appType,
     required TfArg<String> domainId,

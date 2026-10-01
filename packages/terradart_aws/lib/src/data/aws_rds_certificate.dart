@@ -11,8 +11,8 @@ const Set<String> _awsRdsCertificateSensitive = <String>{};
 final class DataAwsRdsCertificate extends Data {
   static const String tfType = 'aws_rds_certificate';
 
-  DataAwsRdsCertificate({
-    required super.localName,
+  DataAwsRdsCertificate(
+    super.localName, {
     TfArg<bool>? defaultForNewLaunches,
     TfArg<bool>? latestValidTill,
     TfArg<String>? region,

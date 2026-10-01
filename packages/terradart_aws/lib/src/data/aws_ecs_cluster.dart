@@ -11,8 +11,8 @@ const Set<String> _awsEcsClusterSensitive = <String>{};
 final class DataAwsEcsCluster extends Data {
   static const String tfType = 'aws_ecs_cluster';
 
-  DataAwsEcsCluster({
-    required super.localName,
+  DataAwsEcsCluster(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

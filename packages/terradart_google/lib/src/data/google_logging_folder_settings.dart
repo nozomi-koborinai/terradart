@@ -14,8 +14,8 @@ const Set<String> _googleLoggingFolderSettingsSensitive = <String>{};
 final class DataGoogleLoggingFolderSettings extends Data {
   static const String tfType = 'google_logging_folder_settings';
 
-  DataGoogleLoggingFolderSettings({
-    required super.localName,
+  DataGoogleLoggingFolderSettings(
+    super.localName, {
     required TfArg<String> folder,
     super.provider,
     super.timeouts,

@@ -887,8 +887,8 @@ final class CloudfrontDistributionTrustStoreConfig {
 final class AwsCloudfrontDistribution extends Resource {
   static const String tfType = 'aws_cloudfront_distribution';
 
-  AwsCloudfrontDistribution({
-    required super.localName,
+  AwsCloudfrontDistribution(
+    super.localName, {
     TfArg<List<String>>? aliases,
     TfArg<String>? anycastIpListId,
     TfArg<String>? comment,

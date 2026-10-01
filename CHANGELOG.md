@@ -10,6 +10,10 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **The local name is the first argument** (every provider package,
+  `terradart_core`, `terradart_time`, `terradart_codegen`,
+  `terradart_migrate`) — `GooglePubsubTopic('orders', name: ...)`,
+  `AwsIamRole('hello', ...)`, `ModuleCall('network', source: ...)`.
 - **`add` registers data sources** (`terradart_core`, `terradart_migrate`)
   — `add(DataGoogleProject(...))`; `addData` is removed.
 - **`dependsOn` takes the blocks** (`terradart_core`, `terradart_google`,

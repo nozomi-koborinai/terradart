@@ -11,8 +11,8 @@ const Set<String> _awsCloudwatchLogGroupSensitive = <String>{};
 final class DataAwsCloudwatchLogGroup extends Data {
   static const String tfType = 'aws_cloudwatch_log_group';
 
-  DataAwsCloudwatchLogGroup({
-    required super.localName,
+  DataAwsCloudwatchLogGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

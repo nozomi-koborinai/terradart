@@ -10,8 +10,8 @@ const Set<String> _awsSnsSmsPreferencesSensitive = <String>{};
 final class AwsSnsSmsPreferences extends Resource {
   static const String tfType = 'aws_sns_sms_preferences';
 
-  AwsSnsSmsPreferences({
-    required super.localName,
+  AwsSnsSmsPreferences(
+    super.localName, {
     TfArg<String>? defaultSenderId,
     TfArg<String>? defaultSmsType,
     TfArg<String>? deliveryStatusIamRoleArn,

@@ -25,8 +25,8 @@ enum AmplifyBranchStage implements TerraformEnum {
 final class AwsAmplifyBranch extends Resource {
   static const String tfType = 'aws_amplify_branch';
 
-  AwsAmplifyBranch({
-    required super.localName,
+  AwsAmplifyBranch(
+    super.localName, {
     required TfArg<String> appId,
     TfArg<String>? backendEnvironmentArn,
     TfArg<String>? basicAuthCredentials,

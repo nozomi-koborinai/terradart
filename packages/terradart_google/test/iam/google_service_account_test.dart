@@ -10,7 +10,7 @@ void main() {
   group('GoogleServiceAccount', () {
     test('localName + accountId produce minimal argMap', () {
       final sa = GoogleServiceAccount(
-        localName: 'publisher',
+        'publisher',
         accountId: TfArg.literal('orders-publisher'),
       );
       expect(sa.terraformType, equals('google_service_account'));
@@ -22,7 +22,7 @@ void main() {
 
     test('project parameter threads through', () {
       final sa = GoogleServiceAccount(
-        localName: 'sa',
+        'sa',
         accountId: TfArg.literal('runner'),
         project: TfArg.literal('my-project'),
       );
@@ -31,7 +31,7 @@ void main() {
 
     test('displayName / description survive snake_case keying', () {
       final sa = GoogleServiceAccount(
-        localName: 'sa',
+        'sa',
         accountId: TfArg.literal('runner'),
         displayName: TfArg.literal('Build runner'),
         description: TfArg.literal('CI build runner SA'),
@@ -48,7 +48,7 @@ void main() {
 
     test('createIgnoreAlreadyExists / disabled survive snake_case keying', () {
       final sa = GoogleServiceAccount(
-        localName: 'sa',
+        'sa',
         accountId: TfArg.literal('runner'),
         createIgnoreAlreadyExists: TfArg.literal(true),
         disabled: TfArg.literal(false),
@@ -63,7 +63,7 @@ void main() {
 
     test('lifecycle prevent_destroy threads through to Resource', () {
       final sa = GoogleServiceAccount(
-        localName: 'sa',
+        'sa',
         accountId: TfArg.literal('runner'),
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
@@ -73,7 +73,7 @@ void main() {
     test('id / email / name / uniqueId / member produce stable TfRef '
         'interpolations', () {
       final sa = GoogleServiceAccount(
-        localName: 'publisher',
+        'publisher',
         accountId: TfArg.literal('orders-publisher'),
       );
       expect(
@@ -99,18 +99,12 @@ void main() {
     });
 
     test('sensitiveFields exposes generated set (empty for SA)', () {
-      final sa = GoogleServiceAccount(
-        localName: 'sa',
-        accountId: TfArg.literal('runner'),
-      );
+      final sa = GoogleServiceAccount('sa', accountId: TfArg.literal('runner'));
       expect(sa.sensitiveFields, isEmpty);
     });
 
     test('tfType constant matches terraformType', () {
-      final sa = GoogleServiceAccount(
-        localName: 'sa',
-        accountId: TfArg.literal('runner'),
-      );
+      final sa = GoogleServiceAccount('sa', accountId: TfArg.literal('runner'));
       expect(GoogleServiceAccount.tfType, equals('google_service_account'));
       expect(sa.terraformType, equals(GoogleServiceAccount.tfType));
     });

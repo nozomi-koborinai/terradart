@@ -87,8 +87,8 @@ final class SecretsmanagerSecretReplica {
 final class AwsSecretsmanagerSecret extends Resource {
   static const String tfType = 'aws_secretsmanager_secret';
 
-  AwsSecretsmanagerSecret({
-    required super.localName,
+  AwsSecretsmanagerSecret(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? forceOverwriteReplicaSecret,
     RefTo<AwsKmsKey>? kmsKeyId,

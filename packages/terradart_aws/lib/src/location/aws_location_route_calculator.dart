@@ -10,8 +10,8 @@ const Set<String> _awsLocationRouteCalculatorSensitive = <String>{};
 final class AwsLocationRouteCalculator extends Resource {
   static const String tfType = 'aws_location_route_calculator';
 
-  AwsLocationRouteCalculator({
-    required super.localName,
+  AwsLocationRouteCalculator(
+    super.localName, {
     required TfArg<String> calculatorName,
     required TfArg<String> dataSource,
     TfArg<String>? description,

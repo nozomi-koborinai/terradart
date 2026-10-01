@@ -10,8 +10,8 @@ const Set<String> _awsDatasyncAgentSensitive = <String>{};
 final class AwsDatasyncAgent extends Resource {
   static const String tfType = 'aws_datasync_agent';
 
-  AwsDatasyncAgent({
-    required super.localName,
+  AwsDatasyncAgent(
+    super.localName, {
     TfArg<String>? activationKey,
     TfArg<String>? ipAddress,
     TfArg<String>? name,

@@ -79,7 +79,7 @@ final class AppEngineApplicationIap {
 /// Example (Native Firestore-backed app in us-central):
 /// ```dart
 /// final app = GoogleAppEngineApplication(
-///   localName: 'app',
+///   'app',
 ///   locationId: TfArg.literal('us-central'),
 ///   databaseType: TfArg.literal(AppEngineDatabaseType.cloudFirestore),
 /// );
@@ -87,8 +87,8 @@ final class AppEngineApplicationIap {
 final class GoogleAppEngineApplication extends Resource {
   static const String tfType = 'google_app_engine_application';
 
-  GoogleAppEngineApplication({
-    required super.localName,
+  GoogleAppEngineApplication(
+    super.localName, {
     required TfArg<String> locationId,
     TfArg<AppEngineDatabaseType>? databaseType,
     TfArg<AppEngineServingStatus>? servingStatus,

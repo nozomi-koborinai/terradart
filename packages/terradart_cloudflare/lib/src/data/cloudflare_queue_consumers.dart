@@ -16,8 +16,8 @@ const Set<String> _cloudflareQueueConsumersSensitive = <String>{};
 final class DataCloudflareQueueConsumers extends Data {
   static const String tfType = 'cloudflare_queue_consumers';
 
-  DataCloudflareQueueConsumers({
-    required super.localName,
+  DataCloudflareQueueConsumers(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     required TfArg<String> queueId,

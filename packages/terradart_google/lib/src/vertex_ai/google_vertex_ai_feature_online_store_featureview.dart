@@ -217,7 +217,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
 /// Example (Feature Registry source):
 /// ```dart
 /// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
-///   localName: 'fv',
+///   'fv',
 ///   featureOnlineStore: fos.name,
 ///   name: .literal('customer_view'),
 ///   region: .literal('us-central1'),
@@ -237,8 +237,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureview extends Resource {
   static const String tfType =
       'google_vertex_ai_feature_online_store_featureview';
 
-  GoogleVertexAiFeatureOnlineStoreFeatureview({
-    required super.localName,
+  GoogleVertexAiFeatureOnlineStoreFeatureview(
+    super.localName, {
     required TfArg<String> featureOnlineStore,
     TfArg<String>? name,
     TfArg<String>? region,

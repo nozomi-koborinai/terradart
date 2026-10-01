@@ -386,8 +386,8 @@ final class ServicecatalogProvisionedProductMaxConcurrencyPercentage
 final class AwsServicecatalogProvisionedProduct extends Resource {
   static const String tfType = 'aws_servicecatalog_provisioned_product';
 
-  AwsServicecatalogProvisionedProduct({
-    required super.localName,
+  AwsServicecatalogProvisionedProduct(
+    super.localName, {
     TfArg<ServicecatalogProvisionedProductAcceptLanguage>? acceptLanguage,
     TfArg<bool>? ignoreErrors,
     required TfArg<String> name,

@@ -27,7 +27,7 @@ final class OracleAutonomousDatabaseStack extends Stack {
     );
 
     final vpc = GoogleComputeNetwork(
-      localName: 'ora_vpc',
+      'ora_vpc',
       name: .literal('terradart-adb-vpc'),
       autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
@@ -35,7 +35,7 @@ final class OracleAutonomousDatabaseStack extends Stack {
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
-      localName: 'odb_net',
+      'odb_net',
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
       network: vpc.ref,
@@ -44,7 +44,7 @@ final class OracleAutonomousDatabaseStack extends Stack {
     add(odbNetwork);
 
     final odbSubnet = GoogleOracleDatabaseOdbSubnet(
-      localName: 'odb_sub',
+      'odb_sub',
       location: .literal(location),
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(odbSubnetId),
@@ -56,7 +56,7 @@ final class OracleAutonomousDatabaseStack extends Stack {
 
     add(
       GoogleOracleDatabaseAutonomousDatabase(
-        localName: 'oltp',
+        'oltp',
         location: .literal(location),
         autonomousDatabaseId: .literal('terradart-adb'),
         database: .literal('terradartdb'),

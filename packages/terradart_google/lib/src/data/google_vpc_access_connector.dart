@@ -14,8 +14,8 @@ const Set<String> _googleVpcAccessConnectorSensitive = <String>{};
 final class DataGoogleVpcAccessConnector extends Data {
   static const String tfType = 'google_vpc_access_connector';
 
-  DataGoogleVpcAccessConnector({
-    required super.localName,
+  DataGoogleVpcAccessConnector(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

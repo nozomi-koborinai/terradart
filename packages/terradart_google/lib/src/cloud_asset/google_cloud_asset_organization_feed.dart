@@ -89,8 +89,8 @@ final class CloudAssetOrganizationFeedPubsubDestination {
 final class GoogleCloudAssetOrganizationFeed extends Resource {
   static const String tfType = 'google_cloud_asset_organization_feed';
 
-  GoogleCloudAssetOrganizationFeed({
-    required super.localName,
+  GoogleCloudAssetOrganizationFeed(
+    super.localName, {
     TfArg<List<String>>? assetNames,
     TfArg<List<String>>? assetTypes,
     required TfArg<String> billingProject,

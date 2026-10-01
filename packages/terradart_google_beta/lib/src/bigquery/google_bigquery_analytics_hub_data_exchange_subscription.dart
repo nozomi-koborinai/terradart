@@ -81,8 +81,8 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
   static const String tfType =
       'google_bigquery_analytics_hub_data_exchange_subscription';
 
-  GoogleBigqueryAnalyticsHubDataExchangeSubscription({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubDataExchangeSubscription(
+    super.localName, {
     required TfArg<String> dataExchangeId,
     required TfArg<String> dataExchangeLocation,
     required TfArg<String> dataExchangeProject,

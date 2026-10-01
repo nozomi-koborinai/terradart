@@ -31,8 +31,8 @@ enum MqConfigurationEngineType implements TerraformEnum {
 final class AwsMqConfiguration extends Resource {
   static const String tfType = 'aws_mq_configuration';
 
-  AwsMqConfiguration({
-    required super.localName,
+  AwsMqConfiguration(
+    super.localName, {
     TfArg<MqConfigurationAuthenticationStrategy>? authenticationStrategy,
     required TfArg<String> data,
     TfArg<String>? description,

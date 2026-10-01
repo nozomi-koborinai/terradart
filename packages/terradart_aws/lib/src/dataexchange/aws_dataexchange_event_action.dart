@@ -123,8 +123,8 @@ final class DataexchangeEventActionRevisionPublished {
 final class AwsDataexchangeEventAction extends Resource {
   static const String tfType = 'aws_dataexchange_event_action';
 
-  AwsDataexchangeEventAction({
-    required super.localName,
+  AwsDataexchangeEventAction(
+    super.localName, {
     TfArg<String>? region,
     List<DataexchangeEventAction>? action,
     List<DataexchangeEventActionEvent>? event,

@@ -42,8 +42,8 @@ final class IapTunnelInstanceIamBindingCondition {
 final class GoogleIapTunnelInstanceIamBinding extends Resource {
   static const String tfType = 'google_iap_tunnel_instance_iam_binding';
 
-  GoogleIapTunnelInstanceIamBinding({
-    required super.localName,
+  GoogleIapTunnelInstanceIamBinding(
+    super.localName, {
     required TfArg<String> instance,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

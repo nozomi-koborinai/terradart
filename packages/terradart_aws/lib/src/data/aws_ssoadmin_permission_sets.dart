@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminPermissionSetsSensitive = <String>{};
 final class DataAwsSsoadminPermissionSets extends Data {
   static const String tfType = 'aws_ssoadmin_permission_sets';
 
-  DataAwsSsoadminPermissionSets({
-    required super.localName,
+  DataAwsSsoadminPermissionSets(
+    super.localName, {
     required TfArg<String> instanceArn,
     TfArg<String>? region,
     super.provider,

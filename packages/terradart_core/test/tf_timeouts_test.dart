@@ -53,7 +53,7 @@ void main() {
             ],
           )..add(
             FakePubsubTopic.withMeta(
-              localName: 'orders',
+              'orders',
               argMap: const {},
               timeouts: const TfTimeouts(delete: '30'),
             ),
@@ -108,7 +108,7 @@ void main() {
   group('synth', () {
     test('a resource carries its timeouts block', () {
       final r = FakePubsubTopic.withMeta(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders')},
         timeouts: const TfTimeouts(create: '30m', update: '30m'),
       );
@@ -123,7 +123,7 @@ void main() {
 
     test('an empty timeouts block emits no key', () {
       final r = FakePubsubTopic.withMeta(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders')},
         timeouts: const TfTimeouts(),
       );
@@ -139,7 +139,7 @@ void main() {
       final stack = TestStack(providers: const [google])
         ..add(
           FakeProjectData(
-            localName: 'current',
+            'current',
             argMap: const {'project_id': TfArgLiteral<String>('demo')},
             timeouts: const TfTimeouts(read: '5m'),
           ),

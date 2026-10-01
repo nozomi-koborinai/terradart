@@ -276,8 +276,8 @@ final class DataDnsRecordTag {
 final class DataCloudflareDnsRecord extends Data {
   static const String tfType = 'cloudflare_dns_record';
 
-  DataCloudflareDnsRecord({
-    required super.localName,
+  DataCloudflareDnsRecord(
+    super.localName, {
     TfArg<String>? dnsRecordId,
     TfArg<bool>? includeShadowMetadata,
     RefTo<CloudflareZone>? zoneId,

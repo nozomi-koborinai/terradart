@@ -10,8 +10,8 @@ const Set<String> _awsIamVirtualMfaDeviceSensitive = <String>{};
 final class AwsIamVirtualMfaDevice extends Resource {
   static const String tfType = 'aws_iam_virtual_mfa_device';
 
-  AwsIamVirtualMfaDevice({
-    required super.localName,
+  AwsIamVirtualMfaDevice(
+    super.localName, {
     TfArg<String>? path,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> virtualMfaDeviceName,

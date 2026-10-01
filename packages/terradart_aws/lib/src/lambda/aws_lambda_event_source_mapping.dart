@@ -509,8 +509,8 @@ enum LambdaEventSourceMappingType implements TerraformEnum {
 final class AwsLambdaEventSourceMapping extends Resource {
   static const String tfType = 'aws_lambda_event_source_mapping';
 
-  AwsLambdaEventSourceMapping({
-    required super.localName,
+  AwsLambdaEventSourceMapping(
+    super.localName, {
     TfArg<num>? batchSize,
     TfArg<bool>? bisectBatchOnFunctionError,
     TfArg<bool>? enabled,

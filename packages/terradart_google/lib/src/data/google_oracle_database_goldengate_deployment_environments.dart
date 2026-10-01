@@ -16,8 +16,8 @@ final class DataGoogleOracleDatabaseGoldengateDeploymentEnvironments
   static const String tfType =
       'google_oracle_database_goldengate_deployment_environments';
 
-  DataGoogleOracleDatabaseGoldengateDeploymentEnvironments({
-    required super.localName,
+  DataGoogleOracleDatabaseGoldengateDeploymentEnvironments(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

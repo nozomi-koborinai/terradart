@@ -32,15 +32,15 @@ const Set<String> _googlePublicCaExternalAccountKeySensitive = <String>{
 /// Example:
 /// ```dart
 /// GooglePublicCaExternalAccountKey(
-///   localName: 'acme_eab',
+///   'acme_eab',
 ///   location: TfArg.literal('global'),
 /// );
 /// ```
 final class GooglePublicCaExternalAccountKey extends Resource {
   static const String tfType = 'google_public_ca_external_account_key';
 
-  GooglePublicCaExternalAccountKey({
-    required super.localName,
+  GooglePublicCaExternalAccountKey(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     super.lifecycle,

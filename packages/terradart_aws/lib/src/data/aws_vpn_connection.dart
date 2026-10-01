@@ -28,8 +28,8 @@ final class DataVpnConnectionFilter {
 final class DataAwsVpnConnection extends Data {
   static const String tfType = 'aws_vpn_connection';
 
-  DataAwsVpnConnection({
-    required super.localName,
+  DataAwsVpnConnection(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? vpnConnectionId,
     List<DataVpnConnectionFilter>? filter,

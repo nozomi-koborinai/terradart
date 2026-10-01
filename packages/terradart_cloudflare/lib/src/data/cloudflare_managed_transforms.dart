@@ -29,8 +29,8 @@ const Set<String> _cloudflareManagedTransformsSensitive = <String>{};
 final class DataCloudflareManagedTransforms extends Data {
   static const String tfType = 'cloudflare_managed_transforms';
 
-  DataCloudflareManagedTransforms({
-    required super.localName,
+  DataCloudflareManagedTransforms(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

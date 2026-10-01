@@ -44,8 +44,8 @@ final class VertexAiReasoningEngineIamBindingCondition {
 final class GoogleVertexAiReasoningEngineIamBinding extends Resource {
   static const String tfType = 'google_vertex_ai_reasoning_engine_iam_binding';
 
-  GoogleVertexAiReasoningEngineIamBinding({
-    required super.localName,
+  GoogleVertexAiReasoningEngineIamBinding(
+    super.localName, {
     required RefTo<GoogleVertexAiReasoningEngine> reasoningEngine,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

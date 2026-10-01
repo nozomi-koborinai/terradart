@@ -22,8 +22,8 @@ enum AppstreamUserAuthenticationType implements TerraformEnum {
 final class AwsAppstreamUser extends Resource {
   static const String tfType = 'aws_appstream_user';
 
-  AwsAppstreamUser({
-    required super.localName,
+  AwsAppstreamUser(
+    super.localName, {
     required TfArg<AppstreamUserAuthenticationType> authenticationType,
     TfArg<bool>? enabled,
     TfArg<String>? firstName,

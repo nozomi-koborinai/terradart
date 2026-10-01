@@ -10,8 +10,8 @@ const Set<String> _awsVpcIpamScopeSensitive = <String>{};
 final class AwsVpcIpamScope extends Resource {
   static const String tfType = 'aws_vpc_ipam_scope';
 
-  AwsVpcIpamScope({
-    required super.localName,
+  AwsVpcIpamScope(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> ipamId,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsEc2TransitGatewayRouteSensitive = <String>{};
 final class AwsEc2TransitGatewayRoute extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_route';
 
-  AwsEc2TransitGatewayRoute({
-    required super.localName,
+  AwsEc2TransitGatewayRoute(
+    super.localName, {
     TfArg<bool>? blackhole,
     required TfArg<String> destinationCidrBlock,
     TfArg<String>? region,

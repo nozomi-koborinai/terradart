@@ -24,8 +24,8 @@ final class SagemakerHubS3StorageConfig {
 final class AwsSagemakerHub extends Resource {
   static const String tfType = 'aws_sagemaker_hub';
 
-  AwsSagemakerHub({
-    required super.localName,
+  AwsSagemakerHub(
+    super.localName, {
     required TfArg<String> hubDescription,
     TfArg<String>? hubDisplayName,
     required TfArg<String> hubName,

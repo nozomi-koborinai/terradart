@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleArtifactRegistryRule(
-  ///   localName: 'deny_download',
+  ///   'deny_download',
   ///   repositoryId: .literal('terradart-docker'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   ruleId: TfArg.literal('deny-all-downloads'),

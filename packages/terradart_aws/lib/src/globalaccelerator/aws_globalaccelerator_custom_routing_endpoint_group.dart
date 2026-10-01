@@ -63,8 +63,8 @@ final class AwsGlobalacceleratorCustomRoutingEndpointGroup extends Resource {
   static const String tfType =
       'aws_globalaccelerator_custom_routing_endpoint_group';
 
-  AwsGlobalacceleratorCustomRoutingEndpointGroup({
-    required super.localName,
+  AwsGlobalacceleratorCustomRoutingEndpointGroup(
+    super.localName, {
     TfArg<String>? endpointGroupRegion,
     required TfArg<String> listenerArn,
     required List<

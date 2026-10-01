@@ -11,8 +11,8 @@ const Set<String> _awsWafv2RegexPatternSetSensitive = <String>{};
 final class DataAwsWafv2RegexPatternSet extends Data {
   static const String tfType = 'aws_wafv2_regex_pattern_set';
 
-  DataAwsWafv2RegexPatternSet({
-    required super.localName,
+  DataAwsWafv2RegexPatternSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> scope,

@@ -13,8 +13,8 @@ const Set<String> _googleActiveFolderSensitive = <String>{};
 final class DataGoogleActiveFolder extends Data {
   static const String tfType = 'google_active_folder';
 
-  DataGoogleActiveFolder({
-    required super.localName,
+  DataGoogleActiveFolder(
+    super.localName, {
     TfArg<String>? apiMethod,
     required TfArg<String> displayName,
     required TfArg<String> parent,

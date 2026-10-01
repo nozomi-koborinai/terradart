@@ -651,8 +651,8 @@ final class GkeonpremBareMetalAdminClusterLvpConfig {
 final class GoogleGkeonpremBareMetalAdminCluster extends Resource {
   static const String tfType = 'google_gkeonprem_bare_metal_admin_cluster';
 
-  GoogleGkeonpremBareMetalAdminCluster({
-    required super.localName,
+  GoogleGkeonpremBareMetalAdminCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? bareMetalVersion,

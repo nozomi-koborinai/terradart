@@ -17,8 +17,8 @@ const Set<String> _cloudflareWorkersCustomDomainSensitive = <String>{};
 final class CloudflareWorkersCustomDomain extends Resource {
   static const String tfType = 'cloudflare_workers_custom_domain';
 
-  CloudflareWorkersCustomDomain({
-    required super.localName,
+  CloudflareWorkersCustomDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? environment,
     required TfArg<String> hostname,

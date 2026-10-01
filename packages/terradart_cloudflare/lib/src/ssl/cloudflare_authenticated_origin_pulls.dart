@@ -38,8 +38,8 @@ final class AuthenticatedOriginPullsConfig {
 final class CloudflareAuthenticatedOriginPulls extends Resource {
   static const String tfType = 'cloudflare_authenticated_origin_pulls';
 
-  CloudflareAuthenticatedOriginPulls({
-    required super.localName,
+  CloudflareAuthenticatedOriginPulls(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required List<AuthenticatedOriginPullsConfig> config,
     super.lifecycle,

@@ -83,8 +83,8 @@ enum LambdacoreNetworkConnectorNetworkProtocol implements TerraformEnum {
 final class AwsLambdacoreNetworkConnector extends Resource {
   static const String tfType = 'aws_lambdacore_network_connector';
 
-  AwsLambdacoreNetworkConnector({
-    required super.localName,
+  AwsLambdacoreNetworkConnector(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> operatorRole,
     TfArg<String>? region,

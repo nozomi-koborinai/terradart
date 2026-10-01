@@ -24,8 +24,8 @@ enum AppEngineFirewallRuleAction implements TerraformEnum {
 final class GoogleAppEngineFirewallRule extends Resource {
   static const String tfType = 'google_app_engine_firewall_rule';
 
-  GoogleAppEngineFirewallRule({
-    required super.localName,
+  GoogleAppEngineFirewallRule(
+    super.localName, {
     TfArg<num>? priority,
     required TfArg<AppEngineFirewallRuleAction> action,
     required TfArg<String> sourceRange,

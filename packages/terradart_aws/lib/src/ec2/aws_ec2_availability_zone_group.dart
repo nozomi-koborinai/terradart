@@ -20,8 +20,8 @@ enum Ec2AvailabilityZoneGroupOptInStatus implements TerraformEnum {
 final class AwsEc2AvailabilityZoneGroup extends Resource {
   static const String tfType = 'aws_ec2_availability_zone_group';
 
-  AwsEc2AvailabilityZoneGroup({
-    required super.localName,
+  AwsEc2AvailabilityZoneGroup(
+    super.localName, {
     required TfArg<String> groupName,
     required TfArg<Ec2AvailabilityZoneGroupOptInStatus> optInStatus,
     TfArg<String>? region,

@@ -11,8 +11,8 @@ const Set<String> _awsQuicksightAnalysisSensitive = <String>{};
 final class DataAwsQuicksightAnalysis extends Data {
   static const String tfType = 'aws_quicksight_analysis';
 
-  DataAwsQuicksightAnalysis({
-    required super.localName,
+  DataAwsQuicksightAnalysis(
+    super.localName, {
     required TfArg<String> analysisId,
     TfArg<String>? awsAccountId,
     TfArg<String>? region,

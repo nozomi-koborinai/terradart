@@ -74,7 +74,7 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 /// [GoogleServiceNetworkingConnection].
 /// ```dart
 /// final psaRange = GoogleComputeGlobalAddress(
-///   localName: 'psa_range',
+///   'psa_range',
 ///   name: TfArg.literal('cloudsql-psa-range'),
 ///   addressType: TfArg.literal(GlobalAddressType.internal),
 ///   purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
@@ -86,7 +86,7 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 /// Example (external LB VIP):
 /// ```dart
 /// final lbVip = GoogleComputeGlobalAddress(
-///   localName: 'lb_vip',
+///   'lb_vip',
 ///   name: TfArg.literal('global-lb-vip'),
 ///   addressType: TfArg.literal(GlobalAddressType.external),
 ///   ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),
@@ -95,8 +95,8 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 final class GoogleComputeGlobalAddress extends Resource {
   static const String tfType = 'google_compute_global_address';
 
-  GoogleComputeGlobalAddress({
-    required super.localName,
+  GoogleComputeGlobalAddress(
+    super.localName, {
     required TfArg<String> name,
     TfArg<GlobalAddressType>? addressType,
     TfArg<GlobalAddressPurpose>? purpose,

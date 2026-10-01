@@ -10,8 +10,8 @@ const Set<String> _awsDocdbOrderableDbInstanceSensitive = <String>{};
 final class DataAwsDocdbOrderableDbInstance extends Data {
   static const String tfType = 'aws_docdb_orderable_db_instance';
 
-  DataAwsDocdbOrderableDbInstance({
-    required super.localName,
+  DataAwsDocdbOrderableDbInstance(
+    super.localName, {
     TfArg<String>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? instanceClass,

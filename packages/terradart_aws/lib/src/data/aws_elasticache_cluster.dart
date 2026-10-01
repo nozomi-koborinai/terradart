@@ -11,8 +11,8 @@ const Set<String> _awsElasticacheClusterSensitive = <String>{};
 final class DataAwsElasticacheCluster extends Data {
   static const String tfType = 'aws_elasticache_cluster';
 
-  DataAwsElasticacheCluster({
-    required super.localName,
+  DataAwsElasticacheCluster(
+    super.localName, {
     required TfArg<String> clusterId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

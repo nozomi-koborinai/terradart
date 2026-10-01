@@ -64,8 +64,8 @@ final class ComputeStoragePoolParams {
 final class GoogleComputeStoragePool extends Resource {
   static const String tfType = 'google_compute_storage_pool';
 
-  GoogleComputeStoragePool({
-    required super.localName,
+  GoogleComputeStoragePool(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? zone,
     required TfArg<String> storagePoolType,

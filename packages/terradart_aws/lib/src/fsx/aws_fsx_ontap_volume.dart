@@ -333,8 +333,8 @@ enum FsxOntapVolumeTieringPolicyName implements TerraformEnum {
 final class AwsFsxOntapVolume extends Resource {
   static const String tfType = 'aws_fsx_ontap_volume';
 
-  AwsFsxOntapVolume({
-    required super.localName,
+  AwsFsxOntapVolume(
+    super.localName, {
     TfArg<bool>? bypassSnaplockEnterpriseRetention,
     TfArg<bool>? copyTagsToBackups,
     TfArg<Map<String, String>>? finalBackupTags,

@@ -10,8 +10,8 @@ const Set<String> _awsWorkmailDomainSensitive = <String>{};
 final class AwsWorkmailDomain extends Resource {
   static const String tfType = 'aws_workmail_domain';
 
-  AwsWorkmailDomain({
-    required super.localName,
+  AwsWorkmailDomain(
+    super.localName, {
     required TfArg<String> domainName,
     required TfArg<String> organizationId,
     TfArg<String>? region,

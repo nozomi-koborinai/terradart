@@ -10,8 +10,8 @@ const Set<String> _awsVerifiedaccessInstanceSensitive = <String>{};
 final class AwsVerifiedaccessInstance extends Resource {
   static const String tfType = 'aws_verifiedaccess_instance';
 
-  AwsVerifiedaccessInstance({
-    required super.localName,
+  AwsVerifiedaccessInstance(
+    super.localName, {
     TfArg<String>? cidrEndpointsCustomSubdomain,
     TfArg<String>? description,
     TfArg<bool>? fipsEnabled,

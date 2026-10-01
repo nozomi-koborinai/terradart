@@ -51,8 +51,8 @@ final class IamWorkforcePoolAllowedServices {
 final class GoogleIamWorkforcePool extends Resource {
   static const String tfType = 'google_iam_workforce_pool';
 
-  GoogleIamWorkforcePool({
-    required super.localName,
+  GoogleIamWorkforcePool(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<bool>? disabled,

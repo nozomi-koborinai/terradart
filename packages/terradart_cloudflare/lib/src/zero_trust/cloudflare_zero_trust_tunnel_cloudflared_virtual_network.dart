@@ -19,8 +19,8 @@ final class CloudflareZeroTrustTunnelCloudflaredVirtualNetwork
   static const String tfType =
       'cloudflare_zero_trust_tunnel_cloudflared_virtual_network';
 
-  CloudflareZeroTrustTunnelCloudflaredVirtualNetwork({
-    required super.localName,
+  CloudflareZeroTrustTunnelCloudflaredVirtualNetwork(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comment,
     TfArg<bool>? isDefault,

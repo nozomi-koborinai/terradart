@@ -12,8 +12,8 @@ const Set<String> _awsVpcSecurityGroupRulesExclusiveSensitive = <String>{};
 final class AwsVpcSecurityGroupRulesExclusive extends Resource {
   static const String tfType = 'aws_vpc_security_group_rules_exclusive';
 
-  AwsVpcSecurityGroupRulesExclusive({
-    required super.localName,
+  AwsVpcSecurityGroupRulesExclusive(
+    super.localName, {
     required TfArg<List<String>> egressRuleIds,
     required TfArg<List<String>> ingressRuleIds,
     TfArg<String>? region,

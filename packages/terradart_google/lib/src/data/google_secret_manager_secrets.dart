@@ -13,8 +13,8 @@ const Set<String> _googleSecretManagerSecretsSensitive = <String>{};
 final class DataGoogleSecretManagerSecrets extends Data {
   static const String tfType = 'google_secret_manager_secrets';
 
-  DataGoogleSecretManagerSecrets({
-    required super.localName,
+  DataGoogleSecretManagerSecrets(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     super.provider,

@@ -18,8 +18,8 @@ const Set<String> _cloudflareZeroTrustCasbWebhookSensitive = <String>{
 final class DataCloudflareZeroTrustCasbWebhook extends Data {
   static const String tfType = 'cloudflare_zero_trust_casb_webhook';
 
-  DataCloudflareZeroTrustCasbWebhook({
-    required super.localName,
+  DataCloudflareZeroTrustCasbWebhook(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> webhookId,
     super.provider,

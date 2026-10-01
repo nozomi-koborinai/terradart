@@ -89,8 +89,8 @@ final class GlueDevEndpointPublicKeyPublicKeys
 final class AwsGlueDevEndpoint extends Resource {
   static const String tfType = 'aws_glue_dev_endpoint';
 
-  AwsGlueDevEndpoint({
-    required super.localName,
+  AwsGlueDevEndpoint(
+    super.localName, {
     TfArg<Map<String, String>>? arguments,
     TfArg<String>? extraJarsS3Path,
     TfArg<String>? extraPythonLibsS3Path,

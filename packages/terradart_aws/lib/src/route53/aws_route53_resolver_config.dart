@@ -21,8 +21,8 @@ enum Route53ResolverConfigAutodefinedReverseFlag implements TerraformEnum {
 final class AwsRoute53ResolverConfig extends Resource {
   static const String tfType = 'aws_route53_resolver_config';
 
-  AwsRoute53ResolverConfig({
-    required super.localName,
+  AwsRoute53ResolverConfig(
+    super.localName, {
     required TfArg<Route53ResolverConfigAutodefinedReverseFlag>
     autodefinedReverseFlag,
     TfArg<String>? region,

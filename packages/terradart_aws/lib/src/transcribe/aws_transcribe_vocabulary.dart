@@ -73,8 +73,8 @@ final class TranscribeVocabularyTermsVocabularyFileUri
 final class AwsTranscribeVocabulary extends Resource {
   static const String tfType = 'aws_transcribe_vocabulary';
 
-  AwsTranscribeVocabulary({
-    required super.localName,
+  AwsTranscribeVocabulary(
+    super.localName, {
     required TfArg<String> languageCode,
     required TranscribeVocabularyTerms terms,
     TfArg<String>? region,

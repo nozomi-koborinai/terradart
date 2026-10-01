@@ -10,8 +10,8 @@ const Set<String> _awsDbEventCategoriesSensitive = <String>{};
 final class DataAwsDbEventCategories extends Data {
   static const String tfType = 'aws_db_event_categories';
 
-  DataAwsDbEventCategories({
-    required super.localName,
+  DataAwsDbEventCategories(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? sourceType,
     super.provider,

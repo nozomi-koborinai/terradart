@@ -81,8 +81,8 @@ final class Resiliencehubv2InputSourceResourceTag {
 final class AwsResiliencehubv2InputSource extends Resource {
   static const String tfType = 'aws_resiliencehubv2_input_source';
 
-  AwsResiliencehubv2InputSource({
-    required super.localName,
+  AwsResiliencehubv2InputSource(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceArn,
     List<Resiliencehubv2InputSourceResourceConfiguration>?

@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftHsmConfigurationSensitive = <String>{
 final class AwsRedshiftHsmConfiguration extends Resource {
   static const String tfType = 'aws_redshift_hsm_configuration';
 
-  AwsRedshiftHsmConfiguration({
-    required super.localName,
+  AwsRedshiftHsmConfiguration(
+    super.localName, {
     required TfArg<String> description,
     required TfArg<String> hsmConfigurationIdentifier,
     required TfArg<String> hsmIpAddress,

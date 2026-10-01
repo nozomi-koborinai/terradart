@@ -35,11 +35,11 @@ final class AwsLambdaStack extends Stack {
           ),
         ],
       ) {
-    final account = DataAwsCallerIdentity(localName: 'current');
+    final account = DataAwsCallerIdentity('current');
     add(account);
 
     final trust = DataAwsIamPolicyDocument(
-      localName: 'lambda_trust',
+      'lambda_trust',
       statement: [
         DataIamPolicyDocumentStatement(
           effect: .literal('Allow'),
@@ -63,14 +63,14 @@ final class AwsLambdaStack extends Stack {
     add(trust);
 
     final role = AwsIamRole(
-      localName: 'hello',
+      'hello',
       name: .name(.literal(_functionName)),
       assumeRolePolicy: trust.json,
     );
     add(role);
     add(
       AwsIamRolePolicyAttachment(
-        localName: 'hello_logs',
+        'hello_logs',
         role: role.ref,
         policyArn: .literal(
           'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
@@ -79,14 +79,14 @@ final class AwsLambdaStack extends Stack {
     );
 
     final logs = AwsCloudwatchLogGroup(
-      localName: 'hello',
+      'hello',
       name: .name(.literal('/aws/lambda/$_functionName')),
       retentionInDays: .literal(14),
     );
     add(logs);
 
     final fn = AwsLambdaFunction(
-      localName: 'hello',
+      'hello',
       functionName: .literal(_functionName),
       role: role.ref,
       runtime: .literal(.providedAl2023),
@@ -103,7 +103,7 @@ final class AwsLambdaStack extends Stack {
     add(fn);
     add(
       AwsLambdaFunctionUrl(
-        localName: 'hello',
+        'hello',
         functionName: fn.ref,
         authorizationType: .literal(.none),
       ),

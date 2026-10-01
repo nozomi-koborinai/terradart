@@ -27,8 +27,8 @@ final class DataEc2LocalGatewayFilter {
 final class DataAwsEc2LocalGateway extends Data {
   static const String tfType = 'aws_ec2_local_gateway';
 
-  DataAwsEc2LocalGateway({
-    required super.localName,
+  DataAwsEc2LocalGateway(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? state,
     TfArg<Map<String, String>>? tags,

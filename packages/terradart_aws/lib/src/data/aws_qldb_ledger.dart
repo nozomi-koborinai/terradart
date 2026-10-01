@@ -11,8 +11,8 @@ const Set<String> _awsQldbLedgerSensitive = <String>{};
 final class DataAwsQldbLedger extends Data {
   static const String tfType = 'aws_qldb_ledger';
 
-  DataAwsQldbLedger({
-    required super.localName,
+  DataAwsQldbLedger(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

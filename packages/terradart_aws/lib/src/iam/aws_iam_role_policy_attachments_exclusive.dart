@@ -13,8 +13,8 @@ const Set<String> _awsIamRolePolicyAttachmentsExclusiveSensitive = <String>{};
 final class AwsIamRolePolicyAttachmentsExclusive extends Resource {
   static const String tfType = 'aws_iam_role_policy_attachments_exclusive';
 
-  AwsIamRolePolicyAttachmentsExclusive({
-    required super.localName,
+  AwsIamRolePolicyAttachmentsExclusive(
+    super.localName, {
     required TfArg<List<RefTo<AwsIamPolicy>>> policyArns,
     required RefTo<AwsIamRole> roleName,
     super.lifecycle,

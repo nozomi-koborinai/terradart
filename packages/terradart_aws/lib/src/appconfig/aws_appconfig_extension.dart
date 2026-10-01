@@ -100,8 +100,8 @@ final class AppconfigExtensionParameter {
 final class AwsAppconfigExtension extends Resource {
   static const String tfType = 'aws_appconfig_extension';
 
-  AwsAppconfigExtension({
-    required super.localName,
+  AwsAppconfigExtension(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -46,8 +46,8 @@ final class GoogleComputeRegionInstantSnapshotIamBinding extends Resource {
   static const String tfType =
       'google_compute_region_instant_snapshot_iam_binding';
 
-  GoogleComputeRegionInstantSnapshotIamBinding({
-    required super.localName,
+  GoogleComputeRegionInstantSnapshotIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeRegionInstantSnapshot> instantSnapshot,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

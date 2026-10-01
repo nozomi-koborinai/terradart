@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkConnectivityPolicyBasedRoute(
-  ///   localName: 'default_pbr',
+  ///   'default_pbr',
   ///   name: TfArg.literal('terradart-pbr'),
   ///   network: vpc.ref,
   ///   filter: NetworkConnectivityPolicyBasedRouteFilter(

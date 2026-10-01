@@ -12,8 +12,8 @@ const Set<String> _awsCloudcontrolapiResourceSensitive = <String>{'schema'};
 final class AwsCloudcontrolapiResource extends Resource {
   static const String tfType = 'aws_cloudcontrolapi_resource';
 
-  AwsCloudcontrolapiResource({
-    required super.localName,
+  AwsCloudcontrolapiResource(
+    super.localName, {
     required TfArg<String> desiredState,
     TfArg<String>? region,
     RefTo<AwsIamRole>? roleArn,

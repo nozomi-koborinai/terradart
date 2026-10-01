@@ -19,8 +19,8 @@ const Set<String> _googleApigeeEnvironmentAddonsConfigSensitive = <String>{};
 final class GoogleApigeeEnvironmentAddonsConfig extends Resource {
   static const String tfType = 'google_apigee_environment_addons_config';
 
-  GoogleApigeeEnvironmentAddonsConfig({
-    required super.localName,
+  GoogleApigeeEnvironmentAddonsConfig(
+    super.localName, {
     required TfArg<String> envId,
     TfArg<bool>? analyticsEnabled,
     super.lifecycle,

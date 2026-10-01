@@ -37,8 +37,8 @@ final class DatazoneGlossaryTermRelations {
 final class AwsDatazoneGlossaryTerm extends Resource {
   static const String tfType = 'aws_datazone_glossary_term';
 
-  AwsDatazoneGlossaryTerm({
-    required super.localName,
+  AwsDatazoneGlossaryTerm(
+    super.localName, {
     TfArg<String>? domainIdentifier,
     required TfArg<String> glossaryIdentifier,
     TfArg<String>? longDescription,

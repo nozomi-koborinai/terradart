@@ -75,8 +75,8 @@ final class LambdaFunctionUrlCors {
 final class AwsLambdaFunctionUrl extends Resource {
   static const String tfType = 'aws_lambda_function_url';
 
-  AwsLambdaFunctionUrl({
-    required super.localName,
+  AwsLambdaFunctionUrl(
+    super.localName, {
     required TfArg<LambdaFunctionUrlAuthorizationType> authorizationType,
     required RefTo<AwsLambdaFunction> functionName,
     TfArg<LambdaFunctionUrlInvokeMode>? invokeMode,

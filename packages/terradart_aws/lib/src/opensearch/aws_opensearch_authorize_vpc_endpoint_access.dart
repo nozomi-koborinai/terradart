@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchAuthorizeVpcEndpointAccessSensitive =
 final class AwsOpensearchAuthorizeVpcEndpointAccess extends Resource {
   static const String tfType = 'aws_opensearch_authorize_vpc_endpoint_access';
 
-  AwsOpensearchAuthorizeVpcEndpointAccess({
-    required super.localName,
+  AwsOpensearchAuthorizeVpcEndpointAccess(
+    super.localName, {
     required TfArg<String> account,
     required TfArg<String> domainName,
     TfArg<String>? region,

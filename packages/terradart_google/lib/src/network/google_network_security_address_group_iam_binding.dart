@@ -45,8 +45,8 @@ final class GoogleNetworkSecurityAddressGroupIamBinding extends Resource {
   static const String tfType =
       'google_network_security_address_group_iam_binding';
 
-  GoogleNetworkSecurityAddressGroupIamBinding({
-    required super.localName,
+  GoogleNetworkSecurityAddressGroupIamBinding(
+    super.localName, {
     required RefTo<GoogleNetworkSecurityAddressGroup> addressGroup,
     TfArg<String>? location,
     required TfArg<String> role,

@@ -10,8 +10,8 @@ const Set<String> _awsRoute53CidrLocationSensitive = <String>{};
 final class AwsRoute53CidrLocation extends Resource {
   static const String tfType = 'aws_route53_cidr_location';
 
-  AwsRoute53CidrLocation({
-    required super.localName,
+  AwsRoute53CidrLocation(
+    super.localName, {
     required TfArg<List<String>> cidrBlocks,
     required TfArg<String> cidrCollectionId,
     required TfArg<String> name,

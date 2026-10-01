@@ -20,8 +20,8 @@ enum Ec2InstanceState implements TerraformEnum {
 final class AwsEc2InstanceState extends Resource {
   static const String tfType = 'aws_ec2_instance_state';
 
-  AwsEc2InstanceState({
-    required super.localName,
+  AwsEc2InstanceState(
+    super.localName, {
     TfArg<bool>? force,
     required TfArg<String> instanceId,
     TfArg<String>? region,

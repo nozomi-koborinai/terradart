@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayClientCertificateSensitive = <String>{};
 final class AwsApiGatewayClientCertificate extends Resource {
   static const String tfType = 'aws_api_gateway_client_certificate';
 
-  AwsApiGatewayClientCertificate({
-    required super.localName,
+  AwsApiGatewayClientCertificate(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

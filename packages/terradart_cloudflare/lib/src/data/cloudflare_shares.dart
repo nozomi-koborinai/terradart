@@ -11,8 +11,8 @@ const Set<String> _cloudflareSharesSensitive = <String>{};
 final class DataCloudflareShares extends Data {
   static const String tfType = 'cloudflare_shares';
 
-  DataCloudflareShares({
-    required super.localName,
+  DataCloudflareShares(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? direction,
     TfArg<bool>? includeRecipientCounts,

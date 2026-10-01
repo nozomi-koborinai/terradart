@@ -16,8 +16,8 @@ const Set<String> _cloudflareDnsZoneTransfersAclSensitive = <String>{};
 final class DataCloudflareDnsZoneTransfersAcl extends Data {
   static const String tfType = 'cloudflare_dns_zone_transfers_acl';
 
-  DataCloudflareDnsZoneTransfersAcl({
-    required super.localName,
+  DataCloudflareDnsZoneTransfersAcl(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> aclId,
     super.provider,

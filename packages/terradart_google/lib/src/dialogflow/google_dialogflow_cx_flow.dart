@@ -703,8 +703,8 @@ final class DialogflowCxFlowTransitionRoutesTriggerFulfillment {
 final class GoogleDialogflowCxFlow extends Resource {
   static const String tfType = 'google_dialogflow_cx_flow';
 
-  GoogleDialogflowCxFlow({
-    required super.localName,
+  GoogleDialogflowCxFlow(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? description,

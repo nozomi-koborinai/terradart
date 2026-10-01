@@ -24,8 +24,8 @@ const Set<String> _googleDiscoveryEngineUserStoreSensitive = <String>{};
 final class GoogleDiscoveryEngineUserStore extends Resource {
   static const String tfType = 'google_discovery_engine_user_store';
 
-  GoogleDiscoveryEngineUserStore({
-    required super.localName,
+  GoogleDiscoveryEngineUserStore(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? userStoreId,
     TfArg<String>? defaultLicenseConfig,

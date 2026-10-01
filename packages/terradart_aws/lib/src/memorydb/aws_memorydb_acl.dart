@@ -68,8 +68,8 @@ final class MemorydbAclNamePrefix extends MemorydbAclName {
 final class AwsMemorydbAcl extends Resource {
   static const String tfType = 'aws_memorydb_acl';
 
-  AwsMemorydbAcl({
-    required super.localName,
+  AwsMemorydbAcl(
+    super.localName, {
     MemorydbAclName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

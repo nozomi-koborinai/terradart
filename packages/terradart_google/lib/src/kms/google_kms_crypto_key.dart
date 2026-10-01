@@ -76,13 +76,13 @@ class KmsCryptoKeyVersionTemplate {
 /// Example:
 /// ```dart
 /// final ring = GoogleKmsKeyRing(
-///   localName: 'main',
+///   'main',
 ///   name: TfArg.literal('main-ring'),
 ///   location: TfArg.literal('asia-northeast1'),
 /// );
 ///
 /// final cryptoKey = GoogleKmsCryptoKey(
-///   localName: 'payments',
+///   'payments',
 ///   name: TfArg.literal('payments'),
 ///   keyRing: ring.ref,
 ///   purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
@@ -104,8 +104,8 @@ class KmsCryptoKeyVersionTemplate {
 final class GoogleKmsCryptoKey extends Resource {
   static const String tfType = 'google_kms_crypto_key';
 
-  GoogleKmsCryptoKey({
-    required super.localName,
+  GoogleKmsCryptoKey(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleKmsKeyRing> keyRing,
     TfArg<KmsKeyPurpose>? purpose,

@@ -14,8 +14,8 @@ const Set<String> _googleApphubApplicationSensitive = <String>{};
 final class DataGoogleApphubApplication extends Data {
   static const String tfType = 'google_apphub_application';
 
-  DataGoogleApphubApplication({
-    required super.localName,
+  DataGoogleApphubApplication(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> location,
     required TfArg<String> project,

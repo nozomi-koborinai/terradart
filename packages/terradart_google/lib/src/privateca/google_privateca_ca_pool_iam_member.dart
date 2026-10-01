@@ -46,7 +46,7 @@ final class PrivatecaCaPoolIamMemberCondition {
 /// Example:
 /// ```dart
 /// GooglePrivatecaCaPoolIamMember(
-///   localName: 'pool_auditor',
+///   'pool_auditor',
 ///   caPool: caPool.ref,
 ///   role: TfArg.literal('roles/privateca.auditor'),
 ///   member: .group('security@example.com'),
@@ -55,8 +55,8 @@ final class PrivatecaCaPoolIamMemberCondition {
 final class GooglePrivatecaCaPoolIamMember extends Resource {
   static const String tfType = 'google_privateca_ca_pool_iam_member';
 
-  GooglePrivatecaCaPoolIamMember({
-    required super.localName,
+  GooglePrivatecaCaPoolIamMember(
+    super.localName, {
     required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> role,
     required IamPrincipal member,

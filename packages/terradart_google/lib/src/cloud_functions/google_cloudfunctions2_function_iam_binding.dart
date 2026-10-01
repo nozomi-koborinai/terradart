@@ -45,8 +45,8 @@ final class Cloudfunctions2FunctionIamBindingCondition {
 final class GoogleCloudfunctions2FunctionIamBinding extends Resource {
   static const String tfType = 'google_cloudfunctions2_function_iam_binding';
 
-  GoogleCloudfunctions2FunctionIamBinding({
-    required super.localName,
+  GoogleCloudfunctions2FunctionIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudfunctions2Function> function,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

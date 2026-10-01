@@ -43,7 +43,7 @@ enum NetworkSecurityGatewaySecurityPolicyRuleBasicProfile
 /// Example:
 /// ```dart
 /// GoogleNetworkSecurityGatewaySecurityPolicyRule(
-///   localName: 'allow_example',
+///   'allow_example',
 ///   name: TfArg.literal('terradart-allow-example'),
 ///   location: TfArg.literal('us-central1'),
 ///   gatewaySecurityPolicy: policy.ref,
@@ -59,8 +59,8 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
   static const String tfType =
       'google_network_security_gateway_security_policy_rule';
 
-  GoogleNetworkSecurityGatewaySecurityPolicyRule({
-    required super.localName,
+  GoogleNetworkSecurityGatewaySecurityPolicyRule(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleNetworkSecurityGatewaySecurityPolicy>

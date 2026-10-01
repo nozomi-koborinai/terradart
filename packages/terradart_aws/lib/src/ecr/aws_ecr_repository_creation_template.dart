@@ -94,8 +94,8 @@ enum EcrRepositoryCreationTemplateFilterType implements TerraformEnum {
 final class AwsEcrRepositoryCreationTemplate extends Resource {
   static const String tfType = 'aws_ecr_repository_creation_template';
 
-  AwsEcrRepositoryCreationTemplate({
-    required super.localName,
+  AwsEcrRepositoryCreationTemplate(
+    super.localName, {
     required List<TfArg<EcrRepositoryCreationTemplateAppliedFor>> appliedFor,
     TfArg<String>? customRoleArn,
     TfArg<String>? description,

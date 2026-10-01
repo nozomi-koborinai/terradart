@@ -27,8 +27,8 @@ final class DataRdsClustersFilter {
 final class DataAwsRdsClusters extends Data {
   static const String tfType = 'aws_rds_clusters';
 
-  DataAwsRdsClusters({
-    required super.localName,
+  DataAwsRdsClusters(
+    super.localName, {
     TfArg<String>? region,
     List<DataRdsClustersFilter>? filter,
     super.provider,

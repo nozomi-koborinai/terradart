@@ -10,8 +10,8 @@ const Set<String> _awsIdentitystoreGroupMembershipSensitive = <String>{};
 final class AwsIdentitystoreGroupMembership extends Resource {
   static const String tfType = 'aws_identitystore_group_membership';
 
-  AwsIdentitystoreGroupMembership({
-    required super.localName,
+  AwsIdentitystoreGroupMembership(
+    super.localName, {
     required TfArg<String> groupId,
     required TfArg<String> identityStoreId,
     required TfArg<String> memberId,

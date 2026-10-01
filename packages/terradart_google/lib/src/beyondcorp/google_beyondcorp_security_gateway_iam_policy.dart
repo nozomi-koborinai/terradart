@@ -19,8 +19,8 @@ const Set<String> _googleBeyondcorpSecurityGatewayIamPolicySensitive =
 final class GoogleBeyondcorpSecurityGatewayIamPolicy extends Resource {
   static const String tfType = 'google_beyondcorp_security_gateway_iam_policy';
 
-  GoogleBeyondcorpSecurityGatewayIamPolicy({
-    required super.localName,
+  GoogleBeyondcorpSecurityGatewayIamPolicy(
+    super.localName, {
     required RefTo<GoogleBeyondcorpSecurityGateway> securityGateway,
     required TfArg<String> policyData,
     TfArg<String>? location,

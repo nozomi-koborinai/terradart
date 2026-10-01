@@ -10,8 +10,8 @@ const Set<String> _awsLbTrustStoreRevocationSensitive = <String>{};
 final class AwsLbTrustStoreRevocation extends Resource {
   static const String tfType = 'aws_lb_trust_store_revocation';
 
-  AwsLbTrustStoreRevocation({
-    required super.localName,
+  AwsLbTrustStoreRevocation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> revocationsS3Bucket,
     required TfArg<String> revocationsS3Key,

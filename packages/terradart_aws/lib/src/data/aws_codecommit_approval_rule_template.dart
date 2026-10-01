@@ -11,8 +11,8 @@ const Set<String> _awsCodecommitApprovalRuleTemplateSensitive = <String>{};
 final class DataAwsCodecommitApprovalRuleTemplate extends Data {
   static const String tfType = 'aws_codecommit_approval_rule_template';
 
-  DataAwsCodecommitApprovalRuleTemplate({
-    required super.localName,
+  DataAwsCodecommitApprovalRuleTemplate(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

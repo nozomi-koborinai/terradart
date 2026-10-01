@@ -195,8 +195,8 @@ final class IotIndexingConfigurationFilter {
 final class AwsIotIndexingConfiguration extends Resource {
   static const String tfType = 'aws_iot_indexing_configuration';
 
-  AwsIotIndexingConfiguration({
-    required super.localName,
+  AwsIotIndexingConfiguration(
+    super.localName, {
     TfArg<String>? region,
     IotIndexingConfigurationThingGroupIndexingConfiguration?
     thingGroupIndexingConfiguration,

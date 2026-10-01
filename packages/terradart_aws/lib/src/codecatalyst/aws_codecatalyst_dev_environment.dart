@@ -69,8 +69,8 @@ final class CodecatalystDevEnvironmentRepositories {
 final class AwsCodecatalystDevEnvironment extends Resource {
   static const String tfType = 'aws_codecatalyst_dev_environment';
 
-  AwsCodecatalystDevEnvironment({
-    required super.localName,
+  AwsCodecatalystDevEnvironment(
+    super.localName, {
     TfArg<String>? alias,
     TfArg<num>? inactivityTimeoutMinutes,
     required TfArg<CodecatalystDevEnvironmentInstanceType> instanceType,

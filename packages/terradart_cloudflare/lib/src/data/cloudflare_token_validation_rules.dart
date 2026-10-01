@@ -63,8 +63,8 @@ enum DataTokenValidationRulesFilterAction implements TerraformEnum {
 final class DataCloudflareTokenValidationRules extends Data {
   static const String tfType = 'cloudflare_token_validation_rules';
 
-  DataCloudflareTokenValidationRules({
-    required super.localName,
+  DataCloudflareTokenValidationRules(
+    super.localName, {
     TfArg<String>? ruleId,
     RefTo<CloudflareZone>? zoneId,
     DataTokenValidationRulesFilter? filter,

@@ -20,8 +20,8 @@ enum DatazoneGlossaryStatus implements TerraformEnum {
 final class AwsDatazoneGlossary extends Resource {
   static const String tfType = 'aws_datazone_glossary';
 
-  AwsDatazoneGlossary({
-    required super.localName,
+  AwsDatazoneGlossary(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> domainIdentifier,
     required TfArg<String> name,

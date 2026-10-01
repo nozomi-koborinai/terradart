@@ -340,8 +340,8 @@ final class OracleDatabaseDbSystemTimeZone {
 final class GoogleOracleDatabaseDbSystem extends Resource {
   static const String tfType = 'google_oracle_database_db_system';
 
-  GoogleOracleDatabaseDbSystem({
-    required super.localName,
+  GoogleOracleDatabaseDbSystem(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> dbSystemId,
     required TfArg<String> displayName,

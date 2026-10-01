@@ -36,8 +36,8 @@ enum ApiShieldSchemaValidationEnabled implements TerraformEnum {
 final class CloudflareApiShieldSchema extends Resource {
   static const String tfType = 'cloudflare_api_shield_schema';
 
-  CloudflareApiShieldSchema({
-    required super.localName,
+  CloudflareApiShieldSchema(
+    super.localName, {
     required TfArg<String> file,
     required TfArg<ApiShieldSchemaKind> kind,
     TfArg<String>? name,

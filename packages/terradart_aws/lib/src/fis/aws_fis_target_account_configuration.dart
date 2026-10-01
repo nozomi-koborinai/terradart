@@ -12,8 +12,8 @@ const Set<String> _awsFisTargetAccountConfigurationSensitive = <String>{};
 final class AwsFisTargetAccountConfiguration extends Resource {
   static const String tfType = 'aws_fis_target_account_configuration';
 
-  AwsFisTargetAccountConfiguration({
-    required super.localName,
+  AwsFisTargetAccountConfiguration(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? description,
     required TfArg<String> experimentTemplateId,

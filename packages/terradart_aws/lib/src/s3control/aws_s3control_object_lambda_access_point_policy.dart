@@ -12,8 +12,8 @@ final class AwsS3controlObjectLambdaAccessPointPolicy extends Resource {
   static const String tfType =
       'aws_s3control_object_lambda_access_point_policy';
 
-  AwsS3controlObjectLambdaAccessPointPolicy({
-    required super.localName,
+  AwsS3controlObjectLambdaAccessPointPolicy(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> name,
     required TfArg<String> policy,

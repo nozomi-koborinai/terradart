@@ -94,8 +94,8 @@ final class IamRoleInlinePolicy {
 final class AwsIamRole extends Resource {
   static const String tfType = 'aws_iam_role';
 
-  AwsIamRole({
-    required super.localName,
+  AwsIamRole(
+    super.localName, {
     required TfArg<String> assumeRolePolicy,
     TfArg<String>? description,
     TfArg<bool>? forceDetachPolicies,

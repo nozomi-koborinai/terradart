@@ -31,8 +31,8 @@ enum OpensearchserverlessCollectionGroupStandbyReplicas
 final class AwsOpensearchserverlessCollectionGroup extends Resource {
   static const String tfType = 'aws_opensearchserverless_collection_group';
 
-  AwsOpensearchserverlessCollectionGroup({
-    required super.localName,
+  AwsOpensearchserverlessCollectionGroup(
+    super.localName, {
     TfArg<List<Map<String, Object?>>>? capacityLimits,
     TfArg<String>? description,
     TfArg<OpensearchserverlessCollectionGroupGeneration>? generation,

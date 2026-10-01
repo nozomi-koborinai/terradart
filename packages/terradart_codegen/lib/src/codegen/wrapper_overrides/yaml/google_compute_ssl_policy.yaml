@@ -44,7 +44,7 @@ curatedDoc: |-
   /// Example (TLS 1.2-only, compliance-grade):
   /// ```dart
   /// final policy = GoogleComputeSslPolicy(
-  ///   localName: 'prod_ssl',
+  ///   'prod_ssl',
   ///   name: TfArg.literal('prod-ssl-policy'),
   ///   profile: TfArg.literal(SslPolicyProfile.restricted),
   ///   minTlsVersion: TfArg.literal(SslPolicyMinTlsVersion.tls12),
@@ -54,7 +54,7 @@ curatedDoc: |-
   /// Example (custom cipher set):
   /// ```dart
   /// final policy = GoogleComputeSslPolicy(
-  ///   localName: 'custom_ssl',
+  ///   'custom_ssl',
   ///   name: TfArg.literal('custom-ssl-policy'),
   ///   profile: TfArg.literal(SslPolicyProfile.custom),
   ///   minTlsVersion: TfArg.literal(SslPolicyMinTlsVersion.tls12),

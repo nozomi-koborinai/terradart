@@ -15,8 +15,8 @@ const Set<String> _cloudflareRegionalHostnamesSensitive = <String>{};
 final class DataCloudflareRegionalHostnames extends Data {
   static const String tfType = 'cloudflare_regional_hostnames';
 
-  DataCloudflareRegionalHostnames({
-    required super.localName,
+  DataCloudflareRegionalHostnames(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

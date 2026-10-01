@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustConnectivitySettingsSensitive =
 final class DataCloudflareZeroTrustConnectivitySettings extends Data {
   static const String tfType = 'cloudflare_zero_trust_connectivity_settings';
 
-  DataCloudflareZeroTrustConnectivitySettings({
-    required super.localName,
+  DataCloudflareZeroTrustConnectivitySettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     super.provider,
     super.timeouts,

@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final orders = GoogleSqlDatabase(
-  ///   localName: 'orders',
+  ///   'orders',
   ///   instance: primary.ref,
   ///   name: TfArg.literal('orders'),
   ///   charset: TfArg.literal('UTF8'),

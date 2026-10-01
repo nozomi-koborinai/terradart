@@ -13,8 +13,8 @@ const Set<String> _googleComputeNodeTypesSensitive = <String>{};
 final class DataGoogleComputeNodeTypes extends Data {
   static const String tfType = 'google_compute_node_types';
 
-  DataGoogleComputeNodeTypes({
-    required super.localName,
+  DataGoogleComputeNodeTypes(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? zone,
     super.provider,

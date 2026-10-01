@@ -21,8 +21,8 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamPolicy extends Resource {
   static const String tfType =
       'google_bigquery_datapolicyv2_data_policy_iam_policy';
 
-  GoogleBigqueryDatapolicyv2DataPolicyIamPolicy({
-    required super.localName,
+  GoogleBigqueryDatapolicyv2DataPolicyIamPolicy(
+    super.localName, {
     required RefTo<GoogleBigqueryDatapolicyv2DataPolicy> dataPolicy,
     required TfArg<String> policyData,
     TfArg<String>? location,

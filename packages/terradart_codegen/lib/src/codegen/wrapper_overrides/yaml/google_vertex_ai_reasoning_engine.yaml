@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiReasoningEngine(
-  ///   localName: 'agent',
+  ///   'agent',
   ///   displayName: TfArg.literal('terradart-agent'),
   ///   region: TfArg.literal('us-central1'),
   /// );

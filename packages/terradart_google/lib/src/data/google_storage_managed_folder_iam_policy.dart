@@ -15,8 +15,8 @@ const Set<String> _googleStorageManagedFolderIamPolicySensitive = <String>{};
 final class DataGoogleStorageManagedFolderIamPolicy extends Data {
   static const String tfType = 'google_storage_managed_folder_iam_policy';
 
-  DataGoogleStorageManagedFolderIamPolicy({
-    required super.localName,
+  DataGoogleStorageManagedFolderIamPolicy(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> managedFolder,
     super.provider,

@@ -38,8 +38,8 @@ final class DataCatalogPolicyTagIamMemberCondition {
 final class GoogleDataCatalogPolicyTagIamMember extends Resource {
   static const String tfType = 'google_data_catalog_policy_tag_iam_member';
 
-  GoogleDataCatalogPolicyTagIamMember({
-    required super.localName,
+  GoogleDataCatalogPolicyTagIamMember(
+    super.localName, {
     required RefTo<GoogleDataCatalogPolicyTag> policyTag,
     required TfArg<String> role,
     required IamPrincipal member,

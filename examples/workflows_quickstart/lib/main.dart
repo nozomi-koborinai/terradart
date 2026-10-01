@@ -25,7 +25,7 @@ final class WorkflowStack extends Stack {
       ) {
     final apiWorkflows = add(
       GoogleProjectService(
-        localName: 'api_workflows',
+        'api_workflows',
         service: .literal('workflows.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -33,7 +33,7 @@ final class WorkflowStack extends Stack {
 
     final hello = add(
       GoogleWorkflowsWorkflow(
-        localName: 'hello',
+        'hello',
         name: .literal('terradart-hello'),
         region: .literal('us-central1'),
         description: .literal('Returns a greeting (terradart demo)'),

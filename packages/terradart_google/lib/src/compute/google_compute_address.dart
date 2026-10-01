@@ -81,7 +81,7 @@ enum Ipv6EndpointType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// final lbVip = GoogleComputeAddress(
-///   localName: 'lb_vip',
+///   'lb_vip',
 ///   name: TfArg.literal('lb-vip-prod'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   addressType: TfArg.literal(AddressType.external),
@@ -91,8 +91,8 @@ enum Ipv6EndpointType implements TerraformEnum {
 final class GoogleComputeAddress extends Resource {
   static const String tfType = 'google_compute_address';
 
-  GoogleComputeAddress({
-    required super.localName,
+  GoogleComputeAddress(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<AddressType>? addressType,

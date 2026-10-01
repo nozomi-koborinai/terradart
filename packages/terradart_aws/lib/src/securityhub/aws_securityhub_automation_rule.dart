@@ -1264,8 +1264,8 @@ final class SecurityhubAutomationRuleWorkflowStatus {
 final class AwsSecurityhubAutomationRule extends Resource {
   static const String tfType = 'aws_securityhub_automation_rule';
 
-  AwsSecurityhubAutomationRule({
-    required super.localName,
+  AwsSecurityhubAutomationRule(
+    super.localName, {
     required TfArg<String> description,
     TfArg<bool>? isTerminal,
     TfArg<String>? region,

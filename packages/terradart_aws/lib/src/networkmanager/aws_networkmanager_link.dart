@@ -27,8 +27,8 @@ final class NetworkmanagerLinkBandwidth {
 final class AwsNetworkmanagerLink extends Resource {
   static const String tfType = 'aws_networkmanager_link';
 
-  AwsNetworkmanagerLink({
-    required super.localName,
+  AwsNetworkmanagerLink(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> globalNetworkId,
     TfArg<String>? providerName,

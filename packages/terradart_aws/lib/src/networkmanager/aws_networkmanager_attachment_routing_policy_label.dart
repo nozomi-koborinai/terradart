@@ -12,8 +12,8 @@ final class AwsNetworkmanagerAttachmentRoutingPolicyLabel extends Resource {
   static const String tfType =
       'aws_networkmanager_attachment_routing_policy_label';
 
-  AwsNetworkmanagerAttachmentRoutingPolicyLabel({
-    required super.localName,
+  AwsNetworkmanagerAttachmentRoutingPolicyLabel(
+    super.localName, {
     required TfArg<String> attachmentId,
     required TfArg<String> coreNetworkId,
     required TfArg<String> routingPolicyLabel,

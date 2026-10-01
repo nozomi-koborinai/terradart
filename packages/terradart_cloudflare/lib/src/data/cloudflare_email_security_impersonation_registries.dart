@@ -17,8 +17,8 @@ final class DataCloudflareEmailSecurityImpersonationRegistries extends Data {
   static const String tfType =
       'cloudflare_email_security_impersonation_registries';
 
-  DataCloudflareEmailSecurityImpersonationRegistries({
-    required super.localName,
+  DataCloudflareEmailSecurityImpersonationRegistries(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,

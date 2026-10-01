@@ -10,8 +10,8 @@ const Set<String> _awsDxLocationsSensitive = <String>{};
 final class DataAwsDxLocations extends Data {
   static const String tfType = 'aws_dx_locations';
 
-  DataAwsDxLocations({
-    required super.localName,
+  DataAwsDxLocations(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

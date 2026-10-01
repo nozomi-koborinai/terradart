@@ -11,8 +11,8 @@ const Set<String> _awsS3filesMountTargetSensitive = <String>{};
 final class DataAwsS3filesMountTarget extends Data {
   static const String tfType = 'aws_s3files_mount_target';
 
-  DataAwsS3filesMountTarget({
-    required super.localName,
+  DataAwsS3filesMountTarget(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

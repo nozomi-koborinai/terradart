@@ -43,8 +43,8 @@ final class Cloudbuildv2ConnectionIamBindingCondition {
 final class GoogleCloudbuildv2ConnectionIamBinding extends Resource {
   static const String tfType = 'google_cloudbuildv2_connection_iam_binding';
 
-  GoogleCloudbuildv2ConnectionIamBinding({
-    required super.localName,
+  GoogleCloudbuildv2ConnectionIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudbuildv2Connection> connection,
     TfArg<String>? location,
     required TfArg<String> role,

@@ -55,8 +55,8 @@ enum ObservatoryScheduledTestRegion implements TerraformEnum {
 final class CloudflareObservatoryScheduledTest extends Resource {
   static const String tfType = 'cloudflare_observatory_scheduled_test';
 
-  CloudflareObservatoryScheduledTest({
-    required super.localName,
+  CloudflareObservatoryScheduledTest(
+    super.localName, {
     TfArg<ObservatoryScheduledTestFrequency>? frequency,
     TfArg<ObservatoryScheduledTestRegion>? region,
     required TfArg<String> url,

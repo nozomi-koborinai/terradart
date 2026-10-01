@@ -12,8 +12,8 @@ const Set<String> _awsEgressOnlyInternetGatewaySensitive = <String>{};
 final class AwsEgressOnlyInternetGateway extends Resource {
   static const String tfType = 'aws_egress_only_internet_gateway';
 
-  AwsEgressOnlyInternetGateway({
-    required super.localName,
+  AwsEgressOnlyInternetGateway(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required RefTo<AwsVpc> vpcId,

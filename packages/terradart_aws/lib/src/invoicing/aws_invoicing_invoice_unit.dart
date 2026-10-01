@@ -24,8 +24,8 @@ final class InvoicingInvoiceUnitRule {
 final class AwsInvoicingInvoiceUnit extends Resource {
   static const String tfType = 'aws_invoicing_invoice_unit';
 
-  AwsInvoicingInvoiceUnit({
-    required super.localName,
+  AwsInvoicingInvoiceUnit(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> invoiceReceiver,
     required TfArg<String> name,

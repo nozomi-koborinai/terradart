@@ -35,8 +35,8 @@ final class Route53domainsDelegationSignerRecordSigningAttributes {
 final class AwsRoute53domainsDelegationSignerRecord extends Resource {
   static const String tfType = 'aws_route53domains_delegation_signer_record';
 
-  AwsRoute53domainsDelegationSignerRecord({
-    required super.localName,
+  AwsRoute53domainsDelegationSignerRecord(
+    super.localName, {
     required TfArg<String> domainName,
     List<Route53domainsDelegationSignerRecordSigningAttributes>?
     signingAttributes,

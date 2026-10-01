@@ -14,8 +14,8 @@ const Set<String> _appwriteWebhookSensitive = <String>{};
 final class DataAppwriteWebhook extends Data {
   static const String tfType = 'appwrite_webhook';
 
-  DataAppwriteWebhook({
-    required super.localName,
+  DataAppwriteWebhook(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

@@ -22,7 +22,7 @@ const Set<String> _googleStorageDefaultObjectAclSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleStorageDefaultObjectAcl(
-///   localName: 'legacy_default',
+///   'legacy_default',
 ///   bucket: legacy.ref,
 ///   roleEntity: TfArg.literal([
 ///     'OWNER:project-owners-\${current.number}',
@@ -32,8 +32,8 @@ const Set<String> _googleStorageDefaultObjectAclSensitive = <String>{};
 final class GoogleStorageDefaultObjectAcl extends Resource {
   static const String tfType = 'google_storage_default_object_acl';
 
-  GoogleStorageDefaultObjectAcl({
-    required super.localName,
+  GoogleStorageDefaultObjectAcl(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<List<String>>? roleEntity,
     TfArg<String>? deletionPolicy,

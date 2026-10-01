@@ -14,8 +14,8 @@ const Set<String> _googleComposerEnvironmentSensitive = <String>{};
 final class DataGoogleComposerEnvironment extends Data {
   static const String tfType = 'google_composer_environment';
 
-  DataGoogleComposerEnvironment({
-    required super.localName,
+  DataGoogleComposerEnvironment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

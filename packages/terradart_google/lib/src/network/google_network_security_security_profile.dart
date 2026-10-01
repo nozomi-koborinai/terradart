@@ -382,8 +382,8 @@ enum NetworkSecuritySecurityProfileFilteringAction implements TerraformEnum {
 final class GoogleNetworkSecuritySecurityProfile extends Resource {
   static const String tfType = 'google_network_security_security_profile';
 
-  GoogleNetworkSecuritySecurityProfile({
-    required super.localName,
+  GoogleNetworkSecuritySecurityProfile(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<NetworkSecuritySecurityProfileType> type,
     TfArg<String>? location,

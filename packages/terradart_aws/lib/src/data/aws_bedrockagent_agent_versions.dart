@@ -39,8 +39,8 @@ final class DataBedrockagentAgentVersionsGuardrailConfiguration {
 final class DataAwsBedrockagentAgentVersions extends Data {
   static const String tfType = 'aws_bedrockagent_agent_versions';
 
-  DataAwsBedrockagentAgentVersions({
-    required super.localName,
+  DataAwsBedrockagentAgentVersions(
+    super.localName, {
     required TfArg<String> agentId,
     TfArg<String>? region,
     List<DataBedrockagentAgentVersionsAgentVersionSummaries>?

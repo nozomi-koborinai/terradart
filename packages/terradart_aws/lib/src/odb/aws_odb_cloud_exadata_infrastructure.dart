@@ -78,8 +78,8 @@ enum OdbCloudExadataInfrastructurePreference implements TerraformEnum {
 final class AwsOdbCloudExadataInfrastructure extends Resource {
   static const String tfType = 'aws_odb_cloud_exadata_infrastructure';
 
-  AwsOdbCloudExadataInfrastructure({
-    required super.localName,
+  AwsOdbCloudExadataInfrastructure(
+    super.localName, {
     TfArg<String>? availabilityZone,
     required TfArg<String> availabilityZoneId,
     TfArg<num>? computeCount,

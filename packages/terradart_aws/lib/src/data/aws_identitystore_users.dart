@@ -10,8 +10,8 @@ const Set<String> _awsIdentitystoreUsersSensitive = <String>{};
 final class DataAwsIdentitystoreUsers extends Data {
   static const String tfType = 'aws_identitystore_users';
 
-  DataAwsIdentitystoreUsers({
-    required super.localName,
+  DataAwsIdentitystoreUsers(
+    super.localName, {
     required TfArg<String> identityStoreId,
     TfArg<String>? region,
     super.provider,

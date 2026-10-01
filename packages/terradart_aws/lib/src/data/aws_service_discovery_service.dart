@@ -11,8 +11,8 @@ const Set<String> _awsServiceDiscoveryServiceSensitive = <String>{};
 final class DataAwsServiceDiscoveryService extends Data {
   static const String tfType = 'aws_service_discovery_service';
 
-  DataAwsServiceDiscoveryService({
-    required super.localName,
+  DataAwsServiceDiscoveryService(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> namespaceId,
     TfArg<String>? region,

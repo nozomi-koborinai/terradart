@@ -32,8 +32,8 @@ enum IvsChannelType implements TerraformEnum {
 final class AwsIvsChannel extends Resource {
   static const String tfType = 'aws_ivs_channel';
 
-  AwsIvsChannel({
-    required super.localName,
+  AwsIvsChannel(
+    super.localName, {
     TfArg<bool>? authorized,
     TfArg<IvsChannelLatencyMode>? latencyMode,
     TfArg<String>? name,

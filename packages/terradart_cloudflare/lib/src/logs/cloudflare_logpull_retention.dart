@@ -16,8 +16,8 @@ const Set<String> _cloudflareLogpullRetentionSensitive = <String>{};
 final class CloudflareLogpullRetention extends Resource {
   static const String tfType = 'cloudflare_logpull_retention';
 
-  CloudflareLogpullRetention({
-    required super.localName,
+  CloudflareLogpullRetention(
+    super.localName, {
     TfArg<bool>? flag,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

@@ -11,8 +11,8 @@ const Set<String> _awsNetworkmanagerCoreNetworkSensitive = <String>{};
 final class DataAwsNetworkmanagerCoreNetwork extends Data {
   static const String tfType = 'aws_networkmanager_core_network';
 
-  DataAwsNetworkmanagerCoreNetwork({
-    required super.localName,
+  DataAwsNetworkmanagerCoreNetwork(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     super.provider,
     super.timeouts,

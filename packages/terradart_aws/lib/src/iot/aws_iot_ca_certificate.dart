@@ -49,8 +49,8 @@ final class IotCaCertificateRegistrationConfig {
 final class AwsIotCaCertificate extends Resource {
   static const String tfType = 'aws_iot_ca_certificate';
 
-  AwsIotCaCertificate({
-    required super.localName,
+  AwsIotCaCertificate(
+    super.localName, {
     required TfArg<bool> active,
     required TfArg<bool> allowAutoRegistration,
     required TfArg<String> caCertificatePem,

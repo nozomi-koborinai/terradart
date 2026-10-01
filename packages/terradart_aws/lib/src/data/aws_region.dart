@@ -10,8 +10,8 @@ const Set<String> _awsRegionSensitive = <String>{};
 final class DataAwsRegion extends Data {
   static const String tfType = 'aws_region';
 
-  DataAwsRegion({
-    required super.localName,
+  DataAwsRegion(
+    super.localName, {
     TfArg<String>? endpoint,
     TfArg<String>? name,
     TfArg<String>? region,

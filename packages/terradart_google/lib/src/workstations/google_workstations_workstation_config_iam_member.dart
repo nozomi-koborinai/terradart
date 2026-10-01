@@ -45,8 +45,8 @@ final class GoogleWorkstationsWorkstationConfigIamMember extends Resource {
   static const String tfType =
       'google_workstations_workstation_config_iam_member';
 
-  GoogleWorkstationsWorkstationConfigIamMember({
-    required super.localName,
+  GoogleWorkstationsWorkstationConfigIamMember(
+    super.localName, {
     TfArg<String>? workstationClusterId,
     required RefTo<GoogleWorkstationsWorkstationConfig> workstationConfig,
     required TfArg<String> role,

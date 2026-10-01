@@ -17,8 +17,8 @@ const Set<String> _cloudflareByoIpPrefixesSensitive = <String>{};
 final class DataCloudflareByoIpPrefixes extends Data {
   static const String tfType = 'cloudflare_byo_ip_prefixes';
 
-  DataCloudflareByoIpPrefixes({
-    required super.localName,
+  DataCloudflareByoIpPrefixes(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

@@ -186,7 +186,7 @@ final class VertexAiIndexTreeAhConfig {
 /// Example:
 /// ```dart
 /// GoogleVertexAiIndex(
-///   localName: 'idx',
+///   'idx',
 ///   displayName: TfArg.literal('terradart-idx'),
 ///   region: TfArg.literal('us-central1'),
 ///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),
@@ -208,8 +208,8 @@ final class VertexAiIndexTreeAhConfig {
 final class GoogleVertexAiIndex extends Resource {
   static const String tfType = 'google_vertex_ai_index';
 
-  GoogleVertexAiIndex({
-    required super.localName,
+  GoogleVertexAiIndex(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? region,
     TfArg<String>? description,

@@ -489,8 +489,8 @@ final class RdsClusterServerlessv2ScalingConfiguration {
 final class AwsRdsCluster extends Resource {
   static const String tfType = 'aws_rds_cluster';
 
-  AwsRdsCluster({
-    required super.localName,
+  AwsRdsCluster(
+    super.localName, {
     TfArg<num>? allocatedStorage,
     TfArg<bool>? allowMajorVersionUpgrade,
     TfArg<bool>? applyImmediately,

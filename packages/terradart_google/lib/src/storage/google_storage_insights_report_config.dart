@@ -226,7 +226,7 @@ final class StorageInsightsReportConfigStorageFilters {
 /// Example:
 /// ```dart
 /// GoogleStorageInsightsReportConfig(
-///   localName: 'inventory',
+///   'inventory',
 ///   location: TfArg.literal('asia-northeast1'),
 ///   displayName: TfArg.literal('terradart-inventory'),
 ///   forceDestroy: TfArg.literal(true),
@@ -261,8 +261,8 @@ final class StorageInsightsReportConfigStorageFilters {
 final class GoogleStorageInsightsReportConfig extends Resource {
   static const String tfType = 'google_storage_insights_report_config';
 
-  GoogleStorageInsightsReportConfig({
-    required super.localName,
+  GoogleStorageInsightsReportConfig(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? displayName,
     required StorageInsightsReportConfigFormat format,

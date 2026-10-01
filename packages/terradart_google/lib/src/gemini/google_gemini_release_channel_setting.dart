@@ -12,8 +12,8 @@ const Set<String> _googleGeminiReleaseChannelSettingSensitive = <String>{};
 final class GoogleGeminiReleaseChannelSetting extends Resource {
   static const String tfType = 'google_gemini_release_channel_setting';
 
-  GoogleGeminiReleaseChannelSetting({
-    required super.localName,
+  GoogleGeminiReleaseChannelSetting(
+    super.localName, {
     required TfArg<String> releaseChannelSettingId,
     required TfArg<String> location,
     TfArg<String>? releaseChannel,

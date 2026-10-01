@@ -94,7 +94,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleAgenticApplicationsAnalystAgentPersona(
-  ///   localName: 'analyst',
+  ///   'analyst',
   ///   location: TfArg.literal('us-central1'),
   ///   analystAgentPersonaId: TfArg.literal('terradart-analyst'),
   ///   displayName: TfArg.literal('TerraDart treasury analyst'),

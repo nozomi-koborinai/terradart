@@ -73,8 +73,8 @@ final class DialogflowCxEntityTypeExcludedPhrases {
 final class GoogleDialogflowCxEntityType extends Resource {
   static const String tfType = 'google_dialogflow_cx_entity_type';
 
-  GoogleDialogflowCxEntityType({
-    required super.localName,
+  GoogleDialogflowCxEntityType(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<DialogflowCxEntityTypeKind> kind,
     TfArg<String>? parent,

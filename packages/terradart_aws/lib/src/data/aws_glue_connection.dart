@@ -14,8 +14,8 @@ const Set<String> _awsGlueConnectionSensitive = <String>{
 final class DataAwsGlueConnection extends Data {
   static const String tfType = 'aws_glue_connection';
 
-  DataAwsGlueConnection({
-    required super.localName,
+  DataAwsGlueConnection(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

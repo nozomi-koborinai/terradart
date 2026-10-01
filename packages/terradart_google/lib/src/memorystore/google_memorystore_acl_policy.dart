@@ -29,8 +29,8 @@ final class MemorystoreAclPolicyRules {
 final class GoogleMemorystoreAclPolicy extends Resource {
   static const String tfType = 'google_memorystore_acl_policy';
 
-  GoogleMemorystoreAclPolicy({
-    required super.localName,
+  GoogleMemorystoreAclPolicy(
+    super.localName, {
     required TfArg<String> aclPolicyId,
     required TfArg<String> location,
     required List<MemorystoreAclPolicyRules> rules,

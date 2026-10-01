@@ -250,7 +250,7 @@ resource "aws_s3_bucket" "logs" {
           r"r'serviceAccount:service-${data.google_project.current.number}@gcp-sa-pubsub.iam.gserviceaccount.com'",
         ),
       );
-      expect(src, contains("add(GoogleProject(localName: 'current'))"));
+      expect(src, contains("add(GoogleProject('current'))"));
       expect(src, contains("addOutput('ORDERS_TOPIC_ID', orders.id);"));
       expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
@@ -1475,7 +1475,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       // The module call itself became Dart, with no local directory to type.
       expect(
         r.stackSource,
-        contains("addModule(ModuleCall(localName: 'net', source: './net'))"),
+        contains("addModule(ModuleCall('net', source: './net'))"),
       );
     });
   });
@@ -1533,11 +1533,11 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: 't_0', name: .literal('t-0'), "
+          "GooglePubsubTopic('t_0', name: .literal('t-0'), "
           "labels: .literal({'index': '0'}))",
         ),
       );
-      expect(src, contains("localName: 't_1', name: .literal('t-1')"));
+      expect(src, contains("'t_1', name: .literal('t-1')"));
       expect(src, contains("topic: t1.ref.pinned('name')"));
       expect(src, contains('dependsOn: [t0, t1]'));
       expect(
@@ -1582,15 +1582,12 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: 't_eu', name: .literal('eu-topic'), "
+          "GooglePubsubTopic('t_eu', name: .literal('eu-topic'), "
           "labels: .literal({'region': 'europe-west1'}), "
           "messageRetentionDuration: .expression(r'\${1 * 60}s'))",
         ),
       );
-      expect(
-        src,
-        contains("localName: 't_us-east', name: .literal('us-east-topic')"),
-      );
+      expect(src, contains("'t_us-east', name: .literal('us-east-topic')"));
       expect(
         src,
         contains(
@@ -1599,9 +1596,7 @@ output "first" {
       );
       expect(
         src,
-        contains(
-          "GooglePubsubTopic(localName: 'plain_a', name: .literal('a'))",
-        ),
+        contains("GooglePubsubTopic('plain_a', name: .literal('a'))"),
       );
       expect(
         src,
@@ -1692,9 +1687,7 @@ output "count" {
       final src = r.stackSource;
       expect(
         src,
-        contains(
-          "add(GoogleProject(localName: 'p_0', projectId: .literal('proj-0')))",
-        ),
+        contains("add(GoogleProject('p_0', projectId: .literal('proj-0')))"),
       );
       expect(src, contains('project: p1.projectId'));
       expect(src, isNot(contains('addMoved')));
@@ -2004,10 +1997,7 @@ resource "google_pubsub_topic" "t" {
       final src = r.stackSource;
       expect(src, contains('dependsOn: [t]'));
       expect(src, contains('final t = add('));
-      expect(
-        src.indexOf('final t = add('),
-        lessThan(src.indexOf("localName: 's'")),
-      );
+      expect(src.indexOf('final t = add('), lessThan(src.indexOf("'s',")));
     });
 
     test('a replace_triggered_by address declares its target first', () {
@@ -2032,10 +2022,7 @@ resource "google_pubsub_topic" "t" {
       final src = r.stackSource;
       expect(src, contains('replaceTriggeredBy: [TfRef.resource(t)]'));
       expect(src, contains('final t = add('));
-      expect(
-        src.indexOf('final t = add('),
-        lessThan(src.indexOf("localName: 's'")),
-      );
+      expect(src.indexOf('final t = add('), lessThan(src.indexOf("'s',")));
     });
 
     test('provider = <the default provider> is migrated', () {
@@ -2097,10 +2084,7 @@ resource "google_pubsub_topic" "y" {
       );
       expect(src, contains("provider: 'google.west'"));
       // The default configuration stays implicit on `y`.
-      expect(
-        src,
-        contains("GooglePubsubTopic(localName: 'y', name: .literal('y'))"),
-      );
+      expect(src, contains("GooglePubsubTopic('y', name: .literal('y'))"));
     });
 
     test('an alias only the provider declares is registered too', () {
@@ -2151,9 +2135,7 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         r.stackSource,
-        contains(
-          "add(GoogleProject(localName: 'current', provider: 'google.eu'))",
-        ),
+        contains("add(GoogleProject('current', provider: 'google.eu'))"),
       );
       expect(
         r.stackSource,
@@ -2215,9 +2197,7 @@ resource "google_pubsub_topic" "x" {
       expect(src, isNot(contains('GoogleProvider(')));
       expect(
         src,
-        contains(
-          "GoogleApiGatewayApi(localName: 'api', apiId: .literal('api'))",
-        ),
+        contains("GoogleApiGatewayApi('api', apiId: .literal('api'))"),
       );
     });
 
@@ -2245,9 +2225,7 @@ resource "google_pubsub_topic" "x" {
       );
       expect(
         src,
-        contains(
-          "TimeSleep(localName: 'wait', createDuration: .literal('30s'))",
-        ),
+        contains("TimeSleep('wait', createDuration: .literal('30s'))"),
       );
     });
   });
@@ -2274,7 +2252,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "addModule(ModuleCall(localName: 'network', "
+          "addModule(ModuleCall('network', "
           "source: 'terraform-google-modules/network/google', "
           "version: '~> 9.0', inputs: {'project_id': "
           "TfArg.literal('demo'), 'subnets': "
@@ -2403,7 +2381,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         r.stackSource,
         contains(
-          "addModule(ModuleCall(localName: 'm', source: './m', "
+          "addModule(ModuleCall('m', source: './m', "
           "inputs: {'provider': TfArg.literal('edge')}))",
         ),
       );
@@ -2517,7 +2495,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         root,
         contains(
-          "addModule(ServiceAccountModule(localName: 'sa', "
+          "addModule(ServiceAccountModule('sa', "
           "source: './modules/service_account', "
           "accountId: .literal('app-bff')))",
         ),
@@ -2590,7 +2568,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         project.files['lib/infra_stack.dart'],
         contains(
-          "addModule(ModuleCall(localName: 'bare', "
+          "addModule(ModuleCall('bare', "
           "source: './modules/bare'))",
         ),
       );

@@ -10,8 +10,8 @@ const Set<String> _awsEksNodeGroupsSensitive = <String>{};
 final class DataAwsEksNodeGroups extends Data {
   static const String tfType = 'aws_eks_node_groups';
 
-  DataAwsEksNodeGroups({
-    required super.localName,
+  DataAwsEksNodeGroups(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<String>? region,
     super.provider,

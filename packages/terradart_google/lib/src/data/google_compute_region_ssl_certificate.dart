@@ -14,8 +14,8 @@ const Set<String> _googleComputeRegionSslCertificateSensitive = <String>{};
 final class DataGoogleComputeRegionSslCertificate extends Data {
   static const String tfType = 'google_compute_region_ssl_certificate';
 
-  DataGoogleComputeRegionSslCertificate({
-    required super.localName,
+  DataGoogleComputeRegionSslCertificate(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

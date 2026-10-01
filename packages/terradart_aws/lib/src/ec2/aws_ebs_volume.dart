@@ -12,8 +12,8 @@ const Set<String> _awsEbsVolumeSensitive = <String>{};
 final class AwsEbsVolume extends Resource {
   static const String tfType = 'aws_ebs_volume';
 
-  AwsEbsVolume({
-    required super.localName,
+  AwsEbsVolume(
+    super.localName, {
     required TfArg<String> availabilityZone,
     TfArg<bool>? encrypted,
     TfArg<bool>? finalSnapshot,

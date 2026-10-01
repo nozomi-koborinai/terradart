@@ -30,13 +30,13 @@ curatedDoc: |-
   /// Example pairing with [GooglePubsubTopic]:
   /// ```dart
   /// final pubsubApi = GoogleProjectService(
-  ///   localName: 'pubsub',
+  ///   'pubsub',
   ///   service: TfArg.literal('pubsub.googleapis.com'),
   ///   disableOnDestroy: TfArg.literal(false),
   /// );
   ///
   /// final orders = GooglePubsubTopic(
-  ///   localName: 'orders',
+  ///   'orders',
   ///   name: TfArg.literal('orders-prod'),
   ///   dependsOn: [pubsubApi],
   /// );

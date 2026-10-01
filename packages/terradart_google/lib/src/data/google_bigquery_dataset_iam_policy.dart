@@ -15,8 +15,8 @@ const Set<String> _googleBigqueryDatasetIamPolicySensitive = <String>{};
 final class DataGoogleBigqueryDatasetIamPolicy extends Data {
   static const String tfType = 'google_bigquery_dataset_iam_policy';
 
-  DataGoogleBigqueryDatasetIamPolicy({
-    required super.localName,
+  DataGoogleBigqueryDatasetIamPolicy(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? project,
     super.provider,

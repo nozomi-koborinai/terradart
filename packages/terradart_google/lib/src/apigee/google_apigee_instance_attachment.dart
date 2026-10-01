@@ -21,8 +21,8 @@ const Set<String> _googleApigeeInstanceAttachmentSensitive = <String>{};
 final class GoogleApigeeInstanceAttachment extends Resource {
   static const String tfType = 'google_apigee_instance_attachment';
 
-  GoogleApigeeInstanceAttachment({
-    required super.localName,
+  GoogleApigeeInstanceAttachment(
+    super.localName, {
     required TfArg<String> instanceId,
     required TfArg<String> environment,
     TfArg<String>? deletionPolicy,

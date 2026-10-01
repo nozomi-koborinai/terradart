@@ -22,8 +22,8 @@ enum SagemakerStudioLifecycleConfigAppType implements TerraformEnum {
 final class AwsSagemakerStudioLifecycleConfig extends Resource {
   static const String tfType = 'aws_sagemaker_studio_lifecycle_config';
 
-  AwsSagemakerStudioLifecycleConfig({
-    required super.localName,
+  AwsSagemakerStudioLifecycleConfig(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<SagemakerStudioLifecycleConfigAppType>
     studioLifecycleConfigAppType,

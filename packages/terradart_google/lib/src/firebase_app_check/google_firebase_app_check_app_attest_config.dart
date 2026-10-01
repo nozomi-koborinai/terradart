@@ -22,7 +22,7 @@ const Set<String> _googleFirebaseAppCheckAppAttestConfigSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final appAttest = GoogleFirebaseAppCheckAppAttestConfig(
-///   localName: 'ios',
+///   'ios',
 ///   appId: TfArg.literal('1:1234567890:ios:abcdef'),
 ///   tokenTtl: TfArg.literal('3600s'),
 /// );
@@ -39,8 +39,8 @@ const Set<String> _googleFirebaseAppCheckAppAttestConfigSensitive = <String>{};
 final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
   static const String tfType = 'google_firebase_app_check_app_attest_config';
 
-  GoogleFirebaseAppCheckAppAttestConfig({
-    required super.localName,
+  GoogleFirebaseAppCheckAppAttestConfig(
+    super.localName, {
     required TfArg<String> appId,
     TfArg<String>? tokenTtl,
     TfArg<String>? project,

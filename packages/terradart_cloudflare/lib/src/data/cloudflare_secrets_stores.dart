@@ -15,8 +15,8 @@ const Set<String> _cloudflareSecretsStoresSensitive = <String>{};
 final class DataCloudflareSecretsStores extends Data {
   static const String tfType = 'cloudflare_secrets_stores';
 
-  DataCloudflareSecretsStores({
-    required super.localName,
+  DataCloudflareSecretsStores(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,

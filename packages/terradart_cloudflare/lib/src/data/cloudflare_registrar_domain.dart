@@ -12,8 +12,8 @@ const Set<String> _cloudflareRegistrarDomainSensitive = <String>{};
 final class DataCloudflareRegistrarDomain extends Data {
   static const String tfType = 'cloudflare_registrar_domain';
 
-  DataCloudflareRegistrarDomain({
-    required super.localName,
+  DataCloudflareRegistrarDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> domainName,
     super.provider,

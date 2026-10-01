@@ -11,8 +11,8 @@ const Set<String> _awsSecretsmanagerSecretRotationSensitive = <String>{};
 final class DataAwsSecretsmanagerSecretRotation extends Data {
   static const String tfType = 'aws_secretsmanager_secret_rotation';
 
-  DataAwsSecretsmanagerSecretRotation({
-    required super.localName,
+  DataAwsSecretsmanagerSecretRotation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> secretId,
     super.provider,

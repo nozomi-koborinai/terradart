@@ -45,8 +45,8 @@ final class StorageManagedFolderIamBindingCondition {
 final class GoogleStorageManagedFolderIamBinding extends Resource {
   static const String tfType = 'google_storage_managed_folder_iam_binding';
 
-  GoogleStorageManagedFolderIamBinding({
-    required super.localName,
+  GoogleStorageManagedFolderIamBinding(
+    super.localName, {
     TfArg<String>? bucket,
     required RefTo<GoogleStorageManagedFolder> managedFolder,
     required TfArg<String> role,

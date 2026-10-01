@@ -11,8 +11,8 @@ const Set<String> _awsGlueCatalogTableSensitive = <String>{};
 final class DataAwsGlueCatalogTable extends Data {
   static const String tfType = 'aws_glue_catalog_table';
 
-  DataAwsGlueCatalogTable({
-    required super.localName,
+  DataAwsGlueCatalogTable(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> databaseName,
     required TfArg<String> name,

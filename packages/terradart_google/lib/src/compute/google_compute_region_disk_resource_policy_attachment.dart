@@ -28,8 +28,8 @@ final class GoogleComputeRegionDiskResourcePolicyAttachment extends Resource {
   static const String tfType =
       'google_compute_region_disk_resource_policy_attachment';
 
-  GoogleComputeRegionDiskResourcePolicyAttachment({
-    required super.localName,
+  GoogleComputeRegionDiskResourcePolicyAttachment(
+    super.localName, {
     required RefTo<GoogleComputeRegionDisk> disk,
     required RefTo<GoogleComputeResourcePolicy> name,
     TfArg<String>? region,

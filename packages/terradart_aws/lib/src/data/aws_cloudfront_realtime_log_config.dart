@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontRealtimeLogConfigSensitive = <String>{};
 final class DataAwsCloudfrontRealtimeLogConfig extends Data {
   static const String tfType = 'aws_cloudfront_realtime_log_config';
 
-  DataAwsCloudfrontRealtimeLogConfig({
-    required super.localName,
+  DataAwsCloudfrontRealtimeLogConfig(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

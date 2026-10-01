@@ -27,8 +27,8 @@ final class ControltowerControlParameters {
 final class AwsControltowerControl extends Resource {
   static const String tfType = 'aws_controltower_control';
 
-  AwsControltowerControl({
-    required super.localName,
+  AwsControltowerControl(
+    super.localName, {
     required TfArg<String> controlIdentifier,
     TfArg<String>? region,
     required TfArg<String> targetIdentifier,

@@ -10,8 +10,8 @@ const Set<String> _awsCognitoUserPoolsSensitive = <String>{};
 final class DataAwsCognitoUserPools extends Data {
   static const String tfType = 'aws_cognito_user_pools';
 
-  DataAwsCognitoUserPools({
-    required super.localName,
+  DataAwsCognitoUserPools(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

@@ -16,8 +16,8 @@ final class DataGoogleStorageControlProjectIntelligenceFindingRevisions
   static const String tfType =
       'google_storage_control_project_intelligence_finding_revisions';
 
-  DataGoogleStorageControlProjectIntelligenceFindingRevisions({
-    required super.localName,
+  DataGoogleStorageControlProjectIntelligenceFindingRevisions(
+    super.localName, {
     required TfArg<String> findingId,
     TfArg<String>? location,
     TfArg<num>? pageSize,

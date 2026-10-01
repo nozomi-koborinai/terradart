@@ -78,8 +78,8 @@ final class Apigatewayv2ApiCorsConfiguration {
 final class AwsApigatewayv2Api extends Resource {
   static const String tfType = 'aws_apigatewayv2_api';
 
-  AwsApigatewayv2Api({
-    required super.localName,
+  AwsApigatewayv2Api(
+    super.localName, {
     TfArg<Apigatewayv2ApiKeySelectionExpression>? apiKeySelectionExpression,
     TfArg<String>? body,
     TfArg<String>? credentialsArn,

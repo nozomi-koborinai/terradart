@@ -16,8 +16,8 @@ const Set<String> _cloudflareWebAnalyticsSiteSensitive = <String>{};
 final class CloudflareWebAnalyticsSite extends Resource {
   static const String tfType = 'cloudflare_web_analytics_site';
 
-  CloudflareWebAnalyticsSite({
-    required super.localName,
+  CloudflareWebAnalyticsSite(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? autoInstall,
     TfArg<bool>? enabled,

@@ -409,8 +409,8 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
   static const String tfType =
       'google_database_migration_service_migration_job';
 
-  GoogleDatabaseMigrationServiceMigrationJob({
-    required super.localName,
+  GoogleDatabaseMigrationServiceMigrationJob(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? desiredState,
     required TfArg<String> destination,

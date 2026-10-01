@@ -116,8 +116,8 @@ enum S3BucketObjectLockConfigurationMode implements TerraformEnum {
 final class AwsS3BucketObjectLockConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_object_lock_configuration';
 
-  AwsS3BucketObjectLockConfiguration({
-    required super.localName,
+  AwsS3BucketObjectLockConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<S3BucketObjectLockConfigurationObjectLockEnabled>? objectLockEnabled,

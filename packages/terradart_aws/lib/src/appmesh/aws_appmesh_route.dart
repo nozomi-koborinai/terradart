@@ -622,8 +622,8 @@ final class AppmeshRouteTcpRouteTimeout {
 final class AwsAppmeshRoute extends Resource {
   static const String tfType = 'aws_appmesh_route';
 
-  AwsAppmeshRoute({
-    required super.localName,
+  AwsAppmeshRoute(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

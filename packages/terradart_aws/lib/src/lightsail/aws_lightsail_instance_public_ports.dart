@@ -46,8 +46,8 @@ final class LightsailInstancePublicPortsPortInfo {
 final class AwsLightsailInstancePublicPorts extends Resource {
   static const String tfType = 'aws_lightsail_instance_public_ports';
 
-  AwsLightsailInstancePublicPorts({
-    required super.localName,
+  AwsLightsailInstancePublicPorts(
+    super.localName, {
     required TfArg<String> instanceName,
     TfArg<String>? region,
     required List<LightsailInstancePublicPortsPortInfo> portInfo,

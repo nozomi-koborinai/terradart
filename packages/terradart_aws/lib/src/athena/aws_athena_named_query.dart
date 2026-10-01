@@ -10,8 +10,8 @@ const Set<String> _awsAthenaNamedQuerySensitive = <String>{};
 final class AwsAthenaNamedQuery extends Resource {
   static const String tfType = 'aws_athena_named_query';
 
-  AwsAthenaNamedQuery({
-    required super.localName,
+  AwsAthenaNamedQuery(
+    super.localName, {
     required TfArg<String> database,
     TfArg<String>? description,
     required TfArg<String> name,

@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   test('stackType / updateStrategy are typed enums and serialize raw', () {
     final peering = GoogleComputeNetworkPeering(
-      localName: 'peer',
+      'peer',
       name: TfArg.literal('peer'),
       network: .literal('net-a'),
       peerNetwork: .literal('net-b'),

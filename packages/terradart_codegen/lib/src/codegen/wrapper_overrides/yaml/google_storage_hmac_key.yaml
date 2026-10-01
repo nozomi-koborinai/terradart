@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageHmacKey(
-  ///   localName: 'backup_hmac',
+  ///   'backup_hmac',
   ///   serviceAccountEmail: sa.ref,
   /// );
   /// ```

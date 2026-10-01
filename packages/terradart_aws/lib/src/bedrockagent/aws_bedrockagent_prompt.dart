@@ -680,8 +680,8 @@ final class BedrockagentPromptTemplateConfigurationText {
 final class AwsBedrockagentPrompt extends Resource {
   static const String tfType = 'aws_bedrockagent_prompt';
 
-  AwsBedrockagentPrompt({
-    required super.localName,
+  AwsBedrockagentPrompt(
+    super.localName, {
     TfArg<String>? customerEncryptionKeyArn,
     TfArg<String>? defaultVariant,
     TfArg<String>? description,

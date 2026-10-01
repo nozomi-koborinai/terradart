@@ -20,8 +20,8 @@ final class DataCloudflareZeroTrustTunnelCloudflaredConfig extends Data {
   static const String tfType =
       'cloudflare_zero_trust_tunnel_cloudflared_config';
 
-  DataCloudflareZeroTrustTunnelCloudflaredConfig({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelCloudflaredConfig(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> tunnelId,
     super.provider,

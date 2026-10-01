@@ -29,8 +29,8 @@ enum PostgresqlPoolerMode implements TerraformEnum {
 final class AppwritePostgresqlPooler extends Resource {
   static const String tfType = 'appwrite_postgresql_pooler';
 
-  AppwritePostgresqlPooler({
-    required super.localName,
+  AppwritePostgresqlPooler(
+    super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     TfArg<num>? defaultPoolSize,
     TfArg<PostgresqlPoolerMode>? mode,

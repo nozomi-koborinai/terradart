@@ -16,8 +16,8 @@ const Set<String> _cloudflareDnsZoneTransfersTsigSensitive = <String>{'secret'};
 final class CloudflareDnsZoneTransfersTsig extends Resource {
   static const String tfType = 'cloudflare_dns_zone_transfers_tsig';
 
-  CloudflareDnsZoneTransfersTsig({
-    required super.localName,
+  CloudflareDnsZoneTransfersTsig(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> algo,
     required TfArg<String> name,

@@ -177,8 +177,8 @@ final class DataCustomHostnameFilterHostname {
 final class DataCloudflareCustomHostname extends Data {
   static const String tfType = 'cloudflare_custom_hostname';
 
-  DataCloudflareCustomHostname({
-    required super.localName,
+  DataCloudflareCustomHostname(
+    super.localName, {
     TfArg<String>? customHostnameId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomHostnameFilter? filter,

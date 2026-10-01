@@ -13,8 +13,8 @@ const Set<String> _awsOdbNetworkPeeringConnectionSensitive = <String>{};
 final class AwsOdbNetworkPeeringConnection extends Resource {
   static const String tfType = 'aws_odb_network_peering_connection';
 
-  AwsOdbNetworkPeeringConnection({
-    required super.localName,
+  AwsOdbNetworkPeeringConnection(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? odbNetworkArn,
     TfArg<String>? odbNetworkId,

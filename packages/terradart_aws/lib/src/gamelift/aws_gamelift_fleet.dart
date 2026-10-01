@@ -750,8 +750,8 @@ final class GameliftFleetServerProcess {
 final class AwsGameliftFleet extends Resource {
   static const String tfType = 'aws_gamelift_fleet';
 
-  AwsGameliftFleet({
-    required super.localName,
+  AwsGameliftFleet(
+    super.localName, {
     required GameliftFleetArtifact artifact,
     TfArg<String>? description,
     required TfArg<GameliftFleetEc2InstanceType> ec2InstanceType,

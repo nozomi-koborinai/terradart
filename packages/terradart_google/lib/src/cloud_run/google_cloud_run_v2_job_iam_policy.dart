@@ -17,8 +17,8 @@ const Set<String> _googleCloudRunV2JobIamPolicySensitive = <String>{};
 final class GoogleCloudRunV2JobIamPolicy extends Resource {
   static const String tfType = 'google_cloud_run_v2_job_iam_policy';
 
-  GoogleCloudRunV2JobIamPolicy({
-    required super.localName,
+  GoogleCloudRunV2JobIamPolicy(
+    super.localName, {
     required RefTo<GoogleCloudRunV2Job> job,
     required TfArg<String> policyData,
     TfArg<String>? location,

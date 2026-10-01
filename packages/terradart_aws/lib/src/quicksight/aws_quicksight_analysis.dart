@@ -10462,8 +10462,8 @@ final class QuicksightAnalysisDataSetReferences {
 final class AwsQuicksightAnalysis extends Resource {
   static const String tfType = 'aws_quicksight_analysis';
 
-  AwsQuicksightAnalysis({
-    required super.localName,
+  AwsQuicksightAnalysis(
+    super.localName, {
     required TfArg<String> analysisId,
     TfArg<String>? awsAccountId,
     required TfArg<String> name,

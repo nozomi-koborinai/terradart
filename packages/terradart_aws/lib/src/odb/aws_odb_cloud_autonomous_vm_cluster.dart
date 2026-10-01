@@ -56,8 +56,8 @@ enum OdbCloudAutonomousVmClusterPreference implements TerraformEnum {
 final class AwsOdbCloudAutonomousVmCluster extends Resource {
   static const String tfType = 'aws_odb_cloud_autonomous_vm_cluster';
 
-  AwsOdbCloudAutonomousVmCluster({
-    required super.localName,
+  AwsOdbCloudAutonomousVmCluster(
+    super.localName, {
     required TfArg<num> autonomousDataStorageSizeInTbs,
     TfArg<String>? cloudExadataInfrastructureArn,
     TfArg<String>? cloudExadataInfrastructureId,

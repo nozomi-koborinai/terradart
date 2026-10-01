@@ -10,8 +10,8 @@ const Set<String> _awsSesIdentityPolicySensitive = <String>{};
 final class AwsSesIdentityPolicy extends Resource {
   static const String tfType = 'aws_ses_identity_policy';
 
-  AwsSesIdentityPolicy({
-    required super.localName,
+  AwsSesIdentityPolicy(
+    super.localName, {
     required TfArg<String> identity,
     required TfArg<String> name,
     required TfArg<String> policy,

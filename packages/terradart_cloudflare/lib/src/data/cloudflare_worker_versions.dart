@@ -20,8 +20,8 @@ const Set<String> _cloudflareWorkerVersionsSensitive = <String>{
 final class DataCloudflareWorkerVersions extends Data {
   static const String tfType = 'cloudflare_worker_versions';
 
-  DataCloudflareWorkerVersions({
-    required super.localName,
+  DataCloudflareWorkerVersions(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     required TfArg<String> workerId,

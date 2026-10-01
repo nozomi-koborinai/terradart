@@ -79,8 +79,8 @@ final class DmsCertificateContentCertificateWallet
 final class AwsDmsCertificate extends Resource {
   static const String tfType = 'aws_dms_certificate';
 
-  AwsDmsCertificate({
-    required super.localName,
+  AwsDmsCertificate(
+    super.localName, {
     required TfArg<String> certificateId,
     required DmsCertificateContent content,
     TfArg<String>? region,

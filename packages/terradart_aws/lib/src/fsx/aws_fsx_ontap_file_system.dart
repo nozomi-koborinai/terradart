@@ -147,8 +147,8 @@ enum FsxOntapFileSystemMode implements TerraformEnum {
 final class AwsFsxOntapFileSystem extends Resource {
   static const String tfType = 'aws_fsx_ontap_file_system';
 
-  AwsFsxOntapFileSystem({
-    required super.localName,
+  AwsFsxOntapFileSystem(
+    super.localName, {
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? dailyAutomaticBackupStartTime,
     required TfArg<FsxOntapFileSystemDeploymentType> deploymentType,

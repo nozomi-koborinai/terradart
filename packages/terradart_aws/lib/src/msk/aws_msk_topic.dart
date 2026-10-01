@@ -10,8 +10,8 @@ const Set<String> _awsMskTopicSensitive = <String>{};
 final class AwsMskTopic extends Resource {
   static const String tfType = 'aws_msk_topic';
 
-  AwsMskTopic({
-    required super.localName,
+  AwsMskTopic(
+    super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? configs,
     required TfArg<String> name,

@@ -12,8 +12,8 @@ const Set<String> _awsDatasyncLocationFsxWindowsFileSystemSensitive = <String>{
 final class AwsDatasyncLocationFsxWindowsFileSystem extends Resource {
   static const String tfType = 'aws_datasync_location_fsx_windows_file_system';
 
-  AwsDatasyncLocationFsxWindowsFileSystem({
-    required super.localName,
+  AwsDatasyncLocationFsxWindowsFileSystem(
+    super.localName, {
     TfArg<String>? domain,
     required TfArg<String> fsxFilesystemArn,
     required TfArg<String> password,

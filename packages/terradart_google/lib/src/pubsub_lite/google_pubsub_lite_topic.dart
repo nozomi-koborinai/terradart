@@ -95,8 +95,8 @@ final class PubsubLiteTopicRetentionConfig {
 final class GooglePubsubLiteTopic extends Resource {
   static const String tfType = 'google_pubsub_lite_topic';
 
-  GooglePubsubLiteTopic({
-    required super.localName,
+  GooglePubsubLiteTopic(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? zone,

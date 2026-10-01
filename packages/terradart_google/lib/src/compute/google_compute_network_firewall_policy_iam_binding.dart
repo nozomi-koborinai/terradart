@@ -46,8 +46,8 @@ final class GoogleComputeNetworkFirewallPolicyIamBinding extends Resource {
   static const String tfType =
       'google_compute_network_firewall_policy_iam_binding';
 
-  GoogleComputeNetworkFirewallPolicyIamBinding({
-    required super.localName,
+  GoogleComputeNetworkFirewallPolicyIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -8,8 +8,8 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 
 final class CloudSqlModule extends ModuleCall {
-  CloudSqlModule({
-    required super.localName,
+  CloudSqlModule(
+    super.localName, {
     required super.source,
     super.version,
     super.providers,

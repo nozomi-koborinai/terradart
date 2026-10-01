@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubEnabledStandardsSensitive = <String>{};
 final class DataAwsSecurityhubEnabledStandards extends Data {
   static const String tfType = 'aws_securityhub_enabled_standards';
 
-  DataAwsSecurityhubEnabledStandards({
-    required super.localName,
+  DataAwsSecurityhubEnabledStandards(
+    super.localName, {
     TfArg<String>? region,
     TfArg<List<String>>? standardsSubscriptionArns,
     super.provider,

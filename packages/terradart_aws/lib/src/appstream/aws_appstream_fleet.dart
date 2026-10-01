@@ -91,8 +91,8 @@ final class AppstreamFleetVpcConfig {
 final class AwsAppstreamFleet extends Resource {
   static const String tfType = 'aws_appstream_fleet';
 
-  AwsAppstreamFleet({
-    required super.localName,
+  AwsAppstreamFleet(
+    super.localName, {
     TfArg<String>? description,
     TfArg<num>? disconnectTimeoutInSeconds,
     TfArg<String>? displayName,

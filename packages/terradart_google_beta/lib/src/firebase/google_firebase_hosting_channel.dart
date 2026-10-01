@@ -75,8 +75,8 @@ final class FirebaseHostingChannelExpirationTtl
 final class GoogleFirebaseHostingChannel extends Resource {
   static const String tfType = 'google_firebase_hosting_channel';
 
-  GoogleFirebaseHostingChannel({
-    required super.localName,
+  GoogleFirebaseHostingChannel(
+    super.localName, {
     required TfArg<String> channelId,
     TfArg<String>? deletionPolicy,
     FirebaseHostingChannelExpiration? expiration,

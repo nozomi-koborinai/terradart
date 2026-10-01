@@ -24,8 +24,8 @@ const Set<String> _googleComputeCrossSiteNetworkSensitive = <String>{};
 final class GoogleComputeCrossSiteNetwork extends Resource {
   static const String tfType = 'google_compute_cross_site_network';
 
-  GoogleComputeCrossSiteNetwork({
-    required super.localName,
+  GoogleComputeCrossSiteNetwork(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<String>? project,

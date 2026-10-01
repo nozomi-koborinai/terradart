@@ -51,8 +51,8 @@ enum DevopsguruEventSourcesConfigStatus implements TerraformEnum {
 final class AwsDevopsguruEventSourcesConfig extends Resource {
   static const String tfType = 'aws_devopsguru_event_sources_config';
 
-  AwsDevopsguruEventSourcesConfig({
-    required super.localName,
+  AwsDevopsguruEventSourcesConfig(
+    super.localName, {
     TfArg<String>? region,
     List<DevopsguruEventSourcesConfigEventSources>? eventSources,
     super.lifecycle,

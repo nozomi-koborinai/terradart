@@ -106,8 +106,8 @@ final class ComputeRouterRoutePolicyMatch {
 final class GoogleComputeRouterRoutePolicy extends Resource {
   static const String tfType = 'google_compute_router_route_policy';
 
-  GoogleComputeRouterRoutePolicy({
-    required super.localName,
+  GoogleComputeRouterRoutePolicy(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,

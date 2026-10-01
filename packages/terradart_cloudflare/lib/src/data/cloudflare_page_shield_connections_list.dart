@@ -16,8 +16,8 @@ const Set<String> _cloudflarePageShieldConnectionsListSensitive = <String>{};
 final class DataCloudflarePageShieldConnectionsList extends Data {
   static const String tfType = 'cloudflare_page_shield_connections_list';
 
-  DataCloudflarePageShieldConnectionsList({
-    required super.localName,
+  DataCloudflarePageShieldConnectionsList(
+    super.localName, {
     TfArg<String>? direction,
     TfArg<bool>? excludeCdnCgi,
     TfArg<String>? excludeUrls,

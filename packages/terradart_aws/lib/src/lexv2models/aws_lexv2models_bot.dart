@@ -65,8 +65,8 @@ final class Lexv2modelsBotMembers {
 final class AwsLexv2modelsBot extends Resource {
   static const String tfType = 'aws_lexv2models_bot';
 
-  AwsLexv2modelsBot({
-    required super.localName,
+  AwsLexv2modelsBot(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<num> idleSessionTtlInSeconds,
     required TfArg<String> name,

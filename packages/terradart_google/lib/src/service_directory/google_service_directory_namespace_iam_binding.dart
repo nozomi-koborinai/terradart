@@ -45,8 +45,8 @@ final class ServiceDirectoryNamespaceIamBindingCondition {
 final class GoogleServiceDirectoryNamespaceIamBinding extends Resource {
   static const String tfType = 'google_service_directory_namespace_iam_binding';
 
-  GoogleServiceDirectoryNamespaceIamBinding({
-    required super.localName,
+  GoogleServiceDirectoryNamespaceIamBinding(
+    super.localName, {
     required RefTo<GoogleServiceDirectoryNamespace> namespace,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

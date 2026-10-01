@@ -43,8 +43,8 @@ enum SchemaValidationSettingsValidationOverrideMitigationAction
 final class CloudflareSchemaValidationSettings extends Resource {
   static const String tfType = 'cloudflare_schema_validation_settings';
 
-  CloudflareSchemaValidationSettings({
-    required super.localName,
+  CloudflareSchemaValidationSettings(
+    super.localName, {
     required TfArg<SchemaValidationSettingsValidationDefaultMitigationAction>
     validationDefaultMitigationAction,
     TfArg<SchemaValidationSettingsValidationOverrideMitigationAction>?

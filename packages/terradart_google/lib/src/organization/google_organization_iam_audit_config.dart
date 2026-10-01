@@ -39,8 +39,8 @@ final class OrganizationIamAuditConfigAuditLogConfig {
 final class GoogleOrganizationIamAuditConfig extends Resource {
   static const String tfType = 'google_organization_iam_audit_config';
 
-  GoogleOrganizationIamAuditConfig({
-    required super.localName,
+  GoogleOrganizationIamAuditConfig(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> service,
     required List<OrganizationIamAuditConfigAuditLogConfig> auditLogConfig,

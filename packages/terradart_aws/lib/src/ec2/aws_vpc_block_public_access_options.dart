@@ -24,8 +24,8 @@ enum VpcBlockPublicAccessOptionsInternetGatewayBlockMode
 final class AwsVpcBlockPublicAccessOptions extends Resource {
   static const String tfType = 'aws_vpc_block_public_access_options';
 
-  AwsVpcBlockPublicAccessOptions({
-    required super.localName,
+  AwsVpcBlockPublicAccessOptions(
+    super.localName, {
     required TfArg<VpcBlockPublicAccessOptionsInternetGatewayBlockMode>
     internetGatewayBlockMode,
     TfArg<String>? region,

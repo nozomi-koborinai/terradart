@@ -4,10 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('CloudSchedulerJobTarget — sealed', () {
     test('.pubsubTarget emits topic.id (the full path) for topicName', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: .literal('orders'),
-      );
+      final topic = GooglePubsubTopic('orders', name: .literal('orders'));
       final CloudSchedulerJobTarget target = .pubsubTarget(
         CloudSchedulerJobPubsubTarget(
           topicName: .of(topic),
@@ -72,12 +69,9 @@ void main() {
 
   group('GoogleCloudSchedulerJob', () {
     test('pubsub-target job emits pubsub_target block keyed correctly', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: .literal('orders'),
-      );
+      final topic = GooglePubsubTopic('orders', name: .literal('orders'));
       final job = GoogleCloudSchedulerJob(
-        localName: 'nightly',
+        'nightly',
         name: .literal('nightly'),
         region: .literal('us-central1'),
         schedule: .literal('0 0 * * *'),
@@ -103,7 +97,7 @@ void main() {
 
     test('http-target job populates http_target block (no pubsub_target)', () {
       final job = GoogleCloudSchedulerJob(
-        localName: 'health',
+        'health',
         name: .literal('health'),
         region: .literal('us-central1'),
         schedule: .literal('*/5 * * * *'),
@@ -123,7 +117,7 @@ void main() {
 
     test('retry_config uses snake_case keys', () {
       final job = GoogleCloudSchedulerJob(
-        localName: 'j',
+        'j',
         name: .literal('j'),
         region: .literal('us-central1'),
         target: .httpTarget(

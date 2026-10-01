@@ -803,8 +803,8 @@ enum NetworkSecurityAuthzPolicyLoadBalancingScheme implements TerraformEnum {
 final class GoogleNetworkSecurityAuthzPolicy extends Resource {
   static const String tfType = 'google_network_security_authz_policy';
 
-  GoogleNetworkSecurityAuthzPolicy({
-    required super.localName,
+  GoogleNetworkSecurityAuthzPolicy(
+    super.localName, {
     required TfArg<NetworkSecurityAuthzPolicyAction> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

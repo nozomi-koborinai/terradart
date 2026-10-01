@@ -11,8 +11,8 @@ const Set<String> _awsGlueDataCatalogEncryptionSettingsSensitive = <String>{};
 final class DataAwsGlueDataCatalogEncryptionSettings extends Data {
   static const String tfType = 'aws_glue_data_catalog_encryption_settings';
 
-  DataAwsGlueDataCatalogEncryptionSettings({
-    required super.localName,
+  DataAwsGlueDataCatalogEncryptionSettings(
+    super.localName, {
     required TfArg<String> catalogId,
     TfArg<String>? region,
     super.provider,

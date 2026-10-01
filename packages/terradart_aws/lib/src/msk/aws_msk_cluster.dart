@@ -482,8 +482,8 @@ enum MskClusterStatus implements TerraformEnum {
 final class AwsMskCluster extends Resource {
   static const String tfType = 'aws_msk_cluster';
 
-  AwsMskCluster({
-    required super.localName,
+  AwsMskCluster(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<MskClusterEnhancedMonitoring>? enhancedMonitoring,
     required TfArg<String> kafkaVersion,

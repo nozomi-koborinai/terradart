@@ -73,8 +73,8 @@ final class DocdbEventSubscriptionNamePrefix
 final class AwsDocdbEventSubscription extends Resource {
   static const String tfType = 'aws_docdb_event_subscription';
 
-  AwsDocdbEventSubscription({
-    required super.localName,
+  AwsDocdbEventSubscription(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<List<String>>? eventCategories,
     DocdbEventSubscriptionName? name,

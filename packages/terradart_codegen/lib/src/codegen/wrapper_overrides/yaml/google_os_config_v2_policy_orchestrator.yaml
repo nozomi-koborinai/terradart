@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleOsConfigV2PolicyOrchestrator(
-  ///   localName: 'stopped',
+  ///   'stopped',
   ///   policyOrchestratorId: TfArg.literal('terradart-po'),
   ///   action: TfArg.literal('UPSERT'),
   ///   state: TfArg.literal('STOPPED'),

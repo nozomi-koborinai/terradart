@@ -160,8 +160,8 @@ final class AppsyncChannelNamespaceSubscribeAuthMode {
 final class AwsAppsyncChannelNamespace extends Resource {
   static const String tfType = 'aws_appsync_channel_namespace';
 
-  AwsAppsyncChannelNamespace({
-    required super.localName,
+  AwsAppsyncChannelNamespace(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? codeHandlers,
     required TfArg<String> name,

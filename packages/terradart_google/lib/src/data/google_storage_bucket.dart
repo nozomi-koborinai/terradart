@@ -14,8 +14,8 @@ const Set<String> _googleStorageBucketSensitive = <String>{};
 final class DataGoogleStorageBucket extends Data {
   static const String tfType = 'google_storage_bucket';
 
-  DataGoogleStorageBucket({
-    required super.localName,
+  DataGoogleStorageBucket(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

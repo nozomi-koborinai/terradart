@@ -155,8 +155,8 @@ final class CloudSecurityComplianceFrameworkStringListValue {
 final class GoogleCloudSecurityComplianceFramework extends Resource {
   static const String tfType = 'google_cloud_security_compliance_framework';
 
-  GoogleCloudSecurityComplianceFramework({
-    required super.localName,
+  GoogleCloudSecurityComplianceFramework(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? displayName,

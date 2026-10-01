@@ -22,8 +22,8 @@ const Set<String> _googleAccessContextManagerEgressPolicySensitive = <String>{};
 final class GoogleAccessContextManagerEgressPolicy extends Resource {
   static const String tfType = 'google_access_context_manager_egress_policy';
 
-  GoogleAccessContextManagerEgressPolicy({
-    required super.localName,
+  GoogleAccessContextManagerEgressPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required RefTo<GoogleAccessContextManagerServicePerimeter> egressPolicyName,
     required TfArg<String> resource,

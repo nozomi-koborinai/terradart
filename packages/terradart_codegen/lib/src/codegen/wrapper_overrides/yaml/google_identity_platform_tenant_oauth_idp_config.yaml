@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIdentityPlatformTenantOauthIdpConfig(
-  ///   localName: 'demo_oidc',
+  ///   'demo_oidc',
   ///   name: TfArg.literal('oidc.terradart'),
   ///   tenant: tenant.ref,
   ///   displayName: TfArg.literal('TerraDart dummy OIDC'),

@@ -29,8 +29,8 @@ enum SecurityhubFeatureV2FeatureStatus implements TerraformEnum {
 final class AwsSecurityhubFeatureV2 extends Resource {
   static const String tfType = 'aws_securityhub_feature_v2';
 
-  AwsSecurityhubFeatureV2({
-    required super.localName,
+  AwsSecurityhubFeatureV2(
+    super.localName, {
     required TfArg<SecurityhubFeatureV2FeatureName> featureName,
     required TfArg<SecurityhubFeatureV2FeatureStatus> featureStatus,
     TfArg<String>? region,

@@ -8,7 +8,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final ring = GoogleKmsKeyRing(
-  ///   localName: 'main',
+  ///   'main',
   ///   name: TfArg.literal('main-ring'),
   ///   location: TfArg.literal('asia-northeast1'),
   /// );

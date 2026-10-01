@@ -27,8 +27,8 @@ final class DataVpcIpamsFilter {
 final class DataAwsVpcIpams extends Data {
   static const String tfType = 'aws_vpc_ipams';
 
-  DataAwsVpcIpams({
-    required super.localName,
+  DataAwsVpcIpams(
+    super.localName, {
     TfArg<List<String>>? ipamIds,
     TfArg<String>? region,
     List<DataVpcIpamsFilter>? filter,

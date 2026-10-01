@@ -64,8 +64,8 @@ enum EmrManagedScalingPolicyUnitType implements TerraformEnum {
 final class AwsEmrManagedScalingPolicy extends Resource {
   static const String tfType = 'aws_emr_managed_scaling_policy';
 
-  AwsEmrManagedScalingPolicy({
-    required super.localName,
+  AwsEmrManagedScalingPolicy(
+    super.localName, {
     required TfArg<String> clusterId,
     TfArg<String>? region,
     TfArg<EmrManagedScalingPolicyScalingStrategy>? scalingStrategy,

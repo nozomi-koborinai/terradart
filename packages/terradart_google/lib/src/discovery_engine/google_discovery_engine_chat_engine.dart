@@ -153,8 +153,8 @@ final class DiscoveryEngineChatEngineCommonConfig {
 final class GoogleDiscoveryEngineChatEngine extends Resource {
   static const String tfType = 'google_discovery_engine_chat_engine';
 
-  GoogleDiscoveryEngineChatEngine({
-    required super.localName,
+  GoogleDiscoveryEngineChatEngine(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> collectionId,
     required TfArg<String> engineId,

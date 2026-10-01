@@ -22,8 +22,8 @@ enum AppstreamUserStackAssociationAuthenticationType implements TerraformEnum {
 final class AwsAppstreamUserStackAssociation extends Resource {
   static const String tfType = 'aws_appstream_user_stack_association';
 
-  AwsAppstreamUserStackAssociation({
-    required super.localName,
+  AwsAppstreamUserStackAssociation(
+    super.localName, {
     required TfArg<AppstreamUserStackAssociationAuthenticationType>
     authenticationType,
     TfArg<String>? region,

@@ -110,8 +110,8 @@ final class GrafanaWorkspaceVpcConfiguration {
 final class AwsGrafanaWorkspace extends Resource {
   static const String tfType = 'aws_grafana_workspace';
 
-  AwsGrafanaWorkspace({
-    required super.localName,
+  AwsGrafanaWorkspace(
+    super.localName, {
     required TfArg<GrafanaWorkspaceAccountAccessType> accountAccessType,
     required List<TfArg<GrafanaWorkspaceAuthenticationProviders>>
     authenticationProviders,

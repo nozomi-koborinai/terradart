@@ -31,7 +31,7 @@ final class OracleDbSystemStack extends Stack {
     );
 
     final vpc = GoogleComputeNetwork(
-      localName: 'ora_vpc',
+      'ora_vpc',
       name: .literal('terradart-dbs-vpc'),
       autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
@@ -39,7 +39,7 @@ final class OracleDbSystemStack extends Stack {
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
-      localName: 'odb_net',
+      'odb_net',
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
       network: vpc.ref,
@@ -48,7 +48,7 @@ final class OracleDbSystemStack extends Stack {
     add(odbNetwork);
 
     final odbSubnet = GoogleOracleDatabaseOdbSubnet(
-      localName: 'odb_sub',
+      'odb_sub',
       location: .literal(location),
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(odbSubnetId),
@@ -60,7 +60,7 @@ final class OracleDbSystemStack extends Stack {
 
     add(
       GoogleOracleDatabaseDbSystem(
-        localName: 'base_db',
+        'base_db',
         location: .literal(location),
         dbSystemId: .literal('terradart-dbs'),
         displayName: .literal('TerraDart DB System'),

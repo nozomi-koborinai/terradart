@@ -205,8 +205,8 @@ enum BudgetsBudgetActionSubscriptionType implements TerraformEnum {
 final class AwsBudgetsBudgetAction extends Resource {
   static const String tfType = 'aws_budgets_budget_action';
 
-  AwsBudgetsBudgetAction({
-    required super.localName,
+  AwsBudgetsBudgetAction(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<BudgetsBudgetActionType> actionType,
     required TfArg<BudgetsBudgetActionApprovalModel> approvalModel,

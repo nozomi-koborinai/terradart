@@ -27,8 +27,8 @@ final class DataInstancesFilter {
 final class DataAwsInstances extends Data {
   static const String tfType = 'aws_instances';
 
-  DataAwsInstances({
-    required super.localName,
+  DataAwsInstances(
+    super.localName, {
     TfArg<List<String>>? instanceStateNames,
     TfArg<Map<String, String>>? instanceTags,
     TfArg<String>? region,

@@ -60,8 +60,8 @@ final class LoggingBillingAccountSinkExclusions {
 final class GoogleLoggingBillingAccountSink extends Resource {
   static const String tfType = 'google_logging_billing_account_sink';
 
-  GoogleLoggingBillingAccountSink({
-    required super.localName,
+  GoogleLoggingBillingAccountSink(
+    super.localName, {
     required TfArg<String> billingAccount,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

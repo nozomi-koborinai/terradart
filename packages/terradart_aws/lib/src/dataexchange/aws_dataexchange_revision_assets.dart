@@ -155,8 +155,8 @@ final class DataexchangeRevisionAssetsImportAssetsFromSignedUrl {
 final class AwsDataexchangeRevisionAssets extends Resource {
   static const String tfType = 'aws_dataexchange_revision_assets';
 
-  AwsDataexchangeRevisionAssets({
-    required super.localName,
+  AwsDataexchangeRevisionAssets(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> dataSetId,
     TfArg<bool>? finalized,

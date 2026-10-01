@@ -108,8 +108,8 @@ final class ShieldProtectionGroupScopeResourceType
 final class AwsShieldProtectionGroup extends Resource {
   static const String tfType = 'aws_shield_protection_group';
 
-  AwsShieldProtectionGroup({
-    required super.localName,
+  AwsShieldProtectionGroup(
+    super.localName, {
     required TfArg<ShieldProtectionGroupAggregation> aggregation,
     ShieldProtectionGroupScope? scope,
     required TfArg<ShieldProtectionGroupPattern> pattern,

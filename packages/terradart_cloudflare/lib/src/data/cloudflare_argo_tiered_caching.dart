@@ -12,8 +12,8 @@ const Set<String> _cloudflareArgoTieredCachingSensitive = <String>{};
 final class DataCloudflareArgoTieredCaching extends Data {
   static const String tfType = 'cloudflare_argo_tiered_caching';
 
-  DataCloudflareArgoTieredCaching({
-    required super.localName,
+  DataCloudflareArgoTieredCaching(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -5,12 +5,12 @@ import 'package:test/test.dart';
 void main() {
   test('secret IAM member emits secret_id + role + member', () {
     final s = GoogleSecretManagerSecret(
-      localName: 'api_key',
+      'api_key',
       secretId: TfArg.literal('api'),
       replication: const .auto(SecretManagerSecretAuto()),
     );
     final iam = GoogleSecretManagerSecretIamMember(
-      localName: 'api_key_reader',
+      'api_key_reader',
       secret: s.ref,
       role: TfArg.literal('roles/secretmanager.secretAccessor'),
       member: .serviceAccount('reader@p.iam.gserviceaccount.com'),

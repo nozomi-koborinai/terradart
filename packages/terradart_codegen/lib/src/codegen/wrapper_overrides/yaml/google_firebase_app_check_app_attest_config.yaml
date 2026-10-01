@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final appAttest = GoogleFirebaseAppCheckAppAttestConfig(
-  ///   localName: 'ios',
+  ///   'ios',
   ///   appId: TfArg.literal('1:1234567890:ios:abcdef'),
   ///   tokenTtl: TfArg.literal('3600s'),
   /// );

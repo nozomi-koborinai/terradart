@@ -11,8 +11,8 @@ const Set<String> _awsEksAccessEntrySensitive = <String>{};
 final class DataAwsEksAccessEntry extends Data {
   static const String tfType = 'aws_eks_access_entry';
 
-  DataAwsEksAccessEntry({
-    required super.localName,
+  DataAwsEksAccessEntry(
+    super.localName, {
     required TfArg<String> clusterName,
     required TfArg<String> principalArn,
     TfArg<String>? region,

@@ -15,9 +15,9 @@ enum ResourceKind { resource, data }
 /// `Resource` is now flat: factories pass `argMap` and `sensitiveFields`,
 /// synth consumes both directly.
 abstract base class Resource implements TfAddressed {
-  Resource({
+  Resource(
+    this.localName, {
     required this.terraformType,
-    required this.localName,
     required this.argMap,
     this.lifecycle,
     this.dependsOn,

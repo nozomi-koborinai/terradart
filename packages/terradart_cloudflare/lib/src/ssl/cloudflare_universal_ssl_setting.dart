@@ -16,8 +16,8 @@ const Set<String> _cloudflareUniversalSslSettingSensitive = <String>{};
 final class CloudflareUniversalSslSetting extends Resource {
   static const String tfType = 'cloudflare_universal_ssl_setting';
 
-  CloudflareUniversalSslSetting({
-    required super.localName,
+  CloudflareUniversalSslSetting(
+    super.localName, {
     TfArg<bool>? enabled,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

@@ -25,8 +25,8 @@ enum CloudwatchEventApiDestinationHttpMethod implements TerraformEnum {
 final class AwsCloudwatchEventApiDestination extends Resource {
   static const String tfType = 'aws_cloudwatch_event_api_destination';
 
-  AwsCloudwatchEventApiDestination({
-    required super.localName,
+  AwsCloudwatchEventApiDestination(
+    super.localName, {
     required TfArg<String> connectionArn,
     TfArg<String>? description,
     required TfArg<CloudwatchEventApiDestinationHttpMethod> httpMethod,

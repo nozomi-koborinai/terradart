@@ -42,8 +42,8 @@ final class Apigatewayv2RouteRequestParameter {
 final class AwsApigatewayv2Route extends Resource {
   static const String tfType = 'aws_apigatewayv2_route';
 
-  AwsApigatewayv2Route({
-    required super.localName,
+  AwsApigatewayv2Route(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<bool>? apiKeyRequired,
     TfArg<List<String>>? authorizationScopes,

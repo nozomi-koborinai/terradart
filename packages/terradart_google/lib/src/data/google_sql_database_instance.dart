@@ -14,8 +14,8 @@ const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{};
 final class DataGoogleSqlDatabaseInstance extends Data {
   static const String tfType = 'google_sql_database_instance';
 
-  DataGoogleSqlDatabaseInstance({
-    required super.localName,
+  DataGoogleSqlDatabaseInstance(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

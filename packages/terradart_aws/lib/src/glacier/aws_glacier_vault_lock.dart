@@ -10,8 +10,8 @@ const Set<String> _awsGlacierVaultLockSensitive = <String>{};
 final class AwsGlacierVaultLock extends Resource {
   static const String tfType = 'aws_glacier_vault_lock';
 
-  AwsGlacierVaultLock({
-    required super.localName,
+  AwsGlacierVaultLock(
+    super.localName, {
     required TfArg<bool> completeLock,
     TfArg<bool>? ignoreDeletionError,
     required TfArg<String> policy,

@@ -14,8 +14,8 @@ const Set<String> _appwriteStorageBucketSensitive = <String>{};
 final class DataAppwriteStorageBucket extends Data {
   static const String tfType = 'appwrite_storage_bucket';
 
-  DataAppwriteStorageBucket({
-    required super.localName,
+  DataAppwriteStorageBucket(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

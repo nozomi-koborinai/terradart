@@ -28,8 +28,8 @@ enum ZeroTrustAccessCustomPageType implements TerraformEnum {
 final class CloudflareZeroTrustAccessCustomPage extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_custom_page';
 
-  CloudflareZeroTrustAccessCustomPage({
-    required super.localName,
+  CloudflareZeroTrustAccessCustomPage(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? contractVersion,
     required TfArg<String> customHtml,

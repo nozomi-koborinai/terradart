@@ -41,8 +41,8 @@ final class OrganizationAccessApprovalSettingsEnrolledServices {
 final class GoogleOrganizationAccessApprovalSettings extends Resource {
   static const String tfType = 'google_organization_access_approval_settings';
 
-  GoogleOrganizationAccessApprovalSettings({
-    required super.localName,
+  GoogleOrganizationAccessApprovalSettings(
+    super.localName, {
     TfArg<String>? activeKeyVersion,
     TfArg<String>? deletionPolicy,
     TfArg<List<String>>? notificationEmails,

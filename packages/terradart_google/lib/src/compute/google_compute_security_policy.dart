@@ -748,7 +748,7 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 /// Example (deny-by-default with a JP allow-list):
 /// ```dart
 /// final policy = GoogleComputeSecurityPolicy(
-///   localName: 'edge_deny_all',
+///   'edge_deny_all',
 ///   name: TfArg.literal('edge-deny-all'),
 ///   type: TfArg.literal(SecurityPolicyType.cloudArmorEdge),
 ///   rules: [
@@ -808,8 +808,8 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 final class GoogleComputeSecurityPolicy extends Resource {
   static const String tfType = 'google_compute_security_policy';
 
-  GoogleComputeSecurityPolicy({
-    required super.localName,
+  GoogleComputeSecurityPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<SecurityPolicyType>? type,

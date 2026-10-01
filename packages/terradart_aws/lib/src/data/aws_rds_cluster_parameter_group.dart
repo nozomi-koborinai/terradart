@@ -11,8 +11,8 @@ const Set<String> _awsRdsClusterParameterGroupSensitive = <String>{};
 final class DataAwsRdsClusterParameterGroup extends Data {
   static const String tfType = 'aws_rds_cluster_parameter_group';
 
-  DataAwsRdsClusterParameterGroup({
-    required super.localName,
+  DataAwsRdsClusterParameterGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

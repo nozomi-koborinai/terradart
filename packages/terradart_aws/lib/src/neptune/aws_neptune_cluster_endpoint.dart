@@ -21,8 +21,8 @@ enum NeptuneClusterEndpointType implements TerraformEnum {
 final class AwsNeptuneClusterEndpoint extends Resource {
   static const String tfType = 'aws_neptune_cluster_endpoint';
 
-  AwsNeptuneClusterEndpoint({
-    required super.localName,
+  AwsNeptuneClusterEndpoint(
+    super.localName, {
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
     required TfArg<NeptuneClusterEndpointType> endpointType,

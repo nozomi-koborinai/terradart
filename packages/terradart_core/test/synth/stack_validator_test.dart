@@ -10,13 +10,11 @@ const _google = FakeStackProvider(
   versionConstraint: '~> 7.0',
 );
 
-FakePubsubTopic _topic(String localName) => FakePubsubTopic(
-  localName: localName,
-  argMap: {'name': TfArg.literal(localName)},
-);
+FakePubsubTopic _topic(String localName) =>
+    FakePubsubTopic(localName, argMap: {'name': TfArg.literal(localName)});
 
 FakePubsubTopic _reader(String localName, TfArg<String> name) =>
-    FakePubsubTopic(localName: localName, argMap: {'name': name});
+    FakePubsubTopic(localName, argMap: {'name': name});
 
 void main() {
   group('Stack.validate', () {
@@ -78,14 +76,14 @@ void main() {
       final stack = TestStack(providers: const [_google])
         ..add(
           FakePubsubTopic(
-            localName: 'a',
+            'a',
             argMap: {
               'name': TfArg.expression<String>(
                 r'${upper(google_pubsub_topic.gone.name)}',
               ),
               'labels': TfArg.literal({
                 'x': TfRef.data<String>(
-                  FakeProjectData(localName: 'p', argMap: const {}),
+                  FakeProjectData('p', argMap: const {}),
                   'project_id',
                 ),
               }),
@@ -103,7 +101,7 @@ void main() {
       final stack = TestStack(providers: const [_google])
         ..add(
           FakePubsubTopic.withMeta(
-            localName: 'a',
+            'a',
             argMap: const {},
             dependsOn: [orphan],
             lifecycle: LifecycleOptions(
@@ -125,7 +123,7 @@ void main() {
       final stack = TestStack(providers: const [_google])
         ..addModule(
           ModuleCall(
-            localName: 'm',
+            'm',
             source: './m',
             inputs: {'topic': TfRef.attribute(orphan, 'id')},
           ),
@@ -270,11 +268,11 @@ void main() {
         ),
       );
       expect(
-        () => stack.add(FakeProjectData(localName: '1st', argMap: const {})),
+        () => stack.add(FakeProjectData('1st', argMap: const {})),
         throwsArgumentError,
       );
       expect(
-        () => stack.addModule(ModuleCall(localName: 'a.b', source: './m')),
+        () => stack.addModule(ModuleCall('a.b', source: './m')),
         throwsArgumentError,
       );
     });
@@ -294,7 +292,7 @@ void main() {
       final stack = TestStack(providers: const [_google])
         ..add(
           FakeSecretVersion(
-            localName: 'v1',
+            'v1',
             argMap: const {'secret_data': TfArgLiteral<String>('hunter2')},
           ),
         );

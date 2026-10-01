@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleRecaptchaEnterpriseKey(
-  ///   localName: 'web_login',
+  ///   'web_login',
   ///   displayName: TfArg.literal('Login page'),
   ///   webSettings: RecaptchaEnterpriseKeyWebSettings(
   ///     integrationType: TfArg.literal(

@@ -39,8 +39,8 @@ enum Lexv2modelsBotLocaleEngine implements TerraformEnum {
 final class AwsLexv2modelsBotLocale extends Resource {
   static const String tfType = 'aws_lexv2models_bot_locale';
 
-  AwsLexv2modelsBotLocale({
-    required super.localName,
+  AwsLexv2modelsBotLocale(
+    super.localName, {
     required TfArg<String> botId,
     required TfArg<String> botVersion,
     TfArg<String>? description,

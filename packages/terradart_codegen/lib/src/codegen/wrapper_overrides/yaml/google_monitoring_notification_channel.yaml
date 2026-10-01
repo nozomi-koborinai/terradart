@@ -57,7 +57,7 @@ curatedDoc: |-
   /// Example (Slack channel):
   /// ```dart
   /// final slack = GoogleMonitoringNotificationChannel(
-  ///   localName: 'oncall_slack',
+  ///   'oncall_slack',
   ///   displayName: .literal('#oncall alerts'),
   ///   type: .literal('slack'),
   ///   labels: .literal(const {

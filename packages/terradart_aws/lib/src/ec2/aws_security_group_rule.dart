@@ -22,8 +22,8 @@ enum SecurityGroupRuleType implements TerraformEnum {
 final class AwsSecurityGroupRule extends Resource {
   static const String tfType = 'aws_security_group_rule';
 
-  AwsSecurityGroupRule({
-    required super.localName,
+  AwsSecurityGroupRule(
+    super.localName, {
     TfArg<List<String>>? cidrBlocks,
     TfArg<String>? description,
     required TfArg<num> fromPort,

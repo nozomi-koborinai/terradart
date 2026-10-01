@@ -44,8 +44,8 @@ final class SccV2OrganizationSourceIamBindingCondition {
 final class GoogleSccV2OrganizationSourceIamBinding extends Resource {
   static const String tfType = 'google_scc_v2_organization_source_iam_binding';
 
-  GoogleSccV2OrganizationSourceIamBinding({
-    required super.localName,
+  GoogleSccV2OrganizationSourceIamBinding(
+    super.localName, {
     required RefTo<GoogleSccV2OrganizationSource> source,
     TfArg<String>? organization,
     required TfArg<String> role,

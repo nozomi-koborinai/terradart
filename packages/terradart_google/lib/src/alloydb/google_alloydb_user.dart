@@ -91,7 +91,7 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 /// Example:
 /// ```dart
 /// GoogleAlloydbUser(
-///   localName: 'app',
+///   'app',
 ///   cluster: cluster.ref,
 ///   userId: TfArg.literal('app'),
 ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
@@ -102,8 +102,8 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 final class GoogleAlloydbUser extends Resource {
   static const String tfType = 'google_alloydb_user';
 
-  GoogleAlloydbUser({
-    required super.localName,
+  GoogleAlloydbUser(
+    super.localName, {
     required RefTo<GoogleAlloydbCluster> cluster,
     required TfArg<String> userId,
     required TfArg<AlloydbUserType> userType,

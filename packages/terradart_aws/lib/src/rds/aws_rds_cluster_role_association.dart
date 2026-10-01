@@ -12,8 +12,8 @@ const Set<String> _awsRdsClusterRoleAssociationSensitive = <String>{};
 final class AwsRdsClusterRoleAssociation extends Resource {
   static const String tfType = 'aws_rds_cluster_role_association';
 
-  AwsRdsClusterRoleAssociation({
-    required super.localName,
+  AwsRdsClusterRoleAssociation(
+    super.localName, {
     required TfArg<String> dbClusterIdentifier,
     TfArg<String>? featureName,
     TfArg<String>? region,

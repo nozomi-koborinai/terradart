@@ -17,8 +17,8 @@ const Set<String> _googleComputeInstanceIamPolicySensitive = <String>{};
 final class GoogleComputeInstanceIamPolicy extends Resource {
   static const String tfType = 'google_compute_instance_iam_policy';
 
-  GoogleComputeInstanceIamPolicy({
-    required super.localName,
+  GoogleComputeInstanceIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? zone,

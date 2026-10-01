@@ -517,8 +517,8 @@ final class ColabNotebookExecutionSelectorName
 final class GoogleColabNotebookExecution extends Resource {
   static const String tfType = 'google_colab_notebook_execution';
 
-  GoogleColabNotebookExecution({
-    required super.localName,
+  GoogleColabNotebookExecution(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> displayName,
     required TfArg<String> gcsOutputUri,

@@ -389,8 +389,8 @@ final class CloudwatchEventConnectionInvocationConnectivityParameters {
 final class AwsCloudwatchEventConnection extends Resource {
   static const String tfType = 'aws_cloudwatch_event_connection';
 
-  AwsCloudwatchEventConnection({
-    required super.localName,
+  AwsCloudwatchEventConnection(
+    super.localName, {
     required TfArg<CloudwatchEventConnectionAuthorizationType>
     authorizationType,
     TfArg<String>? description,

@@ -14,8 +14,8 @@ const Set<String> _awsNeptunegraphPrivateGraphEndpointSensitive = <String>{};
 final class AwsNeptunegraphPrivateGraphEndpoint extends Resource {
   static const String tfType = 'aws_neptunegraph_private_graph_endpoint';
 
-  AwsNeptunegraphPrivateGraphEndpoint({
-    required super.localName,
+  AwsNeptunegraphPrivateGraphEndpoint(
+    super.localName, {
     required TfArg<String> graphIdentifier,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,

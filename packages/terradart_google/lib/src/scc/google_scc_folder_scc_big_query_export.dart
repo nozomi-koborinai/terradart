@@ -25,8 +25,8 @@ const Set<String> _googleSccFolderSccBigQueryExportSensitive = <String>{};
 final class GoogleSccFolderSccBigQueryExport extends Resource {
   static const String tfType = 'google_scc_folder_scc_big_query_export';
 
-  GoogleSccFolderSccBigQueryExport({
-    required super.localName,
+  GoogleSccFolderSccBigQueryExport(
+    super.localName, {
     required TfArg<String> bigQueryExportId,
     required TfArg<String> dataset,
     TfArg<String>? deletionPolicy,

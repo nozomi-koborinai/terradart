@@ -38,8 +38,8 @@ final class GkeBackupBackupPlanIamMemberCondition {
 final class GoogleGkeBackupBackupPlanIamMember extends Resource {
   static const String tfType = 'google_gke_backup_backup_plan_iam_member';
 
-  GoogleGkeBackupBackupPlanIamMember({
-    required super.localName,
+  GoogleGkeBackupBackupPlanIamMember(
+    super.localName, {
     required RefTo<GoogleGkeBackupBackupPlan> backupPlan,
     required TfArg<String> role,
     required IamPrincipal member,

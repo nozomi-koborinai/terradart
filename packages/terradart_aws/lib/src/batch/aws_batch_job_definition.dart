@@ -587,8 +587,8 @@ final class BatchJobDefinitionTimeout {
 final class AwsBatchJobDefinition extends Resource {
   static const String tfType = 'aws_batch_job_definition';
 
-  AwsBatchJobDefinition({
-    required super.localName,
+  AwsBatchJobDefinition(
+    super.localName, {
     BatchJobDefinitionProperties? properties,
     TfArg<bool>? deregisterOnNewRevision,
     required TfArg<String> name,

@@ -185,8 +185,8 @@ final class GkeonpremVmwareNodePoolAutoscaling {
 final class GoogleGkeonpremVmwareNodePool extends Resource {
   static const String tfType = 'google_gkeonprem_vmware_node_pool';
 
-  GoogleGkeonpremVmwareNodePool({
-    required super.localName,
+  GoogleGkeonpremVmwareNodePool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleGkeonpremVmwareCluster> vmwareCluster,

@@ -36,8 +36,8 @@ final class ZeroTrustDlpDataClassSensitivityLevels {
 final class CloudflareZeroTrustDlpDataClass extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_data_class';
 
-  CloudflareZeroTrustDlpDataClass({
-    required super.localName,
+  CloudflareZeroTrustDlpDataClass(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<List<String>> dataTags,
     TfArg<String>? description,

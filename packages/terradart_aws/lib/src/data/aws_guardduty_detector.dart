@@ -11,8 +11,8 @@ const Set<String> _awsGuarddutyDetectorSensitive = <String>{};
 final class DataAwsGuarddutyDetector extends Data {
   static const String tfType = 'aws_guardduty_detector';
 
-  DataAwsGuarddutyDetector({
-    required super.localName,
+  DataAwsGuarddutyDetector(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.provider,

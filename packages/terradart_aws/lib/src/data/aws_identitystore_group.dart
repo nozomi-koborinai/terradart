@@ -69,8 +69,8 @@ final class DataIdentitystoreGroupUniqueAttribute {
 final class DataAwsIdentitystoreGroup extends Data {
   static const String tfType = 'aws_identitystore_group';
 
-  DataAwsIdentitystoreGroup({
-    required super.localName,
+  DataAwsIdentitystoreGroup(
+    super.localName, {
     TfArg<String>? groupId,
     required TfArg<String> identityStoreId,
     TfArg<String>? region,

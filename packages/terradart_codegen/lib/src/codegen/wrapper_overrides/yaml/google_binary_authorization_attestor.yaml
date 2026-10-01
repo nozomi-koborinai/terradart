@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBinaryAuthorizationAttestor(
-  ///   localName: 'ci_attestor',
+  ///   'ci_attestor',
   ///   name: TfArg.literal('ci-attestor'),
   ///   attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(
   ///     noteReference: TfArg.literal(

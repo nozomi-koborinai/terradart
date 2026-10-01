@@ -208,8 +208,8 @@ final class GlueConnectionPhysicalConnectionRequirements {
 final class AwsGlueConnection extends Resource {
   static const String tfType = 'aws_glue_connection';
 
-  AwsGlueConnection({
-    required super.localName,
+  AwsGlueConnection(
+    super.localName, {
     TfArg<Map<String, String>>? athenaProperties,
     TfArg<String>? catalogId,
     TfArg<Map<String, String>>? connectionProperties,

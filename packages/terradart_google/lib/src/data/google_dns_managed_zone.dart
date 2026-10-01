@@ -14,8 +14,8 @@ const Set<String> _googleDnsManagedZoneSensitive = <String>{};
 final class DataGoogleDnsManagedZone extends Data {
   static const String tfType = 'google_dns_managed_zone';
 
-  DataGoogleDnsManagedZone({
-    required super.localName,
+  DataGoogleDnsManagedZone(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

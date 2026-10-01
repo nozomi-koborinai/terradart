@@ -220,8 +220,8 @@ final class VpclatticeResourceConfigurationIpResource {
 final class AwsVpclatticeResourceConfiguration extends Resource {
   static const String tfType = 'aws_vpclattice_resource_configuration';
 
-  AwsVpclatticeResourceConfiguration({
-    required super.localName,
+  AwsVpclatticeResourceConfiguration(
+    super.localName, {
     TfArg<bool>? allowAssociationToShareableServiceNetwork,
     TfArg<String>? customDomainName,
     TfArg<String>? domainVerificationId,

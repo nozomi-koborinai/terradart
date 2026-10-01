@@ -31,8 +31,8 @@ final class VertexAiEvaluationMetricEncryptionSpec {
 final class GoogleVertexAiEvaluationMetric extends Resource {
   static const String tfType = 'google_vertex_ai_evaluation_metric';
 
-  GoogleVertexAiEvaluationMetric({
-    required super.localName,
+  GoogleVertexAiEvaluationMetric(
+    super.localName, {
     TfArg<String>? evaluationMetricId,
     required TfArg<String> region,
     required TfArg<String> displayName,

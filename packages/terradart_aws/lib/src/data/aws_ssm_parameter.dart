@@ -11,8 +11,8 @@ const Set<String> _awsSsmParameterSensitive = <String>{'value'};
 final class DataAwsSsmParameter extends Data {
   static const String tfType = 'aws_ssm_parameter';
 
-  DataAwsSsmParameter({
-    required super.localName,
+  DataAwsSsmParameter(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? withDecryption,

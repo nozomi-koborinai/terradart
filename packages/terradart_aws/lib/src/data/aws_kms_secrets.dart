@@ -47,8 +47,8 @@ final class DataKmsSecretsSecret {
 final class DataAwsKmsSecrets extends Data {
   static const String tfType = 'aws_kms_secrets';
 
-  DataAwsKmsSecrets({
-    required super.localName,
+  DataAwsKmsSecrets(
+    super.localName, {
     TfArg<String>? region,
     required List<DataKmsSecretsSecret> secret,
     super.provider,

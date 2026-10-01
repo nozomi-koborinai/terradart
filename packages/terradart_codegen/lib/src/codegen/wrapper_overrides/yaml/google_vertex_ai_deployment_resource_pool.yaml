@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiDeploymentResourcePool(
-  ///   localName: 'pool',
+  ///   'pool',
   ///   name: TfArg.literal('terradart-pool'),
   ///   region: TfArg.literal('us-central1'),
   ///   dedicatedResources: VertexAiDeploymentResourcePoolDedicatedResources(

@@ -11,8 +11,8 @@ const Set<String> _awsSsmPatchBaselineSensitive = <String>{};
 final class DataAwsSsmPatchBaseline extends Data {
   static const String tfType = 'aws_ssm_patch_baseline';
 
-  DataAwsSsmPatchBaseline({
-    required super.localName,
+  DataAwsSsmPatchBaseline(
+    super.localName, {
     TfArg<bool>? defaultBaseline,
     TfArg<String>? namePrefix,
     TfArg<String>? operatingSystem,

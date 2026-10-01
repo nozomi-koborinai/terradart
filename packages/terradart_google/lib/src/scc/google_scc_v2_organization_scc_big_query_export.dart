@@ -25,8 +25,8 @@ final class GoogleSccV2OrganizationSccBigQueryExport extends Resource {
   static const String tfType =
       'google_scc_v2_organization_scc_big_query_export';
 
-  GoogleSccV2OrganizationSccBigQueryExport({
-    required super.localName,
+  GoogleSccV2OrganizationSccBigQueryExport(
+    super.localName, {
     required TfArg<String> bigQueryExportId,
     TfArg<String>? dataset,
     TfArg<String>? deletionPolicy,

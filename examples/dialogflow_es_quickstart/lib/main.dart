@@ -31,7 +31,7 @@ final class DialogflowEsStack extends Stack {
 
     final agent = add(
       GoogleDialogflowAgent(
-        localName: 'agent',
+        'agent',
         displayName: .literal('terradart-es-agent'),
         defaultLanguageCode: .literal('en'),
         timeZone: .literal('America/New_York'),
@@ -47,7 +47,7 @@ final class DialogflowEsStack extends Stack {
     // can lag; version/environment create races that lag.
     final agentReady = add(
       TimeSleep(
-        localName: 'agent_ready',
+        'agent_ready',
         createDuration: TfArg.duration(const Duration(seconds: 20)),
         triggers: .literal({'agent': agent.id.interpolation}),
         dependsOn: [...apiDeps, agent],
@@ -57,7 +57,7 @@ final class DialogflowEsStack extends Stack {
 
     add(
       GoogleDialogflowIntent(
-        localName: 'hello',
+        'hello',
         displayName: .literal('terradart.hello'),
         dependsOn: onAgent,
       ),
@@ -65,7 +65,7 @@ final class DialogflowEsStack extends Stack {
 
     add(
       GoogleDialogflowEntityType(
-        localName: 'color',
+        'color',
         displayName: .literal('terradart-color'),
         kind: .literal(.kindMap),
         entities: [
@@ -80,7 +80,7 @@ final class DialogflowEsStack extends Stack {
 
     add(
       GoogleDialogflowFulfillment(
-        localName: 'fulfillment',
+        'fulfillment',
         displayName: .literal('terradart-fulfillment'),
         enabled: .literal(false),
         dependsOn: onAgent,
@@ -89,7 +89,7 @@ final class DialogflowEsStack extends Stack {
 
     final version = add(
       GoogleDialogflowVersion(
-        localName: 'v1',
+        'v1',
         parent: .literal('projects/$projectId/agent'),
         description: .literal('terradart es snapshot'),
         dependsOn: onAgent,
@@ -98,7 +98,7 @@ final class DialogflowEsStack extends Stack {
 
     add(
       GoogleDialogflowEnvironment(
-        localName: 'dev',
+        'dev',
         environmentid: .literal('terradartes'),
         location: .literal('global'),
         agentVersion: version.ref,

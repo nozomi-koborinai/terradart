@@ -11,8 +11,8 @@ const Set<String> _awsDbSnapshotSensitive = <String>{};
 final class DataAwsDbSnapshot extends Data {
   static const String tfType = 'aws_db_snapshot';
 
-  DataAwsDbSnapshot({
-    required super.localName,
+  DataAwsDbSnapshot(
+    super.localName, {
     TfArg<String>? dbInstanceIdentifier,
     TfArg<String>? dbSnapshotIdentifier,
     TfArg<bool>? includePublic,

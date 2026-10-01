@@ -34,8 +34,8 @@ enum Ec2TransitGatewayPeeringAttachmentDynamicRouting implements TerraformEnum {
 final class AwsEc2TransitGatewayPeeringAttachment extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_peering_attachment';
 
-  AwsEc2TransitGatewayPeeringAttachment({
-    required super.localName,
+  AwsEc2TransitGatewayPeeringAttachment(
+    super.localName, {
     TfArg<String>? peerAccountId,
     required TfArg<String> peerRegion,
     required TfArg<String> peerTransitGatewayId,

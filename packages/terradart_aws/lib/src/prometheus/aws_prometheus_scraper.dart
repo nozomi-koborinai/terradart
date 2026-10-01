@@ -156,8 +156,8 @@ final class PrometheusScraperVpc {
 final class AwsPrometheusScraper extends Resource {
   static const String tfType = 'aws_prometheus_scraper';
 
-  AwsPrometheusScraper({
-    required super.localName,
+  AwsPrometheusScraper(
+    super.localName, {
     TfArg<String>? alias,
     TfArg<String>? region,
     required TfArg<String> scrapeConfiguration,

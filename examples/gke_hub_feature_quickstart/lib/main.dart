@@ -21,7 +21,7 @@ final class GkeHubFeatureStack extends Stack {
       ) {
     final apiGkeHub = add(
       GoogleProjectService(
-        localName: 'api_gkehub',
+        'api_gkehub',
         service: .literal('gkehub.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -29,7 +29,7 @@ final class GkeHubFeatureStack extends Stack {
 
     final apiMcsd = add(
       GoogleProjectService(
-        localName: 'api_mcsd',
+        'api_mcsd',
         service: .literal('multiclusterservicediscovery.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -37,7 +37,7 @@ final class GkeHubFeatureStack extends Stack {
 
     final feature = add(
       GoogleGkeHubFeature(
-        localName: 'mcsd',
+        'mcsd',
         name: .literal('multiclusterservicediscovery'),
         location: .literal('global'),
         dependsOn: [apiGkeHub, apiMcsd],
@@ -48,7 +48,7 @@ final class GkeHubFeatureStack extends Stack {
     // grantee is an in-stack service account rather than a fabricated group.
     final fleetReader = add(
       GoogleServiceAccount(
-        localName: 'fleet_reader',
+        'fleet_reader',
         accountId: .literal('terradart-fleet-reader'),
         displayName: .literal('GKE Hub fleet reader'),
       ),
@@ -56,7 +56,7 @@ final class GkeHubFeatureStack extends Stack {
 
     add(
       GoogleGkeHubFeatureIamMember(
-        localName: 'mcsd_viewer',
+        'mcsd_viewer',
         feature: feature.ref,
         role: .literal('roles/viewer'),
         member: fleetReader.principal,

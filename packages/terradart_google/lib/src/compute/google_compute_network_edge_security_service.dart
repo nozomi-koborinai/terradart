@@ -13,8 +13,8 @@ const Set<String> _googleComputeNetworkEdgeSecurityServiceSensitive =
 final class GoogleComputeNetworkEdgeSecurityService extends Resource {
   static const String tfType = 'google_compute_network_edge_security_service';
 
-  GoogleComputeNetworkEdgeSecurityService({
-    required super.localName,
+  GoogleComputeNetworkEdgeSecurityService(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> name,

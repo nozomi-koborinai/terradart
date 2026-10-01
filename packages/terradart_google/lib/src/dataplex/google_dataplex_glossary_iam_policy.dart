@@ -17,8 +17,8 @@ const Set<String> _googleDataplexGlossaryIamPolicySensitive = <String>{};
 final class GoogleDataplexGlossaryIamPolicy extends Resource {
   static const String tfType = 'google_dataplex_glossary_iam_policy';
 
-  GoogleDataplexGlossaryIamPolicy({
-    required super.localName,
+  GoogleDataplexGlossaryIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> policyData,
     TfArg<String>? location,

@@ -841,8 +841,8 @@ final class BudgetsBudgetPlannedLimit {
 final class AwsBudgetsBudget extends Resource {
   static const String tfType = 'aws_budgets_budget';
 
-  AwsBudgetsBudget({
-    required super.localName,
+  AwsBudgetsBudget(
+    super.localName, {
     TfArg<String>? accountId,
     TfArg<String>? billingViewArn,
     required TfArg<BudgetsBudgetType> budgetType,

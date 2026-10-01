@@ -11,8 +11,8 @@ const Set<String> _awsAcmpcaCertificateAuthoritySensitive = <String>{};
 final class DataAwsAcmpcaCertificateAuthority extends Data {
   static const String tfType = 'aws_acmpca_certificate_authority';
 
-  DataAwsAcmpcaCertificateAuthority({
-    required super.localName,
+  DataAwsAcmpcaCertificateAuthority(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -15,8 +15,8 @@ const Set<String> _googleIapAgentRegistryEndpointIamPolicySensitive =
 final class DataGoogleIapAgentRegistryEndpointIamPolicy extends Data {
   static const String tfType = 'google_iap_agent_registry_endpoint_iam_policy';
 
-  DataGoogleIapAgentRegistryEndpointIamPolicy({
-    required super.localName,
+  DataGoogleIapAgentRegistryEndpointIamPolicy(
+    super.localName, {
     required TfArg<String> endpointId,
     TfArg<String>? location,
     TfArg<String>? project,

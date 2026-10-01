@@ -819,8 +819,8 @@ final class IntegrationConnectorsConnectionPrivateServerCertificate {
 final class GoogleIntegrationConnectorsConnection extends Resource {
   static const String tfType = 'google_integration_connectors_connection';
 
-  GoogleIntegrationConnectorsConnection({
-    required super.localName,
+  GoogleIntegrationConnectorsConnection(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> connectorVersion,

@@ -11,8 +11,8 @@ const Set<String> _awsBatchComputeEnvironmentSensitive = <String>{};
 final class DataAwsBatchComputeEnvironment extends Data {
   static const String tfType = 'aws_batch_compute_environment';
 
-  DataAwsBatchComputeEnvironment({
-    required super.localName,
+  DataAwsBatchComputeEnvironment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

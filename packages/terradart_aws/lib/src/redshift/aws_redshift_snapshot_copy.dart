@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftSnapshotCopySensitive = <String>{};
 final class AwsRedshiftSnapshotCopy extends Resource {
   static const String tfType = 'aws_redshift_snapshot_copy';
 
-  AwsRedshiftSnapshotCopy({
-    required super.localName,
+  AwsRedshiftSnapshotCopy(
+    super.localName, {
     required TfArg<String> clusterIdentifier,
     required TfArg<String> destinationRegion,
     TfArg<num>? manualSnapshotRetentionPeriod,

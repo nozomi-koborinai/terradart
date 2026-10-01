@@ -16,8 +16,8 @@ const Set<String> _cloudflareContentScanningExpressionsSensitive = <String>{};
 final class DataCloudflareContentScanningExpressions extends Data {
   static const String tfType = 'cloudflare_content_scanning_expressions';
 
-  DataCloudflareContentScanningExpressions({
-    required super.localName,
+  DataCloudflareContentScanningExpressions(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

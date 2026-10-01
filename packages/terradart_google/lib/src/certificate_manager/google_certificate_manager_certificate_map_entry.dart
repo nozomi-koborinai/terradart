@@ -95,7 +95,7 @@ final class CertificateManagerCertificateMapEntryMatchMatcher
 /// Example:
 /// ```dart
 /// GoogleCertificateManagerCertificateMapEntry(
-///   localName: 'app_entry',
+///   'app_entry',
 ///   name: TfArg.literal('app-entry'),
 ///   map: certMap.ref,
 ///   match: CertificateManagerCertificateMapEntryMatch.hostname(
@@ -110,8 +110,8 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
   static const String tfType =
       'google_certificate_manager_certificate_map_entry';
 
-  GoogleCertificateManagerCertificateMapEntry({
-    required super.localName,
+  GoogleCertificateManagerCertificateMapEntry(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleCertificateManagerCertificateMap> map,
     required TfArg<List<String>> certificates,

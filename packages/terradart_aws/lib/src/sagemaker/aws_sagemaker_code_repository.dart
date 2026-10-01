@@ -34,8 +34,8 @@ final class SagemakerCodeRepositoryGitConfig {
 final class AwsSagemakerCodeRepository extends Resource {
   static const String tfType = 'aws_sagemaker_code_repository';
 
-  AwsSagemakerCodeRepository({
-    required super.localName,
+  AwsSagemakerCodeRepository(
+    super.localName, {
     required TfArg<String> codeRepositoryName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

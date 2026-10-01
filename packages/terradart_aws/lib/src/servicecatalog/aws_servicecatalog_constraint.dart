@@ -34,8 +34,8 @@ enum ServicecatalogConstraintType implements TerraformEnum {
 final class AwsServicecatalogConstraint extends Resource {
   static const String tfType = 'aws_servicecatalog_constraint';
 
-  AwsServicecatalogConstraint({
-    required super.localName,
+  AwsServicecatalogConstraint(
+    super.localName, {
     TfArg<ServicecatalogConstraintAcceptLanguage>? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> parameters,

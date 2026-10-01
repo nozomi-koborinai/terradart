@@ -40,7 +40,7 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleCesAppRootAgentAssociation(
-///   localName: 'root',
+///   'root',
 ///   appId: app.ref,
 ///   agentId: agent.agentId,
 /// );
@@ -48,8 +48,8 @@ const Set<String> _googleCesAppRootAgentAssociationSensitive = <String>{};
 final class GoogleCesAppRootAgentAssociation extends Resource {
   static const String tfType = 'google_ces_app_root_agent_association';
 
-  GoogleCesAppRootAgentAssociation({
-    required super.localName,
+  GoogleCesAppRootAgentAssociation(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> appId,
     required TfArg<String> agentId,

@@ -278,7 +278,7 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 /// Example:
 /// ```dart
 /// GooglePrivilegedAccessManagerEntitlement(
-///   localName: 'viewer',
+///   'viewer',
 ///   location: TfArg.literal('global'),
 ///   entitlementId: TfArg.literal('terradart-pam'),
 ///   parent: TfArg.literal('projects/my-project'),
@@ -318,8 +318,8 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 final class GooglePrivilegedAccessManagerEntitlement extends Resource {
   static const String tfType = 'google_privileged_access_manager_entitlement';
 
-  GooglePrivilegedAccessManagerEntitlement({
-    required super.localName,
+  GooglePrivilegedAccessManagerEntitlement(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> entitlementId,
     required TfArg<String> parent,

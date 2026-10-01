@@ -455,8 +455,8 @@ enum CodedeployDeploymentGroupTriggerEvents implements TerraformEnum {
 final class AwsCodedeployDeploymentGroup extends Resource {
   static const String tfType = 'aws_codedeploy_deployment_group';
 
-  AwsCodedeployDeploymentGroup({
-    required super.localName,
+  AwsCodedeployDeploymentGroup(
+    super.localName, {
     required TfArg<String> appName,
     TfArg<List<String>>? autoscalingGroups,
     TfArg<String>? deploymentConfigName,

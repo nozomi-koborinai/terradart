@@ -14,8 +14,8 @@ const Set<String> _googleComputeHealthCheckSensitive = <String>{};
 final class DataGoogleComputeHealthCheck extends Data {
   static const String tfType = 'google_compute_health_check';
 
-  DataGoogleComputeHealthCheck({
-    required super.localName,
+  DataGoogleComputeHealthCheck(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

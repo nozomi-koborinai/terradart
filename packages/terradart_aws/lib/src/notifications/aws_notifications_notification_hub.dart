@@ -10,8 +10,8 @@ const Set<String> _awsNotificationsNotificationHubSensitive = <String>{};
 final class AwsNotificationsNotificationHub extends Resource {
   static const String tfType = 'aws_notifications_notification_hub';
 
-  AwsNotificationsNotificationHub({
-    required super.localName,
+  AwsNotificationsNotificationHub(
+    super.localName, {
     required TfArg<String> notificationHubRegion,
     super.lifecycle,
     super.dependsOn,

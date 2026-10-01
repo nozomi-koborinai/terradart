@@ -10,8 +10,8 @@ const Set<String> _awsVpcEndpointPrivateDnsSensitive = <String>{};
 final class AwsVpcEndpointPrivateDns extends Resource {
   static const String tfType = 'aws_vpc_endpoint_private_dns';
 
-  AwsVpcEndpointPrivateDns({
-    required super.localName,
+  AwsVpcEndpointPrivateDns(
+    super.localName, {
     required TfArg<bool> privateDnsEnabled,
     TfArg<String>? region,
     required TfArg<String> vpcEndpointId,

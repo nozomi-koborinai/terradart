@@ -16,8 +16,8 @@ const Set<String> _cloudflareApiShieldDiscoveryOperationsSensitive = <String>{};
 final class DataCloudflareApiShieldDiscoveryOperations extends Data {
   static const String tfType = 'cloudflare_api_shield_discovery_operations';
 
-  DataCloudflareApiShieldDiscoveryOperations({
-    required super.localName,
+  DataCloudflareApiShieldDiscoveryOperations(
+    super.localName, {
     TfArg<bool>? diff,
     TfArg<String>? direction,
     TfArg<String>? endpoint,

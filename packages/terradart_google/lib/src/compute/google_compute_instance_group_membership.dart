@@ -31,8 +31,8 @@ const Set<String> _googleComputeInstanceGroupMembershipSensitive = <String>{};
 final class GoogleComputeInstanceGroupMembership extends Resource {
   static const String tfType = 'google_compute_instance_group_membership';
 
-  GoogleComputeInstanceGroupMembership({
-    required super.localName,
+  GoogleComputeInstanceGroupMembership(
+    super.localName, {
     required RefTo<GoogleComputeInstance> instance,
     required RefTo<GoogleComputeInstanceGroup> instanceGroup,
     TfArg<String>? zone,

@@ -12,8 +12,8 @@ const Set<String> _awsCodeartifactAuthorizationTokenSensitive = <String>{
 final class DataAwsCodeartifactAuthorizationToken extends Data {
   static const String tfType = 'aws_codeartifact_authorization_token';
 
-  DataAwsCodeartifactAuthorizationToken({
-    required super.localName,
+  DataAwsCodeartifactAuthorizationToken(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? domainOwner,
     TfArg<num>? durationSeconds,

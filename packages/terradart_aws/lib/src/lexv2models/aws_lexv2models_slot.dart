@@ -681,8 +681,8 @@ final class Lexv2modelsSlotResolutionSetting {
 final class AwsLexv2modelsSlot extends Resource {
   static const String tfType = 'aws_lexv2models_slot';
 
-  AwsLexv2modelsSlot({
-    required super.localName,
+  AwsLexv2modelsSlot(
+    super.localName, {
     required TfArg<String> botId,
     required TfArg<String> botVersion,
     TfArg<String>? description,

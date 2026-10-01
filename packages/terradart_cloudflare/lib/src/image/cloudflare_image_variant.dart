@@ -68,8 +68,8 @@ enum ImageVariantMetadata implements TerraformEnum {
 final class CloudflareImageVariant extends Resource {
   static const String tfType = 'cloudflare_image_variant';
 
-  CloudflareImageVariant({
-    required super.localName,
+  CloudflareImageVariant(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> id,
     TfArg<bool>? neverRequireSignedUrls,

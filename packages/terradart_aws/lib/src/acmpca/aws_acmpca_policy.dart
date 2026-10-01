@@ -10,8 +10,8 @@ const Set<String> _awsAcmpcaPolicySensitive = <String>{};
 final class AwsAcmpcaPolicy extends Resource {
   static const String tfType = 'aws_acmpca_policy';
 
-  AwsAcmpcaPolicy({
-    required super.localName,
+  AwsAcmpcaPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

@@ -29,8 +29,8 @@ final class HealthcareDatasetEncryptionSpec {
 final class GoogleHealthcareDataset extends Resource {
   static const String tfType = 'google_healthcare_dataset';
 
-  GoogleHealthcareDataset({
-    required super.localName,
+  GoogleHealthcareDataset(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? timeZone,

@@ -43,8 +43,8 @@ final class DataCatalogTagTemplateIamBindingCondition {
 final class GoogleDataCatalogTagTemplateIamBinding extends Resource {
   static const String tfType = 'google_data_catalog_tag_template_iam_binding';
 
-  GoogleDataCatalogTagTemplateIamBinding({
-    required super.localName,
+  GoogleDataCatalogTagTemplateIamBinding(
+    super.localName, {
     required RefTo<GoogleDataCatalogTagTemplate> tagTemplate,
     TfArg<String>? region,
     required TfArg<String> role,

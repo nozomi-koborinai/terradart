@@ -143,8 +143,8 @@ enum BackupSelectionType implements TerraformEnum {
 final class AwsBackupSelection extends Resource {
   static const String tfType = 'aws_backup_selection';
 
-  AwsBackupSelection({
-    required super.localName,
+  AwsBackupSelection(
+    super.localName, {
     required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> name,
     TfArg<List<String>>? notResources,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftEndpointAuthorizationSensitive = <String>{};
 final class AwsRedshiftEndpointAuthorization extends Resource {
   static const String tfType = 'aws_redshift_endpoint_authorization';
 
-  AwsRedshiftEndpointAuthorization({
-    required super.localName,
+  AwsRedshiftEndpointAuthorization(
+    super.localName, {
     required TfArg<String> account,
     required TfArg<String> clusterIdentifier,
     TfArg<bool>? forceDelete,

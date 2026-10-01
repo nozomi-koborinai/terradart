@@ -13,8 +13,8 @@ const Set<String> _awsEcrpublicAuthorizationTokenSensitive = <String>{
 final class DataAwsEcrpublicAuthorizationToken extends Data {
   static const String tfType = 'aws_ecrpublic_authorization_token';
 
-  DataAwsEcrpublicAuthorizationToken({
-    required super.localName,
+  DataAwsEcrpublicAuthorizationToken(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

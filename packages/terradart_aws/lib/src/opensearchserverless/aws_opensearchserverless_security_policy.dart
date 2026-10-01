@@ -20,8 +20,8 @@ enum OpensearchserverlessSecurityPolicyType implements TerraformEnum {
 final class AwsOpensearchserverlessSecurityPolicy extends Resource {
   static const String tfType = 'aws_opensearchserverless_security_policy';
 
-  AwsOpensearchserverlessSecurityPolicy({
-    required super.localName,
+  AwsOpensearchserverlessSecurityPolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> policy,

@@ -239,12 +239,12 @@ final class ComputeSubnetworkParams {
 /// Example:
 /// ```dart
 /// final vpc = GoogleComputeNetwork(
-///   localName: 'main',
+///   'main',
 ///   name: TfArg.literal('main-vpc'),
 ///   autoCreateSubnetworks: TfArg.literal(false),
 /// );
 /// final subnet = GoogleComputeSubnetwork(
-///   localName: 'main_subnet',
+///   'main_subnet',
 ///   name: TfArg.literal('main-subnet'),
 ///   region: TfArg.literal('us-central1'),
 ///   network: vpc.ref,
@@ -255,8 +255,8 @@ final class ComputeSubnetworkParams {
 final class GoogleComputeSubnetwork extends Resource {
   static const String tfType = 'google_compute_subnetwork';
 
-  GoogleComputeSubnetwork({
-    required super.localName,
+  GoogleComputeSubnetwork(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required RefTo<GoogleComputeNetwork> network,

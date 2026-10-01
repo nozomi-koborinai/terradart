@@ -107,8 +107,8 @@ enum ApiGatewayRestApiTypes implements TerraformEnum {
 final class AwsApiGatewayRestApi extends Resource {
   static const String tfType = 'aws_api_gateway_rest_api';
 
-  AwsApiGatewayRestApi({
-    required super.localName,
+  AwsApiGatewayRestApi(
+    super.localName, {
     TfArg<ApiGatewayRestApiKeySource>? apiKeySource,
     TfArg<List<String>>? binaryMediaTypes,
     TfArg<String>? body,

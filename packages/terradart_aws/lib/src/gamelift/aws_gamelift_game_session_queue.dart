@@ -31,8 +31,8 @@ final class GameliftGameSessionQueuePlayerLatencyPolicy {
 final class AwsGameliftGameSessionQueue extends Resource {
   static const String tfType = 'aws_gamelift_game_session_queue';
 
-  AwsGameliftGameSessionQueue({
-    required super.localName,
+  AwsGameliftGameSessionQueue(
+    super.localName, {
     TfArg<String>? customEventData,
     TfArg<List<String>>? destinations,
     required TfArg<String> name,

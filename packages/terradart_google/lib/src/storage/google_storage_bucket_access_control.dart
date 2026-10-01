@@ -48,7 +48,7 @@ enum StorageBucketAccessControlRole implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleStorageBucketAccessControl(
-///   localName: 'legacy_reader',
+///   'legacy_reader',
 ///   bucket: legacy.ref,
 ///   entity: .literal('allAuthenticatedUsers'),
 ///   role: TfArg.literal(StorageBucketAccessControlRole.reader),
@@ -57,8 +57,8 @@ enum StorageBucketAccessControlRole implements TerraformEnum {
 final class GoogleStorageBucketAccessControl extends Resource {
   static const String tfType = 'google_storage_bucket_access_control';
 
-  GoogleStorageBucketAccessControl({
-    required super.localName,
+  GoogleStorageBucketAccessControl(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> entity,
     TfArg<StorageBucketAccessControlRole>? role,

@@ -48,8 +48,8 @@ final class S3BucketCorsConfigurationCorsRule {
 final class AwsS3BucketCorsConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_cors_configuration';
 
-  AwsS3BucketCorsConfiguration({
-    required super.localName,
+  AwsS3BucketCorsConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

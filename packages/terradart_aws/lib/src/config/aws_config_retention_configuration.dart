@@ -10,8 +10,8 @@ const Set<String> _awsConfigRetentionConfigurationSensitive = <String>{};
 final class AwsConfigRetentionConfiguration extends Resource {
   static const String tfType = 'aws_config_retention_configuration';
 
-  AwsConfigRetentionConfiguration({
-    required super.localName,
+  AwsConfigRetentionConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<num> retentionPeriodInDays,
     super.lifecycle,

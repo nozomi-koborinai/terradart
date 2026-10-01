@@ -14,8 +14,8 @@ const Set<String> _googleSecretManagerSecretIamPolicySensitive = <String>{};
 final class DataGoogleSecretManagerSecretIamPolicy extends Data {
   static const String tfType = 'google_secret_manager_secret_iam_policy';
 
-  DataGoogleSecretManagerSecretIamPolicy({
-    required super.localName,
+  DataGoogleSecretManagerSecretIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> secretId,
     super.provider,

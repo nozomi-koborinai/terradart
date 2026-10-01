@@ -17,8 +17,8 @@ const Set<String> _googleDataplexLakeIamPolicySensitive = <String>{};
 final class GoogleDataplexLakeIamPolicy extends Resource {
   static const String tfType = 'google_dataplex_lake_iam_policy';
 
-  GoogleDataplexLakeIamPolicy({
-    required super.localName,
+  GoogleDataplexLakeIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> policyData,
     TfArg<String>? location,

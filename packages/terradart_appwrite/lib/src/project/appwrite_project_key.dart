@@ -20,8 +20,8 @@ const Set<String> _appwriteProjectKeySensitive = <String>{'secret'};
 final class AppwriteProjectKey extends Resource {
   static const String tfType = 'appwrite_project_key';
 
-  AppwriteProjectKey({
-    required super.localName,
+  AppwriteProjectKey(
+    super.localName, {
     TfArg<String>? expire,
     required TfArg<String> name,
     TfArg<String>? organizationId,

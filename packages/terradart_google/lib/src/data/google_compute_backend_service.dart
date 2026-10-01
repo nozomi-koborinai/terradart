@@ -14,8 +14,8 @@ const Set<String> _googleComputeBackendServiceSensitive = <String>{};
 final class DataGoogleComputeBackendService extends Data {
   static const String tfType = 'google_compute_backend_service';
 
-  DataGoogleComputeBackendService({
-    required super.localName,
+  DataGoogleComputeBackendService(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

@@ -431,7 +431,7 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
 /// Example (VPC spoke):
 /// ```dart
 /// GoogleNetworkConnectivitySpoke(
-///   localName: 'vpc_spoke',
+///   'vpc_spoke',
 ///   name: .literal('vpc-spoke'),
 ///   location: .literal('global'),
 ///   hub: hub.ref,
@@ -443,8 +443,8 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
 final class GoogleNetworkConnectivitySpoke extends Resource {
   static const String tfType = 'google_network_connectivity_spoke';
 
-  GoogleNetworkConnectivitySpoke({
-    required super.localName,
+  GoogleNetworkConnectivitySpoke(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleNetworkConnectivityHub> hub,

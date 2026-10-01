@@ -229,8 +229,8 @@ enum CodebuildWebhookScope implements TerraformEnum {
 final class AwsCodebuildWebhook extends Resource {
   static const String tfType = 'aws_codebuild_webhook';
 
-  AwsCodebuildWebhook({
-    required super.localName,
+  AwsCodebuildWebhook(
+    super.localName, {
     CodebuildWebhookTrigger? trigger,
     TfArg<CodebuildWebhookBuildType>? buildType,
     TfArg<bool>? manualCreation,

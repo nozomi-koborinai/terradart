@@ -10,8 +10,8 @@ const Set<String> _awsEcrPullTimeUpdateExclusionSensitive = <String>{};
 final class AwsEcrPullTimeUpdateExclusion extends Resource {
   static const String tfType = 'aws_ecr_pull_time_update_exclusion';
 
-  AwsEcrPullTimeUpdateExclusion({
-    required super.localName,
+  AwsEcrPullTimeUpdateExclusion(
+    super.localName, {
     required TfArg<String> principalArn,
     TfArg<String>? region,
     super.lifecycle,

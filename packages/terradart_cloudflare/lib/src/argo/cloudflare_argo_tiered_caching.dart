@@ -22,8 +22,8 @@ enum ArgoTieredCachingValue implements TerraformEnum {
 final class CloudflareArgoTieredCaching extends Resource {
   static const String tfType = 'cloudflare_argo_tiered_caching';
 
-  CloudflareArgoTieredCaching({
-    required super.localName,
+  CloudflareArgoTieredCaching(
+    super.localName, {
     required TfArg<ArgoTieredCachingValue> value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

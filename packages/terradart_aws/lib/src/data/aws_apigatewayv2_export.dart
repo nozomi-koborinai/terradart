@@ -10,8 +10,8 @@ const Set<String> _awsApigatewayv2ExportSensitive = <String>{};
 final class DataAwsApigatewayv2Export extends Data {
   static const String tfType = 'aws_apigatewayv2_export';
 
-  DataAwsApigatewayv2Export({
-    required super.localName,
+  DataAwsApigatewayv2Export(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? exportVersion,
     TfArg<bool>? includeExtensions,

@@ -12,8 +12,8 @@ const Set<String> _awsLambdaAliasSensitive = <String>{};
 final class DataAwsLambdaAlias extends Data {
   static const String tfType = 'aws_lambda_alias';
 
-  DataAwsLambdaAlias({
-    required super.localName,
+  DataAwsLambdaAlias(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> name,
     TfArg<String>? region,

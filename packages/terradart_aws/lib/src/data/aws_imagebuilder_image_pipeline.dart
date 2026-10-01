@@ -11,8 +11,8 @@ const Set<String> _awsImagebuilderImagePipelineSensitive = <String>{};
 final class DataAwsImagebuilderImagePipeline extends Data {
   static const String tfType = 'aws_imagebuilder_image_pipeline';
 
-  DataAwsImagebuilderImagePipeline({
-    required super.localName,
+  DataAwsImagebuilderImagePipeline(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

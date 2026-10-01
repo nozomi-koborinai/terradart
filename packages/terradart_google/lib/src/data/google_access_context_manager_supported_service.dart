@@ -15,8 +15,8 @@ final class DataGoogleAccessContextManagerSupportedService extends Data {
   static const String tfType =
       'google_access_context_manager_supported_service';
 
-  DataGoogleAccessContextManagerSupportedService({
-    required super.localName,
+  DataGoogleAccessContextManagerSupportedService(
+    super.localName, {
     required TfArg<String> serviceName,
     super.provider,
     super.timeouts,

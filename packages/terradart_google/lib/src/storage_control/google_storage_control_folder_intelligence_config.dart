@@ -231,8 +231,8 @@ final class GoogleStorageControlFolderIntelligenceConfig extends Resource {
   static const String tfType =
       'google_storage_control_folder_intelligence_config';
 
-  GoogleStorageControlFolderIntelligenceConfig({
-    required super.localName,
+  GoogleStorageControlFolderIntelligenceConfig(
+    super.localName, {
     TfArg<String>? editionConfig,
     required TfArg<String> name,
     StorageControlFolderIntelligenceConfigFilter? filter,

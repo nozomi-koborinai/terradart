@@ -61,8 +61,8 @@ final class PrometheusQueryLoggingConfigurationFilters {
 final class AwsPrometheusQueryLoggingConfiguration extends Resource {
   static const String tfType = 'aws_prometheus_query_logging_configuration';
 
-  AwsPrometheusQueryLoggingConfiguration({
-    required super.localName,
+  AwsPrometheusQueryLoggingConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> workspaceId,
     List<PrometheusQueryLoggingConfigurationDestination>? destination,

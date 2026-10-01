@@ -80,7 +80,7 @@ final class CertificateManagerTrustConfigAllowlistedCertificate {
 /// Example:
 /// ```dart
 /// GoogleCertificateManagerTrustConfig(
-///   localName: 'app_trust',
+///   'app_trust',
 ///   name: TfArg.literal('app-trust'),
 ///   location: TfArg.literal('global'),
 ///   trustStores: [
@@ -97,8 +97,8 @@ final class CertificateManagerTrustConfigAllowlistedCertificate {
 final class GoogleCertificateManagerTrustConfig extends Resource {
   static const String tfType = 'google_certificate_manager_trust_config';
 
-  GoogleCertificateManagerTrustConfig({
-    required super.localName,
+  GoogleCertificateManagerTrustConfig(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     List<CertificateManagerTrustConfigTrustStore>? trustStores,

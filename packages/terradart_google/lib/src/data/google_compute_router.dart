@@ -15,8 +15,8 @@ const Set<String> _googleComputeRouterSensitive = <String>{};
 final class DataGoogleComputeRouter extends Data {
   static const String tfType = 'google_compute_router';
 
-  DataGoogleComputeRouter({
-    required super.localName,
+  DataGoogleComputeRouter(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? project,

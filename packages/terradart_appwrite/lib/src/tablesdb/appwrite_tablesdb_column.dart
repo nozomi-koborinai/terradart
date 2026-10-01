@@ -42,8 +42,8 @@ enum TablesdbColumnType implements TerraformEnum {
 final class AppwriteTablesdbColumn extends Resource {
   static const String tfType = 'appwrite_tablesdb_column';
 
-  AppwriteTablesdbColumn({
-    required super.localName,
+  AppwriteTablesdbColumn(
+    super.localName, {
     required RefTo<AppwriteTablesdb> databaseId,
     required RefTo<AppwriteTablesdbTable> tableId,
     required TfArg<TablesdbColumnType> type,

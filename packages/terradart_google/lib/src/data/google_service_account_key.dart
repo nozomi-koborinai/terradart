@@ -14,8 +14,8 @@ const Set<String> _googleServiceAccountKeySensitive = <String>{};
 final class DataGoogleServiceAccountKey extends Data {
   static const String tfType = 'google_service_account_key';
 
-  DataGoogleServiceAccountKey({
-    required super.localName,
+  DataGoogleServiceAccountKey(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? publicKeyType,
     super.provider,

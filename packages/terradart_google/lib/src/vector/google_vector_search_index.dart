@@ -113,8 +113,8 @@ enum VectorSearchIndexFeatureNormType implements TerraformEnum {
 final class GoogleVectorSearchIndex extends Resource {
   static const String tfType = 'google_vector_search_index';
 
-  GoogleVectorSearchIndex({
-    required super.localName,
+  GoogleVectorSearchIndex(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleVectorSearchCollection> collectionId,
     required TfArg<String> indexId,

@@ -11,8 +11,8 @@ const Set<String> _cloudflareAiSearchNamespacesSensitive = <String>{};
 final class DataCloudflareAiSearchNamespaces extends Data {
   static const String tfType = 'cloudflare_ai_search_namespaces';
 
-  DataCloudflareAiSearchNamespaces({
-    required super.localName,
+  DataCloudflareAiSearchNamespaces(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,

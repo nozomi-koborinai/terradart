@@ -14,8 +14,8 @@ const Set<String> _cloudflareUserSensitive = <String>{};
 final class CloudflareUser extends Resource {
   static const String tfType = 'cloudflare_user';
 
-  CloudflareUser({
-    required super.localName,
+  CloudflareUser(
+    super.localName, {
     TfArg<String>? country,
     TfArg<String>? firstName,
     TfArg<String>? lastName,

@@ -58,8 +58,8 @@ enum KmsFolderKajPolicyConfigAllowedAccessReasons implements TerraformEnum {
 final class GoogleKmsFolderKajPolicyConfig extends Resource {
   static const String tfType = 'google_kms_folder_kaj_policy_config';
 
-  GoogleKmsFolderKajPolicyConfig({
-    required super.localName,
+  GoogleKmsFolderKajPolicyConfig(
+    super.localName, {
     required TfArg<String> folder,
     KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy?
     defaultKeyAccessJustificationPolicy,

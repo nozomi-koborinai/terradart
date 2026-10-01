@@ -16,7 +16,7 @@ void main() {
       );
       stack.add(
         GoogleProjectServiceIdentity(
-          localName: 'cloudasset',
+          'cloudasset',
           service: TfArg.literal('cloudasset.googleapis.com'),
         ),
       );
@@ -37,7 +37,7 @@ void main() {
   group('GoogleProjectServiceIdentity', () {
     test('emits google-beta provider meta-argument and member ref', () {
       final identity = GoogleProjectServiceIdentity(
-        localName: 'cloudasset',
+        'cloudasset',
         service: TfArg.literal('cloudasset.googleapis.com'),
       );
       expect(identity.terraformType, 'google_project_service_identity');
@@ -65,7 +65,7 @@ void main() {
       );
       stack.add(
         GoogleProjectServiceIdentity(
-          localName: 'cloudasset',
+          'cloudasset',
           service: TfArg.literal('cloudasset.googleapis.com'),
         ),
       );

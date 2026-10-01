@@ -16,8 +16,8 @@ final class DataGoogleSecretManagerRegionalSecretIamPolicy extends Data {
   static const String tfType =
       'google_secret_manager_regional_secret_iam_policy';
 
-  DataGoogleSecretManagerRegionalSecretIamPolicy({
-    required super.localName,
+  DataGoogleSecretManagerRegionalSecretIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> secretId,

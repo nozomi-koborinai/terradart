@@ -43,8 +43,8 @@ enum MigrationCenterSourceType implements TerraformEnum {
 final class GoogleMigrationCenterSource extends Resource {
   static const String tfType = 'google_migration_center_source';
 
-  GoogleMigrationCenterSource({
-    required super.localName,
+  GoogleMigrationCenterSource(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> sourceId,
     TfArg<String>? displayName,

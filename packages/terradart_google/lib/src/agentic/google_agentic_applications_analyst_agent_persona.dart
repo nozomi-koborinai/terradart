@@ -717,7 +717,7 @@ final class AgenticApplicationsAnalystAgentPersonaColumns {
 /// Example:
 /// ```dart
 /// GoogleAgenticApplicationsAnalystAgentPersona(
-///   localName: 'analyst',
+///   'analyst',
 ///   location: TfArg.literal('us-central1'),
 ///   analystAgentPersonaId: TfArg.literal('terradart-analyst'),
 ///   displayName: TfArg.literal('TerraDart treasury analyst'),
@@ -736,8 +736,8 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
   static const String tfType =
       'google_agentic_applications_analyst_agent_persona';
 
-  GoogleAgenticApplicationsAnalystAgentPersona({
-    required super.localName,
+  GoogleAgenticApplicationsAnalystAgentPersona(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> analystAgentPersonaId,
     required TfArg<String> displayName,

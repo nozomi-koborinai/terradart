@@ -22,8 +22,8 @@ final class SagemakerHumanTaskUiTemplate {
 final class AwsSagemakerHumanTaskUi extends Resource {
   static const String tfType = 'aws_sagemaker_human_task_ui';
 
-  AwsSagemakerHumanTaskUi({
-    required super.localName,
+  AwsSagemakerHumanTaskUi(
+    super.localName, {
     required TfArg<String> humanTaskUiName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

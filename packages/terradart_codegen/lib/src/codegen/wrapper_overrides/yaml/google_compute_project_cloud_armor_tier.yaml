@@ -42,7 +42,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeProjectCloudArmorTier(
-  ///   localName: 'armor_tier',
+  ///   'armor_tier',
   ///   cloudArmorTier: TfArg.literal(
   ///     ComputeProjectCloudArmorTier.caStandard,
   ///   ),

@@ -15,8 +15,8 @@ const Set<String> _googleServiceAccountSensitive = <String>{};
 final class DataGoogleServiceAccount extends Data {
   static const String tfType = 'google_service_account';
 
-  DataGoogleServiceAccount({
-    required super.localName,
+  DataGoogleServiceAccount(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? project,
     super.provider,

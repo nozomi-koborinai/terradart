@@ -39,7 +39,7 @@ final class AnalystPersonaStack extends Stack {
 
     final dataset = add(
       GoogleBigqueryDataset(
-        localName: 'treasury',
+        'treasury',
         datasetId: .literal('terradart_treasury'),
         location: .literal('US'),
         friendlyName: .literal('TerraDart treasury'),
@@ -53,7 +53,7 @@ final class AnalystPersonaStack extends Stack {
 
     final positions = add(
       GoogleBigqueryTable(
-        localName: 'cash_positions',
+        'cash_positions',
         datasetId: dataset.ref,
         tableId: .literal('cash_positions'),
         description: .literal('Daily closing cash balance per account.'),
@@ -78,7 +78,7 @@ final class AnalystPersonaStack extends Stack {
 
     add(
       GoogleAgenticApplicationsAnalystAgentPersona(
-        localName: 'treasury_analyst',
+        'treasury_analyst',
         location: .literal('us-central1'),
         analystAgentPersonaId: .literal('terradart-treasury-analyst'),
         displayName: .literal('TerraDart treasury analyst'),

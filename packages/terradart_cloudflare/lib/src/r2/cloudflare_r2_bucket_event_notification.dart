@@ -68,8 +68,8 @@ enum R2BucketEventNotificationActions implements TerraformEnum {
 final class CloudflareR2BucketEventNotification extends Resource {
   static const String tfType = 'cloudflare_r2_bucket_event_notification';
 
-  CloudflareR2BucketEventNotification({
-    required super.localName,
+  CloudflareR2BucketEventNotification(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketEventNotificationJurisdiction>? jurisdiction,

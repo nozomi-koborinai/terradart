@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleKmsKeyHandle(
-  ///   localName: 'disk_cmek',
+  ///   'disk_cmek',
   ///   name: TfArg.literal('terradart-disk-handle'),
   ///   location: TfArg.literal('us-central1'),
   ///   resourceTypeSelector: TfArg.literal('compute.googleapis.com/Disk'),

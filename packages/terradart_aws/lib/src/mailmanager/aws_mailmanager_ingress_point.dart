@@ -179,8 +179,8 @@ enum MailmanagerIngressPointIpType implements TerraformEnum {
 final class AwsMailmanagerIngressPoint extends Resource {
   static const String tfType = 'aws_mailmanager_ingress_point';
 
-  AwsMailmanagerIngressPoint({
-    required super.localName,
+  AwsMailmanagerIngressPoint(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> ruleSetId,

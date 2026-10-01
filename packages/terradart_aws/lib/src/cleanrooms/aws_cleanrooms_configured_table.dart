@@ -30,8 +30,8 @@ final class CleanroomsConfiguredTableReference {
 final class AwsCleanroomsConfiguredTable extends Resource {
   static const String tfType = 'aws_cleanrooms_configured_table';
 
-  AwsCleanroomsConfiguredTable({
-    required super.localName,
+  AwsCleanroomsConfiguredTable(
+    super.localName, {
     required TfArg<List<String>> allowedColumns,
     required TfArg<String> analysisMethod,
     TfArg<String>? description,

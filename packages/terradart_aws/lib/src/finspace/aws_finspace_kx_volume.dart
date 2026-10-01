@@ -60,8 +60,8 @@ enum FinspaceKxVolumeNas1ConfigurationType implements TerraformEnum {
 final class AwsFinspaceKxVolume extends Resource {
   static const String tfType = 'aws_finspace_kx_volume';
 
-  AwsFinspaceKxVolume({
-    required super.localName,
+  AwsFinspaceKxVolume(
+    super.localName, {
     required TfArg<List<String>> availabilityZones,
     required TfArg<FinspaceKxVolumeAzMode> azMode,
     TfArg<String>? description,

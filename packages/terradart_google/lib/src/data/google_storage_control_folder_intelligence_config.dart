@@ -16,8 +16,8 @@ final class DataGoogleStorageControlFolderIntelligenceConfig extends Data {
   static const String tfType =
       'google_storage_control_folder_intelligence_config';
 
-  DataGoogleStorageControlFolderIntelligenceConfig({
-    required super.localName,
+  DataGoogleStorageControlFolderIntelligenceConfig(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

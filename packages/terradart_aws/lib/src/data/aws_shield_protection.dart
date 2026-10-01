@@ -11,8 +11,8 @@ const Set<String> _awsShieldProtectionSensitive = <String>{};
 final class DataAwsShieldProtection extends Data {
   static const String tfType = 'aws_shield_protection';
 
-  DataAwsShieldProtection({
-    required super.localName,
+  DataAwsShieldProtection(
+    super.localName, {
     TfArg<String>? protectionId,
     TfArg<String>? resourceArn,
     super.provider,

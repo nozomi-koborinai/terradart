@@ -18,8 +18,8 @@ const Set<String> _googleApphubServiceProjectAttachmentSensitive = <String>{};
 final class GoogleApphubServiceProjectAttachment extends Resource {
   static const String tfType = 'google_apphub_service_project_attachment';
 
-  GoogleApphubServiceProjectAttachment({
-    required super.localName,
+  GoogleApphubServiceProjectAttachment(
+    super.localName, {
     required TfArg<String> serviceProjectAttachmentId,
     TfArg<String>? serviceProject,
     TfArg<String>? deletionPolicy,

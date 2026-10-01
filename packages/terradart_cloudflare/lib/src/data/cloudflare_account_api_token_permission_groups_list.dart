@@ -17,8 +17,8 @@ final class DataCloudflareAccountApiTokenPermissionGroupsList extends Data {
   static const String tfType =
       'cloudflare_account_api_token_permission_groups_list';
 
-  DataCloudflareAccountApiTokenPermissionGroupsList({
-    required super.localName,
+  DataCloudflareAccountApiTokenPermissionGroupsList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

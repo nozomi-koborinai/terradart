@@ -43,7 +43,7 @@ final class BinaryAuthorizationAttestorIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleBinaryAuthorizationAttestorIamMember(
-///   localName: 'attestor_viewer',
+///   'attestor_viewer',
 ///   attestor: attestor.ref,
 ///   role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
 ///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),
@@ -53,8 +53,8 @@ final class GoogleBinaryAuthorizationAttestorIamMember extends Resource {
   static const String tfType =
       'google_binary_authorization_attestor_iam_member';
 
-  GoogleBinaryAuthorizationAttestorIamMember({
-    required super.localName,
+  GoogleBinaryAuthorizationAttestorIamMember(
+    super.localName, {
     required RefTo<GoogleBinaryAuthorizationAttestor> attestor,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -34,8 +34,8 @@ final class CloudwatchCompositeAlarmActionsSuppressor {
 final class AwsCloudwatchCompositeAlarm extends Resource {
   static const String tfType = 'aws_cloudwatch_composite_alarm';
 
-  AwsCloudwatchCompositeAlarm({
-    required super.localName,
+  AwsCloudwatchCompositeAlarm(
+    super.localName, {
     TfArg<bool>? actionsEnabled,
     TfArg<List<String>>? alarmActions,
     TfArg<String>? alarmDescription,

@@ -138,8 +138,8 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
   static const String tfType =
       'aws_bedrockagentcore_api_key_credential_provider';
 
-  AwsBedrockagentcoreApiKeyCredentialProvider({
-    required super.localName,
+  AwsBedrockagentcoreApiKeyCredentialProvider(
+    super.localName, {
     required BedrockagentcoreApiKeyCredentialProviderApiKey apiKey,
     TfArg<BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource>?
     apiKeySecretSource,

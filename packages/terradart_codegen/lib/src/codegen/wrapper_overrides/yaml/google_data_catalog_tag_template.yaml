@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataCatalogTagTemplate(
-  ///   localName: 'demo',
+  ///   'demo',
   ///   tagTemplateId: TfArg.literal('terradart_template'),
   ///   region: TfArg.literal('us-central1'),
   ///   displayName: TfArg.literal('Demo Tag Template'),

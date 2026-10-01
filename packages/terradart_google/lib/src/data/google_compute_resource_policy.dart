@@ -14,8 +14,8 @@ const Set<String> _googleComputeResourcePolicySensitive = <String>{};
 final class DataGoogleComputeResourcePolicy extends Data {
   static const String tfType = 'google_compute_resource_policy';
 
-  DataGoogleComputeResourcePolicy({
-    required super.localName,
+  DataGoogleComputeResourcePolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

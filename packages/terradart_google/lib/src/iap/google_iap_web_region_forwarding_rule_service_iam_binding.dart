@@ -44,8 +44,8 @@ final class GoogleIapWebRegionForwardingRuleServiceIamBinding extends Resource {
   static const String tfType =
       'google_iap_web_region_forwarding_rule_service_iam_binding';
 
-  GoogleIapWebRegionForwardingRuleServiceIamBinding({
-    required super.localName,
+  GoogleIapWebRegionForwardingRuleServiceIamBinding(
+    super.localName, {
     required TfArg<String> forwardingRuleRegionServiceName,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

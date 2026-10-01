@@ -10,8 +10,8 @@ const Set<String> _awsSecretsmanagerTagSensitive = <String>{};
 final class AwsSecretsmanagerTag extends Resource {
   static const String tfType = 'aws_secretsmanager_tag';
 
-  AwsSecretsmanagerTag({
-    required super.localName,
+  AwsSecretsmanagerTag(
+    super.localName, {
     required TfArg<String> key,
     TfArg<String>? region,
     required TfArg<String> secretId,

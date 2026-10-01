@@ -73,7 +73,7 @@ void main() {
 
   test('resource embeds exactly one *_health_check block', () {
     final hc = GoogleComputeHealthCheck(
-      localName: 'web',
+      'web',
       name: TfArg.literal('web-hc'),
       protocol: ComputeHealthCheckHttpHealthCheckConfig(
         requestPath: TfArg.literal('/healthz'),

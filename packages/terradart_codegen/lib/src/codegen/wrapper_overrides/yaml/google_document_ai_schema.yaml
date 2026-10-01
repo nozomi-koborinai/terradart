@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDocumentAiSchema(
-  ///   localName: 'fields',
+  ///   'fields',
   ///   location: TfArg.literal('us'),
   ///   displayName: TfArg.literal('terradart-schema'),
   /// );

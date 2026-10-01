@@ -25,7 +25,7 @@ final class CloudRunV1Stack extends Stack {
       ) {
     final apiRun = add(
       GoogleProjectService(
-        localName: 'api_run',
+        'api_run',
         service: .literal('run.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -33,7 +33,7 @@ final class CloudRunV1Stack extends Stack {
 
     final invoker = add(
       GoogleServiceAccount(
-        localName: 'run_invoker',
+        'run_invoker',
         accountId: .literal('run-v1-invoker'),
         displayName: .literal('Cloud Run v1 invoker'),
       ),
@@ -41,7 +41,7 @@ final class CloudRunV1Stack extends Stack {
 
     final hello = add(
       GoogleCloudRunService(
-        localName: 'hello',
+        'hello',
         location: .literal('us-central1'),
         name: .literal('terradart-run-v1'),
         template: CloudRunServiceTemplate(
@@ -66,7 +66,7 @@ final class CloudRunV1Stack extends Stack {
 
     add(
       GoogleCloudRunServiceIamMember(
-        localName: 'invoker',
+        'invoker',
         service: hello.ref,
         role: .literal('roles/run.invoker'),
         member: invoker.principal,

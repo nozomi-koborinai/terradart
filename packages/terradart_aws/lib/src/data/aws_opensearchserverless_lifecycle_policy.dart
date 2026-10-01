@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchserverlessLifecyclePolicySensitive = <String>{};
 final class DataAwsOpensearchserverlessLifecyclePolicy extends Data {
   static const String tfType = 'aws_opensearchserverless_lifecycle_policy';
 
-  DataAwsOpensearchserverlessLifecyclePolicy({
-    required super.localName,
+  DataAwsOpensearchserverlessLifecyclePolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> type,

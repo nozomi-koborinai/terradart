@@ -75,8 +75,8 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
   static const String tfType =
       'google_network_security_ull_mirroring_collector_rule';
 
-  GoogleNetworkSecurityUllMirroringCollectorRule({
-    required super.localName,
+  GoogleNetworkSecurityUllMirroringCollectorRule(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleNetworkSecurityUllMirroringCollector>
     ullMirroringCollector,

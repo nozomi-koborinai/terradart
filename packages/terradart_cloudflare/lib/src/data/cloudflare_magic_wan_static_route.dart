@@ -17,8 +17,8 @@ const Set<String> _cloudflareMagicWanStaticRouteSensitive = <String>{};
 final class DataCloudflareMagicWanStaticRoute extends Data {
   static const String tfType = 'cloudflare_magic_wan_static_route';
 
-  DataCloudflareMagicWanStaticRoute({
-    required super.localName,
+  DataCloudflareMagicWanStaticRoute(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> routeId,
     super.provider,

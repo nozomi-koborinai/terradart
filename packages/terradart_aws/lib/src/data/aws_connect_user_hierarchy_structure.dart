@@ -11,8 +11,8 @@ const Set<String> _awsConnectUserHierarchyStructureSensitive = <String>{};
 final class DataAwsConnectUserHierarchyStructure extends Data {
   static const String tfType = 'aws_connect_user_hierarchy_structure';
 
-  DataAwsConnectUserHierarchyStructure({
-    required super.localName,
+  DataAwsConnectUserHierarchyStructure(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     super.provider,

@@ -24,8 +24,8 @@ final class SnippetsMetadata {
 final class CloudflareSnippets extends Resource {
   static const String tfType = 'cloudflare_snippets';
 
-  CloudflareSnippets({
-    required super.localName,
+  CloudflareSnippets(
+    super.localName, {
     required TfArg<List<String>> files,
     required TfArg<String> snippetName,
     required RefTo<CloudflareZone> zoneId,

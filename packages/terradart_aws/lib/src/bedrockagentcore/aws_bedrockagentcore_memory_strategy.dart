@@ -458,8 +458,8 @@ final class BedrockagentcoreMemoryStrategyReflectionConfiguration {
 final class AwsBedrockagentcoreMemoryStrategy extends Resource {
   static const String tfType = 'aws_bedrockagentcore_memory_strategy';
 
-  AwsBedrockagentcoreMemoryStrategy({
-    required super.localName,
+  AwsBedrockagentcoreMemoryStrategy(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? memoryExecutionRoleArn,
     required TfArg<String> memoryId,

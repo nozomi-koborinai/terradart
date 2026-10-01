@@ -10,8 +10,8 @@ const Set<String> _awsMskBrokerNodesSensitive = <String>{};
 final class DataAwsMskBrokerNodes extends Data {
   static const String tfType = 'aws_msk_broker_nodes';
 
-  DataAwsMskBrokerNodes({
-    required super.localName,
+  DataAwsMskBrokerNodes(
+    super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? region,
     super.provider,

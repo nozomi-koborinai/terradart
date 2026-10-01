@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleOsConfigPatchDeployment(
-  ///   localName: 'monthly_patches',
+  ///   'monthly_patches',
   ///   patchDeploymentId: TfArg.literal('monthly-patches'),
   ///   description: TfArg.literal('Monthly security patches'),
   ///   instanceFilter: OsConfigPatchDeploymentInstanceFilter(

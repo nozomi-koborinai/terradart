@@ -112,8 +112,8 @@ final class NetworkServicesEndpointPolicyTrafficPortSelector {
 final class GoogleNetworkServicesEndpointPolicy extends Resource {
   static const String tfType = 'google_network_services_endpoint_policy';
 
-  GoogleNetworkServicesEndpointPolicy({
-    required super.localName,
+  GoogleNetworkServicesEndpointPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<NetworkServicesEndpointPolicyType> type,
     required NetworkServicesEndpointPolicyEndpointMatcher endpointMatcher,

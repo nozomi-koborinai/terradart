@@ -19,8 +19,8 @@ enum Ec2TrafficMirrorFilterNetworkServices implements TerraformEnum {
 final class AwsEc2TrafficMirrorFilter extends Resource {
   static const String tfType = 'aws_ec2_traffic_mirror_filter';
 
-  AwsEc2TrafficMirrorFilter({
-    required super.localName,
+  AwsEc2TrafficMirrorFilter(
+    super.localName, {
     TfArg<String>? description,
     List<TfArg<Ec2TrafficMirrorFilterNetworkServices>>? networkServices,
     TfArg<String>? region,

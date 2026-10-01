@@ -35,8 +35,8 @@ final class DataZeroTrustAccessGroupFilter {
 final class DataCloudflareZeroTrustAccessGroup extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_group';
 
-  DataCloudflareZeroTrustAccessGroup({
-    required super.localName,
+  DataCloudflareZeroTrustAccessGroup(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? groupId,
     RefTo<CloudflareZone>? zoneId,

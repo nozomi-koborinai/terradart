@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleTranscoderJobTemplate(
-  ///   localName: 'sd',
+  ///   'sd',
   ///   jobTemplateId: TfArg.literal('terradart-sd'),
   ///   location: TfArg.literal('us-central1'),
   ///   config: TranscoderJobTemplateConfig(

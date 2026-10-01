@@ -16,8 +16,8 @@ const Set<String> _cloudflareBotManagementSensitive = <String>{};
 final class DataCloudflareBotManagement extends Data {
   static const String tfType = 'cloudflare_bot_management';
 
-  DataCloudflareBotManagement({
-    required super.localName,
+  DataCloudflareBotManagement(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

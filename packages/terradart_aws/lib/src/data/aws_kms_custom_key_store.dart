@@ -11,8 +11,8 @@ const Set<String> _awsKmsCustomKeyStoreSensitive = <String>{};
 final class DataAwsKmsCustomKeyStore extends Data {
   static const String tfType = 'aws_kms_custom_key_store';
 
-  DataAwsKmsCustomKeyStore({
-    required super.localName,
+  DataAwsKmsCustomKeyStore(
+    super.localName, {
     TfArg<String>? customKeyStoreId,
     TfArg<String>? customKeyStoreName,
     TfArg<String>? region,

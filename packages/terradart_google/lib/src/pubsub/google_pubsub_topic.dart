@@ -544,7 +544,7 @@ final class PubsubTopicSchemaSettings {
 /// Example:
 /// ```dart
 /// final o = GooglePubsubTopic(
-///   localName: 'orders',
+///   'orders',
 ///   name: .literal('orders-prod'),
 ///   messageRetentionDuration: .literal(
 ///     const Duration(days: 7).toTfDurationString(),
@@ -559,8 +559,8 @@ final class PubsubTopicSchemaSettings {
 final class GooglePubsubTopic extends Resource {
   static const String tfType = 'google_pubsub_topic';
 
-  GooglePubsubTopic({
-    required super.localName,
+  GooglePubsubTopic(
+    super.localName, {
     required TfArg<String> name,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,

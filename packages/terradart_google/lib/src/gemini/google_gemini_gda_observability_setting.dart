@@ -40,8 +40,8 @@ final class GeminiGdaObservabilitySettingConversationalAnalyticsSetting {
 final class GoogleGeminiGdaObservabilitySetting extends Resource {
   static const String tfType = 'google_gemini_gda_observability_setting';
 
-  GoogleGeminiGdaObservabilitySetting({
-    required super.localName,
+  GoogleGeminiGdaObservabilitySetting(
+    super.localName, {
     required TfArg<String> gdaObservabilitySettingId,
     required TfArg<String> location,
     GeminiGdaObservabilitySettingConversationalAnalyticsSetting?

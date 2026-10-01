@@ -19,7 +19,7 @@ final class ComputePreviewFeatureStack extends Stack {
       ) {
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -27,7 +27,7 @@ final class ComputePreviewFeatureStack extends Stack {
 
     add(
       GoogleComputePreviewFeature(
-        localName: 'alpha',
+        'alpha',
         name: .literal('alpha-api-access'),
         activationStatus: .literal(.activationStateUnspecified),
         // API currently accepts only FAST_ROLLOUT (provider basic example).

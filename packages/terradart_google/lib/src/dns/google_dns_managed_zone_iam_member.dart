@@ -73,7 +73,7 @@ final class DnsManagedZoneIamMemberCondition {
 /// Example:
 /// ```dart
 /// final zoneAdmin = GoogleDnsManagedZoneIamMember(
-///   localName: 'zone_admin',
+///   'zone_admin',
 ///   managedZone: zone.ref,
 ///   role: TfArg.literal('roles/dns.admin'),
 ///   member: .group('sre-team-a@example.com'),
@@ -82,8 +82,8 @@ final class DnsManagedZoneIamMemberCondition {
 final class GoogleDnsManagedZoneIamMember extends Resource {
   static const String tfType = 'google_dns_managed_zone_iam_member';
 
-  GoogleDnsManagedZoneIamMember({
-    required super.localName,
+  GoogleDnsManagedZoneIamMember(
+    super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> role,
     required IamPrincipal member,

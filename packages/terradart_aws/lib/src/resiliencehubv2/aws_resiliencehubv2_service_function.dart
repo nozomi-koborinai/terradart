@@ -20,8 +20,8 @@ enum Resiliencehubv2ServiceFunctionCriticality implements TerraformEnum {
 final class AwsResiliencehubv2ServiceFunction extends Resource {
   static const String tfType = 'aws_resiliencehubv2_service_function';
 
-  AwsResiliencehubv2ServiceFunction({
-    required super.localName,
+  AwsResiliencehubv2ServiceFunction(
+    super.localName, {
     required TfArg<Resiliencehubv2ServiceFunctionCriticality> criticality,
     TfArg<String>? description,
     required TfArg<String> name,

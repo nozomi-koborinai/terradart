@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleAccessContextManagerAccessLevelCondition(
-  ///   localName: 'chromeos_condition',
+  ///   'chromeos_condition',
   ///   accessLevel: chromeos.ref,
   ///   ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
   ///   members: TfArg.literal([

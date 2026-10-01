@@ -249,8 +249,8 @@ final class GameliftGameServerGroupIdentifierName
 final class AwsGameliftGameServerGroup extends Resource {
   static const String tfType = 'aws_gamelift_game_server_group';
 
-  AwsGameliftGameServerGroup({
-    required super.localName,
+  AwsGameliftGameServerGroup(
+    super.localName, {
     TfArg<GameliftGameServerGroupBalancingStrategy>? balancingStrategy,
     required TfArg<String> gameServerGroupName,
     TfArg<GameliftGameServerGroupGameServerProtectionPolicy>?

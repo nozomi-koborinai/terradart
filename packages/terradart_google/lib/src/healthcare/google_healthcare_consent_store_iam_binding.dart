@@ -44,8 +44,8 @@ final class HealthcareConsentStoreIamBindingCondition {
 final class GoogleHealthcareConsentStoreIamBinding extends Resource {
   static const String tfType = 'google_healthcare_consent_store_iam_binding';
 
-  GoogleHealthcareConsentStoreIamBinding({
-    required super.localName,
+  GoogleHealthcareConsentStoreIamBinding(
+    super.localName, {
     required RefTo<GoogleHealthcareConsentStore> consentStore,
     TfArg<String>? dataset,
     required TfArg<String> role,

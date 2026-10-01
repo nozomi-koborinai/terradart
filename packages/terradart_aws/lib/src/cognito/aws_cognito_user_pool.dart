@@ -831,8 +831,8 @@ enum CognitoUserPoolUserVerification implements TerraformEnum {
 final class AwsCognitoUserPool extends Resource {
   static const String tfType = 'aws_cognito_user_pool';
 
-  AwsCognitoUserPool({
-    required super.localName,
+  AwsCognitoUserPool(
+    super.localName, {
     CognitoUserPoolSignInAttributes? signInAttributes,
     List<TfArg<CognitoUserPoolAutoVerifiedAttributes>>? autoVerifiedAttributes,
     TfArg<CognitoUserPoolDeletionProtection>? deletionProtection,

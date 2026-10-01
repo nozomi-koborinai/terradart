@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataprocAutoscalingPolicy(
-  ///   localName: 'asp',
+  ///   'asp',
   ///   policyId: TfArg.literal('terradart-asp'),
   ///   location: TfArg.literal('us-central1'),
   ///   workerConfig: DataprocAutoscalingPolicyWorkerConfig(

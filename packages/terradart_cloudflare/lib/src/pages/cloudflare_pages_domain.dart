@@ -16,8 +16,8 @@ const Set<String> _cloudflarePagesDomainSensitive = <String>{};
 final class CloudflarePagesDomain extends Resource {
   static const String tfType = 'cloudflare_pages_domain';
 
-  CloudflarePagesDomain({
-    required super.localName,
+  CloudflarePagesDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<String> projectName,

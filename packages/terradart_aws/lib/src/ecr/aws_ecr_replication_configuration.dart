@@ -91,8 +91,8 @@ enum EcrReplicationConfigurationFilterType implements TerraformEnum {
 final class AwsEcrReplicationConfiguration extends Resource {
   static const String tfType = 'aws_ecr_replication_configuration';
 
-  AwsEcrReplicationConfiguration({
-    required super.localName,
+  AwsEcrReplicationConfiguration(
+    super.localName, {
     TfArg<String>? region,
     EcrReplicationConfiguration? replicationConfiguration,
     super.lifecycle,

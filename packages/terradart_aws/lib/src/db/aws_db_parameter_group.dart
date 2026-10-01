@@ -102,8 +102,8 @@ enum DbParameterGroupApplyMethod implements TerraformEnum {
 final class AwsDbParameterGroup extends Resource {
   static const String tfType = 'aws_db_parameter_group';
 
-  AwsDbParameterGroup({
-    required super.localName,
+  AwsDbParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     DbParameterGroupName? name,

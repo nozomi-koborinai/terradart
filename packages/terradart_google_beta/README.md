@@ -29,7 +29,7 @@ final class MyBetaStack extends Stack {
       : super(providers: [GoogleBetaProvider(project: projectId)]) {
     final pubsubAgent = add(
       GoogleProjectServiceIdentity(
-        localName: 'pubsub_agent',
+        'pubsub_agent',
         service: .literal('pubsub.googleapis.com'),
       ),
     );

@@ -70,8 +70,8 @@ final class IamRolePolicyNamePrefix extends IamRolePolicyName {
 final class AwsIamRolePolicy extends Resource {
   static const String tfType = 'aws_iam_role_policy';
 
-  AwsIamRolePolicy({
-    required super.localName,
+  AwsIamRolePolicy(
+    super.localName, {
     IamRolePolicyName? name,
     required TfArg<String> policy,
     required RefTo<AwsIamRole> role,

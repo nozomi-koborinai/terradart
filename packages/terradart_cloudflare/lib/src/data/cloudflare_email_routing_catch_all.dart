@@ -16,8 +16,8 @@ const Set<String> _cloudflareEmailRoutingCatchAllSensitive = <String>{};
 final class DataCloudflareEmailRoutingCatchAll extends Data {
   static const String tfType = 'cloudflare_email_routing_catch_all';
 
-  DataCloudflareEmailRoutingCatchAll({
-    required super.localName,
+  DataCloudflareEmailRoutingCatchAll(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

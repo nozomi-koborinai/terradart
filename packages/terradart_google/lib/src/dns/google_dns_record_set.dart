@@ -164,8 +164,8 @@ class DnsRecordSetRoutingPolicy {
 final class GoogleDnsRecordSet extends Resource {
   static const String tfType = 'google_dns_record_set';
 
-  GoogleDnsRecordSet({
-    required super.localName,
+  GoogleDnsRecordSet(
+    super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> name,
     TfArg<String>? project,

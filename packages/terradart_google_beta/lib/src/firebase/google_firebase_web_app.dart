@@ -12,8 +12,8 @@ const Set<String> _googleFirebaseWebAppSensitive = <String>{};
 final class GoogleFirebaseWebApp extends Resource {
   static const String tfType = 'google_firebase_web_app';
 
-  GoogleFirebaseWebApp({
-    required super.localName,
+  GoogleFirebaseWebApp(
+    super.localName, {
     TfArg<String>? apiKeyId,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,

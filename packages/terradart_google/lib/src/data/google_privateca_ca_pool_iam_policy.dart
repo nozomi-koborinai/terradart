@@ -14,8 +14,8 @@ const Set<String> _googlePrivatecaCaPoolIamPolicySensitive = <String>{};
 final class DataGooglePrivatecaCaPoolIamPolicy extends Data {
   static const String tfType = 'google_privateca_ca_pool_iam_policy';
 
-  DataGooglePrivatecaCaPoolIamPolicy({
-    required super.localName,
+  DataGooglePrivatecaCaPoolIamPolicy(
+    super.localName, {
     required TfArg<String> caPool,
     TfArg<String>? location,
     TfArg<String>? project,

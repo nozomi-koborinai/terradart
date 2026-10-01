@@ -42,7 +42,7 @@ curatedDoc: |-
   /// Example (classic SSL certificate, external HTTPS LB):
   /// ```dart
   /// final httpsProxy = GoogleComputeTargetHttpsProxy(
-  ///   localName: 'lb_https',
+  ///   'lb_https',
   ///   name: TfArg.literal('lb-https-proxy'),
   ///   urlMap: urlMap.ref,
   ///   certificates: .sslCertificates(

@@ -48,8 +48,8 @@ enum DirectoryServiceSharedDirectoryType implements TerraformEnum {
 final class AwsDirectoryServiceSharedDirectory extends Resource {
   static const String tfType = 'aws_directory_service_shared_directory';
 
-  AwsDirectoryServiceSharedDirectory({
-    required super.localName,
+  AwsDirectoryServiceSharedDirectory(
+    super.localName, {
     required TfArg<String> directoryId,
     TfArg<DirectoryServiceSharedDirectoryMethod>? method,
     TfArg<String>? notes,

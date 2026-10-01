@@ -24,8 +24,8 @@ enum ChatbotSlackChannelConfigurationLoggingLevel implements TerraformEnum {
 final class AwsChatbotSlackChannelConfiguration extends Resource {
   static const String tfType = 'aws_chatbot_slack_channel_configuration';
 
-  AwsChatbotSlackChannelConfiguration({
-    required super.localName,
+  AwsChatbotSlackChannelConfiguration(
+    super.localName, {
     required TfArg<String> configurationName,
     TfArg<List<String>>? guardrailPolicyArns,
     required RefTo<AwsIamRole> iamRoleArn,

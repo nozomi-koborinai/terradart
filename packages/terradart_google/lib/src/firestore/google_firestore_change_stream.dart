@@ -111,8 +111,8 @@ final class FirestoreChangeStreamDatabaseScope {
 final class GoogleFirestoreChangeStream extends Resource {
   static const String tfType = 'google_firestore_change_stream';
 
-  GoogleFirestoreChangeStream({
-    required super.localName,
+  GoogleFirestoreChangeStream(
+    super.localName, {
     RefTo<GoogleFirestoreDatabase>? database,
     required TfArg<String> name,
     required FirestoreChangeStreamScope scope,

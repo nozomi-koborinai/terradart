@@ -10,8 +10,8 @@ const Set<String> _awsConnectSecurityProfileSensitive = <String>{};
 final class AwsConnectSecurityProfile extends Resource {
   static const String tfType = 'aws_connect_security_profile';
 
-  AwsConnectSecurityProfile({
-    required super.localName,
+  AwsConnectSecurityProfile(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> instanceId,
     required TfArg<String> name,

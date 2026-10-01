@@ -29,8 +29,8 @@ final class AmiFromInstanceEphemeralBlockDevice {
 final class AwsAmiFromInstance extends Resource {
   static const String tfType = 'aws_ami_from_instance';
 
-  AwsAmiFromInstance({
-    required super.localName,
+  AwsAmiFromInstance(
+    super.localName, {
     TfArg<String>? deprecationTime,
     TfArg<String>? description,
     required TfArg<String> name,

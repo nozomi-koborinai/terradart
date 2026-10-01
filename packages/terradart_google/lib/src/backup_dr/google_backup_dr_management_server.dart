@@ -56,7 +56,7 @@ final class BackupDrManagementServerNetworks {
 /// Example:
 /// ```dart
 /// GoogleBackupDrManagementServer(
-///   localName: 'ms',
+///   'ms',
 ///   name: TfArg.literal('terradart-bdr-ms'),
 ///   location: TfArg.literal('us-central1'),
 ///   type: TfArg.literal(BackupDrManagementServerType.backupRestore),
@@ -71,8 +71,8 @@ final class BackupDrManagementServerNetworks {
 final class GoogleBackupDrManagementServer extends Resource {
   static const String tfType = 'google_backup_dr_management_server';
 
-  GoogleBackupDrManagementServer({
-    required super.localName,
+  GoogleBackupDrManagementServer(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<BackupDrManagementServerType>? type,

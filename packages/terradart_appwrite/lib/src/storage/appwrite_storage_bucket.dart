@@ -32,8 +32,8 @@ enum StorageBucketCompression implements TerraformEnum {
 final class AppwriteStorageBucket extends Resource {
   static const String tfType = 'appwrite_storage_bucket';
 
-  AppwriteStorageBucket({
-    required super.localName,
+  AppwriteStorageBucket(
+    super.localName, {
     required TfArg<String> name,
     TfArg<bool>? enabled,
     TfArg<bool>? fileSecurity,

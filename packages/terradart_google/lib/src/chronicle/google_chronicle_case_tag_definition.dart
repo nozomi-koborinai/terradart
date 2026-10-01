@@ -43,8 +43,8 @@ enum ChronicleCaseTagDefinitionMatchCriteria implements TerraformEnum {
 final class GoogleChronicleCaseTagDefinition extends Resource {
   static const String tfType = 'google_chronicle_case_tag_definition';
 
-  GoogleChronicleCaseTagDefinition({
-    required super.localName,
+  GoogleChronicleCaseTagDefinition(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     required TfArg<String> displayName,

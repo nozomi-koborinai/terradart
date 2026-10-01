@@ -96,8 +96,8 @@ final class AwsGuarddutyOrganizationConfigurationFeature extends Resource {
   static const String tfType =
       'aws_guardduty_organization_configuration_feature';
 
-  AwsGuarddutyOrganizationConfigurationFeature({
-    required super.localName,
+  AwsGuarddutyOrganizationConfigurationFeature(
+    super.localName, {
     required TfArg<GuarddutyOrganizationConfigurationFeatureAutoEnable>
     autoEnable,
     required TfArg<String> detectorId,

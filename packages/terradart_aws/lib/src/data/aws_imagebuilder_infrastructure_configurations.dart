@@ -31,8 +31,8 @@ final class DataImagebuilderInfrastructureConfigurationsFilter {
 final class DataAwsImagebuilderInfrastructureConfigurations extends Data {
   static const String tfType = 'aws_imagebuilder_infrastructure_configurations';
 
-  DataAwsImagebuilderInfrastructureConfigurations({
-    required super.localName,
+  DataAwsImagebuilderInfrastructureConfigurations(
+    super.localName, {
     TfArg<String>? region,
     List<DataImagebuilderInfrastructureConfigurationsFilter>? filter,
     super.provider,

@@ -11,8 +11,8 @@ const Set<String> _awsSsmincidentsReplicationSetSensitive = <String>{};
 final class DataAwsSsmincidentsReplicationSet extends Data {
   static const String tfType = 'aws_ssmincidents_replication_set';
 
-  DataAwsSsmincidentsReplicationSet({
-    required super.localName,
+  DataAwsSsmincidentsReplicationSet(
+    super.localName, {
     TfArg<Map<String, String>>? tags,
     super.provider,
     super.timeouts,

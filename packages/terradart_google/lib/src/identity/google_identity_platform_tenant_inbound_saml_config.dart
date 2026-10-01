@@ -91,8 +91,8 @@ final class GoogleIdentityPlatformTenantInboundSamlConfig extends Resource {
   static const String tfType =
       'google_identity_platform_tenant_inbound_saml_config';
 
-  GoogleIdentityPlatformTenantInboundSamlConfig({
-    required super.localName,
+  GoogleIdentityPlatformTenantInboundSamlConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     TfArg<bool>? enabled,

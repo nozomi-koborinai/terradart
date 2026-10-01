@@ -62,8 +62,8 @@ enum CloudwatchEventBusLevel implements TerraformEnum {
 final class AwsCloudwatchEventBus extends Resource {
   static const String tfType = 'aws_cloudwatch_event_bus';
 
-  AwsCloudwatchEventBus({
-    required super.localName,
+  AwsCloudwatchEventBus(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? eventSourceName,
     RefTo<AwsKmsKey>? kmsKeyIdentifier,

@@ -10,8 +10,8 @@ const Set<String> _awsInspectorResourceGroupSensitive = <String>{};
 final class AwsInspectorResourceGroup extends Resource {
   static const String tfType = 'aws_inspector_resource_group';
 
-  AwsInspectorResourceGroup({
-    required super.localName,
+  AwsInspectorResourceGroup(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<Map<String, String>> tags,
     super.lifecycle,

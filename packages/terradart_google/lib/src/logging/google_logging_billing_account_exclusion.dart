@@ -17,8 +17,8 @@ const Set<String> _googleLoggingBillingAccountExclusionSensitive = <String>{};
 final class GoogleLoggingBillingAccountExclusion extends Resource {
   static const String tfType = 'google_logging_billing_account_exclusion';
 
-  GoogleLoggingBillingAccountExclusion({
-    required super.localName,
+  GoogleLoggingBillingAccountExclusion(
+    super.localName, {
     required TfArg<String> billingAccount,
     TfArg<String>? description,
     TfArg<bool>? disabled,

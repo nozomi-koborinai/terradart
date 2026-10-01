@@ -62,7 +62,7 @@ final class ComputeRouterNamedSetElements {
 /// Example:
 /// ```dart
 /// GoogleComputeRouterNamedSet(
-///   localName: 'prefixes',
+///   'prefixes',
 ///   name: TfArg.literal('terradart-prefixes'),
 ///   router: router.ref,
 ///   region: TfArg.literal('us-central1'),
@@ -78,8 +78,8 @@ final class ComputeRouterNamedSetElements {
 final class GoogleComputeRouterNamedSet extends Resource {
   static const String tfType = 'google_compute_router_named_set';
 
-  GoogleComputeRouterNamedSet({
-    required super.localName,
+  GoogleComputeRouterNamedSet(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
     required TfArg<ComputeRouterNamedSetType> type,

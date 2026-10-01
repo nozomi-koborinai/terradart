@@ -27,8 +27,8 @@ final class DataSubnetsFilter {
 final class DataAwsSubnets extends Data {
   static const String tfType = 'aws_subnets';
 
-  DataAwsSubnets({
-    required super.localName,
+  DataAwsSubnets(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataSubnetsFilter>? filter,

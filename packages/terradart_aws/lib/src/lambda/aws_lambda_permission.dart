@@ -88,8 +88,8 @@ final class LambdaPermissionStatementIdPrefix
 final class AwsLambdaPermission extends Resource {
   static const String tfType = 'aws_lambda_permission';
 
-  AwsLambdaPermission({
-    required super.localName,
+  AwsLambdaPermission(
+    super.localName, {
     required TfArg<String> action,
     TfArg<String>? eventSourceToken,
     required RefTo<AwsLambdaFunction> functionName,

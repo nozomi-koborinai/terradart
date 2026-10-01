@@ -22,7 +22,7 @@ const Set<String> _googleTagsLocationTagBindingSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleTagsLocationTagBinding(
-///   localName: 'repo_env',
+///   'repo_env',
 ///   parent: TfArg.literal(
 ///     '//artifactregistry.googleapis.com/projects/'
 ///     '${project.number.interpolation}/locations/asia-northeast1/'
@@ -35,8 +35,8 @@ const Set<String> _googleTagsLocationTagBindingSensitive = <String>{};
 final class GoogleTagsLocationTagBinding extends Resource {
   static const String tfType = 'google_tags_location_tag_binding';
 
-  GoogleTagsLocationTagBinding({
-    required super.localName,
+  GoogleTagsLocationTagBinding(
+    super.localName, {
     required TfArg<String> parent,
     required RefTo<GoogleTagsTagValue> tagValue,
     TfArg<String>? location,

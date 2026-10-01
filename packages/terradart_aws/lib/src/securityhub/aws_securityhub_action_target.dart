@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubActionTargetSensitive = <String>{};
 final class AwsSecurityhubActionTarget extends Resource {
   static const String tfType = 'aws_securityhub_action_target';
 
-  AwsSecurityhubActionTarget({
-    required super.localName,
+  AwsSecurityhubActionTarget(
+    super.localName, {
     required TfArg<String> description,
     required TfArg<String> identifier,
     required TfArg<String> name,

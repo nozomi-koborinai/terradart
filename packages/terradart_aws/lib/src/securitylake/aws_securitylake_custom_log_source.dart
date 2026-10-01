@@ -71,8 +71,8 @@ final class SecuritylakeCustomLogSourceProviderIdentity {
 final class AwsSecuritylakeCustomLogSource extends Resource {
   static const String tfType = 'aws_securitylake_custom_log_source';
 
-  AwsSecuritylakeCustomLogSource({
-    required super.localName,
+  AwsSecuritylakeCustomLogSource(
+    super.localName, {
     TfArg<List<String>>? eventClasses,
     TfArg<String>? region,
     required TfArg<String> sourceName,

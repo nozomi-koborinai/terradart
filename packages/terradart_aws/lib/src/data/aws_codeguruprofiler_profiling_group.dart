@@ -11,8 +11,8 @@ const Set<String> _awsCodeguruprofilerProfilingGroupSensitive = <String>{};
 final class DataAwsCodeguruprofilerProfilingGroup extends Data {
   static const String tfType = 'aws_codeguruprofiler_profiling_group';
 
-  DataAwsCodeguruprofilerProfilingGroup({
-    required super.localName,
+  DataAwsCodeguruprofilerProfilingGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

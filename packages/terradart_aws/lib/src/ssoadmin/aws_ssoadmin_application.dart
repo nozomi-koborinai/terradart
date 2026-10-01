@@ -77,8 +77,8 @@ enum SsoadminApplicationOrigin implements TerraformEnum {
 final class AwsSsoadminApplication extends Resource {
   static const String tfType = 'aws_ssoadmin_application';
 
-  AwsSsoadminApplication({
-    required super.localName,
+  AwsSsoadminApplication(
+    super.localName, {
     required TfArg<String> applicationProviderArn,
     TfArg<String>? clientToken,
     TfArg<String>? description,

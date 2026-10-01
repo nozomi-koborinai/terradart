@@ -15,8 +15,8 @@ const Set<String> _googleServiceDirectoryServiceSensitive = <String>{};
 final class GoogleServiceDirectoryService extends Resource {
   static const String tfType = 'google_service_directory_service';
 
-  GoogleServiceDirectoryService({
-    required super.localName,
+  GoogleServiceDirectoryService(
+    super.localName, {
     required TfArg<String> serviceId,
     required RefTo<GoogleServiceDirectoryNamespace> namespace,
     TfArg<Map<String, String>>? metadata,

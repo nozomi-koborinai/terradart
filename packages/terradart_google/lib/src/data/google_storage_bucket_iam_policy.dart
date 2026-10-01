@@ -15,8 +15,8 @@ const Set<String> _googleStorageBucketIamPolicySensitive = <String>{};
 final class DataGoogleStorageBucketIamPolicy extends Data {
   static const String tfType = 'google_storage_bucket_iam_policy';
 
-  DataGoogleStorageBucketIamPolicy({
-    required super.localName,
+  DataGoogleStorageBucketIamPolicy(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     super.provider,
     super.timeouts,

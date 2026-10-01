@@ -44,8 +44,8 @@ final class CloudformationTypeLoggingConfig {
 final class AwsCloudformationType extends Resource {
   static const String tfType = 'aws_cloudformation_type';
 
-  AwsCloudformationType({
-    required super.localName,
+  AwsCloudformationType(
+    super.localName, {
     RefTo<AwsIamRole>? executionRoleArn,
     TfArg<String>? region,
     required TfArg<String> schemaHandlerPackage,

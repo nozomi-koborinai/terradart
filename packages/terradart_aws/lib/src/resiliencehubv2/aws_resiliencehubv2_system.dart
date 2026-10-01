@@ -12,8 +12,8 @@ const Set<String> _awsResiliencehubv2SystemSensitive = <String>{};
 final class AwsResiliencehubv2System extends Resource {
   static const String tfType = 'aws_resiliencehubv2_system';
 
-  AwsResiliencehubv2System({
-    required super.localName,
+  AwsResiliencehubv2System(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,

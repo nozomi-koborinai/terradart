@@ -11,8 +11,8 @@ const Set<String> _awsConnectHoursOfOperationSensitive = <String>{};
 final class DataAwsConnectHoursOfOperation extends Data {
   static const String tfType = 'aws_connect_hours_of_operation';
 
-  DataAwsConnectHoursOfOperation({
-    required super.localName,
+  DataAwsConnectHoursOfOperation(
+    super.localName, {
     TfArg<String>? hoursOfOperationId,
     required TfArg<String> instanceId,
     TfArg<String>? name,

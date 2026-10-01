@@ -14,8 +14,8 @@ const Set<String> _appwriteSiteSensitive = <String>{};
 final class DataAppwriteSite extends Data {
   static const String tfType = 'appwrite_site';
 
-  DataAppwriteSite({
-    required super.localName,
+  DataAppwriteSite(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

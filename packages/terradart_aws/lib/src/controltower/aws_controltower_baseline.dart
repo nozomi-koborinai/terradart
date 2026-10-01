@@ -30,8 +30,8 @@ final class ControltowerBaselineParameters {
 final class AwsControltowerBaseline extends Resource {
   static const String tfType = 'aws_controltower_baseline';
 
-  AwsControltowerBaseline({
-    required super.localName,
+  AwsControltowerBaseline(
+    super.localName, {
     required TfArg<String> baselineIdentifier,
     required TfArg<String> baselineVersion,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsSagemakerPrebuiltEcrImageSensitive = <String>{};
 final class DataAwsSagemakerPrebuiltEcrImage extends Data {
   static const String tfType = 'aws_sagemaker_prebuilt_ecr_image';
 
-  DataAwsSagemakerPrebuiltEcrImage({
-    required super.localName,
+  DataAwsSagemakerPrebuiltEcrImage(
+    super.localName, {
     TfArg<String>? dnsSuffix,
     TfArg<String>? imageTag,
     TfArg<String>? region,

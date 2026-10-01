@@ -13,8 +13,8 @@ const Set<String> _googleContainerRegistryImageSensitive = <String>{};
 final class DataGoogleContainerRegistryImage extends Data {
   static const String tfType = 'google_container_registry_image';
 
-  DataGoogleContainerRegistryImage({
-    required super.localName,
+  DataGoogleContainerRegistryImage(
+    super.localName, {
     TfArg<String>? digest,
     required TfArg<String> name,
     TfArg<String>? project,

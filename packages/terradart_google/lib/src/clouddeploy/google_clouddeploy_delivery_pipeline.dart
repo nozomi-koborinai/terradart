@@ -598,8 +598,8 @@ final class ClouddeployDeliveryPipelinePredeploy {
 final class GoogleClouddeployDeliveryPipeline extends Resource {
   static const String tfType = 'google_clouddeploy_delivery_pipeline';
 
-  GoogleClouddeployDeliveryPipeline({
-    required super.localName,
+  GoogleClouddeployDeliveryPipeline(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     ClouddeployDeliveryPipelineSerialPipeline? serialPipeline,

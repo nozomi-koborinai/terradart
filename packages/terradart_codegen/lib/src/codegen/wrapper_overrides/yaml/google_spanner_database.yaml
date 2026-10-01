@@ -31,7 +31,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleSpannerDatabase(
-  ///   localName: 'main',
+  ///   'main',
   ///   instance: spanner.ref,
   ///   name: TfArg.literal('main'),
   ///   versionRetentionPeriod: TfArg.literal('86400s'),

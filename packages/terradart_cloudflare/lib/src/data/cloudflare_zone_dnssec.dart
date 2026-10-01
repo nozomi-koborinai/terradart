@@ -16,8 +16,8 @@ const Set<String> _cloudflareZoneDnssecSensitive = <String>{};
 final class DataCloudflareZoneDnssec extends Data {
   static const String tfType = 'cloudflare_zone_dnssec';
 
-  DataCloudflareZoneDnssec({
-    required super.localName,
+  DataCloudflareZoneDnssec(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -114,8 +114,8 @@ final class AwsVerifiedaccessInstanceLoggingConfiguration extends Resource {
   static const String tfType =
       'aws_verifiedaccess_instance_logging_configuration';
 
-  AwsVerifiedaccessInstanceLoggingConfiguration({
-    required super.localName,
+  AwsVerifiedaccessInstanceLoggingConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> verifiedaccessInstanceId,
     required VerifiedaccessInstanceLoggingConfigurationAccessLogs accessLogs,

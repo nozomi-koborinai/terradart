@@ -23,8 +23,8 @@ enum Apigatewayv2IntegrationResponseContentHandlingStrategy
 final class AwsApigatewayv2IntegrationResponse extends Resource {
   static const String tfType = 'aws_apigatewayv2_integration_response';
 
-  AwsApigatewayv2IntegrationResponse({
-    required super.localName,
+  AwsApigatewayv2IntegrationResponse(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<Apigatewayv2IntegrationResponseContentHandlingStrategy>?
     contentHandlingStrategy,

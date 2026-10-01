@@ -42,8 +42,8 @@ final class FolderIamBindingCondition {
 final class GoogleFolderIamBinding extends Resource {
   static const String tfType = 'google_folder_iam_binding';
 
-  GoogleFolderIamBinding({
-    required super.localName,
+  GoogleFolderIamBinding(
+    super.localName, {
     required RefTo<GoogleFolder> folder,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

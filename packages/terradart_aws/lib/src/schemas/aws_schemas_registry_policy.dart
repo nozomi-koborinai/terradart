@@ -10,8 +10,8 @@ const Set<String> _awsSchemasRegistryPolicySensitive = <String>{};
 final class AwsSchemasRegistryPolicy extends Resource {
   static const String tfType = 'aws_schemas_registry_policy';
 
-  AwsSchemasRegistryPolicy({
-    required super.localName,
+  AwsSchemasRegistryPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> registryName,

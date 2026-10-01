@@ -37,8 +37,8 @@ final class KmsEkmConnectionIamMemberCondition {
 final class GoogleKmsEkmConnectionIamMember extends Resource {
   static const String tfType = 'google_kms_ekm_connection_iam_member';
 
-  GoogleKmsEkmConnectionIamMember({
-    required super.localName,
+  GoogleKmsEkmConnectionIamMember(
+    super.localName, {
     required RefTo<GoogleKmsEkmConnection> connection,
     required TfArg<String> role,
     required IamPrincipal member,

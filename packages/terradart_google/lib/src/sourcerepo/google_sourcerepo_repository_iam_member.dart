@@ -42,8 +42,8 @@ final class SourcerepoRepositoryIamMemberCondition {
 final class GoogleSourcerepoRepositoryIamMember extends Resource {
   static const String tfType = 'google_sourcerepo_repository_iam_member';
 
-  GoogleSourcerepoRepositoryIamMember({
-    required super.localName,
+  GoogleSourcerepoRepositoryIamMember(
+    super.localName, {
     required RefTo<GoogleSourcerepoRepository> repository,
     required TfArg<String> role,
     required IamPrincipal member,

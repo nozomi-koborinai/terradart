@@ -10,8 +10,8 @@ const Set<String> _awsIamOpenidConnectProviderSensitive = <String>{};
 final class AwsIamOpenidConnectProvider extends Resource {
   static const String tfType = 'aws_iam_openid_connect_provider';
 
-  AwsIamOpenidConnectProvider({
-    required super.localName,
+  AwsIamOpenidConnectProvider(
+    super.localName, {
     required TfArg<List<String>> clientIdList,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? thumbprintList,

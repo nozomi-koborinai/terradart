@@ -22,8 +22,8 @@ enum AthenaDataCatalogType implements TerraformEnum {
 final class AwsAthenaDataCatalog extends Resource {
   static const String tfType = 'aws_athena_data_catalog';
 
-  AwsAthenaDataCatalog({
-    required super.localName,
+  AwsAthenaDataCatalog(
+    super.localName, {
     required TfArg<String> description,
     required TfArg<String> name,
     required TfArg<Map<String, String>> parameters,

@@ -126,7 +126,7 @@ final class VertexAiFeaturestoreEntitytypeSnapshotAnalysis {
 /// Example:
 /// ```dart
 /// GoogleVertexAiFeaturestoreEntitytype(
-///   localName: 'user',
+///   'user',
 ///   featurestore: store.name,
 ///   name: TfArg.literal('user'),
 /// );
@@ -134,8 +134,8 @@ final class VertexAiFeaturestoreEntitytypeSnapshotAnalysis {
 final class GoogleVertexAiFeaturestoreEntitytype extends Resource {
   static const String tfType = 'google_vertex_ai_featurestore_entitytype';
 
-  GoogleVertexAiFeaturestoreEntitytype({
-    required super.localName,
+  GoogleVertexAiFeaturestoreEntitytype(
+    super.localName, {
     required TfArg<String> featurestore,
     TfArg<String>? name,
     TfArg<String>? description,

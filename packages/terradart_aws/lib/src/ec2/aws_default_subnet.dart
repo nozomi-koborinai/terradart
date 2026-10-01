@@ -20,8 +20,8 @@ enum DefaultSubnetPrivateDnsHostnameTypeOnLaunch implements TerraformEnum {
 final class AwsDefaultSubnet extends Resource {
   static const String tfType = 'aws_default_subnet';
 
-  AwsDefaultSubnet({
-    required super.localName,
+  AwsDefaultSubnet(
+    super.localName, {
     TfArg<bool>? assignIpv6AddressOnCreation,
     required TfArg<String> availabilityZone,
     TfArg<String>? customerOwnedIpv4Pool,

@@ -43,8 +43,8 @@ final class DnsManagedZoneIamBindingCondition {
 final class GoogleDnsManagedZoneIamBinding extends Resource {
   static const String tfType = 'google_dns_managed_zone_iam_binding';
 
-  GoogleDnsManagedZoneIamBinding({
-    required super.localName,
+  GoogleDnsManagedZoneIamBinding(
+    super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

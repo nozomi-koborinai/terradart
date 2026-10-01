@@ -37,8 +37,8 @@ final class DataplexGlossaryIamMemberCondition {
 final class GoogleDataplexGlossaryIamMember extends Resource {
   static const String tfType = 'google_dataplex_glossary_iam_member';
 
-  GoogleDataplexGlossaryIamMember({
-    required super.localName,
+  GoogleDataplexGlossaryIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> role,
     required IamPrincipal member,

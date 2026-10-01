@@ -12,7 +12,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataCatalogPolicyTag(
-  ///   localName: 'email',
+  ///   'email',
   ///   displayName: TfArg.literal('email'),
   ///   taxonomy: taxonomy.ref,
   ///   description: TfArg.literal('Email addresses'),

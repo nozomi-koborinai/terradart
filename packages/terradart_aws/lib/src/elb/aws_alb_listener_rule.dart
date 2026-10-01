@@ -601,8 +601,8 @@ final class AlbListenerRuleUrlRewriteConfig {
 final class AwsAlbListenerRule extends Resource {
   static const String tfType = 'aws_alb_listener_rule';
 
-  AwsAlbListenerRule({
-    required super.localName,
+  AwsAlbListenerRule(
+    super.localName, {
     required TfArg<String> listenerArn,
     TfArg<num>? priority,
     TfArg<String>? region,

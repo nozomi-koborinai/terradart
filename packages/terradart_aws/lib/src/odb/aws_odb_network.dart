@@ -50,8 +50,8 @@ enum OdbNetworkZeroEtlAccess implements TerraformEnum {
 final class AwsOdbNetwork extends Resource {
   static const String tfType = 'aws_odb_network';
 
-  AwsOdbNetwork({
-    required super.localName,
+  AwsOdbNetwork(
+    super.localName, {
     TfArg<String>? availabilityZone,
     required TfArg<String> availabilityZoneId,
     required TfArg<String> backupSubnetCidr,

@@ -10,8 +10,8 @@ const Set<String> _awsCodebuildResourcePolicySensitive = <String>{};
 final class AwsCodebuildResourcePolicy extends Resource {
   static const String tfType = 'aws_codebuild_resource_policy';
 
-  AwsCodebuildResourcePolicy({
-    required super.localName,
+  AwsCodebuildResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

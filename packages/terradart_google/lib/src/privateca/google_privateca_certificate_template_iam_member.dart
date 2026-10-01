@@ -40,8 +40,8 @@ final class GooglePrivatecaCertificateTemplateIamMember extends Resource {
   static const String tfType =
       'google_privateca_certificate_template_iam_member';
 
-  GooglePrivatecaCertificateTemplateIamMember({
-    required super.localName,
+  GooglePrivatecaCertificateTemplateIamMember(
+    super.localName, {
     required RefTo<GooglePrivatecaCertificateTemplate> certificateTemplate,
     TfArg<String>? location,
     required TfArg<String> role,

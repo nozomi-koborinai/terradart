@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsAwsServiceAccessSensitive = <String>{};
 final class AwsOrganizationsAwsServiceAccess extends Resource {
   static const String tfType = 'aws_organizations_aws_service_access';
 
-  AwsOrganizationsAwsServiceAccess({
-    required super.localName,
+  AwsOrganizationsAwsServiceAccess(
+    super.localName, {
     required TfArg<String> servicePrincipal,
     super.lifecycle,
     super.dependsOn,

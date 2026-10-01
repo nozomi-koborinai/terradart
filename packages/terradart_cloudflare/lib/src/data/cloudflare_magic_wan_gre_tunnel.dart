@@ -17,8 +17,8 @@ const Set<String> _cloudflareMagicWanGreTunnelSensitive = <String>{};
 final class DataCloudflareMagicWanGreTunnel extends Data {
   static const String tfType = 'cloudflare_magic_wan_gre_tunnel';
 
-  DataCloudflareMagicWanGreTunnel({
-    required super.localName,
+  DataCloudflareMagicWanGreTunnel(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> greTunnelId,
     super.provider,

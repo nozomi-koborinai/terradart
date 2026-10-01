@@ -17,8 +17,8 @@ const Set<String> _googleLoggingLogViewIamPolicySensitive = <String>{};
 final class GoogleLoggingLogViewIamPolicy extends Resource {
   static const String tfType = 'google_logging_log_view_iam_policy';
 
-  GoogleLoggingLogViewIamPolicy({
-    required super.localName,
+  GoogleLoggingLogViewIamPolicy(
+    super.localName, {
     TfArg<String>? bucket,
     TfArg<String>? location,
     required RefTo<GoogleLoggingLogView> logView,

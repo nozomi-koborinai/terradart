@@ -29,8 +29,8 @@ final class EksFargateProfileSelector {
 final class AwsEksFargateProfile extends Resource {
   static const String tfType = 'aws_eks_fargate_profile';
 
-  AwsEksFargateProfile({
-    required super.localName,
+  AwsEksFargateProfile(
+    super.localName, {
     required TfArg<String> clusterName,
     required TfArg<String> fargateProfileName,
     required TfArg<String> podExecutionRoleArn,

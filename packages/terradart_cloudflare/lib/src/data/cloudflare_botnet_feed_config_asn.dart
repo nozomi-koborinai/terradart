@@ -15,8 +15,8 @@ const Set<String> _cloudflareBotnetFeedConfigAsnSensitive = <String>{};
 final class DataCloudflareBotnetFeedConfigAsn extends Data {
   static const String tfType = 'cloudflare_botnet_feed_config_asn';
 
-  DataCloudflareBotnetFeedConfigAsn({
-    required super.localName,
+  DataCloudflareBotnetFeedConfigAsn(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

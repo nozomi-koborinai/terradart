@@ -218,8 +218,8 @@ final class MigrationCenterPreferenceSetVmwareEnginePreferences {
 final class GoogleMigrationCenterPreferenceSet extends Resource {
   static const String tfType = 'google_migration_center_preference_set';
 
-  GoogleMigrationCenterPreferenceSet({
-    required super.localName,
+  GoogleMigrationCenterPreferenceSet(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> preferenceSetId,
     TfArg<String>? displayName,

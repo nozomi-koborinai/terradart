@@ -72,8 +72,8 @@ final class UserGroupResourceGroups {
 final class CloudflareUserGroup extends Resource {
   static const String tfType = 'cloudflare_user_group';
 
-  CloudflareUserGroup({
-    required super.localName,
+  CloudflareUserGroup(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     List<UserGroupPolicies>? policies,

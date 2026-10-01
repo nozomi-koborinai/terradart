@@ -38,8 +38,8 @@ final class EdgecontainerVpnConnectionVpcProject {
 final class GoogleEdgecontainerVpnConnection extends Resource {
   static const String tfType = 'google_edgecontainer_vpn_connection';
 
-  GoogleEdgecontainerVpnConnection({
-    required super.localName,
+  GoogleEdgecontainerVpnConnection(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> cluster,
     required TfArg<String> location,

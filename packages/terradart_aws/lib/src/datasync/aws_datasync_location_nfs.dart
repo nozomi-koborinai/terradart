@@ -45,8 +45,8 @@ final class DatasyncLocationNfsOnPremConfig {
 final class AwsDatasyncLocationNfs extends Resource {
   static const String tfType = 'aws_datasync_location_nfs';
 
-  AwsDatasyncLocationNfs({
-    required super.localName,
+  AwsDatasyncLocationNfs(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serverHostname,
     required TfArg<String> subdirectory,

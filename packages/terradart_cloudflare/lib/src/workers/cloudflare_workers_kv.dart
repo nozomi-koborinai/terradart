@@ -16,8 +16,8 @@ const Set<String> _cloudflareWorkersKvSensitive = <String>{};
 final class CloudflareWorkersKv extends Resource {
   static const String tfType = 'cloudflare_workers_kv';
 
-  CloudflareWorkersKv({
-    required super.localName,
+  CloudflareWorkersKv(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? expiration,
     TfArg<num>? expirationTtl,

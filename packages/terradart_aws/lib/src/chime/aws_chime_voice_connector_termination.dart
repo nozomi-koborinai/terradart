@@ -10,8 +10,8 @@ const Set<String> _awsChimeVoiceConnectorTerminationSensitive = <String>{};
 final class AwsChimeVoiceConnectorTermination extends Resource {
   static const String tfType = 'aws_chime_voice_connector_termination';
 
-  AwsChimeVoiceConnectorTermination({
-    required super.localName,
+  AwsChimeVoiceConnectorTermination(
+    super.localName, {
     required TfArg<List<String>> callingRegions,
     required TfArg<List<String>> cidrAllowList,
     TfArg<num>? cpsLimit,

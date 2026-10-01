@@ -37,8 +37,8 @@ final class VertexAiFeaturestoreIamMemberCondition {
 final class GoogleVertexAiFeaturestoreIamMember extends Resource {
   static const String tfType = 'google_vertex_ai_featurestore_iam_member';
 
-  GoogleVertexAiFeaturestoreIamMember({
-    required super.localName,
+  GoogleVertexAiFeaturestoreIamMember(
+    super.localName, {
     required RefTo<GoogleVertexAiFeaturestore> featurestore,
     required IamPrincipal member,
     TfArg<String>? project,

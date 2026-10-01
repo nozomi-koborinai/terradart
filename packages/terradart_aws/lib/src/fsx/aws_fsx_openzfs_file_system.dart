@@ -228,8 +228,8 @@ enum FsxOpenzfsFileSystemType implements TerraformEnum {
 final class AwsFsxOpenzfsFileSystem extends Resource {
   static const String tfType = 'aws_fsx_openzfs_file_system';
 
-  AwsFsxOpenzfsFileSystem({
-    required super.localName,
+  AwsFsxOpenzfsFileSystem(
+    super.localName, {
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? backupId,
     TfArg<bool>? copyTagsToBackups,

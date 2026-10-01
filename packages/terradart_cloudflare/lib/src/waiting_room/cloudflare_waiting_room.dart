@@ -162,8 +162,8 @@ enum WaitingRoomSecure implements TerraformEnum {
 final class CloudflareWaitingRoom extends Resource {
   static const String tfType = 'cloudflare_waiting_room';
 
-  CloudflareWaitingRoom({
-    required super.localName,
+  CloudflareWaitingRoom(
+    super.localName, {
     TfArg<String>? cookieSuffix,
     TfArg<String>? customPageHtml,
     TfArg<WaitingRoomDefaultTemplateLanguage>? defaultTemplateLanguage,

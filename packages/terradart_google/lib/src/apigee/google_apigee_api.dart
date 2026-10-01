@@ -25,8 +25,8 @@ const Set<String> _googleApigeeApiSensitive = <String>{};
 final class GoogleApigeeApi extends Resource {
   static const String tfType = 'google_apigee_api';
 
-  GoogleApigeeApi({
-    required super.localName,
+  GoogleApigeeApi(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     required TfArg<String> configBundle,

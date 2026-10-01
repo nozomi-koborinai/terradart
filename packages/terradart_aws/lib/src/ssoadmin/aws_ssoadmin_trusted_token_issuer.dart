@@ -74,8 +74,8 @@ enum SsoadminTrustedTokenIssuerJwksRetrievalOption implements TerraformEnum {
 final class AwsSsoadminTrustedTokenIssuer extends Resource {
   static const String tfType = 'aws_ssoadmin_trusted_token_issuer';
 
-  AwsSsoadminTrustedTokenIssuer({
-    required super.localName,
+  AwsSsoadminTrustedTokenIssuer(
+    super.localName, {
     TfArg<String>? clientToken,
     required TfArg<String> instanceArn,
     required TfArg<String> name,

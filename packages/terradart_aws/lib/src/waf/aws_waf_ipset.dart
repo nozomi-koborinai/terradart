@@ -37,8 +37,8 @@ enum WafIpsetType implements TerraformEnum {
 final class AwsWafIpset extends Resource {
   static const String tfType = 'aws_waf_ipset';
 
-  AwsWafIpset({
-    required super.localName,
+  AwsWafIpset(
+    super.localName, {
     required TfArg<String> name,
     List<WafIpsetIpSetDescriptors>? ipSetDescriptors,
     super.lifecycle,

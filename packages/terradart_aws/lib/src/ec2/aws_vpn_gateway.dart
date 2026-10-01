@@ -12,8 +12,8 @@ const Set<String> _awsVpnGatewaySensitive = <String>{};
 final class AwsVpnGateway extends Resource {
   static const String tfType = 'aws_vpn_gateway';
 
-  AwsVpnGateway({
-    required super.localName,
+  AwsVpnGateway(
+    super.localName, {
     TfArg<String>? amazonSideAsn,
     TfArg<String>? availabilityZone,
     TfArg<String>? region,

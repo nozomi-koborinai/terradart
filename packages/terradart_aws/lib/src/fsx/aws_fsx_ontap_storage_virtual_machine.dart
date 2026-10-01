@@ -86,8 +86,8 @@ final class FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration
 final class AwsFsxOntapStorageVirtualMachine extends Resource {
   static const String tfType = 'aws_fsx_ontap_storage_virtual_machine';
 
-  AwsFsxOntapStorageVirtualMachine({
-    required super.localName,
+  AwsFsxOntapStorageVirtualMachine(
+    super.localName, {
     required TfArg<String> fileSystemId,
     required TfArg<String> name,
     TfArg<String>? region,

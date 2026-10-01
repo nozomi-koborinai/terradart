@@ -68,8 +68,8 @@ final class IamGroupPolicyNamePrefix extends IamGroupPolicyName {
 final class AwsIamGroupPolicy extends Resource {
   static const String tfType = 'aws_iam_group_policy';
 
-  AwsIamGroupPolicy({
-    required super.localName,
+  AwsIamGroupPolicy(
+    super.localName, {
     required TfArg<String> group,
     IamGroupPolicyName? name,
     required TfArg<String> policy,

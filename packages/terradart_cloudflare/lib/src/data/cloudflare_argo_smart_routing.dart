@@ -16,8 +16,8 @@ const Set<String> _cloudflareArgoSmartRoutingSensitive = <String>{};
 final class DataCloudflareArgoSmartRouting extends Data {
   static const String tfType = 'cloudflare_argo_smart_routing';
 
-  DataCloudflareArgoSmartRouting({
-    required super.localName,
+  DataCloudflareArgoSmartRouting(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

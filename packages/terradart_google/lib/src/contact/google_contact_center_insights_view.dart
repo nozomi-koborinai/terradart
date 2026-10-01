@@ -17,8 +17,8 @@ const Set<String> _googleContactCenterInsightsViewSensitive = <String>{};
 final class GoogleContactCenterInsightsView extends Resource {
   static const String tfType = 'google_contact_center_insights_view';
 
-  GoogleContactCenterInsightsView({
-    required super.localName,
+  GoogleContactCenterInsightsView(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? displayName,
     TfArg<String>? value,

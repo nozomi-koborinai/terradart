@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubMemberSensitive = <String>{};
 final class AwsSecurityhubMember extends Resource {
   static const String tfType = 'aws_securityhub_member';
 
-  AwsSecurityhubMember({
-    required super.localName,
+  AwsSecurityhubMember(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? email,
     TfArg<bool>? invite,

@@ -13,8 +13,8 @@ const Set<String> _googleVmwareengineAnnouncementsSensitive = <String>{};
 final class DataGoogleVmwareengineAnnouncements extends Data {
   static const String tfType = 'google_vmwareengine_announcements';
 
-  DataGoogleVmwareengineAnnouncements({
-    required super.localName,
+  DataGoogleVmwareengineAnnouncements(
+    super.localName, {
     TfArg<String>? name,
     required TfArg<String> parent,
     super.provider,

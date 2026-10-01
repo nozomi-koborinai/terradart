@@ -72,8 +72,8 @@ final class TransferHostKeyBodyWo extends TransferHostKeyBody {
 final class AwsTransferHostKey extends Resource {
   static const String tfType = 'aws_transfer_host_key';
 
-  AwsTransferHostKey({
-    required super.localName,
+  AwsTransferHostKey(
+    super.localName, {
     TfArg<String>? description,
     required TransferHostKeyBody hostKeyBody,
     TfArg<String>? region,

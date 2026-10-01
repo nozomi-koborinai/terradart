@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 import '../helpers/fake_resources.dart';
 
 final class _CapableResource extends Resource {
-  _CapableResource({required super.localName, required TfArg<String> name})
+  _CapableResource(super.localName, {required TfArg<String> name})
     : super(terraformType: 'fake_protected_thing', argMap: {'name': name});
 
   @override
@@ -17,8 +17,8 @@ final class _CapableResource extends Resource {
 }
 
 final class _CapableResourceWithExplicitDP extends Resource {
-  _CapableResourceWithExplicitDP({
-    required super.localName,
+  _CapableResourceWithExplicitDP(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<bool> deletionProtection,
   }) : super(
@@ -48,9 +48,7 @@ void main() {
           ],
           devMode: true,
         );
-        stack.add(
-          _CapableResource(localName: 'r', name: const TfArgLiteral('x')),
-        );
+        stack.add(_CapableResource('r', name: const TfArgLiteral('x')));
 
         final group = TfJsonEncoder.resourcesGroup(stack);
         expect(group, isNotNull);
@@ -73,7 +71,7 @@ void main() {
       );
       stack.add(
         _CapableResourceWithExplicitDP(
-          localName: 'r',
+          'r',
           name: const TfArgLiteral('x'),
           deletionProtection: const TfArgLiteral<bool>(true),
         ),
@@ -95,9 +93,7 @@ void main() {
           ),
         ],
       ); // devMode default false
-      stack.add(
-        _CapableResource(localName: 'r', name: const TfArgLiteral('x')),
-      );
+      stack.add(_CapableResource('r', name: const TfArgLiteral('x')));
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       final block =
@@ -116,7 +112,7 @@ void main() {
         ],
         devMode: true,
       );
-      stack.add(FakeResource(localName: 'r', name: const TfArgLiteral('x')));
+      stack.add(FakeResource('r', name: const TfArgLiteral('x')));
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       final block = group!['fake_thing']!['r'] as Map<String, dynamic>;

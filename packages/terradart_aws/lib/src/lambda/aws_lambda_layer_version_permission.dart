@@ -10,8 +10,8 @@ const Set<String> _awsLambdaLayerVersionPermissionSensitive = <String>{};
 final class AwsLambdaLayerVersionPermission extends Resource {
   static const String tfType = 'aws_lambda_layer_version_permission';
 
-  AwsLambdaLayerVersionPermission({
-    required super.localName,
+  AwsLambdaLayerVersionPermission(
+    super.localName, {
     required TfArg<String> action,
     required TfArg<String> layerName,
     TfArg<String>? organizationId,

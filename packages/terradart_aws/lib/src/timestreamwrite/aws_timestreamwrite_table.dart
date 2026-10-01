@@ -164,8 +164,8 @@ enum TimestreamwriteTableType implements TerraformEnum {
 final class AwsTimestreamwriteTable extends Resource {
   static const String tfType = 'aws_timestreamwrite_table';
 
-  AwsTimestreamwriteTable({
-    required super.localName,
+  AwsTimestreamwriteTable(
+    super.localName, {
     required TfArg<String> databaseName,
     TfArg<String>? region,
     required TfArg<String> tableName,

@@ -12,8 +12,8 @@ const Set<String> _awsBackupLogicallyAirGappedVaultSensitive = <String>{};
 final class AwsBackupLogicallyAirGappedVault extends Resource {
   static const String tfType = 'aws_backup_logically_air_gapped_vault';
 
-  AwsBackupLogicallyAirGappedVault({
-    required super.localName,
+  AwsBackupLogicallyAirGappedVault(
+    super.localName, {
     RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<num> maxRetentionDays,
     required TfArg<num> minRetentionDays,

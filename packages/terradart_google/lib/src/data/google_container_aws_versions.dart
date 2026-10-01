@@ -13,8 +13,8 @@ const Set<String> _googleContainerAwsVersionsSensitive = <String>{};
 final class DataGoogleContainerAwsVersions extends Data {
   static const String tfType = 'google_container_aws_versions';
 
-  DataGoogleContainerAwsVersions({
-    required super.localName,
+  DataGoogleContainerAwsVersions(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     super.provider,

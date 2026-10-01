@@ -453,7 +453,7 @@ enum MemorystoreInstanceZoneDistributionConfigMode implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleMemorystoreInstance(
-///   localName: 'valkey',
+///   'valkey',
 ///   instanceId: TfArg.literal('terradart-valkey'),
 ///   location: TfArg.literal('us-central1'),
 ///   shardCount: TfArg.literal(1),
@@ -471,8 +471,8 @@ enum MemorystoreInstanceZoneDistributionConfigMode implements TerraformEnum {
 final class GoogleMemorystoreInstance extends Resource {
   static const String tfType = 'google_memorystore_instance';
 
-  GoogleMemorystoreInstance({
-    required super.localName,
+  GoogleMemorystoreInstance(
+    super.localName, {
     required TfArg<String> instanceId,
     required TfArg<String> location,
     required TfArg<num> shardCount,

@@ -15,8 +15,8 @@ final class DataGoogleIamWorkloadIdentityPoolOpenidConfig extends Data {
   static const String tfType =
       'google_iam_workload_identity_pool_openid_config';
 
-  DataGoogleIamWorkloadIdentityPoolOpenidConfig({
-    required super.localName,
+  DataGoogleIamWorkloadIdentityPoolOpenidConfig(
+    super.localName, {
     required TfArg<String> resourceName,
     super.provider,
     super.timeouts,

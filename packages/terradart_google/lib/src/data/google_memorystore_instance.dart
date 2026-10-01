@@ -14,8 +14,8 @@ const Set<String> _googleMemorystoreInstanceSensitive = <String>{};
 final class DataGoogleMemorystoreInstance extends Data {
   static const String tfType = 'google_memorystore_instance';
 
-  DataGoogleMemorystoreInstance({
-    required super.localName,
+  DataGoogleMemorystoreInstance(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? location,
     TfArg<String>? project,

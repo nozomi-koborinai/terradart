@@ -28,7 +28,7 @@ final class ParamsStack extends Stack {
       ) {
     final apiParams = add(
       GoogleProjectService(
-        localName: 'api_parametermanager',
+        'api_parametermanager',
         service: .literal('parametermanager.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -36,7 +36,7 @@ final class ParamsStack extends Stack {
 
     final appConfig = add(
       GoogleParameterManagerParameter(
-        localName: 'app_config',
+        'app_config',
         parameterId: .literal('terradart-app-config'),
         format: .literal(.json),
         labels: .literal(const {'managed-by': 'terradart'}),
@@ -46,7 +46,7 @@ final class ParamsStack extends Stack {
 
     add(
       GoogleParameterManagerRegionalParameter(
-        localName: 'app_config_regional',
+        'app_config_regional',
         parameterId: .literal('terradart-app-config-rgnl'),
         location: .literal('us-central1'),
         format: .literal(.yaml),

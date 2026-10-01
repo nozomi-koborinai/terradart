@@ -29,8 +29,8 @@ final class DataLoadBalancerPoolFilter {
 final class DataCloudflareLoadBalancerPool extends Data {
   static const String tfType = 'cloudflare_load_balancer_pool';
 
-  DataCloudflareLoadBalancerPool({
-    required super.localName,
+  DataCloudflareLoadBalancerPool(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? poolId,
     DataLoadBalancerPoolFilter? filter,

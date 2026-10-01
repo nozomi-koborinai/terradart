@@ -353,8 +353,8 @@ final class DeveloperConnectConnectionBearerTokenAuthentication {
 final class GoogleDeveloperConnectConnection extends Resource {
   static const String tfType = 'google_developer_connect_connection';
 
-  GoogleDeveloperConnectConnection({
-    required super.localName,
+  GoogleDeveloperConnectConnection(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     required TfArg<String> connectionId,
     TfArg<String>? deletionPolicy,

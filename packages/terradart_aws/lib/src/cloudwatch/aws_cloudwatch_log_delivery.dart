@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchLogDeliverySensitive = <String>{};
 final class AwsCloudwatchLogDelivery extends Resource {
   static const String tfType = 'aws_cloudwatch_log_delivery';
 
-  AwsCloudwatchLogDelivery({
-    required super.localName,
+  AwsCloudwatchLogDelivery(
+    super.localName, {
     required TfArg<String> deliveryDestinationArn,
     required TfArg<String> deliverySourceName,
     TfArg<String>? fieldDelimiter,

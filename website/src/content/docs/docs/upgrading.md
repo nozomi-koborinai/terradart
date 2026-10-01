@@ -40,12 +40,12 @@ An argument that takes exactly one (or at most one) of several inputs is one sea
 
 ```dart
 final role = add(AwsIamRole(
-  localName: 'fn',
+  'fn',
   name: .namePrefix(.literal('app-')), // was name / namePrefix
   assumeRolePolicy: .literal('{}'),
 ));
 add(AwsLambdaFunction(
-  localName: 'fn',
+  'fn',
   functionName: .literal('hello'),
   role: role.ref,
   code: .filename(.literal('bootstrap.zip')), // was filenameOrImageUriOrS3Bucket
@@ -66,9 +66,9 @@ An argument that names another resource takes `RefTo<R>`, so passing the wrong k
 | `network: TfArg.literal('default')` | `network: .literal('default')` |
 
 ```dart
-final vpc = add(GoogleComputeNetwork(localName: 'vpc', name: .literal('app')));
+final vpc = add(GoogleComputeNetwork('vpc', name: .literal('app')));
 add(GoogleComputeSubnetwork(
-  localName: 'app',
+  'app',
   name: .literal('app'),
   ipCidrRange: .literal('10.0.0.0/24'),
   network: vpc.ref, // emits id; vpc.ref.pinned('self_link') keeps the 0.30 value
@@ -93,7 +93,7 @@ final class OrdersStack extends Stack {
         providers: [GoogleProvider(project: projectId)],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    final topic = add(GooglePubsubTopic('orders', name: .literal('orders-prod')));
     addConstant('ordersTopicName', .ref(topic.name));
     addOutput('orders_topic_id', topic.id);
   }

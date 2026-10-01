@@ -39,7 +39,7 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 /// Example (raw String, exported from Cloud Console):
 /// ```dart
 /// final overview = GoogleMonitoringDashboard(
-///   localName: 'service_overview',
+///   'service_overview',
 ///   dashboardJson: TfArg.literal('''
 /// {
 ///   "displayName": "Service overview",
@@ -74,7 +74,7 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 /// Example (programmatic assembly via `dart:convert`):
 /// ```dart
 /// final dashboard = GoogleMonitoringDashboard(
-///   localName: 'service_overview',
+///   'service_overview',
 ///   dashboardJson: TfArg.literal(jsonEncode(<String, dynamic>{
 ///     'displayName': 'Service overview',
 ///     'mosaicLayout': {'columns': 12, 'tiles': <Map<String, dynamic>>[]},
@@ -84,8 +84,8 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 final class GoogleMonitoringDashboard extends Resource {
   static const String tfType = 'google_monitoring_dashboard';
 
-  GoogleMonitoringDashboard({
-    required super.localName,
+  GoogleMonitoringDashboard(
+    super.localName, {
     required TfArg<String> dashboardJson,
     TfArg<String>? project,
     super.lifecycle,

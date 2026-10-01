@@ -27,8 +27,8 @@ final class DataAutoscalingGroupsFilter {
 final class DataAwsAutoscalingGroups extends Data {
   static const String tfType = 'aws_autoscaling_groups';
 
-  DataAwsAutoscalingGroups({
-    required super.localName,
+  DataAwsAutoscalingGroups(
+    super.localName, {
     TfArg<List<String>>? names,
     TfArg<String>? region,
     List<DataAutoscalingGroupsFilter>? filter,

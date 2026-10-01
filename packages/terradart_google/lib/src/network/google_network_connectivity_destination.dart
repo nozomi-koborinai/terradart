@@ -42,8 +42,8 @@ final class NetworkConnectivityDestinationEndpoints {
 final class GoogleNetworkConnectivityDestination extends Resource {
   static const String tfType = 'google_network_connectivity_destination';
 
-  GoogleNetworkConnectivityDestination({
-    required super.localName,
+  GoogleNetworkConnectivityDestination(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     required TfArg<String> multicloudDataTransferConfig,

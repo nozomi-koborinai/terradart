@@ -47,8 +47,8 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamBinding extends Resource {
   static const String tfType =
       'google_bigquery_datapolicyv2_data_policy_iam_binding';
 
-  GoogleBigqueryDatapolicyv2DataPolicyIamBinding({
-    required super.localName,
+  GoogleBigqueryDatapolicyv2DataPolicyIamBinding(
+    super.localName, {
     required RefTo<GoogleBigqueryDatapolicyv2DataPolicy> dataPolicy,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

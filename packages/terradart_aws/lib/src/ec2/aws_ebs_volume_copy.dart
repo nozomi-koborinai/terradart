@@ -25,8 +25,8 @@ enum EbsVolumeCopyVolumeType implements TerraformEnum {
 final class AwsEbsVolumeCopy extends Resource {
   static const String tfType = 'aws_ebs_volume_copy';
 
-  AwsEbsVolumeCopy({
-    required super.localName,
+  AwsEbsVolumeCopy(
+    super.localName, {
     TfArg<num>? iops,
     TfArg<String>? region,
     TfArg<num>? size,

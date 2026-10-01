@@ -275,8 +275,8 @@ final class ApigeeApiProductOperationGroupOperations {
 final class GoogleApigeeApiProduct extends Resource {
   static const String tfType = 'google_apigee_api_product';
 
-  GoogleApigeeApiProduct({
-    required super.localName,
+  GoogleApigeeApiProduct(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     required TfArg<String> displayName,

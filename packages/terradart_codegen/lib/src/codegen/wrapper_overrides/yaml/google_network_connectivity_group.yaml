@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkConnectivityGroup(
-  ///   localName: 'center',
+  ///   'center',
   ///   hub: hub.ref,
   ///   name: TfArg.literal(NetworkConnectivityGroupName.center),
   /// );

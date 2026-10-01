@@ -27,8 +27,8 @@ final class PrometheusWorkspaceLoggingConfiguration {
 final class AwsPrometheusWorkspace extends Resource {
   static const String tfType = 'aws_prometheus_workspace';
 
-  AwsPrometheusWorkspace({
-    required super.localName,
+  AwsPrometheusWorkspace(
+    super.localName, {
     TfArg<String>? alias,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? region,

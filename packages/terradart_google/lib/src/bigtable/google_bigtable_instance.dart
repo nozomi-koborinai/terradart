@@ -119,7 +119,7 @@ final class BigtableInstanceAutoscalingConfig {
 /// Example (single-zone development instance):
 /// ```dart
 /// GoogleBigtableInstance(
-///   localName: 'events',
+///   'events',
 ///   name: TfArg.literal('events-dev'),
 ///   instanceType: TfArg.literal(BigtableInstanceType.development),
 ///   cluster: [
@@ -134,8 +134,8 @@ final class BigtableInstanceAutoscalingConfig {
 final class GoogleBigtableInstance extends Resource {
   static const String tfType = 'google_bigtable_instance';
 
-  GoogleBigtableInstance({
-    required super.localName,
+  GoogleBigtableInstance(
+    super.localName, {
     required TfArg<String> name,
     List<BigtableInstanceCluster>? cluster,
     TfArg<String>? displayName,

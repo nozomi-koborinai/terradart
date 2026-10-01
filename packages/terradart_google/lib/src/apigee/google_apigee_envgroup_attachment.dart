@@ -18,8 +18,8 @@ const Set<String> _googleApigeeEnvgroupAttachmentSensitive = <String>{};
 final class GoogleApigeeEnvgroupAttachment extends Resource {
   static const String tfType = 'google_apigee_envgroup_attachment';
 
-  GoogleApigeeEnvgroupAttachment({
-    required super.localName,
+  GoogleApigeeEnvgroupAttachment(
+    super.localName, {
     required TfArg<String> envgroupId,
     required TfArg<String> environment,
     TfArg<String>? deletionPolicy,

@@ -16,8 +16,8 @@ final class DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Data {
   static const String tfType =
       'google_bigquery_analytics_hub_data_exchange_iam_policy';
 
-  DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy({
-    required super.localName,
+  DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy(
+    super.localName, {
     required TfArg<String> dataExchangeId,
     TfArg<String>? location,
     TfArg<String>? project,

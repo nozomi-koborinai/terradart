@@ -204,8 +204,8 @@ final class DataLakeformationPermissionsTableWithColumns {
 final class DataAwsLakeformationPermissions extends Data {
   static const String tfType = 'aws_lakeformation_permissions';
 
-  DataAwsLakeformationPermissions({
-    required super.localName,
+  DataAwsLakeformationPermissions(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<bool>? catalogResource,
     required TfArg<String> principal,

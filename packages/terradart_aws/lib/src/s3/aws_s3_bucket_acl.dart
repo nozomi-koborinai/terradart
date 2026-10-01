@@ -173,8 +173,8 @@ final class S3BucketAclOwner {
 final class AwsS3BucketAcl extends Resource {
   static const String tfType = 'aws_s3_bucket_acl';
 
-  AwsS3BucketAcl({
-    required super.localName,
+  AwsS3BucketAcl(
+    super.localName, {
     required S3BucketAclPolicy policy,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,

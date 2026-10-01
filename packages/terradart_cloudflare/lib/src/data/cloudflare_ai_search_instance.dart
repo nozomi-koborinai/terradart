@@ -59,8 +59,8 @@ enum DataAiSearchInstanceOrderByDirection implements TerraformEnum {
 final class DataCloudflareAiSearchInstance extends Data {
   static const String tfType = 'cloudflare_ai_search_instance';
 
-  DataCloudflareAiSearchInstance({
-    required super.localName,
+  DataCloudflareAiSearchInstance(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataAiSearchInstanceFilter? filter,
     super.provider,

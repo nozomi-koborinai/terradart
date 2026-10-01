@@ -49,7 +49,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// `cloud_sql_quickstart` example):
 /// ```dart
 /// final psaPeering = GoogleServiceNetworkingConnection(
-///   localName: 'psa',
+///   'psa',
 ///   network: vpc.ref,
 ///   service: TfArg.literal('servicenetworking.googleapis.com'),
 ///   reservedPeeringRanges: TfArg.literal([
@@ -60,8 +60,8 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 final class GoogleServiceNetworkingConnection extends Resource {
   static const String tfType = 'google_service_networking_connection';
 
-  GoogleServiceNetworkingConnection({
-    required super.localName,
+  GoogleServiceNetworkingConnection(
+    super.localName, {
     required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> service,
     required TfArg<List<String>> reservedPeeringRanges,

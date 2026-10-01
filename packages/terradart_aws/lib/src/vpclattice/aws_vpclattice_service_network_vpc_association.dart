@@ -49,8 +49,8 @@ enum VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference
 final class AwsVpclatticeServiceNetworkVpcAssociation extends Resource {
   static const String tfType = 'aws_vpclattice_service_network_vpc_association';
 
-  AwsVpclatticeServiceNetworkVpcAssociation({
-    required super.localName,
+  AwsVpclatticeServiceNetworkVpcAssociation(
+    super.localName, {
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,

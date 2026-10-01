@@ -14,8 +14,8 @@ const Set<String> _googleDataCatalogEntryGroupIamPolicySensitive = <String>{};
 final class DataGoogleDataCatalogEntryGroupIamPolicy extends Data {
   static const String tfType = 'google_data_catalog_entry_group_iam_policy';
 
-  DataGoogleDataCatalogEntryGroupIamPolicy({
-    required super.localName,
+  DataGoogleDataCatalogEntryGroupIamPolicy(
+    super.localName, {
     required TfArg<String> entryGroup,
     TfArg<String>? project,
     TfArg<String>? region,

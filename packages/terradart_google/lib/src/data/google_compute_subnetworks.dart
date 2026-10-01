@@ -13,8 +13,8 @@ const Set<String> _googleComputeSubnetworksSensitive = <String>{};
 final class DataGoogleComputeSubnetworks extends Data {
   static const String tfType = 'google_compute_subnetworks';
 
-  DataGoogleComputeSubnetworks({
-    required super.localName,
+  DataGoogleComputeSubnetworks(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     TfArg<String>? region,

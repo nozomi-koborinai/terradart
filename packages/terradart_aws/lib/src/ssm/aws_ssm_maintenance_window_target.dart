@@ -40,8 +40,8 @@ final class SsmMaintenanceWindowTargetTargets {
 final class AwsSsmMaintenanceWindowTarget extends Resource {
   static const String tfType = 'aws_ssm_maintenance_window_target';
 
-  AwsSsmMaintenanceWindowTarget({
-    required super.localName,
+  AwsSsmMaintenanceWindowTarget(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? name,
     TfArg<String>? ownerInformation,

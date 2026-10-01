@@ -10,8 +10,8 @@ const Set<String> _awsSagemakerHubContentReferenceSensitive = <String>{};
 final class AwsSagemakerHubContentReference extends Resource {
   static const String tfType = 'aws_sagemaker_hub_content_reference';
 
-  AwsSagemakerHubContentReference({
-    required super.localName,
+  AwsSagemakerHubContentReference(
+    super.localName, {
     required TfArg<String> hubContentName,
     required TfArg<String> hubName,
     TfArg<String>? minVersion,

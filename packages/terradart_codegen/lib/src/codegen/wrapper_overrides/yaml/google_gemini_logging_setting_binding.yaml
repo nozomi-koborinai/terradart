@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleGeminiLoggingSettingBinding(
-  ///   localName: 'logging_bind',
+  ///   'logging_bind',
   ///   loggingSettingId: .literal('terradart-logging'),
   ///   settingBindingId: TfArg.literal('terradart-logging-bind'),
   ///   location: TfArg.literal('global'),

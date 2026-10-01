@@ -48,8 +48,8 @@ final class DataFilter {
 final class DataCloudflareFilter extends Data {
   static const String tfType = 'cloudflare_filter';
 
-  DataCloudflareFilter({
-    required super.localName,
+  DataCloudflareFilter(
+    super.localName, {
     TfArg<String>? filterId,
     RefTo<CloudflareZone>? zoneId,
     DataFilter? filter,

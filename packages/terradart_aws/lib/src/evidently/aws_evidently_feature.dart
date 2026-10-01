@@ -64,8 +64,8 @@ final class EvidentlyFeatureValue {
 final class AwsEvidentlyFeature extends Resource {
   static const String tfType = 'aws_evidently_feature';
 
-  AwsEvidentlyFeature({
-    required super.localName,
+  AwsEvidentlyFeature(
+    super.localName, {
     TfArg<String>? defaultVariation,
     TfArg<String>? description,
     TfArg<Map<String, String>>? entityOverrides,

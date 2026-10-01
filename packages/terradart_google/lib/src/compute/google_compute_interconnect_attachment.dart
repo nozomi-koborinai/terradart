@@ -191,8 +191,8 @@ final class ComputeInterconnectAttachmentParams {
 final class GoogleComputeInterconnectAttachment extends Resource {
   static const String tfType = 'google_compute_interconnect_attachment';
 
-  GoogleComputeInterconnectAttachment({
-    required super.localName,
+  GoogleComputeInterconnectAttachment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<ComputeInterconnectAttachmentType>? type,
     TfArg<String>? interconnect,

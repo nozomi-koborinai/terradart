@@ -49,8 +49,8 @@ enum IotProvisioningTemplatePayloadVersion implements TerraformEnum {
 final class AwsIotProvisioningTemplate extends Resource {
   static const String tfType = 'aws_iot_provisioning_template';
 
-  AwsIotProvisioningTemplate({
-    required super.localName,
+  AwsIotProvisioningTemplate(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? enabled,
     required TfArg<String> name,

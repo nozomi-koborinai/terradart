@@ -14,8 +14,8 @@ const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
 final class DataGoogleComposerUserWorkloadsConfigMap extends Data {
   static const String tfType = 'google_composer_user_workloads_config_map';
 
-  DataGoogleComposerUserWorkloadsConfigMap({
-    required super.localName,
+  DataGoogleComposerUserWorkloadsConfigMap(
+    super.localName, {
     required TfArg<String> environment,
     required TfArg<String> name,
     TfArg<String>? project,

@@ -26,8 +26,8 @@ enum ZoneCacheReserveValue implements TerraformEnum {
 final class CloudflareZoneCacheReserve extends Resource {
   static const String tfType = 'cloudflare_zone_cache_reserve';
 
-  CloudflareZoneCacheReserve({
-    required super.localName,
+  CloudflareZoneCacheReserve(
+    super.localName, {
     TfArg<ZoneCacheReserveValue>? value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

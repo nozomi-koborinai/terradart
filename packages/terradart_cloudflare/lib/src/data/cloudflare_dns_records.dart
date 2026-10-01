@@ -140,8 +140,8 @@ final class DataDnsRecordsTag {
 final class DataCloudflareDnsRecords extends Data {
   static const String tfType = 'cloudflare_dns_records';
 
-  DataCloudflareDnsRecords({
-    required super.localName,
+  DataCloudflareDnsRecords(
+    super.localName, {
     TfArg<String>? direction,
     TfArg<bool>? includeShadowMetadata,
     TfArg<String>? match,

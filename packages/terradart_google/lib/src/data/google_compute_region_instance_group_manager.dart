@@ -15,8 +15,8 @@ const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
 final class DataGoogleComputeRegionInstanceGroupManager extends Data {
   static const String tfType = 'google_compute_region_instance_group_manager';
 
-  DataGoogleComputeRegionInstanceGroupManager({
-    required super.localName,
+  DataGoogleComputeRegionInstanceGroupManager(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? region,

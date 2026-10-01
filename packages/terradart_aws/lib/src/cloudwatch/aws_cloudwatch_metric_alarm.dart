@@ -502,8 +502,8 @@ final class CloudwatchMetricAlarmWarmUpConfiguration {
 final class AwsCloudwatchMetricAlarm extends Resource {
   static const String tfType = 'aws_cloudwatch_metric_alarm';
 
-  AwsCloudwatchMetricAlarm({
-    required super.localName,
+  AwsCloudwatchMetricAlarm(
+    super.localName, {
     TfArg<bool>? actionsEnabled,
     TfArg<List<String>>? alarmActions,
     TfArg<String>? alarmDescription,

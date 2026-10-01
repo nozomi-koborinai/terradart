@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustTunnelCloudflaredsSensitive = <String>{};
 final class DataCloudflareZeroTrustTunnelCloudflareds extends Data {
   static const String tfType = 'cloudflare_zero_trust_tunnel_cloudflareds';
 
-  DataCloudflareZeroTrustTunnelCloudflareds({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelCloudflareds(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? excludePrefix,
     TfArg<String>? existedAt,

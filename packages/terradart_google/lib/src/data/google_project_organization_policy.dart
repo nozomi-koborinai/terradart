@@ -14,8 +14,8 @@ const Set<String> _googleProjectOrganizationPolicySensitive = <String>{};
 final class DataGoogleProjectOrganizationPolicy extends Data {
   static const String tfType = 'google_project_organization_policy';
 
-  DataGoogleProjectOrganizationPolicy({
-    required super.localName,
+  DataGoogleProjectOrganizationPolicy(
+    super.localName, {
     required TfArg<String> constraint,
     required TfArg<String> project,
     super.provider,

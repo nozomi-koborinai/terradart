@@ -23,8 +23,8 @@ enum NetworkSecurityAddressGroupType implements TerraformEnum {
 final class GoogleNetworkSecurityAddressGroup extends Resource {
   static const String tfType = 'google_network_security_address_group';
 
-  GoogleNetworkSecurityAddressGroup({
-    required super.localName,
+  GoogleNetworkSecurityAddressGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? parent,
     required TfArg<String> location,

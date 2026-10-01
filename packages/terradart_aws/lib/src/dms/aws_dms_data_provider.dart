@@ -559,8 +559,8 @@ final class DmsDataProviderSybaseAseSettings {
 final class AwsDmsDataProvider extends Resource {
   static const String tfType = 'aws_dms_data_provider';
 
-  AwsDmsDataProvider({
-    required super.localName,
+  AwsDmsDataProvider(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<DmsDataProviderEngine> engine,
     TfArg<String>? name,

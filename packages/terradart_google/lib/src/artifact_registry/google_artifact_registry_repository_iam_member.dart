@@ -39,8 +39,8 @@ final class ArtifactRegistryRepositoryIamMemberCondition {
 final class GoogleArtifactRegistryRepositoryIamMember extends Resource {
   static const String tfType = 'google_artifact_registry_repository_iam_member';
 
-  GoogleArtifactRegistryRepositoryIamMember({
-    required super.localName,
+  GoogleArtifactRegistryRepositoryIamMember(
+    super.localName, {
     required RefTo<GoogleArtifactRegistryRepository> repository,
     required TfArg<String> role,
     required IamPrincipal member,

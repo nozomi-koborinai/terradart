@@ -42,8 +42,8 @@ final class KmsCryptoKeyIamBindingCondition {
 final class GoogleKmsCryptoKeyIamBinding extends Resource {
   static const String tfType = 'google_kms_crypto_key_iam_binding';
 
-  GoogleKmsCryptoKeyIamBinding({
-    required super.localName,
+  GoogleKmsCryptoKeyIamBinding(
+    super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

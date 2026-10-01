@@ -14,8 +14,8 @@ const Set<String> _googleTagsTagKeyIamPolicySensitive = <String>{};
 final class DataGoogleTagsTagKeyIamPolicy extends Data {
   static const String tfType = 'google_tags_tag_key_iam_policy';
 
-  DataGoogleTagsTagKeyIamPolicy({
-    required super.localName,
+  DataGoogleTagsTagKeyIamPolicy(
+    super.localName, {
     required TfArg<String> tagKey,
     super.provider,
     super.timeouts,

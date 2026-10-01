@@ -12,8 +12,8 @@ const Set<String> _awsServicecatalogappregistryAttributeGroupSensitive =
 final class DataAwsServicecatalogappregistryAttributeGroup extends Data {
   static const String tfType = 'aws_servicecatalogappregistry_attribute_group';
 
-  DataAwsServicecatalogappregistryAttributeGroup({
-    required super.localName,
+  DataAwsServicecatalogappregistryAttributeGroup(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

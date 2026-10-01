@@ -10,8 +10,8 @@ const Set<String> _awsTransferSshKeySensitive = <String>{};
 final class AwsTransferSshKey extends Resource {
   static const String tfType = 'aws_transfer_ssh_key';
 
-  AwsTransferSshKey({
-    required super.localName,
+  AwsTransferSshKey(
+    super.localName, {
     required TfArg<String> body,
     TfArg<String>? region,
     required TfArg<String> serverId,

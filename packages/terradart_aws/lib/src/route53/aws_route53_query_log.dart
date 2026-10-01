@@ -13,8 +13,8 @@ const Set<String> _awsRoute53QueryLogSensitive = <String>{};
 final class AwsRoute53QueryLog extends Resource {
   static const String tfType = 'aws_route53_query_log';
 
-  AwsRoute53QueryLog({
-    required super.localName,
+  AwsRoute53QueryLog(
+    super.localName, {
     required RefTo<AwsCloudwatchLogGroup> cloudwatchLogGroupArn,
     required RefTo<AwsRoute53Zone> zoneId,
     super.lifecycle,

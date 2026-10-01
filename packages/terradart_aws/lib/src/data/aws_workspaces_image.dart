@@ -10,8 +10,8 @@ const Set<String> _awsWorkspacesImageSensitive = <String>{};
 final class DataAwsWorkspacesImage extends Data {
   static const String tfType = 'aws_workspaces_image';
 
-  DataAwsWorkspacesImage({
-    required super.localName,
+  DataAwsWorkspacesImage(
+    super.localName, {
     required TfArg<String> imageId,
     TfArg<String>? region,
     super.provider,

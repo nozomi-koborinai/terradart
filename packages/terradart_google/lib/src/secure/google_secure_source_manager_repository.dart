@@ -86,8 +86,8 @@ final class SecureSourceManagerRepositorySecretScanConfig {
 final class GoogleSecureSourceManagerRepository extends Resource {
   static const String tfType = 'google_secure_source_manager_repository';
 
-  GoogleSecureSourceManagerRepository({
-    required super.localName,
+  GoogleSecureSourceManagerRepository(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> repositoryId,
     required TfArg<String> instance,

@@ -16,8 +16,8 @@ final class DataGoogleComputeRegionInstantSnapshotIamPolicy extends Data {
   static const String tfType =
       'google_compute_region_instant_snapshot_iam_policy';
 
-  DataGoogleComputeRegionInstantSnapshotIamPolicy({
-    required super.localName,
+  DataGoogleComputeRegionInstantSnapshotIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

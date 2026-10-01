@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example (GitHub Actions OIDC):
   /// ```dart
   /// final githubProvider = GoogleIamWorkloadIdentityPoolProvider(
-  ///   localName: 'github_provider',
+  ///   'github_provider',
   ///   workloadIdentityPoolId: pool.ref,
   ///   workloadIdentityPoolProviderId: .literal('github-actions'),
   ///   displayName: .literal('GitHub Actions'),

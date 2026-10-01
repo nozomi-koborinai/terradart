@@ -75,8 +75,8 @@ final class MigrationCenterAssetsExportJobSignedUriDestination {
 final class GoogleMigrationCenterAssetsExportJob extends Resource {
   static const String tfType = 'google_migration_center_assets_export_job';
 
-  GoogleMigrationCenterAssetsExportJob({
-    required super.localName,
+  GoogleMigrationCenterAssetsExportJob(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> assetsExportJobId,
     MigrationCenterAssetsExportJobCondition? condition,

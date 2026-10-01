@@ -16,8 +16,8 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 final class DataGoogleFirestoreDocument extends Data {
   static const String tfType = 'google_firestore_document';
 
-  DataGoogleFirestoreDocument({
-    required super.localName,
+  DataGoogleFirestoreDocument(
+    super.localName, {
     required TfArg<String> collection,
     required RefTo<GoogleFirestoreDatabase> database,
     required TfArg<String> documentId,

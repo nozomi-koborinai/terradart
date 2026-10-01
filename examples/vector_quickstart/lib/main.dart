@@ -31,7 +31,7 @@ final class VectorSearchStack extends Stack {
 
     final apiVectorSearch = add(
       GoogleProjectService(
-        localName: 'api_vectorsearch',
+        'api_vectorsearch',
         service: .literal('vectorsearch.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -39,7 +39,7 @@ final class VectorSearchStack extends Stack {
 
     final collection = add(
       GoogleVectorSearchCollection(
-        localName: 'docs',
+        'docs',
         location: .literal(location),
         collectionId: .literal('terradart-docs'),
         displayName: .literal('TerraDart docs'),
@@ -61,7 +61,7 @@ final class VectorSearchStack extends Stack {
 
     add(
       GoogleVectorSearchDataObject(
-        localName: 'sample_doc',
+        'sample_doc',
         location: .literal(location),
         collectionId: collection.ref,
         dataObjectId: .literal('terradart-sample-doc'),

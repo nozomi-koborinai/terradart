@@ -37,18 +37,11 @@ final class DevStack extends Stack {
     );
     // Environment root module. Resources declared directly here, plus calls into
     // the shared local modules under ../modules.
-    add(
-      GoogleProject(localName: 'current', projectId: .variable('project_id')),
-    );
-    add(
-      GoogleProjectService(
-        localName: 'run',
-        service: .literal('run.googleapis.com'),
-      ),
-    );
+    add(GoogleProject('current', projectId: .variable('project_id')));
+    add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
     add(
       GoogleArtifactRegistryRepository(
-        localName: 'images',
+        'images',
         repositoryId: .literal('app-images'),
         format: .literal('DOCKER'),
         location: .variable('region'),
@@ -56,21 +49,21 @@ final class DevStack extends Stack {
     );
     final assets = add(
       GoogleStorageBucket(
-        localName: 'assets',
+        'assets',
         name: .literal('app-dev-assets'),
         location: .variable('region'),
       ),
     );
     final uploads = add(
       GoogleStorageBucket(
-        localName: 'uploads',
+        'uploads',
         name: .literal('app-dev-uploads'),
         location: .variable('region'),
       ),
     );
     add(
       GoogleStorageBucketIamMember(
-        localName: 'assets_public',
+        'assets_public',
         bucket: assets.ref,
         role: .literal('roles/storage.objectViewer'),
         member: .allUsers,
@@ -78,7 +71,7 @@ final class DevStack extends Stack {
     );
     add(
       GoogleCloudRunV2Job(
-        localName: 'db_migrate',
+        'db_migrate',
         name: .literal('app-db-migrate'),
         location: .variable('region'),
         template: CloudRunV2JobTemplate(
@@ -92,72 +85,67 @@ final class DevStack extends Stack {
     );
     final saBff = addModule(
       ServiceAccountModule(
-        localName: 'sa_bff',
+        'sa_bff',
         source: '../modules/service_account',
         accountId: .literal('app-bff-sa'),
       ),
     );
     final saWorker = addModule(
       ServiceAccountModule(
-        localName: 'sa_worker',
+        'sa_worker',
         source: '../modules/service_account',
         accountId: .literal('app-worker-sa'),
       ),
     );
     final saAdkAgent = addModule(
       ServiceAccountModule(
-        localName: 'sa_adk_agent',
+        'sa_adk_agent',
         source: '../modules/service_account',
         accountId: .literal('app-agent-sa'),
       ),
     );
     addModule(
       ServiceAccountModule(
-        localName: 'sa_github_actions',
+        'sa_github_actions',
         source: '../modules/service_account',
         accountId: .literal('app-gha-sa'),
       ),
     );
-    addModule(
-      ModuleCall(localName: 'app_secrets', source: '../modules/secret_manager'),
-    );
+    addModule(ModuleCall('app_secrets', source: '../modules/secret_manager'));
     final cloudRunBff = addModule(
       CloudRunModule(
-        localName: 'cloud_run_bff',
+        'cloud_run_bff',
         source: '../modules/cloud_run',
         name: .literal('app-bff'),
       ),
     );
     addModule(
       CloudRunModule(
-        localName: 'cloud_run_worker',
+        'cloud_run_worker',
         source: '../modules/cloud_run',
         name: .literal('app-worker'),
       ),
     );
     addModule(
       CloudSqlModule(
-        localName: 'cloud_sql',
+        'cloud_sql',
         source: '../modules/cloud_sql',
         instanceName: .literal('app-postgres-dev'),
       ),
     );
     addModule(
       PubsubModule(
-        localName: 'pubsub_webhook',
+        'pubsub_webhook',
         source: '../modules/pubsub',
         topic: .literal('app-webhook-events'),
       ),
     );
     addModule(
-      ModuleCall(
-        localName: 'workload_identity',
-        source: '../modules/workload_identity',
-      ),
+      ModuleCall('workload_identity', source: '../modules/workload_identity'),
     );
     add(
       GoogleStorageBucketIamMember(
-        localName: 'uploads_admin',
+        'uploads_admin',
         bucket: uploads.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: .arg(saWorker.member),
@@ -165,7 +153,7 @@ final class DevStack extends Stack {
     );
     add(
       GoogleStorageBucketIamMember(
-        localName: 'uploads_reader',
+        'uploads_reader',
         bucket: uploads.ref,
         role: .literal('roles/storage.objectViewer'),
         member: .arg(saBff.member),
@@ -173,7 +161,7 @@ final class DevStack extends Stack {
     );
     add(
       GoogleCloudRunV2ServiceIamMember(
-        localName: 'bff_invoker',
+        'bff_invoker',
         service: .arg(cloudRunBff.serviceName),
         role: .literal('roles/run.invoker'),
         member: .allUsers,
@@ -181,7 +169,7 @@ final class DevStack extends Stack {
     );
     add(
       GoogleProjectIamMember(
-        localName: 'worker_token_creator',
+        'worker_token_creator',
         project: .variable('project_id'),
         role: .literal('roles/iam.serviceAccountTokenCreator'),
         member: .arg(saWorker.member),
@@ -189,7 +177,7 @@ final class DevStack extends Stack {
     );
     add(
       GoogleServiceAccountIamMember(
-        localName: 'agent_user',
+        'agent_user',
         serviceAccount: .arg(saAdkAgent.id),
         role: .literal('roles/iam.serviceAccountUser'),
         member: .arg(saBff.member),

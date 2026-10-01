@@ -276,8 +276,8 @@ final class SecurityhubConfigurationPolicyStringList {
 final class AwsSecurityhubConfigurationPolicy extends Resource {
   static const String tfType = 'aws_securityhub_configuration_policy';
 
-  AwsSecurityhubConfigurationPolicy({
-    required super.localName,
+  AwsSecurityhubConfigurationPolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

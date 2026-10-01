@@ -10,8 +10,8 @@ const Set<String> _awsInspector2DelegatedAdminAccountSensitive = <String>{};
 final class AwsInspector2DelegatedAdminAccount extends Resource {
   static const String tfType = 'aws_inspector2_delegated_admin_account';
 
-  AwsInspector2DelegatedAdminAccount({
-    required super.localName,
+  AwsInspector2DelegatedAdminAccount(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? region,
     super.lifecycle,

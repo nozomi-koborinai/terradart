@@ -31,8 +31,8 @@ final class DataFsxOpenzfsSnapshotFilter {
 final class DataAwsFsxOpenzfsSnapshot extends Data {
   static const String tfType = 'aws_fsx_openzfs_snapshot';
 
-  DataAwsFsxOpenzfsSnapshot({
-    required super.localName,
+  DataAwsFsxOpenzfsSnapshot(
+    super.localName, {
     TfArg<bool>? mostRecent,
     TfArg<String>? name,
     TfArg<String>? region,

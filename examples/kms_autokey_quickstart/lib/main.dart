@@ -21,7 +21,7 @@ final class KmsAutokeyStack extends Stack {
       ) {
     final apiKms = add(
       GoogleProjectService(
-        localName: 'api_cloudkms',
+        'api_cloudkms',
         service: .literal('cloudkms.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -29,7 +29,7 @@ final class KmsAutokeyStack extends Stack {
 
     add(
       GoogleKmsProjectAutokeyConfig(
-        localName: 'autokey',
+        'autokey',
         keyProjectResolutionMode: .literal(.disabled),
         dependsOn: [apiKms],
       ),

@@ -23,8 +23,8 @@ const Set<String> _googleActiveDirectoryDomainSensitive = <String>{};
 final class GoogleActiveDirectoryDomain extends Resource {
   static const String tfType = 'google_active_directory_domain';
 
-  GoogleActiveDirectoryDomain({
-    required super.localName,
+  GoogleActiveDirectoryDomain(
+    super.localName, {
     required TfArg<String> domainName,
     required TfArg<List<String>> locations,
     required TfArg<String> reservedIpRange,

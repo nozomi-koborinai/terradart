@@ -25,8 +25,8 @@ const Set<String> _googleApigeeSharedflowSensitive = <String>{};
 final class GoogleApigeeSharedflow extends Resource {
   static const String tfType = 'google_apigee_sharedflow';
 
-  GoogleApigeeSharedflow({
-    required super.localName,
+  GoogleApigeeSharedflow(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     required TfArg<String> configBundle,

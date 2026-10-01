@@ -15,8 +15,8 @@ const Set<String> _cloudflareCustomOriginTrustStoresSensitive = <String>{};
 final class DataCloudflareCustomOriginTrustStores extends Data {
   static const String tfType = 'cloudflare_custom_origin_trust_stores';
 
-  DataCloudflareCustomOriginTrustStores({
-    required super.localName,
+  DataCloudflareCustomOriginTrustStores(
+    super.localName, {
     TfArg<num>? limit,
     TfArg<num>? maxItems,
     TfArg<num>? offset,

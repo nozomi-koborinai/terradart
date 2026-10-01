@@ -83,8 +83,8 @@ final class DataAccountaccessEntitlementsIdentityCenter {
 final class DataAwsAccountaccessEntitlements extends Data {
   static const String tfType = 'aws_accountaccess_entitlements';
 
-  DataAwsAccountaccessEntitlements({
-    required super.localName,
+  DataAwsAccountaccessEntitlements(
+    super.localName, {
     required TfArg<String> applicationArn,
     TfArg<String>? region,
     List<DataAccountaccessEntitlementsFilter>? filter,

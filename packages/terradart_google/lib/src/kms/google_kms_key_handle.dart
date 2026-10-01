@@ -27,7 +27,7 @@ const Set<String> _googleKmsKeyHandleSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleKmsKeyHandle(
-///   localName: 'disk_cmek',
+///   'disk_cmek',
 ///   name: TfArg.literal('terradart-disk-handle'),
 ///   location: TfArg.literal('us-central1'),
 ///   resourceTypeSelector: TfArg.literal('compute.googleapis.com/Disk'),
@@ -36,8 +36,8 @@ const Set<String> _googleKmsKeyHandleSensitive = <String>{};
 final class GoogleKmsKeyHandle extends Resource {
   static const String tfType = 'google_kms_key_handle';
 
-  GoogleKmsKeyHandle({
-    required super.localName,
+  GoogleKmsKeyHandle(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> resourceTypeSelector,

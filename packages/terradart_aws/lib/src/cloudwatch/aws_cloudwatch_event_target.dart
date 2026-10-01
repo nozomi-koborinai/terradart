@@ -529,8 +529,8 @@ final class CloudwatchEventTargetSqsTarget {
 final class AwsCloudwatchEventTarget extends Resource {
   static const String tfType = 'aws_cloudwatch_event_target';
 
-  AwsCloudwatchEventTarget({
-    required super.localName,
+  AwsCloudwatchEventTarget(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? eventBusName,
     TfArg<bool>? forceDestroy,

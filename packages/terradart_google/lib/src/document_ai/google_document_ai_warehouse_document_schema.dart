@@ -317,8 +317,8 @@ final class DocumentAiWarehouseDocumentSchemaTimestampTypeOptions {
 final class GoogleDocumentAiWarehouseDocumentSchema extends Resource {
   static const String tfType = 'google_document_ai_warehouse_document_schema';
 
-  GoogleDocumentAiWarehouseDocumentSchema({
-    required super.localName,
+  GoogleDocumentAiWarehouseDocumentSchema(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     TfArg<bool>? documentIsFolder,

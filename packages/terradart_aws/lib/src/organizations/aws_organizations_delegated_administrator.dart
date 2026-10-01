@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsDelegatedAdministratorSensitive = <String>{};
 final class AwsOrganizationsDelegatedAdministrator extends Resource {
   static const String tfType = 'aws_organizations_delegated_administrator';
 
-  AwsOrganizationsDelegatedAdministrator({
-    required super.localName,
+  AwsOrganizationsDelegatedAdministrator(
+    super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> servicePrincipal,
     super.lifecycle,

@@ -38,8 +38,8 @@ final class HealthcareDicomStoreIamMemberCondition {
 final class GoogleHealthcareDicomStoreIamMember extends Resource {
   static const String tfType = 'google_healthcare_dicom_store_iam_member';
 
-  GoogleHealthcareDicomStoreIamMember({
-    required super.localName,
+  GoogleHealthcareDicomStoreIamMember(
+    super.localName, {
     required RefTo<GoogleHealthcareDicomStore> dicomStore,
     required TfArg<String> role,
     required IamPrincipal member,

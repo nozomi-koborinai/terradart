@@ -50,8 +50,8 @@ final class LambdaCapacityProviderVpcConfig {
 final class AwsLambdaCapacityProvider extends Resource {
   static const String tfType = 'aws_lambda_capacity_provider';
 
-  AwsLambdaCapacityProvider({
-    required super.localName,
+  AwsLambdaCapacityProvider(
+    super.localName, {
     TfArg<List<Map<String, Object?>>>? capacityProviderScalingConfig,
     TfArg<List<Map<String, Object?>>>? instanceRequirements,
     RefTo<AwsKmsKey>? kmsKeyArn,

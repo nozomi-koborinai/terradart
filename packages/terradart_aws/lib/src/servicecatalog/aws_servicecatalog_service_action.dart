@@ -62,8 +62,8 @@ enum ServicecatalogServiceActionType implements TerraformEnum {
 final class AwsServicecatalogServiceAction extends Resource {
   static const String tfType = 'aws_servicecatalog_service_action';
 
-  AwsServicecatalogServiceAction({
-    required super.localName,
+  AwsServicecatalogServiceAction(
+    super.localName, {
     TfArg<ServicecatalogServiceActionAcceptLanguage>? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> name,

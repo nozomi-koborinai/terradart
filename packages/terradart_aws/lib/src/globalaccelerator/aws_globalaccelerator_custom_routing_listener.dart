@@ -31,8 +31,8 @@ final class GlobalacceleratorCustomRoutingListenerPortRange {
 final class AwsGlobalacceleratorCustomRoutingListener extends Resource {
   static const String tfType = 'aws_globalaccelerator_custom_routing_listener';
 
-  AwsGlobalacceleratorCustomRoutingListener({
-    required super.localName,
+  AwsGlobalacceleratorCustomRoutingListener(
+    super.localName, {
     required TfArg<String> acceleratorArn,
     required List<GlobalacceleratorCustomRoutingListenerPortRange> portRange,
     super.lifecycle,

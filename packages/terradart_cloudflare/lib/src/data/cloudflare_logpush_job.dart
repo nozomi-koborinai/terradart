@@ -17,8 +17,8 @@ const Set<String> _cloudflareLogpushJobSensitive = <String>{'destination_conf'};
 final class DataCloudflareLogpushJob extends Data {
   static const String tfType = 'cloudflare_logpush_job';
 
-  DataCloudflareLogpushJob({
-    required super.localName,
+  DataCloudflareLogpushJob(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<num> jobId,
     RefTo<CloudflareZone>? zoneId,

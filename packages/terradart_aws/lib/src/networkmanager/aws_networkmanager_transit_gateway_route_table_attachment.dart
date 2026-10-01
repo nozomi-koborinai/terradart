@@ -13,8 +13,8 @@ final class AwsNetworkmanagerTransitGatewayRouteTableAttachment
   static const String tfType =
       'aws_networkmanager_transit_gateway_route_table_attachment';
 
-  AwsNetworkmanagerTransitGatewayRouteTableAttachment({
-    required super.localName,
+  AwsNetworkmanagerTransitGatewayRouteTableAttachment(
+    super.localName, {
     required TfArg<String> peeringId,
     TfArg<String>? routingPolicyLabel,
     TfArg<Map<String, String>>? tags,

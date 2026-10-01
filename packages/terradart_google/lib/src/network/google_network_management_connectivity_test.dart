@@ -201,7 +201,7 @@ final class NetworkManagementConnectivityTestCloudRunRevision {
 /// Example:
 /// ```dart
 /// GoogleNetworkManagementConnectivityTest(
-///   localName: 'dns_probe',
+///   'dns_probe',
 ///   name: TfArg.literal('dns-probe'),
 ///   protocol: TfArg.literal('TCP'),
 ///   source: NetworkManagementConnectivityTestSource(
@@ -217,8 +217,8 @@ final class NetworkManagementConnectivityTestCloudRunRevision {
 final class GoogleNetworkManagementConnectivityTest extends Resource {
   static const String tfType = 'google_network_management_connectivity_test';
 
-  GoogleNetworkManagementConnectivityTest({
-    required super.localName,
+  GoogleNetworkManagementConnectivityTest(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? protocol,
     required NetworkManagementConnectivityTestSource source,

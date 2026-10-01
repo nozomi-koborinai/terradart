@@ -73,8 +73,8 @@ enum TurnstileWidgetRegion implements TerraformEnum {
 final class CloudflareTurnstileWidget extends Resource {
   static const String tfType = 'cloudflare_turnstile_widget';
 
-  CloudflareTurnstileWidget({
-    required super.localName,
+  CloudflareTurnstileWidget(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? botFightMode,
     TfArg<TurnstileWidgetClearanceLevel>? clearanceLevel,

@@ -165,7 +165,7 @@ final class FirestoreDatabaseCmekConfig {
 /// Example (default Native-mode database in asia-northeast1):
 /// ```dart
 /// final db = GoogleFirestoreDatabase(
-///   localName: 'default',
+///   'default',
 ///   name: TfArg.literal('(default)'),
 ///   locationId: TfArg.literal('asia-northeast1'),
 ///   type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
@@ -186,8 +186,8 @@ final class FirestoreDatabaseCmekConfig {
 final class GoogleFirestoreDatabase extends Resource {
   static const String tfType = 'google_firestore_database';
 
-  GoogleFirestoreDatabase({
-    required super.localName,
+  GoogleFirestoreDatabase(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> locationId,
     required TfArg<FirestoreDatabaseType> type,

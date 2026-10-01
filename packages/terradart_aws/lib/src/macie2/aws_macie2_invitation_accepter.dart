@@ -10,8 +10,8 @@ const Set<String> _awsMacie2InvitationAccepterSensitive = <String>{};
 final class AwsMacie2InvitationAccepter extends Resource {
   static const String tfType = 'aws_macie2_invitation_accepter';
 
-  AwsMacie2InvitationAccepter({
-    required super.localName,
+  AwsMacie2InvitationAccepter(
+    super.localName, {
     required TfArg<String> administratorAccountId,
     TfArg<String>? region,
     super.lifecycle,

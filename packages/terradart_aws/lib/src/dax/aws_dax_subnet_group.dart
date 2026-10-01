@@ -12,8 +12,8 @@ const Set<String> _awsDaxSubnetGroupSensitive = <String>{};
 final class AwsDaxSubnetGroup extends Resource {
   static const String tfType = 'aws_dax_subnet_group';
 
-  AwsDaxSubnetGroup({
-    required super.localName,
+  AwsDaxSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -82,7 +82,7 @@ class BigqueryReservationAutoscale {
 /// Example:
 /// ```dart
 /// final analyticsRes = GoogleBigqueryReservation(
-///   localName: 'analytics',
+///   'analytics',
 ///   name: TfArg.literal('analytics-pool'),
 ///   location: TfArg.literal('US'),
 ///   slotCapacity: TfArg.literal(500),
@@ -96,8 +96,8 @@ class BigqueryReservationAutoscale {
 final class GoogleBigqueryReservation extends Resource {
   static const String tfType = 'google_bigquery_reservation';
 
-  GoogleBigqueryReservation({
-    required super.localName,
+  GoogleBigqueryReservation(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     required TfArg<num> slotCapacity,

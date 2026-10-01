@@ -38,8 +38,8 @@ final class GoogleIapWebRegionBackendServiceIamMember extends Resource {
   static const String tfType =
       'google_iap_web_region_backend_service_iam_member';
 
-  GoogleIapWebRegionBackendServiceIamMember({
-    required super.localName,
+  GoogleIapWebRegionBackendServiceIamMember(
+    super.localName, {
     required TfArg<String> webRegionBackendService,
     required TfArg<String> role,
     required IamPrincipal member,

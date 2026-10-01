@@ -15,8 +15,8 @@ final class DataGoogleParameterManagerParameterVersionRender extends Data {
   static const String tfType =
       'google_parameter_manager_parameter_version_render';
 
-  DataGoogleParameterManagerParameterVersionRender({
-    required super.localName,
+  DataGoogleParameterManagerParameterVersionRender(
+    super.localName, {
     required TfArg<String> parameter,
     required TfArg<String> parameterVersionId,
     TfArg<String>? project,

@@ -11,8 +11,8 @@ const Set<String> _awsAuditmanagerControlSensitive = <String>{};
 final class DataAwsAuditmanagerControl extends Data {
   static const String tfType = 'aws_auditmanager_control';
 
-  DataAwsAuditmanagerControl({
-    required super.localName,
+  DataAwsAuditmanagerControl(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> type,

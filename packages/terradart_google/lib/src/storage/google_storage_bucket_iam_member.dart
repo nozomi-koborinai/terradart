@@ -37,8 +37,8 @@ final class StorageBucketIamMemberCondition {
 final class GoogleStorageBucketIamMember extends Resource {
   static const String tfType = 'google_storage_bucket_iam_member';
 
-  GoogleStorageBucketIamMember({
-    required super.localName,
+  GoogleStorageBucketIamMember(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> role,
     required IamPrincipal member,

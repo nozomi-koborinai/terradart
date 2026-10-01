@@ -71,8 +71,8 @@ final class EmrSecurityConfigurationNamePrefix
 final class AwsEmrSecurityConfiguration extends Resource {
   static const String tfType = 'aws_emr_security_configuration';
 
-  AwsEmrSecurityConfiguration({
-    required super.localName,
+  AwsEmrSecurityConfiguration(
+    super.localName, {
     required TfArg<String> configuration,
     EmrSecurityConfigurationName? name,
     TfArg<String>? region,

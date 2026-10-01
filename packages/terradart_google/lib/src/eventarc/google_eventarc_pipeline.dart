@@ -303,8 +303,8 @@ final class EventarcPipelineRetryPolicy {
 final class GoogleEventarcPipeline extends Resource {
   static const String tfType = 'google_eventarc_pipeline';
 
-  GoogleEventarcPipeline({
-    required super.localName,
+  GoogleEventarcPipeline(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     TfArg<String>? displayName,

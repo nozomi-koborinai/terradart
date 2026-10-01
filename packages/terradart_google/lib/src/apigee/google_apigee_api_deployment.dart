@@ -25,8 +25,8 @@ const Set<String> _googleApigeeApiDeploymentSensitive = <String>{};
 final class GoogleApigeeApiDeployment extends Resource {
   static const String tfType = 'google_apigee_api_deployment';
 
-  GoogleApigeeApiDeployment({
-    required super.localName,
+  GoogleApigeeApiDeployment(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> environment,
     required TfArg<String> proxyId,

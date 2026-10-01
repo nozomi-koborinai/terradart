@@ -98,8 +98,8 @@ final class ChronicleDataTableScopeInfo {
 final class GoogleChronicleDataTable extends Resource {
   static const String tfType = 'google_chronicle_data_table';
 
-  GoogleChronicleDataTable({
-    required super.localName,
+  GoogleChronicleDataTable(
+    super.localName, {
     required TfArg<String> dataTableId,
     required TfArg<String> description,
     required TfArg<String> location,

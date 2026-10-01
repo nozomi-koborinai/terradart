@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftSubnetGroupSensitive = <String>{};
 final class AwsRedshiftSubnetGroup extends Resource {
   static const String tfType = 'aws_redshift_subnet_group';
 
-  AwsRedshiftSubnetGroup({
-    required super.localName,
+  AwsRedshiftSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

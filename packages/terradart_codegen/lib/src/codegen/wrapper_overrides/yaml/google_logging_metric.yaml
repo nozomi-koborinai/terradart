@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example (DELTA counter on error log entries):
   /// ```dart
   /// final errors = GoogleLoggingMetric(
-  ///   localName: 'error_count',
+  ///   'error_count',
   ///   name: TfArg.literal('error_count'),
   ///   filter: TfArg.literal(
   ///     'resource.type="k8s_container" AND severity>=ERROR',
@@ -37,7 +37,7 @@ curatedDoc: |-
   /// Example (DISTRIBUTION metric with extracted latency):
   /// ```dart
   /// final latency = GoogleLoggingMetric(
-  ///   localName: 'request_latency',
+  ///   'request_latency',
   ///   name: TfArg.literal('request_latency'),
   ///   filter: TfArg.literal('resource.type="http_load_balancer"'),
   ///   valueExtractor: TfArg.literal('EXTRACT(httpRequest.latency)'),

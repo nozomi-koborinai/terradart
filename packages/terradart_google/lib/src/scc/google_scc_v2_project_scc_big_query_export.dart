@@ -23,8 +23,8 @@ const Set<String> _googleSccV2ProjectSccBigQueryExportSensitive = <String>{};
 final class GoogleSccV2ProjectSccBigQueryExport extends Resource {
   static const String tfType = 'google_scc_v2_project_scc_big_query_export';
 
-  GoogleSccV2ProjectSccBigQueryExport({
-    required super.localName,
+  GoogleSccV2ProjectSccBigQueryExport(
+    super.localName, {
     required TfArg<String> bigQueryExportId,
     TfArg<String>? dataset,
     TfArg<String>? deletionPolicy,

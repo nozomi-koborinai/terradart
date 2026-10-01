@@ -78,8 +78,8 @@ enum NetworkfirewallLoggingConfigurationLogType implements TerraformEnum {
 final class AwsNetworkfirewallLoggingConfiguration extends Resource {
   static const String tfType = 'aws_networkfirewall_logging_configuration';
 
-  AwsNetworkfirewallLoggingConfiguration({
-    required super.localName,
+  AwsNetworkfirewallLoggingConfiguration(
+    super.localName, {
     TfArg<bool>? enableMonitoringDashboard,
     required TfArg<String> firewallArn,
     TfArg<String>? region,

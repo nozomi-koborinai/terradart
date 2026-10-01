@@ -43,8 +43,8 @@ enum DataEmailRoutingAddressDirection implements TerraformEnum {
 final class DataCloudflareEmailRoutingAddress extends Data {
   static const String tfType = 'cloudflare_email_routing_address';
 
-  DataCloudflareEmailRoutingAddress({
-    required super.localName,
+  DataCloudflareEmailRoutingAddress(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? destinationAddressIdentifier,
     DataEmailRoutingAddressFilter? filter,

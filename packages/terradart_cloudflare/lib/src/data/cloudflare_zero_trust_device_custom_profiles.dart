@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustDeviceCustomProfilesSensitive =
 final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_custom_profiles';
 
-  DataCloudflareZeroTrustDeviceCustomProfiles({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceCustomProfiles(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? profileType,

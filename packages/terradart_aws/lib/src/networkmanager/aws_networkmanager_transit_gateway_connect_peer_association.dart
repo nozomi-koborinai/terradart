@@ -13,8 +13,8 @@ final class AwsNetworkmanagerTransitGatewayConnectPeerAssociation
   static const String tfType =
       'aws_networkmanager_transit_gateway_connect_peer_association';
 
-  AwsNetworkmanagerTransitGatewayConnectPeerAssociation({
-    required super.localName,
+  AwsNetworkmanagerTransitGatewayConnectPeerAssociation(
+    super.localName, {
     required TfArg<String> deviceId,
     required TfArg<String> globalNetworkId,
     TfArg<String>? linkId,

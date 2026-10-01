@@ -15,8 +15,8 @@ const Set<String> _googleActiveDirectoryPeeringSensitive = <String>{};
 final class GoogleActiveDirectoryPeering extends Resource {
   static const String tfType = 'google_active_directory_peering';
 
-  GoogleActiveDirectoryPeering({
-    required super.localName,
+  GoogleActiveDirectoryPeering(
+    super.localName, {
     required RefTo<GoogleComputeNetwork> authorizedNetwork,
     TfArg<String>? deletionPolicy,
     required TfArg<String> domainResource,

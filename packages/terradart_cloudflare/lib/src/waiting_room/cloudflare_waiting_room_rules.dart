@@ -53,8 +53,8 @@ enum WaitingRoomRulesAction implements TerraformEnum {
 final class CloudflareWaitingRoomRules extends Resource {
   static const String tfType = 'cloudflare_waiting_room_rules';
 
-  CloudflareWaitingRoomRules({
-    required super.localName,
+  CloudflareWaitingRoomRules(
+    super.localName, {
     required TfArg<String> waitingRoomId,
     required RefTo<CloudflareZone> zoneId,
     required List<WaitingRoomRules> rules,

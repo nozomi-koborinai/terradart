@@ -40,8 +40,8 @@ final class GoogleNetworkServicesMulticastGroupRangeActivation
   static const String tfType =
       'google_network_services_multicast_group_range_activation';
 
-  GoogleNetworkServicesMulticastGroupRangeActivation({
-    required super.localName,
+  GoogleNetworkServicesMulticastGroupRangeActivation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastGroupRangeActivationId,
     required TfArg<String> multicastGroupRange,

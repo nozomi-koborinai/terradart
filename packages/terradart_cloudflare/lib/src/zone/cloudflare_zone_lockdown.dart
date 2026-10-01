@@ -43,8 +43,8 @@ enum ZoneLockdownTarget implements TerraformEnum {
 final class CloudflareZoneLockdown extends Resource {
   static const String tfType = 'cloudflare_zone_lockdown';
 
-  CloudflareZoneLockdown({
-    required super.localName,
+  CloudflareZoneLockdown(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? paused,
     TfArg<num>? priority,

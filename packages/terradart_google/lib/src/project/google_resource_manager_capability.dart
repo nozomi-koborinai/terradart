@@ -17,8 +17,8 @@ const Set<String> _googleResourceManagerCapabilitySensitive = <String>{};
 final class GoogleResourceManagerCapability extends Resource {
   static const String tfType = 'google_resource_manager_capability';
 
-  GoogleResourceManagerCapability({
-    required super.localName,
+  GoogleResourceManagerCapability(
+    super.localName, {
     required TfArg<String> capabilityName,
     required TfArg<String> parent,
     required TfArg<bool> value,

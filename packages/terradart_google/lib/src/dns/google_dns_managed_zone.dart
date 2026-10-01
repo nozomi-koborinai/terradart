@@ -244,7 +244,7 @@ class DnsManagedZoneCloudLoggingConfig {
 /// Example (public zone):
 /// ```dart
 /// final prod = GoogleDnsManagedZone(
-///   localName: 'prod',
+///   'prod',
 ///   name: TfArg.literal('prod-zone'),
 ///   dnsName: TfArg.literal('prod.example.com.'),
 ///   description: TfArg.literal('Production zone'),
@@ -254,8 +254,8 @@ class DnsManagedZoneCloudLoggingConfig {
 final class GoogleDnsManagedZone extends Resource {
   static const String tfType = 'google_dns_managed_zone';
 
-  GoogleDnsManagedZone({
-    required super.localName,
+  GoogleDnsManagedZone(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> dnsName,
     TfArg<String>? description,

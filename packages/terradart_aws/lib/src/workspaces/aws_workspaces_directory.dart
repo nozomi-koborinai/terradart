@@ -379,8 +379,8 @@ final class WorkspacesDirectoryWorkspaceCreationProperties {
 final class AwsWorkspacesDirectory extends Resource {
   static const String tfType = 'aws_workspaces_directory';
 
-  AwsWorkspacesDirectory({
-    required super.localName,
+  AwsWorkspacesDirectory(
+    super.localName, {
     TfArg<String>? directoryId,
     TfArg<List<String>>? ipGroupIds,
     TfArg<String>? region,

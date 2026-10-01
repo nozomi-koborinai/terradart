@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example (build from a git branch HEAD):
   /// ```dart
   /// final build = GoogleFirebaseAppHostingBuild(
-  ///   localName: 'v1',
+  ///   'v1',
   ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   buildId: TfArg.literal('v1'),
@@ -34,7 +34,7 @@ curatedDoc: |-
   /// Example (build from a prebuilt image):
   /// ```dart
   /// final build = GoogleFirebaseAppHostingBuild(
-  ///   localName: 'v1',
+  ///   'v1',
   ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   buildId: TfArg.literal('v1'),

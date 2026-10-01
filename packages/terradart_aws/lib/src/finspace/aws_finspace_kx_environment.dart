@@ -139,8 +139,8 @@ final class FinspaceKxEnvironmentPortRange {
 final class AwsFinspaceKxEnvironment extends Resource {
   static const String tfType = 'aws_finspace_kx_environment';
 
-  AwsFinspaceKxEnvironment({
-    required super.localName,
+  AwsFinspaceKxEnvironment(
+    super.localName, {
     TfArg<String>? description,
     required RefTo<AwsKmsKey> kmsKeyId,
     required TfArg<String> name,

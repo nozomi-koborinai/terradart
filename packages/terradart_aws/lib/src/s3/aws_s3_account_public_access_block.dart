@@ -10,8 +10,8 @@ const Set<String> _awsS3AccountPublicAccessBlockSensitive = <String>{};
 final class AwsS3AccountPublicAccessBlock extends Resource {
   static const String tfType = 'aws_s3_account_public_access_block';
 
-  AwsS3AccountPublicAccessBlock({
-    required super.localName,
+  AwsS3AccountPublicAccessBlock(
+    super.localName, {
     TfArg<String>? accountId,
     TfArg<bool>? blockPublicAcls,
     TfArg<bool>? blockPublicPolicy,

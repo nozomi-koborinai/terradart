@@ -67,8 +67,8 @@ enum DevicefarmDevicePoolOperator implements TerraformEnum {
 final class AwsDevicefarmDevicePool extends Resource {
   static const String tfType = 'aws_devicefarm_device_pool';
 
-  AwsDevicefarmDevicePool({
-    required super.localName,
+  AwsDevicefarmDevicePool(
+    super.localName, {
     TfArg<String>? description,
     TfArg<num>? maxDevices,
     required TfArg<String> name,

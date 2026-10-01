@@ -334,7 +334,7 @@ final class EdgecontainerClusterIngress {
 /// Example (remote control plane):
 /// ```dart
 /// GoogleEdgecontainerCluster(
-///   localName: 'edge',
+///   'edge',
 ///   name: TfArg.literal('terradart-edge'),
 ///   location: TfArg.literal('us-central1'),
 ///   networking: EdgecontainerClusterNetworking(
@@ -359,8 +359,8 @@ final class EdgecontainerClusterIngress {
 final class GoogleEdgecontainerCluster extends Resource {
   static const String tfType = 'google_edgecontainer_cluster';
 
-  GoogleEdgecontainerCluster({
-    required super.localName,
+  GoogleEdgecontainerCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required EdgecontainerClusterNetworking networking,

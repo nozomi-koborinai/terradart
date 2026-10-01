@@ -11,8 +11,8 @@ const Set<String> _awsLocationPlaceIndexSensitive = <String>{};
 final class DataAwsLocationPlaceIndex extends Data {
   static const String tfType = 'aws_location_place_index';
 
-  DataAwsLocationPlaceIndex({
-    required super.localName,
+  DataAwsLocationPlaceIndex(
+    super.localName, {
     required TfArg<String> indexName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

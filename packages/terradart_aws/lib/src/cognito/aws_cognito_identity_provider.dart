@@ -24,8 +24,8 @@ enum CognitoIdentityProviderType implements TerraformEnum {
 final class AwsCognitoIdentityProvider extends Resource {
   static const String tfType = 'aws_cognito_identity_provider';
 
-  AwsCognitoIdentityProvider({
-    required super.localName,
+  AwsCognitoIdentityProvider(
+    super.localName, {
     TfArg<Map<String, String>>? attributeMapping,
     TfArg<List<String>>? idpIdentifiers,
     required TfArg<Map<String, String>> providerDetails,

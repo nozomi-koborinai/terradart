@@ -531,8 +531,8 @@ final class SagemakerDataQualityJobDefinitionStoppingCondition {
 final class AwsSagemakerDataQualityJobDefinition extends Resource {
   static const String tfType = 'aws_sagemaker_data_quality_job_definition';
 
-  AwsSagemakerDataQualityJobDefinition({
-    required super.localName,
+  AwsSagemakerDataQualityJobDefinition(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

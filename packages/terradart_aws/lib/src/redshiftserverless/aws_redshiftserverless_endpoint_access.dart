@@ -13,8 +13,8 @@ const Set<String> _awsRedshiftserverlessEndpointAccessSensitive = <String>{};
 final class AwsRedshiftserverlessEndpointAccess extends Resource {
   static const String tfType = 'aws_redshiftserverless_endpoint_access';
 
-  AwsRedshiftserverlessEndpointAccess({
-    required super.localName,
+  AwsRedshiftserverlessEndpointAccess(
+    super.localName, {
     required TfArg<String> endpointName,
     TfArg<String>? ownerAccount,
     TfArg<String>? region,

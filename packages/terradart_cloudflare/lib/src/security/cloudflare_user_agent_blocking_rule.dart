@@ -55,8 +55,8 @@ enum UserAgentBlockingRuleTarget implements TerraformEnum {
 final class CloudflareUserAgentBlockingRule extends Resource {
   static const String tfType = 'cloudflare_user_agent_blocking_rule';
 
-  CloudflareUserAgentBlockingRule({
-    required super.localName,
+  CloudflareUserAgentBlockingRule(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<UserAgentBlockingRuleMode> mode,
     TfArg<bool>? paused,

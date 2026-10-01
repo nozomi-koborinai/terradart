@@ -10561,8 +10561,8 @@ final class QuicksightDashboardDataSetReferences {
 final class AwsQuicksightDashboard extends Resource {
   static const String tfType = 'aws_quicksight_dashboard';
 
-  AwsQuicksightDashboard({
-    required super.localName,
+  AwsQuicksightDashboard(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> dashboardId,
     required TfArg<String> name,

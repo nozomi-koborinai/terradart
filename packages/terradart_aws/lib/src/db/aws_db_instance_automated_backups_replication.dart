@@ -13,8 +13,8 @@ const Set<String> _awsDbInstanceAutomatedBackupsReplicationSensitive =
 final class AwsDbInstanceAutomatedBackupsReplication extends Resource {
   static const String tfType = 'aws_db_instance_automated_backups_replication';
 
-  AwsDbInstanceAutomatedBackupsReplication({
-    required super.localName,
+  AwsDbInstanceAutomatedBackupsReplication(
+    super.localName, {
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? preSignedUrl,
     TfArg<String>? region,

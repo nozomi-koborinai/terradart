@@ -109,8 +109,8 @@ final class ConnectivityDirectoryServiceTlsSettings {
 final class CloudflareConnectivityDirectoryService extends Resource {
   static const String tfType = 'cloudflare_connectivity_directory_service';
 
-  CloudflareConnectivityDirectoryService({
-    required super.localName,
+  CloudflareConnectivityDirectoryService(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<ConnectivityDirectoryServiceAppProtocol>? appProtocol,
     TfArg<num>? httpPort,

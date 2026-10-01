@@ -245,8 +245,8 @@ final class SesReceiptRuleWorkmailAction {
 final class AwsSesReceiptRule extends Resource {
   static const String tfType = 'aws_ses_receipt_rule';
 
-  AwsSesReceiptRule({
-    required super.localName,
+  AwsSesReceiptRule(
+    super.localName, {
     TfArg<String>? after,
     TfArg<bool>? enabled,
     required TfArg<String> name,

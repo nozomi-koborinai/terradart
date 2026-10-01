@@ -10,8 +10,8 @@ const Set<String> _awsDbSnapshotSensitive = <String>{};
 final class AwsDbSnapshot extends Resource {
   static const String tfType = 'aws_db_snapshot';
 
-  AwsDbSnapshot({
-    required super.localName,
+  AwsDbSnapshot(
+    super.localName, {
     required TfArg<String> dbInstanceIdentifier,
     required TfArg<String> dbSnapshotIdentifier,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftProducerDataSharesSensitive = <String>{};
 final class DataAwsRedshiftProducerDataShares extends Data {
   static const String tfType = 'aws_redshift_producer_data_shares';
 
-  DataAwsRedshiftProducerDataShares({
-    required super.localName,
+  DataAwsRedshiftProducerDataShares(
+    super.localName, {
     required TfArg<String> producerArn,
     TfArg<String>? region,
     TfArg<String>? status,

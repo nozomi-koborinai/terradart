@@ -23,7 +23,7 @@ curatedDoc: |-
   ///
   /// ```dart
   /// final flag = GoogleFirestoreDocument(
-  ///   localName: 'dark_mode',
+  ///   'dark_mode',
   ///   collection: TfArg.literal('feature_flags'),
   ///   documentId: TfArg.literal('dark_mode'),
   ///   fields: FirestoreFields.encode({

@@ -13,13 +13,13 @@ final class WorkloadIdentityStack extends Stack {
   WorkloadIdentityStack() : super(providers: [const GoogleProvider()]) {
     final github = add(
       GoogleIamWorkloadIdentityPool(
-        localName: 'github',
+        'github',
         workloadIdentityPoolId: .literal('github-pool'),
       ),
     );
     add(
       GoogleIamWorkloadIdentityPoolProvider(
-        localName: 'github',
+        'github',
         workloadIdentityPoolId: github.ref,
         workloadIdentityPoolProviderId: .literal('github-provider'),
         trustSource: .oidc(
@@ -31,7 +31,7 @@ final class WorkloadIdentityStack extends Stack {
     );
     add(
       GoogleServiceAccountIamMember(
-        localName: 'github_actions',
+        'github_actions',
         serviceAccount: .literal(
           'projects/example-project/serviceAccounts/gha-deploy@example-project.iam.gserviceaccount.com',
         ),

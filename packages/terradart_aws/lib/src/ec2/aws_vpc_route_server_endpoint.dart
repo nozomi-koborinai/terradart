@@ -12,8 +12,8 @@ const Set<String> _awsVpcRouteServerEndpointSensitive = <String>{};
 final class AwsVpcRouteServerEndpoint extends Resource {
   static const String tfType = 'aws_vpc_route_server_endpoint';
 
-  AwsVpcRouteServerEndpoint({
-    required super.localName,
+  AwsVpcRouteServerEndpoint(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routeServerId,
     required RefTo<AwsSubnet> subnetId,

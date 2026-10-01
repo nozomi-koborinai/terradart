@@ -28,8 +28,8 @@ final class DataInternetGatewayFilter {
 final class DataAwsInternetGateway extends Data {
   static const String tfType = 'aws_internet_gateway';
 
-  DataAwsInternetGateway({
-    required super.localName,
+  DataAwsInternetGateway(
+    super.localName, {
     TfArg<String>? internetGatewayId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

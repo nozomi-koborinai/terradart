@@ -52,8 +52,8 @@ final class DataprocGdcServiceInstanceSparkServiceInstanceConfig {
 final class GoogleDataprocGdcServiceInstance extends Resource {
   static const String tfType = 'google_dataproc_gdc_service_instance';
 
-  GoogleDataprocGdcServiceInstance({
-    required super.localName,
+  GoogleDataprocGdcServiceInstance(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> serviceInstanceId,
     DataprocGdcServiceInstanceGdceCluster? gdceCluster,

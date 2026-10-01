@@ -304,8 +304,8 @@ final class TpuV2VmShieldedInstanceConfig {
 final class GoogleTpuV2Vm extends Resource {
   static const String tfType = 'google_tpu_v2_vm';
 
-  GoogleTpuV2Vm({
-    required super.localName,
+  GoogleTpuV2Vm(
+    super.localName, {
     TpuV2VmAccelerator? accelerator,
     TfArg<String>? cidrBlock,
     TfArg<String>? deletionPolicy,

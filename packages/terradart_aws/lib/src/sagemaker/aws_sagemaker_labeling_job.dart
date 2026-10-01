@@ -338,8 +338,8 @@ final class SagemakerLabelingJobOutputConfig {
 final class AwsSagemakerLabelingJob extends Resource {
   static const String tfType = 'aws_sagemaker_labeling_job';
 
-  AwsSagemakerLabelingJob({
-    required super.localName,
+  AwsSagemakerLabelingJob(
+    super.localName, {
     required TfArg<String> labelAttributeName,
     TfArg<String>? labelCategoryConfigS3Uri,
     required TfArg<String> labelingJobName,

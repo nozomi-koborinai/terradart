@@ -23,8 +23,8 @@ enum DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
 final class AwsDynamodbKinesisStreamingDestination extends Resource {
   static const String tfType = 'aws_dynamodb_kinesis_streaming_destination';
 
-  AwsDynamodbKinesisStreamingDestination({
-    required super.localName,
+  AwsDynamodbKinesisStreamingDestination(
+    super.localName, {
     TfArg<
       DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
     >?

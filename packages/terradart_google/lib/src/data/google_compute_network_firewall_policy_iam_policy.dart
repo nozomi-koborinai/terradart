@@ -16,8 +16,8 @@ final class DataGoogleComputeNetworkFirewallPolicyIamPolicy extends Data {
   static const String tfType =
       'google_compute_network_firewall_policy_iam_policy';
 
-  DataGoogleComputeNetworkFirewallPolicyIamPolicy({
-    required super.localName,
+  DataGoogleComputeNetworkFirewallPolicyIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

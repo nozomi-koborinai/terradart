@@ -76,8 +76,8 @@ final class MoqRelayUpstreamsUpstreams {
 final class CloudflareMoqRelay extends Resource {
   static const String tfType = 'cloudflare_moq_relay';
 
-  CloudflareMoqRelay({
-    required super.localName,
+  CloudflareMoqRelay(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     MoqRelayConfig? config,

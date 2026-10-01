@@ -10,8 +10,8 @@ const Set<String> _awsLightsailLbAttachmentSensitive = <String>{};
 final class AwsLightsailLbAttachment extends Resource {
   static const String tfType = 'aws_lightsail_lb_attachment';
 
-  AwsLightsailLbAttachment({
-    required super.localName,
+  AwsLightsailLbAttachment(
+    super.localName, {
     required TfArg<String> instanceName,
     required TfArg<String> lbName,
     TfArg<String>? region,

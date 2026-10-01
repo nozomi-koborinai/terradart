@@ -14,8 +14,8 @@ const Set<String> _googleComputeTargetPoolSensitive = <String>{};
 final class GoogleComputeTargetPool extends Resource {
   static const String tfType = 'google_compute_target_pool';
 
-  GoogleComputeTargetPool({
-    required super.localName,
+  GoogleComputeTargetPool(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,

@@ -43,8 +43,8 @@ final class HealthcareFhirStoreIamMemberCondition {
 final class GoogleHealthcareFhirStoreIamMember extends Resource {
   static const String tfType = 'google_healthcare_fhir_store_iam_member';
 
-  GoogleHealthcareFhirStoreIamMember({
-    required super.localName,
+  GoogleHealthcareFhirStoreIamMember(
+    super.localName, {
     required RefTo<GoogleHealthcareFhirStore> fhirStore,
     required TfArg<String> role,
     required IamPrincipal member,

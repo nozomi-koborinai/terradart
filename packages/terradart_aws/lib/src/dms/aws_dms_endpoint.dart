@@ -825,8 +825,8 @@ enum DmsEndpointEncryptionMode implements TerraformEnum {
 final class AwsDmsEndpoint extends Resource {
   static const String tfType = 'aws_dms_endpoint';
 
-  AwsDmsEndpoint({
-    required super.localName,
+  AwsDmsEndpoint(
+    super.localName, {
     TfArg<String>? certificateArn,
     TfArg<String>? databaseName,
     required TfArg<String> endpointId,

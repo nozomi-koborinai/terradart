@@ -83,8 +83,8 @@ enum DataZeroTrustListFilterType implements TerraformEnum {
 final class DataCloudflareZeroTrustList extends Data {
   static const String tfType = 'cloudflare_zero_trust_list';
 
-  DataCloudflareZeroTrustList({
-    required super.localName,
+  DataCloudflareZeroTrustList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? listId,
     DataZeroTrustListFilter? filter,

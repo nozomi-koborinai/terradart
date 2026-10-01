@@ -1621,7 +1621,7 @@ final class ContainerNodePoolStandardRolloutPolicy {
 /// Example (node pool on an existing cluster):
 /// ```dart
 /// final pool = GoogleContainerNodePool(
-///   localName: 'primary',
+///   'primary',
 ///   name: TfArg.literal('primary-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   cluster: cluster.ref,
@@ -1631,8 +1631,8 @@ final class ContainerNodePoolStandardRolloutPolicy {
 final class GoogleContainerNodePool extends Resource {
   static const String tfType = 'google_container_node_pool';
 
-  GoogleContainerNodePool({
-    required super.localName,
+  GoogleContainerNodePool(
+    super.localName, {
     required RefTo<GoogleContainerCluster> cluster,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? ignoreNodeCountChanges,

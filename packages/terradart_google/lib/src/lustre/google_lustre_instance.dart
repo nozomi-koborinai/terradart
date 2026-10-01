@@ -245,8 +245,8 @@ final class LustreInstanceStartTime {
 final class GoogleLustreInstance extends Resource {
   static const String tfType = 'google_lustre_instance';
 
-  GoogleLustreInstance({
-    required super.localName,
+  GoogleLustreInstance(
+    super.localName, {
     required TfArg<String> instanceId,
     required TfArg<String> location,
     required TfArg<String> filesystem,

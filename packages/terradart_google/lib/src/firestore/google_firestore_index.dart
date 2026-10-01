@@ -272,7 +272,7 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
 /// Example (composite index on `messages`, ordered by user then time):
 /// ```dart
 /// final byUser = GoogleFirestoreIndex(
-///   localName: 'messages_by_user_time',
+///   'messages_by_user_time',
 ///   collection: TfArg.literal('messages'),
 ///   fields: [
 ///     FirestoreIndexField(
@@ -290,7 +290,7 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
 /// Example (array-contains index on `tags`):
 /// ```dart
 /// final byTag = GoogleFirestoreIndex(
-///   localName: 'messages_by_tag',
+///   'messages_by_tag',
 ///   collection: TfArg.literal('messages'),
 ///   fields: [
 ///     FirestoreIndexField(
@@ -308,8 +308,8 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
 final class GoogleFirestoreIndex extends Resource {
   static const String tfType = 'google_firestore_index';
 
-  GoogleFirestoreIndex({
-    required super.localName,
+  GoogleFirestoreIndex(
+    super.localName, {
     required TfArg<String> collection,
     required List<FirestoreIndexField> fields,
     RefTo<GoogleFirestoreDatabase>? database,

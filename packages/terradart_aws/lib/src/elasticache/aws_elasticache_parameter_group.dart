@@ -30,8 +30,8 @@ final class ElasticacheParameterGroupParameter {
 final class AwsElasticacheParameterGroup extends Resource {
   static const String tfType = 'aws_elasticache_parameter_group';
 
-  AwsElasticacheParameterGroup({
-    required super.localName,
+  AwsElasticacheParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     required TfArg<String> name,

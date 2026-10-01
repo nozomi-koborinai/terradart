@@ -311,8 +311,8 @@ final class DnsRecordSettings {
 final class CloudflareDnsRecord extends Resource {
   static const String tfType = 'cloudflare_dns_record';
 
-  CloudflareDnsRecord({
-    required super.localName,
+  CloudflareDnsRecord(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required TfArg<String> name,
     required TfArg<DnsRecordType> type,

@@ -39,8 +39,8 @@ final class BeyondcorpSecurityGatewayIamMemberCondition {
 final class GoogleBeyondcorpSecurityGatewayIamMember extends Resource {
   static const String tfType = 'google_beyondcorp_security_gateway_iam_member';
 
-  GoogleBeyondcorpSecurityGatewayIamMember({
-    required super.localName,
+  GoogleBeyondcorpSecurityGatewayIamMember(
+    super.localName, {
     required RefTo<GoogleBeyondcorpSecurityGateway> securityGateway,
     required TfArg<String> role,
     required IamPrincipal member,

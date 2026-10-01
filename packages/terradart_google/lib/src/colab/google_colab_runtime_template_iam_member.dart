@@ -42,8 +42,8 @@ final class ColabRuntimeTemplateIamMemberCondition {
 final class GoogleColabRuntimeTemplateIamMember extends Resource {
   static const String tfType = 'google_colab_runtime_template_iam_member';
 
-  GoogleColabRuntimeTemplateIamMember({
-    required super.localName,
+  GoogleColabRuntimeTemplateIamMember(
+    super.localName, {
     required RefTo<GoogleColabRuntimeTemplate> runtimeTemplate,
     required TfArg<String> role,
     required IamPrincipal member,

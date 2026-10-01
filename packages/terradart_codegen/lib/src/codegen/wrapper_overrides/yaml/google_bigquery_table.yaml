@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final events = GoogleBigqueryTable(
-  ///   localName: 'events',
+  ///   'events',
   ///   datasetId: dataset.ref,
   ///   tableId: TfArg.literal('events_v1'),
   ///   friendlyName: TfArg.literal('Click events'),

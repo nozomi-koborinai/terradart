@@ -110,8 +110,8 @@ enum OsisPipelineVpcEndpointManagement implements TerraformEnum {
 final class AwsOsisPipeline extends Resource {
   static const String tfType = 'aws_osis_pipeline';
 
-  AwsOsisPipeline({
-    required super.localName,
+  AwsOsisPipeline(
+    super.localName, {
     required TfArg<num> maxUnits,
     required TfArg<num> minUnits,
     required TfArg<String> pipelineConfigurationBody,

@@ -341,8 +341,8 @@ final class WorkerSubdomain {
 final class CloudflareWorker extends Resource {
   static const String tfType = 'cloudflare_worker';
 
-  CloudflareWorker({
-    required super.localName,
+  CloudflareWorker(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? force,
     TfArg<bool>? logpush,

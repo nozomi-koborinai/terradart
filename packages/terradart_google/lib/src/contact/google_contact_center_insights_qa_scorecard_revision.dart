@@ -21,8 +21,8 @@ final class GoogleContactCenterInsightsQaScorecardRevision extends Resource {
   static const String tfType =
       'google_contact_center_insights_qa_scorecard_revision';
 
-  GoogleContactCenterInsightsQaScorecardRevision({
-    required super.localName,
+  GoogleContactCenterInsightsQaScorecardRevision(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> qaScorecard,
     TfArg<String>? qaScorecardRevisionId,

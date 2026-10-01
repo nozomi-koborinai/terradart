@@ -24,8 +24,8 @@ enum Ec2InstanceConnectEndpointIpAddressType implements TerraformEnum {
 final class AwsEc2InstanceConnectEndpoint extends Resource {
   static const String tfType = 'aws_ec2_instance_connect_endpoint';
 
-  AwsEc2InstanceConnectEndpoint({
-    required super.localName,
+  AwsEc2InstanceConnectEndpoint(
+    super.localName, {
     TfArg<Ec2InstanceConnectEndpointIpAddressType>? ipAddressType,
     TfArg<bool>? preserveClientIp,
     TfArg<String>? region,

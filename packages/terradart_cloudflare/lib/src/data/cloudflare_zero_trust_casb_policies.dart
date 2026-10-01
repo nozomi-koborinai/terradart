@@ -15,8 +15,8 @@ const Set<String> _cloudflareZeroTrustCasbPoliciesSensitive = <String>{};
 final class DataCloudflareZeroTrustCasbPolicies extends Data {
   static const String tfType = 'cloudflare_zero_trust_casb_policies';
 
-  DataCloudflareZeroTrustCasbPolicies({
-    required super.localName,
+  DataCloudflareZeroTrustCasbPolicies(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

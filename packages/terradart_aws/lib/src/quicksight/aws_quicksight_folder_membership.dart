@@ -23,8 +23,8 @@ enum QuicksightFolderMembershipMemberType implements TerraformEnum {
 final class AwsQuicksightFolderMembership extends Resource {
   static const String tfType = 'aws_quicksight_folder_membership';
 
-  AwsQuicksightFolderMembership({
-    required super.localName,
+  AwsQuicksightFolderMembership(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> folderId,
     required TfArg<String> memberId,

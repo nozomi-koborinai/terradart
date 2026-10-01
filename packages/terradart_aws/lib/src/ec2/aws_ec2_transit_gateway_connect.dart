@@ -19,8 +19,8 @@ enum Ec2TransitGatewayConnectProtocol implements TerraformEnum {
 final class AwsEc2TransitGatewayConnect extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_connect';
 
-  AwsEc2TransitGatewayConnect({
-    required super.localName,
+  AwsEc2TransitGatewayConnect(
+    super.localName, {
     TfArg<Ec2TransitGatewayConnectProtocol>? protocol,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

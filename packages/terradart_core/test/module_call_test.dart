@@ -23,13 +23,13 @@ void main() {
 
   group('ModuleCall', () {
     test('addresses itself as module.<localName>', () {
-      final call = ModuleCall(localName: 'sa_bff', source: './modules/sa');
+      final call = ModuleCall('sa_bff', source: './modules/sa');
       expect(call.tfAddress, equals('module.sa_bff'));
       expect(call.toString(), contains('sa_bff'));
     });
 
     test('output() is a TfRef to module.<name>.<output>', () {
-      final call = ModuleCall(localName: 'sa_bff', source: './modules/sa');
+      final call = ModuleCall('sa_bff', source: './modules/sa');
       final ref = call.output<String>('member');
       expect(ref.bareAddress, equals('module.sa_bff.member'));
       expect(ref.interpolation, equals(r'${module.sa_bff.member}'));
@@ -40,7 +40,7 @@ void main() {
         'account_id': const TfArgLiteral<String>('a'),
       };
       final call = ModuleCall(
-        localName: 'sa',
+        'sa',
         source: './m',
         inputs: inputs,
         providers: const {'google': 'google.eu'},
@@ -52,20 +52,17 @@ void main() {
 
     test('an empty localName or source is refused', () {
       expect(
-        () => ModuleCall(localName: '  ', source: './m'),
+        () => ModuleCall('  ', source: './m'),
         throwsA(isA<ArgumentError>()),
       );
-      expect(
-        () => ModuleCall(localName: 'm', source: ''),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => ModuleCall('m', source: ''), throwsA(isA<ArgumentError>()));
     });
 
     test('an input named like a meta-argument is refused', () {
       for (final name in ModuleCall.reservedInputNames) {
         expect(
           () => ModuleCall(
-            localName: 'm',
+            'm',
             source: './m',
             inputs: {name: const TfArgLiteral<String>('x')},
           ),
@@ -79,17 +76,17 @@ void main() {
   group('Stack.addModule', () {
     test('registers in order and returns the same instance', () {
       final stack = TestStack(providers: const [google]);
-      final a = stack.addModule(ModuleCall(localName: 'a', source: './a'));
-      final b = stack.addModule(ModuleCall(localName: 'b', source: './b'));
+      final a = stack.addModule(ModuleCall('a', source: './a'));
+      final b = stack.addModule(ModuleCall('b', source: './b'));
       expect(stack.modules, equals([a, b]));
       expect(identical(stack.modules.first, a), isTrue);
     });
 
     test('a repeated local name throws DuplicateModuleError', () {
       final stack = TestStack(providers: const [google])
-        ..addModule(ModuleCall(localName: 'a', source: './a'));
+        ..addModule(ModuleCall('a', source: './a'));
       expect(
-        () => stack.addModule(ModuleCall(localName: 'a', source: './other')),
+        () => stack.addModule(ModuleCall('a', source: './other')),
         throwsA(isA<DuplicateModuleError>()),
       );
     });
@@ -104,7 +101,7 @@ void main() {
       final stack = TestStack(providers: const [google])
         ..addModule(
           ModuleCall(
-            localName: 'network',
+            'network',
             source: 'terraform-google-modules/network/google',
             version: '~> 9.0',
             inputs: const {
@@ -129,7 +126,7 @@ void main() {
 
     test('refs, variables and expressions travel as interpolations', () {
       final topic = FakePubsubTopic(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders')},
       );
       final stack = TestStack(providers: const [google])
@@ -138,7 +135,7 @@ void main() {
         ..addExternalVariable('region')
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             inputs: {
               'topic': TfRef.attribute<String>(topic, 'id'),
@@ -160,14 +157,14 @@ void main() {
 
     test('meta-arguments follow the inputs', () {
       final topic = FakePubsubTopic(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders')},
       );
       final stack = TestStack(providers: const [google, googleEu])
         ..add(topic)
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             providers: const {'google': 'google.eu'},
             count: const TfArgLiteral<num>(2),
@@ -193,7 +190,7 @@ void main() {
       final stack = TestStack(providers: const [google])
         ..addModule(
           ModuleCall(
-            localName: 'm',
+            'm',
             source: './m',
             inputs: const {'provider': TfArgLiteral<String>('x')},
           ),
@@ -208,7 +205,7 @@ void main() {
       final stack = TestStack(providers: const [google])
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             forEach: TfArg.expression<Object?>(r'${toset(["a", "b"])}'),
           ),
@@ -226,12 +223,12 @@ void main() {
   group('synth', () {
     test('the module group sits between data and moved', () {
       final topic = FakePubsubTopic(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders')},
       );
       final stack = TestStack(providers: const [google])
         ..add(topic)
-        ..addModule(ModuleCall(localName: 'events', source: './modules/events'))
+        ..addModule(ModuleCall('events', source: './modules/events'))
         ..addMoved('google_pubsub_topic.legacy', 'google_pubsub_topic.orders');
       expect(
         stack.synth().tfJson.keys.toList(),
@@ -243,7 +240,7 @@ void main() {
       final stack = TestStack(providers: const [google])
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             providers: const {'google': 'google.eu'},
           ),
@@ -260,7 +257,7 @@ void main() {
       final stack = TestStack(providers: const [google])
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             inputs: {'env': TfArg.variable<String>('env')},
           ),
@@ -277,7 +274,7 @@ void main() {
       final stack = TestStack()
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             inputs: const {'env': TfArgLiteral<String>('dev')},
           ),
@@ -298,13 +295,11 @@ void main() {
       final stack = TestStack()
         ..add(
           FakePubsubTopic(
-            localName: 'orders',
+            'orders',
             argMap: const {'name': TfArgLiteral<String>('orders')},
           ),
         )
-        ..addModule(
-          ModuleCall(localName: 'events', source: './modules/events'),
-        );
+        ..addModule(ModuleCall('events', source: './modules/events'));
       expect(() => stack.synth(), throwsSynthIssue<NoProviders>());
     });
 
@@ -313,7 +308,7 @@ void main() {
         ..addVariable('env', const TfVariable(type: 'string'))
         ..addModule(
           ModuleCall(
-            localName: 'events',
+            'events',
             source: './modules/events',
             inputs: {'env': TfArg.variable<String>('env')},
           ),

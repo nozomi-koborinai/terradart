@@ -26,8 +26,8 @@ enum EmailSecurityDomainFolder implements TerraformEnum {
 final class CloudflareEmailSecurityDomain extends Resource {
   static const String tfType = 'cloudflare_email_security_domain';
 
-  CloudflareEmailSecurityDomain({
-    required super.localName,
+  CloudflareEmailSecurityDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> domain,
     required TfArg<List<String>> allowedDeliveryModes,

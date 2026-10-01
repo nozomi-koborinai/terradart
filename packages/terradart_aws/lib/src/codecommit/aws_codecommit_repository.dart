@@ -12,8 +12,8 @@ const Set<String> _awsCodecommitRepositorySensitive = <String>{};
 final class AwsCodecommitRepository extends Resource {
   static const String tfType = 'aws_codecommit_repository';
 
-  AwsCodecommitRepository({
-    required super.localName,
+  AwsCodecommitRepository(
+    super.localName, {
     TfArg<String>? defaultBranch,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,

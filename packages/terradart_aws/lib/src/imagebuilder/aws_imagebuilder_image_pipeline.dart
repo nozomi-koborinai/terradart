@@ -260,8 +260,8 @@ final class ImagebuilderImagePipelineParameter {
 final class AwsImagebuilderImagePipeline extends Resource {
   static const String tfType = 'aws_imagebuilder_image_pipeline';
 
-  AwsImagebuilderImagePipeline({
-    required super.localName,
+  AwsImagebuilderImagePipeline(
+    super.localName, {
     required ImagebuilderImagePipelineRecipeArn recipeArn,
     TfArg<String>? description,
     TfArg<String>? distributionConfigurationArn,

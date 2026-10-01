@@ -16,8 +16,8 @@ const Set<String> _appwriteMongoDatabasesSensitive = <String>{};
 final class DataAppwriteMongoDatabases extends Data {
   static const String tfType = 'appwrite_mongo_databases';
 
-  DataAppwriteMongoDatabases({
-    required super.localName,
+  DataAppwriteMongoDatabases(
+    super.localName, {
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
     super.provider,

@@ -15,8 +15,8 @@ const Set<String> _cloudflareCloudforceOneRequestsSensitive = <String>{};
 final class DataCloudflareCloudforceOneRequests extends Data {
   static const String tfType = 'cloudflare_cloudforce_one_requests';
 
-  DataCloudflareCloudforceOneRequests({
-    required super.localName,
+  DataCloudflareCloudforceOneRequests(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? completedAfter,
     TfArg<String>? completedBefore,

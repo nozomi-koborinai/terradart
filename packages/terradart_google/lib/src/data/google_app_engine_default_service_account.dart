@@ -14,8 +14,8 @@ const Set<String> _googleAppEngineDefaultServiceAccountSensitive = <String>{};
 final class DataGoogleAppEngineDefaultServiceAccount extends Data {
   static const String tfType = 'google_app_engine_default_service_account';
 
-  DataGoogleAppEngineDefaultServiceAccount({
-    required super.localName,
+  DataGoogleAppEngineDefaultServiceAccount(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

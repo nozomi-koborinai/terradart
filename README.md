@@ -49,10 +49,10 @@ final class OrdersStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'asia-northeast1')],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final orders = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders')));
-    final apiSa = add(GoogleServiceAccount(localName: 'api', accountId: .literal('orders-api')));
+    final orders = add(GooglePubsubTopic('orders', name: .literal('orders')));
+    final apiSa = add(GoogleServiceAccount('api', accountId: .literal('orders-api')));
     add(GooglePubsubTopicIamMember(
-      localName: 'api_publishes_orders',
+      'api_publishes_orders',
       topic: orders.ref, // only a GooglePubsubTopic fits here
       role: .literal('roles/pubsub.publisher'),
       member: apiSa.principal,
@@ -63,7 +63,7 @@ final class OrdersStack extends Stack {
     addOutput('orders_topic_id', orders.id);
 
     final api = add(GoogleCloudRunV2Service(
-      localName: 'api',
+      'api',
       name: .literal('orders-api'),
       location: .literal('asia-northeast1'),
       ingress: .literal(.all), // an enum, not a string
@@ -82,15 +82,15 @@ final class OrdersStack extends Stack {
     ));
 
     // Pub/Sub pushes as its own service account, which may invoke the API.
-    final pushSa = add(GoogleServiceAccount(localName: 'push', accountId: .literal('orders-push')));
+    final pushSa = add(GoogleServiceAccount('push', accountId: .literal('orders-push')));
     add(GoogleCloudRunV2ServiceIamMember(
-      localName: 'push_invokes_api',
+      'push_invokes_api',
       service: api.ref, // emits the service's name, location and project
       role: .literal('roles/run.invoker'),
       member: pushSa.principal,
     ));
     add(GooglePubsubSubscription(
-      localName: 'orders_push',
+      'orders_push',
       name: .literal('orders-push'),
       topic: orders.ref,
       // A sealed choice: push, BigQuery or Cloud Storage — exactly one.
@@ -171,12 +171,12 @@ import 'package:terradart_core/terradart_core.dart';
 final class EdgeStack extends Stack {
   EdgeStack({required String accountId}) : super(providers: [const CloudflareProvider()]) {
     final zone = add(CloudflareZone(
-      localName: 'main',
+      'main',
       name: .literal('example.com'),
       account: ZoneAccount(id: .literal(accountId)),
     ));
     add(CloudflareDnsRecord(
-      localName: 'api',
+      'api',
       zoneId: zone.ref,
       name: .literal('api.example.com'),
       type: .literal(.cname),

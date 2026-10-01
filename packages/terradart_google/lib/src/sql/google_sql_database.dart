@@ -30,7 +30,7 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final orders = GoogleSqlDatabase(
-///   localName: 'orders',
+///   'orders',
 ///   instance: primary.ref,
 ///   name: TfArg.literal('orders'),
 ///   charset: TfArg.literal('UTF8'),
@@ -39,8 +39,8 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 final class GoogleSqlDatabase extends Resource {
   static const String tfType = 'google_sql_database';
 
-  GoogleSqlDatabase({
-    required super.localName,
+  GoogleSqlDatabase(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? charset,

@@ -156,8 +156,8 @@ enum CognitoManagedLoginBrandingExtension implements TerraformEnum {
 final class AwsCognitoManagedLoginBranding extends Resource {
   static const String tfType = 'aws_cognito_managed_login_branding';
 
-  AwsCognitoManagedLoginBranding({
-    required super.localName,
+  AwsCognitoManagedLoginBranding(
+    super.localName, {
     required TfArg<String> clientId,
     TfArg<String>? region,
     required CognitoManagedLoginBrandingStyle style,

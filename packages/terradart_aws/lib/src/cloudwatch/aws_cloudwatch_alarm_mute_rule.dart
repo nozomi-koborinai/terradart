@@ -58,8 +58,8 @@ final class CloudwatchAlarmMuteRuleSchedule {
 final class AwsCloudwatchAlarmMuteRule extends Resource {
   static const String tfType = 'aws_cloudwatch_alarm_mute_rule';
 
-  AwsCloudwatchAlarmMuteRule({
-    required super.localName,
+  AwsCloudwatchAlarmMuteRule(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? expireDate,
     required TfArg<String> name,

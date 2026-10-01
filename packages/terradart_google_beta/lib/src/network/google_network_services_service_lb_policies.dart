@@ -99,8 +99,8 @@ enum NetworkServicesServiceLbPoliciesIsolationMode implements TerraformEnum {
 final class GoogleNetworkServicesServiceLbPolicies extends Resource {
   static const String tfType = 'google_network_services_service_lb_policies';
 
-  GoogleNetworkServicesServiceLbPolicies({
-    required super.localName,
+  GoogleNetworkServicesServiceLbPolicies(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareSecretsStoreSensitive = <String>{};
 final class CloudflareSecretsStore extends Resource {
   static const String tfType = 'cloudflare_secrets_store';
 
-  CloudflareSecretsStore({
-    required super.localName,
+  CloudflareSecretsStore(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? force,
     required TfArg<String> name,

@@ -10,8 +10,8 @@ const Set<String> _awsRoute53ResolverQueryLogConfigSensitive = <String>{};
 final class AwsRoute53ResolverQueryLogConfig extends Resource {
   static const String tfType = 'aws_route53_resolver_query_log_config';
 
-  AwsRoute53ResolverQueryLogConfig({
-    required super.localName,
+  AwsRoute53ResolverQueryLogConfig(
+    super.localName, {
     required TfArg<String> destinationArn,
     required TfArg<String> name,
     TfArg<String>? region,

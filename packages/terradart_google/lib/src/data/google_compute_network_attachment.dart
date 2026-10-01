@@ -14,8 +14,8 @@ const Set<String> _googleComputeNetworkAttachmentSensitive = <String>{};
 final class DataGoogleComputeNetworkAttachment extends Data {
   static const String tfType = 'google_compute_network_attachment';
 
-  DataGoogleComputeNetworkAttachment({
-    required super.localName,
+  DataGoogleComputeNetworkAttachment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> region,

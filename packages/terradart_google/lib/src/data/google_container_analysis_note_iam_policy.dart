@@ -14,8 +14,8 @@ const Set<String> _googleContainerAnalysisNoteIamPolicySensitive = <String>{};
 final class DataGoogleContainerAnalysisNoteIamPolicy extends Data {
   static const String tfType = 'google_container_analysis_note_iam_policy';
 
-  DataGoogleContainerAnalysisNoteIamPolicy({
-    required super.localName,
+  DataGoogleContainerAnalysisNoteIamPolicy(
+    super.localName, {
     required TfArg<String> note,
     TfArg<String>? project,
     super.provider,

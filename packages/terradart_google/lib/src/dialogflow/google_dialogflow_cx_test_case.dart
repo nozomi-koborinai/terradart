@@ -260,8 +260,8 @@ final class DialogflowCxTestCaseStartPage extends DialogflowCxTestCaseStart {
 final class GoogleDialogflowCxTestCase extends Resource {
   static const String tfType = 'google_dialogflow_cx_test_case';
 
-  GoogleDialogflowCxTestCase({
-    required super.localName,
+  GoogleDialogflowCxTestCase(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? notes,

@@ -11,8 +11,8 @@ const Set<String> _awsVpclatticeAuthPolicySensitive = <String>{};
 final class DataAwsVpclatticeAuthPolicy extends Data {
   static const String tfType = 'aws_vpclattice_auth_policy';
 
-  DataAwsVpclatticeAuthPolicy({
-    required super.localName,
+  DataAwsVpclatticeAuthPolicy(
+    super.localName, {
     TfArg<String>? policy,
     TfArg<String>? region,
     required TfArg<String> resourceIdentifier,

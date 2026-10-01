@@ -23,8 +23,8 @@ enum SesIdentityNotificationTopicNotificationType implements TerraformEnum {
 final class AwsSesIdentityNotificationTopic extends Resource {
   static const String tfType = 'aws_ses_identity_notification_topic';
 
-  AwsSesIdentityNotificationTopic({
-    required super.localName,
+  AwsSesIdentityNotificationTopic(
+    super.localName, {
     required TfArg<String> identity,
     TfArg<bool>? includeOriginalHeaders,
     required TfArg<SesIdentityNotificationTopicNotificationType>

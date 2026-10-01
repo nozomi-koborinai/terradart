@@ -20,8 +20,8 @@ enum IamOrganizationsFeaturesEnabledFeatures implements TerraformEnum {
 final class AwsIamOrganizationsFeatures extends Resource {
   static const String tfType = 'aws_iam_organizations_features';
 
-  AwsIamOrganizationsFeatures({
-    required super.localName,
+  AwsIamOrganizationsFeatures(
+    super.localName, {
     required List<TfArg<IamOrganizationsFeaturesEnabledFeatures>>
     enabledFeatures,
     super.lifecycle,

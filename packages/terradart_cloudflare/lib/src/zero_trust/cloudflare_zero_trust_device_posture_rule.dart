@@ -438,8 +438,8 @@ enum ZeroTrustDevicePostureRulePlatform implements TerraformEnum {
 final class CloudflareZeroTrustDevicePostureRule extends Resource {
   static const String tfType = 'cloudflare_zero_trust_device_posture_rule';
 
-  CloudflareZeroTrustDevicePostureRule({
-    required super.localName,
+  CloudflareZeroTrustDevicePostureRule(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     TfArg<String>? expiration,

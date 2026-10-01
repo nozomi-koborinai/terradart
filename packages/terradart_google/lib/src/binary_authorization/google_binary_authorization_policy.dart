@@ -105,7 +105,7 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
 /// Example:
 /// ```dart
 /// GoogleBinaryAuthorizationPolicy(
-///   localName: 'project_policy',
+///   'project_policy',
 ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
 ///     evaluationMode: TfArg.literal(
 ///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
@@ -119,8 +119,8 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
 final class GoogleBinaryAuthorizationPolicy extends Resource {
   static const String tfType = 'google_binary_authorization_policy';
 
-  GoogleBinaryAuthorizationPolicy({
-    required super.localName,
+  GoogleBinaryAuthorizationPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? globalPolicyEvaluationMode,

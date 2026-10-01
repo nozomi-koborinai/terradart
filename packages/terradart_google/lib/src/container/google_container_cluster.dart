@@ -3529,7 +3529,7 @@ final class ContainerClusterWorkloadIdentityConfig {
 /// Example (GKE Standard on an existing VPC / subnetwork):
 /// ```dart
 /// final cluster = GoogleContainerCluster(
-///   localName: 'main',
+///   'main',
 ///   name: TfArg.literal('main-gke'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   initialNodeCount: TfArg.literal(1),
@@ -3544,8 +3544,8 @@ final class ContainerClusterWorkloadIdentityConfig {
 final class GoogleContainerCluster extends Resource {
   static const String tfType = 'google_container_cluster';
 
-  GoogleContainerCluster({
-    required super.localName,
+  GoogleContainerCluster(
+    super.localName, {
     TfArg<bool>? allowNetAdmin,
     TfArg<List<String>>? autopilotPrivilegedAdmission,
     TfArg<String>? clusterIpv4Cidr,

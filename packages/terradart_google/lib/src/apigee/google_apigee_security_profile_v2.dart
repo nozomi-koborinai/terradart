@@ -51,8 +51,8 @@ enum ApigeeSecurityProfileV2Weight implements TerraformEnum {
 final class GoogleApigeeSecurityProfileV2 extends Resource {
   static const String tfType = 'google_apigee_security_profile_v2';
 
-  GoogleApigeeSecurityProfileV2({
-    required super.localName,
+  GoogleApigeeSecurityProfileV2(
+    super.localName, {
     required TfArg<String> profileId,
     required TfArg<String> orgId,
     TfArg<String>? description,

@@ -10,8 +10,8 @@ const Set<String> _awsDataexchangeRevisionSensitive = <String>{};
 final class AwsDataexchangeRevision extends Resource {
   static const String tfType = 'aws_dataexchange_revision';
 
-  AwsDataexchangeRevision({
-    required super.localName,
+  AwsDataexchangeRevision(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> dataSetId,
     TfArg<String>? region,

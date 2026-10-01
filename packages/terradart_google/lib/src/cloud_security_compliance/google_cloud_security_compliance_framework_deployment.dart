@@ -368,8 +368,8 @@ final class GoogleCloudSecurityComplianceFrameworkDeployment extends Resource {
   static const String tfType =
       'google_cloud_security_compliance_framework_deployment';
 
-  GoogleCloudSecurityComplianceFrameworkDeployment({
-    required super.localName,
+  GoogleCloudSecurityComplianceFrameworkDeployment(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> frameworkDeploymentId,

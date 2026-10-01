@@ -23,8 +23,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyAssociation
   static const String tfType =
       'google_compute_region_network_firewall_policy_association';
 
-  GoogleComputeRegionNetworkFirewallPolicyAssociation({
-    required super.localName,
+  GoogleComputeRegionNetworkFirewallPolicyAssociation(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRegionNetworkFirewallPolicy> firewallPolicy,
     required RefTo<GoogleComputeNetwork> attachmentTarget,

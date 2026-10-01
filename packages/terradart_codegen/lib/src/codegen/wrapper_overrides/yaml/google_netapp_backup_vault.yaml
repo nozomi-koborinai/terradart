@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetappBackupVault(
-  ///   localName: 'vault',
+  ///   'vault',
   ///   name: TfArg.literal('terradart-vault'),
   ///   location: TfArg.literal('us-central1'),
   /// );

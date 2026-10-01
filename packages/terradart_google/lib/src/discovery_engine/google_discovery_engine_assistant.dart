@@ -123,8 +123,8 @@ final class DiscoveryEngineAssistantSystemInstruction {
 final class GoogleDiscoveryEngineAssistant extends Resource {
   static const String tfType = 'google_discovery_engine_assistant';
 
-  GoogleDiscoveryEngineAssistant({
-    required super.localName,
+  GoogleDiscoveryEngineAssistant(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> collectionId,
     required TfArg<String> engineId,

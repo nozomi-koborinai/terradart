@@ -10,8 +10,8 @@ const Set<String> _awsLoadBalancerBackendServerPolicySensitive = <String>{};
 final class AwsLoadBalancerBackendServerPolicy extends Resource {
   static const String tfType = 'aws_load_balancer_backend_server_policy';
 
-  AwsLoadBalancerBackendServerPolicy({
-    required super.localName,
+  AwsLoadBalancerBackendServerPolicy(
+    super.localName, {
     required TfArg<num> instancePort,
     required TfArg<String> loadBalancerName,
     TfArg<List<String>>? policyNames,

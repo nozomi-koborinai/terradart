@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiRagEngineConfig(
-  ///   localName: 'rag',
+  ///   'rag',
   ///   region: TfArg.literal('us-central1'),
   ///   ragManagedDbConfig: const .basic(
   ///     .new(),

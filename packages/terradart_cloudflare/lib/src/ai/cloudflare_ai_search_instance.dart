@@ -469,8 +469,8 @@ final class AiSearchInstanceContentSelector {
 final class CloudflareAiSearchInstance extends Resource {
   static const String tfType = 'cloudflare_ai_search_instance';
 
-  CloudflareAiSearchInstance({
-    required super.localName,
+  CloudflareAiSearchInstance(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? aiGatewayId,
     TfArg<String>? aisearchModel,

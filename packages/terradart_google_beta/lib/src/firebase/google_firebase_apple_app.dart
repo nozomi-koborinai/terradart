@@ -12,8 +12,8 @@ const Set<String> _googleFirebaseAppleAppSensitive = <String>{};
 final class GoogleFirebaseAppleApp extends Resource {
   static const String tfType = 'google_firebase_apple_app';
 
-  GoogleFirebaseAppleApp({
-    required super.localName,
+  GoogleFirebaseAppleApp(
+    super.localName, {
     TfArg<String>? apiKeyId,
     TfArg<String>? appStoreId,
     required TfArg<String> bundleId,

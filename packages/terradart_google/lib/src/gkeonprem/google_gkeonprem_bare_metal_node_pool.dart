@@ -115,8 +115,8 @@ enum GkeonpremBareMetalNodePoolEffect implements TerraformEnum {
 final class GoogleGkeonpremBareMetalNodePool extends Resource {
   static const String tfType = 'google_gkeonprem_bare_metal_node_pool';
 
-  GoogleGkeonpremBareMetalNodePool({
-    required super.localName,
+  GoogleGkeonpremBareMetalNodePool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleGkeonpremBareMetalCluster> bareMetalCluster,

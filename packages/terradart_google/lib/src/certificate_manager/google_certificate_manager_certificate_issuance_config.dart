@@ -71,7 +71,7 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfi
 /// Example:
 /// ```dart
 /// GoogleCertificateManagerCertificateIssuanceConfig(
-///   localName: 'app_issuance',
+///   'app_issuance',
 ///   name: TfArg.literal('app-issuance'),
 ///   certificateAuthorityConfig:
 ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
@@ -90,8 +90,8 @@ final class GoogleCertificateManagerCertificateIssuanceConfig extends Resource {
   static const String tfType =
       'google_certificate_manager_certificate_issuance_config';
 
-  GoogleCertificateManagerCertificateIssuanceConfig({
-    required super.localName,
+  GoogleCertificateManagerCertificateIssuanceConfig(
+    super.localName, {
     required TfArg<String> name,
     required CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig
     certificateAuthorityConfig,

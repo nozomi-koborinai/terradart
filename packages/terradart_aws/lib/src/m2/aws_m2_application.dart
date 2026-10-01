@@ -70,8 +70,8 @@ final class M2ApplicationDefinitionS3Location extends M2ApplicationDefinition {
 final class AwsM2Application extends Resource {
   static const String tfType = 'aws_m2_application';
 
-  AwsM2Application({
-    required super.localName,
+  AwsM2Application(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<M2ApplicationEngineType> engineType,
     RefTo<AwsKmsKey>? kmsKeyId,

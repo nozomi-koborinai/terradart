@@ -26,8 +26,8 @@ enum SchemaValidationSchemasKind implements TerraformEnum {
 final class CloudflareSchemaValidationSchemas extends Resource {
   static const String tfType = 'cloudflare_schema_validation_schemas';
 
-  CloudflareSchemaValidationSchemas({
-    required super.localName,
+  CloudflareSchemaValidationSchemas(
+    super.localName, {
     required TfArg<SchemaValidationSchemasKind> kind,
     required TfArg<String> name,
     TfArg<bool>? omitSource,

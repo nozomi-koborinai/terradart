@@ -29,7 +29,7 @@ final class ComputeVpnGatewayStack extends Stack {
 
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -37,7 +37,7 @@ final class ComputeVpnGatewayStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'vpn_vpc',
+        'vpn_vpc',
         name: .literal('terradart-vpn-gw-vpc'),
         autoCreateSubnetworks: .literal(false),
         dependsOn: [apiCompute],
@@ -46,7 +46,7 @@ final class ComputeVpnGatewayStack extends Stack {
 
     add(
       GoogleComputeVpnGateway(
-        localName: 'classic',
+        'classic',
         name: .literal('terradart-classic-vpn-gw'),
         network: vpc.ref,
         region: .literal(region),
@@ -57,7 +57,7 @@ final class ComputeVpnGatewayStack extends Stack {
 
     add(
       GoogleComputeHaVpnGateway(
-        localName: 'ha',
+        'ha',
         name: .literal('terradart-ha-vpn-gw'),
         network: vpc.ref,
         region: .literal(region),
@@ -69,7 +69,7 @@ final class ComputeVpnGatewayStack extends Stack {
 
     add(
       GoogleComputeExternalVpnGateway(
-        localName: 'peer',
+        'peer',
         name: .literal('terradart-external-vpn-gw'),
         description: .literal('External peer gateway shell (TEST-NET-3)'),
         redundancyType: .literal(.singleIpInternallyRedundant),

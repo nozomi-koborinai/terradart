@@ -14,8 +14,8 @@ const Set<String> _googleComputeFirewallPolicyIamPolicySensitive = <String>{};
 final class DataGoogleComputeFirewallPolicyIamPolicy extends Data {
   static const String tfType = 'google_compute_firewall_policy_iam_policy';
 
-  DataGoogleComputeFirewallPolicyIamPolicy({
-    required super.localName,
+  DataGoogleComputeFirewallPolicyIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

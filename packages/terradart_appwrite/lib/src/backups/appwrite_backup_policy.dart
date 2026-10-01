@@ -14,8 +14,8 @@ const Set<String> _appwriteBackupPolicySensitive = <String>{};
 final class AppwriteBackupPolicy extends Resource {
   static const String tfType = 'appwrite_backup_policy';
 
-  AppwriteBackupPolicy({
-    required super.localName,
+  AppwriteBackupPolicy(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<String>? name,
     RefTo<AppwriteProject>? projectId,

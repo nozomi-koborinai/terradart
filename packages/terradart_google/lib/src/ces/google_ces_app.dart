@@ -766,7 +766,7 @@ final class CesAppVpcScSettings {
 /// Example:
 /// ```dart
 /// GoogleCesApp(
-///   localName: 'app',
+///   'app',
 ///   location: TfArg.literal('us'),
 ///   appId: TfArg.literal('terradart-ces'),
 ///   displayName: TfArg.literal('terradart-ces'),
@@ -776,8 +776,8 @@ final class CesAppVpcScSettings {
 final class GoogleCesApp extends Resource {
   static const String tfType = 'google_ces_app';
 
-  GoogleCesApp({
-    required super.localName,
+  GoogleCesApp(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> appId,
     required TfArg<String> displayName,

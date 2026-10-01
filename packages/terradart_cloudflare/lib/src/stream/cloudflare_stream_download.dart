@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamDownloadSensitive = <String>{};
 final class CloudflareStreamDownload extends Resource {
   static const String tfType = 'cloudflare_stream_download';
 
-  CloudflareStreamDownload({
-    required super.localName,
+  CloudflareStreamDownload(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
     super.lifecycle,

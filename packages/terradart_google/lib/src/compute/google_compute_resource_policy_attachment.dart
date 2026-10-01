@@ -26,8 +26,8 @@ const Set<String> _googleComputeResourcePolicyAttachmentSensitive = <String>{};
 final class GoogleComputeResourcePolicyAttachment extends Resource {
   static const String tfType = 'google_compute_resource_policy_attachment';
 
-  GoogleComputeResourcePolicyAttachment({
-    required super.localName,
+  GoogleComputeResourcePolicyAttachment(
+    super.localName, {
     required RefTo<GoogleComputeInstance> instance,
     required RefTo<GoogleComputeResourcePolicy> name,
     TfArg<String>? zone,

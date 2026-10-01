@@ -20,8 +20,8 @@ enum CloudwatchContributorInsightRuleState implements TerraformEnum {
 final class AwsCloudwatchContributorInsightRule extends Resource {
   static const String tfType = 'aws_cloudwatch_contributor_insight_rule';
 
-  AwsCloudwatchContributorInsightRule({
-    required super.localName,
+  AwsCloudwatchContributorInsightRule(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> ruleDefinition,
     required TfArg<String> ruleName,

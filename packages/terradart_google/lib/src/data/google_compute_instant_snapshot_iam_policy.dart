@@ -14,8 +14,8 @@ const Set<String> _googleComputeInstantSnapshotIamPolicySensitive = <String>{};
 final class DataGoogleComputeInstantSnapshotIamPolicy extends Data {
   static const String tfType = 'google_compute_instant_snapshot_iam_policy';
 
-  DataGoogleComputeInstantSnapshotIamPolicy({
-    required super.localName,
+  DataGoogleComputeInstantSnapshotIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? zone,

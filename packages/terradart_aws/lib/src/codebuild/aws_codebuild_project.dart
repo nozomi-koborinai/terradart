@@ -834,8 +834,8 @@ final class CodebuildProjectVpcConfig {
 final class AwsCodebuildProject extends Resource {
   static const String tfType = 'aws_codebuild_project';
 
-  AwsCodebuildProject({
-    required super.localName,
+  AwsCodebuildProject(
+    super.localName, {
     TfArg<num>? autoRetryLimit,
     TfArg<bool>? badgeEnabled,
     TfArg<num>? buildTimeout,

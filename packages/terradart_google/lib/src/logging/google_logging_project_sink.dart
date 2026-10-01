@@ -48,7 +48,7 @@ class LoggingProjectSinkLogSinkExclusion {
 /// Example:
 /// ```dart
 /// final sink = GoogleLoggingProjectSink(
-///   localName: 'audit_to_bq',
+///   'audit_to_bq',
 ///   name: TfArg.literal('audit-to-bq'),
 ///   destination: TfArg.literal(
 ///     'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs',
@@ -60,8 +60,8 @@ class LoggingProjectSinkLogSinkExclusion {
 final class GoogleLoggingProjectSink extends Resource {
   static const String tfType = 'google_logging_project_sink';
 
-  GoogleLoggingProjectSink({
-    required super.localName,
+  GoogleLoggingProjectSink(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> destination,
     TfArg<String>? filter,

@@ -13,8 +13,8 @@ final class AwsServicecatalogappregistryAttributeGroupAssociation
   static const String tfType =
       'aws_servicecatalogappregistry_attribute_group_association';
 
-  AwsServicecatalogappregistryAttributeGroupAssociation({
-    required super.localName,
+  AwsServicecatalogappregistryAttributeGroupAssociation(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> attributeGroupId,
     TfArg<String>? region,

@@ -40,8 +40,8 @@ final class DatasyncLocationEfsEc2Config {
 final class AwsDatasyncLocationEfs extends Resource {
   static const String tfType = 'aws_datasync_location_efs';
 
-  AwsDatasyncLocationEfs({
-    required super.localName,
+  AwsDatasyncLocationEfs(
+    super.localName, {
     TfArg<String>? accessPointArn,
     required TfArg<String> efsFileSystemArn,
     TfArg<String>? fileSystemAccessRoleArn,

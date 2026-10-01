@@ -10,8 +10,8 @@ const Set<String> _awsApprunnerDeploymentSensitive = <String>{};
 final class AwsApprunnerDeployment extends Resource {
   static const String tfType = 'aws_apprunner_deployment';
 
-  AwsApprunnerDeployment({
-    required super.localName,
+  AwsApprunnerDeployment(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceArn,
     super.lifecycle,

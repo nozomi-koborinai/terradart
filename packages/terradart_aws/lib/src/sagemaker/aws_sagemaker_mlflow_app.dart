@@ -32,8 +32,8 @@ enum SagemakerMlflowAppModelRegistrationMode implements TerraformEnum {
 final class AwsSagemakerMlflowApp extends Resource {
   static const String tfType = 'aws_sagemaker_mlflow_app';
 
-  AwsSagemakerMlflowApp({
-    required super.localName,
+  AwsSagemakerMlflowApp(
+    super.localName, {
     TfArg<SagemakerMlflowAppAccountDefaultStatus>? accountDefaultStatus,
     required TfArg<String> artifactStoreUri,
     TfArg<List<String>>? defaultDomainIdList,

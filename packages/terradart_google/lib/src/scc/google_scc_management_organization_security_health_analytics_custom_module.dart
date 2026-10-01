@@ -202,8 +202,8 @@ final class GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule
   static const String tfType =
       'google_scc_management_organization_security_health_analytics_custom_module';
 
-  GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule({
-    required super.localName,
+  GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
     TfArg<

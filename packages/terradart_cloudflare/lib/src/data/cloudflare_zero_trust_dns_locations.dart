@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDnsLocationsSensitive = <String>{};
 final class DataCloudflareZeroTrustDnsLocations extends Data {
   static const String tfType = 'cloudflare_zero_trust_dns_locations';
 
-  DataCloudflareZeroTrustDnsLocations({
-    required super.localName,
+  DataCloudflareZeroTrustDnsLocations(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<List<String>>? filter,

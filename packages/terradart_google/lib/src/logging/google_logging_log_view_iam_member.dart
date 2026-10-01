@@ -37,8 +37,8 @@ final class LoggingLogViewIamMemberCondition {
 final class GoogleLoggingLogViewIamMember extends Resource {
   static const String tfType = 'google_logging_log_view_iam_member';
 
-  GoogleLoggingLogViewIamMember({
-    required super.localName,
+  GoogleLoggingLogViewIamMember(
+    super.localName, {
     TfArg<String>? bucket,
     TfArg<String>? location,
     required RefTo<GoogleLoggingLogView> logView,

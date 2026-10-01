@@ -48,7 +48,7 @@ Terraform schemas often have fields that accept one of a small, fixed set of str
 
 ```dart
 add(GoogleCloudRunV2Service(
-  localName: 'api',
+  'api',
   name: .literal('api'),
   location: .literal('us-central1'),
   ingress: .literal(.all), // .al → compile error
@@ -63,10 +63,10 @@ add(GoogleCloudRunV2Service(
 Some Terraform blocks accept exactly one variant from a set — for instance, a BigQuery dataset's `access` block has 8 mutually exclusive variants (`user_by_email`, `group_by_email`, `special_group`, `domain`, `iam_member`, `view`, `dataset`, `routine`). TerraDart emits these as a sealed class hierarchy:
 
 ```dart
-final reader = add(GoogleServiceAccount(localName: 'reader', accountId: .literal('reader')));
-final runSa = add(GoogleServiceAccount(localName: 'run', accountId: .literal('run')));
+final reader = add(GoogleServiceAccount('reader', accountId: .literal('reader')));
+final runSa = add(GoogleServiceAccount('run', accountId: .literal('run')));
 add(GoogleBigqueryDataset(
-  localName: 'events',
+  'events',
   datasetId: .literal('events'),
   access: [
     .userByEmail(userByEmail: reader.email, role: .literal('OWNER')),

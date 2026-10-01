@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayApiKeysSensitive = <String>{};
 final class DataAwsApiGatewayApiKeys extends Data {
   static const String tfType = 'aws_api_gateway_api_keys';
 
-  DataAwsApiGatewayApiKeys({
-    required super.localName,
+  DataAwsApiGatewayApiKeys(
+    super.localName, {
     TfArg<String>? customerId,
     TfArg<bool>? includeValues,
     TfArg<String>? region,

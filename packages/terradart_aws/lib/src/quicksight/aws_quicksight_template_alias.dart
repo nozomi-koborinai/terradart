@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightTemplateAliasSensitive = <String>{};
 final class AwsQuicksightTemplateAlias extends Resource {
   static const String tfType = 'aws_quicksight_template_alias';
 
-  AwsQuicksightTemplateAlias({
-    required super.localName,
+  AwsQuicksightTemplateAlias(
+    super.localName, {
     required TfArg<String> aliasName,
     TfArg<String>? awsAccountId,
     TfArg<String>? region,

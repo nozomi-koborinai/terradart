@@ -78,7 +78,7 @@ final class ArtifactRegistryRuleCondition {
 /// Example:
 /// ```dart
 /// GoogleArtifactRegistryRule(
-///   localName: 'deny_download',
+///   'deny_download',
 ///   repositoryId: .literal('terradart-docker'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   ruleId: TfArg.literal('deny-all-downloads'),
@@ -89,8 +89,8 @@ final class ArtifactRegistryRuleCondition {
 final class GoogleArtifactRegistryRule extends Resource {
   static const String tfType = 'google_artifact_registry_rule';
 
-  GoogleArtifactRegistryRule({
-    required super.localName,
+  GoogleArtifactRegistryRule(
+    super.localName, {
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     TfArg<String>? location,
     required TfArg<String> ruleId,

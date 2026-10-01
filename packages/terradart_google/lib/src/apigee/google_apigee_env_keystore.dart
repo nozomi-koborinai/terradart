@@ -20,8 +20,8 @@ const Set<String> _googleApigeeEnvKeystoreSensitive = <String>{};
 final class GoogleApigeeEnvKeystore extends Resource {
   static const String tfType = 'google_apigee_env_keystore';
 
-  GoogleApigeeEnvKeystore({
-    required super.localName,
+  GoogleApigeeEnvKeystore(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> envId,
     super.lifecycle,

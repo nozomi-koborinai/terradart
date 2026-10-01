@@ -14,8 +14,8 @@ const Set<String> _googleCloudRunV2JobIamPolicySensitive = <String>{};
 final class DataGoogleCloudRunV2JobIamPolicy extends Data {
   static const String tfType = 'google_cloud_run_v2_job_iam_policy';
 
-  DataGoogleCloudRunV2JobIamPolicy({
-    required super.localName,
+  DataGoogleCloudRunV2JobIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

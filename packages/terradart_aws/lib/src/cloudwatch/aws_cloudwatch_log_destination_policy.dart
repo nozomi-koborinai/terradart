@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchLogDestinationPolicySensitive = <String>{};
 final class AwsCloudwatchLogDestinationPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_destination_policy';
 
-  AwsCloudwatchLogDestinationPolicy({
-    required super.localName,
+  AwsCloudwatchLogDestinationPolicy(
+    super.localName, {
     required TfArg<String> accessPolicy,
     required TfArg<String> destinationName,
     TfArg<bool>? forceUpdate,

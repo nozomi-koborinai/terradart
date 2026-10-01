@@ -22,8 +22,8 @@ enum Ec2SubnetCidrReservationType implements TerraformEnum {
 final class AwsEc2SubnetCidrReservation extends Resource {
   static const String tfType = 'aws_ec2_subnet_cidr_reservation';
 
-  AwsEc2SubnetCidrReservation({
-    required super.localName,
+  AwsEc2SubnetCidrReservation(
+    super.localName, {
     required TfArg<String> cidrBlock,
     TfArg<String>? description,
     TfArg<String>? region,

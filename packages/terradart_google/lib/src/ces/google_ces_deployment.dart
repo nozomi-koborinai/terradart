@@ -377,7 +377,7 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 /// Example:
 /// ```dart
 /// GoogleCesDeployment(
-///   localName: 'api',
+///   'api',
 ///   app: app.ref,
 ///   appVersion: version.ref,
 ///   displayName: TfArg.literal('terradart-ces-deploy'),
@@ -390,8 +390,8 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 final class GoogleCesDeployment extends Resource {
   static const String tfType = 'google_ces_deployment';
 
-  GoogleCesDeployment({
-    required super.localName,
+  GoogleCesDeployment(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required RefTo<GoogleCesAppVersion> appVersion,

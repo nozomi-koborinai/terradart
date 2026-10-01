@@ -12,8 +12,8 @@ const Set<String> _awsEc2ClientVpnNetworkAssociationSensitive = <String>{};
 final class AwsEc2ClientVpnNetworkAssociation extends Resource {
   static const String tfType = 'aws_ec2_client_vpn_network_association';
 
-  AwsEc2ClientVpnNetworkAssociation({
-    required super.localName,
+  AwsEc2ClientVpnNetworkAssociation(
+    super.localName, {
     required TfArg<String> clientVpnEndpointId,
     TfArg<String>? region,
     required RefTo<AwsSubnet> subnetId,

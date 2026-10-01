@@ -13,8 +13,8 @@ const Set<String> _googleComputeImagesSensitive = <String>{};
 final class DataGoogleComputeImages extends Data {
   static const String tfType = 'google_compute_images';
 
-  DataGoogleComputeImages({
-    required super.localName,
+  DataGoogleComputeImages(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     super.provider,

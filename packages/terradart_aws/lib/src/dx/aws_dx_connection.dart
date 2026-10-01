@@ -21,8 +21,8 @@ enum DxConnectionEncryptionMode implements TerraformEnum {
 final class AwsDxConnection extends Resource {
   static const String tfType = 'aws_dx_connection';
 
-  AwsDxConnection({
-    required super.localName,
+  AwsDxConnection(
+    super.localName, {
     required TfArg<String> bandwidth,
     TfArg<DxConnectionEncryptionMode>? encryptionMode,
     required TfArg<String> location,

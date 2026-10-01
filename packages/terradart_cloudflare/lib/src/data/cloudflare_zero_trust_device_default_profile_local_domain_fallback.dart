@@ -16,8 +16,8 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
   static const String tfType =
       'cloudflare_zero_trust_device_default_profile_local_domain_fallback';
 
-  DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

@@ -11,8 +11,8 @@ const Set<String> _awsWorkspacesWorkspaceSensitive = <String>{};
 final class DataAwsWorkspacesWorkspace extends Data {
   static const String tfType = 'aws_workspaces_workspace';
 
-  DataAwsWorkspacesWorkspace({
-    required super.localName,
+  DataAwsWorkspacesWorkspace(
+    super.localName, {
     TfArg<String>? directoryId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

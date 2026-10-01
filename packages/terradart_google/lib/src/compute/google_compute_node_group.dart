@@ -120,8 +120,8 @@ final class ComputeNodeGroupProjectMap {
 final class GoogleComputeNodeGroup extends Resource {
   static const String tfType = 'google_compute_node_group';
 
-  GoogleComputeNodeGroup({
-    required super.localName,
+  GoogleComputeNodeGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? zone,
     required RefTo<GoogleComputeNodeTemplate> nodeTemplate,

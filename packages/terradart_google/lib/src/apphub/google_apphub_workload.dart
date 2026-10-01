@@ -148,8 +148,8 @@ final class ApphubWorkloadOperatorOwners {
 final class GoogleApphubWorkload extends Resource {
   static const String tfType = 'google_apphub_workload';
 
-  GoogleApphubWorkload({
-    required super.localName,
+  GoogleApphubWorkload(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> applicationId,
     required TfArg<String> workloadId,

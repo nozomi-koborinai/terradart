@@ -16,8 +16,8 @@ const Set<String> _appwriteTablesdbIndexSensitive = <String>{};
 final class AppwriteTablesdbIndex extends Resource {
   static const String tfType = 'appwrite_tablesdb_index';
 
-  AppwriteTablesdbIndex({
-    required super.localName,
+  AppwriteTablesdbIndex(
+    super.localName, {
     required TfArg<List<String>> columns,
     required RefTo<AppwriteTablesdb> databaseId,
     TfArg<String>? key,

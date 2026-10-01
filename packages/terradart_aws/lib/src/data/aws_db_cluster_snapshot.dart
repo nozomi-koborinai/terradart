@@ -11,8 +11,8 @@ const Set<String> _awsDbClusterSnapshotSensitive = <String>{};
 final class DataAwsDbClusterSnapshot extends Data {
   static const String tfType = 'aws_db_cluster_snapshot';
 
-  DataAwsDbClusterSnapshot({
-    required super.localName,
+  DataAwsDbClusterSnapshot(
+    super.localName, {
     TfArg<String>? dbClusterIdentifier,
     TfArg<String>? dbClusterSnapshotIdentifier,
     TfArg<bool>? includePublic,

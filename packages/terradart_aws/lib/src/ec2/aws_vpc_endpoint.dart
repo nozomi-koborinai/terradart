@@ -201,8 +201,8 @@ final class VpcEndpointSubnetConfiguration {
 final class AwsVpcEndpoint extends Resource {
   static const String tfType = 'aws_vpc_endpoint';
 
-  AwsVpcEndpoint({
-    required super.localName,
+  AwsVpcEndpoint(
+    super.localName, {
     TfArg<bool>? autoAccept,
     TfArg<VpcEndpointIpAddressType>? ipAddressType,
     TfArg<String>? policy,

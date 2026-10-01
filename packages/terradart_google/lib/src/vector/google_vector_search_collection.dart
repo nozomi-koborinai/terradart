@@ -113,7 +113,7 @@ final class VectorSearchCollectionSparseVector {
 /// Example:
 /// ```dart
 /// GoogleVectorSearchCollection(
-///   localName: 'docs',
+///   'docs',
 ///   location: TfArg.literal('us-central1'),
 ///   collectionId: TfArg.literal('terradart-docs'),
 ///   displayName: TfArg.literal('Docs'),
@@ -133,8 +133,8 @@ final class VectorSearchCollectionSparseVector {
 final class GoogleVectorSearchCollection extends Resource {
   static const String tfType = 'google_vector_search_collection';
 
-  GoogleVectorSearchCollection({
-    required super.localName,
+  GoogleVectorSearchCollection(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> collectionId,
     TfArg<String>? displayName,

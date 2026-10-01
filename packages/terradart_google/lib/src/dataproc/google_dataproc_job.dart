@@ -361,8 +361,8 @@ final class DataprocJobSparksqlConfig {
 final class GoogleDataprocJob extends Resource {
   static const String tfType = 'google_dataproc_job';
 
-  GoogleDataprocJob({
-    required super.localName,
+  GoogleDataprocJob(
+    super.localName, {
     TfArg<String>? region,
     required DataprocJobPlacement placement,
     DataprocJobReference? reference,

@@ -1570,7 +1570,7 @@ final class ComputeRegionUrlMapTest {
 /// `us-central1`):
 /// ```dart
 /// final urlMap = GoogleComputeRegionUrlMap(
-///   localName: 'urlmap',
+///   'urlmap',
 ///   name: TfArg.literal('regionurlmap-prod'),
 ///   region: TfArg.literal('us-central1'),
 ///   defaultService: login.ref,
@@ -1625,8 +1625,8 @@ final class ComputeRegionUrlMapTest {
 final class GoogleComputeRegionUrlMap extends Resource {
   static const String tfType = 'google_compute_region_url_map';
 
-  GoogleComputeRegionUrlMap({
-    required super.localName,
+  GoogleComputeRegionUrlMap(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     RefTo<GoogleComputeRegionBackendService>? defaultService,

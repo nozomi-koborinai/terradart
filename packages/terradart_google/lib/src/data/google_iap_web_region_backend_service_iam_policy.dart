@@ -16,8 +16,8 @@ final class DataGoogleIapWebRegionBackendServiceIamPolicy extends Data {
   static const String tfType =
       'google_iap_web_region_backend_service_iam_policy';
 
-  DataGoogleIapWebRegionBackendServiceIamPolicy({
-    required super.localName,
+  DataGoogleIapWebRegionBackendServiceIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> webRegionBackendService,

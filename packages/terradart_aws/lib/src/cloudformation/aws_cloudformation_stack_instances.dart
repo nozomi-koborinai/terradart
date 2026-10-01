@@ -287,8 +287,8 @@ enum CloudformationStackInstancesRegionConcurrencyType
 final class AwsCloudformationStackInstances extends Resource {
   static const String tfType = 'aws_cloudformation_stack_instances';
 
-  AwsCloudformationStackInstances({
-    required super.localName,
+  AwsCloudformationStackInstances(
+    super.localName, {
     CloudformationStackInstancesTargets? targets,
     TfArg<CloudformationStackInstancesCallAs>? callAs,
     TfArg<Map<String, String>>? parameterOverrides,

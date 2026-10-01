@@ -91,7 +91,7 @@ final class DataLineageConfigLineageEnablement {
 /// Example:
 /// ```dart
 /// GoogleDataLineageConfig(
-///   localName: 'lineage',
+///   'lineage',
 ///   parent: TfArg.literal('projects/<project-id>'),
 ///   location: TfArg.literal('global'),
 ///   ingestion: DataLineageConfigIngestion(
@@ -113,8 +113,8 @@ final class DataLineageConfigLineageEnablement {
 final class GoogleDataLineageConfig extends Resource {
   static const String tfType = 'google_data_lineage_config';
 
-  GoogleDataLineageConfig({
-    required super.localName,
+  GoogleDataLineageConfig(
+    super.localName, {
     required TfArg<String> parent,
     required TfArg<String> location,
     required DataLineageConfigIngestion ingestion,

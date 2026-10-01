@@ -12,8 +12,8 @@ const Set<String> _awsSnsTopicSensitive = <String>{};
 final class AwsSnsTopic extends Resource {
   static const String tfType = 'aws_sns_topic';
 
-  AwsSnsTopic({
-    required super.localName,
+  AwsSnsTopic(
+    super.localName, {
     TfArg<String>? applicationFailureFeedbackRoleArn,
     TfArg<String>? applicationSuccessFeedbackRoleArn,
     TfArg<num>? applicationSuccessFeedbackSampleRate,

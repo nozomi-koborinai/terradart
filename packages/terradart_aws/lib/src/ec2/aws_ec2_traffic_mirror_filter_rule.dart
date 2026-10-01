@@ -66,8 +66,8 @@ final class Ec2TrafficMirrorFilterRuleSourcePortRange {
 final class AwsEc2TrafficMirrorFilterRule extends Resource {
   static const String tfType = 'aws_ec2_traffic_mirror_filter_rule';
 
-  AwsEc2TrafficMirrorFilterRule({
-    required super.localName,
+  AwsEc2TrafficMirrorFilterRule(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> destinationCidrBlock,
     TfArg<num>? protocol,

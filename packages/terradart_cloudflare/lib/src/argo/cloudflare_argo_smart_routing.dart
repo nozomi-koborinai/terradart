@@ -26,8 +26,8 @@ enum ArgoSmartRoutingValue implements TerraformEnum {
 final class CloudflareArgoSmartRouting extends Resource {
   static const String tfType = 'cloudflare_argo_smart_routing';
 
-  CloudflareArgoSmartRouting({
-    required super.localName,
+  CloudflareArgoSmartRouting(
+    super.localName, {
     required TfArg<ArgoSmartRoutingValue> value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

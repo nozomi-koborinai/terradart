@@ -11,8 +11,8 @@ const Set<String> _awsAgentregistryRegistrySensitive = <String>{};
 final class DataAwsAgentregistryRegistry extends Data {
   static const String tfType = 'aws_agentregistry_registry';
 
-  DataAwsAgentregistryRegistry({
-    required super.localName,
+  DataAwsAgentregistryRegistry(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> registryId,
     super.provider,

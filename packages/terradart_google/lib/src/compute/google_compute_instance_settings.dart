@@ -40,7 +40,7 @@ final class ComputeInstanceSettingsMetadata {
 /// Example:
 /// ```dart
 /// GoogleComputeInstanceSettings(
-///   localName: 'zonal',
+///   'zonal',
 ///   zone: TfArg.literal('us-central1-a'),
 ///   metadata: ComputeInstanceSettingsMetadata(
 ///     items: TfArg.literal({'terradart-smoke': '1'}),
@@ -50,8 +50,8 @@ final class ComputeInstanceSettingsMetadata {
 final class GoogleComputeInstanceSettings extends Resource {
   static const String tfType = 'google_compute_instance_settings';
 
-  GoogleComputeInstanceSettings({
-    required super.localName,
+  GoogleComputeInstanceSettings(
+    super.localName, {
     required TfArg<String> zone,
     ComputeInstanceSettingsMetadata? metadata,
     TfArg<String>? deletionPolicy,

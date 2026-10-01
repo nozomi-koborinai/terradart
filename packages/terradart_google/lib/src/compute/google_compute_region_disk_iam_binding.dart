@@ -43,8 +43,8 @@ final class ComputeRegionDiskIamBindingCondition {
 final class GoogleComputeRegionDiskIamBinding extends Resource {
   static const String tfType = 'google_compute_region_disk_iam_binding';
 
-  GoogleComputeRegionDiskIamBinding({
-    required super.localName,
+  GoogleComputeRegionDiskIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeRegionDisk> disk,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

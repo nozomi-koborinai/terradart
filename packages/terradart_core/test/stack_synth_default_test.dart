@@ -131,7 +131,7 @@ void main() {
       );
       final topic = stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: {'name': TfArg.variable<String>('topic_name')},
         ),
       );

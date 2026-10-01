@@ -406,7 +406,7 @@ class ComputeRegionAutoscalerScalingSchedule {
 /// Example (CPU + scheduled-scaling override):
 /// ```dart
 /// final rigm = GoogleComputeRegionInstanceGroupManager(
-///   localName: 'web_rigm',
+///   'web_rigm',
 ///   name: TfArg.literal('web-rigm'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   baseInstanceName: .literal('web'),
@@ -417,7 +417,7 @@ class ComputeRegionAutoscalerScalingSchedule {
 ///   ],
 /// );
 /// final autoscaler = GoogleComputeRegionAutoscaler(
-///   localName: 'web_autoscaler',
+///   'web_autoscaler',
 ///   name: TfArg.literal('web-autoscaler'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   target: rigm.selfLink,
@@ -448,8 +448,8 @@ class ComputeRegionAutoscalerScalingSchedule {
 final class GoogleComputeRegionAutoscaler extends Resource {
   static const String tfType = 'google_compute_region_autoscaler';
 
-  GoogleComputeRegionAutoscaler({
-    required super.localName,
+  GoogleComputeRegionAutoscaler(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     required TfArg<String> target,

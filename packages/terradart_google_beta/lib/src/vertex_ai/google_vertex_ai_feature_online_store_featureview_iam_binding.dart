@@ -45,8 +45,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding
   static const String tfType =
       'google_vertex_ai_feature_online_store_featureview_iam_binding';
 
-  GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding({
-    required super.localName,
+  GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding(
+    super.localName, {
     TfArg<String>? featureOnlineStore,
     required RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview> featureView,
     required TfArg<List<IamPrincipal>> members,

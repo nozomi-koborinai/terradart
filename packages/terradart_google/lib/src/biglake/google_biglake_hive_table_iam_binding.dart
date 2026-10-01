@@ -42,8 +42,8 @@ final class BiglakeHiveTableIamBindingCondition {
 final class GoogleBiglakeHiveTableIamBinding extends Resource {
   static const String tfType = 'google_biglake_hive_table_iam_binding';
 
-  GoogleBiglakeHiveTableIamBinding({
-    required super.localName,
+  GoogleBiglakeHiveTableIamBinding(
+    super.localName, {
     TfArg<String>? catalog,
     TfArg<String>? database,
     required TfArg<List<IamPrincipal>> members,

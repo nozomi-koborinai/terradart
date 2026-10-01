@@ -10,8 +10,8 @@ const Set<String> _awsDsqlClusterPeeringSensitive = <String>{};
 final class AwsDsqlClusterPeering extends Resource {
   static const String tfType = 'aws_dsql_cluster_peering';
 
-  AwsDsqlClusterPeering({
-    required super.localName,
+  AwsDsqlClusterPeering(
+    super.localName, {
     required TfArg<List<String>> clusters,
     required TfArg<String> identifier,
     TfArg<String>? region,

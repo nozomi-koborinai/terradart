@@ -213,12 +213,12 @@ final class StorageBucketObjectCustom {
 /// Example (inline content):
 /// ```dart
 /// final assets = GoogleStorageBucket(
-///   localName: 'assets',
+///   'assets',
 ///   name: TfArg.literal('my-app-assets-prod'),
 ///   location: TfArg.literal('ASIA-NORTHEAST1'),
 /// );
 /// final config = GoogleStorageBucketObject(
-///   localName: 'config',
+///   'config',
 ///   bucket: assets.ref,
 ///   name: TfArg.literal('config/app.json'),
 ///   body: StorageBucketObjectBodyContent(
@@ -232,7 +232,7 @@ final class StorageBucketObjectCustom {
 /// Example (file upload):
 /// ```dart
 /// final logo = GoogleStorageBucketObject(
-///   localName: 'logo',
+///   'logo',
 ///   bucket: assets.ref,
 ///   name: TfArg.literal('static/logo.png'),
 ///   body: StorageBucketObjectBodySource(source: TfArg.literal('./assets/logo.png')),
@@ -242,8 +242,8 @@ final class StorageBucketObjectCustom {
 final class GoogleStorageBucketObject extends Resource {
   static const String tfType = 'google_storage_bucket_object';
 
-  GoogleStorageBucketObject({
-    required super.localName,
+  GoogleStorageBucketObject(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> name,
     required StorageBucketObjectBody body,

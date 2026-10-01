@@ -10,8 +10,8 @@ const Set<String> _awsElasticacheServiceUpdatesSensitive = <String>{};
 final class DataAwsElasticacheServiceUpdates extends Data {
   static const String tfType = 'aws_elasticache_service_updates';
 
-  DataAwsElasticacheServiceUpdates({
-    required super.localName,
+  DataAwsElasticacheServiceUpdates(
+    super.localName, {
     TfArg<String>? region,
     TfArg<List<String>>? status,
     super.provider,

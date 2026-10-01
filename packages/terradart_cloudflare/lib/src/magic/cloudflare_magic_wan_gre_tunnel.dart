@@ -117,8 +117,8 @@ final class MagicWanGreTunnelTarget {
 final class CloudflareMagicWanGreTunnel extends Resource {
   static const String tfType = 'cloudflare_magic_wan_gre_tunnel';
 
-  CloudflareMagicWanGreTunnel({
-    required super.localName,
+  CloudflareMagicWanGreTunnel(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? automaticReturnRouting,
     required TfArg<String> cloudflareGreEndpoint,

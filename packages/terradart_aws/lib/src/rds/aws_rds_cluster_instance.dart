@@ -78,8 +78,8 @@ final class RdsClusterInstanceIdentifierPrefix
 final class AwsRdsClusterInstance extends Resource {
   static const String tfType = 'aws_rds_cluster_instance';
 
-  AwsRdsClusterInstance({
-    required super.localName,
+  AwsRdsClusterInstance(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,

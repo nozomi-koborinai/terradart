@@ -44,8 +44,8 @@ enum Pinpointsmsvoicev2PhoneNumberType implements TerraformEnum {
 final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_phone_number';
 
-  AwsPinpointsmsvoicev2PhoneNumber({
-    required super.localName,
+  AwsPinpointsmsvoicev2PhoneNumber(
+    super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<bool>? forceDisassociate,
     required TfArg<String> isoCountryCode,

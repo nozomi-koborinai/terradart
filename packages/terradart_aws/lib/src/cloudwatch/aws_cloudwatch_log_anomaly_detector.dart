@@ -26,8 +26,8 @@ enum CloudwatchLogAnomalyDetectorEvaluationFrequency implements TerraformEnum {
 final class AwsCloudwatchLogAnomalyDetector extends Resource {
   static const String tfType = 'aws_cloudwatch_log_anomaly_detector';
 
-  AwsCloudwatchLogAnomalyDetector({
-    required super.localName,
+  AwsCloudwatchLogAnomalyDetector(
+    super.localName, {
     TfArg<num>? anomalyVisibilityTime,
     TfArg<String>? detectorName,
     required TfArg<bool> enabled,

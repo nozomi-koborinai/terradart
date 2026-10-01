@@ -42,8 +42,8 @@ final class IapTunnelDestGroupIamBindingCondition {
 final class GoogleIapTunnelDestGroupIamBinding extends Resource {
   static const String tfType = 'google_iap_tunnel_dest_group_iam_binding';
 
-  GoogleIapTunnelDestGroupIamBinding({
-    required super.localName,
+  GoogleIapTunnelDestGroupIamBinding(
+    super.localName, {
     required RefTo<GoogleIapTunnelDestGroup> destGroup,
     TfArg<String>? region,
     required TfArg<String> role,

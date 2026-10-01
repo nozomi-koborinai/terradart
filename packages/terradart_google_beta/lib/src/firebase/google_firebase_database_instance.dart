@@ -42,8 +42,8 @@ enum FirebaseDatabaseInstanceType implements TerraformEnum {
 final class GoogleFirebaseDatabaseInstance extends Resource {
   static const String tfType = 'google_firebase_database_instance';
 
-  GoogleFirebaseDatabaseInstance({
-    required super.localName,
+  GoogleFirebaseDatabaseInstance(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<FirebaseDatabaseInstanceDesiredState>? desiredState,
     required TfArg<String> instanceId,

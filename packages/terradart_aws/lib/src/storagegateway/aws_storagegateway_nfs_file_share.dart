@@ -94,8 +94,8 @@ final class StoragegatewayNfsFileShareDefaults {
 final class AwsStoragegatewayNfsFileShare extends Resource {
   static const String tfType = 'aws_storagegateway_nfs_file_share';
 
-  AwsStoragegatewayNfsFileShare({
-    required super.localName,
+  AwsStoragegatewayNfsFileShare(
+    super.localName, {
     TfArg<String>? auditDestinationArn,
     TfArg<String>? bucketRegion,
     required TfArg<List<String>> clientList,

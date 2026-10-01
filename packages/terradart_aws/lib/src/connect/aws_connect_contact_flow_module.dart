@@ -71,8 +71,8 @@ final class ConnectContactFlowModuleContentFilename
 final class AwsConnectContactFlowModule extends Resource {
   static const String tfType = 'aws_connect_contact_flow_module';
 
-  AwsConnectContactFlowModule({
-    required super.localName,
+  AwsConnectContactFlowModule(
+    super.localName, {
     ConnectContactFlowModuleContent? content,
     TfArg<String>? contentHash,
     TfArg<String>? description,

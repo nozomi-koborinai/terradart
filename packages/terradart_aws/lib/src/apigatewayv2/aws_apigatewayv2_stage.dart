@@ -107,8 +107,8 @@ final class Apigatewayv2StageRouteSettings {
 final class AwsApigatewayv2Stage extends Resource {
   static const String tfType = 'aws_apigatewayv2_stage';
 
-  AwsApigatewayv2Stage({
-    required super.localName,
+  AwsApigatewayv2Stage(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<bool>? autoDeploy,
     TfArg<String>? clientCertificateId,

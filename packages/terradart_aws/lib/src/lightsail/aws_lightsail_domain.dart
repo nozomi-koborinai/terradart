@@ -10,8 +10,8 @@ const Set<String> _awsLightsailDomainSensitive = <String>{};
 final class AwsLightsailDomain extends Resource {
   static const String tfType = 'aws_lightsail_domain';
 
-  AwsLightsailDomain({
-    required super.localName,
+  AwsLightsailDomain(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     super.lifecycle,

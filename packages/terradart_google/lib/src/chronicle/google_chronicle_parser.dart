@@ -135,8 +135,8 @@ final class ChronicleParserVersionInfo {
 final class GoogleChronicleParser extends Resource {
   static const String tfType = 'google_chronicle_parser';
 
-  GoogleChronicleParser({
-    required super.localName,
+  GoogleChronicleParser(
+    super.localName, {
     required TfArg<String> logtype,
     required TfArg<String> location,
     required TfArg<String> instance,

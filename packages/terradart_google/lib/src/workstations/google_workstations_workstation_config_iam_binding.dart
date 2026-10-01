@@ -48,8 +48,8 @@ final class GoogleWorkstationsWorkstationConfigIamBinding extends Resource {
   static const String tfType =
       'google_workstations_workstation_config_iam_binding';
 
-  GoogleWorkstationsWorkstationConfigIamBinding({
-    required super.localName,
+  GoogleWorkstationsWorkstationConfigIamBinding(
+    super.localName, {
     TfArg<String>? workstationClusterId,
     required RefTo<GoogleWorkstationsWorkstationConfig> workstationConfig,
     required TfArg<String> role,

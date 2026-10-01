@@ -10,8 +10,8 @@ const Set<String> _awsS3vectorsVectorBucketPolicySensitive = <String>{};
 final class AwsS3vectorsVectorBucketPolicy extends Resource {
   static const String tfType = 'aws_s3vectors_vector_bucket_policy';
 
-  AwsS3vectorsVectorBucketPolicy({
-    required super.localName,
+  AwsS3vectorsVectorBucketPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> vectorBucketArn,

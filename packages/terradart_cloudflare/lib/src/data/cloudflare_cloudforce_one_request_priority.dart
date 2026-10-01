@@ -16,8 +16,8 @@ const Set<String> _cloudflareCloudforceOneRequestPrioritySensitive = <String>{};
 final class DataCloudflareCloudforceOneRequestPriority extends Data {
   static const String tfType = 'cloudflare_cloudforce_one_request_priority';
 
-  DataCloudflareCloudforceOneRequestPriority({
-    required super.localName,
+  DataCloudflareCloudforceOneRequestPriority(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> priorityId,
     super.provider,

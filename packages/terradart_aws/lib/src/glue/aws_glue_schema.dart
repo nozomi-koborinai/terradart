@@ -37,8 +37,8 @@ enum GlueSchemaDataFormat implements TerraformEnum {
 final class AwsGlueSchema extends Resource {
   static const String tfType = 'aws_glue_schema';
 
-  AwsGlueSchema({
-    required super.localName,
+  AwsGlueSchema(
+    super.localName, {
     required TfArg<GlueSchemaCompatibility> compatibility,
     required TfArg<GlueSchemaDataFormat> dataFormat,
     TfArg<String>? description,

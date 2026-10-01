@@ -105,8 +105,8 @@ final class DiscoveryEngineLicenseConfigStartDate {
 final class GoogleDiscoveryEngineLicenseConfig extends Resource {
   static const String tfType = 'google_discovery_engine_license_config';
 
-  GoogleDiscoveryEngineLicenseConfig({
-    required super.localName,
+  GoogleDiscoveryEngineLicenseConfig(
+    super.localName, {
     required TfArg<String> licenseConfigId,
     required TfArg<String> location,
     required TfArg<num> licenseCount,

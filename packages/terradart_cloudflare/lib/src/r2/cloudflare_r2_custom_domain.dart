@@ -40,8 +40,8 @@ enum R2CustomDomainMinTls implements TerraformEnum {
 final class CloudflareR2CustomDomain extends Resource {
   static const String tfType = 'cloudflare_r2_custom_domain';
 
-  CloudflareR2CustomDomain({
-    required super.localName,
+  CloudflareR2CustomDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<List<String>>? ciphers,

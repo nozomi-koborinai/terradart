@@ -39,7 +39,7 @@ enum NetworkSecurityBackendAuthenticationConfigWellKnownRoots
 /// Example:
 /// ```dart
 /// GoogleNetworkSecurityBackendAuthenticationConfig(
-///   localName: 'backend_auth',
+///   'backend_auth',
 ///   name: TfArg.literal('terradart-backend-auth'),
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('TerraDart smoke backend authentication'),
@@ -52,8 +52,8 @@ final class GoogleNetworkSecurityBackendAuthenticationConfig extends Resource {
   static const String tfType =
       'google_network_security_backend_authentication_config';
 
-  GoogleNetworkSecurityBackendAuthenticationConfig({
-    required super.localName,
+  GoogleNetworkSecurityBackendAuthenticationConfig(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? description,

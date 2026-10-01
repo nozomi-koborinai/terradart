@@ -27,7 +27,7 @@ final class PrivilegedAccessManagerStack extends Stack {
 
     final apiPam = add(
       GoogleProjectService(
-        localName: 'api_pam',
+        'api_pam',
         service: .literal('privilegedaccessmanager.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -35,7 +35,7 @@ final class PrivilegedAccessManagerStack extends Stack {
 
     final requester = add(
       GoogleServiceAccount(
-        localName: 'requester',
+        'requester',
         accountId: .literal('pam-requester'),
         displayName: .literal('PAM entitlement requester'),
       ),
@@ -43,7 +43,7 @@ final class PrivilegedAccessManagerStack extends Stack {
 
     add(
       GooglePrivilegedAccessManagerEntitlement(
-        localName: 'browser',
+        'browser',
         location: .literal('global'),
         entitlementId: .literal('terradart-pam'),
         parent: .literal(parent),

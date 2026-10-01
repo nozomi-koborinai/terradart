@@ -12,7 +12,7 @@ void main() {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')])
       ..add(
         GooglePubsubTopic(
-          localName: 'orders',
+          'orders',
           name: TfArg.literal('orders-prod'),
           messageRetentionDuration: TfArg.literal(
             const Duration(days: 7).toTfDurationString(),

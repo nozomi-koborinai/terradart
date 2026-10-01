@@ -356,8 +356,8 @@ enum ImagebuilderDistributionConfigurationDataType implements TerraformEnum {
 final class AwsImagebuilderDistributionConfiguration extends Resource {
   static const String tfType = 'aws_imagebuilder_distribution_configuration';
 
-  AwsImagebuilderDistributionConfiguration({
-    required super.localName,
+  AwsImagebuilderDistributionConfiguration(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

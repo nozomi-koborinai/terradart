@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleLoggingLogScope(
-  ///   localName: 'audit_scope',
+  ///   'audit_scope',
   ///   name: TfArg.literal('audit-scope'),
   ///   resourceNames: TfArg.literal([
   ///     'projects/my-proj/locations/global/buckets/audit-logs',

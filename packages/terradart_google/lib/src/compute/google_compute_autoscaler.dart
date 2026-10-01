@@ -405,7 +405,7 @@ class ComputeAutoscalerScalingSchedule {
 /// Example (CPU-only autoscaler with cooldown):
 /// ```dart
 /// final igm = GoogleComputeInstanceGroupManager(
-///   localName: 'web_igm',
+///   'web_igm',
 ///   name: TfArg.literal('web-igm'),
 ///   zone: TfArg.literal('asia-northeast1-a'),
 ///   baseInstanceName: .literal('web'),
@@ -416,7 +416,7 @@ class ComputeAutoscalerScalingSchedule {
 ///   ],
 /// );
 /// final autoscaler = GoogleComputeAutoscaler(
-///   localName: 'web_autoscaler',
+///   'web_autoscaler',
 ///   name: TfArg.literal('web-autoscaler'),
 ///   zone: TfArg.literal('asia-northeast1-a'),
 ///   target: igm.ref,
@@ -438,8 +438,8 @@ class ComputeAutoscalerScalingSchedule {
 final class GoogleComputeAutoscaler extends Resource {
   static const String tfType = 'google_compute_autoscaler';
 
-  GoogleComputeAutoscaler({
-    required super.localName,
+  GoogleComputeAutoscaler(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> zone,
     required RefTo<GoogleComputeInstanceGroupManager> target,

@@ -23,7 +23,7 @@ const Set<String> _googleStorageBucketAclSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleStorageBucketAcl(
-///   localName: 'legacy_acl',
+///   'legacy_acl',
 ///   bucket: legacy.ref,
 ///   predefinedAcl: TfArg.literal('private'),
 /// );
@@ -31,8 +31,8 @@ const Set<String> _googleStorageBucketAclSensitive = <String>{};
 final class GoogleStorageBucketAcl extends Resource {
   static const String tfType = 'google_storage_bucket_acl';
 
-  GoogleStorageBucketAcl({
-    required super.localName,
+  GoogleStorageBucketAcl(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? predefinedAcl,
     TfArg<List<String>>? roleEntity,

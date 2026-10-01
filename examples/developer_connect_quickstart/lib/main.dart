@@ -22,7 +22,7 @@ final class DeveloperConnectStack extends Stack {
       ) {
     final apiDeveloperConnect = add(
       GoogleProjectService(
-        localName: 'api_developerconnect',
+        'api_developerconnect',
         service: .literal('developerconnect.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class DeveloperConnectStack extends Stack {
 
     add(
       GoogleDeveloperConnectAccountConnector(
-        localName: 'github',
+        'github',
         location: .literal('us-central1'),
         accountConnectorId: .literal('terradart-github'),
         providerOauthConfig:

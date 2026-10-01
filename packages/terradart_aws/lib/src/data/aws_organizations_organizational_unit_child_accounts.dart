@@ -12,8 +12,8 @@ final class DataAwsOrganizationsOrganizationalUnitChildAccounts extends Data {
   static const String tfType =
       'aws_organizations_organizational_unit_child_accounts';
 
-  DataAwsOrganizationsOrganizationalUnitChildAccounts({
-    required super.localName,
+  DataAwsOrganizationsOrganizationalUnitChildAccounts(
+    super.localName, {
     required TfArg<String> parentId,
     super.provider,
     super.timeouts,

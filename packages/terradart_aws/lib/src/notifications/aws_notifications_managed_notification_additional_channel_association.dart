@@ -14,8 +14,8 @@ final class AwsNotificationsManagedNotificationAdditionalChannelAssociation
   static const String tfType =
       'aws_notifications_managed_notification_additional_channel_association';
 
-  AwsNotificationsManagedNotificationAdditionalChannelAssociation({
-    required super.localName,
+  AwsNotificationsManagedNotificationAdditionalChannelAssociation(
+    super.localName, {
     required TfArg<String> channelArn,
     required TfArg<String> managedNotificationArn,
     super.lifecycle,

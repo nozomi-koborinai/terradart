@@ -11,8 +11,8 @@ const Set<String> _awsTimestreamwriteTableSensitive = <String>{};
 final class DataAwsTimestreamwriteTable extends Data {
   static const String tfType = 'aws_timestreamwrite_table';
 
-  DataAwsTimestreamwriteTable({
-    required super.localName,
+  DataAwsTimestreamwriteTable(
+    super.localName, {
     required TfArg<String> databaseName,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -206,8 +206,8 @@ final class Wafv2WebAclLoggingConfigurationUriPath {
 final class AwsWafv2WebAclLoggingConfiguration extends Resource {
   static const String tfType = 'aws_wafv2_web_acl_logging_configuration';
 
-  AwsWafv2WebAclLoggingConfiguration({
-    required super.localName,
+  AwsWafv2WebAclLoggingConfiguration(
+    super.localName, {
     required TfArg<List<String>> logDestinationConfigs,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

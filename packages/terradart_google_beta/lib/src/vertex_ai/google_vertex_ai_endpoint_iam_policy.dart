@@ -18,8 +18,8 @@ const Set<String> _googleVertexAiEndpointIamPolicySensitive = <String>{};
 final class GoogleVertexAiEndpointIamPolicy extends Resource {
   static const String tfType = 'google_vertex_ai_endpoint_iam_policy';
 
-  GoogleVertexAiEndpointIamPolicy({
-    required super.localName,
+  GoogleVertexAiEndpointIamPolicy(
+    super.localName, {
     required RefTo<GoogleVertexAiEndpoint> endpoint,
     TfArg<String>? location,
     required TfArg<String> policyData,

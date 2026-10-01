@@ -11,8 +11,8 @@ const Set<String> _awsBatchSchedulingPolicySensitive = <String>{};
 final class DataAwsBatchSchedulingPolicy extends Data {
   static const String tfType = 'aws_batch_scheduling_policy';
 
-  DataAwsBatchSchedulingPolicy({
-    required super.localName,
+  DataAwsBatchSchedulingPolicy(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

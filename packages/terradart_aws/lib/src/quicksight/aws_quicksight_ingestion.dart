@@ -20,8 +20,8 @@ enum QuicksightIngestionType implements TerraformEnum {
 final class AwsQuicksightIngestion extends Resource {
   static const String tfType = 'aws_quicksight_ingestion';
 
-  AwsQuicksightIngestion({
-    required super.localName,
+  AwsQuicksightIngestion(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
     required TfArg<String> ingestionId,

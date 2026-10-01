@@ -31,8 +31,8 @@ final class ComputeDiskAsyncReplicationSecondaryDisk {
 final class GoogleComputeDiskAsyncReplication extends Resource {
   static const String tfType = 'google_compute_disk_async_replication';
 
-  GoogleComputeDiskAsyncReplication({
-    required super.localName,
+  GoogleComputeDiskAsyncReplication(
+    super.localName, {
     required TfArg<String> primaryDisk,
     required ComputeDiskAsyncReplicationSecondaryDisk secondaryDisk,
     TfArg<String>? deletionPolicy,

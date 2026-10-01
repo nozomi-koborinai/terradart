@@ -11,8 +11,8 @@ const Set<String> _awsSsmincidentsResponsePlanSensitive = <String>{};
 final class DataAwsSsmincidentsResponsePlan extends Data {
   static const String tfType = 'aws_ssmincidents_response_plan';
 
-  DataAwsSsmincidentsResponsePlan({
-    required super.localName,
+  DataAwsSsmincidentsResponsePlan(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

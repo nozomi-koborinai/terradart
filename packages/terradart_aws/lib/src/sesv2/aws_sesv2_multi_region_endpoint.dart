@@ -36,8 +36,8 @@ final class Sesv2MultiRegionEndpointRoutesDetails {
 final class AwsSesv2MultiRegionEndpoint extends Resource {
   static const String tfType = 'aws_sesv2_multi_region_endpoint';
 
-  AwsSesv2MultiRegionEndpoint({
-    required super.localName,
+  AwsSesv2MultiRegionEndpoint(
+    super.localName, {
     required TfArg<String> endpointName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

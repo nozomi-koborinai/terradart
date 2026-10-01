@@ -78,8 +78,8 @@ final class ConfigRemediationConfigurationParameter {
 final class AwsConfigRemediationConfiguration extends Resource {
   static const String tfType = 'aws_config_remediation_configuration';
 
-  AwsConfigRemediationConfiguration({
-    required super.localName,
+  AwsConfigRemediationConfiguration(
+    super.localName, {
     TfArg<bool>? automatic,
     required TfArg<String> configRuleName,
     TfArg<num>? maximumAutomaticAttempts,

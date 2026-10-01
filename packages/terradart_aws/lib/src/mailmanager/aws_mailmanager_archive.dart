@@ -50,8 +50,8 @@ enum MailmanagerArchiveRetentionPeriod implements TerraformEnum {
 final class AwsMailmanagerArchive extends Resource {
   static const String tfType = 'aws_mailmanager_archive';
 
-  AwsMailmanagerArchive({
-    required super.localName,
+  AwsMailmanagerArchive(
+    super.localName, {
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -14,8 +14,8 @@ const Set<String> _googleComputeVpnGatewaySensitive = <String>{};
 final class DataGoogleComputeVpnGateway extends Data {
   static const String tfType = 'google_compute_vpn_gateway';
 
-  DataGoogleComputeVpnGateway({
-    required super.localName,
+  DataGoogleComputeVpnGateway(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

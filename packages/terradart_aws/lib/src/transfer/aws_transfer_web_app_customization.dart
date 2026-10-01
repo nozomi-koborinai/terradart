@@ -10,8 +10,8 @@ const Set<String> _awsTransferWebAppCustomizationSensitive = <String>{};
 final class AwsTransferWebAppCustomization extends Resource {
   static const String tfType = 'aws_transfer_web_app_customization';
 
-  AwsTransferWebAppCustomization({
-    required super.localName,
+  AwsTransferWebAppCustomization(
+    super.localName, {
     TfArg<String>? faviconFile,
     TfArg<String>? logoFile,
     TfArg<String>? region,

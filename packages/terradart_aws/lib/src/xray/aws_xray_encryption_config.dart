@@ -22,8 +22,8 @@ enum XrayEncryptionConfigType implements TerraformEnum {
 final class AwsXrayEncryptionConfig extends Resource {
   static const String tfType = 'aws_xray_encryption_config';
 
-  AwsXrayEncryptionConfig({
-    required super.localName,
+  AwsXrayEncryptionConfig(
+    super.localName, {
     RefTo<AwsKmsKey>? keyId,
     TfArg<String>? region,
     required TfArg<XrayEncryptionConfigType> type,

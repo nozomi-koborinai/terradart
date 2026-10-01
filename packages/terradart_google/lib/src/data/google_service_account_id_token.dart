@@ -13,8 +13,8 @@ const Set<String> _googleServiceAccountIdTokenSensitive = <String>{'id_token'};
 final class DataGoogleServiceAccountIdToken extends Data {
   static const String tfType = 'google_service_account_id_token';
 
-  DataGoogleServiceAccountIdToken({
-    required super.localName,
+  DataGoogleServiceAccountIdToken(
+    super.localName, {
     TfArg<List<String>>? delegates,
     TfArg<bool>? includeEmail,
     required TfArg<String> targetAudience,

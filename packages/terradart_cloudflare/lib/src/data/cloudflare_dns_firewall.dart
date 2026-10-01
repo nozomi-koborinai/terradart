@@ -16,8 +16,8 @@ const Set<String> _cloudflareDnsFirewallSensitive = <String>{};
 final class DataCloudflareDnsFirewall extends Data {
   static const String tfType = 'cloudflare_dns_firewall';
 
-  DataCloudflareDnsFirewall({
-    required super.localName,
+  DataCloudflareDnsFirewall(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> dnsFirewallId,
     super.provider,

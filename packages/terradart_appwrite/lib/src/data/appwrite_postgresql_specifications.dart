@@ -16,8 +16,8 @@ const Set<String> _appwritePostgresqlSpecificationsSensitive = <String>{};
 final class DataAppwritePostgresqlSpecifications extends Data {
   static const String tfType = 'appwrite_postgresql_specifications';
 
-  DataAppwritePostgresqlSpecifications({
-    required super.localName,
+  DataAppwritePostgresqlSpecifications(
+    super.localName, {
     RefTo<AppwriteProject>? projectId,
     super.provider,
     super.timeouts,

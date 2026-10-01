@@ -112,8 +112,8 @@ final class Ec2NetworkInsightsPathFilterAtSource {
 final class AwsEc2NetworkInsightsPath extends Resource {
   static const String tfType = 'aws_ec2_network_insights_path';
 
-  AwsEc2NetworkInsightsPath({
-    required super.localName,
+  AwsEc2NetworkInsightsPath(
+    super.localName, {
     TfArg<String>? destination,
     TfArg<String>? destinationIp,
     TfArg<num>? destinationPort,

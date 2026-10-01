@@ -12,20 +12,20 @@ final class _TestStack extends Stack {
     : super(providers: [const GoogleBetaProvider(project: 'proj-123')]) {
     add(
       GoogleProjectServiceIdentity(
-        localName: 'pubsub_agent',
+        'pubsub_agent',
         service: TfArg.literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleFolderServiceIdentity(
-        localName: 'folder_pubsub_agent',
+        'folder_pubsub_agent',
         folder: TfArg.literal('folders/123'),
         service: TfArg.literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleOrganizationServiceIdentity(
-        localName: 'org_pubsub_agent',
+        'org_pubsub_agent',
         organization: TfArg.literal('organizations/123'),
         service: TfArg.literal('pubsub.googleapis.com'),
       ),
@@ -37,7 +37,7 @@ final class _TypedStack extends Stack {
   _TypedStack() : super(providers: [const GoogleBetaProvider()]) {
     add(
       GoogleApiGatewayApiConfig(
-        localName: 'config',
+        'config',
         api: TfArg.literal('api'),
         spec: .grpcServices([
           ApiGatewayApiConfigGrpcServices(
@@ -51,7 +51,7 @@ final class _TypedStack extends Stack {
     );
     add(
       GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
-        localName: 'mirror',
+        'mirror',
         action: TfArg.literal('mirror'),
         direction: TfArg.literal(
           ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.egress,

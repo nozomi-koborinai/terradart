@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustAccessServiceTokensSensitive = <String>{};
 final class DataCloudflareZeroTrustAccessServiceTokens extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_service_tokens';
 
-  DataCloudflareZeroTrustAccessServiceTokens({
-    required super.localName,
+  DataCloudflareZeroTrustAccessServiceTokens(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

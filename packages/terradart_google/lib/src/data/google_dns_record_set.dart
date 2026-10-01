@@ -15,8 +15,8 @@ const Set<String> _googleDnsRecordSetSensitive = <String>{};
 final class DataGoogleDnsRecordSet extends Data {
   static const String tfType = 'google_dns_record_set';
 
-  DataGoogleDnsRecordSet({
-    required super.localName,
+  DataGoogleDnsRecordSet(
+    super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> name,
     TfArg<String>? project,

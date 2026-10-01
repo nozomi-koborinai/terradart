@@ -59,8 +59,8 @@ final class CloudfrontTrustStoreCaCertificatesBundleS3Location {
 final class AwsCloudfrontTrustStore extends Resource {
   static const String tfType = 'aws_cloudfront_trust_store';
 
-  AwsCloudfrontTrustStore({
-    required super.localName,
+  AwsCloudfrontTrustStore(
+    super.localName, {
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     List<CloudfrontTrustStoreCaCertificatesBundleSource>?

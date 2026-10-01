@@ -161,8 +161,8 @@ final class OracleDatabaseCloudVmClusterTimeZone {
 final class GoogleOracleDatabaseCloudVmCluster extends Resource {
   static const String tfType = 'google_oracle_database_cloud_vm_cluster';
 
-  GoogleOracleDatabaseCloudVmCluster({
-    required super.localName,
+  GoogleOracleDatabaseCloudVmCluster(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> cloudVmClusterId,
     TfArg<String>? displayName,

@@ -11,8 +11,8 @@ const Set<String> _awsSesv2EmailIdentityFeedbackAttributesSensitive =
 final class AwsSesv2EmailIdentityFeedbackAttributes extends Resource {
   static const String tfType = 'aws_sesv2_email_identity_feedback_attributes';
 
-  AwsSesv2EmailIdentityFeedbackAttributes({
-    required super.localName,
+  AwsSesv2EmailIdentityFeedbackAttributes(
+    super.localName, {
     TfArg<bool>? emailForwardingEnabled,
     required TfArg<String> emailIdentity,
     TfArg<String>? region,

@@ -25,7 +25,7 @@ const Set<String> _googleIapTunnelDestGroupSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleIapTunnelDestGroup(
-///   localName: 'internal',
+///   'internal',
 ///   groupName: TfArg.literal('terradart-internal'),
 ///   region: TfArg.literal('us-central1'),
 ///   cidrs: TfArg.literal(['10.1.0.0/16']),
@@ -34,8 +34,8 @@ const Set<String> _googleIapTunnelDestGroupSensitive = <String>{};
 final class GoogleIapTunnelDestGroup extends Resource {
   static const String tfType = 'google_iap_tunnel_dest_group';
 
-  GoogleIapTunnelDestGroup({
-    required super.localName,
+  GoogleIapTunnelDestGroup(
+    super.localName, {
     required TfArg<String> groupName,
     TfArg<String>? region,
     TfArg<List<String>>? cidrs,

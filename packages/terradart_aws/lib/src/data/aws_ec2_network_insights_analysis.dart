@@ -31,8 +31,8 @@ final class DataEc2NetworkInsightsAnalysisFilter {
 final class DataAwsEc2NetworkInsightsAnalysis extends Data {
   static const String tfType = 'aws_ec2_network_insights_analysis';
 
-  DataAwsEc2NetworkInsightsAnalysis({
-    required super.localName,
+  DataAwsEc2NetworkInsightsAnalysis(
+    super.localName, {
     TfArg<String>? networkInsightsAnalysisId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

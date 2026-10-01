@@ -58,8 +58,8 @@ enum KmsProjectKajPolicyConfigAllowedAccessReasons implements TerraformEnum {
 final class GoogleKmsProjectKajPolicyConfig extends Resource {
   static const String tfType = 'google_kms_project_kaj_policy_config';
 
-  GoogleKmsProjectKajPolicyConfig({
-    required super.localName,
+  GoogleKmsProjectKajPolicyConfig(
+    super.localName, {
     TfArg<String>? project,
     KmsProjectKajPolicyConfigDefaultKeyAccessJustificationPolicy?
     defaultKeyAccessJustificationPolicy,

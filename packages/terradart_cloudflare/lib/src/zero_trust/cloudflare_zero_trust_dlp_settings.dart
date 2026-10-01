@@ -45,8 +45,8 @@ enum ZeroTrustDlpSettingsMaskingLevel implements TerraformEnum {
 final class CloudflareZeroTrustDlpSettings extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_settings';
 
-  CloudflareZeroTrustDlpSettings({
-    required super.localName,
+  CloudflareZeroTrustDlpSettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? aiContextAnalysis,
     TfArg<bool>? ocr,

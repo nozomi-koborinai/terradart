@@ -27,8 +27,8 @@ final class DataAvailabilityZoneFilter {
 final class DataAwsAvailabilityZone extends Data {
   static const String tfType = 'aws_availability_zone';
 
-  DataAwsAvailabilityZone({
-    required super.localName,
+  DataAwsAvailabilityZone(
+    super.localName, {
     TfArg<bool>? allAvailabilityZones,
     TfArg<String>? name,
     TfArg<String>? region,

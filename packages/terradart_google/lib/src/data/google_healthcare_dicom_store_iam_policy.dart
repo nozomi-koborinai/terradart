@@ -14,8 +14,8 @@ const Set<String> _googleHealthcareDicomStoreIamPolicySensitive = <String>{};
 final class DataGoogleHealthcareDicomStoreIamPolicy extends Data {
   static const String tfType = 'google_healthcare_dicom_store_iam_policy';
 
-  DataGoogleHealthcareDicomStoreIamPolicy({
-    required super.localName,
+  DataGoogleHealthcareDicomStoreIamPolicy(
+    super.localName, {
     required TfArg<String> dicomStoreId,
     super.provider,
     super.timeouts,

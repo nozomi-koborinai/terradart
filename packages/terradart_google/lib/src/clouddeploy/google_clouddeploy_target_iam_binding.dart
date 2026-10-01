@@ -43,8 +43,8 @@ final class ClouddeployTargetIamBindingCondition {
 final class GoogleClouddeployTargetIamBinding extends Resource {
   static const String tfType = 'google_clouddeploy_target_iam_binding';
 
-  GoogleClouddeployTargetIamBinding({
-    required super.localName,
+  GoogleClouddeployTargetIamBinding(
+    super.localName, {
     required RefTo<GoogleClouddeployTarget> target,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

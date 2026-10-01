@@ -10,8 +10,8 @@ const Set<String> _awsServicecatalogLaunchPathsSensitive = <String>{};
 final class DataAwsServicecatalogLaunchPaths extends Data {
   static const String tfType = 'aws_servicecatalog_launch_paths';
 
-  DataAwsServicecatalogLaunchPaths({
-    required super.localName,
+  DataAwsServicecatalogLaunchPaths(
+    super.localName, {
     TfArg<String>? acceptLanguage,
     required TfArg<String> productId,
     TfArg<String>? region,

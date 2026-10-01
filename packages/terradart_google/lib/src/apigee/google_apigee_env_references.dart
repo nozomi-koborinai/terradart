@@ -20,8 +20,8 @@ const Set<String> _googleApigeeEnvReferencesSensitive = <String>{};
 final class GoogleApigeeEnvReferences extends Resource {
   static const String tfType = 'google_apigee_env_references';
 
-  GoogleApigeeEnvReferences({
-    required super.localName,
+  GoogleApigeeEnvReferences(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> envId,
     required TfArg<String> refers,

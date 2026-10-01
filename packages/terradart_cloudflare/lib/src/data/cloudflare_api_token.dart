@@ -42,8 +42,8 @@ enum DataApiTokenDirection implements TerraformEnum {
 final class DataCloudflareApiToken extends Data {
   static const String tfType = 'cloudflare_api_token';
 
-  DataCloudflareApiToken({
-    required super.localName,
+  DataCloudflareApiToken(
+    super.localName, {
     TfArg<String>? tokenId,
     DataApiTokenFilter? filter,
     super.provider,

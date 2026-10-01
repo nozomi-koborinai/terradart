@@ -12,8 +12,8 @@ const Set<String> _awsCloudcontrolapiResourceSensitive = <String>{};
 final class DataAwsCloudcontrolapiResource extends Data {
   static const String tfType = 'aws_cloudcontrolapi_resource';
 
-  DataAwsCloudcontrolapiResource({
-    required super.localName,
+  DataAwsCloudcontrolapiResource(
+    super.localName, {
     required TfArg<String> identifier,
     TfArg<String>? region,
     RefTo<AwsIamRole>? roleArn,

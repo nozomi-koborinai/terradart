@@ -10,8 +10,8 @@ const Set<String> _awsAuditmanagerAssessmentReportSensitive = <String>{};
 final class AwsAuditmanagerAssessmentReport extends Resource {
   static const String tfType = 'aws_auditmanager_assessment_report';
 
-  AwsAuditmanagerAssessmentReport({
-    required super.localName,
+  AwsAuditmanagerAssessmentReport(
+    super.localName, {
     required TfArg<String> assessmentId,
     TfArg<String>? description,
     required TfArg<String> name,

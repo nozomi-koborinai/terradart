@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesToolset(
-  ///   localName: 'openapi',
+  ///   'openapi',
   ///   app: app.ref,
   ///   toolsetId: TfArg.literal('terradart-ces-toolset'),
   ///   displayName: TfArg.literal('terradart-ces-toolset'),

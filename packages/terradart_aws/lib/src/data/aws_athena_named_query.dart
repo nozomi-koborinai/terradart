@@ -11,8 +11,8 @@ const Set<String> _awsAthenaNamedQuerySensitive = <String>{};
 final class DataAwsAthenaNamedQuery extends Data {
   static const String tfType = 'aws_athena_named_query';
 
-  DataAwsAthenaNamedQuery({
-    required super.localName,
+  DataAwsAthenaNamedQuery(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? workgroup,

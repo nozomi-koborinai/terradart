@@ -10,8 +10,8 @@ const Set<String> _awsCodeartifactRepositoryEndpointSensitive = <String>{};
 final class DataAwsCodeartifactRepositoryEndpoint extends Data {
   static const String tfType = 'aws_codeartifact_repository_endpoint';
 
-  DataAwsCodeartifactRepositoryEndpoint({
-    required super.localName,
+  DataAwsCodeartifactRepositoryEndpoint(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? domainOwner,
     required TfArg<String> format,

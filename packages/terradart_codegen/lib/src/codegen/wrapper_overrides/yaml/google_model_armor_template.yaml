@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleModelArmorTemplate(
-  ///   localName: 'basic',
+  ///   'basic',
   ///   location: TfArg.literal('us-central1'),
   ///   templateId: TfArg.literal('terradart-modelarmor'),
   ///   filterConfig: ModelArmorTemplateFilterConfig(),

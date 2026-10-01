@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesAgent(
-  ///   localName: 'agent',
+  ///   'agent',
   ///   app: app.ref,
   ///   agentId: TfArg.literal('terradart-ces-agent'),
   ///   displayName: TfArg.literal('terradart-ces-agent'),

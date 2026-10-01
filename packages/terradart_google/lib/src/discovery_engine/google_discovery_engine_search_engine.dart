@@ -153,8 +153,8 @@ enum DiscoveryEngineSearchEngineRequiredSubscriptionTier
 final class GoogleDiscoveryEngineSearchEngine extends Resource {
   static const String tfType = 'google_discovery_engine_search_engine';
 
-  GoogleDiscoveryEngineSearchEngine({
-    required super.localName,
+  GoogleDiscoveryEngineSearchEngine(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> collectionId,
     required TfArg<String> engineId,

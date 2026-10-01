@@ -52,8 +52,8 @@ final class SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference 
 final class AwsSsoadminPermissionsBoundaryAttachment extends Resource {
   static const String tfType = 'aws_ssoadmin_permissions_boundary_attachment';
 
-  AwsSsoadminPermissionsBoundaryAttachment({
-    required super.localName,
+  AwsSsoadminPermissionsBoundaryAttachment(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<String> permissionSetArn,
     TfArg<String>? region,

@@ -454,8 +454,8 @@ enum BedrockagentcoreGatewayRuleOperator implements TerraformEnum {
 final class AwsBedrockagentcoreGatewayRule extends Resource {
   static const String tfType = 'aws_bedrockagentcore_gateway_rule';
 
-  AwsBedrockagentcoreGatewayRule({
-    required super.localName,
+  AwsBedrockagentcoreGatewayRule(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> gatewayIdentifier,
     required TfArg<num> priority,

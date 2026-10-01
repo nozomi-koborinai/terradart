@@ -11,7 +11,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBigqueryDatapolicyv2DataPolicyIamMember(
-  ///   localName: 'raw_reader',
+  ///   'raw_reader',
   ///   dataPolicy: .literal('raw-access'),
   ///   location: TfArg.literal('us-central1'),
   ///   role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),

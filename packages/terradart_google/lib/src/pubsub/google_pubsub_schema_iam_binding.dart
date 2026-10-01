@@ -42,8 +42,8 @@ final class PubsubSchemaIamBindingCondition {
 final class GooglePubsubSchemaIamBinding extends Resource {
   static const String tfType = 'google_pubsub_schema_iam_binding';
 
-  GooglePubsubSchemaIamBinding({
-    required super.localName,
+  GooglePubsubSchemaIamBinding(
+    super.localName, {
     required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -392,8 +392,8 @@ final class MskconnectConnectorWorkerConfiguration {
 final class AwsMskconnectConnector extends Resource {
   static const String tfType = 'aws_mskconnect_connector';
 
-  AwsMskconnectConnector({
-    required super.localName,
+  AwsMskconnectConnector(
+    super.localName, {
     required TfArg<Map<String, String>> connectorConfiguration,
     TfArg<String>? description,
     required TfArg<String> kafkaconnectVersion,

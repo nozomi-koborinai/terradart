@@ -70,8 +70,8 @@ final class IamInstanceProfileNamePrefix extends IamInstanceProfileName {
 final class AwsIamInstanceProfile extends Resource {
   static const String tfType = 'aws_iam_instance_profile';
 
-  AwsIamInstanceProfile({
-    required super.localName,
+  AwsIamInstanceProfile(
+    super.localName, {
     IamInstanceProfileName? name,
     TfArg<String>? path,
     RefTo<AwsIamRole>? role,

@@ -50,7 +50,7 @@ final class ManagedKafkaAclEntries {
 /// Example:
 /// ```dart
 /// GoogleManagedKafkaAcl(
-///   localName: 'eventsAcl',
+///   'eventsAcl',
 ///   aclId: TfArg.literal('topic/events'),
 ///   cluster: cluster.clusterId,
 ///   location: TfArg.literal('us-central1'),
@@ -66,8 +66,8 @@ final class ManagedKafkaAclEntries {
 final class GoogleManagedKafkaAcl extends Resource {
   static const String tfType = 'google_managed_kafka_acl';
 
-  GoogleManagedKafkaAcl({
-    required super.localName,
+  GoogleManagedKafkaAcl(
+    super.localName, {
     required TfArg<String> aclId,
     required TfArg<String> cluster,
     required TfArg<String> location,

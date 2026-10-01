@@ -10,11 +10,8 @@ const Set<String> _awsRoute53ZonesSensitive = <String>{};
 final class DataAwsRoute53Zones extends Data {
   static const String tfType = 'aws_route53_zones';
 
-  DataAwsRoute53Zones({
-    required super.localName,
-    super.provider,
-    super.timeouts,
-  }) : super(terraformType: tfType, argMap: {});
+  DataAwsRoute53Zones(super.localName, {super.provider, super.timeouts})
+    : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields => _awsRoute53ZonesSensitive;

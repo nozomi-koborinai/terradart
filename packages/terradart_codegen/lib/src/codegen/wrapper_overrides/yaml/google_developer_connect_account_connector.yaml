@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDeveloperConnectAccountConnector(
-  ///   localName: 'github',
+  ///   'github',
   ///   location: TfArg.literal('us-central1'),
   ///   accountConnectorId: TfArg.literal('terradart-github'),
   ///   providerOauthConfig:

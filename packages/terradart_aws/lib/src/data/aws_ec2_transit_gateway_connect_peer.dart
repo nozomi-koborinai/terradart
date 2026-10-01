@@ -31,8 +31,8 @@ final class DataEc2TransitGatewayConnectPeerFilter {
 final class DataAwsEc2TransitGatewayConnectPeer extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_connect_peer';
 
-  DataAwsEc2TransitGatewayConnectPeer({
-    required super.localName,
+  DataAwsEc2TransitGatewayConnectPeer(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? transitGatewayConnectPeerId,

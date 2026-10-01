@@ -17,8 +17,8 @@ const Set<String> _cloudflareContentScanningSensitive = <String>{};
 final class DataCloudflareContentScanning extends Data {
   static const String tfType = 'cloudflare_content_scanning';
 
-  DataCloudflareContentScanning({
-    required super.localName,
+  DataCloudflareContentScanning(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

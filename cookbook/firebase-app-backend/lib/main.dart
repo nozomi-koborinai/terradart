@@ -36,7 +36,7 @@ final class FirebaseAppBackendStack extends Stack {
     // -------------------------------------------------------------------------
     final apiFirebase = add(
       GoogleProjectService(
-        localName: 'api_firebase',
+        'api_firebase',
         service: .literal('firebase.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -44,7 +44,7 @@ final class FirebaseAppBackendStack extends Stack {
 
     final apiFirestore = add(
       GoogleProjectService(
-        localName: 'api_firestore',
+        'api_firestore',
         service: .literal('firestore.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -52,7 +52,7 @@ final class FirebaseAppBackendStack extends Stack {
 
     final apiRun = add(
       GoogleProjectService(
-        localName: 'api_run',
+        'api_run',
         service: .literal('run.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -60,7 +60,7 @@ final class FirebaseAppBackendStack extends Stack {
 
     final apiStorage = add(
       GoogleProjectService(
-        localName: 'api_storage',
+        'api_storage',
         service: .literal('storage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -71,7 +71,7 @@ final class FirebaseAppBackendStack extends Stack {
     // -------------------------------------------------------------------------
     final fbProject = add(
       GoogleFirebaseProject(
-        localName: 'firebase_core',
+        'firebase_core',
         project: .literal(projectId),
         dependsOn: [apiFirebase],
       ),
@@ -79,7 +79,7 @@ final class FirebaseAppBackendStack extends Stack {
 
     add(
       GoogleFirebaseWebApp(
-        localName: 'web_client',
+        'web_client',
         displayName: .literal('Frontend Client'),
         project: .literal(projectId),
         dependsOn: [fbProject],
@@ -91,7 +91,7 @@ final class FirebaseAppBackendStack extends Stack {
     // -------------------------------------------------------------------------
     final firestoreDb = add(
       GoogleFirestoreDatabase(
-        localName: 'default_db',
+        'default_db',
         name: .literal('(default)'),
         locationId: .literal('asia-northeast1'),
         type: .literal(.firestoreNative),
@@ -106,7 +106,7 @@ final class FirebaseAppBackendStack extends Stack {
     // -------------------------------------------------------------------------
     final uploadsBucket = add(
       GoogleStorageBucket(
-        localName: 'uploads',
+        'uploads',
         name: .literal('$projectId-app-uploads'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -121,7 +121,7 @@ final class FirebaseAppBackendStack extends Stack {
     // -------------------------------------------------------------------------
     add(
       GoogleCloudRunV2Service(
-        localName: 'backend_api',
+        'backend_api',
         name: .literal('backend-api'),
         location: .literal('asia-northeast1'),
         deletionProtection: .literal(false),

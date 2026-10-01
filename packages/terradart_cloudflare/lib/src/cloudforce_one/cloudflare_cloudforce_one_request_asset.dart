@@ -16,8 +16,8 @@ const Set<String> _cloudflareCloudforceOneRequestAssetSensitive = <String>{};
 final class CloudflareCloudforceOneRequestAsset extends Resource {
   static const String tfType = 'cloudflare_cloudforce_one_request_asset';
 
-  CloudflareCloudforceOneRequestAsset({
-    required super.localName,
+  CloudflareCloudforceOneRequestAsset(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<num> page,
     required TfArg<num> perPage,

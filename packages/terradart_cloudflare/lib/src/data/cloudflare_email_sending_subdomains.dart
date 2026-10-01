@@ -11,8 +11,8 @@ const Set<String> _cloudflareEmailSendingSubdomainsSensitive = <String>{};
 final class DataCloudflareEmailSendingSubdomains extends Data {
   static const String tfType = 'cloudflare_email_sending_subdomains';
 
-  DataCloudflareEmailSendingSubdomains({
-    required super.localName,
+  DataCloudflareEmailSendingSubdomains(
+    super.localName, {
     TfArg<num>? maxItems,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

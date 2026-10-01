@@ -94,8 +94,8 @@ final class ConnectRoutingProfileQueueConfigs {
 final class AwsConnectRoutingProfile extends Resource {
   static const String tfType = 'aws_connect_routing_profile';
 
-  AwsConnectRoutingProfile({
-    required super.localName,
+  AwsConnectRoutingProfile(
+    super.localName, {
     required TfArg<String> defaultOutboundQueueId,
     required TfArg<String> description,
     required TfArg<String> instanceId,

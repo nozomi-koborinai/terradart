@@ -164,7 +164,7 @@ final class VertexAiIndexEndpointPscAutomationConfigs {
 /// Example:
 /// ```dart
 /// GoogleVertexAiIndexEndpoint(
-///   localName: 'ie',
+///   'ie',
 ///   displayName: TfArg.literal('terradart-ie'),
 ///   region: TfArg.literal('us-central1'),
 ///   publicEndpointEnabled: TfArg.literal(true),
@@ -173,8 +173,8 @@ final class VertexAiIndexEndpointPscAutomationConfigs {
 final class GoogleVertexAiIndexEndpoint extends Resource {
   static const String tfType = 'google_vertex_ai_index_endpoint';
 
-  GoogleVertexAiIndexEndpoint({
-    required super.localName,
+  GoogleVertexAiIndexEndpoint(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? region,
     TfArg<String>? description,

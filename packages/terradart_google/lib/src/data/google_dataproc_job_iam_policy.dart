@@ -14,8 +14,8 @@ const Set<String> _googleDataprocJobIamPolicySensitive = <String>{};
 final class DataGoogleDataprocJobIamPolicy extends Data {
   static const String tfType = 'google_dataproc_job_iam_policy';
 
-  DataGoogleDataprocJobIamPolicy({
-    required super.localName,
+  DataGoogleDataprocJobIamPolicy(
+    super.localName, {
     required TfArg<String> jobId,
     TfArg<String>? project,
     TfArg<String>? region,

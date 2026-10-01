@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** every factory takes its local name as the first positional argument. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
+
 ## 0.31.0 - 2026-10-01
 
 - **Breaking** — three enums no longer repeat their stem's last word: `MongoBackupStorageStorageProvider`, `MysqlBackupStorageStorageProvider` and `PostgresqlBackupStorageStorageProvider` are `MongoBackupStorageProvider`, `MysqlBackupStorageProvider` and `PostgresqlBackupStorageProvider`. Values and synth output are unchanged. See [MIGRATING.md](../../MIGRATING.md#generated-type-names-are-short).

@@ -10,8 +10,8 @@ const Set<String> _awsAccountRegionsSensitive = <String>{};
 final class DataAwsAccountRegions extends Data {
   static const String tfType = 'aws_account_regions';
 
-  DataAwsAccountRegions({
-    required super.localName,
+  DataAwsAccountRegions(
+    super.localName, {
     TfArg<String>? accountId,
     TfArg<List<String>>? regionOptStatusContains,
     super.provider,

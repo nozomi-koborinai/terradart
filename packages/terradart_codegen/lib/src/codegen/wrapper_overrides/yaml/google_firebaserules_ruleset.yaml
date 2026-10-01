@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleFirebaserulesRuleset(
-  ///   localName: 'deny_all',
+  ///   'deny_all',
   ///   source: FirebaserulesRulesetSource(
   ///     files: [
   ///       .new(

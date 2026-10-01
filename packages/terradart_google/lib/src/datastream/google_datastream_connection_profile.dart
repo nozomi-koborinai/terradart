@@ -782,8 +782,8 @@ final class DatastreamConnectionProfileSqlServerProfile {
 final class GoogleDatastreamConnectionProfile extends Resource {
   static const String tfType = 'google_datastream_connection_profile';
 
-  GoogleDatastreamConnectionProfile({
-    required super.localName,
+  GoogleDatastreamConnectionProfile(
+    super.localName, {
     required TfArg<String> connectionProfileId,
     TfArg<bool>? createWithoutValidation,
     TfArg<String>? deletionPolicy,

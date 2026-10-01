@@ -14,8 +14,8 @@ const Set<String> _googleComputeStoragePoolIamPolicySensitive = <String>{};
 final class DataGoogleComputeStoragePoolIamPolicy extends Data {
   static const String tfType = 'google_compute_storage_pool_iam_policy';
 
-  DataGoogleComputeStoragePoolIamPolicy({
-    required super.localName,
+  DataGoogleComputeStoragePoolIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? zone,

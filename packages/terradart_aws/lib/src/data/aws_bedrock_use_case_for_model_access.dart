@@ -11,8 +11,8 @@ const Set<String> _awsBedrockUseCaseForModelAccessSensitive = <String>{};
 final class DataAwsBedrockUseCaseForModelAccess extends Data {
   static const String tfType = 'aws_bedrock_use_case_for_model_access';
 
-  DataAwsBedrockUseCaseForModelAccess({
-    required super.localName,
+  DataAwsBedrockUseCaseForModelAccess(
+    super.localName, {
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

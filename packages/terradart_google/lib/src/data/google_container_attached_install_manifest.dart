@@ -13,8 +13,8 @@ const Set<String> _googleContainerAttachedInstallManifestSensitive = <String>{};
 final class DataGoogleContainerAttachedInstallManifest extends Data {
   static const String tfType = 'google_container_attached_install_manifest';
 
-  DataGoogleContainerAttachedInstallManifest({
-    required super.localName,
+  DataGoogleContainerAttachedInstallManifest(
+    super.localName, {
     required TfArg<String> clusterId,
     required TfArg<String> location,
     required TfArg<String> platformVersion,

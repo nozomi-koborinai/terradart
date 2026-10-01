@@ -18,8 +18,8 @@ const Set<String> _googleNetworkConnectivityHubIamPolicySensitive = <String>{};
 final class GoogleNetworkConnectivityHubIamPolicy extends Resource {
   static const String tfType = 'google_network_connectivity_hub_iam_policy';
 
-  GoogleNetworkConnectivityHubIamPolicy({
-    required super.localName,
+  GoogleNetworkConnectivityHubIamPolicy(
+    super.localName, {
     required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> policyData,
     TfArg<String>? project,

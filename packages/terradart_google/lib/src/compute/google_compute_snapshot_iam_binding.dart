@@ -42,8 +42,8 @@ final class ComputeSnapshotIamBindingCondition {
 final class GoogleComputeSnapshotIamBinding extends Resource {
   static const String tfType = 'google_compute_snapshot_iam_binding';
 
-  GoogleComputeSnapshotIamBinding({
-    required super.localName,
+  GoogleComputeSnapshotIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeSnapshot> snapshot,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

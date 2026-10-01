@@ -248,8 +248,8 @@ final class Ec2ClientVpnEndpointAvailabilityZoneAvailabilityZones
 final class AwsEc2ClientVpnEndpoint extends Resource {
   static const String tfType = 'aws_ec2_client_vpn_endpoint';
 
-  AwsEc2ClientVpnEndpoint({
-    required super.localName,
+  AwsEc2ClientVpnEndpoint(
+    super.localName, {
     TfArg<String>? clientCidrBlock,
     TfArg<String>? description,
     TfArg<bool>? disconnectOnSessionTimeout,

@@ -73,8 +73,8 @@ final class AutoscalingAttachmentTargetLbTargetGroupArn
 final class AwsAutoscalingAttachment extends Resource {
   static const String tfType = 'aws_autoscaling_attachment';
 
-  AwsAutoscalingAttachment({
-    required super.localName,
+  AwsAutoscalingAttachment(
+    super.localName, {
     required TfArg<String> autoscalingGroupName,
     required AutoscalingAttachmentTarget target,
     TfArg<String>? region,

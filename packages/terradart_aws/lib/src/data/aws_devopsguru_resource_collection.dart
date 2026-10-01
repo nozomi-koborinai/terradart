@@ -11,8 +11,8 @@ const Set<String> _awsDevopsguruResourceCollectionSensitive = <String>{};
 final class DataAwsDevopsguruResourceCollection extends Data {
   static const String tfType = 'aws_devopsguru_resource_collection';
 
-  DataAwsDevopsguruResourceCollection({
-    required super.localName,
+  DataAwsDevopsguruResourceCollection(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> type,
     super.provider,

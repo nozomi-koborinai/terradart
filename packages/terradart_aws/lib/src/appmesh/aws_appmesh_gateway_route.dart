@@ -473,8 +473,8 @@ final class AppmeshGatewayRouteHttpRoute {
 final class AwsAppmeshGatewayRoute extends Resource {
   static const String tfType = 'aws_appmesh_gateway_route';
 
-  AwsAppmeshGatewayRoute({
-    required super.localName,
+  AwsAppmeshGatewayRoute(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

@@ -15,8 +15,8 @@ const Set<String> _cloudflareDcvDelegationSensitive = <String>{};
 final class DataCloudflareDcvDelegation extends Data {
   static const String tfType = 'cloudflare_dcv_delegation';
 
-  DataCloudflareDcvDelegation({
-    required super.localName,
+  DataCloudflareDcvDelegation(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

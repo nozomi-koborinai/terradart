@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GooglePrivatecaCaPoolIamMember(
-  ///   localName: 'pool_auditor',
+  ///   'pool_auditor',
   ///   caPool: caPool.ref,
   ///   role: TfArg.literal('roles/privateca.auditor'),
   ///   member: .group('security@example.com'),

@@ -20,8 +20,8 @@ const Set<String> _cloudflareCtAlertingSensitive = <String>{};
 final class CloudflareCtAlerting extends Resource {
   static const String tfType = 'cloudflare_ct_alerting';
 
-  CloudflareCtAlerting({
-    required super.localName,
+  CloudflareCtAlerting(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required TfArg<bool> enabled,
     TfArg<List<String>>? emails,

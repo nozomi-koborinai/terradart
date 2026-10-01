@@ -39,8 +39,8 @@ enum S3BucketVersioningMfaDelete implements TerraformEnum {
 final class AwsS3BucketVersioning extends Resource {
   static const String tfType = 'aws_s3_bucket_versioning';
 
-  AwsS3BucketVersioning({
-    required super.localName,
+  AwsS3BucketVersioning(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? mfa,

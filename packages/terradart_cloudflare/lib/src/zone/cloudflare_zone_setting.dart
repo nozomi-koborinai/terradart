@@ -16,8 +16,8 @@ const Set<String> _cloudflareZoneSettingSensitive = <String>{};
 final class CloudflareZoneSetting extends Resource {
   static const String tfType = 'cloudflare_zone_setting';
 
-  CloudflareZoneSetting({
-    required super.localName,
+  CloudflareZoneSetting(
+    super.localName, {
     TfArg<bool>? enabled,
     required TfArg<String> settingId,
     required TfArg<Object?> value,

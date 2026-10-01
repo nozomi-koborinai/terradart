@@ -45,8 +45,8 @@ final class BiglakeIcebergCatalogIamBindingCondition {
 final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
   static const String tfType = 'google_biglake_iceberg_catalog_iam_binding';
 
-  GoogleBiglakeIcebergCatalogIamBinding({
-    required super.localName,
+  GoogleBiglakeIcebergCatalogIamBinding(
+    super.localName, {
     required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

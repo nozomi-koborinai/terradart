@@ -10,8 +10,8 @@ const Set<String> _awsEc2TrafficMirrorSessionSensitive = <String>{};
 final class AwsEc2TrafficMirrorSession extends Resource {
   static const String tfType = 'aws_ec2_traffic_mirror_session';
 
-  AwsEc2TrafficMirrorSession({
-    required super.localName,
+  AwsEc2TrafficMirrorSession(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> networkInterfaceId,
     TfArg<num>? packetLength,

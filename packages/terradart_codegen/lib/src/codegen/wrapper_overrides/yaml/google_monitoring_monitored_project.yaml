@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleMonitoringMonitoredProject(
-  ///   localName: 'child_project',
+  ///   'child_project',
   ///   metricsScope: TfArg.literal(
   ///     'locations/global/metricsScopes/my-metrics-scope',
   ///   ),

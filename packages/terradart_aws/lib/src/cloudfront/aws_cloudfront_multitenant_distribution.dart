@@ -806,8 +806,8 @@ enum CloudfrontMultitenantDistributionSslSupportMethod
 final class AwsCloudfrontMultitenantDistribution extends Resource {
   static const String tfType = 'aws_cloudfront_multitenant_distribution';
 
-  AwsCloudfrontMultitenantDistribution({
-    required super.localName,
+  AwsCloudfrontMultitenantDistribution(
+    super.localName, {
     required TfArg<String> comment,
     TfArg<String>? defaultRootObject,
     required TfArg<bool> enabled,

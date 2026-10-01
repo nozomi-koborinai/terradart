@@ -14,7 +14,7 @@ GoogleCloudRunV2Service buildCloudRunService({
   required Map<String, TfArg<String>> outputEnvironment,
   required GoogleSecretManagerSecret dbPasswordSecret,
 }) => GoogleCloudRunV2Service(
-  localName: 'coffee_service',
+  'coffee_service',
   name: .literal('coffee-shop'),
   location: .literal('asia-northeast1'),
   ingress: .literal(.all),
@@ -51,7 +51,7 @@ GoogleCloudRunV2Service buildCloudRunService({
 GoogleCloudRunV2ServiceIamMember buildCloudRunInvoker(
   GoogleCloudRunV2Service coffeeService,
 ) => GoogleCloudRunV2ServiceIamMember(
-  localName: 'coffee_invoker',
+  'coffee_invoker',
   service: coffeeService.ref,
   role: .literal('roles/run.invoker'),
   // allUsers = public webhook. Acceptable for dogfood smoke; harden in

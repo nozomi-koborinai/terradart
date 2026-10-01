@@ -4,7 +4,7 @@ import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
 final class _FakeProjectData extends Data {
-  _FakeProjectData({required super.localName, required TfArg<String> projectId})
+  _FakeProjectData(super.localName, {required TfArg<String> projectId})
     : super(terraformType: 'google_project', argMap: {'project_id': projectId});
 
   @override
@@ -16,7 +16,7 @@ final class _FakeProjectData extends Data {
 void main() {
   group('Data', () {
     final d = _FakeProjectData(
-      localName: 'current',
+      'current',
       projectId: const TfArgLiteral('my-proj'),
     );
 

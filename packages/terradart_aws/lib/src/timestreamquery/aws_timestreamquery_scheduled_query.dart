@@ -484,8 +484,8 @@ final class TimestreamqueryScheduledQueryMultiMeasureMappings {
 final class AwsTimestreamqueryScheduledQuery extends Resource {
   static const String tfType = 'aws_timestreamquery_scheduled_query';
 
-  AwsTimestreamqueryScheduledQuery({
-    required super.localName,
+  AwsTimestreamqueryScheduledQuery(
+    super.localName, {
     required RefTo<AwsIamRole> executionRoleArn,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,

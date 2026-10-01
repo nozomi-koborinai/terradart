@@ -12,8 +12,8 @@ const Set<String> _awsEcrLifecyclePolicySensitive = <String>{};
 final class AwsEcrLifecyclePolicy extends Resource {
   static const String tfType = 'aws_ecr_lifecycle_policy';
 
-  AwsEcrLifecyclePolicy({
-    required super.localName,
+  AwsEcrLifecyclePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required RefTo<AwsEcrRepository> repository,

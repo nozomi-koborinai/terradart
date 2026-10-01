@@ -11,8 +11,8 @@ const Set<String> _awsRdsGlobalClusterSensitive = <String>{};
 final class DataAwsRdsGlobalCluster extends Data {
   static const String tfType = 'aws_rds_global_cluster';
 
-  DataAwsRdsGlobalCluster({
-    required super.localName,
+  DataAwsRdsGlobalCluster(
+    super.localName, {
     required TfArg<String> identifier,
     TfArg<String>? region,
     super.provider,

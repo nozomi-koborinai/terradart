@@ -15,8 +15,8 @@ const Set<String> _googlePrivilegedAccessManagerEntitlementSensitive =
 final class DataGooglePrivilegedAccessManagerEntitlement extends Data {
   static const String tfType = 'google_privileged_access_manager_entitlement';
 
-  DataGooglePrivilegedAccessManagerEntitlement({
-    required super.localName,
+  DataGooglePrivilegedAccessManagerEntitlement(
+    super.localName, {
     TfArg<String>? entitlementId,
     TfArg<String>? location,
     TfArg<String>? parent,

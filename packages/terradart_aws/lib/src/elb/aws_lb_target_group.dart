@@ -355,8 +355,8 @@ final class LbTargetGroupTargetHealthState {
 final class AwsLbTargetGroup extends Resource {
   static const String tfType = 'aws_lb_target_group';
 
-  AwsLbTargetGroup({
-    required super.localName,
+  AwsLbTargetGroup(
+    super.localName, {
     TfArg<bool>? connectionTermination,
     TfArg<String>? deregistrationDelay,
     TfArg<LbTargetGroupIpAddressType>? ipAddressType,

@@ -24,8 +24,8 @@ enum GuarddutyIpsetFormat implements TerraformEnum {
 final class AwsGuarddutyIpset extends Resource {
   static const String tfType = 'aws_guardduty_ipset';
 
-  AwsGuarddutyIpset({
-    required super.localName,
+  AwsGuarddutyIpset(
+    super.localName, {
     required TfArg<bool> activate,
     required TfArg<String> detectorId,
     required TfArg<GuarddutyIpsetFormat> format,

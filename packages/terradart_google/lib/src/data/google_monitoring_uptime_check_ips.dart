@@ -13,8 +13,8 @@ const Set<String> _googleMonitoringUptimeCheckIpsSensitive = <String>{};
 final class DataGoogleMonitoringUptimeCheckIps extends Data {
   static const String tfType = 'google_monitoring_uptime_check_ips';
 
-  DataGoogleMonitoringUptimeCheckIps({
-    required super.localName,
+  DataGoogleMonitoringUptimeCheckIps(
+    super.localName, {
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

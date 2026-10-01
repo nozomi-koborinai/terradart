@@ -11,8 +11,8 @@ const Set<String> _awsLbTrustStoreSensitive = <String>{};
 final class DataAwsLbTrustStore extends Data {
   static const String tfType = 'aws_lb_trust_store';
 
-  DataAwsLbTrustStore({
-    required super.localName,
+  DataAwsLbTrustStore(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

@@ -15,8 +15,8 @@ const Set<String> _googleDocumentAiProcessorSensitive = <String>{};
 final class GoogleDocumentAiProcessor extends Resource {
   static const String tfType = 'google_document_ai_processor';
 
-  GoogleDocumentAiProcessor({
-    required super.localName,
+  GoogleDocumentAiProcessor(
+    super.localName, {
     required TfArg<String> type,
     required TfArg<String> displayName,
     required TfArg<String> location,

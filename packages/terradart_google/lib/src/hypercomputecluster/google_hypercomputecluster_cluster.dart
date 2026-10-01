@@ -694,8 +694,8 @@ final class HypercomputeclusterClusterNewLustre {
 final class GoogleHypercomputeclusterCluster extends Resource {
   static const String tfType = 'google_hypercomputecluster_cluster';
 
-  GoogleHypercomputeclusterCluster({
-    required super.localName,
+  GoogleHypercomputeclusterCluster(
+    super.localName, {
     required TfArg<String> clusterId,
     required TfArg<String> location,
     required List<HypercomputeclusterClusterNetworkResources> networkResources,

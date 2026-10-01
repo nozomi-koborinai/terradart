@@ -26,8 +26,8 @@ const Set<String> _googleDiscoveryEngineSchemaSensitive = <String>{};
 final class GoogleDiscoveryEngineSchema extends Resource {
   static const String tfType = 'google_discovery_engine_schema';
 
-  GoogleDiscoveryEngineSchema({
-    required super.localName,
+  GoogleDiscoveryEngineSchema(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> schemaId,

@@ -2209,8 +2209,8 @@ final class RulesetRatelimit {
 final class CloudflareRuleset extends Resource {
   static const String tfType = 'cloudflare_ruleset';
 
-  CloudflareRuleset({
-    required super.localName,
+  CloudflareRuleset(
+    super.localName, {
     required RulesetScope scope,
     TfArg<String>? description,
     required TfArg<RulesetKind> kind,

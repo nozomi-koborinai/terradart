@@ -24,8 +24,8 @@ const Set<String> _googlePubsubLiteReservationSensitive = <String>{};
 final class GooglePubsubLiteReservation extends Resource {
   static const String tfType = 'google_pubsub_lite_reservation';
 
-  GooglePubsubLiteReservation({
-    required super.localName,
+  GooglePubsubLiteReservation(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<num> throughputCapacity,
     TfArg<String>? region,

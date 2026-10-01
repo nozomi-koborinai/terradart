@@ -152,8 +152,8 @@ final class ImagebuilderImageRecipeSystemsManagerAgent {
 final class AwsImagebuilderImageRecipe extends Resource {
   static const String tfType = 'aws_imagebuilder_image_recipe';
 
-  AwsImagebuilderImageRecipe({
-    required super.localName,
+  AwsImagebuilderImageRecipe(
+    super.localName, {
     TfArg<Map<String, String>>? amiTags,
     TfArg<String>? description,
     required TfArg<String> name,

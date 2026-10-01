@@ -28,8 +28,8 @@ enum EmailSecurityBlockSenderPatternType implements TerraformEnum {
 final class CloudflareEmailSecurityBlockSender extends Resource {
   static const String tfType = 'cloudflare_email_security_block_sender';
 
-  CloudflareEmailSecurityBlockSender({
-    required super.localName,
+  CloudflareEmailSecurityBlockSender(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     required TfArg<bool> isRegex,

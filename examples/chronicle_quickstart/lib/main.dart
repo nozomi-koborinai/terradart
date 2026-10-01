@@ -26,7 +26,7 @@ final class ChronicleCustomListStack extends Stack {
 
     add(
       GoogleChronicleCustomList(
-        localName: 'approved_files',
+        'approved_files',
         location: .literal('us'),
         instance: .literal(instanceId),
         entityIdentifier: .literal('filename.bin'),
@@ -38,7 +38,7 @@ final class ChronicleCustomListStack extends Stack {
 
     add(
       GoogleChronicleSoarNetwork(
-        localName: 'corp_internal',
+        'corp_internal',
         location: .literal('us'),
         instance: .literal(instanceId),
         displayName: .literal('Corp internal'),
@@ -53,7 +53,7 @@ final class ChronicleCustomListStack extends Stack {
     // case title can be taken from.
     add(
       GoogleChronicleCaseCloseDefinition(
-        localName: 'false_positive_close',
+        'false_positive_close',
         location: .literal('us'),
         instance: .literal(instanceId),
         closeReason: .literal(.notMalicious),
@@ -64,7 +64,7 @@ final class ChronicleCustomListStack extends Stack {
 
     add(
       GoogleChronicleCaseStageDefinition(
-        localName: 'triage_stage',
+        'triage_stage',
         location: .literal('us'),
         instance: .literal(instanceId),
         displayName: .literal('Triage'),
@@ -75,7 +75,7 @@ final class ChronicleCustomListStack extends Stack {
 
     add(
       GoogleChronicleCaseTagDefinition(
-        localName: 'phishing_tag',
+        'phishing_tag',
         location: .literal('us'),
         instance: .literal(instanceId),
         displayName: .literal('Phishing'),
@@ -89,7 +89,7 @@ final class ChronicleCustomListStack extends Stack {
     );
 
     final dashboard = GoogleChronicleNativeDashboard(
-      localName: 'ops_overview',
+      'ops_overview',
       location: .literal('us'),
       instance: .literal(instanceId),
       displayName: .literal('Ops overview'),
@@ -101,7 +101,7 @@ final class ChronicleCustomListStack extends Stack {
 
     add(
       GoogleChronicleDashboardChart(
-        localName: 'dns_events',
+        'dns_events',
         location: .literal('us'),
         instance: .literal(instanceId),
         nativeDashboard: dashboard.ref,

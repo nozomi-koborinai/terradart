@@ -105,8 +105,8 @@ enum NeptuneClusterParameterGroupApplyMethod implements TerraformEnum {
 final class AwsNeptuneClusterParameterGroup extends Resource {
   static const String tfType = 'aws_neptune_cluster_parameter_group';
 
-  AwsNeptuneClusterParameterGroup({
-    required super.localName,
+  AwsNeptuneClusterParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     NeptuneClusterParameterGroupName? name,

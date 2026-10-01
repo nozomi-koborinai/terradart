@@ -10,8 +10,8 @@ const Set<String> _awsDxHostedConnectionSensitive = <String>{};
 final class AwsDxHostedConnection extends Resource {
   static const String tfType = 'aws_dx_hosted_connection';
 
-  AwsDxHostedConnection({
-    required super.localName,
+  AwsDxHostedConnection(
+    super.localName, {
     required TfArg<String> bandwidth,
     required TfArg<String> connectionId,
     required TfArg<String> name,

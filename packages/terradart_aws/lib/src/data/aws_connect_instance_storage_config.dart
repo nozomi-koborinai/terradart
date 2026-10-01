@@ -11,8 +11,8 @@ const Set<String> _awsConnectInstanceStorageConfigSensitive = <String>{};
 final class DataAwsConnectInstanceStorageConfig extends Data {
   static const String tfType = 'aws_connect_instance_storage_config';
 
-  DataAwsConnectInstanceStorageConfig({
-    required super.localName,
+  DataAwsConnectInstanceStorageConfig(
+    super.localName, {
     required TfArg<String> associationId,
     required TfArg<String> instanceId,
     TfArg<String>? region,

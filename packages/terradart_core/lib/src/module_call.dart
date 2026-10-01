@@ -9,12 +9,12 @@ import 'tf_arg.dart';
 ///
 /// ```dart
 /// final sa = addModule(ModuleCall(
-///   localName: 'sa_bff',
+///   'sa_bff',
 ///   source: '../modules/service_account',
 ///   inputs: {'account_id': .literal('app-bff-sa')},
 /// ));
 /// add(GoogleProjectIamMember(
-///   localName: 'bff_invoker',
+///   'bff_invoker',
 ///   project: .literal('my-project'),
 ///   role: .literal('roles/run.invoker'),
 ///   member: .arg(sa.output<String>('member')),
@@ -23,14 +23,14 @@ import 'tf_arg.dart';
 ///
 /// `terradart-migrate` generates a typed subclass per local module directory,
 /// with a named parameter per `variable` block and a getter per `output`:
-/// `ServiceAccountModule(localName: 'sa_bff', source: '...', accountId: ...)`
+/// `ServiceAccountModule('sa_bff', source: '...', accountId: ...)`
 /// and `sa.member`.
 ///
 /// `base` rather than `final` for exactly that: a subclass may narrow the
 /// constructor, but the fields synth reads stay this class's.
 base class ModuleCall implements TfAddressed {
-  ModuleCall({
-    required this.localName,
+  ModuleCall(
+    this.localName, {
     required this.source,
     this.version,
     Map<String, TfArg<dynamic>?> inputs = const {},

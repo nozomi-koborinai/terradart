@@ -66,8 +66,8 @@ final class DataOrganizationsParent {
 final class DataCloudflareOrganizations extends Data {
   static const String tfType = 'cloudflare_organizations';
 
-  DataCloudflareOrganizations({
-    required super.localName,
+  DataCloudflareOrganizations(
+    super.localName, {
     TfArg<num>? maxItems,
     TfArg<num>? pageSize,
     TfArg<String>? pageToken,

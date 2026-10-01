@@ -83,8 +83,8 @@ final class GoogleVertexAiSemanticGovernancePolicyEngine extends Resource {
   static const String tfType =
       'google_vertex_ai_semantic_governance_policy_engine';
 
-  GoogleVertexAiSemanticGovernancePolicyEngine({
-    required super.localName,
+  GoogleVertexAiSemanticGovernancePolicyEngine(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

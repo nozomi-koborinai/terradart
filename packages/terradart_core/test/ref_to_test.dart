@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 import 'helpers/fake_resources.dart';
 
 final class _FakeNetwork extends Resource {
-  _FakeNetwork({required super.localName})
+  _FakeNetwork(super.localName)
     : super(terraformType: 'fake_network', argMap: const {});
 
   @override
@@ -16,7 +16,7 @@ final class _FakeNetwork extends Resource {
 }
 
 final class _FakeNetworkData extends Data {
-  _FakeNetworkData({required super.localName})
+  _FakeNetworkData(super.localName)
     : super(terraformType: 'fake_network', argMap: const {});
 
   @override
@@ -26,7 +26,7 @@ final class _FakeNetworkData extends Data {
 }
 
 final class _FakeSubnet extends Resource {
-  _FakeSubnet({required super.localName, required RefTo<_FakeNetwork> network})
+  _FakeSubnet(super.localName, {required RefTo<_FakeNetwork> network})
     : super(
         terraformType: 'fake_subnet',
         argMap: {'network': network.encodeAs('self_link')},
@@ -37,8 +37,8 @@ final class _FakeSubnet extends Resource {
 }
 
 final class _FakeInstance extends Resource {
-  _FakeInstance({
-    required super.localName,
+  _FakeInstance(
+    super.localName, {
     required TfArg<List<RefTo<_FakeNetwork>>> networks,
   }) : super(
          terraformType: 'fake_instance',
@@ -50,7 +50,7 @@ final class _FakeInstance extends Resource {
 }
 
 void main() {
-  final vpc = _FakeNetwork(localName: 'main');
+  final vpc = _FakeNetwork('main');
 
   test('a resource reference emits the attribute the argument picks', () {
     expect(
@@ -61,7 +61,7 @@ void main() {
   });
 
   test('a data source reference reads the data block', () {
-    final ref = _FakeNetworkData(localName: 'default').ref.encodeAs('name');
+    final ref = _FakeNetworkData('default').ref.encodeAs('name');
     expect(ref.toTfJson(), r'${data.fake_network.default.name}');
     expect(ref, isA<DataRef<String>>());
   });
@@ -81,7 +81,7 @@ void main() {
       r'${fake_network.main.project}',
     );
     expect(
-      _FakeNetworkData(localName: 'd').ref.alsoAs('project')?.toTfJson(),
+      _FakeNetworkData('d').ref.alsoAs('project')?.toTfJson(),
       r'${data.fake_network.d.project}',
     );
     expect(RefTo<_FakeNetwork>.literal('n').alsoAs('project'), isNull);
@@ -126,8 +126,8 @@ void main() {
     );
     stack
       ..add(vpc)
-      ..add(_FakeSubnet(localName: 'app', network: vpc.ref))
-      ..add(_FakeSubnet(localName: 'other', network: .literal('legacy')));
+      ..add(_FakeSubnet('app', network: vpc.ref))
+      ..add(_FakeSubnet('other', network: .literal('legacy')));
     final resources = stack.synth().tfJson['resource'] as Map<String, Object?>;
     final subnets = resources['fake_subnet']! as Map<String, Object?>;
     expect(
@@ -168,12 +168,7 @@ void main() {
     );
     stack
       ..add(vpc)
-      ..add(
-        _FakeInstance(
-          localName: 'vm',
-          networks: .literal([vpc.ref, .literal('n')]),
-        ),
-      );
+      ..add(_FakeInstance('vm', networks: .literal([vpc.ref, .literal('n')])));
     final resources = stack.synth().tfJson['resource'] as Map<String, Object?>;
     final vm = (resources['fake_instance']! as Map)['vm'] as Map;
     expect(vm['networks'], [r'${fake_network.main.id}', 'n']);

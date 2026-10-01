@@ -1901,8 +1901,8 @@ enum KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode
 final class AwsKinesisFirehoseDeliveryStream extends Resource {
   static const String tfType = 'aws_kinesis_firehose_delivery_stream';
 
-  AwsKinesisFirehoseDeliveryStream({
-    required super.localName,
+  AwsKinesisFirehoseDeliveryStream(
+    super.localName, {
     TfArg<String>? arn,
     required TfArg<KinesisFirehoseDeliveryStreamDestination> destination,
     TfArg<String>? destinationId,

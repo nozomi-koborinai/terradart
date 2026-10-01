@@ -20,8 +20,8 @@ enum Route53recoverycontrolconfigClusterNetworkType implements TerraformEnum {
 final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   static const String tfType = 'aws_route53recoverycontrolconfig_cluster';
 
-  AwsRoute53recoverycontrolconfigCluster({
-    required super.localName,
+  AwsRoute53recoverycontrolconfigCluster(
+    super.localName, {
     required TfArg<String> name,
     TfArg<Route53recoverycontrolconfigClusterNetworkType>? networkType,
     TfArg<Map<String, String>>? tags,

@@ -66,8 +66,8 @@ enum DataZeroTrustDnsLocationOrderBy implements TerraformEnum {
 final class DataCloudflareZeroTrustDnsLocation extends Data {
   static const String tfType = 'cloudflare_zero_trust_dns_location';
 
-  DataCloudflareZeroTrustDnsLocation({
-    required super.localName,
+  DataCloudflareZeroTrustDnsLocation(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? locationId,
     DataZeroTrustDnsLocationFilter? filter,

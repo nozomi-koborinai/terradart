@@ -19,8 +19,8 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
   static const String tfType =
       'cloudflare_certificate_authorities_hostname_associations';
 
-  DataCloudflareCertificateAuthoritiesHostnameAssociations({
-    required super.localName,
+  DataCloudflareCertificateAuthoritiesHostnameAssociations(
+    super.localName, {
     TfArg<String>? mtlsCertificateId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

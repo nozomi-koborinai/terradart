@@ -71,7 +71,7 @@ final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
 /// Example (expire cells after 7 days):
 /// ```dart
 /// GoogleBigtableGcPolicy(
-///   localName: 'cf1_max_age',
+///   'cf1_max_age',
 ///   instanceName: instance.ref,
 ///   table: table.ref,
 ///   columnFamily: TfArg.literal('cf1'),
@@ -81,8 +81,8 @@ final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
 final class GoogleBigtableGcPolicy extends Resource {
   static const String tfType = 'google_bigtable_gc_policy';
 
-  GoogleBigtableGcPolicy({
-    required super.localName,
+  GoogleBigtableGcPolicy(
+    super.localName, {
     required RefTo<GoogleBigtableInstance> instanceName,
     required RefTo<GoogleBigtableTable> table,
     required TfArg<String> columnFamily,

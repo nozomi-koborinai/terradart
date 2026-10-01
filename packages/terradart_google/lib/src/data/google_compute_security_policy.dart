@@ -14,8 +14,8 @@ const Set<String> _googleComputeSecurityPolicySensitive = <String>{};
 final class DataGoogleComputeSecurityPolicy extends Data {
   static const String tfType = 'google_compute_security_policy';
 
-  DataGoogleComputeSecurityPolicy({
-    required super.localName,
+  DataGoogleComputeSecurityPolicy(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLink,

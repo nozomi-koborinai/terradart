@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontKeyGroupSensitive = <String>{};
 final class AwsCloudfrontKeyGroup extends Resource {
   static const String tfType = 'aws_cloudfront_key_group';
 
-  AwsCloudfrontKeyGroup({
-    required super.localName,
+  AwsCloudfrontKeyGroup(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<List<String>> items,
     required TfArg<String> name,

@@ -39,8 +39,8 @@ final class CodeartifactRepositoryUpstream {
 final class AwsCodeartifactRepository extends Resource {
   static const String tfType = 'aws_codeartifact_repository';
 
-  AwsCodeartifactRepository({
-    required super.localName,
+  AwsCodeartifactRepository(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> domain,
     TfArg<String>? domainOwner,

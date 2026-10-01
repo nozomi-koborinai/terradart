@@ -11,8 +11,8 @@ const Set<String> _awsEcrRepositorySensitive = <String>{};
 final class DataAwsEcrRepository extends Data {
   static const String tfType = 'aws_ecr_repository';
 
-  DataAwsEcrRepository({
-    required super.localName,
+  DataAwsEcrRepository(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? registryId,

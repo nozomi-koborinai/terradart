@@ -60,8 +60,8 @@ final class IamPrincipalAccessBoundaryPolicyRules {
 final class GoogleIamPrincipalAccessBoundaryPolicy extends Resource {
   static const String tfType = 'google_iam_principal_access_boundary_policy';
 
-  GoogleIamPrincipalAccessBoundaryPolicy({
-    required super.localName,
+  GoogleIamPrincipalAccessBoundaryPolicy(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

@@ -170,8 +170,8 @@ enum MagicTransitSiteLanType implements TerraformEnum {
 final class CloudflareMagicTransitSiteLan extends Resource {
   static const String tfType = 'cloudflare_magic_transit_site_lan';
 
-  CloudflareMagicTransitSiteLan({
-    required super.localName,
+  CloudflareMagicTransitSiteLan(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? bondId,
     TfArg<bool>? haLink,

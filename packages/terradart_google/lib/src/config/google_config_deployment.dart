@@ -154,7 +154,7 @@ final class ConfigDeploymentInputValues {
 /// Example (Git blueprint):
 /// ```dart
 /// GoogleConfigDeployment(
-///   localName: 'vpc',
+///   'vpc',
 ///   name: TfArg.literal('my-vpc-deployment'),
 ///   location: TfArg.literal('us-central1'),
 ///   serviceAccount: RefTo.literal(
@@ -182,8 +182,8 @@ final class ConfigDeploymentInputValues {
 final class GoogleConfigDeployment extends Resource {
   static const String tfType = 'google_config_deployment';
 
-  GoogleConfigDeployment({
-    required super.localName,
+  GoogleConfigDeployment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<GoogleServiceAccount> serviceAccount,

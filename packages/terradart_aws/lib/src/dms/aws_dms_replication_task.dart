@@ -86,8 +86,8 @@ final class DmsReplicationTaskCdcStartTime extends DmsReplicationTaskCdcStart {
 final class AwsDmsReplicationTask extends Resource {
   static const String tfType = 'aws_dms_replication_task';
 
-  AwsDmsReplicationTask({
-    required super.localName,
+  AwsDmsReplicationTask(
+    super.localName, {
     DmsReplicationTaskCdcStart? cdcStart,
     required TfArg<DmsReplicationTaskMigrationType> migrationType,
     TfArg<String>? region,

@@ -50,8 +50,8 @@ final class KmsCustomKeyStoreXksProxyAuthenticationCredential {
 final class AwsKmsCustomKeyStore extends Resource {
   static const String tfType = 'aws_kms_custom_key_store';
 
-  AwsKmsCustomKeyStore({
-    required super.localName,
+  AwsKmsCustomKeyStore(
+    super.localName, {
     TfArg<String>? cloudHsmClusterId,
     required TfArg<String> customKeyStoreName,
     TfArg<KmsCustomKeyStoreType>? customKeyStoreType,

@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleContainerAnalysisNoteIamMember(
-  ///   localName: 'note_viewer',
+  ///   'note_viewer',
   ///   note: note.ref,
   ///   role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
   ///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),

@@ -24,7 +24,7 @@ const Set<String> _googleFilestoreSnapshotSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleFilestoreSnapshot(
-///   localName: 'share_snap',
+///   'share_snap',
 ///   name: TfArg.literal('share-snap-1'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   instance: nfs.ref,
@@ -33,8 +33,8 @@ const Set<String> _googleFilestoreSnapshotSensitive = <String>{};
 final class GoogleFilestoreSnapshot extends Resource {
   static const String tfType = 'google_filestore_snapshot';
 
-  GoogleFilestoreSnapshot({
-    required super.localName,
+  GoogleFilestoreSnapshot(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleFilestoreInstance> instance,

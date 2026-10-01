@@ -67,8 +67,8 @@ enum Route53VpcAssociationAuthorizationVpcRegion implements TerraformEnum {
 final class AwsRoute53VpcAssociationAuthorization extends Resource {
   static const String tfType = 'aws_route53_vpc_association_authorization';
 
-  AwsRoute53VpcAssociationAuthorization({
-    required super.localName,
+  AwsRoute53VpcAssociationAuthorization(
+    super.localName, {
     required RefTo<AwsVpc> vpcId,
     TfArg<Route53VpcAssociationAuthorizationVpcRegion>? vpcRegion,
     required RefTo<AwsRoute53Zone> zoneId,

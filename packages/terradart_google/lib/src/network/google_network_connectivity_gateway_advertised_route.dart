@@ -57,8 +57,8 @@ final class GoogleNetworkConnectivityGatewayAdvertisedRoute extends Resource {
   static const String tfType =
       'google_network_connectivity_gateway_advertised_route';
 
-  GoogleNetworkConnectivityGatewayAdvertisedRoute({
-    required super.localName,
+  GoogleNetworkConnectivityGatewayAdvertisedRoute(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> spoke,

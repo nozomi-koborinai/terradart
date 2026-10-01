@@ -16,8 +16,8 @@ const Set<String> _appwriteTablesdbTableSensitive = <String>{};
 final class AppwriteTablesdbTable extends Resource {
   static const String tfType = 'appwrite_tablesdb_table';
 
-  AppwriteTablesdbTable({
-    required super.localName,
+  AppwriteTablesdbTable(
+    super.localName, {
     required RefTo<AppwriteTablesdb> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,

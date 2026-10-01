@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIdentityPlatformOauthIdpConfig(
-  ///   localName: 'project_oidc',
+  ///   'project_oidc',
   ///   name: TfArg.literal('oidc.terradart-project'),
   ///   displayName: TfArg.literal('TerraDart project dummy OIDC'),
   ///   issuer: TfArg.literal('https://accounts.example.com'),

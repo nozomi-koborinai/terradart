@@ -128,8 +128,8 @@ final class DatastreamPrivateConnectionVpcPeeringConfig {
 final class GoogleDatastreamPrivateConnection extends Resource {
   static const String tfType = 'google_datastream_private_connection';
 
-  GoogleDatastreamPrivateConnection({
-    required super.localName,
+  GoogleDatastreamPrivateConnection(
+    super.localName, {
     TfArg<bool>? createWithoutValidation,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,

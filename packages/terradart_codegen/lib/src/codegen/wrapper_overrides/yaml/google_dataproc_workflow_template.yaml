@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataprocWorkflowTemplate(
-  ///   localName: 'sparkpi',
+  ///   'sparkpi',
   ///   name: TfArg.literal('terradart-wf'),
   ///   location: TfArg.literal('us-central1'),
   ///   placement: DataprocWorkflowTemplatePlacement(

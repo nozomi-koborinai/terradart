@@ -21,9 +21,9 @@ curatedDoc: |-
   ///
   /// Example:
   /// ```dart
-  /// final current = stack.add(GoogleProject(localName: 'current'));
+  /// final current = stack.add(GoogleProject('current'));
   /// final cmekBinding = GooglePubsubTopicIamMember(
-  ///   localName: 'pubsub_cmek',
+  ///   'pubsub_cmek',
   ///   topic: topic.ref,
   ///   role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypterDecrypter'),
   ///   member: .serviceAccount(

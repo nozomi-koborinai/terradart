@@ -15,8 +15,8 @@ final class DataGoogleOracleDatabaseGoldengateConnectionTypes extends Data {
   static const String tfType =
       'google_oracle_database_goldengate_connection_types';
 
-  DataGoogleOracleDatabaseGoldengateConnectionTypes({
-    required super.localName,
+  DataGoogleOracleDatabaseGoldengateConnectionTypes(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

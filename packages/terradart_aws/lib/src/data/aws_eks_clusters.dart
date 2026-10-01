@@ -10,8 +10,8 @@ const Set<String> _awsEksClustersSensitive = <String>{};
 final class DataAwsEksClusters extends Data {
   static const String tfType = 'aws_eks_clusters';
 
-  DataAwsEksClusters({
-    required super.localName,
+  DataAwsEksClusters(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

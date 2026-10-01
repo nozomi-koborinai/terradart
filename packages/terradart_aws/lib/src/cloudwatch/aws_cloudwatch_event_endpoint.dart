@@ -97,8 +97,8 @@ final class CloudwatchEventEndpointSecondary {
 final class AwsCloudwatchEventEndpoint extends Resource {
   static const String tfType = 'aws_cloudwatch_event_endpoint';
 
-  AwsCloudwatchEventEndpoint({
-    required super.localName,
+  AwsCloudwatchEventEndpoint(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

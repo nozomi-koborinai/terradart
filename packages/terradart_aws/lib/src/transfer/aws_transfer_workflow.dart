@@ -318,8 +318,8 @@ final class TransferWorkflowSteps {
 final class AwsTransferWorkflow extends Resource {
   static const String tfType = 'aws_transfer_workflow';
 
-  AwsTransferWorkflow({
-    required super.localName,
+  AwsTransferWorkflow(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final analytics = GoogleBigqueryDataset(
-  ///   localName: 'analytics',
+  ///   'analytics',
   ///   datasetId: .literal('analytics_prod'),
   ///   location: TfArg.literal('US'),
   ///   friendlyName: TfArg.literal('Analytics Production'),

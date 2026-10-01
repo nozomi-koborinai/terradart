@@ -106,7 +106,7 @@ enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
 /// Example:
 /// ```dart
 /// final yearly = GoogleBigqueryCapacityCommitment(
-///   localName: 'yearly',
+///   'yearly',
 ///   capacityCommitmentId: TfArg.literal('yearly-1k'),
 ///   location: TfArg.literal('US'),
 ///   slotCount: TfArg.literal(1000),
@@ -118,8 +118,8 @@ enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
 final class GoogleBigqueryCapacityCommitment extends Resource {
   static const String tfType = 'google_bigquery_capacity_commitment';
 
-  GoogleBigqueryCapacityCommitment({
-    required super.localName,
+  GoogleBigqueryCapacityCommitment(
+    super.localName, {
     required TfArg<String> capacityCommitmentId,
     TfArg<String>? location,
     required TfArg<num> slotCount,

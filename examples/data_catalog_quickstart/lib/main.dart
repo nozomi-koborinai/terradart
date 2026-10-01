@@ -29,7 +29,7 @@ final class DataCatalogStack extends Stack {
       ) {
     final apiDataCatalog = add(
       GoogleProjectService(
-        localName: 'api_datacatalog',
+        'api_datacatalog',
         service: .literal('datacatalog.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -37,7 +37,7 @@ final class DataCatalogStack extends Stack {
 
     final group = add(
       GoogleDataCatalogEntryGroup(
-        localName: 'group',
+        'group',
         entryGroupId: .literal('terradart_entry_group'),
         region: .literal('us-central1'),
         displayName: .literal('TerraDart entry group'),
@@ -48,7 +48,7 @@ final class DataCatalogStack extends Stack {
 
     final customEntry = add(
       GoogleDataCatalogEntry(
-        localName: 'custom_entry',
+        'custom_entry',
         entryGroup: group.ref,
         entryId: .literal('terradart_entry'),
         entryKind: .customType(
@@ -62,7 +62,7 @@ final class DataCatalogStack extends Stack {
 
     final taxonomy = add(
       GoogleDataCatalogTaxonomy(
-        localName: 'pii',
+        'pii',
         displayName: .literal('terradart_pii_taxonomy'),
         description: .literal('Policy tags for PII columns'),
         activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']),
@@ -73,7 +73,7 @@ final class DataCatalogStack extends Stack {
 
     final emailTag = add(
       GoogleDataCatalogPolicyTag(
-        localName: 'email',
+        'email',
         displayName: .literal('email'),
         taxonomy: taxonomy.ref,
         description: .literal('Email addresses'),
@@ -83,7 +83,7 @@ final class DataCatalogStack extends Stack {
 
     final tagTemplate = add(
       GoogleDataCatalogTagTemplate(
-        localName: 'demo',
+        'demo',
         tagTemplateId: .literal('terradart_template'),
         region: .literal('us-central1'),
         displayName: .literal('TerraDart Tag Template'),
@@ -104,7 +104,7 @@ final class DataCatalogStack extends Stack {
 
     add(
       GoogleDataCatalogTag(
-        localName: 'entry_source',
+        'entry_source',
         parent: customEntry.id,
         template: tagTemplate.ref,
         fields: [
@@ -120,7 +120,7 @@ final class DataCatalogStack extends Stack {
 
     final reader = add(
       GoogleServiceAccount(
-        localName: 'catalog_reader',
+        'catalog_reader',
         accountId: .literal('catalog-reader'),
         displayName: .literal('Data Catalog reader'),
       ),
@@ -128,7 +128,7 @@ final class DataCatalogStack extends Stack {
 
     add(
       GoogleDataCatalogEntryGroupIamMember(
-        localName: 'group_viewer',
+        'group_viewer',
         entryGroup: group.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
@@ -139,7 +139,7 @@ final class DataCatalogStack extends Stack {
 
     add(
       GoogleDataCatalogTaxonomyIamMember(
-        localName: 'taxonomy_viewer',
+        'taxonomy_viewer',
         taxonomy: taxonomy.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
@@ -150,7 +150,7 @@ final class DataCatalogStack extends Stack {
 
     add(
       GoogleDataCatalogPolicyTagIamMember(
-        localName: 'policy_tag_viewer',
+        'policy_tag_viewer',
         policyTag: emailTag.ref,
         role: .literal('roles/datacatalog.viewer'),
         member: reader.principal,
@@ -160,7 +160,7 @@ final class DataCatalogStack extends Stack {
 
     add(
       GoogleDataCatalogTagTemplateIamMember(
-        localName: 'tag_template_viewer',
+        'tag_template_viewer',
         tagTemplate: tagTemplate.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),

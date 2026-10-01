@@ -45,8 +45,8 @@ final class SsmincidentsReplicationSetRegions {
 final class AwsSsmincidentsReplicationSet extends Resource {
   static const String tfType = 'aws_ssmincidents_replication_set';
 
-  AwsSsmincidentsReplicationSet({
-    required super.localName,
+  AwsSsmincidentsReplicationSet(
+    super.localName, {
     TfArg<Map<String, String>>? tags,
     List<SsmincidentsReplicationSetRegion>? region,
     List<SsmincidentsReplicationSetRegions>? regions,

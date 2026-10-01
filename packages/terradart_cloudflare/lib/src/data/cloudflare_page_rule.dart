@@ -27,8 +27,8 @@ const Set<String> _cloudflarePageRuleSensitive = <String>{};
 final class DataCloudflarePageRule extends Data {
   static const String tfType = 'cloudflare_page_rule';
 
-  DataCloudflarePageRule({
-    required super.localName,
+  DataCloudflarePageRule(
+    super.localName, {
     required TfArg<String> pageruleId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

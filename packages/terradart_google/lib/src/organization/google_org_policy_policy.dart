@@ -144,8 +144,8 @@ final class OrgPolicyPolicySpec {
 final class GoogleOrgPolicyPolicy extends Resource {
   static const String tfType = 'google_org_policy_policy';
 
-  GoogleOrgPolicyPolicy({
-    required super.localName,
+  GoogleOrgPolicyPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> name,
     required TfArg<String> parent,

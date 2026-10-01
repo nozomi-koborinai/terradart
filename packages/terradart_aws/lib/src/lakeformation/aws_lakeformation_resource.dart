@@ -12,8 +12,8 @@ const Set<String> _awsLakeformationResourceSensitive = <String>{};
 final class AwsLakeformationResource extends Resource {
   static const String tfType = 'aws_lakeformation_resource';
 
-  AwsLakeformationResource({
-    required super.localName,
+  AwsLakeformationResource(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<bool>? hybridAccessEnabled,
     TfArg<String>? region,

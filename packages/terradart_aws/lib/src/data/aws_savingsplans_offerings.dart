@@ -30,8 +30,8 @@ final class DataSavingsplansOfferingsFilter {
 final class DataAwsSavingsplansOfferings extends Data {
   static const String tfType = 'aws_savingsplans_offerings';
 
-  DataAwsSavingsplansOfferings({
-    required super.localName,
+  DataAwsSavingsplansOfferings(
+    super.localName, {
     TfArg<List<String>>? currencies,
     TfArg<List<String>>? descriptions,
     TfArg<List<num>>? durations,

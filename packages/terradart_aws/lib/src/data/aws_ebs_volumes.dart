@@ -27,8 +27,8 @@ final class DataEbsVolumesFilter {
 final class DataAwsEbsVolumes extends Data {
   static const String tfType = 'aws_ebs_volumes';
 
-  DataAwsEbsVolumes({
-    required super.localName,
+  DataAwsEbsVolumes(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEbsVolumesFilter>? filter,

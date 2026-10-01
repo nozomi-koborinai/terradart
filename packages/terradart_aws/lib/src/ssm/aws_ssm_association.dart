@@ -76,8 +76,8 @@ final class SsmAssociationTargets {
 final class AwsSsmAssociation extends Resource {
   static const String tfType = 'aws_ssm_association';
 
-  AwsSsmAssociation({
-    required super.localName,
+  AwsSsmAssociation(
+    super.localName, {
     TfArg<bool>? applyOnlyAtCronInterval,
     TfArg<String>? associationName,
     TfArg<String>? automationTargetParameterName,

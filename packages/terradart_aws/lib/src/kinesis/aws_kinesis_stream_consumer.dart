@@ -10,8 +10,8 @@ const Set<String> _awsKinesisStreamConsumerSensitive = <String>{};
 final class AwsKinesisStreamConsumer extends Resource {
   static const String tfType = 'aws_kinesis_stream_consumer';
 
-  AwsKinesisStreamConsumer({
-    required super.localName,
+  AwsKinesisStreamConsumer(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> streamArn,

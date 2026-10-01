@@ -11,8 +11,8 @@ const Set<String> _awsEc2TransitGatewayPrefixListReferenceSensitive =
 final class AwsEc2TransitGatewayPrefixListReference extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_prefix_list_reference';
 
-  AwsEc2TransitGatewayPrefixListReference({
-    required super.localName,
+  AwsEc2TransitGatewayPrefixListReference(
+    super.localName, {
     TfArg<bool>? blackhole,
     required TfArg<String> prefixListId,
     TfArg<String>? region,

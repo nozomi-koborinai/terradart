@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final svc = GoogleFirebaseDataConnectService(
-  ///   localName: 'web',
+  ///   'web',
   ///   serviceId: TfArg.literal('web-svc'),
   ///   location: TfArg.literal('us-central1'),
   ///   displayName: TfArg.literal('Web app data connect'),

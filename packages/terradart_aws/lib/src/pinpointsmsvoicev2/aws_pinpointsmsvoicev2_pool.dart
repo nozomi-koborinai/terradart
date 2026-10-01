@@ -20,8 +20,8 @@ enum Pinpointsmsvoicev2PoolMessageType implements TerraformEnum {
 final class AwsPinpointsmsvoicev2Pool extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_pool';
 
-  AwsPinpointsmsvoicev2Pool({
-    required super.localName,
+  AwsPinpointsmsvoicev2Pool(
+    super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? isoCountryCode,
     required TfArg<Pinpointsmsvoicev2PoolMessageType> messageType,

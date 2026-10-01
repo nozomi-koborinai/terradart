@@ -190,8 +190,8 @@ enum R2BucketLifecycleStorageClass implements TerraformEnum {
 final class CloudflareR2BucketLifecycle extends Resource {
   static const String tfType = 'cloudflare_r2_bucket_lifecycle';
 
-  CloudflareR2BucketLifecycle({
-    required super.localName,
+  CloudflareR2BucketLifecycle(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketLifecycleJurisdiction>? jurisdiction,

@@ -20,8 +20,8 @@ enum Ec2LocalGatewayRouteTableMode implements TerraformEnum {
 final class AwsEc2LocalGatewayRouteTable extends Resource {
   static const String tfType = 'aws_ec2_local_gateway_route_table';
 
-  AwsEc2LocalGatewayRouteTable({
-    required super.localName,
+  AwsEc2LocalGatewayRouteTable(
+    super.localName, {
     required TfArg<String> localGatewayId,
     required TfArg<Ec2LocalGatewayRouteTableMode> mode,
     TfArg<String>? region,

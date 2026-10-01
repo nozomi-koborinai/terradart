@@ -11,8 +11,8 @@ const Set<String> _awsSignerSigningJobSensitive = <String>{};
 final class DataAwsSignerSigningJob extends Data {
   static const String tfType = 'aws_signer_signing_job';
 
-  DataAwsSignerSigningJob({
-    required super.localName,
+  DataAwsSignerSigningJob(
+    super.localName, {
     required TfArg<String> jobId,
     TfArg<String>? region,
     super.provider,

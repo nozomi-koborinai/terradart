@@ -10,8 +10,8 @@ const Set<String> _awsGuarddutyMemberSensitive = <String>{};
 final class AwsGuarddutyMember extends Resource {
   static const String tfType = 'aws_guardduty_member';
 
-  AwsGuarddutyMember({
-    required super.localName,
+  AwsGuarddutyMember(
+    super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> detectorId,
     TfArg<bool>? disableEmailNotification,

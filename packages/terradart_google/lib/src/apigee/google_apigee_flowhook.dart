@@ -20,8 +20,8 @@ const Set<String> _googleApigeeFlowhookSensitive = <String>{};
 final class GoogleApigeeFlowhook extends Resource {
   static const String tfType = 'google_apigee_flowhook';
 
-  GoogleApigeeFlowhook({
-    required super.localName,
+  GoogleApigeeFlowhook(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> environment,
     required TfArg<String> flowHookPoint,

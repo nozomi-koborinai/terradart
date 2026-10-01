@@ -14,8 +14,8 @@ const Set<String> _appwriteAuthTeamSensitive = <String>{};
 final class AppwriteAuthTeam extends Resource {
   static const String tfType = 'appwrite_auth_team';
 
-  AppwriteAuthTeam({
-    required super.localName,
+  AppwriteAuthTeam(
+    super.localName, {
     required TfArg<String> name,
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? roles,

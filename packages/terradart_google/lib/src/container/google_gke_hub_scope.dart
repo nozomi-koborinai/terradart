@@ -12,8 +12,8 @@ const Set<String> _googleGkeHubScopeSensitive = <String>{};
 final class GoogleGkeHubScope extends Resource {
   static const String tfType = 'google_gke_hub_scope';
 
-  GoogleGkeHubScope({
-    required super.localName,
+  GoogleGkeHubScope(
+    super.localName, {
     required TfArg<String> scopeId,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? namespaceLabels,

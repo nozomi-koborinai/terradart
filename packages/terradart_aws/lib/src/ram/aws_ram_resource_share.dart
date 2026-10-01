@@ -27,8 +27,8 @@ final class RamResourceShareConfiguration {
 final class AwsRamResourceShare extends Resource {
   static const String tfType = 'aws_ram_resource_share';
 
-  AwsRamResourceShare({
-    required super.localName,
+  AwsRamResourceShare(
+    super.localName, {
     TfArg<bool>? allowExternalPrincipals,
     required TfArg<String> name,
     TfArg<List<String>>? permissionArns,

@@ -44,8 +44,8 @@ final class SecretManagerSecretIamBindingCondition {
 final class GoogleSecretManagerSecretIamBinding extends Resource {
   static const String tfType = 'google_secret_manager_secret_iam_binding';
 
-  GoogleSecretManagerSecretIamBinding({
-    required super.localName,
+  GoogleSecretManagerSecretIamBinding(
+    super.localName, {
     required RefTo<GoogleSecretManagerSecret> secret,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

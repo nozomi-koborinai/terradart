@@ -15,8 +15,8 @@ const Set<String> _googlePrivatecaCertificateAuthoritySensitive = <String>{};
 final class DataGooglePrivatecaCertificateAuthority extends Data {
   static const String tfType = 'google_privateca_certificate_authority';
 
-  DataGooglePrivatecaCertificateAuthority({
-    required super.localName,
+  DataGooglePrivatecaCertificateAuthority(
+    super.localName, {
     TfArg<String>? certificateAuthorityId,
     TfArg<String>? location,
     RefTo<GooglePrivatecaCaPool>? pool,

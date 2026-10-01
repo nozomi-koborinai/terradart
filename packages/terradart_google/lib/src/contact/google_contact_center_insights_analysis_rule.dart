@@ -148,8 +148,8 @@ enum ContactCenterInsightsAnalysisRuleSummarizationModel
 final class GoogleContactCenterInsightsAnalysisRule extends Resource {
   static const String tfType = 'google_contact_center_insights_analysis_rule';
 
-  GoogleContactCenterInsightsAnalysisRule({
-    required super.localName,
+  GoogleContactCenterInsightsAnalysisRule(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? displayName,
     TfArg<bool>? active,

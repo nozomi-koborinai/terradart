@@ -41,8 +41,8 @@ final class PubsubTopicIamMemberCondition {
 final class GooglePubsubTopicIamMember extends Resource {
   static const String tfType = 'google_pubsub_topic_iam_member';
 
-  GooglePubsubTopicIamMember({
-    required super.localName,
+  GooglePubsubTopicIamMember(
+    super.localName, {
     required RefTo<GooglePubsubTopic> topic,
     required TfArg<String> role,
     required IamPrincipal member,

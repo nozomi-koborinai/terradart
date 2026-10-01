@@ -31,8 +31,8 @@ final class DataFsxOntapStorageVirtualMachineFilter {
 final class DataAwsFsxOntapStorageVirtualMachine extends Data {
   static const String tfType = 'aws_fsx_ontap_storage_virtual_machine';
 
-  DataAwsFsxOntapStorageVirtualMachine({
-    required super.localName,
+  DataAwsFsxOntapStorageVirtualMachine(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataFsxOntapStorageVirtualMachineFilter>? filter,

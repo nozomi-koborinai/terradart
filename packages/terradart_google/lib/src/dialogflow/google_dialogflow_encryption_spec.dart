@@ -34,8 +34,8 @@ final class DialogflowEncryptionSpec {
 final class GoogleDialogflowEncryptionSpec extends Resource {
   static const String tfType = 'google_dialogflow_encryption_spec';
 
-  GoogleDialogflowEncryptionSpec({
-    required super.localName,
+  GoogleDialogflowEncryptionSpec(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required DialogflowEncryptionSpec encryptionSpec,

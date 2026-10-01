@@ -24,8 +24,8 @@ final class DataAiSearchTokenFilter {
 final class DataCloudflareAiSearchToken extends Data {
   static const String tfType = 'cloudflare_ai_search_token';
 
-  DataCloudflareAiSearchToken({
-    required super.localName,
+  DataCloudflareAiSearchToken(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataAiSearchTokenFilter? filter,
     super.provider,

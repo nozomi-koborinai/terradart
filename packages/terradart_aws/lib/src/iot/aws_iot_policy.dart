@@ -10,8 +10,8 @@ const Set<String> _awsIotPolicySensitive = <String>{};
 final class AwsIotPolicy extends Resource {
   static const String tfType = 'aws_iot_policy';
 
-  AwsIotPolicy({
-    required super.localName,
+  AwsIotPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> policy,
     TfArg<String>? region,

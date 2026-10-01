@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleWorkstationsWorkstationCluster(
-  ///   localName: 'ws',
+  ///   'ws',
   ///   workstationClusterId: TfArg.literal('terradart-ws'),
   ///   location: TfArg.literal('us-central1'),
   ///   network: vpc.ref,

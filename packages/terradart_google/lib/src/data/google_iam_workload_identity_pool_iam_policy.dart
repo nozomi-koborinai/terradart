@@ -14,8 +14,8 @@ const Set<String> _googleIamWorkloadIdentityPoolIamPolicySensitive = <String>{};
 final class DataGoogleIamWorkloadIdentityPoolIamPolicy extends Data {
   static const String tfType = 'google_iam_workload_identity_pool_iam_policy';
 
-  DataGoogleIamWorkloadIdentityPoolIamPolicy({
-    required super.localName,
+  DataGoogleIamWorkloadIdentityPoolIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> workloadIdentityPoolId,
     super.provider,

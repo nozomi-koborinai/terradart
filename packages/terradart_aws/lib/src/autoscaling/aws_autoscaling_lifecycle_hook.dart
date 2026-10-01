@@ -32,8 +32,8 @@ enum AutoscalingLifecycleHookLifecycleTransition implements TerraformEnum {
 final class AwsAutoscalingLifecycleHook extends Resource {
   static const String tfType = 'aws_autoscaling_lifecycle_hook';
 
-  AwsAutoscalingLifecycleHook({
-    required super.localName,
+  AwsAutoscalingLifecycleHook(
+    super.localName, {
     required TfArg<String> autoscalingGroupName,
     TfArg<AutoscalingLifecycleHookDefaultResult>? defaultResult,
     TfArg<num>? heartbeatTimeout,

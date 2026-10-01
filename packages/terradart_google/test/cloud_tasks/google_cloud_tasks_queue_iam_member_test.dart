@@ -5,12 +5,12 @@ import 'package:test/test.dart';
 void main() {
   test('queue IAM member emits name + location + project + role + member', () {
     final q = GoogleCloudTasksQueue(
-      localName: 'jobs',
+      'jobs',
       name: TfArg.literal('jobs-prod'),
       location: TfArg.literal('us-central1'),
     );
     final iam = GoogleCloudTasksQueueIamMember(
-      localName: 'jobs_enqueuer',
+      'jobs_enqueuer',
       queue: q.ref,
       role: TfArg.literal('roles/cloudtasks.enqueuer'),
       member: .serviceAccount('enq@p.iam.gserviceaccount.com'),
