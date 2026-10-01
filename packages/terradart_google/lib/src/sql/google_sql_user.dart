@@ -76,6 +76,7 @@ final class SqlUserPasswordPolicy {
 
   final TfArg<String>? passwordExpirationDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_failed_attempts': ?allowedFailedAttempts?.toTfJson(),
     'enable_failed_attempts_check': ?enableFailedAttemptsCheck?.toTfJson(),

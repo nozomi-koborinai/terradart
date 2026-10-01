@@ -43,6 +43,7 @@ final class AiSearchNamespacePublicEndpointParams {
 
   final AiSearchNamespaceSearchEndpoint? searchEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorized_hosts': ?authorizedHosts?.toTfJson(),
     'custom_domains': ?customDomains?.toTfJson(),
@@ -64,6 +65,7 @@ final class AiSearchNamespaceChatCompletionsEndpoint {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
@@ -77,6 +79,7 @@ final class AiSearchNamespaceMcp {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -99,6 +102,7 @@ final class AiSearchNamespaceRateLimit {
 
   final AiSearchNamespaceTechnique? technique;
 
+  @internal
   Map<String, Object?> encode() => {
     'period_ms': ?periodMs?.toTfJson(),
     'requests': ?requests?.toTfJson(),
@@ -129,6 +133,7 @@ final class AiSearchNamespaceSearchEndpoint {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 

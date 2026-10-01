@@ -23,6 +23,7 @@ final class S3filesAccessPointPosixUser {
 
   final TfArg<num> uid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
     'secondary_gids': ?secondaryGids?.toTfJson(),
@@ -40,6 +41,7 @@ final class S3filesAccessPointRootDirectory {
 
   final List<S3filesAccessPointCreationPermissions>? creationPermissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     if (creationPermissions != null)
@@ -65,6 +67,7 @@ final class S3filesAccessPointCreationPermissions {
 
   final TfArg<String> permissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'owner_gid': ownerGid.toTfJson(),
     'owner_uid': ownerUid.toTfJson(),

@@ -52,6 +52,7 @@ final class ApphubApplicationAttributes {
 
   final List<ApphubApplicationOperatorOwners>? operatorOwners;
 
+  @internal
   Map<String, Object?> encode() => {
     if (businessOwners != null)
       'business_owners': [for (final e in businessOwners!) e.encode()],
@@ -77,6 +78,7 @@ final class ApphubApplicationBusinessOwners {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
@@ -91,6 +93,7 @@ final class ApphubApplicationCriticality {
 
   final ApphubApplicationCriticalityType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -133,6 +136,7 @@ final class ApphubApplicationDeveloperOwners {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
@@ -147,6 +151,7 @@ final class ApphubApplicationEnvironment {
 
   final ApphubApplicationEnvironmentType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -191,6 +196,7 @@ final class ApphubApplicationOperatorOwners {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
@@ -205,6 +211,7 @@ final class ApphubApplicationScope {
 
   final ApphubApplicationType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 

@@ -23,6 +23,7 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 
   final DynamodbGlobalSecondaryIndexKeyType keyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'attribute_type': attributeType.toTfJson(),
@@ -91,6 +92,7 @@ final class DynamodbGlobalSecondaryIndexOnDemandThroughput {
 
   final TfArg<num>? maxWriteRequestUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_read_request_units': ?maxReadRequestUnits?.toTfJson(),
     'max_write_request_units': ?maxWriteRequestUnits?.toTfJson(),
@@ -110,6 +112,7 @@ final class DynamodbGlobalSecondaryIndexProjection {
 
   final DynamodbGlobalSecondaryIndexProjectionType projectionType;
 
+  @internal
   Map<String, Object?> encode() => {
     'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
     'projection_type': projectionType.toTfJson(),
@@ -157,6 +160,7 @@ final class DynamodbGlobalSecondaryIndexProvisionedThroughput {
 
   final TfArg<num>? writeCapacityUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'read_capacity_units': ?readCapacityUnits?.toTfJson(),
     'write_capacity_units': ?writeCapacityUnits?.toTfJson(),

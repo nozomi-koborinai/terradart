@@ -38,12 +38,15 @@ sealed class Wafv2WebAclName {
       Wafv2WebAclNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -53,12 +56,15 @@ final class Wafv2WebAclNameChoice extends Wafv2WebAclName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -69,12 +75,15 @@ final class Wafv2WebAclNamePrefix extends Wafv2WebAclName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -87,6 +96,7 @@ final class Wafv2WebAclAssociationConfig {
 
   final List<Wafv2WebAclRequestBody>? requestBody;
 
+  @internal
   Map<String, Object?> encode() => {
     if (requestBody != null)
       'request_body': [for (final e in requestBody!) e.encode()],
@@ -115,6 +125,7 @@ final class Wafv2WebAclRequestBody {
 
   final Wafv2WebAclApiGateway? verifiedAccessInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_gateway': ?apiGateway?.encode(),
     'app_runner_service': ?appRunnerService?.encode(),
@@ -133,6 +144,7 @@ final class Wafv2WebAclApiGateway {
 
   final TfArg<String> defaultSizeInspectionLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_size_inspection_limit': defaultSizeInspectionLimit.toTfJson(),
   };
@@ -147,6 +159,7 @@ final class Wafv2WebAclCaptchaConfig {
 
   final Wafv2WebAclImmunityTimeProperty? immunityTimeProperty;
 
+  @internal
   Map<String, Object?> encode() => {
     'immunity_time_property': ?immunityTimeProperty?.encode(),
   };
@@ -161,6 +174,7 @@ final class Wafv2WebAclImmunityTimeProperty {
 
   final TfArg<num>? immunityTime;
 
+  @internal
   Map<String, Object?> encode() => {'immunity_time': ?immunityTime?.toTfJson()};
 }
 
@@ -180,6 +194,7 @@ final class Wafv2WebAclCustomResponseBody {
 
   final TfArg<String> key;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
@@ -195,6 +210,7 @@ final class Wafv2WebAclDataProtectionConfig {
 
   final List<Wafv2WebAclDataProtection>? dataProtection;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dataProtection != null)
       'data_protection': [for (final e in dataProtection!) e.encode()],
@@ -220,6 +236,7 @@ final class Wafv2WebAclDataProtection {
 
   final Wafv2WebAclField field;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'exclude_rate_based_details': ?excludeRateBasedDetails?.toTfJson(),
@@ -252,6 +269,7 @@ final class Wafv2WebAclField {
 
   final Wafv2WebAclFieldType fieldType;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_keys': ?fieldKeys?.toTfJson(),
     'field_type': fieldType.toTfJson(),
@@ -299,6 +317,7 @@ final class Wafv2WebAclDefaultAction {
 
   final Wafv2WebAclBlock? block;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow': ?allow?.encode(),
     'block': ?block?.encode(),
@@ -313,6 +332,7 @@ final class Wafv2WebAclAllow {
 
   final Wafv2WebAclCustomRequestHandling? customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_request_handling': ?customRequestHandling?.encode(),
   };
@@ -326,6 +346,7 @@ final class Wafv2WebAclCustomRequestHandling {
 
   final List<Wafv2WebAclInsertHeader> insertHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'insert_header': [for (final e in insertHeader) e.encode()],
   };
@@ -342,6 +363,7 @@ final class Wafv2WebAclInsertHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -356,6 +378,7 @@ final class Wafv2WebAclBlock {
 
   final Wafv2WebAclCustomResponse? customResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_response': ?customResponse?.encode(),
   };
@@ -377,6 +400,7 @@ final class Wafv2WebAclCustomResponse {
 
   final List<Wafv2WebAclInsertHeader>? responseHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
@@ -401,6 +425,7 @@ final class Wafv2WebAclVisibilityConfig {
 
   final TfArg<bool> sampledRequestsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_metrics_enabled': cloudwatchMetricsEnabled.toTfJson(),
     'metric_name': metricName.toTfJson(),

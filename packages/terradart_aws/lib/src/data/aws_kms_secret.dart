@@ -26,6 +26,7 @@ final class DataKmsSecret {
 
   final TfArg<String> payload;
 
+  @internal
   Map<String, Object?> encode() => {
     'context': ?context?.toTfJson(),
     'grant_tokens': ?grantTokens?.toTfJson(),

@@ -189,6 +189,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final List<ZeroTrustAccessIdentityProviderHeaderAttributes>? headerAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'apps_domain': ?appsDomain?.toTfJson(),
     'attributes': ?attributes?.toTfJson(),
@@ -270,6 +271,7 @@ final class ZeroTrustAccessIdentityProviderHeaderAttributes {
 
   final TfArg<String>? headerName;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': ?attributeName?.toTfJson(),
     'header_name': ?headerName?.toTfJson(),
@@ -296,6 +298,7 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 
   final TfArg<bool>? userDeprovision;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'identity_update_behavior': ?identityUpdateBehavior?.toTfJson(),

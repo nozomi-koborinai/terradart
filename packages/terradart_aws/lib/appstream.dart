@@ -3,6 +3,7 @@
 /// AWS AppStream 2.0.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appstream/aws_appstream_directory_config.dart'
     show
         AppstreamDirectoryConfigCertificateBasedAuthProperties,
@@ -48,3 +49,4 @@ export 'src/appstream/aws_appstream_user_stack_association.dart'
     show
         AppstreamUserStackAssociationAuthenticationType,
         AwsAppstreamUserStackAssociation;
+export 'src/data/aws_appstream_image.dart' show DataAwsAppstreamImage;

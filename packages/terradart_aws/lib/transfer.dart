@@ -3,6 +3,9 @@
 /// AWS Transfer Family.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_transfer_connector.dart' show DataAwsTransferConnector;
+export 'src/data/aws_transfer_server.dart' show DataAwsTransferServer;
 export 'src/transfer/aws_transfer_access.dart'
     show
         AwsTransferAccess,

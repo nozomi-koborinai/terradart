@@ -31,6 +31,7 @@ final class CloudConnectorRules {
 
   final CloudConnectorRulesParameters? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_connector_rules_provider': ?cloudConnectorRulesProvider?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -80,6 +81,7 @@ final class CloudConnectorRulesParameters {
 
   final TfArg<String>? host;
 
+  @internal
   Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }
 

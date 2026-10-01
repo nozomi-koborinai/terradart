@@ -3,6 +3,8 @@
 /// Appwrite TablesDB — shared databases, tables, columns, indexes, and rows.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/appwrite_tablesdb.dart' show DataAppwriteTablesdb;
 export 'src/tablesdb/appwrite_tablesdb.dart' show AppwriteTablesdb;
 export 'src/tablesdb/appwrite_tablesdb_column.dart'
     show AppwriteTablesdbColumn, TablesdbColumnType;

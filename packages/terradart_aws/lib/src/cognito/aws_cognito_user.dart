@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_cognito_user`.
@@ -58,12 +59,15 @@ sealed class CognitoUserPassword {
   ) = CognitoUserTemporaryPassword;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -73,12 +77,15 @@ final class CognitoUserPasswordChoice extends CognitoUserPassword {
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
@@ -89,14 +96,17 @@ final class CognitoUserTemporaryPassword extends CognitoUserPassword {
 
   final Sensitive<String> temporaryPassword;
 
+  @internal
   @override
   String get blockKey => 'temporary_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'temporary_password': temporaryPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'temporary_password': temporaryPassword,

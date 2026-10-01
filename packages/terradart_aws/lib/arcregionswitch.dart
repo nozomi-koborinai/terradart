@@ -3,6 +3,7 @@
 /// AWS ARC Region switch plans.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/arcregionswitch/aws_arcregionswitch_plan.dart'
     show
         ArcregionswitchPlanAction,
@@ -61,3 +62,6 @@ export 'src/arcregionswitch/aws_arcregionswitch_plan.dart'
         ArcregionswitchPlanWorkflow,
         ArcregionswitchPlanWorkflowTargetAction,
         AwsArcregionswitchPlan;
+export 'src/data/aws_arcregionswitch_plan.dart' show DataAwsArcregionswitchPlan;
+export 'src/data/aws_arcregionswitch_route53_health_checks.dart'
+    show DataAwsArcregionswitchRoute53HealthChecks;

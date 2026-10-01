@@ -15,6 +15,7 @@ final class DynamodbGlobalTableReplica {
 
   final TfArg<String> regionName;
 
+  @internal
   Map<String, Object?> encode() => {'region_name': regionName.toTfJson()};
 }
 

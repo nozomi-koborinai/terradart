@@ -29,6 +29,7 @@ final class ApigeeAddonsConfig {
 
   final ApigeeAddonsConfigMonetizationConfig? monetizationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'advanced_api_ops_config': ?advancedApiOpsConfig?.encode(),
     'api_security_config': ?apiSecurityConfig?.encode(),
@@ -46,6 +47,7 @@ final class ApigeeAddonsConfigAdvancedApiOpsConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -57,6 +59,7 @@ final class ApigeeAddonsConfigApiSecurityConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -68,6 +71,7 @@ final class ApigeeAddonsConfigConnectorsPlatformConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -79,6 +83,7 @@ final class ApigeeAddonsConfigIntegrationConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -90,6 +95,7 @@ final class ApigeeAddonsConfigMonetizationConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

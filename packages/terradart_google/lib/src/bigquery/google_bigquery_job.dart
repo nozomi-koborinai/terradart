@@ -156,12 +156,15 @@ sealed class BigqueryJobConfiguration {
       BigqueryJobConfigurationExtract;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -171,12 +174,15 @@ final class BigqueryJobConfigurationQuery extends BigqueryJobConfiguration {
 
   final BigqueryJobQuery query;
 
+  @internal
   @override
   String get blockKey => 'query';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'query': query.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'query': TfArg.literal(query.encode()),
@@ -189,12 +195,15 @@ final class BigqueryJobConfigurationLoad extends BigqueryJobConfiguration {
 
   final BigqueryJobLoad load;
 
+  @internal
   @override
   String get blockKey => 'load';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'load': load.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'load': TfArg.literal(load.encode()),
@@ -207,12 +216,15 @@ final class BigqueryJobConfigurationCopy extends BigqueryJobConfiguration {
 
   final BigqueryJobCopy copy;
 
+  @internal
   @override
   String get blockKey => 'copy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'copy': copy.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'copy': TfArg.literal(copy.encode()),
@@ -225,12 +237,15 @@ final class BigqueryJobConfigurationExtract extends BigqueryJobConfiguration {
 
   final BigqueryJobExtract extract;
 
+  @internal
   @override
   String get blockKey => 'extract';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'extract': extract.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'extract': TfArg.literal(extract.encode()),
@@ -260,6 +275,7 @@ final class BigqueryJobCopy {
 
   final List<BigqueryJobSourceTables> sourceTables;
 
+  @internal
   Map<String, Object?> encode() => {
     'create_disposition': ?createDisposition?.toTfJson(),
     'write_disposition': ?writeDisposition?.toTfJson(),
@@ -329,6 +345,7 @@ final class BigqueryJobDestinationEncryptionConfiguration {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -351,6 +368,7 @@ final class BigqueryJobDestinationTable {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -374,6 +392,7 @@ final class BigqueryJobSourceTables {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -409,6 +428,7 @@ final class BigqueryJobExtract {
 
   final BigqueryJobSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
     'destination_format': ?destinationFormat?.toTfJson(),
@@ -438,8 +458,10 @@ sealed class BigqueryJobSource {
   ) = BigqueryJobSourceModelChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -449,9 +471,11 @@ final class BigqueryJobSourceTableChoice extends BigqueryJobSource {
 
   final BigqueryJobSourceTable sourceTable;
 
+  @internal
   @override
   String get blockKey => 'source_table';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source_table': sourceTable.encode()};
 }
@@ -462,9 +486,11 @@ final class BigqueryJobSourceModelChoice extends BigqueryJobSource {
 
   final BigqueryJobSourceModel sourceModel;
 
+  @internal
   @override
   String get blockKey => 'source_model';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source_model': sourceModel.encode()};
 }
@@ -485,6 +511,7 @@ final class BigqueryJobSourceModel {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'model_id': modelId.toTfJson(),
@@ -508,6 +535,7 @@ final class BigqueryJobSourceTable {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -586,6 +614,7 @@ final class BigqueryJobLoad {
 
   final BigqueryJobTimePartitioning? timePartitioning;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_jagged_rows': ?allowJaggedRows?.toTfJson(),
     'allow_quoted_newlines': ?allowQuotedNewlines?.toTfJson(),
@@ -625,6 +654,7 @@ final class BigqueryJobParquetOptions {
 
   final TfArg<bool>? enumAsString;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_list_inference': ?enableListInference?.toTfJson(),
     'enum_as_string': ?enumAsString?.toTfJson(),
@@ -647,6 +677,7 @@ final class BigqueryJobTimePartitioning {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expiration_ms': ?expirationMs?.toTfJson(),
     'field': ?field?.toTfJson(),
@@ -717,6 +748,7 @@ final class BigqueryJobQuery {
   final List<BigqueryJobUserDefinedFunctionResources>?
   userDefinedFunctionResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_large_results': ?allowLargeResults?.toTfJson(),
     'create_disposition': ?createDisposition?.toTfJson(),
@@ -773,6 +805,7 @@ final class BigqueryJobConnectionProperties {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -789,6 +822,7 @@ final class BigqueryJobDefaultDataset {
 
   final TfArg<String>? projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -811,6 +845,7 @@ final class BigqueryJobScriptOptions {
 
   final TfArg<String>? statementTimeoutMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_result_statement': ?keyResultStatement?.toTfJson(),
     'statement_byte_budget': ?statementByteBudget?.toTfJson(),
@@ -848,6 +883,7 @@ final class BigqueryJobUserDefinedFunctionResources {
 
   final TfArg<String>? resourceUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'inline_code': ?inlineCode?.toTfJson(),
     'resource_uri': ?resourceUri?.toTfJson(),

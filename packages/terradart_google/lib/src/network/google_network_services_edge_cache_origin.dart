@@ -50,6 +50,7 @@ final class NetworkServicesEdgeCacheOriginAwsV4Authentication {
 
   final TfArg<String> secretAccessKeyVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'origin_region': originRegion.toTfJson(),
@@ -68,6 +69,7 @@ final class NetworkServicesEdgeCacheOriginFlexShielding {
   final List<NetworkServicesEdgeCacheOriginFlexShieldingRegions>?
   flexShieldingRegions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (flexShieldingRegions != null)
       'flex_shielding_regions': [
@@ -114,6 +116,7 @@ final class NetworkServicesEdgeCacheOriginOverrideAction {
 
   final NetworkServicesEdgeCacheOriginUrlRewrite? urlRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_action': ?headerAction?.encode(),
     'url_rewrite': ?urlRewrite?.encode(),
@@ -129,6 +132,7 @@ final class NetworkServicesEdgeCacheOriginHeaderAction {
   final List<NetworkServicesEdgeCacheOriginRequestHeadersToAdd>?
   requestHeadersToAdd;
 
+  @internal
   Map<String, Object?> encode() => {
     if (requestHeadersToAdd != null)
       'request_headers_to_add': [
@@ -153,6 +157,7 @@ final class NetworkServicesEdgeCacheOriginRequestHeadersToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -168,6 +173,7 @@ final class NetworkServicesEdgeCacheOriginUrlRewrite {
 
   final TfArg<String>? hostRewrite;
 
+  @internal
   Map<String, Object?> encode() => {'host_rewrite': ?hostRewrite?.toTfJson()};
 }
 
@@ -179,6 +185,7 @@ final class NetworkServicesEdgeCacheOriginRedirect {
 
   final TfArg<List<String>>? redirectConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'redirect_conditions': ?redirectConditions?.toTfJson(),
   };
@@ -203,6 +210,7 @@ final class NetworkServicesEdgeCacheOriginTimeout {
 
   final TfArg<String>? responseTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'connect_timeout': ?connectTimeout?.toTfJson(),
     'max_attempts_timeout': ?maxAttemptsTimeout?.toTfJson(),

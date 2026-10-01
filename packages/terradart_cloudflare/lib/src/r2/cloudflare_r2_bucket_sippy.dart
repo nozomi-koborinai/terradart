@@ -53,6 +53,7 @@ final class R2BucketSippyDestination {
 
   final Sensitive<String>? secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'cloud_provider': ?cloudProvider?.toTfJson(),
@@ -118,6 +119,7 @@ final class R2BucketSippySource {
 
   final Sensitive<String>? secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'account_key': ?accountKey?.toTfJson(),

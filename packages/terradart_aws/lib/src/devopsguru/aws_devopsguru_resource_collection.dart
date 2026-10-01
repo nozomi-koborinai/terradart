@@ -41,6 +41,7 @@ final class DevopsguruResourceCollectionCloudformation {
 
   final TfArg<List<String>> stackNames;
 
+  @internal
   Map<String, Object?> encode() => {'stack_names': stackNames.toTfJson()};
 }
 
@@ -57,6 +58,7 @@ final class DevopsguruResourceCollectionTags {
 
   final TfArg<List<String>> tagValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_boundary_key': appBoundaryKey.toTfJson(),
     'tag_values': tagValues.toTfJson(),

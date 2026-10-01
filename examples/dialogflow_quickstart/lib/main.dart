@@ -8,7 +8,6 @@
 /// and does not run summarization on create.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/dialogflow.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

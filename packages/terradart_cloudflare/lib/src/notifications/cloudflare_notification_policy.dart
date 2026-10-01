@@ -450,6 +450,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? zones;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
     'affected_asns': ?affectedAsns?.toTfJson(),
@@ -566,6 +567,7 @@ final class NotificationPolicyMechanisms {
 
   final List<NotificationPolicyWebhooks>? webhooks;
 
+  @internal
   Map<String, Object?> encode() => {
     if (email != null) 'email': [for (final e in email!) e.encode()],
     if (pagerduty != null)
@@ -582,6 +584,7 @@ final class NotificationPolicyEmail {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
@@ -593,6 +596,7 @@ final class NotificationPolicyPagerduty {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
@@ -604,6 +608,7 @@ final class NotificationPolicyWebhooks {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 

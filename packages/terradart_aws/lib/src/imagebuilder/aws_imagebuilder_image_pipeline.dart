@@ -47,12 +47,15 @@ sealed class ImagebuilderImagePipelineRecipeArn {
   ) = ImagebuilderImagePipelineImageRecipeArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -63,14 +66,17 @@ final class ImagebuilderImagePipelineContainerRecipeArn
 
   final TfArg<String> containerRecipeArn;
 
+  @internal
   @override
   String get blockKey => 'container_recipe_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'container_recipe_arn': containerRecipeArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'container_recipe_arn': containerRecipeArn,
@@ -84,14 +90,17 @@ final class ImagebuilderImagePipelineImageRecipeArn
 
   final TfArg<String> imageRecipeArn;
 
+  @internal
   @override
   String get blockKey => 'image_recipe_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'image_recipe_arn': imageRecipeArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'image_recipe_arn': imageRecipeArn,
@@ -111,6 +120,7 @@ final class ImagebuilderImagePipelineImageScanningConfiguration {
 
   final ImagebuilderImagePipelineEcrConfiguration? ecrConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_scanning_enabled': ?imageScanningEnabled?.toTfJson(),
     'ecr_configuration': ?ecrConfiguration?.encode(),
@@ -130,6 +140,7 @@ final class ImagebuilderImagePipelineEcrConfiguration {
 
   final TfArg<String>? repositoryName;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_tags': ?containerTags?.toTfJson(),
     'repository_name': ?repositoryName?.toTfJson(),
@@ -149,6 +160,7 @@ final class ImagebuilderImagePipelineImageTestsConfiguration {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_tests_enabled': ?imageTestsEnabled?.toTfJson(),
     'timeout_minutes': ?timeoutMinutes?.toTfJson(),
@@ -168,6 +180,7 @@ final class ImagebuilderImagePipelineLoggingConfiguration {
 
   final TfArg<String>? pipelineLogGroupName;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_log_group_name': ?imageLogGroupName?.toTfJson(),
     'pipeline_log_group_name': ?pipelineLogGroupName?.toTfJson(),
@@ -191,6 +204,7 @@ final class ImagebuilderImagePipelineSchedule {
 
   final TfArg<String>? timezone;
 
+  @internal
   Map<String, Object?> encode() => {
     'pipeline_execution_start_condition': ?pipelineExecutionStartCondition
         ?.toTfJson(),
@@ -244,6 +258,7 @@ final class ImagebuilderImagePipelineWorkflow {
 
   final List<ImagebuilderImagePipelineParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'on_failure': ?onFailure?.toTfJson(),
     'parallel_group': ?parallelGroup?.toTfJson(),
@@ -288,6 +303,7 @@ final class ImagebuilderImagePipelineParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

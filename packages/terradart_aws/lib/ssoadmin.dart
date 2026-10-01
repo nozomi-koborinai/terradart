@@ -3,6 +3,21 @@
 /// AWS IAM Identity Center administration.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ssoadmin_application.dart' show DataAwsSsoadminApplication;
+export 'src/data/aws_ssoadmin_application_assignments.dart'
+    show DataAwsSsoadminApplicationAssignments;
+export 'src/data/aws_ssoadmin_application_providers.dart'
+    show DataAwsSsoadminApplicationProviders;
+export 'src/data/aws_ssoadmin_instances.dart' show DataAwsSsoadminInstances;
+export 'src/data/aws_ssoadmin_permission_set.dart'
+    show DataAwsSsoadminPermissionSet;
+export 'src/data/aws_ssoadmin_permission_sets.dart'
+    show DataAwsSsoadminPermissionSets;
+export 'src/data/aws_ssoadmin_principal_application_assignments.dart'
+    show
+        DataAwsSsoadminPrincipalApplicationAssignments,
+        DataSsoadminPrincipalApplicationAssignments;
 export 'src/ssoadmin/aws_ssoadmin_account_assignment.dart'
     show
         AwsSsoadminAccountAssignment,

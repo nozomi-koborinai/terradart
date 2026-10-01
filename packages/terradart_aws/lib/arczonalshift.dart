@@ -3,6 +3,7 @@
 /// AWS ARC zonal shift.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/arczonalshift/aws_arczonalshift_autoshift_observer_notification_status.dart'
     show
         ArczonalshiftAutoshiftObserverNotificationStatus,

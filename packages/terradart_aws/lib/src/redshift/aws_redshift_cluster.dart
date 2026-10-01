@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
@@ -63,12 +64,15 @@ sealed class RedshiftClusterMasterPassword {
   ) = RedshiftClusterMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -79,14 +83,17 @@ final class RedshiftClusterManageMasterPassword
 
   final TfArg<bool> manageMasterPassword;
 
+  @internal
   @override
   String get blockKey => 'manage_master_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'manage_master_password': manageMasterPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'manage_master_password': manageMasterPassword,
@@ -100,14 +107,17 @@ final class RedshiftClusterMasterPasswordChoice
 
   final Sensitive<String> masterPassword;
 
+  @internal
   @override
   String get blockKey => 'master_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'master_password': masterPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
 }
@@ -119,14 +129,17 @@ final class RedshiftClusterMasterPasswordWo
 
   final Sensitive<String> masterPasswordWo;
 
+  @internal
   @override
   String get blockKey => 'master_password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'master_password_wo': masterPasswordWo.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'master_password_wo': masterPasswordWo,
@@ -151,12 +164,15 @@ sealed class RedshiftClusterSnapshot {
   ) = RedshiftClusterSnapshotIdentifier;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -166,12 +182,15 @@ final class RedshiftClusterSnapshotArn extends RedshiftClusterSnapshot {
 
   final TfArg<String> snapshotArn;
 
+  @internal
   @override
   String get blockKey => 'snapshot_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'snapshot_arn': snapshotArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'snapshot_arn': snapshotArn};
 }
@@ -182,14 +201,17 @@ final class RedshiftClusterSnapshotIdentifier extends RedshiftClusterSnapshot {
 
   final TfArg<String> snapshotIdentifier;
 
+  @internal
   @override
   String get blockKey => 'snapshot_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'snapshot_identifier': snapshotIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'snapshot_identifier': snapshotIdentifier,

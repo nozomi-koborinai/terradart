@@ -23,6 +23,7 @@ final class PrivilegedAccessManagerEntitlementAdditionalNotificationTargets {
 
   final TfArg<List<String>>? requesterEmailRecipients;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_email_recipients': ?adminEmailRecipients?.toTfJson(),
     'requester_email_recipients': ?requesterEmailRecipients?.toTfJson(),
@@ -39,6 +40,7 @@ final class PrivilegedAccessManagerEntitlementApprovalWorkflow {
 
   final PrivilegedAccessManagerEntitlementManualApprovals manualApprovals;
 
+  @internal
   Map<String, Object?> encode() => {
     'manual_approvals': manualApprovals.encode(),
   };
@@ -57,6 +59,7 @@ final class PrivilegedAccessManagerEntitlementManualApprovals {
 
   final List<PrivilegedAccessManagerEntitlementSteps> steps;
 
+  @internal
   Map<String, Object?> encode() => {
     'require_approver_justification': ?requireApproverJustification?.toTfJson(),
     'steps': [for (final e in steps) e.encode()],
@@ -79,6 +82,7 @@ final class PrivilegedAccessManagerEntitlementSteps {
 
   final PrivilegedAccessManagerEntitlementApprovers approvers;
 
+  @internal
   Map<String, Object?> encode() => {
     'approvals_needed': ?approvalsNeeded?.toTfJson(),
     'approver_email_recipients': ?approverEmailRecipients?.toTfJson(),
@@ -94,6 +98,7 @@ final class PrivilegedAccessManagerEntitlementApprovers {
 
   final TfArg<List<IamPrincipal>> principals;
 
+  @internal
   Map<String, Object?> encode() => {'principals': principals.toTfJson()};
 }
 
@@ -107,6 +112,7 @@ final class PrivilegedAccessManagerEntitlementEligibleUsers {
 
   final TfArg<List<IamPrincipal>> principals;
 
+  @internal
   Map<String, Object?> encode() => {'principals': principals.toTfJson()};
 }
 
@@ -120,6 +126,7 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccess {
 
   final PrivilegedAccessManagerEntitlementGcpIamAccess gcpIamAccess;
 
+  @internal
   Map<String, Object?> encode() => {'gcp_iam_access': gcpIamAccess.encode()};
 }
 
@@ -139,6 +146,7 @@ final class PrivilegedAccessManagerEntitlementGcpIamAccess {
 
   final List<PrivilegedAccessManagerEntitlementRoleBindings> roleBindings;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource': resource.toTfJson(),
     'resource_type': resourceType.toTfJson(),
@@ -159,6 +167,7 @@ final class PrivilegedAccessManagerEntitlementRoleBindings {
 
   final TfArg<String> role;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_expression': ?conditionExpression?.toTfJson(),
     'role': role.toTfJson(),
@@ -176,6 +185,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfig {
   final PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement?
   requirement;
 
+  @internal
   Map<String, Object?> encode() => {...?requirement?.encode()};
 }
 
@@ -198,8 +208,10 @@ sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequi
   ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -213,9 +225,11 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
 
   final PrivilegedAccessManagerEntitlementNotMandatory notMandatory;
 
+  @internal
   @override
   String get blockKey => 'not_mandatory';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'not_mandatory': notMandatory.encode()};
 }
@@ -230,9 +244,11 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
 
   final PrivilegedAccessManagerEntitlementUnstructured unstructured;
 
+  @internal
   @override
   String get blockKey => 'unstructured';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'unstructured': unstructured.encode()};
 }
@@ -243,6 +259,7 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
 final class PrivilegedAccessManagerEntitlementNotMandatory {
   const PrivilegedAccessManagerEntitlementNotMandatory();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -252,6 +269,7 @@ final class PrivilegedAccessManagerEntitlementNotMandatory {
 final class PrivilegedAccessManagerEntitlementUnstructured {
   const PrivilegedAccessManagerEntitlementUnstructured();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

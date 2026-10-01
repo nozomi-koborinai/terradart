@@ -22,6 +22,7 @@ final class FinspaceKxEnvironmentCustomDnsConfiguration {
 
   final TfArg<String> customDnsServerName;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_dns_server_ip': customDnsServerIp.toTfJson(),
     'custom_dns_server_name': customDnsServerName.toTfJson(),
@@ -45,6 +46,7 @@ final class FinspaceKxEnvironmentTransitGatewayConfiguration {
   final List<FinspaceKxEnvironmentAttachmentNetworkAclConfiguration>?
   attachmentNetworkAclConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'routable_cidr_space': routableCidrSpace.toTfJson(),
     'transit_gateway_id': transitGatewayId.toTfJson(),
@@ -80,6 +82,7 @@ final class FinspaceKxEnvironmentAttachmentNetworkAclConfiguration {
 
   final FinspaceKxEnvironmentPortRange? portRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_block': cidrBlock.toTfJson(),
     'protocol': protocol.toTfJson(),
@@ -118,6 +121,7 @@ final class FinspaceKxEnvironmentIcmpTypeCode {
 
   final TfArg<num> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'type': type.toTfJson(),
@@ -134,6 +138,7 @@ final class FinspaceKxEnvironmentPortRange {
 
   final TfArg<num> to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': from.toTfJson(),
     'to': to.toTfJson(),

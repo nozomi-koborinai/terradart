@@ -67,6 +67,7 @@ final class DiscoveryEngineSearchEngineCommonConfig {
 
   final TfArg<String>? companyName;
 
+  @internal
   Map<String, Object?> encode() => {'company_name': ?companyName?.toTfJson()};
 }
 
@@ -89,6 +90,7 @@ final class DiscoveryEngineSearchEngineKnowledgeGraphConfig {
 
   final DiscoveryEngineSearchEngineFeatureConfig? featureConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_knowledge_graph_types': ?cloudKnowledgeGraphTypes?.toTfJson(),
     'enable_cloud_knowledge_graph': ?enableCloudKnowledgeGraph?.toTfJson(),
@@ -116,6 +118,7 @@ final class DiscoveryEngineSearchEngineFeatureConfig {
 
   final TfArg<bool>? disablePrivateKgQueryUnderstanding;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_private_kg_auto_complete': ?disablePrivateKgAutoComplete
         ?.toTfJson(),
@@ -144,6 +147,7 @@ final class DiscoveryEngineSearchEngineConfig {
 
   final DiscoveryEngineSearchEngineTier? searchTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'required_subscription_tier': ?requiredSubscriptionTier?.toTfJson(),
     'search_add_ons': ?searchAddOns?.toTfJson(),

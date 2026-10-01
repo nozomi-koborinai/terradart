@@ -21,6 +21,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentConfiguration {
   final List<DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier>?
   customDataIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customDataIdentifier != null)
       'custom_data_identifier': [
@@ -42,6 +43,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier {
 
   final TfArg<String> regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'regex': regex.toTfJson(),
@@ -64,6 +66,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatement {
 
   final DataCloudwatchLogDataProtectionPolicyDocumentOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_identifiers': dataIdentifiers.toTfJson(),
     'sid': ?sid?.toTfJson(),
@@ -84,6 +87,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentOperation {
 
   final DataCloudwatchLogDataProtectionPolicyDocumentDeidentify? deidentify;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit': ?audit?.encode(),
     'deidentify': ?deidentify?.encode(),
@@ -101,6 +105,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentAudit {
   final DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination
   findingsDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'findings_destination': findingsDestination.encode(),
   };
@@ -123,6 +128,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination {
 
   final DataCloudwatchLogDataProtectionPolicyDocumentS3? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
     'firehose': ?firehose?.encode(),
@@ -140,6 +146,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup> logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group': logGroup.encodeAs('name').toTfJson(),
   };
@@ -155,6 +162,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentFirehose {
 
   final TfArg<String> deliveryStream;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream': deliveryStream.toTfJson(),
   };
@@ -168,6 +176,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentS3 {
 
   final RefTo<AwsS3Bucket> bucket;
 
+  @internal
   Map<String, Object?> encode() => {'bucket': bucket.encodeAs('id').toTfJson()};
 }
 
@@ -181,6 +190,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentDeidentify {
 
   final DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig maskConfig;
 
+  @internal
   Map<String, Object?> encode() => {'mask_config': maskConfig.encode()};
 }
 
@@ -190,6 +200,7 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentDeidentify {
 final class DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig {
   const DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

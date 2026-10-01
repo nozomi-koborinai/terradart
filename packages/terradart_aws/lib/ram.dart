@@ -3,6 +3,9 @@
 /// AWS Resource Access Manager (RAM).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ram_resource_share.dart'
+    show DataAwsRamResourceShare, DataRamResourceShareFilter;
 export 'src/ram/aws_ram_permission.dart' show AwsRamPermission;
 export 'src/ram/aws_ram_principal_association.dart'
     show AwsRamPrincipalAssociation;

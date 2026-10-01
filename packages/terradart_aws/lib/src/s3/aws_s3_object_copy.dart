@@ -295,12 +295,15 @@ sealed class S3ObjectCopyAccess {
       S3ObjectCopyAccessGrant;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -310,12 +313,15 @@ final class S3ObjectCopyAccessAcl extends S3ObjectCopyAccess {
 
   final S3ObjectCopyAcl acl;
 
+  @internal
   @override
   String get blockKey => 'acl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'acl': acl.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'acl': acl};
 }
@@ -326,14 +332,17 @@ final class S3ObjectCopyAccessGrant extends S3ObjectCopyAccess {
 
   final List<S3ObjectCopyGrant> grant;
 
+  @internal
   @override
   String get blockKey => 'grant';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'grant': [for (final e in grant) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'grant': TfArg.literal([for (final e in grant) e.encode()]),
@@ -362,6 +371,7 @@ final class S3ObjectCopyGrant {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -425,6 +435,7 @@ final class S3ObjectCopyOverrideProvider {
 
   final S3ObjectCopyDefaultTags? defaultTags;
 
+  @internal
   Map<String, Object?> encode() => {'default_tags': ?defaultTags?.encode()};
 }
 
@@ -436,6 +447,7 @@ final class S3ObjectCopyDefaultTags {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 

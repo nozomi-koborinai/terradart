@@ -29,6 +29,7 @@ final class GuarddutyFilterFindingCriteria {
 
   final List<GuarddutyFilterCriterion> criterion;
 
+  @internal
   Map<String, Object?> encode() => {
     'criterion': [for (final e in criterion) e.encode()],
   };
@@ -68,6 +69,7 @@ final class GuarddutyFilterCriterion {
 
   final TfArg<List<String>>? notMatches;
 
+  @internal
   Map<String, Object?> encode() => {
     'equals': ?equals?.toTfJson(),
     'field': field.toTfJson(),

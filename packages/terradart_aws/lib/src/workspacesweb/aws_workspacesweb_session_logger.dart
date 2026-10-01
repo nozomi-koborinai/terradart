@@ -27,8 +27,10 @@ sealed class WorkspaceswebSessionLoggerEventFilter {
   ) = WorkspaceswebSessionLoggerEventFilterInclude;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -39,9 +41,11 @@ final class WorkspaceswebSessionLoggerEventFilterAll
 
   final List<WorkspaceswebSessionLoggerAll> all;
 
+  @internal
   @override
   String get blockKey => 'all';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'all': [for (final e in all) e.encode()],
@@ -55,9 +59,11 @@ final class WorkspaceswebSessionLoggerEventFilterInclude
 
   final List<WorkspaceswebSessionLoggerInclude> include;
 
+  @internal
   @override
   String get blockKey => 'include';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'include': [for (final e in include) e.toTfJson()],
@@ -157,6 +163,7 @@ extension type const WorkspaceswebSessionLoggerInclude._(TfArg<String> _)
 final class WorkspaceswebSessionLoggerAll {
   const WorkspaceswebSessionLoggerAll();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -168,6 +175,7 @@ final class WorkspaceswebSessionLoggerLogConfiguration {
 
   final List<WorkspaceswebSessionLoggerS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
   };
@@ -195,6 +203,7 @@ final class WorkspaceswebSessionLoggerS3 {
 
   final WorkspaceswebSessionLoggerLogFileFormat logFileFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'bucket_owner': ?bucketOwner?.toTfJson(),

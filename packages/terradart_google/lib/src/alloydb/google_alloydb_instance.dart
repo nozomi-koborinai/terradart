@@ -42,6 +42,7 @@ final class AlloydbInstanceClientConnectionConfig {
 
   final AlloydbInstanceSslConfig? sslConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'require_connectors': ?requireConnectors?.toTfJson(),
     'ssl_config': ?sslConfig?.encode(),
@@ -56,6 +57,7 @@ final class AlloydbInstanceSslConfig {
 
   final AlloydbInstanceSslMode? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {'ssl_mode': ?sslMode?.toTfJson()};
 }
 
@@ -93,6 +95,7 @@ final class AlloydbInstanceConnectionPoolConfig {
 
   final TfArg<Map<String, String>>? flags;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'flags': ?flags?.toTfJson(),
@@ -109,6 +112,7 @@ final class AlloydbInstanceMachineConfig {
 
   final TfArg<String>? machineType;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_count': ?cpuCount?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -135,6 +139,7 @@ final class AlloydbInstanceNetworkConfig {
   final List<AlloydbInstanceAuthorizedExternalNetworks>?
   authorizedExternalNetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocated_ip_range_override': ?allocatedIpRangeOverride?.toTfJson(),
     'enable_outbound_public_ip': ?enableOutboundPublicIp?.toTfJson(),
@@ -154,6 +159,7 @@ final class AlloydbInstanceAuthorizedExternalNetworks {
 
   final TfArg<String>? cidrRange;
 
+  @internal
   Map<String, Object?> encode() => {'cidr_range': ?cidrRange?.toTfJson()};
 }
 
@@ -173,6 +179,7 @@ final class AlloydbInstancePscInstanceConfig {
 
   final List<AlloydbInstancePscInterfaceConfigs>? pscInterfaceConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_consumer_projects': ?allowedConsumerProjects?.toTfJson(),
     if (pscAutoConnections != null)
@@ -197,6 +204,7 @@ final class AlloydbInstancePscAutoConnections {
 
   final TfArg<String>? consumerProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'consumer_network': ?consumerNetwork?.encodeAs('id').toTfJson(),
     'consumer_project': ?consumerProject?.toTfJson(),
@@ -211,6 +219,7 @@ final class AlloydbInstancePscInterfaceConfigs {
 
   final TfArg<String>? networkAttachmentResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment_resource': ?networkAttachmentResource?.toTfJson(),
   };
@@ -235,6 +244,7 @@ final class AlloydbInstanceQueryInsightsConfig {
 
   final TfArg<bool>? recordClientAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'query_plans_per_minute': ?queryPlansPerMinute?.toTfJson(),
     'query_string_length': ?queryStringLength?.toTfJson(),
@@ -251,6 +261,7 @@ final class AlloydbInstanceReadPoolConfig {
 
   final TfArg<num>? nodeCount;
 
+  @internal
   Map<String, Object?> encode() => {'node_count': ?nodeCount?.toTfJson()};
 }
 

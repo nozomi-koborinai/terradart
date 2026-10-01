@@ -20,6 +20,7 @@ final class ContainerAttachedClusterAuthorization {
 
   final TfArg<List<String>>? adminUsers;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_groups': ?adminGroups?.toTfJson(),
     'admin_users': ?adminUsers?.toTfJson(),
@@ -34,6 +35,7 @@ final class ContainerAttachedClusterBinaryAuthorization {
 
   final ContainerAttachedClusterEvaluationMode? evaluationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
   };
@@ -71,6 +73,7 @@ final class ContainerAttachedClusterFleet {
 
   final TfArg<String> project;
 
+  @internal
   Map<String, Object?> encode() => {'project': project.toTfJson()};
 }
 
@@ -82,6 +85,7 @@ final class ContainerAttachedClusterLoggingConfig {
 
   final ContainerAttachedClusterComponentConfig? componentConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'component_config': ?componentConfig?.encode(),
   };
@@ -95,6 +99,7 @@ final class ContainerAttachedClusterComponentConfig {
 
   final List<ContainerAttachedClusterEnableComponents>? enableComponents;
 
+  @internal
   Map<String, Object?> encode() => {
     if (enableComponents != null)
       'enable_components': [for (final e in enableComponents!) e.toTfJson()],
@@ -135,6 +140,7 @@ final class ContainerAttachedClusterMonitoringConfig {
   final ContainerAttachedClusterManagedPrometheusConfig?
   managedPrometheusConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'managed_prometheus_config': ?managedPrometheusConfig?.encode(),
   };
@@ -148,6 +154,7 @@ final class ContainerAttachedClusterManagedPrometheusConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -164,6 +171,7 @@ final class ContainerAttachedClusterOidcConfig {
 
   final TfArg<String>? jwks;
 
+  @internal
   Map<String, Object?> encode() => {
     'issuer_url': issuerUrl.toTfJson(),
     'jwks': ?jwks?.toTfJson(),
@@ -178,6 +186,7 @@ final class ContainerAttachedClusterProxyConfig {
 
   final ContainerAttachedClusterKubernetesSecret? kubernetesSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'kubernetes_secret': ?kubernetesSecret?.encode(),
   };
@@ -196,6 +205,7 @@ final class ContainerAttachedClusterKubernetesSecret {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
@@ -212,6 +222,7 @@ final class ContainerAttachedClusterSecurityPostureConfig {
 
   final ContainerAttachedClusterVulnerabilityMode vulnerabilityMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'vulnerability_mode': vulnerabilityMode.toTfJson(),
   };

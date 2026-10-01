@@ -32,6 +32,7 @@ final class DataZeroTrustTunnelCloudflaredVirtualNetworkFilter {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'is_default': ?isDefault?.toTfJson(),

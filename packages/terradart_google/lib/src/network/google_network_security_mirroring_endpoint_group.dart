@@ -25,9 +25,11 @@ sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
 
   /// argMap key (`mirroring_deployment_group` or
   /// `mirroring_deployment_groups`).
+  @internal
   String get blockKey;
 
   /// Flat `{blockKey: value}` payload (Gate 6 encode round-trip shape).
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -42,9 +44,11 @@ final class NetworkSecurityMirroringEndpointGroupDirectDeploymentLink
   final TfArg<String> mirroringDeploymentGroup;
 
   @override
+  @internal
   String get blockKey => 'mirroring_deployment_group';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     blockKey: mirroringDeploymentGroup.toTfJson(),
   };
@@ -61,9 +65,11 @@ final class NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink
   final TfArg<List<String>> mirroringDeploymentGroups;
 
   @override
+  @internal
   String get blockKey => 'mirroring_deployment_groups';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     blockKey: mirroringDeploymentGroups.toTfJson(),
   };

@@ -1,7 +1,6 @@
 /// Network Connectivity quickstart — Partner CCI transport on a VPC.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';

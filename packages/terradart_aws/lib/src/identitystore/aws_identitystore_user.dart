@@ -38,6 +38,7 @@ final class IdentitystoreUserAddresses {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'country': ?country?.toTfJson(),
     'formatted': ?formatted?.toTfJson(),
@@ -62,6 +63,7 @@ final class IdentitystoreUserEmails {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary': ?primary?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -94,6 +96,7 @@ final class IdentitystoreUserName {
 
   final TfArg<String>? middleName;
 
+  @internal
   Map<String, Object?> encode() => {
     'family_name': familyName.toTfJson(),
     'formatted': ?formatted?.toTfJson(),
@@ -116,6 +119,7 @@ final class IdentitystoreUserPhoneNumbers {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary': ?primary?.toTfJson(),
     'type': ?type?.toTfJson(),

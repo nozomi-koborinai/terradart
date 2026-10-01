@@ -5,6 +5,7 @@
 /// while they exist.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/composer/google_composer_environment.dart'
     show
         ComposerEnvironmentAirflowMetadataRetentionConfig,
@@ -38,3 +39,11 @@ export 'src/composer/google_composer_user_workloads_config_map.dart'
     show GoogleComposerUserWorkloadsConfigMap;
 export 'src/composer/google_composer_user_workloads_secret.dart'
     show GoogleComposerUserWorkloadsSecret;
+export 'src/data/google_composer_environment.dart'
+    show DataGoogleComposerEnvironment;
+export 'src/data/google_composer_image_versions.dart'
+    show DataGoogleComposerImageVersions;
+export 'src/data/google_composer_user_workloads_config_map.dart'
+    show DataGoogleComposerUserWorkloadsConfigMap;
+export 'src/data/google_composer_user_workloads_secret.dart'
+    show DataGoogleComposerUserWorkloadsSecret;

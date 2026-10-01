@@ -5,6 +5,7 @@
 /// providers + service-level enforcement + debug tokens + resource policies).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/firebase_app_check/google_firebase_app_check_app_attest_config.dart'
     show GoogleFirebaseAppCheckAppAttestConfig;
 export 'src/firebase_app_check/google_firebase_app_check_debug_token.dart'

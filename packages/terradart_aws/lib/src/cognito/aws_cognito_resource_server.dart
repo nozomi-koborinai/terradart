@@ -20,6 +20,7 @@ final class CognitoResourceServerScope {
 
   final TfArg<String> scopeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope_description': scopeDescription.toTfJson(),
     'scope_name': scopeName.toTfJson(),

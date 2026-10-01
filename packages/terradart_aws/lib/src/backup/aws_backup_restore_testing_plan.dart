@@ -29,6 +29,7 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
 
   final TfArg<num>? selectionWindowDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': algorithm.toTfJson(),
     'exclude_vaults': ?excludeVaults?.toTfJson(),

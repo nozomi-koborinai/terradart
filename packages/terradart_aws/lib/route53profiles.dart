@@ -3,6 +3,11 @@
 /// AWS Route 53 Profiles.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_route53profiles_profile.dart'
+    show DataAwsRoute53profilesProfile;
+export 'src/data/aws_route53profiles_profiles.dart'
+    show DataAwsRoute53profilesProfiles;
 export 'src/route53profiles/aws_route53profiles_association.dart'
     show AwsRoute53profilesAssociation;
 export 'src/route53profiles/aws_route53profiles_profile.dart'

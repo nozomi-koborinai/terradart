@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../certificate_manager/google_certificate_manager_certificate_map.dart'
@@ -28,12 +29,15 @@ sealed class CertificateManagerCertificateMapEntryMatch {
   ) = CertificateManagerCertificateMapEntryMatchMatcher;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,12 +48,15 @@ final class CertificateManagerCertificateMapEntryMatchHostname
 
   final TfArg<String> hostname;
 
+  @internal
   @override
   String get blockKey => 'hostname';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'hostname': hostname.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'hostname': hostname};
 }
@@ -61,12 +68,15 @@ final class CertificateManagerCertificateMapEntryMatchMatcher
 
   final TfArg<String> matcher;
 
+  @internal
   @override
   String get blockKey => 'matcher';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'matcher': matcher.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'matcher': matcher};
 }

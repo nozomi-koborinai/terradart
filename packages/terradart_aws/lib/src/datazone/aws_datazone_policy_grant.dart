@@ -164,6 +164,7 @@ final class DatazonePolicyGrantDetail {
 
   final List<DatazonePolicyGrantUseAssetType>? useAssetType;
 
+  @internal
   Map<String, Object?> encode() => {
     if (addToProjectMemberPool != null)
       'add_to_project_member_pool': [
@@ -220,6 +221,7 @@ final class DatazonePolicyGrantAddToProjectMemberPool {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -233,6 +235,7 @@ final class DatazonePolicyGrantCreateAssetType {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -246,6 +249,7 @@ final class DatazonePolicyGrantCreateDomainUnit {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -257,6 +261,7 @@ final class DatazonePolicyGrantCreateDomainUnit {
 final class DatazonePolicyGrantCreateEnvironment {
   const DatazonePolicyGrantCreateEnvironment();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -266,6 +271,7 @@ final class DatazonePolicyGrantCreateEnvironment {
 final class DatazonePolicyGrantCreateEnvironmentFromBlueprint {
   const DatazonePolicyGrantCreateEnvironmentFromBlueprint();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -277,6 +283,7 @@ final class DatazonePolicyGrantCreateEnvironmentProfile {
 
   final TfArg<String>? domainUnitId;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_unit_id': ?domainUnitId?.toTfJson(),
   };
@@ -290,6 +297,7 @@ final class DatazonePolicyGrantCreateFormType {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -303,6 +311,7 @@ final class DatazonePolicyGrantCreateGlossary {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -316,6 +325,7 @@ final class DatazonePolicyGrantCreateProject {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -334,6 +344,7 @@ final class DatazonePolicyGrantCreateProjectFromProjectProfile {
 
   final TfArg<List<String>>? projectProfiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
     'project_profiles': ?projectProfiles?.toTfJson(),
@@ -346,6 +357,7 @@ final class DatazonePolicyGrantCreateProjectFromProjectProfile {
 final class DatazonePolicyGrantDelegateCreateEnvironmentProfile {
   const DatazonePolicyGrantDelegateCreateEnvironmentProfile();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -359,6 +371,7 @@ final class DatazonePolicyGrantOverrideDomainUnitOwners {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -374,6 +387,7 @@ final class DatazonePolicyGrantOverrideProjectOwners {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
   };
@@ -387,6 +401,7 @@ final class DatazonePolicyGrantUseAssetType {
 
   final TfArg<String>? domainUnitId;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_unit_id': ?domainUnitId?.toTfJson(),
   };
@@ -411,6 +426,7 @@ final class DatazonePolicyGrantPrincipal {
 
   final List<DatazonePolicyGrantUser>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     if (domainUnit != null)
       'domain_unit': [for (final e in domainUnit!) e.encode()],
@@ -437,6 +453,7 @@ final class DatazonePolicyGrantDomainUnit {
   final List<DatazonePolicyGrantAllDomainUnitsGrantFilter>?
   allDomainUnitsGrantFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_unit_designation': domainUnitDesignation.toTfJson(),
     'domain_unit_identifier': ?domainUnitIdentifier?.toTfJson(),
@@ -470,6 +487,7 @@ extension type const DatazonePolicyGrantDomainUnitDesignation._(TfArg<String> _)
 final class DatazonePolicyGrantAllDomainUnitsGrantFilter {
   const DatazonePolicyGrantAllDomainUnitsGrantFilter();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -481,6 +499,7 @@ final class DatazonePolicyGrantGroup {
 
   final TfArg<String> groupIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_identifier': groupIdentifier.toTfJson(),
   };
@@ -502,6 +521,7 @@ final class DatazonePolicyGrantProject {
 
   final List<DatazonePolicyGrantDomainUnitFilter>? domainUnitFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_designation': projectDesignation.toTfJson(),
     'project_identifier': ?projectIdentifier?.toTfJson(),
@@ -550,6 +570,7 @@ final class DatazonePolicyGrantDomainUnitFilter {
 
   final TfArg<bool>? includeChildDomainUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_unit': domainUnit.toTfJson(),
     'include_child_domain_units': ?includeChildDomainUnits?.toTfJson(),
@@ -569,6 +590,7 @@ final class DatazonePolicyGrantUser {
 
   final List<DatazonePolicyGrantAllUsersGrantFilter>? allUsersGrantFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_identifier': ?userIdentifier?.toTfJson(),
     if (allUsersGrantFilter != null)
@@ -584,6 +606,7 @@ final class DatazonePolicyGrantUser {
 final class DatazonePolicyGrantAllUsersGrantFilter {
   const DatazonePolicyGrantAllUsersGrantFilter();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

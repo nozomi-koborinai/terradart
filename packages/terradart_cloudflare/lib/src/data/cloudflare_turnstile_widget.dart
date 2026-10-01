@@ -21,6 +21,7 @@ final class DataTurnstileWidgetFilter {
 
   final DataTurnstileWidgetOrder? order;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'filter': ?filter?.toTfJson(),

@@ -74,6 +74,7 @@ final class FsxOpenzfsVolumeNfsExports {
 
   final List<FsxOpenzfsVolumeClientConfigurations> clientConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_configurations': [for (final e in clientConfigurations) e.encode()],
   };
@@ -92,6 +93,7 @@ final class FsxOpenzfsVolumeClientConfigurations {
 
   final TfArg<List<String>> options;
 
+  @internal
   Map<String, Object?> encode() => {
     'clients': clients.toTfJson(),
     'options': options.toTfJson(),
@@ -111,6 +113,7 @@ final class FsxOpenzfsVolumeOriginSnapshot {
 
   final TfArg<String> snapshotArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy_strategy': copyStrategy.toTfJson(),
     'snapshot_arn': snapshotArn.toTfJson(),
@@ -157,6 +160,7 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 
   final FsxOpenzfsVolumeUserAndGroupQuotasType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'storage_capacity_quota_gib': storageCapacityQuotaGib.toTfJson(),

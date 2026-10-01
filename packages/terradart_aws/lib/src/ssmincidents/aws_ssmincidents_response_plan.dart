@@ -18,6 +18,7 @@ final class SsmincidentsResponsePlanAction {
 
   final List<SsmincidentsResponsePlanSsmAutomation>? ssmAutomation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ssmAutomation != null)
       'ssm_automation': [for (final e in ssmAutomation!) e.encode()],
@@ -49,6 +50,7 @@ final class SsmincidentsResponsePlanSsmAutomation {
 
   final List<SsmincidentsResponsePlanParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'document_name': documentName.toTfJson(),
     'document_version': ?documentVersion?.toTfJson(),
@@ -73,6 +75,7 @@ final class SsmincidentsResponsePlanParameter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -104,6 +107,7 @@ final class SsmincidentsResponsePlanIncidentTemplate {
 
   final List<SsmincidentsResponsePlanNotificationTarget>? notificationTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'dedupe_string': ?dedupeString?.toTfJson(),
     'impact': impact.toTfJson(),
@@ -123,6 +127,7 @@ final class SsmincidentsResponsePlanNotificationTarget {
 
   final RefTo<AwsSnsTopic> snsTopicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'sns_topic_arn': snsTopicArn.encodeAs('arn').toTfJson(),
   };
@@ -136,6 +141,7 @@ final class SsmincidentsResponsePlanIntegration {
 
   final List<SsmincidentsResponsePlanPagerduty>? pagerduty;
 
+  @internal
   Map<String, Object?> encode() => {
     if (pagerduty != null)
       'pagerduty': [for (final e in pagerduty!) e.encode()],
@@ -158,6 +164,7 @@ final class SsmincidentsResponsePlanPagerduty {
 
   final TfArg<String> serviceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'secret_id': secretId.toTfJson(),

@@ -15,6 +15,7 @@ final class NetworkmanagerConnectPeerBgpOptions {
 
   final TfArg<String>? peerAsn;
 
+  @internal
   Map<String, Object?> encode() => {'peer_asn': ?peerAsn?.toTfJson()};
 }
 

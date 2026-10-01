@@ -56,12 +56,15 @@ sealed class ArczonalshiftZonalAutoshiftConfigurationWindows {
   ) = ArczonalshiftZonalAutoshiftConfigurationBlockedWindows;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -74,14 +77,17 @@ final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindows
 
   final TfArg<List<String>> allowedWindows;
 
+  @internal
   @override
   String get blockKey => 'allowed_windows';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allowed_windows': allowedWindows.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'allowed_windows': allowedWindows};
 }
@@ -95,14 +101,17 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockedWindows
 
   final TfArg<List<String>> blockedWindows;
 
+  @internal
   @override
   String get blockKey => 'blocked_windows';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'blocked_windows': blockedWindows.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'blocked_windows': blockedWindows};
 }
@@ -120,6 +129,7 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 
   final ArczonalshiftZonalAutoshiftConfigurationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
     'type': type.toTfJson(),
@@ -159,6 +169,7 @@ final class ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms {
 
   final ArczonalshiftZonalAutoshiftConfigurationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
     'type': type.toTfJson(),

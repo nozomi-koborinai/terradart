@@ -39,6 +39,7 @@ final class FsxS3AccessPointAttachmentOpenzfsConfiguration {
 
   final List<FsxS3AccessPointAttachmentFileSystemIdentity>? fileSystemIdentity;
 
+  @internal
   Map<String, Object?> encode() => {
     'volume_id': volumeId.toTfJson(),
     if (fileSystemIdentity != null)
@@ -59,6 +60,7 @@ final class FsxS3AccessPointAttachmentFileSystemIdentity {
 
   final List<FsxS3AccessPointAttachmentPosixUser>? posixUser;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (posixUser != null)
@@ -102,6 +104,7 @@ final class FsxS3AccessPointAttachmentPosixUser {
 
   final TfArg<num> uid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
     'secondary_gids': ?secondaryGids?.toTfJson(),
@@ -122,6 +125,7 @@ final class FsxS3AccessPointAttachmentS3AccessPoint {
 
   final List<FsxS3AccessPointAttachmentVpcConfiguration>? vpcConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
     if (vpcConfiguration != null)
@@ -137,6 +141,7 @@ final class FsxS3AccessPointAttachmentVpcConfiguration {
 
   final RefTo<AwsVpc>? vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'vpc_id': ?vpcId?.encodeAs('id').toTfJson(),
   };

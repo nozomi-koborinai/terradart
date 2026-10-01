@@ -147,12 +147,15 @@ sealed class EksNodeGroupName {
   ) = EksNodeGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -162,14 +165,17 @@ final class EksNodeGroupNameChoice extends EksNodeGroupName {
 
   final TfArg<String> nodeGroupName;
 
+  @internal
   @override
   String get blockKey => 'node_group_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'node_group_name': nodeGroupName.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'node_group_name': nodeGroupName};
 }
@@ -180,14 +186,17 @@ final class EksNodeGroupNamePrefix extends EksNodeGroupName {
 
   final TfArg<String> nodeGroupNamePrefix;
 
+  @internal
   @override
   String get blockKey => 'node_group_name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'node_group_name_prefix': nodeGroupNamePrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'node_group_name_prefix': nodeGroupNamePrefix,
@@ -204,6 +213,7 @@ final class EksNodeGroupLaunchTemplate {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
     'version': version.toTfJson(),
@@ -227,8 +237,10 @@ sealed class EksNodeGroupIdentifier {
       EksNodeGroupIdentifierName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -238,9 +250,11 @@ final class EksNodeGroupIdentifierId extends EksNodeGroupIdentifier {
 
   final TfArg<String> id;
 
+  @internal
   @override
   String get blockKey => 'id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
@@ -251,9 +265,11 @@ final class EksNodeGroupIdentifierName extends EksNodeGroupIdentifier {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -277,6 +293,7 @@ final class EksNodeGroupNodeRepairConfig {
 
   final List<EksNodeGroupNodeRepairConfigOverrides>? nodeRepairConfigOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     ...?maxParallelNodesRepaired?.encode(),
@@ -307,8 +324,10 @@ sealed class EksNodeGroupMaxParallelNodesRepaired {
   ) = EksNodeGroupMaxParallelNodesRepairedPercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -321,9 +340,11 @@ final class EksNodeGroupMaxParallelNodesRepairedCount
 
   final TfArg<num> maxParallelNodesRepairedCount;
 
+  @internal
   @override
   String get blockKey => 'max_parallel_nodes_repaired_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_parallel_nodes_repaired_count': maxParallelNodesRepairedCount
@@ -340,9 +361,11 @@ final class EksNodeGroupMaxParallelNodesRepairedPercentage
 
   final TfArg<num> maxParallelNodesRepairedPercentage;
 
+  @internal
   @override
   String get blockKey => 'max_parallel_nodes_repaired_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_parallel_nodes_repaired_percentage': maxParallelNodesRepairedPercentage
@@ -369,8 +392,10 @@ sealed class EksNodeGroupMaxUnhealthyNodeThreshold {
   ) = EksNodeGroupMaxUnhealthyNodeThresholdPercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -383,9 +408,11 @@ final class EksNodeGroupMaxUnhealthyNodeThresholdCount
 
   final TfArg<num> maxUnhealthyNodeThresholdCount;
 
+  @internal
   @override
   String get blockKey => 'max_unhealthy_node_threshold_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_unhealthy_node_threshold_count': maxUnhealthyNodeThresholdCount
@@ -402,9 +429,11 @@ final class EksNodeGroupMaxUnhealthyNodeThresholdPercentage
 
   final TfArg<num> maxUnhealthyNodeThresholdPercentage;
 
+  @internal
   @override
   String get blockKey => 'max_unhealthy_node_threshold_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_unhealthy_node_threshold_percentage':
@@ -431,6 +460,7 @@ final class EksNodeGroupNodeRepairConfigOverrides {
 
   final EksNodeGroupRepairAction repairAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_repair_wait_time_mins': minRepairWaitTimeMins.toTfJson(),
     'node_monitoring_condition': nodeMonitoringCondition.toTfJson(),
@@ -468,6 +498,7 @@ final class EksNodeGroupRemoteAccess {
 
   final TfArg<List<String>>? sourceSecurityGroupIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'ec2_ssh_key': ?ec2SshKey?.toTfJson(),
     'source_security_group_ids': ?sourceSecurityGroupIds?.toTfJson(),
@@ -490,6 +521,7 @@ final class EksNodeGroupScalingConfig {
 
   final TfArg<num> minSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_size': desiredSize.toTfJson(),
     'max_size': maxSize.toTfJson(),
@@ -513,6 +545,7 @@ final class EksNodeGroupTaint {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'key': key.toTfJson(),
@@ -554,6 +587,7 @@ final class EksNodeGroupUpdateConfig {
 
   final EksNodeGroupUpdateStrategy? updateStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     ...maxUnavailable.encode(),
     'update_strategy': ?updateStrategy?.toTfJson(),
@@ -578,8 +612,10 @@ sealed class EksNodeGroupMaxUnavailable {
   ) = EksNodeGroupMaxUnavailablePercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -590,9 +626,11 @@ final class EksNodeGroupMaxUnavailableChoice
 
   final TfArg<num> maxUnavailable;
 
+  @internal
   @override
   String get blockKey => 'max_unavailable';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_unavailable': maxUnavailable.toTfJson(),
@@ -606,9 +644,11 @@ final class EksNodeGroupMaxUnavailablePercentage
 
   final TfArg<num> maxUnavailablePercentage;
 
+  @internal
   @override
   String get blockKey => 'max_unavailable_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_unavailable_percentage': maxUnavailablePercentage.toTfJson(),
@@ -651,6 +691,7 @@ final class EksNodeGroupWarmPoolConfig {
 
   final TfArg<bool>? reuseOnScaleIn;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_group_prepared_capacity': ?maxGroupPreparedCapacity?.toTfJson(),
     'min_size': ?minSize?.toTfJson(),

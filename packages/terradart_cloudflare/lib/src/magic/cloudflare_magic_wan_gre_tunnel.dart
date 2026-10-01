@@ -31,6 +31,7 @@ final class MagicWanGreTunnelBgp {
 
   final TfArg<String>? md5Key;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_asn': customerAsn.toTfJson(),
     'export_filter_id': ?exportFilterId?.toTfJson(),
@@ -62,6 +63,7 @@ final class MagicWanGreTunnelHealthCheck {
 
   final MagicWanGreTunnelTarget? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -130,6 +132,7 @@ final class MagicWanGreTunnelTarget {
 
   final TfArg<String>? saved;
 
+  @internal
   Map<String, Object?> encode() => {'saved': ?saved?.toTfJson()};
 }
 

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_appwrite/terradart_appwrite.dart';
 
 /// Minimal example: an Appwrite storage bucket, synthesized to Terraform

@@ -57,12 +57,15 @@ sealed class CloudbuildTriggerBuildSpec {
   ) = CloudbuildTriggerBuildSpecGitFileSource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -73,12 +76,15 @@ final class CloudbuildTriggerBuildSpecFilename
 
   final TfArg<String> filename;
 
+  @internal
   @override
   String get blockKey => 'filename';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'filename': filename.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
@@ -89,12 +95,15 @@ final class CloudbuildTriggerBuildSpecBuild extends CloudbuildTriggerBuildSpec {
 
   final CloudbuildTriggerBuild build;
 
+  @internal
   @override
   String get blockKey => 'build';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'build': build.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'build': TfArg.literal(build.encode()),
@@ -108,12 +117,15 @@ final class CloudbuildTriggerBuildSpecGitFileSource
 
   final CloudbuildTriggerGitFileSource gitFileSource;
 
+  @internal
   @override
   String get blockKey => 'git_file_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'git_file_source': gitFileSource.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'git_file_source': TfArg.literal(gitFileSource.encode()),
@@ -128,6 +140,7 @@ final class CloudbuildTriggerApprovalConfig {
 
   final TfArg<bool>? approvalRequired;
 
+  @internal
   Map<String, Object?> encode() => {
     'approval_required': ?approvalRequired?.toTfJson(),
   };
@@ -152,6 +165,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfig {
 
   final CloudbuildTriggerBitbucketServerTriggerConfigEvent event;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitbucket_server_config_resource': bitbucketServerConfigResource
         .toTfJson(),
@@ -179,8 +193,10 @@ sealed class CloudbuildTriggerBitbucketServerTriggerConfigEvent {
   ) = CloudbuildTriggerBitbucketServerTriggerConfigEventPush;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -193,9 +209,11 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigEventPullRequest
 
   final CloudbuildTriggerBitbucketServerTriggerConfigPullRequest pullRequest;
 
+  @internal
   @override
   String get blockKey => 'pull_request';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pull_request': pullRequest.encode()};
 }
@@ -207,9 +225,11 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigEventPush
 
   final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
+  @internal
   @override
   String get blockKey => 'push';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'push': push.encode()};
 }
@@ -231,6 +251,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPullRequest {
 
   final TfArg<bool>? invertRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch': branch.toTfJson(),
     'comment_control': ?commentControl?.toTfJson(),
@@ -279,6 +300,7 @@ final class CloudbuildTriggerBitbucketServerTriggerConfigPush {
 
   final TfArg<bool>? invertRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     ...revision.encode(),
     'invert_regex': ?invertRegex?.toTfJson(),
@@ -301,8 +323,10 @@ sealed class CloudbuildTriggerPushRevision {
       CloudbuildTriggerPushRevisionTag;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -313,9 +337,11 @@ final class CloudbuildTriggerPushRevisionBranch
 
   final TfArg<String> branch;
 
+  @internal
   @override
   String get blockKey => 'branch';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'branch': branch.toTfJson()};
 }
@@ -327,9 +353,11 @@ final class CloudbuildTriggerPushRevisionTag
 
   final TfArg<String> tag;
 
+  @internal
   @override
   String get blockKey => 'tag';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tag': tag.toTfJson()};
 }
@@ -377,6 +405,7 @@ final class CloudbuildTriggerBuild {
 
   final List<CloudbuildTriggerStep> step;
 
+  @internal
   Map<String, Object?> encode() => {
     'images': ?images?.toTfJson(),
     'logs_bucket': ?logsBucket?.toTfJson(),
@@ -415,6 +444,7 @@ final class CloudbuildTriggerArtifacts {
 
   final List<CloudbuildTriggerPythonPackages>? pythonPackages;
 
+  @internal
   Map<String, Object?> encode() => {
     'images': ?images?.toTfJson(),
     if (mavenArtifacts != null)
@@ -449,6 +479,7 @@ final class CloudbuildTriggerMavenArtifacts {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_id': ?artifactId?.toTfJson(),
     'group_id': ?groupId?.toTfJson(),
@@ -468,6 +499,7 @@ final class CloudbuildTriggerNpmPackages {
 
   final TfArg<String>? repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'package_path': ?packagePath?.toTfJson(),
     'repository': ?repository?.toTfJson(),
@@ -484,6 +516,7 @@ final class CloudbuildTriggerObjects {
 
   final TfArg<List<String>>? paths;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
     'paths': ?paths?.toTfJson(),
@@ -500,6 +533,7 @@ final class CloudbuildTriggerPythonPackages {
 
   final TfArg<String>? repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'paths': ?paths?.toTfJson(),
     'repository': ?repository?.toTfJson(),
@@ -514,6 +548,7 @@ final class CloudbuildTriggerAvailableSecrets {
 
   final List<CloudbuildTriggerSecretManager> secretManager;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_manager': [for (final e in secretManager) e.encode()],
   };
@@ -532,6 +567,7 @@ final class CloudbuildTriggerSecretManager {
 
   final TfArg<String> versionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'env': env.toTfJson(),
     'version_name': versionName.toTfJson(),
@@ -581,6 +617,7 @@ final class CloudbuildTriggerOptions {
 
   final List<CloudbuildTriggerOptionsVolumes>? volumes;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'dynamic_substitutions': ?dynamicSubstitutions?.toTfJson(),
@@ -741,6 +778,7 @@ final class CloudbuildTriggerOptionsVolumes {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -757,6 +795,7 @@ final class CloudbuildTriggerSecret {
 
   final TfArg<Map<String, String>>? secretEnv;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
     'secret_env': ?secretEnv?.toTfJson(),
@@ -773,6 +812,7 @@ final class CloudbuildTriggerSource {
 
   final CloudbuildTriggerStorageSource? storageSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'repo_source': ?repoSource?.encode(),
     'storage_source': ?storageSource?.encode(),
@@ -804,6 +844,7 @@ final class CloudbuildTriggerRepoSource {
 
   final TfArg<Map<String, String>>? substitutions;
 
+  @internal
   Map<String, Object?> encode() => {
     ...revision.encode(),
     'dir': ?dir?.toTfJson(),
@@ -837,8 +878,10 @@ sealed class CloudbuildTriggerRepoSourceRevision {
   ) = CloudbuildTriggerRepoSourceRevisionTagName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -849,9 +892,11 @@ final class CloudbuildTriggerRepoSourceRevisionBranchName
 
   final TfArg<String> branchName;
 
+  @internal
   @override
   String get blockKey => 'branch_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
 }
@@ -863,9 +908,11 @@ final class CloudbuildTriggerRepoSourceRevisionCommitSha
 
   final TfArg<String> commitSha;
 
+  @internal
   @override
   String get blockKey => 'commit_sha';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'commit_sha': commitSha.toTfJson()};
 }
@@ -877,9 +924,11 @@ final class CloudbuildTriggerRepoSourceRevisionTagName
 
   final TfArg<String> tagName;
 
+  @internal
   @override
   String get blockKey => 'tag_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
 }
@@ -900,6 +949,7 @@ final class CloudbuildTriggerStorageSource {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
@@ -956,6 +1006,7 @@ final class CloudbuildTriggerStep {
 
   final List<CloudbuildTriggerStepVolumes>? volumes;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_exit_codes': ?allowExitCodes?.toTfJson(),
     'allow_failure': ?allowFailure?.toTfJson(),
@@ -984,6 +1035,7 @@ final class CloudbuildTriggerStepVolumes {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'path': path.toTfJson(),
@@ -1006,6 +1058,7 @@ final class CloudbuildTriggerDeveloperConnectEventConfig {
 
   final CloudbuildTriggerDeveloperConnectEventConfigPush? push;
 
+  @internal
   Map<String, Object?> encode() => {
     'git_repository_link': gitRepositoryLink.toTfJson(),
     'pull_request': ?pullRequest?.encode(),
@@ -1030,6 +1083,7 @@ final class CloudbuildTriggerDeveloperConnectEventConfigPullRequest {
 
   final TfArg<bool>? invertRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch': ?branch?.toTfJson(),
     'comment_control': ?commentControl?.toTfJson(),
@@ -1053,6 +1107,7 @@ final class CloudbuildTriggerDeveloperConnectEventConfigPush {
 
   final TfArg<String>? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch': ?branch?.toTfJson(),
     'invert_regex': ?invertRegex?.toTfJson(),
@@ -1088,6 +1143,7 @@ final class CloudbuildTriggerGitFileSource {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitbucket_server_config': ?bitbucketServerConfig?.toTfJson(),
     'github_enterprise_config': ?githubEnterpriseConfig?.toTfJson(),
@@ -1144,6 +1200,7 @@ final class CloudbuildTriggerGithub {
 
   final CloudbuildTriggerGithubEvent event;
 
+  @internal
   Map<String, Object?> encode() => {
     'enterprise_config_resource_name': ?enterpriseConfigResourceName
         ?.toTfJson(),
@@ -1171,8 +1228,10 @@ sealed class CloudbuildTriggerGithubEvent {
   ) = CloudbuildTriggerGithubEventPush;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1183,9 +1242,11 @@ final class CloudbuildTriggerGithubEventPullRequest
 
   final CloudbuildTriggerBitbucketServerTriggerConfigPullRequest pullRequest;
 
+  @internal
   @override
   String get blockKey => 'pull_request';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pull_request': pullRequest.encode()};
 }
@@ -1197,9 +1258,11 @@ final class CloudbuildTriggerGithubEventPush
 
   final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
+  @internal
   @override
   String get blockKey => 'push';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'push': push.encode()};
 }
@@ -1217,6 +1280,7 @@ final class CloudbuildTriggerPubsubConfig {
 
   final RefTo<GooglePubsubTopic> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
     'topic': topic.encodeAs('id').toTfJson(),
@@ -1236,6 +1300,7 @@ final class CloudbuildTriggerRepositoryEventConfig {
 
   final CloudbuildTriggerRepositoryEventConfigEvent event;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository': ?repository?.toTfJson(),
     ...event.encode(),
@@ -1260,8 +1325,10 @@ sealed class CloudbuildTriggerRepositoryEventConfigEvent {
   ) = CloudbuildTriggerRepositoryEventConfigEventPush;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1274,9 +1341,11 @@ final class CloudbuildTriggerRepositoryEventConfigEventPullRequest
 
   final CloudbuildTriggerDeveloperConnectEventConfigPullRequest pullRequest;
 
+  @internal
   @override
   String get blockKey => 'pull_request';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pull_request': pullRequest.encode()};
 }
@@ -1288,9 +1357,11 @@ final class CloudbuildTriggerRepositoryEventConfigEventPush
 
   final CloudbuildTriggerBitbucketServerTriggerConfigPush push;
 
+  @internal
   @override
   String get blockKey => 'push';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'push': push.encode()};
 }
@@ -1320,6 +1391,7 @@ final class CloudbuildTriggerSourceToBuild {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitbucket_server_config': ?bitbucketServerConfig?.toTfJson(),
     'github_enterprise_config': ?githubEnterpriseConfig?.toTfJson(),
@@ -1352,6 +1424,7 @@ final class CloudbuildTriggerTemplate {
 
   final TfArg<String>? repoName;
 
+  @internal
   Map<String, Object?> encode() => {
     ...revision.encode(),
     'dir': ?dir?.toTfJson(),
@@ -1381,8 +1454,10 @@ sealed class CloudbuildTriggerRevision {
       CloudbuildTriggerRevisionCommitSha;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1393,9 +1468,11 @@ final class CloudbuildTriggerRevisionBranchName
 
   final TfArg<String> branchName;
 
+  @internal
   @override
   String get blockKey => 'branch_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
 }
@@ -1406,9 +1483,11 @@ final class CloudbuildTriggerRevisionTagName extends CloudbuildTriggerRevision {
 
   final TfArg<String> tagName;
 
+  @internal
   @override
   String get blockKey => 'tag_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
 }
@@ -1420,9 +1499,11 @@ final class CloudbuildTriggerRevisionCommitSha
 
   final TfArg<String> commitSha;
 
+  @internal
   @override
   String get blockKey => 'commit_sha';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'commit_sha': commitSha.toTfJson()};
 }
@@ -1435,6 +1516,7 @@ final class CloudbuildTriggerWebhookConfig {
 
   final TfArg<String> secret;
 
+  @internal
   Map<String, Object?> encode() => {'secret': secret.toTfJson()};
 }
 

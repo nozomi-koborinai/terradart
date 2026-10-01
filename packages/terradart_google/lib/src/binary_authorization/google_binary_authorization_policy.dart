@@ -17,6 +17,7 @@ final class BinaryAuthorizationPolicyAdmissionWhitelistPatterns {
 
   final TfArg<String> namePattern;
 
+  @internal
   Map<String, Object?> encode() => {'name_pattern': namePattern.toTfJson()};
 }
 
@@ -39,6 +40,7 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
 
   final TfArg<List<String>>? requireAttestationsBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster': cluster.toTfJson(),
     'enforcement_mode': enforcementMode.toTfJson(),
@@ -114,6 +116,7 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
 
   final TfArg<List<String>>? requireAttestationsBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforcement_mode': enforcementMode.toTfJson(),
     'evaluation_mode': evaluationMode.toTfJson(),

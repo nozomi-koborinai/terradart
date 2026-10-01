@@ -23,6 +23,7 @@ final class ComputeRegionResizeRequestRequestedRunDuration {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),

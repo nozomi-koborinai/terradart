@@ -10,7 +10,6 @@
 /// `Stack.add(...)`, so the whole composition is visible at a glance.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 
 import 'apis.dart';

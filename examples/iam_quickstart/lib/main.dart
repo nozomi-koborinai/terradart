@@ -36,9 +36,7 @@
 /// is needed.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
@@ -421,7 +419,7 @@ final class IamShowcaseStack extends Stack {
     // grant IAM. MM exclude_delete: destroy drops state; Google-owned
     // SAs remain. The wrap fixture has no deletion_policy attribute.
 
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final apiWorkloadIdentity = add(
       GoogleProjectService(

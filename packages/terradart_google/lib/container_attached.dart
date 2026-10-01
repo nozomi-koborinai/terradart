@@ -5,6 +5,7 @@
 /// external cluster — not applyable on terradart-validate.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/container_attached/google_container_attached_cluster.dart'
     show
         ContainerAttachedClusterAuthorization,
@@ -22,3 +23,7 @@ export 'src/container_attached/google_container_attached_cluster.dart'
         ContainerAttachedClusterSecurityPostureConfig,
         ContainerAttachedClusterVulnerabilityMode,
         GoogleContainerAttachedCluster;
+export 'src/data/google_container_attached_install_manifest.dart'
+    show DataGoogleContainerAttachedInstallManifest;
+export 'src/data/google_container_attached_versions.dart'
+    show DataGoogleContainerAttachedVersions;

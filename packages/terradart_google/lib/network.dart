@@ -16,6 +16,17 @@
 /// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_network_connectivity_hub_iam_policy.dart'
+    show DataGoogleNetworkConnectivityHubIamPolicy;
+export 'src/data/google_network_management_connectivity_test_run.dart'
+    show DataGoogleNetworkManagementConnectivityTestRun;
+export 'src/data/google_network_management_connectivity_tests.dart'
+    show DataGoogleNetworkManagementConnectivityTests;
+export 'src/data/google_network_security_address_group_iam_policy.dart'
+    show DataGoogleNetworkSecurityAddressGroupIamPolicy;
+export 'src/data/google_network_security_address_groups.dart'
+    show DataGoogleNetworkSecurityAddressGroups;
 export 'src/network/google_network_connectivity_destination.dart'
     show
         GoogleNetworkConnectivityDestination,

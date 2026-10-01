@@ -28,12 +28,15 @@ sealed class DataplexTaskWorkload {
       DataplexTaskWorkloadNotebook;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -43,12 +46,15 @@ final class DataplexTaskWorkloadSpark extends DataplexTaskWorkload {
 
   final DataplexTaskSpark spark;
 
+  @internal
   @override
   String get blockKey => 'spark';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'spark': spark.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'spark': TfArg.literal(spark.encode()),
@@ -61,12 +67,15 @@ final class DataplexTaskWorkloadNotebook extends DataplexTaskWorkload {
 
   final DataplexTaskNotebook notebook;
 
+  @internal
   @override
   String get blockKey => 'notebook';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'notebook': notebook.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'notebook': TfArg.literal(notebook.encode()),
@@ -95,6 +104,7 @@ final class DataplexTaskExecutionSpec {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
@@ -123,6 +133,7 @@ final class DataplexTaskNotebook {
 
   final DataplexTaskInfrastructureSpec? infrastructureSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'file_uris': ?fileUris?.toTfJson(),
@@ -148,6 +159,7 @@ final class DataplexTaskInfrastructureSpec {
 
   final DataplexTaskVpcNetwork? vpcNetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch': ?batch?.encode(),
     'container_image': ?containerImage?.encode(),
@@ -166,6 +178,7 @@ final class DataplexTaskBatch {
 
   final TfArg<num>? maxExecutorsCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'executors_count': ?executorsCount?.toTfJson(),
     'max_executors_count': ?maxExecutorsCount?.toTfJson(),
@@ -192,6 +205,7 @@ final class DataplexTaskContainerImage {
 
   final TfArg<List<String>>? pythonPackages;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     'java_jars': ?javaJars?.toTfJson(),
@@ -211,6 +225,7 @@ final class DataplexTaskVpcNetwork {
 
   final TfArg<List<String>>? networkTags;
 
+  @internal
   Map<String, Object?> encode() => {
     ...target.encode(),
     'network_tags': ?networkTags?.toTfJson(),
@@ -234,8 +249,10 @@ sealed class DataplexTaskTarget {
       DataplexTaskTargetSubNetwork;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -245,9 +262,11 @@ final class DataplexTaskTargetNetwork extends DataplexTaskTarget {
 
   final RefTo<GoogleComputeNetwork> network;
 
+  @internal
   @override
   String get blockKey => 'network';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
@@ -260,9 +279,11 @@ final class DataplexTaskTargetSubNetwork extends DataplexTaskTarget {
 
   final TfArg<String> subNetwork;
 
+  @internal
   @override
   String get blockKey => 'sub_network';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sub_network': subNetwork.toTfJson()};
 }
@@ -286,6 +307,7 @@ final class DataplexTaskSpark {
 
   final DataplexTaskInfrastructureSpec? infrastructureSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'file_uris': ?fileUris?.toTfJson(),
@@ -324,8 +346,10 @@ sealed class DataplexTaskDriver {
       DataplexTaskDriverSqlScript;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -335,9 +359,11 @@ final class DataplexTaskDriverMainJarFileUri extends DataplexTaskDriver {
 
   final TfArg<String> mainJarFileUri;
 
+  @internal
   @override
   String get blockKey => 'main_jar_file_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'main_jar_file_uri': mainJarFileUri.toTfJson(),
@@ -350,9 +376,11 @@ final class DataplexTaskDriverMainClass extends DataplexTaskDriver {
 
   final TfArg<String> mainClass;
 
+  @internal
   @override
   String get blockKey => 'main_class';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'main_class': mainClass.toTfJson()};
 }
@@ -363,9 +391,11 @@ final class DataplexTaskDriverPythonScriptFile extends DataplexTaskDriver {
 
   final TfArg<String> pythonScriptFile;
 
+  @internal
   @override
   String get blockKey => 'python_script_file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'python_script_file': pythonScriptFile.toTfJson(),
@@ -378,9 +408,11 @@ final class DataplexTaskDriverSqlScriptFile extends DataplexTaskDriver {
 
   final TfArg<String> sqlScriptFile;
 
+  @internal
   @override
   String get blockKey => 'sql_script_file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sql_script_file': sqlScriptFile.toTfJson(),
@@ -393,9 +425,11 @@ final class DataplexTaskDriverSqlScript extends DataplexTaskDriver {
 
   final TfArg<String> sqlScript;
 
+  @internal
   @override
   String get blockKey => 'sql_script';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sql_script': sqlScript.toTfJson()};
 }
@@ -422,6 +456,7 @@ final class DataplexTaskTriggerSpec {
 
   final DataplexTaskType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'max_retries': ?maxRetries?.toTfJson(),

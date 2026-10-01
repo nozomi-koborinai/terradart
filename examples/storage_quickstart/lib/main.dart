@@ -28,7 +28,6 @@
 /// as a `TfRef` -- the `module "object_prefix" { ... }` block in HCL.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';

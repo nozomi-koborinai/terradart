@@ -21,6 +21,7 @@ final class DataClientCertificateFilter {
 
   final DataClientCertificateFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'limit': ?limit?.toTfJson(),
     'offset': ?offset?.toTfJson(),

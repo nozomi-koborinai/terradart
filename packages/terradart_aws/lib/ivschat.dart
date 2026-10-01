@@ -3,6 +3,7 @@
 /// AWS IVS Chat.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/ivschat/aws_ivschat_logging_configuration.dart'
     show
         AwsIvschatLoggingConfiguration,

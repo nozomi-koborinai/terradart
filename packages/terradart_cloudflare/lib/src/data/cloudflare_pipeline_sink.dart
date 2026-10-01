@@ -19,6 +19,7 @@ final class DataPipelineSinkFilter {
 
   final TfArg<String>? pipelineId;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'pipeline_id': ?pipelineId?.toTfJson(),

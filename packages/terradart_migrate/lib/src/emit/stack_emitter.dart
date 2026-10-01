@@ -8,8 +8,8 @@ import 'package:terradart_appwrite/provider.dart'
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
-import 'package:terradart_core/terradart_core.dart'
-    show ModuleCall, TfTimeouts, templateVariableNames;
+import 'package:terradart_core/internal.dart' show templateVariableNames;
+import 'package:terradart_core/terradart_core.dart' show ModuleCall, TfTimeouts;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -665,7 +665,7 @@ final class StackEmitter {
         register(
           '$name.$alias',
           '${aliasConfig.isConst ? 'const ' : ''}'
-          '${recipe.className}(${aliasArgs.join(', ')})',
+              '${recipe.className}(${aliasArgs.join(', ')})',
         );
         _migrated.add(MigratedItem(address: 'provider.$name.$alias'));
       }
@@ -897,7 +897,9 @@ final class StackEmitter {
         ? const <String>[]
         : (_moduleWrappers.toList()..sort());
     final imports = <String>[
-      "import 'package:terradart_core/terradart_core.dart';",
+      // Every provider barrel re-exports terradart_core.
+      if (packages.isEmpty)
+        "import 'package:terradart_core/terradart_core.dart';",
       for (final p in packages)
         for (final barrel in (ctx.imports[p]!.toList()..sort()))
           "import 'package:$p/$barrel.dart';",

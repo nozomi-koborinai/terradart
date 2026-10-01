@@ -4,6 +4,11 @@
 /// webhook hooks, and branch rules. Instances are never_apply ($1000/mo).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_secure_source_manager_instance_iam_policy.dart'
+    show DataGoogleSecureSourceManagerInstanceIamPolicy;
+export 'src/data/google_secure_source_manager_repository_iam_policy.dart'
+    show DataGoogleSecureSourceManagerRepositoryIamPolicy;
 export 'src/secure/google_secure_source_manager_branch_rule.dart'
     show GoogleSecureSourceManagerBranchRule;
 export 'src/secure/google_secure_source_manager_hook.dart'

@@ -20,6 +20,7 @@ final class CesEvaluationGolden {
 
   final List<CesEvaluationTurns> turns;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluation_expectations': ?evaluationExpectations?.toTfJson(),
     'turns': [for (final e in turns) e.encode()],
@@ -34,6 +35,7 @@ final class CesEvaluationTurns {
 
   final List<CesEvaluationSteps> steps;
 
+  @internal
   Map<String, Object?> encode() => {
     'steps': [for (final e in steps) e.encode()],
   };
@@ -55,6 +57,7 @@ final class CesEvaluationSteps {
 
   final CesEvaluationUserInput? userInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_transfer': ?agentTransfer?.encode(),
     'expectation': ?expectation?.encode(),
@@ -71,6 +74,7 @@ final class CesEvaluationAgentTransfer {
 
   final TfArg<String> targetAgent;
 
+  @internal
   Map<String, Object?> encode() => {'target_agent': targetAgent.toTfJson()};
 }
 
@@ -102,6 +106,7 @@ final class CesEvaluationExpectation {
 
   final CesEvaluationUpdatedVariables? updatedVariables;
 
+  @internal
   Map<String, Object?> encode() => {
     'note': ?note?.toTfJson(),
     'agent_response': ?agentResponse?.encode(),
@@ -124,6 +129,7 @@ final class CesEvaluationAgentResponse {
 
   final List<CesEvaluationChunks>? chunks;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     if (chunks != null) 'chunks': [for (final e in chunks!) e.encode()],
@@ -159,6 +165,7 @@ final class CesEvaluationChunks {
 
   final CesEvaluationToolResponse? toolResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
     'updated_variables': ?updatedVariables?.toTfJson(),
@@ -181,6 +188,7 @@ final class CesEvaluationBlob {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
@@ -198,6 +206,7 @@ final class CesEvaluationImage {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
@@ -224,6 +233,7 @@ final class CesEvaluationToolCall {
 
   final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -246,6 +256,7 @@ final class CesEvaluationMockToolResponseToolsetTool {
 
   final RefTo<GoogleCesToolset> toolset;
 
+  @internal
   Map<String, Object?> encode() => {
     'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.encodeAs('name').toTfJson(),
@@ -272,6 +283,7 @@ final class CesEvaluationToolResponse {
 
   final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': ?response?.toTfJson(),
@@ -293,6 +305,7 @@ final class CesEvaluationExpectationAgentTransfer {
 
   final TfArg<String>? targetAgent;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'target_agent': ?targetAgent?.toTfJson(),
@@ -318,6 +331,7 @@ final class CesEvaluationExpectationMockToolResponse {
 
   final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': ?response?.toTfJson(),
@@ -334,6 +348,7 @@ final class CesEvaluationUpdatedVariables {
 
   final TfArg<String>? notes;
 
+  @internal
   Map<String, Object?> encode() => {'notes': ?notes?.toTfJson()};
 }
 
@@ -371,6 +386,7 @@ final class CesEvaluationUserInput {
 
   final CesEvaluationToolResponses? toolResponses;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio': ?audio?.toTfJson(),
     'dtmf': ?dtmf?.toTfJson(),
@@ -392,6 +408,7 @@ final class CesEvaluationEvent {
 
   final TfArg<String> event;
 
+  @internal
   Map<String, Object?> encode() => {'event': event.toTfJson()};
 }
 
@@ -403,6 +420,7 @@ final class CesEvaluationToolResponses {
 
   final List<CesEvaluationToolResponsesToolResponses>? toolResponses;
 
+  @internal
   Map<String, Object?> encode() => {
     if (toolResponses != null)
       'tool_responses': [for (final e in toolResponses!) e.encode()],
@@ -428,6 +446,7 @@ final class CesEvaluationToolResponsesToolResponses {
 
   final CesEvaluationMockToolResponseToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': response.toTfJson(),
@@ -470,6 +489,7 @@ final class CesEvaluationScenario {
 
   final List<CesEvaluationUserFacts>? userFacts;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluation_expectations': ?evaluationExpectations?.toTfJson(),
     'max_turns': ?maxTurns?.toTfJson(),
@@ -497,6 +517,7 @@ final class CesEvaluationScenarioExpectations {
 
   final CesEvaluationToolExpectation? toolExpectation;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_response': ?agentResponse?.encode(),
     'tool_expectation': ?toolExpectation?.encode(),
@@ -516,6 +537,7 @@ final class CesEvaluationToolExpectation {
 
   final CesEvaluationMockToolResponse? mockToolResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'expected_tool_call': ?expectedToolCall?.encode(),
     'mock_tool_response': ?mockToolResponse?.encode(),
@@ -541,6 +563,7 @@ final class CesEvaluationExpectedToolCall {
 
   final CesEvaluationToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -560,6 +583,7 @@ final class CesEvaluationToolsetTool {
 
   final RefTo<GoogleCesToolset>? toolset;
 
+  @internal
   Map<String, Object?> encode() => {
     'tool_id': ?toolId?.toTfJson(),
     'toolset': ?toolset?.encodeAs('name').toTfJson(),
@@ -585,6 +609,7 @@ final class CesEvaluationMockToolResponse {
 
   final CesEvaluationToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': ?response?.toTfJson(),
@@ -603,6 +628,7 @@ final class CesEvaluationUserFacts {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

@@ -36,6 +36,7 @@ final class FisExperimentTemplateAction {
 
   final FisExperimentTemplateActionTarget? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_id': actionId.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -60,6 +61,7 @@ final class FisExperimentTemplateParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -79,6 +81,7 @@ final class FisExperimentTemplateActionTarget {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -99,6 +102,7 @@ final class FisExperimentTemplateExperimentOptions {
   final FisExperimentTemplateEmptyTargetResolutionMode?
   emptyTargetResolutionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_targeting': ?accountTargeting?.toTfJson(),
     'empty_target_resolution_mode': ?emptyTargetResolutionMode?.toTfJson(),
@@ -171,6 +175,7 @@ final class FisExperimentTemplateExperimentReportConfiguration {
 
   final FisExperimentTemplateOutputs? outputs;
 
+  @internal
   Map<String, Object?> encode() => {
     'post_experiment_duration': ?postExperimentDuration?.toTfJson(),
     'pre_experiment_duration': ?preExperimentDuration?.toTfJson(),
@@ -187,6 +192,7 @@ final class FisExperimentTemplateDataSources {
 
   final List<FisExperimentTemplateCloudwatchDashboard>? cloudwatchDashboard;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cloudwatchDashboard != null)
       'cloudwatch_dashboard': [
@@ -203,6 +209,7 @@ final class FisExperimentTemplateCloudwatchDashboard {
 
   final TfArg<String>? dashboardArn;
 
+  @internal
   Map<String, Object?> encode() => {'dashboard_arn': ?dashboardArn?.toTfJson()};
 }
 
@@ -214,6 +221,7 @@ final class FisExperimentTemplateOutputs {
 
   final FisExperimentTemplateS3Configuration? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_configuration': ?s3Configuration?.encode(),
   };
@@ -233,6 +241,7 @@ final class FisExperimentTemplateS3Configuration {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -256,6 +265,7 @@ final class FisExperimentTemplateLogConfiguration {
 
   final FisExperimentTemplateS3Configuration? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_schema_version': logSchemaVersion.toTfJson(),
     'cloudwatch_logs_configuration': ?cloudwatchLogsConfiguration?.encode(),
@@ -273,6 +283,7 @@ final class FisExperimentTemplateCloudwatchLogsConfiguration {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
   };
@@ -288,6 +299,7 @@ final class FisExperimentTemplateStopCondition {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -322,6 +334,7 @@ final class FisExperimentTemplateTarget {
 
   final List<FisExperimentTemplateResourceTag>? resourceTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -344,6 +357,7 @@ final class FisExperimentTemplateFilter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'values': values.toTfJson(),
@@ -363,6 +377,7 @@ final class FisExperimentTemplateResourceTag {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

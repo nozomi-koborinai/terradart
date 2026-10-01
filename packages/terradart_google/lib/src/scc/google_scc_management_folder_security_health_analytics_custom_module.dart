@@ -67,6 +67,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig {
   final SccManagementFolderSecurityHealthAnalyticsCustomModuleResourceSelector?
   resourceSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'recommendation': ?recommendation?.toTfJson(),
@@ -125,6 +126,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomOutput {
   final List<SccManagementFolderSecurityHealthAnalyticsCustomModuleProperties>?
   properties;
 
+  @internal
   Map<String, Object?> encode() => {
     if (properties != null)
       'properties': [for (final e in properties!) e.encode()],
@@ -145,6 +147,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleProperties {
   final SccManagementFolderSecurityHealthAnalyticsCustomModuleValueExpression?
   valueExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value_expression': ?valueExpression?.encode(),
@@ -170,6 +173,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleValueExpressio
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -197,6 +201,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModulePredicate {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -215,6 +220,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleResourceSelect
 
   final TfArg<List<String>> resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {'resource_types': resourceTypes.toTfJson()};
 }
 

@@ -17,6 +17,7 @@ final class DialogflowCxGeneratorLlmModelSettings {
 
   final TfArg<String>? promptText;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'prompt_text': ?promptText?.toTfJson(),
@@ -42,6 +43,7 @@ final class DialogflowCxGeneratorModelParameter {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_decode_steps': ?maxDecodeSteps?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
@@ -60,6 +62,7 @@ final class DialogflowCxGeneratorPlaceholders {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -74,6 +77,7 @@ final class DialogflowCxGeneratorPromptText {
 
   final TfArg<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 

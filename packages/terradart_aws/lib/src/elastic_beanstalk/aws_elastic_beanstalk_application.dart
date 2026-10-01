@@ -28,6 +28,7 @@ final class ElasticBeanstalkApplicationAppversionLifecycle {
 
   final RefTo<AwsIamRole> serviceRole;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_source_from_s3': ?deleteSourceFromS3?.toTfJson(),
     'max_age_in_days': ?maxAgeInDays?.toTfJson(),

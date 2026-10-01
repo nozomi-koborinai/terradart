@@ -70,6 +70,7 @@ final class MedialiveInputDestinations {
 
   final TfArg<String> streamName;
 
+  @internal
   Map<String, Object?> encode() => {'stream_name': streamName.toTfJson()};
 }
 
@@ -81,6 +82,7 @@ final class MedialiveInputDevices {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -92,6 +94,7 @@ final class MedialiveInputMediaConnectFlows {
 
   final TfArg<String> flowArn;
 
+  @internal
   Map<String, Object?> encode() => {'flow_arn': flowArn.toTfJson()};
 }
 
@@ -111,6 +114,7 @@ final class MedialiveInputSources {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': passwordParam.toTfJson(),
     'url': url.toTfJson(),
@@ -128,6 +132,7 @@ final class MedialiveInputVpc {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

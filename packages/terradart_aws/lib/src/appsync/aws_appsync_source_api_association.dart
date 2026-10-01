@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_appsync_source_api_association`.
@@ -24,12 +25,15 @@ sealed class AppsyncSourceApiAssociationMergedApi {
   ) = AppsyncSourceApiAssociationMergedApiId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,12 +44,15 @@ final class AppsyncSourceApiAssociationMergedApiArn
 
   final TfArg<String> mergedApiArn;
 
+  @internal
   @override
   String get blockKey => 'merged_api_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'merged_api_arn': mergedApiArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'merged_api_arn': mergedApiArn};
 }
@@ -57,12 +64,15 @@ final class AppsyncSourceApiAssociationMergedApiId
 
   final TfArg<String> mergedApiId;
 
+  @internal
   @override
   String get blockKey => 'merged_api_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'merged_api_id': mergedApiId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'merged_api_id': mergedApiId};
 }
@@ -85,12 +95,15 @@ sealed class AppsyncSourceApiAssociationSourceApi {
   ) = AppsyncSourceApiAssociationSourceApiId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -101,12 +114,15 @@ final class AppsyncSourceApiAssociationSourceApiArn
 
   final TfArg<String> sourceApiArn;
 
+  @internal
   @override
   String get blockKey => 'source_api_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source_api_arn': sourceApiArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'source_api_arn': sourceApiArn};
 }
@@ -118,12 +134,15 @@ final class AppsyncSourceApiAssociationSourceApiId
 
   final TfArg<String> sourceApiId;
 
+  @internal
   @override
   String get blockKey => 'source_api_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source_api_id': sourceApiId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'source_api_id': sourceApiId};
 }

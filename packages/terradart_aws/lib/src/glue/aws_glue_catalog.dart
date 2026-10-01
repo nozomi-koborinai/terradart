@@ -76,6 +76,7 @@ final class GlueCatalogProperties {
   final List<GlueCatalogIcebergOptimizationProperties>?
   icebergOptimizationProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_properties': ?customProperties?.toTfJson(),
     if (dataLakeAccessProperties != null)
@@ -108,6 +109,7 @@ final class GlueCatalogDataLakeAccessProperties {
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_type': ?catalogType?.toTfJson(),
     'data_lake_access': ?dataLakeAccess?.toTfJson(),
@@ -135,6 +137,7 @@ final class GlueCatalogIcebergOptimizationProperties {
 
   final RefTo<AwsIamRole>? roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'compaction': ?compaction?.toTfJson(),
     'orphan_file_deletion': ?orphanFileDeletion?.toTfJson(),
@@ -156,6 +159,7 @@ final class GlueCatalogCreateDatabaseDefaultPermissions {
 
   final List<GlueCatalogPrincipal>? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'permissions': ?permissions?.toTfJson(),
     if (principal != null)
@@ -172,6 +176,7 @@ final class GlueCatalogPrincipal {
 
   final TfArg<String>? dataLakePrincipalIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_lake_principal_identifier': ?dataLakePrincipalIdentifier?.toTfJson(),
   };
@@ -190,6 +195,7 @@ final class GlueCatalogCreateTableDefaultPermissions {
 
   final List<GlueCatalogPrincipal>? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'permissions': ?permissions?.toTfJson(),
     if (principal != null)
@@ -213,6 +219,7 @@ final class GlueCatalogFederatedCatalog {
 
   final TfArg<String>? identifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'connection_type': ?connectionType?.toTfJson(),
@@ -228,6 +235,7 @@ final class GlueCatalogTargetRedshiftCatalog {
 
   final TfArg<String> catalogArn;
 
+  @internal
   Map<String, Object?> encode() => {'catalog_arn': catalogArn.toTfJson()};
 }
 

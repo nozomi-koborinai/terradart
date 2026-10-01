@@ -3,5 +3,6 @@
 /// Service Usage consumer quota override (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/service_usage/google_service_usage_consumer_quota_override.dart'
     show GoogleServiceUsageConsumerQuotaOverride;

@@ -28,6 +28,7 @@ final class LoadBalancerMonitorGroupMembers {
 
   final TfArg<bool> mustBeHealthy;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'monitor_id': monitorId.toTfJson(),

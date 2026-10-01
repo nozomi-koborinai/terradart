@@ -33,6 +33,7 @@ final class MskReplicatorKafkaCluster {
 
   final MskReplicatorVpcConfig? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'amazon_msk_cluster': ?amazonMskCluster?.encode(),
     'apache_kafka_cluster': ?apacheKafkaCluster?.encode(),
@@ -50,6 +51,7 @@ final class MskReplicatorAmazonMskCluster {
 
   final TfArg<String> mskClusterArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'msk_cluster_arn': mskClusterArn.toTfJson(),
   };
@@ -68,6 +70,7 @@ final class MskReplicatorApacheKafkaCluster {
 
   final TfArg<String> bootstrapBrokerString;
 
+  @internal
   Map<String, Object?> encode() => {
     'apache_kafka_cluster_id': apacheKafkaClusterId.toTfJson(),
     'bootstrap_broker_string': bootstrapBrokerString.toTfJson(),
@@ -84,6 +87,7 @@ final class MskReplicatorClientAuthentication {
 
   final MskReplicatorSaslScram? saslScram;
 
+  @internal
   Map<String, Object?> encode() => {
     'mtls': ?mtls?.encode(),
     'sasl_scram': ?saslScram?.encode(),
@@ -98,6 +102,7 @@ final class MskReplicatorMtls {
 
   final TfArg<String> secretArn;
 
+  @internal
   Map<String, Object?> encode() => {'secret_arn': secretArn.toTfJson()};
 }
 
@@ -114,6 +119,7 @@ final class MskReplicatorSaslScram {
 
   final TfArg<String> secretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'mechanism': mechanism.toTfJson(),
     'secret_arn': secretArn.toTfJson(),
@@ -142,6 +148,7 @@ final class MskReplicatorEncryptionInTransit {
 
   final TfArg<String> rootCaCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'root_ca_certificate': rootCaCertificate.toTfJson(),
   };
@@ -160,6 +167,7 @@ final class MskReplicatorVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups_ids': ?securityGroupsIds?.toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
@@ -174,6 +182,7 @@ final class MskReplicatorLogDelivery {
 
   final MskReplicatorReplicatorLogDelivery? replicatorLogDelivery;
 
+  @internal
   Map<String, Object?> encode() => {
     'replicator_log_delivery': ?replicatorLogDelivery?.encode(),
   };
@@ -195,6 +204,7 @@ final class MskReplicatorReplicatorLogDelivery {
 
   final MskReplicatorS3? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
     'firehose': ?firehose?.encode(),
@@ -212,6 +222,7 @@ final class MskReplicatorCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
@@ -228,6 +239,7 @@ final class MskReplicatorFirehose {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -246,6 +258,7 @@ final class MskReplicatorS3 {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -275,6 +288,7 @@ final class MskReplicatorReplicationInfoList {
 
   final List<MskReplicatorTopicReplication> topicReplication;
 
+  @internal
   Map<String, Object?> encode() => {
     ...sourceKafkaCluster.encode(),
     'target_compression_type': targetCompressionType.toTfJson(),
@@ -304,8 +318,10 @@ sealed class MskReplicatorSourceKafkaCluster {
   ) = MskReplicatorSourceKafkaClusterId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -316,9 +332,11 @@ final class MskReplicatorSourceKafkaClusterArn
 
   final TfArg<String> sourceKafkaClusterArn;
 
+  @internal
   @override
   String get blockKey => 'source_kafka_cluster_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_kafka_cluster_arn': sourceKafkaClusterArn.toTfJson(),
@@ -332,9 +350,11 @@ final class MskReplicatorSourceKafkaClusterId
 
   final TfArg<String> sourceKafkaClusterId;
 
+  @internal
   @override
   String get blockKey => 'source_kafka_cluster_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_kafka_cluster_id': sourceKafkaClusterId.toTfJson(),
@@ -359,8 +379,10 @@ sealed class MskReplicatorTargetKafkaCluster {
   ) = MskReplicatorTargetKafkaClusterId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -371,9 +393,11 @@ final class MskReplicatorTargetKafkaClusterArn
 
   final TfArg<String> targetKafkaClusterArn;
 
+  @internal
   @override
   String get blockKey => 'target_kafka_cluster_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'target_kafka_cluster_arn': targetKafkaClusterArn.toTfJson(),
@@ -387,9 +411,11 @@ final class MskReplicatorTargetKafkaClusterId
 
   final TfArg<String> targetKafkaClusterId;
 
+  @internal
   @override
   String get blockKey => 'target_kafka_cluster_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'target_kafka_cluster_id': targetKafkaClusterId.toTfJson(),
@@ -418,6 +444,7 @@ final class MskReplicatorConsumerGroupReplication {
 
   final TfArg<bool>? synchroniseConsumerGroupOffsets;
 
+  @internal
   Map<String, Object?> encode() => {
     'consumer_group_offset_sync_mode': ?consumerGroupOffsetSyncMode?.toTfJson(),
     'consumer_groups_to_exclude': ?consumerGroupsToExclude?.toTfJson(),
@@ -480,6 +507,7 @@ final class MskReplicatorTopicReplication {
 
   final MskReplicatorTopicNameConfiguration? topicNameConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy_access_control_lists_for_topics': ?copyAccessControlListsForTopics
         ?.toTfJson(),
@@ -500,6 +528,7 @@ final class MskReplicatorStartingPosition {
 
   final MskReplicatorStartingPositionType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -533,6 +562,7 @@ final class MskReplicatorTopicNameConfiguration {
 
   final MskReplicatorTopicNameConfigurationType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 

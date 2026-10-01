@@ -20,6 +20,7 @@ final class SagemakerWorkteamMemberDefinition {
 
   final SagemakerWorkteamOidcMemberDefinition? oidcMemberDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'cognito_member_definition': ?cognitoMemberDefinition?.encode(),
     'oidc_member_definition': ?oidcMemberDefinition?.encode(),
@@ -42,6 +43,7 @@ final class SagemakerWorkteamCognitoMemberDefinition {
 
   final TfArg<String> userPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'user_group': userGroup.toTfJson(),
@@ -57,6 +59,7 @@ final class SagemakerWorkteamOidcMemberDefinition {
 
   final TfArg<List<String>> groups;
 
+  @internal
   Map<String, Object?> encode() => {'groups': groups.toTfJson()};
 }
 
@@ -68,6 +71,7 @@ final class SagemakerWorkteamNotificationConfiguration {
 
   final TfArg<String>? notificationTopicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'notification_topic_arn': ?notificationTopicArn?.toTfJson(),
   };
@@ -81,6 +85,7 @@ final class SagemakerWorkteamWorkerAccessConfiguration {
 
   final SagemakerWorkteamS3Presign? s3Presign;
 
+  @internal
   Map<String, Object?> encode() => {'s3_presign': ?s3Presign?.encode()};
 }
 
@@ -92,6 +97,7 @@ final class SagemakerWorkteamS3Presign {
 
   final SagemakerWorkteamIamPolicyConstraints? iamPolicyConstraints;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_policy_constraints': ?iamPolicyConstraints?.encode(),
   };
@@ -115,8 +121,10 @@ sealed class SagemakerWorkteamIamPolicyConstraints {
   ) = SagemakerWorkteamIamPolicyConstraintsVpcSourceIp;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -127,9 +135,11 @@ final class SagemakerWorkteamIamPolicyConstraintsSourceIp
 
   final SagemakerWorkteamSourceIp sourceIp;
 
+  @internal
   @override
   String get blockKey => 'source_ip';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source_ip': sourceIp.toTfJson()};
 }
@@ -141,9 +151,11 @@ final class SagemakerWorkteamIamPolicyConstraintsVpcSourceIp
 
   final SagemakerWorkteamVpcSourceIp vpcSourceIp;
 
+  @internal
   @override
   String get blockKey => 'vpc_source_ip';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vpc_source_ip': vpcSourceIp.toTfJson()};
 }

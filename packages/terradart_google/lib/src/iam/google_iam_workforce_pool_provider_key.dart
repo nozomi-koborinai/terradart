@@ -15,6 +15,7 @@ final class IamWorkforcePoolProviderKeyData {
 
   final IamWorkforcePoolProviderKeySpec keySpec;
 
+  @internal
   Map<String, Object?> encode() => {'key_spec': keySpec.toTfJson()};
 }
 

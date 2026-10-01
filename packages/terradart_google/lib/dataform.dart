@@ -5,6 +5,9 @@
 /// workflows (those SKUs fire on repository compilation).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_dataform_repository_iam_policy.dart'
+    show DataGoogleDataformRepositoryIamPolicy;
 export 'src/dataform/google_dataform_folder.dart' show GoogleDataformFolder;
 export 'src/dataform/google_dataform_repository.dart'
     show

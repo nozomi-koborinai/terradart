@@ -26,6 +26,7 @@ final class MedialiveMultiplexProgramSettings {
 
   final List<MedialiveMultiplexProgramVideoSettings>? videoSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'preferred_channel_pipeline': preferredChannelPipeline.toTfJson(),
     'program_number': programNumber.toTfJson(),
@@ -49,6 +50,7 @@ final class MedialiveMultiplexProgramServiceDescriptor {
 
   final TfArg<String> serviceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'provider_name': providerName.toTfJson(),
     'service_name': serviceName.toTfJson(),
@@ -68,6 +70,7 @@ final class MedialiveMultiplexProgramVideoSettings {
 
   final List<MedialiveMultiplexProgramStatmuxSettings>? statmuxSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'constant_bitrate': ?constantBitrate?.toTfJson(),
     if (statmuxSettings != null)
@@ -91,6 +94,7 @@ final class MedialiveMultiplexProgramStatmuxSettings {
 
   final TfArg<num>? priority;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_bitrate': ?maximumBitrate?.toTfJson(),
     'minimum_bitrate': ?minimumBitrate?.toTfJson(),

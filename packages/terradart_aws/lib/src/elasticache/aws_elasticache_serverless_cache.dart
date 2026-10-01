@@ -51,6 +51,7 @@ final class ElasticacheServerlessCacheUsageLimits {
 
   final List<ElasticacheServerlessCacheEcpuPerSecond>? ecpuPerSecond;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dataStorage != null)
       'data_storage': [for (final e in dataStorage!) e.encode()],
@@ -75,6 +76,7 @@ final class ElasticacheServerlessCacheDataStorage {
 
   final ElasticacheServerlessCacheUnit unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
     'minimum': ?minimum?.toTfJson(),
@@ -106,6 +108,7 @@ final class ElasticacheServerlessCacheEcpuPerSecond {
 
   final TfArg<num>? minimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
     'minimum': ?minimum?.toTfJson(),

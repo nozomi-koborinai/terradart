@@ -3,6 +3,9 @@
 /// AWS Verified Permissions.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_verifiedpermissions_policy_store.dart'
+    show DataAwsVerifiedpermissionsPolicyStore;
 export 'src/verifiedpermissions/aws_verifiedpermissions_identity_source.dart'
     show
         AwsVerifiedpermissionsIdentitySource,

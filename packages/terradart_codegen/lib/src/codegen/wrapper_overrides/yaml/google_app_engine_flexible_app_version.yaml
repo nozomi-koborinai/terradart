@@ -70,8 +70,10 @@ prelude: |
       required TfArg<int> instances,
     }) = AppEngineFlexibleAppVersionManualScalingMode;
 
+    @internal
     String get blockKey;
 
+    @internal
     Map<String, Object?> encode();
   }
 
@@ -86,9 +88,11 @@ prelude: |
     final TfArg<int> minTotalInstances;
 
     @override
+    @internal
     String get blockKey => 'automatic_scaling';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'min_total_instances': minTotalInstances.toTfJson(),
         };
@@ -105,9 +109,11 @@ prelude: |
     final TfArg<int> instances;
 
     @override
+    @internal
     String get blockKey => 'manual_scaling';
 
     @override
+    @internal
     Map<String, Object?> encode() => {'instances': instances.toTfJson()};
   }
 

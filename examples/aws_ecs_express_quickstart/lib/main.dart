@@ -19,12 +19,10 @@ library;
 import 'dart:convert';
 
 import 'package:terradart_aws/cloudwatch.dart';
-import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/ecr.dart';
 import 'package:terradart_aws/ecs.dart';
 import 'package:terradart_aws/iam.dart';
 import 'package:terradart_aws/provider.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 const _name = 'terradart-server';
 const _port = 8080;

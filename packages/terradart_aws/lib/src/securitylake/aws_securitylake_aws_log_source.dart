@@ -26,6 +26,7 @@ final class SecuritylakeAwsLogSource {
 
   final TfArg<String>? sourceVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'accounts': ?accounts?.toTfJson(),
     'regions': regions.toTfJson(),

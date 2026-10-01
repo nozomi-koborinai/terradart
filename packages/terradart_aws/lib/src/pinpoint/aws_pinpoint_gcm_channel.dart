@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_pinpoint_gcm_channel`.
@@ -50,12 +51,15 @@ sealed class PinpointGcmChannelCredentials {
   ) = PinpointGcmChannelCredentialsServiceJson;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -66,12 +70,15 @@ final class PinpointGcmChannelCredentialsApiKey
 
   final Sensitive<String> apiKey;
 
+  @internal
   @override
   String get blockKey => 'api_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'api_key': apiKey};
 }
@@ -83,12 +90,15 @@ final class PinpointGcmChannelCredentialsServiceJson
 
   final Sensitive<String> serviceJson;
 
+  @internal
   @override
   String get blockKey => 'service_json';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'service_json': serviceJson.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'service_json': serviceJson};
 }

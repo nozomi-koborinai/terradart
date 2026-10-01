@@ -39,6 +39,7 @@ final class VpclatticeListenerDefaultAction {
 
   final List<VpclatticeListenerForward>? forward;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_response': ?fixedResponse?.encode(),
     if (forward != null) 'forward': [for (final e in forward!) e.encode()],
@@ -53,6 +54,7 @@ final class VpclatticeListenerFixedResponse {
 
   final TfArg<num> statusCode;
 
+  @internal
   Map<String, Object?> encode() => {'status_code': statusCode.toTfJson()};
 }
 
@@ -64,6 +66,7 @@ final class VpclatticeListenerForward {
 
   final List<VpclatticeListenerTargetGroups>? targetGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetGroups != null)
       'target_groups': [for (final e in targetGroups!) e.encode()],
@@ -83,6 +86,7 @@ final class VpclatticeListenerTargetGroups {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_group_identifier': ?targetGroupIdentifier?.toTfJson(),
     'weight': ?weight?.toTfJson(),

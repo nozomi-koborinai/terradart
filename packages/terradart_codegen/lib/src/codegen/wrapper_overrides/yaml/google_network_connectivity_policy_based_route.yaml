@@ -64,12 +64,14 @@ prelude: |
     ) = NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice;
 
     /// argMap key (`next_hop_ilb_ip` or `next_hop_other_routes`).
+    @internal
     String get blockKey;
 
     /// Value emitted under [blockKey] (string VIP or enum / string route).
     TfArg<dynamic> get value;
 
     /// Flat `{blockKey: value}` payload for Gate 6 encode round-trip.
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -84,6 +86,7 @@ prelude: |
     final TfArg<dynamic> value;
 
     @override
+    @internal
     String get blockKey => 'next_hop_ilb_ip';
   }
 
@@ -99,6 +102,7 @@ prelude: |
     final TfArg<dynamic> value;
 
     @override
+    @internal
     String get blockKey => 'next_hop_other_routes';
   }
 

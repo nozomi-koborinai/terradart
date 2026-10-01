@@ -45,6 +45,7 @@ final class QuicksightDashboardPublishOptions {
 
   final QuicksightDashboardAdHocFilteringOption? visualMenuOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'ad_hoc_filtering_option': ?adHocFilteringOption?.encode(),
     'data_point_drill_up_down_option': ?dataPointDrillUpDownOption?.encode(),
@@ -69,6 +70,7 @@ final class QuicksightDashboardAdHocFilteringOption {
 
   final TfArg<String>? availabilityStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_status': ?availabilityStatus?.toTfJson(),
   };
@@ -82,6 +84,7 @@ final class QuicksightDashboardSheetControlsOption {
 
   final TfArg<String>? visibilityState;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility_state': ?visibilityState?.toTfJson(),
   };
@@ -116,6 +119,7 @@ final class QuicksightDashboardDefinition {
 
   final List<QuicksightDashboardSheets>? sheets;
 
+  @internal
   Map<String, Object?> encode() => {
     'analysis_defaults': ?analysisDefaults?.encode(),
     if (calculatedFields != null)
@@ -148,6 +152,7 @@ final class QuicksightDashboardAnalysisDefaults {
   final QuicksightDashboardDefaultNewSheetConfiguration
   defaultNewSheetConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_new_sheet_configuration': defaultNewSheetConfiguration.encode(),
   };
@@ -171,6 +176,7 @@ final class QuicksightDashboardDefaultNewSheetConfiguration {
   final QuicksightDashboardPaginatedLayoutConfiguration?
   paginatedLayoutConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'sheet_content_type': ?sheetContentType?.toTfJson(),
     'interactive_layout_configuration': ?interactiveLayoutConfiguration
@@ -192,6 +198,7 @@ final class QuicksightDashboardInteractiveLayoutConfiguration {
 
   final QuicksightDashboardGrid? grid;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form': ?freeForm?.encode(),
     'grid': ?grid?.encode(),
@@ -206,6 +213,7 @@ final class QuicksightDashboardFreeForm {
 
   final QuicksightDashboardFreeFormCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -223,6 +231,7 @@ final class QuicksightDashboardFreeFormCanvasSizeOptions {
   final QuicksightDashboardFreeFormScreenCanvasSizeOptions?
   screenCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
@@ -239,6 +248,7 @@ final class QuicksightDashboardFreeFormScreenCanvasSizeOptions {
 
   final TfArg<String> optimizedViewPortWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_view_port_width': optimizedViewPortWidth.toTfJson(),
   };
@@ -252,6 +262,7 @@ final class QuicksightDashboardGrid {
 
   final QuicksightDashboardGridCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -268,6 +279,7 @@ final class QuicksightDashboardGridCanvasSizeOptions {
 
   final QuicksightDashboardGridScreenCanvasSizeOptions? screenCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
@@ -287,6 +299,7 @@ final class QuicksightDashboardGridScreenCanvasSizeOptions {
 
   final TfArg<String> resizeOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_view_port_width': ?optimizedViewPortWidth?.toTfJson(),
     'resize_option': resizeOption.toTfJson(),
@@ -301,6 +314,7 @@ final class QuicksightDashboardPaginatedLayoutConfiguration {
 
   final QuicksightDashboardSectionBased? sectionBased;
 
+  @internal
   Map<String, Object?> encode() => {'section_based': ?sectionBased?.encode()};
 }
 
@@ -312,6 +326,7 @@ final class QuicksightDashboardSectionBased {
 
   final QuicksightDashboardSectionBasedCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -328,6 +343,7 @@ final class QuicksightDashboardSectionBasedCanvasSizeOptions {
 
   final QuicksightDashboardPaperCanvasSizeOptions? paperCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'paper_canvas_size_options': ?paperCanvasSizeOptions?.encode(),
   };
@@ -350,6 +366,7 @@ final class QuicksightDashboardPaperCanvasSizeOptions {
 
   final QuicksightDashboardPaperMargin? paperMargin;
 
+  @internal
   Map<String, Object?> encode() => {
     'paper_orientation': ?paperOrientation?.toTfJson(),
     'paper_size': ?paperSize?.toTfJson(),
@@ -377,6 +394,7 @@ final class QuicksightDashboardPaperMargin {
 
   final TfArg<String>? top;
 
+  @internal
   Map<String, Object?> encode() => {
     'bottom': ?bottom?.toTfJson(),
     'left': ?left?.toTfJson(),
@@ -401,6 +419,7 @@ final class QuicksightDashboardCalculatedFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'expression': expression.toTfJson(),
@@ -424,6 +443,7 @@ final class QuicksightDashboardColumnConfigurations {
 
   final QuicksightDashboardFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     'column': column.encode(),
@@ -445,6 +465,7 @@ final class QuicksightDashboardColumn {
 
   final TfArg<String> dataSetIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'data_set_identifier': dataSetIdentifier.toTfJson(),
@@ -469,6 +490,7 @@ final class QuicksightDashboardFormatConfiguration {
 
   final QuicksightDashboardStringFormatConfiguration? stringFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format_configuration': ?dateTimeFormatConfiguration?.encode(),
     'number_format_configuration': ?numberFormatConfiguration?.encode(),
@@ -495,6 +517,7 @@ final class QuicksightDashboardDateTimeFormatConfiguration {
   final QuicksightDashboardNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
     'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
@@ -513,6 +536,7 @@ final class QuicksightDashboardNullValueFormatConfiguration {
 
   final TfArg<String> nullString;
 
+  @internal
   Map<String, Object?> encode() => {'null_string': nullString.toTfJson()};
 }
 
@@ -536,6 +560,7 @@ final class QuicksightDashboardNumericFormatConfiguration {
   final QuicksightDashboardPercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'currency_display_format_configuration': ?currencyDisplayFormatConfiguration
         ?.encode(),
@@ -581,6 +606,7 @@ final class QuicksightDashboardCurrencyDisplayFormatConfiguration {
 
   final QuicksightDashboardSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -604,6 +630,7 @@ final class QuicksightDashboardDecimalPlacesConfiguration {
 
   final TfArg<num> decimalPlaces;
 
+  @internal
   Map<String, Object?> encode() => {'decimal_places': decimalPlaces.toTfJson()};
 }
 
@@ -618,6 +645,7 @@ final class QuicksightDashboardNegativeValueConfiguration {
 
   final TfArg<String> displayMode;
 
+  @internal
   Map<String, Object?> encode() => {'display_mode': displayMode.toTfJson()};
 }
 
@@ -635,6 +663,7 @@ final class QuicksightDashboardSeparatorConfiguration {
 
   final QuicksightDashboardThousandsSeparator? thousandsSeparator;
 
+  @internal
   Map<String, Object?> encode() => {
     'decimal_separator': ?decimalSeparator?.toTfJson(),
     'thousands_separator': ?thousandsSeparator?.encode(),
@@ -652,6 +681,7 @@ final class QuicksightDashboardThousandsSeparator {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'symbol': ?symbol?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -690,6 +720,7 @@ final class QuicksightDashboardNumberDisplayFormatConfiguration {
 
   final QuicksightDashboardSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -730,6 +761,7 @@ final class QuicksightDashboardPercentageDisplayFormatConfiguration {
 
   final QuicksightDashboardSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'suffix': ?suffix?.toTfJson(),
@@ -752,6 +784,7 @@ final class QuicksightDashboardNumberFormatConfiguration {
   final QuicksightDashboardNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
   };
@@ -773,6 +806,7 @@ final class QuicksightDashboardStringFormatConfiguration {
   final QuicksightDashboardNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
     'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
@@ -792,6 +826,7 @@ final class QuicksightDashboardDataSetIdentifiersDeclarations {
 
   final TfArg<String>? identifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_arn': ?dataSetArn?.toTfJson(),
     'identifier': ?identifier?.toTfJson(),
@@ -820,6 +855,7 @@ final class QuicksightDashboardFilterGroups {
 
   final QuicksightDashboardScopeConfiguration scopeConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_dataset': crossDataset.toTfJson(),
     'filter_group_id': filterGroupId.toTfJson(),
@@ -857,6 +893,7 @@ final class QuicksightDashboardFilters {
 
   final QuicksightDashboardTopBottomFilter? topBottomFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
     'numeric_equality_filter': ?numericEqualityFilter?.encode(),
@@ -884,6 +921,7 @@ final class QuicksightDashboardCategoryFilter {
 
   final QuicksightDashboardCategoryFilterConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'column': column.encode(),
@@ -908,6 +946,7 @@ final class QuicksightDashboardCategoryFilterConfiguration {
 
   final QuicksightDashboardFilterListConfiguration? filterListConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_filter_configuration': ?customFilterConfiguration?.encode(),
     'custom_filter_list_configuration': ?customFilterListConfiguration
@@ -938,6 +977,7 @@ final class QuicksightDashboardCustomFilterConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_value': ?categoryValue?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -966,6 +1006,7 @@ final class QuicksightDashboardCustomFilterListConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -990,6 +1031,7 @@ final class QuicksightDashboardFilterListConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -1028,6 +1070,7 @@ final class QuicksightDashboardNumericEqualityFilter {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -1058,6 +1101,7 @@ final class QuicksightDashboardAggregationFunction {
   final QuicksightDashboardNumericalAggregationFunction?
   numericalAggregationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_aggregation_function': ?categoricalAggregationFunction
         ?.toTfJson(),
@@ -1080,6 +1124,7 @@ final class QuicksightDashboardNumericalAggregationFunction {
 
   final QuicksightDashboardPercentileAggregation? percentileAggregation;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_numerical_aggregation': ?simpleNumericalAggregation?.toTfJson(),
     'percentile_aggregation': ?percentileAggregation?.encode(),
@@ -1095,6 +1140,7 @@ final class QuicksightDashboardPercentileAggregation {
 
   final TfArg<num>? percentileValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentile_value': ?percentileValue?.toTfJson(),
   };
@@ -1134,6 +1180,7 @@ final class QuicksightDashboardNumericRangeFilter {
 
   final QuicksightDashboardRangeMaximum? rangeMinimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'include_maximum': ?includeMaximum?.toTfJson(),
@@ -1158,6 +1205,7 @@ final class QuicksightDashboardRangeMaximum {
 
   final TfArg<num>? staticValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'static_value': ?staticValue?.toTfJson(),
@@ -1202,6 +1250,7 @@ final class QuicksightDashboardRelativeDatesFilter {
   final QuicksightDashboardExcludePeriodConfiguration?
   excludePeriodConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'minimum_granularity': minimumGranularity.toTfJson(),
@@ -1229,6 +1278,7 @@ final class QuicksightDashboardAnchorDateConfiguration {
 
   final TfArg<String>? parameterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'anchor_option': ?anchorOption?.toTfJson(),
     'parameter_name': ?parameterName?.toTfJson(),
@@ -1252,6 +1302,7 @@ final class QuicksightDashboardExcludePeriodConfiguration {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'amount': amount.toTfJson(),
     'granularity': granularity.toTfJson(),
@@ -1281,6 +1332,7 @@ final class QuicksightDashboardTimeEqualityFilter {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'parameter_name': ?parameterName?.toTfJson(),
@@ -1325,6 +1377,7 @@ final class QuicksightDashboardTimeRangeFilter {
 
   final QuicksightDashboardRangeMaximumValue? rangeMinimumValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'include_maximum': ?includeMaximum?.toTfJson(),
@@ -1355,6 +1408,7 @@ final class QuicksightDashboardRangeMaximumValue {
 
   final QuicksightDashboardRollingDate? rollingDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'static_value': ?staticValue?.toTfJson(),
@@ -1376,6 +1430,7 @@ final class QuicksightDashboardRollingDate {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': ?dataSetIdentifier?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -1408,6 +1463,7 @@ final class QuicksightDashboardTopBottomFilter {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'limit': ?limit?.toTfJson(),
@@ -1436,6 +1492,7 @@ final class QuicksightDashboardAggregationSortConfiguration {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'sort_direction': sortDirection.toTfJson(),
     'aggregation_function': aggregationFunction.encode(),
@@ -1451,6 +1508,7 @@ final class QuicksightDashboardScopeConfiguration {
 
   final QuicksightDashboardSelectedSheets? selectedSheets;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_sheets': ?selectedSheets?.encode(),
   };
@@ -1467,6 +1525,7 @@ final class QuicksightDashboardSelectedSheets {
   final List<QuicksightDashboardSheetVisualScopingConfigurations>?
   sheetVisualScopingConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sheetVisualScopingConfigurations != null)
       'sheet_visual_scoping_configurations': [
@@ -1491,6 +1550,7 @@ final class QuicksightDashboardSheetVisualScopingConfigurations {
 
   final TfArg<List<String>>? visualIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': scope.toTfJson(),
     'sheet_id': sheetId.toTfJson(),
@@ -1521,6 +1581,7 @@ final class QuicksightDashboardParameterDeclarations {
   final QuicksightDashboardStringParameterDeclaration?
   stringParameterDeclaration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_parameter_declaration': ?dateTimeParameterDeclaration?.encode(),
     'decimal_parameter_declaration': ?decimalParameterDeclaration?.encode(),
@@ -1550,6 +1611,7 @@ final class QuicksightDashboardDateTimeParameterDeclaration {
   final QuicksightDashboardDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'time_granularity': ?timeGranularity?.toTfJson(),
@@ -1574,6 +1636,7 @@ final class QuicksightDashboardDateTimeParameterDeclarationDefaultValues {
 
   final QuicksightDashboardRollingDate? rollingDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1598,6 +1661,7 @@ final class QuicksightDashboardDynamicValue {
 
   final QuicksightDashboardColumn? userNameColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value_column': defaultValueColumn.encode(),
     'group_name_column': ?groupNameColumn?.encode(),
@@ -1619,6 +1683,7 @@ final class QuicksightDashboardDateTimeParameterDeclarationValuesWhenUnset {
 
   final TfArg<String>? valueWhenUnsetOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_value': ?customValue?.toTfJson(),
     'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
@@ -1647,6 +1712,7 @@ final class QuicksightDashboardDecimalParameterDeclaration {
   final QuicksightDashboardDecimalParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
@@ -1669,6 +1735,7 @@ final class QuicksightDashboardDecimalParameterDeclarationDefaultValues {
 
   final QuicksightDashboardDynamicValue? dynamicValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1689,6 +1756,7 @@ final class QuicksightDashboardDecimalParameterDeclarationValuesWhenUnset {
 
   final TfArg<String>? valueWhenUnsetOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_value': ?customValue?.toTfJson(),
     'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
@@ -1716,6 +1784,7 @@ final class QuicksightDashboardStringParameterDeclaration {
   final QuicksightDashboardDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
@@ -1737,6 +1806,7 @@ final class QuicksightDashboardStringParameterDeclarationDefaultValues {
 
   final QuicksightDashboardDynamicValue? dynamicValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1783,6 +1853,7 @@ final class QuicksightDashboardSheets {
 
   final List<QuicksightDashboardVisuals>? visuals;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -1829,6 +1900,7 @@ final class QuicksightDashboardFilterControls {
 
   final QuicksightDashboardFilterControlsTextField? textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
     'dropdown': ?dropdown?.encode(),
@@ -1862,6 +1934,7 @@ final class QuicksightDashboardFilterControlsDateTimePicker {
 
   final QuicksightDashboardDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -1885,6 +1958,7 @@ final class QuicksightDashboardDateTimePickerDisplayOptions {
 
   final QuicksightDashboardTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
     'title_options': ?titleOptions?.encode(),
@@ -1908,6 +1982,7 @@ final class QuicksightDashboardTitleOptions {
 
   final QuicksightDashboardFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -1938,6 +2013,7 @@ final class QuicksightDashboardFontConfiguration {
 
   final QuicksightDashboardFontWeight? fontWeight;
 
+  @internal
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
     'font_decoration': ?fontDecoration?.toTfJson(),
@@ -1956,6 +2032,7 @@ final class QuicksightDashboardFontSize {
 
   final TfArg<String>? relative;
 
+  @internal
   Map<String, Object?> encode() => {'relative': ?relative?.toTfJson()};
 }
 
@@ -1968,6 +2045,7 @@ final class QuicksightDashboardFontWeight {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -2000,6 +2078,7 @@ final class QuicksightDashboardFilterControlsDropdown {
 
   final QuicksightDashboardFilterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2020,6 +2099,7 @@ final class QuicksightDashboardCascadingControlConfiguration {
 
   final List<QuicksightDashboardSourceControls>? sourceControls;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sourceControls != null)
       'source_controls': [for (final e in sourceControls!) e.encode()],
@@ -2040,6 +2120,7 @@ final class QuicksightDashboardSourceControls {
 
   final QuicksightDashboardColumn columnToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_sheet_control_id': ?sourceSheetControlId?.toTfJson(),
     'column_to_match': columnToMatch.encode(),
@@ -2060,6 +2141,7 @@ final class QuicksightDashboardDropdownDisplayOptions {
 
   final QuicksightDashboardTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'select_all_options': ?selectAllOptions?.encode(),
     'title_options': ?titleOptions?.encode(),
@@ -2075,6 +2157,7 @@ final class QuicksightDashboardSelectAllOptions {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {'visibility': ?visibility?.toTfJson()};
 }
 
@@ -2087,6 +2170,7 @@ final class QuicksightDashboardFilterControlsSelectableValues {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {'values': ?values?.toTfJson()};
 }
 
@@ -2119,6 +2203,7 @@ final class QuicksightDashboardFilterControlsList {
 
   final QuicksightDashboardFilterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2147,6 +2232,7 @@ final class QuicksightDashboardListDisplayOptions {
 
   final QuicksightDashboardTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'search_options': ?searchOptions?.encode(),
     'select_all_options': ?selectAllOptions?.encode(),
@@ -2173,6 +2259,7 @@ final class QuicksightDashboardRelativeDateTime {
 
   final QuicksightDashboardDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2212,6 +2299,7 @@ final class QuicksightDashboardFilterControlsSlider {
 
   final QuicksightDashboardSliderDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'maximum_value': maximumValue.toTfJson(),
@@ -2233,6 +2321,7 @@ final class QuicksightDashboardSliderDisplayOptions {
 
   final QuicksightDashboardTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {'title_options': ?titleOptions?.encode()};
 }
 
@@ -2258,6 +2347,7 @@ final class QuicksightDashboardFilterControlsTextArea {
 
   final QuicksightDashboardTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'filter_control_id': filterControlId.toTfJson(),
@@ -2281,6 +2371,7 @@ final class QuicksightDashboardTextAreaDisplayOptions {
 
   final QuicksightDashboardTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'placeholder_options': ?placeholderOptions?.encode(),
     'title_options': ?titleOptions?.encode(),
@@ -2306,6 +2397,7 @@ final class QuicksightDashboardFilterControlsTextField {
 
   final QuicksightDashboardTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2322,6 +2414,7 @@ final class QuicksightDashboardLayouts {
 
   final QuicksightDashboardLayoutsConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
 
@@ -2341,6 +2434,7 @@ final class QuicksightDashboardLayoutsConfiguration {
 
   final QuicksightDashboardSectionBasedLayout? sectionBasedLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form_layout': ?freeFormLayout?.encode(),
     'grid_layout': ?gridLayout?.encode(),
@@ -2361,6 +2455,7 @@ final class QuicksightDashboardFreeFormLayout {
 
   final List<QuicksightDashboardFreeFormLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
@@ -2411,6 +2506,7 @@ final class QuicksightDashboardFreeFormLayoutElements {
 
   final QuicksightDashboardBackgroundStyle? selectedBorderStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'element_id': elementId.toTfJson(),
     'element_type': elementType.toTfJson(),
@@ -2439,6 +2535,7 @@ final class QuicksightDashboardBackgroundStyle {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -2459,6 +2556,7 @@ final class QuicksightDashboardRenderingRules {
 
   final QuicksightDashboardSelectAllOptions configurationOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'configuration_overrides': configurationOverrides.encode(),
@@ -2479,6 +2577,7 @@ final class QuicksightDashboardGridLayout {
 
   final List<QuicksightDashboardGridLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
@@ -2511,6 +2610,7 @@ final class QuicksightDashboardGridLayoutElements {
 
   final TfArg<num> rowSpan;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_index': ?columnIndex?.toTfJson(),
     'column_span': columnSpan.toTfJson(),
@@ -2540,6 +2640,7 @@ final class QuicksightDashboardSectionBasedLayout {
 
   final QuicksightDashboardFooterSections headerSections;
 
+  @internal
   Map<String, Object?> encode() => {
     'body_sections': [for (final e in bodySections) e.encode()],
     'canvas_size_options': ?canvasSizeOptions?.encode(),
@@ -2567,6 +2668,7 @@ final class QuicksightDashboardBodySections {
 
   final QuicksightDashboardStyle? style;
 
+  @internal
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'content': content.encode(),
@@ -2583,6 +2685,7 @@ final class QuicksightDashboardContent {
 
   final QuicksightDashboardLayout? layout;
 
+  @internal
   Map<String, Object?> encode() => {'layout': ?layout?.encode()};
 }
 
@@ -2595,6 +2698,7 @@ final class QuicksightDashboardLayout {
 
   final QuicksightDashboardLayoutFreeFormLayout freeFormLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form_layout': freeFormLayout.encode(),
   };
@@ -2609,6 +2713,7 @@ final class QuicksightDashboardLayoutFreeFormLayout {
 
   final List<QuicksightDashboardFreeFormLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'elements': [for (final e in elements) e.encode()],
   };
@@ -2622,6 +2727,7 @@ final class QuicksightDashboardPageBreakConfiguration {
 
   final QuicksightDashboardAfter? after;
 
+  @internal
   Map<String, Object?> encode() => {'after': ?after?.encode()};
 }
 
@@ -2633,6 +2739,7 @@ final class QuicksightDashboardAfter {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -2647,6 +2754,7 @@ final class QuicksightDashboardStyle {
 
   final QuicksightDashboardPaperMargin? padding;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'padding': ?padding?.encode(),
@@ -2670,6 +2778,7 @@ final class QuicksightDashboardFooterSections {
 
   final QuicksightDashboardStyle? style;
 
+  @internal
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'layout': ?layout?.encode(),
@@ -2702,6 +2811,7 @@ final class QuicksightDashboardParameterControls {
 
   final QuicksightDashboardParameterControlsTextField? textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
     'dropdown': ?dropdown?.encode(),
@@ -2731,6 +2841,7 @@ final class QuicksightDashboardParameterControlsDateTimePicker {
 
   final QuicksightDashboardDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2768,6 +2879,7 @@ final class QuicksightDashboardParameterControlsDropdown {
 
   final QuicksightDashboardParameterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2793,6 +2905,7 @@ final class QuicksightDashboardParameterControlsSelectableValues {
 
   final QuicksightDashboardColumn? linkToDataSetColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'values': ?values?.toTfJson(),
     'link_to_data_set_column': ?linkToDataSetColumn?.encode(),
@@ -2828,6 +2941,7 @@ final class QuicksightDashboardParameterControlsList {
 
   final QuicksightDashboardParameterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2867,6 +2981,7 @@ final class QuicksightDashboardParameterControlsSlider {
 
   final QuicksightDashboardSliderDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_value': maximumValue.toTfJson(),
     'minimum_value': minimumValue.toTfJson(),
@@ -2900,6 +3015,7 @@ final class QuicksightDashboardParameterControlsTextArea {
 
   final QuicksightDashboardTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -2928,6 +3044,7 @@ final class QuicksightDashboardParameterControlsTextField {
 
   final QuicksightDashboardTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2944,6 +3061,7 @@ final class QuicksightDashboardSheetControlLayouts {
 
   final QuicksightDashboardSheetControlLayoutsConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
 
@@ -2955,6 +3073,7 @@ final class QuicksightDashboardSheetControlLayoutsConfiguration {
 
   final QuicksightDashboardGridLayout? gridLayout;
 
+  @internal
   Map<String, Object?> encode() => {'grid_layout': ?gridLayout?.encode()};
 }
 
@@ -2971,6 +3090,7 @@ final class QuicksightDashboardTextBoxes {
 
   final TfArg<String> sheetTextBoxId;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'sheet_text_box_id': sheetTextBoxId.toTfJson(),
@@ -3053,6 +3173,7 @@ final class QuicksightDashboardVisuals {
 
   final QuicksightDashboardWordCloudVisual? wordCloudVisual;
 
+  @internal
   Map<String, Object?> encode() => {
     'bar_chart_visual': ?barChartVisual?.encode(),
     'box_plot_visual': ?boxPlotVisual?.encode(),
@@ -3105,6 +3226,7 @@ final class QuicksightDashboardBarChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -3139,6 +3261,7 @@ final class QuicksightDashboardActions {
 
   final List<QuicksightDashboardActionOperations> actionOperations;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_action_id': customActionId.toTfJson(),
     'name': name.toTfJson(),
@@ -3168,6 +3291,7 @@ final class QuicksightDashboardActionOperations {
 
   final QuicksightDashboardUrlOperation? urlOperation;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_operation': ?filterOperation?.encode(),
     'navigation_operation': ?navigationOperation?.encode(),
@@ -3192,6 +3316,7 @@ final class QuicksightDashboardFilterOperation {
   final QuicksightDashboardTargetVisualsConfiguration
   targetVisualsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_fields_configuration': selectedFieldsConfiguration.encode(),
     'target_visuals_configuration': targetVisualsConfiguration.encode(),
@@ -3212,6 +3337,7 @@ final class QuicksightDashboardSelectedFieldsConfiguration {
 
   final TfArg<List<String>>? selectedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_field_option': ?selectedFieldOption?.toTfJson(),
     'selected_fields': ?selectedFields?.toTfJson(),
@@ -3230,6 +3356,7 @@ final class QuicksightDashboardTargetVisualsConfiguration {
   final QuicksightDashboardSameSheetTargetVisualConfiguration?
   sameSheetTargetVisualConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'same_sheet_target_visual_configuration':
         ?sameSheetTargetVisualConfiguration?.encode(),
@@ -3250,6 +3377,7 @@ final class QuicksightDashboardSameSheetTargetVisualConfiguration {
 
   final TfArg<List<String>>? targetVisuals;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_visual_option': ?targetVisualOption?.toTfJson(),
     'target_visuals': ?targetVisuals?.toTfJson(),
@@ -3268,6 +3396,7 @@ final class QuicksightDashboardNavigationOperation {
   final QuicksightDashboardLocalNavigationConfiguration?
   localNavigationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_navigation_configuration': ?localNavigationConfiguration?.encode(),
   };
@@ -3284,6 +3413,7 @@ final class QuicksightDashboardLocalNavigationConfiguration {
 
   final TfArg<String> targetSheetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_sheet_id': targetSheetId.toTfJson(),
   };
@@ -3301,6 +3431,7 @@ final class QuicksightDashboardSetParametersOperation {
   final List<QuicksightDashboardParameterValueConfigurations>
   parameterValueConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_value_configurations': [
       for (final e in parameterValueConfigurations) e.encode(),
@@ -3322,6 +3453,7 @@ final class QuicksightDashboardParameterValueConfigurations {
 
   final QuicksightDashboardValue value;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_parameter_name': destinationParameterName.toTfJson(),
     'value': value.encode(),
@@ -3348,6 +3480,7 @@ final class QuicksightDashboardValue {
 
   final QuicksightDashboardCustomValuesConfiguration? customValuesConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'select_all_value_options': ?selectAllValueOptions?.toTfJson(),
     'source_field': ?sourceField?.toTfJson(),
@@ -3370,6 +3503,7 @@ final class QuicksightDashboardCustomValuesConfiguration {
 
   final QuicksightDashboardCustomValues customValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_null_value': ?includeNullValue?.toTfJson(),
     'custom_values': customValues.encode(),
@@ -3396,6 +3530,7 @@ final class QuicksightDashboardCustomValues {
 
   final TfArg<List<String>>? stringValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_values': ?dateTimeValues?.toTfJson(),
     'decimal_values': ?decimalValues?.toTfJson(),
@@ -3418,6 +3553,7 @@ final class QuicksightDashboardUrlOperation {
 
   final TfArg<String> urlTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'url_target': urlTarget.toTfJson(),
     'url_template': urlTemplate.toTfJson(),
@@ -3480,6 +3616,7 @@ final class QuicksightDashboardBarChartVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
     'orientation': ?orientation?.toTfJson(),
@@ -3530,6 +3667,7 @@ final class QuicksightDashboardCategoryAxis {
 
   final QuicksightDashboardTickLabelOptions? tickLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_line_visibility': ?axisLineVisibility?.toTfJson(),
     'axis_offset': ?axisOffset?.toTfJson(),
@@ -3554,6 +3692,7 @@ final class QuicksightDashboardDataOptions {
 
   final QuicksightDashboardNumericAxisOptions? numericAxisOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_axis_options': ?dateAxisOptions?.encode(),
     'numeric_axis_options': ?numericAxisOptions?.encode(),
@@ -3569,6 +3708,7 @@ final class QuicksightDashboardDateAxisOptions {
 
   final TfArg<String>? missingDateVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'missing_date_visibility': ?missingDateVisibility?.toTfJson(),
   };
@@ -3585,6 +3725,7 @@ final class QuicksightDashboardNumericAxisOptions {
 
   final QuicksightDashboardScale? scale;
 
+  @internal
   Map<String, Object?> encode() => {
     'range': ?range?.encode(),
     'scale': ?scale?.encode(),
@@ -3605,6 +3746,7 @@ final class QuicksightDashboardNumericAxisOptionsRange {
 
   final QuicksightDashboardMinMax? minMax;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_driven': ?dataDriven?.encode(),
     'min_max': ?minMax?.encode(),
@@ -3618,6 +3760,7 @@ final class QuicksightDashboardNumericAxisOptionsRange {
 final class QuicksightDashboardDataDriven {
   const QuicksightDashboardDataDriven();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3632,6 +3775,7 @@ final class QuicksightDashboardMinMax {
 
   final TfArg<num>? minimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
     'minimum': ?minimum?.toTfJson(),
@@ -3649,6 +3793,7 @@ final class QuicksightDashboardScale {
 
   final QuicksightDashboardLogarithmic? logarithmic;
 
+  @internal
   Map<String, Object?> encode() => {
     'linear': ?linear?.encode(),
     'logarithmic': ?logarithmic?.encode(),
@@ -3666,6 +3811,7 @@ final class QuicksightDashboardLinear {
 
   final TfArg<num>? stepSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'step_count': ?stepCount?.toTfJson(),
     'step_size': ?stepSize?.toTfJson(),
@@ -3681,6 +3827,7 @@ final class QuicksightDashboardLogarithmic {
 
   final TfArg<num>? base;
 
+  @internal
   Map<String, Object?> encode() => {'base': ?base?.toTfJson()};
 }
 
@@ -3698,6 +3845,7 @@ final class QuicksightDashboardScrollbarOptions {
 
   final QuicksightDashboardVisibleRange? visibleRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     'visible_range': ?visibleRange?.encode(),
@@ -3713,6 +3861,7 @@ final class QuicksightDashboardVisibleRange {
 
   final QuicksightDashboardPercentRange? percentRange;
 
+  @internal
   Map<String, Object?> encode() => {'percent_range': ?percentRange?.encode()};
 }
 
@@ -3727,6 +3876,7 @@ final class QuicksightDashboardPercentRange {
 
   final TfArg<num>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -3747,6 +3897,7 @@ final class QuicksightDashboardTickLabelOptions {
 
   final QuicksightDashboardTitleOptions? labelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'rotation_angle': ?rotationAngle?.toTfJson(),
     'label_options': ?labelOptions?.encode(),
@@ -3770,6 +3921,7 @@ final class QuicksightDashboardCategoryLabelOptions {
 
   final QuicksightDashboardAxisLabelOptions? axisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'sort_icon_visibility': ?sortIconVisibility?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -3794,6 +3946,7 @@ final class QuicksightDashboardAxisLabelOptions {
 
   final QuicksightDashboardFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'apply_to': ?applyTo?.encode(),
@@ -3815,6 +3968,7 @@ final class QuicksightDashboardApplyTo {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
@@ -3835,6 +3989,7 @@ final class QuicksightDashboardContributionAnalysisDefaults {
 
   final List<QuicksightDashboardColumn> contributorDimensions;
 
+  @internal
   Map<String, Object?> encode() => {
     'measure_field_id': measureFieldId.toTfJson(),
     'contributor_dimensions': [
@@ -3878,6 +4033,7 @@ final class QuicksightDashboardDataLabels {
 
   final QuicksightDashboardFontConfiguration? labelFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
     'label_color': ?labelColor?.toTfJson(),
@@ -3915,6 +4071,7 @@ final class QuicksightDashboardDataLabelTypes {
 
   final QuicksightDashboardSelectAllOptions? rangeEndsLabelType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_path_label_type': ?dataPathLabelType?.encode(),
     'field_label_type': ?fieldLabelType?.encode(),
@@ -3941,6 +4098,7 @@ final class QuicksightDashboardDataPathLabelType {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'field_value': ?fieldValue?.toTfJson(),
@@ -3959,6 +4117,7 @@ final class QuicksightDashboardFieldLabelType {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -3976,6 +4135,7 @@ final class QuicksightDashboardBarChartVisualFieldWells {
   final QuicksightDashboardBarChartAggregatedFieldWells?
   barChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'bar_chart_aggregated_field_wells': ?barChartAggregatedFieldWells?.encode(),
   };
@@ -4001,6 +4161,7 @@ final class QuicksightDashboardBarChartAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
@@ -4026,6 +4187,7 @@ final class QuicksightDashboardTrendGroups {
 
   final QuicksightDashboardNumericalDimensionField? numericalDimensionField;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_dimension_field': ?categoricalDimensionField?.encode(),
     'date_dimension_field': ?dateDimensionField?.encode(),
@@ -4053,6 +4215,7 @@ final class QuicksightDashboardCategoricalDimensionField {
 
   final QuicksightDashboardStringFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'hierarchy_id': ?hierarchyId?.toTfJson(),
@@ -4084,6 +4247,7 @@ final class QuicksightDashboardDateDimensionField {
 
   final QuicksightDashboardDateTimeFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_granularity': ?dateGranularity?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4113,6 +4277,7 @@ final class QuicksightDashboardNumericalDimensionField {
 
   final QuicksightDashboardNumberFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'hierarchy_id': ?hierarchyId?.toTfJson(),
@@ -4141,6 +4306,7 @@ final class QuicksightDashboardTargetValues {
 
   final QuicksightDashboardNumericalMeasureField? numericalMeasureField;
 
+  @internal
   Map<String, Object?> encode() => {
     'calculated_measure_field': ?calculatedMeasureField?.encode(),
     'categorical_measure_field': ?categoricalMeasureField?.encode(),
@@ -4163,6 +4329,7 @@ final class QuicksightDashboardCalculatedMeasureField {
 
   final TfArg<String> fieldId;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4189,6 +4356,7 @@ final class QuicksightDashboardCategoricalMeasureField {
 
   final QuicksightDashboardStringFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4217,6 +4385,7 @@ final class QuicksightDashboardDateMeasureField {
 
   final QuicksightDashboardDateTimeFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4245,6 +4414,7 @@ final class QuicksightDashboardNumericalMeasureField {
 
   final QuicksightDashboardNumberFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'aggregation_function': ?aggregationFunction?.encode(),
@@ -4276,6 +4446,7 @@ final class QuicksightDashboardLegend {
 
   final QuicksightDashboardTitleOptions? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'position': ?position?.toTfJson(),
@@ -4305,6 +4476,7 @@ final class QuicksightDashboardReferenceLines {
 
   final QuicksightDashboardStyleConfiguration? styleConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'status': ?status?.toTfJson(),
     'data_configuration': dataConfiguration.encode(),
@@ -4330,6 +4502,7 @@ final class QuicksightDashboardDataConfiguration {
 
   final QuicksightDashboardStaticConfiguration? staticConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
     'dynamic_configuration': ?dynamicConfiguration?.encode(),
@@ -4354,6 +4527,7 @@ final class QuicksightDashboardDynamicConfiguration {
 
   final QuicksightDashboardAggregationFunction measureAggregationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'calculation': calculation.encode(),
     'column': column.encode(),
@@ -4370,6 +4544,7 @@ final class QuicksightDashboardStaticConfiguration {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -4399,6 +4574,7 @@ final class QuicksightDashboardLabelConfiguration {
 
   final QuicksightDashboardValueLabelConfiguration? valueLabelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
     'horizontal_position': ?horizontalPosition?.toTfJson(),
@@ -4420,6 +4596,7 @@ final class QuicksightDashboardCustomLabelConfiguration {
 
   final TfArg<String> customLabel;
 
+  @internal
   Map<String, Object?> encode() => {'custom_label': customLabel.toTfJson()};
 }
 
@@ -4437,6 +4614,7 @@ final class QuicksightDashboardValueLabelConfiguration {
 
   final QuicksightDashboardNumericFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'relative_position': ?relativePosition?.toTfJson(),
     'format_configuration': ?formatConfiguration?.encode(),
@@ -4454,6 +4632,7 @@ final class QuicksightDashboardStyleConfiguration {
 
   final TfArg<String>? pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'pattern': ?pattern?.toTfJson(),
@@ -4477,6 +4656,7 @@ final class QuicksightDashboardSmallMultiplesOptions {
 
   final QuicksightDashboardPanelConfiguration? panelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_visible_columns': ?maxVisibleColumns?.toTfJson(),
     'max_visible_rows': ?maxVisibleRows?.toTfJson(),
@@ -4519,6 +4699,7 @@ final class QuicksightDashboardPanelConfiguration {
 
   final QuicksightDashboardTitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'background_visibility': ?backgroundVisibility?.toTfJson(),
@@ -4549,6 +4730,7 @@ final class QuicksightDashboardTitle {
 
   final QuicksightDashboardFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'horizontal_text_alignment': ?horizontalTextAlignment?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -4581,6 +4763,7 @@ final class QuicksightDashboardBarChartVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -4609,6 +4792,7 @@ final class QuicksightDashboardCategoryItemsLimit {
 
   final TfArg<String> otherCategories;
 
+  @internal
   Map<String, Object?> encode() => {
     'items_limit': ?itemsLimit?.toTfJson(),
     'other_categories': otherCategories.toTfJson(),
@@ -4626,6 +4810,7 @@ final class QuicksightDashboardCategorySort {
 
   final QuicksightDashboardFieldSort? fieldSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_sort': ?columnSort?.encode(),
     'field_sort': ?fieldSort?.encode(),
@@ -4649,6 +4834,7 @@ final class QuicksightDashboardColumnSort {
 
   final QuicksightDashboardColumn sortBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'aggregation_function': ?aggregationFunction?.encode(),
@@ -4670,6 +4856,7 @@ final class QuicksightDashboardFieldSort {
 
   final TfArg<String> fieldId;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4693,6 +4880,7 @@ final class QuicksightDashboardTooltip {
 
   final QuicksightDashboardFieldBaseTooltip? fieldBaseTooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_tooltip_type': ?selectedTooltipType?.toTfJson(),
     'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
@@ -4717,6 +4905,7 @@ final class QuicksightDashboardFieldBaseTooltip {
 
   final List<QuicksightDashboardTooltipFields>? tooltipFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_visibility': ?aggregationVisibility?.toTfJson(),
     'tooltip_title_type': ?tooltipTitleType?.toTfJson(),
@@ -4739,6 +4928,7 @@ final class QuicksightDashboardTooltipFields {
 
   final QuicksightDashboardFieldTooltipItem? fieldTooltipItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_tooltip_item': ?columnTooltipItem?.encode(),
     'field_tooltip_item': ?fieldTooltipItem?.encode(),
@@ -4765,6 +4955,7 @@ final class QuicksightDashboardColumnTooltipItem {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'label': ?label?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -4790,6 +4981,7 @@ final class QuicksightDashboardFieldTooltipItem {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'label': ?label?.toTfJson(),
@@ -4808,6 +5000,7 @@ final class QuicksightDashboardVisualPalette {
 
   final List<QuicksightDashboardColorMap>? colorMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'chart_color': ?chartColor?.toTfJson(),
     if (colorMap != null) 'color_map': [for (final e in colorMap!) e.encode()],
@@ -4831,6 +5024,7 @@ final class QuicksightDashboardColorMap {
 
   final QuicksightDashboardElement element;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': color.toTfJson(),
     'time_granularity': ?timeGranularity?.toTfJson(),
@@ -4852,6 +5046,7 @@ final class QuicksightDashboardElement {
 
   final TfArg<String> fieldValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'field_value': fieldValue.toTfJson(),
@@ -4875,6 +5070,7 @@ final class QuicksightDashboardColumnHierarchies {
 
   final QuicksightDashboardExplicitHierarchy? predefinedHierarchy;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_hierarchy': ?dateTimeHierarchy?.encode(),
     'explicit_hierarchy': ?explicitHierarchy?.encode(),
@@ -4896,6 +5092,7 @@ final class QuicksightDashboardDateTimeHierarchy {
 
   final List<QuicksightDashboardDrillDownFilters>? drillDownFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
     if (drillDownFilters != null)
@@ -4921,6 +5118,7 @@ final class QuicksightDashboardDrillDownFilters {
 
   final QuicksightDashboardDrillDownFiltersTimeRangeFilter? timeRangeFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
     'numeric_equality_filter': ?numericEqualityFilter?.encode(),
@@ -4942,6 +5140,7 @@ final class QuicksightDashboardDrillDownFiltersCategoryFilter {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': categoryValues.toTfJson(),
     'column': column.encode(),
@@ -4962,6 +5161,7 @@ final class QuicksightDashboardDrillDownFiltersNumericEqualityFilter {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': value.toTfJson(),
     'column': column.encode(),
@@ -4988,6 +5188,7 @@ final class QuicksightDashboardDrillDownFiltersTimeRangeFilter {
 
   final QuicksightDashboardColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'range_maximum': rangeMaximum.toTfJson(),
     'range_minimum': rangeMinimum.toTfJson(),
@@ -5013,6 +5214,7 @@ final class QuicksightDashboardExplicitHierarchy {
 
   final List<QuicksightDashboardDrillDownFilters>? drillDownFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
     'columns': [for (final e in columns) e.encode()],
@@ -5032,6 +5234,7 @@ final class QuicksightDashboardSubtitle {
 
   final QuicksightDashboardFormatText? formatText;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     'format_text': ?formatText?.encode(),
@@ -5049,6 +5252,7 @@ final class QuicksightDashboardFormatText {
 
   final TfArg<String>? richText;
 
+  @internal
   Map<String, Object?> encode() => {
     'plain_text': ?plainText?.toTfJson(),
     'rich_text': ?richText?.toTfJson(),
@@ -5080,6 +5284,7 @@ final class QuicksightDashboardBoxPlotVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5131,6 +5336,7 @@ final class QuicksightDashboardBoxPlotVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'box_plot_options': ?boxPlotOptions?.encode(),
     'category_axis': ?categoryAxis?.encode(),
@@ -5163,6 +5369,7 @@ final class QuicksightDashboardBoxPlotOptions {
 
   final QuicksightDashboardStyleOptions? styleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_data_points_visibility': ?allDataPointsVisibility?.toTfJson(),
     'outlier_visibility': ?outlierVisibility?.toTfJson(),
@@ -5178,6 +5385,7 @@ final class QuicksightDashboardStyleOptions {
 
   final TfArg<String>? fillStyle;
 
+  @internal
   Map<String, Object?> encode() => {'fill_style': ?fillStyle?.toTfJson()};
 }
 
@@ -5192,6 +5400,7 @@ final class QuicksightDashboardBoxPlotVisualFieldWells {
   final QuicksightDashboardBoxPlotAggregatedFieldWells?
   boxPlotAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'box_plot_aggregated_field_wells': ?boxPlotAggregatedFieldWells?.encode(),
   };
@@ -5210,6 +5419,7 @@ final class QuicksightDashboardBoxPlotAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_by': ?groupBy?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -5229,6 +5439,7 @@ final class QuicksightDashboardBoxPlotVisualSortConfiguration {
 
   final QuicksightDashboardPaginationConfiguration? paginationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
@@ -5250,6 +5461,7 @@ final class QuicksightDashboardPaginationConfiguration {
 
   final TfArg<num> pageSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'page_number': pageNumber.toTfJson(),
     'page_size': pageSize.toTfJson(),
@@ -5282,6 +5494,7 @@ final class QuicksightDashboardComboChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5348,6 +5561,7 @@ final class QuicksightDashboardComboChartVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
     'bar_data_labels': ?barDataLabels?.encode(),
@@ -5380,6 +5594,7 @@ final class QuicksightDashboardComboChartVisualFieldWells {
   final QuicksightDashboardComboChartAggregatedFieldWells?
   comboChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'combo_chart_aggregated_field_wells': ?comboChartAggregatedFieldWells
         ?.encode(),
@@ -5405,6 +5620,7 @@ final class QuicksightDashboardComboChartAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? lineValues;
 
+  @internal
   Map<String, Object?> encode() => {
     if (barValues != null)
       'bar_values': [for (final e in barValues!) e.encode()],
@@ -5435,6 +5651,7 @@ final class QuicksightDashboardComboChartVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? colorSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -5471,6 +5688,7 @@ final class QuicksightDashboardCustomContentVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -5497,6 +5715,7 @@ final class QuicksightDashboardCustomContentVisualChartConfiguration {
 
   final TfArg<String>? imageScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'content_url': ?contentUrl?.toTfJson(),
@@ -5520,6 +5739,7 @@ final class QuicksightDashboardEmptyVisual {
 
   final List<QuicksightDashboardActions>? actions;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -5557,6 +5777,7 @@ final class QuicksightDashboardFilledMapVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5594,6 +5815,7 @@ final class QuicksightDashboardFilledMapVisualChartConfiguration {
 
   final QuicksightDashboardWindowOptions? windowOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'legend': ?legend?.encode(),
@@ -5615,6 +5837,7 @@ final class QuicksightDashboardFilledMapVisualFieldWells {
   final QuicksightDashboardFilledMapAggregatedFieldWells?
   filledMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'filled_map_aggregated_field_wells': ?filledMapAggregatedFieldWells
         ?.encode(),
@@ -5634,6 +5857,7 @@ final class QuicksightDashboardFilledMapAggregatedFieldWells {
 
   final QuicksightDashboardTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'geospatial': ?geospatial?.encode(),
     'values': ?values?.encode(),
@@ -5649,6 +5873,7 @@ final class QuicksightDashboardMapStyleOptions {
 
   final TfArg<String>? baseMapStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_map_style': ?baseMapStyle?.toTfJson(),
   };
@@ -5664,6 +5889,7 @@ final class QuicksightDashboardFilledMapVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
@@ -5681,6 +5907,7 @@ final class QuicksightDashboardWindowOptions {
 
   final QuicksightDashboardBounds? bounds;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_zoom_mode': ?mapZoomMode?.toTfJson(),
     'bounds': ?bounds?.encode(),
@@ -5707,6 +5934,7 @@ final class QuicksightDashboardBounds {
 
   final TfArg<num> west;
 
+  @internal
   Map<String, Object?> encode() => {
     'east': east.toTfJson(),
     'north': north.toTfJson(),
@@ -5726,6 +5954,7 @@ final class QuicksightDashboardFilledMapVisualConditionalFormatting {
   final List<QuicksightDashboardFilledMapVisualConditionalFormattingOptions>
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'conditional_formatting_options': [
       for (final e in conditionalFormattingOptions) e.encode(),
@@ -5743,6 +5972,7 @@ final class QuicksightDashboardFilledMapVisualConditionalFormattingOptions {
 
   final QuicksightDashboardShape shape;
 
+  @internal
   Map<String, Object?> encode() => {'shape': shape.encode()};
 }
 
@@ -5756,6 +5986,7 @@ final class QuicksightDashboardShape {
 
   final QuicksightDashboardFormat? format;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'format': ?format?.encode(),
@@ -5770,6 +6001,7 @@ final class QuicksightDashboardFormat {
 
   final QuicksightDashboardForegroundColor backgroundColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
   };
@@ -5786,6 +6018,7 @@ final class QuicksightDashboardForegroundColor {
 
   final QuicksightDashboardSolid? solid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gradient': ?gradient?.encode(),
     'solid': ?solid?.encode(),
@@ -5806,6 +6039,7 @@ final class QuicksightDashboardGradient {
 
   final QuicksightDashboardColor color;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'color': color.encode(),
@@ -5821,6 +6055,7 @@ final class QuicksightDashboardColor {
 
   final List<QuicksightDashboardStops>? stops;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stops != null) 'stops': [for (final e in stops!) e.encode()],
   };
@@ -5843,6 +6078,7 @@ final class QuicksightDashboardStops {
 
   final TfArg<num> gradientOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'data_value': ?dataValue?.toTfJson(),
@@ -5861,6 +6097,7 @@ final class QuicksightDashboardSolid {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -5893,6 +6130,7 @@ final class QuicksightDashboardFunnelChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5933,6 +6171,7 @@ final class QuicksightDashboardFunnelChartVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     'data_label_options': ?dataLabelOptions?.encode(),
@@ -5972,6 +6211,7 @@ final class QuicksightDashboardDataLabelOptions {
 
   final QuicksightDashboardFontConfiguration? labelFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
     'label_color': ?labelColor?.toTfJson(),
@@ -5994,6 +6234,7 @@ final class QuicksightDashboardFunnelChartVisualFieldWells {
   final QuicksightDashboardFunnelChartAggregatedFieldWells?
   funnelChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'funnel_chart_aggregated_field_wells': ?funnelChartAggregatedFieldWells
         ?.encode(),
@@ -6013,6 +6254,7 @@ final class QuicksightDashboardFunnelChartAggregatedFieldWells {
 
   final QuicksightDashboardTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
     'values': ?values?.encode(),
@@ -6033,6 +6275,7 @@ final class QuicksightDashboardFunnelChartVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -6067,6 +6310,7 @@ final class QuicksightDashboardGaugeChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6099,6 +6343,7 @@ final class QuicksightDashboardGaugeChartVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -6121,6 +6366,7 @@ final class QuicksightDashboardGaugeChartVisualFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetValues != null)
       'target_values': [for (final e in targetValues!) e.encode()],
@@ -6150,6 +6396,7 @@ final class QuicksightDashboardGaugeChartOptions {
 
   final QuicksightDashboardFontConfiguration? primaryValueFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
     'arc': ?arc?.encode(),
@@ -6173,6 +6420,7 @@ final class QuicksightDashboardGaugeChartOptionsArc {
 
   final TfArg<String>? arcThickness;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc_angle': ?arcAngle?.toTfJson(),
     'arc_thickness': ?arcThickness?.toTfJson(),
@@ -6189,6 +6437,7 @@ final class QuicksightDashboardArcAxis {
 
   final QuicksightDashboardRange? range;
 
+  @internal
   Map<String, Object?> encode() => {
     'reserve_range': ?reserveRange?.toTfJson(),
     'range': ?range?.encode(),
@@ -6205,6 +6454,7 @@ final class QuicksightDashboardRange {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -6225,6 +6475,7 @@ final class QuicksightDashboardComparison {
 
   final QuicksightDashboardComparisonFormat? comparisonFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_method': ?comparisonMethod?.toTfJson(),
     'comparison_format': ?comparisonFormat?.encode(),
@@ -6247,6 +6498,7 @@ final class QuicksightDashboardComparisonFormat {
   final QuicksightDashboardPercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_display_format_configuration': ?numberDisplayFormatConfiguration
         ?.encode(),
@@ -6266,6 +6518,7 @@ final class QuicksightDashboardGaugeChartVisualConditionalFormatting {
   final List<QuicksightDashboardGaugeChartVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -6287,6 +6540,7 @@ final class QuicksightDashboardGaugeChartVisualConditionalFormattingOptions {
 
   final QuicksightDashboardPrimaryValue? primaryValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc': ?arc?.encode(),
     'primary_value': ?primaryValue?.encode(),
@@ -6304,6 +6558,7 @@ final class QuicksightDashboardConditionalFormattingOptionsArc {
 
   final QuicksightDashboardForegroundColor foregroundColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'foreground_color': foregroundColor.encode(),
   };
@@ -6320,6 +6575,7 @@ final class QuicksightDashboardPrimaryValue {
 
   final QuicksightDashboardForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon': ?icon?.encode(),
     'text_color': textColor.encode(),
@@ -6337,6 +6593,7 @@ final class QuicksightDashboardIcon {
 
   final QuicksightDashboardIconSet? iconSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_condition': ?customCondition?.encode(),
     'icon_set': ?iconSet?.encode(),
@@ -6363,6 +6620,7 @@ final class QuicksightDashboardCustomCondition {
 
   final QuicksightDashboardIconOptions iconOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -6380,6 +6638,7 @@ final class QuicksightDashboardDisplayConfiguration {
 
   final TfArg<String>? iconDisplayOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon_display_option': ?iconDisplayOption?.toTfJson(),
   };
@@ -6396,6 +6655,7 @@ final class QuicksightDashboardIconOptions {
 
   final TfArg<String>? unicodeIcon;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon': ?icon?.toTfJson(),
     'unicode_icon': ?unicodeIcon?.toTfJson(),
@@ -6416,6 +6676,7 @@ final class QuicksightDashboardIconSet {
 
   final TfArg<String>? iconSetType;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'icon_set_type': ?iconSetType?.toTfJson(),
@@ -6448,6 +6709,7 @@ final class QuicksightDashboardGeospatialMapVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6487,6 +6749,7 @@ final class QuicksightDashboardGeospatialMapVisualChartConfiguration {
 
   final QuicksightDashboardWindowOptions? windowOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'legend': ?legend?.encode(),
@@ -6509,6 +6772,7 @@ final class QuicksightDashboardGeospatialMapVisualFieldWells {
   final QuicksightDashboardGeospatialMapAggregatedFieldWells?
   geospatialMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'geospatial_map_aggregated_field_wells': ?geospatialMapAggregatedFieldWells
         ?.encode(),
@@ -6531,6 +6795,7 @@ final class QuicksightDashboardGeospatialMapAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
     if (geospatial != null)
@@ -6553,6 +6818,7 @@ final class QuicksightDashboardPointStyleOptions {
   final QuicksightDashboardClusterMarkerConfiguration?
   clusterMarkerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_point_style': ?selectedPointStyle?.toTfJson(),
     'cluster_marker_configuration': ?clusterMarkerConfiguration?.encode(),
@@ -6567,6 +6833,7 @@ final class QuicksightDashboardClusterMarkerConfiguration {
 
   final QuicksightDashboardClusterMarker? clusterMarker;
 
+  @internal
   Map<String, Object?> encode() => {'cluster_marker': ?clusterMarker?.encode()};
 }
 
@@ -6578,6 +6845,7 @@ final class QuicksightDashboardClusterMarker {
 
   final QuicksightDashboardSimpleClusterMarker? simpleClusterMarker;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_cluster_marker': ?simpleClusterMarker?.encode(),
   };
@@ -6591,6 +6859,7 @@ final class QuicksightDashboardSimpleClusterMarker {
 
   final TfArg<String>? color;
 
+  @internal
   Map<String, Object?> encode() => {'color': ?color?.toTfJson()};
 }
 
@@ -6619,6 +6888,7 @@ final class QuicksightDashboardHeatMapVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6661,6 +6931,7 @@ final class QuicksightDashboardHeatMapVisualChartConfiguration {
 
   final QuicksightDashboardTooltip? tooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_scale': ?colorScale?.encode(),
     'column_label_options': ?columnLabelOptions?.encode(),
@@ -6690,6 +6961,7 @@ final class QuicksightDashboardColorScale {
 
   final QuicksightDashboardColors? nullValueColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_fill_type': colorFillType.toTfJson(),
     'colors': [for (final e in colors) e.encode()],
@@ -6708,6 +6980,7 @@ final class QuicksightDashboardColors {
 
   final TfArg<num>? dataValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'data_value': ?dataValue?.toTfJson(),
@@ -6725,6 +6998,7 @@ final class QuicksightDashboardHeatMapVisualFieldWells {
   final QuicksightDashboardHeatMapAggregatedFieldWells?
   heatMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'heat_map_aggregated_field_wells': ?heatMapAggregatedFieldWells?.encode(),
   };
@@ -6746,6 +7020,7 @@ final class QuicksightDashboardHeatMapAggregatedFieldWells {
 
   final QuicksightDashboardTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': ?columns?.encode(),
     'rows': ?rows?.encode(),
@@ -6774,6 +7049,7 @@ final class QuicksightDashboardHeatMapVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? heatMapRowSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'heat_map_column_items_limit_configuration':
         ?heatMapColumnItemsLimitConfiguration?.encode(),
@@ -6809,6 +7085,7 @@ final class QuicksightDashboardHistogramVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6849,6 +7126,7 @@ final class QuicksightDashboardHistogramVisualChartConfiguration {
 
   final QuicksightDashboardCategoryAxis? yAxisDisplayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'bin_options': ?binOptions?.encode(),
     'data_labels': ?dataLabels?.encode(),
@@ -6880,6 +7158,7 @@ final class QuicksightDashboardBinOptions {
 
   final QuicksightDashboardBinWidth? binWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_bin_type': ?selectedBinType?.toTfJson(),
     'start_value': ?startValue?.toTfJson(),
@@ -6896,6 +7175,7 @@ final class QuicksightDashboardBinCount {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 
@@ -6909,6 +7189,7 @@ final class QuicksightDashboardBinWidth {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'bin_count_limit': ?binCountLimit?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -6926,6 +7207,7 @@ final class QuicksightDashboardHistogramVisualFieldWells {
   final QuicksightDashboardHistogramAggregatedFieldWells?
   histogramAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'histogram_aggregated_field_wells': ?histogramAggregatedFieldWells
         ?.encode(),
@@ -6940,6 +7222,7 @@ final class QuicksightDashboardHistogramAggregatedFieldWells {
 
   final QuicksightDashboardTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {'values': ?values?.encode()};
 }
 
@@ -6968,6 +7251,7 @@ final class QuicksightDashboardInsightVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -6991,6 +7275,7 @@ final class QuicksightDashboardInsightConfiguration {
 
   final QuicksightDashboardCustomNarrative? customNarrative;
 
+  @internal
   Map<String, Object?> encode() => {
     if (computation != null)
       'computation': [for (final e in computation!) e.encode()],
@@ -7035,6 +7320,7 @@ final class QuicksightDashboardComputation {
 
   final QuicksightDashboardUniqueValues? uniqueValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast': ?forecast?.encode(),
     'growth_rate': ?growthRate?.encode(),
@@ -7089,6 +7375,7 @@ final class QuicksightDashboardForecast {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'custom_seasonality_value': ?customSeasonalityValue?.toTfJson(),
@@ -7126,6 +7413,7 @@ final class QuicksightDashboardGrowthRate {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7157,6 +7445,7 @@ final class QuicksightDashboardMaximumMinimum {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7188,6 +7477,7 @@ final class QuicksightDashboardMetricComparison {
 
   final QuicksightDashboardTrendGroups? time;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7216,6 +7506,7 @@ final class QuicksightDashboardPeriodOverPeriod {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7246,6 +7537,7 @@ final class QuicksightDashboardPeriodToDate {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7286,6 +7578,7 @@ final class QuicksightDashboardTopBottomMovers {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'mover_size': ?moverSize?.toTfJson(),
@@ -7323,6 +7616,7 @@ final class QuicksightDashboardTopBottomRanked {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7349,6 +7643,7 @@ final class QuicksightDashboardTotalAggregation {
 
   final QuicksightDashboardTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7372,6 +7667,7 @@ final class QuicksightDashboardUniqueValues {
 
   final QuicksightDashboardTrendGroups? category;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7387,6 +7683,7 @@ final class QuicksightDashboardCustomNarrative {
 
   final TfArg<String> narrative;
 
+  @internal
   Map<String, Object?> encode() => {'narrative': narrative.toTfJson()};
 }
 
@@ -7419,6 +7716,7 @@ final class QuicksightDashboardKpiVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -7447,6 +7745,7 @@ final class QuicksightDashboardKpiVisualChartConfiguration {
 
   final QuicksightDashboardKpiVisualSortConfiguration? sortConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'kpi_options': ?kpiOptions?.encode(),
@@ -7470,6 +7769,7 @@ final class QuicksightDashboardKpiVisualFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetValues != null)
       'target_values': [for (final e in targetValues!) e.encode()],
@@ -7513,6 +7813,7 @@ final class QuicksightDashboardKpiOptions {
 
   final QuicksightDashboardVisualLayoutOptions? visualLayoutOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
     'comparison': ?comparison?.encode(),
@@ -7547,6 +7848,7 @@ final class QuicksightDashboardSparkline {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
@@ -7563,6 +7865,7 @@ final class QuicksightDashboardVisualLayoutOptions {
 
   final QuicksightDashboardStandardLayout? standardLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'standard_layout': ?standardLayout?.encode(),
   };
@@ -7576,6 +7879,7 @@ final class QuicksightDashboardStandardLayout {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -7587,6 +7891,7 @@ final class QuicksightDashboardKpiVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? trendGroupSort;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trendGroupSort != null)
       'trend_group_sort': [for (final e in trendGroupSort!) e.encode()],
@@ -7604,6 +7909,7 @@ final class QuicksightDashboardKpiVisualConditionalFormatting {
   final List<QuicksightDashboardKpiVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -7631,6 +7937,7 @@ final class QuicksightDashboardKpiVisualConditionalFormattingOptions {
 
   final QuicksightDashboardConditionalFormattingOptionsArc? progressBar;
 
+  @internal
   Map<String, Object?> encode() => {
     'actual_value': ?actualValue?.encode(),
     'comparison_value': ?comparisonValue?.encode(),
@@ -7665,6 +7972,7 @@ final class QuicksightDashboardLineChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -7743,6 +8051,7 @@ final class QuicksightDashboardLineChartVisualChartConfiguration {
 
   final QuicksightDashboardCategoryLabelOptions? xAxisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     if (contributionAnalysisDefaults != null)
@@ -7789,6 +8098,7 @@ final class QuicksightDashboardDefaultSeriesSettings {
 
   final QuicksightDashboardMarkerStyleSettings? markerStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
     'line_style_settings': ?lineStyleSettings?.encode(),
@@ -7816,6 +8126,7 @@ final class QuicksightDashboardLineStyleSettings {
 
   final TfArg<String>? lineWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_interpolation': ?lineInterpolation?.toTfJson(),
     'line_style': ?lineStyle?.toTfJson(),
@@ -7844,6 +8155,7 @@ final class QuicksightDashboardMarkerStyleSettings {
 
   final TfArg<String>? markerVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'marker_color': ?markerColor?.toTfJson(),
     'marker_shape': ?markerShape?.toTfJson(),
@@ -7863,6 +8175,7 @@ final class QuicksightDashboardLineChartVisualFieldWells {
   final QuicksightDashboardBarChartAggregatedFieldWells?
   lineChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_chart_aggregated_field_wells': ?lineChartAggregatedFieldWells
         ?.encode(),
@@ -7882,6 +8195,7 @@ final class QuicksightDashboardForecastConfigurations {
 
   final QuicksightDashboardScenario? scenario;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast_properties': ?forecastProperties?.encode(),
     'scenario': ?scenario?.encode(),
@@ -7913,6 +8227,7 @@ final class QuicksightDashboardForecastProperties {
 
   final TfArg<num>? upperBoundary;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_boundary': ?lowerBoundary?.toTfJson(),
     'periods_backward': ?periodsBackward?.toTfJson(),
@@ -7936,6 +8251,7 @@ final class QuicksightDashboardScenario {
 
   final QuicksightDashboardWhatIfRangeScenario? whatIfRangeScenario;
 
+  @internal
   Map<String, Object?> encode() => {
     'what_if_point_scenario': ?whatIfPointScenario?.encode(),
     'what_if_range_scenario': ?whatIfRangeScenario?.encode(),
@@ -7955,6 +8271,7 @@ final class QuicksightDashboardWhatIfPointScenario {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': date.toTfJson(),
     'value': value.toTfJson(),
@@ -7977,6 +8294,7 @@ final class QuicksightDashboardWhatIfRangeScenario {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.toTfJson(),
     'start_date': startDate.toTfJson(),
@@ -7999,6 +8317,7 @@ final class QuicksightDashboardPrimaryYAxisDisplayOptions {
   final List<QuicksightDashboardMissingDataConfiguration>?
   missingDataConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_options': ?axisOptions?.encode(),
     if (missingDataConfiguration != null)
@@ -8017,6 +8336,7 @@ final class QuicksightDashboardMissingDataConfiguration {
 
   final TfArg<String>? treatmentOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'treatment_option': ?treatmentOption?.toTfJson(),
   };
@@ -8035,6 +8355,7 @@ final class QuicksightDashboardSeries {
 
   final QuicksightDashboardFieldSeriesItem? fieldSeriesItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_field_series_item': ?dataFieldSeriesItem?.encode(),
     'field_series_item': ?fieldSeriesItem?.encode(),
@@ -8060,6 +8381,7 @@ final class QuicksightDashboardDataFieldSeriesItem {
 
   final QuicksightDashboardSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8082,6 +8404,7 @@ final class QuicksightDashboardSettings {
 
   final QuicksightDashboardMarkerStyleSettings? markerStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_style_settings': ?lineStyleSettings?.encode(),
     'marker_style_settings': ?markerStyleSettings?.encode(),
@@ -8104,6 +8427,7 @@ final class QuicksightDashboardFieldSeriesItem {
 
   final QuicksightDashboardSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8133,6 +8457,7 @@ final class QuicksightDashboardLineChartVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit_configuration': ?categoryItemsLimitConfiguration
         ?.encode(),
@@ -8171,6 +8496,7 @@ final class QuicksightDashboardPieChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -8223,6 +8549,7 @@ final class QuicksightDashboardPieChartVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     if (contributionAnalysisDefaults != null)
@@ -8254,6 +8581,7 @@ final class QuicksightDashboardDonutOptions {
 
   final QuicksightDashboardDonutCenterOptions? donutCenterOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc_options': ?arcOptions?.encode(),
     'donut_center_options': ?donutCenterOptions?.encode(),
@@ -8268,6 +8596,7 @@ final class QuicksightDashboardArcOptions {
 
   final TfArg<String>? arcThickness;
 
+  @internal
   Map<String, Object?> encode() => {'arc_thickness': ?arcThickness?.toTfJson()};
 }
 
@@ -8279,6 +8608,7 @@ final class QuicksightDashboardDonutCenterOptions {
 
   final TfArg<String>? labelVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'label_visibility': ?labelVisibility?.toTfJson(),
   };
@@ -8295,6 +8625,7 @@ final class QuicksightDashboardPieChartVisualFieldWells {
   final QuicksightDashboardPieChartAggregatedFieldWells?
   pieChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'pie_chart_aggregated_field_wells': ?pieChartAggregatedFieldWells?.encode(),
   };
@@ -8316,6 +8647,7 @@ final class QuicksightDashboardPieChartAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     'small_multiples': ?smallMultiples?.encode(),
@@ -8342,6 +8674,7 @@ final class QuicksightDashboardPieChartVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -8380,6 +8713,7 @@ final class QuicksightDashboardPivotTableVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -8415,6 +8749,7 @@ final class QuicksightDashboardPivotTableVisualChartConfiguration {
 
   final QuicksightDashboardPivotTableVisualTotalOptions? totalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -8439,6 +8774,7 @@ final class QuicksightDashboardPivotTableVisualFieldOptions {
   final List<QuicksightDashboardPivotTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dataPathOptions != null)
       'data_path_options': [for (final e in dataPathOptions!) e.encode()],
@@ -8462,6 +8798,7 @@ final class QuicksightDashboardDataPathOptions {
 
   final List<QuicksightDashboardElement> dataPathList;
 
+  @internal
   Map<String, Object?> encode() => {
     'width': ?width?.toTfJson(),
     'data_path_list': [for (final e in dataPathList) e.encode()],
@@ -8484,6 +8821,7 @@ final class QuicksightDashboardPivotTableVisualSelectedFieldOptions {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8502,6 +8840,7 @@ final class QuicksightDashboardPivotTableVisualFieldWells {
   final QuicksightDashboardPivotTableAggregatedFieldWells?
   pivotTableAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'pivot_table_aggregated_field_wells': ?pivotTableAggregatedFieldWells
         ?.encode(),
@@ -8524,6 +8863,7 @@ final class QuicksightDashboardPivotTableAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
     if (rows != null) 'rows': [for (final e in rows!) e.encode()],
@@ -8545,6 +8885,7 @@ final class QuicksightDashboardPaginatedReportOptions {
 
   final TfArg<String>? verticalOverflowVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'overflow_column_header_visibility': ?overflowColumnHeaderVisibility
         ?.toTfJson(),
@@ -8562,6 +8903,7 @@ final class QuicksightDashboardPivotTableVisualSortConfiguration {
 
   final List<QuicksightDashboardFieldSortOptions>? fieldSortOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fieldSortOptions != null)
       'field_sort_options': [for (final e in fieldSortOptions!) e.encode()],
@@ -8581,6 +8923,7 @@ final class QuicksightDashboardFieldSortOptions {
 
   final QuicksightDashboardSortBy sortBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'sort_by': sortBy.encode(),
@@ -8599,6 +8942,7 @@ final class QuicksightDashboardSortBy {
 
   final QuicksightDashboardFieldSort? field;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': ?column?.encode(),
     'data_path': ?dataPath?.encode(),
@@ -8619,6 +8963,7 @@ final class QuicksightDashboardDataPath {
 
   final List<QuicksightDashboardElement> sortPaths;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'sort_paths': [for (final e in sortPaths) e.encode()],
@@ -8662,6 +9007,7 @@ final class QuicksightDashboardPivotTableVisualTableOptions {
 
   final QuicksightDashboardCellStyle? rowHeaderStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'collapsed_row_dimensions_visibility': ?collapsedRowDimensionsVisibility
         ?.toTfJson(),
@@ -8709,6 +9055,7 @@ final class QuicksightDashboardCellStyle {
 
   final QuicksightDashboardFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'height': ?height?.toTfJson(),
@@ -8735,6 +9082,7 @@ final class QuicksightDashboardBorder {
 
   final QuicksightDashboardUniformBorder uniformBorder;
 
+  @internal
   Map<String, Object?> encode() => {
     'side_specific_border': ?sideSpecificBorder?.encode(),
     'uniform_border': uniformBorder.encode(),
@@ -8767,6 +9115,7 @@ final class QuicksightDashboardSideSpecificBorder {
 
   final QuicksightDashboardUniformBorder top;
 
+  @internal
   Map<String, Object?> encode() => {
     'bottom': bottom.encode(),
     'inner_horizontal': innerHorizontal.encode(),
@@ -8794,6 +9143,7 @@ final class QuicksightDashboardUniformBorder {
 
   final TfArg<num>? thickness;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'style': ?style?.toTfJson(),
@@ -8815,6 +9165,7 @@ final class QuicksightDashboardRowAlternateColorOptions {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'row_alternate_colors': ?rowAlternateColors?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -8840,6 +9191,7 @@ final class QuicksightDashboardPivotTableVisualTotalOptions {
 
   final QuicksightDashboardColumnTotalOptions? rowTotalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_subtotal_options': ?columnSubtotalOptions?.encode(),
     'column_total_options': ?columnTotalOptions?.encode(),
@@ -8877,6 +9229,7 @@ final class QuicksightDashboardColumnSubtotalOptions {
 
   final QuicksightDashboardCellStyle? valueCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_level': ?fieldLevel?.toTfJson(),
@@ -8898,6 +9251,7 @@ final class QuicksightDashboardFieldLevelOptions {
 
   final TfArg<String>? fieldId;
 
+  @internal
   Map<String, Object?> encode() => {'field_id': ?fieldId?.toTfJson()};
 }
 
@@ -8930,6 +9284,7 @@ final class QuicksightDashboardColumnTotalOptions {
 
   final QuicksightDashboardCellStyle? valueCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'placement': ?placement?.toTfJson(),
@@ -8952,6 +9307,7 @@ final class QuicksightDashboardPivotTableVisualConditionalFormatting {
   final List<QuicksightDashboardPivotTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -8970,6 +9326,7 @@ final class QuicksightDashboardPivotTableVisualConditionalFormattingOptions {
 
   final QuicksightDashboardPivotTableVisualCell? cell;
 
+  @internal
   Map<String, Object?> encode() => {'cell': ?cell?.encode()};
 }
 
@@ -8989,6 +9346,7 @@ final class QuicksightDashboardPivotTableVisualCell {
 
   final QuicksightDashboardTextFormat? textFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'scope': ?scope?.encode(),
@@ -9004,6 +9362,7 @@ final class QuicksightDashboardScope {
 
   final TfArg<String>? role;
 
+  @internal
   Map<String, Object?> encode() => {'role': ?role?.toTfJson()};
 }
 
@@ -9024,6 +9383,7 @@ final class QuicksightDashboardTextFormat {
 
   final QuicksightDashboardForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
     'icon': ?icon?.encode(),
@@ -9057,6 +9417,7 @@ final class QuicksightDashboardRadarChartVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9117,6 +9478,7 @@ final class QuicksightDashboardRadarChartVisualChartConfiguration {
 
   final QuicksightDashboardVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'alternate_band_colors_visibility': ?alternateBandColorsVisibility
         ?.toTfJson(),
@@ -9144,6 +9506,7 @@ final class QuicksightDashboardBaseSeriesSettings {
 
   final QuicksightDashboardSelectAllOptions? areaStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'area_style_settings': ?areaStyleSettings?.encode(),
   };
@@ -9160,6 +9523,7 @@ final class QuicksightDashboardRadarChartVisualFieldWells {
   final QuicksightDashboardRadarChartAggregatedFieldWells?
   radarChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'radar_chart_aggregated_field_wells': ?radarChartAggregatedFieldWells
         ?.encode(),
@@ -9182,6 +9546,7 @@ final class QuicksightDashboardRadarChartAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
     'color': ?color?.encode(),
@@ -9212,6 +9577,7 @@ final class QuicksightDashboardSankeyDiagramVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9238,6 +9604,7 @@ final class QuicksightDashboardSankeyDiagramVisualChartConfiguration {
   final QuicksightDashboardSankeyDiagramVisualSortConfiguration?
   sortConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9256,6 +9623,7 @@ final class QuicksightDashboardSankeyDiagramVisualFieldWells {
   final QuicksightDashboardSankeyDiagramAggregatedFieldWells?
   sankeyDiagramAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'sankey_diagram_aggregated_field_wells': ?sankeyDiagramAggregatedFieldWells
         ?.encode(),
@@ -9278,6 +9646,7 @@ final class QuicksightDashboardSankeyDiagramAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -9302,6 +9671,7 @@ final class QuicksightDashboardSankeyDiagramVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? weightSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_items_limit': ?destinationItemsLimit?.encode(),
     'source_items_limit': ?sourceItemsLimit?.encode(),
@@ -9336,6 +9706,7 @@ final class QuicksightDashboardScatterPlotVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9381,6 +9752,7 @@ final class QuicksightDashboardScatterPlotVisualChartConfiguration {
 
   final QuicksightDashboardCategoryLabelOptions? yAxisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9409,6 +9781,7 @@ final class QuicksightDashboardScatterPlotVisualFieldWells {
   final QuicksightDashboardScatterPlotUnaggregatedFieldWells?
   scatterPlotUnaggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'scatter_plot_categorically_aggregated_field_wells':
         ?scatterPlotCategoricallyAggregatedFieldWells?.encode(),
@@ -9436,6 +9809,7 @@ final class QuicksightDashboardScatterPlotCategoricallyAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? yAxis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (size != null) 'size': [for (final e in size!) e.encode()],
@@ -9460,6 +9834,7 @@ final class QuicksightDashboardScatterPlotUnaggregatedFieldWells {
 
   final List<QuicksightDashboardTrendGroups>? yAxis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (size != null) 'size': [for (final e in size!) e.encode()],
     if (xAxis != null) 'x_axis': [for (final e in xAxis!) e.encode()],
@@ -9493,6 +9868,7 @@ final class QuicksightDashboardTableVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9532,6 +9908,7 @@ final class QuicksightDashboardTableVisualChartConfiguration {
 
   final QuicksightDashboardTableVisualTotalOptions? totalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9560,6 +9937,7 @@ final class QuicksightDashboardTableVisualFieldOptions {
   final List<QuicksightDashboardTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     if (selectedFieldOptions != null)
@@ -9591,6 +9969,7 @@ final class QuicksightDashboardTableVisualSelectedFieldOptions {
 
   final QuicksightDashboardUrlStyling? urlStyling;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -9613,6 +9992,7 @@ final class QuicksightDashboardUrlStyling {
 
   final QuicksightDashboardLinkConfiguration? linkConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_configuration': ?imageConfiguration?.encode(),
     'link_configuration': ?linkConfiguration?.encode(),
@@ -9627,6 +10007,7 @@ final class QuicksightDashboardImageConfiguration {
 
   final QuicksightDashboardSizingOptions? sizingOptions;
 
+  @internal
   Map<String, Object?> encode() => {'sizing_options': ?sizingOptions?.encode()};
 }
 
@@ -9640,6 +10021,7 @@ final class QuicksightDashboardSizingOptions {
 
   final TfArg<String>? tableCellImageScalingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_cell_image_scaling_configuration':
         ?tableCellImageScalingConfiguration?.toTfJson(),
@@ -9656,6 +10038,7 @@ final class QuicksightDashboardLinkConfiguration {
 
   final QuicksightDashboardLinkConfigurationContent? content;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'content': ?content?.encode(),
@@ -9675,6 +10058,7 @@ final class QuicksightDashboardLinkConfigurationContent {
 
   final QuicksightDashboardCustomTextContent? customTextContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_icon_content': ?customIconContent?.encode(),
     'custom_text_content': ?customTextContent?.encode(),
@@ -9689,6 +10073,7 @@ final class QuicksightDashboardCustomIconContent {
 
   final TfArg<String>? icon;
 
+  @internal
   Map<String, Object?> encode() => {'icon': ?icon?.toTfJson()};
 }
 
@@ -9705,6 +10090,7 @@ final class QuicksightDashboardCustomTextContent {
 
   final QuicksightDashboardFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': ?value?.toTfJson(),
     'font_configuration': ?fontConfiguration?.encode(),
@@ -9725,6 +10111,7 @@ final class QuicksightDashboardTableVisualFieldWells {
   final QuicksightDashboardTableUnaggregatedFieldWells?
   tableUnaggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_aggregated_field_wells': ?tableAggregatedFieldWells?.encode(),
     'table_unaggregated_field_wells': ?tableUnaggregatedFieldWells?.encode(),
@@ -9744,6 +10131,7 @@ final class QuicksightDashboardTableAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -9758,6 +10146,7 @@ final class QuicksightDashboardTableUnaggregatedFieldWells {
 
   final List<QuicksightDashboardValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
@@ -9779,6 +10168,7 @@ final class QuicksightDashboardValues {
 
   final QuicksightDashboardFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
@@ -9799,6 +10189,7 @@ final class QuicksightDashboardTableVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? rowSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'pagination_configuration': ?paginationConfiguration?.encode(),
     if (rowSort != null) 'row_sort': [for (final e in rowSort!) e.encode()],
@@ -9813,6 +10204,7 @@ final class QuicksightDashboardTableInlineVisualizations {
 
   final QuicksightDashboardDataBars? dataBars;
 
+  @internal
   Map<String, Object?> encode() => {'data_bars': ?dataBars?.encode()};
 }
 
@@ -9832,6 +10224,7 @@ final class QuicksightDashboardDataBars {
 
   final TfArg<String>? positiveColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'negative_color': ?negativeColor?.toTfJson(),
@@ -9858,6 +10251,7 @@ final class QuicksightDashboardTableVisualTableOptions {
 
   final QuicksightDashboardRowAlternateColorOptions? rowAlternateColorOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'orientation': ?orientation?.toTfJson(),
     'cell_style': ?cellStyle?.encode(),
@@ -9888,6 +10282,7 @@ final class QuicksightDashboardTableVisualTotalOptions {
 
   final QuicksightDashboardCellStyle? totalCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'placement': ?placement?.toTfJson(),
@@ -9908,6 +10303,7 @@ final class QuicksightDashboardTableVisualConditionalFormatting {
   final List<QuicksightDashboardTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -9929,6 +10325,7 @@ final class QuicksightDashboardTableVisualConditionalFormattingOptions {
 
   final QuicksightDashboardRow? row;
 
+  @internal
   Map<String, Object?> encode() => {
     'cell': ?cell?.encode(),
     'row': ?row?.encode(),
@@ -9948,6 +10345,7 @@ final class QuicksightDashboardTableVisualCell {
 
   final QuicksightDashboardTextFormat? textFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'text_format': ?textFormat?.encode(),
@@ -9967,6 +10365,7 @@ final class QuicksightDashboardRow {
 
   final QuicksightDashboardForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
     'text_color': textColor.encode(),
@@ -9998,6 +10397,7 @@ final class QuicksightDashboardTreeMapVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10043,6 +10443,7 @@ final class QuicksightDashboardTreeMapVisualChartConfiguration {
 
   final QuicksightDashboardTooltip? tooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_label_options': ?colorLabelOptions?.encode(),
     'color_scale': ?colorScale?.encode(),
@@ -10067,6 +10468,7 @@ final class QuicksightDashboardTreeMapVisualFieldWells {
   final QuicksightDashboardTreeMapAggregatedFieldWells?
   treeMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'tree_map_aggregated_field_wells': ?treeMapAggregatedFieldWells?.encode(),
   };
@@ -10088,6 +10490,7 @@ final class QuicksightDashboardTreeMapAggregatedFieldWells {
 
   final QuicksightDashboardTargetValues? sizes;
 
+  @internal
   Map<String, Object?> encode() => {
     'colors': ?colors?.encode(),
     'groups': ?groups?.encode(),
@@ -10109,6 +10512,7 @@ final class QuicksightDashboardTreeMapVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? treeMapSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'tree_map_group_items_limit_configuration':
         ?treeMapGroupItemsLimitConfiguration?.encode(),
@@ -10143,6 +10547,7 @@ final class QuicksightDashboardWaterfallVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10191,6 +10596,7 @@ final class QuicksightDashboardWaterfallVisualChartConfiguration {
 
   final QuicksightDashboardWaterfallChartOptions? waterfallChartOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_axis_display_options': ?categoryAxisDisplayOptions?.encode(),
     'category_axis_label_options': ?categoryAxisLabelOptions?.encode(),
@@ -10216,6 +10622,7 @@ final class QuicksightDashboardWaterfallVisualFieldWells {
   final QuicksightDashboardWaterfallChartAggregatedFieldWells?
   waterfallChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'waterfall_chart_aggregated_field_wells':
         ?waterfallChartAggregatedFieldWells?.encode(),
@@ -10238,6 +10645,7 @@ final class QuicksightDashboardWaterfallChartAggregatedFieldWells {
 
   final List<QuicksightDashboardTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (breakdowns != null)
       'breakdowns': [for (final e in breakdowns!) e.encode()],
@@ -10260,6 +10668,7 @@ final class QuicksightDashboardWaterfallVisualSortConfiguration {
 
   final List<QuicksightDashboardCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakdown_items_limit': ?breakdownItemsLimit?.encode(),
     if (categorySort != null)
@@ -10275,6 +10684,7 @@ final class QuicksightDashboardWaterfallChartOptions {
 
   final TfArg<String>? totalBarLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_bar_label': ?totalBarLabel?.toTfJson(),
   };
@@ -10306,6 +10716,7 @@ final class QuicksightDashboardWordCloudVisual {
 
   final QuicksightDashboardSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10337,6 +10748,7 @@ final class QuicksightDashboardWordCloudVisualChartConfiguration {
 
   final QuicksightDashboardWordCloudOptions? wordCloudOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -10356,6 +10768,7 @@ final class QuicksightDashboardWordCloudVisualFieldWells {
   final QuicksightDashboardWordCloudAggregatedFieldWells?
   wordCloudAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'word_cloud_aggregated_field_wells': ?wordCloudAggregatedFieldWells
         ?.encode(),
@@ -10375,6 +10788,7 @@ final class QuicksightDashboardWordCloudAggregatedFieldWells {
 
   final QuicksightDashboardTargetValues? size;
 
+  @internal
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
     'size': ?size?.encode(),
@@ -10406,6 +10820,7 @@ final class QuicksightDashboardWordCloudOptions {
 
   final TfArg<String>? wordScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_layout': ?cloudLayout?.toTfJson(),
     'maximum_string_length': ?maximumStringLength?.toTfJson(),
@@ -10435,6 +10850,7 @@ final class QuicksightDashboardParameters {
 
   final List<QuicksightDashboardDateTimeParameters>? stringParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dateTimeParameters != null)
       'date_time_parameters': [for (final e in dateTimeParameters!) e.encode()],
@@ -10461,6 +10877,7 @@ final class QuicksightDashboardDateTimeParameters {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -10481,6 +10898,7 @@ final class QuicksightDashboardDecimalParameters {
 
   final TfArg<List<num>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -10500,6 +10918,7 @@ final class QuicksightDashboardPermissions {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),
@@ -10514,6 +10933,7 @@ final class QuicksightDashboardSourceEntity {
 
   final QuicksightDashboardSourceTemplate? sourceTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_template': ?sourceTemplate?.encode(),
   };
@@ -10532,6 +10952,7 @@ final class QuicksightDashboardSourceTemplate {
 
   final List<QuicksightDashboardDataSetReferences> dataSetReferences;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'data_set_references': [for (final e in dataSetReferences) e.encode()],
@@ -10551,6 +10972,7 @@ final class QuicksightDashboardDataSetReferences {
 
   final TfArg<String> dataSetPlaceholder;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_arn': dataSetArn.toTfJson(),
     'data_set_placeholder': dataSetPlaceholder.toTfJson(),

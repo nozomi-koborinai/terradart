@@ -38,12 +38,15 @@ sealed class Wafv2RuleGroupName {
       Wafv2RuleGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -53,12 +56,15 @@ final class Wafv2RuleGroupNameChoice extends Wafv2RuleGroupName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -69,12 +75,15 @@ final class Wafv2RuleGroupNamePrefix extends Wafv2RuleGroupName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -96,12 +105,15 @@ sealed class Wafv2RuleGroupRules {
       Wafv2RuleGroupRulesJson;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -111,14 +123,17 @@ final class Wafv2RuleGroupRulesRule extends Wafv2RuleGroupRules {
 
   final List<Wafv2RuleGroupRule> rule;
 
+  @internal
   @override
   String get blockKey => 'rule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rule': [for (final e in rule) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'rule': TfArg.literal([for (final e in rule) e.encode()]),
@@ -131,12 +146,15 @@ final class Wafv2RuleGroupRulesJson extends Wafv2RuleGroupRules {
 
   final TfArg<String> rulesJson;
 
+  @internal
   @override
   String get blockKey => 'rules_json';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'rules_json': rulesJson.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'rules_json': rulesJson};
 }
@@ -157,6 +175,7 @@ final class Wafv2RuleGroupCustomResponseBody {
 
   final TfArg<String> key;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
@@ -192,6 +211,7 @@ final class Wafv2RuleGroupRule {
 
   final Wafv2RuleGroupVisibilityConfig visibilityConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'priority': priority.toTfJson(),
@@ -226,6 +246,7 @@ final class Wafv2RuleGroupAction {
 
   final Wafv2RuleGroupAllow? count;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow': ?allow?.encode(),
     'block': ?block?.encode(),
@@ -244,6 +265,7 @@ final class Wafv2RuleGroupAllow {
 
   final Wafv2RuleGroupCustomRequestHandling? customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_request_handling': ?customRequestHandling?.encode(),
   };
@@ -258,6 +280,7 @@ final class Wafv2RuleGroupCustomRequestHandling {
 
   final List<Wafv2RuleGroupInsertHeader> insertHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'insert_header': [for (final e in insertHeader) e.encode()],
   };
@@ -274,6 +297,7 @@ final class Wafv2RuleGroupInsertHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -288,6 +312,7 @@ final class Wafv2RuleGroupBlock {
 
   final Wafv2RuleGroupCustomResponse? customResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_response': ?customResponse?.encode(),
   };
@@ -309,6 +334,7 @@ final class Wafv2RuleGroupCustomResponse {
 
   final List<Wafv2RuleGroupInsertHeader>? responseHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
@@ -325,6 +351,7 @@ final class Wafv2RuleGroupCaptchaConfig {
 
   final Wafv2RuleGroupImmunityTimeProperty? immunityTimeProperty;
 
+  @internal
   Map<String, Object?> encode() => {
     'immunity_time_property': ?immunityTimeProperty?.encode(),
   };
@@ -338,6 +365,7 @@ final class Wafv2RuleGroupImmunityTimeProperty {
 
   final TfArg<num>? immunityTime;
 
+  @internal
   Map<String, Object?> encode() => {'immunity_time': ?immunityTime?.toTfJson()};
 }
 
@@ -350,6 +378,7 @@ final class Wafv2RuleGroupRuleLabel {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -403,6 +432,7 @@ final class Wafv2RuleGroupStatement {
 
   final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'and_statement': ?andStatement?.encode(),
     'asn_match_statement': ?asnMatchStatement?.encode(),
@@ -431,6 +461,7 @@ final class Wafv2RuleGroupAndStatement {
 
   final List<Wafv2RuleGroupAndStatementStatement> statement;
 
+  @internal
   Map<String, Object?> encode() => {
     'statement': [for (final e in statement) e.encode()],
   };
@@ -484,6 +515,7 @@ final class Wafv2RuleGroupAndStatementStatement {
 
   final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'and_statement': ?andStatement?.encode(),
     'asn_match_statement': ?asnMatchStatement?.encode(),
@@ -511,6 +543,7 @@ final class Wafv2RuleGroupStatementAndStatement {
 
   final List<Wafv2RuleGroupStatementStatement> statement;
 
+  @internal
   Map<String, Object?> encode() => {
     'statement': [for (final e in statement) e.encode()],
   };
@@ -564,6 +597,7 @@ final class Wafv2RuleGroupStatementStatement {
 
   final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'and_statement': ?andStatement?.encode(),
     'asn_match_statement': ?asnMatchStatement?.encode(),
@@ -591,6 +625,7 @@ final class Wafv2RuleGroupAndStatementAndStatement {
 
   final List<Wafv2RuleGroupRuleStatement> statement;
 
+  @internal
   Map<String, Object?> encode() => {
     'statement': [for (final e in statement) e.encode()],
   };
@@ -635,6 +670,7 @@ final class Wafv2RuleGroupRuleStatement {
 
   final Wafv2RuleGroupXssMatchStatement? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn_match_statement': ?asnMatchStatement?.encode(),
     'byte_match_statement': ?byteMatchStatement?.encode(),
@@ -664,6 +700,7 @@ final class Wafv2RuleGroupAsnMatchStatement {
 
   final Wafv2RuleGroupForwardedIpConfig? forwardedIpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn_list': asnList.toTfJson(),
     'forwarded_ip_config': ?forwardedIpConfig?.encode(),
@@ -684,6 +721,7 @@ final class Wafv2RuleGroupForwardedIpConfig {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': fallbackBehavior.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -714,6 +752,7 @@ final class Wafv2RuleGroupByteMatchStatement {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
     'search_string': searchString.toTfJson(),
@@ -776,6 +815,7 @@ final class Wafv2RuleGroupFieldToMatch {
 
   final Wafv2RuleGroupAllQueryArguments? uriPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_query_arguments': ?allQueryArguments?.encode(),
     'body': ?body?.encode(),
@@ -802,6 +842,7 @@ final class Wafv2RuleGroupFieldToMatch {
 final class Wafv2RuleGroupAllQueryArguments {
   const Wafv2RuleGroupAllQueryArguments();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -814,6 +855,7 @@ final class Wafv2RuleGroupBody {
 
   final TfArg<String>? oversizeHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     'oversize_handling': ?oversizeHandling?.toTfJson(),
   };
@@ -836,6 +878,7 @@ final class Wafv2RuleGroupCookies {
 
   final List<Wafv2RuleGroupCookiesMatchPattern> matchPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
     'oversize_handling': oversizeHandling.toTfJson(),
@@ -860,6 +903,7 @@ final class Wafv2RuleGroupCookiesMatchPattern {
 
   final Wafv2RuleGroupAllQueryArguments? all;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_cookies': ?excludedCookies?.toTfJson(),
     'included_cookies': ?includedCookies?.toTfJson(),
@@ -876,6 +920,7 @@ final class Wafv2RuleGroupHeaderOrder {
 
   final TfArg<String> oversizeHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     'oversize_handling': oversizeHandling.toTfJson(),
   };
@@ -898,6 +943,7 @@ final class Wafv2RuleGroupHeaders {
 
   final Wafv2RuleGroupHeadersMatchPattern matchPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
     'oversize_handling': oversizeHandling.toTfJson(),
@@ -922,6 +968,7 @@ final class Wafv2RuleGroupHeadersMatchPattern {
 
   final Wafv2RuleGroupAllQueryArguments? all;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_headers': ?excludedHeaders?.toTfJson(),
     'included_headers': ?includedHeaders?.toTfJson(),
@@ -938,6 +985,7 @@ final class Wafv2RuleGroupJa3Fingerprint {
 
   final TfArg<String> fallbackBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': fallbackBehavior.toTfJson(),
   };
@@ -963,6 +1011,7 @@ final class Wafv2RuleGroupJsonBody {
 
   final Wafv2RuleGroupJsonBodyMatchPattern matchPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'invalid_fallback_behavior': ?invalidFallbackBehavior?.toTfJson(),
     'match_scope': matchScope.toTfJson(),
@@ -982,6 +1031,7 @@ final class Wafv2RuleGroupJsonBodyMatchPattern {
 
   final Wafv2RuleGroupAllQueryArguments? all;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_paths': ?includedPaths?.toTfJson(),
     'all': ?all?.encode(),
@@ -997,6 +1047,7 @@ final class Wafv2RuleGroupUriFragment {
 
   final TfArg<String>? fallbackBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': ?fallbackBehavior?.toTfJson(),
   };
@@ -1016,6 +1067,7 @@ final class Wafv2RuleGroupPreParseTextTransformation {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'type': type.toTfJson(),
@@ -1036,6 +1088,7 @@ final class Wafv2RuleGroupGeoMatchStatement {
 
   final Wafv2RuleGroupForwardedIpConfig? forwardedIpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'country_codes': countryCodes.toTfJson(),
     'forwarded_ip_config': ?forwardedIpConfig?.encode(),
@@ -1056,6 +1109,7 @@ final class Wafv2RuleGroupIpSetReferenceStatement {
 
   final Wafv2RuleGroupIpSetForwardedIpConfig? ipSetForwardedIpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'ip_set_forwarded_ip_config': ?ipSetForwardedIpConfig?.encode(),
@@ -1079,6 +1133,7 @@ final class Wafv2RuleGroupIpSetForwardedIpConfig {
 
   final TfArg<String> position;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': fallbackBehavior.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -1100,6 +1155,7 @@ final class Wafv2RuleGroupLabelMatchStatement {
 
   final TfArg<String> scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'scope': scope.toTfJson(),
@@ -1127,6 +1183,7 @@ final class Wafv2RuleGroupRegexMatchStatement {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_string': regexString.toTfJson(),
     'field_to_match': ?fieldToMatch?.encode(),
@@ -1159,6 +1216,7 @@ final class Wafv2RuleGroupRegexPatternSetReferenceStatement {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'field_to_match': ?fieldToMatch?.encode(),
@@ -1194,6 +1252,7 @@ final class Wafv2RuleGroupSizeConstraintStatement {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
     'size': size.toTfJson(),
@@ -1227,6 +1286,7 @@ final class Wafv2RuleGroupSqliMatchStatement {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity_level': ?sensitivityLevel?.toTfJson(),
     'field_to_match': ?fieldToMatch?.encode(),
@@ -1256,6 +1316,7 @@ final class Wafv2RuleGroupXssMatchStatement {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_to_match': ?fieldToMatch?.encode(),
     if (preParseTextTransformation != null)
@@ -1291,6 +1352,7 @@ final class Wafv2RuleGroupRateBasedStatement {
 
   final Wafv2RuleGroupAndStatementStatement? scopeDownStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregate_key_type': ?aggregateKeyType?.toTfJson(),
     'evaluation_window_sec': ?evaluationWindowSec?.toTfJson(),
@@ -1373,6 +1435,7 @@ final class Wafv2RuleGroupCustomKey {
 
   final Wafv2RuleGroupQueryString? uriPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn': ?asn?.encode(),
     'cookie': ?cookie?.encode(),
@@ -1403,6 +1466,7 @@ final class Wafv2RuleGroupCookie {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'text_transformation': [for (final e in textTransformation) e.encode()],
@@ -1417,6 +1481,7 @@ final class Wafv2RuleGroupLabelNamespace {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {'namespace': namespace.toTfJson()};
 }
 
@@ -1429,6 +1494,7 @@ final class Wafv2RuleGroupQueryString {
 
   final List<Wafv2RuleGroupPreParseTextTransformation> textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'text_transformation': [for (final e in textTransformation) e.encode()],
   };
@@ -1451,6 +1517,7 @@ final class Wafv2RuleGroupVisibilityConfig {
 
   final TfArg<bool> sampledRequestsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_metrics_enabled': cloudwatchMetricsEnabled.toTfJson(),
     'metric_name': metricName.toTfJson(),

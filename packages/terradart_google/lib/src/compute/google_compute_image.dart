@@ -44,11 +44,13 @@ sealed class ComputeImageSource {
 
   /// Terraform attribute name (`source_disk`, `source_image`,
   /// `source_snapshot`, or `raw_disk`).
+  @internal
   String get blockKey;
 
   /// Value written under [blockKey].
   TfArg<Object?> get value;
 
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -60,6 +62,7 @@ final class ComputeImageSourceDisk extends ComputeImageSource {
   final TfArg<String> sourceDisk;
 
   @override
+  @internal
   String get blockKey => 'source_disk';
 
   @override
@@ -74,6 +77,7 @@ final class ComputeImageSourceImage extends ComputeImageSource {
   final TfArg<String> sourceImage;
 
   @override
+  @internal
   String get blockKey => 'source_image';
 
   @override
@@ -88,6 +92,7 @@ final class ComputeImageSourceSnapshot extends ComputeImageSource {
   final TfArg<String> sourceSnapshot;
 
   @override
+  @internal
   String get blockKey => 'source_snapshot';
 
   @override
@@ -102,6 +107,7 @@ final class ComputeImageSourceRawDisk extends ComputeImageSource {
   final ComputeImageRawDisk rawDisk;
 
   @override
+  @internal
   String get blockKey => 'raw_disk';
 
   @override
@@ -116,6 +122,7 @@ final class ComputeImageGuestOsFeatures {
 
   final ComputeImageType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -195,6 +202,7 @@ final class ComputeImageEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -211,6 +219,7 @@ final class ComputeImageParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -232,6 +241,7 @@ final class ComputeImageRawDisk {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_type': ?containerType?.toTfJson(),
     'sha1': ?sha1?.toTfJson(),
@@ -258,6 +268,7 @@ final class ComputeImageShieldedInstanceInitialState {
 
   final ComputeImagePk? pk;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dbs != null) 'dbs': [for (final e in dbs!) e.encode()],
     if (dbxs != null) 'dbxs': [for (final e in dbxs!) e.encode()],
@@ -276,6 +287,7 @@ final class ComputeImageDbs {
 
   final TfArg<String>? fileType;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'file_type': ?fileType?.toTfJson(),
@@ -292,6 +304,7 @@ final class ComputeImageDbxs {
 
   final TfArg<String>? fileType;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'file_type': ?fileType?.toTfJson(),
@@ -308,6 +321,7 @@ final class ComputeImageKeks {
 
   final TfArg<String>? fileType;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'file_type': ?fileType?.toTfJson(),
@@ -324,6 +338,7 @@ final class ComputeImagePk {
 
   final TfArg<String>? fileType;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'file_type': ?fileType?.toTfJson(),
@@ -349,6 +364,7 @@ final class ComputeImageSourceDiskEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -376,6 +392,7 @@ final class ComputeImageSourceImageEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -403,6 +420,7 @@ final class ComputeImageSourceSnapshotEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),

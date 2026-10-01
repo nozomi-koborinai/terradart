@@ -3,6 +3,7 @@
 /// AWS CloudTrail.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudtrail/aws_cloudtrail.dart'
     show
         AwsCloudtrail,
@@ -27,3 +28,5 @@ export 'src/cloudtrail/aws_cloudtrail_event_data_store.dart'
         CloudtrailEventDataStoreFieldSelector;
 export 'src/cloudtrail/aws_cloudtrail_organization_delegated_admin_account.dart'
     show AwsCloudtrailOrganizationDelegatedAdminAccount;
+export 'src/data/aws_cloudtrail_service_account.dart'
+    show DataAwsCloudtrailServiceAccount;

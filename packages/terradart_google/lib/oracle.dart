@@ -4,6 +4,39 @@
 /// (incl. Exascale storage config; BMS capacity is never_apply), ODB, GoldenGate.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_oracle_database_autonomous_database.dart'
+    show DataGoogleOracleDatabaseAutonomousDatabase;
+export 'src/data/google_oracle_database_autonomous_databases.dart'
+    show DataGoogleOracleDatabaseAutonomousDatabases;
+export 'src/data/google_oracle_database_cloud_exadata_infrastructure.dart'
+    show DataGoogleOracleDatabaseCloudExadataInfrastructure;
+export 'src/data/google_oracle_database_cloud_exadata_infrastructures.dart'
+    show DataGoogleOracleDatabaseCloudExadataInfrastructures;
+export 'src/data/google_oracle_database_cloud_vm_cluster.dart'
+    show DataGoogleOracleDatabaseCloudVmCluster;
+export 'src/data/google_oracle_database_cloud_vm_clusters.dart'
+    show DataGoogleOracleDatabaseCloudVmClusters;
+export 'src/data/google_oracle_database_db_nodes.dart'
+    show DataGoogleOracleDatabaseDbNodes;
+export 'src/data/google_oracle_database_db_servers.dart'
+    show DataGoogleOracleDatabaseDbServers;
+export 'src/data/google_oracle_database_exascale_db_storage_vault.dart'
+    show DataGoogleOracleDatabaseExascaleDbStorageVault;
+export 'src/data/google_oracle_database_exascale_db_storage_vaults.dart'
+    show DataGoogleOracleDatabaseExascaleDbStorageVaults;
+export 'src/data/google_oracle_database_goldengate_connection_types.dart'
+    show DataGoogleOracleDatabaseGoldengateConnectionTypes;
+export 'src/data/google_oracle_database_goldengate_deployment_environments.dart'
+    show DataGoogleOracleDatabaseGoldengateDeploymentEnvironments;
+export 'src/data/google_oracle_database_goldengate_deployment_types.dart'
+    show DataGoogleOracleDatabaseGoldengateDeploymentTypes;
+export 'src/data/google_oracle_database_goldengate_deployment_versions.dart'
+    show DataGoogleOracleDatabaseGoldengateDeploymentVersions;
+export 'src/data/google_oracle_database_odb_network.dart'
+    show DataGoogleOracleDatabaseOdbNetwork;
+export 'src/data/google_oracle_database_odb_subnet.dart'
+    show DataGoogleOracleDatabaseOdbSubnet;
 export 'src/oracle/google_oracle_database_autonomous_database.dart'
     show
         GoogleOracleDatabaseAutonomousDatabase,

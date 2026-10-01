@@ -53,12 +53,15 @@ sealed class ElasticBeanstalkEnvironmentPlatform {
   ) = ElasticBeanstalkEnvironmentPlatformTemplateName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -69,12 +72,15 @@ final class ElasticBeanstalkEnvironmentPlatformArn
 
   final TfArg<String> platformArn;
 
+  @internal
   @override
   String get blockKey => 'platform_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'platform_arn': platformArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'platform_arn': platformArn};
 }
@@ -88,14 +94,17 @@ final class ElasticBeanstalkEnvironmentPlatformSolutionStackName
 
   final TfArg<String> solutionStackName;
 
+  @internal
   @override
   String get blockKey => 'solution_stack_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'solution_stack_name': solutionStackName.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'solution_stack_name': solutionStackName,
@@ -109,12 +118,15 @@ final class ElasticBeanstalkEnvironmentPlatformTemplateName
 
   final TfArg<String> templateName;
 
+  @internal
   @override
   String get blockKey => 'template_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'template_name': templateName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'template_name': templateName};
 }
@@ -138,6 +150,7 @@ final class ElasticBeanstalkEnvironmentSetting {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),

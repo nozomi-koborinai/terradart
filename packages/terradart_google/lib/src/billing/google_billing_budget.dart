@@ -57,6 +57,7 @@ final class BillingBudgetAllUpdatesRule {
 
   final TfArg<String>? schemaVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_default_iam_recipients': ?disableDefaultIamRecipients?.toTfJson(),
     'enable_project_level_recipients': ?enableProjectLevelRecipients
@@ -86,8 +87,10 @@ sealed class BillingBudgetAmount {
   ) = BillingBudgetLastPeriodAmount;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -97,9 +100,11 @@ final class BillingBudgetSpecifiedAmountChoice extends BillingBudgetAmount {
 
   final BillingBudgetSpecifiedAmount specifiedAmount;
 
+  @internal
   @override
   String get blockKey => 'specified_amount';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'specified_amount': specifiedAmount.encode(),
@@ -112,9 +117,11 @@ final class BillingBudgetLastPeriodAmount extends BillingBudgetAmount {
 
   final TfArg<bool> lastPeriodAmount;
 
+  @internal
   @override
   String get blockKey => 'last_period_amount';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'last_period_amount': lastPeriodAmount.toTfJson(),
@@ -137,6 +144,7 @@ final class BillingBudgetSpecifiedAmount {
 
   final TfArg<String>? units;
 
+  @internal
   Map<String, Object?> encode() => {
     'currency_code': ?currencyCode?.toTfJson(),
     'nanos': ?nanos?.toTfJson(),
@@ -178,6 +186,7 @@ final class BillingBudgetFilter {
 
   final BillingBudgetCustomPeriod? customPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'calendar_period': ?calendarPeriod?.toTfJson(),
     'credit_types': ?creditTypes?.toTfJson(),
@@ -251,6 +260,7 @@ final class BillingBudgetCustomPeriod {
 
   final BillingBudgetStartDate startDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': ?endDate?.encode(),
     'start_date': startDate.encode(),
@@ -273,6 +283,7 @@ final class BillingBudgetEndDate {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -296,6 +307,7 @@ final class BillingBudgetStartDate {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -316,6 +328,7 @@ final class BillingBudgetThresholdRules {
 
   final TfArg<num> thresholdPercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'spend_basis': ?spendBasis?.toTfJson(),
     'threshold_percent': thresholdPercent.toTfJson(),

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_dx_hosted_private_virtual_interface_accepter`.
@@ -25,12 +26,15 @@ sealed class DxHostedPrivateVirtualInterfaceAccepterGatewayId {
   ) = DxHostedPrivateVirtualInterfaceAccepterVpnGatewayId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,12 +45,15 @@ final class DxHostedPrivateVirtualInterfaceAccepterDxGatewayId
 
   final TfArg<String> dxGatewayId;
 
+  @internal
   @override
   String get blockKey => 'dx_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'dx_gateway_id': dxGatewayId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'dx_gateway_id': dxGatewayId};
 }
@@ -58,12 +65,15 @@ final class DxHostedPrivateVirtualInterfaceAccepterVpnGatewayId
 
   final TfArg<String> vpnGatewayId;
 
+  @internal
   @override
   String get blockKey => 'vpn_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vpn_gateway_id': vpnGatewayId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'vpn_gateway_id': vpnGatewayId};
 }

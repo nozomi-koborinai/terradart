@@ -23,6 +23,7 @@ final class CloudRunDomainMappingMetadata {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
     'labels': ?labels?.toTfJson(),
@@ -46,6 +47,7 @@ final class CloudRunDomainMappingSpec {
 
   final TfArg<String> routeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_mode': ?certificateMode?.toTfJson(),
     'force_override': ?forceOverride?.toTfJson(),

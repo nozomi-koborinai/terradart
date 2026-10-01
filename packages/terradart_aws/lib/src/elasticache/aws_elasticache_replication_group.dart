@@ -214,12 +214,15 @@ sealed class ElasticacheReplicationGroupAuth {
   ) = ElasticacheReplicationGroupAuthUserGroupIds;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -230,12 +233,15 @@ final class ElasticacheReplicationGroupAuthToken
 
   final Sensitive<String> authToken;
 
+  @internal
   @override
   String get blockKey => 'auth_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_token': authToken.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'auth_token': authToken};
 }
@@ -247,12 +253,15 @@ final class ElasticacheReplicationGroupAuthTokenWo
 
   final Sensitive<String> authTokenWo;
 
+  @internal
   @override
   String get blockKey => 'auth_token_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_token_wo': authTokenWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'auth_token_wo': authTokenWo};
 }
@@ -264,12 +273,15 @@ final class ElasticacheReplicationGroupAuthUserGroupIds
 
   final TfArg<List<String>> userGroupIds;
 
+  @internal
   @override
   String get blockKey => 'user_group_ids';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_group_ids': userGroupIds.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'user_group_ids': userGroupIds};
 }
@@ -294,12 +306,15 @@ sealed class ElasticacheReplicationGroupTopology {
   ) = ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -313,9 +328,11 @@ final class ElasticacheReplicationGroupTopologyNodeGroupConfiguration
   final List<ElasticacheReplicationGroupNodeGroupConfiguration>
   nodeGroupConfiguration;
 
+  @internal
   @override
   String get blockKey => 'node_group_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'node_group_configuration': [
@@ -323,6 +340,7 @@ final class ElasticacheReplicationGroupTopologyNodeGroupConfiguration
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'node_group_configuration': TfArg.literal([
@@ -340,14 +358,17 @@ final class ElasticacheReplicationGroupTopologyPreferredCacheClusterAzs
 
   final TfArg<List<String>> preferredCacheClusterAzs;
 
+  @internal
   @override
   String get blockKey => 'preferred_cache_cluster_azs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'preferred_cache_cluster_azs': preferredCacheClusterAzs.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'preferred_cache_cluster_azs': preferredCacheClusterAzs,
@@ -373,6 +394,7 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 
   final ElasticacheReplicationGroupLogType logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
     'destination_type': destinationType.toTfJson(),
@@ -475,6 +497,7 @@ final class ElasticacheReplicationGroupNodeGroupConfiguration {
 
   final TfArg<String>? slots;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_group_id': ?nodeGroupId?.toTfJson(),
     'primary_availability_zone': ?primaryAvailabilityZone?.toTfJson(),

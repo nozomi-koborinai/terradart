@@ -3,6 +3,17 @@
 /// AWS VPC Lattice.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_vpclattice_auth_policy.dart'
+    show DataAwsVpclatticeAuthPolicy;
+export 'src/data/aws_vpclattice_listener.dart' show DataAwsVpclatticeListener;
+export 'src/data/aws_vpclattice_resource_policy.dart'
+    show DataAwsVpclatticeResourcePolicy;
+export 'src/data/aws_vpclattice_service.dart' show DataAwsVpclatticeService;
+export 'src/data/aws_vpclattice_service_network.dart'
+    show DataAwsVpclatticeServiceNetwork;
+export 'src/data/aws_vpclattice_service_network_service_associations.dart'
+    show DataAwsVpclatticeServiceNetworkServiceAssociations;
 export 'src/vpclattice/aws_vpclattice_access_log_subscription.dart'
     show
         AwsVpclatticeAccessLogSubscription,

@@ -3,6 +3,7 @@
 /// AWS CloudFront.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudfront/aws_cloudfront_anycast_ip_list.dart'
     show AwsCloudfrontAnycastIpList;
 export 'src/cloudfront/aws_cloudfront_cache_policy.dart'
@@ -220,3 +221,26 @@ export 'src/cloudfront/aws_cloudfront_vpc_origin.dart'
         CloudfrontVpcOriginEndpointConfig,
         CloudfrontVpcOriginProtocolPolicy,
         CloudfrontVpcOriginSslProtocols;
+export 'src/data/aws_cloudfront_cache_policy.dart'
+    show DataAwsCloudfrontCachePolicy;
+export 'src/data/aws_cloudfront_connection_group.dart'
+    show DataAwsCloudfrontConnectionGroup;
+export 'src/data/aws_cloudfront_distribution.dart'
+    show DataAwsCloudfrontDistribution;
+export 'src/data/aws_cloudfront_distribution_tenant.dart'
+    show DataAwsCloudfrontDistributionTenant;
+export 'src/data/aws_cloudfront_function.dart' show DataAwsCloudfrontFunction;
+export 'src/data/aws_cloudfront_log_delivery_canonical_user_id.dart'
+    show DataAwsCloudfrontLogDeliveryCanonicalUserId;
+export 'src/data/aws_cloudfront_origin_access_control.dart'
+    show DataAwsCloudfrontOriginAccessControl;
+export 'src/data/aws_cloudfront_origin_access_identities.dart'
+    show DataAwsCloudfrontOriginAccessIdentities;
+export 'src/data/aws_cloudfront_origin_access_identity.dart'
+    show DataAwsCloudfrontOriginAccessIdentity;
+export 'src/data/aws_cloudfront_origin_request_policy.dart'
+    show DataAwsCloudfrontOriginRequestPolicy;
+export 'src/data/aws_cloudfront_realtime_log_config.dart'
+    show DataAwsCloudfrontRealtimeLogConfig;
+export 'src/data/aws_cloudfront_response_headers_policy.dart'
+    show DataAwsCloudfrontResponseHeadersPolicy;

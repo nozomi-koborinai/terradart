@@ -179,6 +179,7 @@ final class OracleDatabaseAutonomousDatabaseProperties {
   final List<OracleDatabaseAutonomousDatabaseCustomerContacts>?
   customerContacts;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_retention_period_days': ?backupRetentionPeriodDays?.toTfJson(),
     'character_set': ?characterSet?.toTfJson(),
@@ -213,6 +214,7 @@ final class OracleDatabaseAutonomousDatabaseCustomerContacts {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {'email': email.toTfJson()};
 }
 
@@ -229,6 +231,7 @@ final class OracleDatabaseAutonomousDatabaseSourceConfig {
 
   final TfArg<String>? autonomousDatabase;
 
+  @internal
   Map<String, Object?> encode() => {
     'automatic_backups_replication_enabled': ?automaticBackupsReplicationEnabled
         ?.toTfJson(),

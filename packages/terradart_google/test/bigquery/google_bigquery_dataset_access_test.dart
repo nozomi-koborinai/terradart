@@ -1,4 +1,3 @@
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:test/test.dart';
 

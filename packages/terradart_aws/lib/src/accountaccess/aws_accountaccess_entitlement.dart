@@ -17,6 +17,7 @@ final class AccountaccessEntitlement {
 
   final List<AccountaccessEntitlementPrincipalRole>? principalRole;
 
+  @internal
   Map<String, Object?> encode() => {
     if (principalRole != null)
       'principal_role': [for (final e in principalRole!) e.encode()],
@@ -36,6 +37,7 @@ final class AccountaccessEntitlementPrincipalRole {
 
   final List<AccountaccessEntitlementPrincipal>? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (principal != null)
@@ -51,6 +53,7 @@ final class AccountaccessEntitlementPrincipal {
 
   final List<AccountaccessEntitlementIdentityCenter>? identityCenter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (identityCenter != null)
       'identity_center': [for (final e in identityCenter!) e.encode()],
@@ -67,6 +70,7 @@ final class AccountaccessEntitlementIdentityCenter {
 
   final TfArg<String>? userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_id': ?groupId?.toTfJson(),
     'user_id': ?userId?.toTfJson(),

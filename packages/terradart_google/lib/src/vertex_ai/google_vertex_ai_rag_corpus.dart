@@ -30,12 +30,15 @@ sealed class VertexAiRagCorpusBackend {
   ) = VertexAiRagCorpusBackendVertexAiSearchConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -46,14 +49,17 @@ final class VertexAiRagCorpusBackendVectorDbConfig
 
   final VertexAiRagCorpusVectorDbConfig vectorDbConfig;
 
+  @internal
   @override
   String get blockKey => 'vector_db_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vector_db_config': vectorDbConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vector_db_config': TfArg.literal(vectorDbConfig.encode()),
@@ -67,14 +73,17 @@ final class VertexAiRagCorpusBackendVertexAiSearchConfig
 
   final VertexAiRagCorpusVertexAiSearchConfig vertexAiSearchConfig;
 
+  @internal
   @override
   String get blockKey => 'vertex_ai_search_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vertex_ai_search_config': vertexAiSearchConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vertex_ai_search_config': TfArg.literal(vertexAiSearchConfig.encode()),
@@ -89,6 +98,7 @@ final class VertexAiRagCorpusEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -110,6 +120,7 @@ final class VertexAiRagCorpusVectorDbConfig {
 
   final VertexAiRagCorpusRagEmbeddingModelConfig? ragEmbeddingModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_auth': ?apiAuth?.encode(),
     ...?backend?.encode(),
@@ -141,8 +152,10 @@ sealed class VertexAiRagCorpusVectorDbConfigBackend {
   ) = VertexAiRagCorpusVectorDbConfigBackendVertexVectorSearch;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -153,9 +166,11 @@ final class VertexAiRagCorpusVectorDbConfigBackendRagManagedDb
 
   final VertexAiRagCorpusRagManagedDb ragManagedDb;
 
+  @internal
   @override
   String get blockKey => 'rag_managed_db';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'rag_managed_db': ragManagedDb.encode()};
 }
@@ -167,9 +182,11 @@ final class VertexAiRagCorpusVectorDbConfigBackendPinecone
 
   final VertexAiRagCorpusPinecone pinecone;
 
+  @internal
   @override
   String get blockKey => 'pinecone';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pinecone': pinecone.encode()};
 }
@@ -183,9 +200,11 @@ final class VertexAiRagCorpusVectorDbConfigBackendVertexVectorSearch
 
   final VertexAiRagCorpusVertexVectorSearch vertexVectorSearch;
 
+  @internal
   @override
   String get blockKey => 'vertex_vector_search';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vertex_vector_search': vertexVectorSearch.encode(),
@@ -200,6 +219,7 @@ final class VertexAiRagCorpusApiAuth {
 
   final VertexAiRagCorpusApiKeyConfig? apiKeyConfig;
 
+  @internal
   Map<String, Object?> encode() => {'api_key_config': ?apiKeyConfig?.encode()};
 }
 
@@ -221,8 +241,10 @@ sealed class VertexAiRagCorpusApiKeyConfig {
   ) = VertexAiRagCorpusApiKeyConfigApiKeyString;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -235,9 +257,11 @@ final class VertexAiRagCorpusApiKeyConfigApiKeySecretVersion
 
   final TfArg<String> apiKeySecretVersion;
 
+  @internal
   @override
   String get blockKey => 'api_key_secret_version';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'api_key_secret_version': apiKeySecretVersion.toTfJson(),
@@ -251,9 +275,11 @@ final class VertexAiRagCorpusApiKeyConfigApiKeyString
 
   final Sensitive<String> apiKeyString;
 
+  @internal
   @override
   String get blockKey => 'api_key_string';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key_string': apiKeyString.toTfJson()};
 }
@@ -266,6 +292,7 @@ final class VertexAiRagCorpusPinecone {
 
   final TfArg<String> indexName;
 
+  @internal
   Map<String, Object?> encode() => {'index_name': indexName.toTfJson()};
 }
 
@@ -279,6 +306,7 @@ final class VertexAiRagCorpusRagEmbeddingModelConfig {
 
   final VertexAiRagCorpusVertexPredictionEndpoint? vertexPredictionEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'vertex_prediction_endpoint': ?vertexPredictionEndpoint?.encode(),
   };
@@ -292,6 +320,7 @@ final class VertexAiRagCorpusVertexPredictionEndpoint {
 
   final TfArg<String> endpoint;
 
+  @internal
   Map<String, Object?> encode() => {'endpoint': endpoint.toTfJson()};
 }
 
@@ -311,8 +340,10 @@ sealed class VertexAiRagCorpusRagManagedDb {
       VertexAiRagCorpusRagManagedDbAnn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -323,9 +354,11 @@ final class VertexAiRagCorpusRagManagedDbKnn
 
   final VertexAiRagCorpusKnn knn;
 
+  @internal
   @override
   String get blockKey => 'knn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'knn': knn.encode()};
 }
@@ -337,9 +370,11 @@ final class VertexAiRagCorpusRagManagedDbAnn
 
   final VertexAiRagCorpusAnn ann;
 
+  @internal
   @override
   String get blockKey => 'ann';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ann': ann.encode()};
 }
@@ -354,6 +389,7 @@ final class VertexAiRagCorpusAnn {
 
   final TfArg<num>? treeDepth;
 
+  @internal
   Map<String, Object?> encode() => {
     'leaf_count': ?leafCount?.toTfJson(),
     'tree_depth': ?treeDepth?.toTfJson(),
@@ -366,6 +402,7 @@ final class VertexAiRagCorpusAnn {
 final class VertexAiRagCorpusKnn {
   const VertexAiRagCorpusKnn();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -382,6 +419,7 @@ final class VertexAiRagCorpusVertexVectorSearch {
 
   final TfArg<String> indexEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'index': index.toTfJson(),
     'index_endpoint': indexEndpoint.toTfJson(),
@@ -396,6 +434,7 @@ final class VertexAiRagCorpusVertexAiSearchConfig {
 
   final TfArg<String> servingConfig;
 
+  @internal
   Map<String, Object?> encode() => {'serving_config': servingConfig.toTfJson()};
 }
 

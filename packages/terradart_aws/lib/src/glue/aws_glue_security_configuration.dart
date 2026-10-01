@@ -25,6 +25,7 @@ final class GlueSecurityConfigurationEncryptionConfiguration {
 
   final GlueSecurityConfigurationS3Encryption s3Encryption;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_encryption': cloudwatchEncryption.encode(),
     'job_bookmarks_encryption': jobBookmarksEncryption.encode(),
@@ -46,6 +47,7 @@ final class GlueSecurityConfigurationCloudwatchEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_encryption_mode': ?cloudwatchEncryptionMode?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -88,6 +90,7 @@ final class GlueSecurityConfigurationJobBookmarksEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'job_bookmarks_encryption_mode': ?jobBookmarksEncryptionMode?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -131,6 +134,7 @@ final class GlueSecurityConfigurationS3Encryption {
 
   final GlueSecurityConfigurationS3EncryptionMode? s3EncryptionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     's3_encryption_mode': ?s3EncryptionMode?.toTfJson(),

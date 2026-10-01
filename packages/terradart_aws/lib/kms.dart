@@ -3,6 +3,15 @@
 /// AWS Key Management Service (KMS).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_kms_alias.dart' show DataAwsKmsAlias;
+export 'src/data/aws_kms_ciphertext.dart' show DataAwsKmsCiphertext;
+export 'src/data/aws_kms_custom_key_store.dart' show DataAwsKmsCustomKeyStore;
+export 'src/data/aws_kms_key.dart' show DataAwsKmsKey;
+export 'src/data/aws_kms_public_key.dart' show DataAwsKmsPublicKey;
+export 'src/data/aws_kms_secret.dart' show DataAwsKmsSecret, DataKmsSecret;
+export 'src/data/aws_kms_secrets.dart'
+    show DataAwsKmsSecrets, DataKmsSecretsSecret;
 export 'src/kms/aws_kms_alias.dart'
     show AwsKmsAlias, KmsAliasName, KmsAliasNameChoice, KmsAliasNamePrefix;
 export 'src/kms/aws_kms_ciphertext.dart'

@@ -3,6 +3,7 @@
 /// AWS Private Certificate Authority.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/acmpca/aws_acmpca_certificate.dart'
     show
         AcmpcaCertificateSigningAlgorithm,
@@ -31,3 +32,6 @@ export 'src/acmpca/aws_acmpca_permission.dart'
         AcmpcaPermissionPrincipal,
         AwsAcmpcaPermission;
 export 'src/acmpca/aws_acmpca_policy.dart' show AwsAcmpcaPolicy;
+export 'src/data/aws_acmpca_certificate.dart' show DataAwsAcmpcaCertificate;
+export 'src/data/aws_acmpca_certificate_authority.dart'
+    show DataAwsAcmpcaCertificateAuthority;

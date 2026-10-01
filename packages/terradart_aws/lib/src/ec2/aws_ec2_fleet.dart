@@ -64,6 +64,7 @@ final class Ec2FleetInstanceSet {
 
   final TfArg<String>? platform;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_ids': ?instanceIds?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -85,6 +86,7 @@ final class Ec2FleetLaunchTemplateConfig {
 
   final List<Ec2FleetOverride>? override;
 
+  @internal
   Map<String, Object?> encode() => {
     'launch_template_specification': ?launchTemplateSpecification?.encode(),
     if (override != null) 'override': [for (final e in override!) e.encode()],
@@ -107,6 +109,7 @@ final class Ec2FleetLaunchTemplateSpecification {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'launch_template_id': ?launchTemplateId?.toTfJson(),
     'launch_template_name': ?launchTemplateName?.toTfJson(),
@@ -142,6 +145,7 @@ final class Ec2FleetOverride {
 
   final Ec2FleetInstanceRequirements? instanceRequirements;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -232,6 +236,7 @@ final class Ec2FleetInstanceRequirements {
 
   final Ec2FleetVcpuCount vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
       'accelerator_manufacturers': [
@@ -514,6 +519,7 @@ final class Ec2FleetAcceleratorCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -530,6 +536,7 @@ final class Ec2FleetAcceleratorTotalMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -546,6 +553,7 @@ final class Ec2FleetBaselineEbsBandwidthMbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -562,6 +570,7 @@ final class Ec2FleetMemoryGibPerVcpu {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -578,6 +587,7 @@ final class Ec2FleetMemoryMib {
 
   final TfArg<num> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
@@ -594,6 +604,7 @@ final class Ec2FleetNetworkBandwidthGbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -610,6 +621,7 @@ final class Ec2FleetNetworkInterfaceCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -626,6 +638,7 @@ final class Ec2FleetTotalLocalStorageGb {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -642,6 +655,7 @@ final class Ec2FleetVcpuCount {
 
   final TfArg<num> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
@@ -673,6 +687,7 @@ final class Ec2FleetOnDemandOptions {
 
   final Ec2FleetCapacityReservationOptions? capacityReservationOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': ?allocationStrategy?.toTfJson(),
     'max_total_price': ?maxTotalPrice?.toTfJson(),
@@ -691,6 +706,7 @@ final class Ec2FleetCapacityReservationOptions {
 
   final Ec2FleetUsageStrategy? usageStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'usage_strategy': ?usageStrategy?.toTfJson(),
   };
@@ -744,6 +760,7 @@ final class Ec2FleetSpotOptions {
 
   final Ec2FleetMaintenanceStrategies? maintenanceStrategies;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': ?allocationStrategy?.toTfJson(),
     'instance_interruption_behavior': ?instanceInterruptionBehavior?.toTfJson(),
@@ -791,6 +808,7 @@ final class Ec2FleetMaintenanceStrategies {
 
   final Ec2FleetCapacityRebalance? capacityRebalance;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_rebalance': ?capacityRebalance?.encode(),
   };
@@ -809,6 +827,7 @@ final class Ec2FleetCapacityRebalance {
 
   final TfArg<num>? terminationDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'replacement_strategy': ?replacementStrategy?.toTfJson(),
     'termination_delay': ?terminationDelay?.toTfJson(),
@@ -857,6 +876,7 @@ final class Ec2FleetTargetCapacitySpecification {
 
   final TfArg<num> totalTargetCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_target_capacity_type': defaultTargetCapacityType.toTfJson(),
     'on_demand_target_capacity': ?onDemandTargetCapacity?.toTfJson(),

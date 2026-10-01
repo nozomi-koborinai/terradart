@@ -190,12 +190,15 @@ sealed class DbInstanceIdentifier {
   ) = DbInstanceIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -205,12 +208,15 @@ final class DbInstanceIdentifierChoice extends DbInstanceIdentifier {
 
   final TfArg<String> identifier;
 
+  @internal
   @override
   String get blockKey => 'identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
@@ -221,14 +227,17 @@ final class DbInstanceIdentifierPrefix extends DbInstanceIdentifier {
 
   final TfArg<String> identifierPrefix;
 
+  @internal
   @override
   String get blockKey => 'identifier_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'identifier_prefix': identifierPrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'identifier_prefix': identifierPrefix,
@@ -257,12 +266,15 @@ sealed class DbInstancePassword {
       DbInstancePasswordWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -272,14 +284,17 @@ final class DbInstanceManageMasterUserPassword extends DbInstancePassword {
 
   final TfArg<bool> manageMasterUserPassword;
 
+  @internal
   @override
   String get blockKey => 'manage_master_user_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'manage_master_user_password': manageMasterUserPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'manage_master_user_password': manageMasterUserPassword,
@@ -292,12 +307,15 @@ final class DbInstancePasswordChoice extends DbInstancePassword {
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
@@ -308,12 +326,15 @@ final class DbInstancePasswordWo extends DbInstancePassword {
 
   final Sensitive<String> passwordWo;
 
+  @internal
   @override
   String get blockKey => 'password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'password_wo': passwordWo};
 }
@@ -326,6 +347,7 @@ final class DbInstanceBlueGreenUpdate {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -348,6 +370,7 @@ final class DbInstanceRestoreToPointInTime {
 
   final TfArg<String>? sourceDbiResourceId;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?target?.encode(),
     'source_db_instance_automated_backups_arn':
@@ -375,8 +398,10 @@ sealed class DbInstanceTarget {
   ) = DbInstanceTargetUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -386,9 +411,11 @@ final class DbInstanceTargetRestoreTime extends DbInstanceTarget {
 
   final TfArg<String> restoreTime;
 
+  @internal
   @override
   String get blockKey => 'restore_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'restore_time': restoreTime.toTfJson()};
 }
@@ -399,9 +426,11 @@ final class DbInstanceTargetUseLatestRestorableTime extends DbInstanceTarget {
 
   final TfArg<bool> useLatestRestorableTime;
 
+  @internal
   @override
   String get blockKey => 'use_latest_restorable_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'use_latest_restorable_time': useLatestRestorableTime.toTfJson(),
@@ -430,6 +459,7 @@ final class DbInstanceS3Import {
 
   final TfArg<String> sourceEngineVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),

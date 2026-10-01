@@ -21,6 +21,7 @@ final class S3controlDirectoryBucketAccessPointScope {
 
   final TfArg<List<String>>? prefixes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],

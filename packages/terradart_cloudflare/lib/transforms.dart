@@ -3,6 +3,9 @@
 /// Cloudflare managed transforms.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/cloudflare_managed_transforms.dart'
+    show DataCloudflareManagedTransforms;
 export 'src/transforms/cloudflare_managed_transforms.dart'
     show
         CloudflareManagedTransforms,

@@ -15,6 +15,7 @@ final class DatasyncLocationSmbMountOptions {
 
   final DatasyncLocationSmbVersion? version;
 
+  @internal
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 

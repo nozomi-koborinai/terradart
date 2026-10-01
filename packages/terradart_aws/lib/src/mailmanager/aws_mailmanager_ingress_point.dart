@@ -93,6 +93,7 @@ final class MailmanagerIngressPointConfiguration {
 
   final List<MailmanagerIngressPointTlsAuthConfiguration>? tlsAuthConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_arn': ?secretArn?.toTfJson(),
     'smtp_password_wo': ?smtpPasswordWo?.toTfJson(),
@@ -112,6 +113,7 @@ final class MailmanagerIngressPointTlsAuthConfiguration {
 
   final List<MailmanagerIngressPointTrustStore>? trustStore;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trustStore != null)
       'trust_store': [for (final e in trustStore!) e.encode()],
@@ -134,6 +136,7 @@ final class MailmanagerIngressPointTrustStore {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_content': caContent.toTfJson(),
     'crl_content': ?crlContent?.toTfJson(),
@@ -156,6 +159,7 @@ final class MailmanagerIngressPointNetworkConfiguration {
   final List<MailmanagerIngressPointPublicNetworkConfiguration>?
   publicNetworkConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (privateNetworkConfiguration != null)
       'private_network_configuration': [
@@ -178,6 +182,7 @@ final class MailmanagerIngressPointPrivateNetworkConfiguration {
 
   final TfArg<String> vpcEndpointId;
 
+  @internal
   Map<String, Object?> encode() => {
     'vpc_endpoint_id': vpcEndpointId.toTfJson(),
   };
@@ -193,6 +198,7 @@ final class MailmanagerIngressPointPublicNetworkConfiguration {
 
   final MailmanagerIngressPointIpType ipType;
 
+  @internal
   Map<String, Object?> encode() => {'ip_type': ipType.toTfJson()};
 }
 

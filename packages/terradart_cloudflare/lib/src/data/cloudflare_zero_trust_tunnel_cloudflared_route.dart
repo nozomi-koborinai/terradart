@@ -41,6 +41,7 @@ final class DataZeroTrustTunnelCloudflaredRouteFilter {
 
   final TfArg<String>? virtualNetworkId;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'existed_at': ?existedAt?.toTfJson(),

@@ -20,6 +20,7 @@ final class Apigatewayv2StageAccessLogSettings {
 
   final TfArg<String> format;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_arn': destinationArn.toTfJson(),
     'format': format.toTfJson(),
@@ -48,6 +49,7 @@ final class Apigatewayv2StageDefaultRouteSettings {
 
   final TfArg<num>? throttlingRateLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_trace_enabled': ?dataTraceEnabled?.toTfJson(),
     'detailed_metrics_enabled': ?detailedMetricsEnabled?.toTfJson(),
@@ -98,6 +100,7 @@ final class Apigatewayv2StageRouteSettings {
 
   final TfArg<num>? throttlingRateLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_trace_enabled': ?dataTraceEnabled?.toTfJson(),
     'detailed_metrics_enabled': ?detailedMetricsEnabled?.toTfJson(),

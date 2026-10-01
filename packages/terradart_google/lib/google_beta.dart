@@ -9,6 +9,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'src/_provider_meta.dart';
 import 'src/iam/iam_principal.dart';
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/_provider_meta.dart' show kBetaProviderSource;
 
 /// Concrete [StackProvider] for `hashicorp/google-beta`, version-locked to

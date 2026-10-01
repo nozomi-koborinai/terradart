@@ -17,6 +17,7 @@ final class ClouddeployTargetAnthosCluster {
 
   final TfArg<String>? membership;
 
+  @internal
   Map<String, Object?> encode() => {'membership': ?membership?.toTfJson()};
 }
 
@@ -36,6 +37,7 @@ final class ClouddeployTargetAssociatedEntities {
 
   final List<ClouddeployTargetGkeClusters>? gkeClusters;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
     if (anthosClusters != null)
@@ -53,6 +55,7 @@ final class ClouddeployTargetAnthosClusters {
 
   final TfArg<String>? membership;
 
+  @internal
   Map<String, Object?> encode() => {'membership': ?membership?.toTfJson()};
 }
 
@@ -72,6 +75,7 @@ final class ClouddeployTargetGkeClusters {
 
   final TfArg<String>? proxyUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster': ?cluster?.toTfJson(),
     'internal_ip': ?internalIp?.toTfJson(),
@@ -87,6 +91,7 @@ final class ClouddeployTargetCustomTarget {
 
   final TfArg<String> customTargetType;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_target_type': customTargetType.toTfJson(),
   };
@@ -123,6 +128,7 @@ final class ClouddeployTargetExecutionConfigs {
 
   final ClouddeployTargetPrivatePool? privatePool;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_storage': ?artifactStorage?.toTfJson(),
     'execution_timeout': ?executionTimeout?.toTfJson(),
@@ -148,6 +154,7 @@ final class ClouddeployTargetDefaultPool {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_storage': ?artifactStorage?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
@@ -170,6 +177,7 @@ final class ClouddeployTargetPrivatePool {
 
   final TfArg<String> workerPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_storage': ?artifactStorage?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
@@ -196,6 +204,7 @@ final class ClouddeployTargetGke {
 
   final TfArg<String>? proxyUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster': ?cluster?.toTfJson(),
     'dns_endpoint': ?dnsEndpoint?.toTfJson(),
@@ -212,6 +221,7 @@ final class ClouddeployTargetMultiTarget {
 
   final TfArg<List<String>> targetIds;
 
+  @internal
   Map<String, Object?> encode() => {'target_ids': targetIds.toTfJson()};
 }
 
@@ -223,6 +233,7 @@ final class ClouddeployTargetRun {
 
   final TfArg<String> location;
 
+  @internal
   Map<String, Object?> encode() => {'location': location.toTfJson()};
 }
 

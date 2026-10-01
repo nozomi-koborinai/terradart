@@ -15,6 +15,7 @@ final class EdgecontainerVpnConnectionVpcProject {
 
   final TfArg<String>? projectId;
 
+  @internal
   Map<String, Object?> encode() => {'project_id': ?projectId?.toTfJson()};
 }
 

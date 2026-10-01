@@ -194,12 +194,15 @@ sealed class AlbTargetGroupName {
       AlbTargetGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -209,12 +212,15 @@ final class AlbTargetGroupNameChoice extends AlbTargetGroupName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -225,12 +231,15 @@ final class AlbTargetGroupNamePrefix extends AlbTargetGroupName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -269,6 +278,7 @@ final class AlbTargetGroupHealthCheck {
 
   final TfArg<num>? unhealthyThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'healthy_threshold': ?healthyThreshold?.toTfJson(),
@@ -301,6 +311,7 @@ final class AlbTargetGroupStickiness {
 
   final AlbTargetGroupType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookie_duration': ?cookieDuration?.toTfJson(),
     'cookie_name': ?cookieName?.toTfJson(),
@@ -349,6 +360,7 @@ final class AlbTargetGroupTargetFailover {
 
   final AlbTargetGroupOnUnhealthy onUnhealthy;
 
+  @internal
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
     'on_unhealthy': onUnhealthy.toTfJson(),
@@ -409,6 +421,7 @@ final class AlbTargetGroupHealth {
 
   final AlbTargetGroupUnhealthyStateRouting? unhealthyStateRouting;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_failover': ?dnsFailover?.encode(),
     'unhealthy_state_routing': ?unhealthyStateRouting?.encode(),
@@ -428,6 +441,7 @@ final class AlbTargetGroupDnsFailover {
 
   final TfArg<String>? minimumHealthyTargetsPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_healthy_targets_count': ?minimumHealthyTargetsCount?.toTfJson(),
     'minimum_healthy_targets_percentage': ?minimumHealthyTargetsPercentage
@@ -448,6 +462,7 @@ final class AlbTargetGroupUnhealthyStateRouting {
 
   final TfArg<String>? minimumHealthyTargetsPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_healthy_targets_count': ?minimumHealthyTargetsCount?.toTfJson(),
     'minimum_healthy_targets_percentage': ?minimumHealthyTargetsPercentage
@@ -468,6 +483,7 @@ final class AlbTargetGroupTargetHealthState {
 
   final TfArg<num>? unhealthyDrainingInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_unhealthy_connection_termination':
         enableUnhealthyConnectionTermination.toTfJson(),

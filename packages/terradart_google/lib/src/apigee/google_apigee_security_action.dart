@@ -43,12 +43,15 @@ sealed class ApigeeSecurityActionEffect {
       ApigeeSecurityActionEffectFlag;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -58,12 +61,15 @@ final class ApigeeSecurityActionEffectAllow extends ApigeeSecurityActionEffect {
 
   final ApigeeSecurityActionAllow allow;
 
+  @internal
   @override
   String get blockKey => 'allow';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'allow': allow.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'allow': TfArg.literal(allow.encode()),
@@ -76,12 +82,15 @@ final class ApigeeSecurityActionEffectDeny extends ApigeeSecurityActionEffect {
 
   final ApigeeSecurityActionDeny deny;
 
+  @internal
   @override
   String get blockKey => 'deny';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'deny': deny.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'deny': TfArg.literal(deny.encode()),
@@ -94,12 +103,15 @@ final class ApigeeSecurityActionEffectFlag extends ApigeeSecurityActionEffect {
 
   final ApigeeSecurityActionFlag flag;
 
+  @internal
   @override
   String get blockKey => 'flag';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'flag': flag.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'flag': TfArg.literal(flag.encode()),
@@ -124,12 +136,15 @@ sealed class ApigeeSecurityActionExpiration {
       ApigeeSecurityActionExpirationTtl;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -140,12 +155,15 @@ final class ApigeeSecurityActionExpirationExpireTime
 
   final TfArg<String> expireTime;
 
+  @internal
   @override
   String get blockKey => 'expire_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
 }
@@ -157,12 +175,15 @@ final class ApigeeSecurityActionExpirationTtl
 
   final TfArg<String> ttl;
 
+  @internal
   @override
   String get blockKey => 'ttl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ttl': ttl};
 }
@@ -173,6 +194,7 @@ final class ApigeeSecurityActionExpirationTtl
 final class ApigeeSecurityActionAllow {
   const ApigeeSecurityActionAllow();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -216,6 +238,7 @@ final class ApigeeSecurityActionConditionConfig {
 
   final TfArg<List<String>>? userAgents;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_tokens': ?accessTokens?.toTfJson(),
     'api_keys': ?apiKeys?.toTfJson(),
@@ -239,6 +262,7 @@ final class ApigeeSecurityActionDeny {
 
   final TfArg<num>? responseCode;
 
+  @internal
   Map<String, Object?> encode() => {'response_code': ?responseCode?.toTfJson()};
 }
 
@@ -250,6 +274,7 @@ final class ApigeeSecurityActionFlag {
 
   final List<ApigeeSecurityActionHeaders>? headers;
 
+  @internal
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
   };
@@ -265,6 +290,7 @@ final class ApigeeSecurityActionHeaders {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),

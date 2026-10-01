@@ -3,6 +3,11 @@
 /// Memorystore for Redis — instances, Cluster, and user-created PSC connections.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_redis_cluster.dart' show DataGoogleRedisCluster;
+export 'src/data/google_redis_cluster_acl_policy.dart'
+    show DataGoogleRedisClusterAclPolicy;
+export 'src/data/google_redis_instance.dart' show DataGoogleRedisInstance;
 export 'src/redis/google_redis_cluster.dart'
     show
         GoogleRedisCluster,

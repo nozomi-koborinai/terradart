@@ -73,6 +73,7 @@ prelude: |
     final RefTo<GoogleBigqueryDataset> datasetId;
     final TfArg<String> projectId;
 
+    @internal
     Map<String, Object?> encode() => {
           'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
           'project_id': projectId.toTfJson(),
@@ -95,6 +96,7 @@ prelude: |
     /// [BigqueryDatasetAccessDatasetTargetType.views]).
     final List<BigqueryDatasetAccessDatasetTargetType> targetTypes;
 
+    @internal
     Map<String, Object?> encode() => {
           'dataset': dataset.encode(),
           'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
@@ -114,6 +116,7 @@ prelude: |
     final TfArg<String> projectId;
     final TfArg<String> tableId;
 
+    @internal
     Map<String, Object?> encode() => {
           'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
           'project_id': projectId.toTfJson(),
@@ -135,6 +138,7 @@ prelude: |
     final TfArg<String> projectId;
     final TfArg<String> routineId;
 
+    @internal
     Map<String, Object?> encode() => {
           'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
           'project_id': projectId.toTfJson(),

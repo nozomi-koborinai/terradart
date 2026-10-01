@@ -33,6 +33,7 @@ final class S3BucketNotificationLambdaFunction {
 
   final RefTo<AwsLambdaFunction>? lambdaFunctionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
     'filter_prefix': ?filterPrefix?.toTfJson(),
@@ -64,6 +65,7 @@ final class S3BucketNotificationQueue {
 
   final TfArg<String> queueArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
     'filter_prefix': ?filterPrefix?.toTfJson(),
@@ -95,6 +97,7 @@ final class S3BucketNotificationTopic {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
     'filter_prefix': ?filterPrefix?.toTfJson(),

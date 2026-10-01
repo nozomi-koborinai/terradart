@@ -32,12 +32,15 @@ sealed class DataLossPreventionStoredInfoTypeDefinition {
   ) = DataLossPreventionStoredInfoTypeDefinitionLargeCustomDictionary;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -48,12 +51,15 @@ final class DataLossPreventionStoredInfoTypeDefinitionDictionary
 
   final DataLossPreventionStoredInfoTypeDictionary dictionary;
 
+  @internal
   @override
   String get blockKey => 'dictionary';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'dictionary': dictionary.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'dictionary': TfArg.literal(dictionary.encode()),
@@ -67,12 +73,15 @@ final class DataLossPreventionStoredInfoTypeDefinitionRegex
 
   final DataLossPreventionStoredInfoTypeRegex regex;
 
+  @internal
   @override
   String get blockKey => 'regex';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'regex': regex.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'regex': TfArg.literal(regex.encode()),
@@ -89,14 +98,17 @@ final class DataLossPreventionStoredInfoTypeDefinitionLargeCustomDictionary
   final DataLossPreventionStoredInfoTypeLargeCustomDictionary
   largeCustomDictionary;
 
+  @internal
   @override
   String get blockKey => 'large_custom_dictionary';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'large_custom_dictionary': largeCustomDictionary.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'large_custom_dictionary': TfArg.literal(largeCustomDictionary.encode()),
@@ -121,8 +133,10 @@ sealed class DataLossPreventionStoredInfoTypeDictionary {
   ) = DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -133,9 +147,11 @@ final class DataLossPreventionStoredInfoTypeDictionaryWordList
 
   final DataLossPreventionStoredInfoTypeWordList wordList;
 
+  @internal
   @override
   String get blockKey => 'word_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'word_list': wordList.encode()};
 }
@@ -149,9 +165,11 @@ final class DataLossPreventionStoredInfoTypeDictionaryCloudStoragePath
 
   final DataLossPreventionStoredInfoTypeCloudStoragePath cloudStoragePath;
 
+  @internal
   @override
   String get blockKey => 'cloud_storage_path';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_storage_path': cloudStoragePath.encode(),
@@ -166,6 +184,7 @@ final class DataLossPreventionStoredInfoTypeCloudStoragePath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -177,6 +196,7 @@ final class DataLossPreventionStoredInfoTypeWordList {
 
   final TfArg<List<String>> words;
 
+  @internal
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
@@ -193,6 +213,7 @@ final class DataLossPreventionStoredInfoTypeLargeCustomDictionary {
 
   final DataLossPreventionStoredInfoTypeOutputPath outputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     ...source.encode(),
     'output_path': outputPath.encode(),
@@ -217,8 +238,10 @@ sealed class DataLossPreventionStoredInfoTypeSource {
   ) = DataLossPreventionStoredInfoTypeSourceBigQueryField;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -231,9 +254,11 @@ final class DataLossPreventionStoredInfoTypeSourceCloudStorageFileSet
 
   final DataLossPreventionStoredInfoTypeCloudStorageFileSet cloudStorageFileSet;
 
+  @internal
   @override
   String get blockKey => 'cloud_storage_file_set';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_storage_file_set': cloudStorageFileSet.encode(),
@@ -247,9 +272,11 @@ final class DataLossPreventionStoredInfoTypeSourceBigQueryField
 
   final DataLossPreventionStoredInfoTypeBigQueryField bigQueryField;
 
+  @internal
   @override
   String get blockKey => 'big_query_field';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'big_query_field': bigQueryField.encode()};
 }
@@ -267,6 +294,7 @@ final class DataLossPreventionStoredInfoTypeBigQueryField {
 
   final DataLossPreventionStoredInfoTypeTable table;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': field.encode(),
     'table': table.encode(),
@@ -281,6 +309,7 @@ final class DataLossPreventionStoredInfoTypeField {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -300,6 +329,7 @@ final class DataLossPreventionStoredInfoTypeTable {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -317,6 +347,7 @@ final class DataLossPreventionStoredInfoTypeCloudStorageFileSet {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
 
@@ -328,6 +359,7 @@ final class DataLossPreventionStoredInfoTypeOutputPath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -344,6 +376,7 @@ final class DataLossPreventionStoredInfoTypeRegex {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),

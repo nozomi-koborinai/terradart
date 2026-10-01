@@ -66,6 +66,7 @@ final class ApigeeSecurityFeedbackContexts {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': attribute.toTfJson(),
     'values': values.toTfJson(),

@@ -20,6 +20,7 @@ final class WafregionalSqlInjectionMatchSetSqlInjectionMatchTuple {
 
   final WafregionalSqlInjectionMatchSetFieldToMatch fieldToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'text_transformation': textTransformation.toTfJson(),
     'field_to_match': fieldToMatch.encode(),
@@ -39,6 +40,7 @@ final class WafregionalSqlInjectionMatchSetFieldToMatch {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'type': type.toTfJson(),

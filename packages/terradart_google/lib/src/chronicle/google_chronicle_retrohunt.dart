@@ -20,6 +20,7 @@ final class ChronicleRetrohuntProcessInterval {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': endTime.toTfJson(),
     'start_time': startTime.toTfJson(),

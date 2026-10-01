@@ -3,6 +3,8 @@
 /// AWS Elemental MediaConvert, MediaPackage, and MediaStore.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_media_convert_queue.dart' show DataAwsMediaConvertQueue;
 export 'src/media/aws_media_convert_queue.dart'
     show
         AwsMediaConvertQueue,

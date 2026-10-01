@@ -224,8 +224,10 @@ prelude: |
       BigqueryConnectionConfigurationNetwork? network,
     }) = BigqueryConnectionConfiguration;
 
+    @internal
     String get blockKey;
 
+    @internal
     List<Map<String, Object?>> encode();
   }
 
@@ -294,9 +296,11 @@ prelude: |
     };
 
     @override
+    @internal
     String get blockKey => 'cloud_sql';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
@@ -366,9 +370,11 @@ prelude: |
     };
 
     @override
+    @internal
     String get blockKey => 'cloud_spanner';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
@@ -406,9 +412,11 @@ prelude: |
     };
 
     @override
+    @internal
     String get blockKey => 'aws';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
@@ -442,9 +450,11 @@ prelude: |
     };
 
     @override
+    @internal
     String get blockKey => 'azure';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
@@ -465,9 +475,11 @@ prelude: |
     Map<String, Object?> toArgMap() => const <String, Object?>{};
 
     @override
+    @internal
     String get blockKey => 'cloud_resource';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
@@ -539,9 +551,11 @@ prelude: |
     };
 
     @override
+    @internal
     String get blockKey => 'spark';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
@@ -722,9 +736,11 @@ prelude: |
     };
 
     @override
+    @internal
     String get blockKey => 'configuration';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [toArgMap()];
   }
 

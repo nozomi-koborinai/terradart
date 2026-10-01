@@ -29,6 +29,7 @@ final class ApiGatewayDocumentationPartLocation {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     'name': ?name?.toTfJson(),

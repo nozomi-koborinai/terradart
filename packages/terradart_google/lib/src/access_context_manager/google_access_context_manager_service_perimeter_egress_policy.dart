@@ -32,6 +32,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFrom {
 
   final List<AccessContextManagerServicePerimeterEgressPolicySources>? sources;
 
+  @internal
   Map<String, Object?> encode() => {
     'identities': ?identities?.toTfJson(),
     'identity_type': ?identityType?.toTfJson(),
@@ -127,6 +128,7 @@ final class AccessContextManagerServicePerimeterEgressPolicySources {
   final AccessContextManagerServicePerimeterEgressPolicyPscEndpoint?
   pscEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_level': ?accessLevel?.toTfJson(),
     'resource': ?resource?.toTfJson(),
@@ -144,6 +146,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyPscEndpoint {
 
   final TfArg<String>? forwardingRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
@@ -169,6 +172,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressTo {
   final List<AccessContextManagerServicePerimeterEgressPolicyOperations>?
   operations;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_resources': ?externalResources?.toTfJson(),
     'resources': ?resources?.toTfJson(),
@@ -192,6 +196,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyOperations {
   final List<AccessContextManagerServicePerimeterEgressPolicyMethodSelectors>?
   methodSelectors;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
@@ -212,6 +217,7 @@ final class AccessContextManagerServicePerimeterEgressPolicyMethodSelectors {
 
   final TfArg<String>? permission;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     'permission': ?permission?.toTfJson(),

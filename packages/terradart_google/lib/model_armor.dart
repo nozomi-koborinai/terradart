@@ -4,6 +4,7 @@
 /// filters for screening LLM prompts and responses.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/model_armor/google_model_armor_floorsetting.dart'
     show
         GoogleModelArmorFloorsetting,

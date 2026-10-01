@@ -17,6 +17,7 @@ final class DataLoadBalancerPoolFilter {
 
   final TfArg<String>? monitor;
 
+  @internal
   Map<String, Object?> encode() => {'monitor': ?monitor?.toTfJson()};
 }
 

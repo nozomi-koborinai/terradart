@@ -19,6 +19,7 @@ final class DataZeroTrustDexTestFilter {
 
   final TfArg<String>? testName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kind': ?kind?.toTfJson(),
     'test_name': ?testName?.toTfJson(),
@@ -47,6 +48,7 @@ extension type const DataZeroTrustDexTestKind._(TfArg<String> _)
 final class DataZeroTrustDexTestTargetPolicies {
   const DataZeroTrustDexTestTargetPolicies();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

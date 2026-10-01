@@ -83,6 +83,7 @@ final class HealthcheckHttpConfig {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
     'expected_body': ?expectedBody?.toTfJson(),
@@ -120,6 +121,7 @@ final class HealthcheckTcpConfig {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     'port': ?port?.toTfJson(),

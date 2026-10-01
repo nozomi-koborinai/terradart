@@ -41,6 +41,7 @@ final class StorageTransferAgentPoolBandwidthLimit {
 
   final TfArg<String> limitMbps;
 
+  @internal
   Map<String, Object?> encode() => {'limit_mbps': limitMbps.toTfJson()};
 }
 

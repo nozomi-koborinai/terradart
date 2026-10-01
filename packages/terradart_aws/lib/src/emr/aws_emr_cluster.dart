@@ -91,12 +91,15 @@ sealed class EmrClusterConfigurations {
   ) = EmrClusterConfigurationsJson;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -106,14 +109,17 @@ final class EmrClusterConfigurationsChoice extends EmrClusterConfigurations {
 
   final TfArg<String> configurations;
 
+  @internal
   @override
   String get blockKey => 'configurations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'configurations': configurations.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'configurations': configurations};
 }
@@ -124,14 +130,17 @@ final class EmrClusterConfigurationsJson extends EmrClusterConfigurations {
 
   final TfArg<String> configurationsJson;
 
+  @internal
   @override
   String get blockKey => 'configurations_json';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'configurations_json': configurationsJson.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'configurations_json': configurationsJson,
@@ -146,6 +155,7 @@ final class EmrClusterAutoTerminationPolicy {
 
   final TfArg<num>? idleTimeout;
 
+  @internal
   Map<String, Object?> encode() => {'idle_timeout': ?idleTimeout?.toTfJson()};
 }
 
@@ -165,6 +175,7 @@ final class EmrClusterBootstrapAction {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'name': name.toTfJson(),
@@ -194,6 +205,7 @@ final class EmrClusterCoreInstanceFleet {
 
   final EmrClusterLaunchSpecifications? launchSpecifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'target_on_demand_capacity': ?targetOnDemandCapacity?.toTfJson(),
@@ -229,6 +241,7 @@ final class EmrClusterInstanceTypeConfigs {
 
   final List<EmrClusterInstanceTypeConfigsEbsConfig>? ebsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bid_price': ?bidPrice?.toTfJson(),
     'bid_price_as_percentage_of_on_demand_price':
@@ -260,6 +273,7 @@ final class EmrClusterInstanceTypeConfigsEbsConfig {
 
   final TfArg<num>? volumesPerInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
@@ -282,6 +296,7 @@ final class EmrClusterLaunchSpecifications {
 
   final List<EmrClusterSpotSpecification>? spotSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     if (onDemandSpecification != null)
       'on_demand_specification': [
@@ -301,6 +316,7 @@ final class EmrClusterOnDemandSpecification {
 
   final TfArg<String> allocationStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
   };
@@ -326,6 +342,7 @@ final class EmrClusterSpotSpecification {
 
   final TfArg<num> timeoutDurationMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
     'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
@@ -359,6 +376,7 @@ final class EmrClusterCoreInstanceGroup {
 
   final List<EmrClusterEbsConfig>? ebsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoscaling_policy': ?autoscalingPolicy?.toTfJson(),
     'bid_price': ?bidPrice?.toTfJson(),
@@ -393,6 +411,7 @@ final class EmrClusterEbsConfig {
 
   final TfArg<num>? volumesPerInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
@@ -433,6 +452,7 @@ final class EmrClusterEc2Attributes {
 
   final EmrClusterSubnet? subnet;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_master_security_groups': ?additionalMasterSecurityGroups
         ?.toTfJson(),
@@ -467,8 +487,10 @@ sealed class EmrClusterSubnet {
   ) = EmrClusterSubnetIds;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -478,9 +500,11 @@ final class EmrClusterSubnetId extends EmrClusterSubnet {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   @override
   String get blockKey => 'subnet_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
@@ -493,9 +517,11 @@ final class EmrClusterSubnetIds extends EmrClusterSubnet {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   @override
   String get blockKey => 'subnet_ids';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
@@ -524,6 +550,7 @@ final class EmrClusterKerberosAttributes {
 
   final TfArg<String> realm;
 
+  @internal
   Map<String, Object?> encode() => {
     'ad_domain_join_password': ?adDomainJoinPassword?.toTfJson(),
     'ad_domain_join_user': ?adDomainJoinUser?.toTfJson(),
@@ -556,6 +583,7 @@ final class EmrClusterMasterInstanceFleet {
 
   final EmrClusterLaunchSpecifications? launchSpecifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'target_on_demand_capacity': ?targetOnDemandCapacity?.toTfJson(),
@@ -590,6 +618,7 @@ final class EmrClusterMasterInstanceGroup {
 
   final List<EmrClusterEbsConfig>? ebsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bid_price': ?bidPrice?.toTfJson(),
     'instance_count': ?instanceCount?.toTfJson(),

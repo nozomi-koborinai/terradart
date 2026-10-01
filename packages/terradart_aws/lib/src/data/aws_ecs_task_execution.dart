@@ -27,6 +27,7 @@ final class DataEcsTaskExecutionCapacityProviderStrategy {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
@@ -50,6 +51,7 @@ final class DataEcsTaskExecutionNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
@@ -79,6 +81,7 @@ final class DataEcsTaskExecutionOverrides {
 
   final List<DataEcsTaskExecutionContainerOverrides>? containerOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
@@ -117,6 +120,7 @@ final class DataEcsTaskExecutionContainerOverrides {
 
   final List<DataEcsTaskExecutionResourceRequirements>? resourceRequirements;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
     'cpu': ?cpu?.toTfJson(),
@@ -145,6 +149,7 @@ final class DataEcsTaskExecutionEnvironment {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -164,6 +169,7 @@ final class DataEcsTaskExecutionResourceRequirements {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -183,6 +189,7 @@ final class DataEcsTaskExecutionPlacementConstraints {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
@@ -199,6 +206,7 @@ final class DataEcsTaskExecutionPlacementStrategy {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'type': type.toTfJson(),

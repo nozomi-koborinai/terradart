@@ -235,6 +235,10 @@ barrels:
   data:
     doc: |-
       /// AWS data sources (read-only lookups).
+      ///
+      /// Every data source is also exported from its service barrel
+      /// (`DataAwsAmi` from `ec2.dart`); import this one for data sources of
+      /// several services, or of none.
   dataexchange:
     doc: |-
       /// AWS Data Exchange.

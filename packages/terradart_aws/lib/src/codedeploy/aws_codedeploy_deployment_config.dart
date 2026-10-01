@@ -45,6 +45,7 @@ final class CodedeployDeploymentConfigMinimumHealthyHosts {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -87,6 +88,7 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
 
   final CodedeployDeploymentConfigTimeBased? timeBased;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     ...?timeBased?.encode(),
@@ -112,8 +114,10 @@ sealed class CodedeployDeploymentConfigTimeBased {
   ) = CodedeployDeploymentConfigTimeBasedLinearChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -124,9 +128,11 @@ final class CodedeployDeploymentConfigTimeBasedCanaryChoice
 
   final CodedeployDeploymentConfigTimeBasedCanary timeBasedCanary;
 
+  @internal
   @override
   String get blockKey => 'time_based_canary';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'time_based_canary': timeBasedCanary.encode(),
@@ -140,9 +146,11 @@ final class CodedeployDeploymentConfigTimeBasedLinearChoice
 
   final CodedeployDeploymentConfigTimeBasedLinear timeBasedLinear;
 
+  @internal
   @override
   String get blockKey => 'time_based_linear';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'time_based_linear': timeBasedLinear.encode(),
@@ -190,6 +198,7 @@ final class CodedeployDeploymentConfigTimeBasedCanary {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval': ?interval?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -209,6 +218,7 @@ final class CodedeployDeploymentConfigTimeBasedLinear {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval': ?interval?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -232,6 +242,7 @@ final class CodedeployDeploymentConfigZonalConfig {
   final CodedeployDeploymentConfigMinimumHealthyHostsPerZone?
   minimumHealthyHostsPerZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'first_zone_monitor_duration_in_seconds': ?firstZoneMonitorDurationInSeconds
         ?.toTfJson(),
@@ -253,6 +264,7 @@ final class CodedeployDeploymentConfigMinimumHealthyHostsPerZone {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),

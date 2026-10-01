@@ -23,6 +23,7 @@ final class WafRateBasedRulePredicates {
 
   final WafRateBasedRuleType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
     'negated': negated.toTfJson(),

@@ -51,6 +51,7 @@ final class PrometheusScraperLoggingConfigurationLoggingDestination {
   final List<PrometheusScraperLoggingConfigurationCloudwatchLogs>?
   cloudwatchLogs;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cloudwatchLogs != null)
       'cloudwatch_logs': [for (final e in cloudwatchLogs!) e.encode()],
@@ -67,6 +68,7 @@ final class PrometheusScraperLoggingConfigurationCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
   };

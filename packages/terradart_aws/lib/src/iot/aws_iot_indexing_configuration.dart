@@ -23,6 +23,7 @@ final class IotIndexingConfigurationThingGroupIndexingConfiguration {
 
   final List<IotIndexingConfigurationManagedField>? managedField;
 
+  @internal
   Map<String, Object?> encode() => {
     'thing_group_indexing_mode': thingGroupIndexingMode.toTfJson(),
     if (customField != null)
@@ -67,6 +68,7 @@ final class IotIndexingConfigurationCustomField {
 
   final IotIndexingConfigurationType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -106,6 +108,7 @@ final class IotIndexingConfigurationManagedField {
 
   final IotIndexingConfigurationType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -143,6 +146,7 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
 
   final List<IotIndexingConfigurationManagedField>? managedField;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_defender_indexing_mode': ?deviceDefenderIndexingMode?.toTfJson(),
     'named_shadow_indexing_mode': ?namedShadowIndexingMode?.toTfJson(),
@@ -265,6 +269,7 @@ final class IotIndexingConfigurationFilter {
 
   final TfArg<List<String>>? namedShadowNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'named_shadow_names': ?namedShadowNames?.toTfJson(),
   };

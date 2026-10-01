@@ -12,6 +12,19 @@
 /// use scope-prefixed names to avoid barrel-export collision.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_logging_folder_settings.dart'
+    show DataGoogleLoggingFolderSettings;
+export 'src/data/google_logging_log_view.dart' show DataGoogleLoggingLogView;
+export 'src/data/google_logging_log_view_iam_policy.dart'
+    show DataGoogleLoggingLogViewIamPolicy;
+export 'src/data/google_logging_organization_settings.dart'
+    show DataGoogleLoggingOrganizationSettings;
+export 'src/data/google_logging_project_cmek_settings.dart'
+    show DataGoogleLoggingProjectCmekSettings;
+export 'src/data/google_logging_project_settings.dart'
+    show DataGoogleLoggingProjectSettings;
+export 'src/data/google_logging_sink.dart' show DataGoogleLoggingSink;
 export 'src/logging/google_logging_billing_account_bucket_config.dart'
     show
         GoogleLoggingBillingAccountBucketConfig,

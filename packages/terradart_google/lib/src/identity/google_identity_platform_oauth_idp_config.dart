@@ -17,6 +17,7 @@ final class IdentityPlatformOauthIdpConfigResponseType {
 
   final TfArg<bool>? idToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': ?code?.toTfJson(),
     'id_token': ?idToken?.toTfJson(),

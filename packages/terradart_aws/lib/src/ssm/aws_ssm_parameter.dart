@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -91,12 +92,15 @@ sealed class SsmParameterValue {
       SsmParameterValueWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -106,12 +110,15 @@ final class SsmParameterInsecureValue extends SsmParameterValue {
 
   final TfArg<String> insecureValue;
 
+  @internal
   @override
   String get blockKey => 'insecure_value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'insecure_value': insecureValue.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'insecure_value': insecureValue};
 }
@@ -122,12 +129,15 @@ final class SsmParameterValueChoice extends SsmParameterValue {
 
   final Sensitive<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'value': value};
 }
@@ -138,12 +148,15 @@ final class SsmParameterValueWo extends SsmParameterValue {
 
   final Sensitive<String> valueWo;
 
+  @internal
   @override
   String get blockKey => 'value_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value_wo': valueWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'value_wo': valueWo};
 }

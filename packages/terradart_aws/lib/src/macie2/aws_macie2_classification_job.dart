@@ -70,12 +70,15 @@ sealed class Macie2ClassificationJobName {
   ) = Macie2ClassificationJobNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -86,12 +89,15 @@ final class Macie2ClassificationJobNameChoice
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -103,12 +109,15 @@ final class Macie2ClassificationJobNamePrefix
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -123,6 +132,7 @@ final class Macie2ClassificationJobS3JobDefinition {
 
   final Macie2ClassificationJobScoping? scoping;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?bucket?.encode(),
     'scoping': ?scoping?.encode(),
@@ -148,8 +158,10 @@ sealed class Macie2ClassificationJobBucket {
   ) = Macie2ClassificationJobBucketDefinitionsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -160,9 +172,11 @@ final class Macie2ClassificationJobBucketCriteriaChoice
 
   final Macie2ClassificationJobBucketCriteria bucketCriteria;
 
+  @internal
   @override
   String get blockKey => 'bucket_criteria';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'bucket_criteria': bucketCriteria.encode()};
 }
@@ -174,9 +188,11 @@ final class Macie2ClassificationJobBucketDefinitionsChoice
 
   final List<Macie2ClassificationJobBucketDefinitions> bucketDefinitions;
 
+  @internal
   @override
   String get blockKey => 'bucket_definitions';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bucket_definitions': [for (final e in bucketDefinitions) e.encode()],
@@ -193,6 +209,7 @@ final class Macie2ClassificationJobBucketCriteria {
 
   final Macie2ClassificationJobBucketCriteriaIncludes? includes;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.encode(),
     'includes': ?includes?.encode(),
@@ -207,6 +224,7 @@ final class Macie2ClassificationJobBucketCriteriaExcludes {
 
   final List<Macie2ClassificationJobBucketCriteriaAnd>? and;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
   };
@@ -226,6 +244,7 @@ final class Macie2ClassificationJobBucketCriteriaAnd {
 
   final Macie2ClassificationJobTagCriterion? tagCriterion;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_criterion': ?simpleCriterion?.encode(),
     'tag_criterion': ?tagCriterion?.encode(),
@@ -249,6 +268,7 @@ final class Macie2ClassificationJobSimpleCriterion {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -301,6 +321,7 @@ final class Macie2ClassificationJobTagCriterion {
 
   final List<Macie2ClassificationJobTagValues>? tagValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
     if (tagValues != null)
@@ -319,6 +340,7 @@ final class Macie2ClassificationJobTagValues {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -333,6 +355,7 @@ final class Macie2ClassificationJobBucketCriteriaIncludes {
 
   final List<Macie2ClassificationJobBucketCriteriaAnd>? and;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
   };
@@ -351,6 +374,7 @@ final class Macie2ClassificationJobBucketDefinitions {
 
   final TfArg<List<String>> buckets;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),
     'buckets': buckets.toTfJson(),
@@ -367,6 +391,7 @@ final class Macie2ClassificationJobScoping {
 
   final Macie2ClassificationJobScopingIncludes? includes;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.encode(),
     'includes': ?includes?.encode(),
@@ -381,6 +406,7 @@ final class Macie2ClassificationJobScopingExcludes {
 
   final List<Macie2ClassificationJobScopingAnd>? and;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
   };
@@ -399,6 +425,7 @@ final class Macie2ClassificationJobScopingAnd {
 
   final Macie2ClassificationJobExcludesTagScopeTerm? tagScopeTerm;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_scope_term': ?simpleScopeTerm?.encode(),
     'tag_scope_term': ?tagScopeTerm?.encode(),
@@ -421,6 +448,7 @@ final class Macie2ClassificationJobExcludesSimpleScopeTerm {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -480,6 +508,7 @@ final class Macie2ClassificationJobExcludesTagScopeTerm {
 
   final List<Macie2ClassificationJobTagValues>? tagValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -530,6 +559,7 @@ final class Macie2ClassificationJobScopingIncludes {
 
   final List<Macie2ClassificationJobIncludesAnd>? and;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
   };
@@ -548,6 +578,7 @@ final class Macie2ClassificationJobIncludesAnd {
 
   final Macie2ClassificationJobIncludesTagScopeTerm? tagScopeTerm;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_scope_term': ?simpleScopeTerm?.encode(),
     'tag_scope_term': ?tagScopeTerm?.encode(),
@@ -570,6 +601,7 @@ final class Macie2ClassificationJobIncludesSimpleScopeTerm {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -596,6 +628,7 @@ final class Macie2ClassificationJobIncludesTagScopeTerm {
 
   final List<Macie2ClassificationJobTagValues>? tagValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparator': ?comparator?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -629,8 +662,10 @@ sealed class Macie2ClassificationJobScheduleFrequency {
   ) = Macie2ClassificationJobScheduleFrequencyWeeklySchedule;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -643,9 +678,11 @@ final class Macie2ClassificationJobScheduleFrequencyDailySchedule
 
   final TfArg<bool> dailySchedule;
 
+  @internal
   @override
   String get blockKey => 'daily_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'daily_schedule': dailySchedule.toTfJson()};
 }
@@ -659,9 +696,11 @@ final class Macie2ClassificationJobScheduleFrequencyMonthlySchedule
 
   final TfArg<num> monthlySchedule;
 
+  @internal
   @override
   String get blockKey => 'monthly_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'monthly_schedule': monthlySchedule.toTfJson(),
@@ -677,9 +716,11 @@ final class Macie2ClassificationJobScheduleFrequencyWeeklySchedule
 
   final TfArg<String> weeklySchedule;
 
+  @internal
   @override
   String get blockKey => 'weekly_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'weekly_schedule': weeklySchedule.toTfJson(),

@@ -15,6 +15,7 @@ final class SagemakerModelCardExportJobOutputConfig {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {'s3_output_path': s3OutputPath.toTfJson()};
 }
 

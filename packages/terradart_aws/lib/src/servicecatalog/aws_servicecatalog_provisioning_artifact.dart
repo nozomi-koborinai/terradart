@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_servicecatalog_provisioning_artifact`.
@@ -116,12 +117,15 @@ sealed class ServicecatalogProvisioningArtifactTemplate {
   ) = ServicecatalogProvisioningArtifactTemplateUrl;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -134,14 +138,17 @@ final class ServicecatalogProvisioningArtifactTemplatePhysicalId
 
   final TfArg<String> templatePhysicalId;
 
+  @internal
   @override
   String get blockKey => 'template_physical_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'template_physical_id': templatePhysicalId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'template_physical_id': templatePhysicalId,
@@ -155,12 +162,15 @@ final class ServicecatalogProvisioningArtifactTemplateUrl
 
   final TfArg<String> templateUrl;
 
+  @internal
   @override
   String get blockKey => 'template_url';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'template_url': templateUrl.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'template_url': templateUrl};
 }

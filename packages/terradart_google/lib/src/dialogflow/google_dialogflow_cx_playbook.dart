@@ -38,6 +38,7 @@ final class DialogflowCxPlaybookInstruction {
 
   final List<DialogflowCxPlaybookSteps>? steps;
 
+  @internal
   Map<String, Object?> encode() => {
     'guidelines': ?guidelines?.toTfJson(),
     if (steps != null) 'steps': [for (final e in steps!) e.encode()],
@@ -54,6 +55,7 @@ final class DialogflowCxPlaybookSteps {
 
   final TfArg<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'steps': ?steps?.toTfJson(),
     'text': ?text?.toTfJson(),
@@ -70,6 +72,7 @@ final class DialogflowCxPlaybookLlmModelSettings {
 
   final TfArg<String>? promptText;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'prompt_text': ?promptText?.toTfJson(),

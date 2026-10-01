@@ -26,6 +26,7 @@ final class DataEcrLifecyclePolicyDocumentRule {
 
   final List<DataEcrLifecyclePolicyDocumentSelection>? selection;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'priority': priority.toTfJson(),
@@ -48,6 +49,7 @@ final class DataEcrLifecyclePolicyDocumentAction {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_storage_class': ?targetStorageClass?.toTfJson(),
     'type': type.toTfJson(),
@@ -82,6 +84,7 @@ final class DataEcrLifecyclePolicyDocumentSelection {
 
   final TfArg<String> tagStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'count_number': countNumber.toTfJson(),
     'count_type': countType.toTfJson(),

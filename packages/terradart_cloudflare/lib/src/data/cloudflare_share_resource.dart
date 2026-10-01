@@ -19,6 +19,7 @@ final class DataShareResourceFilter {
 
   final DataShareResourceFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_type': ?resourceType?.toTfJson(),
     'status': ?status?.toTfJson(),

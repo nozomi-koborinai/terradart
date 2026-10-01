@@ -37,7 +37,6 @@ A `Stack` is one Terraform root module, written as a Dart class. This one runs a
 ```dart
 // docs:pitch:start
 // lib/orders_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
@@ -166,7 +165,6 @@ All of them build on [`terradart_core`](packages/terradart_core) ([![pub](https:
 import 'package:terradart_cloudflare/dns.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class EdgeStack extends Stack {
   EdgeStack({required String accountId}) : super(providers: [const CloudflareProvider()]) {

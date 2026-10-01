@@ -19,6 +19,7 @@ final class ZeroTrustDlpCustomProfileContextAwareness {
 
   final ZeroTrustDlpCustomProfileSkip? skip;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'skip': ?skip?.encode(),
@@ -33,6 +34,7 @@ final class ZeroTrustDlpCustomProfileSkip {
 
   final TfArg<bool>? files;
 
+  @internal
   Map<String, Object?> encode() => {'files': ?files?.toTfJson()};
 }
 
@@ -58,6 +60,7 @@ final class ZeroTrustDlpCustomProfileEntries {
 
   final ZeroTrustDlpCustomProfilePattern pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -80,6 +83,7 @@ final class ZeroTrustDlpCustomProfilePattern {
 
   final ZeroTrustDlpCustomProfileValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     'validation': ?validation?.toTfJson(),
@@ -116,6 +120,7 @@ final class ZeroTrustDlpCustomProfileSensitivityLevels {
 
   final TfArg<String> levelId;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_id': groupId.toTfJson(),
     'level_id': levelId.toTfJson(),
@@ -138,6 +143,7 @@ final class ZeroTrustDlpCustomProfileSharedEntries {
 
   final ZeroTrustDlpCustomProfileEntryType entryType;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'entry_id': entryId.toTfJson(),

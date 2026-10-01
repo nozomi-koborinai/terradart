@@ -271,6 +271,7 @@ final class TransferServerEndpointDetails {
 
   final RefTo<AwsVpc>? vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_allocation_ids': ?addressAllocationIds?.toTfJson(),
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
@@ -299,6 +300,7 @@ final class TransferServerProtocolDetails {
 
   final TransferServerTlsSessionResumptionMode? tlsSessionResumptionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (as2Transports != null)
       'as2_transports': [for (final e in as2Transports!) e.toTfJson()],
@@ -380,6 +382,7 @@ final class TransferServerS3StorageOptions {
   final TransferServerDirectoryListingOptimization?
   directoryListingOptimization;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_listing_optimization': ?directoryListingOptimization?.toTfJson(),
   };
@@ -419,6 +422,7 @@ final class TransferServerWorkflowDetails {
 
   final TransferServerOnUpload? onUpload;
 
+  @internal
   Map<String, Object?> encode() => {
     'on_partial_upload': ?onPartialUpload?.encode(),
     'on_upload': ?onUpload?.encode(),
@@ -438,6 +442,7 @@ final class TransferServerOnPartialUpload {
 
   final TfArg<String> workflowId;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_role': executionRole.toTfJson(),
     'workflow_id': workflowId.toTfJson(),
@@ -457,6 +462,7 @@ final class TransferServerOnUpload {
 
   final TfArg<String> workflowId;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_role': executionRole.toTfJson(),
     'workflow_id': workflowId.toTfJson(),

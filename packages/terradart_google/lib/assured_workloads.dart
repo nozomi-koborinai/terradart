@@ -5,6 +5,7 @@
 /// folder tree; apply-excluded leftover factory.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/assured_workloads/google_assured_workloads_workload.dart'
     show
         AssuredWorkloadsWorkloadComplianceRegime,

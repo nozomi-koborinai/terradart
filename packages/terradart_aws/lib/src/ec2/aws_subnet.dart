@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_vpc.dart' show AwsVpc;
@@ -50,12 +51,15 @@ sealed class SubnetAvailabilityZone {
   ) = SubnetAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,14 +69,17 @@ final class SubnetAvailabilityZoneChoice extends SubnetAvailabilityZone {
 
   final TfArg<String> availabilityZone;
 
+  @internal
   @override
   String get blockKey => 'availability_zone';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zone': availabilityZone.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'availability_zone': availabilityZone,
@@ -85,14 +92,17 @@ final class SubnetAvailabilityZoneId extends SubnetAvailabilityZone {
 
   final TfArg<String> availabilityZoneId;
 
+  @internal
   @override
   String get blockKey => 'availability_zone_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zone_id': availabilityZoneId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'availability_zone_id': availabilityZoneId,
@@ -116,12 +126,15 @@ sealed class SubnetIpv6 {
       SubnetIpv6NetmaskLength;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -131,14 +144,17 @@ final class SubnetIpv6CidrBlock extends SubnetIpv6 {
 
   final TfArg<String> ipv6CidrBlock;
 
+  @internal
   @override
   String get blockKey => 'ipv6_cidr_block';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv6_cidr_block': ipv6CidrBlock.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ipv6_cidr_block': ipv6CidrBlock};
 }
@@ -149,14 +165,17 @@ final class SubnetIpv6NetmaskLength extends SubnetIpv6 {
 
   final TfArg<num> ipv6NetmaskLength;
 
+  @internal
   @override
   String get blockKey => 'ipv6_netmask_length';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv6_netmask_length': ipv6NetmaskLength.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ipv6_netmask_length': ipv6NetmaskLength,

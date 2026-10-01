@@ -1,7 +1,6 @@
 /// Oracle DB System quickstart — VPC, ODB network, subnet, Base Database.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/oracle.dart';
 import 'package:terradart_google/project.dart';

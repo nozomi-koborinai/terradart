@@ -43,6 +43,7 @@ final class DatasyncLocationEfsEc2Config {
 
   final TfArg<String> subnetArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_arns': securityGroupArns.toTfJson(),
     'subnet_arn': subnetArn.toTfJson(),

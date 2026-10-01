@@ -65,6 +65,7 @@ final class OracleDatabaseCloudExadataInfrastructureProperties {
   final OracleDatabaseCloudExadataInfrastructureMaintenanceWindow?
   maintenanceWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_count': ?computeCount?.toTfJson(),
     'shape': shape.toTfJson(),
@@ -86,6 +87,7 @@ final class OracleDatabaseCloudExadataInfrastructureCustomerContacts {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {'email': email.toTfJson()};
 }
 
@@ -123,6 +125,7 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<List<num>>? weeksOfMonth;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_action_timeout_mins': ?customActionTimeoutMins?.toTfJson(),
     'days_of_week': ?daysOfWeek?.toTfJson(),

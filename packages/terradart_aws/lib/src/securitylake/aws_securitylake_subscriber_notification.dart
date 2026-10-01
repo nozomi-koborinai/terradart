@@ -24,6 +24,7 @@ final class SecuritylakeSubscriberNotificationConfiguration {
   final List<SecuritylakeSubscriberNotificationSqsNotificationConfiguration>?
   sqsNotificationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (httpsNotificationConfiguration != null)
       'https_notification_configuration': [
@@ -58,6 +59,7 @@ final class SecuritylakeSubscriberNotificationHttpsNotificationConfiguration {
 
   final TfArg<String> targetRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_api_key_name': ?authorizationApiKeyName?.toTfJson(),
     'authorization_api_key_value': ?authorizationApiKeyValue?.toTfJson(),
@@ -97,6 +99,7 @@ extension type const SecuritylakeSubscriberNotificationHttpMethod._(
 final class SecuritylakeSubscriberNotificationSqsNotificationConfiguration {
   const SecuritylakeSubscriberNotificationSqsNotificationConfiguration();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

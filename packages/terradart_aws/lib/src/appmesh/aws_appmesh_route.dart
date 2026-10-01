@@ -29,6 +29,7 @@ final class AppmeshRouteSpec {
 
   final AppmeshRouteTcpRoute? tcpRoute;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': ?priority?.toTfJson(),
     'grpc_route': ?grpcRoute?.encode(),
@@ -57,6 +58,7 @@ final class AppmeshRouteGrpcRoute {
 
   final AppmeshRouteGrpcRouteTimeout? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': ?match?.encode(),
@@ -74,6 +76,7 @@ final class AppmeshRouteAction {
 
   final List<AppmeshRouteWeightedTarget> weightedTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'weighted_target': [for (final e in weightedTarget) e.encode()],
   };
@@ -96,6 +99,7 @@ final class AppmeshRouteWeightedTarget {
 
   final TfArg<num> weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'virtual_node': virtualNode.toTfJson(),
@@ -125,6 +129,7 @@ final class AppmeshRouteGrpcRouteMatch {
 
   final List<AppmeshRouteMetadata>? metadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'method_name': ?methodName?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -146,6 +151,7 @@ final class AppmeshRouteMetadata {
 
   final AppmeshRouteMetadataMatch? match;
 
+  @internal
   Map<String, Object?> encode() => {
     'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
@@ -176,6 +182,7 @@ final class AppmeshRouteMetadataMatch {
 
   final AppmeshRouteRange? range;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -196,6 +203,7 @@ final class AppmeshRouteRange {
 
   final TfArg<num> start;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': end.toTfJson(),
     'start': start.toTfJson(),
@@ -224,6 +232,7 @@ final class AppmeshRouteGrpcRouteRetryPolicy {
 
   final AppmeshRouteGrpcRoutePerRetryTimeout perRetryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'grpc_retry_events': ?grpcRetryEvents?.toTfJson(),
     'http_retry_events': ?httpRetryEvents?.toTfJson(),
@@ -246,6 +255,7 @@ final class AppmeshRouteGrpcRoutePerRetryTimeout {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -276,6 +286,7 @@ final class AppmeshRouteGrpcRouteTimeout {
 
   final AppmeshRouteGrpcRoutePerRequest? perRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
     'per_request': ?perRequest?.encode(),
@@ -293,6 +304,7 @@ final class AppmeshRouteGrpcRouteIdle {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -312,6 +324,7 @@ final class AppmeshRouteGrpcRoutePerRequest {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -337,6 +350,7 @@ final class AppmeshRouteHttp2Route {
 
   final AppmeshRouteHttp2RouteTimeout? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
@@ -374,6 +388,7 @@ final class AppmeshRouteHttp2RouteMatch {
 
   final List<AppmeshRouteQueryParameter>? queryParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -399,6 +414,7 @@ final class AppmeshRouteHeader {
 
   final AppmeshRouteMetadataMatch? match;
 
+  @internal
   Map<String, Object?> encode() => {
     'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
@@ -417,6 +433,7 @@ final class AppmeshRoutePath {
 
   final TfArg<String>? regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
     'regex': ?regex?.toTfJson(),
@@ -434,6 +451,7 @@ final class AppmeshRouteQueryParameter {
 
   final AppmeshRouteQueryParameterMatch? match;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'match': ?match?.encode(),
@@ -449,6 +467,7 @@ final class AppmeshRouteQueryParameterMatch {
 
   final TfArg<String>? exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
@@ -472,6 +491,7 @@ final class AppmeshRouteHttp2RouteRetryPolicy {
 
   final AppmeshRouteHttp2RoutePerRetryTimeout perRetryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_retry_events': ?httpRetryEvents?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
@@ -494,6 +514,7 @@ final class AppmeshRouteHttp2RoutePerRetryTimeout {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -511,6 +532,7 @@ final class AppmeshRouteHttp2RouteTimeout {
 
   final AppmeshRouteHttp2RoutePerRequest? perRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
     'per_request': ?perRequest?.encode(),
@@ -528,6 +550,7 @@ final class AppmeshRouteHttp2RouteIdle {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -548,6 +571,7 @@ final class AppmeshRouteHttp2RoutePerRequest {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -573,6 +597,7 @@ final class AppmeshRouteHttpRoute {
 
   final AppmeshRouteHttp2RouteTimeout? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
@@ -593,6 +618,7 @@ final class AppmeshRouteTcpRoute {
 
   final AppmeshRouteTcpRouteTimeout? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': ?match?.encode(),
@@ -608,6 +634,7 @@ final class AppmeshRouteTcpRouteMatch {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
 }
 
@@ -619,6 +646,7 @@ final class AppmeshRouteTcpRouteTimeout {
 
   final AppmeshRouteGrpcRouteIdle? idle;
 
+  @internal
   Map<String, Object?> encode() => {'idle': ?idle?.encode()};
 }
 

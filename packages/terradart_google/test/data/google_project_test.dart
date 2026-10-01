@@ -1,10 +1,9 @@
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('GoogleProject data source minimal — uses provider default project', () {
-    final dp = GoogleProject('current');
+  test('DataGoogleProject data source minimal — uses provider default project', () {
+    final dp = DataGoogleProject('current');
     expect(dp.terraformType, equals('google_project'));
     expect(dp.kind, equals(ResourceKind.data));
     expect(dp.argMap, isEmpty);
@@ -18,14 +17,14 @@ void main() {
     );
   });
 
-  test('GoogleProject with explicit project_id', () {
-    final dp = GoogleProject('host', projectId: TfArg.literal('host-project'));
+  test('DataGoogleProject with explicit project_id', () {
+    final dp = DataGoogleProject('host', projectId: TfArg.literal('host-project'));
     expect(dp.argMap.keys.toList(), equals(<String>['project_id']));
     expect(dp.argMap['project_id']!.toTfJson(), equals('host-project'));
   });
 
-  test('GoogleProject is a Data (not Resource)', () {
-    final dp = GoogleProject('current');
+  test('DataGoogleProject is a Data (not Resource)', () {
+    final dp = DataGoogleProject('current');
     expect(dp, isA<Data>());
     expect(dp.tfAddress, equals('data.google_project.current'));
   });

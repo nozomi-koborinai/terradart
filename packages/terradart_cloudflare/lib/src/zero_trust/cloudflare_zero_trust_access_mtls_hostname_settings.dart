@@ -27,6 +27,7 @@ final class ZeroTrustAccessMtlsHostnameSettings {
 
   final TfArg<String> hostname;
 
+  @internal
   Map<String, Object?> encode() => {
     'china_network': chinaNetwork.toTfJson(),
     'client_certificate_forwarding': clientCertificateForwarding.toTfJson(),

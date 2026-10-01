@@ -3,6 +3,7 @@
 /// AWS App Runner.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/apprunner/aws_apprunner_auto_scaling_configuration_version.dart'
     show AwsApprunnerAutoScalingConfigurationVersion;
 export 'src/apprunner/aws_apprunner_connection.dart'
@@ -52,3 +53,5 @@ export 'src/apprunner/aws_apprunner_vpc_ingress_connection.dart'
     show
         ApprunnerVpcIngressConnectionIngressVpcConfiguration,
         AwsApprunnerVpcIngressConnection;
+export 'src/data/aws_apprunner_hosted_zone_id.dart'
+    show DataAwsApprunnerHostedZoneId;

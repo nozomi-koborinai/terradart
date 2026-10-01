@@ -85,6 +85,7 @@ final class DataPipelinePipelineScheduleInfo {
 
   final TfArg<String>? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'schedule': ?schedule?.toTfJson(),
     'time_zone': ?timeZone?.toTfJson(),
@@ -106,6 +107,7 @@ final class DataPipelinePipelineWorkload {
   final DataPipelinePipelineDataflowLaunchTemplateRequest?
   dataflowLaunchTemplateRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataflow_flex_template_request': ?dataflowFlexTemplateRequest?.encode(),
     'dataflow_launch_template_request': ?dataflowLaunchTemplateRequest
@@ -132,6 +134,7 @@ final class DataPipelinePipelineDataflowFlexTemplateRequest {
 
   final DataPipelinePipelineLaunchParameter launchParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -168,6 +171,7 @@ final class DataPipelinePipelineLaunchParameter {
 
   final DataPipelinePipelineLaunchParameterEnvironment? environment;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_spec_gcs_path': ?containerSpecGcsPath?.toTfJson(),
     'job_name': jobName.toTfJson(),
@@ -234,6 +238,7 @@ final class DataPipelinePipelineLaunchParameterEnvironment {
 
   final TfArg<String>? zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_experiments': ?additionalExperiments?.toTfJson(),
     'additional_user_labels': ?additionalUserLabels?.toTfJson(),
@@ -329,6 +334,7 @@ final class DataPipelinePipelineDataflowLaunchTemplateRequest {
 
   final DataPipelinePipelineLaunchParameters? launchParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcs_path': ?gcsPath?.toTfJson(),
     'location': ?location?.toTfJson(),
@@ -360,6 +366,7 @@ final class DataPipelinePipelineLaunchParameters {
 
   final DataPipelinePipelineLaunchParametersEnvironment? environment;
 
+  @internal
   Map<String, Object?> encode() => {
     'job_name': jobName.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -424,6 +431,7 @@ final class DataPipelinePipelineLaunchParametersEnvironment {
 
   final TfArg<String>? zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_experiments': ?additionalExperiments?.toTfJson(),
     'additional_user_labels': ?additionalUserLabels?.toTfJson(),

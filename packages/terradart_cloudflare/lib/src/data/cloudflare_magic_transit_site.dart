@@ -17,6 +17,7 @@ final class DataMagicTransitSiteFilter {
 
   final TfArg<String>? connectorid;
 
+  @internal
   Map<String, Object?> encode() => {'connectorid': ?connectorid?.toTfJson()};
 }
 

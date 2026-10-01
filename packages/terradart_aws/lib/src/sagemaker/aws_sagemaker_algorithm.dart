@@ -33,6 +33,7 @@ final class SagemakerAlgorithmInferenceSpecification {
 
   final List<SagemakerAlgorithmContainers>? containers;
 
+  @internal
   Map<String, Object?> encode() => {
     'supported_content_types': ?supportedContentTypes?.toTfJson(),
     if (supportedRealtimeInferenceInstanceTypes != null)
@@ -2089,6 +2090,7 @@ final class SagemakerAlgorithmContainers {
 
   final List<SagemakerAlgorithmModelInput>? modelInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_hostname': ?containerHostname?.toTfJson(),
     'environment': ?environment?.toTfJson(),
@@ -2134,6 +2136,7 @@ final class SagemakerAlgorithmAdditionalS3DataSource {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': ?compressionType?.toTfJson(),
     'etag': ?etag?.toTfJson(),
@@ -2192,6 +2195,7 @@ final class SagemakerAlgorithmBaseModel {
 
   final TfArg<String>? recipeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'hub_content_name': ?hubContentName?.toTfJson(),
     'hub_content_version': ?hubContentVersion?.toTfJson(),
@@ -2207,6 +2211,7 @@ final class SagemakerAlgorithmModelDataSource {
 
   final List<SagemakerAlgorithmS3DataSource>? s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3DataSource != null)
       's3_data_source': [for (final e in s3DataSource!) e.encode()],
@@ -2244,6 +2249,7 @@ final class SagemakerAlgorithmS3DataSource {
 
   final List<SagemakerAlgorithmModelAccessConfig>? modelAccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': compressionType.toTfJson(),
     'etag': ?etag?.toTfJson(),
@@ -2290,6 +2296,7 @@ final class SagemakerAlgorithmHubAccessConfig {
 
   final TfArg<String>? hubContentArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'hub_content_arn': ?hubContentArn?.toTfJson(),
   };
@@ -2304,6 +2311,7 @@ final class SagemakerAlgorithmModelAccessConfig {
 
   final TfArg<bool>? acceptEula;
 
+  @internal
   Map<String, Object?> encode() => {'accept_eula': ?acceptEula?.toTfJson()};
 }
 
@@ -2315,6 +2323,7 @@ final class SagemakerAlgorithmModelInput {
 
   final TfArg<String>? dataInputConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_input_config': ?dataInputConfig?.toTfJson(),
   };
@@ -2357,6 +2366,7 @@ final class SagemakerAlgorithmTrainingSpecification {
 
   final List<SagemakerAlgorithmTrainingChannels>? trainingChannels;
 
+  @internal
   Map<String, Object?> encode() => {
     'supported_training_instance_types': [
       for (final e in supportedTrainingInstanceTypes) e.toTfJson(),
@@ -3141,6 +3151,7 @@ final class SagemakerAlgorithmMetricDefinitions {
 
   final TfArg<String> regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'regex': regex.toTfJson(),
@@ -3175,6 +3186,7 @@ final class SagemakerAlgorithmSupportedHyperParameters {
 
   final List<SagemakerAlgorithmRange>? range;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value': ?defaultValue?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -3237,6 +3249,7 @@ final class SagemakerAlgorithmRange {
   final List<SagemakerAlgorithmIntegerParameterRangeSpecification>?
   integerParameterRangeSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categoricalParameterRangeSpecification != null)
       'categorical_parameter_range_specification': [
@@ -3263,6 +3276,7 @@ final class SagemakerAlgorithmCategoricalParameterRangeSpecification {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -3279,6 +3293,7 @@ final class SagemakerAlgorithmContinuousParameterRangeSpecification {
 
   final TfArg<String> minValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': maxValue.toTfJson(),
     'min_value': minValue.toTfJson(),
@@ -3298,6 +3313,7 @@ final class SagemakerAlgorithmIntegerParameterRangeSpecification {
 
   final TfArg<String> minValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': maxValue.toTfJson(),
     'min_value': minValue.toTfJson(),
@@ -3317,6 +3333,7 @@ final class SagemakerAlgorithmSupportedTuningJobObjectiveMetrics {
 
   final SagemakerAlgorithmSupportedTuningJobObjectiveMetricsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'type': type.toTfJson(),
@@ -3375,6 +3392,7 @@ final class SagemakerAlgorithmTrainingChannels {
 
   final List<SagemakerAlgorithmSupportedInputModes> supportedInputModes;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'is_required': ?isRequired?.toTfJson(),
@@ -3454,6 +3472,7 @@ final class SagemakerAlgorithmValidationSpecification {
 
   final List<SagemakerAlgorithmValidationProfiles>? validationProfiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'validation_role': validationRole.toTfJson(),
     if (validationProfiles != null)
@@ -3477,6 +3496,7 @@ final class SagemakerAlgorithmValidationProfiles {
 
   final List<SagemakerAlgorithmTransformJobDefinition>? transformJobDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'profile_name': profileName.toTfJson(),
     if (trainingJobDefinition != null)
@@ -3515,6 +3535,7 @@ final class SagemakerAlgorithmTrainingJobDefinition {
 
   final List<SagemakerAlgorithmStoppingCondition>? stoppingCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'hyper_parameters': ?hyperParameters?.toTfJson(),
     'training_input_mode': trainingInputMode.toTfJson(),
@@ -3584,6 +3605,7 @@ final class SagemakerAlgorithmInputDataConfig {
 
   final List<SagemakerAlgorithmShuffleConfig>? shuffleConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
     'compression_type': ?compressionType?.toTfJson(),
@@ -3655,6 +3677,7 @@ final class SagemakerAlgorithmInputDataConfigDataSource {
 
   final List<SagemakerAlgorithmInputDataConfigS3DataSource>? s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fileSystemDataSource != null)
       'file_system_data_source': [
@@ -3684,6 +3707,7 @@ final class SagemakerAlgorithmFileSystemDataSource {
 
   final SagemakerAlgorithmFileSystemType fileSystemType;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
     'file_system_access_mode': fileSystemAccessMode.toTfJson(),
@@ -3757,6 +3781,7 @@ final class SagemakerAlgorithmInputDataConfigS3DataSource {
 
   final List<SagemakerAlgorithmModelAccessConfig>? modelAccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_names': ?attributeNames?.toTfJson(),
     'instance_group_names': ?instanceGroupNames?.toTfJson(),
@@ -3832,6 +3857,7 @@ final class SagemakerAlgorithmShuffleConfig {
 
   final TfArg<num> seed;
 
+  @internal
   Map<String, Object?> encode() => {'seed': seed.toTfJson()};
 }
 
@@ -3851,6 +3877,7 @@ final class SagemakerAlgorithmOutputDataConfig {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': ?compressionType?.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -3912,6 +3939,7 @@ final class SagemakerAlgorithmResourceConfig {
   final List<SagemakerAlgorithmInstancePlacementConfig>?
   instancePlacementConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -4567,6 +4595,7 @@ final class SagemakerAlgorithmInstanceGroups {
 
   final SagemakerAlgorithmResourceConfigInstanceType instanceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_group_name': instanceGroupName.toTfJson(),
@@ -4588,6 +4617,7 @@ final class SagemakerAlgorithmInstancePlacementConfig {
   final List<SagemakerAlgorithmPlacementSpecifications>?
   placementSpecifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_multiple_jobs': ?enableMultipleJobs?.toTfJson(),
     if (placementSpecifications != null)
@@ -4610,6 +4640,7 @@ final class SagemakerAlgorithmPlacementSpecifications {
 
   final TfArg<String>? ultraServerId;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'ultra_server_id': ?ultraServerId?.toTfJson(),
@@ -4632,6 +4663,7 @@ final class SagemakerAlgorithmStoppingCondition {
 
   final TfArg<num>? maxWaitTimeInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pending_time_in_seconds': ?maxPendingTimeInSeconds?.toTfJson(),
     'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
@@ -4667,6 +4699,7 @@ final class SagemakerAlgorithmTransformJobDefinition {
 
   final List<SagemakerAlgorithmTransformResources>? transformResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_strategy': ?batchStrategy?.toTfJson(),
     'environment': ?environment?.toTfJson(),
@@ -4722,6 +4755,7 @@ final class SagemakerAlgorithmTransformInput {
 
   final List<SagemakerAlgorithmTransformInputDataSource>? dataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': ?compressionType?.toTfJson(),
     'content_type': ?contentType?.toTfJson(),
@@ -4765,6 +4799,7 @@ final class SagemakerAlgorithmTransformInputDataSource {
 
   final List<SagemakerAlgorithmTransformInputS3DataSource>? s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3DataSource != null)
       's3_data_source': [for (final e in s3DataSource!) e.encode()],
@@ -4784,6 +4819,7 @@ final class SagemakerAlgorithmTransformInputS3DataSource {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -4809,6 +4845,7 @@ final class SagemakerAlgorithmTransformOutput {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'accept': ?accept?.toTfJson(),
     'assemble_with': ?assembleWith?.toTfJson(),
@@ -4851,6 +4888,7 @@ final class SagemakerAlgorithmTransformResources {
 
   final TfArg<String>? volumeKmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_type': instanceType.toTfJson(),

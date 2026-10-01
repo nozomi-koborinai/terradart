@@ -102,6 +102,7 @@ final class SecurityScannerScanConfigAuthentication {
 
   final SecurityScannerScanConfigGoogleAccount? googleAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_account': ?customAccount?.encode(),
     'google_account': ?googleAccount?.encode(),
@@ -124,6 +125,7 @@ final class SecurityScannerScanConfigCustomAccount {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'login_url': loginUrl.toTfJson(),
     'password': password.toTfJson(),
@@ -144,6 +146,7 @@ final class SecurityScannerScanConfigGoogleAccount {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -163,6 +166,7 @@ final class SecurityScannerScanConfigSchedule {
 
   final TfArg<String>? scheduleTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval_duration_days': intervalDurationDays.toTfJson(),
     'schedule_time': ?scheduleTime?.toTfJson(),

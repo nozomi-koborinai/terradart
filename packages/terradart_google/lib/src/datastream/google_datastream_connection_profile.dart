@@ -71,12 +71,15 @@ sealed class DatastreamConnectionProfileEndpoint {
   ) = DatastreamConnectionProfileEndpointMongodbProfile;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -87,12 +90,15 @@ final class DatastreamConnectionProfileEndpointOracleProfile
 
   final DatastreamConnectionProfileOracleProfile oracleProfile;
 
+  @internal
   @override
   String get blockKey => 'oracle_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oracle_profile': oracleProfile.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'oracle_profile': TfArg.literal(oracleProfile.encode()),
@@ -106,12 +112,15 @@ final class DatastreamConnectionProfileEndpointGcsProfile
 
   final DatastreamConnectionProfileGcsProfile gcsProfile;
 
+  @internal
   @override
   String get blockKey => 'gcs_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_profile': gcsProfile.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'gcs_profile': TfArg.literal(gcsProfile.encode()),
@@ -125,12 +134,15 @@ final class DatastreamConnectionProfileEndpointMysqlProfile
 
   final DatastreamConnectionProfileMysqlProfile mysqlProfile;
 
+  @internal
   @override
   String get blockKey => 'mysql_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'mysql_profile': mysqlProfile.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'mysql_profile': TfArg.literal(mysqlProfile.encode()),
@@ -146,14 +158,17 @@ final class DatastreamConnectionProfileEndpointBigqueryProfile
 
   final DatastreamConnectionProfileBigqueryProfile bigqueryProfile;
 
+  @internal
   @override
   String get blockKey => 'bigquery_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bigquery_profile': bigqueryProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'bigquery_profile': TfArg.literal(bigqueryProfile.encode()),
@@ -169,14 +184,17 @@ final class DatastreamConnectionProfileEndpointPostgresqlProfile
 
   final DatastreamConnectionProfilePostgresqlProfile postgresqlProfile;
 
+  @internal
   @override
   String get blockKey => 'postgresql_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'postgresql_profile': postgresqlProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'postgresql_profile': TfArg.literal(postgresqlProfile.encode()),
@@ -192,14 +210,17 @@ final class DatastreamConnectionProfileEndpointSqlServerProfile
 
   final DatastreamConnectionProfileSqlServerProfile sqlServerProfile;
 
+  @internal
   @override
   String get blockKey => 'sql_server_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sql_server_profile': sqlServerProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'sql_server_profile': TfArg.literal(sqlServerProfile.encode()),
@@ -213,12 +234,15 @@ final class DatastreamConnectionProfileEndpointMongodbProfile
 
   final DatastreamConnectionProfileMongodbProfile mongodbProfile;
 
+  @internal
   @override
   String get blockKey => 'mongodb_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'mongodb_profile': mongodbProfile.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'mongodb_profile': TfArg.literal(mongodbProfile.encode()),
@@ -244,12 +268,15 @@ sealed class DatastreamConnectionProfileConnectivity {
   ) = DatastreamConnectionProfilePrivateConnectivityChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -263,14 +290,17 @@ final class DatastreamConnectionProfileForwardSshConnectivityChoice
   final DatastreamConnectionProfileForwardSshConnectivity
   forwardSshConnectivity;
 
+  @internal
   @override
   String get blockKey => 'forward_ssh_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'forward_ssh_connectivity': forwardSshConnectivity.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'forward_ssh_connectivity': TfArg.literal(forwardSshConnectivity.encode()),
@@ -286,14 +316,17 @@ final class DatastreamConnectionProfilePrivateConnectivityChoice
 
   final DatastreamConnectionProfilePrivateConnectivity privateConnectivity;
 
+  @internal
   @override
   String get blockKey => 'private_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'private_connectivity': privateConnectivity.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'private_connectivity': TfArg.literal(privateConnectivity.encode()),
@@ -306,6 +339,7 @@ final class DatastreamConnectionProfilePrivateConnectivityChoice
 final class DatastreamConnectionProfileBigqueryProfile {
   const DatastreamConnectionProfileBigqueryProfile();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -328,6 +362,7 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     ...?credential?.encode(),
@@ -355,8 +390,10 @@ sealed class DatastreamConnectionProfileCredential {
   ) = DatastreamConnectionProfileCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -367,9 +404,11 @@ final class DatastreamConnectionProfileCredentialPassword
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
@@ -381,9 +420,11 @@ final class DatastreamConnectionProfileCredentialPrivateKey
 
   final Sensitive<String> privateKey;
 
+  @internal
   @override
   String get blockKey => 'private_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'private_key': privateKey.toTfJson()};
 }
@@ -401,6 +442,7 @@ final class DatastreamConnectionProfileGcsProfile {
 
   final TfArg<String>? rootPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'root_path': ?rootPath?.toTfJson(),
@@ -442,6 +484,7 @@ final class DatastreamConnectionProfileMongodbProfile {
   final DatastreamConnectionProfileStandardConnectionFormat?
   standardConnectionFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_options': ?additionalOptions?.toTfJson(),
     'password': ?password?.toTfJson(),
@@ -468,6 +511,7 @@ final class DatastreamConnectionProfileHostAddresses {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -480,6 +524,7 @@ final class DatastreamConnectionProfileHostAddresses {
 final class DatastreamConnectionProfileSrvConnectionFormat {
   const DatastreamConnectionProfileSrvConnectionFormat();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -502,6 +547,7 @@ final class DatastreamConnectionProfileMongodbProfileSslConfig {
 
   final Sensitive<String>? secretManagerStoredClientKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
     'client_certificate': ?clientCertificate?.toTfJson(),
@@ -521,6 +567,7 @@ final class DatastreamConnectionProfileStandardConnectionFormat {
 
   final TfArg<bool>? directConnection;
 
+  @internal
   Map<String, Object?> encode() => {
     'direct_connection': ?directConnection?.toTfJson(),
   };
@@ -551,6 +598,7 @@ final class DatastreamConnectionProfileMysqlProfile {
 
   final DatastreamConnectionProfileMysqlProfileSslConfig? sslConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'password': ?password?.toTfJson(),
@@ -577,6 +625,7 @@ final class DatastreamConnectionProfileMysqlProfileSslConfig {
 
   final Sensitive<String>? clientKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
     'client_certificate': ?clientCertificate?.toTfJson(),
@@ -612,6 +661,7 @@ final class DatastreamConnectionProfileOracleProfile {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_attributes': ?connectionAttributes?.toTfJson(),
     'database_service': databaseService.toTfJson(),
@@ -651,6 +701,7 @@ final class DatastreamConnectionProfilePostgresqlProfile {
 
   final DatastreamConnectionProfilePostgresqlProfileSslConfig? sslConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'hostname': hostname.toTfJson(),
@@ -676,6 +727,7 @@ final class DatastreamConnectionProfilePostgresqlProfileSslConfig {
 
   final DatastreamConnectionProfileServerVerification? serverVerification;
 
+  @internal
   Map<String, Object?> encode() => {
     'server_and_client_verification': ?serverAndClientVerification?.encode(),
     'server_verification': ?serverVerification?.encode(),
@@ -698,6 +750,7 @@ final class DatastreamConnectionProfileServerAndClientVerification {
 
   final Sensitive<String> clientKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate': caCertificate.toTfJson(),
     'client_certificate': clientCertificate.toTfJson(),
@@ -715,6 +768,7 @@ final class DatastreamConnectionProfileServerVerification {
 
   final Sensitive<String> caCertificate;
 
+  @internal
   Map<String, Object?> encode() => {'ca_certificate': caCertificate.toTfJson()};
 }
 
@@ -728,6 +782,7 @@ final class DatastreamConnectionProfilePrivateConnectivity {
 
   final TfArg<String> privateConnection;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_connection': privateConnection.toTfJson(),
   };
@@ -758,6 +813,7 @@ final class DatastreamConnectionProfileSqlServerProfile {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'hostname': hostname.toTfJson(),

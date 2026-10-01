@@ -15,6 +15,7 @@ final class DataplexLakeMetastore {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {'service': ?service?.toTfJson()};
 }
 

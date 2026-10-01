@@ -20,6 +20,7 @@ final class VpcRouteServerPeerBgpOptions {
 
   final VpcRouteServerPeerLivenessDetection? peerLivenessDetection;
 
+  @internal
   Map<String, Object?> encode() => {
     'peer_asn': peerAsn.toTfJson(),
     'peer_liveness_detection': ?peerLivenessDetection?.toTfJson(),

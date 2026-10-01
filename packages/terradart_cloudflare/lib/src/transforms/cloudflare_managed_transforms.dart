@@ -22,6 +22,7 @@ final class ManagedTransformsManagedRequestHeaders {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
@@ -41,6 +42,7 @@ final class ManagedTransformsManagedResponseHeaders {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),

@@ -3,6 +3,7 @@
 /// AWS Elastic Disaster Recovery.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/drs/aws_drs_replication_configuration_template.dart'
     show
         AwsDrsReplicationConfigurationTemplate,

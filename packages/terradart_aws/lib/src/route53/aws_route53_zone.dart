@@ -27,12 +27,15 @@ sealed class Route53ZoneVisibility {
       Route53ZoneVisibilityVpc;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,14 +45,17 @@ final class Route53ZoneVisibilityDelegationSetId extends Route53ZoneVisibility {
 
   final TfArg<String> delegationSetId;
 
+  @internal
   @override
   String get blockKey => 'delegation_set_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'delegation_set_id': delegationSetId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'delegation_set_id': delegationSetId,
@@ -62,14 +68,17 @@ final class Route53ZoneVisibilityVpc extends Route53ZoneVisibility {
 
   final List<Route53ZoneVpc> vpc;
 
+  @internal
   @override
   String get blockKey => 'vpc';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vpc': [for (final e in vpc) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vpc': TfArg.literal([for (final e in vpc) e.encode()]),
@@ -86,6 +95,7 @@ final class Route53ZoneVpc {
 
   final TfArg<String>? vpcRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'vpc_id': vpcId.encodeAs('id').toTfJson(),
     'vpc_region': ?vpcRegion?.toTfJson(),

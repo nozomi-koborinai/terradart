@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -41,12 +42,15 @@ sealed class DocdbClusterInstanceIdentifier {
   ) = DocdbClusterInstanceIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -57,12 +61,15 @@ final class DocdbClusterInstanceIdentifierChoice
 
   final TfArg<String> identifier;
 
+  @internal
   @override
   String get blockKey => 'identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
@@ -74,14 +81,17 @@ final class DocdbClusterInstanceIdentifierPrefix
 
   final TfArg<String> identifierPrefix;
 
+  @internal
   @override
   String get blockKey => 'identifier_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'identifier_prefix': identifierPrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'identifier_prefix': identifierPrefix,

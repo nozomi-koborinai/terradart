@@ -17,6 +17,7 @@ final class DataMagicTransitConnectorFilter {
 
   final DataMagicTransitConnectorDeviceType? deviceType;
 
+  @internal
   Map<String, Object?> encode() => {'device_type': ?deviceType?.toTfJson()};
 }
 

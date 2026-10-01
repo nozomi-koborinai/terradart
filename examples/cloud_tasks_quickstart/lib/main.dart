@@ -6,7 +6,6 @@
 /// constant for application-side use.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';

@@ -331,11 +331,11 @@ class DemoHelper {}
           override: override,
           def: def,
           kind: 'dataSource',
-          emittedSource: 'final class GoogleProject extends Data {}',
+          emittedSource: 'final class DataGoogleProject extends Data {}',
         );
 
         expect(entry.kind, 'dataSource');
-        expect(entry.className, 'GoogleProject');
+        expect(entry.className, 'DataGoogleProject');
         expect(entry.docComment, 'Retrieve project metadata. Use downstream.');
         expect(entry.summary, 'Retrieve project metadata.');
         expect(entry.sensitiveFields, isEmpty);

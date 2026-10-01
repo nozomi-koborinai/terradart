@@ -491,6 +491,7 @@ final class VpnConnectionTunnel1LogOptions {
 
   final VpnConnectionCloudwatchLogOptions? cloudwatchLogOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_log_options': ?cloudwatchLogOptions?.encode(),
   };
@@ -522,6 +523,7 @@ final class VpnConnectionCloudwatchLogOptions {
 
   final TfArg<String>? logOutputFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'bgp_log_enabled': ?bgpLogEnabled?.toTfJson(),
     'bgp_log_group_arn': ?bgpLogGroupArn?.toTfJson(),
@@ -540,6 +542,7 @@ final class VpnConnectionTunnel2LogOptions {
 
   final VpnConnectionCloudwatchLogOptions? cloudwatchLogOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_log_options': ?cloudwatchLogOptions?.encode(),
   };

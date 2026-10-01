@@ -41,6 +41,7 @@ final class BedrockagentAgentCollaboratorAgentDescriptor {
 
   final TfArg<String> aliasArn;
 
+  @internal
   Map<String, Object?> encode() => {'alias_arn': aliasArn.toTfJson()};
 }
 

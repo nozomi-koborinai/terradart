@@ -44,6 +44,7 @@ final class CeAnomalySubscriptionSubscriber {
 
   final CeAnomalySubscriptionType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'type': type.toTfJson(),
@@ -90,6 +91,7 @@ final class CeAnomalySubscriptionThresholdExpression {
 
   final CeAnomalySubscriptionThresholdExpressionTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_category': ?costCategory?.encode(),
@@ -116,6 +118,7 @@ final class CeAnomalySubscriptionAnd {
 
   final CeAnomalySubscriptionAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -140,6 +143,7 @@ final class CeAnomalySubscriptionAndCostCategory {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -164,6 +168,7 @@ final class CeAnomalySubscriptionAndDimension {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -188,6 +193,7 @@ final class CeAnomalySubscriptionAndTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -211,6 +217,7 @@ final class CeAnomalySubscriptionCostCategory {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -281,6 +288,7 @@ final class CeAnomalySubscriptionDimension {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -446,6 +454,7 @@ final class CeAnomalySubscriptionNot {
 
   final CeAnomalySubscriptionAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -465,6 +474,7 @@ final class CeAnomalySubscriptionOr {
 
   final CeAnomalySubscriptionAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -488,6 +498,7 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)

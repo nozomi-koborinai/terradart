@@ -6,6 +6,21 @@
 /// (apply-excluded).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_cloud_identity_group_lookup.dart'
+    show
+        DataCloudIdentityGroupLookupGroupKey,
+        DataGoogleCloudIdentityGroupLookup;
+export 'src/data/google_cloud_identity_group_memberships.dart'
+    show DataGoogleCloudIdentityGroupMemberships;
+export 'src/data/google_cloud_identity_group_transitive_memberships.dart'
+    show DataGoogleCloudIdentityGroupTransitiveMemberships;
+export 'src/data/google_cloud_identity_groups.dart'
+    show DataGoogleCloudIdentityGroups;
+export 'src/data/google_cloud_identity_policies.dart'
+    show DataGoogleCloudIdentityPolicies;
+export 'src/data/google_cloud_identity_policy.dart'
+    show DataGoogleCloudIdentityPolicy;
 export 'src/identity/google_cloud_identity_group.dart'
     show
         CloudIdentityGroupInitialGroupConfig,

@@ -19,6 +19,7 @@ final class DataCustomOriginTrustStoreFilter {
 
   final TfArg<num>? offset;
 
+  @internal
   Map<String, Object?> encode() => {
     'limit': ?limit?.toTfJson(),
     'offset': ?offset?.toTfJson(),

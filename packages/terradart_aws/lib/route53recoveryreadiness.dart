@@ -3,6 +3,7 @@
 /// AWS Route 53 ARC readiness.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/route53recoveryreadiness/aws_route53recoveryreadiness_cell.dart'
     show AwsRoute53recoveryreadinessCell;
 export 'src/route53recoveryreadiness/aws_route53recoveryreadiness_readiness_check.dart'

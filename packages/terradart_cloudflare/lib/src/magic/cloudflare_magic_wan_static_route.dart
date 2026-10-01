@@ -19,6 +19,7 @@ final class MagicWanStaticRouteScope {
 
   final TfArg<List<String>>? coloRegions;
 
+  @internal
   Map<String, Object?> encode() => {
     'colo_names': ?coloNames?.toTfJson(),
     'colo_regions': ?coloRegions?.toTfJson(),

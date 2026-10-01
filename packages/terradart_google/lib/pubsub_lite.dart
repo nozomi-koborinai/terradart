@@ -5,6 +5,7 @@
 /// for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/pubsub_lite/google_pubsub_lite_reservation.dart'
     show GooglePubsubLiteReservation;
 export 'src/pubsub_lite/google_pubsub_lite_subscription.dart'

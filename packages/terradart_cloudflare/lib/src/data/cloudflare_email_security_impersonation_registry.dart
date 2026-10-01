@@ -29,6 +29,7 @@ final class DataEmailSecurityImpersonationRegistryFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'order': ?order?.toTfJson(),

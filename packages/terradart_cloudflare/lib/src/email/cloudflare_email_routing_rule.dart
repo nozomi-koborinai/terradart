@@ -33,6 +33,7 @@ final class EmailRoutingRuleActions {
 
   final TfArg<List<String>>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -71,6 +72,7 @@ final class EmailRoutingRuleMatchers {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'type': type.toTfJson(),

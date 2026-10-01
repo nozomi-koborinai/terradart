@@ -5,6 +5,7 @@
 /// assets; messages fire only when matching resources change.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_asset/google_cloud_asset_folder_feed.dart'
     show
         CloudAssetFolderFeedCondition,
@@ -26,3 +27,5 @@ export 'src/cloud_asset/google_cloud_asset_project_feed.dart'
         CloudAssetProjectFeedOutputConfig,
         CloudAssetProjectFeedPubsubDestination,
         GoogleCloudAssetProjectFeed;
+export 'src/data/google_cloud_asset_search_all_resources.dart'
+    show DataGoogleCloudAssetSearchAllResources;

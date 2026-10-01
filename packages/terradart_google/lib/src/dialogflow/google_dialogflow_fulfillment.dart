@@ -15,6 +15,7 @@ final class DialogflowFulfillmentFeatures {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -37,6 +38,7 @@ final class DialogflowFulfillmentGenericWebService {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': ?password?.toTfJson(),
     'request_headers': ?requestHeaders?.toTfJson(),

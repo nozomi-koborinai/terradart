@@ -104,6 +104,7 @@ final class ConnectInstanceStorageConfig {
 
   final ConnectInstanceStorageConfigS3Config? s3Config;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_type': storageType.toTfJson(),
     'kinesis_firehose_config': ?kinesisFirehoseConfig?.encode(),
@@ -154,6 +155,7 @@ final class ConnectInstanceStorageConfigKinesisFirehoseConfig {
 
   final TfArg<String> firehoseArn;
 
+  @internal
   Map<String, Object?> encode() => {'firehose_arn': firehoseArn.toTfJson()};
 }
 
@@ -167,6 +169,7 @@ final class ConnectInstanceStorageConfigKinesisStreamConfig {
 
   final TfArg<String> streamArn;
 
+  @internal
   Map<String, Object?> encode() => {'stream_arn': streamArn.toTfJson()};
 }
 
@@ -186,6 +189,7 @@ final class ConnectInstanceStorageConfigKinesisVideoStreamConfig {
 
   final ConnectInstanceStorageConfigEncryptionConfig encryptionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': prefix.toTfJson(),
     'retention_period_hours': retentionPeriodHours.toTfJson(),
@@ -207,6 +211,7 @@ final class ConnectInstanceStorageConfigEncryptionConfig {
 
   final RefTo<AwsKmsKey> keyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_type': encryptionType.toTfJson(),
     'key_id': keyId.encodeAs('arn').toTfJson(),
@@ -247,6 +252,7 @@ final class ConnectInstanceStorageConfigS3Config {
 
   final ConnectInstanceStorageConfigEncryptionConfig? encryptionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),

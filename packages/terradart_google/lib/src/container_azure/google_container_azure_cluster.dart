@@ -20,6 +20,7 @@ final class ContainerAzureClusterAuthorization {
 
   final List<ContainerAzureClusterAdminUsers> adminUsers;
 
+  @internal
   Map<String, Object?> encode() => {
     if (adminGroups != null)
       'admin_groups': [for (final e in adminGroups!) e.encode()],
@@ -35,6 +36,7 @@ final class ContainerAzureClusterAdminGroups {
 
   final TfArg<String> group;
 
+  @internal
   Map<String, Object?> encode() => {'group': group.toTfJson()};
 }
 
@@ -46,6 +48,7 @@ final class ContainerAzureClusterAdminUsers {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {'username': username.toTfJson()};
 }
 
@@ -62,6 +65,7 @@ final class ContainerAzureClusterAzureServicesAuthentication {
 
   final TfArg<String> tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_id': applicationId.toTfJson(),
     'tenant_id': tenantId.toTfJson(),
@@ -105,6 +109,7 @@ final class ContainerAzureClusterControlPlane {
 
   final ContainerAzureClusterSshConfig sshConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.toTfJson(),
     'tags': ?tags?.toTfJson(),
@@ -128,6 +133,7 @@ final class ContainerAzureClusterDatabaseEncryption {
 
   final TfArg<String> keyId;
 
+  @internal
   Map<String, Object?> encode() => {'key_id': keyId.toTfJson()};
 }
 
@@ -139,6 +145,7 @@ final class ContainerAzureClusterMainVolume {
 
   final TfArg<num>? sizeGib;
 
+  @internal
   Map<String, Object?> encode() => {'size_gib': ?sizeGib?.toTfJson()};
 }
 
@@ -155,6 +162,7 @@ final class ContainerAzureClusterProxyConfig {
 
   final TfArg<String> secretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group_id': resourceGroupId.toTfJson(),
     'secret_id': secretId.toTfJson(),
@@ -174,6 +182,7 @@ final class ContainerAzureClusterReplicaPlacements {
 
   final TfArg<String> subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'azure_availability_zone': azureAvailabilityZone.toTfJson(),
     'subnet_id': subnetId.toTfJson(),
@@ -188,6 +197,7 @@ final class ContainerAzureClusterRootVolume {
 
   final TfArg<num>? sizeGib;
 
+  @internal
   Map<String, Object?> encode() => {'size_gib': ?sizeGib?.toTfJson()};
 }
 
@@ -199,6 +209,7 @@ final class ContainerAzureClusterSshConfig {
 
   final TfArg<String> authorizedKey;
 
+  @internal
   Map<String, Object?> encode() => {'authorized_key': authorizedKey.toTfJson()};
 }
 
@@ -210,6 +221,7 @@ final class ContainerAzureClusterFleet {
 
   final TfArg<String>? project;
 
+  @internal
   Map<String, Object?> encode() => {'project': ?project?.toTfJson()};
 }
 
@@ -229,6 +241,7 @@ final class ContainerAzureClusterNetworking {
 
   final TfArg<String> virtualNetworkId;
 
+  @internal
   Map<String, Object?> encode() => {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),

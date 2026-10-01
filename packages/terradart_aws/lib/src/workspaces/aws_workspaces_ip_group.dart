@@ -17,6 +17,7 @@ final class WorkspacesIpGroupRules {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'source': source.toTfJson(),

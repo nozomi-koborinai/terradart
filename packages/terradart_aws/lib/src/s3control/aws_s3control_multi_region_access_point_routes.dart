@@ -26,6 +26,7 @@ final class S3controlMultiRegionAccessPointRoutesRoute {
 
   final TfArg<num> trafficDialPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'region': region.toTfJson(),

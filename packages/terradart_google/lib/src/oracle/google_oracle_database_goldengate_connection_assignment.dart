@@ -57,6 +57,7 @@ final class OracleDatabaseGoldengateConnectionAssignmentProperties {
 
   final RefTo<GoogleOracleDatabaseGoldengateDeployment> goldengateDeployment;
 
+  @internal
   Map<String, Object?> encode() => {
     'goldengate_connection': goldengateConnection.encodeAs('name').toTfJson(),
     'goldengate_deployment': goldengateDeployment.encodeAs('name').toTfJson(),

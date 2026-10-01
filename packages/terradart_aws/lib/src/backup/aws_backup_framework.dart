@@ -23,6 +23,7 @@ final class BackupFrameworkControl {
 
   final BackupFrameworkScope? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (inputParameter != null)
@@ -41,6 +42,7 @@ final class BackupFrameworkInputParameter {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -63,6 +65,7 @@ final class BackupFrameworkScope {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'compliance_resource_ids': ?complianceResourceIds?.toTfJson(),
     'compliance_resource_types': ?complianceResourceTypes?.toTfJson(),

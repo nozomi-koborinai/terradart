@@ -17,6 +17,7 @@ final class S3BucketWebsiteConfigurationErrorDocument {
 
   final TfArg<String> key;
 
+  @internal
   Map<String, Object?> encode() => {'key': key.toTfJson()};
 }
 
@@ -28,6 +29,7 @@ final class S3BucketWebsiteConfigurationIndexDocument {
 
   final TfArg<String> suffix;
 
+  @internal
   Map<String, Object?> encode() => {'suffix': suffix.toTfJson()};
 }
 
@@ -44,6 +46,7 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 
   final S3BucketWebsiteConfigurationProtocol? protocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
@@ -86,6 +89,7 @@ final class S3BucketWebsiteConfigurationRoutingRule {
 
   final S3BucketWebsiteConfigurationRedirect redirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.encode(),
     'redirect': redirect.encode(),
@@ -105,6 +109,7 @@ final class S3BucketWebsiteConfigurationCondition {
 
   final TfArg<String>? keyPrefixEquals;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_error_code_returned_equals': ?httpErrorCodeReturnedEquals?.toTfJson(),
     'key_prefix_equals': ?keyPrefixEquals?.toTfJson(),
@@ -133,6 +138,7 @@ final class S3BucketWebsiteConfigurationRedirect {
 
   final TfArg<String>? replaceKeyWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_name': ?hostName?.toTfJson(),
     'http_redirect_code': ?httpRedirectCode?.toTfJson(),

@@ -17,6 +17,7 @@ final class AppmeshGatewayRouteSpec {
 
   final AppmeshGatewayRouteSpecRoute route;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': ?priority?.toTfJson(),
     ...route.encode(),
@@ -46,8 +47,10 @@ sealed class AppmeshGatewayRouteSpecRoute {
   ) = AppmeshGatewayRouteSpecHttpRoute;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -58,9 +61,11 @@ final class AppmeshGatewayRouteSpecGrpcRoute
 
   final AppmeshGatewayRouteGrpcRoute grpcRoute;
 
+  @internal
   @override
   String get blockKey => 'grpc_route';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'grpc_route': grpcRoute.encode()};
 }
@@ -72,9 +77,11 @@ final class AppmeshGatewayRouteSpecHttp2Route
 
   final AppmeshGatewayRouteHttp2Route http2Route;
 
+  @internal
   @override
   String get blockKey => 'http2_route';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'http2_route': http2Route.encode()};
 }
@@ -86,9 +93,11 @@ final class AppmeshGatewayRouteSpecHttpRoute
 
   final AppmeshGatewayRouteHttpRoute httpRoute;
 
+  @internal
   @override
   String get blockKey => 'http_route';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'http_route': httpRoute.encode()};
 }
@@ -106,6 +115,7 @@ final class AppmeshGatewayRouteGrpcRoute {
 
   final AppmeshGatewayRouteGrpcRouteMatch match;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
@@ -120,6 +130,7 @@ final class AppmeshGatewayRouteGrpcRouteAction {
 
   final AppmeshGatewayRouteTarget target;
 
+  @internal
   Map<String, Object?> encode() => {'target': target.encode()};
 }
 
@@ -134,6 +145,7 @@ final class AppmeshGatewayRouteTarget {
 
   final AppmeshGatewayRouteVirtualService virtualService;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'virtual_service': virtualService.encode(),
@@ -149,6 +161,7 @@ final class AppmeshGatewayRouteVirtualService {
 
   final TfArg<String> virtualServiceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'virtual_service_name': virtualServiceName.toTfJson(),
   };
@@ -167,6 +180,7 @@ final class AppmeshGatewayRouteGrpcRouteMatch {
 
   final TfArg<String> serviceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'service_name': serviceName.toTfJson(),
@@ -186,6 +200,7 @@ final class AppmeshGatewayRouteHttp2Route {
 
   final AppmeshGatewayRouteHttp2RouteMatch match;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),
@@ -206,6 +221,7 @@ final class AppmeshGatewayRouteHttp2RouteAction {
 
   final AppmeshGatewayRouteTarget target;
 
+  @internal
   Map<String, Object?> encode() => {
     'rewrite': ?rewrite?.encode(),
     'target': target.encode(),
@@ -225,6 +241,7 @@ final class AppmeshGatewayRouteRewrite {
 
   final AppmeshGatewayRoutePrefix? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.encode(),
     'path': ?path?.encode(),
@@ -243,6 +260,7 @@ final class AppmeshGatewayRouteRewriteHostname {
 
   final TfArg<String> defaultTargetHostname;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_target_hostname': defaultTargetHostname.toTfJson(),
   };
@@ -257,6 +275,7 @@ final class AppmeshGatewayRouteRewritePath {
 
   final TfArg<String> exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
 
@@ -271,6 +290,7 @@ final class AppmeshGatewayRoutePrefix {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_prefix': ?defaultPrefix?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -303,6 +323,7 @@ final class AppmeshGatewayRouteHttp2RouteMatch {
 
   final List<AppmeshGatewayRouteQueryParameter>? queryParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -331,6 +352,7 @@ final class AppmeshGatewayRouteHeader {
 
   final AppmeshGatewayRouteHeaderMatch? match;
 
+  @internal
   Map<String, Object?> encode() => {
     'invert': ?invert?.toTfJson(),
     'name': name.toTfJson(),
@@ -361,6 +383,7 @@ final class AppmeshGatewayRouteHeaderMatch {
 
   final AppmeshGatewayRouteRange? range;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -381,6 +404,7 @@ final class AppmeshGatewayRouteRange {
 
   final TfArg<num> start;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': end.toTfJson(),
     'start': start.toTfJson(),
@@ -398,6 +422,7 @@ final class AppmeshGatewayRouteHostname {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
     'suffix': ?suffix?.toTfJson(),
@@ -415,6 +440,7 @@ final class AppmeshGatewayRoutePath {
 
   final TfArg<String>? regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
     'regex': ?regex?.toTfJson(),
@@ -432,6 +458,7 @@ final class AppmeshGatewayRouteQueryParameter {
 
   final AppmeshGatewayRouteQueryParameterMatch? match;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'match': ?match?.encode(),
@@ -447,6 +474,7 @@ final class AppmeshGatewayRouteQueryParameterMatch {
 
   final TfArg<String>? exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
@@ -463,6 +491,7 @@ final class AppmeshGatewayRouteHttpRoute {
 
   final AppmeshGatewayRouteHttp2RouteMatch match;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'match': match.encode(),

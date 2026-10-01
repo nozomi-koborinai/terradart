@@ -28,6 +28,7 @@ final class ImageVariantOptions {
 
   final TfArg<num> width;
 
+  @internal
   Map<String, Object?> encode() => {
     'fit': fit.toTfJson(),
     'height': height.toTfJson(),

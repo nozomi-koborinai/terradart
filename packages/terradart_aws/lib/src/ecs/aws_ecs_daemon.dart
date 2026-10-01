@@ -37,6 +37,7 @@ final class EcsDaemonDeploymentConfiguration {
 
   final List<EcsDaemonAlarms>? alarms;
 
+  @internal
   Map<String, Object?> encode() => {
     'bake_time_in_minutes': ?bakeTimeInMinutes?.toTfJson(),
     'drain_percent': ?drainPercent?.toTfJson(),
@@ -54,6 +55,7 @@ final class EcsDaemonAlarms {
 
   final TfArg<bool>? enable;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_names': ?alarmNames?.toTfJson(),
     'enable': ?enable?.toTfJson(),

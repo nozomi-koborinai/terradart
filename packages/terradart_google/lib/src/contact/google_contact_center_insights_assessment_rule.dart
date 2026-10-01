@@ -24,6 +24,7 @@ final class ContactCenterInsightsAssessmentRuleSampleRule {
 
   final ContactCenterInsightsAssessmentRuleAmount? amount;
 
+  @internal
   Map<String, Object?> encode() => {
     'conversation_filter': ?conversationFilter?.toTfJson(),
     'dimension': ?dimension?.toTfJson(),
@@ -50,8 +51,10 @@ sealed class ContactCenterInsightsAssessmentRuleAmount {
   ) = ContactCenterInsightsAssessmentRuleAmountSampleRow;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -64,9 +67,11 @@ final class ContactCenterInsightsAssessmentRuleAmountSamplePercentage
 
   final TfArg<num> samplePercentage;
 
+  @internal
   @override
   String get blockKey => 'sample_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sample_percentage': samplePercentage.toTfJson(),
@@ -80,9 +85,11 @@ final class ContactCenterInsightsAssessmentRuleAmountSampleRow
 
   final TfArg<num> sampleRow;
 
+  @internal
   @override
   String get blockKey => 'sample_row';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sample_row': sampleRow.toTfJson()};
 }
@@ -106,6 +113,7 @@ final class ContactCenterInsightsAssessmentRuleScheduleInfo {
 
   final TfArg<String>? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
     'schedule': ?schedule?.toTfJson(),

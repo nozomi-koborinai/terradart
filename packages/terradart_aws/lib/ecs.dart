@@ -3,6 +3,24 @@
 /// AWS Elastic Container Service (ECS).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ecs_cluster.dart' show DataAwsEcsCluster;
+export 'src/data/aws_ecs_clusters.dart' show DataAwsEcsClusters;
+export 'src/data/aws_ecs_container_definition.dart'
+    show DataAwsEcsContainerDefinition;
+export 'src/data/aws_ecs_service.dart' show DataAwsEcsService;
+export 'src/data/aws_ecs_task_definition.dart' show DataAwsEcsTaskDefinition;
+export 'src/data/aws_ecs_task_execution.dart'
+    show
+        DataAwsEcsTaskExecution,
+        DataEcsTaskExecutionCapacityProviderStrategy,
+        DataEcsTaskExecutionContainerOverrides,
+        DataEcsTaskExecutionEnvironment,
+        DataEcsTaskExecutionNetworkConfiguration,
+        DataEcsTaskExecutionOverrides,
+        DataEcsTaskExecutionPlacementConstraints,
+        DataEcsTaskExecutionPlacementStrategy,
+        DataEcsTaskExecutionResourceRequirements;
 export 'src/ecs/aws_ecs_account_setting_default.dart'
     show AwsEcsAccountSettingDefault;
 export 'src/ecs/aws_ecs_capacity_provider.dart'

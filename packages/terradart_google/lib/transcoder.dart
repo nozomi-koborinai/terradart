@@ -5,6 +5,7 @@
 /// output-minute SKUs and are not curated here.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/transcoder/google_transcoder_job.dart'
     show
         GoogleTranscoderJob,

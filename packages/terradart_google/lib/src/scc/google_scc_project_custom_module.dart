@@ -55,6 +55,7 @@ final class SccProjectCustomModuleCustomConfig {
 
   final SccProjectCustomModuleResourceSelector resourceSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'recommendation': recommendation.toTfJson(),
@@ -99,6 +100,7 @@ final class SccProjectCustomModuleCustomOutput {
 
   final List<SccProjectCustomModuleProperties>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     if (properties != null)
       'properties': [for (final e in properties!) e.encode()],
@@ -115,6 +117,7 @@ final class SccProjectCustomModuleProperties {
 
   final SccProjectCustomModuleValueExpression? valueExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value_expression': ?valueExpression?.encode(),
@@ -140,6 +143,7 @@ final class SccProjectCustomModuleValueExpression {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -167,6 +171,7 @@ final class SccProjectCustomModulePredicate {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -183,6 +188,7 @@ final class SccProjectCustomModuleResourceSelector {
 
   final TfArg<List<String>> resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {'resource_types': resourceTypes.toTfJson()};
 }
 

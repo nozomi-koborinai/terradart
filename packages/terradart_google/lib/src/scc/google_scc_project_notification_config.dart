@@ -17,6 +17,7 @@ final class SccProjectNotificationConfigStreamingConfig {
 
   final TfArg<String> filter;
 
+  @internal
   Map<String, Object?> encode() => {'filter': filter.toTfJson()};
 }
 

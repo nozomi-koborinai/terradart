@@ -39,6 +39,7 @@ final class VerifiedpermissionsPolicyStoreValidationSettings {
 
   final VerifiedpermissionsPolicyStoreMode mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 

@@ -3,6 +3,42 @@
 /// AWS Elastic Load Balancing (ALB, NLB, and Classic).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_alb.dart' show DataAwsAlb;
+export 'src/data/aws_alb_listener.dart' show DataAwsAlbListener;
+export 'src/data/aws_alb_target_group.dart' show DataAwsAlbTargetGroup;
+export 'src/data/aws_elb.dart' show DataAwsElb;
+export 'src/data/aws_elb_hosted_zone_id.dart' show DataAwsElbHostedZoneId;
+export 'src/data/aws_elb_service_account.dart' show DataAwsElbServiceAccount;
+export 'src/data/aws_lb.dart' show DataAwsLb;
+export 'src/data/aws_lb_listener.dart' show DataAwsLbListener;
+export 'src/data/aws_lb_listener_rule.dart'
+    show
+        DataAwsLbListenerRule,
+        DataLbListenerRuleAction,
+        DataLbListenerRuleAdditionalClaim,
+        DataLbListenerRuleAuthenticateCognito,
+        DataLbListenerRuleAuthenticateOidc,
+        DataLbListenerRuleCondition,
+        DataLbListenerRuleFixedResponse,
+        DataLbListenerRuleForward,
+        DataLbListenerRuleHostHeader,
+        DataLbListenerRuleHostHeaderRewriteConfig,
+        DataLbListenerRuleHttpHeader,
+        DataLbListenerRuleHttpRequestMethod,
+        DataLbListenerRuleJwtValidation,
+        DataLbListenerRulePathPattern,
+        DataLbListenerRuleQueryString,
+        DataLbListenerRuleRedirect,
+        DataLbListenerRuleRewrite,
+        DataLbListenerRuleSourceIp,
+        DataLbListenerRuleStickiness,
+        DataLbListenerRuleTargetGroup,
+        DataLbListenerRuleTransform,
+        DataLbListenerRuleUrlRewriteConfig,
+        DataLbListenerRuleValues;
+export 'src/data/aws_lb_target_group.dart' show DataAwsLbTargetGroup;
+export 'src/data/aws_lb_trust_store.dart' show DataAwsLbTrustStore;
 export 'src/elb/aws_alb.dart'
     show
         AlbAccessLogs,

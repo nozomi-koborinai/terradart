@@ -113,6 +113,7 @@ final class EcsServiceAlarms {
 
   final TfArg<bool> rollback;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_names': alarmNames.toTfJson(),
     'enable': enable.toTfJson(),
@@ -136,6 +137,7 @@ final class EcsServiceCapacityProviderStrategy {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
@@ -156,6 +158,7 @@ final class EcsServiceDeploymentCircuitBreaker {
 
   final TfArg<bool> rollback;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': enable.toTfJson(),
     'rollback': rollback.toTfJson(),
@@ -184,6 +187,7 @@ final class EcsServiceDeploymentConfiguration {
 
   final EcsServiceLinearConfiguration? linearConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'bake_time_in_minutes': ?bakeTimeInMinutes?.toTfJson(),
     'strategy': ?strategy?.toTfJson(),
@@ -228,6 +232,7 @@ final class EcsServiceCanaryConfiguration {
 
   final TfArg<num>? canaryPercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'canary_bake_time_in_minutes': ?canaryBakeTimeInMinutes?.toTfJson(),
     'canary_percent': ?canaryPercent?.toTfJson(),
@@ -259,6 +264,7 @@ final class EcsServiceLifecycleHook {
 
   final EcsServiceTimeoutConfiguration? timeoutConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'hook_details': ?hookDetails?.toTfJson(),
     'hook_target_arn': ?hookTargetArn?.toTfJson(),
@@ -339,6 +345,7 @@ final class EcsServiceTimeoutConfiguration {
 
   final TfArg<String>? timeoutInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
@@ -372,6 +379,7 @@ final class EcsServiceLinearConfiguration {
 
   final TfArg<num>? stepPercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'step_bake_time_in_minutes': ?stepBakeTimeInMinutes?.toTfJson(),
     'step_percent': ?stepPercent?.toTfJson(),
@@ -386,6 +394,7 @@ final class EcsServiceDeploymentController {
 
   final EcsServiceDeploymentControllerType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -435,6 +444,7 @@ final class EcsServiceLoadBalancer {
 
   final EcsServiceAdvancedConfiguration? advancedConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
     'container_port': containerPort.toTfJson(),
@@ -463,6 +473,7 @@ final class EcsServiceAdvancedConfiguration {
 
   final TfArg<String>? testListenerRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'alternate_target_group_arn': alternateTargetGroupArn.toTfJson(),
     'production_listener_rule': productionListenerRule.toTfJson(),
@@ -487,6 +498,7 @@ final class EcsServiceNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
@@ -504,6 +516,7 @@ final class EcsServiceOrderedPlacementStrategy {
 
   final EcsServiceOrderedPlacementStrategyType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
@@ -547,6 +560,7 @@ final class EcsServicePlacementConstraints {
 
   final EcsServicePlacementConstraintsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
@@ -597,6 +611,7 @@ final class EcsServiceConnectConfiguration {
 
   final List<EcsService>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'namespace': ?namespace?.toTfJson(),
@@ -619,6 +634,7 @@ final class EcsServiceAccessLogConfiguration {
 
   final EcsServiceIncludeQueryParameters? includeQueryParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     'include_query_parameters': ?includeQueryParameters?.toTfJson(),
@@ -677,6 +693,7 @@ final class EcsServiceLogConfiguration {
 
   final List<EcsServiceSecretOption>? secretOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_driver': logDriver.toTfJson(),
     'options': ?options?.toTfJson(),
@@ -724,6 +741,7 @@ final class EcsServiceSecretOption {
 
   final TfArg<String> valueFrom;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_from': valueFrom.toTfJson(),
@@ -755,6 +773,7 @@ final class EcsService {
 
   final EcsServiceTls? tls;
 
+  @internal
   Map<String, Object?> encode() => {
     'discovery_name': ?discoveryName?.toTfJson(),
     'ingress_port_override': ?ingressPortOverride?.toTfJson(),
@@ -781,6 +800,7 @@ final class EcsServiceClientAlias {
 
   final List<EcsServiceTestTrafficRules>? testTrafficRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_name': ?dnsName?.toTfJson(),
     'port': port.toTfJson(),
@@ -797,6 +817,7 @@ final class EcsServiceTestTrafficRules {
 
   final EcsServiceHeader? header;
 
+  @internal
   Map<String, Object?> encode() => {'header': ?header?.encode()};
 }
 
@@ -810,6 +831,7 @@ final class EcsServiceHeader {
 
   final EcsServiceValue value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.encode(),
@@ -824,6 +846,7 @@ final class EcsServiceValue {
 
   final TfArg<String> exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
 
@@ -840,6 +863,7 @@ final class EcsServiceTimeout {
 
   final TfArg<num>? perRequestTimeoutSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_timeout_seconds': ?idleTimeoutSeconds?.toTfJson(),
     'per_request_timeout_seconds': ?perRequestTimeoutSeconds?.toTfJson(),
@@ -862,6 +886,7 @@ final class EcsServiceTls {
 
   final EcsServiceIssuerCertAuthority issuerCertAuthority;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
@@ -877,6 +902,7 @@ final class EcsServiceIssuerCertAuthority {
 
   final TfArg<String> awsPcaAuthorityArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_pca_authority_arn': awsPcaAuthorityArn.toTfJson(),
   };
@@ -901,6 +927,7 @@ final class EcsServiceRegistries {
 
   final TfArg<String> registryArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': ?containerName?.toTfJson(),
     'container_port': ?containerPort?.toTfJson(),
@@ -922,6 +949,7 @@ final class EcsServiceVolumeConfiguration {
 
   final EcsServiceManagedEbsVolume managedEbsVolume;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'managed_ebs_volume': managedEbsVolume.encode(),
@@ -968,6 +996,7 @@ final class EcsServiceManagedEbsVolume {
 
   final List<EcsServiceTagSpecifications>? tagSpecifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'encrypted': ?encrypted?.toTfJson(),
     'file_system_type': ?fileSystemType?.toTfJson(),
@@ -1016,6 +1045,7 @@ final class EcsServiceTagSpecifications {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'propagate_tags': ?propagateTags?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
@@ -1079,6 +1109,7 @@ final class EcsServiceVpcLatticeConfigurations {
 
   final TfArg<String> targetGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'port_name': portName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),

@@ -26,12 +26,15 @@ sealed class LexIntentClosing {
   ) = LexIntentClosingFollowUpPrompt;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,14 +44,17 @@ final class LexIntentClosingConclusionStatement extends LexIntentClosing {
 
   final LexIntentConclusionStatement conclusionStatement;
 
+  @internal
   @override
   String get blockKey => 'conclusion_statement';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'conclusion_statement': conclusionStatement.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'conclusion_statement': TfArg.literal(conclusionStatement.encode()),
@@ -61,14 +67,17 @@ final class LexIntentClosingFollowUpPrompt extends LexIntentClosing {
 
   final LexIntentFollowUpPrompt followUpPrompt;
 
+  @internal
   @override
   String get blockKey => 'follow_up_prompt';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'follow_up_prompt': followUpPrompt.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'follow_up_prompt': TfArg.literal(followUpPrompt.encode()),
@@ -88,6 +97,7 @@ final class LexIntentConclusionStatement {
 
   final List<LexIntentMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
@@ -111,6 +121,7 @@ final class LexIntentMessage {
 
   final TfArg<num>? groupNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
@@ -134,6 +145,7 @@ final class LexIntentConfirmationPrompt {
 
   final List<LexIntentMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),
@@ -154,6 +166,7 @@ final class LexIntentDialogCodeHook {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_version': messageVersion.toTfJson(),
     'uri': uri.toTfJson(),
@@ -173,6 +186,7 @@ final class LexIntentFollowUpPrompt {
 
   final LexIntentRejectionStatement rejectionStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'prompt': prompt.encode(),
     'rejection_statement': rejectionStatement.encode(),
@@ -195,6 +209,7 @@ final class LexIntentPrompt {
 
   final List<LexIntentMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),
@@ -213,6 +228,7 @@ final class LexIntentRejectionStatement {
 
   final List<LexIntentMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
@@ -229,6 +245,7 @@ final class LexIntentFulfillmentActivity {
 
   final LexIntentCodeHook? codeHook;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'code_hook': ?codeHook?.encode(),
@@ -258,6 +275,7 @@ final class LexIntentCodeHook {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_version': messageVersion.toTfJson(),
     'uri': uri.toTfJson(),
@@ -298,6 +316,7 @@ final class LexIntentSlot {
 
   final LexIntentValueElicitationPrompt? valueElicitationPrompt;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -341,6 +360,7 @@ final class LexIntentValueElicitationPrompt {
 
   final List<LexIntentMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),

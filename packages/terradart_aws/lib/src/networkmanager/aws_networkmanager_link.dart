@@ -17,6 +17,7 @@ final class NetworkmanagerLinkBandwidth {
 
   final TfArg<num>? uploadSpeed;
 
+  @internal
   Map<String, Object?> encode() => {
     'download_speed': ?downloadSpeed?.toTfJson(),
     'upload_speed': ?uploadSpeed?.toTfJson(),

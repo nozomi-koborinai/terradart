@@ -21,6 +21,7 @@ final class LambdaCapacityProviderPermissionsConfig {
 
   final TfArg<String> capacityProviderOperatorRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_provider_operator_role_arn': capacityProviderOperatorRoleArn
         .toTfJson(),
@@ -40,6 +41,7 @@ final class LambdaCapacityProviderVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

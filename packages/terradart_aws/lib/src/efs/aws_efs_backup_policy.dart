@@ -15,6 +15,7 @@ final class EfsBackupPolicy {
 
   final EfsBackupPolicyStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

@@ -21,6 +21,7 @@ final class SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenc
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'path': ?path?.toTfJson(),

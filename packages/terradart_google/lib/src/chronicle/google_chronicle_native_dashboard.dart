@@ -305,6 +305,7 @@ final class ChronicleNativeDashboardCharts {
 
   final ChronicleNativeDashboardChartLayout? chartLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'dashboard_chart': ?dashboardChart?.toTfJson(),
     'filters_ids': ?filtersIds?.toTfJson(),
@@ -331,6 +332,7 @@ final class ChronicleNativeDashboardChartLayout {
 
   final TfArg<num>? startY;
 
+  @internal
   Map<String, Object?> encode() => {
     'span_x': spanX.toTfJson(),
     'span_y': spanY.toTfJson(),

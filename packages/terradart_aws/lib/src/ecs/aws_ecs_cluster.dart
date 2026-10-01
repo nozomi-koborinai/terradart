@@ -23,6 +23,7 @@ final class EcsClusterConfiguration {
 
   final EcsClusterManagedStorageConfiguration? managedStorageConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'execute_command_configuration': ?executeCommandConfiguration?.encode(),
     'managed_storage_configuration': ?managedStorageConfiguration?.encode(),
@@ -45,6 +46,7 @@ final class EcsClusterExecuteCommandConfiguration {
 
   final EcsClusterLogConfiguration? logConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'logging': ?logging?.toTfJson(),
@@ -93,6 +95,7 @@ final class EcsClusterLogConfiguration {
 
   final TfArg<String>? s3KeyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_watch_encryption_enabled': ?cloudWatchEncryptionEnabled?.toTfJson(),
     'cloud_watch_log_group_name': ?cloudWatchLogGroupName?.toTfJson(),
@@ -115,6 +118,7 @@ final class EcsClusterManagedStorageConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'fargate_ephemeral_storage_kms_key_id': ?fargateEphemeralStorageKmsKeyId
         ?.toTfJson(),
@@ -130,6 +134,7 @@ final class EcsClusterServiceConnectDefaults {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {'namespace': namespace.toTfJson()};
 }
 
@@ -143,6 +148,7 @@ final class EcsClusterSetting {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

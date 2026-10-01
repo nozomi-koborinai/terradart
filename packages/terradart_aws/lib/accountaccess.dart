@@ -3,6 +3,7 @@
 /// `accountaccess` applications and entitlements.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/accountaccess/aws_accountaccess_application.dart'
     show
         AccountaccessApplicationIdentityCenter,
@@ -15,3 +16,12 @@ export 'src/accountaccess/aws_accountaccess_entitlement.dart'
         AccountaccessEntitlementPrincipal,
         AccountaccessEntitlementPrincipalRole,
         AwsAccountaccessEntitlement;
+export 'src/data/aws_accountaccess_application.dart'
+    show DataAwsAccountaccessApplication;
+export 'src/data/aws_accountaccess_entitlements.dart'
+    show
+        DataAccountaccessEntitlementsFilter,
+        DataAccountaccessEntitlementsIdentityCenter,
+        DataAccountaccessEntitlementsPrincipal,
+        DataAccountaccessEntitlementsPrincipalRole,
+        DataAwsAccountaccessEntitlements;

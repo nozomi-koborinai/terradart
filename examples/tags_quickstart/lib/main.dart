@@ -13,7 +13,6 @@ library;
 
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
@@ -38,7 +37,7 @@ final class TagsStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/tags_stack.app.dart'),
       ) {
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
     // the service account in-stack and bind against its `principal`

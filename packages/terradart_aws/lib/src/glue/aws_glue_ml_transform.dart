@@ -56,6 +56,7 @@ final class GlueMlTransformInputRecordTables {
 
   final TfArg<String> tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'connection_name': ?connectionName?.toTfJson(),
@@ -77,6 +78,7 @@ final class GlueMlTransformParameters {
 
   final GlueMlTransformFindMatchesParameters findMatchesParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'transform_type': transformType.toTfJson(),
     'find_matches_parameters': findMatchesParameters.encode(),
@@ -117,6 +119,7 @@ final class GlueMlTransformFindMatchesParameters {
 
   final TfArg<String>? primaryKeyColumnName;
 
+  @internal
   Map<String, Object?> encode() => {
     'accuracy_cost_trade_off': ?accuracyCostTradeOff?.toTfJson(),
     'enforce_provided_labels': ?enforceProvidedLabels?.toTfJson(),

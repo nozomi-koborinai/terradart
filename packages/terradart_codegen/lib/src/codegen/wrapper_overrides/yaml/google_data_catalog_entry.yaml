@@ -48,12 +48,14 @@ prelude: |
     }) = DataCatalogEntryCustomType;
 
     /// argMap key (`type` or `user_specified_type`).
+    @internal
     String get blockKey;
 
     /// Scalar value for that key.
     TfArg<String> get value;
 
     /// Flat `{blockKey: value}` payload (Gate 6 / callers that need a map).
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -63,6 +65,7 @@ prelude: |
     const DataCatalogEntryFileset();
 
     @override
+    @internal
     String get blockKey => 'type';
 
     @override
@@ -77,6 +80,7 @@ prelude: |
     final TfArg<String> userSpecifiedType;
 
     @override
+    @internal
     String get blockKey => 'user_specified_type';
 
     @override

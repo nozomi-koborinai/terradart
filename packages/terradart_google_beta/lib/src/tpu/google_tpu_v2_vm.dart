@@ -29,12 +29,15 @@ sealed class TpuV2VmAccelerator {
   ) = TpuV2VmAcceleratorConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,14 +47,17 @@ final class TpuV2VmAcceleratorType extends TpuV2VmAccelerator {
 
   final TfArg<String> acceleratorType;
 
+  @internal
   @override
   String get blockKey => 'accelerator_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'accelerator_type': acceleratorType.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'accelerator_type': acceleratorType,
@@ -64,14 +70,17 @@ final class TpuV2VmAcceleratorConfigChoice extends TpuV2VmAccelerator {
 
   final TpuV2VmAcceleratorConfig acceleratorConfig;
 
+  @internal
   @override
   String get blockKey => 'accelerator_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'accelerator_config': acceleratorConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'accelerator_config': TfArg.literal(acceleratorConfig.encode()),
@@ -97,12 +106,15 @@ sealed class TpuV2VmNetwork {
   ) = TpuV2VmNetworkConfigsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -112,12 +124,15 @@ final class TpuV2VmNetworkConfigChoice extends TpuV2VmNetwork {
 
   final TpuV2VmNetworkConfig networkConfig;
 
+  @internal
   @override
   String get blockKey => 'network_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'network_config': networkConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'network_config': TfArg.literal(networkConfig.encode()),
@@ -130,14 +145,17 @@ final class TpuV2VmNetworkConfigsChoice extends TpuV2VmNetwork {
 
   final List<TpuV2VmNetworkConfigs> networkConfigs;
 
+  @internal
   @override
   String get blockKey => 'network_configs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'network_configs': TfArg.literal([
@@ -156,6 +174,7 @@ final class TpuV2VmAcceleratorConfig {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'topology': topology.toTfJson(),
     'type': type.toTfJson(),
@@ -172,6 +191,7 @@ final class TpuV2VmDataDisks {
 
   final TfArg<String> sourceDisk;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'source_disk': sourceDisk.toTfJson(),
@@ -212,6 +232,7 @@ final class TpuV2VmNetworkConfig {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'enable_external_ips': ?enableExternalIps?.toTfJson(),
@@ -243,6 +264,7 @@ final class TpuV2VmNetworkConfigs {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'enable_external_ips': ?enableExternalIps?.toTfJson(),
@@ -264,6 +286,7 @@ final class TpuV2VmSchedulingConfig {
 
   final TfArg<bool>? spot;
 
+  @internal
   Map<String, Object?> encode() => {
     'preemptible': ?preemptible?.toTfJson(),
     'reserved': ?reserved?.toTfJson(),
@@ -281,6 +304,7 @@ final class TpuV2VmServiceAccount {
 
   final TfArg<List<String>>? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
     'scope': ?scope?.toTfJson(),
@@ -295,6 +319,7 @@ final class TpuV2VmShieldedInstanceConfig {
 
   final TfArg<bool> enableSecureBoot;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_secure_boot': enableSecureBoot.toTfJson(),
   };

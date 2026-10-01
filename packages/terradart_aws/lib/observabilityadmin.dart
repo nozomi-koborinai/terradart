@@ -3,6 +3,7 @@
 /// AWS CloudWatch Observability Admin.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/observabilityadmin/aws_observabilityadmin_centralization_rule_for_organization.dart'
     show
         AwsObservabilityadminCentralizationRuleForOrganization,

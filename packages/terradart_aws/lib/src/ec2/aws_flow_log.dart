@@ -81,12 +81,15 @@ sealed class FlowLogSource {
   const factory FlowLogSource.vpcId(RefTo<AwsVpc> vpcId) = FlowLogSourceVpcId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -96,12 +99,15 @@ final class FlowLogSourceEniId extends FlowLogSource {
 
   final TfArg<String> eniId;
 
+  @internal
   @override
   String get blockKey => 'eni_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'eni_id': eniId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'eni_id': eniId};
 }
@@ -112,14 +118,17 @@ final class FlowLogSourceRegionalNatGatewayId extends FlowLogSource {
 
   final TfArg<String> regionalNatGatewayId;
 
+  @internal
   @override
   String get blockKey => 'regional_nat_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'regional_nat_gateway_id': regionalNatGatewayId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'regional_nat_gateway_id': regionalNatGatewayId,
@@ -132,14 +141,17 @@ final class FlowLogSourceSubnetId extends FlowLogSource {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   @override
   String get blockKey => 'subnet_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'subnet_id': subnetId.encodeAs('id'),
@@ -154,14 +166,17 @@ final class FlowLogSourceTransitGatewayAttachmentId extends FlowLogSource {
 
   final TfArg<String> transitGatewayAttachmentId;
 
+  @internal
   @override
   String get blockKey => 'transit_gateway_attachment_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'transit_gateway_attachment_id': transitGatewayAttachmentId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'transit_gateway_attachment_id': transitGatewayAttachmentId,
@@ -174,14 +189,17 @@ final class FlowLogSourceTransitGatewayId extends FlowLogSource {
 
   final TfArg<String> transitGatewayId;
 
+  @internal
   @override
   String get blockKey => 'transit_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'transit_gateway_id': transitGatewayId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'transit_gateway_id': transitGatewayId,
@@ -194,12 +212,15 @@ final class FlowLogSourceVpcId extends FlowLogSource {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   @override
   String get blockKey => 'vpc_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId.encodeAs('id')};
 }
@@ -220,6 +241,7 @@ final class FlowLogDestinationOptions {
 
   final TfArg<bool>? perHourPartition;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_format': ?fileFormat?.toTfJson(),
     'hive_compatible_partitions': ?hiveCompatiblePartitions?.toTfJson(),
@@ -254,6 +276,7 @@ final class FlowLogTagFieldSpecification {
 
   final TfArg<List<String>> tagKeys;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_type': resourceType.toTfJson(),
     'tag_keys': tagKeys.toTfJson(),

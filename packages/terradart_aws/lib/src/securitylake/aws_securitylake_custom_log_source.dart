@@ -23,6 +23,7 @@ final class SecuritylakeCustomLogSourceConfiguration {
 
   final List<SecuritylakeCustomLogSourceProviderIdentity>? providerIdentity;
 
+  @internal
   Map<String, Object?> encode() => {
     if (crawlerConfiguration != null)
       'crawler_configuration': [
@@ -43,6 +44,7 @@ final class SecuritylakeCustomLogSourceCrawlerConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
@@ -61,6 +63,7 @@ final class SecuritylakeCustomLogSourceProviderIdentity {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_id': externalId.toTfJson(),
     'principal': principal.toTfJson(),

@@ -23,6 +23,7 @@ final class NetworkmanagerSiteLocation {
 
   final TfArg<String>? longitude;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'latitude': ?latitude?.toTfJson(),

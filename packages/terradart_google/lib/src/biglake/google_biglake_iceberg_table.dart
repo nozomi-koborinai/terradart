@@ -20,6 +20,7 @@ final class BiglakeIcebergTablePartitionSpec {
 
   final List<BiglakeIcebergTablePartitionSpecFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'fields': [for (final e in fields) e.encode()],
   };
@@ -41,6 +42,7 @@ final class BiglakeIcebergTablePartitionSpecFields {
 
   final TfArg<String> transform;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'source_id': sourceId.toTfJson(),
@@ -64,6 +66,7 @@ final class BiglakeIcebergTableSchema {
 
   final List<BiglakeIcebergTableSchemaFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier_field_ids': ?identifierFieldIds?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -93,6 +96,7 @@ final class BiglakeIcebergTableSchemaFields {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'doc': ?doc?.toTfJson(),
     'id': id.toTfJson(),
@@ -110,6 +114,7 @@ final class BiglakeIcebergTableSortOrder {
 
   final List<BiglakeIcebergTableSortOrderFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'fields': [for (final e in fields) e.encode()],
   };
@@ -134,6 +139,7 @@ final class BiglakeIcebergTableSortOrderFields {
 
   final TfArg<String> transform;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'null_order': nullOrder.toTfJson(),

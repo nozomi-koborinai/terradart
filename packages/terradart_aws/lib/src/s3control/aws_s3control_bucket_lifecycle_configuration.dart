@@ -31,6 +31,7 @@ final class S3controlBucketLifecycleConfigurationRule {
 
   final S3controlBucketLifecycleConfigurationFilter? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -51,6 +52,7 @@ final class S3controlBucketLifecycleConfigurationAbortIncompleteMultipartUpload 
 
   final TfArg<num> daysAfterInitiation;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_after_initiation': daysAfterInitiation.toTfJson(),
   };
@@ -72,6 +74,7 @@ final class S3controlBucketLifecycleConfigurationExpiration {
 
   final TfArg<bool>? expiredObjectDeleteMarker;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'days': ?days?.toTfJson(),
@@ -89,6 +92,7 @@ final class S3controlBucketLifecycleConfigurationFilter {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'tags': ?tags?.toTfJson(),

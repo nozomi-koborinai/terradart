@@ -22,6 +22,7 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfig {
   final CloudfrontFieldLevelEncryptionConfigContentTypeProfiles
   contentTypeProfiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'forward_when_content_type_is_unknown': forwardWhenContentTypeIsUnknown
         .toTfJson(),
@@ -40,6 +41,7 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfiles {
   final List<CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems>
   items;
 
+  @internal
   Map<String, Object?> encode() => {
     'items': [for (final e in items) e.encode()],
   };
@@ -61,6 +63,7 @@ final class CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems {
 
   final TfArg<String>? profileId;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
     'format': format.toTfJson(),
@@ -81,6 +84,7 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfileConfig {
 
   final CloudfrontFieldLevelEncryptionConfigQueryArgProfiles? queryArgProfiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'forward_when_query_arg_profile_is_unknown':
         forwardWhenQueryArgProfileIsUnknown.toTfJson(),
@@ -96,6 +100,7 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfiles {
 
   final List<CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -114,6 +119,7 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems {
 
   final TfArg<String> queryArg;
 
+  @internal
   Map<String, Object?> encode() => {
     'profile_id': profileId.toTfJson(),
     'query_arg': queryArg.toTfJson(),

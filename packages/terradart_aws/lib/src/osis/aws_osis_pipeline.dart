@@ -20,6 +20,7 @@ final class OsisPipelineBufferOptions {
 
   final TfArg<bool> persistentBufferEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'persistent_buffer_enabled': persistentBufferEnabled.toTfJson(),
   };
@@ -33,6 +34,7 @@ final class OsisPipelineEncryptionAtRestOptions {
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };
@@ -51,6 +53,7 @@ final class OsisPipelineLogPublishingOptions {
 
   final List<OsisPipelineCloudwatchLogDestination>? cloudwatchLogDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_logging_enabled': ?isLoggingEnabled?.toTfJson(),
     if (cloudwatchLogDestination != null)
@@ -68,6 +71,7 @@ final class OsisPipelineCloudwatchLogDestination {
 
   final RefTo<AwsCloudwatchLogGroup> logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group': logGroup.encodeAs('name').toTfJson(),
   };
@@ -89,6 +93,7 @@ final class OsisPipelineVpcOptions {
 
   final OsisPipelineVpcEndpointManagement? vpcEndpointManagement;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

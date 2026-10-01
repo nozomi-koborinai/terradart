@@ -54,6 +54,7 @@ final class OpensearchDomainAdvancedSecurityOptions {
 
   final OpensearchDomainMasterUserOptions? masterUserOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'anonymous_auth_enabled': ?anonymousAuthEnabled?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -85,6 +86,7 @@ final class OpensearchDomainJwtOptions {
 
   final TfArg<String>? subjectKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'jwks_url': ?jwksUrl?.toTfJson(),
@@ -110,6 +112,7 @@ final class OpensearchDomainMasterUserOptions {
 
   final Sensitive<String>? masterUserPassword;
 
+  @internal
   Map<String, Object?> encode() => {
     'master_user_arn': ?masterUserArn?.toTfJson(),
     'master_user_name': ?masterUserName?.toTfJson(),
@@ -135,6 +138,7 @@ final class OpensearchDomainAimlOptions {
   final OpensearchDomainServerlessVectorAcceleration?
   serverlessVectorAcceleration;
 
+  @internal
   Map<String, Object?> encode() => {
     'natural_language_query_generation_options':
         ?naturalLanguageQueryGenerationOptions?.encode(),
@@ -153,6 +157,7 @@ final class OpensearchDomainNaturalLanguageQueryGenerationOptions {
 
   final OpensearchDomainDesiredState? desiredState;
 
+  @internal
   Map<String, Object?> encode() => {'desired_state': ?desiredState?.toTfJson()};
 }
 
@@ -183,6 +188,7 @@ final class OpensearchDomainS3VectorsEngine {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -194,6 +200,7 @@ final class OpensearchDomainServerlessVectorAcceleration {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -216,6 +223,7 @@ final class OpensearchDomainAutoTuneOptions {
 
   final List<OpensearchDomainMaintenanceSchedule>? maintenanceSchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
     'rollback_on_disable': ?rollbackOnDisable?.toTfJson(),
@@ -265,6 +273,7 @@ final class OpensearchDomainMaintenanceSchedule {
 
   final OpensearchDomainDuration duration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cron_expression_for_recurrence': cronExpressionForRecurrence.toTfJson(),
     'start_at': startAt.toTfJson(),
@@ -282,6 +291,7 @@ final class OpensearchDomainDuration {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -347,6 +357,7 @@ final class OpensearchDomainClusterConfig {
 
   final OpensearchDomainZoneAwarenessConfig? zoneAwarenessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dedicated_master_count': ?dedicatedMasterCount?.toTfJson(),
     'dedicated_master_enabled': ?dedicatedMasterEnabled?.toTfJson(),
@@ -398,6 +409,7 @@ final class OpensearchDomainColdStorageOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -411,6 +423,7 @@ final class OpensearchDomainNodeOptions {
 
   final OpensearchDomainNodeConfig? nodeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_type': ?nodeType?.toTfJson(),
     'node_config': ?nodeConfig?.encode(),
@@ -444,6 +457,7 @@ final class OpensearchDomainNodeConfig {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -459,6 +473,7 @@ final class OpensearchDomainZoneAwarenessConfig {
 
   final TfArg<num>? availabilityZoneCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone_count': ?availabilityZoneCount?.toTfJson(),
   };
@@ -483,6 +498,7 @@ final class OpensearchDomainCognitoOptions {
 
   final TfArg<String> userPoolId;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'identity_pool_id': identityPoolId.toTfJson(),
@@ -501,6 +517,7 @@ final class OpensearchDomainDeploymentStrategyOptions {
 
   final OpensearchDomainDeploymentStrategy deploymentStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment_strategy': deploymentStrategy.toTfJson(),
   };
@@ -550,6 +567,7 @@ final class OpensearchDomainEndpointOptions {
 
   final OpensearchDomainTlsSecurityPolicy? tlsSecurityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_endpoint': ?customEndpoint?.toTfJson(),
     'custom_endpoint_certificate_arn': ?customEndpointCertificateArn
@@ -613,6 +631,7 @@ final class OpensearchDomainEbsOptions {
 
   final OpensearchDomainVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
     'iops': ?iops?.toTfJson(),
@@ -656,6 +675,7 @@ final class OpensearchDomainEncryptAtRest {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -681,6 +701,7 @@ final class OpensearchDomainIdentityCenterOptions {
 
   final OpensearchDomainSubjectKey? subjectKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_api_access': ?enabledApiAccess?.toTfJson(),
     'identity_center_instance_arn': ?identityCenterInstanceArn?.toTfJson(),
@@ -743,6 +764,7 @@ final class OpensearchDomainLogPublishingOptions {
 
   final OpensearchDomainLogType logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn
         .encodeAs('arn')
@@ -789,6 +811,7 @@ final class OpensearchDomainNodeToNodeEncryption {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -805,6 +828,7 @@ final class OpensearchDomainOffPeakWindowOptions {
 
   final OpensearchDomainOffPeakWindow? offPeakWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'off_peak_window': ?offPeakWindow?.encode(),
@@ -819,6 +843,7 @@ final class OpensearchDomainOffPeakWindow {
 
   final OpensearchDomainWindowStartTime? windowStartTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'window_start_time': ?windowStartTime?.encode(),
   };
@@ -834,6 +859,7 @@ final class OpensearchDomainWindowStartTime {
 
   final TfArg<num>? minutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -850,6 +876,7 @@ final class OpensearchDomainSnapshotOptions {
 
   final TfArg<num> automatedSnapshotStartHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'automated_snapshot_start_hour': automatedSnapshotStartHour.toTfJson(),
   };
@@ -863,6 +890,7 @@ final class OpensearchDomainSoftwareUpdateOptions {
 
   final TfArg<bool>? autoSoftwareUpdateEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_software_update_enabled': ?autoSoftwareUpdateEnabled?.toTfJson(),
   };
@@ -878,6 +906,7 @@ final class OpensearchDomainVpcOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),

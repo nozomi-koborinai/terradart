@@ -19,6 +19,7 @@ final class SecretManagerRegionalSecretCustomerManagedEncryption {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -37,6 +38,7 @@ final class SecretManagerRegionalSecretRotation {
 
   final TfArg<String>? rotationPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'next_rotation_time': ?nextRotationTime?.toTfJson(),
     'rotation_period': ?rotationPeriod?.toTfJson(),
@@ -51,6 +53,7 @@ final class SecretManagerRegionalSecretTopics {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

@@ -148,6 +148,7 @@ final class Apigatewayv2IntegrationResponseParameters {
 
   final TfArg<String> statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'mappings': mappings.toTfJson(),
     'status_code': statusCode.toTfJson(),
@@ -162,6 +163,7 @@ final class Apigatewayv2IntegrationTlsConfig {
 
   final TfArg<String>? serverNameToVerify;
 
+  @internal
   Map<String, Object?> encode() => {
     'server_name_to_verify': ?serverNameToVerify?.toTfJson(),
   };

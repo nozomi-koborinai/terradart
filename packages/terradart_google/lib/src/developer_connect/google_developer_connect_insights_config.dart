@@ -25,6 +25,7 @@ final class DeveloperConnectInsightsConfigArtifactConfigs {
   final DeveloperConnectInsightsConfigGoogleArtifactRegistry?
   googleArtifactRegistry;
 
+  @internal
   Map<String, Object?> encode() => {
     'uri': ?uri?.toTfJson(),
     'google_artifact_analysis': ?googleArtifactAnalysis?.encode(),
@@ -42,6 +43,7 @@ final class DeveloperConnectInsightsConfigGoogleArtifactAnalysis {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {'project_id': projectId.toTfJson()};
 }
 
@@ -58,6 +60,7 @@ final class DeveloperConnectInsightsConfigGoogleArtifactRegistry {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_registry_package': artifactRegistryPackage.toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -72,6 +75,7 @@ final class DeveloperConnectInsightsConfigTargetProjects {
 
   final TfArg<List<String>>? projectIds;
 
+  @internal
   Map<String, Object?> encode() => {'project_ids': ?projectIds?.toTfJson()};
 }
 

@@ -48,12 +48,15 @@ sealed class PubsubSubscriptionDelivery {
   ) = PubsubSubscriptionDeliveryCloudStorageConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -64,12 +67,15 @@ final class PubsubSubscriptionDeliveryBigqueryConfig
 
   final PubsubSubscriptionBigqueryConfig bigqueryConfig;
 
+  @internal
   @override
   String get blockKey => 'bigquery_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'bigquery_config': bigqueryConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
@@ -83,12 +89,15 @@ final class PubsubSubscriptionDeliveryPushConfig
 
   final PubsubSubscriptionPushConfig pushConfig;
 
+  @internal
   @override
   String get blockKey => 'push_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'push_config': pushConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'push_config': TfArg.literal(pushConfig.encode()),
@@ -102,14 +111,17 @@ final class PubsubSubscriptionDeliveryCloudStorageConfig
 
   final PubsubSubscriptionCloudStorageConfig cloudStorageConfig;
 
+  @internal
   @override
   String get blockKey => 'cloud_storage_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_storage_config': cloudStorageConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
@@ -138,6 +150,7 @@ final class PubsubSubscriptionBigqueryConfig {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'drop_unknown_fields': ?dropUnknownFields?.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
@@ -166,8 +179,10 @@ sealed class PubsubSubscriptionSchema {
   ) = PubsubSubscriptionUseTableSchema;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -177,9 +192,11 @@ final class PubsubSubscriptionUseTopicSchema extends PubsubSubscriptionSchema {
 
   final TfArg<bool> useTopicSchema;
 
+  @internal
   @override
   String get blockKey => 'use_topic_schema';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'use_topic_schema': useTopicSchema.toTfJson(),
@@ -192,9 +209,11 @@ final class PubsubSubscriptionUseTableSchema extends PubsubSubscriptionSchema {
 
   final TfArg<bool> useTableSchema;
 
+  @internal
   @override
   String get blockKey => 'use_table_schema';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'use_table_schema': useTableSchema.toTfJson(),
@@ -238,6 +257,7 @@ final class PubsubSubscriptionCloudStorageConfig {
 
   final PubsubSubscriptionTextConfig? textConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'filename_datetime_format': ?filenameDatetimeFormat?.toTfJson(),
@@ -262,6 +282,7 @@ final class PubsubSubscriptionAvroConfig {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_topic_schema': ?useTopicSchema?.toTfJson(),
     'write_metadata': ?writeMetadata?.toTfJson(),
@@ -274,6 +295,7 @@ final class PubsubSubscriptionAvroConfig {
 final class PubsubSubscriptionTextConfig {
   const PubsubSubscriptionTextConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -290,6 +312,7 @@ final class PubsubSubscriptionDeadLetterPolicy {
 
   final TfArg<num>? maxDeliveryAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'dead_letter_topic': ?deadLetterTopic?.toTfJson(),
     'max_delivery_attempts': ?maxDeliveryAttempts?.toTfJson(),
@@ -304,6 +327,7 @@ final class PubsubSubscriptionExpirationPolicy {
 
   final TfArg<String> ttl;
 
+  @internal
   Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 }
 
@@ -323,6 +347,7 @@ final class PubsubSubscriptionMessageTransforms {
 
   final PubsubSubscriptionJavascriptUdf? javascriptUdf;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ai_inference': ?aiInference?.encode(),
@@ -346,6 +371,7 @@ final class PubsubSubscriptionAiInference {
 
   final PubsubSubscriptionUnstructuredInference? unstructuredInference;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
@@ -361,6 +387,7 @@ final class PubsubSubscriptionUnstructuredInference {
 
   final TfArg<Map<String, String>>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
 }
 
@@ -377,6 +404,7 @@ final class PubsubSubscriptionJavascriptUdf {
 
   final TfArg<String> functionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'function_name': functionName.toTfJson(),
@@ -402,6 +430,7 @@ final class PubsubSubscriptionPushConfig {
 
   final PubsubSubscriptionOidcToken? oidcToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'push_endpoint': pushEndpoint.toTfJson(),
@@ -418,6 +447,7 @@ final class PubsubSubscriptionNoWrapper {
 
   final TfArg<bool> writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {'write_metadata': writeMetadata.toTfJson()};
 }
 
@@ -434,6 +464,7 @@ final class PubsubSubscriptionOidcToken {
 
   final RefTo<GoogleServiceAccount> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
@@ -453,6 +484,7 @@ final class PubsubSubscriptionRetryPolicy {
 
   final TfArg<String>? minimumBackoff;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_backoff': ?maximumBackoff?.toTfJson(),
     'minimum_backoff': ?minimumBackoff?.toTfJson(),

@@ -45,6 +45,7 @@ final class CloudIdentityGroupKey {
 
   final TfArg<String>? namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'namespace': ?namespace?.toTfJson(),

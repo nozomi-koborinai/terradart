@@ -6,7 +6,6 @@
 /// notifications for the project.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/essential_contacts.dart';
 import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/project.dart';

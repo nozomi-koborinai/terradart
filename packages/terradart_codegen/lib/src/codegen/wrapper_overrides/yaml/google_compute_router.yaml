@@ -65,6 +65,7 @@ prelude: |
     /// Seconds between BGP keepalive messages (hold time is 3× this value).
     final TfArg<int>? keepaliveInterval;
 
+    @internal
     Map<String, Object?> encode() => {
       if (advertiseMode != null)
         'advertise_mode': advertiseMode!.toTfJson(),

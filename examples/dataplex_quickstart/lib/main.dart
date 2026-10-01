@@ -8,9 +8,7 @@
 /// product via `google_dataplex_data_product_iam_member`.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
@@ -40,7 +38,7 @@ final class DataplexCatalogStack extends Stack {
 
     // Resolves the project *number* (not id) — Dataplex entry_type references
     // must be `projects/<project-number>/...`; a project id is rejected.
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final owner = add(
       GoogleServiceAccount(

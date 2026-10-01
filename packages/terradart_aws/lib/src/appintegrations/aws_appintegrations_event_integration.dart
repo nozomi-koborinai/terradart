@@ -15,6 +15,7 @@ final class AppintegrationsEventIntegrationEventFilter {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 }
 

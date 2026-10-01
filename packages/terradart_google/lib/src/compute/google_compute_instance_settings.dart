@@ -15,6 +15,7 @@ final class ComputeInstanceSettingsMetadata {
 
   final TfArg<Map<String, String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 

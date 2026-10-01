@@ -3,6 +3,7 @@
 /// Cloud Bigtable — instances, tables, app profiles, GC policies, views.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bigtable/google_bigtable_app_profile.dart'
     show
         BigtableAppProfileComputeBillingOwner,
@@ -56,3 +57,7 @@ export 'src/bigtable/google_bigtable_table_iam_member.dart'
     show BigtableTableIamMemberCondition, GoogleBigtableTableIamMember;
 export 'src/bigtable/google_bigtable_table_iam_policy.dart'
     show GoogleBigtableTableIamPolicy;
+export 'src/data/google_bigtable_instance_iam_policy.dart'
+    show DataGoogleBigtableInstanceIamPolicy;
+export 'src/data/google_bigtable_table_iam_policy.dart'
+    show DataGoogleBigtableTableIamPolicy;

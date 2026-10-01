@@ -49,6 +49,7 @@ final class AccountSubscriptionRatePlan {
 
   final TfArg<String>? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'scope': ?scope?.toTfJson(),

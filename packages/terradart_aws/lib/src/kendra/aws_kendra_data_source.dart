@@ -80,6 +80,7 @@ final class KendraDataSourceConfiguration {
 
   final KendraDataSourceWebCrawlerConfiguration? webCrawlerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_configuration': ?s3Configuration?.encode(),
     'template_configuration': ?templateConfiguration?.encode(),
@@ -114,6 +115,7 @@ final class KendraDataSourceS3Configuration {
   final KendraDataSourceDocumentsMetadataConfiguration?
   documentsMetadataConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'exclusion_patterns': ?exclusionPatterns?.toTfJson(),
@@ -134,6 +136,7 @@ final class KendraDataSourceAccessControlListConfiguration {
 
   final TfArg<String>? keyPath;
 
+  @internal
   Map<String, Object?> encode() => {'key_path': ?keyPath?.toTfJson()};
 }
 
@@ -145,6 +148,7 @@ final class KendraDataSourceDocumentsMetadataConfiguration {
 
   final TfArg<String>? s3Prefix;
 
+  @internal
   Map<String, Object?> encode() => {'s3_prefix': ?s3Prefix?.toTfJson()};
 }
 
@@ -156,6 +160,7 @@ final class KendraDataSourceTemplateConfiguration {
 
   final TfArg<String> template;
 
+  @internal
   Map<String, Object?> encode() => {'template': template.toTfJson()};
 }
 
@@ -194,6 +199,7 @@ final class KendraDataSourceWebCrawlerConfiguration {
 
   final KendraDataSourceUrls urls;
 
+  @internal
   Map<String, Object?> encode() => {
     'crawl_depth': ?crawlDepth?.toTfJson(),
     'max_content_size_per_page_in_mega_bytes': ?maxContentSizePerPageInMegaBytes
@@ -216,6 +222,7 @@ final class KendraDataSourceAuthenticationConfiguration {
 
   final List<KendraDataSourceBasicAuthentication>? basicAuthentication;
 
+  @internal
   Map<String, Object?> encode() => {
     if (basicAuthentication != null)
       'basic_authentication': [
@@ -240,6 +247,7 @@ final class KendraDataSourceBasicAuthentication {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials': credentials.toTfJson(),
     'host': host.toTfJson(),
@@ -263,6 +271,7 @@ final class KendraDataSourceProxyConfiguration {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials': ?credentials?.toTfJson(),
     'host': host.toTfJson(),
@@ -283,6 +292,7 @@ final class KendraDataSourceUrls {
 
   final KendraDataSourceSiteMapsConfiguration? siteMapsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'seed_url_configuration': ?seedUrlConfiguration?.encode(),
     'site_maps_configuration': ?siteMapsConfiguration?.encode(),
@@ -302,6 +312,7 @@ final class KendraDataSourceSeedUrlConfiguration {
 
   final KendraDataSourceWebCrawlerMode? webCrawlerMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'seed_urls': seedUrls.toTfJson(),
     'web_crawler_mode': ?webCrawlerMode?.toTfJson(),
@@ -342,6 +353,7 @@ final class KendraDataSourceSiteMapsConfiguration {
 
   final TfArg<List<String>> siteMaps;
 
+  @internal
   Map<String, Object?> encode() => {'site_maps': siteMaps.toTfJson()};
 }
 
@@ -366,6 +378,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfiguration {
   final KendraDataSourcePreExtractionHookConfiguration?
   preExtractionHookConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     if (inlineConfigurations != null)
@@ -395,6 +408,7 @@ final class KendraDataSourceInlineConfigurations {
 
   final KendraDataSourceTarget? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'document_content_deletion': ?documentContentDeletion?.toTfJson(),
     'condition': ?condition?.encode(),
@@ -418,6 +432,7 @@ final class KendraDataSourceCondition {
 
   final KendraDataSourceConditionOnValue? conditionOnValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_document_attribute_key': conditionDocumentAttributeKey
         .toTfJson(),
@@ -446,6 +461,7 @@ final class KendraDataSourceConditionOnValue {
 
   final TfArg<String>? stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_value': ?dateValue?.toTfJson(),
     'long_value': ?longValue?.toTfJson(),
@@ -471,6 +487,7 @@ final class KendraDataSourceTarget {
   final KendraDataSourceTargetDocumentAttributeValue?
   targetDocumentAttributeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_document_attribute_key': ?targetDocumentAttributeKey?.toTfJson(),
     'target_document_attribute_value_deletion':
@@ -498,6 +515,7 @@ final class KendraDataSourceTargetDocumentAttributeValue {
 
   final TfArg<String>? stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_value': ?dateValue?.toTfJson(),
     'long_value': ?longValue?.toTfJson(),
@@ -522,6 +540,7 @@ final class KendraDataSourcePostExtractionHookConfiguration {
 
   final KendraDataSourceInvocationCondition? invocationCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
@@ -546,6 +565,7 @@ final class KendraDataSourceInvocationCondition {
 
   final KendraDataSourceConditionOnValue? conditionOnValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_document_attribute_key': conditionDocumentAttributeKey
         .toTfJson(),
@@ -570,6 +590,7 @@ final class KendraDataSourcePreExtractionHookConfiguration {
 
   final KendraDataSourceInvocationCondition? invocationCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),

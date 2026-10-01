@@ -12,7 +12,6 @@
 /// SAML configs (real external credentials) stay out of this stack.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/identity.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

@@ -18,6 +18,7 @@ final class DatabaseMigrationServicePrivateConnectionPscInterfaceConfig {
 
   final TfArg<String> networkAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': networkAttachment.toTfJson(),
   };
@@ -36,6 +37,7 @@ final class DatabaseMigrationServicePrivateConnectionVpcPeeringConfig {
 
   final TfArg<String> vpcName;
 
+  @internal
   Map<String, Object?> encode() => {
     'subnet': subnet.toTfJson(),
     'vpc_name': vpcName.toTfJson(),

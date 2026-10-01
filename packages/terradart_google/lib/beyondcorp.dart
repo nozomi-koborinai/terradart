@@ -5,6 +5,7 @@
 /// entitlement (never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/beyondcorp/google_beyondcorp_security_gateway.dart'
     show
         BeyondcorpSecurityGatewayApiGateway,
@@ -56,3 +57,9 @@ export 'src/beyondcorp/google_beyondcorp_security_gateway_iam_member.dart'
         GoogleBeyondcorpSecurityGatewayIamMember;
 export 'src/beyondcorp/google_beyondcorp_security_gateway_iam_policy.dart'
     show GoogleBeyondcorpSecurityGatewayIamPolicy;
+export 'src/data/google_beyondcorp_security_gateway.dart'
+    show DataGoogleBeyondcorpSecurityGateway;
+export 'src/data/google_beyondcorp_security_gateway_application_iam_policy.dart'
+    show DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy;
+export 'src/data/google_beyondcorp_security_gateway_iam_policy.dart'
+    show DataGoogleBeyondcorpSecurityGatewayIamPolicy;

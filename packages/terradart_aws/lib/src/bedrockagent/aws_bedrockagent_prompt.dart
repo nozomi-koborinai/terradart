@@ -35,6 +35,7 @@ final class BedrockagentPromptVariant {
 
   final List<BedrockagentPromptTemplateConfiguration>? templateConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_model_request_fields': ?additionalModelRequestFields
         ?.toTfJson(),
@@ -70,8 +71,10 @@ sealed class BedrockagentPromptModel {
       BedrockagentPromptModelId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -82,9 +85,11 @@ final class BedrockagentPromptModelGenAiResource
 
   final List<BedrockagentPromptGenAiResource> genAiResource;
 
+  @internal
   @override
   String get blockKey => 'gen_ai_resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gen_ai_resource': [for (final e in genAiResource) e.encode()],
@@ -97,9 +102,11 @@ final class BedrockagentPromptModelId extends BedrockagentPromptModel {
 
   final TfArg<String> modelId;
 
+  @internal
   @override
   String get blockKey => 'model_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'model_id': modelId.toTfJson()};
 }
@@ -127,6 +134,7 @@ final class BedrockagentPromptGenAiResource {
 
   final List<BedrockagentPromptAgent>? agent;
 
+  @internal
   Map<String, Object?> encode() => {
     if (agent != null) 'agent': [for (final e in agent!) e.encode()],
   };
@@ -140,6 +148,7 @@ final class BedrockagentPromptAgent {
 
   final TfArg<String> agentIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_identifier': agentIdentifier.toTfJson(),
   };
@@ -153,6 +162,7 @@ final class BedrockagentPromptInferenceConfiguration {
 
   final List<BedrockagentPromptInferenceConfigurationText>? text;
 
+  @internal
   Map<String, Object?> encode() => {
     if (text != null) 'text': [for (final e in text!) e.encode()],
   };
@@ -177,6 +187,7 @@ final class BedrockagentPromptInferenceConfigurationText {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_tokens': ?maxTokens?.toTfJson(),
     'stop_sequences': ?stopSequences?.toTfJson(),
@@ -195,6 +206,7 @@ final class BedrockagentPromptMetadata {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -219,8 +231,10 @@ sealed class BedrockagentPromptTemplateConfiguration {
   ) = BedrockagentPromptTemplateConfigurationTextChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -231,9 +245,11 @@ final class BedrockagentPromptTemplateConfigurationChat
 
   final List<BedrockagentPromptChat> chat;
 
+  @internal
   @override
   String get blockKey => 'chat';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'chat': [for (final e in chat) e.encode()],
@@ -247,9 +263,11 @@ final class BedrockagentPromptTemplateConfigurationTextChoice
 
   final List<BedrockagentPromptTemplateConfigurationText> text;
 
+  @internal
   @override
   String get blockKey => 'text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'text': [for (final e in text) e.encode()],
@@ -275,6 +293,7 @@ final class BedrockagentPromptChat {
 
   final List<BedrockagentPromptToolConfiguration>? toolConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inputVariable != null)
       'input_variable': [for (final e in inputVariable!) e.encode()],
@@ -294,6 +313,7 @@ final class BedrockagentPromptInputVariable {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -307,6 +327,7 @@ final class BedrockagentPromptMessage {
 
   final List<BedrockagentPromptContent>? content;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': role.toTfJson(),
     if (content != null) 'content': [for (final e in content!) e.encode()],
@@ -344,8 +365,10 @@ sealed class BedrockagentPromptContent {
       BedrockagentPromptContentText;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -356,9 +379,11 @@ final class BedrockagentPromptContentCachePoint
 
   final List<BedrockagentPromptCachePoint> cachePoint;
 
+  @internal
   @override
   String get blockKey => 'cache_point';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cache_point': [for (final e in cachePoint) e.encode()],
@@ -371,9 +396,11 @@ final class BedrockagentPromptContentText extends BedrockagentPromptContent {
 
   final TfArg<String> text;
 
+  @internal
   @override
   String get blockKey => 'text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
@@ -387,6 +414,7 @@ final class BedrockagentPromptCachePoint {
 
   final BedrockagentPromptType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -420,8 +448,10 @@ sealed class BedrockagentPromptSystem {
       BedrockagentPromptSystemText;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -432,9 +462,11 @@ final class BedrockagentPromptSystemCachePoint
 
   final List<BedrockagentPromptCachePoint> cachePoint;
 
+  @internal
   @override
   String get blockKey => 'cache_point';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cache_point': [for (final e in cachePoint) e.encode()],
@@ -447,9 +479,11 @@ final class BedrockagentPromptSystemText extends BedrockagentPromptSystem {
 
   final TfArg<String> text;
 
+  @internal
   @override
   String get blockKey => 'text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
@@ -464,6 +498,7 @@ final class BedrockagentPromptToolConfiguration {
 
   final List<BedrockagentPromptToolChoice>? toolChoice;
 
+  @internal
   Map<String, Object?> encode() => {
     if (tool != null) 'tool': [for (final e in tool!) e.encode()],
     if (toolChoice != null)
@@ -489,8 +524,10 @@ sealed class BedrockagentPromptTool {
   ) = BedrockagentPromptToolSpecChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -500,9 +537,11 @@ final class BedrockagentPromptToolCachePoint extends BedrockagentPromptTool {
 
   final List<BedrockagentPromptCachePoint> cachePoint;
 
+  @internal
   @override
   String get blockKey => 'cache_point';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cache_point': [for (final e in cachePoint) e.encode()],
@@ -515,9 +554,11 @@ final class BedrockagentPromptToolSpecChoice extends BedrockagentPromptTool {
 
   final List<BedrockagentPromptToolSpec> toolSpec;
 
+  @internal
   @override
   String get blockKey => 'tool_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'tool_spec': [for (final e in toolSpec) e.encode()],
@@ -540,6 +581,7 @@ final class BedrockagentPromptToolSpec {
 
   final List<BedrockagentPromptInputSchema>? inputSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -556,6 +598,7 @@ final class BedrockagentPromptInputSchema {
 
   final TfArg<String>? json;
 
+  @internal
   Map<String, Object?> encode() => {'json': ?json?.toTfJson()};
 }
 
@@ -582,8 +625,10 @@ sealed class BedrockagentPromptToolChoice {
   ) = BedrockagentPromptToolChoiceToolOption;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -594,9 +639,11 @@ final class BedrockagentPromptToolChoiceAny
 
   final List<BedrockagentPromptAny> any;
 
+  @internal
   @override
   String get blockKey => 'any';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'any': [for (final e in any) e.encode()],
@@ -610,9 +657,11 @@ final class BedrockagentPromptToolChoiceAuto
 
   final List<BedrockagentPromptAuto> auto;
 
+  @internal
   @override
   String get blockKey => 'auto';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'auto': [for (final e in auto) e.encode()],
@@ -626,9 +675,11 @@ final class BedrockagentPromptToolChoiceToolOption
 
   final List<BedrockagentPromptToolChoiceTool> tool;
 
+  @internal
   @override
   String get blockKey => 'tool';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'tool': [for (final e in tool) e.encode()],
@@ -641,6 +692,7 @@ final class BedrockagentPromptToolChoiceToolOption
 final class BedrockagentPromptAny {
   const BedrockagentPromptAny();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -650,6 +702,7 @@ final class BedrockagentPromptAny {
 final class BedrockagentPromptAuto {
   const BedrockagentPromptAuto();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -661,6 +714,7 @@ final class BedrockagentPromptToolChoiceTool {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -680,6 +734,7 @@ final class BedrockagentPromptTemplateConfigurationText {
 
   final List<BedrockagentPromptInputVariable>? inputVariable;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': text.toTfJson(),
     if (cachePoint != null)

@@ -47,6 +47,7 @@ final class CloudTasksQueueAppEngineRoutingOverride {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance': ?instance?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -73,6 +74,7 @@ final class CloudTasksQueueHttpTarget {
 
   final CloudTasksQueueUriOverride? uriOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_method': ?httpMethod?.toTfJson(),
     if (headerOverrides != null)
@@ -101,8 +103,10 @@ sealed class CloudTasksQueueToken {
   ) = CloudTasksQueueOidcTokenChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -112,9 +116,11 @@ final class CloudTasksQueueOauthTokenChoice extends CloudTasksQueueToken {
 
   final CloudTasksQueueOauthToken oauthToken;
 
+  @internal
   @override
   String get blockKey => 'oauth_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oauth_token': oauthToken.encode()};
 }
@@ -125,9 +131,11 @@ final class CloudTasksQueueOidcTokenChoice extends CloudTasksQueueToken {
 
   final CloudTasksQueueOidcToken oidcToken;
 
+  @internal
   @override
   String get blockKey => 'oidc_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oidc_token': oidcToken.encode()};
 }
@@ -172,6 +180,7 @@ final class CloudTasksQueueHeaderOverrides {
 
   final CloudTasksQueueHeader header;
 
+  @internal
   Map<String, Object?> encode() => {'header': header.encode()};
 }
 
@@ -185,6 +194,7 @@ final class CloudTasksQueueHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -204,6 +214,7 @@ final class CloudTasksQueueOauthToken {
 
   final RefTo<GoogleServiceAccount> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': ?scope?.toTfJson(),
     'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
@@ -223,6 +234,7 @@ final class CloudTasksQueueOidcToken {
 
   final RefTo<GoogleServiceAccount> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
@@ -254,6 +266,7 @@ final class CloudTasksQueueUriOverride {
 
   final CloudTasksQueueQueryOverride? queryOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -309,6 +322,7 @@ final class CloudTasksQueuePathOverride {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {'path': ?path?.toTfJson()};
 }
 
@@ -320,6 +334,7 @@ final class CloudTasksQueueQueryOverride {
 
   final TfArg<String>? queryParams;
 
+  @internal
   Map<String, Object?> encode() => {'query_params': ?queryParams?.toTfJson()};
 }
 
@@ -336,6 +351,7 @@ final class CloudTasksQueueRateLimits {
 
   final TfArg<num>? maxDispatchesPerSecond;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_dispatches': ?maxConcurrentDispatches?.toTfJson(),
     'max_dispatches_per_second': ?maxDispatchesPerSecond?.toTfJson(),
@@ -364,6 +380,7 @@ final class CloudTasksQueueRetryConfig {
 
   final TfArg<String>? minBackoff;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_attempts': ?maxAttempts?.toTfJson(),
     'max_backoff': ?maxBackoff?.toTfJson(),
@@ -381,6 +398,7 @@ final class CloudTasksQueueStackdriverLoggingConfig {
 
   final TfArg<num> samplingRatio;
 
+  @internal
   Map<String, Object?> encode() => {'sampling_ratio': samplingRatio.toTfJson()};
 }
 

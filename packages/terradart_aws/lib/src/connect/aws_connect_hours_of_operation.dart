@@ -23,6 +23,7 @@ final class ConnectHoursOfOperationConfig {
 
   final ConnectHoursOfOperationStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'end_time': endTime.encode(),
@@ -77,6 +78,7 @@ final class ConnectHoursOfOperationEndTime {
 
   final TfArg<num> minutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': hours.toTfJson(),
     'minutes': minutes.toTfJson(),
@@ -96,6 +98,7 @@ final class ConnectHoursOfOperationStartTime {
 
   final TfArg<num> minutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': hours.toTfJson(),
     'minutes': minutes.toTfJson(),

@@ -3,6 +3,7 @@
 /// Runtime Configurator configs, variables, and config IAM (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/runtimeconfig/google_runtimeconfig_config.dart'
     show GoogleRuntimeconfigConfig;
 export 'src/runtimeconfig/google_runtimeconfig_config_iam_binding.dart'

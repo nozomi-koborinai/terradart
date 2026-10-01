@@ -129,6 +129,7 @@ final class PrivatecaCertificateAuthorityConfig {
 
   final PrivatecaCertificateAuthorityX509Config x509Config;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject_config': subjectConfig.encode(),
     'subject_key_id': ?subjectKeyId?.encode(),
@@ -149,6 +150,7 @@ final class PrivatecaCertificateAuthoritySubjectConfig {
 
   final PrivatecaCertificateAuthoritySubjectAltName? subjectAltName;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject': subject.encode(),
     'subject_alt_name': ?subjectAltName?.encode(),
@@ -186,6 +188,7 @@ final class PrivatecaCertificateAuthoritySubject {
 
   final TfArg<String>? streetAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'common_name': commonName.toTfJson(),
     'country_code': ?countryCode?.toTfJson(),
@@ -217,6 +220,7 @@ final class PrivatecaCertificateAuthoritySubjectAltName {
 
   final TfArg<List<String>>? uris;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_names': ?dnsNames?.toTfJson(),
     'email_addresses': ?emailAddresses?.toTfJson(),
@@ -233,6 +237,7 @@ final class PrivatecaCertificateAuthoritySubjectKeyId {
 
   final TfArg<String>? keyId;
 
+  @internal
   Map<String, Object?> encode() => {'key_id': ?keyId?.toTfJson()};
 }
 
@@ -262,6 +267,7 @@ final class PrivatecaCertificateAuthorityX509Config {
 
   final List<PrivatecaCertificateAuthorityPolicyIds>? policyIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'aia_ocsp_servers': ?aiaOcspServers?.toTfJson(),
     if (additionalExtensions != null)
@@ -292,6 +298,7 @@ final class PrivatecaCertificateAuthorityAdditionalExtensions {
 
   final PrivatecaCertificateAuthorityObjectId objectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
     'value': value.toTfJson(),
@@ -307,6 +314,7 @@ final class PrivatecaCertificateAuthorityObjectId {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -329,6 +337,7 @@ final class PrivatecaCertificateAuthorityCaOptions {
 
   final TfArg<bool>? zeroMaxIssuerPathLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_ca': isCa.toTfJson(),
     'max_issuer_path_length': ?maxIssuerPathLength?.toTfJson(),
@@ -354,6 +363,7 @@ final class PrivatecaCertificateAuthorityKeyUsage {
   final List<PrivatecaCertificateAuthorityUnknownExtendedKeyUsages>?
   unknownExtendedKeyUsages;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_key_usage': baseKeyUsage.encode(),
     'extended_key_usage': extendedKeyUsage.encode(),
@@ -398,6 +408,7 @@ final class PrivatecaCertificateAuthorityBaseKeyUsage {
 
   final TfArg<bool>? keyEncipherment;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert_sign': ?certSign?.toTfJson(),
     'content_commitment': ?contentCommitment?.toTfJson(),
@@ -436,6 +447,7 @@ final class PrivatecaCertificateAuthorityExtendedKeyUsage {
 
   final TfArg<bool>? timeStamping;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_auth': ?clientAuth?.toTfJson(),
     'code_signing': ?codeSigning?.toTfJson(),
@@ -456,6 +468,7 @@ final class PrivatecaCertificateAuthorityUnknownExtendedKeyUsages {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -493,6 +506,7 @@ final class PrivatecaCertificateAuthorityNameConstraints {
 
   final TfArg<List<String>>? permittedUris;
 
+  @internal
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
     'excluded_dns_names': ?excludedDnsNames?.toTfJson(),
@@ -514,6 +528,7 @@ final class PrivatecaCertificateAuthorityPolicyIds {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -535,8 +550,10 @@ sealed class PrivatecaCertificateAuthorityKeySpec {
   ) = PrivatecaCertificateAuthorityKeySpecAlgorithm;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -549,9 +566,11 @@ final class PrivatecaCertificateAuthorityKeySpecCloudKmsKeyVersion
 
   final TfArg<String> cloudKmsKeyVersion;
 
+  @internal
   @override
   String get blockKey => 'cloud_kms_key_version';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_kms_key_version': cloudKmsKeyVersion.toTfJson(),
@@ -565,9 +584,11 @@ final class PrivatecaCertificateAuthorityKeySpecAlgorithm
 
   final PrivatecaCertificateAuthorityKeyAlgorithm algorithm;
 
+  @internal
   @override
   String get blockKey => 'algorithm';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'algorithm': algorithm.toTfJson()};
 }
@@ -590,8 +611,10 @@ sealed class PrivatecaCertificateAuthoritySubordinateConfig {
   ) = PrivatecaCertificateAuthoritySubordinateConfigPemIssuerChain;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -604,9 +627,11 @@ final class PrivatecaCertificateAuthoritySubordinateConfigCertificateAuthority
 
   final TfArg<String> certificateAuthority;
 
+  @internal
   @override
   String get blockKey => 'certificate_authority';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_authority': certificateAuthority.toTfJson(),
@@ -622,9 +647,11 @@ final class PrivatecaCertificateAuthoritySubordinateConfigPemIssuerChain
 
   final PrivatecaCertificateAuthorityPemIssuerChain pemIssuerChain;
 
+  @internal
   @override
   String get blockKey => 'pem_issuer_chain';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pem_issuer_chain': pemIssuerChain.encode(),
@@ -639,6 +666,7 @@ final class PrivatecaCertificateAuthorityPemIssuerChain {
 
   final TfArg<List<String>>? pemCertificates;
 
+  @internal
   Map<String, Object?> encode() => {
     'pem_certificates': ?pemCertificates?.toTfJson(),
   };
@@ -657,6 +685,7 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 
   final TfArg<List<String>>? crlAccessUrls;
 
+  @internal
   Map<String, Object?> encode() => {
     'aia_issuing_certificate_urls': ?aiaIssuingCertificateUrls?.toTfJson(),
     'crl_access_urls': ?crlAccessUrls?.toTfJson(),

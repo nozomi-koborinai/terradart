@@ -34,6 +34,7 @@ final class WorkspacesPoolCapacity {
 
   final TfArg<num> desiredUserSessions;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_user_sessions': desiredUserSessions.toTfJson(),
   };

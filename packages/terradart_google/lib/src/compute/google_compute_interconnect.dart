@@ -114,6 +114,7 @@ final class ComputeInterconnectMacsec {
 
   final List<ComputeInterconnectPreSharedKeys> preSharedKeys;
 
+  @internal
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),
     'pre_shared_keys': [for (final e in preSharedKeys) e.encode()],
@@ -136,6 +137,7 @@ final class ComputeInterconnectPreSharedKeys {
 
   final TfArg<String>? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),
     'name': name.toTfJson(),
@@ -151,6 +153,7 @@ final class ComputeInterconnectParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

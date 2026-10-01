@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:terradart_aws/terradart_aws.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 /// Minimal example: a Lambda function running a Dart AOT binary on the
 /// `provided.al2023` runtime, with its execution role, synthesized to

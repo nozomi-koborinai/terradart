@@ -17,7 +17,6 @@ library;
 import 'package:terradart_cloudflare/dns.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 /// Cloudflare demo stack: a zone and a proxied CNAME record inside it.
 final class CloudflareDnsStack extends Stack {

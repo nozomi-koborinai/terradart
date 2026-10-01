@@ -23,6 +23,7 @@ final class WafRulePredicates {
 
   final WafRuleType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
     'negated': negated.toTfJson(),

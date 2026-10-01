@@ -24,6 +24,7 @@ final class Route53domainsDelegationSignerRecordSigningAttributes {
 
   final TfArg<String> publicKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': algorithm.toTfJson(),
     'flags': flags.toTfJson(),

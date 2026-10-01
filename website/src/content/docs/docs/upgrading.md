@@ -83,7 +83,6 @@ Every input also has a `<name>Ref` getter (`topic.nameRef`) for wiring one resou
 
 ```dart
 // lib/orders_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 

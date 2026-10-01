@@ -146664,7 +146664,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     MigrateEntry(
       tfType: 'google_project',
-      className: 'GoogleProject',
+      className: 'DataGoogleProject',
       barrel: 'data',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[

@@ -3,6 +3,13 @@
 /// AWS S3 Control (account-level S3).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_s3control_access_points.dart'
+    show DataAwsS3controlAccessPoints;
+export 'src/data/aws_s3control_multi_region_access_point.dart'
+    show DataAwsS3controlMultiRegionAccessPoint;
+export 'src/data/aws_s3control_multi_region_access_points.dart'
+    show DataAwsS3controlMultiRegionAccessPoints;
 export 'src/s3control/aws_s3control_access_grant.dart'
     show
         AwsS3controlAccessGrant,

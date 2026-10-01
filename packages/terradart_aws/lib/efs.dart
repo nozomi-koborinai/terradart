@@ -3,6 +3,11 @@
 /// AWS Elastic File System (EFS).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_efs_access_point.dart' show DataAwsEfsAccessPoint;
+export 'src/data/aws_efs_access_points.dart' show DataAwsEfsAccessPoints;
+export 'src/data/aws_efs_file_system.dart' show DataAwsEfsFileSystem;
+export 'src/data/aws_efs_mount_target.dart' show DataAwsEfsMountTarget;
 export 'src/efs/aws_efs_access_point.dart'
     show
         AwsEfsAccessPoint,

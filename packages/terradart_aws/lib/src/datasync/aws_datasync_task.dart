@@ -34,6 +34,7 @@ final class DatasyncTaskExcludes {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_type': ?filterType?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -65,6 +66,7 @@ final class DatasyncTaskIncludes {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_type': ?filterType?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -123,6 +125,7 @@ final class DatasyncTaskOptions {
 
   final DatasyncTaskVerifyMode? verifyMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'atime': ?atime?.toTfJson(),
     'bytes_per_second': ?bytesPerSecond?.toTfJson(),
@@ -390,6 +393,7 @@ final class DatasyncTaskSchedule {
 
   final DatasyncTaskStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'schedule_expression': scheduleExpression.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -432,6 +436,7 @@ final class DatasyncTaskReportConfig {
 
   final DatasyncTaskS3Destination s3Destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_type': ?outputType?.toTfJson(),
     'report_level': ?reportLevel?.toTfJson(),
@@ -514,6 +519,7 @@ final class DatasyncTaskReportOverrides {
 
   final DatasyncTaskVerifiedOverride? verifiedOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'deleted_override': ?deletedOverride?.toTfJson(),
     'skipped_override': ?skippedOverride?.toTfJson(),
@@ -626,6 +632,7 @@ final class DatasyncTaskS3Destination {
 
   final TfArg<String>? subdirectory;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_access_role_arn': bucketAccessRoleArn.toTfJson(),
     's3_bucket_arn': s3BucketArn.encodeAs('arn').toTfJson(),

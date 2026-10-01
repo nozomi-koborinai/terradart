@@ -23,6 +23,7 @@ final class CognitoIdentityPoolCognitoIdentityProviders {
 
   final TfArg<bool>? serverSideTokenCheck;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'provider_name': ?providerName?.toTfJson(),

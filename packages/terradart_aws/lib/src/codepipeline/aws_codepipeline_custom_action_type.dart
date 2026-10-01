@@ -78,6 +78,7 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
 
   final CodepipelineCustomActionType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'key': key.toTfJson(),
@@ -124,6 +125,7 @@ final class CodepipelineCustomActionTypeInputArtifactDetails {
 
   final TfArg<num> minimumCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_count': maximumCount.toTfJson(),
     'minimum_count': minimumCount.toTfJson(),
@@ -143,6 +145,7 @@ final class CodepipelineCustomActionTypeOutputArtifactDetails {
 
   final TfArg<num> minimumCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_count': maximumCount.toTfJson(),
     'minimum_count': minimumCount.toTfJson(),
@@ -168,6 +171,7 @@ final class CodepipelineCustomActionTypeSettings {
 
   final TfArg<String>? thirdPartyConfigurationUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_url_template': ?entityUrlTemplate?.toTfJson(),
     'execution_url_template': ?executionUrlTemplate?.toTfJson(),

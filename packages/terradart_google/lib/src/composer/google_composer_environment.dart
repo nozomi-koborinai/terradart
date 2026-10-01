@@ -73,6 +73,7 @@ final class ComposerEnvironmentConfig {
 
   final ComposerEnvironmentWorkloadsConfig? workloadsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_private_builds_only': ?enablePrivateBuildsOnly?.toTfJson(),
     'enable_private_environment': ?enablePrivateEnvironment?.toTfJson(),
@@ -111,6 +112,7 @@ final class ComposerEnvironmentDataRetentionConfig {
   final List<ComposerEnvironmentTaskLogsRetentionConfig>?
   taskLogsRetentionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (airflowMetadataRetentionConfig != null)
       'airflow_metadata_retention_config': [
@@ -136,6 +138,7 @@ final class ComposerEnvironmentAirflowMetadataRetentionConfig {
 
   final TfArg<String>? retentionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_days': ?retentionDays?.toTfJson(),
     'retention_mode': ?retentionMode?.toTfJson(),
@@ -150,6 +153,7 @@ final class ComposerEnvironmentTaskLogsRetentionConfig {
 
   final TfArg<String>? storageMode;
 
+  @internal
   Map<String, Object?> encode() => {'storage_mode': ?storageMode?.toTfJson()};
 }
 
@@ -163,6 +167,7 @@ final class ComposerEnvironmentDatabaseConfig {
 
   final TfArg<String>? zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_type': ?machineType?.toTfJson(),
     'zone': ?zone?.toTfJson(),
@@ -177,6 +182,7 @@ final class ComposerEnvironmentEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -198,6 +204,7 @@ final class ComposerEnvironmentMaintenanceWindow {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': endTime.toTfJson(),
     'recurrence': recurrence.toTfJson(),
@@ -218,6 +225,7 @@ final class ComposerEnvironmentMasterAuthorizedNetworksConfig {
 
   final List<ComposerEnvironmentCidrBlocks>? cidrBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     if (cidrBlocks != null)
@@ -238,6 +246,7 @@ final class ComposerEnvironmentCidrBlocks {
 
   final TfArg<String>? displayName;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_block': cidrBlock.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -287,6 +296,7 @@ final class ComposerEnvironmentNodeConfig {
 
   final ComposerEnvironmentIpAllocationPolicy? ipAllocationPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'composer_internal_ipv4_cidr_block': ?composerInternalIpv4CidrBlock
         ?.toTfJson(),
@@ -326,6 +336,7 @@ final class ComposerEnvironmentIpAllocationPolicy {
 
   final TfArg<bool>? useIpAliases;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_ipv4_cidr_block': ?clusterIpv4CidrBlock?.toTfJson(),
     'cluster_secondary_range_name': ?clusterSecondaryRangeName?.toTfJson(),
@@ -366,6 +377,7 @@ final class ComposerEnvironmentPrivateEnvironmentConfig {
 
   final TfArg<String>? webServerIpv4CidrBlock;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_composer_connection_subnetwork': ?cloudComposerConnectionSubnetwork
         ?.toTfJson(),
@@ -389,6 +401,7 @@ final class ComposerEnvironmentRecoveryConfig {
 
   final ComposerEnvironmentScheduledSnapshotsConfig? scheduledSnapshotsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'scheduled_snapshots_config': ?scheduledSnapshotsConfig?.encode(),
   };
@@ -413,6 +426,7 @@ final class ComposerEnvironmentScheduledSnapshotsConfig {
 
   final TfArg<String>? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'snapshot_creation_schedule': ?snapshotCreationSchedule?.toTfJson(),
@@ -453,6 +467,7 @@ final class ComposerEnvironmentSoftwareConfig {
   final ComposerEnvironmentCloudDataLineageIntegration?
   cloudDataLineageIntegration;
 
+  @internal
   Map<String, Object?> encode() => {
     'airflow_config_overrides': ?airflowConfigOverrides?.toTfJson(),
     'env_variables': ?envVariables?.toTfJson(),
@@ -473,6 +488,7 @@ final class ComposerEnvironmentCloudDataLineageIntegration {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -484,6 +500,7 @@ final class ComposerEnvironmentWebServerConfig {
 
   final TfArg<String> machineType;
 
+  @internal
   Map<String, Object?> encode() => {'machine_type': machineType.toTfJson()};
 }
 
@@ -495,6 +512,7 @@ final class ComposerEnvironmentWebServerNetworkAccessControl {
 
   final List<ComposerEnvironmentAllowedIpRange>? allowedIpRange;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedIpRange != null)
       'allowed_ip_range': [for (final e in allowedIpRange!) e.encode()],
@@ -514,6 +532,7 @@ final class ComposerEnvironmentAllowedIpRange {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'value': value.toTfJson(),
@@ -542,6 +561,7 @@ final class ComposerEnvironmentWorkloadsConfig {
 
   final ComposerEnvironmentWorker? worker;
 
+  @internal
   Map<String, Object?> encode() => {
     'dag_processor': ?dagProcessor?.encode(),
     'scheduler': ?scheduler?.encode(),
@@ -570,6 +590,7 @@ final class ComposerEnvironmentDagProcessor {
 
   final TfArg<num>? storageGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'cpu': ?cpu?.toTfJson(),
@@ -597,6 +618,7 @@ final class ComposerEnvironmentScheduler {
 
   final TfArg<num>? storageGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'cpu': ?cpu?.toTfJson(),
@@ -621,6 +643,7 @@ final class ComposerEnvironmentTriggerer {
 
   final TfArg<num> memoryGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'cpu': cpu.toTfJson(),
@@ -640,6 +663,7 @@ final class ComposerEnvironmentWebServer {
 
   final TfArg<num>? storageGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'memory_gb': ?memoryGb?.toTfJson(),
@@ -669,6 +693,7 @@ final class ComposerEnvironmentWorker {
 
   final TfArg<num>? storageGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'max_count': ?maxCount?.toTfJson(),
@@ -686,6 +711,7 @@ final class ComposerEnvironmentStorageConfig {
 
   final RefTo<GoogleStorageBucket> bucket;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
   };

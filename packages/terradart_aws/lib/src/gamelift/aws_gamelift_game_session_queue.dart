@@ -20,6 +20,7 @@ final class GameliftGameSessionQueuePlayerLatencyPolicy {
 
   final TfArg<num>? policyDurationSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_individual_player_latency_milliseconds':
         maximumIndividualPlayerLatencyMilliseconds.toTfJson(),

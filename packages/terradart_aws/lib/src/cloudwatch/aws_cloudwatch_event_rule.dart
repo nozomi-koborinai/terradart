@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/aws_iam_role.dart' show AwsIamRole;
@@ -48,12 +49,15 @@ sealed class CloudwatchEventRuleStatus {
   ) = CloudwatchEventRuleStatusState;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -64,12 +68,15 @@ final class CloudwatchEventRuleStatusIsEnabled
 
   final TfArg<bool> isEnabled;
 
+  @internal
   @override
   String get blockKey => 'is_enabled';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'is_enabled': isEnabled.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'is_enabled': isEnabled};
 }
@@ -80,12 +87,15 @@ final class CloudwatchEventRuleStatusState extends CloudwatchEventRuleStatus {
 
   final CloudwatchEventRuleState state;
 
+  @internal
   @override
   String get blockKey => 'state';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'state': state.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'state': state};
 }
@@ -107,12 +117,15 @@ sealed class CloudwatchEventRuleName {
       CloudwatchEventRuleNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -122,12 +135,15 @@ final class CloudwatchEventRuleNameChoice extends CloudwatchEventRuleName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -138,12 +154,15 @@ final class CloudwatchEventRuleNamePrefix extends CloudwatchEventRuleName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }

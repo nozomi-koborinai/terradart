@@ -3,6 +3,7 @@
 /// AWS AppFlow.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appflow/aws_appflow_connector_profile.dart'
     show
         AppflowConnectorProfileApiKey,

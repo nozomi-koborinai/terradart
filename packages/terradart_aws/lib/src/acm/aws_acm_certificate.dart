@@ -77,12 +77,15 @@ sealed class AcmCertificateSource {
       AcmCertificateSourcePrivateKeyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -92,12 +95,15 @@ final class AcmCertificateSourceDomainName extends AcmCertificateSource {
 
   final TfArg<String> domainName;
 
+  @internal
   @override
   String get blockKey => 'domain_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'domain_name': domainName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'domain_name': domainName};
 }
@@ -108,12 +114,15 @@ final class AcmCertificateSourcePrivateKey extends AcmCertificateSource {
 
   final Sensitive<String> privateKey;
 
+  @internal
   @override
   String get blockKey => 'private_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'private_key': privateKey.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'private_key': privateKey};
 }
@@ -124,12 +133,15 @@ final class AcmCertificateSourcePrivateKeyWo extends AcmCertificateSource {
 
   final TfArg<String> privateKeyWo;
 
+  @internal
   @override
   String get blockKey => 'private_key_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'private_key_wo': privateKeyWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'private_key_wo': privateKeyWo};
 }
@@ -148,6 +160,7 @@ final class AcmCertificateOptions {
 
   final AcmCertificateExport? export;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_transparency_logging_preference':
         ?certificateTransparencyLoggingPreference?.toTfJson(),
@@ -206,6 +219,7 @@ final class AcmCertificateValidationOption {
 
   final TfArg<String> validationDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'validation_domain': validationDomain.toTfJson(),

@@ -76,6 +76,7 @@ final class DiscoveryEngineDataStoreAdvancedSiteSearchConfig {
 
   final TfArg<bool>? disableInitialIndex;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_automatic_refresh': ?disableAutomaticRefresh?.toTfJson(),
     'disable_initial_index': ?disableInitialIndex?.toTfJson(),
@@ -99,6 +100,7 @@ final class DiscoveryEngineDataStoreDocumentProcessingConfig {
   final List<DiscoveryEngineDataStoreParsingConfigOverrides>?
   parsingConfigOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'chunking_config': ?chunkingConfig?.encode(),
     'default_parsing_config': ?defaultParsingConfig?.encode(),
@@ -120,6 +122,7 @@ final class DiscoveryEngineDataStoreChunkingConfig {
   final DiscoveryEngineDataStoreLayoutBasedChunkingConfig?
   layoutBasedChunkingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'layout_based_chunking_config': ?layoutBasedChunkingConfig?.encode(),
   };
@@ -138,6 +141,7 @@ final class DiscoveryEngineDataStoreLayoutBasedChunkingConfig {
 
   final TfArg<bool>? includeAncestorHeadings;
 
+  @internal
   Map<String, Object?> encode() => {
     'chunk_size': ?chunkSize?.toTfJson(),
     'include_ancestor_headings': ?includeAncestorHeadings?.toTfJson(),
@@ -160,6 +164,7 @@ final class DiscoveryEngineDataStoreDefaultParsingConfig {
 
   final DiscoveryEngineDataStoreOcrParsingConfig? ocrParsingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'digital_parsing_config': ?digitalParsingConfig?.encode(),
     'layout_parsing_config': ?layoutParsingConfig?.encode(),
@@ -174,6 +179,7 @@ final class DiscoveryEngineDataStoreDefaultParsingConfig {
 final class DiscoveryEngineDataStoreDigitalParsingConfig {
   const DiscoveryEngineDataStoreDigitalParsingConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -209,6 +215,7 @@ final class DiscoveryEngineDataStoreLayoutParsingConfig {
 
   final TfArg<List<String>>? structuredContentTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_get_processed_document': ?enableGetProcessedDocument?.toTfJson(),
     'enable_image_annotation': ?enableImageAnnotation?.toTfJson(),
@@ -230,6 +237,7 @@ final class DiscoveryEngineDataStoreOcrParsingConfig {
 
   final TfArg<bool>? useNativeText;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_native_text': ?useNativeText?.toTfJson(),
   };
@@ -254,6 +262,7 @@ final class DiscoveryEngineDataStoreParsingConfigOverrides {
 
   final DiscoveryEngineDataStoreOcrParsingConfig? ocrParsingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_type': fileType.toTfJson(),
     'digital_parsing_config': ?digitalParsingConfig?.encode(),

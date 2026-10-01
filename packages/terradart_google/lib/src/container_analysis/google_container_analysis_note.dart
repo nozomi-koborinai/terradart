@@ -15,6 +15,7 @@ final class ContainerAnalysisNoteAttestationAuthority {
 
   final ContainerAnalysisNoteHint hint;
 
+  @internal
   Map<String, Object?> encode() => {'hint': hint.encode()};
 }
 
@@ -26,6 +27,7 @@ final class ContainerAnalysisNoteHint {
 
   final TfArg<String> humanReadableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'human_readable_name': humanReadableName.toTfJson(),
   };
@@ -41,6 +43,7 @@ final class ContainerAnalysisNoteRelatedUrl {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'label': ?label?.toTfJson(),
     'url': url.toTfJson(),

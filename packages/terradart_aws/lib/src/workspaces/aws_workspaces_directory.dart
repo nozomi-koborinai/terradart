@@ -88,6 +88,7 @@ final class WorkspacesDirectoryActiveDirectoryConfig {
 
   final TfArg<String> serviceAccountSecretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'service_account_secret_arn': serviceAccountSecretArn.toTfJson(),
@@ -107,6 +108,7 @@ final class WorkspacesDirectoryCertificateBasedAuthProperties {
 
   final WorkspacesDirectoryCertificateBasedAuthPropertiesStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -155,6 +157,7 @@ final class WorkspacesDirectorySamlProperties {
 
   final TfArg<String>? userAccessUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'relay_state_parameter_name': ?relayStateParameterName?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -212,6 +215,7 @@ final class WorkspacesDirectorySelfServicePermissions {
 
   final TfArg<bool>? switchRunningMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'change_compute_type': ?changeComputeType?.toTfJson(),
     'increase_volume_size': ?increaseVolumeSize?.toTfJson(),
@@ -255,6 +259,7 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
 
   final WorkspacesDirectoryAccessEndpointConfig? accessEndpointConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_type_android': ?deviceTypeAndroid?.toTfJson(),
     'device_type_chromeos': ?deviceTypeChromeos?.toTfJson(),
@@ -444,6 +449,7 @@ final class WorkspacesDirectoryAccessEndpointConfig {
 
   final List<WorkspacesDirectoryAccessEndpoints> accessEndpoints;
 
+  @internal
   Map<String, Object?> encode() => {
     if (internetFallbackProtocols != null)
       'internet_fallback_protocols': [
@@ -486,6 +492,7 @@ final class WorkspacesDirectoryAccessEndpoints {
 
   final TfArg<String> vpcEndpointId;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_endpoint_type': accessEndpointType.toTfJson(),
     'vpc_endpoint_id': vpcEndpointId.toTfJson(),
@@ -533,6 +540,7 @@ final class WorkspacesDirectoryWorkspaceCreationProperties {
 
   final TfArg<bool>? userEnabledAsLocalAdministrator;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_security_group_id': ?customSecurityGroupId?.toTfJson(),
     'default_ou': ?defaultOu?.toTfJson(),

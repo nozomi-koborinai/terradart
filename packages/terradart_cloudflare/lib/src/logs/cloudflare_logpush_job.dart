@@ -228,6 +228,7 @@ final class LogpushJobOutputOptions {
 
   final LogpushJobTimestampFormat? timestampFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_prefix': ?batchPrefix?.toTfJson(),
     'batch_suffix': ?batchSuffix?.toTfJson(),

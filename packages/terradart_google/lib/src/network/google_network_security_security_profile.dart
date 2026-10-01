@@ -67,12 +67,15 @@ sealed class NetworkSecuritySecurityProfileSettings {
   ) = NetworkSecuritySecurityProfileSettingsCustomInterceptProfile;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -86,14 +89,17 @@ final class NetworkSecuritySecurityProfileSettingsThreatPreventionProfile
   final NetworkSecuritySecurityProfileThreatPreventionProfile
   threatPreventionProfile;
 
+  @internal
   @override
   String get blockKey => 'threat_prevention_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'threat_prevention_profile': threatPreventionProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'threat_prevention_profile': TfArg.literal(
@@ -111,14 +117,17 @@ final class NetworkSecuritySecurityProfileSettingsUrlFilteringProfile
 
   final NetworkSecuritySecurityProfileUrlFilteringProfile urlFilteringProfile;
 
+  @internal
   @override
   String get blockKey => 'url_filtering_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'url_filtering_profile': urlFilteringProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'url_filtering_profile': TfArg.literal(urlFilteringProfile.encode()),
@@ -135,14 +144,17 @@ final class NetworkSecuritySecurityProfileSettingsCustomMirroringProfile
   final NetworkSecuritySecurityProfileCustomMirroringProfile
   customMirroringProfile;
 
+  @internal
   @override
   String get blockKey => 'custom_mirroring_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_mirroring_profile': customMirroringProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'custom_mirroring_profile': TfArg.literal(customMirroringProfile.encode()),
@@ -159,14 +171,17 @@ final class NetworkSecuritySecurityProfileSettingsCustomInterceptProfile
   final NetworkSecuritySecurityProfileCustomInterceptProfile
   customInterceptProfile;
 
+  @internal
   @override
   String get blockKey => 'custom_intercept_profile';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_intercept_profile': customInterceptProfile.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'custom_intercept_profile': TfArg.literal(customInterceptProfile.encode()),
@@ -183,6 +198,7 @@ final class NetworkSecuritySecurityProfileCustomInterceptProfile {
 
   final TfArg<String> interceptEndpointGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'intercept_endpoint_group': interceptEndpointGroup.toTfJson(),
   };
@@ -201,6 +217,7 @@ final class NetworkSecuritySecurityProfileCustomMirroringProfile {
 
   final TfArg<String> mirroringEndpointGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'mirroring_deployment_groups': ?mirroringDeploymentGroups?.toTfJson(),
     'mirroring_endpoint_group': mirroringEndpointGroup.toTfJson(),
@@ -225,6 +242,7 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfile {
 
   final List<NetworkSecuritySecurityProfileThreatOverrides>? threatOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     if (antivirusOverrides != null)
       'antivirus_overrides': [for (final e in antivirusOverrides!) e.encode()],
@@ -248,6 +266,7 @@ final class NetworkSecuritySecurityProfileAntivirusOverrides {
 
   final NetworkSecuritySecurityProfileProtocol protocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'protocol': protocol.toTfJson(),
@@ -341,6 +360,7 @@ final class NetworkSecuritySecurityProfileSeverityOverrides {
 
   final NetworkSecuritySecurityProfileSeverity severity;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'severity': severity.toTfJson(),
@@ -395,6 +415,7 @@ final class NetworkSecuritySecurityProfileThreatOverrides {
 
   final TfArg<String> threatId;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'threat_id': threatId.toTfJson(),
@@ -409,6 +430,7 @@ final class NetworkSecuritySecurityProfileUrlFilteringProfile {
 
   final List<NetworkSecuritySecurityProfileUrlFilters>? urlFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (urlFilters != null)
       'url_filters': [for (final e in urlFilters!) e.encode()],
@@ -431,6 +453,7 @@ final class NetworkSecuritySecurityProfileUrlFilters {
 
   final TfArg<List<String>>? urls;
 
+  @internal
   Map<String, Object?> encode() => {
     'filtering_action': filteringAction.toTfJson(),
     'priority': priority.toTfJson(),

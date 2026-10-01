@@ -19,6 +19,7 @@ final class MagicTransitSiteLocation {
 
   final TfArg<String>? lon;
 
+  @internal
   Map<String, Object?> encode() => {
     'lat': ?lat?.toTfJson(),
     'lon': ?lon?.toTfJson(),

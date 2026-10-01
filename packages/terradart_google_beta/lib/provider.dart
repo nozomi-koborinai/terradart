@@ -8,6 +8,7 @@
 /// ```
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/google_beta_provider.dart'
     show
         GoogleBetaProvider,

@@ -64,6 +64,7 @@ final class WorkbenchInstanceGceSetup {
 
   final WorkbenchInstanceShieldedInstanceConfig? shieldedInstanceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_public_ip': ?disablePublicIp?.toTfJson(),
     'enable_ip_forwarding': ?enableIpForwarding?.toTfJson(),
@@ -105,8 +106,10 @@ sealed class WorkbenchInstanceImage {
   ) = WorkbenchInstanceContainerImageChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -116,9 +119,11 @@ final class WorkbenchInstanceVmImageChoice extends WorkbenchInstanceImage {
 
   final WorkbenchInstanceVmImage vmImage;
 
+  @internal
   @override
   String get blockKey => 'vm_image';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
 }
@@ -130,9 +135,11 @@ final class WorkbenchInstanceContainerImageChoice
 
   final WorkbenchInstanceContainerImage containerImage;
 
+  @internal
   @override
   String get blockKey => 'container_image';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'container_image': containerImage.encode()};
 }
@@ -147,6 +154,7 @@ final class WorkbenchInstanceAcceleratorConfigs {
 
   final WorkbenchInstanceType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'core_count': ?coreCount?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -243,6 +251,7 @@ final class WorkbenchInstanceBootDisk {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_encryption': ?diskEncryption?.toTfJson(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -317,6 +326,7 @@ final class WorkbenchInstanceConfidentialInstanceConfig {
 
   final TfArg<String>? confidentialInstanceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
   };
@@ -332,6 +342,7 @@ final class WorkbenchInstanceContainerImage {
 
   final TfArg<String>? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository': repository.toTfJson(),
     'tag': ?tag?.toTfJson(),
@@ -360,6 +371,7 @@ final class WorkbenchInstanceDataDisks {
 
   final TfArg<List<String>>? resourcePolicies;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_encryption': ?diskEncryption?.toTfJson(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -439,6 +451,7 @@ final class WorkbenchInstanceNetworkInterfaces {
 
   final List<WorkbenchInstanceAccessConfigs>? accessConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),
     'nic_type': ?nicType?.toTfJson(),
@@ -472,6 +485,7 @@ final class WorkbenchInstanceAccessConfigs {
 
   final TfArg<String> externalIp;
 
+  @internal
   Map<String, Object?> encode() => {'external_ip': externalIp.toTfJson()};
 }
 
@@ -491,6 +505,7 @@ final class WorkbenchInstanceReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'consume_reservation_type': ?consumeReservationType?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -533,6 +548,7 @@ final class WorkbenchInstanceServiceAccounts {
 
   final RefTo<GoogleServiceAccount>? email;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
   };
@@ -554,6 +570,7 @@ final class WorkbenchInstanceShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -573,6 +590,7 @@ final class WorkbenchInstanceVmImage {
 
   final TfArg<String>? project;
 
+  @internal
   Map<String, Object?> encode() => {
     'family': ?family?.toTfJson(),
     'name': ?name?.toTfJson(),

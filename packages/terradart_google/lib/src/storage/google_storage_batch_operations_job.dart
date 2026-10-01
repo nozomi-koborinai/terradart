@@ -38,12 +38,15 @@ sealed class StorageBatchOperationsJobOperation {
   ) = StorageBatchOperationsJobOperationPutObjectHold;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -54,12 +57,15 @@ final class StorageBatchOperationsJobOperationDeleteObject
 
   final StorageBatchOperationsJobDeleteObject deleteObject;
 
+  @internal
   @override
   String get blockKey => 'delete_object';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'delete_object': deleteObject.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'delete_object': TfArg.literal(deleteObject.encode()),
@@ -73,12 +79,15 @@ final class StorageBatchOperationsJobOperationPutMetadata
 
   final StorageBatchOperationsJobPutMetadata putMetadata;
 
+  @internal
   @override
   String get blockKey => 'put_metadata';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'put_metadata': putMetadata.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'put_metadata': TfArg.literal(putMetadata.encode()),
@@ -92,12 +101,15 @@ final class StorageBatchOperationsJobOperationRewriteObject
 
   final StorageBatchOperationsJobRewriteObject rewriteObject;
 
+  @internal
   @override
   String get blockKey => 'rewrite_object';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'rewrite_object': rewriteObject.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'rewrite_object': TfArg.literal(rewriteObject.encode()),
@@ -111,12 +123,15 @@ final class StorageBatchOperationsJobOperationPutObjectHold
 
   final StorageBatchOperationsJobPutObjectHold putObjectHold;
 
+  @internal
   @override
   String get blockKey => 'put_object_hold';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'put_object_hold': putObjectHold.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'put_object_hold': TfArg.literal(putObjectHold.encode()),
@@ -131,6 +146,7 @@ final class StorageBatchOperationsJobBucketList {
 
   final StorageBatchOperationsJobBuckets buckets;
 
+  @internal
   Map<String, Object?> encode() => {'buckets': buckets.encode()};
 }
 
@@ -147,6 +163,7 @@ final class StorageBatchOperationsJobBuckets {
 
   final StorageBatchOperationsJobObjects objects;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     ...objects.encode(),
@@ -171,8 +188,10 @@ sealed class StorageBatchOperationsJobObjects {
   ) = StorageBatchOperationsJobObjectsManifest;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -183,9 +202,11 @@ final class StorageBatchOperationsJobObjectsPrefixList
 
   final StorageBatchOperationsJobPrefixList prefixList;
 
+  @internal
   @override
   String get blockKey => 'prefix_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'prefix_list': prefixList.encode()};
 }
@@ -197,9 +218,11 @@ final class StorageBatchOperationsJobObjectsManifest
 
   final StorageBatchOperationsJobManifest manifest;
 
+  @internal
   @override
   String get blockKey => 'manifest';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'manifest': manifest.encode()};
 }
@@ -212,6 +235,7 @@ final class StorageBatchOperationsJobManifest {
 
   final TfArg<String>? manifestLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'manifest_location': ?manifestLocation?.toTfJson(),
   };
@@ -225,6 +249,7 @@ final class StorageBatchOperationsJobPrefixList {
 
   final TfArg<List<String>>? includedObjectPrefixes;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_object_prefixes': ?includedObjectPrefixes?.toTfJson(),
   };
@@ -240,6 +265,7 @@ final class StorageBatchOperationsJobDeleteObject {
 
   final TfArg<bool> permanentObjectDeletionEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'permanent_object_deletion_enabled': permanentObjectDeletionEnabled
         .toTfJson(),
@@ -274,6 +300,7 @@ final class StorageBatchOperationsJobPutMetadata {
 
   final TfArg<String>? customTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_control': ?cacheControl?.toTfJson(),
     'content_disposition': ?contentDisposition?.toTfJson(),
@@ -298,6 +325,7 @@ final class StorageBatchOperationsJobPutObjectHold {
 
   final TfArg<String>? temporaryHold;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_based_hold': ?eventBasedHold?.toTfJson(),
     'temporary_hold': ?temporaryHold?.toTfJson(),
@@ -312,6 +340,7 @@ final class StorageBatchOperationsJobRewriteObject {
 
   final RefTo<GoogleKmsCryptoKey> kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': kmsKey.encodeAs('id').toTfJson(),
   };

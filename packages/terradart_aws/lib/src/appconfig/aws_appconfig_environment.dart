@@ -20,6 +20,7 @@ final class AppconfigEnvironmentMonitor {
 
   final TfArg<String>? alarmRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_arn': alarmArn.toTfJson(),
     'alarm_role_arn': ?alarmRoleArn?.toTfJson(),

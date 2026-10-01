@@ -25,6 +25,7 @@ final class DataplexMetadataFeedFilters {
 
   final TfArg<List<String>>? entryTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'aspect_types': ?aspectTypes?.toTfJson(),
     'change_types': ?changeTypes?.toTfJson(),
@@ -48,6 +49,7 @@ final class DataplexMetadataFeedScope {
 
   final TfArg<List<String>>? projects;
 
+  @internal
   Map<String, Object?> encode() => {
     'entry_groups': ?entryGroups?.toTfJson(),
     'organization_level': ?organizationLevel?.toTfJson(),

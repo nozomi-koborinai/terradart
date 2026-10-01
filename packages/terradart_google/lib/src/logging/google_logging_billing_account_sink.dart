@@ -17,6 +17,7 @@ final class LoggingBillingAccountSinkBigqueryOptions {
 
   final TfArg<bool> usePartitionedTables;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_partitioned_tables': usePartitionedTables.toTfJson(),
   };
@@ -41,6 +42,7 @@ final class LoggingBillingAccountSinkExclusions {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),

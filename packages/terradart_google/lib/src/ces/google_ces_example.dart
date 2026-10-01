@@ -21,6 +21,7 @@ final class CesExampleMessages {
 
   final List<CesExampleChunks>? chunks;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     if (chunks != null) 'chunks': [for (final e in chunks!) e.encode()],
@@ -55,6 +56,7 @@ final class CesExampleChunks {
 
   final CesExampleToolResponse? toolResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
     'updated_variables': ?updatedVariables?.toTfJson(),
@@ -74,6 +76,7 @@ final class CesExampleAgentTransfer {
 
   final TfArg<String> targetAgent;
 
+  @internal
   Map<String, Object?> encode() => {'target_agent': targetAgent.toTfJson()};
 }
 
@@ -87,6 +90,7 @@ final class CesExampleBlob {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
@@ -109,6 +113,7 @@ final class CesExampleImage {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'alt_text': ?altText?.toTfJson(),
     'data': data.toTfJson(),
@@ -130,6 +135,7 @@ final class CesExampleToolCall {
 
   final CesExampleToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -149,6 +155,7 @@ final class CesExampleToolsetTool {
 
   final RefTo<GoogleCesToolset> toolset;
 
+  @internal
   Map<String, Object?> encode() => {
     'tool_id': ?toolId?.toTfJson(),
     'toolset': toolset.encodeAs('name').toTfJson(),
@@ -174,6 +181,7 @@ final class CesExampleToolResponse {
 
   final CesExampleToolsetTool? toolsetTool;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'response': response.toTfJson(),

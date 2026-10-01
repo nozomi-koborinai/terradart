@@ -26,6 +26,7 @@ final class DatazoneAssetTypeFormsInput {
 
   final TfArg<String> typeRevision;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
     'required': ?required?.toTfJson(),

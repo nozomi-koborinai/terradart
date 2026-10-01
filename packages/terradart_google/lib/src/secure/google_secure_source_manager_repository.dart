@@ -28,6 +28,7 @@ final class SecureSourceManagerRepositoryInitialConfig {
 
   final TfArg<String>? readme;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_branch': ?defaultBranch?.toTfJson(),
     'gitignores': ?gitignores?.toTfJson(),
@@ -44,6 +45,7 @@ final class SecureSourceManagerRepositoryScanConfig {
 
   final SecureSourceManagerRepositorySecretScanConfig? secretScanConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_scan_config': ?secretScanConfig?.encode(),
   };
@@ -62,6 +64,7 @@ final class SecureSourceManagerRepositorySecretScanConfig {
 
   final TfArg<String>? inspectTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'inspect_template': ?inspectTemplate?.toTfJson(),

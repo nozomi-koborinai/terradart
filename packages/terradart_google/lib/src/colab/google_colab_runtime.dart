@@ -35,6 +35,7 @@ final class ColabRuntimeNotebookRuntimeTemplateRef {
 
   final TfArg<String> notebookRuntimeTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'notebook_runtime_template': notebookRuntimeTemplate.toTfJson(),
   };

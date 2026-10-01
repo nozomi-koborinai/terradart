@@ -22,6 +22,7 @@ final class BedrockagentcoreMemoryIndexedKey {
 
   final BedrockagentcoreMemoryType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),
@@ -58,6 +59,7 @@ final class BedrockagentcoreMemoryStreamDeliveryResources {
 
   final List<BedrockagentcoreMemoryResource>? resource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (resource != null) 'resource': [for (final e in resource!) e.encode()],
   };
@@ -71,6 +73,7 @@ final class BedrockagentcoreMemoryResource {
 
   final List<BedrockagentcoreMemoryKinesis>? kinesis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (kinesis != null) 'kinesis': [for (final e in kinesis!) e.encode()],
   };
@@ -89,6 +92,7 @@ final class BedrockagentcoreMemoryKinesis {
 
   final List<BedrockagentcoreMemoryContentConfiguration>? contentConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_stream_arn': dataStreamArn.toTfJson(),
     if (contentConfiguration != null)
@@ -111,6 +115,7 @@ final class BedrockagentcoreMemoryContentConfiguration {
 
   final BedrockagentcoreMemoryContentConfigurationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'level': ?level?.toTfJson(),
     'type': type.toTfJson(),

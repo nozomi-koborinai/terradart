@@ -17,6 +17,7 @@ final class DataFlagshipFlagFilter {
 
   final TfArg<String>? limit;
 
+  @internal
   Map<String, Object?> encode() => {'limit': ?limit?.toTfJson()};
 }
 

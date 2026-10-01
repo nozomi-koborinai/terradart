@@ -15,6 +15,7 @@ final class DataLineageConfigIngestion {
 
   final List<DataLineageConfigRule> rule;
 
+  @internal
   Map<String, Object?> encode() => {
     'rule': [for (final e in rule) e.encode()],
   };
@@ -33,6 +34,7 @@ final class DataLineageConfigRule {
 
   final DataLineageConfigLineageEnablement lineageEnablement;
 
+  @internal
   Map<String, Object?> encode() => {
     'integration_selector': integrationSelector.encode(),
     'lineage_enablement': lineageEnablement.encode(),
@@ -47,6 +49,7 @@ final class DataLineageConfigIntegrationSelector {
 
   final DataLineageConfigIntegration integration;
 
+  @internal
   Map<String, Object?> encode() => {'integration': integration.toTfJson()};
 }
 
@@ -80,6 +83,7 @@ final class DataLineageConfigLineageEnablement {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 

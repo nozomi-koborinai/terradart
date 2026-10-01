@@ -21,6 +21,7 @@ final class S3BucketMetricFilter {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point': ?accessPoint?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),

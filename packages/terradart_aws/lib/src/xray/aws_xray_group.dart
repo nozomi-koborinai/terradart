@@ -20,6 +20,7 @@ final class XrayGroupInsightsConfiguration {
 
   final TfArg<bool>? notificationsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'insights_enabled': insightsEnabled.toTfJson(),
     'notifications_enabled': ?notificationsEnabled?.toTfJson(),

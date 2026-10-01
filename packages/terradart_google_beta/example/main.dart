@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google_beta/terradart_google_beta.dart';
 
 /// Minimal example: enable Firebase on an existing GCP project (a

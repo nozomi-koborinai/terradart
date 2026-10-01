@@ -42,6 +42,7 @@ final class ComputeRegionInstanceTemplateAdvancedMachineFeatures {
 
   final TfArg<num>? visibleCoreCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'enable_uefi_networking': ?enableUefiNetworking?.toTfJson(),
@@ -65,6 +66,7 @@ final class ComputeRegionInstanceTemplateConfidentialInstanceConfig {
 
   final TfArg<bool>? enableConfidentialCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
@@ -149,6 +151,7 @@ final class ComputeRegionInstanceTemplateDisk {
   final ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey?
   sourceSnapshotEncryptionKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'architecture': ?architecture?.toTfJson(),
     'auto_delete': ?autoDelete?.toTfJson(),
@@ -189,6 +192,7 @@ final class ComputeRegionInstanceTemplateDiskEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -214,6 +218,7 @@ final class ComputeRegionInstanceTemplateSourceImageEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -241,6 +246,7 @@ final class ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -262,6 +268,7 @@ final class ComputeRegionInstanceTemplateGuestAccelerator {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'type': type.toTfJson(),
@@ -320,6 +327,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final List<ComputeRegionInstanceTemplateIpv6AccessConfig>? ipv6AccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
@@ -386,6 +394,7 @@ final class ComputeRegionInstanceTemplateAccessConfig {
 
   final TfArg<String>? networkTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'nat_ip': ?natIp?.toTfJson(),
     'network_tier': ?networkTier?.toTfJson(),
@@ -405,6 +414,7 @@ final class ComputeRegionInstanceTemplateAliasIpRange {
 
   final TfArg<String>? subnetworkRangeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
     'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
@@ -421,6 +431,7 @@ final class ComputeRegionInstanceTemplateIpv6AccessConfig {
 
   final TfArg<String> networkTier;
 
+  @internal
   Map<String, Object?> encode() => {'network_tier': networkTier.toTfJson()};
 }
 
@@ -435,6 +446,7 @@ final class ComputeRegionInstanceTemplateNetworkPerformanceConfig {
   final ComputeRegionInstanceTemplateTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
@@ -478,6 +490,7 @@ final class ComputeRegionInstanceTemplateReservationAffinity {
 
   final ComputeRegionInstanceTemplateSpecificReservation? specificReservation;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'specific_reservation': ?specificReservation?.encode(),
@@ -497,6 +510,7 @@ final class ComputeRegionInstanceTemplateSpecificReservation {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -550,6 +564,7 @@ final class ComputeRegionInstanceTemplateScheduling {
 
   final ComputeRegionInstanceTemplateOnInstanceStopAction? onInstanceStopAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
     'availability_domain': ?availabilityDomain?.toTfJson(),
@@ -584,6 +599,7 @@ final class ComputeRegionInstanceTemplateLocalSsdRecoveryTimeout {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -603,6 +619,7 @@ final class ComputeRegionInstanceTemplateMaxRunDuration {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -625,6 +642,7 @@ final class ComputeRegionInstanceTemplateNodeAffinities {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
@@ -642,6 +660,7 @@ final class ComputeRegionInstanceTemplateOnInstanceStopAction {
 
   final TfArg<bool>? discardLocalSsd;
 
+  @internal
   Map<String, Object?> encode() => {
     'discard_local_ssd': ?discardLocalSsd?.toTfJson(),
   };
@@ -660,6 +679,7 @@ final class ComputeRegionInstanceTemplateServiceAccount {
 
   final TfArg<List<String>> scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
     'scopes': scopes.toTfJson(),
@@ -682,6 +702,7 @@ final class ComputeRegionInstanceTemplateShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -702,6 +723,7 @@ final class ComputeRegionInstanceTemplateWorkloadIdentityConfig {
 
   final TfArg<bool>? identityCertificateEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity': ?identity?.toTfJson(),
     'identity_certificate_enabled': ?identityCertificateEnabled?.toTfJson(),

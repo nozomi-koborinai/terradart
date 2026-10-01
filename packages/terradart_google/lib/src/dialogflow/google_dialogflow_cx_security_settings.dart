@@ -90,12 +90,15 @@ sealed class DialogflowCxSecuritySettingsRetention {
   ) = DialogflowCxSecuritySettingsRetentionStrategyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -108,14 +111,17 @@ final class DialogflowCxSecuritySettingsRetentionWindowDays
 
   final TfArg<num> retentionWindowDays;
 
+  @internal
   @override
   String get blockKey => 'retention_window_days';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retention_window_days': retentionWindowDays.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'retention_window_days': retentionWindowDays,
@@ -131,14 +137,17 @@ final class DialogflowCxSecuritySettingsRetentionStrategyChoice
 
   final DialogflowCxSecuritySettingsRetentionStrategy retentionStrategy;
 
+  @internal
   @override
   String get blockKey => 'retention_strategy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retention_strategy': retentionStrategy.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'retention_strategy': retentionStrategy,
@@ -164,6 +173,7 @@ final class DialogflowCxSecuritySettingsAudioExportSettings {
 
   final RefTo<GoogleStorageBucket>? gcsBucket;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_export_pattern': ?audioExportPattern?.toTfJson(),
     'audio_format': ?audioFormat?.toTfJson(),
@@ -209,6 +219,7 @@ final class DialogflowCxSecuritySettingsInsightsExportSettings {
 
   final TfArg<bool> enableInsightsExport;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_insights_export': enableInsightsExport.toTfJson(),
   };

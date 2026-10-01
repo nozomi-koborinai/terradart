@@ -54,6 +54,7 @@ final class BedrockCustomModelOutputDataConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 
@@ -65,6 +66,7 @@ final class BedrockCustomModelTrainingDataConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 
@@ -76,6 +78,7 @@ final class BedrockCustomModelValidationDataConfig {
 
   final List<BedrockCustomModelValidator>? validator;
 
+  @internal
   Map<String, Object?> encode() => {
     if (validator != null)
       'validator': [for (final e in validator!) e.encode()],
@@ -90,6 +93,7 @@ final class BedrockCustomModelValidator {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 
@@ -106,6 +110,7 @@ final class BedrockCustomModelVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

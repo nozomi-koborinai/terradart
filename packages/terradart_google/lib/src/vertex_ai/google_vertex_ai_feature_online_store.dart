@@ -31,9 +31,11 @@ sealed class VertexAiFeatureOnlineStoreStorage {
       VertexAiFeatureOnlineStoreOptimized;
 
   /// Terraform nested-block key (`bigtable` or `optimized`).
+  @internal
   String get blockKey;
 
   /// Encoded as a single-element list (`nesting_mode: list, max_items: 1`).
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -52,9 +54,11 @@ final class VertexAiFeatureOnlineStoreBigtable
   final TfArg<String>? zone;
 
   @override
+  @internal
   String get blockKey => 'bigtable';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       'auto_scaling': autoScaling.encode(),
@@ -79,6 +83,7 @@ final class VertexAiFeatureOnlineStoreBigtableAutoScaling {
   final TfArg<int> maxNodeCount;
   final TfArg<int>? cpuUtilizationTarget;
 
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       'min_node_count': minNodeCount.toTfJson(),
@@ -96,9 +101,11 @@ final class VertexAiFeatureOnlineStoreOptimized
   const VertexAiFeatureOnlineStoreOptimized();
 
   @override
+  @internal
   String get blockKey => 'optimized';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => const [<String, Object?>{}];
 }
 
@@ -113,6 +120,7 @@ final class VertexAiFeatureOnlineStoreDedicatedServingEndpoint {
   final VertexAiFeatureOnlineStorePrivateServiceConnectConfig?
   privateServiceConnectConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_service_connect_config': ?privateServiceConnectConfig?.encode(),
   };
@@ -131,6 +139,7 @@ final class VertexAiFeatureOnlineStorePrivateServiceConnectConfig {
 
   final TfArg<List<String>>? projectAllowlist;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
     'project_allowlist': ?projectAllowlist?.toTfJson(),
@@ -145,6 +154,7 @@ final class VertexAiFeatureOnlineStoreEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };

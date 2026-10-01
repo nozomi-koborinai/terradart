@@ -5,6 +5,17 @@
 /// for new catalogs).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_data_catalog_entry_group_iam_policy.dart'
+    show DataGoogleDataCatalogEntryGroupIamPolicy;
+export 'src/data/google_data_catalog_policy_tag_iam_policy.dart'
+    show DataGoogleDataCatalogPolicyTagIamPolicy;
+export 'src/data/google_data_catalog_tag_template_iam_policy.dart'
+    show DataGoogleDataCatalogTagTemplateIamPolicy;
+export 'src/data/google_data_catalog_taxonomy.dart'
+    show DataGoogleDataCatalogTaxonomy;
+export 'src/data/google_data_catalog_taxonomy_iam_policy.dart'
+    show DataGoogleDataCatalogTaxonomyIamPolicy;
 export 'src/data_catalog/google_data_catalog_entry.dart'
     show
         DataCatalogEntryCustomType,

@@ -58,6 +58,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
   >
   metricSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_capacity_breach_behavior': ?maxCapacityBreachBehavior?.toTfJson(),
     'max_capacity_buffer': ?maxCapacityBuffer?.toTfJson(),
@@ -148,6 +149,7 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfigurationMetricSpecif
   final AppautoscalingPolicyPredefinedScalingMetricSpecification?
   predefinedScalingMetricSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_value': targetValue.toTfJson(),
     'customized_capacity_metric_specification':
@@ -175,6 +177,7 @@ final class AppautoscalingPolicyCustomizedCapacityMetricSpecification {
 
   final List<AppautoscalingPolicyMetricDataQuery> metricDataQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_data_query': [for (final e in metricDataQuery) e.encode()],
   };
@@ -203,6 +206,7 @@ final class AppautoscalingPolicyMetricDataQuery {
 
   final AppautoscalingPolicyMetricDataQueryMetricStat? metricStat;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
@@ -229,6 +233,7 @@ final class AppautoscalingPolicyMetricDataQueryMetricStat {
 
   final AppautoscalingPolicyMetricStatMetric metric;
 
+  @internal
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
     'unit': ?unit?.toTfJson(),
@@ -253,6 +258,7 @@ final class AppautoscalingPolicyMetricStatMetric {
 
   final List<AppautoscalingPolicyDimension>? dimension;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': ?metricName?.toTfJson(),
     'namespace': ?namespace?.toTfJson(),
@@ -275,6 +281,7 @@ final class AppautoscalingPolicyDimension {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -291,6 +298,7 @@ final class AppautoscalingPolicyCustomizedLoadMetricSpecification {
 
   final List<AppautoscalingPolicyMetricDataQuery> metricDataQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_data_query': [for (final e in metricDataQuery) e.encode()],
   };
@@ -306,6 +314,7 @@ final class AppautoscalingPolicyCustomizedScalingMetricSpecification {
 
   final List<AppautoscalingPolicyMetricDataQuery> metricDataQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_data_query': [for (final e in metricDataQuery) e.encode()],
   };
@@ -324,6 +333,7 @@ final class AppautoscalingPolicyPredefinedLoadMetricSpecification {
 
   final TfArg<String>? resourceLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     'resource_label': ?resourceLabel?.toTfJson(),
@@ -343,6 +353,7 @@ final class AppautoscalingPolicyPredefinedMetricPairSpecification {
 
   final TfArg<String>? resourceLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     'resource_label': ?resourceLabel?.toTfJson(),
@@ -362,6 +373,7 @@ final class AppautoscalingPolicyPredefinedScalingMetricSpecification {
 
   final TfArg<String>? resourceLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     'resource_label': ?resourceLabel?.toTfJson(),
@@ -390,6 +402,7 @@ final class AppautoscalingPolicyStepScalingPolicyConfiguration {
 
   final List<AppautoscalingPolicyStepAdjustment>? stepAdjustment;
 
+  @internal
   Map<String, Object?> encode() => {
     'adjustment_type': ?adjustmentType?.toTfJson(),
     'cooldown': ?cooldown?.toTfJson(),
@@ -470,6 +483,7 @@ final class AppautoscalingPolicyStepAdjustment {
 
   final TfArg<num> scalingAdjustment;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_interval_lower_bound': ?metricIntervalLowerBound?.toTfJson(),
     'metric_interval_upper_bound': ?metricIntervalUpperBound?.toTfJson(),
@@ -500,6 +514,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
   final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification?
   metricSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_scale_in': ?disableScaleIn?.toTfJson(),
     'scale_in_cooldown': ?scaleInCooldown?.toTfJson(),
@@ -530,8 +545,10 @@ sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricS
   ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -546,9 +563,11 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
   final AppautoscalingPolicyCustomizedMetricSpecification
   customizedMetricSpecification;
 
+  @internal
   @override
   String get blockKey => 'customized_metric_specification';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'customized_metric_specification': customizedMetricSpecification.encode(),
@@ -566,9 +585,11 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefin
   final AppautoscalingPolicyPredefinedMetricSpecification
   predefinedMetricSpecification;
 
+  @internal
   @override
   String get blockKey => 'predefined_metric_specification';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'predefined_metric_specification': predefinedMetricSpecification.encode(),
@@ -600,6 +621,7 @@ final class AppautoscalingPolicyCustomizedMetricSpecification {
 
   final List<AppautoscalingPolicyMetrics>? metrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': ?metricName?.toTfJson(),
     'namespace': ?namespace?.toTfJson(),
@@ -657,6 +679,7 @@ final class AppautoscalingPolicyDimensions {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -685,6 +708,7 @@ final class AppautoscalingPolicyMetrics {
 
   final AppautoscalingPolicyMetricStat? metricStat;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'id': id.toTfJson(),
@@ -710,6 +734,7 @@ final class AppautoscalingPolicyMetricStat {
 
   final AppautoscalingPolicyMetric metric;
 
+  @internal
   Map<String, Object?> encode() => {
     'stat': stat.toTfJson(),
     'unit': ?unit?.toTfJson(),
@@ -733,6 +758,7 @@ final class AppautoscalingPolicyMetric {
 
   final List<AppautoscalingPolicyDimensions>? dimensions;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'namespace': namespace.toTfJson(),
@@ -754,6 +780,7 @@ final class AppautoscalingPolicyPredefinedMetricSpecification {
 
   final TfArg<String>? resourceLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     'resource_label': ?resourceLabel?.toTfJson(),

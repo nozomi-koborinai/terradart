@@ -9,6 +9,12 @@
 /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_vertex_ai_index.dart' show DataGoogleVertexAiIndex;
+export 'src/data/google_vertex_ai_reasoning_engine_iam_policy.dart'
+    show DataGoogleVertexAiReasoningEngineIamPolicy;
+export 'src/data/google_vertex_ai_reasoning_engine_query.dart'
+    show DataGoogleVertexAiReasoningEngineQuery;
 export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
     show GoogleVertexAiCacheConfig;
 export 'src/vertex_ai/google_vertex_ai_dataset.dart'

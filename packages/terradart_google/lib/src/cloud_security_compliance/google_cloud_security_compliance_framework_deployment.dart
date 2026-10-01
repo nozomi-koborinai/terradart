@@ -22,6 +22,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata {
   final CloudSecurityComplianceFrameworkDeploymentCloudControlDetails
   cloudControlDetails;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforcement_mode': enforcementMode.toTfJson(),
     'cloud_control_details': cloudControlDetails.encode(),
@@ -44,6 +45,7 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlDetails {
 
   final List<CloudSecurityComplianceFrameworkDeploymentParameters>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'major_revision_id': majorRevisionId.toTfJson(),
     'name': name.toTfJson(),
@@ -65,6 +67,7 @@ final class CloudSecurityComplianceFrameworkDeploymentParameters {
 
   final CloudSecurityComplianceFrameworkDeploymentParameterValue parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value': parameterValue.encode(),
@@ -94,6 +97,7 @@ final class CloudSecurityComplianceFrameworkDeploymentParameterValue {
   final CloudSecurityComplianceFrameworkDeploymentStringListValue?
   stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -117,6 +121,7 @@ final class CloudSecurityComplianceFrameworkDeploymentOneofValue {
   final CloudSecurityComplianceFrameworkDeploymentOneofValueParameterValue?
   parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameter_value': ?parameterValue?.encode(),
@@ -143,6 +148,7 @@ final class CloudSecurityComplianceFrameworkDeploymentOneofValueParameterValue {
   final CloudSecurityComplianceFrameworkDeploymentStringListValue?
   stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -162,6 +168,7 @@ final class CloudSecurityComplianceFrameworkDeploymentStringListValue {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -178,6 +185,7 @@ final class CloudSecurityComplianceFrameworkDeploymentFramework {
 
   final TfArg<String> majorRevisionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'framework': framework.toTfJson(),
     'major_revision_id': majorRevisionId.toTfJson(),
@@ -203,8 +211,10 @@ sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig {
   ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -217,9 +227,11 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExisti
 
   final TfArg<String> existingTargetResource;
 
+  @internal
   @override
   String get blockKey => 'existing_target_resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'existing_target_resource': existingTargetResource.toTfJson(),
@@ -236,9 +248,11 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTarget
   final CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig
   targetResourceCreationConfig;
 
+  @internal
   @override
   String get blockKey => 'target_resource_creation_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'target_resource_creation_config': targetResourceCreationConfig.encode(),
@@ -265,8 +279,10 @@ sealed class CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationCon
   ) = CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfigProjectCreationConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -281,9 +297,11 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConf
   final CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig
   folderCreationConfig;
 
+  @internal
   @override
   String get blockKey => 'folder_creation_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'folder_creation_config': folderCreationConfig.encode(),
@@ -301,9 +319,11 @@ final class CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConf
   final CloudSecurityComplianceFrameworkDeploymentProjectCreationConfig
   projectCreationConfig;
 
+  @internal
   @override
   String get blockKey => 'project_creation_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'project_creation_config': projectCreationConfig.encode(),
@@ -323,6 +343,7 @@ final class CloudSecurityComplianceFrameworkDeploymentFolderCreationConfig {
 
   final TfArg<String> parent;
 
+  @internal
   Map<String, Object?> encode() => {
     'folder_display_name': folderDisplayName.toTfJson(),
     'parent': parent.toTfJson(),
@@ -345,6 +366,7 @@ final class CloudSecurityComplianceFrameworkDeploymentProjectCreationConfig {
 
   final TfArg<String> projectDisplayName;
 
+  @internal
   Map<String, Object?> encode() => {
     'billing_account_id': billingAccountId.toTfJson(),
     'parent': parent.toTfJson(),

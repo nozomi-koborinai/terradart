@@ -42,6 +42,7 @@ final class StreamLiveInputRecording {
 
   final TfArg<num>? timeoutSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'hide_live_viewer_count': ?hideLiveViewerCount?.toTfJson(),

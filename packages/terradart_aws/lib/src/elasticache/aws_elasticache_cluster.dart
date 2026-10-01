@@ -116,12 +116,15 @@ sealed class ElasticacheClusterSource {
   ) = ElasticacheClusterSourceReplicationGroupId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -131,12 +134,15 @@ final class ElasticacheClusterSourceEngine extends ElasticacheClusterSource {
 
   final ElasticacheClusterEngine engine;
 
+  @internal
   @override
   String get blockKey => 'engine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'engine': engine.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
@@ -148,14 +154,17 @@ final class ElasticacheClusterSourceReplicationGroupId
 
   final TfArg<String> replicationGroupId;
 
+  @internal
   @override
   String get blockKey => 'replication_group_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'replication_group_id': replicationGroupId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'replication_group_id': replicationGroupId,
@@ -181,6 +190,7 @@ final class ElasticacheClusterLogDeliveryConfiguration {
 
   final ElasticacheClusterLogType logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
     'destination_type': destinationType.toTfJson(),

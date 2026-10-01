@@ -37,6 +37,7 @@ final class TransferWebAppEndpointDetails {
 
   final List<TransferWebAppVpc>? vpc;
 
+  @internal
   Map<String, Object?> encode() => {
     if (vpc != null) 'vpc': [for (final e in vpc!) e.encode()],
   };
@@ -58,6 +59,7 @@ final class TransferWebAppVpc {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
@@ -73,6 +75,7 @@ final class TransferWebAppIdentityProviderDetails {
 
   final List<TransferWebAppIdentityCenterConfig>? identityCenterConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (identityCenterConfig != null)
       'identity_center_config': [
@@ -91,6 +94,7 @@ final class TransferWebAppIdentityCenterConfig {
 
   final RefTo<AwsIamRole>? role;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_arn': ?instanceArn?.toTfJson(),
     'role': ?role?.encodeAs('arn').toTfJson(),

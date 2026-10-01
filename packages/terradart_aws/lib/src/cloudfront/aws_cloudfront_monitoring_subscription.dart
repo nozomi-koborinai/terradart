@@ -18,6 +18,7 @@ final class CloudfrontMonitoringSubscription {
   final CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig
   realtimeMetricsSubscriptionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'realtime_metrics_subscription_config': realtimeMetricsSubscriptionConfig
         .encode(),
@@ -35,6 +36,7 @@ final class CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig {
   final CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus
   realtimeMetricsSubscriptionStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'realtime_metrics_subscription_status': realtimeMetricsSubscriptionStatus
         .toTfJson(),

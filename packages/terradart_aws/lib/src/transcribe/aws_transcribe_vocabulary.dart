@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_transcribe_vocabulary`.
@@ -23,12 +24,15 @@ sealed class TranscribeVocabularyTerms {
   ) = TranscribeVocabularyTermsVocabularyFileUri;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -38,12 +42,15 @@ final class TranscribeVocabularyTermsPhrases extends TranscribeVocabularyTerms {
 
   final TfArg<List<String>> phrases;
 
+  @internal
   @override
   String get blockKey => 'phrases';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'phrases': phrases.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'phrases': phrases};
 }
@@ -55,14 +62,17 @@ final class TranscribeVocabularyTermsVocabularyFileUri
 
   final TfArg<String> vocabularyFileUri;
 
+  @internal
   @override
   String get blockKey => 'vocabulary_file_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vocabulary_file_uri': vocabularyFileUri.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vocabulary_file_uri': vocabularyFileUri,

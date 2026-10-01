@@ -17,6 +17,7 @@ final class FisSafetyLeverState {
 
   final FisSafetyLeverStateStatus status;
 
+  @internal
   Map<String, Object?> encode() => {
     'reason': reason.toTfJson(),
     'status': status.toTfJson(),

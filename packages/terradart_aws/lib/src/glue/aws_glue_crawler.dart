@@ -31,6 +31,7 @@ final class GlueCrawlerCatalogTarget {
 
   final TfArg<List<String>> tables;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -59,6 +60,7 @@ final class GlueCrawlerDeltaTarget {
 
   final TfArg<bool> writeManifest;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'create_native_delta_table': ?createNativeDeltaTable?.toTfJson(),
@@ -83,6 +85,7 @@ final class GlueCrawlerDynamodbTarget {
 
   final TfArg<num>? scanRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'scan_all': ?scanAll?.toTfJson(),
@@ -109,6 +112,7 @@ final class GlueCrawlerHudiTarget {
 
   final TfArg<List<String>> paths;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'exclusions': ?exclusions?.toTfJson(),
@@ -136,6 +140,7 @@ final class GlueCrawlerIcebergTarget {
 
   final TfArg<List<String>> paths;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'exclusions': ?exclusions?.toTfJson(),
@@ -163,6 +168,7 @@ final class GlueCrawlerJdbcTarget {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': connectionName.toTfJson(),
     if (enableAdditionalMetadata != null)
@@ -210,6 +216,7 @@ final class GlueCrawlerLakeFormationConfiguration {
 
   final TfArg<bool>? useLakeFormationCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'use_lake_formation_credentials': ?useLakeFormationCredentials?.toTfJson(),
@@ -224,6 +231,7 @@ final class GlueCrawlerLineageConfiguration {
 
   final GlueCrawlerLineageSettings? crawlerLineageSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'crawler_lineage_settings': ?crawlerLineageSettings?.toTfJson(),
   };
@@ -260,6 +268,7 @@ final class GlueCrawlerMongodbTarget {
 
   final TfArg<bool>? scanAll;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': connectionName.toTfJson(),
     'path': path.toTfJson(),
@@ -275,6 +284,7 @@ final class GlueCrawlerRecrawlPolicy {
 
   final GlueCrawlerRecrawlBehavior? recrawlBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'recrawl_behavior': ?recrawlBehavior?.toTfJson(),
   };
@@ -331,6 +341,7 @@ final class GlueCrawlerS3Target {
 
   final TfArg<num>? sampleSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'dlq_event_queue_arn': ?dlqEventQueueArn?.toTfJson(),
@@ -354,6 +365,7 @@ final class GlueCrawlerSchemaChangePolicy {
 
   final GlueCrawlerUpdateBehavior? updateBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_behavior': ?deleteBehavior?.toTfJson(),
     'update_behavior': ?updateBehavior?.toTfJson(),

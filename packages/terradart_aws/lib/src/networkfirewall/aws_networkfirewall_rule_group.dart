@@ -48,6 +48,7 @@ final class NetworkfirewallRuleGroupEncryptionConfiguration {
 
   final NetworkfirewallRuleGroupEncryptionConfigurationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
@@ -99,6 +100,7 @@ final class NetworkfirewallRuleGroup {
 
   final NetworkfirewallRuleGroupStatefulRuleOptions? statefulRuleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'reference_sets': ?referenceSets?.encode(),
     'rule_variables': ?ruleVariables?.encode(),
@@ -115,6 +117,7 @@ final class NetworkfirewallRuleGroupReferenceSets {
 
   final List<NetworkfirewallRuleGroupIpSetReferences>? ipSetReferences;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipSetReferences != null)
       'ip_set_references': [for (final e in ipSetReferences!) e.encode()],
@@ -134,6 +137,7 @@ final class NetworkfirewallRuleGroupIpSetReferences {
 
   final List<NetworkfirewallRuleGroupIpSetReference> ipSetReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'ip_set_reference': [for (final e in ipSetReference) e.encode()],
@@ -148,6 +152,7 @@ final class NetworkfirewallRuleGroupIpSetReference {
 
   final TfArg<String> referenceArn;
 
+  @internal
   Map<String, Object?> encode() => {'reference_arn': referenceArn.toTfJson()};
 }
 
@@ -161,6 +166,7 @@ final class NetworkfirewallRuleGroupRuleVariables {
 
   final List<NetworkfirewallRuleGroupPortSets>? portSets;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipSets != null) 'ip_sets': [for (final e in ipSets!) e.encode()],
     if (portSets != null) 'port_sets': [for (final e in portSets!) e.encode()],
@@ -180,6 +186,7 @@ final class NetworkfirewallRuleGroupIpSets {
 
   final NetworkfirewallRuleGroupIpSet ipSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'ip_set': ipSet.encode(),
@@ -194,6 +201,7 @@ final class NetworkfirewallRuleGroupIpSet {
 
   final TfArg<List<String>> definition;
 
+  @internal
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
 }
 
@@ -210,6 +218,7 @@ final class NetworkfirewallRuleGroupPortSets {
 
   final NetworkfirewallRuleGroupPortSet portSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'port_set': portSet.encode(),
@@ -224,6 +233,7 @@ final class NetworkfirewallRuleGroupPortSet {
 
   final TfArg<List<String>> definition;
 
+  @internal
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
 }
 
@@ -247,6 +257,7 @@ final class NetworkfirewallRuleGroupRulesSource {
   final NetworkfirewallRuleGroupStatelessRulesAndCustomActions?
   statelessRulesAndCustomActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'rules_string': ?rulesString?.toTfJson(),
     'rules_source_list': ?rulesSourceList?.encode(),
@@ -273,6 +284,7 @@ final class NetworkfirewallRuleGroupRulesSourceList {
 
   final TfArg<List<String>> targets;
 
+  @internal
   Map<String, Object?> encode() => {
     'generated_rules_type': generatedRulesType.toTfJson(),
     'target_types': [for (final e in targetTypes) e.toTfJson()],
@@ -351,6 +363,7 @@ final class NetworkfirewallRuleGroupStatefulRule {
 
   final List<NetworkfirewallRuleGroupRuleOption> ruleOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'header': header.encode(),
@@ -407,6 +420,7 @@ final class NetworkfirewallRuleGroupHeader {
 
   final TfArg<String> sourcePort;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
     'destination_port': destinationPort.toTfJson(),
@@ -509,6 +523,7 @@ final class NetworkfirewallRuleGroupRuleOption {
 
   final TfArg<List<String>>? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'keyword': keyword.toTfJson(),
     'settings': ?settings?.toTfJson(),
@@ -528,6 +543,7 @@ final class NetworkfirewallRuleGroupStatelessRulesAndCustomActions {
 
   final List<NetworkfirewallRuleGroupStatelessRule> statelessRule;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customAction != null)
       'custom_action': [for (final e in customAction!) e.encode()],
@@ -548,6 +564,7 @@ final class NetworkfirewallRuleGroupCustomAction {
 
   final NetworkfirewallRuleGroupActionDefinition actionDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_name': actionName.toTfJson(),
     'action_definition': actionDefinition.encode(),
@@ -564,6 +581,7 @@ final class NetworkfirewallRuleGroupActionDefinition {
 
   final NetworkfirewallRuleGroupPublishMetricAction publishMetricAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'publish_metric_action': publishMetricAction.encode(),
   };
@@ -577,6 +595,7 @@ final class NetworkfirewallRuleGroupPublishMetricAction {
 
   final List<NetworkfirewallRuleGroupDimension> dimension;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimension': [for (final e in dimension) e.encode()],
   };
@@ -590,6 +609,7 @@ final class NetworkfirewallRuleGroupDimension {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -606,6 +626,7 @@ final class NetworkfirewallRuleGroupStatelessRule {
 
   final NetworkfirewallRuleGroupRuleDefinition ruleDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'rule_definition': ruleDefinition.encode(),
@@ -625,6 +646,7 @@ final class NetworkfirewallRuleGroupRuleDefinition {
 
   final NetworkfirewallRuleGroupMatchAttributes matchAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'match_attributes': matchAttributes.encode(),
@@ -656,6 +678,7 @@ final class NetworkfirewallRuleGroupMatchAttributes {
 
   final List<NetworkfirewallRuleGroupTcpFlag>? tcpFlag;
 
+  @internal
   Map<String, Object?> encode() => {
     'protocols': ?protocols?.toTfJson(),
     if (destination != null)
@@ -677,6 +700,7 @@ final class NetworkfirewallRuleGroupDestination {
 
   final TfArg<String> addressDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_definition': addressDefinition.toTfJson(),
   };
@@ -695,6 +719,7 @@ final class NetworkfirewallRuleGroupDestinationPort {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
     'to_port': ?toPort?.toTfJson(),
@@ -709,6 +734,7 @@ final class NetworkfirewallRuleGroupSource {
 
   final TfArg<String> addressDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_definition': addressDefinition.toTfJson(),
   };
@@ -727,6 +753,7 @@ final class NetworkfirewallRuleGroupSourcePort {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
     'to_port': ?toPort?.toTfJson(),
@@ -743,6 +770,7 @@ final class NetworkfirewallRuleGroupTcpFlag {
 
   final List<NetworkfirewallRuleGroupMasks>? masks;
 
+  @internal
   Map<String, Object?> encode() => {
     'flags': [for (final e in flags) e.toTfJson()],
     if (masks != null) 'masks': [for (final e in masks!) e.toTfJson()],
@@ -817,6 +845,7 @@ final class NetworkfirewallRuleGroupStatefulRuleOptions {
 
   final NetworkfirewallRuleGroupRuleOrder ruleOrder;
 
+  @internal
   Map<String, Object?> encode() => {'rule_order': ruleOrder.toTfJson()};
 }
 

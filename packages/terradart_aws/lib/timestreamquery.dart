@@ -3,6 +3,7 @@
 /// AWS Timestream scheduled queries.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/timestreamquery/aws_timestreamquery_scheduled_query.dart'
     show
         AwsTimestreamqueryScheduledQuery,

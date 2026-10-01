@@ -81,6 +81,7 @@ final class AiSearchInstanceCustomMetadata {
 
   final TfArg<String> fieldName;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_type': dataType.toTfJson(),
     'field_name': fieldName.toTfJson(),
@@ -121,6 +122,7 @@ final class AiSearchInstanceIndexMethod {
 
   final TfArg<bool> vector;
 
+  @internal
   Map<String, Object?> encode() => {
     'keyword': keyword.toTfJson(),
     'vector': vector.toTfJson(),
@@ -137,6 +139,7 @@ final class AiSearchInstanceIndexingOptions {
 
   final TfArg<bool>? useOcr;
 
+  @internal
   Map<String, Object?> encode() => {
     'keyword_tokenizer': ?keywordTokenizer?.toTfJson(),
     'use_ocr': ?useOcr?.toTfJson(),
@@ -178,6 +181,7 @@ final class AiSearchInstanceMetadata {
 
   final TfArg<String>? workerDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'created_from_aisearch_wizard': ?createdFromAisearchWizard?.toTfJson(),
     'worker_domain': ?workerDomain?.toTfJson(),
@@ -215,6 +219,7 @@ final class AiSearchInstancePublicEndpointParams {
 
   final AiSearchInstanceSearchEndpoint? searchEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorized_hosts': ?authorizedHosts?.toTfJson(),
     'custom_domains': ?customDomains?.toTfJson(),
@@ -235,6 +240,7 @@ final class AiSearchInstanceChatCompletionsEndpoint {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
@@ -248,6 +254,7 @@ final class AiSearchInstanceMcp {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -270,6 +277,7 @@ final class AiSearchInstanceRateLimit {
 
   final AiSearchInstanceTechnique? technique;
 
+  @internal
   Map<String, Object?> encode() => {
     'period_ms': ?periodMs?.toTfJson(),
     'requests': ?requests?.toTfJson(),
@@ -300,6 +308,7 @@ final class AiSearchInstanceSearchEndpoint {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
@@ -313,6 +322,7 @@ final class AiSearchInstanceRetrievalOptions {
 
   final List<AiSearchInstanceBoostBy>? boostBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'keyword_match_mode': ?keywordMatchMode?.toTfJson(),
     if (boostBy != null) 'boost_by': [for (final e in boostBy!) e.encode()],
@@ -344,6 +354,7 @@ final class AiSearchInstanceBoostBy {
 
   final TfArg<String> field;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'field': field.toTfJson(),
@@ -396,6 +407,7 @@ final class AiSearchInstanceSourceParams {
 
   final AiSearchInstanceWebCrawler? webCrawler;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_items': ?excludeItems?.toTfJson(),
     'include_items': ?includeItems?.toTfJson(),
@@ -421,6 +433,7 @@ final class AiSearchInstanceWebCrawler {
 
   final AiSearchInstanceParseOptions? parseOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parse_type': ?parseType?.toTfJson(),
     'discover_options': ?discoverOptions?.encode(),
@@ -468,6 +481,7 @@ final class AiSearchInstanceDiscoverOptions {
 
   final AiSearchInstanceDiscoverOptionsSource? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'depth': ?depth?.toTfJson(),
     'include_external_links': ?includeExternalLinks?.toTfJson(),
@@ -527,6 +541,7 @@ final class AiSearchInstanceParseOptions {
 
   final List<AiSearchInstanceContentSelector>? contentSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_headers': ?includeHeaders?.toTfJson(),
     'include_images': ?includeImages?.toTfJson(),
@@ -550,6 +565,7 @@ final class AiSearchInstanceContentSelector {
 
   final TfArg<String> selector;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'selector': selector.toTfJson(),

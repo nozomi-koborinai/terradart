@@ -26,6 +26,7 @@ final class ChronicleDataAccessScopeAllowedDataAccessLabels {
 
   final ChronicleDataAccessScopeIngestionLabel? ingestionLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'asset_namespace': ?assetNamespace?.toTfJson(),
     'data_access_label': ?dataAccessLabel?.toTfJson(),
@@ -48,6 +49,7 @@ final class ChronicleDataAccessScopeIngestionLabel {
 
   final TfArg<String>? ingestionLabelValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'ingestion_label_key': ingestionLabelKey.toTfJson(),
     'ingestion_label_value': ?ingestionLabelValue?.toTfJson(),
@@ -73,6 +75,7 @@ final class ChronicleDataAccessScopeDeniedDataAccessLabels {
 
   final ChronicleDataAccessScopeIngestionLabel? ingestionLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'asset_namespace': ?assetNamespace?.toTfJson(),
     'data_access_label': ?dataAccessLabel?.toTfJson(),

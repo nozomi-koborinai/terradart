@@ -26,12 +26,15 @@ sealed class Wafv2WebAclRuleBehavior {
   ) = Wafv2WebAclRuleBehaviorOverrideAction;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,14 +44,17 @@ final class Wafv2WebAclRuleBehaviorAction extends Wafv2WebAclRuleBehavior {
 
   final List<Wafv2WebAclRuleAction> action;
 
+  @internal
   @override
   String get blockKey => 'action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'action': [for (final e in action) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'action': TfArg.literal([for (final e in action) e.encode()]),
@@ -62,14 +68,17 @@ final class Wafv2WebAclRuleBehaviorOverrideAction
 
   final List<Wafv2WebAclRuleOverrideAction> overrideAction;
 
+  @internal
   @override
   String get blockKey => 'override_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'override_action': [for (final e in overrideAction) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'override_action': TfArg.literal([
@@ -101,6 +110,7 @@ final class Wafv2WebAclRuleAction {
 
   final List<Wafv2WebAclRuleAllow>? count;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allow != null) 'allow': [for (final e in allow!) e.encode()],
     if (block != null) 'block': [for (final e in block!) e.encode()],
@@ -120,6 +130,7 @@ final class Wafv2WebAclRuleAllow {
 
   final List<Wafv2WebAclRuleCustomRequestHandling>? customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customRequestHandling != null)
       'custom_request_handling': [
@@ -137,6 +148,7 @@ final class Wafv2WebAclRuleCustomRequestHandling {
 
   final List<Wafv2WebAclRuleInsertHeader>? insertHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     if (insertHeader != null)
       'insert_header': [for (final e in insertHeader!) e.encode()],
@@ -154,6 +166,7 @@ final class Wafv2WebAclRuleInsertHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -169,6 +182,7 @@ final class Wafv2WebAclRuleBlock {
 
   final List<Wafv2WebAclRuleCustomResponse>? customResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customResponse != null)
       'custom_response': [for (final e in customResponse!) e.encode()],
@@ -192,6 +206,7 @@ final class Wafv2WebAclRuleCustomResponse {
 
   final List<Wafv2WebAclRuleInsertHeader>? responseHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
@@ -209,6 +224,7 @@ final class Wafv2WebAclRuleCaptchaConfig {
 
   final List<Wafv2WebAclRuleImmunityTimeProperty>? immunityTimeProperty;
 
+  @internal
   Map<String, Object?> encode() => {
     if (immunityTimeProperty != null)
       'immunity_time_property': [
@@ -226,6 +242,7 @@ final class Wafv2WebAclRuleImmunityTimeProperty {
 
   final TfArg<num>? immunityTime;
 
+  @internal
   Map<String, Object?> encode() => {'immunity_time': ?immunityTime?.toTfJson()};
 }
 
@@ -239,6 +256,7 @@ final class Wafv2WebAclRuleOverrideAction {
 
   final List<Wafv2WebAclRuleCount>? none;
 
+  @internal
   Map<String, Object?> encode() => {
     if (count != null) 'count': [for (final e in count!) e.encode()],
     if (none != null) 'none': [for (final e in none!) e.encode()],
@@ -252,6 +270,7 @@ final class Wafv2WebAclRuleOverrideAction {
 final class Wafv2WebAclRuleCount {
   const Wafv2WebAclRuleCount();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -264,6 +283,7 @@ final class Wafv2WebAclRuleRuleLabel {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -325,6 +345,7 @@ final class Wafv2WebAclRuleStatement {
 
   final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (andStatement != null)
       'and_statement': [for (final e in andStatement!) e.encode()],
@@ -384,6 +405,7 @@ final class Wafv2WebAclRuleAndStatement {
 
   final List<Wafv2WebAclRuleAndStatementStatement>? statement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (statement != null)
       'statement': [for (final e in statement!) e.encode()],
@@ -449,6 +471,7 @@ final class Wafv2WebAclRuleAndStatementStatement {
 
   final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (andStatement != null)
       'and_statement': [for (final e in andStatement!) e.encode()],
@@ -508,6 +531,7 @@ final class Wafv2WebAclRuleStatementAndStatement {
 
   final List<Wafv2WebAclRuleStatementStatement>? statement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (statement != null)
       'statement': [for (final e in statement!) e.encode()],
@@ -573,6 +597,7 @@ final class Wafv2WebAclRuleStatementStatement {
 
   final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (andStatement != null)
       'and_statement': [for (final e in andStatement!) e.encode()],
@@ -632,6 +657,7 @@ final class Wafv2WebAclRuleAndStatementAndStatement {
 
   final List<Wafv2WebAclRuleStatementAndStatementStatement>? statement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (statement != null)
       'statement': [for (final e in statement!) e.encode()],
@@ -688,6 +714,7 @@ final class Wafv2WebAclRuleStatementAndStatementStatement {
 
   final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (asnMatchStatement != null)
       'asn_match_statement': [for (final e in asnMatchStatement!) e.encode()],
@@ -746,6 +773,7 @@ final class Wafv2WebAclRuleAsnMatchStatement {
 
   final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn_list': asnList.toTfJson(),
     if (forwardedIpConfig != null)
@@ -767,6 +795,7 @@ final class Wafv2WebAclRuleForwardedIpConfig {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': fallbackBehavior.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -793,6 +822,7 @@ final class Wafv2WebAclRuleByteMatchStatement {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
     'search_string': searchString.toTfJson(),
@@ -853,6 +883,7 @@ final class Wafv2WebAclRuleFieldToMatch {
 
   final List<Wafv2WebAclRuleCount>? uriPath;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allQueryArguments != null)
       'all_query_arguments': [for (final e in allQueryArguments!) e.encode()],
@@ -890,6 +921,7 @@ final class Wafv2WebAclRuleBody {
 
   final TfArg<String>? oversizeHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     'oversize_handling': ?oversizeHandling?.toTfJson(),
   };
@@ -912,6 +944,7 @@ final class Wafv2WebAclRuleCookies {
 
   final List<Wafv2WebAclRuleCookiesMatchPattern>? matchPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
     'oversize_handling': oversizeHandling.toTfJson(),
@@ -937,6 +970,7 @@ final class Wafv2WebAclRuleCookiesMatchPattern {
 
   final List<Wafv2WebAclRuleCount>? all;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_cookies': ?excludedCookies?.toTfJson(),
     'included_cookies': ?includedCookies?.toTfJson(),
@@ -953,6 +987,7 @@ final class Wafv2WebAclRuleHeaderOrder {
 
   final TfArg<String> oversizeHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     'oversize_handling': oversizeHandling.toTfJson(),
   };
@@ -975,6 +1010,7 @@ final class Wafv2WebAclRuleHeaders {
 
   final List<Wafv2WebAclRuleHeadersMatchPattern>? matchPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_scope': matchScope.toTfJson(),
     'oversize_handling': oversizeHandling.toTfJson(),
@@ -1000,6 +1036,7 @@ final class Wafv2WebAclRuleHeadersMatchPattern {
 
   final List<Wafv2WebAclRuleCount>? all;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_headers': ?excludedHeaders?.toTfJson(),
     'included_headers': ?includedHeaders?.toTfJson(),
@@ -1016,6 +1053,7 @@ final class Wafv2WebAclRuleJa3Fingerprint {
 
   final TfArg<String> fallbackBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': fallbackBehavior.toTfJson(),
   };
@@ -1041,6 +1079,7 @@ final class Wafv2WebAclRuleJsonBody {
 
   final List<Wafv2WebAclRuleJsonBodyMatchPattern>? matchPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'invalid_fallback_behavior': ?invalidFallbackBehavior?.toTfJson(),
     'match_scope': matchScope.toTfJson(),
@@ -1061,6 +1100,7 @@ final class Wafv2WebAclRuleJsonBodyMatchPattern {
 
   final List<Wafv2WebAclRuleCount>? all;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_paths': ?includedPaths?.toTfJson(),
     if (all != null) 'all': [for (final e in all!) e.encode()],
@@ -1076,6 +1116,7 @@ final class Wafv2WebAclRuleUriFragment {
 
   final TfArg<String>? fallbackBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': ?fallbackBehavior?.toTfJson(),
   };
@@ -1095,6 +1136,7 @@ final class Wafv2WebAclRuleTextTransformation {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'type': type.toTfJson(),
@@ -1115,6 +1157,7 @@ final class Wafv2WebAclRuleGeoMatchStatement {
 
   final List<Wafv2WebAclRuleForwardedIpConfig>? forwardedIpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'country_codes': countryCodes.toTfJson(),
     if (forwardedIpConfig != null)
@@ -1136,6 +1179,7 @@ final class Wafv2WebAclRuleIpSetReferenceStatement {
 
   final List<Wafv2WebAclRuleIpSetForwardedIpConfig>? ipSetForwardedIpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     if (ipSetForwardedIpConfig != null)
@@ -1162,6 +1206,7 @@ final class Wafv2WebAclRuleIpSetForwardedIpConfig {
 
   final TfArg<String> position;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_behavior': fallbackBehavior.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -1183,6 +1228,7 @@ final class Wafv2WebAclRuleLabelMatchStatement {
 
   final TfArg<String> scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'scope': scope.toTfJson(),
@@ -1216,6 +1262,7 @@ final class Wafv2WebAclRuleManagedRuleGroupStatement {
 
   final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'vendor_name': vendorName.toTfJson(),
@@ -1267,6 +1314,7 @@ final class Wafv2WebAclRuleManagedRuleGroupConfigs {
 
   final List<Wafv2WebAclRulePasswordField>? usernameField;
 
+  @internal
   Map<String, Object?> encode() => {
     'login_path': ?loginPath?.toTfJson(),
     'payload_type': ?payloadType?.toTfJson(),
@@ -1317,6 +1365,7 @@ final class Wafv2WebAclRuleAwsManagedRulesAcfpRuleSet {
 
   final List<Wafv2WebAclRuleResponseInspection>? responseInspection;
 
+  @internal
   Map<String, Object?> encode() => {
     'creation_path': creationPath.toTfJson(),
     'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
@@ -1354,6 +1403,7 @@ final class Wafv2WebAclRuleAwsManagedRulesAcfpRuleSetRequestInspection {
 
   final List<Wafv2WebAclRulePasswordField>? usernameField;
 
+  @internal
   Map<String, Object?> encode() => {
     'payload_type': payloadType.toTfJson(),
     if (addressFields != null)
@@ -1378,6 +1428,7 @@ final class Wafv2WebAclRuleAddressFields {
 
   final TfArg<List<String>> identifiers;
 
+  @internal
   Map<String, Object?> encode() => {'identifiers': identifiers.toTfJson()};
 }
 
@@ -1390,6 +1441,7 @@ final class Wafv2WebAclRulePasswordField {
 
   final TfArg<String> identifier;
 
+  @internal
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 }
 
@@ -1413,6 +1465,7 @@ final class Wafv2WebAclRuleResponseInspection {
 
   final List<Wafv2WebAclRuleStatusCode>? statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bodyContains != null)
       'body_contains': [for (final e in bodyContains!) e.encode()],
@@ -1437,6 +1490,7 @@ final class Wafv2WebAclRuleBodyContains {
 
   final TfArg<List<String>> successStrings;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_strings': failureStrings.toTfJson(),
     'success_strings': successStrings.toTfJson(),
@@ -1460,6 +1514,7 @@ final class Wafv2WebAclRuleHeader {
 
   final TfArg<List<String>> successValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
     'name': name.toTfJson(),
@@ -1484,6 +1539,7 @@ final class Wafv2WebAclRuleJson {
 
   final TfArg<List<String>> successValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
     'identifier': identifier.toTfJson(),
@@ -1505,6 +1561,7 @@ final class Wafv2WebAclRuleStatusCode {
 
   final TfArg<List<num>> successCodes;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_codes': failureCodes.toTfJson(),
     'success_codes': successCodes.toTfJson(),
@@ -1525,6 +1582,7 @@ final class Wafv2WebAclRuleAwsManagedRulesAntiDdosRuleSet {
 
   final List<Wafv2WebAclRuleClientSideActionConfig>? clientSideActionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity_to_block': ?sensitivityToBlock?.toTfJson(),
     if (clientSideActionConfig != null)
@@ -1543,6 +1601,7 @@ final class Wafv2WebAclRuleClientSideActionConfig {
 
   final List<Wafv2WebAclRuleChallenge>? challenge;
 
+  @internal
   Map<String, Object?> encode() => {
     if (challenge != null)
       'challenge': [for (final e in challenge!) e.encode()],
@@ -1567,6 +1626,7 @@ final class Wafv2WebAclRuleChallenge {
   final List<Wafv2WebAclRuleExemptUriRegularExpression>?
   exemptUriRegularExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity': ?sensitivity?.toTfJson(),
     'usage_of_action': usageOfAction.toTfJson(),
@@ -1586,6 +1646,7 @@ final class Wafv2WebAclRuleExemptUriRegularExpression {
 
   final TfArg<String>? regexString;
 
+  @internal
   Map<String, Object?> encode() => {'regex_string': ?regexString?.toTfJson()};
 }
 
@@ -1610,6 +1671,7 @@ final class Wafv2WebAclRuleAwsManagedRulesAtpRuleSet {
 
   final List<Wafv2WebAclRuleResponseInspection>? responseInspection;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
     'login_path': loginPath.toTfJson(),
@@ -1637,6 +1699,7 @@ final class Wafv2WebAclRuleAwsManagedRulesAtpRuleSetRequestInspection {
 
   final List<Wafv2WebAclRulePasswordField>? usernameField;
 
+  @internal
   Map<String, Object?> encode() => {
     'payload_type': payloadType.toTfJson(),
     if (passwordField != null)
@@ -1660,6 +1723,7 @@ final class Wafv2WebAclRuleAwsManagedRulesBotControlRuleSet {
 
   final TfArg<String> inspectionLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_machine_learning': ?enableMachineLearning?.toTfJson(),
     'inspection_level': inspectionLevel.toTfJson(),
@@ -1680,6 +1744,7 @@ final class Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride {
 
   final List<Wafv2WebAclRuleAction>? actionToUse;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (actionToUse != null)
@@ -1726,6 +1791,7 @@ final class Wafv2WebAclRuleScopeDownStatement {
 
   final List<Wafv2WebAclRuleXssMatchStatement>? xssMatchStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (asnMatchStatement != null)
       'asn_match_statement': [for (final e in asnMatchStatement!) e.encode()],
@@ -1777,6 +1843,7 @@ final class Wafv2WebAclRuleRegexMatchStatement {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_string': regexString.toTfJson(),
     if (fieldToMatch != null)
@@ -1803,6 +1870,7 @@ final class Wafv2WebAclRuleRegexPatternSetReferenceStatement {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     if (fieldToMatch != null)
@@ -1832,6 +1900,7 @@ final class Wafv2WebAclRuleSizeConstraintStatement {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
     'size': size.toTfJson(),
@@ -1859,6 +1928,7 @@ final class Wafv2WebAclRuleSqliMatchStatement {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity_level': ?sensitivityLevel?.toTfJson(),
     if (fieldToMatch != null)
@@ -1882,6 +1952,7 @@ final class Wafv2WebAclRuleXssMatchStatement {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fieldToMatch != null)
       'field_to_match': [for (final e in fieldToMatch!) e.encode()],
@@ -1916,6 +1987,7 @@ final class Wafv2WebAclRuleRateBasedStatement {
 
   final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregate_key_type': aggregateKeyType.toTfJson(),
     'evaluation_window_sec': ?evaluationWindowSec?.toTfJson(),
@@ -1973,6 +2045,7 @@ final class Wafv2WebAclRuleCustomKeys {
 
   final List<Wafv2WebAclRuleQueryString>? uriPath;
 
+  @internal
   Map<String, Object?> encode() => {
     if (asn != null) 'asn': [for (final e in asn!) e.encode()],
     if (cookie != null) 'cookie': [for (final e in cookie!) e.encode()],
@@ -2007,6 +2080,7 @@ final class Wafv2WebAclRuleCookie {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (textTransformation != null)
@@ -2023,6 +2097,7 @@ final class Wafv2WebAclRuleLabelNamespace {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {'namespace': namespace.toTfJson()};
 }
 
@@ -2035,6 +2110,7 @@ final class Wafv2WebAclRuleQueryString {
 
   final List<Wafv2WebAclRuleTextTransformation>? textTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (textTransformation != null)
       'text_transformation': [for (final e in textTransformation!) e.encode()],
@@ -2059,6 +2135,7 @@ final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
   final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
   ruleActionOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     if (excludedRule != null)
@@ -2084,6 +2161,7 @@ final class Wafv2WebAclRuleVisibilityConfig {
 
   final TfArg<bool> sampledRequestsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_metrics_enabled': cloudwatchMetricsEnabled.toTfJson(),
     'metric_name': metricName.toTfJson(),

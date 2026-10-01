@@ -34,6 +34,7 @@ final class DatazoneDomainSingleSignOn {
 
   final DatazoneDomainUserAssignment? userAssignment;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'user_assignment': ?userAssignment?.toTfJson(),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_time/terradart_time.dart';
 
 /// Minimal example: a 60-second `time_sleep`, synthesized to Terraform JSON.

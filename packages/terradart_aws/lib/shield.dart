@@ -3,6 +3,8 @@
 /// AWS Shield.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_shield_protection.dart' show DataAwsShieldProtection;
 export 'src/shield/aws_shield_application_layer_automatic_response.dart'
     show
         AwsShieldApplicationLayerAutomaticResponse,

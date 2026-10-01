@@ -22,6 +22,7 @@ final class KendraExperienceConfiguration {
 
   final KendraExperienceUserIdentityConfiguration? userIdentityConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_source_configuration': ?contentSourceConfiguration?.encode(),
     'user_identity_configuration': ?userIdentityConfiguration?.encode(),
@@ -44,6 +45,7 @@ final class KendraExperienceContentSourceConfiguration {
 
   final TfArg<List<String>>? faqIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_ids': ?dataSourceIds?.toTfJson(),
     'direct_put_content': ?directPutContent?.toTfJson(),
@@ -61,6 +63,7 @@ final class KendraExperienceUserIdentityConfiguration {
 
   final TfArg<String> identityAttributeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_attribute_name': identityAttributeName.toTfJson(),
   };

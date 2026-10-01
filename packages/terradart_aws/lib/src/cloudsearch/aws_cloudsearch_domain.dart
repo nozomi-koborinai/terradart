@@ -20,6 +20,7 @@ final class CloudsearchDomainEndpointOptions {
 
   final CloudsearchDomainTlsSecurityPolicy? tlsSecurityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforce_https': ?enforceHttps?.toTfJson(),
     'tls_security_policy': ?tlsSecurityPolicy?.toTfJson(),
@@ -85,6 +86,7 @@ final class CloudsearchDomainIndexField {
 
   final CloudsearchDomainType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'analysis_scheme': ?analysisScheme?.toTfJson(),
     'default_value': ?defaultValue?.toTfJson(),
@@ -154,6 +156,7 @@ final class CloudsearchDomainScalingParameters {
 
   final TfArg<num>? desiredReplicationCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_instance_type': ?desiredInstanceType?.toTfJson(),
     'desired_partition_count': ?desiredPartitionCount?.toTfJson(),

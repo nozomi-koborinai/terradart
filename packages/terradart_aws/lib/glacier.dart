@@ -3,6 +3,7 @@
 /// AWS S3 Glacier vaults.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/glacier/aws_glacier_vault.dart'
     show AwsGlacierVault, GlacierVaultEvents, GlacierVaultNotification;
 export 'src/glacier/aws_glacier_vault_lock.dart' show AwsGlacierVaultLock;

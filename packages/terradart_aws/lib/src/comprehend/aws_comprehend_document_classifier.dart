@@ -91,12 +91,15 @@ sealed class ComprehendDocumentClassifierVersionName {
   ) = ComprehendDocumentClassifierVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -107,12 +110,15 @@ final class ComprehendDocumentClassifierVersionNameChoice
 
   final TfArg<String> versionName;
 
+  @internal
   @override
   String get blockKey => 'version_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'version_name': versionName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'version_name': versionName};
 }
@@ -124,14 +130,17 @@ final class ComprehendDocumentClassifierVersionNamePrefix
 
   final TfArg<String> versionNamePrefix;
 
+  @internal
   @override
   String get blockKey => 'version_name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'version_name_prefix': versionNamePrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'version_name_prefix': versionNamePrefix,
@@ -157,6 +166,7 @@ final class ComprehendDocumentClassifierInputDataConfig {
 
   final TfArg<String>? testS3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_format': ?dataFormat?.toTfJson(),
     'label_delimiter': ?labelDelimiter?.toTfJson(),
@@ -182,8 +192,10 @@ sealed class ComprehendDocumentClassifierSource {
       ComprehendDocumentClassifierSourceS3Uri;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -196,9 +208,11 @@ final class ComprehendDocumentClassifierSourceAugmentedManifests
 
   final List<ComprehendDocumentClassifierAugmentedManifests> augmentedManifests;
 
+  @internal
   @override
   String get blockKey => 'augmented_manifests';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'augmented_manifests': [for (final e in augmentedManifests) e.encode()],
@@ -212,9 +226,11 @@ final class ComprehendDocumentClassifierSourceS3Uri
 
   final TfArg<String> s3Uri;
 
+  @internal
   @override
   String get blockKey => 's3_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
@@ -367,6 +383,7 @@ final class ComprehendDocumentClassifierAugmentedManifests {
 
   final ComprehendDocumentClassifierSplit? split;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
     'attribute_names': attributeNames.toTfJson(),
@@ -431,6 +448,7 @@ final class ComprehendDocumentClassifierOutputDataConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -450,6 +468,7 @@ final class ComprehendDocumentClassifierVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

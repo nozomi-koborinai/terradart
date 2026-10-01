@@ -34,11 +34,13 @@ prelude: |
     }) = ComputeSnapshotInstantSource;
 
     /// Terraform attribute name (`source_disk` or `source_instant_snapshot`).
+    @internal
     String get blockKey;
 
     /// Scalar value written under [blockKey].
     TfArg<String> get value;
 
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -50,6 +52,7 @@ prelude: |
     final TfArg<String> sourceDisk;
 
     @override
+    @internal
     String get blockKey => 'source_disk';
 
     @override
@@ -64,6 +67,7 @@ prelude: |
     final TfArg<String> sourceInstantSnapshot;
 
     @override
+    @internal
     String get blockKey => 'source_instant_snapshot';
 
     @override

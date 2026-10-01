@@ -27,12 +27,15 @@ sealed class VertexAiFeatureOnlineStoreFeatureviewSource {
   ) = VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -45,14 +48,17 @@ final class VertexAiFeatureOnlineStoreFeatureviewBigQuerySourceChoice
 
   final VertexAiFeatureOnlineStoreFeatureviewBigQuerySource bigQuerySource;
 
+  @internal
   @override
   String get blockKey => 'big_query_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'big_query_source': bigQuerySource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'big_query_source': TfArg.literal(bigQuerySource.encode()),
@@ -69,14 +75,17 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceChoice
   final VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource
   featureRegistrySource;
 
+  @internal
   @override
   String get blockKey => 'feature_registry_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'feature_registry_source': featureRegistrySource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'feature_registry_source': TfArg.literal(featureRegistrySource.encode()),
@@ -96,6 +105,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewBigQuerySource {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id_columns': entityIdColumns.toTfJson(),
     'uri': uri.toTfJson(),
@@ -115,6 +125,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource {
 
   final List<VertexAiFeatureOnlineStoreFeatureviewFeatureGroups> featureGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_number': ?projectNumber?.toTfJson(),
     'feature_groups': [for (final e in featureGroups) e.encode()],
@@ -134,6 +145,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureGroups {
 
   final TfArg<List<String>> featureIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'feature_group_id': featureGroupId.toTfJson(),
     'feature_ids': featureIds.toTfJson(),
@@ -159,8 +171,10 @@ sealed class VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
   ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -171,9 +185,11 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigCron
 
   final TfArg<String> cron;
 
+  @internal
   @override
   String get blockKey => 'cron';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cron': cron.toTfJson()};
 }
@@ -187,9 +203,11 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
 
   final TfArg<bool> continuous;
 
+  @internal
   @override
   String get blockKey => 'continuous';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'continuous': continuous.toTfJson()};
 }

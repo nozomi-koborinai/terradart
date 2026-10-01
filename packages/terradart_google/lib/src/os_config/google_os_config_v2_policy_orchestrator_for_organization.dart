@@ -24,6 +24,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResource {
   final OsConfigV2PolicyOrchestratorForOrganizationOsPolicyAssignmentV1Payload?
   osPolicyAssignmentV1Payload;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'os_policy_assignment_v1_payload': ?osPolicyAssignmentV1Payload?.encode(),
@@ -56,6 +57,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOsPolicyAssignmentV1Paylo
 
   final OsConfigV2PolicyOrchestratorForOrganizationRollout rollout;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'etag': ?etag?.toTfJson(),
@@ -88,6 +90,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationInstanceFilter {
   final List<OsConfigV2PolicyOrchestratorForOrganizationInventories>?
   inventories;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     if (exclusionLabels != null)
@@ -109,6 +112,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationExclusionLabels {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
@@ -122,6 +126,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationInclusionLabels {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
@@ -138,6 +143,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationInventories {
 
   final TfArg<String>? osVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
     'os_version': ?osVersion?.toTfJson(),
@@ -167,6 +173,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOsPolicies {
   final List<OsConfigV2PolicyOrchestratorForOrganizationResourceGroups>
   resourceGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_no_resource_group_match': ?allowNoResourceGroupMatch?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -190,6 +197,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationResourceGroups {
 
   final List<OsConfigV2PolicyOrchestratorForOrganizationResources> resources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inventoryFilters != null)
       'inventory_filters': [for (final e in inventoryFilters!) e.encode()],
@@ -210,6 +218,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationInventoryFilters {
 
   final TfArg<String>? osVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
     'os_version': ?osVersion?.toTfJson(),
@@ -238,6 +247,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationResources {
 
   final OsConfigV2PolicyOrchestratorForOrganizationRepository? repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'exec': ?exec?.encode(),
@@ -260,6 +270,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationExec {
 
   final OsConfigV2PolicyOrchestratorForOrganizationValidate validate;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.encode(),
     'validate': validate.encode(),
@@ -288,6 +299,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationEnforce {
 
   final OsConfigV2PolicyOrchestratorForOrganizationFileFile? file;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'interpreter': interpreter.toTfJson(),
@@ -317,6 +329,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationFileFile {
 
   final OsConfigV2PolicyOrchestratorForOrganizationRemote? remote;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -342,6 +355,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationGcs {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
@@ -363,6 +377,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRemote {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'sha256_checksum': ?sha256Checksum?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -391,6 +406,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationValidate {
 
   final OsConfigV2PolicyOrchestratorForOrganizationFileFile? file;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'interpreter': interpreter.toTfJson(),
@@ -422,6 +438,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationFile {
 
   final OsConfigV2PolicyOrchestratorForOrganizationFileFile? file;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'path': path.toTfJson(),
@@ -462,6 +479,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkg {
 
   final OsConfigV2PolicyOrchestratorForOrganizationPkgZypper? zypper;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
     'apt': ?apt?.encode(),
@@ -482,6 +500,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkgApt {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -498,6 +517,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationDeb {
 
   final OsConfigV2PolicyOrchestratorForOrganizationSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'pull_deps': ?pullDeps?.toTfJson(),
     'source': source.encode(),
@@ -524,6 +544,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationSource {
 
   final OsConfigV2PolicyOrchestratorForOrganizationRemote? remote;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -540,6 +561,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationGooget {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -556,6 +578,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationMsi {
 
   final OsConfigV2PolicyOrchestratorForOrganizationSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'properties': ?properties?.toTfJson(),
     'source': source.encode(),
@@ -575,6 +598,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRpm {
 
   final OsConfigV2PolicyOrchestratorForOrganizationSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'pull_deps': ?pullDeps?.toTfJson(),
     'source': source.encode(),
@@ -589,6 +613,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkgYum {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -602,6 +627,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationPkgZypper {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -624,6 +650,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepository {
 
   final OsConfigV2PolicyOrchestratorForOrganizationRepositoryZypper? zypper;
 
+  @internal
   Map<String, Object?> encode() => {
     'apt': ?apt?.encode(),
     'goo': ?goo?.encode(),
@@ -654,6 +681,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepositoryApt {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_type': archiveType.toTfJson(),
     'components': components.toTfJson(),
@@ -676,6 +704,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationGoo {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'url': url.toTfJson(),
@@ -701,6 +730,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepositoryYum {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -728,6 +758,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRepositoryZypper {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -750,6 +781,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationRollout {
   final OsConfigV2PolicyOrchestratorForOrganizationDisruptionBudget
   disruptionBudget;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_wait_duration': minWaitDuration.toTfJson(),
     'disruption_budget': disruptionBudget.encode(),
@@ -769,6 +801,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationDisruptionBudget {
 
   final TfArg<num>? percent;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed': ?fixed?.toTfJson(),
     'percent': ?percent?.toTfJson(),
@@ -785,6 +818,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationOrchestrationScope {
 
   final List<OsConfigV2PolicyOrchestratorForOrganizationSelectors>? selectors;
 
+  @internal
   Map<String, Object?> encode() => {
     if (selectors != null)
       'selectors': [for (final e in selectors!) e.encode()],
@@ -806,6 +840,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationSelectors {
   final OsConfigV2PolicyOrchestratorForOrganizationResourceHierarchySelector?
   resourceHierarchySelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_selector': ?locationSelector?.encode(),
     'resource_hierarchy_selector': ?resourceHierarchySelector?.encode(),
@@ -822,6 +857,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationLocationSelector {
 
   final TfArg<List<String>>? includedLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_locations': ?includedLocations?.toTfJson(),
   };
@@ -840,6 +876,7 @@ final class OsConfigV2PolicyOrchestratorForOrganizationResourceHierarchySelector
 
   final TfArg<List<String>>? includedProjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_folders': ?includedFolders?.toTfJson(),
     'included_projects': ?includedProjects?.toTfJson(),

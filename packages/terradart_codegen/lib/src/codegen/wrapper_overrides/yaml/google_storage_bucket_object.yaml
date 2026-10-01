@@ -142,6 +142,7 @@ prelude: |
 
     /// argMap key under which this payload is emitted (`'source'` or
     /// `'content'`).
+    @internal
     String get blockKey;
 
     /// The scalar value that will be written to the argMap under
@@ -155,6 +156,7 @@ prelude: |
     /// exists for parity with other sealed-class encoders (e.g.
     /// [StorageBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
     /// and is exercised by the Gate 6 encode round-trip test.
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -170,6 +172,7 @@ prelude: |
     final TfArg<String> source;
 
     @override
+    @internal
     String get blockKey => 'source';
 
     @override
@@ -188,6 +191,7 @@ prelude: |
     final TfArg<String> content;
 
     @override
+    @internal
     String get blockKey => 'content';
 
     @override

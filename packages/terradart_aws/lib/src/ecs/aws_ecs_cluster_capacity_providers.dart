@@ -23,6 +23,7 @@ final class EcsClusterCapacityProvidersDefaultCapacityProviderStrategy {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),

@@ -69,6 +69,7 @@ final class ConnectivityDirectoryServiceHost {
 
   final ConnectivityDirectoryServiceResolverNetwork? resolverNetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'ipv4': ?ipv4?.toTfJson(),
@@ -86,6 +87,7 @@ final class ConnectivityDirectoryServiceNetwork {
 
   final TfArg<String> tunnelId;
 
+  @internal
   Map<String, Object?> encode() => {'tunnel_id': tunnelId.toTfJson()};
 }
 
@@ -102,6 +104,7 @@ final class ConnectivityDirectoryServiceResolverNetwork {
 
   final TfArg<String> tunnelId;
 
+  @internal
   Map<String, Object?> encode() => {
     'resolver_ips': ?resolverIps?.toTfJson(),
     'tunnel_id': tunnelId.toTfJson(),
@@ -118,6 +121,7 @@ final class ConnectivityDirectoryServiceTlsSettings {
 
   final TfArg<String> certVerificationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert_verification_mode': certVerificationMode.toTfJson(),
   };

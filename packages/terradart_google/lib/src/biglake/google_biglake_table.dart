@@ -25,6 +25,7 @@ final class BiglakeTableHiveOptions {
 
   final BiglakeTableStorageDescriptor? storageDescriptor;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameters': ?parameters?.toTfJson(),
     'table_type': ?tableType?.toTfJson(),
@@ -51,6 +52,7 @@ final class BiglakeTableStorageDescriptor {
 
   final BiglakeTableSerdeInfo? serdeInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_format': ?inputFormat?.toTfJson(),
     'location_uri': ?locationUri?.toTfJson(),
@@ -67,6 +69,7 @@ final class BiglakeTableSerdeInfo {
 
   final TfArg<String>? serializationLib;
 
+  @internal
   Map<String, Object?> encode() => {
     'serialization_lib': ?serializationLib?.toTfJson(),
   };

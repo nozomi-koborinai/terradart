@@ -7,9 +7,7 @@
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -20,7 +18,7 @@ final class VpcFlowLogsStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final apiCompute = add(
       GoogleProjectService(

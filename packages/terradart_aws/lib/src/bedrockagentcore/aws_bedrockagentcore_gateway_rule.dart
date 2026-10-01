@@ -25,8 +25,10 @@ sealed class BedrockagentcoreGatewayRuleAction {
   ) = BedrockagentcoreGatewayRuleActionRouteToTarget;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -40,9 +42,11 @@ final class BedrockagentcoreGatewayRuleActionConfigurationBundle
   final List<BedrockagentcoreGatewayRuleConfigurationBundle>
   configurationBundle;
 
+  @internal
   @override
   String get blockKey => 'configuration_bundle';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'configuration_bundle': [for (final e in configurationBundle) e.encode()],
@@ -56,9 +60,11 @@ final class BedrockagentcoreGatewayRuleActionRouteToTarget
 
   final List<BedrockagentcoreGatewayRuleRouteToTarget> routeToTarget;
 
+  @internal
   @override
   String get blockKey => 'route_to_target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'route_to_target': [for (final e in routeToTarget) e.encode()],
@@ -83,8 +89,10 @@ sealed class BedrockagentcoreGatewayRuleConfigurationBundle {
   ) = BedrockagentcoreGatewayRuleConfigurationBundleWeightedOverride;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -97,9 +105,11 @@ final class BedrockagentcoreGatewayRuleConfigurationBundleStaticOverride
 
   final List<BedrockagentcoreGatewayRuleStaticOverride> staticOverride;
 
+  @internal
   @override
   String get blockKey => 'static_override';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'static_override': [for (final e in staticOverride) e.encode()],
@@ -115,9 +125,11 @@ final class BedrockagentcoreGatewayRuleConfigurationBundleWeightedOverride
 
   final List<BedrockagentcoreGatewayRuleWeightedOverride> weightedOverride;
 
+  @internal
   @override
   String get blockKey => 'weighted_override';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'weighted_override': [for (final e in weightedOverride) e.encode()],
@@ -137,6 +149,7 @@ final class BedrockagentcoreGatewayRuleStaticOverride {
 
   final TfArg<String> bundleVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'bundle_arn': bundleArn.toTfJson(),
     'bundle_version': bundleVersion.toTfJson(),
@@ -152,6 +165,7 @@ final class BedrockagentcoreGatewayRuleWeightedOverride {
   final List<BedrockagentcoreGatewayRuleWeightedOverrideTrafficSplit>?
   trafficSplit;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trafficSplit != null)
       'traffic_split': [for (final e in trafficSplit!) e.encode()],
@@ -181,6 +195,7 @@ final class BedrockagentcoreGatewayRuleWeightedOverrideTrafficSplit {
   final List<BedrockagentcoreGatewayRuleTrafficSplitConfigurationBundle>?
   configurationBundle;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'metadata': ?metadata?.toTfJson(),
@@ -206,6 +221,7 @@ final class BedrockagentcoreGatewayRuleTrafficSplitConfigurationBundle {
 
   final TfArg<String> bundleVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'bundle_arn': bundleArn.toTfJson(),
     'bundle_version': bundleVersion.toTfJson(),
@@ -230,8 +246,10 @@ sealed class BedrockagentcoreGatewayRuleRouteToTarget {
   ) = BedrockagentcoreGatewayRuleRouteToTargetWeightedRoute;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -242,9 +260,11 @@ final class BedrockagentcoreGatewayRuleRouteToTargetStaticRoute
 
   final List<BedrockagentcoreGatewayRuleStaticRoute> staticRoute;
 
+  @internal
   @override
   String get blockKey => 'static_route';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'static_route': [for (final e in staticRoute) e.encode()],
@@ -260,9 +280,11 @@ final class BedrockagentcoreGatewayRuleRouteToTargetWeightedRoute
 
   final List<BedrockagentcoreGatewayRuleWeightedRoute> weightedRoute;
 
+  @internal
   @override
   String get blockKey => 'weighted_route';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'weighted_route': [for (final e in weightedRoute) e.encode()],
@@ -277,6 +299,7 @@ final class BedrockagentcoreGatewayRuleStaticRoute {
 
   final TfArg<String> targetName;
 
+  @internal
   Map<String, Object?> encode() => {'target_name': targetName.toTfJson()};
 }
 
@@ -289,6 +312,7 @@ final class BedrockagentcoreGatewayRuleWeightedRoute {
   final List<BedrockagentcoreGatewayRuleWeightedRouteTrafficSplit>?
   trafficSplit;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trafficSplit != null)
       'traffic_split': [for (final e in trafficSplit!) e.encode()],
@@ -317,6 +341,7 @@ final class BedrockagentcoreGatewayRuleWeightedRouteTrafficSplit {
 
   final TfArg<num> weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'metadata': ?metadata?.toTfJson(),
@@ -344,8 +369,10 @@ sealed class BedrockagentcoreGatewayRuleCondition {
   ) = BedrockagentcoreGatewayRuleConditionMatchPrincipals;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -356,9 +383,11 @@ final class BedrockagentcoreGatewayRuleConditionMatchPaths
 
   final List<BedrockagentcoreGatewayRuleMatchPaths> matchPaths;
 
+  @internal
   @override
   String get blockKey => 'match_paths';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'match_paths': [for (final e in matchPaths) e.encode()],
@@ -374,9 +403,11 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipals
 
   final List<BedrockagentcoreGatewayRuleMatchPrincipals> matchPrincipals;
 
+  @internal
   @override
   String get blockKey => 'match_principals';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'match_principals': [for (final e in matchPrincipals) e.encode()],
@@ -391,6 +422,7 @@ final class BedrockagentcoreGatewayRuleMatchPaths {
 
   final TfArg<List<String>> anyOf;
 
+  @internal
   Map<String, Object?> encode() => {'any_of': anyOf.toTfJson()};
 }
 
@@ -402,6 +434,7 @@ final class BedrockagentcoreGatewayRuleMatchPrincipals {
 
   final List<BedrockagentcoreGatewayRuleAnyOf>? anyOf;
 
+  @internal
   Map<String, Object?> encode() => {
     if (anyOf != null) 'any_of': [for (final e in anyOf!) e.encode()],
   };
@@ -415,6 +448,7 @@ final class BedrockagentcoreGatewayRuleAnyOf {
 
   final List<BedrockagentcoreGatewayRuleIamPrincipal>? iamPrincipal;
 
+  @internal
   Map<String, Object?> encode() => {
     if (iamPrincipal != null)
       'iam_principal': [for (final e in iamPrincipal!) e.encode()],
@@ -434,6 +468,7 @@ final class BedrockagentcoreGatewayRuleIamPrincipal {
 
   final BedrockagentcoreGatewayRuleOperator? operator;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'operator': ?operator?.toTfJson(),

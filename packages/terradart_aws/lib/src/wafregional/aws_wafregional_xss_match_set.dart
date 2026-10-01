@@ -20,6 +20,7 @@ final class WafregionalXssMatchSetXssMatchTuple {
 
   final WafregionalXssMatchSetFieldToMatch fieldToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'text_transformation': textTransformation.toTfJson(),
     'field_to_match': fieldToMatch.encode(),
@@ -75,6 +76,7 @@ final class WafregionalXssMatchSetFieldToMatch {
 
   final WafregionalXssMatchSetType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'type': type.toTfJson(),

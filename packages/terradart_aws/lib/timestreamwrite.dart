@@ -3,6 +3,11 @@
 /// AWS Timestream for LiveAnalytics.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_timestreamwrite_database.dart'
+    show DataAwsTimestreamwriteDatabase;
+export 'src/data/aws_timestreamwrite_table.dart'
+    show DataAwsTimestreamwriteTable;
 export 'src/timestreamwrite/aws_timestreamwrite_database.dart'
     show AwsTimestreamwriteDatabase;
 export 'src/timestreamwrite/aws_timestreamwrite_table.dart'

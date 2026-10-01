@@ -23,6 +23,7 @@ final class ConnectRoutingProfileMediaConcurrencies {
 
   final ConnectRoutingProfileCrossChannelBehavior? crossChannelBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': channel.toTfJson(),
     'concurrency': concurrency.toTfJson(),
@@ -60,6 +61,7 @@ final class ConnectRoutingProfileCrossChannelBehavior {
 
   final ConnectRoutingProfileBehaviorType behaviorType;
 
+  @internal
   Map<String, Object?> encode() => {'behavior_type': behaviorType.toTfJson()};
 }
 
@@ -104,6 +106,7 @@ final class ConnectRoutingProfileQueueConfigs {
 
   final TfArg<String> queueId;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': channel.toTfJson(),
     'delay': delay.toTfJson(),

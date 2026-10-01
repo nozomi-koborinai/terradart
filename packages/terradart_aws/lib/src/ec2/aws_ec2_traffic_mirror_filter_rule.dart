@@ -63,6 +63,7 @@ final class Ec2TrafficMirrorFilterRuleDestinationPortRange {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': ?fromPort?.toTfJson(),
     'to_port': ?toPort?.toTfJson(),
@@ -79,6 +80,7 @@ final class Ec2TrafficMirrorFilterRuleSourcePortRange {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': ?fromPort?.toTfJson(),
     'to_port': ?toPort?.toTfJson(),

@@ -46,6 +46,7 @@ final class FsxFileCacheDataRepositoryAssociation {
 
   final List<FsxFileCacheNfs>? nfs;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_repository_path': dataRepositoryPath.toTfJson(),
     'data_repository_subdirectories': ?dataRepositorySubdirectories?.toTfJson(),
@@ -65,6 +66,7 @@ final class FsxFileCacheNfs {
 
   final FsxFileCacheVersion version;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_ips': ?dnsIps?.toTfJson(),
     'version': version.toTfJson(),
@@ -103,6 +105,7 @@ final class FsxFileCacheLustreConfiguration {
 
   final List<FsxFileCacheMetadataConfiguration> metadataConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment_type': deploymentType.toTfJson(),
     'per_unit_storage_throughput': perUnitStorageThroughput.toTfJson(),
@@ -135,6 +138,7 @@ final class FsxFileCacheMetadataConfiguration {
 
   final TfArg<num> storageCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_capacity': storageCapacity.toTfJson(),
   };

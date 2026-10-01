@@ -66,6 +66,7 @@ final class CodebuildProjectArtifacts {
 
   final CodebuildProjectArtifactsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_identifier': ?artifactIdentifier?.toTfJson(),
     'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
@@ -177,6 +178,7 @@ final class CodebuildProjectBuildBatchConfig {
 
   final CodebuildProjectRestrictions? restrictions;
 
+  @internal
   Map<String, Object?> encode() => {
     'combine_artifacts': ?combineArtifacts?.toTfJson(),
     'service_role': serviceRole.encodeAs('arn').toTfJson(),
@@ -198,6 +200,7 @@ final class CodebuildProjectRestrictions {
 
   final TfArg<num>? maximumBuildsAllowed;
 
+  @internal
   Map<String, Object?> encode() => {
     if (computeTypesAllowed != null)
       'compute_types_allowed': [
@@ -289,6 +292,7 @@ final class CodebuildProjectCache {
 
   final CodebuildProjectCacheType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_namespace': ?cacheNamespace?.toTfJson(),
     'location': ?location?.toTfJson(),
@@ -378,6 +382,7 @@ final class CodebuildProjectEnvironment {
 
   final CodebuildProjectRegistryCredential? registryCredential;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate': ?certificate?.toTfJson(),
     'compute_type': computeType.toTfJson(),
@@ -582,6 +587,7 @@ final class CodebuildProjectDockerServer {
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_type': computeType.toTfJson(),
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
@@ -604,6 +610,7 @@ final class CodebuildProjectEnvironmentVariable {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -646,6 +653,7 @@ final class CodebuildProjectFleet {
 
   final TfArg<String>? fleetArn;
 
+  @internal
   Map<String, Object?> encode() => {'fleet_arn': ?fleetArn?.toTfJson()};
 }
 
@@ -662,6 +670,7 @@ final class CodebuildProjectRegistryCredential {
 
   final CodebuildProjectCredentialProvider credentialProvider;
 
+  @internal
   Map<String, Object?> encode() => {
     'credential': credential.toTfJson(),
     'credential_provider': credentialProvider.toTfJson(),
@@ -708,6 +717,7 @@ final class CodebuildProjectFileSystemLocations {
 
   final CodebuildProjectFileSystemLocationsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': ?identifier?.toTfJson(),
     'location': ?location?.toTfJson(),
@@ -744,6 +754,7 @@ final class CodebuildProjectLogsConfig {
 
   final CodebuildProjectS3Logs? s3Logs;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
     's3_logs': ?s3Logs?.encode(),
@@ -766,6 +777,7 @@ final class CodebuildProjectCloudwatchLogs {
 
   final TfArg<String>? streamName;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_name': ?groupName?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -806,6 +818,7 @@ final class CodebuildProjectS3Logs {
 
   final CodebuildProjectStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
     'encryption_disabled': ?encryptionDisabled?.toTfJson(),
@@ -851,6 +864,7 @@ final class CodebuildProjectSecondaryArtifacts {
 
   final CodebuildProjectArtifactsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_identifier': artifactIdentifier.toTfJson(),
     'bucket_owner_access': ?bucketOwnerAccess?.toTfJson(),
@@ -878,6 +892,7 @@ final class CodebuildProjectSecondarySourceVersion {
 
   final TfArg<String> sourceVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_identifier': sourceIdentifier.toTfJson(),
     'source_version': sourceVersion.toTfJson(),
@@ -921,6 +936,7 @@ final class CodebuildProjectSecondarySources {
 
   final CodebuildProjectGitSubmodulesConfig? gitSubmodulesConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'buildspec': ?buildspec?.toTfJson(),
     'git_clone_depth': ?gitCloneDepth?.toTfJson(),
@@ -995,6 +1011,7 @@ final class CodebuildProjectAuth {
 
   final CodebuildProjectAuthType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource': resource.toTfJson(),
     'type': type.toTfJson(),
@@ -1043,6 +1060,7 @@ final class CodebuildProjectBuildStatusConfig {
 
   final TfArg<String>? targetUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'context': ?context?.toTfJson(),
     'target_url': ?targetUrl?.toTfJson(),
@@ -1058,6 +1076,7 @@ final class CodebuildProjectGitSubmodulesConfig {
 
   final TfArg<bool> fetchSubmodules;
 
+  @internal
   Map<String, Object?> encode() => {
     'fetch_submodules': fetchSubmodules.toTfJson(),
   };
@@ -1097,6 +1116,7 @@ final class CodebuildProjectSource {
 
   final CodebuildProjectGitSubmodulesConfig? gitSubmodulesConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'buildspec': ?buildspec?.toTfJson(),
     'git_clone_depth': ?gitCloneDepth?.toTfJson(),
@@ -1126,6 +1146,7 @@ final class CodebuildProjectVpcConfig {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

@@ -26,12 +26,15 @@ sealed class ClouddeployCustomTargetTypeActions {
   ) = ClouddeployCustomTargetTypeActionsTasks;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,12 +45,15 @@ final class ClouddeployCustomTargetTypeCustomActionsChoice
 
   final ClouddeployCustomTargetTypeCustomActions customActions;
 
+  @internal
   @override
   String get blockKey => 'custom_actions';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'custom_actions': customActions.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'custom_actions': TfArg.literal(customActions.encode()),
@@ -61,12 +67,15 @@ final class ClouddeployCustomTargetTypeActionsTasks
 
   final ClouddeployCustomTargetTypeTasks tasks;
 
+  @internal
   @override
   String get blockKey => 'tasks';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tasks': tasks.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'tasks': TfArg.literal(tasks.encode()),
@@ -90,6 +99,7 @@ final class ClouddeployCustomTargetTypeCustomActions {
   final List<ClouddeployCustomTargetTypeIncludeSkaffoldModules>?
   includeSkaffoldModules;
 
+  @internal
   Map<String, Object?> encode() => {
     'deploy_action': deployAction.toTfJson(),
     'render_action': ?renderAction?.toTfJson(),
@@ -113,6 +123,7 @@ final class ClouddeployCustomTargetTypeIncludeSkaffoldModules {
 
   final ClouddeployCustomTargetTypeSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'configs': ?configs?.toTfJson(),
     ...source.encode(),
@@ -142,8 +153,10 @@ sealed class ClouddeployCustomTargetTypeSource {
   ) = ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -154,9 +167,11 @@ final class ClouddeployCustomTargetTypeSourceGit
 
   final ClouddeployCustomTargetTypeGit git;
 
+  @internal
   @override
   String get blockKey => 'git';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'git': git.encode()};
 }
@@ -170,9 +185,11 @@ final class ClouddeployCustomTargetTypeSourceGoogleCloudStorage
 
   final ClouddeployCustomTargetTypeGoogleCloudStorage googleCloudStorage;
 
+  @internal
   @override
   String get blockKey => 'google_cloud_storage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'google_cloud_storage': googleCloudStorage.encode(),
@@ -188,9 +205,11 @@ final class ClouddeployCustomTargetTypeSourceGoogleCloudBuildRepo
 
   final ClouddeployCustomTargetTypeGoogleCloudBuildRepo googleCloudBuildRepo;
 
+  @internal
   @override
   String get blockKey => 'google_cloud_build_repo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'google_cloud_build_repo': googleCloudBuildRepo.encode(),
@@ -213,6 +232,7 @@ final class ClouddeployCustomTargetTypeGit {
 
   final TfArg<String> repo;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'ref': ?ref?.toTfJson(),
@@ -236,6 +256,7 @@ final class ClouddeployCustomTargetTypeGoogleCloudBuildRepo {
 
   final TfArg<String> repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'ref': ?ref?.toTfJson(),
@@ -256,6 +277,7 @@ final class ClouddeployCustomTargetTypeGoogleCloudStorage {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'source': source.toTfJson(),
@@ -272,6 +294,7 @@ final class ClouddeployCustomTargetTypeTasks {
 
   final ClouddeployCustomTargetTypeRender? render;
 
+  @internal
   Map<String, Object?> encode() => {
     'deploy': deploy.encode(),
     'render': ?render?.encode(),
@@ -286,6 +309,7 @@ final class ClouddeployCustomTargetTypeDeploy {
 
   final ClouddeployCustomTargetTypeContainer? container;
 
+  @internal
   Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
@@ -309,6 +333,7 @@ final class ClouddeployCustomTargetTypeContainer {
 
   final TfArg<String> image;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -325,6 +350,7 @@ final class ClouddeployCustomTargetTypeRender {
 
   final ClouddeployCustomTargetTypeContainer? container;
 
+  @internal
   Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 

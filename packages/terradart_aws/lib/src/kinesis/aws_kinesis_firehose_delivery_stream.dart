@@ -96,12 +96,15 @@ sealed class KinesisFirehoseDeliveryStreamSource {
   ) = KinesisFirehoseDeliveryStreamSourceServerSideEncryption;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -115,14 +118,17 @@ final class KinesisFirehoseDeliveryStreamSourceKinesisSourceConfiguration
   final KinesisFirehoseDeliveryStreamKinesisSourceConfiguration
   kinesisSourceConfiguration;
 
+  @internal
   @override
   String get blockKey => 'kinesis_source_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_source_configuration': kinesisSourceConfiguration.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kinesis_source_configuration': TfArg.literal(
@@ -141,14 +147,17 @@ final class KinesisFirehoseDeliveryStreamSourceMskSourceConfiguration
   final KinesisFirehoseDeliveryStreamMskSourceConfiguration
   mskSourceConfiguration;
 
+  @internal
   @override
   String get blockKey => 'msk_source_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'msk_source_configuration': mskSourceConfiguration.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'msk_source_configuration': TfArg.literal(mskSourceConfiguration.encode()),
@@ -164,14 +173,17 @@ final class KinesisFirehoseDeliveryStreamSourceServerSideEncryption
 
   final KinesisFirehoseDeliveryStreamServerSideEncryption serverSideEncryption;
 
+  @internal
   @override
   String get blockKey => 'server_side_encryption';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'server_side_encryption': serverSideEncryption.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'server_side_encryption': TfArg.literal(serverSideEncryption.encode()),
@@ -227,6 +239,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final KinesisFirehoseDeliveryStreamVpcConfig? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
     'buffering_size': ?bufferingSize?.toTfJson(),
@@ -263,8 +276,10 @@ sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain {
   ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -277,9 +292,11 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainCluster
 
   final TfArg<String> clusterEndpoint;
 
+  @internal
   @override
   String get blockKey => 'cluster_endpoint';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cluster_endpoint': clusterEndpoint.toTfJson(),
@@ -295,9 +312,11 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn
 
   final TfArg<String> domainArn;
 
+  @internal
   @override
   String get blockKey => 'domain_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'domain_arn': domainArn.toTfJson()};
 }
@@ -384,6 +403,7 @@ final class KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions {
 
   final TfArg<String>? logStreamName;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
@@ -405,6 +425,7 @@ final class KinesisFirehoseDeliveryStreamProcessingConfiguration {
 
   final List<KinesisFirehoseDeliveryStreamProcessors>? processors;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (processors != null)
@@ -426,6 +447,7 @@ final class KinesisFirehoseDeliveryStreamProcessors {
 
   final List<KinesisFirehoseDeliveryStreamParameters>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (parameters != null)
@@ -447,6 +469,7 @@ final class KinesisFirehoseDeliveryStreamParameters {
 
   final TfArg<String> parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_name': parameterName.toTfJson(),
     'parameter_value': parameterValue.toTfJson(),
@@ -489,6 +512,7 @@ final class KinesisFirehoseDeliveryStreamS3Configuration {
   final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -519,6 +543,7 @@ final class KinesisFirehoseDeliveryStreamVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
@@ -587,6 +612,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
   final KinesisFirehoseDeliveryStreamS3BackupConfiguration?
   s3BackupConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -695,6 +721,7 @@ final class KinesisFirehoseDeliveryStreamDataFormatConversionConfiguration {
 
   final KinesisFirehoseDeliveryStreamSchemaConfiguration schemaConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'input_format_configuration': inputFormatConfiguration.encode(),
@@ -713,6 +740,7 @@ final class KinesisFirehoseDeliveryStreamInputFormatConfiguration {
 
   final KinesisFirehoseDeliveryStreamDeserializer deserializer;
 
+  @internal
   Map<String, Object?> encode() => {'deserializer': deserializer.encode()};
 }
 
@@ -724,6 +752,7 @@ final class KinesisFirehoseDeliveryStreamDeserializer {
 
   final KinesisFirehoseDeliveryStreamDeserializerJsonSerDe? jsonSerDe;
 
+  @internal
   Map<String, Object?> encode() => {...?jsonSerDe?.encode()};
 }
 
@@ -746,8 +775,10 @@ sealed class KinesisFirehoseDeliveryStreamDeserializerJsonSerDe {
   ) = KinesisFirehoseDeliveryStreamDeserializerOpenXJsonSerDe;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -760,9 +791,11 @@ final class KinesisFirehoseDeliveryStreamDeserializerHiveJsonSerDe
 
   final KinesisFirehoseDeliveryStreamHiveJsonSerDe hiveJsonSerDe;
 
+  @internal
   @override
   String get blockKey => 'hive_json_ser_de';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'hive_json_ser_de': hiveJsonSerDe.encode()};
 }
@@ -776,9 +809,11 @@ final class KinesisFirehoseDeliveryStreamDeserializerOpenXJsonSerDe
 
   final KinesisFirehoseDeliveryStreamOpenXJsonSerDe openXJsonSerDe;
 
+  @internal
   @override
   String get blockKey => 'open_x_json_ser_de';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'open_x_json_ser_de': openXJsonSerDe.encode(),
@@ -793,6 +828,7 @@ final class KinesisFirehoseDeliveryStreamHiveJsonSerDe {
 
   final TfArg<List<String>>? timestampFormats;
 
+  @internal
   Map<String, Object?> encode() => {
     'timestamp_formats': ?timestampFormats?.toTfJson(),
   };
@@ -814,6 +850,7 @@ final class KinesisFirehoseDeliveryStreamOpenXJsonSerDe {
 
   final TfArg<bool>? convertDotsInJsonKeysToUnderscores;
 
+  @internal
   Map<String, Object?> encode() => {
     'case_insensitive': ?caseInsensitive?.toTfJson(),
     'column_to_json_key_mappings': ?columnToJsonKeyMappings?.toTfJson(),
@@ -832,6 +869,7 @@ final class KinesisFirehoseDeliveryStreamOutputFormatConfiguration {
 
   final KinesisFirehoseDeliveryStreamSerializer serializer;
 
+  @internal
   Map<String, Object?> encode() => {'serializer': serializer.encode()};
 }
 
@@ -843,6 +881,7 @@ final class KinesisFirehoseDeliveryStreamSerializer {
 
   final KinesisFirehoseDeliveryStreamSerializerSerDe? serDe;
 
+  @internal
   Map<String, Object?> encode() => {...?serDe?.encode()};
 }
 
@@ -865,8 +904,10 @@ sealed class KinesisFirehoseDeliveryStreamSerializerSerDe {
   ) = KinesisFirehoseDeliveryStreamSerializerParquetSerDe;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -877,9 +918,11 @@ final class KinesisFirehoseDeliveryStreamSerializerOrcSerDe
 
   final KinesisFirehoseDeliveryStreamOrcSerDe orcSerDe;
 
+  @internal
   @override
   String get blockKey => 'orc_ser_de';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'orc_ser_de': orcSerDe.encode()};
 }
@@ -891,9 +934,11 @@ final class KinesisFirehoseDeliveryStreamSerializerParquetSerDe
 
   final KinesisFirehoseDeliveryStreamParquetSerDe parquetSerDe;
 
+  @internal
   @override
   String get blockKey => 'parquet_ser_de';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'parquet_ser_de': parquetSerDe.encode()};
 }
@@ -935,6 +980,7 @@ final class KinesisFirehoseDeliveryStreamOrcSerDe {
 
   final TfArg<num>? stripeSizeBytes;
 
+  @internal
   Map<String, Object?> encode() => {
     'block_size_bytes': ?blockSizeBytes?.toTfJson(),
     'bloom_filter_columns': ?bloomFilterColumns?.toTfJson(),
@@ -1027,6 +1073,7 @@ final class KinesisFirehoseDeliveryStreamParquetSerDe {
 
   final KinesisFirehoseDeliveryStreamWriterVersion? writerVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'block_size_bytes': ?blockSizeBytes?.toTfJson(),
     'compression': ?compression?.toTfJson(),
@@ -1114,6 +1161,7 @@ final class KinesisFirehoseDeliveryStreamSchemaConfiguration {
 
   final TfArg<String>? versionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -1137,6 +1185,7 @@ final class KinesisFirehoseDeliveryStreamDynamicPartitioningConfiguration {
 
   final TfArg<num>? retryDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'retry_duration': ?retryDuration?.toTfJson(),
@@ -1179,6 +1228,7 @@ final class KinesisFirehoseDeliveryStreamS3BackupConfiguration {
   final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -1242,6 +1292,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
   final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key': ?accessKey?.toTfJson(),
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -1301,6 +1352,7 @@ final class KinesisFirehoseDeliveryStreamRequestConfiguration {
 
   final List<KinesisFirehoseDeliveryStreamCommonAttributes>? commonAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_encoding': ?contentEncoding?.toTfJson(),
     if (commonAttributes != null)
@@ -1321,6 +1373,7 @@ final class KinesisFirehoseDeliveryStreamCommonAttributes {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -1344,6 +1397,7 @@ final class KinesisFirehoseDeliveryStreamSecretsManagerConfiguration {
 
   final TfArg<String>? secretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
@@ -1395,6 +1449,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
 
   final KinesisFirehoseDeliveryStreamS3Configuration s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_only': ?appendOnly?.toTfJson(),
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -1432,6 +1487,7 @@ final class KinesisFirehoseDeliveryStreamDestinationTableConfiguration {
 
   final TfArg<List<String>>? uniqueKeys;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
     's3_error_output_prefix': ?s3ErrorOutputPrefix?.toTfJson(),
@@ -1453,6 +1509,7 @@ final class KinesisFirehoseDeliveryStreamKinesisSourceConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kinesis_stream_arn': kinesisStreamArn.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -1479,6 +1536,7 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfiguration {
   final KinesisFirehoseDeliveryStreamAuthenticationConfiguration
   authenticationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'msk_cluster_arn': mskClusterArn.toTfJson(),
     'read_from_timestamp': ?readFromTimestamp?.toTfJson(),
@@ -1500,6 +1558,7 @@ final class KinesisFirehoseDeliveryStreamAuthenticationConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'connectivity': connectivity.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -1582,6 +1641,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final KinesisFirehoseDeliveryStreamVpcConfig? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
     'buffering_size': ?bufferingSize?.toTfJson(),
@@ -1619,8 +1679,10 @@ sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain {
   ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1633,9 +1695,11 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainClusterEnd
 
   final TfArg<String> clusterEndpoint;
 
+  @internal
   @override
   String get blockKey => 'cluster_endpoint';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cluster_endpoint': clusterEndpoint.toTfJson(),
@@ -1651,9 +1715,11 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArn
 
   final TfArg<String> domainArn;
 
+  @internal
   @override
   String get blockKey => 'domain_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'domain_arn': domainArn.toTfJson()};
 }
@@ -1669,6 +1735,7 @@ final class KinesisFirehoseDeliveryStreamDocumentIdOptions {
   final KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat
   defaultDocumentIdFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_document_id_format': defaultDocumentIdFormat.toTfJson(),
   };
@@ -1743,6 +1810,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
 
   final KinesisFirehoseDeliveryStreamVpcConfig? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
     'buffering_size': ?bufferingSize?.toTfJson(),
@@ -1812,6 +1880,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
   final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_jdbcurl': clusterJdbcurl.toTfJson(),
     'copy_options': ?copyOptions?.toTfJson(),
@@ -1846,6 +1915,7 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 
   final KinesisFirehoseDeliveryStreamKeyType? keyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'key_arn': ?keyArn?.encodeAs('arn').toTfJson(),
@@ -1952,6 +2022,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
   final KinesisFirehoseDeliveryStreamSnowflakeVpcConfiguration?
   snowflakeVpcConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_url': accountUrl.toTfJson(),
     'buffering_interval': ?bufferingInterval?.toTfJson(),
@@ -2020,6 +2091,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeRoleConfiguration {
 
   final TfArg<String>? snowflakeRole;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'snowflake_role': ?snowflakeRole?.toTfJson(),
@@ -2036,6 +2108,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeVpcConfiguration {
 
   final TfArg<String> privateLinkVpceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_link_vpce_id': privateLinkVpceId.toTfJson(),
   };
@@ -2088,6 +2161,7 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
   final KinesisFirehoseDeliveryStreamSecretsManagerConfiguration?
   secretsManagerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'buffering_interval': ?bufferingInterval?.toTfJson(),
     'buffering_size': ?bufferingSize?.toTfJson(),

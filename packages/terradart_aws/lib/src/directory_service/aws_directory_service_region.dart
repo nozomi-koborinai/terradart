@@ -23,6 +23,7 @@ final class DirectoryServiceRegionVpcSettings {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     'vpc_id': vpcId.encodeAs('id').toTfJson(),

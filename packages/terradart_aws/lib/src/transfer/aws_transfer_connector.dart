@@ -38,6 +38,7 @@ final class TransferConnectorAs2Config {
 
   final TransferConnectorSigningAlgorithm signingAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
     'encryption_algorithm': encryptionAlgorithm.toTfJson(),
@@ -195,6 +196,7 @@ final class TransferConnectorEgressConfig {
 
   final TransferConnectorVpcLattice? vpcLattice;
 
+  @internal
   Map<String, Object?> encode() => {'vpc_lattice': ?vpcLattice?.encode()};
 }
 
@@ -211,6 +213,7 @@ final class TransferConnectorVpcLattice {
 
   final TfArg<String> resourceConfigurationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'port_number': ?portNumber?.toTfJson(),
     'resource_configuration_arn': resourceConfigurationArn.toTfJson(),
@@ -227,6 +230,7 @@ final class TransferConnectorSftpConfig {
 
   final TfArg<String>? userSecretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'trusted_host_keys': ?trustedHostKeys?.toTfJson(),
     'user_secret_id': ?userSecretId?.toTfJson(),

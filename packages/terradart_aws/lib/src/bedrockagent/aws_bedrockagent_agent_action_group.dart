@@ -95,12 +95,15 @@ sealed class BedrockagentAgentActionGroupDefinition {
   ) = BedrockagentAgentActionGroupDefinitionParentActionGroupSignature;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -111,12 +114,15 @@ final class BedrockagentAgentActionGroupDefinitionDescription
 
   final TfArg<String> description;
 
+  @internal
   @override
   String get blockKey => 'description';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'description': description.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'description': description};
 }
@@ -131,14 +137,17 @@ final class BedrockagentAgentActionGroupDefinitionParentActionGroupSignature
   final BedrockagentAgentActionGroupParentActionGroupSignature
   parentActionGroupSignature;
 
+  @internal
   @override
   String get blockKey => 'parent_action_group_signature';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'parent_action_group_signature': parentActionGroupSignature.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'parent_action_group_signature': parentActionGroupSignature,
@@ -155,6 +164,7 @@ final class BedrockagentAgentActionGroupExecutor {
 
   final TfArg<String>? lambda;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_control': ?customControl?.toTfJson(),
     'lambda': ?lambda?.toTfJson(),
@@ -200,8 +210,10 @@ sealed class BedrockagentAgentActionGroupApiSchema {
   ) = BedrockagentAgentActionGroupApiSchemaS3;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -212,9 +224,11 @@ final class BedrockagentAgentActionGroupApiSchemaPayload
 
   final TfArg<String> payload;
 
+  @internal
   @override
   String get blockKey => 'payload';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'payload': payload.toTfJson()};
 }
@@ -226,9 +240,11 @@ final class BedrockagentAgentActionGroupApiSchemaS3
 
   final List<BedrockagentAgentActionGroupS3> s3;
 
+  @internal
   @override
   String get blockKey => 's3';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     's3': [for (final e in s3) e.encode()],
@@ -245,6 +261,7 @@ final class BedrockagentAgentActionGroupS3 {
 
   final TfArg<String>? s3ObjectKey;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_name': ?s3BucketName?.encodeAs('id').toTfJson(),
     's3_object_key': ?s3ObjectKey?.toTfJson(),
@@ -259,6 +276,7 @@ final class BedrockagentAgentActionGroupFunctionSchema {
 
   final List<BedrockagentAgentActionGroupMemberFunctions>? memberFunctions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (memberFunctions != null)
       'member_functions': [for (final e in memberFunctions!) e.encode()],
@@ -273,6 +291,7 @@ final class BedrockagentAgentActionGroupMemberFunctions {
 
   final List<BedrockagentAgentActionGroupFunctions>? functions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (functions != null)
       'functions': [for (final e in functions!) e.encode()],
@@ -295,6 +314,7 @@ final class BedrockagentAgentActionGroupFunctions {
 
   final List<BedrockagentAgentActionGroupParameters>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -322,6 +342,7 @@ final class BedrockagentAgentActionGroupParameters {
 
   final BedrockagentAgentActionGroupType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),

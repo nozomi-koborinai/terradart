@@ -44,12 +44,15 @@ sealed class PipesPipeName {
       PipesPipeNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -59,12 +62,15 @@ final class PipesPipeNameChoice extends PipesPipeName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -75,12 +81,15 @@ final class PipesPipeNamePrefix extends PipesPipeName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -98,6 +107,7 @@ final class PipesPipeEnrichmentParameters {
 
   final PipesPipeHttpParameters? httpParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_template': ?inputTemplate?.toTfJson(),
     'http_parameters': ?httpParameters?.encode(),
@@ -121,6 +131,7 @@ final class PipesPipeHttpParameters {
 
   final TfArg<Map<String, String>>? queryStringParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_parameters': ?headerParameters?.toTfJson(),
     'path_parameter_values': ?pathParameterValues?.toTfJson(),
@@ -150,6 +161,7 @@ final class PipesPipeLogConfiguration {
 
   final PipesPipeS3LogDestination? s3LogDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     if (includeExecutionData != null)
       'include_execution_data': [
@@ -200,6 +212,7 @@ final class PipesPipeCloudwatchLogsLogDestination {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
   };
@@ -213,6 +226,7 @@ final class PipesPipeFirehoseLogDestination {
 
   final TfArg<String> deliveryStreamArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream_arn': deliveryStreamArn.toTfJson(),
   };
@@ -237,6 +251,7 @@ final class PipesPipeS3LogDestination {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_owner': bucketOwner.toTfJson(),
@@ -270,6 +285,7 @@ final class PipesPipeSourceParameters {
 
   final PipesPipeFilterCriteria? filterCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?service?.encode(),
     'filter_criteria': ?filterCriteria?.encode(),
@@ -320,8 +336,10 @@ sealed class PipesPipeSourceParametersService {
   ) = PipesPipeSourceParametersServiceSqsQueueParameters;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -334,9 +352,11 @@ final class PipesPipeSourceParametersServiceActivemqBrokerParameters
 
   final PipesPipeActivemqBrokerParameters activemqBrokerParameters;
 
+  @internal
   @override
   String get blockKey => 'activemq_broker_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'activemq_broker_parameters': activemqBrokerParameters.encode(),
@@ -352,9 +372,11 @@ final class PipesPipeSourceParametersServiceDynamodbStreamParameters
 
   final PipesPipeDynamodbStreamParameters dynamodbStreamParameters;
 
+  @internal
   @override
   String get blockKey => 'dynamodb_stream_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dynamodb_stream_parameters': dynamodbStreamParameters.encode(),
@@ -371,9 +393,11 @@ final class PipesPipeSourceParametersServiceKinesisStreamParameters
   final PipesPipeSourceParametersKinesisStreamParameters
   kinesisStreamParameters;
 
+  @internal
   @override
   String get blockKey => 'kinesis_stream_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_stream_parameters': kinesisStreamParameters.encode(),
@@ -390,9 +414,11 @@ final class PipesPipeSourceParametersServiceManagedStreamingKafkaParameters
   final PipesPipeManagedStreamingKafkaParameters
   managedStreamingKafkaParameters;
 
+  @internal
   @override
   String get blockKey => 'managed_streaming_kafka_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'managed_streaming_kafka_parameters': managedStreamingKafkaParameters
@@ -409,9 +435,11 @@ final class PipesPipeSourceParametersServiceRabbitmqBrokerParameters
 
   final PipesPipeRabbitmqBrokerParameters rabbitmqBrokerParameters;
 
+  @internal
   @override
   String get blockKey => 'rabbitmq_broker_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rabbitmq_broker_parameters': rabbitmqBrokerParameters.encode(),
@@ -427,9 +455,11 @@ final class PipesPipeSourceParametersServiceSelfManagedKafkaParameters
 
   final PipesPipeSelfManagedKafkaParameters selfManagedKafkaParameters;
 
+  @internal
   @override
   String get blockKey => 'self_managed_kafka_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'self_managed_kafka_parameters': selfManagedKafkaParameters.encode(),
@@ -445,9 +475,11 @@ final class PipesPipeSourceParametersServiceSqsQueueParameters
 
   final PipesPipeSourceParametersSqsQueueParameters sqsQueueParameters;
 
+  @internal
   @override
   String get blockKey => 'sqs_queue_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sqs_queue_parameters': sqsQueueParameters.encode(),
@@ -473,6 +505,7 @@ final class PipesPipeActivemqBrokerParameters {
 
   final PipesPipeActivemqBrokerParametersCredentials credentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
@@ -491,6 +524,7 @@ final class PipesPipeActivemqBrokerParametersCredentials {
 
   final TfArg<String> basicAuth;
 
+  @internal
   Map<String, Object?> encode() => {'basic_auth': basicAuth.toTfJson()};
 }
 
@@ -525,6 +559,7 @@ final class PipesPipeDynamodbStreamParameters {
 
   final PipesPipeDeadLetterConfig? deadLetterConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
@@ -588,6 +623,7 @@ final class PipesPipeDeadLetterConfig {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
@@ -599,6 +635,7 @@ final class PipesPipeFilterCriteria {
 
   final List<PipesPipeFilter>? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
   };
@@ -612,6 +649,7 @@ final class PipesPipeFilter {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {'pattern': pattern.toTfJson()};
 }
 
@@ -649,6 +687,7 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
 
   final PipesPipeDeadLetterConfig? deadLetterConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
@@ -716,6 +755,7 @@ final class PipesPipeManagedStreamingKafkaParameters {
 
   final PipesPipeManagedStreamingKafkaParametersCredentials? credentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'consumer_group_id': ?consumerGroupId?.toTfJson(),
@@ -740,6 +780,7 @@ final class PipesPipeManagedStreamingKafkaParametersCredentials {
 
   final TfArg<String>? saslScram512Auth;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_certificate_tls_auth': ?clientCertificateTlsAuth?.toTfJson(),
     'sasl_scram_512_auth': ?saslScram512Auth?.toTfJson(),
@@ -768,6 +809,7 @@ final class PipesPipeRabbitmqBrokerParameters {
 
   final PipesPipeActivemqBrokerParametersCredentials credentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
@@ -812,6 +854,7 @@ final class PipesPipeSelfManagedKafkaParameters {
 
   final PipesPipeVpc? vpc;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_bootstrap_servers': ?additionalBootstrapServers?.toTfJson(),
     'batch_size': ?batchSize?.toTfJson(),
@@ -845,6 +888,7 @@ final class PipesPipeSelfManagedKafkaParametersCredentials {
 
   final TfArg<String>? saslScram512Auth;
 
+  @internal
   Map<String, Object?> encode() => {
     'basic_auth': ?basicAuth?.toTfJson(),
     'client_certificate_tls_auth': ?clientCertificateTlsAuth?.toTfJson(),
@@ -863,6 +907,7 @@ final class PipesPipeVpc {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': ?subnets?.encodeAs('id').toTfJson(),
@@ -882,6 +927,7 @@ final class PipesPipeSourceParametersSqsQueueParameters {
 
   final TfArg<num>? maximumBatchingWindowInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
@@ -899,6 +945,7 @@ final class PipesPipeTargetParameters {
 
   final PipesPipeTargetParametersService? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_template': ?inputTemplate?.toTfJson(),
     ...?service?.encode(),
@@ -970,8 +1017,10 @@ sealed class PipesPipeTargetParametersService {
   ) = PipesPipeTargetParametersServiceStepFunctionStateMachineParameters;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -984,9 +1033,11 @@ final class PipesPipeTargetParametersServiceBatchJobParameters
 
   final PipesPipeBatchJobParameters batchJobParameters;
 
+  @internal
   @override
   String get blockKey => 'batch_job_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'batch_job_parameters': batchJobParameters.encode(),
@@ -1002,9 +1053,11 @@ final class PipesPipeTargetParametersServiceCloudwatchLogsParameters
 
   final PipesPipeCloudwatchLogsParameters cloudwatchLogsParameters;
 
+  @internal
   @override
   String get blockKey => 'cloudwatch_logs_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloudwatch_logs_parameters': cloudwatchLogsParameters.encode(),
@@ -1020,9 +1073,11 @@ final class PipesPipeTargetParametersServiceEcsTaskParameters
 
   final PipesPipeEcsTaskParameters ecsTaskParameters;
 
+  @internal
   @override
   String get blockKey => 'ecs_task_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ecs_task_parameters': ecsTaskParameters.encode(),
@@ -1038,9 +1093,11 @@ final class PipesPipeTargetParametersServiceEventbridgeEventBusParameters
 
   final PipesPipeEventbridgeEventBusParameters eventbridgeEventBusParameters;
 
+  @internal
   @override
   String get blockKey => 'eventbridge_event_bus_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'eventbridge_event_bus_parameters': eventbridgeEventBusParameters.encode(),
@@ -1054,9 +1111,11 @@ final class PipesPipeTargetParametersServiceHttpParameters
 
   final PipesPipeHttpParameters httpParameters;
 
+  @internal
   @override
   String get blockKey => 'http_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'http_parameters': httpParameters.encode()};
 }
@@ -1071,9 +1130,11 @@ final class PipesPipeTargetParametersServiceKinesisStreamParameters
   final PipesPipeTargetParametersKinesisStreamParameters
   kinesisStreamParameters;
 
+  @internal
   @override
   String get blockKey => 'kinesis_stream_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_stream_parameters': kinesisStreamParameters.encode(),
@@ -1089,9 +1150,11 @@ final class PipesPipeTargetParametersServiceLambdaFunctionParameters
 
   final PipesPipeLambdaFunctionParameters lambdaFunctionParameters;
 
+  @internal
   @override
   String get blockKey => 'lambda_function_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lambda_function_parameters': lambdaFunctionParameters.encode(),
@@ -1107,9 +1170,11 @@ final class PipesPipeTargetParametersServiceRedshiftDataParameters
 
   final PipesPipeRedshiftDataParameters redshiftDataParameters;
 
+  @internal
   @override
   String get blockKey => 'redshift_data_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'redshift_data_parameters': redshiftDataParameters.encode(),
@@ -1125,9 +1190,11 @@ final class PipesPipeTargetParametersServiceSagemakerPipelineParameters
 
   final PipesPipeSagemakerPipelineParameters sagemakerPipelineParameters;
 
+  @internal
   @override
   String get blockKey => 'sagemaker_pipeline_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sagemaker_pipeline_parameters': sagemakerPipelineParameters.encode(),
@@ -1143,9 +1210,11 @@ final class PipesPipeTargetParametersServiceSqsQueueParameters
 
   final PipesPipeTargetParametersSqsQueueParameters sqsQueueParameters;
 
+  @internal
   @override
   String get blockKey => 'sqs_queue_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sqs_queue_parameters': sqsQueueParameters.encode(),
@@ -1162,9 +1231,11 @@ final class PipesPipeTargetParametersServiceStepFunctionStateMachineParameters
   final PipesPipeStepFunctionStateMachineParameters
   stepFunctionStateMachineParameters;
 
+  @internal
   @override
   String get blockKey => 'step_function_state_machine_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'step_function_state_machine_parameters': stepFunctionStateMachineParameters
@@ -1200,6 +1271,7 @@ final class PipesPipeBatchJobParameters {
 
   final PipesPipeRetryStrategy? retryStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'job_definition': jobDefinition.toTfJson(),
     'job_name': jobName.toTfJson(),
@@ -1220,6 +1292,7 @@ final class PipesPipeArrayProperties {
 
   final TfArg<num>? size;
 
+  @internal
   Map<String, Object?> encode() => {'size': ?size?.toTfJson()};
 }
 
@@ -1242,6 +1315,7 @@ final class PipesPipeContainerOverrides {
 
   final List<PipesPipeResourceRequirement>? resourceRequirement;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -1265,6 +1339,7 @@ final class PipesPipeEnvironment {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -1281,6 +1356,7 @@ final class PipesPipeResourceRequirement {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -1319,6 +1395,7 @@ final class PipesPipeDependsOn {
 
   final PipesPipeDependsOnType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'job_id': ?jobId?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -1349,6 +1426,7 @@ final class PipesPipeRetryStrategy {
 
   final TfArg<num>? attempts;
 
+  @internal
   Map<String, Object?> encode() => {'attempts': ?attempts?.toTfJson()};
 }
 
@@ -1362,6 +1440,7 @@ final class PipesPipeCloudwatchLogsParameters {
 
   final TfArg<String>? timestamp;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_stream_name': ?logStreamName?.toTfJson(),
     'timestamp': ?timestamp?.toTfJson(),
@@ -1420,6 +1499,7 @@ final class PipesPipeEcsTaskParameters {
 
   final List<PipesPipePlacementStrategy>? placementStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
     'enable_execute_command': ?enableExecuteCommand?.toTfJson(),
@@ -1492,6 +1572,7 @@ final class PipesPipeCapacityProviderStrategy {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
@@ -1507,6 +1588,7 @@ final class PipesPipeNetworkConfiguration {
 
   final PipesPipeAwsVpcConfiguration? awsVpcConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_vpc_configuration': ?awsVpcConfiguration?.encode(),
   };
@@ -1528,6 +1610,7 @@ final class PipesPipeAwsVpcConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
@@ -1578,6 +1661,7 @@ final class PipesPipeOverrides {
   final List<PipesPipeInferenceAcceleratorOverride>?
   inferenceAcceleratorOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
@@ -1625,6 +1709,7 @@ final class PipesPipeContainerOverride {
   final List<PipesPipeContainerOverrideResourceRequirement>?
   resourceRequirement;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
     'cpu': ?cpu?.toTfJson(),
@@ -1652,6 +1737,7 @@ final class PipesPipeEnvironmentFile {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -1685,6 +1771,7 @@ final class PipesPipeContainerOverrideResourceRequirement {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -1719,6 +1806,7 @@ final class PipesPipeEphemeralStorage {
 
   final TfArg<num> sizeInGib;
 
+  @internal
   Map<String, Object?> encode() => {'size_in_gib': sizeInGib.toTfJson()};
 }
 
@@ -1735,6 +1823,7 @@ final class PipesPipeInferenceAcceleratorOverride {
 
   final TfArg<String>? deviceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
     'device_type': ?deviceType?.toTfJson(),
@@ -1751,6 +1840,7 @@ final class PipesPipePlacementConstraint {
 
   final PipesPipePlacementConstraintType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -1789,6 +1879,7 @@ final class PipesPipePlacementStrategy {
 
   final PipesPipePlacementStrategyType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -1843,6 +1934,7 @@ final class PipesPipeEventbridgeEventBusParameters {
 
   final TfArg<String>? time;
 
+  @internal
   Map<String, Object?> encode() => {
     'detail_type': ?detailType?.toTfJson(),
     'endpoint_id': ?endpointId?.toTfJson(),
@@ -1862,6 +1954,7 @@ final class PipesPipeTargetParametersKinesisStreamParameters {
 
   final TfArg<String> partitionKey;
 
+  @internal
   Map<String, Object?> encode() => {'partition_key': partitionKey.toTfJson()};
 }
 
@@ -1873,6 +1966,7 @@ final class PipesPipeLambdaFunctionParameters {
 
   final PipesPipeInvocationType invocationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'invocation_type': invocationType.toTfJson(),
   };
@@ -1924,6 +2018,7 @@ final class PipesPipeRedshiftDataParameters {
 
   final TfArg<bool>? withEvent;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'db_user': ?dbUser?.toTfJson(),
@@ -1942,6 +2037,7 @@ final class PipesPipeSagemakerPipelineParameters {
 
   final List<PipesPipePipelineParameter>? pipelineParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (pipelineParameter != null)
       'pipeline_parameter': [for (final e in pipelineParameter!) e.encode()],
@@ -1958,6 +2054,7 @@ final class PipesPipePipelineParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -1977,6 +2074,7 @@ final class PipesPipeTargetParametersSqsQueueParameters {
 
   final TfArg<String>? messageGroupId;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_deduplication_id': ?messageDeduplicationId?.toTfJson(),
     'message_group_id': ?messageGroupId?.toTfJson(),
@@ -1993,6 +2091,7 @@ final class PipesPipeStepFunctionStateMachineParameters {
 
   final PipesPipeInvocationType invocationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'invocation_type': invocationType.toTfJson(),
   };

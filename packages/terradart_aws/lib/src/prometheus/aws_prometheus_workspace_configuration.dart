@@ -20,6 +20,7 @@ final class PrometheusWorkspaceConfigurationLimitsPerLabelSet {
 
   final List<PrometheusWorkspaceConfigurationLimits>? limits;
 
+  @internal
   Map<String, Object?> encode() => {
     'label_set': labelSet.toTfJson(),
     if (limits != null) 'limits': [for (final e in limits!) e.encode()],
@@ -34,6 +35,7 @@ final class PrometheusWorkspaceConfigurationLimits {
 
   final TfArg<num> maxSeries;
 
+  @internal
   Map<String, Object?> encode() => {'max_series': maxSeries.toTfJson()};
 }
 

@@ -36,6 +36,7 @@ final class BedrockagentKnowledgeBaseConfiguration {
   final List<BedrockagentKnowledgeBaseVectorKnowledgeBaseConfiguration>?
   vectorKnowledgeBaseConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (kendraKnowledgeBaseConfiguration != null)
@@ -99,6 +100,7 @@ final class BedrockagentKnowledgeBaseKendraKnowledgeBaseConfiguration {
 
   final TfArg<String> kendraIndexArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kendra_index_arn': kendraIndexArn.toTfJson(),
   };
@@ -125,6 +127,7 @@ final class BedrockagentKnowledgeBaseManagedKnowledgeBaseConfiguration {
   final List<BedrockagentKnowledgeBaseServerSideEncryptionConfiguration>?
   serverSideEncryptionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'embedding_model_arn': ?embeddingModelArn?.toTfJson(),
     'embedding_model_type': ?embeddingModelType?.toTfJson(),
@@ -175,6 +178,7 @@ final class BedrockagentKnowledgeBaseEmbeddingModelConfiguration {
   final List<BedrockagentKnowledgeBaseBedrockEmbeddingModelConfiguration>?
   bedrockEmbeddingModelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bedrockEmbeddingModelConfiguration != null)
       'bedrock_embedding_model_configuration': [
@@ -203,6 +207,7 @@ final class BedrockagentKnowledgeBaseBedrockEmbeddingModelConfiguration {
 
   final List<BedrockagentKnowledgeBaseVideo>? video;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
     'embedding_data_type': ?embeddingDataType?.toTfJson(),
@@ -245,6 +250,7 @@ final class BedrockagentKnowledgeBaseAudio {
   final List<BedrockagentKnowledgeBaseSegmentationConfiguration>?
   segmentationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (segmentationConfiguration != null)
       'segmentation_configuration': [
@@ -264,6 +270,7 @@ final class BedrockagentKnowledgeBaseSegmentationConfiguration {
 
   final TfArg<num> fixedLengthDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_length_duration': fixedLengthDuration.toTfJson(),
   };
@@ -279,6 +286,7 @@ final class BedrockagentKnowledgeBaseVideo {
   final List<BedrockagentKnowledgeBaseSegmentationConfiguration>?
   segmentationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (segmentationConfiguration != null)
       'segmentation_configuration': [
@@ -297,6 +305,7 @@ final class BedrockagentKnowledgeBaseServerSideEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
@@ -316,6 +325,7 @@ final class BedrockagentKnowledgeBaseSqlKnowledgeBaseConfiguration {
   final List<BedrockagentKnowledgeBaseRedshiftConfiguration>?
   redshiftConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (redshiftConfiguration != null)
@@ -369,6 +379,7 @@ final class BedrockagentKnowledgeBaseRedshiftConfiguration {
   >?
   storageConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (queryEngineConfiguration != null)
       'query_engine_configuration': [
@@ -403,6 +414,7 @@ final class BedrockagentKnowledgeBaseQueryEngineConfiguration {
   final List<BedrockagentKnowledgeBaseServerlessConfiguration>?
   serverlessConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (provisionedConfiguration != null)
@@ -458,6 +470,7 @@ final class BedrockagentKnowledgeBaseProvisionedConfiguration {
   >?
   authConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_identifier': clusterIdentifier.toTfJson(),
     if (authConfiguration != null)
@@ -481,6 +494,7 @@ final class BedrockagentKnowledgeBaseProvisionedConfigurationAuthConfiguration {
 
   final TfArg<String>? usernamePasswordSecretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_user': ?databaseUser?.toTfJson(),
     'type': type.toTfJson(),
@@ -531,6 +545,7 @@ final class BedrockagentKnowledgeBaseServerlessConfiguration {
   final List<BedrockagentKnowledgeBaseServerlessConfigurationAuthConfiguration>?
   authConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'workgroup_arn': workgroupArn.toTfJson(),
     if (authConfiguration != null)
@@ -551,6 +566,7 @@ final class BedrockagentKnowledgeBaseServerlessConfigurationAuthConfiguration {
 
   final TfArg<String>? usernamePasswordSecretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'username_password_secret_arn': ?usernamePasswordSecretArn?.toTfJson(),
@@ -595,6 +611,7 @@ final class BedrockagentKnowledgeBaseQueryGenerationConfiguration {
 
   final List<BedrockagentKnowledgeBaseGenerationContext>? generationContext;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_timeout_seconds': ?executionTimeoutSeconds?.toTfJson(),
     if (generationContext != null)
@@ -615,6 +632,7 @@ final class BedrockagentKnowledgeBaseGenerationContext {
 
   final List<BedrockagentKnowledgeBaseTable>? table;
 
+  @internal
   Map<String, Object?> encode() => {
     if (curatedQuery != null)
       'curated_query': [for (final e in curatedQuery!) e.encode()],
@@ -635,6 +653,7 @@ final class BedrockagentKnowledgeBaseCuratedQuery {
 
   final TfArg<String> sql;
 
+  @internal
   Map<String, Object?> encode() => {
     'natural_language': naturalLanguage.toTfJson(),
     'sql': sql.toTfJson(),
@@ -660,6 +679,7 @@ final class BedrockagentKnowledgeBaseTable {
 
   final List<BedrockagentKnowledgeBaseColumn>? column;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'inclusion': ?inclusion?.toTfJson(),
@@ -706,6 +726,7 @@ final class BedrockagentKnowledgeBaseColumn {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'inclusion': ?inclusion?.toTfJson(),
@@ -733,6 +754,7 @@ final class BedrockagentKnowledgeBaseRedshiftConfigurationStorageConfiguration {
   >?
   redshiftConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (awsDataCatalogConfiguration != null)
@@ -780,6 +802,7 @@ final class BedrockagentKnowledgeBaseAwsDataCatalogConfiguration {
 
   final TfArg<List<String>> tableNames;
 
+  @internal
   Map<String, Object?> encode() => {'table_names': tableNames.toTfJson()};
 }
 
@@ -793,6 +816,7 @@ final class BedrockagentKnowledgeBaseStorageConfigurationRedshiftConfiguration {
 
   final TfArg<String> databaseName;
 
+  @internal
   Map<String, Object?> encode() => {'database_name': databaseName.toTfJson()};
 }
 
@@ -814,6 +838,7 @@ final class BedrockagentKnowledgeBaseVectorKnowledgeBaseConfiguration {
   final List<BedrockagentKnowledgeBaseSupplementalDataStorageConfiguration>?
   supplementalDataStorageConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'embedding_model_arn': embeddingModelArn.toTfJson(),
     if (embeddingModelConfiguration != null)
@@ -837,6 +862,7 @@ final class BedrockagentKnowledgeBaseSupplementalDataStorageConfiguration {
 
   final List<BedrockagentKnowledgeBaseStorageLocation>? storageLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (storageLocation != null)
       'storage_location': [for (final e in storageLocation!) e.encode()],
@@ -856,6 +882,7 @@ final class BedrockagentKnowledgeBaseStorageLocation {
 
   final List<BedrockagentKnowledgeBaseS3Location>? s3Location;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (s3Location != null)
@@ -889,6 +916,7 @@ final class BedrockagentKnowledgeBaseS3Location {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -933,6 +961,7 @@ final class BedrockagentKnowledgeBaseStorageConfiguration {
   final List<BedrockagentKnowledgeBaseS3VectorsConfiguration>?
   s3VectorsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (mongoDbAtlasConfiguration != null)
@@ -1054,6 +1083,7 @@ final class BedrockagentKnowledgeBaseMongoDbAtlasConfiguration {
   final List<BedrockagentKnowledgeBaseMongoDbAtlasConfigurationFieldMapping>?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_name': collectionName.toTfJson(),
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
@@ -1084,6 +1114,7 @@ final class BedrockagentKnowledgeBaseMongoDbAtlasConfigurationFieldMapping {
 
   final TfArg<String> vectorField;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_field': metadataField.toTfJson(),
     'text_field': textField.toTfJson(),
@@ -1107,6 +1138,7 @@ final class BedrockagentKnowledgeBaseNeptuneAnalyticsConfiguration {
   >?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'graph_arn': graphArn.toTfJson(),
     if (fieldMapping != null)
@@ -1128,6 +1160,7 @@ final class BedrockagentKnowledgeBaseNeptuneAnalyticsConfigurationFieldMapping {
 
   final TfArg<String> textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_field': metadataField.toTfJson(),
     'text_field': textField.toTfJson(),
@@ -1154,6 +1187,7 @@ final class BedrockagentKnowledgeBaseOpensearchManagedClusterConfiguration {
   final List<BedrockagentKnowledgeBaseMongoDbAtlasConfigurationFieldMapping>?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_arn': domainArn.toTfJson(),
     'domain_endpoint': domainEndpoint.toTfJson(),
@@ -1180,6 +1214,7 @@ final class BedrockagentKnowledgeBaseOpensearchServerlessConfiguration {
   final List<BedrockagentKnowledgeBaseMongoDbAtlasConfigurationFieldMapping>?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_arn': collectionArn.toTfJson(),
     'vector_index_name': vectorIndexName.toTfJson(),
@@ -1210,6 +1245,7 @@ final class BedrockagentKnowledgeBasePineconeConfiguration {
   >?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_string': connectionString.toTfJson(),
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
@@ -1242,6 +1278,7 @@ final class BedrockagentKnowledgeBaseRdsConfiguration {
   final List<BedrockagentKnowledgeBaseRdsConfigurationFieldMapping>?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -1274,6 +1311,7 @@ final class BedrockagentKnowledgeBaseRdsConfigurationFieldMapping {
 
   final TfArg<String> vectorField;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_metadata_field': ?customMetadataField?.toTfJson(),
     'metadata_field': metadataField.toTfJson(),
@@ -1305,6 +1343,7 @@ final class BedrockagentKnowledgeBaseRedisEnterpriseCloudConfiguration {
   >?
   fieldMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
     'endpoint': endpoint.toTfJson(),
@@ -1330,6 +1369,7 @@ final class BedrockagentKnowledgeBaseRedisEnterpriseCloudConfigurationFieldMappi
 
   final TfArg<String>? vectorField;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_field': ?metadataField?.toTfJson(),
     'text_field': ?textField?.toTfJson(),
@@ -1353,6 +1393,7 @@ final class BedrockagentKnowledgeBaseS3VectorsConfiguration {
 
   final TfArg<String>? vectorBucketArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'index_arn': ?indexArn?.toTfJson(),
     'index_name': ?indexName?.toTfJson(),

@@ -173,6 +173,7 @@ final class Inspector2FilterCriteria {
 
   final List<Inspector2FilterVulnerablePackages>? vulnerablePackages;
 
+  @internal
   Map<String, Object?> encode() => {
     if (awsAccountId != null)
       'aws_account_id': [for (final e in awsAccountId!) e.encode()],
@@ -314,6 +315,7 @@ final class Inspector2FilterAwsAccountId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -360,6 +362,7 @@ final class Inspector2FilterCodeRepositoryProjectName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -379,6 +382,7 @@ final class Inspector2FilterCodeRepositoryProviderType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -398,6 +402,7 @@ final class Inspector2FilterCodeVulnerabilityDetectorName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -417,6 +422,7 @@ final class Inspector2FilterCodeVulnerabilityDetectorTags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -436,6 +442,7 @@ final class Inspector2FilterCodeVulnerabilityFilePath {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -455,6 +462,7 @@ final class Inspector2FilterComponentId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -474,6 +482,7 @@ final class Inspector2FilterComponentType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -493,6 +502,7 @@ final class Inspector2FilterEc2InstanceImageId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -512,6 +522,7 @@ final class Inspector2FilterEc2InstanceSubnetId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -531,6 +542,7 @@ final class Inspector2FilterEc2InstanceVpcId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -550,6 +562,7 @@ final class Inspector2FilterEcrImageArchitecture {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -569,6 +582,7 @@ final class Inspector2FilterEcrImageHash {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -588,6 +602,7 @@ final class Inspector2FilterEcrImageInUseCount {
 
   final TfArg<num> upperInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_inclusive': lowerInclusive.toTfJson(),
     'upper_inclusive': upperInclusive.toTfJson(),
@@ -607,6 +622,7 @@ final class Inspector2FilterEcrImageLastInUseAt {
 
   final TfArg<String>? startInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_inclusive': ?endInclusive?.toTfJson(),
     'start_inclusive': ?startInclusive?.toTfJson(),
@@ -626,6 +642,7 @@ final class Inspector2FilterEcrImagePushedAt {
 
   final TfArg<String>? startInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_inclusive': ?endInclusive?.toTfJson(),
     'start_inclusive': ?startInclusive?.toTfJson(),
@@ -645,6 +662,7 @@ final class Inspector2FilterEcrImageRegistry {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -664,6 +682,7 @@ final class Inspector2FilterEcrImageRepositoryName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -683,6 +702,7 @@ final class Inspector2FilterEcrImageTags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -702,6 +722,7 @@ final class Inspector2FilterEpssScore {
 
   final TfArg<num> upperInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_inclusive': lowerInclusive.toTfJson(),
     'upper_inclusive': upperInclusive.toTfJson(),
@@ -721,6 +742,7 @@ final class Inspector2FilterExploitAvailable {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -740,6 +762,7 @@ final class Inspector2FilterFindingArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -759,6 +782,7 @@ final class Inspector2FilterFindingStatus {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -778,6 +802,7 @@ final class Inspector2FilterFindingType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -797,6 +822,7 @@ final class Inspector2FilterFirstObservedAt {
 
   final TfArg<String>? startInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_inclusive': ?endInclusive?.toTfJson(),
     'start_inclusive': ?startInclusive?.toTfJson(),
@@ -816,6 +842,7 @@ final class Inspector2FilterFixAvailable {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -835,6 +862,7 @@ final class Inspector2FilterInspectorScore {
 
   final TfArg<num> upperInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_inclusive': lowerInclusive.toTfJson(),
     'upper_inclusive': upperInclusive.toTfJson(),
@@ -854,6 +882,7 @@ final class Inspector2FilterLambdaFunctionExecutionRoleArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -873,6 +902,7 @@ final class Inspector2FilterLambdaFunctionLastModifiedAt {
 
   final TfArg<String>? startInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_inclusive': ?endInclusive?.toTfJson(),
     'start_inclusive': ?startInclusive?.toTfJson(),
@@ -892,6 +922,7 @@ final class Inspector2FilterLambdaFunctionLayers {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -911,6 +942,7 @@ final class Inspector2FilterLambdaFunctionName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -930,6 +962,7 @@ final class Inspector2FilterLambdaFunctionRuntime {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -949,6 +982,7 @@ final class Inspector2FilterLastObservedAt {
 
   final TfArg<String>? startInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_inclusive': ?endInclusive?.toTfJson(),
     'start_inclusive': ?startInclusive?.toTfJson(),
@@ -968,6 +1002,7 @@ final class Inspector2FilterNetworkProtocol {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -987,6 +1022,7 @@ final class Inspector2FilterPortRange {
 
   final TfArg<num> endInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'begin_inclusive': beginInclusive.toTfJson(),
     'end_inclusive': endInclusive.toTfJson(),
@@ -1006,6 +1042,7 @@ final class Inspector2FilterRelatedVulnerabilities {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1025,6 +1062,7 @@ final class Inspector2FilterResourceId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1047,6 +1085,7 @@ final class Inspector2FilterResourceTags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -1084,6 +1123,7 @@ final class Inspector2FilterResourceType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1103,6 +1143,7 @@ final class Inspector2FilterSeverity {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1119,6 +1160,7 @@ final class Inspector2FilterTitle {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1135,6 +1177,7 @@ final class Inspector2FilterUpdatedAt {
 
   final TfArg<String>? startInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_inclusive': ?endInclusive?.toTfJson(),
     'start_inclusive': ?startInclusive?.toTfJson(),
@@ -1154,6 +1197,7 @@ final class Inspector2FilterVendorSeverity {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1173,6 +1217,7 @@ final class Inspector2FilterVulnerabilityId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1192,6 +1237,7 @@ final class Inspector2FilterVulnerabilitySource {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1229,6 +1275,7 @@ final class Inspector2FilterVulnerablePackages {
 
   final List<Inspector2FilterVersion>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     if (architecture != null)
       'architecture': [for (final e in architecture!) e.encode()],
@@ -1259,6 +1306,7 @@ final class Inspector2FilterArchitecture {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1278,6 +1326,7 @@ final class Inspector2FilterEpoch {
 
   final TfArg<num> upperInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_inclusive': lowerInclusive.toTfJson(),
     'upper_inclusive': upperInclusive.toTfJson(),
@@ -1297,6 +1346,7 @@ final class Inspector2FilterFilePath {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1316,6 +1366,7 @@ final class Inspector2FilterVulnerablePackagesName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1335,6 +1386,7 @@ final class Inspector2FilterRelease {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1354,6 +1406,7 @@ final class Inspector2FilterSourceLambdaLayerArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1373,6 +1426,7 @@ final class Inspector2FilterSourceLayerHash {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1392,6 +1446,7 @@ final class Inspector2FilterVersion {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),

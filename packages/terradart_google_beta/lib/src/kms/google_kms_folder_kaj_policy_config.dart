@@ -18,6 +18,7 @@ final class KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy {
   final List<KmsFolderKajPolicyConfigAllowedAccessReasons>?
   allowedAccessReasons;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedAccessReasons != null)
       'allowed_access_reasons': [

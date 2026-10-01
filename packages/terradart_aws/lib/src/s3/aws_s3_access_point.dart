@@ -29,6 +29,7 @@ final class S3AccessPointPublicAccessBlockConfiguration {
 
   final TfArg<bool>? restrictPublicBuckets;
 
+  @internal
   Map<String, Object?> encode() => {
     'block_public_acls': ?blockPublicAcls?.toTfJson(),
     'block_public_policy': ?blockPublicPolicy?.toTfJson(),
@@ -45,6 +46,7 @@ final class S3AccessPointVpcConfiguration {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 }
 

@@ -15,6 +15,7 @@ final class XrayIndexingRule {
 
   final List<XrayIndexingRuleProbabilistic>? probabilistic;
 
+  @internal
   Map<String, Object?> encode() => {
     if (probabilistic != null)
       'probabilistic': [for (final e in probabilistic!) e.encode()],
@@ -31,6 +32,7 @@ final class XrayIndexingRuleProbabilistic {
 
   final TfArg<num> desiredSamplingPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_sampling_percentage': desiredSamplingPercentage.toTfJson(),
   };

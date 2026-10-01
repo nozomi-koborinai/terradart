@@ -17,6 +17,7 @@ final class FirebaserulesRulesetSource {
 
   final List<FirebaserulesRulesetFiles> files;
 
+  @internal
   Map<String, Object?> encode() => {
     'language': ?language?.toTfJson(),
     'files': [for (final e in files) e.encode()],
@@ -65,6 +66,7 @@ final class FirebaserulesRulesetFiles {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'fingerprint': ?fingerprint?.toTfJson(),

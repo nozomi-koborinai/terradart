@@ -44,6 +44,7 @@ final class NetworkSecurityAuthorizationPolicyRules {
 
   final List<NetworkSecurityAuthorizationPolicySources>? sources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
@@ -70,6 +71,7 @@ final class NetworkSecurityAuthorizationPolicyDestinations {
 
   final NetworkSecurityAuthorizationPolicyHttpHeaderMatch? httpHeaderMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'hosts': hosts.toTfJson(),
     'methods': methods.toTfJson(),
@@ -91,6 +93,7 @@ final class NetworkSecurityAuthorizationPolicyHttpHeaderMatch {
 
   final TfArg<String> regexMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'regex_match': regexMatch.toTfJson(),
@@ -110,6 +113,7 @@ final class NetworkSecurityAuthorizationPolicySources {
 
   final TfArg<List<String>>? principals;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_blocks': ?ipBlocks?.toTfJson(),
     'principals': ?principals?.toTfJson(),

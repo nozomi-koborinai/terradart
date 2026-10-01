@@ -77,12 +77,15 @@ sealed class BatchJobDefinitionProperties {
   ) = BatchJobDefinitionNodeProperties;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -93,14 +96,17 @@ final class BatchJobDefinitionContainerProperties
 
   final TfArg<String> containerProperties;
 
+  @internal
   @override
   String get blockKey => 'container_properties';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'container_properties': containerProperties.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'container_properties': containerProperties,
@@ -114,12 +120,15 @@ final class BatchJobDefinitionEcsProperties
 
   final TfArg<String> ecsProperties;
 
+  @internal
   @override
   String get blockKey => 'ecs_properties';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ecs_properties': ecsProperties.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ecs_properties': ecsProperties};
 }
@@ -131,12 +140,15 @@ final class BatchJobDefinitionEksPropertiesChoice
 
   final BatchJobDefinitionEksProperties eksProperties;
 
+  @internal
   @override
   String get blockKey => 'eks_properties';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'eks_properties': eksProperties.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'eks_properties': TfArg.literal(eksProperties.encode()),
@@ -150,14 +162,17 @@ final class BatchJobDefinitionNodeProperties
 
   final TfArg<String> nodeProperties;
 
+  @internal
   @override
   String get blockKey => 'node_properties';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'node_properties': nodeProperties.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'node_properties': nodeProperties};
 }
@@ -170,6 +185,7 @@ final class BatchJobDefinitionEksProperties {
 
   final BatchJobDefinitionPodProperties podProperties;
 
+  @internal
   Map<String, Object?> encode() => {'pod_properties': podProperties.encode()};
 }
 
@@ -207,6 +223,7 @@ final class BatchJobDefinitionPodProperties {
 
   final List<BatchJobDefinitionVolumes>? volumes;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_policy': ?dnsPolicy?.toTfJson(),
     'host_network': ?hostNetwork?.toTfJson(),
@@ -282,6 +299,7 @@ final class BatchJobDefinitionContainers {
 
   final List<BatchJobDefinitionVolumeMounts>? volumeMounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -333,6 +351,7 @@ final class BatchJobDefinitionEnv {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -350,6 +369,7 @@ final class BatchJobDefinitionResources {
 
   final TfArg<Map<String, String>>? requests;
 
+  @internal
   Map<String, Object?> encode() => {
     'limits': ?limits?.toTfJson(),
     'requests': ?requests?.toTfJson(),
@@ -382,6 +402,7 @@ final class BatchJobDefinitionSecurityContext {
 
   final TfArg<num>? runAsUser;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_privilege_escalation': ?allowPrivilegeEscalation?.toTfJson(),
     'privileged': ?privileged?.toTfJson(),
@@ -409,6 +430,7 @@ final class BatchJobDefinitionVolumeMounts {
 
   final TfArg<bool>? readOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
@@ -424,6 +446,7 @@ final class BatchJobDefinitionImagePullSecret {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -461,6 +484,7 @@ final class BatchJobDefinitionInitContainers {
 
   final List<BatchJobDefinitionVolumeMounts>? volumeMounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -483,6 +507,7 @@ final class BatchJobDefinitionMetadata {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
@@ -505,6 +530,7 @@ final class BatchJobDefinitionVolumes {
 
   final BatchJobDefinitionSecret? secret;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'empty_dir': ?emptyDir?.encode(),
@@ -523,6 +549,7 @@ final class BatchJobDefinitionEmptyDir {
 
   final TfArg<String> sizeLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'medium': ?medium?.toTfJson(),
     'size_limit': sizeLimit.toTfJson(),
@@ -551,6 +578,7 @@ final class BatchJobDefinitionHostPath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -564,6 +592,7 @@ final class BatchJobDefinitionSecret {
 
   final TfArg<String> secretName;
 
+  @internal
   Map<String, Object?> encode() => {
     'optional': ?optional?.toTfJson(),
     'secret_name': secretName.toTfJson(),
@@ -580,6 +609,7 @@ final class BatchJobDefinitionRetryStrategy {
 
   final List<BatchJobDefinitionEvaluateOnExit>? evaluateOnExit;
 
+  @internal
   Map<String, Object?> encode() => {
     'attempts': ?attempts?.toTfJson(),
     if (evaluateOnExit != null)
@@ -606,6 +636,7 @@ final class BatchJobDefinitionEvaluateOnExit {
 
   final TfArg<String>? onStatusReason;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'on_exit_code': ?onExitCode?.toTfJson(),
@@ -636,6 +667,7 @@ final class BatchJobDefinitionTimeout {
 
   final TfArg<num>? attemptDurationSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'attempt_duration_seconds': ?attemptDurationSeconds?.toTfJson(),
   };

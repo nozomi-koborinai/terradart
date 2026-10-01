@@ -17,6 +17,7 @@ final class DatazoneEnvironmentProfileUserParameters {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),

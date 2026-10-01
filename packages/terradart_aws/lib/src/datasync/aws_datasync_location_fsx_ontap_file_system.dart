@@ -27,8 +27,10 @@ sealed class DatasyncLocationFsxOntapFileSystemProtocol {
   ) = DatasyncLocationFsxOntapFileSystemProtocolSmb;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -39,9 +41,11 @@ final class DatasyncLocationFsxOntapFileSystemProtocolNfs
 
   final DatasyncLocationFsxOntapFileSystemNfs nfs;
 
+  @internal
   @override
   String get blockKey => 'nfs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
@@ -53,9 +57,11 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmb
 
   final DatasyncLocationFsxOntapFileSystemSmb smb;
 
+  @internal
   @override
   String get blockKey => 'smb';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'smb': smb.encode()};
 }
@@ -68,6 +74,7 @@ final class DatasyncLocationFsxOntapFileSystemNfs {
 
   final DatasyncLocationFsxOntapFileSystemNfsMountOptions mountOptions;
 
+  @internal
   Map<String, Object?> encode() => {'mount_options': mountOptions.encode()};
 }
 
@@ -79,6 +86,7 @@ final class DatasyncLocationFsxOntapFileSystemNfsMountOptions {
 
   final DatasyncLocationFsxOntapFileSystemNfsVersion? version;
 
+  @internal
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
@@ -121,6 +129,7 @@ final class DatasyncLocationFsxOntapFileSystemSmb {
 
   final DatasyncLocationFsxOntapFileSystemSmbMountOptions mountOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': ?domain?.toTfJson(),
     'password': password.toTfJson(),
@@ -137,6 +146,7 @@ final class DatasyncLocationFsxOntapFileSystemSmbMountOptions {
 
   final DatasyncLocationFsxOntapFileSystemSmbVersion? version;
 
+  @internal
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 

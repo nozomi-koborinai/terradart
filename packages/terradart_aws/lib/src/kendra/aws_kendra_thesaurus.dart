@@ -20,6 +20,7 @@ final class KendraThesaurusSourceS3Path {
 
   final TfArg<String> key;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),

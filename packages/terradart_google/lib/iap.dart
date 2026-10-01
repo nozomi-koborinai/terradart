@@ -4,6 +4,42 @@
 /// IAM for App Engine and external HTTPS load balancer backend services.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_iap_agent_registry_agent_iam_policy.dart'
+    show DataGoogleIapAgentRegistryAgentIamPolicy;
+export 'src/data/google_iap_agent_registry_endpoint_iam_policy.dart'
+    show DataGoogleIapAgentRegistryEndpointIamPolicy;
+export 'src/data/google_iap_agent_registry_iam_policy.dart'
+    show DataGoogleIapAgentRegistryIamPolicy;
+export 'src/data/google_iap_agent_registry_mcp_server_iam_policy.dart'
+    show DataGoogleIapAgentRegistryMcpServerIamPolicy;
+export 'src/data/google_iap_app_engine_service_iam_policy.dart'
+    show DataGoogleIapAppEngineServiceIamPolicy;
+export 'src/data/google_iap_app_engine_version_iam_policy.dart'
+    show DataGoogleIapAppEngineVersionIamPolicy;
+export 'src/data/google_iap_location_web_iam_policy.dart'
+    show DataGoogleIapLocationWebIamPolicy;
+export 'src/data/google_iap_tunnel_dest_group_iam_policy.dart'
+    show DataGoogleIapTunnelDestGroupIamPolicy;
+export 'src/data/google_iap_tunnel_iam_policy.dart'
+    show DataGoogleIapTunnelIamPolicy;
+export 'src/data/google_iap_tunnel_instance_iam_policy.dart'
+    show DataGoogleIapTunnelInstanceIamPolicy;
+export 'src/data/google_iap_web_backend_service_iam_policy.dart'
+    show DataGoogleIapWebBackendServiceIamPolicy;
+export 'src/data/google_iap_web_cloud_run_service_iam_policy.dart'
+    show DataGoogleIapWebCloudRunServiceIamPolicy;
+export 'src/data/google_iap_web_forwarding_rule_service_iam_policy.dart'
+    show DataGoogleIapWebForwardingRuleServiceIamPolicy;
+export 'src/data/google_iap_web_iam_policy.dart' show DataGoogleIapWebIamPolicy;
+export 'src/data/google_iap_web_region_backend_service_iam_policy.dart'
+    show DataGoogleIapWebRegionBackendServiceIamPolicy;
+export 'src/data/google_iap_web_region_forwarding_rule_service_iam_policy.dart'
+    show DataGoogleIapWebRegionForwardingRuleServiceIamPolicy;
+export 'src/data/google_iap_web_type_app_engine_iam_policy.dart'
+    show DataGoogleIapWebTypeAppEngineIamPolicy;
+export 'src/data/google_iap_web_type_compute_iam_policy.dart'
+    show DataGoogleIapWebTypeComputeIamPolicy;
 export 'src/iap/google_iap_agent_registry_agent_iam_binding.dart'
     show
         GoogleIapAgentRegistryAgentIamBinding,

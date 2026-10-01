@@ -32,6 +32,7 @@ final class EcrpublicRepositoryCatalogData {
 
   final TfArg<String>? usageText;
 
+  @internal
   Map<String, Object?> encode() => {
     'about_text': ?aboutText?.toTfJson(),
     'architectures': ?architectures?.toTfJson(),

@@ -49,6 +49,7 @@ final class NetworkServicesServiceLbPoliciesAutoCapacityDrain {
 
   final TfArg<bool>? enable;
 
+  @internal
   Map<String, Object?> encode() => {'enable': ?enable?.toTfJson()};
 }
 
@@ -62,6 +63,7 @@ final class NetworkServicesServiceLbPoliciesFailoverConfig {
 
   final TfArg<num> failoverHealthThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'failover_health_threshold': failoverHealthThreshold.toTfJson(),
   };
@@ -81,6 +83,7 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
 
   final NetworkServicesServiceLbPoliciesIsolationMode? isolationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'isolation_granularity': ?isolationGranularity?.toTfJson(),
     'isolation_mode': ?isolationMode?.toTfJson(),

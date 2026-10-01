@@ -23,6 +23,7 @@ final class ModelArmorFloorsettingAiPlatformFloorSetting {
 
   final TfArg<bool>? inspectOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_cloud_logging': ?enableCloudLogging?.toTfJson(),
     'inspect_and_block': ?inspectAndBlock?.toTfJson(),
@@ -51,6 +52,7 @@ final class ModelArmorFloorsettingFilterConfig {
 
   final ModelArmorFloorsettingSdpSettings? sdpSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'malicious_uri_filter_settings': ?maliciousUriFilterSettings?.encode(),
     'pi_and_jailbreak_filter_settings': ?piAndJailbreakFilterSettings?.encode(),
@@ -69,6 +71,7 @@ final class ModelArmorFloorsettingMaliciousUriFilterSettings {
 
   final TfArg<String>? filterEnforcement;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
@@ -87,6 +90,7 @@ final class ModelArmorFloorsettingPiAndJailbreakFilterSettings {
 
   final TfArg<String>? filterEnforcement;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
@@ -101,6 +105,7 @@ final class ModelArmorFloorsettingRaiSettings {
 
   final List<ModelArmorFloorsettingRaiFilters> raiFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'rai_filters': [for (final e in raiFilters) e.encode()],
   };
@@ -119,6 +124,7 @@ final class ModelArmorFloorsettingRaiFilters {
 
   final TfArg<String> filterType;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_type': filterType.toTfJson(),
@@ -138,6 +144,7 @@ final class ModelArmorFloorsettingSdpSettings {
 
   final ModelArmorFloorsettingBasicConfig? basicConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'advanced_config': ?advancedConfig?.encode(),
     'basic_config': ?basicConfig?.encode(),
@@ -157,6 +164,7 @@ final class ModelArmorFloorsettingAdvancedConfig {
 
   final TfArg<String>? inspectTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'deidentify_template': ?deidentifyTemplate?.toTfJson(),
     'inspect_template': ?inspectTemplate?.toTfJson(),
@@ -171,6 +179,7 @@ final class ModelArmorFloorsettingBasicConfig {
 
   final TfArg<String>? filterEnforcement;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
@@ -186,6 +195,7 @@ final class ModelArmorFloorsettingFloorSettingMetadata {
 
   final ModelArmorFloorsettingMultiLanguageDetection? multiLanguageDetection;
 
+  @internal
   Map<String, Object?> encode() => {
     'multi_language_detection': ?multiLanguageDetection?.encode(),
   };
@@ -201,6 +211,7 @@ final class ModelArmorFloorsettingMultiLanguageDetection {
 
   final TfArg<bool> enableMultiLanguageDetection;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_multi_language_detection': enableMultiLanguageDetection.toTfJson(),
   };
@@ -222,6 +233,7 @@ final class ModelArmorFloorsettingGoogleMcpServerFloorSetting {
 
   final TfArg<bool>? inspectOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_cloud_logging': ?enableCloudLogging?.toTfJson(),
     'inspect_and_block': ?inspectAndBlock?.toTfJson(),

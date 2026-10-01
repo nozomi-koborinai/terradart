@@ -145,6 +145,7 @@ final class OracleDatabaseDbSystemProperties {
 
   final OracleDatabaseDbSystemTimeZone? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_count': computeCount.toTfJson(),
     'compute_model': ?computeModel?.toTfJson(),
@@ -180,6 +181,7 @@ final class OracleDatabaseDbSystemDataCollectionOptions {
 
   final TfArg<bool>? isIncidentLogsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_diagnostics_events_enabled': ?isDiagnosticsEventsEnabled?.toTfJson(),
     'is_incident_logs_enabled': ?isIncidentLogsEnabled?.toTfJson(),
@@ -205,6 +207,7 @@ final class OracleDatabaseDbSystemDbHome {
 
   final OracleDatabaseDbSystemDatabase database;
 
+  @internal
   Map<String, Object?> encode() => {
     'db_version': dbVersion.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -256,6 +259,7 @@ final class OracleDatabaseDbSystemDatabase {
 
   final OracleDatabaseDbSystemDatabaseProperties? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_password': adminPassword.toTfJson(),
     'character_set': ?characterSet?.toTfJson(),
@@ -285,6 +289,7 @@ final class OracleDatabaseDbSystemDatabaseProperties {
 
   final OracleDatabaseDbSystemDbBackupConfig? dbBackupConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'db_version': dbVersion.toTfJson(),
     'db_backup_config': ?dbBackupConfig?.encode(),
@@ -320,6 +325,7 @@ final class OracleDatabaseDbSystemDbBackupConfig {
   final List<OracleDatabaseDbSystemBackupDestinationDetails>?
   backupDestinationDetails;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_backup_enabled': ?autoBackupEnabled?.toTfJson(),
     'auto_full_backup_day': ?autoFullBackupDay?.toTfJson(),
@@ -342,6 +348,7 @@ final class OracleDatabaseDbSystemBackupDestinationDetails {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -353,6 +360,7 @@ final class OracleDatabaseDbSystemOptions {
 
   final TfArg<String>? storageManagement;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_management': ?storageManagement?.toTfJson(),
   };
@@ -366,6 +374,7 @@ final class OracleDatabaseDbSystemTimeZone {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 

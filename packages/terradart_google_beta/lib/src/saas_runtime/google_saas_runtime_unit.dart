@@ -15,6 +15,7 @@ final class SaasRuntimeUnitMaintenance {
 
   final TfArg<String>? pinnedUntilTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'pinned_until_time': ?pinnedUntilTime?.toTfJson(),
   };

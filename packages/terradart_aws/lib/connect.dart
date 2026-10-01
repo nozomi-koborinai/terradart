@@ -3,6 +3,7 @@
 /// AWS Connect.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/connect/aws_connect_bot_association.dart'
     show AwsConnectBotAssociation, ConnectBotAssociationLexBot;
 export 'src/connect/aws_connect_contact_flow.dart'
@@ -87,3 +88,29 @@ export 'src/connect/aws_connect_user_hierarchy_structure.dart'
         ConnectUserHierarchyStructureLevelTwo;
 export 'src/connect/aws_connect_vocabulary.dart'
     show AwsConnectVocabulary, ConnectVocabularyLanguageCode;
+export 'src/data/aws_connect_bot_association.dart'
+    show DataAwsConnectBotAssociation, DataConnectBotAssociationLexBot;
+export 'src/data/aws_connect_contact_flow.dart' show DataAwsConnectContactFlow;
+export 'src/data/aws_connect_contact_flow_module.dart'
+    show DataAwsConnectContactFlowModule;
+export 'src/data/aws_connect_hours_of_operation.dart'
+    show DataAwsConnectHoursOfOperation;
+export 'src/data/aws_connect_instance.dart' show DataAwsConnectInstance;
+export 'src/data/aws_connect_instance_storage_config.dart'
+    show DataAwsConnectInstanceStorageConfig;
+export 'src/data/aws_connect_lambda_function_association.dart'
+    show DataAwsConnectLambdaFunctionAssociation;
+export 'src/data/aws_connect_prompt.dart' show DataAwsConnectPrompt;
+export 'src/data/aws_connect_queue.dart' show DataAwsConnectQueue;
+export 'src/data/aws_connect_quick_connect.dart'
+    show DataAwsConnectQuickConnect;
+export 'src/data/aws_connect_routing_profile.dart'
+    show DataAwsConnectRoutingProfile;
+export 'src/data/aws_connect_security_profile.dart'
+    show DataAwsConnectSecurityProfile;
+export 'src/data/aws_connect_user.dart' show DataAwsConnectUser;
+export 'src/data/aws_connect_user_hierarchy_group.dart'
+    show DataAwsConnectUserHierarchyGroup;
+export 'src/data/aws_connect_user_hierarchy_structure.dart'
+    show DataAwsConnectUserHierarchyStructure;
+export 'src/data/aws_connect_vocabulary.dart' show DataAwsConnectVocabulary;

@@ -158,6 +158,7 @@ final class QuicksightDataSourceCredentials {
 
   final QuicksightDataSourceCredentialPair? credentialPair;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy_source_arn': ?copySourceArn?.toTfJson(),
     'secret_arn': ?secretArn?.toTfJson(),
@@ -178,6 +179,7 @@ final class QuicksightDataSourceCredentialPair {
 
   final Sensitive<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -254,6 +256,7 @@ final class QuicksightDataSourceParameters {
 
   final QuicksightDataSourceTwitter? twitter;
 
+  @internal
   Map<String, Object?> encode() => {
     'amazon_elasticsearch': ?amazonElasticsearch?.encode(),
     'athena': ?athena?.encode(),
@@ -287,6 +290,7 @@ final class QuicksightDataSourceAmazonElasticsearch {
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 }
 
@@ -300,6 +304,7 @@ final class QuicksightDataSourceAthena {
 
   final TfArg<String>? workGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'work_group': ?workGroup?.toTfJson(),
@@ -322,6 +327,7 @@ final class QuicksightDataSourceAurora {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -345,6 +351,7 @@ final class QuicksightDataSourceAuroraPostgresql {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -360,6 +367,7 @@ final class QuicksightDataSourceAwsIotAnalytics {
 
   final TfArg<String> dataSetName;
 
+  @internal
   Map<String, Object?> encode() => {'data_set_name': dataSetName.toTfJson()};
 }
 
@@ -379,6 +387,7 @@ final class QuicksightDataSourceDatabricks {
 
   final TfArg<String> sqlEndpointPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': host.toTfJson(),
     'port': port.toTfJson(),
@@ -394,6 +403,7 @@ final class QuicksightDataSourceJira {
 
   final TfArg<String> siteBaseUrl;
 
+  @internal
   Map<String, Object?> encode() => {'site_base_url': siteBaseUrl.toTfJson()};
 }
 
@@ -413,6 +423,7 @@ final class QuicksightDataSourceMariaDb {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -436,6 +447,7 @@ final class QuicksightDataSourceMysql {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -459,6 +471,7 @@ final class QuicksightDataSourceOracle {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -482,6 +495,7 @@ final class QuicksightDataSourcePostgresql {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -505,6 +519,7 @@ final class QuicksightDataSourcePresto {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog': catalog.toTfJson(),
     'host': host.toTfJson(),
@@ -525,6 +540,7 @@ final class QuicksightDataSourceRds {
 
   final TfArg<String> instanceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'instance_id': instanceId.toTfJson(),
@@ -550,6 +566,7 @@ final class QuicksightDataSourceRedshift {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_id': ?clusterId?.toTfJson(),
     'database': database.toTfJson(),
@@ -571,6 +588,7 @@ final class QuicksightDataSourceS3 {
 
   final QuicksightDataSourceManifestFileLocation manifestFileLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'manifest_file_location': manifestFileLocation.encode(),
@@ -590,6 +608,7 @@ final class QuicksightDataSourceManifestFileLocation {
 
   final TfArg<String> key;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
@@ -604,6 +623,7 @@ final class QuicksightDataSourceServiceNow {
 
   final TfArg<String> siteBaseUrl;
 
+  @internal
   Map<String, Object?> encode() => {'site_base_url': siteBaseUrl.toTfJson()};
 }
 
@@ -623,6 +643,7 @@ final class QuicksightDataSourceSnowflake {
 
   final TfArg<String> warehouse;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -640,6 +661,7 @@ final class QuicksightDataSourceSpark {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': host.toTfJson(),
     'port': port.toTfJson(),
@@ -662,6 +684,7 @@ final class QuicksightDataSourceSqlServer {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -685,6 +708,7 @@ final class QuicksightDataSourceTeradata {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'host': host.toTfJson(),
@@ -705,6 +729,7 @@ final class QuicksightDataSourceTwitter {
 
   final TfArg<String> query;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_rows': maxRows.toTfJson(),
     'query': query.toTfJson(),
@@ -724,6 +749,7 @@ final class QuicksightDataSourcePermission {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),
@@ -738,6 +764,7 @@ final class QuicksightDataSourceSslProperties {
 
   final TfArg<bool> disableSsl;
 
+  @internal
   Map<String, Object?> encode() => {'disable_ssl': disableSsl.toTfJson()};
 }
 
@@ -751,6 +778,7 @@ final class QuicksightDataSourceVpcConnectionProperties {
 
   final TfArg<String> vpcConnectionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'vpc_connection_arn': vpcConnectionArn.toTfJson(),
   };

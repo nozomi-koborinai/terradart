@@ -66,6 +66,7 @@ final class FirebaseExtensionsInstanceConfig {
 
   final TfArg<Map<String, String>>? systemParams;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_event_types': ?allowedEventTypes?.toTfJson(),
     'eventarc_channel': ?eventarcChannel?.toTfJson(),

@@ -144,6 +144,7 @@ final class ApiGatewayDomainNameEndpointConfiguration {
 
   final List<ApiGatewayDomainNameTypes> types;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'types': [for (final e in types) e.toTfJson()],
@@ -203,6 +204,7 @@ final class ApiGatewayDomainNameMutualTlsAuthentication {
 
   final TfArg<String>? truststoreVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'truststore_uri': truststoreUri.toTfJson(),
     'truststore_version': ?truststoreVersion?.toTfJson(),

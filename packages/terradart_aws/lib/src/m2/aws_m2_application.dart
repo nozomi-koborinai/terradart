@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/aws_iam_role.dart' show AwsIamRole;
@@ -41,8 +42,10 @@ sealed class M2ApplicationDefinition {
       M2ApplicationDefinitionS3Location;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -52,9 +55,11 @@ final class M2ApplicationDefinitionContent extends M2ApplicationDefinition {
 
   final TfArg<String> content;
 
+  @internal
   @override
   String get blockKey => 'content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 }
@@ -65,9 +70,11 @@ final class M2ApplicationDefinitionS3Location extends M2ApplicationDefinition {
 
   final TfArg<String> s3Location;
 
+  @internal
   @override
   String get blockKey => 's3_location';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'s3_location': s3Location.toTfJson()};
 }

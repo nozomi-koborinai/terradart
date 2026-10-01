@@ -184,6 +184,7 @@ final class FilestoreInstanceDirectoryServices {
 
   final FilestoreInstanceLdap? ldap;
 
+  @internal
   Map<String, Object?> encode() => {'ldap': ?ldap?.encode()};
 }
 
@@ -206,6 +207,7 @@ final class FilestoreInstanceLdap {
 
   final TfArg<String>? usersOu;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'groups_ou': ?groupsOu?.toTfJson(),
@@ -236,6 +238,7 @@ final class FilestoreInstanceFileShares {
 
   final List<FilestoreInstanceNfsExportOptions>? nfsExportOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_gb': capacityGb.toTfJson(),
     'name': name.toTfJson(),
@@ -271,6 +274,7 @@ final class FilestoreInstanceNfsExportOptions {
 
   final FilestoreInstanceNfsSquashMode? squashMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_mode': ?accessMode?.toTfJson(),
     'anon_gid': ?anonGid?.toTfJson(),
@@ -291,6 +295,7 @@ final class FilestoreInstanceInitialReplication {
 
   final List<FilestoreInstanceReplicas>? replicas;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     if (replicas != null) 'replicas': [for (final e in replicas!) e.encode()],
@@ -305,6 +310,7 @@ final class FilestoreInstanceReplicas {
 
   final TfArg<String> peerInstance;
 
+  @internal
   Map<String, Object?> encode() => {'peer_instance': peerInstance.toTfJson()};
 }
 
@@ -330,6 +336,7 @@ final class FilestoreInstanceNetworks {
 
   final FilestoreInstancePscConfig? pscConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'connect_mode': ?connectMode?.toTfJson(),
     'modes': [for (final e in modes) e.toTfJson()],
@@ -368,6 +375,7 @@ final class FilestoreInstancePscConfig {
 
   final TfArg<String>? endpointProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_project': ?endpointProject?.toTfJson(),
   };
@@ -392,8 +400,10 @@ sealed class FilestoreInstancePerformanceConfig {
   ) = FilestoreInstancePerformanceConfigFixedIops;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -404,9 +414,11 @@ final class FilestoreInstancePerformanceConfigIopsPerTb
 
   final FilestoreInstanceIopsPerTb iopsPerTb;
 
+  @internal
   @override
   String get blockKey => 'iops_per_tb';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'iops_per_tb': iopsPerTb.encode()};
 }
@@ -418,9 +430,11 @@ final class FilestoreInstancePerformanceConfigFixedIops
 
   final FilestoreInstanceFixedIops fixedIops;
 
+  @internal
   @override
   String get blockKey => 'fixed_iops';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'fixed_iops': fixedIops.encode()};
 }
@@ -433,6 +447,7 @@ final class FilestoreInstanceFixedIops {
 
   final TfArg<num>? maxIops;
 
+  @internal
   Map<String, Object?> encode() => {'max_iops': ?maxIops?.toTfJson()};
 }
 
@@ -444,6 +459,7 @@ final class FilestoreInstanceIopsPerTb {
 
   final TfArg<num>? maxIopsPerTb;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_iops_per_tb': ?maxIopsPerTb?.toTfJson(),
   };

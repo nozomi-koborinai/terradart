@@ -51,6 +51,7 @@ final class GuarddutyDetectorDatasources {
 
   final GuarddutyDetectorS3Logs? s3Logs;
 
+  @internal
   Map<String, Object?> encode() => {
     'kubernetes': ?kubernetes?.encode(),
     'malware_protection': ?malwareProtection?.encode(),
@@ -66,6 +67,7 @@ final class GuarddutyDetectorKubernetes {
 
   final GuarddutyDetectorAuditLogs auditLogs;
 
+  @internal
   Map<String, Object?> encode() => {'audit_logs': auditLogs.encode()};
 }
 
@@ -77,6 +79,7 @@ final class GuarddutyDetectorAuditLogs {
 
   final TfArg<bool> enable;
 
+  @internal
   Map<String, Object?> encode() => {'enable': enable.toTfJson()};
 }
 
@@ -91,6 +94,7 @@ final class GuarddutyDetectorMalwareProtection {
   final GuarddutyDetectorScanEc2InstanceWithFindings
   scanEc2InstanceWithFindings;
 
+  @internal
   Map<String, Object?> encode() => {
     'scan_ec2_instance_with_findings': scanEc2InstanceWithFindings.encode(),
   };
@@ -106,6 +110,7 @@ final class GuarddutyDetectorScanEc2InstanceWithFindings {
 
   final GuarddutyDetectorEbsVolumes ebsVolumes;
 
+  @internal
   Map<String, Object?> encode() => {'ebs_volumes': ebsVolumes.encode()};
 }
 
@@ -117,6 +122,7 @@ final class GuarddutyDetectorEbsVolumes {
 
   final TfArg<bool> enable;
 
+  @internal
   Map<String, Object?> encode() => {'enable': enable.toTfJson()};
 }
 
@@ -128,6 +134,7 @@ final class GuarddutyDetectorS3Logs {
 
   final TfArg<bool> enable;
 
+  @internal
   Map<String, Object?> encode() => {'enable': enable.toTfJson()};
 }
 

@@ -19,6 +19,7 @@ final class StoragegatewayFileSystemAssociationCacheAttributes {
 
   final TfArg<num>? cacheStaleTimeoutInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_stale_timeout_in_seconds': ?cacheStaleTimeoutInSeconds?.toTfJson(),
   };

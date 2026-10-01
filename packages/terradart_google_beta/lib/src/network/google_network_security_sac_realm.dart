@@ -77,6 +77,7 @@ final class NetworkSecuritySacRealmSymantecOptions {
 
   final TfArg<String>? secretPath;
 
+  @internal
   Map<String, Object?> encode() => {'secret_path': ?secretPath?.toTfJson()};
 }
 

@@ -12,6 +12,7 @@
 /// (never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/apigee/google_apigee_addons_config.dart'
     show
         ApigeeAddonsConfig,
@@ -166,3 +167,6 @@ export 'src/apigee/google_apigee_target_server.dart'
         ApigeeTargetServerProtocol,
         ApigeeTargetServerSSlInfo,
         GoogleApigeeTargetServer;
+export 'src/data/google_apigee_environment_iam_policy.dart'
+    show DataGoogleApigeeEnvironmentIamPolicy;
+export 'src/data/google_apigee_instance.dart' show DataGoogleApigeeInstance;

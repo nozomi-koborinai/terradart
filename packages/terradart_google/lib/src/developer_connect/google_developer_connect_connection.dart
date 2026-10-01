@@ -28,6 +28,7 @@ final class DeveloperConnectConnectionBitbucketCloudConfig {
   final DeveloperConnectConnectionReadAuthorizerCredential
   readAuthorizerCredential;
 
+  @internal
   Map<String, Object?> encode() => {
     'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
     'workspace': workspace.toTfJson(),
@@ -47,6 +48,7 @@ final class DeveloperConnectConnectionBitbucketCloudConfigAuthorizerCredential {
 
   final TfArg<String> userTokenSecretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_token_secret_version': userTokenSecretVersion.toTfJson(),
   };
@@ -63,6 +65,7 @@ final class DeveloperConnectConnectionReadAuthorizerCredential {
 
   final TfArg<String> userTokenSecretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_token_secret_version': userTokenSecretVersion.toTfJson(),
   };
@@ -96,6 +99,7 @@ final class DeveloperConnectConnectionBitbucketDataCenterConfig {
   final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_uri': hostUri.toTfJson(),
     'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
@@ -117,6 +121,7 @@ final class DeveloperConnectConnectionServiceDirectoryConfig {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
@@ -128,6 +133,7 @@ final class DeveloperConnectConnectionCryptoKeyConfig {
 
   final TfArg<String> keyReference;
 
+  @internal
   Map<String, Object?> encode() => {'key_reference': keyReference.toTfJson()};
 }
 
@@ -148,6 +154,7 @@ final class DeveloperConnectConnectionGithubConfig {
   final DeveloperConnectConnectionGithubConfigAuthorizerCredential?
   authorizerCredential;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_installation_id': ?appInstallationId?.toTfJson(),
     'github_app': githubApp.toTfJson(),
@@ -165,6 +172,7 @@ final class DeveloperConnectConnectionGithubConfigAuthorizerCredential {
 
   final TfArg<String> oauthTokenSecretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'oauth_token_secret_version': oauthTokenSecretVersion.toTfJson(),
   };
@@ -199,6 +207,7 @@ final class DeveloperConnectConnectionGithubEnterpriseConfig {
   final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_id': ?appId?.toTfJson(),
     'app_installation_id': ?appInstallationId?.toTfJson(),
@@ -228,6 +237,7 @@ final class DeveloperConnectConnectionGitlabConfig {
   final DeveloperConnectConnectionReadAuthorizerCredential
   readAuthorizerCredential;
 
+  @internal
   Map<String, Object?> encode() => {
     'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
     'authorizer_credential': authorizerCredential.encode(),
@@ -263,6 +273,7 @@ final class DeveloperConnectConnectionGitlabEnterpriseConfig {
   final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_uri': hostUri.toTfJson(),
     'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
@@ -297,6 +308,7 @@ final class DeveloperConnectConnectionHttpConfig {
   final DeveloperConnectConnectionServiceDirectoryConfig?
   serviceDirectoryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_uri': hostUri.toTfJson(),
     'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
@@ -319,6 +331,7 @@ final class DeveloperConnectConnectionBasicAuthentication {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_secret_version': ?passwordSecretVersion?.toTfJson(),
     'username': username.toTfJson(),
@@ -335,6 +348,7 @@ final class DeveloperConnectConnectionBearerTokenAuthentication {
 
   final TfArg<String>? tokenSecretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'token_secret_version': ?tokenSecretVersion?.toTfJson(),
   };

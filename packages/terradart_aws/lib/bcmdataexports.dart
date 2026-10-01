@@ -3,6 +3,7 @@
 /// AWS Billing and Cost Management Data Exports.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bcmdataexports/aws_bcmdataexports_export.dart'
     show
         AwsBcmdataexportsExport,

@@ -23,6 +23,7 @@ final class DataIamPrincipalPolicySimulationContext {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),

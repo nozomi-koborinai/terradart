@@ -43,6 +43,7 @@ final class DataEmailSecurityAllowPolicyFilter {
 
   final TfArg<bool>? verifySender;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'is_acceptable_sender': ?isAcceptableSender?.toTfJson(),

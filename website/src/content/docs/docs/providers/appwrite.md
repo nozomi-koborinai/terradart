@@ -23,7 +23,6 @@ dependencies:
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/storage.dart';
 import 'package:terradart_appwrite/tablesdb.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class BackendStack extends Stack {
   BackendStack()
@@ -66,7 +65,6 @@ Who may read or change a bucket, file, table or row is a list of `AppwritePermis
 import 'package:terradart_appwrite/auth.dart';
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/storage.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class UploadsStack extends Stack {
   UploadsStack()

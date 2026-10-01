@@ -3,6 +3,7 @@
 /// AWS WorkMail.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/workmail/aws_workmail_default_domain.dart'
     show AwsWorkmailDefaultDomain;
 export 'src/workmail/aws_workmail_domain.dart' show AwsWorkmailDomain;

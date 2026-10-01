@@ -35,6 +35,7 @@ final class SsmResourceDataSyncS3Destination {
 
   final SsmResourceDataSyncDestinationDataSharing? destinationDataSharing;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -72,6 +73,7 @@ final class SsmResourceDataSyncDestinationDataSharing {
   final SsmResourceDataSyncDestinationDataSharingType?
   destinationDataSharingType;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_data_sharing_type': ?destinationDataSharingType?.toTfJson(),
   };

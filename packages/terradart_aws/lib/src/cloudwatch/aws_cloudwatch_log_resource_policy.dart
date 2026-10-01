@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_cloudwatch_log_resource_policy`.
@@ -24,12 +25,15 @@ sealed class CloudwatchLogResourcePolicyScope {
   ) = CloudwatchLogResourcePolicyScopeResourceArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,12 +44,15 @@ final class CloudwatchLogResourcePolicyScopePolicyName
 
   final TfArg<String> policyName;
 
+  @internal
   @override
   String get blockKey => 'policy_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'policy_name': policyName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'policy_name': policyName};
 }
@@ -57,12 +64,15 @@ final class CloudwatchLogResourcePolicyScopeResourceArn
 
   final TfArg<String> resourceArn;
 
+  @internal
   @override
   String get blockKey => 'resource_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'resource_arn': resourceArn};
 }

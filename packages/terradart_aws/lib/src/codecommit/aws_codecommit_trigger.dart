@@ -29,6 +29,7 @@ final class CodecommitTrigger {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'branches': ?branches?.toTfJson(),
     'custom_data': ?customData?.toTfJson(),

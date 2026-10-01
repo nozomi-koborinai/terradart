@@ -17,6 +17,7 @@ final class LambdaAliasRoutingConfig {
 
   final TfArg<Map<String, num>>? additionalVersionWeights;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_version_weights': ?additionalVersionWeights?.toTfJson(),
   };

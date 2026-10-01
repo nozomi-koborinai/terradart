@@ -44,6 +44,7 @@ final class NetworkfirewallContainerAssociationContainerMonitoringConfiguration 
   final List<NetworkfirewallContainerAssociationAttributeFilter>?
   attributeFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
     if (attributeFilter != null)
@@ -64,6 +65,7 @@ final class NetworkfirewallContainerAssociationAttributeFilter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

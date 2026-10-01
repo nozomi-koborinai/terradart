@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_ami_launch_permission`.
@@ -46,12 +47,15 @@ sealed class AmiLaunchPermissionGrantee {
   ) = AmiLaunchPermissionGranteeOrganizationalUnitArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -62,12 +66,15 @@ final class AmiLaunchPermissionGranteeAccountId
 
   final TfArg<String> accountId;
 
+  @internal
   @override
   String get blockKey => 'account_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'account_id': accountId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
 }
@@ -78,12 +85,15 @@ final class AmiLaunchPermissionGranteeGroup extends AmiLaunchPermissionGrantee {
 
   final AmiLaunchPermissionGroup group;
 
+  @internal
   @override
   String get blockKey => 'group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'group': group.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'group': group};
 }
@@ -95,14 +105,17 @@ final class AmiLaunchPermissionGranteeOrganizationArn
 
   final TfArg<String> organizationArn;
 
+  @internal
   @override
   String get blockKey => 'organization_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'organization_arn': organizationArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'organization_arn': organizationArn,
@@ -118,14 +131,17 @@ final class AmiLaunchPermissionGranteeOrganizationalUnitArn
 
   final TfArg<String> organizationalUnitArn;
 
+  @internal
   @override
   String get blockKey => 'organizational_unit_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'organizational_unit_arn': organizationalUnitArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'organizational_unit_arn': organizationalUnitArn,

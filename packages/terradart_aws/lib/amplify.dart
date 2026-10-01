@@ -3,6 +3,7 @@
 /// AWS Amplify.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/amplify/aws_amplify_app.dart'
     show
         AmplifyAppAutoBranchCreationConfig,

@@ -15,6 +15,7 @@ final class DataplexEntryTypeRequiredAspects {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 

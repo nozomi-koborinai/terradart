@@ -3,6 +3,7 @@
 /// AWS Neptune Analytics.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/neptunegraph/aws_neptunegraph_graph.dart'
     show
         AwsNeptunegraphGraph,

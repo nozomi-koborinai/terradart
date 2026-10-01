@@ -77,6 +77,7 @@ final class SsmMaintenanceWindowTaskTargets {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -103,6 +104,7 @@ final class SsmMaintenanceWindowTaskInvocationParameters {
   final SsmMaintenanceWindowTaskStepFunctionsParameters?
   stepFunctionsParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'automation_parameters': ?automationParameters?.encode(),
     'lambda_parameters': ?lambdaParameters?.encode(),
@@ -124,6 +126,7 @@ final class SsmMaintenanceWindowTaskAutomationParameters {
 
   final List<SsmMaintenanceWindowTaskParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'document_version': ?documentVersion?.toTfJson(),
     if (parameter != null)
@@ -145,6 +148,7 @@ final class SsmMaintenanceWindowTaskParameter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -167,6 +171,7 @@ final class SsmMaintenanceWindowTaskLambdaParameters {
 
   final TfArg<String>? qualifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_context': ?clientContext?.toTfJson(),
     'payload': ?payload?.toTfJson(),
@@ -214,6 +219,7 @@ final class SsmMaintenanceWindowTaskRunCommandParameters {
 
   final List<SsmMaintenanceWindowTaskParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'document_hash': ?documentHash?.toTfJson(),
@@ -266,6 +272,7 @@ final class SsmMaintenanceWindowTaskCloudwatchConfig {
 
   final TfArg<bool>? cloudwatchOutputEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_name': ?cloudwatchLogGroupName
         ?.encodeAs('name')
@@ -290,6 +297,7 @@ final class SsmMaintenanceWindowTaskNotificationConfig {
 
   final SsmMaintenanceWindowTaskNotificationType? notificationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'notification_arn': ?notificationArn?.toTfJson(),
     if (notificationEvents != null)
@@ -376,6 +384,7 @@ final class SsmMaintenanceWindowTaskStepFunctionsParameters {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'input': ?input?.toTfJson(),
     'name': ?name?.toTfJson(),

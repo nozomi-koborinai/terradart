@@ -3,6 +3,18 @@
 /// AWS Systems Manager.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ssm_document.dart' show DataAwsSsmDocument;
+export 'src/data/aws_ssm_instances.dart'
+    show DataAwsSsmInstances, DataSsmInstancesFilter;
+export 'src/data/aws_ssm_maintenance_windows.dart'
+    show DataAwsSsmMaintenanceWindows, DataSsmMaintenanceWindowsFilter;
+export 'src/data/aws_ssm_parameter.dart' show DataAwsSsmParameter;
+export 'src/data/aws_ssm_parameters_by_path.dart'
+    show DataAwsSsmParametersByPath;
+export 'src/data/aws_ssm_patch_baseline.dart' show DataAwsSsmPatchBaseline;
+export 'src/data/aws_ssm_patch_baselines.dart'
+    show DataAwsSsmPatchBaselines, DataSsmPatchBaselinesFilter;
 export 'src/ssm/aws_ssm_activation.dart' show AwsSsmActivation;
 export 'src/ssm/aws_ssm_association.dart'
     show

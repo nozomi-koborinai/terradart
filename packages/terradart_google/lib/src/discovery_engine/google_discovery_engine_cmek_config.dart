@@ -17,6 +17,7 @@ final class DiscoveryEngineCmekConfigSingleRegionKeys {
 
   final RefTo<GoogleKmsCryptoKey> kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': kmsKey.encodeAs('id').toTfJson(),
   };

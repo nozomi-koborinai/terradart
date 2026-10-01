@@ -15,6 +15,7 @@ const Set<String> _awsAmiCopySensitive = <String>{};
 final class AmiCopyEbsBlockDevice {
   const AmiCopyEbsBlockDevice();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -24,6 +25,7 @@ final class AmiCopyEbsBlockDevice {
 final class AmiCopyEphemeralBlockDevice {
   const AmiCopyEphemeralBlockDevice();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

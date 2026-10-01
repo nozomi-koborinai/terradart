@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_bigquery_datapolicy_data_policy`.
@@ -93,8 +94,10 @@ sealed class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
   ) = BigqueryDatapolicyDataPolicyDataMaskingPolicyRoutine;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -107,9 +110,11 @@ final class BigqueryDatapolicyDataPolicyDataMaskingPolicyPredefinedExpression
 
   final BigqueryDatapolicyDataPolicyPredefinedExpression predefinedExpression;
 
+  @internal
   @override
   String get blockKey => 'predefined_expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'predefined_expression': predefinedExpression.toTfJson(),
@@ -123,9 +128,11 @@ final class BigqueryDatapolicyDataPolicyDataMaskingPolicyRoutine
 
   final TfArg<String> routine;
 
+  @internal
   @override
   String get blockKey => 'routine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'routine': routine.toTfJson()};
 }

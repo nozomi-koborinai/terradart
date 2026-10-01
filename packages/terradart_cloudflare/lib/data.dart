@@ -1,8 +1,13 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Read-only Cloudflare data sources (no `terraform apply` side effects).
+///
+/// Every data source is also exported from its service barrel
+/// (`DataCloudflareZone` from `zone.dart`); import this one for data
+/// sources of several services, or of none.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/data/cloudflare_access_rule.dart'
     show
         DataAccessRuleConfiguration,

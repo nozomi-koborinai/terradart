@@ -56,6 +56,7 @@ final class NetworkManagementConnectivityTestDestination {
 
   final TfArg<String>? redisInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_sql_instance': ?cloudSqlInstance?.toTfJson(),
     'forwarding_rule': ?forwardingRule?.toTfJson(),
@@ -143,6 +144,7 @@ final class NetworkManagementConnectivityTestSource {
 
   final NetworkManagementConnectivityTestCloudRunRevision? cloudRunRevision;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_sql_instance': ?cloudSqlInstance?.toTfJson(),
     'gke_master_cluster': ?gkeMasterCluster?.toTfJson(),
@@ -191,6 +193,7 @@ final class NetworkManagementConnectivityTestAppEngineVersion {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
@@ -202,6 +205,7 @@ final class NetworkManagementConnectivityTestCloudFunction {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
@@ -213,6 +217,7 @@ final class NetworkManagementConnectivityTestCloudRunRevision {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 

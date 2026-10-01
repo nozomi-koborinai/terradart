@@ -13,6 +13,7 @@ const Set<String> _awsAmiFromInstanceSensitive = <String>{};
 final class AmiFromInstanceEbsBlockDevice {
   const AmiFromInstanceEbsBlockDevice();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -22,6 +23,7 @@ final class AmiFromInstanceEbsBlockDevice {
 final class AmiFromInstanceEphemeralBlockDevice {
   const AmiFromInstanceEphemeralBlockDevice();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

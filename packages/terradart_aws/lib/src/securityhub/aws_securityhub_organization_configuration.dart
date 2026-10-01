@@ -41,6 +41,7 @@ final class SecurityhubOrganizationConfiguration {
 
   final SecurityhubOrganizationConfigurationType configurationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
   };

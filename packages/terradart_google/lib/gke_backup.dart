@@ -6,6 +6,11 @@
 /// [GoogleGkeBackupBackupPlan] with [GoogleContainerCluster].
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_gke_backup_backup_plan_iam_policy.dart'
+    show DataGoogleGkeBackupBackupPlanIamPolicy;
+export 'src/data/google_gke_backup_restore_plan_iam_policy.dart'
+    show DataGoogleGkeBackupRestorePlanIamPolicy;
 export 'src/gke_backup/google_gke_backup_backup_channel.dart'
     show GoogleGkeBackupBackupChannel;
 export 'src/gke_backup/google_gke_backup_backup_plan.dart'

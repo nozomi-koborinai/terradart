@@ -20,6 +20,7 @@ final class DiscoveryEngineAssistantCustomerPolicy {
 
   final DiscoveryEngineAssistantModelArmorConfig? modelArmorConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bannedPhrases != null)
       'banned_phrases': [for (final e in bannedPhrases!) e.encode()],
@@ -43,6 +44,7 @@ final class DiscoveryEngineAssistantBannedPhrases {
 
   final TfArg<String> phrase;
 
+  @internal
   Map<String, Object?> encode() => {
     'ignore_diacritics': ?ignoreDiacritics?.toTfJson(),
     'match_type': ?matchType?.toTfJson(),
@@ -66,6 +68,7 @@ final class DiscoveryEngineAssistantModelArmorConfig {
 
   final TfArg<String> userPromptTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_mode': ?failureMode?.toTfJson(),
     'response_template': responseTemplate.toTfJson(),
@@ -86,6 +89,7 @@ final class DiscoveryEngineAssistantGenerationConfig {
 
   final DiscoveryEngineAssistantSystemInstruction? systemInstruction;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_language': ?defaultLanguage?.toTfJson(),
     'system_instruction': ?systemInstruction?.encode(),
@@ -102,6 +106,7 @@ final class DiscoveryEngineAssistantSystemInstruction {
 
   final TfArg<String>? additionalSystemInstruction;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_system_instruction': ?additionalSystemInstruction?.toTfJson(),
   };

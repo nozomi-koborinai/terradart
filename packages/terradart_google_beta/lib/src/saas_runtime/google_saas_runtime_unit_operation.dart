@@ -13,6 +13,7 @@ const Set<String> _googleSaasRuntimeUnitOperationSensitive = <String>{};
 final class SaasRuntimeUnitOperationDeprovision {
   const SaasRuntimeUnitOperationDeprovision();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -26,6 +27,7 @@ final class SaasRuntimeUnitOperationProvision {
 
   final List<SaasRuntimeUnitOperationInputVariables>? inputVariables;
 
+  @internal
   Map<String, Object?> encode() => {
     'release': ?release?.toTfJson(),
     if (inputVariables != null)
@@ -50,6 +52,7 @@ final class SaasRuntimeUnitOperationInputVariables {
 
   final TfArg<String> variable;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -67,6 +70,7 @@ final class SaasRuntimeUnitOperationUpgrade {
 
   final List<SaasRuntimeUnitOperationInputVariables>? inputVariables;
 
+  @internal
   Map<String, Object?> encode() => {
     'release': ?release?.toTfJson(),
     if (inputVariables != null)

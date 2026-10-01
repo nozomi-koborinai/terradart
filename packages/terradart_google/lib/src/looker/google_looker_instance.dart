@@ -78,6 +78,7 @@ final class LookerInstanceAdminSettings {
 
   final TfArg<List<String>>? allowedEmailDomains;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_email_domains': ?allowedEmailDomains?.toTfJson(),
   };
@@ -96,6 +97,7 @@ final class LookerInstanceControlledEgressConfig {
 
   final TfArg<bool>? marketplaceEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'egress_fqdns': ?egressFqdns?.toTfJson(),
     'marketplace_enabled': ?marketplaceEnabled?.toTfJson(),
@@ -110,6 +112,7 @@ final class LookerInstanceCustomDomain {
 
   final TfArg<String>? domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': ?domain?.toTfJson()};
 }
 
@@ -129,6 +132,7 @@ final class LookerInstanceDenyMaintenancePeriod {
 
   final LookerInstanceTime time;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.encode(),
     'start_date': startDate.encode(),
@@ -148,6 +152,7 @@ final class LookerInstanceEndDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -167,6 +172,7 @@ final class LookerInstanceStartDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -193,6 +199,7 @@ final class LookerInstanceTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -209,6 +216,7 @@ final class LookerInstanceEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };
@@ -227,6 +235,7 @@ final class LookerInstanceMaintenanceWindow {
 
   final LookerInstanceStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     'start_time': startTime.encode(),
@@ -280,6 +289,7 @@ final class LookerInstanceStartTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -301,6 +311,7 @@ final class LookerInstanceOauthConfig {
 
   final TfArg<String> clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
@@ -323,6 +334,7 @@ final class LookerInstancePeriodicExportConfig {
 
   final LookerInstanceStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcs_uri': gcsUri.toTfJson(),
     'kms_key': kmsKey.encodeAs('id').toTfJson(),
@@ -340,6 +352,7 @@ final class LookerInstancePscConfig {
 
   final List<LookerInstanceServiceAttachments>? serviceAttachments;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_vpcs': ?allowedVpcs?.toTfJson(),
     if (serviceAttachments != null)
@@ -360,6 +373,7 @@ final class LookerInstanceServiceAttachments {
 
   final TfArg<String>? targetServiceAttachmentUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_fqdn': ?localFqdn?.toTfJson(),
     'target_service_attachment_uri': ?targetServiceAttachmentUri?.toTfJson(),
@@ -382,6 +396,7 @@ final class LookerInstanceUserMetadata {
 
   final TfArg<num>? additionalViewerUserCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_developer_user_count': ?additionalDeveloperUserCount
         ?.toTfJson(),

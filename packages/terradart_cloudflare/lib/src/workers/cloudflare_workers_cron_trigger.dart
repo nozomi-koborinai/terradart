@@ -17,6 +17,7 @@ final class WorkersCronTriggerSchedules {
 
   final TfArg<String> cron;
 
+  @internal
   Map<String, Object?> encode() => {'cron': cron.toTfJson()};
 }
 

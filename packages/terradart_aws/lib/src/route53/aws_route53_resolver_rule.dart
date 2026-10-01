@@ -47,6 +47,7 @@ final class Route53ResolverRuleTargetIp {
 
   final Route53ResolverRuleProtocol? protocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip': ?ip?.toTfJson(),
     'ipv6': ?ipv6?.toTfJson(),

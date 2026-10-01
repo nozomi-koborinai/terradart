@@ -22,6 +22,7 @@ final class PrometheusQueryLoggingConfigurationDestination {
 
   final List<PrometheusQueryLoggingConfigurationFilters>? filters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cloudwatchLogs != null)
       'cloudwatch_logs': [for (final e in cloudwatchLogs!) e.encode()],
@@ -39,6 +40,7 @@ final class PrometheusQueryLoggingConfigurationCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
   };
@@ -54,6 +56,7 @@ final class PrometheusQueryLoggingConfigurationFilters {
 
   final TfArg<num> qspThreshold;
 
+  @internal
   Map<String, Object?> encode() => {'qsp_threshold': qspThreshold.toTfJson()};
 }
 

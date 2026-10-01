@@ -7,7 +7,6 @@
 library;
 
 import 'package:terradart_cloudflare/terradart_cloudflare.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class CloudflareLeftoverStack extends Stack {
   CloudflareLeftoverStack() : super(providers: [const CloudflareProvider()]) {

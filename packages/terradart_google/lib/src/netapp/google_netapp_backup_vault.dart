@@ -86,6 +86,7 @@ final class NetappBackupVaultBackupRetentionPolicy {
 
   final TfArg<bool>? weeklyBackupImmutable;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_minimum_enforced_retention_days': backupMinimumEnforcedRetentionDays
         .toTfJson(),

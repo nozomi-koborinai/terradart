@@ -3,6 +3,7 @@
 /// AWS AppConfig.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appconfig/aws_appconfig_application.dart'
     show AwsAppconfigApplication;
 export 'src/appconfig/aws_appconfig_configuration_profile.dart'
@@ -31,3 +32,13 @@ export 'src/appconfig/aws_appconfig_extension_association.dart'
     show AwsAppconfigExtensionAssociation;
 export 'src/appconfig/aws_appconfig_hosted_configuration_version.dart'
     show AwsAppconfigHostedConfigurationVersion;
+export 'src/data/aws_appconfig_application.dart'
+    show DataAwsAppconfigApplication;
+export 'src/data/aws_appconfig_configuration_profile.dart'
+    show DataAwsAppconfigConfigurationProfile;
+export 'src/data/aws_appconfig_configuration_profiles.dart'
+    show DataAwsAppconfigConfigurationProfiles;
+export 'src/data/aws_appconfig_environment.dart'
+    show DataAwsAppconfigEnvironment;
+export 'src/data/aws_appconfig_environments.dart'
+    show DataAwsAppconfigEnvironments;

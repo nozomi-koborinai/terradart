@@ -37,6 +37,7 @@ final class ServiceDiscoveryServiceDnsConfig {
 
   final List<ServiceDiscoveryServiceDnsRecords> dnsRecords;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace_id': namespaceId.toTfJson(),
     'routing_policy': ?routingPolicy?.toTfJson(),
@@ -80,6 +81,7 @@ final class ServiceDiscoveryServiceDnsRecords {
 
   final ServiceDiscoveryServiceDnsRecordsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'ttl': ttl.toTfJson(),
     'type': type.toTfJson(),
@@ -131,6 +133,7 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
 
   final ServiceDiscoveryServiceHealthCheckConfigType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'resource_path': ?resourcePath?.toTfJson(),
@@ -174,6 +177,7 @@ final class ServiceDiscoveryServiceHealthCheckCustomConfig {
 
   final TfArg<num>? failureThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
   };

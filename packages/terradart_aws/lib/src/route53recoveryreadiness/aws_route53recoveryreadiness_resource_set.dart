@@ -23,6 +23,7 @@ final class Route53recoveryreadinessResourceSetResources {
 
   final Route53recoveryreadinessResourceSetDnsTargetResource? dnsTargetResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'readiness_scopes': ?readinessScopes?.toTfJson(),
     'resource_arn': ?resourceArn?.toTfJson(),
@@ -52,6 +53,7 @@ final class Route53recoveryreadinessResourceSetDnsTargetResource {
 
   final Route53recoveryreadinessResourceSetTargetResource? targetResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'hosted_zone_arn': ?hostedZoneArn?.toTfJson(),
@@ -74,6 +76,7 @@ final class Route53recoveryreadinessResourceSetTargetResource {
 
   final Route53recoveryreadinessResourceSetR53Resource? r53Resource;
 
+  @internal
   Map<String, Object?> encode() => {
     'nlb_resource': ?nlbResource?.encode(),
     'r53_resource': ?r53Resource?.encode(),
@@ -88,6 +91,7 @@ final class Route53recoveryreadinessResourceSetNlbResource {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
@@ -104,6 +108,7 @@ final class Route53recoveryreadinessResourceSetR53Resource {
 
   final TfArg<String>? recordSetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': ?domainName?.toTfJson(),
     'record_set_id': ?recordSetId?.toTfJson(),

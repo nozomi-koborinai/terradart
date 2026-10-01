@@ -3,6 +3,13 @@
 /// AWS Cloud Map (service discovery).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_service_discovery_dns_namespace.dart'
+    show DataAwsServiceDiscoveryDnsNamespace;
+export 'src/data/aws_service_discovery_http_namespace.dart'
+    show DataAwsServiceDiscoveryHttpNamespace;
+export 'src/data/aws_service_discovery_service.dart'
+    show DataAwsServiceDiscoveryService;
 export 'src/service_discovery/aws_service_discovery_http_namespace.dart'
     show AwsServiceDiscoveryHttpNamespace;
 export 'src/service_discovery/aws_service_discovery_instance.dart'

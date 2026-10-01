@@ -62,8 +62,10 @@ sealed class AccessanalyzerAnalyzerConfiguration {
   ) = AccessanalyzerAnalyzerConfigurationUnusedAccess;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -74,9 +76,11 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccess
 
   final AccessanalyzerAnalyzerInternalAccess internalAccess;
 
+  @internal
   @override
   String get blockKey => 'internal_access';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'internal_access': internalAccess.encode()};
 }
@@ -88,9 +92,11 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccess
 
   final AccessanalyzerAnalyzerUnusedAccess unusedAccess;
 
+  @internal
   @override
   String get blockKey => 'unused_access';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'unused_access': unusedAccess.encode()};
 }
@@ -103,6 +109,7 @@ final class AccessanalyzerAnalyzerInternalAccess {
 
   final AccessanalyzerAnalyzerInternalAccessAnalysisRule? analysisRule;
 
+  @internal
   Map<String, Object?> encode() => {'analysis_rule': ?analysisRule?.encode()};
 }
 
@@ -114,6 +121,7 @@ final class AccessanalyzerAnalyzerInternalAccessAnalysisRule {
 
   final List<AccessanalyzerAnalyzerInclusion>? inclusion;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inclusion != null)
       'inclusion': [for (final e in inclusion!) e.encode()],
@@ -136,6 +144,7 @@ final class AccessanalyzerAnalyzerInclusion {
 
   final List<AccessanalyzerAnalyzerResourceTypes>? resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_ids': ?accountIds?.toTfJson(),
     'resource_arns': ?resourceArns?.toTfJson(),
@@ -241,6 +250,7 @@ final class AccessanalyzerAnalyzerUnusedAccess {
 
   final AccessanalyzerAnalyzerUnusedAccessAnalysisRule? analysisRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'unused_access_age': ?unusedAccessAge?.toTfJson(),
     'analysis_rule': ?analysisRule?.encode(),
@@ -255,6 +265,7 @@ final class AccessanalyzerAnalyzerUnusedAccessAnalysisRule {
 
   final List<AccessanalyzerAnalyzerExclusion>? exclusion;
 
+  @internal
   Map<String, Object?> encode() => {
     if (exclusion != null)
       'exclusion': [for (final e in exclusion!) e.encode()],
@@ -271,6 +282,7 @@ final class AccessanalyzerAnalyzerExclusion {
 
   final TfArg<List<Object?>>? resourceTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_ids': ?accountIds?.toTfJson(),
     'resource_tags': ?resourceTags?.toTfJson(),

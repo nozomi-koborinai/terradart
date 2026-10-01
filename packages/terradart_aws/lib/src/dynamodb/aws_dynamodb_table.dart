@@ -111,12 +111,15 @@ sealed class DynamodbTableSource {
   ) = DynamodbTableSourceRestoreSourceTableArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -126,12 +129,15 @@ final class DynamodbTableSourceImportTable extends DynamodbTableSource {
 
   final DynamodbTableImportTable importTable;
 
+  @internal
   @override
   String get blockKey => 'import_table';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'import_table': importTable.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'import_table': TfArg.literal(importTable.encode()),
@@ -144,14 +150,17 @@ final class DynamodbTableSourceRestoreBackupArn extends DynamodbTableSource {
 
   final TfArg<String> restoreBackupArn;
 
+  @internal
   @override
   String get blockKey => 'restore_backup_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_backup_arn': restoreBackupArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_backup_arn': restoreBackupArn,
@@ -164,14 +173,17 @@ final class DynamodbTableSourceRestoreSourceName extends DynamodbTableSource {
 
   final TfArg<String> restoreSourceName;
 
+  @internal
   @override
   String get blockKey => 'restore_source_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_source_name': restoreSourceName.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_source_name': restoreSourceName,
@@ -185,14 +197,17 @@ final class DynamodbTableSourceRestoreSourceTableArn
 
   final TfArg<String> restoreSourceTableArn;
 
+  @internal
   @override
   String get blockKey => 'restore_source_table_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_source_table_arn': restoreSourceTableArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_source_table_arn': restoreSourceTableArn,
@@ -209,6 +224,7 @@ final class DynamodbTableAttribute {
 
   final DynamodbTableType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -267,6 +283,7 @@ final class DynamodbTableGlobalSecondaryIndex {
 
   final DynamodbTableWarmThroughput? warmThroughput;
 
+  @internal
   Map<String, Object?> encode() => {
     'hash_key': ?hashKey?.toTfJson(),
     'name': name.toTfJson(),
@@ -317,6 +334,7 @@ final class DynamodbTableKeySchema {
 
   final DynamodbTableKeyType keyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'key_type': keyType.toTfJson(),
@@ -351,6 +369,7 @@ final class DynamodbTableOnDemandThroughput {
 
   final TfArg<num>? maxWriteRequestUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_read_request_units': ?maxReadRequestUnits?.toTfJson(),
     'max_write_request_units': ?maxWriteRequestUnits?.toTfJson(),
@@ -371,6 +390,7 @@ final class DynamodbTableWarmThroughput {
 
   final TfArg<num>? writeUnitsPerSecond;
 
+  @internal
   Map<String, Object?> encode() => {
     'read_units_per_second': ?readUnitsPerSecond?.toTfJson(),
     'write_units_per_second': ?writeUnitsPerSecond?.toTfJson(),
@@ -385,6 +405,7 @@ final class DynamodbTableGlobalTableWitness {
 
   final TfArg<String>? regionName;
 
+  @internal
   Map<String, Object?> encode() => {'region_name': ?regionName?.toTfJson()};
 }
 
@@ -407,6 +428,7 @@ final class DynamodbTableImportTable {
 
   final DynamodbTableS3BucketSource s3BucketSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_compression_type': ?inputCompressionType?.toTfJson(),
     'input_format': inputFormat.toTfJson(),
@@ -460,6 +482,7 @@ final class DynamodbTableInputFormatOptions {
 
   final DynamodbTableCsv? csv;
 
+  @internal
   Map<String, Object?> encode() => {'csv': ?csv?.encode()};
 }
 
@@ -473,6 +496,7 @@ final class DynamodbTableCsv {
 
   final TfArg<List<String>>? headerList;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'header_list': ?headerList?.toTfJson(),
@@ -495,6 +519,7 @@ final class DynamodbTableS3BucketSource {
 
   final TfArg<String>? keyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'bucket_owner': ?bucketOwner?.toTfJson(),
@@ -521,6 +546,7 @@ final class DynamodbTableLocalSecondaryIndex {
 
   final TfArg<String> rangeKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
@@ -542,6 +568,7 @@ final class DynamodbTablePointInTimeRecovery {
 
   final TfArg<num>? recoveryPeriodInDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'recovery_period_in_days': ?recoveryPeriodInDays?.toTfJson(),
@@ -573,6 +600,7 @@ final class DynamodbTableReplica {
 
   final TfArg<String> regionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'consistency_mode': ?consistencyMode?.toTfJson(),
     'deletion_protection_enabled': ?deletionProtectionEnabled?.toTfJson(),
@@ -613,6 +641,7 @@ final class DynamodbTableServerSideEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -629,6 +658,7 @@ final class DynamodbTableTtl {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': ?attributeName?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),

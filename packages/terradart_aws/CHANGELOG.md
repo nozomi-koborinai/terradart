@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel (`DataAwsVpc` from `ec2.dart`). Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `AwsProvider` instance instead of `'aws.<alias>'`. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)` (`AwsDbInstance(password: .password(dbPassword))`), write-only `_wo` arguments included. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).
 - **Breaking:** every generated enum is an extension type implementing `TfArg<String>`, so an enum slot takes a member bare — `priceClass: .priceclass100`, `actions: [.getcertificate]` instead of `[.literal(.getcertificate)]`. `.variable(...)`, `.expression(...)` and `.arg(...)` cover values not known at synth time. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).

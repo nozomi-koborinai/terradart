@@ -53,6 +53,7 @@ final class R2BucketEventNotificationRules {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': [for (final e in actions) e.toTfJson()],
     'description': ?description?.toTfJson(),

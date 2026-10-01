@@ -29,6 +29,7 @@ final class LustreInstanceAccessRulesOptions {
 
   final List<LustreInstanceAccessRules>? accessRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_squash_gid': ?defaultSquashGid?.toTfJson(),
     'default_squash_mode': defaultSquashMode.toTfJson(),
@@ -54,6 +55,7 @@ final class LustreInstanceAccessRules {
 
   final TfArg<String> squashMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_ranges': ipAddressRanges.toTfJson(),
     'name': name.toTfJson(),
@@ -69,6 +71,7 @@ final class LustreInstanceDynamicTierOptions {
 
   final TfArg<String> mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -85,6 +88,7 @@ final class LustreInstanceMaintenancePolicy {
 
   final LustreInstanceWeeklyMaintenanceWindows weeklyMaintenanceWindows;
 
+  @internal
   Map<String, Object?> encode() => {
     'maintenance_exclusion_window': ?maintenanceExclusionWindow?.encode(),
     'weekly_maintenance_windows': weeklyMaintenanceWindows.encode(),
@@ -107,6 +111,7 @@ final class LustreInstanceMaintenanceExclusionWindow {
 
   final LustreInstanceTime time;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.encode(),
     'start_date': startDate.encode(),
@@ -126,6 +131,7 @@ final class LustreInstanceEndDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -145,6 +151,7 @@ final class LustreInstanceStartDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -171,6 +178,7 @@ final class LustreInstanceTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -192,6 +200,7 @@ final class LustreInstanceWeeklyMaintenanceWindows {
 
   final LustreInstanceStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     'start_time': startTime.encode(),
@@ -217,6 +226,7 @@ final class LustreInstanceStartTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),

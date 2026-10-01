@@ -59,12 +59,15 @@ sealed class SignerSigningProfileName {
       SignerSigningProfileNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -74,12 +77,15 @@ final class SignerSigningProfileNameChoice extends SignerSigningProfileName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -90,12 +96,15 @@ final class SignerSigningProfileNamePrefix extends SignerSigningProfileName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -113,6 +122,7 @@ final class SignerSigningProfileSignatureValidityPeriod {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -142,6 +152,7 @@ final class SignerSigningProfileSigningMaterial {
 
   final TfArg<String> certificateArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
   };

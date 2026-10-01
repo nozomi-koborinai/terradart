@@ -96,12 +96,15 @@ sealed class FsxWindowsFileSystemActiveDirectory {
   ) = FsxWindowsFileSystemSelfManagedActiveDirectoryChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -112,14 +115,17 @@ final class FsxWindowsFileSystemActiveDirectoryId
 
   final TfArg<String> activeDirectoryId;
 
+  @internal
   @override
   String get blockKey => 'active_directory_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'active_directory_id': activeDirectoryId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'active_directory_id': activeDirectoryId,
@@ -136,14 +142,17 @@ final class FsxWindowsFileSystemSelfManagedActiveDirectoryChoice
   final FsxWindowsFileSystemSelfManagedActiveDirectory
   selfManagedActiveDirectory;
 
+  @internal
   @override
   String get blockKey => 'self_managed_active_directory';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'self_managed_active_directory': selfManagedActiveDirectory.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'self_managed_active_directory': TfArg.literal(
@@ -169,6 +178,7 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
   final FsxWindowsFileSystemFileShareAccessAuditLogLevel?
   fileShareAccessAuditLogLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit_log_destination': ?auditLogDestination?.toTfJson(),
     'file_access_audit_log_level': ?fileAccessAuditLogLevel?.toTfJson(),
@@ -253,6 +263,7 @@ final class FsxWindowsFileSystemDiskIopsConfiguration {
 
   final FsxWindowsFileSystemMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -314,6 +325,7 @@ final class FsxWindowsFileSystemSelfManagedActiveDirectory {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_ips': dnsIps.toTfJson(),
     'domain_join_service_account_secret': ?domainJoinServiceAccountSecret

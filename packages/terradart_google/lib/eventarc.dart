@@ -5,6 +5,9 @@
 /// and HTTP endpoints.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_eventarc_pipeline_iam_policy.dart'
+    show DataGoogleEventarcPipelineIamPolicy;
 export 'src/eventarc/google_eventarc_channel.dart' show GoogleEventarcChannel;
 export 'src/eventarc/google_eventarc_enrollment.dart'
     show GoogleEventarcEnrollment;

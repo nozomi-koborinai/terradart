@@ -4,6 +4,7 @@
 /// while they exist (never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/active_directory/google_active_directory_domain.dart'
     show GoogleActiveDirectoryDomain;
 export 'src/active_directory/google_active_directory_domain_trust.dart'

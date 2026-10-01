@@ -49,6 +49,7 @@ final class ZoneCacheVariantsValue {
 
   final TfArg<List<String>>? webp;
 
+  @internal
   Map<String, Object?> encode() => {
     'avif': ?avif?.toTfJson(),
     'bmp': ?bmp?.toTfJson(),

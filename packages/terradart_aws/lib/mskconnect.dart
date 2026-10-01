@@ -3,6 +3,12 @@
 /// AWS MSK Connect.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_mskconnect_connector.dart' show DataAwsMskconnectConnector;
+export 'src/data/aws_mskconnect_custom_plugin.dart'
+    show DataAwsMskconnectCustomPlugin;
+export 'src/data/aws_mskconnect_worker_configuration.dart'
+    show DataAwsMskconnectWorkerConfiguration;
 export 'src/mskconnect/aws_mskconnect_connector.dart'
     show
         AwsMskconnectConnector,

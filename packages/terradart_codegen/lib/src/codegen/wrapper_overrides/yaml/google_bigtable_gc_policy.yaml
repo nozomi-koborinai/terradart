@@ -52,7 +52,9 @@ prelude: |
       required TfArg<num> number,
     }) = BigtableGcPolicyMaxVersion;
 
+    @internal
     String get blockKey;
+    @internal
     Map<String, Object?> encode();
   }
 
@@ -64,9 +66,11 @@ prelude: |
     final TfArg<String>? duration;
 
     @override
+    @internal
     String get blockKey => 'max_age';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           if (days != null) 'days': days!.toTfJson(),
           if (duration != null) 'duration': duration!.toTfJson(),
@@ -80,9 +84,11 @@ prelude: |
     final TfArg<num> number;
 
     @override
+    @internal
     String get blockKey => 'max_version';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'number': number.toTfJson(),
         };

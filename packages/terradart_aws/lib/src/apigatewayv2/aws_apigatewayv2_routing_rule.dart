@@ -15,6 +15,7 @@ final class Apigatewayv2RoutingRuleAction {
 
   final List<Apigatewayv2RoutingRuleInvokeApi>? invokeApi;
 
+  @internal
   Map<String, Object?> encode() => {
     if (invokeApi != null)
       'invoke_api': [for (final e in invokeApi!) e.encode()],
@@ -37,6 +38,7 @@ final class Apigatewayv2RoutingRuleInvokeApi {
 
   final TfArg<bool>? stripBasePath;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_id': apiId.toTfJson(),
     'stage': stage.toTfJson(),
@@ -57,6 +59,7 @@ final class Apigatewayv2RoutingRuleCondition {
 
   final List<Apigatewayv2RoutingRuleMatchHeaders>? matchHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     if (matchBasePaths != null)
       'match_base_paths': [for (final e in matchBasePaths!) e.encode()],
@@ -73,6 +76,7 @@ final class Apigatewayv2RoutingRuleMatchBasePaths {
 
   final TfArg<List<String>> anyOf;
 
+  @internal
   Map<String, Object?> encode() => {'any_of': anyOf.toTfJson()};
 }
 
@@ -84,6 +88,7 @@ final class Apigatewayv2RoutingRuleMatchHeaders {
 
   final List<Apigatewayv2RoutingRuleAnyOf>? anyOf;
 
+  @internal
   Map<String, Object?> encode() => {
     if (anyOf != null) 'any_of': [for (final e in anyOf!) e.encode()],
   };
@@ -102,6 +107,7 @@ final class Apigatewayv2RoutingRuleAnyOf {
 
   final TfArg<String> valueGlob;
 
+  @internal
   Map<String, Object?> encode() => {
     'header': header.toTfJson(),
     'value_glob': valueGlob.toTfJson(),

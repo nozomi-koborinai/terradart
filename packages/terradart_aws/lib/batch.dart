@@ -3,6 +3,7 @@
 /// AWS Batch.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/batch/aws_batch_compute_environment.dart'
     show
         AwsBatchComputeEnvironment,
@@ -62,3 +63,9 @@ export 'src/batch/aws_batch_scheduling_policy.dart'
         AwsBatchSchedulingPolicy,
         BatchSchedulingPolicyFairSharePolicy,
         BatchSchedulingPolicyShareDistribution;
+export 'src/data/aws_batch_compute_environment.dart'
+    show DataAwsBatchComputeEnvironment;
+export 'src/data/aws_batch_job_definition.dart' show DataAwsBatchJobDefinition;
+export 'src/data/aws_batch_job_queue.dart' show DataAwsBatchJobQueue;
+export 'src/data/aws_batch_scheduling_policy.dart'
+    show DataAwsBatchSchedulingPolicy;

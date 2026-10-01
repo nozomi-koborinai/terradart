@@ -17,6 +17,7 @@ final class ChimesdkvoiceSipMediaApplicationEndpoints {
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
   };

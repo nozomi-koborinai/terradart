@@ -31,12 +31,15 @@ sealed class HealthcarePipelineJobTask {
   ) = HealthcarePipelineJobTaskBackfillPipelineJob;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -47,14 +50,17 @@ final class HealthcarePipelineJobTaskMappingPipelineJob
 
   final HealthcarePipelineJobMappingPipelineJob mappingPipelineJob;
 
+  @internal
   @override
   String get blockKey => 'mapping_pipeline_job';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mapping_pipeline_job': mappingPipelineJob.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'mapping_pipeline_job': TfArg.literal(mappingPipelineJob.encode()),
@@ -71,14 +77,17 @@ final class HealthcarePipelineJobTaskReconciliationPipelineJob
   final HealthcarePipelineJobReconciliationPipelineJob
   reconciliationPipelineJob;
 
+  @internal
   @override
   String get blockKey => 'reconciliation_pipeline_job';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'reconciliation_pipeline_job': reconciliationPipelineJob.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'reconciliation_pipeline_job': TfArg.literal(
@@ -94,14 +103,17 @@ final class HealthcarePipelineJobTaskBackfillPipelineJob
 
   final HealthcarePipelineJobBackfillPipelineJob backfillPipelineJob;
 
+  @internal
   @override
   String get blockKey => 'backfill_pipeline_job';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'backfill_pipeline_job': backfillPipelineJob.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'backfill_pipeline_job': TfArg.literal(backfillPipelineJob.encode()),
@@ -116,6 +128,7 @@ final class HealthcarePipelineJobBackfillPipelineJob {
 
   final TfArg<String>? mappingPipelineJob;
 
+  @internal
   Map<String, Object?> encode() => {
     'mapping_pipeline_job': ?mappingPipelineJob?.toTfJson(),
   };
@@ -137,6 +150,7 @@ final class HealthcarePipelineJobMappingPipelineJob {
 
   final HealthcarePipelineJobMappingConfig mappingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?destination?.encode(),
     'fhir_streaming_source': ?fhirStreamingSource?.encode(),
@@ -163,8 +177,10 @@ sealed class HealthcarePipelineJobDestination {
   ) = HealthcarePipelineJobReconciliationDestination;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -175,9 +191,11 @@ final class HealthcarePipelineJobFhirStoreDestination
 
   final TfArg<String> fhirStoreDestination;
 
+  @internal
   @override
   String get blockKey => 'fhir_store_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'fhir_store_destination': fhirStoreDestination.toTfJson(),
@@ -193,9 +211,11 @@ final class HealthcarePipelineJobReconciliationDestination
 
   final TfArg<bool> reconciliationDestination;
 
+  @internal
   @override
   String get blockKey => 'reconciliation_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'reconciliation_destination': reconciliationDestination.toTfJson(),
@@ -215,6 +235,7 @@ final class HealthcarePipelineJobFhirStreamingSource {
 
   final TfArg<String> fhirStore;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'fhir_store': fhirStore.toTfJson(),
@@ -234,6 +255,7 @@ final class HealthcarePipelineJobMappingConfig {
 
   final HealthcarePipelineJobWhistleConfigSource? whistleConfigSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'whistle_config_source': ?whistleConfigSource?.encode(),
@@ -254,6 +276,7 @@ final class HealthcarePipelineJobWhistleConfigSource {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'import_uri_prefix': importUriPrefix.toTfJson(),
     'uri': uri.toTfJson(),
@@ -276,6 +299,7 @@ final class HealthcarePipelineJobReconciliationPipelineJob {
 
   final HealthcarePipelineJobMergeConfig mergeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'fhir_store_destination': ?fhirStoreDestination?.toTfJson(),
     'matching_uri_prefix': matchingUriPrefix.toTfJson(),
@@ -296,6 +320,7 @@ final class HealthcarePipelineJobMergeConfig {
 
   final HealthcarePipelineJobWhistleConfigSource whistleConfigSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'whistle_config_source': whistleConfigSource.encode(),

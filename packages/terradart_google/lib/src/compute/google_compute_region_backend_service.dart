@@ -539,6 +539,7 @@ final class ComputeRegionBackendServiceBackend {
 
   final List<ComputeRegionBackendServiceBackendCustomMetrics>? customMetrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'balancing_mode': ?balancingMode?.toTfJson(),
     'capacity_scaler': ?capacityScaler?.toTfJson(),
@@ -573,6 +574,7 @@ final class ComputeRegionBackendServiceBackendCustomMetrics {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'dry_run': dryRun.toTfJson(),
     'max_utilization': ?maxUtilization?.toTfJson(),
@@ -615,6 +617,7 @@ final class ComputeRegionBackendServiceCdnPolicy {
   final List<ComputeRegionBackendServiceNegativeCachingPolicy>?
   negativeCachingPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_mode': ?cacheMode?.toTfJson(),
     'client_ttl': ?clientTtl?.toTfJson(),
@@ -656,6 +659,7 @@ final class ComputeRegionBackendServiceCacheKeyPolicy {
 
   final TfArg<List<String>>? queryStringWhitelist;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_host': ?includeHost?.toTfJson(),
     'include_named_cookies': ?includeNamedCookies?.toTfJson(),
@@ -674,6 +678,7 @@ final class ComputeRegionBackendServiceNegativeCachingPolicy {
 
   final TfArg<num>? code;
 
+  @internal
   Map<String, Object?> encode() => {'code': ?code?.toTfJson()};
 }
 
@@ -699,6 +704,7 @@ final class ComputeRegionBackendServiceCircuitBreakers {
 
   final TfArg<num>? maxRetries;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_connections': ?maxConnections?.toTfJson(),
     'max_pending_requests': ?maxPendingRequests?.toTfJson(),
@@ -728,6 +734,7 @@ final class ComputeRegionBackendServiceConnectionTrackingPolicy {
 
   final RegionBackendServiceTrackingMode? trackingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_persistence_on_unhealthy_backends':
         ?connectionPersistenceOnUnhealthyBackends?.toTfJson(),
@@ -753,6 +760,7 @@ final class ComputeRegionBackendServiceConsistentHash {
 
   final ComputeRegionBackendServiceHttpCookie? httpCookie;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_header_name': ?httpHeaderName?.toTfJson(),
     'minimum_ring_size': ?minimumRingSize?.toTfJson(),
@@ -772,6 +780,7 @@ final class ComputeRegionBackendServiceHttpCookie {
 
   final ComputeRegionBackendServiceTtl? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -790,6 +799,7 @@ final class ComputeRegionBackendServiceTtl {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -809,6 +819,7 @@ final class ComputeRegionBackendServiceCustomMetrics {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'dry_run': dryRun.toTfJson(),
     'name': name.toTfJson(),
@@ -831,6 +842,7 @@ final class ComputeRegionBackendServiceFailoverPolicy {
 
   final TfArg<num>? failoverRatio;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_connection_drain_on_failover': ?disableConnectionDrainOnFailover
         ?.toTfJson(),
@@ -849,6 +861,7 @@ final class ComputeRegionBackendServiceHaPolicy {
 
   final ComputeRegionBackendServiceLeader? leader;
 
+  @internal
   Map<String, Object?> encode() => {
     'fast_ip_move': ?fastIpMove?.toTfJson(),
     'leader': ?leader?.encode(),
@@ -868,6 +881,7 @@ final class ComputeRegionBackendServiceLeader {
 
   final ComputeRegionBackendServiceNetworkEndpoint? networkEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_group': ?backendGroup?.toTfJson(),
     'network_endpoint': ?networkEndpoint?.encode(),
@@ -882,6 +896,7 @@ final class ComputeRegionBackendServiceNetworkEndpoint {
 
   final TfArg<String>? instance;
 
+  @internal
   Map<String, Object?> encode() => {'instance': ?instance?.toTfJson()};
 }
 
@@ -901,6 +916,7 @@ final class ComputeRegionBackendServiceIap {
 
   final Sensitive<String>? oauth2ClientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'oauth2_client_id': ?oauth2ClientId?.toTfJson(),
@@ -933,6 +949,7 @@ final class ComputeRegionBackendServiceLogConfig {
 
   final List<ComputeRegionBackendServiceResponseHeaders>? responseHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'optional_fields': ?optionalFields?.toTfJson(),
@@ -953,6 +970,7 @@ final class ComputeRegionBackendServiceRequestHeaders {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -964,6 +982,7 @@ final class ComputeRegionBackendServiceResponseHeaders {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -977,6 +996,7 @@ final class ComputeRegionBackendServiceNetworkPassThroughLbTrafficPolicy {
 
   final ComputeRegionBackendServiceZonalAffinity? zonalAffinity;
 
+  @internal
   Map<String, Object?> encode() => {'zonal_affinity': ?zonalAffinity?.encode()};
 }
 
@@ -993,6 +1013,7 @@ final class ComputeRegionBackendServiceZonalAffinity {
 
   final TfArg<num>? spilloverRatio;
 
+  @internal
   Map<String, Object?> encode() => {
     'spillover': ?spillover?.toTfJson(),
     'spillover_ratio': ?spilloverRatio?.toTfJson(),
@@ -1039,6 +1060,7 @@ final class ComputeRegionBackendServiceOutlierDetection {
 
   final ComputeRegionBackendServiceInterval? interval;
 
+  @internal
   Map<String, Object?> encode() => {
     'consecutive_errors': ?consecutiveErrors?.toTfJson(),
     'consecutive_gateway_failure': ?consecutiveGatewayFailure?.toTfJson(),
@@ -1068,6 +1090,7 @@ final class ComputeRegionBackendServiceBaseEjectionTime {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1087,6 +1110,7 @@ final class ComputeRegionBackendServiceInterval {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1101,6 +1125,7 @@ final class ComputeRegionBackendServiceParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -1122,6 +1147,7 @@ final class ComputeRegionBackendServiceStrongSessionAffinityCookie {
 
   final ComputeRegionBackendServiceTtl? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -1145,6 +1171,7 @@ final class ComputeRegionBackendServiceTlsSettings {
 
   final List<ComputeRegionBackendServiceSubjectAltNames>? subjectAltNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_config': ?authenticationConfig?.toTfJson(),
     'sni': ?sni?.toTfJson(),
@@ -1166,6 +1193,7 @@ final class ComputeRegionBackendServiceSubjectAltNames {
 
   final TfArg<String>? uniformResourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_name': ?dnsName?.toTfJson(),
     'uniform_resource_identifier': ?uniformResourceIdentifier?.toTfJson(),

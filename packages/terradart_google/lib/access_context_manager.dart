@@ -7,6 +7,7 @@
 /// bindings, and access-policy IAM members.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/access_context_manager/google_access_context_manager_access_level.dart'
     show
         AccessContextManagerAccessLevelAllowedDeviceManagementLevels,
@@ -179,3 +180,11 @@ export 'src/access_context_manager/google_access_context_manager_service_perimet
         AccessContextManagerServicePerimetersStatus,
         AccessContextManagerServicePerimetersVpcAccessibleServices,
         GoogleAccessContextManagerServicePerimeters;
+export 'src/data/google_access_context_manager_access_policy.dart'
+    show DataGoogleAccessContextManagerAccessPolicy;
+export 'src/data/google_access_context_manager_access_policy_iam_policy.dart'
+    show DataGoogleAccessContextManagerAccessPolicyIamPolicy;
+export 'src/data/google_access_context_manager_supported_service.dart'
+    show DataGoogleAccessContextManagerSupportedService;
+export 'src/data/google_access_context_manager_supported_services.dart'
+    show DataGoogleAccessContextManagerSupportedServices;

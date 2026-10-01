@@ -15,6 +15,7 @@ final class ChimesdkvoiceGlobalSettingsVoiceConnector {
 
   final TfArg<String>? cdrBucket;
 
+  @internal
   Map<String, Object?> encode() => {'cdr_bucket': ?cdrBucket?.toTfJson()};
 }
 

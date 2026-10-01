@@ -50,12 +50,15 @@ sealed class NetworkInterfaceIpv4Prefix {
   ) = NetworkInterfaceIpv4PrefixIpv4Prefixes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,14 +68,17 @@ final class NetworkInterfaceIpv4PrefixCount extends NetworkInterfaceIpv4Prefix {
 
   final TfArg<num> ipv4PrefixCount;
 
+  @internal
   @override
   String get blockKey => 'ipv4_prefix_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv4_prefix_count': ipv4PrefixCount.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ipv4_prefix_count': ipv4PrefixCount,
@@ -86,12 +92,15 @@ final class NetworkInterfaceIpv4PrefixIpv4Prefixes
 
   final TfArg<List<String>> ipv4Prefixes;
 
+  @internal
   @override
   String get blockKey => 'ipv4_prefixes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ipv4_prefixes': ipv4Prefixes.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ipv4_prefixes': ipv4Prefixes};
 }
@@ -120,12 +129,15 @@ sealed class NetworkInterfaceIpv6Address {
   ) = NetworkInterfaceIpv6AddressIpv6Addresses;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -136,14 +148,17 @@ final class NetworkInterfaceIpv6AddressCount
 
   final TfArg<num> ipv6AddressCount;
 
+  @internal
   @override
   String get blockKey => 'ipv6_address_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv6_address_count': ipv6AddressCount.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ipv6_address_count': ipv6AddressCount,
@@ -157,14 +172,17 @@ final class NetworkInterfaceIpv6AddressList
 
   final TfArg<List<String>> ipv6AddressList;
 
+  @internal
   @override
   String get blockKey => 'ipv6_address_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv6_address_list': ipv6AddressList.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ipv6_address_list': ipv6AddressList,
@@ -178,12 +196,15 @@ final class NetworkInterfaceIpv6AddressIpv6Addresses
 
   final TfArg<List<String>> ipv6Addresses;
 
+  @internal
   @override
   String get blockKey => 'ipv6_addresses';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ipv6_addresses': ipv6Addresses.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ipv6_addresses': ipv6Addresses};
 }
@@ -207,12 +228,15 @@ sealed class NetworkInterfaceIpv6Prefix {
   ) = NetworkInterfaceIpv6PrefixIpv6Prefixes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -222,14 +246,17 @@ final class NetworkInterfaceIpv6PrefixCount extends NetworkInterfaceIpv6Prefix {
 
   final TfArg<num> ipv6PrefixCount;
 
+  @internal
   @override
   String get blockKey => 'ipv6_prefix_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv6_prefix_count': ipv6PrefixCount.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ipv6_prefix_count': ipv6PrefixCount,
@@ -243,12 +270,15 @@ final class NetworkInterfaceIpv6PrefixIpv6Prefixes
 
   final TfArg<List<String>> ipv6Prefixes;
 
+  @internal
   @override
   String get blockKey => 'ipv6_prefixes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ipv6_prefixes': ipv6Prefixes.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ipv6_prefixes': ipv6Prefixes};
 }
@@ -269,6 +299,7 @@ final class NetworkInterfaceAttachment {
 
   final TfArg<num>? networkCardIndex;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_index': deviceIndex.toTfJson(),
     'instance': instance.toTfJson(),
@@ -289,6 +320,7 @@ final class NetworkInterfaceEnaSrdSpecification {
 
   final NetworkInterfaceEnaSrdUdpSpecification? enaSrdUdpSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'ena_srd_enabled': ?enaSrdEnabled?.toTfJson(),
     'ena_srd_udp_specification': ?enaSrdUdpSpecification?.encode(),
@@ -303,6 +335,7 @@ final class NetworkInterfaceEnaSrdUdpSpecification {
 
   final TfArg<bool>? enaSrdUdpEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'ena_srd_udp_enabled': ?enaSrdUdpEnabled?.toTfJson(),
   };

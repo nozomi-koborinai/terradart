@@ -28,12 +28,15 @@ sealed class SagemakerPipelineDefinition {
   ) = SagemakerPipelineDefinitionS3Location;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,14 +47,17 @@ final class SagemakerPipelineDefinitionChoice
 
   final TfArg<String> pipelineDefinition;
 
+  @internal
   @override
   String get blockKey => 'pipeline_definition';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pipeline_definition': pipelineDefinition.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'pipeline_definition': pipelineDefinition,
@@ -68,14 +74,17 @@ final class SagemakerPipelineDefinitionS3Location
   final SagemakerPipelinePipelineDefinitionS3Location
   pipelineDefinitionS3Location;
 
+  @internal
   @override
   String get blockKey => 'pipeline_definition_s3_location';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pipeline_definition_s3_location': pipelineDefinitionS3Location.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'pipeline_definition_s3_location': TfArg.literal(
@@ -94,6 +103,7 @@ final class SagemakerPipelineParallelismConfiguration {
 
   final TfArg<num> maxParallelExecutionSteps;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_parallel_execution_steps': maxParallelExecutionSteps.toTfJson(),
   };
@@ -115,6 +125,7 @@ final class SagemakerPipelinePipelineDefinitionS3Location {
 
   final TfArg<String>? versionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'object_key': objectKey.toTfJson(),

@@ -15,6 +15,7 @@ final class SagemakerSpaceOwnershipSettings {
 
   final TfArg<String> ownerUserProfileName;
 
+  @internal
   Map<String, Object?> encode() => {
     'owner_user_profile_name': ownerUserProfileName.toTfJson(),
   };
@@ -48,6 +49,7 @@ final class SagemakerSpaceSettings {
 
   final SagemakerSpaceStorageSettings? spaceStorageSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_type': ?appType?.toTfJson(),
     'code_editor_app_settings': ?codeEditorAppSettings?.encode(),
@@ -116,6 +118,7 @@ final class SagemakerSpaceCodeEditorAppSettings {
 
   final SagemakerSpaceDefaultResourceSpec defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     'default_resource_spec': defaultResourceSpec.encode(),
@@ -131,6 +134,7 @@ final class SagemakerSpaceAppLifecycleManagement {
 
   final SagemakerSpaceIdleSettings? idleSettings;
 
+  @internal
   Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
@@ -143,6 +147,7 @@ final class SagemakerSpaceIdleSettings {
 
   final TfArg<num>? idleTimeoutInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
   };
@@ -171,6 +176,7 @@ final class SagemakerSpaceDefaultResourceSpec {
 
   final TfArg<String>? sagemakerImageVersionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': ?instanceType?.toTfJson(),
     'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
@@ -904,6 +910,7 @@ final class SagemakerSpaceCustomFileSystem {
 
   final SagemakerSpaceEfsFileSystem efsFileSystem;
 
+  @internal
   Map<String, Object?> encode() => {'efs_file_system': efsFileSystem.encode()};
 }
 
@@ -915,6 +922,7 @@ final class SagemakerSpaceEfsFileSystem {
 
   final TfArg<String> fileSystemId;
 
+  @internal
   Map<String, Object?> encode() => {'file_system_id': fileSystemId.toTfJson()};
 }
 
@@ -934,6 +942,7 @@ final class SagemakerSpaceJupyterLabAppSettings {
 
   final SagemakerSpaceDefaultResourceSpec defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_lifecycle_management': ?appLifecycleManagement?.encode(),
     if (codeRepository != null)
@@ -951,6 +960,7 @@ final class SagemakerSpaceCodeRepository {
 
   final TfArg<String> repositoryUrl;
 
+  @internal
   Map<String, Object?> encode() => {'repository_url': repositoryUrl.toTfJson()};
 }
 
@@ -970,6 +980,7 @@ final class SagemakerSpaceJupyterServerAppSettings {
 
   final SagemakerSpaceDefaultResourceSpec defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (codeRepository != null)
@@ -994,6 +1005,7 @@ final class SagemakerSpaceKernelGatewayAppSettings {
 
   final SagemakerSpaceDefaultResourceSpec defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (customImage != null)
@@ -1018,6 +1030,7 @@ final class SagemakerSpaceCustomImage {
 
   final TfArg<num>? imageVersionNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
@@ -1033,6 +1046,7 @@ final class SagemakerSpaceStorageSettings {
 
   final SagemakerSpaceEbsStorageSettings ebsStorageSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'ebs_storage_settings': ebsStorageSettings.encode(),
   };
@@ -1046,6 +1060,7 @@ final class SagemakerSpaceEbsStorageSettings {
 
   final TfArg<num> ebsVolumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'ebs_volume_size_in_gb': ebsVolumeSizeInGb.toTfJson(),
   };
@@ -1059,6 +1074,7 @@ final class SagemakerSpaceSharingSettings {
 
   final SagemakerSpaceSharingType sharingType;
 
+  @internal
   Map<String, Object?> encode() => {'sharing_type': sharingType.toTfJson()};
 }
 

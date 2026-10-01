@@ -34,6 +34,7 @@ final class DataTokenValidationRulesFilter {
 
   final TfArg<List<String>>? tokenConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),

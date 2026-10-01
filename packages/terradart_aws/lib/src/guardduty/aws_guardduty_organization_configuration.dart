@@ -56,6 +56,7 @@ final class GuarddutyOrganizationConfigurationDatasources {
 
   final GuarddutyOrganizationConfigurationS3Logs? s3Logs;
 
+  @internal
   Map<String, Object?> encode() => {
     'kubernetes': ?kubernetes?.encode(),
     'malware_protection': ?malwareProtection?.encode(),
@@ -71,6 +72,7 @@ final class GuarddutyOrganizationConfigurationKubernetes {
 
   final GuarddutyOrganizationConfigurationAuditLogs auditLogs;
 
+  @internal
   Map<String, Object?> encode() => {'audit_logs': auditLogs.encode()};
 }
 
@@ -82,6 +84,7 @@ final class GuarddutyOrganizationConfigurationAuditLogs {
 
   final TfArg<bool> enable;
 
+  @internal
   Map<String, Object?> encode() => {'enable': enable.toTfJson()};
 }
 
@@ -96,6 +99,7 @@ final class GuarddutyOrganizationConfigurationMalwareProtection {
   final GuarddutyOrganizationConfigurationScanEc2InstanceWithFindings
   scanEc2InstanceWithFindings;
 
+  @internal
   Map<String, Object?> encode() => {
     'scan_ec2_instance_with_findings': scanEc2InstanceWithFindings.encode(),
   };
@@ -111,6 +115,7 @@ final class GuarddutyOrganizationConfigurationScanEc2InstanceWithFindings {
 
   final GuarddutyOrganizationConfigurationEbsVolumes ebsVolumes;
 
+  @internal
   Map<String, Object?> encode() => {'ebs_volumes': ebsVolumes.encode()};
 }
 
@@ -124,6 +129,7 @@ final class GuarddutyOrganizationConfigurationEbsVolumes {
 
   final TfArg<bool> autoEnable;
 
+  @internal
   Map<String, Object?> encode() => {'auto_enable': autoEnable.toTfJson()};
 }
 
@@ -135,6 +141,7 @@ final class GuarddutyOrganizationConfigurationS3Logs {
 
   final TfArg<bool> autoEnable;
 
+  @internal
   Map<String, Object?> encode() => {'auto_enable': autoEnable.toTfJson()};
 }
 

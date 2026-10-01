@@ -80,6 +80,7 @@ final class LoadBalancerAdaptiveRouting {
 
   final TfArg<bool>? failoverAcrossPools;
 
+  @internal
   Map<String, Object?> encode() => {
     'failover_across_pools': ?failoverAcrossPools?.toTfJson(),
   };
@@ -96,6 +97,7 @@ final class LoadBalancerLocationStrategy {
 
   final LoadBalancerPreferEcs? preferEcs;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'prefer_ecs': ?preferEcs?.toTfJson(),
@@ -148,6 +150,7 @@ final class LoadBalancerRandomSteering {
 
   final TfArg<Map<String, num>>? poolWeights;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_weight': ?defaultWeight?.toTfJson(),
     'pool_weights': ?poolWeights?.toTfJson(),
@@ -182,6 +185,7 @@ final class LoadBalancerRules {
 
   final LoadBalancerOverrides? overrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -212,6 +216,7 @@ final class LoadBalancerFixedResponse {
 
   final TfArg<num>? statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'location': ?location?.toTfJson(),
@@ -266,6 +271,7 @@ final class LoadBalancerOverrides {
 
   final LoadBalancerSessionAffinityAttributes? sessionAffinityAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'country_pools': ?countryPools?.toTfJson(),
     'default_pools': ?defaultPools?.toTfJson(),
@@ -381,6 +387,7 @@ final class LoadBalancerSessionAffinityAttributes {
 
   final LoadBalancerZeroDowntimeFailover? zeroDowntimeFailover;
 
+  @internal
   Map<String, Object?> encode() => {
     'drain_duration': ?drainDuration?.toTfJson(),
     'headers': ?headers?.toTfJson(),

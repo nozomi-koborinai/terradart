@@ -40,6 +40,7 @@ final class DataEmailSecurityDomainFilter {
 
   final DataEmailSecurityDomainFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'active_delivery_mode': ?activeDeliveryMode?.toTfJson(),
     'allowed_delivery_mode': ?allowedDeliveryMode?.toTfJson(),

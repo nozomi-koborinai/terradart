@@ -22,6 +22,7 @@ final class CloudfrontRealtimeLogConfigEndpoint {
 
   final CloudfrontRealtimeLogConfigKinesisStreamConfig kinesisStreamConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'stream_type': streamType.toTfJson(),
     'kinesis_stream_config': kinesisStreamConfig.encode(),
@@ -58,6 +59,7 @@ final class CloudfrontRealtimeLogConfigKinesisStreamConfig {
 
   final TfArg<String> streamArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_arn': streamArn.toTfJson(),

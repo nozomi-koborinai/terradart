@@ -20,6 +20,7 @@ final class BinaryAuthorizationAttestorAttestationAuthorityNote {
 
   final List<BinaryAuthorizationAttestorPublicKeys>? publicKeys;
 
+  @internal
   Map<String, Object?> encode() => {
     'note_reference': noteReference.toTfJson(),
     if (publicKeys != null)
@@ -46,6 +47,7 @@ final class BinaryAuthorizationAttestorPublicKeys {
 
   final BinaryAuthorizationAttestorPkixPublicKey? pkixPublicKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'ascii_armored_pgp_public_key': ?asciiArmoredPgpPublicKey?.toTfJson(),
     'comment': ?comment?.toTfJson(),
@@ -67,6 +69,7 @@ final class BinaryAuthorizationAttestorPkixPublicKey {
 
   final TfArg<String>? signatureAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'public_key_pem': ?publicKeyPem?.toTfJson(),
     'signature_algorithm': ?signatureAlgorithm?.toTfJson(),

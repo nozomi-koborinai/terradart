@@ -23,6 +23,7 @@ final class FilterBody {
 
   final TfArg<String>? ref;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': ?expression?.toTfJson(),

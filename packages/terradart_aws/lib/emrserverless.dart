@@ -3,6 +3,7 @@
 /// AWS EMR Serverless.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/emrserverless/aws_emrserverless_application.dart'
     show
         AwsEmrserverlessApplication,

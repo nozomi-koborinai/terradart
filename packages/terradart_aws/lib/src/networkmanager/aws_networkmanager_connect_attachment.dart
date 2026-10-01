@@ -15,6 +15,7 @@ final class NetworkmanagerConnectAttachmentOptions {
 
   final NetworkmanagerConnectAttachmentProtocol? protocol;
 
+  @internal
   Map<String, Object?> encode() => {'protocol': ?protocol?.toTfJson()};
 }
 

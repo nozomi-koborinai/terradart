@@ -17,6 +17,7 @@ final class DataprocGdcServiceInstanceGdceCluster {
 
   final TfArg<String> gdceCluster;
 
+  @internal
   Map<String, Object?> encode() => {'gdce_cluster': gdceCluster.toTfJson()};
 }
 
@@ -26,6 +27,7 @@ final class DataprocGdcServiceInstanceGdceCluster {
 final class DataprocGdcServiceInstanceSparkServiceInstanceConfig {
   const DataprocGdcServiceInstanceSparkServiceInstanceConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

@@ -3,6 +3,11 @@
 /// Memorystore for Valkey — instances and user-created PSC endpoints.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_memorystore_acl_policy.dart'
+    show DataGoogleMemorystoreAclPolicy;
+export 'src/data/google_memorystore_instance.dart'
+    show DataGoogleMemorystoreInstance;
 export 'src/memorystore/google_memorystore_acl_policy.dart'
     show GoogleMemorystoreAclPolicy, MemorystoreAclPolicyRules;
 export 'src/memorystore/google_memorystore_instance.dart'

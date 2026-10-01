@@ -47,6 +47,7 @@ final class ComputeRouterPeerAdvertisedIpRanges {
 
   final TfArg<String> range;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'range': range.toTfJson(),
@@ -72,6 +73,7 @@ final class ComputeRouterPeerBfd {
 
   final ComputeRouterPeerSessionInitializationMode sessionInitializationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_receive_interval': ?minReceiveInterval?.toTfJson(),
     'min_transmit_interval': ?minTransmitInterval?.toTfJson(),
@@ -116,6 +118,7 @@ final class ComputeRouterPeerCustomLearnedIpRanges {
 
   final TfArg<String> range;
 
+  @internal
   Map<String, Object?> encode() => {'range': range.toTfJson()};
 }
 
@@ -132,6 +135,7 @@ final class ComputeRouterPeerMd5AuthenticationKey {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'name': name.toTfJson(),

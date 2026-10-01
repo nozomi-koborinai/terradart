@@ -20,6 +20,7 @@ final class BeyondcorpSecurityGatewayHubs {
 
   final BeyondcorpSecurityGatewayInternetGateway? internetGateway;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
     'internet_gateway': ?internetGateway?.encode(),
@@ -32,6 +33,7 @@ final class BeyondcorpSecurityGatewayHubs {
 final class BeyondcorpSecurityGatewayInternetGateway {
   const BeyondcorpSecurityGatewayInternetGateway();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -41,6 +43,7 @@ final class BeyondcorpSecurityGatewayInternetGateway {
 final class BeyondcorpSecurityGatewayLogging {
   const BeyondcorpSecurityGatewayLogging();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -66,6 +69,7 @@ final class BeyondcorpSecurityGatewayProxyProtocolConfig {
 
   final BeyondcorpSecurityGatewayContextualHeaders? contextualHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_client_headers': ?allowedClientHeaders?.toTfJson(),
     'client_ip': ?clientIp?.toTfJson(),
@@ -94,6 +98,7 @@ final class BeyondcorpSecurityGatewayContextualHeaders {
 
   final BeyondcorpSecurityGatewayUserInfo? userInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_type': ?outputType?.toTfJson(),
     'device_info': ?deviceInfo?.encode(),
@@ -137,6 +142,7 @@ final class BeyondcorpSecurityGatewayDeviceInfo {
 
   final BeyondcorpSecurityGatewayOutputType? outputType;
 
+  @internal
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
@@ -148,6 +154,7 @@ final class BeyondcorpSecurityGatewayGroupInfo {
 
   final BeyondcorpSecurityGatewayOutputType? outputType;
 
+  @internal
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
@@ -159,6 +166,7 @@ final class BeyondcorpSecurityGatewayUserInfo {
 
   final BeyondcorpSecurityGatewayOutputType? outputType;
 
+  @internal
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
@@ -170,6 +178,7 @@ final class BeyondcorpSecurityGatewayServiceDiscovery {
 
   final BeyondcorpSecurityGatewayApiGateway? apiGateway;
 
+  @internal
   Map<String, Object?> encode() => {'api_gateway': ?apiGateway?.encode()};
 }
 
@@ -181,6 +190,7 @@ final class BeyondcorpSecurityGatewayApiGateway {
 
   final BeyondcorpSecurityGatewayResourceOverride? resourceOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_override': ?resourceOverride?.encode(),
   };
@@ -194,6 +204,7 @@ final class BeyondcorpSecurityGatewayResourceOverride {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {'path': ?path?.toTfJson()};
 }
 

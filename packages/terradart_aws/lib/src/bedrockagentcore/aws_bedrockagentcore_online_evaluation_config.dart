@@ -45,6 +45,7 @@ final class BedrockagentcoreOnlineEvaluationConfigDataSourceConfig {
   final List<BedrockagentcoreOnlineEvaluationConfigCloudwatchLogs>?
   cloudwatchLogs;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cloudwatchLogs != null)
       'cloudwatch_logs': [for (final e in cloudwatchLogs!) e.encode()],
@@ -64,6 +65,7 @@ final class BedrockagentcoreOnlineEvaluationConfigCloudwatchLogs {
 
   final TfArg<List<String>> serviceNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_names': logGroupNames.toTfJson(),
     'service_names': serviceNames.toTfJson(),
@@ -80,6 +82,7 @@ final class BedrockagentcoreOnlineEvaluationConfigEvaluator {
 
   final TfArg<String> evaluatorId;
 
+  @internal
   Map<String, Object?> encode() => {'evaluator_id': evaluatorId.toTfJson()};
 }
 
@@ -101,6 +104,7 @@ final class BedrockagentcoreOnlineEvaluationConfigRule {
   final List<BedrockagentcoreOnlineEvaluationConfigSessionConfig>?
   sessionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
     if (samplingConfig != null)
@@ -126,6 +130,7 @@ final class BedrockagentcoreOnlineEvaluationConfigFilter {
 
   final List<BedrockagentcoreOnlineEvaluationConfigValue>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
@@ -199,6 +204,7 @@ final class BedrockagentcoreOnlineEvaluationConfigValue {
 
   final TfArg<String>? stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'double_value': ?doubleValue?.toTfJson(),
@@ -216,6 +222,7 @@ final class BedrockagentcoreOnlineEvaluationConfigSamplingConfig {
 
   final TfArg<num> samplingPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'sampling_percentage': samplingPercentage.toTfJson(),
   };
@@ -231,6 +238,7 @@ final class BedrockagentcoreOnlineEvaluationConfigSessionConfig {
 
   final TfArg<num> sessionTimeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_timeout_minutes': sessionTimeoutMinutes.toTfJson(),
   };

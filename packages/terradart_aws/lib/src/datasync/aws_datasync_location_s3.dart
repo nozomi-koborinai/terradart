@@ -63,6 +63,7 @@ final class DatasyncLocationS3Config {
 
   final TfArg<String> bucketAccessRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_access_role_arn': bucketAccessRoleArn.toTfJson(),
   };

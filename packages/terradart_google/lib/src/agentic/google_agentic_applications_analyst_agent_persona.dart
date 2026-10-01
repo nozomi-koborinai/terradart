@@ -160,6 +160,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamples {
 
   final AgenticApplicationsAnalystAgentPersonaResource resource;
 
+  @internal
   Map<String, Object?> encode() => {'resource': resource.encode()};
 }
 
@@ -198,6 +199,7 @@ final class AgenticApplicationsAnalystAgentPersonaResource {
 
   final AgenticApplicationsAnalystAgentPersonaRawFileResource? rawFileResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_label': ?displayLabel?.toTfJson(),
     'model_description': ?modelDescription?.toTfJson(),
@@ -227,6 +229,7 @@ final class AgenticApplicationsAnalystAgentPersonaBigqueryResource {
 
   final TfArg<Map<String, String>>? columnDescriptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
     'bigquery_table': ?bigqueryTable?.toTfJson(),
@@ -243,6 +246,7 @@ final class AgenticApplicationsAnalystAgentPersonaF1Resource {
 
   final TfArg<String>? f1Table;
 
+  @internal
   Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
@@ -260,6 +264,7 @@ final class AgenticApplicationsAnalystAgentPersonaGoogleCloudStorageResource {
 
   final TfArg<String> googleCloudStorageObject;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
@@ -280,6 +285,7 @@ final class AgenticApplicationsAnalystAgentPersonaGoogleDriveResource {
 
   final TfArg<String>? fileReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'file_reference': ?fileReference?.toTfJson(),
@@ -303,6 +309,7 @@ final class AgenticApplicationsAnalystAgentPersonaRawFileResource {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_content': fileContent.toTfJson(),
     'file_title': fileTitle.toTfJson(),
@@ -333,6 +340,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
   final AgenticApplicationsAnalystAgentPersonaVisualizationOptions?
   visualizationOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'document_generation_options': ?documentGenerationOptions?.encode(),
     'methodology_export_options': ?methodologyExportOptions?.encode(),
@@ -355,6 +363,7 @@ final class AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions {
   final List<AgenticApplicationsAnalystAgentPersonaDocumentExamples>?
   documentExamples;
 
+  @internal
   Map<String, Object?> encode() => {
     'export_format': ?exportFormat?.toTfJson(),
     if (documentExamples != null)
@@ -372,6 +381,7 @@ final class AgenticApplicationsAnalystAgentPersonaDocumentExamples {
 
   final AgenticApplicationsAnalystAgentPersonaResource resource;
 
+  @internal
   Map<String, Object?> encode() => {'resource': resource.encode()};
 }
 
@@ -391,6 +401,7 @@ final class AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions {
 
   final TfArg<bool>? exportMethodologyArtifact;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_methodology': ?appendMethodology?.toTfJson(),
     'export_format': ?exportFormat?.toTfJson(),
@@ -412,6 +423,7 @@ final class AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions {
   final List<AgenticApplicationsAnalystAgentPersonaSlideExamples>?
   slideExamples;
 
+  @internal
   Map<String, Object?> encode() => {
     'export_format': ?exportFormat?.toTfJson(),
     if (slideExamples != null)
@@ -429,6 +441,7 @@ final class AgenticApplicationsAnalystAgentPersonaSlideExamples {
 
   final AgenticApplicationsAnalystAgentPersonaResource resource;
 
+  @internal
   Map<String, Object?> encode() => {'resource': resource.encode()};
 }
 
@@ -443,6 +456,7 @@ final class AgenticApplicationsAnalystAgentPersonaVisualizationOptions {
   final List<AgenticApplicationsAnalystAgentPersonaVisualizationExamples>?
   visualizationExamples;
 
+  @internal
   Map<String, Object?> encode() => {
     if (visualizationExamples != null)
       'visualization_examples': [
@@ -464,6 +478,7 @@ final class AgenticApplicationsAnalystAgentPersonaVisualizationExamples {
 
   final AgenticApplicationsAnalystAgentPersonaResource resource;
 
+  @internal
   Map<String, Object?> encode() => {
     'visualization_type': visualizationType.toTfJson(),
     'resource': resource.encode(),
@@ -506,6 +521,7 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSources {
 
   final AgenticApplicationsAnalystAgentPersonaUsda? usda;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'air_quality': ?airQuality?.encode(),
@@ -525,6 +541,7 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSources {
 final class AgenticApplicationsAnalystAgentPersonaAirQuality {
   const AgenticApplicationsAnalystAgentPersonaAirQuality();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -534,6 +551,7 @@ final class AgenticApplicationsAnalystAgentPersonaAirQuality {
 final class AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics {
   const AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -543,6 +561,7 @@ final class AgenticApplicationsAnalystAgentPersonaBureauLaborStatistics {
 final class AgenticApplicationsAnalystAgentPersonaCoindesk {
   const AgenticApplicationsAnalystAgentPersonaCoindesk();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -552,6 +571,7 @@ final class AgenticApplicationsAnalystAgentPersonaCoindesk {
 final class AgenticApplicationsAnalystAgentPersonaFinnhub {
   const AgenticApplicationsAnalystAgentPersonaFinnhub();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -561,6 +581,7 @@ final class AgenticApplicationsAnalystAgentPersonaFinnhub {
 final class AgenticApplicationsAnalystAgentPersonaFred {
   const AgenticApplicationsAnalystAgentPersonaFred();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -570,6 +591,7 @@ final class AgenticApplicationsAnalystAgentPersonaFred {
 final class AgenticApplicationsAnalystAgentPersonaSecEdgar {
   const AgenticApplicationsAnalystAgentPersonaSecEdgar();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -579,6 +601,7 @@ final class AgenticApplicationsAnalystAgentPersonaSecEdgar {
 final class AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions {
   const AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -588,6 +611,7 @@ final class AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions {
 final class AgenticApplicationsAnalystAgentPersonaUsda {
   const AgenticApplicationsAnalystAgentPersonaUsda();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -628,6 +652,7 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
 
   final TfArg<String> serverUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key': ?apiKey?.toTfJson(),
     'api_key_name': ?apiKeyName?.toTfJson(),
@@ -676,6 +701,7 @@ final class AgenticApplicationsAnalystAgentPersonaResources {
 
   final AgenticApplicationsAnalystAgentPersonaRawFileResource? rawFileResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_label': ?displayLabel?.toTfJson(),
     'model_description': ?modelDescription?.toTfJson(),
@@ -707,6 +733,7 @@ final class AgenticApplicationsAnalystAgentPersonaSkills {
 
   final List<AgenticApplicationsAnalystAgentPersonaReferences>? references;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -729,6 +756,7 @@ final class AgenticApplicationsAnalystAgentPersonaReferences {
 
   final TfArg<String> referenceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'reference_id': referenceId.toTfJson(),
@@ -751,6 +779,7 @@ final class AgenticApplicationsAnalystAgentPersonaTables {
 
   final List<AgenticApplicationsAnalystAgentPersonaColumns>? columns;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -774,6 +803,7 @@ final class AgenticApplicationsAnalystAgentPersonaColumns {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_type': dataType.toTfJson(),
     'description': ?description?.toTfJson(),

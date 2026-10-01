@@ -100,6 +100,7 @@ final class ComputeRegionDiskAsyncPrimaryDisk {
 
   final TfArg<String> disk;
 
+  @internal
   Map<String, Object?> encode() => {'disk': disk.toTfJson()};
 }
 
@@ -119,6 +120,7 @@ final class ComputeRegionDiskEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'raw_key': ?rawKey?.toTfJson(),
@@ -145,6 +147,7 @@ final class ComputeRegionDiskSourceImageEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -161,6 +164,7 @@ final class ComputeRegionDiskSourceSnapshotEncryptionKey {
 
   final Sensitive<String>? rawKey;
 
+  @internal
   Map<String, Object?> encode() => {'raw_key': ?rawKey?.toTfJson()};
 }
 

@@ -3,6 +3,7 @@
 /// AWS Backup.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/backup/aws_backup_framework.dart'
     show
         AwsBackupFramework,
@@ -65,3 +66,8 @@ export 'src/backup/aws_backup_vault_lock_configuration.dart'
 export 'src/backup/aws_backup_vault_notifications.dart'
     show AwsBackupVaultNotifications, BackupVaultNotificationsBackupVaultEvents;
 export 'src/backup/aws_backup_vault_policy.dart' show AwsBackupVaultPolicy;
+export 'src/data/aws_backup_framework.dart' show DataAwsBackupFramework;
+export 'src/data/aws_backup_plan.dart' show DataAwsBackupPlan;
+export 'src/data/aws_backup_report_plan.dart' show DataAwsBackupReportPlan;
+export 'src/data/aws_backup_selection.dart' show DataAwsBackupSelection;
+export 'src/data/aws_backup_vault.dart' show DataAwsBackupVault;

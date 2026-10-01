@@ -142,12 +142,15 @@ sealed class ComputeUrlMapDefaultAction {
   ) = ComputeUrlMapDefaultActionDefaultRouteAction;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -158,14 +161,17 @@ final class ComputeUrlMapDefaultActionDefaultUrlRedirect
 
   final ComputeUrlMapDefaultUrlRedirect defaultUrlRedirect;
 
+  @internal
   @override
   String get blockKey => 'default_url_redirect';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'default_url_redirect': defaultUrlRedirect.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'default_url_redirect': TfArg.literal(defaultUrlRedirect.encode()),
@@ -179,14 +185,17 @@ final class ComputeUrlMapDefaultActionDefaultRouteAction
 
   final ComputeUrlMapDefaultRouteAction defaultRouteAction;
 
+  @internal
   @override
   String get blockKey => 'default_route_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'default_route_action': defaultRouteAction.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'default_route_action': TfArg.literal(defaultRouteAction.encode()),
@@ -207,6 +216,7 @@ final class ComputeUrlMapDefaultCustomErrorResponsePolicy {
 
   final List<ComputeUrlMapErrorResponseRule>? errorResponseRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_service': ?errorService?.encodeAs('self_link').toTfJson(),
     if (errorResponseRule != null)
@@ -231,6 +241,7 @@ final class ComputeUrlMapErrorResponseRule {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_response_codes': ?matchResponseCodes?.toTfJson(),
     'override_response_code': ?overrideResponseCode?.toTfJson(),
@@ -272,6 +283,7 @@ final class ComputeUrlMapDefaultRouteAction {
 
   final List<ComputeUrlMapWeightedBackendServices>? weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
@@ -325,6 +337,7 @@ final class ComputeUrlMapCachePolicy {
 
   final ComputeUrlMapServeWhileStale? serveWhileStale;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_bypass_request_header_names': ?cacheBypassRequestHeaderNames
         ?.toTfJson(),
@@ -368,6 +381,7 @@ final class ComputeUrlMapCacheKeyPolicy {
 
   final TfArg<List<String>>? includedHeaderNames;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?queryParameters?.encode(),
     'include_host': ?includeHost?.toTfJson(),
@@ -397,8 +411,10 @@ sealed class ComputeUrlMapQueryParameters {
   ) = ComputeUrlMapExcludedQueryParameters;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -409,9 +425,11 @@ final class ComputeUrlMapIncludedQueryParameters
 
   final TfArg<List<String>> includedQueryParameters;
 
+  @internal
   @override
   String get blockKey => 'included_query_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'included_query_parameters': includedQueryParameters.toTfJson(),
@@ -425,9 +443,11 @@ final class ComputeUrlMapExcludedQueryParameters
 
   final TfArg<List<String>> excludedQueryParameters;
 
+  @internal
   @override
   String get blockKey => 'excluded_query_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_query_parameters': excludedQueryParameters.toTfJson(),
@@ -445,6 +465,7 @@ final class ComputeUrlMapClientTtl {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -462,6 +483,7 @@ final class ComputeUrlMapDefaultTtl {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -479,6 +501,7 @@ final class ComputeUrlMapMaxTtl {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -496,6 +519,7 @@ final class ComputeUrlMapNegativeCachingPolicy {
 
   final ComputeUrlMapTtl? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': ?code?.toTfJson(),
     'ttl': ?ttl?.encode(),
@@ -513,6 +537,7 @@ final class ComputeUrlMapTtl {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -530,6 +555,7 @@ final class ComputeUrlMapServeWhileStale {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -568,6 +594,7 @@ final class ComputeUrlMapCorsPolicy {
 
   final TfArg<num>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),
@@ -591,6 +618,7 @@ final class ComputeUrlMapFaultInjectionPolicy {
 
   final ComputeUrlMapDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -608,6 +636,7 @@ final class ComputeUrlMapAbort {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_status': ?httpStatus?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -625,6 +654,7 @@ final class ComputeUrlMapDelay {
 
   final ComputeUrlMapFixedDelay? fixedDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
     'fixed_delay': ?fixedDelay?.encode(),
@@ -642,6 +672,7 @@ final class ComputeUrlMapFixedDelay {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -659,6 +690,7 @@ final class ComputeUrlMapMaxStreamDuration {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -674,6 +706,7 @@ final class ComputeUrlMapRequestMirrorPolicy {
 
   final RefTo<GoogleComputeBackendService> backendService;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
   };
@@ -696,6 +729,7 @@ final class ComputeUrlMapRetryPolicy {
 
   final ComputeUrlMapPerTryTimeout? perTryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
@@ -714,6 +748,7 @@ final class ComputeUrlMapPerTryTimeout {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -731,6 +766,7 @@ final class ComputeUrlMapTimeout {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -748,6 +784,7 @@ final class ComputeUrlMapUrlRewrite {
 
   final TfArg<String>? pathPrefixRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
@@ -771,6 +808,7 @@ final class ComputeUrlMapWeightedBackendServices {
 
   final ComputeUrlMapWeightedBackendServicesHeaderAction? headerAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -799,6 +837,7 @@ final class ComputeUrlMapWeightedBackendServicesHeaderAction {
   final List<ComputeUrlMapHeaderActionResponseHeadersToAdd>?
   responseHeadersToAdd;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
     'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
@@ -830,6 +869,7 @@ final class ComputeUrlMapHeaderActionRequestHeadersToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': ?headerName?.toTfJson(),
     'header_value': ?headerValue?.toTfJson(),
@@ -854,6 +894,7 @@ final class ComputeUrlMapHeaderActionResponseHeadersToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': ?headerName?.toTfJson(),
     'header_value': ?headerValue?.toTfJson(),
@@ -887,6 +928,7 @@ final class ComputeUrlMapDefaultUrlRedirect {
 
   final TfArg<bool> stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -917,6 +959,7 @@ final class ComputeUrlMapHeaderAction {
 
   final List<ComputeUrlMapResponseHeadersToAdd>? responseHeadersToAdd;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
     'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
@@ -948,6 +991,7 @@ final class ComputeUrlMapRequestHeadersToAdd {
 
   final TfArg<bool> replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -972,6 +1016,7 @@ final class ComputeUrlMapResponseHeadersToAdd {
 
   final TfArg<bool> replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -995,6 +1040,7 @@ final class ComputeUrlMapHostRule {
 
   final TfArg<String> pathMatcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'hosts': hosts.toTfJson(),
@@ -1037,6 +1083,7 @@ final class ComputeUrlMapPathMatcher {
 
   final List<ComputeUrlMapRouteRules>? routeRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_service': ?defaultService?.encodeAs('self_link').toTfJson(),
     'description': ?description?.toTfJson(),
@@ -1086,6 +1133,7 @@ final class ComputeUrlMapPathMatcherDefaultRouteAction {
 
   final List<ComputeUrlMapWeightedBackendServices>? weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
@@ -1140,6 +1188,7 @@ final class ComputeUrlMapDefaultRouteActionCachePolicy {
 
   final ComputeUrlMapServeWhileStale? serveWhileStale;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_bypass_request_header_names': ?cacheBypassRequestHeaderNames
         ?.toTfJson(),
@@ -1187,6 +1236,7 @@ final class ComputeUrlMapCachePolicyCacheKeyPolicy {
 
   final TfArg<List<String>>? includedQueryParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_query_parameters': ?excludedQueryParameters?.toTfJson(),
     'include_host': ?includeHost?.toTfJson(),
@@ -1220,6 +1270,7 @@ final class ComputeUrlMapPathRule {
 
   final ComputeUrlMapPathRuleUrlRedirect? urlRedirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'paths': paths.toTfJson(),
     'service': ?service?.encodeAs('self_link').toTfJson(),
@@ -1243,6 +1294,7 @@ final class ComputeUrlMapCustomErrorResponsePolicy {
 
   final List<ComputeUrlMapErrorResponseRule>? errorResponseRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_service': ?errorService?.encodeAs('self_link').toTfJson(),
     if (errorResponseRule != null)
@@ -1285,6 +1337,7 @@ final class ComputeUrlMapPathRuleRouteAction {
   final List<ComputeUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
@@ -1332,6 +1385,7 @@ final class ComputeUrlMapRouteActionCorsPolicy {
 
   final TfArg<num>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),
@@ -1354,6 +1408,7 @@ final class ComputeUrlMapPathRuleFaultInjectionPolicy {
 
   final ComputeUrlMapPathRuleDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -1373,6 +1428,7 @@ final class ComputeUrlMapFaultInjectionPolicyAbort {
 
   final TfArg<num> percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_status': httpStatus.toTfJson(),
     'percentage': percentage.toTfJson(),
@@ -1392,6 +1448,7 @@ final class ComputeUrlMapPathRuleDelay {
 
   final ComputeUrlMapDelayFixedDelay fixedDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
     'fixed_delay': fixedDelay.encode(),
@@ -1409,6 +1466,7 @@ final class ComputeUrlMapDelayFixedDelay {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1431,6 +1489,7 @@ final class ComputeUrlMapPathRuleRetryPolicy {
 
   final ComputeUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
@@ -1452,6 +1511,7 @@ final class ComputeUrlMapRetryPolicyPerTryTimeout {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1469,6 +1529,7 @@ final class ComputeUrlMapRouteActionTimeout {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1492,6 +1553,7 @@ final class ComputeUrlMapRouteActionWeightedBackendServices {
 
   final ComputeUrlMapHeaderAction? headerAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
     'weight': weight.toTfJson(),
@@ -1524,6 +1586,7 @@ final class ComputeUrlMapPathRuleUrlRedirect {
 
   final TfArg<bool> stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -1562,6 +1625,7 @@ final class ComputeUrlMapRouteRules {
 
   final ComputeUrlMapRouteRulesUrlRedirect? urlRedirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'service': ?service?.encodeAs('self_link').toTfJson(),
@@ -1605,6 +1669,7 @@ final class ComputeUrlMapMatchRules {
 
   final List<ComputeUrlMapQueryParameterMatches>? queryParameterMatches;
 
+  @internal
   Map<String, Object?> encode() => {
     'full_path_match': ?fullPathMatch?.toTfJson(),
     'ignore_case': ?ignoreCase?.toTfJson(),
@@ -1653,6 +1718,7 @@ final class ComputeUrlMapHeaderMatches {
 
   final ComputeUrlMapRangeMatch? rangeMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -1678,6 +1744,7 @@ final class ComputeUrlMapRangeMatch {
 
   final TfArg<num> rangeStart;
 
+  @internal
   Map<String, Object?> encode() => {
     'range_end': rangeEnd.toTfJson(),
     'range_start': rangeStart.toTfJson(),
@@ -1697,6 +1764,7 @@ final class ComputeUrlMapMetadataFilters {
 
   final List<ComputeUrlMapFilterLabels> filterLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_match_criteria': filterMatchCriteria.toTfJson(),
     'filter_labels': [for (final e in filterLabels) e.encode()],
@@ -1713,6 +1781,7 @@ final class ComputeUrlMapFilterLabels {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -1738,6 +1807,7 @@ final class ComputeUrlMapQueryParameterMatches {
 
   final TfArg<String>? regexMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
     'name': name.toTfJson(),
@@ -1781,6 +1851,7 @@ final class ComputeUrlMapRouteRulesRouteAction {
   final List<ComputeUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_policy': ?cachePolicy?.encode(),
     'cors_policy': ?corsPolicy?.encode(),
@@ -1807,6 +1878,7 @@ final class ComputeUrlMapRouteRulesFaultInjectionPolicy {
 
   final ComputeUrlMapRouteRulesDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -1823,6 +1895,7 @@ final class ComputeUrlMapRouteRulesDelay {
 
   final ComputeUrlMapDelayFixedDelay? fixedDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
     'fixed_delay': ?fixedDelay?.encode(),
@@ -1845,6 +1918,7 @@ final class ComputeUrlMapRouteRulesRetryPolicy {
 
   final ComputeUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': numRetries.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
@@ -1868,6 +1942,7 @@ final class ComputeUrlMapRouteActionUrlRewrite {
 
   final TfArg<String>? pathTemplateRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
@@ -1900,6 +1975,7 @@ final class ComputeUrlMapRouteRulesUrlRedirect {
 
   final TfArg<bool>? stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -1938,6 +2014,7 @@ final class ComputeUrlMapTest {
 
   final List<ComputeUrlMapHeaders>? headers;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expected_output_url': ?expectedOutputUrl?.toTfJson(),
@@ -1960,6 +2037,7 @@ final class ComputeUrlMapHeaders {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

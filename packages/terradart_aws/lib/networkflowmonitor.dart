@@ -3,6 +3,7 @@
 /// AWS CloudWatch Network Flow Monitor.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/networkflowmonitor/aws_networkflowmonitor_monitor.dart'
     show
         AwsNetworkflowmonitorMonitor,

@@ -3,6 +3,13 @@
 /// Cloudflare Flagship apps and flags.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/cloudflare_flagship_app.dart' show DataCloudflareFlagshipApp;
+export 'src/data/cloudflare_flagship_apps.dart' show DataCloudflareFlagshipApps;
+export 'src/data/cloudflare_flagship_flag.dart'
+    show DataCloudflareFlagshipFlag, DataFlagshipFlagFilter;
+export 'src/data/cloudflare_flagship_flags.dart'
+    show DataCloudflareFlagshipFlags;
 export 'src/flagship/cloudflare_flagship_app.dart' show CloudflareFlagshipApp;
 export 'src/flagship/cloudflare_flagship_flag.dart'
     show

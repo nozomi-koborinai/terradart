@@ -49,6 +49,7 @@ final class EksCapabilityConfiguration {
 
   final List<EksCapabilityArgoCd>? argoCd;
 
+  @internal
   Map<String, Object?> encode() => {
     if (argoCd != null) 'argo_cd': [for (final e in argoCd!) e.encode()],
   };
@@ -73,6 +74,7 @@ final class EksCapabilityArgoCd {
 
   final List<EksCapabilityRbacRoleMapping>? rbacRoleMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace': ?namespace?.toTfJson(),
     if (awsIdc != null) 'aws_idc': [for (final e in awsIdc!) e.encode()],
@@ -93,6 +95,7 @@ final class EksCapabilityAwsIdc {
 
   final TfArg<String>? idcRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'idc_instance_arn': idcInstanceArn.toTfJson(),
     'idc_region': ?idcRegion?.toTfJson(),
@@ -107,6 +110,7 @@ final class EksCapabilityNetworkAccess {
 
   final TfArg<List<String>>? vpceIds;
 
+  @internal
   Map<String, Object?> encode() => {'vpce_ids': ?vpceIds?.toTfJson()};
 }
 
@@ -120,6 +124,7 @@ final class EksCapabilityRbacRoleMapping {
 
   final List<EksCapabilityIdentity>? identity;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': role.toTfJson(),
     if (identity != null) 'identity': [for (final e in identity!) e.encode()],
@@ -151,6 +156,7 @@ final class EksCapabilityIdentity {
 
   final EksCapabilityIdentityType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': type.toTfJson(),

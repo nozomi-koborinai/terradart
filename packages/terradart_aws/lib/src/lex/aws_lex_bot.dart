@@ -68,6 +68,7 @@ final class LexBotAbortStatement {
 
   final List<LexBotMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'response_card': ?responseCard?.toTfJson(),
     'message': [for (final e in message) e.encode()],
@@ -91,6 +92,7 @@ final class LexBotMessage {
 
   final TfArg<num>? groupNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
@@ -114,6 +116,7 @@ final class LexBotClarificationPrompt {
 
   final List<LexBotMessage> message;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_attempts': maxAttempts.toTfJson(),
     'response_card': ?responseCard?.toTfJson(),
@@ -131,6 +134,7 @@ final class LexBotIntent {
 
   final TfArg<String> intentVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'intent_name': intentName.toTfJson(),
     'intent_version': intentVersion.toTfJson(),

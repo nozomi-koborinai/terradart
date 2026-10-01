@@ -75,6 +75,7 @@ final class OracleDatabaseGoldengateDeploymentProperties {
 
   final OracleDatabaseGoldengateDeploymentOggData oggData;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_core_count': ?cpuCoreCount?.toTfJson(),
     'deployment_type': deploymentType.toTfJson(),
@@ -110,6 +111,7 @@ final class OracleDatabaseGoldengateDeploymentMaintenanceConfig {
 
   final TfArg<num>? securityPatchUpgradePeriodDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'bundle_release_upgrade_period_days': ?bundleReleaseUpgradePeriodDays
         ?.toTfJson(),
@@ -137,6 +139,7 @@ final class OracleDatabaseGoldengateDeploymentMaintenanceWindow {
 
   final TfArg<num> startHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'start_hour': startHour.toTfJson(),
@@ -165,6 +168,7 @@ final class OracleDatabaseGoldengateDeploymentOggData {
 
   final TfArg<String>? oggVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_password': ?adminPassword?.toTfJson(),
     'admin_password_secret_version': ?adminPasswordSecretVersion?.toTfJson(),

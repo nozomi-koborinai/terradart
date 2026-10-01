@@ -3,6 +3,11 @@
 /// AWS EMR.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_emr_release_labels.dart'
+    show DataAwsEmrReleaseLabels, DataEmrReleaseLabelsFilters;
+export 'src/data/aws_emr_supported_instance_types.dart'
+    show DataAwsEmrSupportedInstanceTypes;
 export 'src/emr/aws_emr_block_public_access_configuration.dart'
     show
         AwsEmrBlockPublicAccessConfiguration,

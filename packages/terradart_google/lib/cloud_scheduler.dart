@@ -3,6 +3,7 @@
 /// Cloud Scheduler cron jobs.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_scheduler/google_cloud_scheduler_job.dart'
     show
         CloudSchedulerJobAppEngineHttpTarget,

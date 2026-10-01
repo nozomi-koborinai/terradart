@@ -56,6 +56,7 @@ final class Route53domainsDomainAdminContact {
 
   final List<Route53domainsDomainExtraParam>? extraParam;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),
@@ -639,6 +640,7 @@ final class Route53domainsDomainExtraParam {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -694,6 +696,7 @@ final class Route53domainsDomainRegistrantContact {
 
   final List<Route53domainsDomainExtraParam>? extraParam;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),
@@ -762,6 +765,7 @@ final class Route53domainsDomainTechContact {
 
   final List<Route53domainsDomainExtraParam>? extraParam;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),

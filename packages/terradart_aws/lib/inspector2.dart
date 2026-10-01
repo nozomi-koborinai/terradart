@@ -3,6 +3,7 @@
 /// AWS Inspector.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/inspector2/aws_inspector2_delegated_admin_account.dart'
     show AwsInspector2DelegatedAdminAccount;
 export 'src/inspector2/aws_inspector2_enabler.dart'

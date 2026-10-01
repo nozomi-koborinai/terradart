@@ -50,6 +50,7 @@ final class ComputeRolloutPlanWaves {
 
   final ComputeRolloutPlanValidation validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'orchestration_options': ?orchestrationOptions?.encode(),
@@ -74,6 +75,7 @@ final class ComputeRolloutPlanOrchestrationOptions {
 
   final List<ComputeRolloutPlanDelays>? delays;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_locations': ?maxConcurrentLocations?.toTfJson(),
     'max_concurrent_resources_per_location': ?maxConcurrentResourcesPerLocation
@@ -94,6 +96,7 @@ final class ComputeRolloutPlanDelays {
 
   final ComputeRolloutPlanType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'duration': ?duration?.toTfJson(),
@@ -165,6 +168,7 @@ final class ComputeRolloutPlanSelectors {
 
   final ComputeRolloutPlanResourceHierarchySelector? resourceHierarchySelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_selector': ?locationSelector?.encode(),
     'resource_hierarchy_selector': ?resourceHierarchySelector?.encode(),
@@ -179,6 +183,7 @@ final class ComputeRolloutPlanLocationSelector {
 
   final TfArg<List<String>>? includedLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_locations': ?includedLocations?.toTfJson(),
   };
@@ -200,6 +205,7 @@ final class ComputeRolloutPlanResourceHierarchySelector {
 
   final TfArg<List<String>>? includedProjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_folders': ?includedFolders?.toTfJson(),
     'included_organizations': ?includedOrganizations?.toTfJson(),
@@ -221,6 +227,7 @@ final class ComputeRolloutPlanValidation {
   final ComputeRolloutPlanTimeBasedValidationMetadata?
   timeBasedValidationMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'time_based_validation_metadata': ?timeBasedValidationMetadata?.encode(),
@@ -235,6 +242,7 @@ final class ComputeRolloutPlanTimeBasedValidationMetadata {
 
   final TfArg<String>? waitDuration;
 
+  @internal
   Map<String, Object?> encode() => {'wait_duration': ?waitDuration?.toTfJson()};
 }
 

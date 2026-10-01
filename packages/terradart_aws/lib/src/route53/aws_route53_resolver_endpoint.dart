@@ -96,6 +96,7 @@ final class Route53ResolverEndpointIpAddress {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip': ?ip?.toTfJson(),
     'ipv6': ?ipv6?.toTfJson(),

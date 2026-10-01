@@ -26,6 +26,7 @@ final class DataformRepositoryGitRemoteSettings {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     ...authentication.encode(),
     'default_branch': defaultBranch.toTfJson(),
@@ -56,8 +57,10 @@ sealed class DataformRepositoryAuthentication {
   ) = DataformRepositoryAuthenticationGitRepositoryLink;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -70,9 +73,11 @@ final class DataformRepositoryAuthenticationTokenSecretVersion
 
   final TfArg<String> authenticationTokenSecretVersion;
 
+  @internal
   @override
   String get blockKey => 'authentication_token_secret_version';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'authentication_token_secret_version': authenticationTokenSecretVersion
@@ -89,9 +94,11 @@ final class DataformRepositoryAuthenticationSshAuthenticationConfig
 
   final DataformRepositorySshAuthenticationConfig sshAuthenticationConfig;
 
+  @internal
   @override
   String get blockKey => 'ssh_authentication_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ssh_authentication_config': sshAuthenticationConfig.encode(),
@@ -107,9 +114,11 @@ final class DataformRepositoryAuthenticationGitRepositoryLink
 
   final TfArg<String> gitRepositoryLink;
 
+  @internal
   @override
   String get blockKey => 'git_repository_link';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'git_repository_link': gitRepositoryLink.toTfJson(),
@@ -129,6 +138,7 @@ final class DataformRepositorySshAuthenticationConfig {
 
   final TfArg<String> userPrivateKeySecretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_public_key': hostPublicKey.toTfJson(),
     'user_private_key_secret_version': userPrivateKeySecretVersion.toTfJson(),
@@ -151,6 +161,7 @@ final class DataformRepositoryWorkspaceCompilationOverrides {
 
   final TfArg<String>? tablePrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_database': ?defaultDatabase?.toTfJson(),
     'schema_suffix': ?schemaSuffix?.toTfJson(),

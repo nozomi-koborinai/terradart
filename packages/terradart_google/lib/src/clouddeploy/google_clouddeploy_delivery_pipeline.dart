@@ -15,6 +15,7 @@ final class ClouddeployDeliveryPipelineSerialPipeline {
 
   final List<ClouddeployDeliveryPipelineStages>? stages;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stages != null) 'stages': [for (final e in stages!) e.encode()],
   };
@@ -39,6 +40,7 @@ final class ClouddeployDeliveryPipelineStages {
 
   final ClouddeployDeliveryPipelineStrategy? strategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'profiles': ?profiles?.toTfJson(),
     'target_id': ?targetId?.toTfJson(),
@@ -61,6 +63,7 @@ final class ClouddeployDeliveryPipelineDeployParameters {
 
   final TfArg<Map<String, String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_target_labels': ?matchTargetLabels?.toTfJson(),
     'values': values.toTfJson(),
@@ -77,6 +80,7 @@ final class ClouddeployDeliveryPipelineStrategy {
 
   final ClouddeployDeliveryPipelineStandard? standard;
 
+  @internal
   Map<String, Object?> encode() => {
     'canary': ?canary?.encode(),
     'standard': ?standard?.encode(),
@@ -100,6 +104,7 @@ final class ClouddeployDeliveryPipelineCanary {
 
   final ClouddeployDeliveryPipelineRuntimeConfig? runtimeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'canary_deployment': ?canaryDeployment?.encode(),
     'custom_canary_deployment': ?customCanaryDeployment?.encode(),
@@ -132,6 +137,7 @@ final class ClouddeployDeliveryPipelineCanaryDeployment {
 
   final ClouddeployDeliveryPipelineVerifyConfig? verifyConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentages': percentages.toTfJson(),
     'verify': ?verify?.toTfJson(),
@@ -159,6 +165,7 @@ final class ClouddeployDeliveryPipelineAnalysis {
 
   final ClouddeployDeliveryPipelineGoogleCloud? googleCloud;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     if (customChecks != null)
@@ -184,6 +191,7 @@ final class ClouddeployDeliveryPipelineCustomChecks {
 
   final ClouddeployDeliveryPipelineTask? task;
 
+  @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
     'id': id.toTfJson(),
@@ -200,6 +208,7 @@ final class ClouddeployDeliveryPipelineTask {
 
   final ClouddeployDeliveryPipelineContainer? container;
 
+  @internal
   Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
@@ -223,6 +232,7 @@ final class ClouddeployDeliveryPipelineContainer {
 
   final TfArg<String> image;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -240,6 +250,7 @@ final class ClouddeployDeliveryPipelineGoogleCloud {
 
   final List<ClouddeployDeliveryPipelineAlertPolicyChecks>? alertPolicyChecks;
 
+  @internal
   Map<String, Object?> encode() => {
     if (alertPolicyChecks != null)
       'alert_policy_checks': [for (final e in alertPolicyChecks!) e.encode()],
@@ -263,6 +274,7 @@ final class ClouddeployDeliveryPipelineAlertPolicyChecks {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {
     'alert_policies': alertPolicies.toTfJson(),
     'id': id.toTfJson(),
@@ -279,6 +291,7 @@ final class ClouddeployDeliveryPipelineCanaryDeploymentPostdeploy {
 
   final TfArg<List<String>>? actions;
 
+  @internal
   Map<String, Object?> encode() => {'actions': ?actions?.toTfJson()};
 }
 
@@ -291,6 +304,7 @@ final class ClouddeployDeliveryPipelineCanaryDeploymentPredeploy {
 
   final TfArg<List<String>>? actions;
 
+  @internal
   Map<String, Object?> encode() => {'actions': ?actions?.toTfJson()};
 }
 
@@ -303,6 +317,7 @@ final class ClouddeployDeliveryPipelineVerifyConfig {
 
   final List<ClouddeployDeliveryPipelineTasks>? tasks;
 
+  @internal
   Map<String, Object?> encode() => {
     if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
   };
@@ -317,6 +332,7 @@ final class ClouddeployDeliveryPipelineTasks {
 
   final ClouddeployDeliveryPipelineContainer? container;
 
+  @internal
   Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
@@ -330,6 +346,7 @@ final class ClouddeployDeliveryPipelineCustomCanaryDeployment {
 
   final List<ClouddeployDeliveryPipelinePhaseConfigs> phaseConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'phase_configs': [for (final e in phaseConfigs) e.encode()],
   };
@@ -366,6 +383,7 @@ final class ClouddeployDeliveryPipelinePhaseConfigs {
 
   final ClouddeployDeliveryPipelineVerifyConfig? verifyConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
     'phase_id': phaseId.toTfJson(),
@@ -391,6 +409,7 @@ final class ClouddeployDeliveryPipelineRuntimeConfig {
 
   final ClouddeployDeliveryPipelineKubernetes? kubernetes;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_run': ?cloudRun?.encode(),
     'kubernetes': ?kubernetes?.encode(),
@@ -416,6 +435,7 @@ final class ClouddeployDeliveryPipelineCloudRun {
 
   final TfArg<List<String>>? stableRevisionTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'automatic_traffic_control': ?automaticTrafficControl?.toTfJson(),
     'canary_revision_tags': ?canaryRevisionTags?.toTfJson(),
@@ -437,6 +457,7 @@ final class ClouddeployDeliveryPipelineKubernetes {
 
   final ClouddeployDeliveryPipelineServiceNetworking? serviceNetworking;
 
+  @internal
   Map<String, Object?> encode() => {
     'gateway_service_mesh': ?gatewayServiceMesh?.encode(),
     'service_networking': ?serviceNetworking?.encode(),
@@ -471,6 +492,7 @@ final class ClouddeployDeliveryPipelineGatewayServiceMesh {
 
   final ClouddeployDeliveryPipelineRouteDestinations? routeDestinations;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment': deployment.toTfJson(),
     'http_route': httpRoute.toTfJson(),
@@ -495,6 +517,7 @@ final class ClouddeployDeliveryPipelineRouteDestinations {
 
   final TfArg<bool>? propagateService;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_ids': destinationIds.toTfJson(),
     'propagate_service': ?propagateService?.toTfJson(),
@@ -520,6 +543,7 @@ final class ClouddeployDeliveryPipelineServiceNetworking {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment': deployment.toTfJson(),
     'disable_pod_overprovisioning': ?disablePodOverprovisioning?.toTfJson(),
@@ -550,6 +574,7 @@ final class ClouddeployDeliveryPipelineStandard {
 
   final ClouddeployDeliveryPipelineVerifyConfig? verifyConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'verify': ?verify?.toTfJson(),
     'analysis': ?analysis?.encode(),
@@ -569,6 +594,7 @@ final class ClouddeployDeliveryPipelinePostdeploy {
 
   final List<ClouddeployDeliveryPipelineTasks>? tasks;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
     if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],
@@ -585,6 +611,7 @@ final class ClouddeployDeliveryPipelinePredeploy {
 
   final List<ClouddeployDeliveryPipelineTasks>? tasks;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
     if (tasks != null) 'tasks': [for (final e in tasks!) e.encode()],

@@ -15,6 +15,7 @@ final class VmwareengineNetworkPolicyExternalIp {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -26,6 +27,7 @@ final class VmwareengineNetworkPolicyInternetAccess {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

@@ -26,6 +26,7 @@ final class ManagedKafkaAclEntries {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'operation': operation.toTfJson(),

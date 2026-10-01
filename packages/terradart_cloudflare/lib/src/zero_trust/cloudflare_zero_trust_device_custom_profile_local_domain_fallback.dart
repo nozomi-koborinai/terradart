@@ -27,6 +27,7 @@ final class ZeroTrustDeviceCustomProfileLocalDomainFallbackDomains {
 
   final TfArg<String> suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'dns_server': ?dnsServer?.toTfJson(),

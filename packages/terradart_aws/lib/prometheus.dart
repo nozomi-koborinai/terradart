@@ -3,6 +3,12 @@
 /// AWS Managed Service for Prometheus.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_prometheus_default_scraper_configuration.dart'
+    show DataAwsPrometheusDefaultScraperConfiguration;
+export 'src/data/aws_prometheus_workspace.dart' show DataAwsPrometheusWorkspace;
+export 'src/data/aws_prometheus_workspaces.dart'
+    show DataAwsPrometheusWorkspaces;
 export 'src/prometheus/aws_prometheus_alert_manager_definition.dart'
     show AwsPrometheusAlertManagerDefinition;
 export 'src/prometheus/aws_prometheus_anomaly_detector.dart'

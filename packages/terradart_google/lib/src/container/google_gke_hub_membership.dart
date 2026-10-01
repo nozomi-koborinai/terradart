@@ -17,6 +17,7 @@ final class GkeHubMembershipAuthority {
 
   final TfArg<String> issuer;
 
+  @internal
   Map<String, Object?> encode() => {'issuer': issuer.toTfJson()};
 }
 
@@ -28,6 +29,7 @@ final class GkeHubMembershipEndpoint {
 
   final GkeHubMembershipGkeCluster? gkeCluster;
 
+  @internal
   Map<String, Object?> encode() => {'gke_cluster': ?gkeCluster?.encode()};
 }
 
@@ -39,6 +41,7 @@ final class GkeHubMembershipGkeCluster {
 
   final RefTo<GoogleContainerCluster> resourceLink;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_link': resourceLink.encodeAs('id').toTfJson(),
   };

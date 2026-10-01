@@ -136,6 +136,7 @@ final class ComputeRouterNatLogConfig {
 
   final ComputeRouterNatFilter filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': enable.toTfJson(),
     'filter': filter.toTfJson(),
@@ -173,6 +174,7 @@ final class ComputeRouterNatNat64Subnetwork {
 
   final RefTo<GoogleComputeSubnetwork> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.encodeAs('self_link').toTfJson(),
   };
@@ -197,6 +199,7 @@ final class ComputeRouterNatRules {
 
   final ComputeRouterNatAction? action;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'match': match.toTfJson(),
@@ -224,6 +227,7 @@ final class ComputeRouterNatAction {
 
   final TfArg<List<RefTo<GoogleComputeSubnetwork>>>? sourceNatDrainRanges;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_nat_active_ips': ?sourceNatActiveIps
         ?.encodeAs('self_link')
@@ -256,6 +260,7 @@ final class ComputeRouterNatSubnetwork {
 
   final TfArg<List<String>> sourceIpRangesToNat;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.encodeAs('self_link').toTfJson(),
     'secondary_ip_range_names': ?secondaryIpRangeNames?.toTfJson(),

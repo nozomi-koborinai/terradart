@@ -20,6 +20,7 @@ final class SaasRuntimeUnitKindDependencies {
 
   final TfArg<String> unitKind;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias': alias.toTfJson(),
     'unit_kind': unitKind.toTfJson(),
@@ -42,6 +43,7 @@ final class SaasRuntimeUnitKindInputVariableMappings {
 
   final SaasRuntimeUnitKindTo? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'variable': variable.toTfJson(),
     'from': ?from?.encode(),
@@ -63,6 +65,7 @@ final class SaasRuntimeUnitKindFrom {
 
   final TfArg<String> outputVariable;
 
+  @internal
   Map<String, Object?> encode() => {
     'dependency': dependency.toTfJson(),
     'output_variable': outputVariable.toTfJson(),
@@ -86,6 +89,7 @@ final class SaasRuntimeUnitKindTo {
 
   final TfArg<String> inputVariable;
 
+  @internal
   Map<String, Object?> encode() => {
     'dependency': dependency.toTfJson(),
     'ignore_for_lookup': ?ignoreForLookup?.toTfJson(),
@@ -109,6 +113,7 @@ final class SaasRuntimeUnitKindOutputVariableMappings {
 
   final SaasRuntimeUnitKindTo? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'variable': variable.toTfJson(),
     'from': ?from?.encode(),

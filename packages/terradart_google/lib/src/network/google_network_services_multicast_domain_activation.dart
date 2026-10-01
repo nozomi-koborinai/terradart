@@ -30,6 +30,7 @@ final class NetworkServicesMulticastDomainActivationTrafficSpec {
 
   final TfArg<String>? maxPerGroupSubscribers;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggr_egress_pps': ?aggrEgressPps?.toTfJson(),
     'aggr_ingress_pps': ?aggrIngressPps?.toTfJson(),

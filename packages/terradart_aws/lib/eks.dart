@@ -3,6 +3,17 @@
 /// AWS Elastic Kubernetes Service (EKS).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_eks_access_entry.dart' show DataAwsEksAccessEntry;
+export 'src/data/aws_eks_access_policies.dart' show DataAwsEksAccessPolicies;
+export 'src/data/aws_eks_addon.dart' show DataAwsEksAddon;
+export 'src/data/aws_eks_addon_version.dart' show DataAwsEksAddonVersion;
+export 'src/data/aws_eks_cluster.dart' show DataAwsEksCluster;
+export 'src/data/aws_eks_cluster_auth.dart' show DataAwsEksClusterAuth;
+export 'src/data/aws_eks_cluster_versions.dart' show DataAwsEksClusterVersions;
+export 'src/data/aws_eks_clusters.dart' show DataAwsEksClusters;
+export 'src/data/aws_eks_node_group.dart' show DataAwsEksNodeGroup;
+export 'src/data/aws_eks_node_groups.dart' show DataAwsEksNodeGroups;
 export 'src/eks/aws_eks_access_entry.dart'
     show AwsEksAccessEntry, EksAccessEntryType;
 export 'src/eks/aws_eks_access_policy_association.dart'

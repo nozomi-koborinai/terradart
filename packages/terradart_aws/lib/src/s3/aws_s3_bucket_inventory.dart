@@ -123,6 +123,7 @@ final class S3BucketInventoryDestination {
 
   final S3BucketInventoryDestinationBucket bucket;
 
+  @internal
   Map<String, Object?> encode() => {'bucket': bucket.encode()};
 }
 
@@ -148,6 +149,7 @@ final class S3BucketInventoryDestinationBucket {
 
   final S3BucketInventoryEncryption? encryption;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
@@ -191,8 +193,10 @@ sealed class S3BucketInventoryEncryption {
   ) = S3BucketInventoryEncryptionSseS3;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -203,9 +207,11 @@ final class S3BucketInventoryEncryptionSseKms
 
   final S3BucketInventorySseKms sseKms;
 
+  @internal
   @override
   String get blockKey => 'sse_kms';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sse_kms': sseKms.encode()};
 }
@@ -217,9 +223,11 @@ final class S3BucketInventoryEncryptionSseS3
 
   final S3BucketInventorySseS3 sseS3;
 
+  @internal
   @override
   String get blockKey => 'sse_s3';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sse_s3': sseS3.encode()};
 }
@@ -232,6 +240,7 @@ final class S3BucketInventorySseKms {
 
   final RefTo<AwsKmsKey> keyId;
 
+  @internal
   Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
@@ -241,6 +250,7 @@ final class S3BucketInventorySseKms {
 final class S3BucketInventorySseS3 {
   const S3BucketInventorySseS3();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -252,6 +262,7 @@ final class S3BucketInventoryFilter {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {'prefix': ?prefix?.toTfJson()};
 }
 
@@ -263,6 +274,7 @@ final class S3BucketInventorySchedule {
 
   final S3BucketInventoryFrequency frequency;
 
+  @internal
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 

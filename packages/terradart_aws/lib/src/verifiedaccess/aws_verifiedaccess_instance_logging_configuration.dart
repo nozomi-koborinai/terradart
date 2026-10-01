@@ -35,6 +35,7 @@ final class VerifiedaccessInstanceLoggingConfigurationAccessLogs {
 
   final VerifiedaccessInstanceLoggingConfigurationS3? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_trust_context': ?includeTrustContext?.toTfJson(),
     'log_version': ?logVersion?.toTfJson(),
@@ -57,6 +58,7 @@ final class VerifiedaccessInstanceLoggingConfigurationCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
@@ -76,6 +78,7 @@ final class VerifiedaccessInstanceLoggingConfigurationKinesisDataFirehose {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -101,6 +104,7 @@ final class VerifiedaccessInstanceLoggingConfigurationS3 {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
     'bucket_owner': ?bucketOwner?.toTfJson(),

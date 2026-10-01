@@ -24,6 +24,7 @@ final class DialogflowCxToolDataStoreSpec {
 
   final DialogflowCxToolFallbackPrompt fallbackPrompt;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store_connections': [
       for (final e in dataStoreConnections) e.encode(),
@@ -48,6 +49,7 @@ final class DialogflowCxToolDataStoreConnections {
 
   final TfArg<String>? documentProcessingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store': ?dataStore?.toTfJson(),
     'data_store_type': ?dataStoreType?.toTfJson(),
@@ -61,6 +63,7 @@ final class DialogflowCxToolDataStoreConnections {
 final class DialogflowCxToolFallbackPrompt {
   const DialogflowCxToolFallbackPrompt();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -74,6 +77,7 @@ final class DialogflowCxToolFunctionSpec {
 
   final TfArg<String>? outputSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_schema': ?inputSchema?.toTfJson(),
     'output_schema': ?outputSchema?.toTfJson(),
@@ -99,6 +103,7 @@ final class DialogflowCxToolOpenApiSpec {
 
   final DialogflowCxToolTlsConfig? tlsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'text_schema': textSchema.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -126,6 +131,7 @@ final class DialogflowCxToolAuthentication {
 
   final DialogflowCxToolServiceAgentAuthConfig? serviceAgentAuthConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key_config': ?apiKeyConfig?.encode(),
     'bearer_token_config': ?bearerTokenConfig?.encode(),
@@ -153,6 +159,7 @@ final class DialogflowCxToolApiKeyConfig {
 
   final TfArg<String>? secretVersionForApiKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key': ?apiKey?.toTfJson(),
     'key_name': keyName.toTfJson(),
@@ -174,6 +181,7 @@ final class DialogflowCxToolBearerTokenConfig {
 
   final Sensitive<String>? token;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_version_for_token': ?secretVersionForToken?.toTfJson(),
     'token': ?token?.toTfJson(),
@@ -205,6 +213,7 @@ final class DialogflowCxToolOauthConfig {
 
   final TfArg<String> tokenEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -224,6 +233,7 @@ final class DialogflowCxToolServiceAgentAuthConfig {
 
   final TfArg<String>? serviceAgentAuth;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_agent_auth': ?serviceAgentAuth?.toTfJson(),
   };
@@ -237,6 +247,7 @@ final class DialogflowCxToolServiceDirectoryConfig {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
@@ -248,6 +259,7 @@ final class DialogflowCxToolTlsConfig {
 
   final List<DialogflowCxToolCaCerts> caCerts;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certs': [for (final e in caCerts) e.encode()],
   };
@@ -266,6 +278,7 @@ final class DialogflowCxToolCaCerts {
 
   final TfArg<String> displayName;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert': cert.toTfJson(),
     'display_name': displayName.toTfJson(),

@@ -3,6 +3,7 @@
 /// AWS Data Exchange.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dataexchange/aws_dataexchange_data_set.dart'
     show AwsDataexchangeDataSet, DataexchangeDataSetAssetType;
 export 'src/dataexchange/aws_dataexchange_event_action.dart'

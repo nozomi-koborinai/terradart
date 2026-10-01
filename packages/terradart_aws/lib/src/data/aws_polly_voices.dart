@@ -13,6 +13,7 @@ const Set<String> _awsPollyVoicesSensitive = <String>{};
 final class DataPollyVoices {
   const DataPollyVoices();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

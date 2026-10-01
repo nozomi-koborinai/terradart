@@ -26,6 +26,7 @@ final class CloudRunV2JobIamMemberCondition {
 
   final TfArg<String> title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

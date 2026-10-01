@@ -40,6 +40,7 @@ final class IotProvisioningTemplatePreProvisioningHook {
 
   final TfArg<String> targetArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'payload_version': ?payloadVersion?.toTfJson(),
     'target_arn': targetArn.toTfJson(),

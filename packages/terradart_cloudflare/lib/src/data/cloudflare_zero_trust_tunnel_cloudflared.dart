@@ -43,6 +43,7 @@ final class DataZeroTrustTunnelCloudflaredFilter {
 
   final TfArg<String>? wasInactiveAt;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_prefix': ?excludePrefix?.toTfJson(),
     'existed_at': ?existedAt?.toTfJson(),

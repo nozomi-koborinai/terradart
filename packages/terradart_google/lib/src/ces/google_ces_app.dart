@@ -28,6 +28,7 @@ final class CesAppAudioProcessingConfig {
 
   final List<CesAppSynthesizeSpeechConfigs>? synthesizeSpeechConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'inactivity_timeout': ?inactivityTimeout?.toTfJson(),
     'ambient_sound_config': ?ambientSoundConfig?.encode(),
@@ -55,6 +56,7 @@ final class CesAppAmbientSoundConfig {
 
   final TfArg<num>? volumeGainDb;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcs_uri': ?gcsUri?.toTfJson(),
     'prebuilt_ambient_sound': ?prebuiltAmbientSound?.toTfJson(),
@@ -70,6 +72,7 @@ final class CesAppBargeInConfig {
 
   final TfArg<bool>? bargeInAwareness;
 
+  @internal
   Map<String, Object?> encode() => {
     'barge_in_awareness': ?bargeInAwareness?.toTfJson(),
   };
@@ -91,6 +94,7 @@ final class CesAppSynthesizeSpeechConfigs {
 
   final TfArg<String>? voice;
 
+  @internal
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
     'speaking_rate': ?speakingRate?.toTfJson(),
@@ -114,6 +118,7 @@ final class CesAppClientCertificateSettings {
 
   final TfArg<String> tlsCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'passphrase': ?passphrase?.toTfJson(),
     'private_key': privateKey.toTfJson(),
@@ -149,6 +154,7 @@ final class CesAppDefaultChannelProfile {
 
   final CesAppWhatsappConfig? whatsappConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_type': ?channelType?.toTfJson(),
     'disable_barge_in_control': ?disableBargeInControl?.toTfJson(),
@@ -168,6 +174,7 @@ final class CesAppPersonaProperty {
 
   final TfArg<String>? persona;
 
+  @internal
   Map<String, Object?> encode() => {'persona': ?persona?.toTfJson()};
 }
 
@@ -190,6 +197,7 @@ final class CesAppWebWidgetConfig {
 
   final CesAppSecuritySettings? securitySettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'modality': ?modality?.toTfJson(),
     'theme': ?theme?.toTfJson(),
@@ -217,6 +225,7 @@ final class CesAppSecuritySettings {
 
   final TfArg<bool>? enableRecaptcha;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'enable_origin_check': ?enableOriginCheck?.toTfJson(),
@@ -241,6 +250,7 @@ final class CesAppWhatsappConfig {
 
   final TfArg<String> wabaId;
 
+  @internal
   Map<String, Object?> encode() => {
     'phone_number': ?phoneNumber?.toTfJson(),
     'phone_number_id': phoneNumberId.toTfJson(),
@@ -264,6 +274,7 @@ final class CesAppErrorHandlingSettings {
 
   final CesAppFallbackResponseConfig? fallbackResponseConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_handling_strategy': ?errorHandlingStrategy?.toTfJson(),
     'end_session_config': ?endSessionConfig?.encode(),
@@ -279,6 +290,7 @@ final class CesAppEndSessionConfig {
 
   final TfArg<bool>? escalateSession;
 
+  @internal
   Map<String, Object?> encode() => {
     'escalate_session': ?escalateSession?.toTfJson(),
   };
@@ -297,6 +309,7 @@ final class CesAppFallbackResponseConfig {
 
   final TfArg<num>? maxFallbackAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_fallback_messages': ?customFallbackMessages?.toTfJson(),
     'max_fallback_attempts': ?maxFallbackAttempts?.toTfJson(),
@@ -322,6 +335,7 @@ final class CesAppEvaluationMetricsThresholds {
   final CesAppGoldenEvaluationMetricsThresholds?
   goldenEvaluationMetricsThresholds;
 
+  @internal
   Map<String, Object?> encode() => {
     'golden_hallucination_metric_behavior': ?goldenHallucinationMetricBehavior
         ?.toTfJson(),
@@ -396,6 +410,7 @@ final class CesAppGoldenEvaluationMetricsThresholds {
 
   final CesAppTurnLevelMetricsThresholds? turnLevelMetricsThresholds;
 
+  @internal
   Map<String, Object?> encode() => {
     'expectation_level_metrics_thresholds': ?expectationLevelMetricsThresholds
         ?.encode(),
@@ -414,6 +429,7 @@ final class CesAppExpectationLevelMetricsThresholds {
 
   final TfArg<num>? toolInvocationParameterCorrectnessThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'tool_invocation_parameter_correctness_threshold':
         ?toolInvocationParameterCorrectnessThreshold?.toTfJson(),
@@ -428,6 +444,7 @@ final class CesAppToolMatchingSettings {
 
   final CesAppExtraToolCallBehavior? extraToolCallBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'extra_tool_call_behavior': ?extraToolCallBehavior?.toTfJson(),
   };
@@ -464,6 +481,7 @@ final class CesAppTurnLevelMetricsThresholds {
 
   final TfArg<num>? semanticSimilaritySuccessThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'overall_tool_invocation_correctness_threshold':
         ?overallToolInvocationCorrectnessThreshold?.toTfJson(),
@@ -492,6 +510,7 @@ final class CesAppLanguageSettings {
 
   final TfArg<List<String>>? supportedLanguageCodes;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_language_code': ?defaultLanguageCode?.toTfJson(),
     'enable_multilingual_support': ?enableMultilingualSupport?.toTfJson(),
@@ -525,6 +544,7 @@ final class CesAppLoggingSettings {
 
   final CesAppRedactionConfig? redactionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_recording_config': ?audioRecordingConfig?.encode(),
     'bigquery_export_settings': ?bigqueryExportSettings?.encode(),
@@ -545,6 +565,7 @@ final class CesAppAudioRecordingConfig {
 
   final TfArg<String>? gcsPathPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcs_bucket': ?gcsBucket?.encodeAs('name').toTfJson(),
     'gcs_path_prefix': ?gcsPathPrefix?.toTfJson(),
@@ -567,6 +588,7 @@ final class CesAppBigqueryExportSettings {
 
   final TfArg<String>? project;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset': ?dataset?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -582,6 +604,7 @@ final class CesAppCloudLoggingSettings {
 
   final TfArg<bool>? enableCloudLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_cloud_logging': ?enableCloudLogging?.toTfJson(),
   };
@@ -600,6 +623,7 @@ final class CesAppConversationLoggingSettings {
 
   final TfArg<String>? retentionWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_conversation_logging': ?disableConversationLogging?.toTfJson(),
     'retention_window': ?retentionWindow?.toTfJson(),
@@ -614,6 +638,7 @@ final class CesAppMetricAnalysisSettings {
 
   final TfArg<bool>? llmMetricsOptedOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'llm_metrics_opted_out': ?llmMetricsOptedOut?.toTfJson(),
   };
@@ -635,6 +660,7 @@ final class CesAppRedactionConfig {
 
   final TfArg<String>? inspectTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'deidentify_template': ?deidentifyTemplate?.toTfJson(),
     'enable_redaction': ?enableRedaction?.toTfJson(),
@@ -652,6 +678,7 @@ final class CesAppModelSettings {
 
   final TfArg<num>? temperature;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
@@ -666,6 +693,7 @@ final class CesAppTimeZoneSettings {
 
   final TfArg<String>? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {'time_zone': ?timeZone?.toTfJson()};
 }
 
@@ -685,6 +713,7 @@ final class CesAppVariableDeclarations {
 
   final CesAppSchema schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
     'name': name.toTfJson(),
@@ -744,6 +773,7 @@ final class CesAppSchema {
 
   final TfArg<bool>? uniqueItems;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_properties': ?additionalProperties?.toTfJson(),
     'any_of': ?anyOf?.toTfJson(),
@@ -771,6 +801,7 @@ final class CesAppVpcScSettings {
 
   final TfArg<List<String>>? allowedOrigins;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
   };

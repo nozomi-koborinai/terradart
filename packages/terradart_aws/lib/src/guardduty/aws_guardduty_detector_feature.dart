@@ -92,6 +92,7 @@ final class GuarddutyDetectorFeatureAdditionalConfiguration {
 
   final GuarddutyDetectorFeatureAdditionalConfigurationStatus status;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'status': status.toTfJson(),

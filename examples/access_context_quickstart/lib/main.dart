@@ -13,7 +13,6 @@
 /// `status` evaluation.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/access_context_manager.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

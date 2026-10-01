@@ -32,6 +32,7 @@ final class AccountTokenCondition {
 
   final AccountTokenRequestIp? requestIp;
 
+  @internal
   Map<String, Object?> encode() => {'request_ip': ?requestIp?.encode()};
 }
 
@@ -45,6 +46,7 @@ final class AccountTokenRequestIp {
 
   final TfArg<List<String>>? notIn;
 
+  @internal
   Map<String, Object?> encode() => {
     'in': ?inCase?.toTfJson(),
     'not_in': ?notIn?.toTfJson(),
@@ -67,6 +69,7 @@ final class AccountTokenPolicies {
 
   final List<AccountTokenPermissionGroups> permissionGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'resources': resources.toTfJson(),
@@ -96,6 +99,7 @@ final class AccountTokenPermissionGroups {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

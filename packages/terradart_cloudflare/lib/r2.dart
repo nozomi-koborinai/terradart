@@ -3,6 +3,22 @@
 /// Cloudflare R2 buckets, custom domains, and lifecycle.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/cloudflare_r2_bucket.dart' show DataCloudflareR2Bucket;
+export 'src/data/cloudflare_r2_bucket_cors.dart'
+    show DataCloudflareR2BucketCors;
+export 'src/data/cloudflare_r2_bucket_event_notification.dart'
+    show DataCloudflareR2BucketEventNotification;
+export 'src/data/cloudflare_r2_bucket_lifecycle.dart'
+    show DataCloudflareR2BucketLifecycle;
+export 'src/data/cloudflare_r2_bucket_lock.dart'
+    show DataCloudflareR2BucketLock;
+export 'src/data/cloudflare_r2_bucket_sippy.dart'
+    show DataCloudflareR2BucketSippy;
+export 'src/data/cloudflare_r2_custom_domain.dart'
+    show DataCloudflareR2CustomDomain;
+export 'src/data/cloudflare_r2_data_catalog.dart'
+    show DataCloudflareR2DataCatalog;
 export 'src/r2/cloudflare_r2_bucket.dart'
     show
         CloudflareR2Bucket,

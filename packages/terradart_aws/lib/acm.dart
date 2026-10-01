@@ -3,6 +3,7 @@
 /// AWS Certificate Manager (ACM).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/acm/aws_acm_certificate.dart'
     show
         AcmCertificateExport,
@@ -18,3 +19,4 @@ export 'src/acm/aws_acm_certificate.dart'
         AwsAcmCertificate;
 export 'src/acm/aws_acm_certificate_validation.dart'
     show AwsAcmCertificateValidation;
+export 'src/data/aws_acm_certificate.dart' show DataAwsAcmCertificate;

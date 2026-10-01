@@ -59,12 +59,15 @@ sealed class AutoscalingGroupInstanceSource {
   ) = AutoscalingGroupInstanceSourceMixedInstancesPolicy;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -77,14 +80,17 @@ final class AutoscalingGroupInstanceSourceLaunchConfiguration
 
   final TfArg<String> launchConfiguration;
 
+  @internal
   @override
   String get blockKey => 'launch_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'launch_configuration': launchConfiguration.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'launch_configuration': launchConfiguration,
@@ -98,12 +104,15 @@ final class AutoscalingGroupInstanceSourceLaunchTemplate
 
   final AutoscalingGroupLaunchTemplate launchTemplate;
 
+  @internal
   @override
   String get blockKey => 'launch_template';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'launch_template': launchTemplate.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'launch_template': TfArg.literal(launchTemplate.encode()),
@@ -119,14 +128,17 @@ final class AutoscalingGroupInstanceSourceMixedInstancesPolicy
 
   final AutoscalingGroupMixedInstancesPolicy mixedInstancesPolicy;
 
+  @internal
   @override
   String get blockKey => 'mixed_instances_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mixed_instances_policy': mixedInstancesPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'mixed_instances_policy': TfArg.literal(mixedInstancesPolicy.encode()),
@@ -152,12 +164,15 @@ sealed class AutoscalingGroupPlacement {
   ) = AutoscalingGroupPlacementVpcZoneIdentifier;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -168,14 +183,17 @@ final class AutoscalingGroupPlacementAvailabilityZones
 
   final TfArg<List<String>> availabilityZones;
 
+  @internal
   @override
   String get blockKey => 'availability_zones';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'availability_zones': availabilityZones,
@@ -189,14 +207,17 @@ final class AutoscalingGroupPlacementVpcZoneIdentifier
 
   final TfArg<List<String>> vpcZoneIdentifier;
 
+  @internal
   @override
   String get blockKey => 'vpc_zone_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vpc_zone_identifier': vpcZoneIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vpc_zone_identifier': vpcZoneIdentifier,
@@ -220,12 +241,15 @@ sealed class AutoscalingGroupName {
       AutoscalingGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -235,12 +259,15 @@ final class AutoscalingGroupNameChoice extends AutoscalingGroupName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -251,12 +278,15 @@ final class AutoscalingGroupNamePrefix extends AutoscalingGroupName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -272,6 +302,7 @@ final class AutoscalingGroupAvailabilityZoneDistribution {
   final AutoscalingGroupCapacityDistributionStrategy?
   capacityDistributionStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_distribution_strategy': ?capacityDistributionStrategy?.toTfJson(),
   };
@@ -321,6 +352,7 @@ final class AutoscalingGroupCapacityReservationSpecification {
 
   final AutoscalingGroupCapacityReservationTarget? capacityReservationTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_reservation_preference': ?capacityReservationPreference
         ?.toTfJson(),
@@ -381,8 +413,10 @@ sealed class AutoscalingGroupCapacityReservationTarget {
   ) = AutoscalingGroupCapacityReservationTargetCapacityReservationResourceGroupArns;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -395,9 +429,11 @@ final class AutoscalingGroupCapacityReservationTargetCapacityReservationIds
 
   final TfArg<List<String>> capacityReservationIds;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_ids';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_ids': capacityReservationIds.toTfJson(),
@@ -413,9 +449,11 @@ final class AutoscalingGroupCapacityReservationTargetCapacityReservationResource
 
   final TfArg<List<String>> capacityReservationResourceGroupArns;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_resource_group_arns';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_resource_group_arns':
@@ -451,6 +489,7 @@ final class AutoscalingGroupInitialLifecycleHook {
 
   final RefTo<AwsIamRole>? roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_result': ?defaultResult?.toTfJson(),
     'heartbeat_timeout': ?heartbeatTimeout?.toTfJson(),
@@ -517,6 +556,7 @@ final class AutoscalingGroupInstanceLifecyclePolicy {
 
   final AutoscalingGroupRetentionTriggers? retentionTriggers;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_triggers': ?retentionTriggers?.encode(),
   };
@@ -530,6 +570,7 @@ final class AutoscalingGroupRetentionTriggers {
 
   final AutoscalingGroupTerminateHookAbandon? terminateHookAbandon;
 
+  @internal
   Map<String, Object?> encode() => {
     'terminate_hook_abandon': ?terminateHookAbandon?.toTfJson(),
   };
@@ -571,6 +612,7 @@ final class AutoscalingGroupInstanceMaintenancePolicy {
 
   final TfArg<num> minHealthyPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_healthy_percentage': maxHealthyPercentage.toTfJson(),
     'min_healthy_percentage': minHealthyPercentage.toTfJson(),
@@ -593,6 +635,7 @@ final class AutoscalingGroupInstanceRefresh {
 
   final AutoscalingGroupPreferences? preferences;
 
+  @internal
   Map<String, Object?> encode() => {
     'strategy': strategy.toTfJson(),
     'triggers': ?triggers?.toTfJson(),
@@ -656,6 +699,7 @@ final class AutoscalingGroupPreferences {
 
   final AutoscalingGroupAlarmSpecification? alarmSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_rollback': ?autoRollback?.toTfJson(),
     'checkpoint_delay': ?checkpointDelay?.toTfJson(),
@@ -730,6 +774,7 @@ final class AutoscalingGroupAlarmSpecification {
 
   final TfArg<List<String>>? alarms;
 
+  @internal
   Map<String, Object?> encode() => {'alarms': ?alarms?.toTfJson()};
 }
 
@@ -743,6 +788,7 @@ final class AutoscalingGroupLaunchTemplate {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
     'version': ?version?.toTfJson(),
@@ -766,8 +812,10 @@ sealed class AutoscalingGroupIdentifier {
       AutoscalingGroupIdentifierName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -777,9 +825,11 @@ final class AutoscalingGroupIdentifierId extends AutoscalingGroupIdentifier {
 
   final TfArg<String> id;
 
+  @internal
   @override
   String get blockKey => 'id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
@@ -790,9 +840,11 @@ final class AutoscalingGroupIdentifierName extends AutoscalingGroupIdentifier {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -810,6 +862,7 @@ final class AutoscalingGroupMixedInstancesPolicy {
 
   final AutoscalingGroupMixedInstancesPolicyLaunchTemplate launchTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'instances_distribution': ?instancesDistribution?.encode(),
     'launch_template': launchTemplate.encode(),
@@ -841,6 +894,7 @@ final class AutoscalingGroupInstancesDistribution {
 
   final TfArg<String>? spotMaxPrice;
 
+  @internal
   Map<String, Object?> encode() => {
     'on_demand_allocation_strategy': ?onDemandAllocationStrategy?.toTfJson(),
     'on_demand_base_capacity': ?onDemandBaseCapacity?.toTfJson(),
@@ -865,6 +919,7 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplate {
 
   final List<AutoscalingGroupOverride>? override;
 
+  @internal
   Map<String, Object?> encode() => {
     'launch_template_specification': launchTemplateSpecification.encode(),
     if (override != null) 'override': [for (final e in override!) e.encode()],
@@ -888,6 +943,7 @@ final class AutoscalingGroupLaunchTemplateSpecification {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'launch_template_id': ?launchTemplateId?.toTfJson(),
     'launch_template_name': ?launchTemplateName?.toTfJson(),
@@ -915,6 +971,7 @@ final class AutoscalingGroupOverride {
   final AutoscalingGroupLaunchTemplateSpecification?
   launchTemplateSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': ?instanceType?.toTfJson(),
     'weighted_capacity': ?weightedCapacity?.toTfJson(),
@@ -1003,6 +1060,7 @@ final class AutoscalingGroupInstanceRequirements {
 
   final AutoscalingGroupVcpuCount? vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
       'accelerator_manufacturers': [
@@ -1276,6 +1334,7 @@ final class AutoscalingGroupAcceleratorCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1292,6 +1351,7 @@ final class AutoscalingGroupAcceleratorTotalMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1308,6 +1368,7 @@ final class AutoscalingGroupBaselineEbsBandwidthMbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1324,6 +1385,7 @@ final class AutoscalingGroupMemoryGibPerVcpu {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1340,6 +1402,7 @@ final class AutoscalingGroupMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1356,6 +1419,7 @@ final class AutoscalingGroupNetworkBandwidthGbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1372,6 +1436,7 @@ final class AutoscalingGroupNetworkInterfaceCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1388,6 +1453,7 @@ final class AutoscalingGroupTotalLocalStorageGb {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1404,6 +1470,7 @@ final class AutoscalingGroupVcpuCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1426,6 +1493,7 @@ final class AutoscalingGroupTag {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'propagate_at_launch': propagateAtLaunch.toTfJson(),
@@ -1443,6 +1511,7 @@ final class AutoscalingGroupTrafficSource {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -1468,6 +1537,7 @@ final class AutoscalingGroupWarmPool {
 
   final AutoscalingGroupInstanceReusePolicy? instanceReusePolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_group_prepared_capacity': ?maxGroupPreparedCapacity?.toTfJson(),
     'min_size': ?minSize?.toTfJson(),
@@ -1506,6 +1576,7 @@ final class AutoscalingGroupInstanceReusePolicy {
 
   final TfArg<bool>? reuseOnScaleIn;
 
+  @internal
   Map<String, Object?> encode() => {
     'reuse_on_scale_in': ?reuseOnScaleIn?.toTfJson(),
   };

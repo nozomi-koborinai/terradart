@@ -50,6 +50,7 @@ final class CloudQuotasQuotaPreferenceQuotaConfig {
 
   final TfArg<String> preferredValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
     'preferred_value': preferredValue.toTfJson(),

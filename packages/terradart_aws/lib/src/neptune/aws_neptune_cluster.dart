@@ -81,12 +81,15 @@ sealed class NeptuneClusterIdentifier {
   ) = NeptuneClusterIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -96,14 +99,17 @@ final class NeptuneClusterIdentifierChoice extends NeptuneClusterIdentifier {
 
   final TfArg<String> clusterIdentifier;
 
+  @internal
   @override
   String get blockKey => 'cluster_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cluster_identifier': clusterIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cluster_identifier': clusterIdentifier,
@@ -116,14 +122,17 @@ final class NeptuneClusterIdentifierPrefix extends NeptuneClusterIdentifier {
 
   final TfArg<String> clusterIdentifierPrefix;
 
+  @internal
   @override
   String get blockKey => 'cluster_identifier_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cluster_identifier_prefix': clusterIdentifierPrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cluster_identifier_prefix': clusterIdentifierPrefix,
@@ -143,6 +152,7 @@ final class NeptuneClusterServerlessV2ScalingConfiguration {
 
   final TfArg<num>? minCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_capacity': ?maxCapacity?.toTfJson(),
     'min_capacity': ?minCapacity?.toTfJson(),

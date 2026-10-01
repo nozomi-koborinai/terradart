@@ -3,6 +3,7 @@
 /// AWS Security Lake.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/securitylake/aws_securitylake_aws_log_source.dart'
     show AwsSecuritylakeAwsLogSource, SecuritylakeAwsLogSource;
 export 'src/securitylake/aws_securitylake_custom_log_source.dart'

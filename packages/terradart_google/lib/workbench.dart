@@ -3,6 +3,9 @@
 /// Vertex AI Workbench instances (current notebook VM API) and IAM members.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_workbench_instance_iam_policy.dart'
+    show DataGoogleWorkbenchInstanceIamPolicy;
 export 'src/workbench/google_workbench_instance.dart'
     show
         GoogleWorkbenchInstance,

@@ -15,6 +15,7 @@ final class VerifiedpermissionsSchemaDefinition {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 

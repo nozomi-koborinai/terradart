@@ -26,12 +26,15 @@ sealed class LaunchConfigurationName {
       LaunchConfigurationNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,12 +44,15 @@ final class LaunchConfigurationNameChoice extends LaunchConfigurationName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -57,12 +63,15 @@ final class LaunchConfigurationNamePrefix extends LaunchConfigurationName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -85,12 +94,15 @@ sealed class LaunchConfigurationUserData {
   ) = LaunchConfigurationUserDataBase64;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -101,12 +113,15 @@ final class LaunchConfigurationUserDataChoice
 
   final TfArg<String> userData;
 
+  @internal
   @override
   String get blockKey => 'user_data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_data': userData.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
@@ -118,14 +133,17 @@ final class LaunchConfigurationUserDataBase64
 
   final TfArg<String> userDataBase64;
 
+  @internal
   @override
   String get blockKey => 'user_data_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'user_data_base64': userDataBase64.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'user_data_base64': userDataBase64,
@@ -166,6 +184,7 @@ final class LaunchConfigurationEbsBlockDevice {
 
   final TfArg<String>? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
@@ -195,6 +214,7 @@ final class LaunchConfigurationEphemeralBlockDevice {
 
   final TfArg<String>? virtualName;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
     'no_device': ?noDevice?.toTfJson(),
@@ -218,6 +238,7 @@ final class LaunchConfigurationMetadataOptions {
 
   final LaunchConfigurationHttpTokens? httpTokens;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
     'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
@@ -294,6 +315,7 @@ final class LaunchConfigurationRootBlockDevice {
 
   final TfArg<String>? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),

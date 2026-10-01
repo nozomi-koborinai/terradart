@@ -23,6 +23,7 @@ final class CloudIdentityPolicyQuery {
 
   final TfArg<String>? query;
 
+  @internal
   Map<String, Object?> encode() => {
     'group': ?group?.toTfJson(),
     'org_unit': orgUnit.toTfJson(),
@@ -43,6 +44,7 @@ final class CloudIdentityPolicySetting {
 
   final TfArg<String> valueJson;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value_json': valueJson.toTfJson(),

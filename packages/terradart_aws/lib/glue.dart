@@ -3,6 +3,19 @@
 /// AWS Glue.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_glue_catalog.dart' show DataAwsGlueCatalog;
+export 'src/data/aws_glue_catalog_table.dart' show DataAwsGlueCatalogTable;
+export 'src/data/aws_glue_connection.dart' show DataAwsGlueConnection;
+export 'src/data/aws_glue_data_catalog_encryption_settings.dart'
+    show DataAwsGlueDataCatalogEncryptionSettings;
+export 'src/data/aws_glue_registry.dart' show DataAwsGlueRegistry;
+export 'src/data/aws_glue_script.dart'
+    show
+        DataAwsGlueScript,
+        DataGlueScriptArgs,
+        DataGlueScriptDagEdge,
+        DataGlueScriptDagNode;
 export 'src/glue/aws_glue_catalog.dart'
     show
         AwsGlueCatalog,

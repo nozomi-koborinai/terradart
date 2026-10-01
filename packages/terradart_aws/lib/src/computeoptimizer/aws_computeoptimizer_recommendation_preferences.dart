@@ -174,6 +174,7 @@ final class ComputeoptimizerRecommendationPreferencesExternalMetricsPreference {
 
   final ComputeoptimizerRecommendationPreferencesSource source;
 
+  @internal
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 }
 
@@ -222,6 +223,7 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResource {
 
   final ComputeoptimizerRecommendationPreferencesPreferredResourceName name;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?filter?.encode(),
     'name': name.toTfJson(),
@@ -247,8 +249,10 @@ sealed class ComputeoptimizerRecommendationPreferencesFilter {
   ) = ComputeoptimizerRecommendationPreferencesFilterIncludeList;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -261,9 +265,11 @@ final class ComputeoptimizerRecommendationPreferencesFilterExcludeList
 
   final TfArg<List<String>> excludeList;
 
+  @internal
   @override
   String get blockKey => 'exclude_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'exclude_list': excludeList.toTfJson()};
 }
@@ -277,9 +283,11 @@ final class ComputeoptimizerRecommendationPreferencesFilterIncludeList
 
   final TfArg<List<String>> includeList;
 
+  @internal
   @override
   String get blockKey => 'include_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'include_list': includeList.toTfJson()};
 }
@@ -322,6 +330,7 @@ final class ComputeoptimizerRecommendationPreferencesScope {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -370,6 +379,7 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreference {
   final List<ComputeoptimizerRecommendationPreferencesMetricParameters>?
   metricParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     if (metricParameters != null)
@@ -416,6 +426,7 @@ final class ComputeoptimizerRecommendationPreferencesMetricParameters {
 
   final ComputeoptimizerRecommendationPreferencesThreshold? threshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'headroom': headroom.toTfJson(),
     'threshold': ?threshold?.toTfJson(),

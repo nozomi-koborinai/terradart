@@ -17,6 +17,7 @@ final class DataZeroTrustDeviceIpProfileFilter {
 
   final TfArg<num>? perPage;
 
+  @internal
   Map<String, Object?> encode() => {'per_page': ?perPage?.toTfJson()};
 }
 

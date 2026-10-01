@@ -3,6 +3,7 @@
 /// AWS CloudWatch Evidently.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/evidently/aws_evidently_feature.dart'
     show
         AwsEvidentlyFeature,

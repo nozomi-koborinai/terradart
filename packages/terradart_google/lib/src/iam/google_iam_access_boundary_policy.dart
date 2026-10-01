@@ -20,6 +20,7 @@ final class IamAccessBoundaryPolicyRules {
 
   final IamAccessBoundaryPolicyAccessBoundaryRule? accessBoundaryRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'access_boundary_rule': ?accessBoundaryRule?.encode(),
@@ -42,6 +43,7 @@ final class IamAccessBoundaryPolicyAccessBoundaryRule {
 
   final IamAccessBoundaryPolicyAvailabilityCondition? availabilityCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'available_permissions': ?availablePermissions?.toTfJson(),
     'available_resource': ?availableResource?.toTfJson(),
@@ -68,6 +70,7 @@ final class IamAccessBoundaryPolicyAvailabilityCondition {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

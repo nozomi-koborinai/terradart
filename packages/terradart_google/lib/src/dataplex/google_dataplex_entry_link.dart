@@ -20,6 +20,7 @@ final class DataplexEntryLinkAspects {
 
   final DataplexEntryLinkAspect aspect;
 
+  @internal
   Map<String, Object?> encode() => {
     'aspect_key': aspectKey.toTfJson(),
     'aspect': aspect.encode(),
@@ -34,6 +35,7 @@ final class DataplexEntryLinkAspect {
 
   final TfArg<String> data;
 
+  @internal
   Map<String, Object?> encode() => {'data': data.toTfJson()};
 }
 
@@ -53,6 +55,7 @@ final class DataplexEntryLinkEntryReferences {
 
   final DataplexEntryLinkEntryReferencesType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'path': ?path?.toTfJson(),

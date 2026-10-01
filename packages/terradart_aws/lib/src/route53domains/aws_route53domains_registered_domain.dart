@@ -56,6 +56,7 @@ final class Route53domainsRegisteredDomainAdminContact {
 
   final TfArg<String>? zipCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),
@@ -123,6 +124,7 @@ final class Route53domainsRegisteredDomainBillingContact {
 
   final TfArg<String>? zipCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),
@@ -154,6 +156,7 @@ final class Route53domainsRegisteredDomainNameServer {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'glue_ips': ?glueIps?.toTfJson(),
     'name': name.toTfJson(),
@@ -209,6 +212,7 @@ final class Route53domainsRegisteredDomainRegistrantContact {
 
   final TfArg<String>? zipCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),
@@ -276,6 +280,7 @@ final class Route53domainsRegisteredDomainTechContact {
 
   final TfArg<String>? zipCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_line_1': ?addressLine1?.toTfJson(),
     'address_line_2': ?addressLine2?.toTfJson(),

@@ -34,6 +34,7 @@ final class BigtableTableAutomatedBackupPolicy {
 
   final TfArg<String>? retentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
     'locations': ?locations?.toTfJson(),

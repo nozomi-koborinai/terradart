@@ -106,6 +106,7 @@ final class ChronicleFeedDetails {
 
   final ChronicleFeedSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'asset_namespace': ?assetNamespace?.toTfJson(),
     'feed_source_type': ?feedSourceType?.toTfJson(),
@@ -504,8 +505,10 @@ sealed class ChronicleFeedSource {
   ) = ChronicleFeedSourceThreatConnectIocV3Settings;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -515,9 +518,11 @@ final class ChronicleFeedSourceAnomaliSettings extends ChronicleFeedSource {
 
   final ChronicleFeedAnomaliSettings anomaliSettings;
 
+  @internal
   @override
   String get blockKey => 'anomali_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'anomali_settings': anomaliSettings.encode(),
@@ -531,9 +536,11 @@ final class ChronicleFeedSourceAzureAdContextSettings
 
   final ChronicleFeedAzureAdContextSettings azureAdContextSettings;
 
+  @internal
   @override
   String get blockKey => 'azure_ad_context_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_ad_context_settings': azureAdContextSettings.encode(),
@@ -547,9 +554,11 @@ final class ChronicleFeedSourceCloudPassageSettings
 
   final ChronicleFeedCloudPassageSettings cloudPassageSettings;
 
+  @internal
   @override
   String get blockKey => 'cloud_passage_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_passage_settings': cloudPassageSettings.encode(),
@@ -562,9 +571,11 @@ final class ChronicleFeedSourceCortexXdrSettings extends ChronicleFeedSource {
 
   final ChronicleFeedCortexXdrSettings cortexXdrSettings;
 
+  @internal
   @override
   String get blockKey => 'cortex_xdr_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cortex_xdr_settings': cortexXdrSettings.encode(),
@@ -577,9 +588,11 @@ final class ChronicleFeedSourceDuoAuthSettings extends ChronicleFeedSource {
 
   final ChronicleFeedDuoAuthSettings duoAuthSettings;
 
+  @internal
   @override
   String get blockKey => 'duo_auth_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'duo_auth_settings': duoAuthSettings.encode(),
@@ -593,9 +606,11 @@ final class ChronicleFeedSourceDuoUserContextSettings
 
   final ChronicleFeedDuoUserContextSettings duoUserContextSettings;
 
+  @internal
   @override
   String get blockKey => 'duo_user_context_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'duo_user_context_settings': duoUserContextSettings.encode(),
@@ -611,9 +626,11 @@ final class ChronicleFeedSourceMicrosoftGraphAlertSettings
 
   final ChronicleFeedMicrosoftGraphAlertSettings microsoftGraphAlertSettings;
 
+  @internal
   @override
   String get blockKey => 'microsoft_graph_alert_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'microsoft_graph_alert_settings': microsoftGraphAlertSettings.encode(),
@@ -630,9 +647,11 @@ final class ChronicleFeedSourceMicrosoftSecurityCenterAlertSettings
   final ChronicleFeedMicrosoftSecurityCenterAlertSettings
   microsoftSecurityCenterAlertSettings;
 
+  @internal
   @override
   String get blockKey => 'microsoft_security_center_alert_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'microsoft_security_center_alert_settings':
@@ -647,9 +666,11 @@ final class ChronicleFeedSourceMimecastMailSettings
 
   final ChronicleFeedMimecastMailSettings mimecastMailSettings;
 
+  @internal
   @override
   String get blockKey => 'mimecast_mail_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mimecast_mail_settings': mimecastMailSettings.encode(),
@@ -662,9 +683,11 @@ final class ChronicleFeedSourceOffice365Settings extends ChronicleFeedSource {
 
   final ChronicleFeedOffice365Settings office365Settings;
 
+  @internal
   @override
   String get blockKey => 'office365_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'office365_settings': office365Settings.encode(),
@@ -678,9 +701,11 @@ final class ChronicleFeedSourceProofpointMailSettings
 
   final ChronicleFeedProofpointMailSettings proofpointMailSettings;
 
+  @internal
   @override
   String get blockKey => 'proofpoint_mail_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'proofpoint_mail_settings': proofpointMailSettings.encode(),
@@ -696,9 +721,11 @@ final class ChronicleFeedSourceRecordedFutureIocSettings
 
   final ChronicleFeedRecordedFutureIocSettings recordedFutureIocSettings;
 
+  @internal
   @override
   String get blockKey => 'recorded_future_ioc_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'recorded_future_ioc_settings': recordedFutureIocSettings.encode(),
@@ -711,9 +738,11 @@ final class ChronicleFeedSourceWorkdaySettings extends ChronicleFeedSource {
 
   final ChronicleFeedWorkdaySettings workdaySettings;
 
+  @internal
   @override
   String get blockKey => 'workday_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workday_settings': workdaySettings.encode(),
@@ -726,9 +755,11 @@ final class ChronicleFeedSourcePanIocSettings extends ChronicleFeedSource {
 
   final ChronicleFeedPanIocSettings panIocSettings;
 
+  @internal
   @override
   String get blockKey => 'pan_ioc_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pan_ioc_settings': panIocSettings.encode(),
@@ -741,9 +772,11 @@ final class ChronicleFeedSourceOktaSettings extends ChronicleFeedSource {
 
   final ChronicleFeedOktaSettings oktaSettings;
 
+  @internal
   @override
   String get blockKey => 'okta_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'okta_settings': oktaSettings.encode()};
 }
@@ -757,9 +790,11 @@ final class ChronicleFeedSourceOktaUserContextSettings
 
   final ChronicleFeedOktaUserContextSettings oktaUserContextSettings;
 
+  @internal
   @override
   String get blockKey => 'okta_user_context_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'okta_user_context_settings': oktaUserContextSettings.encode(),
@@ -772,9 +807,11 @@ final class ChronicleFeedSourceFoxItStixSettings extends ChronicleFeedSource {
 
   final ChronicleFeedFoxItStixSettings foxItStixSettings;
 
+  @internal
   @override
   String get blockKey => 'fox_it_stix_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'fox_it_stix_settings': foxItStixSettings.encode(),
@@ -790,9 +827,11 @@ final class ChronicleFeedSourceThreatConnectIocSettings
 
   final ChronicleFeedThreatConnectIocSettings threatConnectIocSettings;
 
+  @internal
   @override
   String get blockKey => 'threat_connect_ioc_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'threat_connect_ioc_settings': threatConnectIocSettings.encode(),
@@ -806,9 +845,11 @@ final class ChronicleFeedSourceServiceNowCmdbSettings
 
   final ChronicleFeedServiceNowCmdbSettings serviceNowCmdbSettings;
 
+  @internal
   @override
   String get blockKey => 'service_now_cmdb_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'service_now_cmdb_settings': serviceNowCmdbSettings.encode(),
@@ -821,9 +862,11 @@ final class ChronicleFeedSourceImpervaWafSettings extends ChronicleFeedSource {
 
   final ChronicleFeedImpervaWafSettings impervaWafSettings;
 
+  @internal
   @override
   String get blockKey => 'imperva_waf_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'imperva_waf_settings': impervaWafSettings.encode(),
@@ -837,9 +880,11 @@ final class ChronicleFeedSourceThinkstCanarySettings
 
   final ChronicleFeedThinkstCanarySettings thinkstCanarySettings;
 
+  @internal
   @override
   String get blockKey => 'thinkst_canary_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'thinkst_canary_settings': thinkstCanarySettings.encode(),
@@ -852,9 +897,11 @@ final class ChronicleFeedSourceRhIsacIocSettings extends ChronicleFeedSource {
 
   final ChronicleFeedRhIsacIocSettings rhIsacIocSettings;
 
+  @internal
   @override
   String get blockKey => 'rh_isac_ioc_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rh_isac_ioc_settings': rhIsacIocSettings.encode(),
@@ -868,9 +915,11 @@ final class ChronicleFeedSourceRapid7InsightSettings
 
   final ChronicleFeedRapid7InsightSettings rapid7InsightSettings;
 
+  @internal
   @override
   String get blockKey => 'rapid7_insight_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rapid7_insight_settings': rapid7InsightSettings.encode(),
@@ -883,9 +932,11 @@ final class ChronicleFeedSourceSalesforceSettings extends ChronicleFeedSource {
 
   final ChronicleFeedSalesforceSettings salesforceSettings;
 
+  @internal
   @override
   String get blockKey => 'salesforce_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'salesforce_settings': salesforceSettings.encode(),
@@ -899,9 +950,11 @@ final class ChronicleFeedSourceNetskopeAlertSettings
 
   final ChronicleFeedNetskopeAlertSettings netskopeAlertSettings;
 
+  @internal
   @override
   String get blockKey => 'netskope_alert_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'netskope_alert_settings': netskopeAlertSettings.encode(),
@@ -915,9 +968,11 @@ final class ChronicleFeedSourceAzureMdmIntuneSettings
 
   final ChronicleFeedAzureMdmIntuneSettings azureMdmIntuneSettings;
 
+  @internal
   @override
   String get blockKey => 'azure_mdm_intune_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_mdm_intune_settings': azureMdmIntuneSettings.encode(),
@@ -930,9 +985,11 @@ final class ChronicleFeedSourceAzureAdSettings extends ChronicleFeedSource {
 
   final ChronicleFeedAzureAdSettings azureAdSettings;
 
+  @internal
   @override
   String get blockKey => 'azure_ad_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_ad_settings': azureAdSettings.encode(),
@@ -948,9 +1005,11 @@ final class ChronicleFeedSourceProofpointOnDemandSettings
 
   final ChronicleFeedProofpointOnDemandSettings proofpointOnDemandSettings;
 
+  @internal
   @override
   String get blockKey => 'proofpoint_on_demand_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'proofpoint_on_demand_settings': proofpointOnDemandSettings.encode(),
@@ -964,9 +1023,11 @@ final class ChronicleFeedSourceWorkspaceUsersSettings
 
   final ChronicleFeedWorkspaceUsersSettings workspaceUsersSettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_users_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_users_settings': workspaceUsersSettings.encode(),
@@ -982,9 +1043,11 @@ final class ChronicleFeedSourceWorkspaceActivitySettings
 
   final ChronicleFeedWorkspaceActivitySettings workspaceActivitySettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_activity_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_activity_settings': workspaceActivitySettings.encode(),
@@ -1000,9 +1063,11 @@ final class ChronicleFeedSourceWorkspaceAlertsSettings
 
   final ChronicleFeedWorkspaceAlertsSettings workspaceAlertsSettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_alerts_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_alerts_settings': workspaceAlertsSettings.encode(),
@@ -1018,9 +1083,11 @@ final class ChronicleFeedSourceWorkspacePrivilegesSettings
 
   final ChronicleFeedWorkspacePrivilegesSettings workspacePrivilegesSettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_privileges_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_privileges_settings': workspacePrivilegesSettings.encode(),
@@ -1036,9 +1103,11 @@ final class ChronicleFeedSourceWorkspaceMobileSettings
 
   final ChronicleFeedWorkspaceMobileSettings workspaceMobileSettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_mobile_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_mobile_settings': workspaceMobileSettings.encode(),
@@ -1054,9 +1123,11 @@ final class ChronicleFeedSourceWorkspaceChromeOsSettings
 
   final ChronicleFeedWorkspaceChromeOsSettings workspaceChromeOsSettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_chrome_os_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_chrome_os_settings': workspaceChromeOsSettings.encode(),
@@ -1072,9 +1143,11 @@ final class ChronicleFeedSourceWorkspaceGroupsSettings
 
   final ChronicleFeedWorkspaceGroupsSettings workspaceGroupsSettings;
 
+  @internal
   @override
   String get blockKey => 'workspace_groups_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'workspace_groups_settings': workspaceGroupsSettings.encode(),
@@ -1088,9 +1161,11 @@ final class ChronicleFeedSourceAzureAdAuditSettings
 
   final ChronicleFeedAzureAdAuditSettings azureAdAuditSettings;
 
+  @internal
   @override
   String get blockKey => 'azure_ad_audit_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_ad_audit_settings': azureAdAuditSettings.encode(),
@@ -1106,9 +1181,11 @@ final class ChronicleFeedSourceSymantecEventExportSettings
 
   final ChronicleFeedSymantecEventExportSettings symantecEventExportSettings;
 
+  @internal
   @override
   String get blockKey => 'symantec_event_export_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'symantec_event_export_settings': symantecEventExportSettings.encode(),
@@ -1121,9 +1198,11 @@ final class ChronicleFeedSourceQualysVmSettings extends ChronicleFeedSource {
 
   final ChronicleFeedQualysVmSettings qualysVmSettings;
 
+  @internal
   @override
   String get blockKey => 'qualys_vm_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'qualys_vm_settings': qualysVmSettings.encode(),
@@ -1137,9 +1216,11 @@ final class ChronicleFeedSourcePanPrismaCloudSettings
 
   final ChronicleFeedPanPrismaCloudSettings panPrismaCloudSettings;
 
+  @internal
   @override
   String get blockKey => 'pan_prisma_cloud_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pan_prisma_cloud_settings': panPrismaCloudSettings.encode(),
@@ -1152,9 +1233,11 @@ final class ChronicleFeedSourceGcsSettings extends ChronicleFeedSource {
 
   final ChronicleFeedGcsSettings gcsSettings;
 
+  @internal
   @override
   String get blockKey => 'gcs_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_settings': gcsSettings.encode()};
 }
@@ -1165,9 +1248,11 @@ final class ChronicleFeedSourceHttpSettings extends ChronicleFeedSource {
 
   final ChronicleFeedHttpSettings httpSettings;
 
+  @internal
   @override
   String get blockKey => 'http_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'http_settings': httpSettings.encode()};
 }
@@ -1178,9 +1263,11 @@ final class ChronicleFeedSourceSftpSettings extends ChronicleFeedSource {
 
   final ChronicleFeedSftpSettings sftpSettings;
 
+  @internal
   @override
   String get blockKey => 'sftp_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sftp_settings': sftpSettings.encode()};
 }
@@ -1191,9 +1278,11 @@ final class ChronicleFeedSourceAmazonS3Settings extends ChronicleFeedSource {
 
   final ChronicleFeedAmazonS3Settings amazonS3Settings;
 
+  @internal
   @override
   String get blockKey => 'amazon_s3_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'amazon_s3_settings': amazonS3Settings.encode(),
@@ -1207,9 +1296,11 @@ final class ChronicleFeedSourceAzureBlobStoreSettings
 
   final ChronicleFeedAzureBlobStoreSettings azureBlobStoreSettings;
 
+  @internal
   @override
   String get blockKey => 'azure_blob_store_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_blob_store_settings': azureBlobStoreSettings.encode(),
@@ -1222,9 +1313,11 @@ final class ChronicleFeedSourceAmazonSqsSettings extends ChronicleFeedSource {
 
   final ChronicleFeedAmazonSqsSettings amazonSqsSettings;
 
+  @internal
   @override
   String get blockKey => 'amazon_sqs_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'amazon_sqs_settings': amazonSqsSettings.encode(),
@@ -1241,9 +1334,11 @@ final class ChronicleFeedSourceGoogleCloudIdentityDevicesSettings
   final ChronicleFeedGoogleCloudIdentityDevicesSettings
   googleCloudIdentityDevicesSettings;
 
+  @internal
   @override
   String get blockKey => 'google_cloud_identity_devices_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'google_cloud_identity_devices_settings': googleCloudIdentityDevicesSettings
@@ -1261,9 +1356,11 @@ final class ChronicleFeedSourceGoogleCloudIdentityDeviceUsersSettings
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettings
   googleCloudIdentityDeviceUsersSettings;
 
+  @internal
   @override
   String get blockKey => 'google_cloud_identity_device_users_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'google_cloud_identity_device_users_settings':
@@ -1280,9 +1377,11 @@ final class ChronicleFeedSourceCrowdstrikeDetectsSettings
 
   final ChronicleFeedCrowdstrikeDetectsSettings crowdstrikeDetectsSettings;
 
+  @internal
   @override
   String get blockKey => 'crowdstrike_detects_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'crowdstrike_detects_settings': crowdstrikeDetectsSettings.encode(),
@@ -1295,9 +1394,11 @@ final class ChronicleFeedSourceMandiantIocSettings extends ChronicleFeedSource {
 
   final ChronicleFeedMandiantIocSettings mandiantIocSettings;
 
+  @internal
   @override
   String get blockKey => 'mandiant_ioc_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mandiant_ioc_settings': mandiantIocSettings.encode(),
@@ -1313,9 +1414,11 @@ final class ChronicleFeedSourceSentineloneAlertSettings
 
   final ChronicleFeedSentineloneAlertSettings sentineloneAlertSettings;
 
+  @internal
   @override
   String get blockKey => 'sentinelone_alert_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sentinelone_alert_settings': sentineloneAlertSettings.encode(),
@@ -1328,9 +1431,11 @@ final class ChronicleFeedSourceQualysScanSettings extends ChronicleFeedSource {
 
   final ChronicleFeedQualysScanSettings qualysScanSettings;
 
+  @internal
   @override
   String get blockKey => 'qualys_scan_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'qualys_scan_settings': qualysScanSettings.encode(),
@@ -1343,9 +1448,11 @@ final class ChronicleFeedSourcePubsubSettings extends ChronicleFeedSource {
 
   final ChronicleFeedPubsubSettings pubsubSettings;
 
+  @internal
   @override
   String get blockKey => 'pubsub_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pubsub_settings': pubsubSettings.encode()};
 }
@@ -1360,9 +1467,11 @@ final class ChronicleFeedSourceAmazonKinesisFirehoseSettings
   final ChronicleFeedAmazonKinesisFirehoseSettings
   amazonKinesisFirehoseSettings;
 
+  @internal
   @override
   String get blockKey => 'amazon_kinesis_firehose_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'amazon_kinesis_firehose_settings': amazonKinesisFirehoseSettings.encode(),
@@ -1375,9 +1484,11 @@ final class ChronicleFeedSourceWebhookSettings extends ChronicleFeedSource {
 
   final ChronicleFeedWebhookSettings webhookSettings;
 
+  @internal
   @override
   String get blockKey => 'webhook_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'webhook_settings': webhookSettings.encode(),
@@ -1391,9 +1502,11 @@ final class ChronicleFeedSourceDummyLogTypeSettings
 
   final ChronicleFeedDummyLogTypeSettings dummyLogTypeSettings;
 
+  @internal
   @override
   String get blockKey => 'dummy_log_type_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dummy_log_type_settings': dummyLogTypeSettings.encode(),
@@ -1410,9 +1523,11 @@ final class ChronicleFeedSourceHttpsPushGoogleCloudPubsubSettings
   final ChronicleFeedHttpsPushGoogleCloudPubsubSettings
   httpsPushGoogleCloudPubsubSettings;
 
+  @internal
   @override
   String get blockKey => 'https_push_google_cloud_pubsub_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'https_push_google_cloud_pubsub_settings':
@@ -1430,9 +1545,11 @@ final class ChronicleFeedSourceHttpsPushAmazonKinesisFirehoseSettings
   final ChronicleFeedHttpsPushAmazonKinesisFirehoseSettings
   httpsPushAmazonKinesisFirehoseSettings;
 
+  @internal
   @override
   String get blockKey => 'https_push_amazon_kinesis_firehose_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'https_push_amazon_kinesis_firehose_settings':
@@ -1449,9 +1566,11 @@ final class ChronicleFeedSourceHttpsPushWebhookSettings
 
   final ChronicleFeedHttpsPushWebhookSettings httpsPushWebhookSettings;
 
+  @internal
   @override
   String get blockKey => 'https_push_webhook_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'https_push_webhook_settings': httpsPushWebhookSettings.encode(),
@@ -1464,9 +1583,11 @@ final class ChronicleFeedSourceAwsEc2HostsSettings extends ChronicleFeedSource {
 
   final ChronicleFeedAwsEc2HostsSettings awsEc2HostsSettings;
 
+  @internal
   @override
   String get blockKey => 'aws_ec2_hosts_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'aws_ec2_hosts_settings': awsEc2HostsSettings.encode(),
@@ -1482,9 +1603,11 @@ final class ChronicleFeedSourceAwsEc2InstancesSettings
 
   final ChronicleFeedAwsEc2InstancesSettings awsEc2InstancesSettings;
 
+  @internal
   @override
   String get blockKey => 'aws_ec2_instances_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'aws_ec2_instances_settings': awsEc2InstancesSettings.encode(),
@@ -1497,9 +1620,11 @@ final class ChronicleFeedSourceAwsEc2VpcsSettings extends ChronicleFeedSource {
 
   final ChronicleFeedAwsEc2VpcsSettings awsEc2VpcsSettings;
 
+  @internal
   @override
   String get blockKey => 'aws_ec2_vpcs_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'aws_ec2_vpcs_settings': awsEc2VpcsSettings.encode(),
@@ -1512,9 +1637,11 @@ final class ChronicleFeedSourceAwsIamSettings extends ChronicleFeedSource {
 
   final ChronicleFeedAwsIamSettings awsIamSettings;
 
+  @internal
   @override
   String get blockKey => 'aws_iam_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'aws_iam_settings': awsIamSettings.encode(),
@@ -1530,9 +1657,11 @@ final class ChronicleFeedSourceNetskopeAlertV2Settings
 
   final ChronicleFeedNetskopeAlertV2Settings netskopeAlertV2Settings;
 
+  @internal
   @override
   String get blockKey => 'netskope_alert_v2_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'netskope_alert_v2_settings': netskopeAlertV2Settings.encode(),
@@ -1545,9 +1674,11 @@ final class ChronicleFeedSourceGcsV2Settings extends ChronicleFeedSource {
 
   final ChronicleFeedGcsV2Settings gcsV2Settings;
 
+  @internal
   @override
   String get blockKey => 'gcs_v2_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_v2_settings': gcsV2Settings.encode()};
 }
@@ -1558,9 +1689,11 @@ final class ChronicleFeedSourceAmazonS3V2Settings extends ChronicleFeedSource {
 
   final ChronicleFeedAmazonS3V2Settings amazonS3V2Settings;
 
+  @internal
   @override
   String get blockKey => 'amazon_s3_v2_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'amazon_s3_v2_settings': amazonS3V2Settings.encode(),
@@ -1573,9 +1706,11 @@ final class ChronicleFeedSourceAmazonSqsV2Settings extends ChronicleFeedSource {
 
   final ChronicleFeedAmazonSqsV2Settings amazonSqsV2Settings;
 
+  @internal
   @override
   String get blockKey => 'amazon_sqs_v2_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'amazon_sqs_v2_settings': amazonSqsV2Settings.encode(),
@@ -1589,9 +1724,11 @@ final class ChronicleFeedSourceAzureEventHubSettings
 
   final ChronicleFeedAzureEventHubSettings azureEventHubSettings;
 
+  @internal
   @override
   String get blockKey => 'azure_event_hub_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_event_hub_settings': azureEventHubSettings.encode(),
@@ -1605,9 +1742,11 @@ final class ChronicleFeedSourceTrellixHxHostsSettings
 
   final ChronicleFeedTrellixHxHostsSettings trellixHxHostsSettings;
 
+  @internal
   @override
   String get blockKey => 'trellix_hx_hosts_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'trellix_hx_hosts_settings': trellixHxHostsSettings.encode(),
@@ -1623,9 +1762,11 @@ final class ChronicleFeedSourceAzureBlobStoreV2Settings
 
   final ChronicleFeedAzureBlobStoreV2Settings azureBlobStoreV2Settings;
 
+  @internal
   @override
   String get blockKey => 'azure_blob_store_v2_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_blob_store_v2_settings': azureBlobStoreV2Settings.encode(),
@@ -1641,9 +1782,11 @@ final class ChronicleFeedSourceTrellixHxAlertsSettings
 
   final ChronicleFeedTrellixHxAlertsSettings trellixHxAlertsSettings;
 
+  @internal
   @override
   String get blockKey => 'trellix_hx_alerts_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'trellix_hx_alerts_settings': trellixHxAlertsSettings.encode(),
@@ -1660,9 +1803,11 @@ final class ChronicleFeedSourceGoogleCloudStorageEventDrivenSettings
   final ChronicleFeedGoogleCloudStorageEventDrivenSettings
   googleCloudStorageEventDrivenSettings;
 
+  @internal
   @override
   String get blockKey => 'google_cloud_storage_event_driven_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'google_cloud_storage_event_driven_settings':
@@ -1679,9 +1824,11 @@ final class ChronicleFeedSourceCrowdstrikeAlertsSettings
 
   final ChronicleFeedCrowdstrikeAlertsSettings crowdstrikeAlertsSettings;
 
+  @internal
   @override
   String get blockKey => 'crowdstrike_alerts_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'crowdstrike_alerts_settings': crowdstrikeAlertsSettings.encode(),
@@ -1697,9 +1844,11 @@ final class ChronicleFeedSourceTrellixHxBulkAcqsSettings
 
   final ChronicleFeedTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings;
 
+  @internal
   @override
   String get blockKey => 'trellix_hx_bulk_acqs_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'trellix_hx_bulk_acqs_settings': trellixHxBulkAcqsSettings.encode(),
@@ -1713,9 +1862,11 @@ final class ChronicleFeedSourceMimecastMailV2Settings
 
   final ChronicleFeedMimecastMailV2Settings mimecastMailV2Settings;
 
+  @internal
   @override
   String get blockKey => 'mimecast_mail_v2_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mimecast_mail_v2_settings': mimecastMailV2Settings.encode(),
@@ -1731,9 +1882,11 @@ final class ChronicleFeedSourceThreatConnectIocV3Settings
 
   final ChronicleFeedThreatConnectIocV3Settings threatConnectIocV3Settings;
 
+  @internal
   @override
   String get blockKey => 'threat_connect_ioc_v3_settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'threat_connect_ioc_v3_settings': threatConnectIocV3Settings.encode(),
@@ -1823,6 +1976,7 @@ extension type const ChronicleFeedSourceType._(TfArg<String> _)
 final class ChronicleFeedAmazonKinesisFirehoseSettings {
   const ChronicleFeedAmazonKinesisFirehoseSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1845,6 +1999,7 @@ final class ChronicleFeedAmazonS3Settings {
 
   final ChronicleFeedAmazonS3SettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_uri': s3Uri.toTfJson(),
     'source_deletion_option': sourceDeletionOption.toTfJson(),
@@ -1878,6 +2033,7 @@ final class ChronicleFeedAmazonS3SettingsAuthentication {
 
   final TfArg<String>? secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -1907,6 +2063,7 @@ final class ChronicleFeedAmazonS3V2Settings {
 
   final ChronicleFeedAmazonS3V2SettingsAuthentication authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -1928,6 +2085,7 @@ final class ChronicleFeedAmazonS3V2SettingsAuthentication {
 
   final ChronicleFeedAwsIamRoleAuth? awsIamRoleAuth;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_secret_auth': ?accessKeySecretAuth?.encode(),
     'aws_iam_role_auth': ?awsIamRoleAuth?.encode(),
@@ -1947,6 +2105,7 @@ final class ChronicleFeedAccessKeySecretAuth {
 
   final Sensitive<String> secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'secret_access_key': secretAccessKey.toTfJson(),
@@ -1964,6 +2123,7 @@ final class ChronicleFeedAwsIamRoleAuth {
 
   final TfArg<String>? subjectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_iam_role_arn': ?awsIamRoleArn?.toTfJson(),
     'subject_id': ?subjectId?.toTfJson(),
@@ -1992,6 +2152,7 @@ final class ChronicleFeedAmazonSqsSettings {
 
   final ChronicleFeedAmazonSqsSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_number': ?accountNumber?.toTfJson(),
     'queue': ?queue?.toTfJson(),
@@ -2015,6 +2176,7 @@ final class ChronicleFeedAmazonSqsSettingsAuthentication {
 
   final ChronicleFeedSqsAccessKeySecretAuth? sqsAccessKeySecretAuth;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_s3_access_key_secret_auth': ?additionalS3AccessKeySecretAuth
         ?.encode(),
@@ -2035,6 +2197,7 @@ final class ChronicleFeedAdditionalS3AccessKeySecretAuth {
 
   final Sensitive<String>? secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'secret_access_key': ?secretAccessKey?.toTfJson(),
@@ -2054,6 +2217,7 @@ final class ChronicleFeedSqsAccessKeySecretAuth {
 
   final Sensitive<String>? secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'secret_access_key': ?secretAccessKey?.toTfJson(),
@@ -2082,6 +2246,7 @@ final class ChronicleFeedAmazonSqsV2Settings {
 
   final ChronicleFeedAmazonSqsV2SettingsAuthentication authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
     'queue': queue.toTfJson(),
@@ -2104,6 +2269,7 @@ final class ChronicleFeedAmazonSqsV2SettingsAuthentication {
 
   final ChronicleFeedSqsV2AccessKeySecretAuth sqsV2AccessKeySecretAuth;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_iam_role_auth': awsIamRoleAuth.encode(),
     'sqs_v2_access_key_secret_auth': sqsV2AccessKeySecretAuth.encode(),
@@ -2123,6 +2289,7 @@ final class ChronicleFeedSqsV2AccessKeySecretAuth {
 
   final Sensitive<String>? secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'secret_access_key': ?secretAccessKey?.toTfJson(),
@@ -2137,6 +2304,7 @@ final class ChronicleFeedAnomaliSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -2153,6 +2321,7 @@ final class ChronicleFeedAnomaliSettingsAuthentication {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret': ?secret?.toTfJson(),
     'user': ?user?.toTfJson(),
@@ -2167,6 +2336,7 @@ final class ChronicleFeedAwsEc2HostsSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -2180,6 +2350,7 @@ final class ChronicleFeedAwsEc2InstancesSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -2193,6 +2364,7 @@ final class ChronicleFeedAwsEc2VpcsSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -2208,6 +2380,7 @@ final class ChronicleFeedAwsIamSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_type': ?apiType?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -2233,6 +2406,7 @@ final class ChronicleFeedAzureAdAuditSettings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -2255,6 +2429,7 @@ final class ChronicleFeedAzureAdAuditSettingsAuthentication {
 
   final Sensitive<String>? clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -2286,6 +2461,7 @@ final class ChronicleFeedAzureAdContextSettings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -2315,6 +2491,7 @@ final class ChronicleFeedAzureAdSettings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -2342,6 +2519,7 @@ final class ChronicleFeedAzureBlobStoreSettings {
 
   final ChronicleFeedAzureBlobStoreSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'azure_uri': ?azureUri?.toTfJson(),
     'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
@@ -2363,6 +2541,7 @@ final class ChronicleFeedAzureBlobStoreSettingsAuthentication {
 
   final Sensitive<String>? sharedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'sas_token': ?sasToken?.toTfJson(),
     'shared_key': ?sharedKey?.toTfJson(),
@@ -2388,6 +2567,7 @@ final class ChronicleFeedAzureBlobStoreV2Settings {
 
   final ChronicleFeedAzureBlobStoreV2SettingsAuthentication authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'azure_uri': azureUri.toTfJson(),
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
@@ -2413,6 +2593,7 @@ final class ChronicleFeedAzureBlobStoreV2SettingsAuthentication {
   final ChronicleFeedAzureV2WorkloadIdentityFederation
   azureV2WorkloadIdentityFederation;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key': accessKey.toTfJson(),
     'sas_token': sasToken.toTfJson(),
@@ -2437,6 +2618,7 @@ final class ChronicleFeedAzureV2WorkloadIdentityFederation {
 
   final TfArg<String> tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'subject_id': subjectId.toTfJson(),
@@ -2469,6 +2651,7 @@ final class ChronicleFeedAzureEventHubSettings {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'azure_sas_token': ?azureSasToken?.toTfJson(),
     'azure_storage_connection_string': ?azureStorageConnectionString
@@ -2499,6 +2682,7 @@ final class ChronicleFeedAzureMdmIntuneSettings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -2520,6 +2704,7 @@ final class ChronicleFeedCloudPassageSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_types': ?eventTypes?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -2542,6 +2727,7 @@ final class ChronicleFeedCortexXdrSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': ?endpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -2558,6 +2744,7 @@ final class ChronicleFeedCortexXdrSettingsAuthentication {
 
   final List<ChronicleFeedHeaderKeyValues>? headerKeyValues;
 
+  @internal
   Map<String, Object?> encode() => {
     if (headerKeyValues != null)
       'header_key_values': [for (final e in headerKeyValues!) e.encode()],
@@ -2575,6 +2762,7 @@ final class ChronicleFeedHeaderKeyValues {
 
   final Sensitive<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -2597,6 +2785,7 @@ final class ChronicleFeedCrowdstrikeAlertsSettings {
 
   final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'ingestion_type': ?ingestionType?.toTfJson(),
@@ -2621,6 +2810,7 @@ final class ChronicleFeedCrowdstrikeAlertsSettingsAuthentication {
 
   final TfArg<String>? tokenEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -2644,6 +2834,7 @@ final class ChronicleFeedCrowdstrikeDetectsSettings {
 
   final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'ingestion_type': ?ingestionType?.toTfJson(),
@@ -2664,6 +2855,7 @@ final class ChronicleFeedDummyLogTypeSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_endpoint': ?apiEndpoint?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -2680,6 +2872,7 @@ final class ChronicleFeedDuoAuthSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -2699,6 +2892,7 @@ final class ChronicleFeedDuoUserContextSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -2724,6 +2918,7 @@ final class ChronicleFeedFoxItStixSettings {
 
   final ChronicleFeedSsl? ssl;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection': ?collection?.toTfJson(),
     'poll_service_uri': ?pollServiceUri?.toTfJson(),
@@ -2742,6 +2937,7 @@ final class ChronicleFeedSsl {
 
   final Sensitive<String>? sslCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoded_private_key': ?encodedPrivateKey?.toTfJson(),
     'ssl_certificate': ?sslCertificate?.toTfJson(),
@@ -2764,6 +2960,7 @@ final class ChronicleFeedGcsSettings {
 
   final TfArg<String>? sourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_uri': ?bucketUri?.toTfJson(),
     'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
@@ -2787,6 +2984,7 @@ final class ChronicleFeedGcsV2Settings {
 
   final TfArg<String>? sourceDeletionOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_uri': bucketUri.toTfJson(),
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
@@ -2805,6 +3003,7 @@ final class ChronicleFeedGoogleCloudIdentityDeviceUsersSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -2827,6 +3026,7 @@ final class ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication {
 
   final ChronicleFeedRsCredentials? rsCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'token_endpoint': ?tokenEndpoint?.toTfJson(),
     'claims': ?claims?.encode(),
@@ -2847,6 +3047,7 @@ final class ChronicleFeedClaims {
 
   final TfArg<String>? subject;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'issuer': ?issuer?.toTfJson(),
@@ -2863,6 +3064,7 @@ final class ChronicleFeedRsCredentials {
 
   final Sensitive<String>? privateKey;
 
+  @internal
   Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
@@ -2880,6 +3082,7 @@ final class ChronicleFeedGoogleCloudIdentityDevicesSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_version': ?apiVersion?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -2905,6 +3108,7 @@ final class ChronicleFeedGoogleCloudStorageEventDrivenSettings {
 
   final TfArg<String>? sourceDeletionOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_uri': bucketUri.toTfJson(),
     'max_lookback_days': ?maxLookbackDays?.toTfJson(),
@@ -2929,6 +3133,7 @@ final class ChronicleFeedHttpSettings {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
     'source_type': ?sourceType?.toTfJson(),
@@ -2946,6 +3151,7 @@ final class ChronicleFeedHttpsPushAmazonKinesisFirehoseSettings {
 
   final TfArg<String>? splitDelimiter;
 
+  @internal
   Map<String, Object?> encode() => {
     'split_delimiter': ?splitDelimiter?.toTfJson(),
   };
@@ -2959,6 +3165,7 @@ final class ChronicleFeedHttpsPushGoogleCloudPubsubSettings {
 
   final TfArg<String>? splitDelimiter;
 
+  @internal
   Map<String, Object?> encode() => {
     'split_delimiter': ?splitDelimiter?.toTfJson(),
   };
@@ -2972,6 +3179,7 @@ final class ChronicleFeedHttpsPushWebhookSettings {
 
   final TfArg<String>? splitDelimiter;
 
+  @internal
   Map<String, Object?> encode() => {
     'split_delimiter': ?splitDelimiter?.toTfJson(),
   };
@@ -2985,6 +3193,7 @@ final class ChronicleFeedImpervaWafSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -3000,6 +3209,7 @@ final class ChronicleFeedMandiantIocSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'start_time': ?startTime?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3025,6 +3235,7 @@ final class ChronicleFeedMicrosoftGraphAlertSettings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -3055,6 +3266,7 @@ final class ChronicleFeedMicrosoftSecurityCenterAlertSettings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -3074,6 +3286,7 @@ final class ChronicleFeedMimecastMailSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3088,6 +3301,7 @@ final class ChronicleFeedMimecastMailV2Settings {
 
   final ChronicleFeedAuthCredentials? authCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_credentials': ?authCredentials?.encode(),
   };
@@ -3103,6 +3317,7 @@ final class ChronicleFeedAuthCredentials {
 
   final Sensitive<String>? clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -3128,6 +3343,7 @@ final class ChronicleFeedNetskopeAlertSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'feedname': ?feedname?.toTfJson(),
@@ -3155,6 +3371,7 @@ final class ChronicleFeedNetskopeAlertV2Settings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_category': ?contentCategory?.toTfJson(),
     'content_types': ?contentTypes?.toTfJson(),
@@ -3185,6 +3402,7 @@ final class ChronicleFeedOffice365Settings {
 
   final ChronicleFeedAzureAdAuditSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'content_type': ?contentType?.toTfJson(),
@@ -3204,6 +3422,7 @@ final class ChronicleFeedOktaSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3226,6 +3445,7 @@ final class ChronicleFeedOktaUserContextSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'manager_id_reference_field': ?managerIdReferenceField?.toTfJson(),
@@ -3249,6 +3469,7 @@ final class ChronicleFeedPanIocSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'feed': ?feed?.toTfJson(),
     'feed_id': ?feedId?.toTfJson(),
@@ -3269,6 +3490,7 @@ final class ChronicleFeedPanPrismaCloudSettings {
 
   final ChronicleFeedPanPrismaCloudSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3288,6 +3510,7 @@ final class ChronicleFeedPanPrismaCloudSettingsAuthentication {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': ?password?.toTfJson(),
     'user': ?user?.toTfJson(),
@@ -3302,6 +3525,7 @@ final class ChronicleFeedProofpointMailSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -3320,6 +3544,7 @@ final class ChronicleFeedProofpointOnDemandSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_id': ?clusterId?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3334,6 +3559,7 @@ final class ChronicleFeedPubsubSettings {
 
   final TfArg<String>? googleServiceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_service_account_email': ?googleServiceAccountEmail?.toTfJson(),
   };
@@ -3355,6 +3581,7 @@ final class ChronicleFeedQualysScanSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_type': ?apiType?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -3372,6 +3599,7 @@ final class ChronicleFeedQualysVmSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3394,6 +3622,7 @@ final class ChronicleFeedRapid7InsightSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': ?endpoint?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -3409,6 +3638,7 @@ final class ChronicleFeedRecordedFutureIocSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -3422,6 +3652,7 @@ final class ChronicleFeedRhIsacIocSettings {
 
   final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -3443,6 +3674,7 @@ final class ChronicleFeedSalesforceSettings {
 
   final ChronicleFeedOauthPasswordGrantAuth? oauthPasswordGrantAuth;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'oauth_jwt_credentials': ?oauthJwtCredentials?.encode(),
@@ -3466,6 +3698,7 @@ final class ChronicleFeedOauthJwtCredentials {
 
   final ChronicleFeedRsCredentials? rsCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'token_endpoint': ?tokenEndpoint?.toTfJson(),
     'claims': ?claims?.encode(),
@@ -3495,6 +3728,7 @@ final class ChronicleFeedOauthPasswordGrantAuth {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -3523,6 +3757,7 @@ final class ChronicleFeedSentineloneAlertSettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'initial_start_time': ?initialStartTime?.toTfJson(),
@@ -3547,6 +3782,7 @@ final class ChronicleFeedServiceNowCmdbSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'feedname': ?feedname?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -3573,6 +3809,7 @@ final class ChronicleFeedSftpSettings {
 
   final ChronicleFeedSftpSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
     'source_type': ?sourceType?.toTfJson(),
@@ -3600,6 +3837,7 @@ final class ChronicleFeedSftpSettingsAuthentication {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': ?password?.toTfJson(),
     'private_key': ?privateKey?.toTfJson(),
@@ -3616,6 +3854,7 @@ final class ChronicleFeedSymantecEventExportSettings {
 
   final ChronicleFeedSymantecEventExportSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': ?authentication?.encode(),
   };
@@ -3640,6 +3879,7 @@ final class ChronicleFeedSymantecEventExportSettingsAuthentication {
 
   final TfArg<String>? tokenEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -3661,6 +3901,7 @@ final class ChronicleFeedThinkstCanarySettings {
 
   final ChronicleFeedCortexXdrSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3683,6 +3924,7 @@ final class ChronicleFeedThreatConnectIocSettings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'owners': ?owners?.toTfJson(),
@@ -3715,6 +3957,7 @@ final class ChronicleFeedThreatConnectIocV3Settings {
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'fields': ?fields?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -3738,6 +3981,7 @@ final class ChronicleFeedTrellixHxAlertsSettings {
 
   final ChronicleFeedTrellixHxAlertsSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': ?endpoint?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3757,6 +4001,7 @@ final class ChronicleFeedTrellixHxAlertsSettingsAuthentication {
 
   final ChronicleFeedTrellixHxAlertsSettingsTrellixIam? trellixIam;
 
+  @internal
   Map<String, Object?> encode() => {
     'msso': ?msso?.encode(),
     'trellix_iam': ?trellixIam?.encode(),
@@ -3779,6 +4024,7 @@ final class ChronicleFeedTrellixHxAlertsSettingsMsso {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_endpoint': ?apiEndpoint?.toTfJson(),
     'password': ?password?.toTfJson(),
@@ -3802,6 +4048,7 @@ final class ChronicleFeedTrellixHxAlertsSettingsTrellixIam {
 
   final TfArg<String>? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -3822,6 +4069,7 @@ final class ChronicleFeedTrellixHxBulkAcqsSettings {
 
   final ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3842,6 +4090,7 @@ final class ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication {
 
   final ChronicleFeedTrellixHxBulkAcqsSettingsTrellixIam? trellixIam;
 
+  @internal
   Map<String, Object?> encode() => {
     'msso': ?msso?.encode(),
     'trellix_iam': ?trellixIam?.encode(),
@@ -3865,6 +4114,7 @@ final class ChronicleFeedTrellixHxBulkAcqsSettingsMsso {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_endpoint': apiEndpoint.toTfJson(),
     'password': password.toTfJson(),
@@ -3889,6 +4139,7 @@ final class ChronicleFeedTrellixHxBulkAcqsSettingsTrellixIam {
 
   final TfArg<String> scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
@@ -3909,6 +4160,7 @@ final class ChronicleFeedTrellixHxHostsSettings {
 
   final ChronicleFeedTrellixHxBulkAcqsSettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -3921,6 +4173,7 @@ final class ChronicleFeedTrellixHxHostsSettings {
 final class ChronicleFeedWebhookSettings {
   const ChronicleFeedWebhookSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3940,6 +4193,7 @@ final class ChronicleFeedWorkdaySettings {
 
   final ChronicleFeedWorkdaySettingsAuthentication? authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'tenant_id': ?tenantId?.toTfJson(),
@@ -3972,6 +4226,7 @@ final class ChronicleFeedWorkdaySettingsAuthentication {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -3999,6 +4254,7 @@ final class ChronicleFeedWorkspaceActivitySettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'applications': ?applications?.toTfJson(),
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
@@ -4020,6 +4276,7 @@ final class ChronicleFeedWorkspaceAlertsSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -4040,6 +4297,7 @@ final class ChronicleFeedWorkspaceChromeOsSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -4060,6 +4318,7 @@ final class ChronicleFeedWorkspaceGroupsSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -4080,6 +4339,7 @@ final class ChronicleFeedWorkspaceMobileSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -4100,6 +4360,7 @@ final class ChronicleFeedWorkspacePrivilegesSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
@@ -4123,6 +4384,7 @@ final class ChronicleFeedWorkspaceUsersSettings {
   final ChronicleFeedGoogleCloudIdentityDeviceUsersSettingsAuthentication?
   authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'projection_type': ?projectionType?.toTfJson(),
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),

@@ -50,8 +50,10 @@ sealed class BedrockEvaluationJobEvaluationConfig {
   ) = BedrockEvaluationJobEvaluationConfigHuman;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -62,9 +64,11 @@ final class BedrockEvaluationJobEvaluationConfigAutomated
 
   final List<BedrockEvaluationJobAutomated> automated;
 
+  @internal
   @override
   String get blockKey => 'automated';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'automated': [for (final e in automated) e.encode()],
@@ -78,9 +82,11 @@ final class BedrockEvaluationJobEvaluationConfigHuman
 
   final List<BedrockEvaluationJobHuman> human;
 
+  @internal
   @override
   String get blockKey => 'human';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'human': [for (final e in human) e.encode()],
@@ -103,6 +109,7 @@ final class BedrockEvaluationJobAutomated {
 
   final List<BedrockEvaluationJobEvaluatorModelConfig>? evaluatorModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customMetricConfig != null)
       'custom_metric_config': [for (final e in customMetricConfig!) e.encode()],
@@ -130,6 +137,7 @@ final class BedrockEvaluationJobCustomMetricConfig {
 
   final List<BedrockEvaluationJobEvaluatorModelConfig>? evaluatorModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customMetric != null)
       'custom_metric': [for (final e in customMetric!) e.encode()],
@@ -151,6 +159,7 @@ final class BedrockEvaluationJobCustomMetricConfigCustomMetric {
   final List<BedrockEvaluationJobCustomMetricDefinition>?
   customMetricDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customMetricDefinition != null)
       'custom_metric_definition': [
@@ -175,6 +184,7 @@ final class BedrockEvaluationJobCustomMetricDefinition {
 
   final List<BedrockEvaluationJobRatingScale>? ratingScale;
 
+  @internal
   Map<String, Object?> encode() => {
     'instructions': instructions.toTfJson(),
     'name': name.toTfJson(),
@@ -193,6 +203,7 @@ final class BedrockEvaluationJobRatingScale {
 
   final List<BedrockEvaluationJobValue>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
@@ -216,8 +227,10 @@ sealed class BedrockEvaluationJobValue {
   ) = BedrockEvaluationJobStringValue;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -227,9 +240,11 @@ final class BedrockEvaluationJobFloatValue extends BedrockEvaluationJobValue {
 
   final TfArg<num> floatValue;
 
+  @internal
   @override
   String get blockKey => 'float_value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'float_value': floatValue.toTfJson()};
 }
@@ -240,9 +255,11 @@ final class BedrockEvaluationJobStringValue extends BedrockEvaluationJobValue {
 
   final TfArg<String> stringValue;
 
+  @internal
   @override
   String get blockKey => 'string_value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'string_value': stringValue.toTfJson()};
 }
@@ -256,6 +273,7 @@ final class BedrockEvaluationJobEvaluatorModelConfig {
 
   final List<BedrockEvaluationJobBedrockEvaluatorModel>? bedrockEvaluatorModel;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bedrockEvaluatorModel != null)
       'bedrock_evaluator_model': [
@@ -275,6 +293,7 @@ final class BedrockEvaluationJobBedrockEvaluatorModel {
 
   final TfArg<String> modelIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'model_identifier': modelIdentifier.toTfJson(),
   };
@@ -297,6 +316,7 @@ final class BedrockEvaluationJobDatasetMetricConfig {
 
   final List<BedrockEvaluationJobDataset>? dataset;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_names': metricNames.toTfJson(),
     'task_type': taskType.toTfJson(),
@@ -347,6 +367,7 @@ final class BedrockEvaluationJobDataset {
 
   final List<BedrockEvaluationJobDatasetLocation>? datasetLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (datasetLocation != null)
@@ -363,6 +384,7 @@ final class BedrockEvaluationJobDatasetLocation {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 
@@ -382,6 +404,7 @@ final class BedrockEvaluationJobHuman {
 
   final List<BedrockEvaluationJobHumanWorkflowConfig>? humanWorkflowConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customMetric != null)
       'custom_metric': [for (final e in customMetric!) e.encode()],
@@ -412,6 +435,7 @@ final class BedrockEvaluationJobCustomMetric {
 
   final BedrockEvaluationJobRatingMethod ratingMethod;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -466,6 +490,7 @@ final class BedrockEvaluationJobHumanWorkflowConfig {
 
   final TfArg<String>? instructions;
 
+  @internal
   Map<String, Object?> encode() => {
     'flow_definition_arn': flowDefinitionArn.toTfJson(),
     'instructions': ?instructions?.toTfJson(),
@@ -490,8 +515,10 @@ sealed class BedrockEvaluationJobInferenceConfig {
   ) = BedrockEvaluationJobInferenceConfigRagConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -502,9 +529,11 @@ final class BedrockEvaluationJobInferenceConfigModel
 
   final List<BedrockEvaluationJobModel> model;
 
+  @internal
   @override
   String get blockKey => 'model';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'model': [for (final e in model) e.encode()],
@@ -518,9 +547,11 @@ final class BedrockEvaluationJobInferenceConfigRagConfig
 
   final List<BedrockEvaluationJobRagConfig> ragConfig;
 
+  @internal
   @override
   String get blockKey => 'rag_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rag_config': [for (final e in ragConfig) e.encode()],
@@ -546,8 +577,10 @@ sealed class BedrockEvaluationJobModel {
   ) = BedrockEvaluationJobModelPrecomputedInferenceSource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -558,9 +591,11 @@ final class BedrockEvaluationJobBedrockModelChoice
 
   final List<BedrockEvaluationJobBedrockModel> bedrockModel;
 
+  @internal
   @override
   String get blockKey => 'bedrock_model';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bedrock_model': [for (final e in bedrockModel) e.encode()],
@@ -577,9 +612,11 @@ final class BedrockEvaluationJobModelPrecomputedInferenceSource
   final List<BedrockEvaluationJobPrecomputedInferenceSource>
   precomputedInferenceSource;
 
+  @internal
   @override
   String get blockKey => 'precomputed_inference_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'precomputed_inference_source': [
@@ -604,6 +641,7 @@ final class BedrockEvaluationJobBedrockModel {
 
   final List<BedrockEvaluationJobPerformanceConfig>? performanceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'inference_params': ?inferenceParams?.toTfJson(),
     'model_identifier': modelIdentifier.toTfJson(),
@@ -620,6 +658,7 @@ final class BedrockEvaluationJobPerformanceConfig {
 
   final BedrockEvaluationJobLatency? latency;
 
+  @internal
   Map<String, Object?> encode() => {'latency': ?latency?.toTfJson()};
 }
 
@@ -652,6 +691,7 @@ final class BedrockEvaluationJobPrecomputedInferenceSource {
 
   final TfArg<String> inferenceSourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'inference_source_identifier': inferenceSourceIdentifier.toTfJson(),
   };
@@ -676,8 +716,10 @@ sealed class BedrockEvaluationJobRagConfig {
   ) = BedrockEvaluationJobRagConfigPrecomputedRagSourceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -690,9 +732,11 @@ final class BedrockEvaluationJobRagConfigKnowledgeBaseConfig
 
   final List<BedrockEvaluationJobKnowledgeBaseConfig> knowledgeBaseConfig;
 
+  @internal
   @override
   String get blockKey => 'knowledge_base_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'knowledge_base_config': [for (final e in knowledgeBaseConfig) e.encode()],
@@ -709,9 +753,11 @@ final class BedrockEvaluationJobRagConfigPrecomputedRagSourceConfig
   final List<BedrockEvaluationJobPrecomputedRagSourceConfig>
   precomputedRagSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'precomputed_rag_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'precomputed_rag_source_config': [
@@ -739,8 +785,10 @@ sealed class BedrockEvaluationJobKnowledgeBaseConfig {
   ) = BedrockEvaluationJobKnowledgeBaseConfigRetrieveConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -754,9 +802,11 @@ final class BedrockEvaluationJobKnowledgeBaseConfigRetrieveAndGenerateConfig
   final List<BedrockEvaluationJobRetrieveAndGenerateConfig>
   retrieveAndGenerateConfig;
 
+  @internal
   @override
   String get blockKey => 'retrieve_and_generate_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retrieve_and_generate_config': [
@@ -774,9 +824,11 @@ final class BedrockEvaluationJobKnowledgeBaseConfigRetrieveConfig
 
   final List<BedrockEvaluationJobRetrieveConfig> retrieveConfig;
 
+  @internal
   @override
   String get blockKey => 'retrieve_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retrieve_config': [for (final e in retrieveConfig) e.encode()],
@@ -800,6 +852,7 @@ final class BedrockEvaluationJobRetrieveAndGenerateConfig {
   final List<BedrockEvaluationJobRetrievalConfiguration>?
   retrievalConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'knowledge_base_id': knowledgeBaseId.toTfJson(),
     'model_arn': modelArn.toTfJson(),
@@ -821,6 +874,7 @@ final class BedrockEvaluationJobRetrievalConfiguration {
   final List<BedrockEvaluationJobVectorSearchConfiguration>?
   vectorSearchConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (vectorSearchConfiguration != null)
       'vector_search_configuration': [
@@ -838,6 +892,7 @@ final class BedrockEvaluationJobVectorSearchConfiguration {
 
   final TfArg<num>? numberOfResults;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_of_results': ?numberOfResults?.toTfJson(),
   };
@@ -857,6 +912,7 @@ final class BedrockEvaluationJobRetrieveConfig {
   final List<BedrockEvaluationJobKnowledgeBaseRetrievalConfiguration>?
   knowledgeBaseRetrievalConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'knowledge_base_id': knowledgeBaseId.toTfJson(),
     if (knowledgeBaseRetrievalConfiguration != null)
@@ -877,6 +933,7 @@ final class BedrockEvaluationJobKnowledgeBaseRetrievalConfiguration {
   final List<BedrockEvaluationJobVectorSearchConfiguration>?
   vectorSearchConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (vectorSearchConfiguration != null)
       'vector_search_configuration': [
@@ -904,8 +961,10 @@ sealed class BedrockEvaluationJobPrecomputedRagSourceConfig {
   ) = BedrockEvaluationJobPrecomputedRagSourceConfigRetrieveSourceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -919,9 +978,11 @@ final class BedrockEvaluationJobPrecomputedRagSourceConfigRetrieveAndGenerateSou
   final List<BedrockEvaluationJobRetrieveAndGenerateSourceConfig>
   retrieveAndGenerateSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'retrieve_and_generate_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retrieve_and_generate_source_config': [
@@ -939,9 +1000,11 @@ final class BedrockEvaluationJobPrecomputedRagSourceConfigRetrieveSourceConfig
 
   final List<BedrockEvaluationJobRetrieveSourceConfig> retrieveSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'retrieve_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retrieve_source_config': [
@@ -960,6 +1023,7 @@ final class BedrockEvaluationJobRetrieveAndGenerateSourceConfig {
 
   final TfArg<String> ragSourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'rag_source_identifier': ragSourceIdentifier.toTfJson(),
   };
@@ -975,6 +1039,7 @@ final class BedrockEvaluationJobRetrieveSourceConfig {
 
   final TfArg<String> ragSourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'rag_source_identifier': ragSourceIdentifier.toTfJson(),
   };
@@ -988,6 +1053,7 @@ final class BedrockEvaluationJobOutputDataConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 

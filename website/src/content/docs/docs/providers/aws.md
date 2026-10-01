@@ -37,7 +37,6 @@ import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/iam.dart';
 import 'package:terradart_aws/lambda.dart';
 import 'package:terradart_aws/provider.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class HelloLambdaStack extends Stack {
   HelloLambdaStack()
@@ -128,7 +127,6 @@ import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/ecs.dart';
 import 'package:terradart_aws/iam.dart';
 import 'package:terradart_aws/provider.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class DartServerStack extends Stack {
   DartServerStack({required String image})
@@ -214,7 +212,6 @@ import 'package:terradart_aws/cloudfront.dart';
 import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/provider.dart';
 import 'package:terradart_aws/s3.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class FlutterWebStack extends Stack {
   FlutterWebStack()

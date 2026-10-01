@@ -37,6 +37,7 @@ final class OpensearchDomainSamlOptions {
 
   final OpensearchDomainSamlOptionsIdp? idp;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'master_backend_role': ?masterBackendRole?.toTfJson(),
@@ -61,6 +62,7 @@ final class OpensearchDomainSamlOptionsIdp {
 
   final TfArg<String> metadataContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
     'metadata_content': metadataContent.toTfJson(),

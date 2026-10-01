@@ -26,6 +26,7 @@ final class ClouddomainsRegistrationContactSettings {
 
   final ClouddomainsRegistrationTechnicalContact technicalContact;
 
+  @internal
   Map<String, Object?> encode() => {
     'privacy': privacy.toTfJson(),
     'admin_contact': adminContact.encode(),
@@ -53,6 +54,7 @@ final class ClouddomainsRegistrationAdminContact {
 
   final ClouddomainsRegistrationPostalAddress postalAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'fax_number': ?faxNumber?.toTfJson(),
@@ -90,6 +92,7 @@ final class ClouddomainsRegistrationPostalAddress {
 
   final TfArg<String> regionCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_lines': ?addressLines?.toTfJson(),
     'administrative_area': ?administrativeArea?.toTfJson(),
@@ -120,6 +123,7 @@ final class ClouddomainsRegistrationRegistrantContact {
 
   final ClouddomainsRegistrationPostalAddress postalAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'fax_number': ?faxNumber?.toTfJson(),
@@ -147,6 +151,7 @@ final class ClouddomainsRegistrationTechnicalContact {
 
   final ClouddomainsRegistrationPostalAddress postalAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'fax_number': ?faxNumber?.toTfJson(),
@@ -165,6 +170,7 @@ final class ClouddomainsRegistrationDnsSettings {
 
   final List<ClouddomainsRegistrationGlueRecords>? glueRecords;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_dns': ?customDns?.encode(),
     if (glueRecords != null)
@@ -185,6 +191,7 @@ final class ClouddomainsRegistrationCustomDns {
 
   final List<ClouddomainsRegistrationDsRecords>? dsRecords;
 
+  @internal
   Map<String, Object?> encode() => {
     'name_servers': nameServers.toTfJson(),
     if (dsRecords != null)
@@ -211,6 +218,7 @@ final class ClouddomainsRegistrationDsRecords {
 
   final TfArg<num>? keyTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
     'digest': ?digest?.toTfJson(),
@@ -235,6 +243,7 @@ final class ClouddomainsRegistrationGlueRecords {
 
   final TfArg<List<String>>? ipv6Addresses;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
     'ipv4_addresses': ?ipv4Addresses?.toTfJson(),
@@ -255,6 +264,7 @@ final class ClouddomainsRegistrationManagementSettings {
 
   final TfArg<String>? transferLockState;
 
+  @internal
   Map<String, Object?> encode() => {
     'preferred_renewal_method': ?preferredRenewalMethod?.toTfJson(),
     'transfer_lock_state': ?transferLockState?.toTfJson(),
@@ -271,6 +281,7 @@ final class ClouddomainsRegistrationYearlyPrice {
 
   final TfArg<String>? units;
 
+  @internal
   Map<String, Object?> encode() => {
     'currency_code': ?currencyCode?.toTfJson(),
     'units': ?units?.toTfJson(),

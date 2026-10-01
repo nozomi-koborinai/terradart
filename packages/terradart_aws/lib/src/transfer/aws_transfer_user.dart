@@ -39,6 +39,7 @@ final class TransferUserHomeDirectoryMappings {
 
   final TfArg<String> target;
 
+  @internal
   Map<String, Object?> encode() => {
     'entry': entry.toTfJson(),
     'target': target.toTfJson(),
@@ -61,6 +62,7 @@ final class TransferUserPosixProfile {
 
   final TfArg<num> uid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
     'secondary_gids': ?secondaryGids?.toTfJson(),

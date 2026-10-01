@@ -29,6 +29,7 @@ final class CloudSchedulerJobAppEngineHttpTarget {
 
   final CloudSchedulerJobAppEngineRouting? appEngineRouting;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'headers': ?headers?.toTfJson(),
@@ -54,6 +55,7 @@ final class CloudSchedulerJobAppEngineRouting {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance': ?instance?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -86,6 +88,7 @@ final class CloudSchedulerJobHttpTarget {
 
   final CloudSchedulerJobOidcToken? oidcToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'headers': ?headers?.toTfJson(),
@@ -109,6 +112,7 @@ final class CloudSchedulerJobOauthToken {
 
   final TfArg<String> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': ?scope?.toTfJson(),
     'service_account_email': serviceAccountEmail.toTfJson(),
@@ -128,6 +132,7 @@ final class CloudSchedulerJobOidcToken {
 
   final TfArg<String> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': serviceAccountEmail.toTfJson(),
@@ -150,6 +155,7 @@ final class CloudSchedulerJobPubsubTarget {
 
   final TfArg<String> topicName;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'data': ?data?.toTfJson(),
@@ -179,6 +185,7 @@ final class CloudSchedulerJobRetryConfig {
 
   final TfArg<num>? retryCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_backoff_duration': ?maxBackoffDuration?.toTfJson(),
     'max_doublings': ?maxDoublings?.toTfJson(),

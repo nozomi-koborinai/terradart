@@ -4,6 +4,7 @@
 /// and v2 policy orchestrators.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/os_config/google_os_config_os_policy_assignment.dart'
     show
         GoogleOsConfigOsPolicyAssignment,

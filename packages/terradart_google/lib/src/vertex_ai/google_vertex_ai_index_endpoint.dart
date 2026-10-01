@@ -30,12 +30,15 @@ sealed class VertexAiIndexEndpointConnectivity {
   ) = VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -46,14 +49,17 @@ final class VertexAiIndexEndpointConnectivityNetwork
 
   final RefTo<GoogleComputeNetwork> network;
 
+  @internal
   @override
   String get blockKey => 'network';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'network': network.encodeAs('id')};
 }
@@ -68,14 +74,17 @@ final class VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig
   final VertexAiIndexEndpointPrivateServiceConnectConfig
   privateServiceConnectConfig;
 
+  @internal
   @override
   String get blockKey => 'private_service_connect_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'private_service_connect_config': privateServiceConnectConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'private_service_connect_config': TfArg.literal(
@@ -92,6 +101,7 @@ final class VertexAiIndexEndpointEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -113,6 +123,7 @@ final class VertexAiIndexEndpointPrivateServiceConnectConfig {
 
   final List<VertexAiIndexEndpointPscAutomationConfigs>? pscAutomationConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
     'project_allowlist': ?projectAllowlist?.toTfJson(),
@@ -136,6 +147,7 @@ final class VertexAiIndexEndpointPscAutomationConfigs {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),

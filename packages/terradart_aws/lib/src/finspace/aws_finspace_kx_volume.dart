@@ -47,6 +47,7 @@ final class FinspaceKxVolumeNas1Configuration {
 
   final FinspaceKxVolumeNas1ConfigurationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'size': size.toTfJson(),
     'type': type.toTfJson(),

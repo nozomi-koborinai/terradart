@@ -10,11 +10,12 @@ CatalogEntryData _entry({
   required String className,
   required String barrel,
   List<String> nestedTypes = const [],
+  String kind = 'resource',
 }) => CatalogEntryData(
   tfType: tfType,
   className: className,
   barrel: barrel,
-  kind: 'resource',
+  kind: kind,
   summary: 's',
   docComment: 'd',
   constructorParams: const ['localName'],
@@ -191,5 +192,131 @@ void main() {
         ),
       );
     });
+
+    test('every barrel re-exports terradart_core', () {
+      final files = buildBarrelFiles(entries: entries, manifest: manifest());
+      for (final barrel in ['pubsub', 'cloud_sql']) {
+        expect(files[barrel], contains(coreExport), reason: barrel);
+      }
+    });
+
+    group('data sources', () {
+      final withData = [
+        ...entries,
+        _entry(
+          tfType: 'google_pubsub_topic',
+          className: 'DataGooglePubsubTopic',
+          barrel: 'data',
+          kind: 'dataSource',
+        ),
+        _entry(
+          tfType: 'google_sql_tiers',
+          className: 'DataGoogleSqlTiers',
+          barrel: 'data',
+          kind: 'dataSource',
+        ),
+        _entry(
+          tfType: 'google_client_config',
+          className: 'DataGoogleClientConfig',
+          barrel: 'data',
+          kind: 'dataSource',
+        ),
+      ];
+      BarrelManifest withDataBarrel([
+        Map<String, String> authored = const {},
+      ]) => BarrelManifest(
+        umbrellaDoc: '/// Umbrella.',
+        umbrellaExtraExports: const [],
+        barrels: {
+          'pubsub': const BarrelSpec(doc: '/// Pub/Sub.'),
+          'sql': const BarrelSpec(doc: '/// Cloud SQL.', file: 'cloud_sql'),
+          'data': const BarrelSpec(doc: '/// Data.'),
+        },
+        dataSourceBarrels: authored,
+      );
+
+      test('are exported from data and from their service barrel', () {
+        final files = buildBarrelFiles(
+          entries: withData,
+          manifest: withDataBarrel(),
+        );
+        const topic =
+            "export 'src/data/google_pubsub_topic.dart' "
+            'show DataGooglePubsubTopic;';
+        expect(files['data'], contains(topic));
+        expect(files['pubsub'], contains(topic));
+        expect(
+          files['cloud_sql'],
+          contains("export 'src/data/google_sql_tiers.dart'"),
+        );
+        expect(files['data'], contains('google_client_config.dart'));
+        for (final barrel in ['pubsub', 'cloud_sql']) {
+          expect(
+            files[barrel],
+            isNot(contains('google_client_config')),
+            reason: barrel,
+          );
+        }
+      });
+
+      test('an authored entry places a type no name matches', () {
+        final files = buildBarrelFiles(
+          entries: withData,
+          manifest: withDataBarrel({'google_client_config': 'pubsub'}),
+        );
+        expect(
+          files['pubsub'],
+          contains("export 'src/data/google_client_config.dart'"),
+        );
+      });
+
+      for (final (authored, message) in [
+        ({'google_nope': 'pubsub'}, 'not a data source'),
+        ({'google_client_config': 'gone'}, 'not a catalog barrel'),
+        ({'google_sql_tiers': 'sql'}, 'is the derived barrel'),
+        ({'google_client_config': 'data'}, 'is the derived barrel'),
+      ]) {
+        test('rejects $authored', () {
+          expect(
+            () => buildBarrelFiles(
+              entries: withData,
+              manifest: withDataBarrel(authored),
+            ),
+            throwsA(
+              isA<StateError>().having(
+                (e) => e.message,
+                'message',
+                contains(message),
+              ),
+            ),
+          );
+        });
+      }
+    });
+  });
+
+  group('dataSourceBarrelFor', () {
+    const resources = {
+      'google_compute_network': 'compute',
+      'google_compute_instance': 'compute',
+      'google_service_account': 'iam',
+      'google_dns_managed_zone': 'dns',
+      'google_dns_policy': 'dns',
+      'google_folder': 'folder',
+      'google_storage_bucket': 'storage',
+      'google_storage_insights_report_config': 'storage_insights',
+    };
+    for (final (type, barrel) in [
+      ('google_service_account', 'iam'),
+      ('google_compute_zones', 'compute'),
+      ('google_storage_insights_dataset', 'storage_insights'),
+      ('google_dns_managed_zones', 'dns'),
+      ('google_folders', null),
+      ('google_client_config', null),
+    ]) {
+      test('$type -> $barrel', () {
+        expect(dataSourceBarrelFor(type, resources), barrel);
+      });
+    }
   });
 }

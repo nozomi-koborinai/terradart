@@ -3,6 +3,15 @@
 /// AWS Managed Streaming for Apache Kafka (MSK).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_msk_bootstrap_brokers.dart'
+    show DataAwsMskBootstrapBrokers;
+export 'src/data/aws_msk_broker_nodes.dart' show DataAwsMskBrokerNodes;
+export 'src/data/aws_msk_cluster.dart' show DataAwsMskCluster;
+export 'src/data/aws_msk_configuration.dart' show DataAwsMskConfiguration;
+export 'src/data/aws_msk_kafka_version.dart' show DataAwsMskKafkaVersion;
+export 'src/data/aws_msk_topic.dart' show DataAwsMskTopic;
+export 'src/data/aws_msk_vpc_connection.dart' show DataAwsMskVpcConnection;
 export 'src/msk/aws_msk_channel.dart'
     show
         AwsMskChannel,

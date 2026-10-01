@@ -15,6 +15,7 @@ final class ChronicleWatchlistEntityPopulationMechanism {
 
   final ChronicleWatchlistManual? manual;
 
+  @internal
   Map<String, Object?> encode() => {'manual': ?manual?.encode()};
 }
 
@@ -24,6 +25,7 @@ final class ChronicleWatchlistEntityPopulationMechanism {
 final class ChronicleWatchlistManual {
   const ChronicleWatchlistManual();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -35,6 +37,7 @@ final class ChronicleWatchlistUserPreferences {
 
   final TfArg<bool>? pinned;
 
+  @internal
   Map<String, Object?> encode() => {'pinned': ?pinned?.toTfJson()};
 }
 

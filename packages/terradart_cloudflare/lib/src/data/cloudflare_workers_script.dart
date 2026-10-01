@@ -17,6 +17,7 @@ final class DataWorkersScriptFilter {
 
   final TfArg<String>? tags;
 
+  @internal
   Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 

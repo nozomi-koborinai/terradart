@@ -50,8 +50,10 @@ sealed class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig {
   ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -65,9 +67,11 @@ final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExcha
   final BigqueryAnalyticsHubDataExchangeDefaultExchangeConfig
   defaultExchangeConfig;
 
+  @internal
   @override
   String get blockKey => 'default_exchange_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'default_exchange_config': defaultExchangeConfig.encode(),
@@ -83,9 +87,11 @@ final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeC
 
   final BigqueryAnalyticsHubDataExchangeDcrExchangeConfig dcrExchangeConfig;
 
+  @internal
   @override
   String get blockKey => 'dcr_exchange_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dcr_exchange_config': dcrExchangeConfig.encode(),
@@ -98,6 +104,7 @@ final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeC
 final class BigqueryAnalyticsHubDataExchangeDcrExchangeConfig {
   const BigqueryAnalyticsHubDataExchangeDcrExchangeConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -107,6 +114,7 @@ final class BigqueryAnalyticsHubDataExchangeDcrExchangeConfig {
 final class BigqueryAnalyticsHubDataExchangeDefaultExchangeConfig {
   const BigqueryAnalyticsHubDataExchangeDefaultExchangeConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

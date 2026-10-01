@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_certificate_manager_trust_config`.
@@ -15,6 +16,7 @@ final class CertificateManagerTrustConfigTrustAnchor {
 
   final TfArg<String>? pemCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     if (pemCertificate != null) 'pem_certificate': pemCertificate,
   };
@@ -26,6 +28,7 @@ final class CertificateManagerTrustConfigIntermediateCa {
 
   final TfArg<String>? pemCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     if (pemCertificate != null) 'pem_certificate': pemCertificate,
   };
@@ -41,6 +44,7 @@ final class CertificateManagerTrustConfigTrustStore {
   final List<CertificateManagerTrustConfigTrustAnchor>? trustAnchors;
   final List<CertificateManagerTrustConfigIntermediateCa>? intermediateCas;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trustAnchors != null)
       'trust_anchors': trustAnchors!.map((a) => a.encode()).toList(),
@@ -57,6 +61,7 @@ final class CertificateManagerTrustConfigAllowlistedCertificate {
 
   final TfArg<String> pemCertificate;
 
+  @internal
   Map<String, Object?> encode() => {'pem_certificate': pemCertificate};
 }
 

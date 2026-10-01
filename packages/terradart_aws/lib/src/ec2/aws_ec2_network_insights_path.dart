@@ -41,6 +41,7 @@ final class Ec2NetworkInsightsPathFilterAtDestination {
 
   final Ec2NetworkInsightsPathSourcePortRange? sourcePortRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_address': ?destinationAddress?.toTfJson(),
     'source_address': ?sourceAddress?.toTfJson(),
@@ -63,6 +64,7 @@ final class Ec2NetworkInsightsPathDestinationPortRange {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': ?fromPort?.toTfJson(),
     'to_port': ?toPort?.toTfJson(),
@@ -80,6 +82,7 @@ final class Ec2NetworkInsightsPathSourcePortRange {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': ?fromPort?.toTfJson(),
     'to_port': ?toPort?.toTfJson(),
@@ -105,6 +108,7 @@ final class Ec2NetworkInsightsPathFilterAtSource {
 
   final Ec2NetworkInsightsPathSourcePortRange? sourcePortRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_address': ?destinationAddress?.toTfJson(),
     'source_address': ?sourceAddress?.toTfJson(),

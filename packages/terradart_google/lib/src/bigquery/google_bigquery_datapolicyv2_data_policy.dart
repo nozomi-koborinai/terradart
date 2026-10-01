@@ -101,6 +101,7 @@ class BigqueryDatapolicyv2DataPolicyDataMaskingPolicy {
   predefinedExpression;
   final TfArg<String>? routine;
 
+  @internal
   Map<String, Object?> encode() => {
     if (predefinedExpression != null)
       'predefined_expression': predefinedExpression!.toTfJson(),
@@ -119,6 +120,7 @@ class BigqueryDatapolicyv2DataPolicyDataGovernanceTag {
   final TfArg<String> key;
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

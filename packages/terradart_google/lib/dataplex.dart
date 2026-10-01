@@ -5,6 +5,31 @@
 /// adjuncts.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_data_lineage_config.dart'
+    show DataGoogleDataLineageConfig;
+export 'src/data/google_dataplex_aspect_type_iam_policy.dart'
+    show DataGoogleDataplexAspectTypeIamPolicy;
+export 'src/data/google_dataplex_asset_iam_policy.dart'
+    show DataGoogleDataplexAssetIamPolicy;
+export 'src/data/google_dataplex_data_product_iam_policy.dart'
+    show DataGoogleDataplexDataProductIamPolicy;
+export 'src/data/google_dataplex_data_quality_rules.dart'
+    show DataGoogleDataplexDataQualityRules;
+export 'src/data/google_dataplex_datascan_iam_policy.dart'
+    show DataGoogleDataplexDatascanIamPolicy;
+export 'src/data/google_dataplex_entry_group_iam_policy.dart'
+    show DataGoogleDataplexEntryGroupIamPolicy;
+export 'src/data/google_dataplex_entry_type_iam_policy.dart'
+    show DataGoogleDataplexEntryTypeIamPolicy;
+export 'src/data/google_dataplex_glossary_iam_policy.dart'
+    show DataGoogleDataplexGlossaryIamPolicy;
+export 'src/data/google_dataplex_lake_iam_policy.dart'
+    show DataGoogleDataplexLakeIamPolicy;
+export 'src/data/google_dataplex_task_iam_policy.dart'
+    show DataGoogleDataplexTaskIamPolicy;
+export 'src/data/google_dataplex_zone_iam_policy.dart'
+    show DataGoogleDataplexZoneIamPolicy;
 export 'src/dataplex/google_data_lineage_config.dart'
     show
         DataLineageConfigIngestion,

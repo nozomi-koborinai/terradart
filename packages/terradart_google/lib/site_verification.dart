@@ -5,6 +5,9 @@
 /// domain / file token).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_site_verification_token.dart'
+    show DataGoogleSiteVerificationToken;
 export 'src/site_verification/google_site_verification_owner.dart'
     show GoogleSiteVerificationOwner;
 export 'src/site_verification/google_site_verification_web_resource.dart'

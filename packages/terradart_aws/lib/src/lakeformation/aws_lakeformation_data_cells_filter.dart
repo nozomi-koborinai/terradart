@@ -35,6 +35,7 @@ final class LakeformationDataCellsFilterTableData {
 
   final List<LakeformationDataCellsFilterRowFilter>? rowFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     ...column.encode(),
     'database_name': databaseName.toTfJson(),
@@ -65,8 +66,10 @@ sealed class LakeformationDataCellsFilterColumn {
   ) = LakeformationDataCellsFilterColumnWildcardChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -77,9 +80,11 @@ final class LakeformationDataCellsFilterColumnNames
 
   final TfArg<List<String>> columnNames;
 
+  @internal
   @override
   String get blockKey => 'column_names';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'column_names': columnNames.toTfJson()};
 }
@@ -91,9 +96,11 @@ final class LakeformationDataCellsFilterColumnWildcardChoice
 
   final List<LakeformationDataCellsFilterColumnWildcard> columnWildcard;
 
+  @internal
   @override
   String get blockKey => 'column_wildcard';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'column_wildcard': [for (final e in columnWildcard) e.encode()],
@@ -108,6 +115,7 @@ final class LakeformationDataCellsFilterColumnWildcard {
 
   final TfArg<List<String>>? excludedColumnNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_column_names': ?excludedColumnNames?.toTfJson(),
   };
@@ -131,8 +139,10 @@ sealed class LakeformationDataCellsFilterRowFilter {
   ) = LakeformationDataCellsFilterRowFilterExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -145,9 +155,11 @@ final class LakeformationDataCellsFilterRowFilterAllRowsWildcard
 
   final List<LakeformationDataCellsFilterAllRowsWildcard> allRowsWildcard;
 
+  @internal
   @override
   String get blockKey => 'all_rows_wildcard';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'all_rows_wildcard': [for (final e in allRowsWildcard) e.encode()],
@@ -161,9 +173,11 @@ final class LakeformationDataCellsFilterRowFilterExpression
 
   final TfArg<String> filterExpression;
 
+  @internal
   @override
   String get blockKey => 'filter_expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'filter_expression': filterExpression.toTfJson(),
@@ -176,6 +190,7 @@ final class LakeformationDataCellsFilterRowFilterExpression
 final class LakeformationDataCellsFilterAllRowsWildcard {
   const LakeformationDataCellsFilterAllRowsWildcard();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

@@ -31,12 +31,15 @@ sealed class BigqueryAnalyticsHubListingSubscriptionDestination {
   ) = BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -50,14 +53,17 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationDatasetChoice
   final BigqueryAnalyticsHubListingSubscriptionDestinationDataset
   destinationDataset;
 
+  @internal
   @override
   String get blockKey => 'destination_dataset';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'destination_dataset': destinationDataset.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'destination_dataset': TfArg.literal(destinationDataset.encode()),
@@ -74,14 +80,17 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
   final BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
   destinationPubsubSubscription;
 
+  @internal
   @override
   String get blockKey => 'destination_pubsub_subscription';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'destination_pubsub_subscription': destinationPubsubSubscription.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'destination_pubsub_subscription': TfArg.literal(
@@ -116,6 +125,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationDataset {
   final BigqueryAnalyticsHubListingSubscriptionDatasetReference
   datasetReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'friendly_name': ?friendlyName?.toTfJson(),
@@ -139,6 +149,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDatasetReference {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -156,6 +167,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
   final BigqueryAnalyticsHubListingSubscriptionPubsubSubscription
   pubsubSubscription;
 
+  @internal
   Map<String, Object?> encode() => {
     'pubsub_subscription': pubsubSubscription.encode(),
   };
@@ -216,6 +228,7 @@ final class BigqueryAnalyticsHubListingSubscriptionPubsubSubscription {
 
   final BigqueryAnalyticsHubListingSubscriptionRetryPolicy? retryPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'ack_deadline_seconds': ?ackDeadlineSeconds?.toTfJson(),
     'detached': ?detached?.toTfJson(),
@@ -260,6 +273,7 @@ final class BigqueryAnalyticsHubListingSubscriptionBigqueryConfig {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'drop_unknown_fields': ?dropUnknownFields?.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
@@ -304,6 +318,7 @@ final class BigqueryAnalyticsHubListingSubscriptionCloudStorageConfig {
 
   final BigqueryAnalyticsHubListingSubscriptionAvroConfig? avroConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
     'filename_datetime_format': ?filenameDatetimeFormat?.toTfJson(),
@@ -330,6 +345,7 @@ final class BigqueryAnalyticsHubListingSubscriptionAvroConfig {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_topic_schema': ?useTopicSchema?.toTfJson(),
     'write_metadata': ?writeMetadata?.toTfJson(),
@@ -349,6 +365,7 @@ final class BigqueryAnalyticsHubListingSubscriptionDeadLetterPolicy {
 
   final TfArg<num>? maxDeliveryAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'dead_letter_topic': ?deadLetterTopic?.toTfJson(),
     'max_delivery_attempts': ?maxDeliveryAttempts?.toTfJson(),
@@ -363,6 +380,7 @@ final class BigqueryAnalyticsHubListingSubscriptionExpirationPolicy {
 
   final TfArg<String>? ttl;
 
+  @internal
   Map<String, Object?> encode() => {'ttl': ?ttl?.toTfJson()};
 }
 
@@ -385,6 +403,7 @@ final class BigqueryAnalyticsHubListingSubscriptionPushConfig {
 
   final BigqueryAnalyticsHubListingSubscriptionOidcToken? oidcToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'push_endpoint': ?pushEndpoint?.toTfJson(),
@@ -401,6 +420,7 @@ final class BigqueryAnalyticsHubListingSubscriptionNoWrapper {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'write_metadata': ?writeMetadata?.toTfJson(),
   };
@@ -419,6 +439,7 @@ final class BigqueryAnalyticsHubListingSubscriptionOidcToken {
 
   final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
@@ -438,6 +459,7 @@ final class BigqueryAnalyticsHubListingSubscriptionRetryPolicy {
 
   final TfArg<String>? minimumBackoff;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_backoff': ?maximumBackoff?.toTfJson(),
     'minimum_backoff': ?minimumBackoff?.toTfJson(),

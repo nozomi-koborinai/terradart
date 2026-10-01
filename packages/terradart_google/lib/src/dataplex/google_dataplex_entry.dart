@@ -17,6 +17,7 @@ final class DataplexEntryAspects {
 
   final DataplexEntryAspect aspect;
 
+  @internal
   Map<String, Object?> encode() => {
     'aspect_key': aspectKey.toTfJson(),
     'aspect': aspect.encode(),
@@ -31,6 +32,7 @@ final class DataplexEntryAspect {
 
   final TfArg<String> data;
 
+  @internal
   Map<String, Object?> encode() => {'data': data.toTfJson()};
 }
 
@@ -68,6 +70,7 @@ final class DataplexEntrySource {
 
   final List<DataplexEntryAncestors>? ancestors;
 
+  @internal
   Map<String, Object?> encode() => {
     'create_time': ?createTime?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -92,6 +95,7 @@ final class DataplexEntryAncestors {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'type': ?type?.toTfJson(),

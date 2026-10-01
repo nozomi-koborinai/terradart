@@ -26,6 +26,7 @@ final class ConnectUserIdentityInfo {
 
   final TfArg<String>? secondaryEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.toTfJson(),
     'first_name': ?firstName?.toTfJson(),
@@ -53,6 +54,7 @@ final class ConnectUserPhoneConfig {
 
   final ConnectUserPhoneType phoneType;
 
+  @internal
   Map<String, Object?> encode() => {
     'after_contact_work_time_limit': ?afterContactWorkTimeLimit?.toTfJson(),
     'auto_accept': ?autoAccept?.toTfJson(),

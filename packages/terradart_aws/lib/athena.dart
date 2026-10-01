@@ -3,6 +3,7 @@
 /// AWS Athena.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/athena/aws_athena_capacity_reservation.dart'
     show AwsAthenaCapacityReservation;
 export 'src/athena/aws_athena_data_catalog.dart'
@@ -39,3 +40,4 @@ export 'src/athena/aws_athena_workgroup.dart'
         AthenaWorkgroupS3LoggingConfiguration,
         AthenaWorkgroupState,
         AwsAthenaWorkgroup;
+export 'src/data/aws_athena_named_query.dart' show DataAwsAthenaNamedQuery;

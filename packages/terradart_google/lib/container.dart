@@ -8,6 +8,7 @@
 /// `iam.dart` ([GoogleIamWorkloadIdentityPool]).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/container/google_container_cluster.dart'
     show
         ContainerClusterAccurateTimeConfig,
@@ -370,3 +371,21 @@ export 'src/container/google_gke_hub_scope_rbac_role_binding.dart'
         GkeHubScopeRbacRoleBindingPrincipalUser,
         GkeHubScopeRbacRoleBindingRole,
         GoogleGkeHubScopeRbacRoleBinding;
+export 'src/data/google_container_cluster.dart' show DataGoogleContainerCluster;
+export 'src/data/google_container_engine_versions.dart'
+    show DataGoogleContainerEngineVersions;
+export 'src/data/google_container_registry_image.dart'
+    show DataGoogleContainerRegistryImage;
+export 'src/data/google_container_registry_repository.dart'
+    show DataGoogleContainerRegistryRepository;
+export 'src/data/google_gke_hub_feature.dart' show DataGoogleGkeHubFeature;
+export 'src/data/google_gke_hub_feature_iam_policy.dart'
+    show DataGoogleGkeHubFeatureIamPolicy;
+export 'src/data/google_gke_hub_membership.dart'
+    show DataGoogleGkeHubMembership;
+export 'src/data/google_gke_hub_membership_binding.dart'
+    show DataGoogleGkeHubMembershipBinding;
+export 'src/data/google_gke_hub_membership_iam_policy.dart'
+    show DataGoogleGkeHubMembershipIamPolicy;
+export 'src/data/google_gke_hub_scope_iam_policy.dart'
+    show DataGoogleGkeHubScopeIamPolicy;

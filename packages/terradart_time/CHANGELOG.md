@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `terradart_time.dart` re-exports `terradart_core`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - `TimeSleep` takes `provider:`, the registered `TimeProvider` instance (an aliased `TimeProvider(alias: ...)` from `addProvider`). See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** `TimeSleep` takes its local name as the first positional argument: `TimeSleep('wait', createDuration: ...)`.
 

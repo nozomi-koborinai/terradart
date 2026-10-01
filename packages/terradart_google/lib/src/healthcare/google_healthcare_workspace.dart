@@ -18,6 +18,7 @@ final class HealthcareWorkspaceSettings {
 
   final TfArg<List<String>> dataProjectIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_project_ids': dataProjectIds.toTfJson(),
   };

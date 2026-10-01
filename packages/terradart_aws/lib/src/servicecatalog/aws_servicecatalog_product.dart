@@ -78,6 +78,7 @@ final class ServicecatalogProductProvisioningArtifactParameters {
 
   final ServicecatalogProductProvisioningArtifactParametersType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disable_template_validation': ?disableTemplateValidation?.toTfJson(),
@@ -105,8 +106,10 @@ sealed class ServicecatalogProductTemplate {
   ) = ServicecatalogProductTemplateUrl;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -117,9 +120,11 @@ final class ServicecatalogProductTemplatePhysicalId
 
   final TfArg<String> templatePhysicalId;
 
+  @internal
   @override
   String get blockKey => 'template_physical_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'template_physical_id': templatePhysicalId.toTfJson(),
@@ -133,9 +138,11 @@ final class ServicecatalogProductTemplateUrl
 
   final TfArg<String> templateUrl;
 
+  @internal
   @override
   String get blockKey => 'template_url';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'template_url': templateUrl.toTfJson()};
 }

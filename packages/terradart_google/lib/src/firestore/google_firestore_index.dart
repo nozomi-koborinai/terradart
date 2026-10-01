@@ -145,6 +145,7 @@ class FirestoreIndexField {
   /// Index dimension for this field.
   final FirestoreIndexFieldSpec spec;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_path': fieldPath.toTfJson(),
     ...spec.encode(),
@@ -177,6 +178,7 @@ sealed class FirestoreIndexFieldSpec {
   }) = FirestoreIndexFieldVectorConfig;
 
   /// Returns the JSON fragment to merge into [FirestoreIndexField.encode].
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -190,6 +192,7 @@ final class FirestoreIndexFieldOrder extends FirestoreIndexFieldSpec {
   final FirestoreIndexOrder order;
 
   @override
+  @internal
   Map<String, Object?> encode() => {'order': order.toTfJson()};
 }
 
@@ -200,6 +203,7 @@ final class FirestoreIndexFieldArrayConfig extends FirestoreIndexFieldSpec {
   const FirestoreIndexFieldArrayConfig();
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     // `CONTAINS` is the only valid value for `array_config` as of provider v7.31.0;
     // hard-coded here to keep the encoded shape consistent with the schema.
@@ -222,6 +226,7 @@ final class FirestoreIndexFieldSearchConfig extends FirestoreIndexFieldSpec {
   final FirestoreIndexFieldTextSpec? textSpec;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'search_config': [
       {
@@ -247,6 +252,7 @@ class FirestoreIndexFieldTextSpec {
   /// At least one per the schema's `min_items=1`.
   final List<FirestoreIndexFieldTextSpecEntry> indexSpecs;
 
+  @internal
   Map<String, Object?> encode() => {
     'index_specs': indexSpecs.map((e) => e.encode()).toList(),
   };
@@ -266,6 +272,7 @@ class FirestoreIndexFieldTextSpecEntry {
   /// Match strategy (`EXACT`, `PREFIX`). Forward the literal string.
   final TfArg<String>? matchType;
 
+  @internal
   Map<String, Object?> encode() => {
     if (indexType != null) 'index_type': indexType!.toTfJson(),
     if (matchType != null) 'match_type': matchType!.toTfJson(),
@@ -283,6 +290,7 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
   final TfArg<int> dimension;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'vector_config': [
       {

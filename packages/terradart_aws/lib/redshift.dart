@@ -3,6 +3,17 @@
 /// AWS Redshift.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_redshift_cluster.dart' show DataAwsRedshiftCluster;
+export 'src/data/aws_redshift_cluster_credentials.dart'
+    show DataAwsRedshiftClusterCredentials;
+export 'src/data/aws_redshift_data_shares.dart' show DataAwsRedshiftDataShares;
+export 'src/data/aws_redshift_orderable_cluster.dart'
+    show DataAwsRedshiftOrderableCluster;
+export 'src/data/aws_redshift_producer_data_shares.dart'
+    show DataAwsRedshiftProducerDataShares;
+export 'src/data/aws_redshift_subnet_group.dart'
+    show DataAwsRedshiftSubnetGroup;
 export 'src/redshift/aws_redshift_authentication_profile.dart'
     show AwsRedshiftAuthenticationProfile;
 export 'src/redshift/aws_redshift_cluster.dart'

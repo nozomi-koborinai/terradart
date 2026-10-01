@@ -41,6 +41,7 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<List<num>>? weeksOfMonth;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_action_timeout_in_mins': customActionTimeoutInMins.toTfJson(),
     'days_of_week': ?daysOfWeek?.toTfJson(),

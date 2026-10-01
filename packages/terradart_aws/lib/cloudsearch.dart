@@ -3,6 +3,7 @@
 /// AWS CloudSearch.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudsearch/aws_cloudsearch_domain.dart'
     show
         AwsCloudsearchDomain,

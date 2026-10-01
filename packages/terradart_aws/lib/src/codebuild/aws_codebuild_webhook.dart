@@ -50,12 +50,15 @@ sealed class CodebuildWebhookTrigger {
   ) = CodebuildWebhookTriggerFilterGroup;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -66,12 +69,15 @@ final class CodebuildWebhookTriggerBranchFilter
 
   final TfArg<String> branchFilter;
 
+  @internal
   @override
   String get blockKey => 'branch_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'branch_filter': branchFilter.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'branch_filter': branchFilter};
 }
@@ -82,14 +88,17 @@ final class CodebuildWebhookTriggerFilterGroup extends CodebuildWebhookTrigger {
 
   final List<CodebuildWebhookFilterGroup> filterGroup;
 
+  @internal
   @override
   String get blockKey => 'filter_group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'filter_group': [for (final e in filterGroup) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'filter_group': TfArg.literal([for (final e in filterGroup) e.encode()]),
@@ -104,6 +113,7 @@ final class CodebuildWebhookFilterGroup {
 
   final List<CodebuildWebhookFilter>? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
   };
@@ -125,6 +135,7 @@ final class CodebuildWebhookFilter {
 
   final CodebuildWebhookType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_matched_pattern': ?excludeMatchedPattern?.toTfJson(),
     'pattern': pattern.toTfJson(),
@@ -192,6 +203,7 @@ final class CodebuildWebhookPullRequestBuildPolicy {
 
   final CodebuildWebhookRequiresCommentApproval requiresCommentApproval;
 
+  @internal
   Map<String, Object?> encode() => {
     if (approverRoles != null)
       'approver_roles': [for (final e in approverRoles!) e.toTfJson()],
@@ -312,6 +324,7 @@ final class CodebuildWebhookScopeConfiguration {
 
   final CodebuildWebhookScope scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': ?domain?.toTfJson(),
     'name': name.toTfJson(),

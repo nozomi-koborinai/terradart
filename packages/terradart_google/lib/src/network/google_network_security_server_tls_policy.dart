@@ -25,6 +25,7 @@ final class NetworkSecurityServerTlsPolicyMtlsPolicy {
   final List<NetworkSecurityServerTlsPolicyClientValidationCa>?
   clientValidationCa;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_validation_mode': ?clientValidationMode?.toTfJson(),
     'client_validation_trust_config': ?clientValidationTrustConfig?.toTfJson(),
@@ -85,8 +86,10 @@ sealed class NetworkSecurityServerTlsPolicyClientValidationCa {
   ) = NetworkSecurityServerTlsPolicyClientValidationCaCertificateProviderInstance;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -99,9 +102,11 @@ final class NetworkSecurityServerTlsPolicyClientValidationCaGrpcEndpoint
 
   final NetworkSecurityServerTlsPolicyGrpcEndpoint grpcEndpoint;
 
+  @internal
   @override
   String get blockKey => 'grpc_endpoint';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
 }
@@ -116,9 +121,11 @@ final class NetworkSecurityServerTlsPolicyClientValidationCaCertificateProviderI
   final NetworkSecurityServerTlsPolicyCertificateProviderInstance
   certificateProviderInstance;
 
+  @internal
   @override
   String get blockKey => 'certificate_provider_instance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_provider_instance': certificateProviderInstance.encode(),
@@ -136,6 +143,7 @@ final class NetworkSecurityServerTlsPolicyCertificateProviderInstance {
 
   final TfArg<String> pluginInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'plugin_instance': pluginInstance.toTfJson(),
   };
@@ -150,6 +158,7 @@ final class NetworkSecurityServerTlsPolicyGrpcEndpoint {
 
   final TfArg<String> targetUri;
 
+  @internal
   Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
 }
 
@@ -172,8 +181,10 @@ sealed class NetworkSecurityServerTlsPolicyServerCertificate {
   ) = NetworkSecurityServerTlsPolicyServerCertificateProviderInstance;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -186,9 +197,11 @@ final class NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint
 
   final NetworkSecurityServerTlsPolicyGrpcEndpoint grpcEndpoint;
 
+  @internal
   @override
   String get blockKey => 'grpc_endpoint';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
 }
@@ -203,9 +216,11 @@ final class NetworkSecurityServerTlsPolicyServerCertificateProviderInstance
   final NetworkSecurityServerTlsPolicyCertificateProviderInstance
   certificateProviderInstance;
 
+  @internal
   @override
   String get blockKey => 'certificate_provider_instance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_provider_instance': certificateProviderInstance.encode(),

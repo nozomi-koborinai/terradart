@@ -56,6 +56,7 @@ final class WorkerVersionAnnotations {
 
   final TfArg<String>? workersTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'workers_message': ?workersMessage?.toTfJson(),
     'workers_tag': ?workersTag?.toTfJson(),
@@ -72,6 +73,7 @@ final class WorkerVersionAssets {
 
   final WorkerVersionConfig? config;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?source?.encode(),
     'config': ?config?.encode(),
@@ -95,8 +97,10 @@ sealed class WorkerVersionAssetsSource {
       WorkerVersionAssetsSourceJwt;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -107,9 +111,11 @@ final class WorkerVersionAssetsSourceDirectory
 
   final TfArg<String> directory;
 
+  @internal
   @override
   String get blockKey => 'directory';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
@@ -120,9 +126,11 @@ final class WorkerVersionAssetsSourceJwt extends WorkerVersionAssetsSource {
 
   final Sensitive<String> jwt;
 
+  @internal
   @override
   String get blockKey => 'jwt';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'jwt': jwt.toTfJson()};
 }
@@ -146,6 +154,7 @@ final class WorkerVersionConfig {
 
   final TfArg<Object?>? runWorkerFirst;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_path': ?basePath?.toTfJson(),
     'html_handling': ?htmlHandling?.toTfJson(),
@@ -345,6 +354,7 @@ final class WorkerVersionBindings {
 
   final WorkerVersionSimple? simple;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
     'allowed_destination_addresses': ?allowedDestinationAddresses?.toTfJson(),
@@ -594,6 +604,7 @@ final class WorkerVersionOutbound {
 
   final WorkerVersionWorker? worker;
 
+  @internal
   Map<String, Object?> encode() => {
     if (params != null) 'params': [for (final e in params!) e.encode()],
     'worker': ?worker?.encode(),
@@ -608,6 +619,7 @@ final class WorkerVersionParams {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -623,6 +635,7 @@ final class WorkerVersionWorker {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'entrypoint': ?entrypoint?.toTfJson(),
     'environment': ?environment?.toTfJson(),
@@ -646,6 +659,7 @@ final class WorkerVersionSimple {
 
   final TfArg<num> period;
 
+  @internal
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
     'mitigation_timeout': ?mitigationTimeout?.toTfJson(),
@@ -663,6 +677,7 @@ final class WorkerVersionCacheOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_version_cache': ?crossVersionCache?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -677,6 +692,7 @@ final class WorkerVersionContainers {
 
   final TfArg<String> className;
 
+  @internal
   Map<String, Object?> encode() => {'class_name': className.toTfJson()};
 }
 
@@ -708,6 +724,7 @@ final class WorkerVersionExports {
 
   final WorkerVersionCache? cache;
 
+  @internal
   Map<String, Object?> encode() => {
     'renamed_to': ?renamedTo?.toTfJson(),
     'state': ?state?.toTfJson(),
@@ -782,6 +799,7 @@ final class WorkerVersionCache {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -795,6 +813,7 @@ final class WorkerVersionLimits {
 
   final TfArg<num>? subrequests;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_ms': ?cpuMs?.toTfJson(),
     'subrequests': ?subrequests?.toTfJson(),
@@ -832,6 +851,7 @@ final class WorkerVersionMigrations {
 
   final List<WorkerVersionTransferredClasses>? transferredClasses;
 
+  @internal
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
     'new_classes': ?newClasses?.toTfJson(),
@@ -857,6 +877,7 @@ final class WorkerVersionRenamedClasses {
 
   final TfArg<String>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -885,6 +906,7 @@ final class WorkerVersionSteps {
 
   final List<WorkerVersionTransferredClasses>? transferredClasses;
 
+  @internal
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
     'new_classes': ?newClasses?.toTfJson(),
@@ -909,6 +931,7 @@ final class WorkerVersionTransferredClasses {
 
   final TfArg<String>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'from_script': ?fromScript?.toTfJson(),
@@ -932,6 +955,7 @@ final class WorkerVersionModules {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     ...content.encode(),
     'content_type': contentType.toTfJson(),
@@ -956,8 +980,10 @@ sealed class WorkerVersionContent {
       WorkerVersionContentFile;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -967,9 +993,11 @@ final class WorkerVersionContentBase64 extends WorkerVersionContent {
 
   final TfArg<String> contentBase64;
 
+  @internal
   @override
   String get blockKey => 'content_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
@@ -980,9 +1008,11 @@ final class WorkerVersionContentFile extends WorkerVersionContent {
 
   final TfArg<String> contentFile;
 
+  @internal
   @override
   String get blockKey => 'content_file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_file': contentFile.toTfJson()};
 }
@@ -1003,6 +1033,7 @@ final class WorkerVersionPackageDependencies {
 
   final TfArg<String> packageJsonVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'installed_version': installedVersion.toTfJson(),
     'name': name.toTfJson(),
@@ -1032,6 +1063,7 @@ final class WorkerVersionPlacement {
 
   final List<WorkerVersionTarget>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -1067,6 +1099,7 @@ final class WorkerVersionTarget {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),

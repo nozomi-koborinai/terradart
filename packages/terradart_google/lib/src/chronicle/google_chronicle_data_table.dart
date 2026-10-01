@@ -54,6 +54,7 @@ final class ChronicleDataTableColumnInfo {
 
   final TfArg<bool>? repeatedValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_index': columnIndex.toTfJson(),
     'column_type': ?columnType?.toTfJson(),
@@ -94,6 +95,7 @@ final class ChronicleDataTableScopeInfo {
 
   final TfArg<List<String>> dataAccessScopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_access_scopes': dataAccessScopes.toTfJson(),
   };

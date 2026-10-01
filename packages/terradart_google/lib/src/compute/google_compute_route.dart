@@ -39,11 +39,13 @@ sealed class ComputeRouteNextHop {
   }) = ComputeRouteVpnTunnelNextHop;
 
   /// Terraform attribute name (`next_hop_gateway`, `next_hop_ip`, …).
+  @internal
   String get blockKey;
 
   /// Scalar value written under [blockKey].
   TfArg<String> get value;
 
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -55,6 +57,7 @@ final class ComputeRouteGatewayNextHop extends ComputeRouteNextHop {
   final TfArg<String> nextHopGateway;
 
   @override
+  @internal
   String get blockKey => 'next_hop_gateway';
 
   @override
@@ -69,6 +72,7 @@ final class ComputeRouteIpNextHop extends ComputeRouteNextHop {
   final TfArg<String> nextHopIp;
 
   @override
+  @internal
   String get blockKey => 'next_hop_ip';
 
   @override
@@ -83,6 +87,7 @@ final class ComputeRouteInstanceNextHop extends ComputeRouteNextHop {
   final TfArg<String> nextHopInstance;
 
   @override
+  @internal
   String get blockKey => 'next_hop_instance';
 
   @override
@@ -97,6 +102,7 @@ final class ComputeRouteIlbNextHop extends ComputeRouteNextHop {
   final TfArg<String> nextHopIlb;
 
   @override
+  @internal
   String get blockKey => 'next_hop_ilb';
 
   @override
@@ -111,6 +117,7 @@ final class ComputeRouteVpnTunnelNextHop extends ComputeRouteNextHop {
   final TfArg<String> nextHopVpnTunnel;
 
   @override
+  @internal
   String get blockKey => 'next_hop_vpn_tunnel';
 
   @override
@@ -125,6 +132,7 @@ final class ComputeRouteParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

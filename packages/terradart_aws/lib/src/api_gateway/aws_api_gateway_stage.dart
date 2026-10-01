@@ -50,6 +50,7 @@ final class ApiGatewayStageAccessLogSettings {
 
   final TfArg<String> format;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_arn': destinationArn.toTfJson(),
     'format': format.toTfJson(),
@@ -75,6 +76,7 @@ final class ApiGatewayStageCanarySettings {
 
   final TfArg<bool>? useStageCache;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment_id': deploymentId.toTfJson(),
     'percent_traffic': ?percentTraffic?.toTfJson(),

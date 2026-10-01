@@ -25,8 +25,10 @@ sealed class NetworkmanagerDeviceAwsLocation {
       NetworkmanagerDeviceAwsLocationZone;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -37,9 +39,11 @@ final class NetworkmanagerDeviceAwsLocationSubnetArn
 
   final TfArg<String> subnetArn;
 
+  @internal
   @override
   String get blockKey => 'subnet_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'subnet_arn': subnetArn.toTfJson()};
 }
@@ -51,9 +55,11 @@ final class NetworkmanagerDeviceAwsLocationZone
 
   final TfArg<String> zone;
 
+  @internal
   @override
   String get blockKey => 'zone';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'zone': zone.toTfJson()};
 }
@@ -74,6 +80,7 @@ final class NetworkmanagerDeviceLocation {
 
   final TfArg<String>? longitude;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'latitude': ?latitude?.toTfJson(),

@@ -15,6 +15,7 @@ final class MedialiveInputSecurityGroupWhitelistRules {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 

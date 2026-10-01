@@ -57,6 +57,7 @@ final class NetappVolumeReplicationDestinationVolumeParameters {
 
   final NetappVolumeReplicationTieringPolicy? tieringPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'share_name': ?shareName?.toTfJson(),
@@ -79,6 +80,7 @@ final class NetappVolumeReplicationTieringPolicy {
 
   final NetappVolumeReplicationTierAction? tierAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
     'tier_action': ?tierAction?.toTfJson(),

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_servicequotas_template`.
@@ -22,12 +23,15 @@ sealed class ServicequotasTemplateRegion {
       ServicequotasTemplateRegionChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -37,12 +41,15 @@ final class ServicequotasTemplateAwsRegion extends ServicequotasTemplateRegion {
 
   final TfArg<String> awsRegion;
 
+  @internal
   @override
   String get blockKey => 'aws_region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'aws_region': awsRegion.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'aws_region': awsRegion};
 }
@@ -54,12 +61,15 @@ final class ServicequotasTemplateRegionChoice
 
   final TfArg<String> region;
 
+  @internal
   @override
   String get blockKey => 'region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'region': region};
 }

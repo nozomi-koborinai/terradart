@@ -43,6 +43,7 @@ final class CloudSecurityComplianceCloudControlParameterSpec {
 
   final CloudSecurityComplianceCloudControlValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -81,6 +82,7 @@ final class CloudSecurityComplianceCloudControlDefaultValue {
 
   final CloudSecurityComplianceCloudControlStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -104,6 +106,7 @@ final class CloudSecurityComplianceCloudControlOneofValue {
 
   final CloudSecurityComplianceCloudControlParameterValue? parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameter_value': ?parameterValue?.encode(),
@@ -133,6 +136,7 @@ final class CloudSecurityComplianceCloudControlParameterValue {
 
   final CloudSecurityComplianceCloudControlStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -157,6 +161,7 @@ final class CloudSecurityComplianceCloudControlParameterValueOneofValue {
   final CloudSecurityComplianceCloudControlOneofValueParameterValue?
   parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameter_value': ?parameterValue?.encode(),
@@ -183,6 +188,7 @@ final class CloudSecurityComplianceCloudControlOneofValueParameterValue {
 
   final CloudSecurityComplianceCloudControlStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -202,6 +208,7 @@ final class CloudSecurityComplianceCloudControlStringListValue {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -241,6 +248,7 @@ final class CloudSecurityComplianceCloudControlSubParameters {
 
   final CloudSecurityComplianceCloudControlValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -289,6 +297,7 @@ final class CloudSecurityComplianceCloudControlSubParametersSubParameters {
 
   final CloudSecurityComplianceCloudControlSubParametersValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -324,6 +333,7 @@ final class CloudSecurityComplianceCloudControlSubParametersDefaultValue {
 
   final CloudSecurityComplianceCloudControlStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -349,6 +359,7 @@ final class CloudSecurityComplianceCloudControlSubstitutionRules {
   final CloudSecurityComplianceCloudControlPlaceholderSubstitutionRule?
   placeholderSubstitutionRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_substitution_rule': ?attributeSubstitutionRule?.encode(),
     'placeholder_substitution_rule': ?placeholderSubstitutionRule?.encode(),
@@ -366,6 +377,7 @@ final class CloudSecurityComplianceCloudControlAttributeSubstitutionRule {
 
   final TfArg<String>? attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
@@ -380,6 +392,7 @@ final class CloudSecurityComplianceCloudControlPlaceholderSubstitutionRule {
 
   final TfArg<String>? attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
@@ -400,6 +413,7 @@ final class CloudSecurityComplianceCloudControlSubParametersValidation {
 
   final CloudSecurityComplianceCloudControlRegexpPattern? regexpPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.encode(),
     'int_range': ?intRange?.encode(),
@@ -417,6 +431,7 @@ final class CloudSecurityComplianceCloudControlValidationAllowedValues {
 
   final List<CloudSecurityComplianceCloudControlAllowedValuesValues> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'values': [for (final e in values) e.encode()],
   };
@@ -444,6 +459,7 @@ final class CloudSecurityComplianceCloudControlAllowedValuesValues {
 
   final CloudSecurityComplianceCloudControlStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -467,6 +483,7 @@ final class CloudSecurityComplianceCloudControlIntRange {
 
   final TfArg<String> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': max.toTfJson(),
     'min': min.toTfJson(),
@@ -484,6 +501,7 @@ final class CloudSecurityComplianceCloudControlRegexpPattern {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {'pattern': pattern.toTfJson()};
 }
 
@@ -504,6 +522,7 @@ final class CloudSecurityComplianceCloudControlValidation {
 
   final CloudSecurityComplianceCloudControlRegexpPattern? regexpPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.encode(),
     'int_range': ?intRange?.encode(),
@@ -522,6 +541,7 @@ final class CloudSecurityComplianceCloudControlAllowedValues {
 
   final List<CloudSecurityComplianceCloudControlValues> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'values': [for (final e in values) e.encode()],
   };
@@ -550,6 +570,7 @@ final class CloudSecurityComplianceCloudControlValues {
 
   final CloudSecurityComplianceCloudControlStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -575,6 +596,7 @@ final class CloudSecurityComplianceCloudControlRules {
 
   final CloudSecurityComplianceCloudControlCelExpression? celExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'rule_action_types': ruleActionTypes.toTfJson(),
@@ -596,6 +618,7 @@ final class CloudSecurityComplianceCloudControlCelExpression {
   final CloudSecurityComplianceCloudControlResourceTypesValues?
   resourceTypesValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'resource_types_values': ?resourceTypesValues?.encode(),
@@ -612,6 +635,7 @@ final class CloudSecurityComplianceCloudControlResourceTypesValues {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 

@@ -50,6 +50,7 @@ final class ZeroTrustListItems {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'value': ?value?.toTfJson(),

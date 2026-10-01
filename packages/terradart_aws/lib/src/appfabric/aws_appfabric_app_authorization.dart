@@ -45,6 +45,7 @@ final class AppfabricAppAuthorizationCredential {
 
   final List<AppfabricAppAuthorizationOauth2Credential>? oauth2Credential;
 
+  @internal
   Map<String, Object?> encode() => {
     if (apiKeyCredential != null)
       'api_key_credential': [for (final e in apiKeyCredential!) e.encode()],
@@ -61,6 +62,7 @@ final class AppfabricAppAuthorizationApiKeyCredential {
 
   final Sensitive<String> apiKey;
 
+  @internal
   Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
 }
 
@@ -77,6 +79,7 @@ final class AppfabricAppAuthorizationOauth2Credential {
 
   final Sensitive<String> clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
@@ -96,6 +99,7 @@ final class AppfabricAppAuthorizationTenant {
 
   final TfArg<String> tenantIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'tenant_display_name': tenantDisplayName.toTfJson(),
     'tenant_identifier': tenantIdentifier.toTfJson(),

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_redshift_data_share_consumer_association`.
@@ -30,12 +31,15 @@ sealed class RedshiftDataShareConsumerAssociationConsumer {
   ) = RedshiftDataShareConsumerAssociationConsumerRegion;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -48,14 +52,17 @@ final class RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount
 
   final TfArg<bool> associateEntireAccount;
 
+  @internal
   @override
   String get blockKey => 'associate_entire_account';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'associate_entire_account': associateEntireAccount.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'associate_entire_account': associateEntireAccount,
@@ -69,12 +76,15 @@ final class RedshiftDataShareConsumerAssociationConsumerArn
 
   final TfArg<String> consumerArn;
 
+  @internal
   @override
   String get blockKey => 'consumer_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'consumer_arn': consumerArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'consumer_arn': consumerArn};
 }
@@ -86,14 +96,17 @@ final class RedshiftDataShareConsumerAssociationConsumerRegion
 
   final TfArg<String> consumerRegion;
 
+  @internal
   @override
   String get blockKey => 'consumer_region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'consumer_region': consumerRegion.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'consumer_region': consumerRegion};
 }

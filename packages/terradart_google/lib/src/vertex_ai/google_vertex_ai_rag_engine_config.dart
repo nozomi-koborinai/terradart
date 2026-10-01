@@ -30,8 +30,10 @@ sealed class VertexAiRagEngineConfigRagManagedDbConfig {
   ) = VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -42,9 +44,11 @@ final class VertexAiRagEngineConfigRagManagedDbConfigScaled
 
   final VertexAiRagEngineConfigScaled scaled;
 
+  @internal
   @override
   String get blockKey => 'scaled';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'scaled': scaled.encode()};
 }
@@ -56,9 +60,11 @@ final class VertexAiRagEngineConfigRagManagedDbConfigBasic
 
   final VertexAiRagEngineConfigBasic basic;
 
+  @internal
   @override
   String get blockKey => 'basic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'basic': basic.encode()};
 }
@@ -72,9 +78,11 @@ final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned
 
   final VertexAiRagEngineConfigUnprovisioned unprovisioned;
 
+  @internal
   @override
   String get blockKey => 'unprovisioned';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'unprovisioned': unprovisioned.encode()};
 }
@@ -85,6 +93,7 @@ final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned
 final class VertexAiRagEngineConfigBasic {
   const VertexAiRagEngineConfigBasic();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -94,6 +103,7 @@ final class VertexAiRagEngineConfigBasic {
 final class VertexAiRagEngineConfigScaled {
   const VertexAiRagEngineConfigScaled();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -103,6 +113,7 @@ final class VertexAiRagEngineConfigScaled {
 final class VertexAiRagEngineConfigUnprovisioned {
   const VertexAiRagEngineConfigUnprovisioned();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

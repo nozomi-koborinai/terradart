@@ -20,6 +20,7 @@ final class DataResourcegroupstaggingapiResourcesTagFilter {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': ?values?.toTfJson(),

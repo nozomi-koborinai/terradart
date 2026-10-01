@@ -72,6 +72,7 @@ final class ComputeNetworkFirewallPolicyWithRulesRule {
   final List<ComputeNetworkFirewallPolicyWithRulesTargetSecureTag>?
   targetSecureTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -156,6 +157,7 @@ final class ComputeNetworkFirewallPolicyWithRulesMatch {
 
   final List<ComputeNetworkFirewallPolicyWithRulesSrcSecureTag>? srcSecureTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'dest_address_groups': ?destAddressGroups?.toTfJson(),
     'dest_fqdns': ?destFqdns?.toTfJson(),
@@ -186,6 +188,7 @@ final class ComputeNetworkFirewallPolicyWithRulesLayer4Config {
 
   final TfArg<List<String>>? ports;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
     'ports': ?ports?.toTfJson(),
@@ -200,6 +203,7 @@ final class ComputeNetworkFirewallPolicyWithRulesSrcSecureTag {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -211,6 +215,7 @@ final class ComputeNetworkFirewallPolicyWithRulesTargetSecureTag {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 

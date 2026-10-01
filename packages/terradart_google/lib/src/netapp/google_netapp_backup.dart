@@ -23,6 +23,7 @@ final class NetappBackupOntapSource {
 
   final TfArg<String> volumeUuid;
 
+  @internal
   Map<String, Object?> encode() => {
     'snapshot_uuid': ?snapshotUuid?.toTfJson(),
     'storage_pool': storagePool.toTfJson(),

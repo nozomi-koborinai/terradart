@@ -3,6 +3,7 @@
 /// AWS S3 Tables.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/s3tables/aws_s3tables_namespace.dart' show AwsS3tablesNamespace;
 export 'src/s3tables/aws_s3tables_table.dart'
     show

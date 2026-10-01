@@ -5,6 +5,9 @@
 /// repository index / code tools (subscription seats; never_apply).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_gemini_repository_group_iam_policy.dart'
+    show DataGoogleGeminiRepositoryGroupIamPolicy;
 export 'src/gemini/google_gemini_code_repository_index.dart'
     show GoogleGeminiCodeRepositoryIndex;
 export 'src/gemini/google_gemini_code_tools_setting.dart'

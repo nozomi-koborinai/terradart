@@ -18,6 +18,7 @@ final class RedisClusterUserCreatedConnectionsClusterEndpoints {
 
   final List<RedisClusterUserCreatedConnections>? connections;
 
+  @internal
   Map<String, Object?> encode() => {
     if (connections != null)
       'connections': [for (final e in connections!) e.encode()],
@@ -32,6 +33,7 @@ final class RedisClusterUserCreatedConnections {
 
   final RedisClusterUserCreatedConnectionsPscConnection? pscConnection;
 
+  @internal
   Map<String, Object?> encode() => {'psc_connection': ?pscConnection?.encode()};
 }
 
@@ -60,6 +62,7 @@ final class RedisClusterUserCreatedConnectionsPscConnection {
 
   final TfArg<String> serviceAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'forwarding_rule': forwardingRule.toTfJson(),

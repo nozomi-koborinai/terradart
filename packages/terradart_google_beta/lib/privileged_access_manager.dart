@@ -3,6 +3,7 @@
 /// Privileged Access Manager settings (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/privileged_access_manager/google_privileged_access_manager_settings.dart'
     show
         GooglePrivilegedAccessManagerSettings,

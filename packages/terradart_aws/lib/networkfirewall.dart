@@ -3,6 +3,13 @@
 /// AWS Network Firewall.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_networkfirewall_firewall.dart'
+    show DataAwsNetworkfirewallFirewall;
+export 'src/data/aws_networkfirewall_firewall_policy.dart'
+    show DataAwsNetworkfirewallFirewallPolicy;
+export 'src/data/aws_networkfirewall_resource_policy.dart'
+    show DataAwsNetworkfirewallResourcePolicy;
 export 'src/networkfirewall/aws_networkfirewall_container_association.dart'
     show
         AwsNetworkfirewallContainerAssociation,

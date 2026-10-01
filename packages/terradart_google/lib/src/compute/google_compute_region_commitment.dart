@@ -91,6 +91,7 @@ final class ComputeRegionCommitmentLicenseResource {
 
   final TfArg<String> license;
 
+  @internal
   Map<String, Object?> encode() => {
     'amount': ?amount?.toTfJson(),
     'cores_per_license': ?coresPerLicense?.toTfJson(),
@@ -106,6 +107,7 @@ final class ComputeRegionCommitmentParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -127,6 +129,7 @@ final class ComputeRegionCommitmentResources {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_type': ?acceleratorType?.toTfJson(),
     'amount': ?amount?.toTfJson(),

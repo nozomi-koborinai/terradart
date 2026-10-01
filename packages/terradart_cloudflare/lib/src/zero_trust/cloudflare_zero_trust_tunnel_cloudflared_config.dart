@@ -43,6 +43,7 @@ final class ZeroTrustTunnelCloudflaredConfig {
 
   final ZeroTrustTunnelCloudflaredConfigOriginRequest? originRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ingress != null) 'ingress': [for (final e in ingress!) e.encode()],
     'origin_request': ?originRequest?.encode(),
@@ -68,6 +69,7 @@ final class ZeroTrustTunnelCloudflaredConfigIngress {
 
   final ZeroTrustTunnelCloudflaredConfigOriginRequest? originRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -129,6 +131,7 @@ final class ZeroTrustTunnelCloudflaredConfigOriginRequest {
 
   final ZeroTrustTunnelCloudflaredConfigAccess? access;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_pool': ?caPool?.toTfJson(),
     'connect_timeout': ?connectTimeout?.toTfJson(),
@@ -165,6 +168,7 @@ final class ZeroTrustTunnelCloudflaredConfigAccess {
 
   final TfArg<String> teamName;
 
+  @internal
   Map<String, Object?> encode() => {
     'aud_tag': audTag.toTfJson(),
     'required': ?required?.toTfJson(),

@@ -17,6 +17,7 @@ final class DnsResponsePolicyGkeClusters {
 
   final TfArg<String> gkeClusterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'gke_cluster_name': gkeClusterName.toTfJson(),
   };
@@ -30,6 +31,7 @@ final class DnsResponsePolicyNetworks {
 
   final RefTo<GoogleComputeNetwork> networkUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_url': networkUrl.encodeAs('id').toTfJson(),
   };

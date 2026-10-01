@@ -86,6 +86,7 @@ final class VmwareenginePrivateCloudManagementCluster {
 
   final VmwareenginePrivateCloudStretchedClusterConfig? stretchedClusterConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
     'autoscaling_settings': ?autoscalingSettings?.encode(),
@@ -114,6 +115,7 @@ final class VmwareenginePrivateCloudAutoscalingSettings {
 
   final List<VmwareenginePrivateCloudAutoscalingPolicies> autoscalingPolicies;
 
+  @internal
   Map<String, Object?> encode() => {
     'cool_down_period': ?coolDownPeriod?.toTfJson(),
     'max_cluster_node_count': ?maxClusterNodeCount?.toTfJson(),
@@ -148,6 +150,7 @@ final class VmwareenginePrivateCloudAutoscalingPolicies {
 
   final VmwareenginePrivateCloudStorageThresholds? storageThresholds;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoscale_policy_id': autoscalePolicyId.toTfJson(),
     'node_type_id': nodeTypeId.toTfJson(),
@@ -171,6 +174,7 @@ final class VmwareenginePrivateCloudConsumedMemoryThresholds {
 
   final TfArg<num> scaleOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in': scaleIn.toTfJson(),
     'scale_out': scaleOut.toTfJson(),
@@ -190,6 +194,7 @@ final class VmwareenginePrivateCloudCpuThresholds {
 
   final TfArg<num> scaleOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in': scaleIn.toTfJson(),
     'scale_out': scaleOut.toTfJson(),
@@ -209,6 +214,7 @@ final class VmwareenginePrivateCloudStorageThresholds {
 
   final TfArg<num> scaleOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in': scaleIn.toTfJson(),
     'scale_out': scaleOut.toTfJson(),
@@ -231,6 +237,7 @@ final class VmwareenginePrivateCloudNodeTypeConfigs {
 
   final TfArg<String> nodeTypeId;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_core_count': ?customCoreCount?.toTfJson(),
     'node_count': nodeCount.toTfJson(),
@@ -251,6 +258,7 @@ final class VmwareenginePrivateCloudStretchedClusterConfig {
 
   final TfArg<String>? secondaryLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'preferred_location': ?preferredLocation?.toTfJson(),
     'secondary_location': ?secondaryLocation?.toTfJson(),
@@ -270,6 +278,7 @@ final class VmwareenginePrivateCloudNetworkConfig {
 
   final TfArg<String>? vmwareEngineNetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'management_cidr': managementCidr.toTfJson(),
     'vmware_engine_network': ?vmwareEngineNetwork?.toTfJson(),

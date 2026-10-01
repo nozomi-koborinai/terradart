@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_dms_certificate`.
@@ -27,12 +28,15 @@ sealed class DmsCertificateContent {
   ) = DmsCertificateContentCertificateWallet;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,14 +46,17 @@ final class DmsCertificateContentCertificatePem extends DmsCertificateContent {
 
   final Sensitive<String> certificatePem;
 
+  @internal
   @override
   String get blockKey => 'certificate_pem';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_pem': certificatePem.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'certificate_pem': certificatePem};
 }
@@ -61,14 +68,17 @@ final class DmsCertificateContentCertificateWallet
 
   final Sensitive<String> certificateWallet;
 
+  @internal
   @override
   String get blockKey => 'certificate_wallet';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_wallet': certificateWallet.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'certificate_wallet': certificateWallet,

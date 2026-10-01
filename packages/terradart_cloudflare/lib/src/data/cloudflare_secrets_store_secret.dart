@@ -28,6 +28,7 @@ final class DataSecretsStoreSecretFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'order': ?order?.toTfJson(),

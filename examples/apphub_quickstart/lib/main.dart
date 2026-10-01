@@ -5,9 +5,7 @@
 /// discovered resource URIs; they are deferred to [tool/example_debt.yaml].
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/apphub.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
@@ -20,7 +18,7 @@ final class ApphubStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final apiDeps = Apis.enable(
       this,

@@ -33,6 +33,7 @@ final class DataLbListenerRuleAction {
 
   final List<DataLbListenerRuleRedirect>? redirect;
 
+  @internal
   Map<String, Object?> encode() => {
     if (authenticateCognito != null)
       'authenticate_cognito': [
@@ -55,6 +56,7 @@ final class DataLbListenerRuleAction {
 final class DataLbListenerRuleAuthenticateCognito {
   const DataLbListenerRuleAuthenticateCognito();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -64,6 +66,7 @@ final class DataLbListenerRuleAuthenticateCognito {
 final class DataLbListenerRuleAuthenticateOidc {
   const DataLbListenerRuleAuthenticateOidc();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -73,6 +76,7 @@ final class DataLbListenerRuleAuthenticateOidc {
 final class DataLbListenerRuleFixedResponse {
   const DataLbListenerRuleFixedResponse();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -86,6 +90,7 @@ final class DataLbListenerRuleForward {
 
   final List<DataLbListenerRuleTargetGroup>? targetGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stickiness != null)
       'stickiness': [for (final e in stickiness!) e.encode()],
@@ -100,6 +105,7 @@ final class DataLbListenerRuleForward {
 final class DataLbListenerRuleStickiness {
   const DataLbListenerRuleStickiness();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -109,6 +115,7 @@ final class DataLbListenerRuleStickiness {
 final class DataLbListenerRuleTargetGroup {
   const DataLbListenerRuleTargetGroup();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -120,6 +127,7 @@ final class DataLbListenerRuleJwtValidation {
 
   final List<DataLbListenerRuleAdditionalClaim>? additionalClaim;
 
+  @internal
   Map<String, Object?> encode() => {
     if (additionalClaim != null)
       'additional_claim': [for (final e in additionalClaim!) e.encode()],
@@ -132,6 +140,7 @@ final class DataLbListenerRuleJwtValidation {
 final class DataLbListenerRuleAdditionalClaim {
   const DataLbListenerRuleAdditionalClaim();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -141,6 +150,7 @@ final class DataLbListenerRuleAdditionalClaim {
 final class DataLbListenerRuleRedirect {
   const DataLbListenerRuleRedirect();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -169,6 +179,7 @@ final class DataLbListenerRuleCondition {
 
   final List<DataLbListenerRuleSourceIp>? sourceIp;
 
+  @internal
   Map<String, Object?> encode() => {
     if (hostHeader != null)
       'host_header': [for (final e in hostHeader!) e.encode()],
@@ -190,6 +201,7 @@ final class DataLbListenerRuleCondition {
 final class DataLbListenerRuleHostHeader {
   const DataLbListenerRuleHostHeader();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -199,6 +211,7 @@ final class DataLbListenerRuleHostHeader {
 final class DataLbListenerRuleHttpHeader {
   const DataLbListenerRuleHttpHeader();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -208,6 +221,7 @@ final class DataLbListenerRuleHttpHeader {
 final class DataLbListenerRuleHttpRequestMethod {
   const DataLbListenerRuleHttpRequestMethod();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -217,6 +231,7 @@ final class DataLbListenerRuleHttpRequestMethod {
 final class DataLbListenerRulePathPattern {
   const DataLbListenerRulePathPattern();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -228,6 +243,7 @@ final class DataLbListenerRuleQueryString {
 
   final List<DataLbListenerRuleValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
@@ -239,6 +255,7 @@ final class DataLbListenerRuleQueryString {
 final class DataLbListenerRuleValues {
   const DataLbListenerRuleValues();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -248,6 +265,7 @@ final class DataLbListenerRuleValues {
 final class DataLbListenerRuleSourceIp {
   const DataLbListenerRuleSourceIp();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -265,6 +283,7 @@ final class DataLbListenerRuleTransform {
 
   final List<DataLbListenerRuleUrlRewriteConfig>? urlRewriteConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (hostHeaderRewriteConfig != null)
       'host_header_rewrite_config': [
@@ -283,6 +302,7 @@ final class DataLbListenerRuleHostHeaderRewriteConfig {
 
   final List<DataLbListenerRuleRewrite>? rewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     if (rewrite != null) 'rewrite': [for (final e in rewrite!) e.encode()],
   };
@@ -295,6 +315,7 @@ final class DataLbListenerRuleHostHeaderRewriteConfig {
 final class DataLbListenerRuleRewrite {
   const DataLbListenerRuleRewrite();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -306,6 +327,7 @@ final class DataLbListenerRuleUrlRewriteConfig {
 
   final List<DataLbListenerRuleRewrite>? rewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     if (rewrite != null) 'rewrite': [for (final e in rewrite!) e.encode()],
   };

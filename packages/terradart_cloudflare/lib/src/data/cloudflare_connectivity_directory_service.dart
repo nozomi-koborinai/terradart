@@ -17,6 +17,7 @@ final class DataConnectivityDirectoryServiceFilter {
 
   final DataConnectivityDirectoryServiceFilterType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 

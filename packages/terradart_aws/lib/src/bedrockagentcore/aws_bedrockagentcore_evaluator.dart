@@ -54,8 +54,10 @@ sealed class BedrockagentcoreEvaluatorConfig {
   ) = BedrockagentcoreEvaluatorConfigLlmAsAJudge;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -66,9 +68,11 @@ final class BedrockagentcoreEvaluatorConfigCodeBased
 
   final List<BedrockagentcoreEvaluatorCodeBased> codeBased;
 
+  @internal
   @override
   String get blockKey => 'code_based';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'code_based': [for (final e in codeBased) e.encode()],
@@ -82,9 +86,11 @@ final class BedrockagentcoreEvaluatorConfigLlmAsAJudge
 
   final List<BedrockagentcoreEvaluatorLlmAsAJudge> llmAsAJudge;
 
+  @internal
   @override
   String get blockKey => 'llm_as_a_judge';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'llm_as_a_judge': [for (final e in llmAsAJudge) e.encode()],
@@ -99,6 +105,7 @@ final class BedrockagentcoreEvaluatorCodeBased {
 
   final List<BedrockagentcoreEvaluatorLambdaConfig>? lambdaConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (lambdaConfig != null)
       'lambda_config': [for (final e in lambdaConfig!) e.encode()],
@@ -118,6 +125,7 @@ final class BedrockagentcoreEvaluatorLambdaConfig {
 
   final TfArg<num>? lambdaTimeoutInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_timeout_in_seconds': ?lambdaTimeoutInSeconds?.toTfJson(),
@@ -140,6 +148,7 @@ final class BedrockagentcoreEvaluatorLlmAsAJudge {
 
   final List<BedrockagentcoreEvaluatorRatingScale>? ratingScale;
 
+  @internal
   Map<String, Object?> encode() => {
     'instructions': instructions.toTfJson(),
     if (modelConfig != null)
@@ -160,6 +169,7 @@ final class BedrockagentcoreEvaluatorModelConfig {
   final List<BedrockagentcoreEvaluatorBedrockEvaluatorModelConfig>?
   bedrockEvaluatorModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bedrockEvaluatorModelConfig != null)
       'bedrock_evaluator_model_config': [
@@ -184,6 +194,7 @@ final class BedrockagentcoreEvaluatorBedrockEvaluatorModelConfig {
 
   final List<BedrockagentcoreEvaluatorInferenceConfig>? inferenceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_model_request_fields': ?additionalModelRequestFields
         ?.toTfJson(),
@@ -212,6 +223,7 @@ final class BedrockagentcoreEvaluatorInferenceConfig {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_tokens': ?maxTokens?.toTfJson(),
     'stop_sequences': ?stopSequences?.toTfJson(),
@@ -238,8 +250,10 @@ sealed class BedrockagentcoreEvaluatorRatingScale {
   ) = BedrockagentcoreEvaluatorRatingScaleNumerical;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -250,9 +264,11 @@ final class BedrockagentcoreEvaluatorRatingScaleCategorical
 
   final List<BedrockagentcoreEvaluatorCategorical> categorical;
 
+  @internal
   @override
   String get blockKey => 'categorical';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'categorical': [for (final e in categorical) e.encode()],
@@ -266,9 +282,11 @@ final class BedrockagentcoreEvaluatorRatingScaleNumerical
 
   final List<BedrockagentcoreEvaluatorNumerical> numerical;
 
+  @internal
   @override
   String get blockKey => 'numerical';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'numerical': [for (final e in numerical) e.encode()],
@@ -288,6 +306,7 @@ final class BedrockagentcoreEvaluatorCategorical {
 
   final TfArg<String> label;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
     'label': label.toTfJson(),
@@ -310,6 +329,7 @@ final class BedrockagentcoreEvaluatorNumerical {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
     'label': label.toTfJson(),

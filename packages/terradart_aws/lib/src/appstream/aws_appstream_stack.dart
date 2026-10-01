@@ -20,6 +20,7 @@ final class AppstreamStackAccessEndpoints {
 
   final TfArg<String>? vpceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_type': endpointType.toTfJson(),
     'vpce_id': ?vpceId?.toTfJson(),
@@ -55,6 +56,7 @@ final class AppstreamStackApplicationSettings {
 
   final TfArg<String>? settingsGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'settings_group': ?settingsGroup?.toTfJson(),
@@ -77,6 +79,7 @@ final class AppstreamStackStorageConnectors {
 
   final TfArg<String>? resourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'connector_type': connectorType.toTfJson(),
     'domains': ?domains?.toTfJson(),
@@ -118,6 +121,7 @@ final class AppstreamStackStreamingExperienceSettings {
 
   final AppstreamStackPreferredProtocol? preferredProtocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'preferred_protocol': ?preferredProtocol?.toTfJson(),
   };
@@ -151,6 +155,7 @@ final class AppstreamStackUserSettings {
 
   final AppstreamStackPermission permission;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'permission': permission.toTfJson(),

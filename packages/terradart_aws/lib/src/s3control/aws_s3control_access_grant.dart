@@ -55,6 +55,7 @@ final class S3controlAccessGrantAccessGrantsLocationConfiguration {
 
   final TfArg<String>? s3SubPrefix;
 
+  @internal
   Map<String, Object?> encode() => {'s3_sub_prefix': ?s3SubPrefix?.toTfJson()};
 }
 
@@ -71,6 +72,7 @@ final class S3controlAccessGrantGrantee {
 
   final S3controlAccessGrantGranteeType granteeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'grantee_identifier': granteeIdentifier.toTfJson(),
     'grantee_type': granteeType.toTfJson(),

@@ -5,6 +5,7 @@
 /// capacity; not applyable on a standalone smoke project.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/hypercomputecluster/google_hypercomputecluster_cluster.dart'
     show
         GoogleHypercomputeclusterCluster,

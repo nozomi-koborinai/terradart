@@ -44,7 +44,9 @@ class ExactlyOneOfEmitter {
     buf.writeln('prelude: |');
     buf.writeln('  sealed class $sealedName {');
     buf.writeln('    const $sealedName();');
+    buf.writeln('    @internal');
     buf.writeln('    String get blockKey;');
+    buf.writeln('    @internal');
     buf.writeln('    Map<String, Object?> encode();');
     buf.writeln('  }');
 
@@ -66,9 +68,11 @@ class ExactlyOneOfEmitter {
       _emitConstructor(buf, nestedBlock, memberPascal);
       _emitFields(buf, nestedBlock);
       buf.writeln();
+      buf.writeln('    @internal');
       buf.writeln('    @override');
       buf.writeln("    String get blockKey => '$member';");
       buf.writeln();
+      buf.writeln('    @internal');
       buf.writeln('    @override');
       buf.writeln('    Map<String, Object?> encode() {');
       buf.writeln(

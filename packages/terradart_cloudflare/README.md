@@ -26,7 +26,6 @@ dependencies:
 
 ```dart
 // lib/edge_dns_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
 import 'package:terradart_cloudflare/dns.dart';

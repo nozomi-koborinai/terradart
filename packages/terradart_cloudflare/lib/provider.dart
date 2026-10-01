@@ -9,6 +9,7 @@
 /// ```
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudflare_provider.dart'
     show
         CloudflareProvider,

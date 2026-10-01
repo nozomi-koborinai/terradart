@@ -96,10 +96,12 @@ prelude: |
     const factory StorageInsightsDatasetConfigSource.organizationScope() = StorageInsightsDatasetConfigOrganizationScope;
 
     /// Terraform attribute or nested-block key.
+    @internal
     String get blockKey;
 
     /// Flat `{blockKey: value}` so mixed nested-block / bool members share
     /// one argMap dispatch (see [GoogleColabNotebookExecution] compute).
+    @internal
     Map<String, Object?> encode();
   }
 
@@ -112,9 +114,11 @@ prelude: |
     final TfArg<List<String>> projectNumbers;
 
     @override
+    @internal
     String get blockKey => 'source_projects';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           blockKey: [
             {'project_numbers': projectNumbers.toTfJson()},
@@ -131,9 +135,11 @@ prelude: |
     final TfArg<List<String>> folderNumbers;
 
     @override
+    @internal
     String get blockKey => 'source_folders';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           blockKey: [
             {'folder_numbers': folderNumbers.toTfJson()},
@@ -148,9 +154,11 @@ prelude: |
     const StorageInsightsDatasetConfigOrganizationScope();
 
     @override
+    @internal
     String get blockKey => 'organization_scope';
 
     @override
+    @internal
     Map<String, Object?> encode() => {blockKey: true};
   }
 

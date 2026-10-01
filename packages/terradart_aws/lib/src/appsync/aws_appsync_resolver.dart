@@ -39,12 +39,15 @@ sealed class AppsyncResolverBackend {
   ) = AppsyncResolverBackendPipelineConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -54,12 +57,15 @@ final class AppsyncResolverBackendDataSource extends AppsyncResolverBackend {
 
   final TfArg<String> dataSource;
 
+  @internal
   @override
   String get blockKey => 'data_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'data_source': dataSource.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'data_source': dataSource};
 }
@@ -71,12 +77,15 @@ final class AppsyncResolverBackendPipelineConfig
 
   final AppsyncResolverPipelineConfig pipelineConfig;
 
+  @internal
   @override
   String get blockKey => 'pipeline_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pipeline_config': pipelineConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'pipeline_config': TfArg.literal(pipelineConfig.encode()),
@@ -93,6 +102,7 @@ final class AppsyncResolverCachingConfig {
 
   final TfArg<num>? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'caching_keys': ?cachingKeys?.toTfJson(),
     'ttl': ?ttl?.toTfJson(),
@@ -107,6 +117,7 @@ final class AppsyncResolverPipelineConfig {
 
   final TfArg<List<String>>? functions;
 
+  @internal
   Map<String, Object?> encode() => {'functions': ?functions?.toTfJson()};
 }
 
@@ -123,6 +134,7 @@ final class AppsyncResolverRuntime {
 
   final TfArg<String> runtimeVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'runtime_version': runtimeVersion.toTfJson(),
@@ -158,6 +170,7 @@ final class AppsyncResolverSyncConfig {
 
   final AppsyncResolverLambdaConflictHandlerConfig? lambdaConflictHandlerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'conflict_detection': ?conflictDetection?.toTfJson(),
     'conflict_handler': ?conflictHandler?.toTfJson(),
@@ -220,6 +233,7 @@ final class AppsyncResolverLambdaConflictHandlerConfig {
 
   final TfArg<String>? lambdaConflictHandlerArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_conflict_handler_arn': ?lambdaConflictHandlerArn?.toTfJson(),
   };

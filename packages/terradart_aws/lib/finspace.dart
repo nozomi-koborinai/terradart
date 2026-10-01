@@ -3,6 +3,7 @@
 /// AWS FinSpace.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/finspace/aws_finspace_kx_cluster.dart'
     show
         AwsFinspaceKxCluster,

@@ -5,5 +5,6 @@
 /// debt-only on terradart-validate.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_support/google_cloud_support_support_event_subscription.dart'
     show GoogleCloudSupportSupportEventSubscription;

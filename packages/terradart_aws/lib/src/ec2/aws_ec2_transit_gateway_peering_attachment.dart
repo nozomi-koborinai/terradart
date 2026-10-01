@@ -15,6 +15,7 @@ final class Ec2TransitGatewayPeeringAttachmentOptions {
 
   final Ec2TransitGatewayPeeringAttachmentDynamicRouting? dynamicRouting;
 
+  @internal
   Map<String, Object?> encode() => {
     'dynamic_routing': ?dynamicRouting?.toTfJson(),
   };

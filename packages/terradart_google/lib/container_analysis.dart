@@ -4,6 +4,7 @@
 /// attestations (often paired with Binary Authorization).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/container_analysis/google_container_analysis_note.dart'
     show
         ContainerAnalysisNoteAttestationAuthority,
@@ -25,3 +26,5 @@ export 'src/container_analysis/google_container_analysis_occurrence.dart'
         ContainerAnalysisOccurrenceAttestation,
         ContainerAnalysisOccurrenceSignatures,
         GoogleContainerAnalysisOccurrence;
+export 'src/data/google_container_analysis_note_iam_policy.dart'
+    show DataGoogleContainerAnalysisNoteIamPolicy;

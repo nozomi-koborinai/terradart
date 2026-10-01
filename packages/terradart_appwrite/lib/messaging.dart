@@ -3,6 +3,8 @@
 /// Appwrite Messaging — providers, topics, and subscribers.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/appwrite_messaging_topic.dart' show DataAppwriteMessagingTopic;
 export 'src/messaging/appwrite_messaging_provider.dart'
     show AppwriteMessagingProvider, MessagingProviderType;
 export 'src/messaging/appwrite_messaging_subscriber.dart'

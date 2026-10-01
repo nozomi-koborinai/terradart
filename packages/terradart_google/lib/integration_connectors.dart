@@ -4,6 +4,7 @@
 /// apps (node hours while provisioned; never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/integration_connectors/google_integration_connectors_connection.dart'
     show
         GoogleIntegrationConnectorsConnection,

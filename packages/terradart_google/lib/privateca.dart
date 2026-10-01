@@ -4,6 +4,13 @@
 /// certificate issuance via Certificate Manager.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_privateca_ca_pool_iam_policy.dart'
+    show DataGooglePrivatecaCaPoolIamPolicy;
+export 'src/data/google_privateca_certificate_authority.dart'
+    show DataGooglePrivatecaCertificateAuthority;
+export 'src/data/google_privateca_certificate_template_iam_policy.dart'
+    show DataGooglePrivatecaCertificateTemplateIamPolicy;
 export 'src/privateca/google_privateca_ca_pool.dart'
     show
         GooglePrivatecaCaPool,

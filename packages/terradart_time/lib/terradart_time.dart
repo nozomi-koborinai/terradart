@@ -2,6 +2,7 @@
 /// propagation wait any provider package's stack can use.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/time_provider.dart'
     show TimeProvider, kTimeProviderVersionConstraint;
 export 'src/time_sleep.dart' show TimeSleep;

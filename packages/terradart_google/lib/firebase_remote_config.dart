@@ -4,6 +4,7 @@
 /// (parameters + parameter groups + conditions).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/firebase_remote_config/google_firebase_remote_config_remote_config.dart'
     show
         FirebaseRemoteConfigRemoteConfigCondition,

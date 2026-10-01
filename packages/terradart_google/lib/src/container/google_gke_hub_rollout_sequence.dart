@@ -15,6 +15,7 @@ final class GkeHubRolloutSequenceAutoUpgradeConfig {
 
   final GkeHubRolloutSequenceRolloutCreationScope? rolloutCreationScope;
 
+  @internal
   Map<String, Object?> encode() => {
     'rollout_creation_scope': ?rolloutCreationScope?.encode(),
   };
@@ -28,6 +29,7 @@ final class GkeHubRolloutSequenceRolloutCreationScope {
 
   final TfArg<List<String>>? upgradeTypes;
 
+  @internal
   Map<String, Object?> encode() => {'upgrade_types': ?upgradeTypes?.toTfJson()};
 }
 
@@ -41,6 +43,7 @@ final class GkeHubRolloutSequenceIgnoredClustersSelector {
 
   final TfArg<String> labelSelector;
 
+  @internal
   Map<String, Object?> encode() => {'label_selector': labelSelector.toTfJson()};
 }
 
@@ -60,6 +63,7 @@ final class GkeHubRolloutSequenceStages {
 
   final GkeHubRolloutSequenceClusterSelector? clusterSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'fleet_projects': fleetProjects.toTfJson(),
     'soak_duration': ?soakDuration?.toTfJson(),
@@ -75,6 +79,7 @@ final class GkeHubRolloutSequenceClusterSelector {
 
   final TfArg<String> labelSelector;
 
+  @internal
   Map<String, Object?> encode() => {'label_selector': labelSelector.toTfJson()};
 }
 

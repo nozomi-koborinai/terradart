@@ -31,6 +31,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityAppSpecification {
 
   final TfArg<String>? recordPreprocessorSourceUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
     'image_uri': imageUri.toTfJson(),
@@ -54,6 +55,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityBaselineConfig {
 
   final SagemakerDataQualityJobDefinitionStatisticsResource? statisticsResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'constraints_resource': ?constraintsResource?.encode(),
     'statistics_resource': ?statisticsResource?.encode(),
@@ -68,6 +70,7 @@ final class SagemakerDataQualityJobDefinitionConstraintsResource {
 
   final TfArg<String>? s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': ?s3Uri?.toTfJson()};
 }
 
@@ -79,6 +82,7 @@ final class SagemakerDataQualityJobDefinitionStatisticsResource {
 
   final TfArg<String>? s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': ?s3Uri?.toTfJson()};
 }
 
@@ -96,6 +100,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobInput {
 
   final SagemakerDataQualityJobDefinitionEndpointInput? endpointInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_transform_input': ?batchTransformInput?.encode(),
     'endpoint_input': ?endpointInput?.encode(),
@@ -125,6 +130,7 @@ final class SagemakerDataQualityJobDefinitionBatchTransformInput {
 
   final SagemakerDataQualityJobDefinitionDatasetFormat datasetFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_captured_destination_s3_uri': dataCapturedDestinationS3Uri.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -194,6 +200,7 @@ final class SagemakerDataQualityJobDefinitionDatasetFormat {
 
   final SagemakerDataQualityJobDefinitionJson? json;
 
+  @internal
   Map<String, Object?> encode() => {
     'csv': ?csv?.encode(),
     'json': ?json?.encode(),
@@ -208,6 +215,7 @@ final class SagemakerDataQualityJobDefinitionCsv {
 
   final TfArg<bool>? header;
 
+  @internal
   Map<String, Object?> encode() => {'header': ?header?.toTfJson()};
 }
 
@@ -219,6 +227,7 @@ final class SagemakerDataQualityJobDefinitionJson {
 
   final TfArg<bool>? line;
 
+  @internal
   Map<String, Object?> encode() => {'line': ?line?.toTfJson()};
 }
 
@@ -242,6 +251,7 @@ final class SagemakerDataQualityJobDefinitionEndpointInput {
 
   final SagemakerDataQualityJobDefinitionS3InputMode? s3InputMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_name': endpointName.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -263,6 +273,7 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfig {
 
   final SagemakerDataQualityJobDefinitionMonitoringOutputs monitoringOutputs;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'monitoring_outputs': monitoringOutputs.encode(),
@@ -279,6 +290,7 @@ final class SagemakerDataQualityJobDefinitionMonitoringOutputs {
 
   final SagemakerDataQualityJobDefinitionS3Output s3Output;
 
+  @internal
   Map<String, Object?> encode() => {'s3_output': s3Output.encode()};
 }
 
@@ -298,6 +310,7 @@ final class SagemakerDataQualityJobDefinitionS3Output {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_path': ?localPath?.toTfJson(),
     's3_upload_mode': ?s3UploadMode?.toTfJson(),
@@ -339,6 +352,7 @@ final class SagemakerDataQualityJobDefinitionJobResources {
 
   final SagemakerDataQualityJobDefinitionClusterConfig clusterConfig;
 
+  @internal
   Map<String, Object?> encode() => {'cluster_config': clusterConfig.encode()};
 }
 
@@ -361,6 +375,7 @@ final class SagemakerDataQualityJobDefinitionClusterConfig {
 
   final TfArg<num> volumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_type': instanceType.toTfJson(),
@@ -933,6 +948,7 @@ final class SagemakerDataQualityJobDefinitionNetworkConfig {
 
   final SagemakerDataQualityJobDefinitionVpcConfig? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_inter_container_traffic_encryption':
         ?enableInterContainerTrafficEncryption?.toTfJson(),
@@ -954,6 +970,7 @@ final class SagemakerDataQualityJobDefinitionVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -970,6 +987,7 @@ final class SagemakerDataQualityJobDefinitionStoppingCondition {
 
   final TfArg<num>? maxRuntimeInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
   };

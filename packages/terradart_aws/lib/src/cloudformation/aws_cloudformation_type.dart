@@ -38,6 +38,7 @@ final class CloudformationTypeLoggingConfig {
 
   final TfArg<String> logRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     'log_role_arn': logRoleArn.toTfJson(),

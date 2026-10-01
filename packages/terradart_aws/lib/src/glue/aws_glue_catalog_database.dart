@@ -20,6 +20,7 @@ final class GlueCatalogDatabaseCreateTableDefaultPermission {
 
   final GlueCatalogDatabasePrincipal? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
@@ -79,6 +80,7 @@ final class GlueCatalogDatabasePrincipal {
 
   final TfArg<String>? dataLakePrincipalIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_lake_principal_identifier': ?dataLakePrincipalIdentifier?.toTfJson(),
   };
@@ -97,6 +99,7 @@ final class GlueCatalogDatabaseFederatedDatabase {
 
   final TfArg<String>? identifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_name': ?connectionName?.toTfJson(),
     'identifier': ?identifier?.toTfJson(),
@@ -119,6 +122,7 @@ final class GlueCatalogDatabaseTargetDatabase {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': catalogId.toTfJson(),
     'database_name': databaseName.toTfJson(),

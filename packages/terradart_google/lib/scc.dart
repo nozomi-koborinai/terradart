@@ -5,6 +5,11 @@
 /// exports, and source IAM. Org/folder factories are apply-excluded.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_scc_source_iam_policy.dart'
+    show DataGoogleSccSourceIamPolicy;
+export 'src/data/google_scc_v2_organization_source_iam_policy.dart'
+    show DataGoogleSccV2OrganizationSourceIamPolicy;
 export 'src/scc/google_scc_event_threat_detection_custom_module.dart'
     show
         GoogleSccEventThreatDetectionCustomModule,

@@ -34,6 +34,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies {
   >
   conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_logic': ?conditionLogic?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -65,6 +66,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction 
 
   final TfArg<String>? tagValueOfKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'add_to_network_function_group': ?addToNetworkFunctionGroup?.toTfJson(),
     'association_method': ?associationMethod?.toTfJson(),
@@ -93,6 +95,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditi
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'operator': ?operator?.toTfJson(),
@@ -127,6 +130,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
   >
   conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'edge_locations': ?edgeLocations?.toTfJson(),
@@ -146,6 +150,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
 
   final TfArg<List<String>> associateRoutingPolicies;
 
+  @internal
   Map<String, Object?> encode() => {
     'associate_routing_policies': associateRoutingPolicies.toTfJson(),
   };
@@ -164,6 +169,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -196,6 +202,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration 
   final List<DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations>
   edgeLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn_ranges': asnRanges.toTfJson(),
     'dns_support': ?dnsSupport?.toTfJson(),
@@ -223,6 +230,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations {
 
   final TfArg<String> location;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn': ?asn?.toTfJson(),
     'inside_cidr_blocks': ?insideCidrBlocks?.toTfJson(),
@@ -246,6 +254,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroups {
 
   final TfArg<bool> requireAttachmentAcceptance;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -276,6 +285,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicies {
   final List<DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules>
   routingPolicyRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'routing_policy_description': ?routingPolicyDescription?.toTfJson(),
     'routing_policy_direction': routingPolicyDirection.toTfJson(),
@@ -299,6 +309,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules {
   final DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition
   ruleDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'rule_number': ruleNumber.toTfJson(),
     'rule_definition': ruleDefinition.encode(),
@@ -322,6 +333,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition {
   final List<DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions>?
   matchConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_logic': ?conditionLogic?.toTfJson(),
     'action': action.encode(),
@@ -343,6 +355,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinitionAction {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -362,6 +375,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -412,6 +426,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions {
 
   final DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo? whenSentTo;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -444,6 +459,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation {
 
   final TfArg<List<String>> routingPolicyNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'edge_location': edgeLocation.toTfJson(),
     'peer_edge_location': peerEdgeLocation.toTfJson(),
@@ -465,6 +481,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentVia {
   final List<DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride>?
   withEdgeOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_function_groups': ?networkFunctionGroups?.toTfJson(),
     if (withEdgeOverride != null)
@@ -488,6 +505,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride {
 
   final TfArg<String>? useEdgeLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'edge_sets': ?edgeSets?.toTfJson(),
     'use_edge': ?useEdge?.toTfJson(),
@@ -503,6 +521,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo {
 
   final TfArg<List<String>>? segments;
 
+  @internal
   Map<String, Object?> encode() => {'segments': ?segments?.toTfJson()};
 }
 
@@ -534,6 +553,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentSegments {
 
   final TfArg<bool>? requireAttachmentAcceptance;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_filter': ?allowFilter?.toTfJson(),
     'deny_filter': ?denyFilter?.toTfJson(),

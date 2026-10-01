@@ -3,6 +3,7 @@
 /// AWS Auto Scaling plans.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/autoscalingplans/aws_autoscalingplans_scaling_plan.dart'
     show
         AutoscalingplansScalingPlanApplicationSource,

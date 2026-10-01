@@ -20,6 +20,7 @@ final class DiscoveryEngineAclConfigIdpConfig {
 
   final DiscoveryEngineAclConfigExternalIdpConfig? externalIdpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'idp_type': ?idpType?.toTfJson(),
     'external_idp_config': ?externalIdpConfig?.encode(),
@@ -56,6 +57,7 @@ final class DiscoveryEngineAclConfigExternalIdpConfig {
 
   final TfArg<String>? workforcePoolName;
 
+  @internal
   Map<String, Object?> encode() => {
     'workforce_pool_name': ?workforcePoolName?.toTfJson(),
   };

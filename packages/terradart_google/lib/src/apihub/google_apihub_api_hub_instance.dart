@@ -26,6 +26,7 @@ final class ApihubApiHubInstanceConfig {
 
   final TfArg<String>? vertexLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cmek_key_name': ?cmekKeyName?.toTfJson(),
     'disable_search': ?disableSearch?.toTfJson(),

@@ -27,12 +27,15 @@ sealed class NeptunegraphGraphName {
   ) = NeptunegraphGraphNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,12 +45,15 @@ final class NeptunegraphGraphNameChoice extends NeptunegraphGraphName {
 
   final TfArg<String> graphName;
 
+  @internal
   @override
   String get blockKey => 'graph_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'graph_name': graphName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'graph_name': graphName};
 }
@@ -58,14 +64,17 @@ final class NeptunegraphGraphNamePrefix extends NeptunegraphGraphName {
 
   final TfArg<String> graphNamePrefix;
 
+  @internal
   @override
   String get blockKey => 'graph_name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'graph_name_prefix': graphNamePrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'graph_name_prefix': graphNamePrefix,
@@ -82,6 +91,7 @@ final class NeptunegraphGraphVectorSearchConfiguration {
 
   final TfArg<num>? vectorSearchDimension;
 
+  @internal
   Map<String, Object?> encode() => {
     'vector_search_dimension': ?vectorSearchDimension?.toTfJson(),
   };

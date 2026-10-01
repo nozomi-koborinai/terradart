@@ -20,6 +20,7 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
 
   final List<Wafv2WebAclLoggingConfigurationFilter> filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_behavior': defaultBehavior.toTfJson(),
     'filter': [for (final e in filter) e.encode()],
@@ -66,6 +67,7 @@ final class Wafv2WebAclLoggingConfigurationFilter {
 
   final List<Wafv2WebAclLoggingConfigurationCondition> condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     'requirement': requirement.toTfJson(),
@@ -133,6 +135,7 @@ final class Wafv2WebAclLoggingConfigurationCondition {
 
   final Wafv2WebAclLoggingConfigurationLabelNameCondition? labelNameCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_condition': ?actionCondition?.encode(),
     'label_name_condition': ?labelNameCondition?.encode(),
@@ -147,6 +150,7 @@ final class Wafv2WebAclLoggingConfigurationActionCondition {
 
   final Wafv2WebAclLoggingConfigurationAction action;
 
+  @internal
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
@@ -203,6 +207,7 @@ final class Wafv2WebAclLoggingConfigurationLabelNameCondition {
 
   final TfArg<String> labelName;
 
+  @internal
   Map<String, Object?> encode() => {'label_name': labelName.toTfJson()};
 }
 
@@ -225,6 +230,7 @@ final class Wafv2WebAclLoggingConfigurationRedactedFields {
 
   final Wafv2WebAclLoggingConfigurationUriPath? uriPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.encode(),
     'query_string': ?queryString?.encode(),
@@ -239,6 +245,7 @@ final class Wafv2WebAclLoggingConfigurationRedactedFields {
 final class Wafv2WebAclLoggingConfigurationMethod {
   const Wafv2WebAclLoggingConfigurationMethod();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -248,6 +255,7 @@ final class Wafv2WebAclLoggingConfigurationMethod {
 final class Wafv2WebAclLoggingConfigurationQueryString {
   const Wafv2WebAclLoggingConfigurationQueryString();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -259,6 +267,7 @@ final class Wafv2WebAclLoggingConfigurationSingleHeader {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -268,6 +277,7 @@ final class Wafv2WebAclLoggingConfigurationSingleHeader {
 final class Wafv2WebAclLoggingConfigurationUriPath {
   const Wafv2WebAclLoggingConfigurationUriPath();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

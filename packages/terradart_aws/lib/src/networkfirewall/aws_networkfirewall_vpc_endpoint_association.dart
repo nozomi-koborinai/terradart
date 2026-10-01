@@ -24,6 +24,7 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'subnet_id': subnetId.encodeAs('id').toTfJson(),

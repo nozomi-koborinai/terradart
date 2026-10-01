@@ -53,12 +53,15 @@ sealed class ServicecatalogProvisionedProductIdentifier {
   ) = ServicecatalogProvisionedProductIdentifierProductName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -69,12 +72,15 @@ final class ServicecatalogProvisionedProductIdentifierProductId
 
   final TfArg<String> productId;
 
+  @internal
   @override
   String get blockKey => 'product_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'product_id': productId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'product_id': productId};
 }
@@ -86,12 +92,15 @@ final class ServicecatalogProvisionedProductIdentifierProductName
 
   final TfArg<String> productName;
 
+  @internal
   @override
   String get blockKey => 'product_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'product_name': productName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'product_name': productName};
 }
@@ -114,12 +123,15 @@ sealed class ServicecatalogProvisionedProductProvisioningArtifact {
   ) = ServicecatalogProvisionedProductProvisioningArtifactName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -132,14 +144,17 @@ final class ServicecatalogProvisionedProductProvisioningArtifactId
 
   final TfArg<String> provisioningArtifactId;
 
+  @internal
   @override
   String get blockKey => 'provisioning_artifact_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'provisioning_artifact_id': provisioningArtifactId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'provisioning_artifact_id': provisioningArtifactId,
@@ -155,14 +170,17 @@ final class ServicecatalogProvisionedProductProvisioningArtifactName
 
   final TfArg<String> provisioningArtifactName;
 
+  @internal
   @override
   String get blockKey => 'provisioning_artifact_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'provisioning_artifact_name': provisioningArtifactName.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'provisioning_artifact_name': provisioningArtifactName,
@@ -188,12 +206,15 @@ sealed class ServicecatalogProvisionedProductPath {
   ) = ServicecatalogProvisionedProductPathName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -204,12 +225,15 @@ final class ServicecatalogProvisionedProductPathId
 
   final TfArg<String> pathId;
 
+  @internal
   @override
   String get blockKey => 'path_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'path_id': pathId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'path_id': pathId};
 }
@@ -221,12 +245,15 @@ final class ServicecatalogProvisionedProductPathName
 
   final TfArg<String> pathName;
 
+  @internal
   @override
   String get blockKey => 'path_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'path_name': pathName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'path_name': pathName};
 }
@@ -247,6 +274,7 @@ final class ServicecatalogProvisionedProductProvisioningParameters {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'use_previous_value': ?usePreviousValue?.toTfJson(),
@@ -273,6 +301,7 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
 
   final TfArg<List<String>>? regions;
 
+  @internal
   Map<String, Object?> encode() => {
     'accounts': ?accounts?.toTfJson(),
     ...failureTolerance.encode(),
@@ -299,8 +328,10 @@ sealed class ServicecatalogProvisionedProductFailureTolerance {
   ) = ServicecatalogProvisionedProductFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -313,9 +344,11 @@ final class ServicecatalogProvisionedProductFailureToleranceCount
 
   final TfArg<num> failureToleranceCount;
 
+  @internal
   @override
   String get blockKey => 'failure_tolerance_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'failure_tolerance_count': failureToleranceCount.toTfJson(),
@@ -331,9 +364,11 @@ final class ServicecatalogProvisionedProductFailureTolerancePercentage
 
   final TfArg<num> failureTolerancePercentage;
 
+  @internal
   @override
   String get blockKey => 'failure_tolerance_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'failure_tolerance_percentage': failureTolerancePercentage.toTfJson(),
@@ -358,8 +393,10 @@ sealed class ServicecatalogProvisionedProductMaxConcurrency {
   ) = ServicecatalogProvisionedProductMaxConcurrencyPercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -372,9 +409,11 @@ final class ServicecatalogProvisionedProductMaxConcurrencyCount
 
   final TfArg<num> maxConcurrencyCount;
 
+  @internal
   @override
   String get blockKey => 'max_concurrency_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_concurrency_count': maxConcurrencyCount.toTfJson(),
@@ -390,9 +429,11 @@ final class ServicecatalogProvisionedProductMaxConcurrencyPercentage
 
   final TfArg<num> maxConcurrencyPercentage;
 
+  @internal
   @override
   String get blockKey => 'max_concurrency_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_concurrency_percentage': maxConcurrencyPercentage.toTfJson(),

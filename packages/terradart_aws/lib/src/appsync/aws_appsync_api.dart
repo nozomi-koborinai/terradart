@@ -29,6 +29,7 @@ final class AppsyncApiEventConfig {
 
   final List<AppsyncApiLogConfig>? logConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (authProvider != null)
       'auth_provider': [for (final e in authProvider!) e.encode()],
@@ -66,6 +67,7 @@ final class AppsyncApiAuthProvider {
 
   final List<AppsyncApiOpenidConnectConfig>? openidConnectConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
     if (cognitoConfig != null)
@@ -124,6 +126,7 @@ final class AppsyncApiCognitoConfig {
 
   final TfArg<String> userPoolId;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_id_client_regex': ?appIdClientRegex?.toTfJson(),
     'aws_region': awsRegion.toTfJson(),
@@ -147,6 +150,7 @@ final class AppsyncApiLambdaAuthorizerConfig {
 
   final TfArg<String>? identityValidationExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds
         ?.toTfJson(),
@@ -174,6 +178,7 @@ final class AppsyncApiOpenidConnectConfig {
 
   final TfArg<String> issuer;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_ttl': ?authTtl?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -190,6 +195,7 @@ final class AppsyncApiConnectionAuthMode {
 
   final AppsyncApiAuthType authType;
 
+  @internal
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
 
@@ -201,6 +207,7 @@ final class AppsyncApiDefaultPublishAuthMode {
 
   final AppsyncApiAuthType authType;
 
+  @internal
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
 
@@ -212,6 +219,7 @@ final class AppsyncApiDefaultSubscribeAuthMode {
 
   final AppsyncApiAuthType authType;
 
+  @internal
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
 
@@ -228,6 +236,7 @@ final class AppsyncApiLogConfig {
 
   final AppsyncApiLogLevel logLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs_role_arn': cloudwatchLogsRoleArn.toTfJson(),
     'log_level': logLevel.toTfJson(),

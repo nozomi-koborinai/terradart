@@ -54,6 +54,7 @@ final class DialogflowCxWebhookGenericWebService {
 
   final DialogflowCxWebhookServiceAccountAuthConfig? serviceAccountAuthConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_ca_certs': ?allowedCaCerts?.toTfJson(),
     'http_method': ?httpMethod?.toTfJson(),
@@ -168,6 +169,7 @@ final class DialogflowCxWebhookOauthConfig {
 
   final TfArg<String> tokenEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -192,6 +194,7 @@ final class DialogflowCxWebhookSecretVersionsForRequestHeaders {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'secret_version': secretVersion.toTfJson(),
@@ -209,6 +212,7 @@ final class DialogflowCxWebhookServiceAccountAuthConfig {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
@@ -227,6 +231,7 @@ final class DialogflowCxWebhookServiceDirectory {
 
   final DialogflowCxWebhookGenericWebService? genericWebService;
 
+  @internal
   Map<String, Object?> encode() => {
     'service': service.toTfJson(),
     'generic_web_service': ?genericWebService?.encode(),

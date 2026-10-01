@@ -4,6 +4,7 @@
 /// featurestore / endpoint IAM (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/vertex_ai/google_vertex_ai_endpoint_iam_binding.dart'
     show GoogleVertexAiEndpointIamBinding, VertexAiEndpointIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_endpoint_iam_member.dart'

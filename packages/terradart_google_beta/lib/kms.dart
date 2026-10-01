@@ -3,6 +3,7 @@
 /// Cloud KMS key-access justification (KAJ) policy configs (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/kms/google_kms_folder_kaj_policy_config.dart'
     show
         GoogleKmsFolderKajPolicyConfig,

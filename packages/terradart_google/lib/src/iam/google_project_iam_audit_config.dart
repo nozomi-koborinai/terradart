@@ -50,6 +50,7 @@ final class ProjectIamAuditConfigAuditLogConfig {
 
   final TfArg<String> logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'exempted_members': ?exemptedMembers?.toTfJson(),
     'log_type': logType.toTfJson(),

@@ -66,6 +66,7 @@ final class AmplifyAppAutoBranchCreationConfig {
 
   final AmplifyAppStage? stage;
 
+  @internal
   Map<String, Object?> encode() => {
     'basic_auth_credentials': ?basicAuthCredentials?.toTfJson(),
     'build_spec': ?buildSpec?.toTfJson(),
@@ -111,6 +112,7 @@ final class AmplifyAppCacheConfig {
 
   final AmplifyAppType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -154,6 +156,7 @@ final class AmplifyAppCustomRule {
 
   final TfArg<String> target;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.toTfJson(),
     'source': source.toTfJson(),
@@ -193,6 +196,7 @@ final class AmplifyAppJobConfig {
 
   final AmplifyAppBuildComputeType? buildComputeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'build_compute_type': ?buildComputeType?.toTfJson(),
   };

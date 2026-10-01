@@ -26,6 +26,17 @@ umbrellaDoc: |-
 umbrellaExtraExports:
   - "export 'provider.dart';"
 
+# Data sources whose service barrel the type name does not give away; every
+# other data source is exported from the barrel of its resource twin or of
+# the service its name starts with (`google_compute_zones` -> compute), and
+# from data.dart. A type with no service stays in data.dart only.
+dataSourceBarrels:
+  google_active_folder: folder
+  google_folders: folder
+  google_organizations: organization
+  google_projects: project
+  google_service_accounts: iam
+
 barrels:
   access_context_manager:
     doc: |-
@@ -267,9 +278,9 @@ barrels:
     doc: |-
       /// Read-only data sources (no `terraform apply` side effects).
       ///
-      /// ```dart
-      /// import 'package:terradart_google/data.dart' show GoogleProject;
-      /// ```
+      /// Every data source is also exported from its service barrel
+      /// (`DataGoogleProject` from `project.dart`); import this one for data
+      /// sources of several services, or of none.
   data_catalog:
     doc: |-
       /// Google Cloud Data Catalog — entry groups, tag templates, and

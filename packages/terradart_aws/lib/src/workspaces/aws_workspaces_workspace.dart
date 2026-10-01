@@ -29,6 +29,7 @@ final class WorkspacesWorkspaceProperties {
 
   final TfArg<num>? userVolumeSizeGib;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_type_name': ?computeTypeName?.toTfJson(),
     'root_volume_size_gib': ?rootVolumeSizeGib?.toTfJson(),

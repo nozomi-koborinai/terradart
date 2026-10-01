@@ -19,6 +19,7 @@ final class BedrockagentcoreCodeInterpreterCertificate {
 
   final List<BedrockagentcoreCodeInterpreterLocation>? location;
 
+  @internal
   Map<String, Object?> encode() => {
     if (location != null) 'location': [for (final e in location!) e.encode()],
   };
@@ -32,6 +33,7 @@ final class BedrockagentcoreCodeInterpreterLocation {
 
   final List<BedrockagentcoreCodeInterpreterSecretsManager>? secretsManager;
 
+  @internal
   Map<String, Object?> encode() => {
     if (secretsManager != null)
       'secrets_manager': [for (final e in secretsManager!) e.encode()],
@@ -48,6 +50,7 @@ final class BedrockagentcoreCodeInterpreterSecretsManager {
 
   final TfArg<String> secretArn;
 
+  @internal
   Map<String, Object?> encode() => {'secret_arn': secretArn.toTfJson()};
 }
 
@@ -64,6 +67,7 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
 
   final List<BedrockagentcoreCodeInterpreterVpcConfig>? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
     if (vpcConfig != null)
@@ -112,6 +116,7 @@ final class BedrockagentcoreCodeInterpreterVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': securityGroups.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

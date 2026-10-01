@@ -24,6 +24,7 @@ final class CloudfrontConnectionFunctionConfig {
   final List<CloudfrontConnectionFunctionKeyValueStoreAssociation>?
   keyValueStoreAssociation;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': comment.toTfJson(),
     'runtime': runtime.toTfJson(),
@@ -67,6 +68,7 @@ final class CloudfrontConnectionFunctionKeyValueStoreAssociation {
 
   final TfArg<String> keyValueStoreArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_value_store_arn': keyValueStoreArn.toTfJson(),
   };

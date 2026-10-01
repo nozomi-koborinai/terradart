@@ -18,6 +18,7 @@ final class ComputeBulkPerInstanceConfigInstances {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

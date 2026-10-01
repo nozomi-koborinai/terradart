@@ -3,6 +3,14 @@
 /// Cloudflare rulesets, page rules, lists, and filters.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/cloudflare_filter.dart' show DataCloudflareFilter, DataFilter;
+export 'src/data/cloudflare_list.dart' show DataCloudflareList;
+export 'src/data/cloudflare_list_item.dart' show DataCloudflareListItem;
+export 'src/data/cloudflare_page_rule.dart' show DataCloudflarePageRule;
+export 'src/data/cloudflare_ruleset.dart' show DataCloudflareRuleset;
+export 'src/data/cloudflare_url_normalization_settings.dart'
+    show DataCloudflareUrlNormalizationSettings;
 export 'src/rules/cloudflare_filter.dart' show CloudflareFilter, FilterBody;
 export 'src/rules/cloudflare_list.dart'
     show

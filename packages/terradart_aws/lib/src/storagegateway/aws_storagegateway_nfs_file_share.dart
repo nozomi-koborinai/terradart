@@ -122,6 +122,7 @@ final class StoragegatewayNfsFileShareCacheAttributes {
 
   final TfArg<num>? cacheStaleTimeoutInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_stale_timeout_in_seconds': ?cacheStaleTimeoutInSeconds?.toTfJson(),
   };
@@ -146,6 +147,7 @@ final class StoragegatewayNfsFileShareDefaults {
 
   final TfArg<String>? ownerId;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_mode': ?directoryMode?.toTfJson(),
     'file_mode': ?fileMode?.toTfJson(),

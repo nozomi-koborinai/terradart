@@ -3,6 +3,41 @@
 /// AWS IAM.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_iam_access_keys.dart' show DataAwsIamAccessKeys;
+export 'src/data/aws_iam_account_alias.dart' show DataAwsIamAccountAlias;
+export 'src/data/aws_iam_group.dart' show DataAwsIamGroup;
+export 'src/data/aws_iam_instance_profile.dart' show DataAwsIamInstanceProfile;
+export 'src/data/aws_iam_instance_profiles.dart'
+    show DataAwsIamInstanceProfiles;
+export 'src/data/aws_iam_openid_connect_provider.dart'
+    show DataAwsIamOpenidConnectProvider;
+export 'src/data/aws_iam_outbound_web_identity_federation.dart'
+    show DataAwsIamOutboundWebIdentityFederation;
+export 'src/data/aws_iam_policy.dart' show DataAwsIamPolicy;
+export 'src/data/aws_iam_policy_document.dart'
+    show
+        DataAwsIamPolicyDocument,
+        DataIamPolicyDocumentCondition,
+        DataIamPolicyDocumentNotPrincipals,
+        DataIamPolicyDocumentPrincipals,
+        DataIamPolicyDocumentStatement;
+export 'src/data/aws_iam_principal_policy_simulation.dart'
+    show
+        DataAwsIamPrincipalPolicySimulation,
+        DataIamPrincipalPolicySimulationContext;
+export 'src/data/aws_iam_role.dart' show DataAwsIamRole;
+export 'src/data/aws_iam_role_policies.dart' show DataAwsIamRolePolicies;
+export 'src/data/aws_iam_role_policy_attachments.dart'
+    show DataAwsIamRolePolicyAttachments;
+export 'src/data/aws_iam_roles.dart' show DataAwsIamRoles;
+export 'src/data/aws_iam_saml_provider.dart' show DataAwsIamSamlProvider;
+export 'src/data/aws_iam_server_certificate.dart'
+    show DataAwsIamServerCertificate;
+export 'src/data/aws_iam_session_context.dart' show DataAwsIamSessionContext;
+export 'src/data/aws_iam_user.dart' show DataAwsIamUser;
+export 'src/data/aws_iam_user_ssh_key.dart' show DataAwsIamUserSshKey;
+export 'src/data/aws_iam_users.dart' show DataAwsIamUsers;
 export 'src/iam/aws_iam_access_key.dart'
     show AwsIamAccessKey, IamAccessKeyStatus;
 export 'src/iam/aws_iam_account_alias.dart' show AwsIamAccountAlias;

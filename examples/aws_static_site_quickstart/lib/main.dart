@@ -23,7 +23,6 @@ import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/provider.dart';
 import 'package:terradart_aws/route53.dart';
 import 'package:terradart_aws/s3.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 const _originId = 'site-bucket';
 

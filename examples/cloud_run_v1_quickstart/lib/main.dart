@@ -11,7 +11,6 @@
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';

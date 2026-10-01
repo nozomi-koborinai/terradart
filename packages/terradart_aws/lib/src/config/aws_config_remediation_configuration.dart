@@ -34,6 +34,7 @@ final class ConfigRemediationConfigurationExecutionControls {
 
   final ConfigRemediationConfigurationSsmControls? ssmControls;
 
+  @internal
   Map<String, Object?> encode() => {'ssm_controls': ?ssmControls?.encode()};
 }
 
@@ -50,6 +51,7 @@ final class ConfigRemediationConfigurationSsmControls {
 
   final TfArg<num>? errorPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'concurrent_execution_rate_percentage': ?concurrentExecutionRatePercentage
         ?.toTfJson(),
@@ -76,6 +78,7 @@ final class ConfigRemediationConfigurationParameter {
 
   final TfArg<List<String>>? staticValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'resource_value': ?resourceValue?.toTfJson(),

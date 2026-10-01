@@ -18,6 +18,7 @@ final class DataexchangeEventAction {
 
   final List<DataexchangeEventActionExportRevisionToS3>? exportRevisionToS3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (exportRevisionToS3 != null)
       'export_revision_to_s3': [
@@ -39,6 +40,7 @@ final class DataexchangeEventActionExportRevisionToS3 {
 
   final List<DataexchangeEventActionRevisionDestination>? revisionDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     if (encryption != null)
       'encryption': [for (final e in encryption!) e.encode()],
@@ -59,6 +61,7 @@ final class DataexchangeEventActionEncryption {
 
   final DataexchangeEventActionType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'type': ?type?.toTfJson(),
@@ -93,6 +96,7 @@ final class DataexchangeEventActionRevisionDestination {
 
   final TfArg<String>? keyPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key_pattern': ?keyPattern?.toTfJson(),
@@ -107,6 +111,7 @@ final class DataexchangeEventActionEvent {
 
   final List<DataexchangeEventActionRevisionPublished>? revisionPublished;
 
+  @internal
   Map<String, Object?> encode() => {
     if (revisionPublished != null)
       'revision_published': [for (final e in revisionPublished!) e.encode()],
@@ -121,6 +126,7 @@ final class DataexchangeEventActionRevisionPublished {
 
   final TfArg<String> dataSetId;
 
+  @internal
   Map<String, Object?> encode() => {'data_set_id': dataSetId.toTfJson()};
 }
 

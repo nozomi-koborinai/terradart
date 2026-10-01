@@ -49,12 +49,15 @@ sealed class BigqueryAnalyticsHubListingSource {
   ) = BigqueryAnalyticsHubListingSourceBigqueryDataset;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,12 +68,15 @@ final class BigqueryAnalyticsHubListingSourcePubsubTopic
 
   final BigqueryAnalyticsHubListingPubsubTopic pubsubTopic;
 
+  @internal
   @override
   String get blockKey => 'pubsub_topic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pubsub_topic': pubsubTopic.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'pubsub_topic': TfArg.literal(pubsubTopic.encode()),
@@ -84,14 +90,17 @@ final class BigqueryAnalyticsHubListingSourceBigqueryDataset
 
   final BigqueryAnalyticsHubListingBigqueryDataset bigqueryDataset;
 
+  @internal
   @override
   String get blockKey => 'bigquery_dataset';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bigquery_dataset': bigqueryDataset.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'bigquery_dataset': TfArg.literal(bigqueryDataset.encode()),
@@ -114,6 +123,7 @@ final class BigqueryAnalyticsHubListingBigqueryDataset {
 
   final List<BigqueryAnalyticsHubListingSelectedResources>? selectedResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset': dataset.toTfJson(),
     'replica_locations': ?replicaLocations?.toTfJson(),
@@ -140,8 +150,10 @@ sealed class BigqueryAnalyticsHubListingSelectedResources {
   ) = BigqueryAnalyticsHubListingSelectedResourcesRoutine;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -152,9 +164,11 @@ final class BigqueryAnalyticsHubListingSelectedResourcesTable
 
   final TfArg<String> table;
 
+  @internal
   @override
   String get blockKey => 'table';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'table': table.toTfJson()};
 }
@@ -166,9 +180,11 @@ final class BigqueryAnalyticsHubListingSelectedResourcesRoutine
 
   final TfArg<String> routine;
 
+  @internal
   @override
   String get blockKey => 'routine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'routine': routine.toTfJson()};
 }
@@ -186,6 +202,7 @@ final class BigqueryAnalyticsHubListingDataProvider {
 
   final TfArg<String>? primaryContact;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'primary_contact': ?primaryContact?.toTfJson(),
@@ -205,6 +222,7 @@ final class BigqueryAnalyticsHubListingPublisher {
 
   final TfArg<String>? primaryContact;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'primary_contact': ?primaryContact?.toTfJson(),
@@ -224,6 +242,7 @@ final class BigqueryAnalyticsHubListingPubsubTopic {
 
   final RefTo<GooglePubsubTopic> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_affinity_regions': ?dataAffinityRegions?.toTfJson(),
     'topic': topic.encodeAs('id').toTfJson(),
@@ -243,6 +262,7 @@ final class BigqueryAnalyticsHubListingRestrictedExportConfig {
 
   final TfArg<bool>? restrictQueryResult;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'restrict_query_result': ?restrictQueryResult?.toTfJson(),

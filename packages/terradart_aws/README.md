@@ -27,7 +27,6 @@ import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/iam.dart';
 import 'package:terradart_aws/lambda.dart';
 import 'package:terradart_aws/provider.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class HelloStack extends Stack {
   HelloStack()

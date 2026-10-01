@@ -18,6 +18,7 @@ final class MagicTransitSiteLanNat {
 
   final TfArg<String>? staticPrefix;
 
+  @internal
   Map<String, Object?> encode() => {'static_prefix': ?staticPrefix?.toTfJson()};
 }
 
@@ -37,6 +38,7 @@ final class MagicTransitSiteLanRoutedSubnets {
 
   final MagicTransitSiteLanNat? nat;
 
+  @internal
   Map<String, Object?> encode() => {
     'next_hop': nextHop.toTfJson(),
     'prefix': prefix.toTfJson(),
@@ -66,6 +68,7 @@ final class MagicTransitSiteLanStaticAddressing {
 
   final MagicTransitSiteLanDhcpServer? dhcpServer;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'secondary_address': ?secondaryAddress?.toTfJson(),
@@ -83,6 +86,7 @@ final class MagicTransitSiteLanDhcpRelay {
 
   final TfArg<List<String>>? serverAddresses;
 
+  @internal
   Map<String, Object?> encode() => {
     'server_addresses': ?serverAddresses?.toTfJson(),
   };
@@ -113,6 +117,7 @@ final class MagicTransitSiteLanDhcpServer {
 
   final List<MagicTransitSiteLanDhcpOptions>? dhcpOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'dhcp_pool_end': ?dhcpPoolEnd?.toTfJson(),
     'dhcp_pool_start': ?dhcpPoolStart?.toTfJson(),
@@ -140,6 +145,7 @@ final class MagicTransitSiteLanDhcpOptions {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'type': type.toTfJson(),

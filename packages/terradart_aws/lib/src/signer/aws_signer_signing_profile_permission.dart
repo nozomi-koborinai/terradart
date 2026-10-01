@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_signer_signing_profile_permission`.
@@ -56,12 +57,15 @@ sealed class SignerSigningProfilePermissionStatementId {
   ) = SignerSigningProfilePermissionStatementIdPrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -72,12 +76,15 @@ final class SignerSigningProfilePermissionStatementIdChoice
 
   final TfArg<String> statementId;
 
+  @internal
   @override
   String get blockKey => 'statement_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'statement_id': statementId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'statement_id': statementId};
 }
@@ -89,14 +96,17 @@ final class SignerSigningProfilePermissionStatementIdPrefix
 
   final TfArg<String> statementIdPrefix;
 
+  @internal
   @override
   String get blockKey => 'statement_id_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'statement_id_prefix': statementIdPrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'statement_id_prefix': statementIdPrefix,

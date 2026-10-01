@@ -65,12 +65,15 @@ sealed class BatchComputeEnvironmentName {
   ) = BatchComputeEnvironmentNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -81,12 +84,15 @@ final class BatchComputeEnvironmentNameChoice
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -98,12 +104,15 @@ final class BatchComputeEnvironmentNamePrefix
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -166,6 +175,7 @@ final class BatchComputeEnvironmentComputeResources {
 
   final BatchComputeEnvironmentLaunchTemplate? launchTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': ?allocationStrategy?.toTfJson(),
     'bid_percentage': ?bidPercentage?.toTfJson(),
@@ -285,6 +295,7 @@ final class BatchComputeEnvironmentEc2Configuration {
 
   final TfArg<String>? imageType;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_id_override': ?imageIdOverride?.toTfJson(),
     'image_kubernetes_version': ?imageKubernetesVersion?.toTfJson(),
@@ -302,6 +313,7 @@ final class BatchComputeEnvironmentLaunchTemplate {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
     'version': ?version?.toTfJson(),
@@ -327,8 +339,10 @@ sealed class BatchComputeEnvironmentIdentifier {
   ) = BatchComputeEnvironmentIdentifierLaunchTemplateName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -341,9 +355,11 @@ final class BatchComputeEnvironmentIdentifierLaunchTemplateId
 
   final TfArg<String> launchTemplateId;
 
+  @internal
   @override
   String get blockKey => 'launch_template_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'launch_template_id': launchTemplateId.toTfJson(),
@@ -359,9 +375,11 @@ final class BatchComputeEnvironmentIdentifierLaunchTemplateName
 
   final TfArg<String> launchTemplateName;
 
+  @internal
   @override
   String get blockKey => 'launch_template_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'launch_template_name': launchTemplateName.toTfJson(),
@@ -381,6 +399,7 @@ final class BatchComputeEnvironmentEksConfiguration {
 
   final TfArg<String> kubernetesNamespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'eks_cluster_arn': eksClusterArn.toTfJson(),
     'kubernetes_namespace': kubernetesNamespace.toTfJson(),
@@ -400,6 +419,7 @@ final class BatchComputeEnvironmentUpdatePolicy {
 
   final TfArg<bool>? terminateJobsOnUpdate;
 
+  @internal
   Map<String, Object?> encode() => {
     'job_execution_timeout_minutes': ?jobExecutionTimeoutMinutes?.toTfJson(),
     'terminate_jobs_on_update': ?terminateJobsOnUpdate?.toTfJson(),

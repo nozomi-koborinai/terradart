@@ -29,6 +29,7 @@ final class IntegrationsClientCloudKmsConfig {
 
   final TfArg<String> kmsRing;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'key_version': ?keyVersion?.toTfJson(),

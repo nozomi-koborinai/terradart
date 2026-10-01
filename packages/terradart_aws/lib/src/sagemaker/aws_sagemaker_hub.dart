@@ -15,6 +15,7 @@ final class SagemakerHubS3StorageConfig {
 
   final TfArg<String>? s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_output_path': ?s3OutputPath?.toTfJson(),
   };

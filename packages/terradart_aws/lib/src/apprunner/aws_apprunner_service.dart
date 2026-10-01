@@ -17,6 +17,7 @@ final class ApprunnerServiceEncryptionConfiguration {
 
   final RefTo<AwsKmsKey> kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': kmsKey.encodeAs('arn').toTfJson(),
   };
@@ -47,6 +48,7 @@ final class ApprunnerServiceHealthCheckConfiguration {
 
   final TfArg<num>? unhealthyThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'healthy_threshold': ?healthyThreshold?.toTfJson(),
     'interval': ?interval?.toTfJson(),
@@ -87,6 +89,7 @@ final class ApprunnerServiceInstanceConfiguration {
 
   final TfArg<String>? memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'instance_role_arn': ?instanceRoleArn?.toTfJson(),
@@ -110,6 +113,7 @@ final class ApprunnerServiceNetworkConfiguration {
 
   final ApprunnerServiceIngressConfiguration? ingressConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'egress_configuration': ?egressConfiguration?.encode(),
@@ -147,6 +151,7 @@ final class ApprunnerServiceEgressConfiguration {
 
   final TfArg<String>? vpcConnectorArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'egress_type': ?egressType?.toTfJson(),
     'vpc_connector_arn': ?vpcConnectorArn?.toTfJson(),
@@ -178,6 +183,7 @@ final class ApprunnerServiceIngressConfiguration {
 
   final TfArg<bool>? isPubliclyAccessible;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_publicly_accessible': ?isPubliclyAccessible?.toTfJson(),
   };
@@ -196,6 +202,7 @@ final class ApprunnerServiceObservabilityConfiguration {
 
   final TfArg<bool> observabilityEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'observability_configuration_arn': ?observabilityConfigurationArn
         ?.toTfJson(),
@@ -220,6 +227,7 @@ final class ApprunnerServiceSourceConfiguration {
 
   final ApprunnerServiceRepository repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_deployments_enabled': ?autoDeploymentsEnabled?.toTfJson(),
     'authentication_configuration': ?authenticationConfiguration?.encode(),
@@ -245,8 +253,10 @@ sealed class ApprunnerServiceRepository {
   ) = ApprunnerServiceImageRepositoryChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -257,9 +267,11 @@ final class ApprunnerServiceCodeRepositoryChoice
 
   final ApprunnerServiceCodeRepository codeRepository;
 
+  @internal
   @override
   String get blockKey => 'code_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'code_repository': codeRepository.encode()};
 }
@@ -271,9 +283,11 @@ final class ApprunnerServiceImageRepositoryChoice
 
   final ApprunnerServiceImageRepository imageRepository;
 
+  @internal
   @override
   String get blockKey => 'image_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'image_repository': imageRepository.encode(),
@@ -293,6 +307,7 @@ final class ApprunnerServiceAuthenticationConfiguration {
 
   final TfArg<String>? connectionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_role_arn': ?accessRoleArn?.toTfJson(),
     'connection_arn': ?connectionArn?.toTfJson(),
@@ -318,6 +333,7 @@ final class ApprunnerServiceCodeRepository {
 
   final ApprunnerServiceSourceCodeVersion sourceCodeVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_url': repositoryUrl.toTfJson(),
     'source_directory': ?sourceDirectory?.toTfJson(),
@@ -339,6 +355,7 @@ final class ApprunnerServiceCodeConfiguration {
 
   final ApprunnerServiceCodeConfigurationValues? codeConfigurationValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration_source': configurationSource.toTfJson(),
     'code_configuration_values': ?codeConfigurationValues?.encode(),
@@ -391,6 +408,7 @@ final class ApprunnerServiceCodeConfigurationValues {
 
   final TfArg<String>? startCommand;
 
+  @internal
   Map<String, Object?> encode() => {
     'build_command': ?buildCommand?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -459,6 +477,7 @@ final class ApprunnerServiceSourceCodeVersion {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -494,6 +513,7 @@ final class ApprunnerServiceImageRepository {
 
   final ApprunnerServiceImageConfiguration? imageConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_identifier': imageIdentifier.toTfJson(),
     'image_repository_type': imageRepositoryType.toTfJson(),
@@ -541,6 +561,7 @@ final class ApprunnerServiceImageConfiguration {
 
   final TfArg<String>? startCommand;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'runtime_environment_secrets': ?runtimeEnvironmentSecrets?.toTfJson(),

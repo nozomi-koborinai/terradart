@@ -24,6 +24,7 @@ final class VertexAiIndexEndpointDeployedIndexAutomaticResources {
 
   final TfArg<num>? minReplicaCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': ?minReplicaCount?.toTfJson(),
@@ -46,6 +47,7 @@ final class VertexAiIndexEndpointDeployedIndexDedicatedResources {
 
   final VertexAiIndexEndpointDeployedIndexMachineSpec machineSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': minReplicaCount.toTfJson(),
@@ -61,6 +63,7 @@ final class VertexAiIndexEndpointDeployedIndexMachineSpec {
 
   final TfArg<String>? machineType;
 
+  @internal
   Map<String, Object?> encode() => {'machine_type': ?machineType?.toTfJson()};
 }
 
@@ -72,6 +75,7 @@ final class VertexAiIndexEndpointDeployedIndexAuthConfig {
 
   final VertexAiIndexEndpointDeployedIndexAuthProvider? authProvider;
 
+  @internal
   Map<String, Object?> encode() => {'auth_provider': ?authProvider?.encode()};
 }
 
@@ -88,6 +92,7 @@ final class VertexAiIndexEndpointDeployedIndexAuthProvider {
 
   final TfArg<List<String>>? audiences;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_issuers': ?allowedIssuers?.toTfJson(),
     'audiences': ?audiences?.toTfJson(),

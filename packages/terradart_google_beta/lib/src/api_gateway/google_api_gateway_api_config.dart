@@ -25,12 +25,15 @@ sealed class ApiGatewayApiConfigSpec {
   ) = ApiGatewayApiConfigSpecGrpcServices;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,14 +44,17 @@ final class ApiGatewayApiConfigSpecOpenapiDocuments
 
   final List<ApiGatewayApiConfigOpenapiDocuments> openapiDocuments;
 
+  @internal
   @override
   String get blockKey => 'openapi_documents';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'openapi_documents': [for (final e in openapiDocuments) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'openapi_documents': TfArg.literal([
@@ -64,14 +70,17 @@ final class ApiGatewayApiConfigSpecGrpcServices
 
   final List<ApiGatewayApiConfigGrpcServices> grpcServices;
 
+  @internal
   @override
   String get blockKey => 'grpc_services';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'grpc_services': [for (final e in grpcServices) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'grpc_services': TfArg.literal([for (final e in grpcServices) e.encode()]),
@@ -86,6 +95,7 @@ final class ApiGatewayApiConfigGatewayConfig {
 
   final ApiGatewayApiConfigBackendConfig backendConfig;
 
+  @internal
   Map<String, Object?> encode() => {'backend_config': backendConfig.encode()};
 }
 
@@ -97,6 +107,7 @@ final class ApiGatewayApiConfigBackendConfig {
 
   final TfArg<String> googleServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_service_account': googleServiceAccount.toTfJson(),
   };
@@ -115,6 +126,7 @@ final class ApiGatewayApiConfigGrpcServices {
 
   final List<ApiGatewayApiConfigSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_descriptor_set': fileDescriptorSet.encode(),
     if (source != null) 'source': [for (final e in source!) e.encode()],
@@ -134,6 +146,7 @@ final class ApiGatewayApiConfigFileDescriptorSet {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'contents': contents.toTfJson(),
     'path': path.toTfJson(),
@@ -150,6 +163,7 @@ final class ApiGatewayApiConfigSource {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'contents': contents.toTfJson(),
     'path': path.toTfJson(),
@@ -169,6 +183,7 @@ final class ApiGatewayApiConfigManagedServiceConfigs {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'contents': contents.toTfJson(),
     'path': path.toTfJson(),
@@ -183,6 +198,7 @@ final class ApiGatewayApiConfigOpenapiDocuments {
 
   final ApiGatewayApiConfigDocument document;
 
+  @internal
   Map<String, Object?> encode() => {'document': document.encode()};
 }
 
@@ -199,6 +215,7 @@ final class ApiGatewayApiConfigDocument {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'contents': contents.toTfJson(),
     'path': path.toTfJson(),

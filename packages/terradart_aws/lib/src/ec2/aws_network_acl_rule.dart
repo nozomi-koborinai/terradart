@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_network_acl_rule`.
@@ -36,12 +37,15 @@ sealed class NetworkAclRuleCidr {
       NetworkAclRuleCidrIpv6CidrBlock;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -51,12 +55,15 @@ final class NetworkAclRuleCidrBlock extends NetworkAclRuleCidr {
 
   final TfArg<String> cidrBlock;
 
+  @internal
   @override
   String get blockKey => 'cidr_block';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cidr_block': cidrBlock.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
 }
@@ -67,14 +74,17 @@ final class NetworkAclRuleCidrIpv6CidrBlock extends NetworkAclRuleCidr {
 
   final TfArg<String> ipv6CidrBlock;
 
+  @internal
   @override
   String get blockKey => 'ipv6_cidr_block';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv6_cidr_block': ipv6CidrBlock.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ipv6_cidr_block': ipv6CidrBlock};
 }

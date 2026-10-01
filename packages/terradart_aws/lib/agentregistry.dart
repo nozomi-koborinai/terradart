@@ -3,6 +3,7 @@
 /// `agentregistry` registries.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/agentregistry/aws_agentregistry_registry.dart'
     show
         AgentregistryRegistryApprovalConfiguration,
@@ -25,3 +26,5 @@ export 'src/agentregistry/aws_agentregistry_registry.dart'
         AgentregistryRegistryScope,
         AgentregistryRegistrySelfManagedLatticeResource,
         AwsAgentregistryRegistry;
+export 'src/data/aws_agentregistry_registry.dart'
+    show DataAwsAgentregistryRegistry;

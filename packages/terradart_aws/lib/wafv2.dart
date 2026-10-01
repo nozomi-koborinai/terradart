@@ -3,6 +3,14 @@
 /// AWS WAF.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_wafv2_ip_set.dart' show DataAwsWafv2IpSet;
+export 'src/data/aws_wafv2_managed_rule_group.dart'
+    show DataAwsWafv2ManagedRuleGroup;
+export 'src/data/aws_wafv2_regex_pattern_set.dart'
+    show DataAwsWafv2RegexPatternSet;
+export 'src/data/aws_wafv2_rule_group.dart' show DataAwsWafv2RuleGroup;
+export 'src/data/aws_wafv2_web_acl.dart' show DataAwsWafv2WebAcl;
 export 'src/wafv2/aws_wafv2_api_key.dart' show AwsWafv2ApiKey, Wafv2ApiKeyScope;
 export 'src/wafv2/aws_wafv2_ip_set.dart'
     show

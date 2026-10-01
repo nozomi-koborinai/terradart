@@ -14,6 +14,7 @@ const Set<String> _awsDynamodbTableSensitive = <String>{};
 final class DataDynamodbTableServerSideEncryption {
   const DataDynamodbTableServerSideEncryption();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

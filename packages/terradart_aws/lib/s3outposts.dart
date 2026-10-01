@@ -3,5 +3,6 @@
 /// AWS S3 on Outposts.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/s3outposts/aws_s3outposts_endpoint.dart'
     show AwsS3outpostsEndpoint, S3outpostsEndpointAccessType;

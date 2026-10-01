@@ -25,12 +25,15 @@ sealed class CognitoManagedLoginBrandingStyle {
   ) = CognitoManagedLoginBrandingStyleUseCognitoProvidedValues;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,12 +44,15 @@ final class CognitoManagedLoginBrandingStyleSettings
 
   final TfArg<String> settings;
 
+  @internal
   @override
   String get blockKey => 'settings';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'settings': settings.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'settings': settings};
 }
@@ -60,14 +66,17 @@ final class CognitoManagedLoginBrandingStyleUseCognitoProvidedValues
 
   final TfArg<bool> useCognitoProvidedValues;
 
+  @internal
   @override
   String get blockKey => 'use_cognito_provided_values';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'use_cognito_provided_values': useCognitoProvidedValues.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'use_cognito_provided_values': useCognitoProvidedValues,
@@ -96,6 +105,7 @@ final class CognitoManagedLoginBrandingAsset {
 
   final TfArg<String>? resourceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bytes': ?bytes?.toTfJson(),
     'category': category.toTfJson(),

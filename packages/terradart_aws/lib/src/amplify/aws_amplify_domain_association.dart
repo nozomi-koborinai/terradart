@@ -20,6 +20,7 @@ final class AmplifyDomainAssociationCertificateSettings {
 
   final AmplifyDomainAssociationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_certificate_arn': ?customCertificateArn?.toTfJson(),
     'type': type.toTfJson(),
@@ -59,6 +60,7 @@ final class AmplifyDomainAssociationSubDomain {
 
   final TfArg<String> prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch_name': branchName.toTfJson(),
     'prefix': prefix.toTfJson(),

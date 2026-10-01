@@ -15,6 +15,7 @@ final class ComputeDiskAsyncReplicationSecondaryDisk {
 
   final TfArg<String> disk;
 
+  @internal
   Map<String, Object?> encode() => {'disk': disk.toTfJson()};
 }
 

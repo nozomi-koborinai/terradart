@@ -3,5 +3,6 @@
 /// Appwrite projects and project API keys (organization-scoped).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/project/appwrite_project.dart' show AppwriteProject;
 export 'src/project/appwrite_project_key.dart' show AppwriteProjectKey;

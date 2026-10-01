@@ -36,6 +36,7 @@ final class AccessContextManagerServicePerimeters {
 
   final AccessContextManagerServicePerimetersStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -100,6 +101,7 @@ final class AccessContextManagerServicePerimetersSpec {
   final AccessContextManagerServicePerimetersVpcAccessibleServices?
   vpcAccessibleServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_levels': ?accessLevels?.toTfJson(),
     'resources': ?resources?.toTfJson(),
@@ -129,6 +131,7 @@ final class AccessContextManagerServicePerimetersEgressPolicies {
 
   final AccessContextManagerServicePerimetersEgressTo? egressTo;
 
+  @internal
   Map<String, Object?> encode() => {
     'title': ?title?.toTfJson(),
     'egress_from': ?egressFrom?.encode(),
@@ -157,6 +160,7 @@ final class AccessContextManagerServicePerimetersEgressFrom {
 
   final List<AccessContextManagerServicePerimetersSources>? sources;
 
+  @internal
   Map<String, Object?> encode() => {
     'identities': ?identities?.toTfJson(),
     'identity_type': ?identityType?.toTfJson(),
@@ -248,6 +252,7 @@ final class AccessContextManagerServicePerimetersSources {
 
   final AccessContextManagerServicePerimetersPscEndpoint? pscEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_level': ?accessLevel?.toTfJson(),
     'resource': ?resource?.toTfJson(),
@@ -264,6 +269,7 @@ final class AccessContextManagerServicePerimetersPscEndpoint {
 
   final TfArg<String>? forwardingRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'forwarding_rule': ?forwardingRule?.toTfJson(),
   };
@@ -289,6 +295,7 @@ final class AccessContextManagerServicePerimetersEgressTo {
 
   final List<AccessContextManagerServicePerimetersOperations>? operations;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_resources': ?externalResources?.toTfJson(),
     'resources': ?resources?.toTfJson(),
@@ -313,6 +320,7 @@ final class AccessContextManagerServicePerimetersOperations {
   final List<AccessContextManagerServicePerimetersMethodSelectors>?
   methodSelectors;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     if (methodSelectors != null)
@@ -334,6 +342,7 @@ final class AccessContextManagerServicePerimetersMethodSelectors {
 
   final TfArg<String>? permission;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     'permission': ?permission?.toTfJson(),
@@ -357,6 +366,7 @@ final class AccessContextManagerServicePerimetersIngressPolicies {
 
   final AccessContextManagerServicePerimetersIngressTo? ingressTo;
 
+  @internal
   Map<String, Object?> encode() => {
     'title': ?title?.toTfJson(),
     'ingress_from': ?ingressFrom?.encode(),
@@ -381,6 +391,7 @@ final class AccessContextManagerServicePerimetersIngressFrom {
 
   final List<AccessContextManagerServicePerimetersSources>? sources;
 
+  @internal
   Map<String, Object?> encode() => {
     'identities': ?identities?.toTfJson(),
     'identity_type': ?identityType?.toTfJson(),
@@ -405,6 +416,7 @@ final class AccessContextManagerServicePerimetersIngressTo {
 
   final List<AccessContextManagerServicePerimetersOperations>? operations;
 
+  @internal
   Map<String, Object?> encode() => {
     'resources': ?resources?.toTfJson(),
     'roles': ?roles?.toTfJson(),
@@ -434,6 +446,7 @@ final class AccessContextManagerServicePerimetersVpcAccessibleServices {
   final List<AccessContextManagerServicePerimetersAllowedServicePatterns>?
   allowedServicePatterns;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_services': ?allowedServices?.toTfJson(),
     'enable_restriction': ?enableRestriction?.toTfJson(),
@@ -463,6 +476,7 @@ final class AccessContextManagerServicePerimetersAllowedServicePatterns {
 
   final List<AccessContextManagerServicePerimetersModifiers>? modifiers;
 
+  @internal
   Map<String, Object?> encode() => {
     'pattern': ?pattern?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -480,6 +494,7 @@ final class AccessContextManagerServicePerimetersModifiers {
 
   final AccessContextManagerServicePerimetersAddRequestHeader? addRequestHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'add_request_header': ?addRequestHeader?.encode(),
   };
@@ -499,6 +514,7 @@ final class AccessContextManagerServicePerimetersAddRequestHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -533,6 +549,7 @@ final class AccessContextManagerServicePerimetersStatus {
   final AccessContextManagerServicePerimetersVpcAccessibleServices?
   vpcAccessibleServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_levels': ?accessLevels?.toTfJson(),
     'resources': ?resources?.toTfJson(),

@@ -23,6 +23,7 @@ final class OrgPolicyPolicyDryRunSpec {
 
   final List<OrgPolicyPolicyRules>? rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
     'reset': ?reset?.toTfJson(),
@@ -56,6 +57,7 @@ final class OrgPolicyPolicyRules {
 
   final OrgPolicyPolicyValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_all': ?allowAll?.toTfJson(),
     'deny_all': ?denyAll?.toTfJson(),
@@ -86,6 +88,7 @@ final class OrgPolicyPolicyCondition {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': ?expression?.toTfJson(),
@@ -105,6 +108,7 @@ final class OrgPolicyPolicyValues {
 
   final TfArg<List<String>>? deniedValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),
     'denied_values': ?deniedValues?.toTfJson(),
@@ -123,6 +127,7 @@ final class OrgPolicyPolicySpec {
 
   final List<OrgPolicyPolicyRules>? rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
     'reset': ?reset?.toTfJson(),

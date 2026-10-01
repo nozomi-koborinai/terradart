@@ -31,6 +31,7 @@ final class ApikeysKeyRestrictions {
 
   final ApikeysKeyServerKeyRestrictions? serverKeyRestrictions;
 
+  @internal
   Map<String, Object?> encode() => {
     'android_key_restrictions': ?androidKeyRestrictions?.encode(),
     if (apiTargets != null)
@@ -49,6 +50,7 @@ final class ApikeysKeyAndroidKeyRestrictions {
 
   final List<ApikeysKeyAllowedApplications> allowedApplications;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_applications': [for (final e in allowedApplications) e.encode()],
   };
@@ -67,6 +69,7 @@ final class ApikeysKeyAllowedApplications {
 
   final TfArg<String> sha1Fingerprint;
 
+  @internal
   Map<String, Object?> encode() => {
     'package_name': packageName.toTfJson(),
     'sha1_fingerprint': sha1Fingerprint.toTfJson(),
@@ -83,6 +86,7 @@ final class ApikeysKeyApiTargets {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
     'service': service.toTfJson(),
@@ -97,6 +101,7 @@ final class ApikeysKeyBrowserKeyRestrictions {
 
   final TfArg<List<String>> allowedReferrers;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_referrers': allowedReferrers.toTfJson(),
   };
@@ -110,6 +115,7 @@ final class ApikeysKeyIosKeyRestrictions {
 
   final TfArg<List<String>> allowedBundleIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_bundle_ids': allowedBundleIds.toTfJson(),
   };
@@ -123,6 +129,7 @@ final class ApikeysKeyServerKeyRestrictions {
 
   final TfArg<List<String>> allowedIps;
 
+  @internal
   Map<String, Object?> encode() => {'allowed_ips': allowedIps.toTfJson()};
 }
 

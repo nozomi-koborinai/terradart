@@ -7,7 +7,9 @@
 prelude: |
   sealed class GoogleSyntheticChoiceChoice {
     const GoogleSyntheticChoiceChoice();
+    @internal
     String get blockKey;
+    @internal
     Map<String, Object?> encode();
   }
 
@@ -18,9 +20,11 @@ prelude: |
     final TfArg<String> aValue;
 
     @override
+    @internal
     String get blockKey => 'option_a';
 
     @override
+    @internal
     Map<String, Object?> encode() {
       // TODO(wrap-promote): implement encode for OptionA.
       // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }
@@ -37,9 +41,11 @@ prelude: |
     final TfArg<bool>? bFlag;
 
     @override
+    @internal
     String get blockKey => 'option_b';
 
     @override
+    @internal
     Map<String, Object?> encode() {
       // TODO(wrap-promote): implement encode for OptionB.
       // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }

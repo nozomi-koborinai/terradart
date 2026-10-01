@@ -21,6 +21,7 @@ final class ZeroTrustDexTestData {
 
   final TfArg<String>? method;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'kind': ?kind?.toTfJson(),
@@ -36,6 +37,7 @@ final class ZeroTrustDexTestTargetPolicies {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

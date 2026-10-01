@@ -8,9 +8,7 @@
 /// via `google_tags_location_tag_binding`.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/artifact_registry.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/tags.dart';
@@ -27,7 +25,7 @@ final class ArtifactRegistryStack extends Stack {
     const location = 'asia-northeast1';
     const repositoryId = 'terradart-docker';
 
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final apiAr = add(
       GoogleProjectService(

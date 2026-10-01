@@ -68,6 +68,7 @@ final class PipelineSinkConfig {
 
   final PipelineSinkRollingPolicy? rollingPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': accountId.encodeAs('id').toTfJson(),
     'bucket': bucket.toTfJson(),
@@ -96,6 +97,7 @@ final class PipelineSinkCredentials {
 
   final Sensitive<String> secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'secret_access_key': secretAccessKey.toTfJson(),
@@ -114,6 +116,7 @@ final class PipelineSinkFileNaming {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'strategy': ?strategy?.toTfJson(),
@@ -145,6 +148,7 @@ final class PipelineSinkPartitioning {
 
   final TfArg<String>? timePattern;
 
+  @internal
   Map<String, Object?> encode() => {'time_pattern': ?timePattern?.toTfJson()};
 }
 
@@ -164,6 +168,7 @@ final class PipelineSinkRollingPolicy {
 
   final TfArg<num>? intervalSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_size_bytes': ?fileSizeBytes?.toTfJson(),
     'inactivity_seconds': ?inactivitySeconds?.toTfJson(),
@@ -196,6 +201,7 @@ final class PipelineSinkFormat {
 
   final TfArg<bool>? unstructured;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
     'decimal_encoding': ?decimalEncoding?.toTfJson(),
@@ -292,6 +298,7 @@ final class PipelineSinkSchema {
 
   final List<PipelineSinkFields>? fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'inferred': ?inferred?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
@@ -323,6 +330,7 @@ final class PipelineSinkFields {
 
   final PipelineSinkUnit? unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_key': ?metadataKey?.toTfJson(),
     'name': ?name?.toTfJson(),

@@ -61,6 +61,7 @@ final class ZeroTrustGatewaySettings {
 
   final ZeroTrustGatewaySettingsTlsDecrypt? tlsDecrypt;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_ttl_secs': ?maxTtlSecs?.toTfJson(),
     'activity_log': ?activityLog?.encode(),
@@ -88,6 +89,7 @@ final class ZeroTrustGatewaySettingsActivityLog {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -110,6 +112,7 @@ final class ZeroTrustGatewaySettingsAntivirus {
 
   final ZeroTrustGatewaySettingsNotificationSettings? notificationSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_download_phase': ?enabledDownloadPhase?.toTfJson(),
     'enabled_upload_phase': ?enabledUploadPhase?.toTfJson(),
@@ -137,6 +140,7 @@ final class ZeroTrustGatewaySettingsNotificationSettings {
 
   final TfArg<String>? supportUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'include_context': ?includeContext?.toTfJson(),
@@ -197,6 +201,7 @@ final class ZeroTrustGatewaySettingsBlockPage {
 
   final TfArg<num>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -251,6 +256,7 @@ final class ZeroTrustGatewaySettingsBodyScanning {
 
   final ZeroTrustGatewaySettingsBodyScanningInspectionMode? inspectionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'inspection_mode': ?inspectionMode?.toTfJson(),
   };
@@ -292,6 +298,7 @@ final class ZeroTrustGatewaySettingsBrowserIsolation {
 
   final TfArg<bool>? urlBrowserIsolationEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'non_identity_enabled': ?nonIdentityEnabled?.toTfJson(),
     'url_browser_isolation_enabled': ?urlBrowserIsolationEnabled?.toTfJson(),
@@ -306,6 +313,7 @@ final class ZeroTrustGatewaySettingsCertificate {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -328,6 +336,7 @@ final class ZeroTrustGatewaySettingsCustomCertificate {
 
   final TfArg<String>? updatedAt;
 
+  @internal
   Map<String, Object?> encode() => {
     'binding_status': ?bindingStatus?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -344,6 +353,7 @@ final class ZeroTrustGatewaySettingsExtendedEmailMatching {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -355,6 +365,7 @@ final class ZeroTrustGatewaySettingsFips {
 
   final TfArg<bool>? tls;
 
+  @internal
   Map<String, Object?> encode() => {'tls': ?tls?.toTfJson()};
 }
 
@@ -366,6 +377,7 @@ final class ZeroTrustGatewaySettingsHostSelector {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -377,6 +389,7 @@ final class ZeroTrustGatewaySettingsInspection {
 
   final ZeroTrustGatewaySettingsSettingsMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -411,6 +424,7 @@ final class ZeroTrustGatewaySettingsProtocolDetection {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -424,6 +438,7 @@ final class ZeroTrustGatewaySettingsSandbox {
 
   final ZeroTrustGatewaySettingsFallbackAction? fallbackAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'fallback_action': ?fallbackAction?.toTfJson(),
@@ -461,6 +476,7 @@ final class ZeroTrustGatewaySettingsTlsDecrypt {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

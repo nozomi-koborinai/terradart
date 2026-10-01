@@ -34,6 +34,7 @@ final class DataEmailSecurityTrustedDomainsFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'is_recent': ?isRecent?.toTfJson(),

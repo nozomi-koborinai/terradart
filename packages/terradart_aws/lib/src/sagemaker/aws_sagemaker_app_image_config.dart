@@ -20,6 +20,7 @@ final class SagemakerAppImageConfigCodeEditorAppImageConfig {
 
   final SagemakerAppImageConfigFileSystemConfig? fileSystemConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_config': ?containerConfig?.encode(),
     'file_system_config': ?fileSystemConfig?.encode(),
@@ -43,6 +44,7 @@ final class SagemakerAppImageConfigContainerConfig {
 
   final TfArg<Map<String, String>>? containerEnvironmentVariables;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_arguments': ?containerArguments?.toTfJson(),
     'container_entrypoint': ?containerEntrypoint?.toTfJson(),
@@ -68,6 +70,7 @@ final class SagemakerAppImageConfigFileSystemConfig {
 
   final TfArg<String>? mountPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_gid': ?defaultGid?.toTfJson(),
     'default_uid': ?defaultUid?.toTfJson(),
@@ -88,6 +91,7 @@ final class SagemakerAppImageConfigJupyterLabImageConfig {
 
   final SagemakerAppImageConfigFileSystemConfig? fileSystemConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_config': ?containerConfig?.encode(),
     'file_system_config': ?fileSystemConfig?.encode(),
@@ -107,6 +111,7 @@ final class SagemakerAppImageConfigKernelGatewayImageConfig {
 
   final List<SagemakerAppImageConfigKernelSpec> kernelSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_config': ?fileSystemConfig?.encode(),
     'kernel_spec': [for (final e in kernelSpec) e.encode()],
@@ -126,6 +131,7 @@ final class SagemakerAppImageConfigKernelSpec {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'name': name.toTfJson(),

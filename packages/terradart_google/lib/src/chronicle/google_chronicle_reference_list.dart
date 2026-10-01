@@ -15,6 +15,7 @@ final class ChronicleReferenceListEntries {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -26,6 +27,7 @@ final class ChronicleReferenceListScopeInfo {
 
   final ChronicleReferenceListScope? referenceListScope;
 
+  @internal
   Map<String, Object?> encode() => {
     'reference_list_scope': ?referenceListScope?.encode(),
   };
@@ -39,6 +41,7 @@ final class ChronicleReferenceListScope {
 
   final TfArg<List<String>>? scopeNames;
 
+  @internal
   Map<String, Object?> encode() => {'scope_names': ?scopeNames?.toTfJson()};
 }
 

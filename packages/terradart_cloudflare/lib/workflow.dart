@@ -3,6 +3,9 @@
 /// Cloudflare Workflows.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/cloudflare_workflow.dart'
+    show DataCloudflareWorkflow, DataWorkflowFilter;
 export 'src/workflow/cloudflare_workflow.dart'
     show
         CloudflareWorkflow,

@@ -17,6 +17,7 @@ final class WorkflowConcurrency {
 
   final TfArg<num>? limit;
 
+  @internal
   Map<String, Object?> encode() => {'limit': ?limit?.toTfJson()};
 }
 
@@ -30,6 +31,7 @@ final class WorkflowDefaultRetention {
 
   final TfArg<Object?>? successRetention;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_retention': ?errorRetention?.toTfJson(),
     'success_retention': ?successRetention?.toTfJson(),
@@ -44,6 +46,7 @@ final class WorkflowLimits {
 
   final TfArg<num>? steps;
 
+  @internal
   Map<String, Object?> encode() => {'steps': ?steps?.toTfJson()};
 }
 
@@ -55,6 +58,7 @@ final class WorkflowSchedules {
 
   final TfArg<String> cron;
 
+  @internal
   Map<String, Object?> encode() => {'cron': cron.toTfJson()};
 }
 

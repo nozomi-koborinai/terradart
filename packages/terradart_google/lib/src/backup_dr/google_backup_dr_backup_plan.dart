@@ -23,6 +23,7 @@ final class BackupDrBackupPlanBackupRules {
 
   final BackupDrBackupPlanStandardSchedule standardSchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_retention_days': backupRetentionDays.toTfJson(),
     'rule_id': ruleId.toTfJson(),
@@ -61,6 +62,7 @@ final class BackupDrBackupPlanStandardSchedule {
 
   final BackupDrBackupPlanWeekDayOfMonth? weekDayOfMonth;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_of_month': ?daysOfMonth?.toTfJson(),
     if (daysOfWeek != null)
@@ -204,6 +206,7 @@ final class BackupDrBackupPlanBackupWindow {
 
   final TfArg<num> startHourOfDay;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_hour_of_day': ?endHourOfDay?.toTfJson(),
     'start_hour_of_day': startHourOfDay.toTfJson(),
@@ -223,6 +226,7 @@ final class BackupDrBackupPlanWeekDayOfMonth {
 
   final BackupDrBackupPlanWeekOfMonth weekOfMonth;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     'week_of_month': weekOfMonth.toTfJson(),
@@ -305,6 +309,7 @@ final class BackupDrBackupPlanComputeInstanceBackupPlanProperties {
 
   final TfArg<bool> guestFlush;
 
+  @internal
   Map<String, Object?> encode() => {'guest_flush': guestFlush.toTfJson()};
 }
 
@@ -316,6 +321,7 @@ final class BackupDrBackupPlanDiskBackupPlanProperties {
 
   final TfArg<bool> guestFlush;
 
+  @internal
   Map<String, Object?> encode() => {'guest_flush': guestFlush.toTfJson()};
 }
 

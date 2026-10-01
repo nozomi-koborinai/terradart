@@ -23,6 +23,7 @@ final class NetworkServicesWasmPluginLogConfig {
 
   final TfArg<num>? sampleRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'min_log_level': ?minLogLevel?.toTfJson(),
@@ -98,6 +99,7 @@ final class NetworkServicesWasmPluginVersions {
 
   final TfArg<String> versionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'image_uri': ?imageUri?.toTfJson(),

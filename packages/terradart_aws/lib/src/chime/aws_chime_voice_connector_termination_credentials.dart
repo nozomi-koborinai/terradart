@@ -21,6 +21,7 @@ final class ChimeVoiceConnectorTerminationCredentials {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),

@@ -4,6 +4,13 @@
 /// folder / organization / project settings.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_observability_folder_settings.dart'
+    show DataGoogleObservabilityFolderSettings;
+export 'src/data/google_observability_organization_settings.dart'
+    show DataGoogleObservabilityOrganizationSettings;
+export 'src/data/google_observability_project_settings.dart'
+    show DataGoogleObservabilityProjectSettings;
 export 'src/observability/google_observability_bucket.dart'
     show GoogleObservabilityBucket, ObservabilityBucketCmekSettings;
 export 'src/observability/google_observability_folder_settings.dart'

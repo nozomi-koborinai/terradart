@@ -7,6 +7,18 @@
 /// ([GoogleComputeGlobalAddress]).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_sql_backup_run.dart' show DataGoogleSqlBackupRun;
+export 'src/data/google_sql_ca_certs.dart' show DataGoogleSqlCaCerts;
+export 'src/data/google_sql_database.dart' show DataGoogleSqlDatabase;
+export 'src/data/google_sql_database_instance.dart'
+    show DataGoogleSqlDatabaseInstance;
+export 'src/data/google_sql_database_instance_latest_recovery_time.dart'
+    show DataGoogleSqlDatabaseInstanceLatestRecoveryTime;
+export 'src/data/google_sql_database_instances.dart'
+    show DataGoogleSqlDatabaseInstances;
+export 'src/data/google_sql_databases.dart' show DataGoogleSqlDatabases;
+export 'src/data/google_sql_tiers.dart' show DataGoogleSqlTiers;
 export 'src/sql/google_sql_database.dart' show GoogleSqlDatabase;
 export 'src/sql/google_sql_database_instance.dart'
     show

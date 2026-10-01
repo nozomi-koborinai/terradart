@@ -47,8 +47,10 @@ sealed class AppEngineFlexibleAppVersionScaling {
     required TfArg<int> instances,
   }) = AppEngineFlexibleAppVersionManualScalingMode;
 
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -63,9 +65,11 @@ final class AppEngineFlexibleAppVersionAutomaticScalingMode
   final TfArg<int> minTotalInstances;
 
   @override
+  @internal
   String get blockKey => 'automatic_scaling';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'min_total_instances': minTotalInstances.toTfJson(),
   };
@@ -80,9 +84,11 @@ final class AppEngineFlexibleAppVersionManualScalingMode
   final TfArg<int> instances;
 
   @override
+  @internal
   String get blockKey => 'manual_scaling';
 
   @override
+  @internal
   Map<String, Object?> encode() => {'instances': instances.toTfJson()};
 }
 
@@ -108,6 +114,7 @@ final class AppEngineFlexibleAppVersionApiConfig {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_fail_action': ?authFailAction?.toTfJson(),
     'login': ?login?.toTfJson(),
@@ -219,6 +226,7 @@ final class AppEngineFlexibleAppVersionDeployment {
 
   final AppEngineFlexibleAppVersionZip? zip;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_build_options': ?cloudBuildOptions?.encode(),
     'container': ?container?.encode(),
@@ -240,6 +248,7 @@ final class AppEngineFlexibleAppVersionCloudBuildOptions {
 
   final TfArg<String>? cloudBuildTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_yaml_path': appYamlPath.toTfJson(),
     'cloud_build_timeout': ?cloudBuildTimeout?.toTfJson(),
@@ -254,6 +263,7 @@ final class AppEngineFlexibleAppVersionContainer {
 
   final TfArg<String> image;
 
+  @internal
   Map<String, Object?> encode() => {'image': image.toTfJson()};
 }
 
@@ -273,6 +283,7 @@ final class AppEngineFlexibleAppVersionFiles {
 
   final TfArg<String> sourceUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'sha1_sum': ?sha1Sum?.toTfJson(),
@@ -293,6 +304,7 @@ final class AppEngineFlexibleAppVersionZip {
 
   final TfArg<String> sourceUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'files_count': ?filesCount?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
@@ -318,6 +330,7 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
 
   final AppEngineFlexibleAppVersionRolloutStrategy? rolloutStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'config_id': ?configId?.toTfJson(),
     'disable_trace_sampling': ?disableTraceSampling?.toTfJson(),
@@ -358,6 +371,7 @@ final class AppEngineFlexibleAppVersionEntrypoint {
 
   final TfArg<String> shell;
 
+  @internal
   Map<String, Object?> encode() => {'shell': shell.toTfJson()};
 }
 
@@ -374,6 +388,7 @@ final class AppEngineFlexibleAppVersionFlexibleRuntimeSettings {
 
   final TfArg<String>? runtimeVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'operating_system': ?operatingSystem?.toTfJson(),
     'runtime_version': ?runtimeVersion?.toTfJson(),
@@ -409,6 +424,7 @@ final class AppEngineFlexibleAppVersionHandlers {
 
   final AppEngineFlexibleAppVersionStaticFiles? staticFiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_fail_action': ?authFailAction?.toTfJson(),
     'login': ?login?.toTfJson(),
@@ -467,6 +483,7 @@ final class AppEngineFlexibleAppVersionScript {
 
   final TfArg<String> scriptPath;
 
+  @internal
   Map<String, Object?> encode() => {'script_path': scriptPath.toTfJson()};
 }
 
@@ -498,6 +515,7 @@ final class AppEngineFlexibleAppVersionStaticFiles {
 
   final TfArg<String>? uploadPathRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_readable': ?applicationReadable?.toTfJson(),
     'expiration': ?expiration?.toTfJson(),
@@ -537,6 +555,7 @@ final class AppEngineFlexibleAppVersionLivenessCheck {
 
   final TfArg<String>? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_interval': ?checkInterval?.toTfJson(),
     'failure_threshold': ?failureThreshold?.toTfJson(),
@@ -570,6 +589,7 @@ final class AppEngineFlexibleAppVersionNetwork {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'forwarded_ports': ?forwardedPorts?.toTfJson(),
     'instance_tag': ?instanceTag?.toTfJson(),
@@ -607,6 +627,7 @@ final class AppEngineFlexibleAppVersionReadinessCheck {
 
   final TfArg<String>? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_start_timeout': ?appStartTimeout?.toTfJson(),
     'check_interval': ?checkInterval?.toTfJson(),
@@ -637,6 +658,7 @@ final class AppEngineFlexibleAppVersionResources {
 
   final List<AppEngineFlexibleAppVersionVolumes>? volumes;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'disk_gb': ?diskGb?.toTfJson(),
@@ -661,6 +683,7 @@ final class AppEngineFlexibleAppVersionVolumes {
 
   final TfArg<String> volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'size_gb': sizeGb.toTfJson(),
@@ -676,6 +699,7 @@ final class AppEngineFlexibleAppVersionVpcAccessConnector {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

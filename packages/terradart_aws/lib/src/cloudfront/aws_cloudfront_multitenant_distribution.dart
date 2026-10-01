@@ -54,6 +54,7 @@ final class CloudfrontMultitenantDistributionActiveTrustedKeyGroups {
 
   final List<CloudfrontMultitenantDistributionItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -65,6 +66,7 @@ final class CloudfrontMultitenantDistributionActiveTrustedKeyGroups {
 final class CloudfrontMultitenantDistributionItems {
   const CloudfrontMultitenantDistributionItems();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -118,6 +120,7 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
   final List<CloudfrontMultitenantDistributionTrustedKeyGroups>?
   trustedKeyGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
     'compress': ?compress?.toTfJson(),
@@ -187,6 +190,7 @@ final class CloudfrontMultitenantDistributionAllowedMethods {
 
   final TfArg<List<String>> items;
 
+  @internal
   Map<String, Object?> encode() => {
     'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
     'items': items.toTfJson(),
@@ -251,6 +255,7 @@ final class CloudfrontMultitenantDistributionFunctionAssociation {
 
   final TfArg<String> functionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'function_arn': functionArn.toTfJson(),
@@ -306,6 +311,7 @@ final class CloudfrontMultitenantDistributionLambdaFunctionAssociation {
 
   final RefTo<AwsLambdaFunction> lambdaFunctionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'include_body': ?includeBody?.toTfJson(),
@@ -327,6 +333,7 @@ final class CloudfrontMultitenantDistributionTrustedKeyGroups {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'items': ?items?.toTfJson(),
@@ -352,6 +359,7 @@ final class CloudfrontMultitenantDistributionCustomErrorResponse {
 
   final TfArg<String>? responsePagePath;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_caching_min_ttl': ?errorCachingMinTtl?.toTfJson(),
     'error_code': errorCode.toTfJson(),
@@ -407,6 +415,7 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
   final List<CloudfrontMultitenantDistributionTrustedKeyGroups>?
   trustedKeyGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
     'compress': ?compress?.toTfJson(),
@@ -472,6 +481,7 @@ final class CloudfrontMultitenantDistributionOrigin {
 
   final List<CloudfrontMultitenantDistributionVpcOriginConfig>? vpcOriginConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_attempts': ?connectionAttempts?.toTfJson(),
     'connection_timeout': ?connectionTimeout?.toTfJson(),
@@ -506,6 +516,7 @@ final class CloudfrontMultitenantDistributionCustomHeader {
 
   final TfArg<String> headerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -546,6 +557,7 @@ final class CloudfrontMultitenantDistributionCustomOriginConfig {
   final List<CloudfrontMultitenantDistributionOriginMtlsConfig>?
   originMtlsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_port': httpPort.toTfJson(),
     'https_port': httpsPort.toTfJson(),
@@ -657,6 +669,7 @@ final class CloudfrontMultitenantDistributionOriginMtlsConfig {
 
   final TfArg<String> clientCertificateArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_certificate_arn': clientCertificateArn.toTfJson(),
   };
@@ -675,6 +688,7 @@ final class CloudfrontMultitenantDistributionOriginShield {
 
   final TfArg<String>? originShieldRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'origin_shield_region': ?originShieldRegion?.toTfJson(),
@@ -697,6 +711,7 @@ final class CloudfrontMultitenantDistributionVpcOriginConfig {
 
   final TfArg<String> vpcOriginId;
 
+  @internal
   Map<String, Object?> encode() => {
     'origin_keepalive_timeout': ?originKeepaliveTimeout?.toTfJson(),
     'origin_read_timeout': ?originReadTimeout?.toTfJson(),
@@ -721,6 +736,7 @@ final class CloudfrontMultitenantDistributionOriginGroup {
 
   final List<CloudfrontMultitenantDistributionMember>? member;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     if (failoverCriteria != null)
@@ -739,6 +755,7 @@ final class CloudfrontMultitenantDistributionFailoverCriteria {
 
   final TfArg<List<num>> statusCodes;
 
+  @internal
   Map<String, Object?> encode() => {'status_codes': statusCodes.toTfJson()};
 }
 
@@ -750,6 +767,7 @@ final class CloudfrontMultitenantDistributionMember {
 
   final TfArg<String> originId;
 
+  @internal
   Map<String, Object?> encode() => {'origin_id': originId.toTfJson()};
 }
 
@@ -761,6 +779,7 @@ final class CloudfrontMultitenantDistributionRestrictions {
 
   final List<CloudfrontMultitenantDistributionGeoRestriction>? geoRestriction;
 
+  @internal
   Map<String, Object?> encode() => {
     if (geoRestriction != null)
       'geo_restriction': [for (final e in geoRestriction!) e.encode()],
@@ -780,6 +799,7 @@ final class CloudfrontMultitenantDistributionGeoRestriction {
 
   final CloudfrontMultitenantDistributionRestrictionType restrictionType;
 
+  @internal
   Map<String, Object?> encode() => {
     'items': ?items?.toTfJson(),
     'restriction_type': restrictionType.toTfJson(),
@@ -825,6 +845,7 @@ final class CloudfrontMultitenantDistributionTenantConfig {
   final List<CloudfrontMultitenantDistributionParameterDefinition>?
   parameterDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     if (parameterDefinition != null)
       'parameter_definition': [
@@ -846,6 +867,7 @@ final class CloudfrontMultitenantDistributionParameterDefinition {
 
   final List<CloudfrontMultitenantDistributionDefinition>? definition;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (definition != null)
@@ -861,6 +883,7 @@ final class CloudfrontMultitenantDistributionDefinition {
 
   final List<CloudfrontMultitenantDistributionStringSchema>? stringSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stringSchema != null)
       'string_schema': [for (final e in stringSchema!) e.encode()],
@@ -883,6 +906,7 @@ final class CloudfrontMultitenantDistributionStringSchema {
 
   final TfArg<bool> required;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'default_value': ?defaultValue?.toTfJson(),
@@ -910,6 +934,7 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 
   final CloudfrontMultitenantDistributionSslSupportMethod? sslSupportMethod;
 
+  @internal
   Map<String, Object?> encode() => {
     'acm_certificate_arn': ?acmCertificateArn?.encodeAs('arn').toTfJson(),
     'cloudfront_default_certificate': ?cloudfrontDefaultCertificate?.toTfJson(),

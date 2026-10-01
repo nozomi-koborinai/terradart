@@ -21,6 +21,7 @@ final class PrivatecaCertificateTemplateCelExpression {
   final TfArg<String>? location;
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     if (description != null) 'description': description,
     if (expression != null) 'expression': expression,
@@ -41,6 +42,7 @@ final class PrivatecaCertificateTemplateIdentityConstraints {
   final TfArg<bool> allowSubjectPassthrough;
   final PrivatecaCertificateTemplateCelExpression? celExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_subject_alt_names_passthrough': allowSubjectAltNamesPassthrough,
     'allow_subject_passthrough': allowSubjectPassthrough,
@@ -64,6 +66,7 @@ final class PrivatecaCertificateTemplatePassthroughExtensions {
   >?
   additionalExtensions;
 
+  @internal
   Map<String, Object?> encode() => {
     'known_extensions': ?knownExtensions?.toTfJson(),
     if (additionalExtensions != null)
@@ -83,6 +86,7 @@ final class PrivatecaCertificateTemplatePassthroughExtensionsAdditionalExtension
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -112,6 +116,7 @@ final class PrivatecaCertificateTemplatePredefinedValues {
 
   final List<PrivatecaCertificateTemplatePolicyIds>? policyIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'aia_ocsp_servers': ?aiaOcspServers?.toTfJson(),
     if (additionalExtensions != null)
@@ -142,6 +147,7 @@ final class PrivatecaCertificateTemplatePredefinedValuesAdditionalExtensions {
 
   final PrivatecaCertificateTemplateObjectId objectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'critical': ?critical?.toTfJson(),
     'value': value.toTfJson(),
@@ -157,6 +163,7 @@ final class PrivatecaCertificateTemplateObjectId {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -179,6 +186,7 @@ final class PrivatecaCertificateTemplateCaOptions {
 
   final TfArg<bool>? zeroMaxIssuerPathLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_ca': ?isCa?.toTfJson(),
     'max_issuer_path_length': ?maxIssuerPathLength?.toTfJson(),
@@ -204,6 +212,7 @@ final class PrivatecaCertificateTemplateKeyUsage {
   final List<PrivatecaCertificateTemplateUnknownExtendedKeyUsages>?
   unknownExtendedKeyUsages;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_key_usage': ?baseKeyUsage?.encode(),
     'extended_key_usage': ?extendedKeyUsage?.encode(),
@@ -248,6 +257,7 @@ final class PrivatecaCertificateTemplateBaseKeyUsage {
 
   final TfArg<bool>? keyEncipherment;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert_sign': ?certSign?.toTfJson(),
     'content_commitment': ?contentCommitment?.toTfJson(),
@@ -286,6 +296,7 @@ final class PrivatecaCertificateTemplateExtendedKeyUsage {
 
   final TfArg<bool>? timeStamping;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_auth': ?clientAuth?.toTfJson(),
     'code_signing': ?codeSigning?.toTfJson(),
@@ -306,6 +317,7 @@ final class PrivatecaCertificateTemplateUnknownExtendedKeyUsages {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -343,6 +355,7 @@ final class PrivatecaCertificateTemplateNameConstraints {
 
   final TfArg<List<String>>? permittedUris;
 
+  @internal
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
     'excluded_dns_names': ?excludedDnsNames?.toTfJson(),
@@ -364,6 +377,7 @@ final class PrivatecaCertificateTemplatePolicyIds {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 

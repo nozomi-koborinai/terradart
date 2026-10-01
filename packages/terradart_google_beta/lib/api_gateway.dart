@@ -3,6 +3,7 @@
 /// API Gateway APIs, configs, gateways, and resource IAM (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/api_gateway/google_api_gateway_api.dart' show GoogleApiGatewayApi;
 export 'src/api_gateway/google_api_gateway_api_config.dart'
     show

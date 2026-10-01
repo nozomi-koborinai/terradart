@@ -329,6 +329,7 @@ final class SecurityhubInsightFilters {
 
   final List<SecurityhubInsightWorkflowStatus>? workflowStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     if (awsAccountId != null)
       'aws_account_id': [for (final e in awsAccountId!) e.encode()],
@@ -615,6 +616,7 @@ final class SecurityhubInsightAwsAccountId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -634,6 +636,7 @@ final class SecurityhubInsightAwsAccountName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -653,6 +656,7 @@ final class SecurityhubInsightCompanyName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -672,6 +676,7 @@ final class SecurityhubInsightComplianceAssociatedStandardsId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -691,6 +696,7 @@ final class SecurityhubInsightComplianceSecurityControlId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -710,6 +716,7 @@ final class SecurityhubInsightComplianceSecurityControlParametersName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -729,6 +736,7 @@ final class SecurityhubInsightComplianceSecurityControlParametersValue {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -748,6 +756,7 @@ final class SecurityhubInsightComplianceStatus {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -766,6 +775,7 @@ final class SecurityhubInsightConfidence {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -785,6 +795,7 @@ final class SecurityhubInsightCreatedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -803,6 +814,7 @@ final class SecurityhubInsightDateRange {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -821,6 +833,7 @@ final class SecurityhubInsightCriticality {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -841,6 +854,7 @@ final class SecurityhubInsightDescription {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -863,6 +877,7 @@ final class SecurityhubInsightFindingProviderFieldsConfidence {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -886,6 +901,7 @@ final class SecurityhubInsightFindingProviderFieldsCriticality {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -906,6 +922,7 @@ final class SecurityhubInsightFindingProviderFieldsRelatedFindingsId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -925,6 +942,7 @@ final class SecurityhubInsightFindingProviderFieldsRelatedFindingsProductArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -944,6 +962,7 @@ final class SecurityhubInsightFindingProviderFieldsSeverityLabel {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -963,6 +982,7 @@ final class SecurityhubInsightFindingProviderFieldsSeverityOriginal {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -982,6 +1002,7 @@ final class SecurityhubInsightFindingProviderFieldsTypes {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1004,6 +1025,7 @@ final class SecurityhubInsightFirstObservedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1024,6 +1046,7 @@ final class SecurityhubInsightGeneratorId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1043,6 +1066,7 @@ final class SecurityhubInsightFiltersId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1057,6 +1081,7 @@ final class SecurityhubInsightKeyword {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -1076,6 +1101,7 @@ final class SecurityhubInsightLastObservedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1096,6 +1122,7 @@ final class SecurityhubInsightMalwareName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1115,6 +1142,7 @@ final class SecurityhubInsightMalwarePath {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1134,6 +1162,7 @@ final class SecurityhubInsightMalwareState {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1153,6 +1182,7 @@ final class SecurityhubInsightMalwareType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1172,6 +1202,7 @@ final class SecurityhubInsightNetworkDestinationDomain {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1186,6 +1217,7 @@ final class SecurityhubInsightNetworkDestinationIpv4 {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 
@@ -1197,6 +1229,7 @@ final class SecurityhubInsightNetworkDestinationIpv6 {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 
@@ -1212,6 +1245,7 @@ final class SecurityhubInsightNetworkDestinationPort {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -1232,6 +1266,7 @@ final class SecurityhubInsightNetworkDirection {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1251,6 +1286,7 @@ final class SecurityhubInsightNetworkProtocol {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1270,6 +1306,7 @@ final class SecurityhubInsightNetworkSourceDomain {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1284,6 +1321,7 @@ final class SecurityhubInsightNetworkSourceIpv4 {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 
@@ -1295,6 +1333,7 @@ final class SecurityhubInsightNetworkSourceIpv6 {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 
@@ -1311,6 +1350,7 @@ final class SecurityhubInsightNetworkSourceMac {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1329,6 +1369,7 @@ final class SecurityhubInsightNetworkSourcePort {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -1349,6 +1390,7 @@ final class SecurityhubInsightNoteText {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1367,6 +1409,7 @@ final class SecurityhubInsightNoteUpdatedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1387,6 +1430,7 @@ final class SecurityhubInsightNoteUpdatedBy {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1409,6 +1453,7 @@ final class SecurityhubInsightProcessLaunchedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1429,6 +1474,7 @@ final class SecurityhubInsightProcessName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1447,6 +1493,7 @@ final class SecurityhubInsightProcessParentPid {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -1467,6 +1514,7 @@ final class SecurityhubInsightProcessPath {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1485,6 +1533,7 @@ final class SecurityhubInsightProcessPid {
 
   final TfArg<String>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gte': ?gte?.toTfJson(),
@@ -1508,6 +1557,7 @@ final class SecurityhubInsightProcessTerminatedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1528,6 +1578,7 @@ final class SecurityhubInsightProductArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1550,6 +1601,7 @@ final class SecurityhubInsightProductFields {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -1570,6 +1622,7 @@ final class SecurityhubInsightProductName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1589,6 +1642,7 @@ final class SecurityhubInsightRecommendationText {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1608,6 +1662,7 @@ final class SecurityhubInsightRecordState {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1627,6 +1682,7 @@ final class SecurityhubInsightRelatedFindingsId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1646,6 +1702,7 @@ final class SecurityhubInsightRelatedFindingsProductArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1665,6 +1722,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceIamInstanceProfileArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1684,6 +1742,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceImageId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1700,6 +1759,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceIpv4Addresses {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 
@@ -1713,6 +1773,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceIpv6Addresses {
 
   final TfArg<String> cidr;
 
+  @internal
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 }
 
@@ -1729,6 +1790,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceKeyName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1751,6 +1813,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceLaunchedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1771,6 +1834,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceSubnetId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1790,6 +1854,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1809,6 +1874,7 @@ final class SecurityhubInsightResourceAwsEc2InstanceVpcId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1831,6 +1897,7 @@ final class SecurityhubInsightResourceAwsIamAccessKeyCreatedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1851,6 +1918,7 @@ final class SecurityhubInsightResourceAwsIamAccessKeyStatus {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1870,6 +1938,7 @@ final class SecurityhubInsightResourceAwsIamAccessKeyUserName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1889,6 +1958,7 @@ final class SecurityhubInsightResourceAwsS3BucketOwnerId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1908,6 +1978,7 @@ final class SecurityhubInsightResourceAwsS3BucketOwnerName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1927,6 +1998,7 @@ final class SecurityhubInsightResourceContainerImageId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1946,6 +2018,7 @@ final class SecurityhubInsightResourceContainerImageName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1968,6 +2041,7 @@ final class SecurityhubInsightResourceContainerLaunchedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1988,6 +2062,7 @@ final class SecurityhubInsightResourceContainerName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2010,6 +2085,7 @@ final class SecurityhubInsightResourceDetailsOther {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -2030,6 +2106,7 @@ final class SecurityhubInsightResourceId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2049,6 +2126,7 @@ final class SecurityhubInsightResourcePartition {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2068,6 +2146,7 @@ final class SecurityhubInsightResourceRegion {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2090,6 +2169,7 @@ final class SecurityhubInsightResourceTags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -2110,6 +2190,7 @@ final class SecurityhubInsightResourceType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2129,6 +2210,7 @@ final class SecurityhubInsightSeverityLabel {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2148,6 +2230,7 @@ final class SecurityhubInsightSourceUrl {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2167,6 +2250,7 @@ final class SecurityhubInsightThreatIntelIndicatorCategory {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2189,6 +2273,7 @@ final class SecurityhubInsightThreatIntelIndicatorLastObservedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -2209,6 +2294,7 @@ final class SecurityhubInsightThreatIntelIndicatorSource {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2228,6 +2314,7 @@ final class SecurityhubInsightThreatIntelIndicatorSourceUrl {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2247,6 +2334,7 @@ final class SecurityhubInsightThreatIntelIndicatorType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2266,6 +2354,7 @@ final class SecurityhubInsightThreatIntelIndicatorValue {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2285,6 +2374,7 @@ final class SecurityhubInsightTitle {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2301,6 +2391,7 @@ final class SecurityhubInsightType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2319,6 +2410,7 @@ final class SecurityhubInsightUpdatedAt {
 
   final SecurityhubInsightDateRange? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -2342,6 +2434,7 @@ final class SecurityhubInsightUserDefinedValues {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -2362,6 +2455,7 @@ final class SecurityhubInsightVerificationState {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -2381,6 +2475,7 @@ final class SecurityhubInsightWorkflowStatus {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),

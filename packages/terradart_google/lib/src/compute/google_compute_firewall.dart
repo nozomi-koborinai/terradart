@@ -68,7 +68,9 @@ sealed class ComputeFirewallRulePolicy {
     List<String>? ports,
     List<ComputeFirewallDenyRule> additionalRules,
   }) = ComputeFirewallDenyPolicy;
+  @internal
   String get blockKey;
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -123,8 +125,10 @@ final class ComputeFirewallAllowPolicy extends ComputeFirewallRulePolicy {
   final List<String>? ports;
   final List<ComputeFirewallAllowRule> additionalRules;
   @override
+  @internal
   String get blockKey => 'allow';
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
     ...additionalRules.map((r) => r.toArgMap()),
@@ -142,8 +146,10 @@ final class ComputeFirewallDenyPolicy extends ComputeFirewallRulePolicy {
   final List<String>? ports;
   final List<ComputeFirewallDenyRule> additionalRules;
   @override
+  @internal
   String get blockKey => 'deny';
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
     ...additionalRules.map((r) => r.toArgMap()),
@@ -158,6 +164,7 @@ final class ComputeFirewallParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

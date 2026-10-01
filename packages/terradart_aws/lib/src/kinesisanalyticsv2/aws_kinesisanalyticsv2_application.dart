@@ -146,6 +146,7 @@ final class Kinesisanalyticsv2ApplicationConfiguration {
 
   final Kinesisanalyticsv2ApplicationVpcConfiguration? vpcConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_code_configuration': applicationCodeConfiguration.encode(),
     'application_encryption_configuration': ?applicationEncryptionConfiguration
@@ -173,6 +174,7 @@ final class Kinesisanalyticsv2ApplicationCodeConfiguration {
 
   final Kinesisanalyticsv2ApplicationCodeContent? codeContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'code_content_type': codeContentType.toTfJson(),
     'code_content': ?codeContent?.encode(),
@@ -222,8 +224,10 @@ sealed class Kinesisanalyticsv2ApplicationCodeContent {
   ) = Kinesisanalyticsv2ApplicationCodeContentTextContent;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -236,9 +240,11 @@ final class Kinesisanalyticsv2ApplicationCodeContentS3ContentLocation
 
   final Kinesisanalyticsv2ApplicationS3ContentLocation s3ContentLocation;
 
+  @internal
   @override
   String get blockKey => 's3_content_location';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     's3_content_location': s3ContentLocation.encode(),
@@ -252,9 +258,11 @@ final class Kinesisanalyticsv2ApplicationCodeContentTextContent
 
   final TfArg<String> textContent;
 
+  @internal
   @override
   String get blockKey => 'text_content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'text_content': textContent.toTfJson()};
 }
@@ -275,6 +283,7 @@ final class Kinesisanalyticsv2ApplicationS3ContentLocation {
 
   final TfArg<String>? objectVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
@@ -295,6 +304,7 @@ final class Kinesisanalyticsv2ApplicationEncryptionConfiguration {
 
   final Kinesisanalyticsv2ApplicationKeyType keyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'key_type': keyType.toTfJson(),
@@ -334,6 +344,7 @@ final class Kinesisanalyticsv2ApplicationSnapshotConfiguration {
 
   final TfArg<bool> snapshotsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'snapshots_enabled': snapshotsEnabled.toTfJson(),
   };
@@ -349,6 +360,7 @@ final class Kinesisanalyticsv2ApplicationEnvironmentProperties {
 
   final List<Kinesisanalyticsv2ApplicationPropertyGroup> propertyGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'property_group': [for (final e in propertyGroup) e.encode()],
   };
@@ -367,6 +379,7 @@ final class Kinesisanalyticsv2ApplicationPropertyGroup {
 
   final TfArg<Map<String, String>> propertyMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'property_group_id': propertyGroupId.toTfJson(),
     'property_map': propertyMap.toTfJson(),
@@ -392,6 +405,7 @@ final class Kinesisanalyticsv2ApplicationFlinkApplicationConfiguration {
   final Kinesisanalyticsv2ApplicationParallelismConfiguration?
   parallelismConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'checkpoint_configuration': ?checkpointConfiguration?.encode(),
     'monitoring_configuration': ?monitoringConfiguration?.encode(),
@@ -418,6 +432,7 @@ final class Kinesisanalyticsv2ApplicationCheckpointConfiguration {
 
   final TfArg<num>? minPauseBetweenCheckpoints;
 
+  @internal
   Map<String, Object?> encode() => {
     'checkpoint_interval': ?checkpointInterval?.toTfJson(),
     'checkpointing_enabled': ?checkpointingEnabled?.toTfJson(),
@@ -466,6 +481,7 @@ final class Kinesisanalyticsv2ApplicationMonitoringConfiguration {
 
   final Kinesisanalyticsv2ApplicationMetricsLevel? metricsLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -555,6 +571,7 @@ final class Kinesisanalyticsv2ApplicationParallelismConfiguration {
 
   final TfArg<num>? parallelismPerKpu;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_scaling_enabled': ?autoScalingEnabled?.toTfJson(),
     'configuration_type': configurationType.toTfJson(),
@@ -578,6 +595,7 @@ final class Kinesisanalyticsv2ApplicationRunConfiguration {
   final Kinesisanalyticsv2ApplicationFlinkRunConfiguration?
   flinkRunConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_restore_configuration': ?applicationRestoreConfiguration
         ?.encode(),
@@ -598,6 +616,7 @@ final class Kinesisanalyticsv2ApplicationRestoreConfiguration {
 
   final TfArg<String>? snapshotName;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_restore_type': ?applicationRestoreType?.toTfJson(),
     'snapshot_name': ?snapshotName?.toTfJson(),
@@ -644,6 +663,7 @@ final class Kinesisanalyticsv2ApplicationFlinkRunConfiguration {
 
   final TfArg<bool>? allowNonRestoredState;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_non_restored_state': ?allowNonRestoredState?.toTfJson(),
   };
@@ -665,6 +685,7 @@ final class Kinesisanalyticsv2ApplicationSqlApplicationConfiguration {
 
   final Kinesisanalyticsv2ApplicationReferenceDataSource? referenceDataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'input': ?input?.encode(),
     if (output != null) 'output': [for (final e in output!) e.encode()],
@@ -699,6 +720,7 @@ final class Kinesisanalyticsv2ApplicationInput {
 
   final Kinesisanalyticsv2ApplicationKinesis kinesis;
 
+  @internal
   Map<String, Object?> encode() => {
     'name_prefix': namePrefix.toTfJson(),
     'input_parallelism': ?inputParallelism?.encode(),
@@ -730,8 +752,10 @@ sealed class Kinesisanalyticsv2ApplicationKinesis {
   ) = Kinesisanalyticsv2ApplicationKinesisStreamsInputChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -744,9 +768,11 @@ final class Kinesisanalyticsv2ApplicationKinesisFirehoseInputChoice
 
   final Kinesisanalyticsv2ApplicationKinesisFirehoseInput kinesisFirehoseInput;
 
+  @internal
   @override
   String get blockKey => 'kinesis_firehose_input';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_firehose_input': kinesisFirehoseInput.encode(),
@@ -762,9 +788,11 @@ final class Kinesisanalyticsv2ApplicationKinesisStreamsInputChoice
 
   final Kinesisanalyticsv2ApplicationKinesisStreamsInput kinesisStreamsInput;
 
+  @internal
   @override
   String get blockKey => 'kinesis_streams_input';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_streams_input': kinesisStreamsInput.encode(),
@@ -779,6 +807,7 @@ final class Kinesisanalyticsv2ApplicationInputParallelism {
 
   final TfArg<num>? count;
 
+  @internal
   Map<String, Object?> encode() => {'count': ?count?.toTfJson()};
 }
 
@@ -792,6 +821,7 @@ final class Kinesisanalyticsv2ApplicationInputProcessingConfiguration {
 
   final Kinesisanalyticsv2ApplicationInputLambdaProcessor inputLambdaProcessor;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_lambda_processor': inputLambdaProcessor.encode(),
   };
@@ -807,6 +837,7 @@ final class Kinesisanalyticsv2ApplicationInputLambdaProcessor {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 }
 
@@ -826,6 +857,7 @@ final class Kinesisanalyticsv2ApplicationInputSchema {
 
   final Kinesisanalyticsv2ApplicationRecordFormat recordFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_encoding': ?recordEncoding?.toTfJson(),
     'record_column': [for (final e in recordColumn) e.encode()],
@@ -850,6 +882,7 @@ final class Kinesisanalyticsv2ApplicationRecordColumn {
 
   final TfArg<String> sqlType;
 
+  @internal
   Map<String, Object?> encode() => {
     'mapping': ?mapping?.toTfJson(),
     'name': name.toTfJson(),
@@ -871,6 +904,7 @@ final class Kinesisanalyticsv2ApplicationRecordFormat {
 
   final Kinesisanalyticsv2ApplicationMappingParameters mappingParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
     'mapping_parameters': mappingParameters.encode(),
@@ -919,8 +953,10 @@ sealed class Kinesisanalyticsv2ApplicationMappingParameters {
   ) = Kinesisanalyticsv2ApplicationJsonMappingParametersChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -933,9 +969,11 @@ final class Kinesisanalyticsv2ApplicationCsvMappingParametersChoice
 
   final Kinesisanalyticsv2ApplicationCsvMappingParameters csvMappingParameters;
 
+  @internal
   @override
   String get blockKey => 'csv_mapping_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'csv_mapping_parameters': csvMappingParameters.encode(),
@@ -952,9 +990,11 @@ final class Kinesisanalyticsv2ApplicationJsonMappingParametersChoice
   final Kinesisanalyticsv2ApplicationJsonMappingParameters
   jsonMappingParameters;
 
+  @internal
   @override
   String get blockKey => 'json_mapping_parameters';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'json_mapping_parameters': jsonMappingParameters.encode(),
@@ -975,6 +1015,7 @@ final class Kinesisanalyticsv2ApplicationCsvMappingParameters {
 
   final TfArg<String> recordRowDelimiter;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_column_delimiter': recordColumnDelimiter.toTfJson(),
     'record_row_delimiter': recordRowDelimiter.toTfJson(),
@@ -992,6 +1033,7 @@ final class Kinesisanalyticsv2ApplicationJsonMappingParameters {
 
   final TfArg<String> recordRowPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_row_path': recordRowPath.toTfJson(),
   };
@@ -1008,6 +1050,7 @@ final class Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration {
   final Kinesisanalyticsv2ApplicationInputStartingPosition?
   inputStartingPosition;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_starting_position': ?inputStartingPosition?.toTfJson(),
   };
@@ -1051,6 +1094,7 @@ final class Kinesisanalyticsv2ApplicationKinesisFirehoseInput {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 }
 
@@ -1064,6 +1108,7 @@ final class Kinesisanalyticsv2ApplicationKinesisStreamsInput {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 }
 
@@ -1090,6 +1135,7 @@ final class Kinesisanalyticsv2ApplicationOutput {
 
   final Kinesisanalyticsv2ApplicationLambdaOutput? lambdaOutput;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'destination_schema': destinationSchema.encode(),
@@ -1109,6 +1155,7 @@ final class Kinesisanalyticsv2ApplicationDestinationSchema {
 
   final Kinesisanalyticsv2ApplicationRecordFormatType recordFormatType;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
   };
@@ -1124,6 +1171,7 @@ final class Kinesisanalyticsv2ApplicationKinesisFirehoseOutput {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 }
 
@@ -1137,6 +1185,7 @@ final class Kinesisanalyticsv2ApplicationKinesisStreamsOutput {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 }
 
@@ -1148,6 +1197,7 @@ final class Kinesisanalyticsv2ApplicationLambdaOutput {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
 }
 
@@ -1168,6 +1218,7 @@ final class Kinesisanalyticsv2ApplicationReferenceDataSource {
   final Kinesisanalyticsv2ApplicationS3ReferenceDataSource
   s3ReferenceDataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_name': tableName.toTfJson(),
     'reference_schema': referenceSchema.encode(),
@@ -1191,6 +1242,7 @@ final class Kinesisanalyticsv2ApplicationReferenceSchema {
 
   final Kinesisanalyticsv2ApplicationRecordFormat recordFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_encoding': ?recordEncoding?.toTfJson(),
     'record_column': [for (final e in recordColumn) e.encode()],
@@ -1211,6 +1263,7 @@ final class Kinesisanalyticsv2ApplicationS3ReferenceDataSource {
 
   final TfArg<String> fileKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
@@ -1230,6 +1283,7 @@ final class Kinesisanalyticsv2ApplicationVpcConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
@@ -1246,6 +1300,7 @@ final class Kinesisanalyticsv2ApplicationCloudwatchLoggingOptions {
 
   final TfArg<String> logStreamArn;
 
+  @internal
   Map<String, Object?> encode() => {'log_stream_arn': logStreamArn.toTfJson()};
 }
 

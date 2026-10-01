@@ -17,6 +17,7 @@ final class DataZeroTrustDeviceCustomProfileFilter {
 
   final DataZeroTrustDeviceCustomProfileFilterProfileType? profileType;
 
+  @internal
   Map<String, Object?> encode() => {'profile_type': ?profileType?.toTfJson()};
 }
 

@@ -74,6 +74,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? virtualNetworkId;
 
+  @internal
   Map<String, Object?> encode() => {
     'created_after': ?createdAfter?.toTfJson(),
     'created_before': ?createdBefore?.toTfJson(),

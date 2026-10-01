@@ -3,6 +3,7 @@
 /// AWS Lightsail.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/lightsail/aws_lightsail_bucket.dart' show AwsLightsailBucket;
 export 'src/lightsail/aws_lightsail_bucket_access_key.dart'
     show AwsLightsailBucketAccessKey;

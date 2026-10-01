@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_ec2_traffic_mirror_target`.
@@ -29,12 +30,15 @@ sealed class Ec2TrafficMirrorTargetDestination {
   ) = Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -47,15 +51,18 @@ final class Ec2TrafficMirrorTargetDestinationGatewayLoadBalancerEndpointId
 
   final TfArg<String> gatewayLoadBalancerEndpointId;
 
+  @internal
   @override
   String get blockKey => 'gateway_load_balancer_endpoint_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gateway_load_balancer_endpoint_id': gatewayLoadBalancerEndpointId
         .toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'gateway_load_balancer_endpoint_id': gatewayLoadBalancerEndpointId,
@@ -71,14 +78,17 @@ final class Ec2TrafficMirrorTargetDestinationNetworkInterfaceId
 
   final TfArg<String> networkInterfaceId;
 
+  @internal
   @override
   String get blockKey => 'network_interface_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network_interface_id': networkInterfaceId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'network_interface_id': networkInterfaceId,
@@ -94,14 +104,17 @@ final class Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn
 
   final TfArg<String> networkLoadBalancerArn;
 
+  @internal
   @override
   String get blockKey => 'network_load_balancer_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network_load_balancer_arn': networkLoadBalancerArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'network_load_balancer_arn': networkLoadBalancerArn,

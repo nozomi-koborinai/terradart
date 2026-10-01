@@ -449,6 +449,7 @@ final class ComputeBackendServiceBackend {
 
   final List<ComputeBackendServiceBackendCustomMetrics>? customMetrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'balancing_mode': ?balancingMode?.toTfJson(),
     'capacity_scaler': ?capacityScaler?.toTfJson(),
@@ -483,6 +484,7 @@ final class ComputeBackendServiceBackendCustomMetrics {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'dry_run': dryRun.toTfJson(),
     'max_utilization': ?maxUtilization?.toTfJson(),
@@ -531,6 +533,7 @@ final class ComputeBackendServiceCdnPolicy {
 
   final List<ComputeBackendServiceNegativeCachingPolicy>? negativeCachingPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_mode': ?cacheMode?.toTfJson(),
     'client_ttl': ?clientTtl?.toTfJson(),
@@ -562,6 +565,7 @@ final class ComputeBackendServiceBypassCacheOnRequestHeaders {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -593,6 +597,7 @@ final class ComputeBackendServiceCacheKeyPolicy {
 
   final TfArg<List<String>>? queryStringWhitelist;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_host': ?includeHost?.toTfJson(),
     'include_http_headers': ?includeHttpHeaders?.toTfJson(),
@@ -614,6 +619,7 @@ final class ComputeBackendServiceNegativeCachingPolicy {
 
   final TfArg<num>? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': ?code?.toTfJson(),
     'ttl': ?ttl?.toTfJson(),
@@ -642,6 +648,7 @@ final class ComputeBackendServiceCircuitBreakers {
 
   final TfArg<num>? maxRetries;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_connections': ?maxConnections?.toTfJson(),
     'max_pending_requests': ?maxPendingRequests?.toTfJson(),
@@ -667,6 +674,7 @@ final class ComputeBackendServiceConsistentHash {
 
   final ComputeBackendServiceHttpCookie? httpCookie;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_header_name': ?httpHeaderName?.toTfJson(),
     'minimum_ring_size': ?minimumRingSize?.toTfJson(),
@@ -686,6 +694,7 @@ final class ComputeBackendServiceHttpCookie {
 
   final ComputeBackendServiceTtl? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -704,6 +713,7 @@ final class ComputeBackendServiceTtl {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -723,6 +733,7 @@ final class ComputeBackendServiceCustomMetrics {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'dry_run': dryRun.toTfJson(),
     'name': name.toTfJson(),
@@ -751,6 +762,7 @@ final class ComputeBackendServiceIap {
 
   final TfArg<String>? oauth2ClientSecretWoVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     ...?oauth2ClientId?.encode(),
@@ -779,8 +791,10 @@ sealed class ComputeBackendServiceOauth2ClientId {
   ) = ComputeBackendServiceOauth2ClientIdWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -791,9 +805,11 @@ final class ComputeBackendServiceOauth2ClientIdChoice
 
   final Sensitive<String> oauth2ClientId;
 
+  @internal
   @override
   String get blockKey => 'oauth2_client_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oauth2_client_id': oauth2ClientId.toTfJson(),
@@ -807,9 +823,11 @@ final class ComputeBackendServiceOauth2ClientIdWo
 
   final TfArg<String> oauth2ClientIdWo;
 
+  @internal
   @override
   String get blockKey => 'oauth2_client_id_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oauth2_client_id_wo': oauth2ClientIdWo.toTfJson(),
@@ -835,8 +853,10 @@ sealed class ComputeBackendServiceOauth2ClientSecret {
   ) = ComputeBackendServiceOauth2ClientSecretWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -847,9 +867,11 @@ final class ComputeBackendServiceOauth2ClientSecretChoice
 
   final Sensitive<String> oauth2ClientSecret;
 
+  @internal
   @override
   String get blockKey => 'oauth2_client_secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oauth2_client_secret': oauth2ClientSecret.toTfJson(),
@@ -863,9 +885,11 @@ final class ComputeBackendServiceOauth2ClientSecretWo
 
   final TfArg<String> oauth2ClientSecretWo;
 
+  @internal
   @override
   String get blockKey => 'oauth2_client_secret_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oauth2_client_secret_wo': oauth2ClientSecretWo.toTfJson(),
@@ -890,8 +914,10 @@ sealed class ComputeBackendServiceLocalityLbPolicies {
   ) = ComputeBackendServiceLocalityLbPoliciesCustomPolicy;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -902,9 +928,11 @@ final class ComputeBackendServiceLocalityLbPoliciesPolicy
 
   final ComputeBackendServicePolicy policy;
 
+  @internal
   @override
   String get blockKey => 'policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'policy': policy.encode()};
 }
@@ -916,9 +944,11 @@ final class ComputeBackendServiceLocalityLbPoliciesCustomPolicy
 
   final ComputeBackendServiceCustomPolicy customPolicy;
 
+  @internal
   @override
   String get blockKey => 'custom_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'custom_policy': customPolicy.encode()};
 }
@@ -933,6 +963,7 @@ final class ComputeBackendServiceCustomPolicy {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'name': name.toTfJson(),
@@ -947,6 +978,7 @@ final class ComputeBackendServicePolicy {
 
   final LocalityLbPolicy name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -975,6 +1007,7 @@ final class ComputeBackendServiceLogConfig {
 
   final List<ComputeBackendServiceResponseHeaders>? responseHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'optional_fields': ?optionalFields?.toTfJson(),
@@ -995,6 +1028,7 @@ final class ComputeBackendServiceRequestHeaders {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -1006,6 +1040,7 @@ final class ComputeBackendServiceResponseHeaders {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -1022,6 +1057,7 @@ final class ComputeBackendServiceMaxStreamDuration {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1068,6 +1104,7 @@ final class ComputeBackendServiceOutlierDetection {
 
   final ComputeBackendServiceInterval? interval;
 
+  @internal
   Map<String, Object?> encode() => {
     'consecutive_errors': ?consecutiveErrors?.toTfJson(),
     'consecutive_gateway_failure': ?consecutiveGatewayFailure?.toTfJson(),
@@ -1097,6 +1134,7 @@ final class ComputeBackendServiceBaseEjectionTime {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1113,6 +1151,7 @@ final class ComputeBackendServiceInterval {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1127,6 +1166,7 @@ final class ComputeBackendServiceParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -1148,6 +1188,7 @@ final class ComputeBackendServiceSecuritySettings {
 
   final ComputeBackendServiceAwsV4Authentication? awsV4Authentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_tls_policy': ?clientTlsPolicy?.toTfJson(),
     'subject_alt_names': ?subjectAltNames?.toTfJson(),
@@ -1174,6 +1215,7 @@ final class ComputeBackendServiceAwsV4Authentication {
 
   final TfArg<String>? originRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key': ?accessKey?.toTfJson(),
     'access_key_id': ?accessKeyId?.toTfJson(),
@@ -1198,6 +1240,7 @@ final class ComputeBackendServiceStrongSessionAffinityCookie {
 
   final ComputeBackendServiceTtl? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -1221,6 +1264,7 @@ final class ComputeBackendServiceTlsSettings {
 
   final List<ComputeBackendServiceSubjectAltNames>? subjectAltNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_config': ?authenticationConfig?.toTfJson(),
     'sni': ?sni?.toTfJson(),
@@ -1242,6 +1286,7 @@ final class ComputeBackendServiceSubjectAltNames {
 
   final TfArg<String>? uniformResourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_name': ?dnsName?.toTfJson(),
     'uniform_resource_identifier': ?uniformResourceIdentifier?.toTfJson(),

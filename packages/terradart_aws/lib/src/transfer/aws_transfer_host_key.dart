@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_transfer_host_key`.
@@ -26,12 +27,15 @@ sealed class TransferHostKeyBody {
   ) = TransferHostKeyBodyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,12 +45,15 @@ final class TransferHostKeyBodyChoice extends TransferHostKeyBody {
 
   final Sensitive<String> hostKeyBody;
 
+  @internal
   @override
   String get blockKey => 'host_key_body';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'host_key_body': hostKeyBody.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'host_key_body': hostKeyBody};
 }
@@ -57,14 +64,17 @@ final class TransferHostKeyBodyWo extends TransferHostKeyBody {
 
   final Sensitive<String> hostKeyBodyWo;
 
+  @internal
   @override
   String get blockKey => 'host_key_body_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'host_key_body_wo': hostKeyBodyWo.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'host_key_body_wo': hostKeyBodyWo};
 }

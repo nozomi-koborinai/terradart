@@ -3,6 +3,7 @@
 /// AWS Compute Optimizer.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/computeoptimizer/aws_computeoptimizer_enrollment_status.dart'
     show AwsComputeoptimizerEnrollmentStatus, ComputeoptimizerEnrollmentStatus;
 export 'src/computeoptimizer/aws_computeoptimizer_recommendation_preferences.dart'

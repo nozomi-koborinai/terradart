@@ -43,6 +43,7 @@ final class SagemakerTrainingJobAlgorithmSpecification {
 
   final List<SagemakerTrainingJobTrainingImageConfig>? trainingImageConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm_name': ?algorithmName?.toTfJson(),
     'container_arguments': ?containerArguments?.toTfJson(),
@@ -100,6 +101,7 @@ final class SagemakerTrainingJobMetricDefinitions {
 
   final TfArg<String> regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'regex': regex.toTfJson(),
@@ -120,6 +122,7 @@ final class SagemakerTrainingJobTrainingImageConfig {
   final List<SagemakerTrainingJobTrainingRepositoryAuthConfig>?
   trainingRepositoryAuthConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'training_repository_access_mode': ?trainingRepositoryAccessMode
         ?.toTfJson(),
@@ -140,6 +143,7 @@ final class SagemakerTrainingJobTrainingRepositoryAuthConfig {
 
   final TfArg<String>? trainingRepositoryCredentialsProviderArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'training_repository_credentials_provider_arn':
         ?trainingRepositoryCredentialsProviderArn?.toTfJson(),
@@ -159,6 +163,7 @@ final class SagemakerTrainingJobCheckpointConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_path': ?localPath?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -185,6 +190,7 @@ final class SagemakerTrainingJobDebugHookConfig {
   final List<SagemakerTrainingJobCollectionConfigurations>?
   collectionConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'hook_parameters': ?hookParameters?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -209,6 +215,7 @@ final class SagemakerTrainingJobCollectionConfigurations {
 
   final TfArg<Map<String, String>>? collectionParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_name': ?collectionName?.toTfJson(),
     'collection_parameters': ?collectionParameters?.toTfJson(),
@@ -243,6 +250,7 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
 
   final TfArg<num>? volumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': ?instanceType?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -957,6 +965,7 @@ final class SagemakerTrainingJobExperimentConfig {
 
   final TfArg<String>? trialName;
 
+  @internal
   Map<String, Object?> encode() => {
     'experiment_name': ?experimentName?.toTfJson(),
     'run_name': ?runName?.toTfJson(),
@@ -973,6 +982,7 @@ final class SagemakerTrainingJobInfraCheckConfig {
 
   final TfArg<bool>? enableInfraCheck;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_infra_check': ?enableInfraCheck?.toTfJson(),
   };
@@ -1006,6 +1016,7 @@ final class SagemakerTrainingJobInputDataConfig {
 
   final List<SagemakerTrainingJobShuffleConfig>? shuffleConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
     'compression_type': ?compressionType?.toTfJson(),
@@ -1100,6 +1111,7 @@ final class SagemakerTrainingJobDataSource {
 
   final List<SagemakerTrainingJobS3DataSource>? s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fileSystemDataSource != null)
       'file_system_data_source': [
@@ -1129,6 +1141,7 @@ final class SagemakerTrainingJobFileSystemDataSource {
 
   final SagemakerTrainingJobFileSystemType fileSystemType;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
     'file_system_access_mode': fileSystemAccessMode.toTfJson(),
@@ -1205,6 +1218,7 @@ final class SagemakerTrainingJobS3DataSource {
 
   final List<SagemakerTrainingJobModelAccessConfig>? modelAccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_names': ?attributeNames?.toTfJson(),
     'instance_group_names': ?instanceGroupNames?.toTfJson(),
@@ -1280,6 +1294,7 @@ final class SagemakerTrainingJobHubAccessConfig {
 
   final TfArg<String> hubContentArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'hub_content_arn': hubContentArn.toTfJson(),
   };
@@ -1293,6 +1308,7 @@ final class SagemakerTrainingJobModelAccessConfig {
 
   final TfArg<bool> acceptEula;
 
+  @internal
   Map<String, Object?> encode() => {'accept_eula': acceptEula.toTfJson()};
 }
 
@@ -1304,6 +1320,7 @@ final class SagemakerTrainingJobShuffleConfig {
 
   final TfArg<num>? seed;
 
+  @internal
   Map<String, Object?> encode() => {'seed': ?seed?.toTfJson()};
 }
 
@@ -1323,6 +1340,7 @@ final class SagemakerTrainingJobMlflowConfig {
 
   final TfArg<String>? mlflowRunName;
 
+  @internal
   Map<String, Object?> encode() => {
     'mlflow_experiment_name': ?mlflowExperimentName?.toTfJson(),
     'mlflow_resource_arn': mlflowResourceArn.toTfJson(),
@@ -1343,6 +1361,7 @@ final class SagemakerTrainingJobModelPackageConfig {
 
   final TfArg<String>? sourceModelPackageArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'model_package_group_arn': modelPackageGroupArn.toTfJson(),
     'source_model_package_arn': ?sourceModelPackageArn?.toTfJson(),
@@ -1365,6 +1384,7 @@ final class SagemakerTrainingJobOutputDataConfig {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': ?compressionType?.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -1415,6 +1435,7 @@ final class SagemakerTrainingJobProfilerConfig {
 
   final TfArg<String>? s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_profiler': ?disableProfiler?.toTfJson(),
     'profiling_interval_in_milliseconds': ?profilingIntervalInMilliseconds
@@ -1452,6 +1473,7 @@ final class SagemakerTrainingJobProfilerRuleConfigurations {
 
   final TfArg<num>? volumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': ?instanceType?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -1471,6 +1493,7 @@ final class SagemakerTrainingJobRemoteDebugConfig {
 
   final TfArg<bool>? enableRemoteDebug;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_remote_debug': ?enableRemoteDebug?.toTfJson(),
   };
@@ -1508,6 +1531,7 @@ final class SagemakerTrainingJobResourceConfig {
   final List<SagemakerTrainingJobInstancePlacementConfig>?
   instancePlacementConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -2172,6 +2196,7 @@ final class SagemakerTrainingJobInstanceGroups {
 
   final SagemakerTrainingJobResourceConfigInstanceType? instanceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
     'instance_group_name': ?instanceGroupName?.toTfJson(),
@@ -2193,6 +2218,7 @@ final class SagemakerTrainingJobInstancePlacementConfig {
   final List<SagemakerTrainingJobPlacementSpecifications>?
   placementSpecifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_multiple_jobs': ?enableMultipleJobs?.toTfJson(),
     if (placementSpecifications != null)
@@ -2215,6 +2241,7 @@ final class SagemakerTrainingJobPlacementSpecifications {
 
   final TfArg<String>? ultraServerId;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
     'ultra_server_id': ?ultraServerId?.toTfJson(),
@@ -2229,6 +2256,7 @@ final class SagemakerTrainingJobRetryStrategy {
 
   final TfArg<num> maximumRetryAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_retry_attempts': maximumRetryAttempts.toTfJson(),
   };
@@ -2262,6 +2290,7 @@ final class SagemakerTrainingJobServerlessJobConfig {
 
   final SagemakerTrainingJobPeft? peft;
 
+  @internal
   Map<String, Object?> encode() => {
     'accept_eula': ?acceptEula?.toTfJson(),
     'base_model_arn': baseModelArn.toTfJson(),
@@ -2372,6 +2401,7 @@ final class SagemakerTrainingJobSessionChainingConfig {
 
   final TfArg<bool>? enableSessionTagChaining;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_session_tag_chaining': ?enableSessionTagChaining?.toTfJson(),
   };
@@ -2393,6 +2423,7 @@ final class SagemakerTrainingJobStoppingCondition {
 
   final TfArg<num>? maxWaitTimeInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pending_time_in_seconds': ?maxPendingTimeInSeconds?.toTfJson(),
     'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
@@ -2413,6 +2444,7 @@ final class SagemakerTrainingJobTensorBoardOutputConfig {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_path': ?localPath?.toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
@@ -2432,6 +2464,7 @@ final class SagemakerTrainingJobVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

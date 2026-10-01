@@ -19,6 +19,7 @@ final class ShareRecipients {
 
   final TfArg<String>? recipientAccountId;
 
+  @internal
   Map<String, Object?> encode() => {
     'organization_id': ?organizationId?.toTfJson(),
     'recipient_account_id': ?recipientAccountId?.toTfJson(),
@@ -44,6 +45,7 @@ final class ShareResources {
 
   final ShareResourceType resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'meta': meta.toTfJson(),
     'resource_account_id': resourceAccountId.toTfJson(),

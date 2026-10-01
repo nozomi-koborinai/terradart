@@ -208,12 +208,15 @@ sealed class ComputeRegionNetworkEndpointGroupServerless {
   ) = ComputeRegionNetworkEndpointGroupServerlessAppEngine;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -224,14 +227,17 @@ final class ComputeRegionNetworkEndpointGroupServerlessCloudRun
 
   final ComputeRegionNetworkEndpointGroupCloudRun cloudRun;
 
+  @internal
   @override
   String get blockKey => 'cloud_run';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_run': [cloudRun.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cloud_run': TfArg.literal([cloudRun.toArgMap()]),
@@ -247,14 +253,17 @@ final class ComputeRegionNetworkEndpointGroupServerlessCloudFunction
 
   final ComputeRegionNetworkEndpointGroupCloudFunction cloudFunction;
 
+  @internal
   @override
   String get blockKey => 'cloud_function';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_function': [cloudFunction.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),
@@ -268,14 +277,17 @@ final class ComputeRegionNetworkEndpointGroupServerlessAppEngine
 
   final ComputeRegionNetworkEndpointGroupAppEngine appEngine;
 
+  @internal
   @override
   String get blockKey => 'app_engine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'app_engine': [appEngine.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'app_engine': TfArg.literal([appEngine.toArgMap()]),
@@ -290,6 +302,7 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 
   final TfArg<String>? producerPort;
 
+  @internal
   Map<String, Object?> encode() => {'producer_port': ?producerPort?.toTfJson()};
 }
 

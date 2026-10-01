@@ -5,7 +5,6 @@
 /// and a Pub/Sub → HTTP trigger.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/eventarc.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';

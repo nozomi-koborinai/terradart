@@ -3,4 +3,6 @@
 /// Appwrite webhooks.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/appwrite_webhook.dart' show DataAppwriteWebhook;
 export 'src/webhooks/appwrite_webhook.dart' show AppwriteWebhook;

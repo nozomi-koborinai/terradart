@@ -3,6 +3,7 @@
 /// AWS Application Auto Scaling.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appautoscaling/aws_appautoscaling_policy.dart'
     show
         AppautoscalingPolicyAdjustmentType,

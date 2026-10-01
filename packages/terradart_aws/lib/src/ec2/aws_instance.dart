@@ -44,12 +44,15 @@ sealed class InstancePlacement {
       InstancePlacementGroup;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -59,14 +62,17 @@ final class InstancePlacementHostResourceGroupArn extends InstancePlacement {
 
   final TfArg<String> hostResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'host_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'host_resource_group_arn': hostResourceGroupArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'host_resource_group_arn': hostResourceGroupArn,
@@ -79,14 +85,17 @@ final class InstancePlacementGroup extends InstancePlacement {
 
   final TfArg<String> placementGroup;
 
+  @internal
   @override
   String get blockKey => 'placement_group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'placement_group': placementGroup.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'placement_group': placementGroup};
 }
@@ -108,12 +117,15 @@ sealed class InstanceUserData {
       InstanceUserDataBase64;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -123,12 +135,15 @@ final class InstanceUserDataChoice extends InstanceUserData {
 
   final TfArg<String> userData;
 
+  @internal
   @override
   String get blockKey => 'user_data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_data': userData.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
@@ -139,14 +154,17 @@ final class InstanceUserDataBase64 extends InstanceUserData {
 
   final TfArg<String> userDataBase64;
 
+  @internal
   @override
   String get blockKey => 'user_data_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'user_data_base64': userDataBase64.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'user_data_base64': userDataBase64,
@@ -171,8 +189,10 @@ sealed class InstanceCapacityReservationSpecification {
   ) = InstanceCapacityReservationSpecificationCapacityReservationTarget;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -185,9 +205,11 @@ final class InstanceCapacityReservationSpecificationCapacityReservationPreferenc
 
   final InstanceCapacityReservationPreference capacityReservationPreference;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_preference';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_preference': capacityReservationPreference.toTfJson(),
@@ -203,9 +225,11 @@ final class InstanceCapacityReservationSpecificationCapacityReservationTarget
 
   final InstanceCapacityReservationTarget capacityReservationTarget;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_target': capacityReservationTarget.encode(),
@@ -259,8 +283,10 @@ sealed class InstanceCapacityReservationTarget {
   ) = InstanceCapacityReservationTargetCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -273,9 +299,11 @@ final class InstanceCapacityReservationTargetCapacityReservationId
 
   final TfArg<String> capacityReservationId;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_id': capacityReservationId.toTfJson(),
@@ -291,9 +319,11 @@ final class InstanceCapacityReservationTargetCapacityReservationResourceGroupArn
 
   final TfArg<String> capacityReservationResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_resource_group_arn':
@@ -320,6 +350,7 @@ final class InstanceCpuOptions {
 
   final TfArg<num>? threadsPerCore;
 
+  @internal
   Map<String, Object?> encode() => {
     'amd_sev_snp': ?amdSevSnp?.toTfJson(),
     'core_count': ?coreCount?.toTfJson(),
@@ -350,6 +381,7 @@ final class InstanceCreditSpecification {
 
   final InstanceCpuCredits? cpuCredits;
 
+  @internal
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
@@ -407,6 +439,7 @@ final class InstanceEbsBlockDevice {
 
   final InstanceVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
@@ -457,6 +490,7 @@ final class InstanceEnclaveOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -476,6 +510,7 @@ final class InstanceEphemeralBlockDevice {
 
   final TfArg<String>? virtualName;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
     'no_device': ?noDevice?.toTfJson(),
@@ -493,6 +528,7 @@ final class InstanceMarketOptions {
 
   final InstanceSpotOptions? spotOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'market_type': ?marketType?.toTfJson(),
     'spot_options': ?spotOptions?.encode(),
@@ -543,6 +579,7 @@ final class InstanceSpotOptions {
 
   final TfArg<String>? validUntil;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_interruption_behavior': ?instanceInterruptionBehavior?.toTfJson(),
     'max_price': ?maxPrice?.toTfJson(),
@@ -601,6 +638,7 @@ final class InstanceLaunchTemplate {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     ...identifier.encode(),
     'version': ?version?.toTfJson(),
@@ -622,8 +660,10 @@ sealed class InstanceIdentifier {
       InstanceIdentifierName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -633,9 +673,11 @@ final class InstanceIdentifierId extends InstanceIdentifier {
 
   final TfArg<String> id;
 
+  @internal
   @override
   String get blockKey => 'id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
@@ -646,9 +688,11 @@ final class InstanceIdentifierName extends InstanceIdentifier {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -661,6 +705,7 @@ final class InstanceMaintenanceOptions {
 
   final InstanceAutoRecovery? autoRecovery;
 
+  @internal
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
@@ -700,6 +745,7 @@ final class InstanceMetadataOptions {
 
   final InstanceMetadataTags? instanceMetadataTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
     'http_protocol_ipv6': ?httpProtocolIpv6?.toTfJson(),
@@ -784,6 +830,7 @@ final class InstanceNetworkInterface {
 
   final TfArg<String> networkInterfaceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_index': deviceIndex.toTfJson(),
@@ -800,6 +847,7 @@ final class InstancePrimaryNetworkInterface {
 
   final TfArg<String> networkInterfaceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_interface_id': networkInterfaceId.toTfJson(),
   };
@@ -821,6 +869,7 @@ final class InstancePrivateDnsNameOptions {
 
   final InstanceHostnameType? hostnameType;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
         ?.toTfJson(),
@@ -880,6 +929,7 @@ final class InstanceRootBlockDevice {
 
   final InstanceVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -918,6 +968,7 @@ final class InstanceSecondaryNetworkInterface {
 
   final TfArg<String> secondarySubnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_index': ?deviceIndex?.toTfJson(),

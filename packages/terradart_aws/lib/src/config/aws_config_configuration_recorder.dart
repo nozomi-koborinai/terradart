@@ -32,6 +32,7 @@ final class ConfigConfigurationRecorderRecordingGroup {
 
   final List<ConfigConfigurationRecorderRecordingStrategy>? recordingStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_supported': ?allSupported?.toTfJson(),
     'include_global_resource_types': ?includeGlobalResourceTypes?.toTfJson(),
@@ -55,6 +56,7 @@ final class ConfigConfigurationRecorderExclusionByResourceTypes {
 
   final TfArg<List<String>>? resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
   };
@@ -68,6 +70,7 @@ final class ConfigConfigurationRecorderRecordingStrategy {
 
   final ConfigConfigurationRecorderUseOnly? useOnly;
 
+  @internal
   Map<String, Object?> encode() => {'use_only': ?useOnly?.toTfJson()};
 }
 
@@ -110,6 +113,7 @@ final class ConfigConfigurationRecorderRecordingMode {
 
   final ConfigConfigurationRecorderRecordingModeOverride? recordingModeOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'recording_frequency': ?recordingFrequency?.toTfJson(),
     'recording_mode_override': ?recordingModeOverride?.encode(),
@@ -156,6 +160,7 @@ final class ConfigConfigurationRecorderRecordingModeOverride {
 
   final TfArg<List<String>> resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'recording_frequency': recordingFrequency.toTfJson(),

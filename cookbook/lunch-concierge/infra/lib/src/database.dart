@@ -1,4 +1,3 @@
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_sql.dart';
 
 import 'constants.dart';

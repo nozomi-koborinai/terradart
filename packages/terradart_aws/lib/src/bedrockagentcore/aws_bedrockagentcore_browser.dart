@@ -20,6 +20,7 @@ final class BedrockagentcoreBrowserSigning {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -31,6 +32,7 @@ final class BedrockagentcoreBrowserCertificate {
 
   final List<BedrockagentcoreBrowserCertificateLocation>? location;
 
+  @internal
   Map<String, Object?> encode() => {
     if (location != null) 'location': [for (final e in location!) e.encode()],
   };
@@ -44,6 +46,7 @@ final class BedrockagentcoreBrowserCertificateLocation {
 
   final List<BedrockagentcoreBrowserSecretsManager>? secretsManager;
 
+  @internal
   Map<String, Object?> encode() => {
     if (secretsManager != null)
       'secrets_manager': [for (final e in secretsManager!) e.encode()],
@@ -58,6 +61,7 @@ final class BedrockagentcoreBrowserSecretsManager {
 
   final TfArg<String> secretArn;
 
+  @internal
   Map<String, Object?> encode() => {'secret_arn': secretArn.toTfJson()};
 }
 
@@ -71,6 +75,7 @@ final class BedrockagentcoreBrowserEnterprisePolicy {
 
   final List<BedrockagentcoreBrowserEnterprisePolicyLocation>? location;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     if (location != null) 'location': [for (final e in location!) e.encode()],
@@ -105,6 +110,7 @@ final class BedrockagentcoreBrowserEnterprisePolicyLocation {
 
   final List<BedrockagentcoreBrowserS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
   };
@@ -126,6 +132,7 @@ final class BedrockagentcoreBrowserS3 {
 
   final TfArg<String>? versionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
@@ -146,6 +153,7 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
 
   final List<BedrockagentcoreBrowserVpcConfig>? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
     if (vpcConfig != null)
@@ -183,6 +191,7 @@ final class BedrockagentcoreBrowserVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': securityGroups.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -199,6 +208,7 @@ final class BedrockagentcoreBrowserRecording {
 
   final List<BedrockagentcoreBrowserS3Location>? s3Location;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (s3Location != null)
@@ -219,6 +229,7 @@ final class BedrockagentcoreBrowserS3Location {
 
   final TfArg<String> prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),

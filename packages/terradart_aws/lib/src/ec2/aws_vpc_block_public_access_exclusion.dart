@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_subnet.dart' show AwsSubnet;
@@ -53,12 +54,15 @@ sealed class VpcBlockPublicAccessExclusionTarget {
       VpcBlockPublicAccessExclusionTargetVpcId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -69,14 +73,17 @@ final class VpcBlockPublicAccessExclusionTargetSubnetId
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   @override
   String get blockKey => 'subnet_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'subnet_id': subnetId.encodeAs('id'),
@@ -90,12 +97,15 @@ final class VpcBlockPublicAccessExclusionTargetVpcId
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   @override
   String get blockKey => 'vpc_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId.encodeAs('id')};
 }

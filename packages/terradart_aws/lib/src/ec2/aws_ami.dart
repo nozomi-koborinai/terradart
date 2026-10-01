@@ -118,6 +118,7 @@ final class AmiEbsBlockDevice {
 
   final AmiVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
@@ -170,6 +171,7 @@ final class AmiEphemeralBlockDevice {
 
   final TfArg<String> virtualName;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
     'virtual_name': virtualName.toTfJson(),

@@ -1,5 +1,6 @@
 // `RefTo.read` is what generated data-source getters call.
 // ignore_for_file: invalid_use_of_internal_member
+import 'package:terradart_core/internal.dart';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 

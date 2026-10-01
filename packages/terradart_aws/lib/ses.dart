@@ -3,6 +3,11 @@
 /// AWS SES (V1).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ses_active_receipt_rule_set.dart'
+    show DataAwsSesActiveReceiptRuleSet;
+export 'src/data/aws_ses_domain_identity.dart' show DataAwsSesDomainIdentity;
+export 'src/data/aws_ses_email_identity.dart' show DataAwsSesEmailIdentity;
 export 'src/ses/aws_ses_active_receipt_rule_set.dart'
     show AwsSesActiveReceiptRuleSet;
 export 'src/ses/aws_ses_configuration_set.dart'

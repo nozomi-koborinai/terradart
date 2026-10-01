@@ -3,6 +3,7 @@
 /// AWS CloudFormation.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudformation/aws_cloudformation_stack.dart'
     show
         AwsCloudformationStack,
@@ -69,3 +70,7 @@ export 'src/cloudformation/aws_cloudformation_type.dart'
         AwsCloudformationType,
         CloudformationType,
         CloudformationTypeLoggingConfig;
+export 'src/data/aws_cloudformation_export.dart'
+    show DataAwsCloudformationExport;
+export 'src/data/aws_cloudformation_stack.dart' show DataAwsCloudformationStack;
+export 'src/data/aws_cloudformation_type.dart' show DataAwsCloudformationType;

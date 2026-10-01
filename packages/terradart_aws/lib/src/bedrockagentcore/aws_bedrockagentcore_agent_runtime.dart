@@ -26,6 +26,7 @@ final class BedrockagentcoreAgentRuntimeArtifact {
   final List<BedrockagentcoreAgentRuntimeContainerConfiguration>?
   containerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (codeConfiguration != null)
       'code_configuration': [for (final e in codeConfiguration!) e.encode()],
@@ -52,6 +53,7 @@ final class BedrockagentcoreAgentRuntimeCodeConfiguration {
 
   final List<BedrockagentcoreAgentRuntimeCode>? code;
 
+  @internal
   Map<String, Object?> encode() => {
     'entry_point': entryPoint.toTfJson(),
     'runtime': runtime.toTfJson(),
@@ -103,6 +105,7 @@ final class BedrockagentcoreAgentRuntimeCode {
 
   final List<BedrockagentcoreAgentRuntimeS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
   };
@@ -124,6 +127,7 @@ final class BedrockagentcoreAgentRuntimeS3 {
 
   final TfArg<String>? versionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
@@ -141,6 +145,7 @@ final class BedrockagentcoreAgentRuntimeContainerConfiguration {
 
   final TfArg<String> containerUri;
 
+  @internal
   Map<String, Object?> encode() => {'container_uri': containerUri.toTfJson()};
 }
 
@@ -155,6 +160,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfiguration {
   final List<BedrockagentcoreAgentRuntimeCustomJwtAuthorizer>?
   customJwtAuthorizer;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
       'custom_jwt_authorizer': [
@@ -196,6 +202,7 @@ final class BedrockagentcoreAgentRuntimeCustomJwtAuthorizer {
   final List<BedrockagentcoreAgentRuntimePrivateEndpointOverrides>?
   privateEndpointOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_audience': ?allowedAudience?.toTfJson(),
     'allowed_clients': ?allowedClients?.toTfJson(),
@@ -230,6 +237,7 @@ final class BedrockagentcoreAgentRuntimeAllowedWorkloadConfiguration {
   final List<BedrockagentcoreAgentRuntimeHostingEnvironment>?
   hostingEnvironment;
 
+  @internal
   Map<String, Object?> encode() => {
     'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
@@ -245,6 +253,7 @@ final class BedrockagentcoreAgentRuntimeHostingEnvironment {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -266,6 +275,7 @@ final class BedrockagentcoreAgentRuntimeCustomClaim {
   final List<BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'inbound_token_claim_name': inboundTokenClaimName.toTfJson(),
     'inbound_token_claim_value_type': inboundTokenClaimValueType.toTfJson(),
@@ -315,6 +325,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue {
 
   final List<BedrockagentcoreAgentRuntimeClaimMatchValue>? claimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
     if (claimMatchValue != null)
@@ -363,6 +374,7 @@ final class BedrockagentcoreAgentRuntimeClaimMatchValue {
 
   final TfArg<List<String>>? matchValueStringList;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
     'match_value_string_list': ?matchValueStringList?.toTfJson(),
@@ -385,6 +397,7 @@ final class BedrockagentcoreAgentRuntimePrivateEndpoint {
   final List<BedrockagentcoreAgentRuntimeSelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -421,6 +434,7 @@ final class BedrockagentcoreAgentRuntimeManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -464,6 +478,7 @@ final class BedrockagentcoreAgentRuntimeSelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -483,6 +498,7 @@ final class BedrockagentcoreAgentRuntimePrivateEndpointOverrides {
 
   final List<BedrockagentcoreAgentRuntimePrivateEndpoint>? privateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
@@ -507,6 +523,7 @@ final class BedrockagentcoreAgentRuntimeFilesystemConfiguration {
 
   final List<BedrockagentcoreAgentRuntimeSessionStorage>? sessionStorage;
 
+  @internal
   Map<String, Object?> encode() => {
     if (efsAccessPoint != null)
       'efs_access_point': [for (final e in efsAccessPoint!) e.encode()],
@@ -532,6 +549,7 @@ final class BedrockagentcoreAgentRuntimeEfsAccessPoint {
 
   final TfArg<String> mountPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point_arn': accessPointArn.toTfJson(),
     'mount_path': mountPath.toTfJson(),
@@ -551,6 +569,7 @@ final class BedrockagentcoreAgentRuntimeS3FilesAccessPoint {
 
   final TfArg<String> mountPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point_arn': accessPointArn.toTfJson(),
     'mount_path': mountPath.toTfJson(),
@@ -565,6 +584,7 @@ final class BedrockagentcoreAgentRuntimeSessionStorage {
 
   final TfArg<String> mountPath;
 
+  @internal
   Map<String, Object?> encode() => {'mount_path': mountPath.toTfJson()};
 }
 
@@ -581,6 +601,7 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
 
   final List<BedrockagentcoreAgentRuntimeNetworkModeConfig>? networkModeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
     if (networkModeConfig != null)
@@ -624,6 +645,7 @@ final class BedrockagentcoreAgentRuntimeNetworkModeConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': securityGroups.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -640,6 +662,7 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
 
   final BedrockagentcoreAgentRuntimeServerProtocol? serverProtocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'server_protocol': ?serverProtocol?.toTfJson(),
   };
@@ -687,6 +710,7 @@ final class BedrockagentcoreAgentRuntimeRequestHeaderConfiguration {
 
   final TfArg<List<String>>? requestHeaderAllowlist;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_header_allowlist': ?requestHeaderAllowlist?.toTfJson(),
   };

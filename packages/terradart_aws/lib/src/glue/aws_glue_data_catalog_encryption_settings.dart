@@ -21,6 +21,7 @@ final class GlueDataCatalogEncryptionSettings {
 
   final GlueDataCatalogEncryptionSettingsEncryptionAtRest encryptionAtRest;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_password_encryption': connectionPasswordEncryption.encode(),
     'encryption_at_rest': encryptionAtRest.encode(),
@@ -40,6 +41,7 @@ final class GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption {
 
   final TfArg<bool> returnConnectionPasswordEncrypted;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_kms_key_id': ?awsKmsKeyId?.toTfJson(),
     'return_connection_password_encrypted': returnConnectionPasswordEncrypted
@@ -64,6 +66,7 @@ final class GlueDataCatalogEncryptionSettingsEncryptionAtRest {
 
   final TfArg<String>? sseAwsKmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_encryption_mode': catalogEncryptionMode.toTfJson(),
     'catalog_encryption_service_role': ?catalogEncryptionServiceRole

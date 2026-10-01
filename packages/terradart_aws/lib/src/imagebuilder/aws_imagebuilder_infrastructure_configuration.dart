@@ -26,6 +26,7 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 
   final ImagebuilderInfrastructureConfigurationHttpTokens? httpTokens;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
     'http_tokens': ?httpTokens?.toTfJson(),
@@ -62,6 +63,7 @@ final class ImagebuilderInfrastructureConfigurationLogging {
 
   final ImagebuilderInfrastructureConfigurationS3Logs s3Logs;
 
+  @internal
   Map<String, Object?> encode() => {'s3_logs': s3Logs.encode()};
 }
 
@@ -78,6 +80,7 @@ final class ImagebuilderInfrastructureConfigurationS3Logs {
 
   final TfArg<String>? s3KeyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
@@ -100,6 +103,7 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 
   final ImagebuilderInfrastructureConfigurationTenancy? tenancy;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
     ...?host?.encode(),
@@ -126,8 +130,10 @@ sealed class ImagebuilderInfrastructureConfigurationHost {
   ) = ImagebuilderInfrastructureConfigurationHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -138,9 +144,11 @@ final class ImagebuilderInfrastructureConfigurationHostId
 
   final TfArg<String> hostId;
 
+  @internal
   @override
   String get blockKey => 'host_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
 }
@@ -154,9 +162,11 @@ final class ImagebuilderInfrastructureConfigurationHostResourceGroupArn
 
   final TfArg<String> hostResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'host_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'host_resource_group_arn': hostResourceGroupArn.toTfJson(),

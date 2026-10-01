@@ -26,6 +26,7 @@ final class Sesv2ContactListTopic {
 
   final TfArg<String> topicName;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_subscription_status': defaultSubscriptionStatus.toTfJson(),
     'description': ?description?.toTfJson(),

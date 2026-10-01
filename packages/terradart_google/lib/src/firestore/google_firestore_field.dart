@@ -63,6 +63,7 @@ final class FirestoreFieldIndexConfig {
 
   final List<FirestoreFieldIndexes>? indexes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (indexes != null) 'indexes': [for (final e in indexes!) e.encode()],
   };
@@ -78,6 +79,7 @@ final class FirestoreFieldIndexes {
 
   final FirestoreFieldQueryScope? queryScope;
 
+  @internal
   Map<String, Object?> encode() => {
     ...mode.encode(),
     'query_scope': ?queryScope?.toTfJson(),
@@ -100,8 +102,10 @@ sealed class FirestoreFieldMode {
       FirestoreFieldModeArrayConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -111,9 +115,11 @@ final class FirestoreFieldModeOrder extends FirestoreFieldMode {
 
   final FirestoreFieldOrder order;
 
+  @internal
   @override
   String get blockKey => 'order';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'order': order.toTfJson()};
 }
@@ -124,9 +130,11 @@ final class FirestoreFieldModeArrayConfig extends FirestoreFieldMode {
 
   final TfArg<String> arrayConfig;
 
+  @internal
   @override
   String get blockKey => 'array_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'array_config': arrayConfig.toTfJson()};
 }
@@ -139,6 +147,7 @@ final class FirestoreFieldTtlConfig {
 
   final TfArg<String>? expirationOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'expiration_offset': ?expirationOffset?.toTfJson(),
   };

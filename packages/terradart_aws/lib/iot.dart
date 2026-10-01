@@ -3,6 +3,10 @@
 /// AWS IoT Core.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_iot_endpoint.dart' show DataAwsIotEndpoint;
+export 'src/data/aws_iot_registration_code.dart'
+    show DataAwsIotRegistrationCode;
 export 'src/iot/aws_iot_authorizer.dart'
     show AwsIotAuthorizer, IotAuthorizerStatus;
 export 'src/iot/aws_iot_billing_group.dart'

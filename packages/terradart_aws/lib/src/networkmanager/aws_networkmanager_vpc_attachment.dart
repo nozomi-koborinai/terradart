@@ -26,6 +26,7 @@ final class NetworkmanagerVpcAttachmentOptions {
 
   final TfArg<bool>? securityGroupReferencingSupport;
 
+  @internal
   Map<String, Object?> encode() => {
     'appliance_mode_support': ?applianceModeSupport?.toTfJson(),
     'dns_support': ?dnsSupport?.toTfJson(),

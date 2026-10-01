@@ -111,6 +111,7 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
 
   final FsxOpenzfsFileSystemMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -151,6 +152,7 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
 
   final FsxOpenzfsFileSystemSizingMode? sizingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
     'sizing_mode': ?sizingMode?.toTfJson(),
@@ -209,6 +211,7 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
 
   final List<FsxOpenzfsFileSystemUserAndGroupQuotas>? userAndGroupQuotas;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy_tags_to_snapshots': ?copyTagsToSnapshots?.toTfJson(),
     'data_compression_type': ?dataCompressionType?.toTfJson(),
@@ -257,6 +260,7 @@ final class FsxOpenzfsFileSystemNfsExports {
 
   final List<FsxOpenzfsFileSystemClientConfigurations> clientConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_configurations': [for (final e in clientConfigurations) e.encode()],
   };
@@ -275,6 +279,7 @@ final class FsxOpenzfsFileSystemClientConfigurations {
 
   final TfArg<List<String>> options;
 
+  @internal
   Map<String, Object?> encode() => {
     'clients': clients.toTfJson(),
     'options': options.toTfJson(),
@@ -297,6 +302,7 @@ final class FsxOpenzfsFileSystemUserAndGroupQuotas {
 
   final FsxOpenzfsFileSystemType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'storage_capacity_quota_gib': storageCapacityQuotaGib.toTfJson(),

@@ -6,6 +6,13 @@
 /// (never_apply — seat subscriptions).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_discovery_engine_data_store.dart'
+    show DataGoogleDiscoveryEngineDataStore;
+export 'src/data/google_discovery_engine_data_stores.dart'
+    show DataGoogleDiscoveryEngineDataStores;
+export 'src/data/google_discovery_engine_search_engine_iam_policy.dart'
+    show DataGoogleDiscoveryEngineSearchEngineIamPolicy;
 export 'src/discovery_engine/google_discovery_engine_acl_config.dart'
     show
         DiscoveryEngineAclConfigExternalIdpConfig,

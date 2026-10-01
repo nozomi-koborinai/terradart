@@ -19,6 +19,7 @@ final class SsmincidentsReplicationSetRegion {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),
@@ -35,6 +36,7 @@ final class SsmincidentsReplicationSetRegions {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),

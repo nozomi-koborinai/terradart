@@ -31,6 +31,7 @@ final class Lexv2modelsBotDataPrivacy {
 
   final TfArg<bool> childDirected;
 
+  @internal
   Map<String, Object?> encode() => {'child_directed': childDirected.toTfJson()};
 }
 
@@ -56,6 +57,7 @@ final class Lexv2modelsBotMembers {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias_id': aliasId.toTfJson(),
     'alias_name': aliasName.toTfJson(),

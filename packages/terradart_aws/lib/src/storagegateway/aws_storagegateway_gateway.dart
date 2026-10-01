@@ -135,12 +135,15 @@ sealed class StoragegatewayGatewayActivation {
   ) = StoragegatewayGatewayActivationGatewayIpAddress;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -151,12 +154,15 @@ final class StoragegatewayGatewayActivationKey
 
   final TfArg<String> activationKey;
 
+  @internal
   @override
   String get blockKey => 'activation_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'activation_key': activationKey.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'activation_key': activationKey};
 }
@@ -168,14 +174,17 @@ final class StoragegatewayGatewayActivationGatewayIpAddress
 
   final TfArg<String> gatewayIpAddress;
 
+  @internal
   @override
   String get blockKey => 'gateway_ip_address';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gateway_ip_address': gatewayIpAddress.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'gateway_ip_address': gatewayIpAddress,
@@ -201,6 +210,7 @@ final class StoragegatewayGatewayMaintenanceStartTime {
 
   final TfArg<num>? minuteOfHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_month': ?dayOfMonth?.toTfJson(),
     'day_of_week': ?dayOfWeek?.toTfJson(),
@@ -234,6 +244,7 @@ final class StoragegatewayGatewaySmbActiveDirectorySettings {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_controllers': ?domainControllers?.toTfJson(),
     'domain_name': domainName.toTfJson(),

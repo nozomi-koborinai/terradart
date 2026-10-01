@@ -34,6 +34,7 @@ final class S3BucketCorsConfigurationCorsRule {
 
   final TfArg<num>? maxAgeSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_headers': ?allowedHeaders?.toTfJson(),
     'allowed_methods': allowedMethods.toTfJson(),

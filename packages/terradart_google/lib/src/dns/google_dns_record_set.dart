@@ -193,6 +193,7 @@ class DnsRecordSetRoutingPolicy {
   final List<DnsRecordSetRoutingPolicyWrrRouting>? wrr;
   final DnsRecordSetRoutingPolicyPrimaryBackupRouting? primaryBackup;
 
+  @internal
   Map<String, Object?> encode() => {
     if (geo != null) 'geo': geo!.map((g) => g.toArgMap()).toList(),
     if (wrr != null) 'wrr': wrr!.map((w) => w.toArgMap()).toList(),

@@ -15,6 +15,7 @@ final class FolderOrganizationPolicyBooleanPolicy {
 
   final TfArg<bool> enforced;
 
+  @internal
   Map<String, Object?> encode() => {'enforced': enforced.toTfJson()};
 }
 
@@ -37,6 +38,7 @@ final class FolderOrganizationPolicyListPolicy {
 
   final FolderOrganizationPolicyDeny? deny;
 
+  @internal
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
     'suggested_value': ?suggestedValue?.toTfJson(),
@@ -55,6 +57,7 @@ final class FolderOrganizationPolicyAllow {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -71,6 +74,7 @@ final class FolderOrganizationPolicyDeny {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -85,6 +89,7 @@ final class FolderOrganizationPolicyRestorePolicy {
 
   final TfArg<bool> defaultCase;
 
+  @internal
   Map<String, Object?> encode() => {'default': defaultCase.toTfJson()};
 }
 

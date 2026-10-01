@@ -36,12 +36,15 @@ sealed class GlueClassifierFormat {
   ) = GlueClassifierFormatXmlClassifier;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -51,12 +54,15 @@ final class GlueClassifierFormatCsvClassifier extends GlueClassifierFormat {
 
   final GlueClassifierCsvClassifier csvClassifier;
 
+  @internal
   @override
   String get blockKey => 'csv_classifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'csv_classifier': csvClassifier.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'csv_classifier': TfArg.literal(csvClassifier.encode()),
@@ -69,12 +75,15 @@ final class GlueClassifierFormatGrokClassifier extends GlueClassifierFormat {
 
   final GlueClassifierGrokClassifier grokClassifier;
 
+  @internal
   @override
   String get blockKey => 'grok_classifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'grok_classifier': grokClassifier.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'grok_classifier': TfArg.literal(grokClassifier.encode()),
@@ -87,12 +96,15 @@ final class GlueClassifierFormatJsonClassifier extends GlueClassifierFormat {
 
   final GlueClassifierJsonClassifier jsonClassifier;
 
+  @internal
   @override
   String get blockKey => 'json_classifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'json_classifier': jsonClassifier.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'json_classifier': TfArg.literal(jsonClassifier.encode()),
@@ -105,12 +117,15 @@ final class GlueClassifierFormatXmlClassifier extends GlueClassifierFormat {
 
   final GlueClassifierXmlClassifier xmlClassifier;
 
+  @internal
   @override
   String get blockKey => 'xml_classifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'xml_classifier': xmlClassifier.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'xml_classifier': TfArg.literal(xmlClassifier.encode()),
@@ -151,6 +166,7 @@ final class GlueClassifierCsvClassifier {
 
   final GlueClassifierSerde? serde;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_single_column': ?allowSingleColumn?.toTfJson(),
     'contains_header': ?containsHeader?.toTfJson(),
@@ -270,6 +286,7 @@ final class GlueClassifierGrokClassifier {
 
   final TfArg<String> grokPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
     'custom_patterns': ?customPatterns?.toTfJson(),
@@ -285,6 +302,7 @@ final class GlueClassifierJsonClassifier {
 
   final TfArg<String> jsonPath;
 
+  @internal
   Map<String, Object?> encode() => {'json_path': jsonPath.toTfJson()};
 }
 
@@ -301,6 +319,7 @@ final class GlueClassifierXmlClassifier {
 
   final TfArg<String> rowTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
     'row_tag': rowTag.toTfJson(),

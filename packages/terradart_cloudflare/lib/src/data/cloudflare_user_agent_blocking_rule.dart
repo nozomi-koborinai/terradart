@@ -25,6 +25,7 @@ final class DataUserAgentBlockingRuleFilter {
 
   final TfArg<String>? userAgent;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'paused': ?paused?.toTfJson(),

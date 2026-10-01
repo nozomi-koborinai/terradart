@@ -25,6 +25,7 @@ final class AppautoscalingTargetSuspendedState {
 
   final TfArg<bool>? scheduledScalingSuspended;
 
+  @internal
   Map<String, Object?> encode() => {
     'dynamic_scaling_in_suspended': ?dynamicScalingInSuspended?.toTfJson(),
     'dynamic_scaling_out_suspended': ?dynamicScalingOutSuspended?.toTfJson(),

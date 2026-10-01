@@ -42,6 +42,7 @@ final class GlueUserDefinedFunctionResourceUris {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_type': resourceType.toTfJson(),
     'uri': uri.toTfJson(),

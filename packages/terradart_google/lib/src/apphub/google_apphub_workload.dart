@@ -29,6 +29,7 @@ final class ApphubWorkloadAttributes {
 
   final List<ApphubWorkloadOperatorOwners>? operatorOwners;
 
+  @internal
   Map<String, Object?> encode() => {
     if (businessOwners != null)
       'business_owners': [for (final e in businessOwners!) e.encode()],
@@ -51,6 +52,7 @@ final class ApphubWorkloadBusinessOwners {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
@@ -65,6 +67,7 @@ final class ApphubWorkloadCriticality {
 
   final ApphubWorkloadCriticalityType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -102,6 +105,7 @@ final class ApphubWorkloadDeveloperOwners {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),
@@ -116,6 +120,7 @@ final class ApphubWorkloadEnvironment {
 
   final ApphubWorkloadEnvironmentType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -157,6 +162,7 @@ final class ApphubWorkloadOperatorOwners {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'email': email.toTfJson(),

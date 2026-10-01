@@ -3,6 +3,7 @@
 /// AWS Elastic Transcoder.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/elastictranscoder/aws_elastictranscoder_pipeline.dart'
     show
         AwsElastictranscoderPipeline,

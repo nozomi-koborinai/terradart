@@ -50,11 +50,13 @@ prelude: |
     }) = ComputeRouteVpnTunnelNextHop;
 
     /// Terraform attribute name (`next_hop_gateway`, `next_hop_ip`, …).
+    @internal
     String get blockKey;
 
     /// Scalar value written under [blockKey].
     TfArg<String> get value;
 
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -66,6 +68,7 @@ prelude: |
     final TfArg<String> nextHopGateway;
 
     @override
+    @internal
     String get blockKey => 'next_hop_gateway';
 
     @override
@@ -80,6 +83,7 @@ prelude: |
     final TfArg<String> nextHopIp;
 
     @override
+    @internal
     String get blockKey => 'next_hop_ip';
 
     @override
@@ -94,6 +98,7 @@ prelude: |
     final TfArg<String> nextHopInstance;
 
     @override
+    @internal
     String get blockKey => 'next_hop_instance';
 
     @override
@@ -108,6 +113,7 @@ prelude: |
     final TfArg<String> nextHopIlb;
 
     @override
+    @internal
     String get blockKey => 'next_hop_ilb';
 
     @override
@@ -122,6 +128,7 @@ prelude: |
     final TfArg<String> nextHopVpnTunnel;
 
     @override
+    @internal
     String get blockKey => 'next_hop_vpn_tunnel';
 
     @override

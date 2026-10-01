@@ -52,12 +52,15 @@ sealed class NetworkfirewallFirewallAttachment {
       NetworkfirewallFirewallAttachmentVpcId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -70,14 +73,17 @@ final class NetworkfirewallFirewallAttachmentTransitGatewayId
 
   final TfArg<String> transitGatewayId;
 
+  @internal
   @override
   String get blockKey => 'transit_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'transit_gateway_id': transitGatewayId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'transit_gateway_id': transitGatewayId,
@@ -91,12 +97,15 @@ final class NetworkfirewallFirewallAttachmentVpcId
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   @override
   String get blockKey => 'vpc_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId.encodeAs('id')};
 }
@@ -111,6 +120,7 @@ final class NetworkfirewallFirewallAvailabilityZoneMapping {
 
   final TfArg<String> availabilityZoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone_id': availabilityZoneId.toTfJson(),
   };
@@ -129,6 +139,7 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
 
   final NetworkfirewallFirewallType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
@@ -170,6 +181,7 @@ final class NetworkfirewallFirewallSubnetMapping {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'subnet_id': subnetId.encodeAs('id').toTfJson(),

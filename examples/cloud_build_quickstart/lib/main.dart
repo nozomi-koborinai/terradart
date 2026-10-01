@@ -24,7 +24,6 @@
 ///     to `main`, and dispatches the work to the private pool.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/iam.dart';

@@ -17,6 +17,7 @@ final class NetworkServicesGrpcRouteRules {
 
   final List<NetworkServicesGrpcRouteMatches>? matches;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.encode(),
     if (matches != null) 'matches': [for (final e in matches!) e.encode()],
@@ -42,6 +43,7 @@ final class NetworkServicesGrpcRouteAction {
 
   final NetworkServicesGrpcRouteRetryPolicy? retryPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'timeout': ?timeout?.toTfJson(),
     if (destinations != null)
@@ -61,6 +63,7 @@ final class NetworkServicesGrpcRouteDestinations {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -77,6 +80,7 @@ final class NetworkServicesGrpcRouteFaultInjectionPolicy {
 
   final NetworkServicesGrpcRouteDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -93,6 +97,7 @@ final class NetworkServicesGrpcRouteAbort {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_status': ?httpStatus?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -109,6 +114,7 @@ final class NetworkServicesGrpcRouteDelay {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_delay': ?fixedDelay?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -128,6 +134,7 @@ final class NetworkServicesGrpcRouteRetryPolicy {
 
   final List<NetworkServicesGrpcRouteRetryConditions>? retryConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
     if (retryConditions != null)
@@ -184,6 +191,7 @@ final class NetworkServicesGrpcRouteMatches {
 
   final NetworkServicesGrpcRouteMethod? method;
 
+  @internal
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
     'method': ?method?.encode(),
@@ -206,6 +214,7 @@ final class NetworkServicesGrpcRouteHeaders {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -253,6 +262,7 @@ final class NetworkServicesGrpcRouteMethod {
 
   final TfArg<String> grpcService;
 
+  @internal
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
     'grpc_method': grpcMethod.toTfJson(),

@@ -59,6 +59,7 @@ final class R2BucketLifecycleRules {
 
   final List<R2BucketLifecycleStorageClassTransitions>? storageClassTransitions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
@@ -81,6 +82,7 @@ final class R2BucketLifecycleAbortMultipartUploadsTransition {
 
   final R2BucketLifecycleAbortMultipartUploadsTransitionCondition? condition;
 
+  @internal
   Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
 
@@ -97,6 +99,7 @@ final class R2BucketLifecycleAbortMultipartUploadsTransitionCondition {
 
   final R2BucketLifecycleAbortMultipartUploadsTransitionType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
     'type': type.toTfJson(),
@@ -132,6 +135,7 @@ final class R2BucketLifecycleConditions {
 
   final TfArg<String> prefix;
 
+  @internal
   Map<String, Object?> encode() => {'prefix': prefix.toTfJson()};
 }
 
@@ -143,6 +147,7 @@ final class R2BucketLifecycleDeleteObjectsTransition {
 
   final R2BucketLifecycleDeleteObjectsTransitionCondition? condition;
 
+  @internal
   Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
 
@@ -163,6 +168,7 @@ final class R2BucketLifecycleDeleteObjectsTransitionCondition {
 
   final R2BucketLifecycleDeleteObjectsTransitionType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'max_age': ?maxAge?.toTfJson(),
@@ -207,6 +213,7 @@ final class R2BucketLifecycleStorageClassTransitions {
 
   final R2BucketLifecycleDeleteObjectsTransitionCondition condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_class': storageClass.toTfJson(),
     'condition': condition.encode(),

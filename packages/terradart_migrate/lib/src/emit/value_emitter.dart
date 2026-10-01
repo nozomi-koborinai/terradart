@@ -2,7 +2,7 @@
 /// arguments, slot by slot, following a [MigrateManifest].
 library;
 
-import 'package:terradart_core/terradart_core.dart'
+import 'package:terradart_core/internal.dart'
     show hasTemplateSequence, templateVariableNames;
 import 'package:terradart_hcl/terradart_hcl.dart';
 

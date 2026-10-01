@@ -68,12 +68,15 @@ sealed class ComprehendEntityRecognizerVersionName {
   ) = ComprehendEntityRecognizerVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -84,12 +87,15 @@ final class ComprehendEntityRecognizerVersionNameChoice
 
   final TfArg<String> versionName;
 
+  @internal
   @override
   String get blockKey => 'version_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'version_name': versionName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'version_name': versionName};
 }
@@ -101,14 +107,17 @@ final class ComprehendEntityRecognizerVersionNamePrefix
 
   final TfArg<String> versionNamePrefix;
 
+  @internal
   @override
   String get blockKey => 'version_name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'version_name_prefix': versionNamePrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'version_name_prefix': versionNamePrefix,
@@ -134,6 +143,7 @@ final class ComprehendEntityRecognizerInputDataConfig {
 
   final List<ComprehendEntityRecognizerEntityTypes> entityTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_format': ?dataFormat?.toTfJson(),
     ...labels.encode(),
@@ -160,8 +170,10 @@ sealed class ComprehendEntityRecognizerLabels {
   ) = ComprehendEntityRecognizerLabelsEntityList;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -172,9 +184,11 @@ final class ComprehendEntityRecognizerLabelsAnnotations
 
   final ComprehendEntityRecognizerAnnotations annotations;
 
+  @internal
   @override
   String get blockKey => 'annotations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'annotations': annotations.encode()};
 }
@@ -186,9 +200,11 @@ final class ComprehendEntityRecognizerLabelsEntityList
 
   final ComprehendEntityRecognizerEntityList entityList;
 
+  @internal
   @override
   String get blockKey => 'entity_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'entity_list': entityList.encode()};
 }
@@ -211,8 +227,10 @@ sealed class ComprehendEntityRecognizerSource {
   ) = ComprehendEntityRecognizerSourceDocuments;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -225,9 +243,11 @@ final class ComprehendEntityRecognizerSourceAugmentedManifests
 
   final List<ComprehendEntityRecognizerAugmentedManifests> augmentedManifests;
 
+  @internal
   @override
   String get blockKey => 'augmented_manifests';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'augmented_manifests': [for (final e in augmentedManifests) e.encode()],
@@ -241,9 +261,11 @@ final class ComprehendEntityRecognizerSourceDocuments
 
   final ComprehendEntityRecognizerDocuments documents;
 
+  @internal
   @override
   String get blockKey => 'documents';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'documents': documents.encode()};
 }
@@ -284,6 +306,7 @@ final class ComprehendEntityRecognizerAnnotations {
 
   final TfArg<String>? testS3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_uri': s3Uri.toTfJson(),
     'test_s3_uri': ?testS3Uri?.toTfJson(),
@@ -315,6 +338,7 @@ final class ComprehendEntityRecognizerAugmentedManifests {
 
   final ComprehendEntityRecognizerSplit? split;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
     'attribute_names': attributeNames.toTfJson(),
@@ -380,6 +404,7 @@ final class ComprehendEntityRecognizerDocuments {
 
   final TfArg<String>? testS3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_format': ?inputFormat?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -418,6 +443,7 @@ final class ComprehendEntityRecognizerEntityList {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 
@@ -429,6 +455,7 @@ final class ComprehendEntityRecognizerEntityTypes {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -445,6 +472,7 @@ final class ComprehendEntityRecognizerVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

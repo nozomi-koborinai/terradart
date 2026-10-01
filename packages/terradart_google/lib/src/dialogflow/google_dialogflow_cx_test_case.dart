@@ -20,6 +20,7 @@ final class DialogflowCxTestCaseConversationTurns {
 
   final DialogflowCxTestCaseVirtualAgentOutput? virtualAgentOutput;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_input': ?userInput?.encode(),
     'virtual_agent_output': ?virtualAgentOutput?.encode(),
@@ -45,6 +46,7 @@ final class DialogflowCxTestCaseUserInput {
 
   final DialogflowCxTestCaseInput? input;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_sentiment_analysis': ?enableSentimentAnalysis?.toTfJson(),
     'injected_parameters': ?injectedParameters?.toTfJson(),
@@ -72,6 +74,7 @@ final class DialogflowCxTestCaseInput {
 
   final DialogflowCxTestCaseText? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'language_code': ?languageCode?.toTfJson(),
     'dtmf': ?dtmf?.encode(),
@@ -90,6 +93,7 @@ final class DialogflowCxTestCaseDtmf {
 
   final TfArg<String>? finishDigit;
 
+  @internal
   Map<String, Object?> encode() => {
     'digits': ?digits?.toTfJson(),
     'finish_digit': ?finishDigit?.toTfJson(),
@@ -104,6 +108,7 @@ final class DialogflowCxTestCaseEvent {
 
   final TfArg<String> event;
 
+  @internal
   Map<String, Object?> encode() => {'event': event.toTfJson()};
 }
 
@@ -115,6 +120,7 @@ final class DialogflowCxTestCaseText {
 
   final TfArg<String> text;
 
+  @internal
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
 
@@ -137,6 +143,7 @@ final class DialogflowCxTestCaseVirtualAgentOutput {
 
   final DialogflowCxTestCaseTriggeredIntent? triggeredIntent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_parameters': ?sessionParameters?.toTfJson(),
     'current_page': ?currentPage?.encode(),
@@ -154,6 +161,7 @@ final class DialogflowCxTestCaseCurrentPage {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -165,6 +173,7 @@ final class DialogflowCxTestCaseTextResponses {
 
   final TfArg<List<String>>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
@@ -176,6 +185,7 @@ final class DialogflowCxTestCaseTriggeredIntent {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -189,6 +199,7 @@ final class DialogflowCxTestCaseTestConfig {
 
   final TfArg<List<String>>? trackingParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?start?.encode(),
     'tracking_parameters': ?trackingParameters?.toTfJson(),
@@ -212,8 +223,10 @@ sealed class DialogflowCxTestCaseStart {
       DialogflowCxTestCaseStartPage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -223,9 +236,11 @@ final class DialogflowCxTestCaseStartFlow extends DialogflowCxTestCaseStart {
 
   final TfArg<String> flow;
 
+  @internal
   @override
   String get blockKey => 'flow';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'flow': flow.toTfJson()};
 }
@@ -236,9 +251,11 @@ final class DialogflowCxTestCaseStartPage extends DialogflowCxTestCaseStart {
 
   final TfArg<String> page;
 
+  @internal
   @override
   String get blockKey => 'page';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'page': page.toTfJson()};
 }

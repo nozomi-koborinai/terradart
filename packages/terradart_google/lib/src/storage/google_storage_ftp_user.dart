@@ -29,6 +29,7 @@ final class StorageFtpUserStorageDirectoryMappings {
 
   final StorageFtpUserPermission? permission;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -69,6 +70,7 @@ final class StorageFtpUserCredentials {
 
   final TfArg<String>? sshPublicKeyBody;
 
+  @internal
   Map<String, Object?> encode() => {
     'credential_name': ?credentialName?.toTfJson(),
     'credential_type': ?credentialType?.toTfJson(),

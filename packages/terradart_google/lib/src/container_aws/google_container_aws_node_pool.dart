@@ -20,6 +20,7 @@ final class ContainerAwsNodePoolAutoscaling {
 
   final TfArg<num> minNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_node_count': maxNodeCount.toTfJson(),
     'min_node_count': minNodeCount.toTfJson(),
@@ -67,6 +68,7 @@ final class ContainerAwsNodePoolConfig {
 
   final List<ContainerAwsNodePoolTaints>? taints;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_instance_profile': iamInstanceProfile.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -95,6 +97,7 @@ final class ContainerAwsNodePoolAutoscalingMetricsCollection {
 
   final TfArg<List<String>>? metrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'granularity': granularity.toTfJson(),
     'metrics': ?metrics?.toTfJson(),
@@ -109,6 +112,7 @@ final class ContainerAwsNodePoolConfigEncryption {
 
   final TfArg<String> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
 }
 
@@ -125,6 +129,7 @@ final class ContainerAwsNodePoolProxyConfig {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_arn': secretArn.toTfJson(),
     'secret_version': secretVersion.toTfJson(),
@@ -153,6 +158,7 @@ final class ContainerAwsNodePoolRootVolume {
 
   final ContainerAwsNodePoolVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.toTfJson(),
@@ -192,6 +198,7 @@ final class ContainerAwsNodePoolSshConfig {
 
   final TfArg<String> ec2KeyPair;
 
+  @internal
   Map<String, Object?> encode() => {'ec2_key_pair': ec2KeyPair.toTfJson()};
 }
 
@@ -211,6 +218,7 @@ final class ContainerAwsNodePoolTaints {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'key': key.toTfJson(),
@@ -267,6 +275,7 @@ final class ContainerAwsNodePoolKubeletConfig {
 
   final TfArg<num>? podPidsLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_cfs_quota': ?cpuCfsQuota?.toTfJson(),
     'cpu_cfs_quota_period': ?cpuCfsQuotaPeriod?.toTfJson(),
@@ -283,6 +292,7 @@ final class ContainerAwsNodePoolManagement {
 
   final TfArg<bool>? autoRepair;
 
+  @internal
   Map<String, Object?> encode() => {'auto_repair': ?autoRepair?.toTfJson()};
 }
 
@@ -294,6 +304,7 @@ final class ContainerAwsNodePoolMaxPodsConstraint {
 
   final TfArg<num> maxPodsPerNode;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pods_per_node': maxPodsPerNode.toTfJson(),
   };
@@ -307,6 +318,7 @@ final class ContainerAwsNodePoolUpdateSettings {
 
   final ContainerAwsNodePoolSurgeSettings? surgeSettings;
 
+  @internal
   Map<String, Object?> encode() => {'surge_settings': ?surgeSettings?.encode()};
 }
 
@@ -320,6 +332,7 @@ final class ContainerAwsNodePoolSurgeSettings {
 
   final TfArg<num>? maxUnavailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
     'max_unavailable': ?maxUnavailable?.toTfJson(),

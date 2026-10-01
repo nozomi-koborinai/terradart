@@ -25,6 +25,7 @@ final class MagicTransitCf1SiteBody {
 
   final MagicTransitCf1SiteLocation? location;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -45,6 +46,7 @@ final class MagicTransitCf1SiteLocation {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'lat': ?lat?.toTfJson(),
     'long': ?long?.toTfJson(),

@@ -20,6 +20,7 @@ final class RecaptchaEnterpriseKeyAndroidSettings {
 
   final TfArg<List<String>>? allowedPackageNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_all_package_names': ?allowAllPackageNames?.toTfJson(),
     'allowed_package_names': ?allowedPackageNames?.toTfJson(),
@@ -39,6 +40,7 @@ final class RecaptchaEnterpriseKeyIosSettings {
 
   final TfArg<List<String>>? allowedBundleIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_all_bundle_ids': ?allowAllBundleIds?.toTfJson(),
     'allowed_bundle_ids': ?allowedBundleIds?.toTfJson(),
@@ -58,6 +60,7 @@ final class RecaptchaEnterpriseKeyTestingOptions {
 
   final TfArg<num>? testingScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'testing_challenge': ?testingChallenge?.toTfJson(),
     'testing_score': ?testingScore?.toTfJson(),
@@ -105,6 +108,7 @@ final class RecaptchaEnterpriseKeyWafSettings {
 
   final RecaptchaEnterpriseKeyWafService wafService;
 
+  @internal
   Map<String, Object?> encode() => {
     'waf_feature': wafFeature.toTfJson(),
     'waf_service': wafService.toTfJson(),
@@ -184,6 +188,7 @@ final class RecaptchaEnterpriseKeyWebSettings {
 
   final RecaptchaEnterpriseKeyChallengeSettings? challengeSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_all_domains': ?allowAllDomains?.toTfJson(),
     'allow_amp_traffic': ?allowAmpTraffic?.toTfJson(),
@@ -267,6 +272,7 @@ final class RecaptchaEnterpriseKeyChallengeSettings {
 
   final RecaptchaEnterpriseKeyDefaultSettings defaultSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     if (actionSettings != null)
       'action_settings': [for (final e in actionSettings!) e.encode()],
@@ -287,6 +293,7 @@ final class RecaptchaEnterpriseKeyActionSettings {
 
   final TfArg<num> scoreThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'score_threshold': scoreThreshold.toTfJson(),
@@ -301,6 +308,7 @@ final class RecaptchaEnterpriseKeyDefaultSettings {
 
   final TfArg<num> scoreThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'score_threshold': scoreThreshold.toTfJson(),
   };

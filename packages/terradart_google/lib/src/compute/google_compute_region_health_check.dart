@@ -175,8 +175,10 @@ sealed class ComputeRegionHealthCheckProtocol {
     TfArg<String>? grpcServiceName,
   }) = ComputeRegionHealthCheckGrpcTlsHealthCheckConfig;
 
+  @internal
   String get blockKey;
 
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -237,9 +239,11 @@ final class ComputeRegionHealthCheckHttpHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'http_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -279,9 +283,11 @@ final class ComputeRegionHealthCheckHttpsHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'https_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -321,9 +327,11 @@ final class ComputeRegionHealthCheckHttp2HealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'http2_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -365,9 +373,11 @@ final class ComputeRegionHealthCheckTcpHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'tcp_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -404,9 +414,11 @@ final class ComputeRegionHealthCheckSslHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'ssl_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -444,9 +456,11 @@ final class ComputeRegionHealthCheckGrpcHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'grpc_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -479,9 +493,11 @@ final class ComputeRegionHealthCheckGrpcTlsHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'grpc_tls_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 

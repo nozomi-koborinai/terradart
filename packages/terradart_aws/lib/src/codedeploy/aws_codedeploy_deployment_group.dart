@@ -48,6 +48,7 @@ final class CodedeployDeploymentGroupAlarmConfiguration {
 
   final TfArg<bool>? ignorePollAlarmFailure;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarms': ?alarms?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -68,6 +69,7 @@ final class CodedeployDeploymentGroupAutoRollbackConfiguration {
 
   final TfArg<List<String>>? events;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'events': ?events?.toTfJson(),
@@ -92,6 +94,7 @@ final class CodedeployDeploymentGroupBlueGreenDeploymentConfig {
   final CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess?
   terminateBlueInstancesOnDeploymentSuccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment_ready_option': ?deploymentReadyOption?.encode(),
     'green_fleet_provisioning_option': ?greenFleetProvisioningOption?.encode(),
@@ -113,6 +116,7 @@ final class CodedeployDeploymentGroupDeploymentReadyOption {
 
   final TfArg<num>? waitTimeInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_on_timeout': ?actionOnTimeout?.toTfJson(),
     'wait_time_in_minutes': ?waitTimeInMinutes?.toTfJson(),
@@ -150,6 +154,7 @@ final class CodedeployDeploymentGroupGreenFleetProvisioningOption {
 
   final CodedeployDeploymentGroupGreenFleetProvisioningOptionAction? action;
 
+  @internal
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
@@ -194,6 +199,7 @@ final class CodedeployDeploymentGroupTerminateBlueInstancesOnDeploymentSuccess {
 
   final TfArg<num>? terminationWaitTimeInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'termination_wait_time_in_minutes': ?terminationWaitTimeInMinutes
@@ -243,6 +249,7 @@ final class CodedeployDeploymentGroupDeploymentStyle {
 
   final CodedeployDeploymentGroupDeploymentType? deploymentType;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment_option': ?deploymentOption?.toTfJson(),
     'deployment_type': ?deploymentType?.toTfJson(),
@@ -314,6 +321,7 @@ final class CodedeployDeploymentGroupEc2TagFilter {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -355,6 +363,7 @@ final class CodedeployDeploymentGroupEc2TagSet {
 
   final List<CodedeployDeploymentGroupEc2TagFilter>? ec2TagFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ec2TagFilter != null)
       'ec2_tag_filter': [for (final e in ec2TagFilter!) e.encode()],
@@ -374,6 +383,7 @@ final class CodedeployDeploymentGroupEcsService {
 
   final TfArg<String> serviceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_name': clusterName.toTfJson(),
     'service_name': serviceName.toTfJson(),
@@ -396,6 +406,7 @@ final class CodedeployDeploymentGroupLoadBalancerInfo {
 
   final CodedeployDeploymentGroupTargetGroupPairInfo? targetGroupPairInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     if (elbInfo != null) 'elb_info': [for (final e in elbInfo!) e.encode()],
     if (targetGroupInfo != null)
@@ -412,6 +423,7 @@ final class CodedeployDeploymentGroupElbInfo {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -423,6 +435,7 @@ final class CodedeployDeploymentGroupTargetGroupInfo {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -442,6 +455,7 @@ final class CodedeployDeploymentGroupTargetGroupPairInfo {
 
   final CodedeployDeploymentGroupTestTrafficRoute? testTrafficRoute;
 
+  @internal
   Map<String, Object?> encode() => {
     'prod_traffic_route': prodTrafficRoute.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
@@ -457,6 +471,7 @@ final class CodedeployDeploymentGroupProdTrafficRoute {
 
   final TfArg<List<String>> listenerArns;
 
+  @internal
   Map<String, Object?> encode() => {'listener_arns': listenerArns.toTfJson()};
 }
 
@@ -468,6 +483,7 @@ final class CodedeployDeploymentGroupTargetGroup {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -479,6 +495,7 @@ final class CodedeployDeploymentGroupTestTrafficRoute {
 
   final TfArg<List<String>> listenerArns;
 
+  @internal
   Map<String, Object?> encode() => {'listener_arns': listenerArns.toTfJson()};
 }
 
@@ -498,6 +515,7 @@ final class CodedeployDeploymentGroupOnPremisesInstanceTagFilter {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -521,6 +539,7 @@ final class CodedeployDeploymentGroupTriggerConfiguration {
 
   final TfArg<String> triggerTargetArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'trigger_events': [for (final e in triggerEvents) e.toTfJson()],
     'trigger_name': triggerName.toTfJson(),

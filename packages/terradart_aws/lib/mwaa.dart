@@ -3,6 +3,7 @@
 /// AWS Managed Workflows for Apache Airflow.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/mwaa/aws_mwaa_environment.dart'
     show
         AwsMwaaEnvironment,

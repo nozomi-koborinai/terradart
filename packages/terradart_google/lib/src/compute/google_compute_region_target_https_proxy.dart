@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_region_ssl_certificate.dart'
@@ -33,12 +34,15 @@ sealed class ComputeRegionTargetHttpsProxyCertificates {
   ) = ComputeRegionTargetHttpsProxySslCertificates;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -51,15 +55,18 @@ final class ComputeRegionTargetHttpsProxyCertificateManagerCertificates
 
   final TfArg<List<String>> certificateManagerCertificates;
 
+  @internal
   @override
   String get blockKey => 'certificate_manager_certificates';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_manager_certificates': certificateManagerCertificates
         .toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'certificate_manager_certificates': certificateManagerCertificates,
@@ -73,14 +80,17 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 
   final TfArg<List<RefTo<GoogleComputeRegionSslCertificate>>> sslCertificates;
 
+  @internal
   @override
   String get blockKey => 'ssl_certificates';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ssl_certificates': sslCertificates.encodeAs('self_link').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ssl_certificates': sslCertificates.encodeAs('self_link'),

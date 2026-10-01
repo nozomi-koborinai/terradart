@@ -133,6 +133,7 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
 
   final TfArg<bool>? userDataShared;
 
+  @internal
   Map<String, Object?> encode() => {
     ...application.encode(),
     'external_id': ?externalId?.toTfJson(),
@@ -159,8 +160,10 @@ sealed class CognitoUserPoolClientApplication {
   ) = CognitoUserPoolClientApplicationId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -171,9 +174,11 @@ final class CognitoUserPoolClientApplicationArn
 
   final TfArg<String> applicationArn;
 
+  @internal
   @override
   String get blockKey => 'application_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'application_arn': applicationArn.toTfJson(),
@@ -187,9 +192,11 @@ final class CognitoUserPoolClientApplicationId
 
   final TfArg<String> applicationId;
 
+  @internal
   @override
   String get blockKey => 'application_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'application_id': applicationId.toTfJson()};
 }
@@ -207,6 +214,7 @@ final class CognitoUserPoolClientRefreshTokenRotation {
 
   final TfArg<num>? retryGracePeriodSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'feature': feature.toTfJson(),
     'retry_grace_period_seconds': ?retryGracePeriodSeconds?.toTfJson(),
@@ -248,6 +256,7 @@ final class CognitoUserPoolClientTokenValidityUnits {
 
   final TfArg<String>? refreshToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'id_token': ?idToken?.toTfJson(),

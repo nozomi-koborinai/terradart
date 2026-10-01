@@ -17,6 +17,7 @@ final class DataWebAnalyticsSiteFilter {
 
   final DataWebAnalyticsSiteOrderBy? orderBy;
 
+  @internal
   Map<String, Object?> encode() => {'order_by': ?orderBy?.toTfJson()};
 }
 

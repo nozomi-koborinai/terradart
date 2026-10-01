@@ -83,6 +83,7 @@ final class KmsGrantConstraints {
 
   final TfArg<Map<String, String>>? encryptionContextSubset;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_context_equals': ?encryptionContextEquals?.toTfJson(),
     'encryption_context_subset': ?encryptionContextSubset?.toTfJson(),

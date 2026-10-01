@@ -76,6 +76,7 @@ final class FinspaceKxClusterAutoScalingConfiguration {
 
   final TfArg<num> scaleOutCooldownSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_scaling_metric': autoScalingMetric.toTfJson(),
     'max_node_count': maxNodeCount.toTfJson(),
@@ -117,6 +118,7 @@ final class FinspaceKxClusterCacheStorageConfigurations {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'size': size.toTfJson(),
     'type': type.toTfJson(),
@@ -136,6 +138,7 @@ final class FinspaceKxClusterCapacityConfiguration {
 
   final TfArg<String> nodeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_count': nodeCount.toTfJson(),
     'node_type': nodeType.toTfJson(),
@@ -158,6 +161,7 @@ final class FinspaceKxClusterCode {
 
   final TfArg<String>? s3ObjectVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),
@@ -184,6 +188,7 @@ final class FinspaceKxClusterDatabase {
 
   final List<FinspaceKxClusterCacheConfigurations>? cacheConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'changeset_id': ?changesetId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -208,6 +213,7 @@ final class FinspaceKxClusterCacheConfigurations {
 
   final TfArg<List<String>>? dbPaths;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_type': cacheType.toTfJson(),
     'db_paths': ?dbPaths?.toTfJson(),
@@ -230,6 +236,7 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
 
   final TfArg<String>? volumeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -278,6 +285,7 @@ final class FinspaceKxClusterScalingGroupConfiguration {
 
   final TfArg<String> scalingGroupName;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'memory_limit': ?memoryLimit?.toTfJson(),
@@ -297,6 +305,7 @@ final class FinspaceKxClusterTickerplantLogConfiguration {
 
   final TfArg<List<String>> tickerplantLogVolumes;
 
+  @internal
   Map<String, Object?> encode() => {
     'tickerplant_log_volumes': tickerplantLogVolumes.toTfJson(),
   };
@@ -321,6 +330,7 @@ final class FinspaceKxClusterVpcConfiguration {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ipAddressType.toTfJson(),
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),

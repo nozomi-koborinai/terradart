@@ -34,6 +34,7 @@ final class TransferWorkflowOnExceptionSteps {
 
   final TransferWorkflowTagStepDetails? tagStepDetails;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'copy_step_details': ?copyStepDetails?.encode(),
@@ -87,6 +88,7 @@ final class TransferWorkflowCopyStepDetails {
 
   final TransferWorkflowDestinationFileLocation? destinationFileLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'overwrite_existing': ?overwriteExisting?.toTfJson(),
@@ -131,6 +133,7 @@ final class TransferWorkflowDestinationFileLocation {
 
   final TransferWorkflowS3FileLocation? s3FileLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'efs_file_location': ?efsFileLocation?.encode(),
     's3_file_location': ?s3FileLocation?.encode(),
@@ -148,6 +151,7 @@ final class TransferWorkflowEfsFileLocation {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_id': ?fileSystemId?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -165,6 +169,7 @@ final class TransferWorkflowS3FileLocation {
 
   final TfArg<String>? key;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'key': ?key?.toTfJson(),
@@ -191,6 +196,7 @@ final class TransferWorkflowCustomStepDetails {
 
   final TfArg<num>? timeoutSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'source_file_location': ?sourceFileLocation?.toTfJson(),
@@ -222,6 +228,7 @@ final class TransferWorkflowDecryptStepDetails {
 
   final TransferWorkflowDestinationFileLocation? destinationFileLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'overwrite_existing': ?overwriteExisting?.toTfJson(),
@@ -259,6 +266,7 @@ final class TransferWorkflowDeleteStepDetails {
 
   final TfArg<String>? sourceFileLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'source_file_location': ?sourceFileLocation?.toTfJson(),
@@ -282,6 +290,7 @@ final class TransferWorkflowTagStepDetails {
 
   final List<TransferWorkflowTagStepDetailsTags>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'source_file_location': ?sourceFileLocation?.toTfJson(),
@@ -303,6 +312,7 @@ final class TransferWorkflowTagStepDetailsTags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -334,6 +344,7 @@ final class TransferWorkflowSteps {
 
   final TransferWorkflowTagStepDetails? tagStepDetails;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'copy_step_details': ?copyStepDetails?.encode(),

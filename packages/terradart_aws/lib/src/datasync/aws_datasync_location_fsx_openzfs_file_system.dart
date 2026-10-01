@@ -16,6 +16,7 @@ final class DatasyncLocationFsxOpenzfsFileSystemProtocol {
 
   final DatasyncLocationFsxOpenzfsFileSystemNfs nfs;
 
+  @internal
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
 
@@ -27,6 +28,7 @@ final class DatasyncLocationFsxOpenzfsFileSystemNfs {
 
   final DatasyncLocationFsxOpenzfsFileSystemMountOptions mountOptions;
 
+  @internal
   Map<String, Object?> encode() => {'mount_options': mountOptions.encode()};
 }
 
@@ -38,6 +40,7 @@ final class DatasyncLocationFsxOpenzfsFileSystemMountOptions {
 
   final DatasyncLocationFsxOpenzfsFileSystemVersion? version;
 
+  @internal
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 

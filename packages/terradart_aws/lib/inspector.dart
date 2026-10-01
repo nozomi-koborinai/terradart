@@ -3,6 +3,9 @@
 /// AWS Inspector Classic.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_inspector_rules_packages.dart'
+    show DataAwsInspectorRulesPackages;
 export 'src/inspector/aws_inspector_assessment_target.dart'
     show AwsInspectorAssessmentTarget;
 export 'src/inspector/aws_inspector_assessment_template.dart'

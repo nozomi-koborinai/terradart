@@ -26,6 +26,7 @@ final class IamOrganizationsPolicyBindingCondition {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': ?expression?.toTfJson(),
@@ -42,6 +43,7 @@ final class IamOrganizationsPolicyBindingTarget {
 
   final TfArg<String>? principalSet;
 
+  @internal
   Map<String, Object?> encode() => {'principal_set': ?principalSet?.toTfJson()};
 }
 

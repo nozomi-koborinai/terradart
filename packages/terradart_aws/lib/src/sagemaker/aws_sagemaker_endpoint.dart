@@ -20,6 +20,7 @@ final class SagemakerEndpointDeploymentConfig {
 
   final SagemakerEndpointUpdatePolicy updatePolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_rollback_configuration': ?autoRollbackConfiguration?.encode(),
     ...updatePolicy.encode(),
@@ -44,8 +45,10 @@ sealed class SagemakerEndpointUpdatePolicy {
   ) = SagemakerEndpointRollingUpdatePolicyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -58,9 +61,11 @@ final class SagemakerEndpointBlueGreenUpdatePolicyChoice
 
   final SagemakerEndpointBlueGreenUpdatePolicy blueGreenUpdatePolicy;
 
+  @internal
   @override
   String get blockKey => 'blue_green_update_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'blue_green_update_policy': blueGreenUpdatePolicy.encode(),
@@ -74,9 +79,11 @@ final class SagemakerEndpointRollingUpdatePolicyChoice
 
   final SagemakerEndpointRollingUpdatePolicy rollingUpdatePolicy;
 
+  @internal
   @override
   String get blockKey => 'rolling_update_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rolling_update_policy': rollingUpdatePolicy.encode(),
@@ -91,6 +98,7 @@ final class SagemakerEndpointAutoRollbackConfiguration {
 
   final List<SagemakerEndpointAlarms>? alarms;
 
+  @internal
   Map<String, Object?> encode() => {
     if (alarms != null) 'alarms': [for (final e in alarms!) e.encode()],
   };
@@ -104,6 +112,7 @@ final class SagemakerEndpointAlarms {
 
   final TfArg<String> alarmName;
 
+  @internal
   Map<String, Object?> encode() => {'alarm_name': alarmName.toTfJson()};
 }
 
@@ -124,6 +133,7 @@ final class SagemakerEndpointBlueGreenUpdatePolicy {
   final SagemakerEndpointTrafficRoutingConfiguration
   trafficRoutingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_execution_timeout_in_seconds': ?maximumExecutionTimeoutInSeconds
         ?.toTfJson(),
@@ -151,6 +161,7 @@ final class SagemakerEndpointTrafficRoutingConfiguration {
 
   final SagemakerEndpointLinearStepSize? linearStepSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'wait_interval_in_seconds': waitIntervalInSeconds.toTfJson(),
@@ -197,6 +208,7 @@ final class SagemakerEndpointCanarySize {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -239,6 +251,7 @@ final class SagemakerEndpointLinearStepSize {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -264,6 +277,7 @@ final class SagemakerEndpointRollingUpdatePolicy {
 
   final SagemakerEndpointRollbackMaximumBatchSize? rollbackMaximumBatchSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_execution_timeout_in_seconds': ?maximumExecutionTimeoutInSeconds
         ?.toTfJson(),
@@ -286,6 +300,7 @@ final class SagemakerEndpointMaximumBatchSize {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -305,6 +320,7 @@ final class SagemakerEndpointRollbackMaximumBatchSize {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),

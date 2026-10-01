@@ -72,6 +72,7 @@ prelude: |
     const factory DataCatalogTagFieldValue.enumValue(
       TfArg<String> enumValue,
     ) = DataCatalogTagEnumValue;
+    @internal
     Map<String, Object?> encode();
   }
 
@@ -82,6 +83,7 @@ prelude: |
     final TfArg<String> stringValue;
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'string_value': stringValue.toTfJson(),
         };
@@ -94,6 +96,7 @@ prelude: |
     final TfArg<bool> boolValue;
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'bool_value': boolValue.toTfJson(),
         };
@@ -106,6 +109,7 @@ prelude: |
     final TfArg<num> doubleValue;
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'double_value': doubleValue.toTfJson(),
         };
@@ -118,6 +122,7 @@ prelude: |
     final TfArg<String> timestampValue;
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'timestamp_value': timestampValue.toTfJson(),
         };
@@ -130,6 +135,7 @@ prelude: |
     final TfArg<String> enumValue;
 
     @override
+    @internal
     Map<String, Object?> encode() => {
           'enum_value': enumValue.toTfJson(),
         };
@@ -146,6 +152,7 @@ prelude: |
     final TfArg<String> fieldName;
     final DataCatalogTagFieldValue value;
 
+    @internal
     Map<String, Object?> encode() => {
           'field_name': fieldName.toTfJson(),
           ...value.encode(),

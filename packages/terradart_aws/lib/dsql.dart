@@ -3,6 +3,7 @@
 /// AWS Aurora DSQL.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dsql/aws_dsql_cluster.dart'
     show AwsDsqlCluster, DsqlClusterMultiRegionProperties;
 export 'src/dsql/aws_dsql_cluster_peering.dart' show AwsDsqlClusterPeering;

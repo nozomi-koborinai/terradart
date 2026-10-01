@@ -25,6 +25,7 @@ final class UserGroupPolicies {
 
   final List<UserGroupResourceGroups> resourceGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'access': access.toTfJson(),
     'permission_groups': [for (final e in permissionGroups) e.encode()],
@@ -54,6 +55,7 @@ final class UserGroupPermissionGroups {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -65,6 +67,7 @@ final class UserGroupResourceGroups {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

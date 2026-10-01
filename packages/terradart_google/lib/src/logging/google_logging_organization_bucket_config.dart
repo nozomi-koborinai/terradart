@@ -17,6 +17,7 @@ final class LoggingOrganizationBucketConfigCmekSettings {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -35,6 +36,7 @@ final class LoggingOrganizationBucketConfigIndexConfigs {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_path': fieldPath.toTfJson(),
     'type': type.toTfJson(),

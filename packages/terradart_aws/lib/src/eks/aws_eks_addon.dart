@@ -61,6 +61,7 @@ final class EksAddonNamespaceConfig {
 
   final TfArg<String>? namespace;
 
+  @internal
   Map<String, Object?> encode() => {'namespace': ?namespace?.toTfJson()};
 }
 
@@ -77,6 +78,7 @@ final class EksAddonPodIdentityAssociation {
 
   final TfArg<String> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'service_account': serviceAccount.toTfJson(),

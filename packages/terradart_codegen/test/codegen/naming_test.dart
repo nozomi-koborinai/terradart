@@ -100,7 +100,7 @@ void main() {
         dataSourceClassName('google_compute_network'),
         'DataGoogleComputeNetwork',
       );
-      expect(dataSourceClassName('google_project'), 'GoogleProject');
+      expect(dataSourceClassName('google_project'), 'DataGoogleProject');
     });
 
     test('enumName carries the reserved-word-safe member through', () {

@@ -18,7 +18,7 @@ TerraDart factories are generated Dart classes, one per Terraform resource or da
 | `appwrite_*` | `terradart_appwrite` | `package:terradart_appwrite/<barrel>.dart` |
 | `time_sleep` (`TimeSleep`, with `TimeProvider`) | `terradart_time` | `package:terradart_time/terradart_time.dart` |
 
-Every stack also depends on `terradart_core` (`Stack`, `TfArg`, synth). Data sources are exported from the `data` barrel of each generated package. `terradart_time` is hand-written and has no catalog.
+Every barrel re-exports `terradart_core` (`Stack`, `TfArg`, synth), so a Stack imports only barrels. A data source is exported from the `data` barrel of its package and, when one matches, from its service barrel too (`DataGoogleComputeNetwork` from `compute.dart`). `terradart_time` is hand-written and has no catalog.
 
 ## 2. Find the class and its barrel
 
@@ -41,7 +41,7 @@ rg -A3 "tfType: 'google_pubsub_topic'" "$PKG/lib/src/_catalog.g.dart"
 #   kind: CatalogKind.dataSource,
 ```
 
-Then read the wrapper itself (`$PKG/lib/src/<barrel>/<tf_type>.dart`). Its constructor is the API, and its doc comment lists the required and optional arguments. Resource classes are the Terraform type in PascalCase (`google_pubsub_topic` → `GooglePubsubTopic`). Most data sources add a `Data` prefix (`DataGoogleComputeNetwork`), so check the catalog rather than guessing.
+Then read the wrapper itself (`$PKG/lib/src/<barrel>/<tf_type>.dart`). Its constructor is the API, and its doc comment lists the required and optional arguments. Resource classes are the Terraform type in PascalCase (`google_pubsub_topic` → `GooglePubsubTopic`). Data sources add a `Data` prefix (`DataGoogleComputeNetwork`).
 
 Without a checkout, the same information is online:
 

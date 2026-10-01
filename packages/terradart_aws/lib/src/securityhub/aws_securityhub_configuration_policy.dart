@@ -24,6 +24,7 @@ final class SecurityhubConfigurationPolicy {
   final SecurityhubConfigurationPolicySecurityControlsConfiguration?
   securityControlsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_standard_arns': ?enabledStandardArns?.toTfJson(),
     'service_enabled': serviceEnabled.toTfJson(),
@@ -45,6 +46,7 @@ final class SecurityhubConfigurationPolicySecurityControlsConfiguration {
   final List<SecurityhubConfigurationPolicySecurityControlCustomParameter>?
   securityControlCustomParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?controlIdentifiers?.encode(),
     if (securityControlCustomParameter != null)
@@ -73,8 +75,10 @@ sealed class SecurityhubConfigurationPolicyControlIdentifiers {
   ) = SecurityhubConfigurationPolicyEnabledControlIdentifiers;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -87,9 +91,11 @@ final class SecurityhubConfigurationPolicyDisabledControlIdentifiers
 
   final TfArg<List<String>> disabledControlIdentifiers;
 
+  @internal
   @override
   String get blockKey => 'disabled_control_identifiers';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'disabled_control_identifiers': disabledControlIdentifiers.toTfJson(),
@@ -105,9 +111,11 @@ final class SecurityhubConfigurationPolicyEnabledControlIdentifiers
 
   final TfArg<List<String>> enabledControlIdentifiers;
 
+  @internal
   @override
   String get blockKey => 'enabled_control_identifiers';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'enabled_control_identifiers': enabledControlIdentifiers.toTfJson(),
@@ -127,6 +135,7 @@ final class SecurityhubConfigurationPolicySecurityControlCustomParameter {
 
   final List<SecurityhubConfigurationPolicyParameter> parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_control_id': securityControlId.toTfJson(),
     'parameter': [for (final e in parameter) e.encode()],
@@ -170,6 +179,7 @@ final class SecurityhubConfigurationPolicyParameter {
 
   final SecurityhubConfigurationPolicyStringList? stringList;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_type': valueType.toTfJson(),
@@ -192,6 +202,7 @@ final class SecurityhubConfigurationPolicyBool {
 
   final TfArg<bool> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -203,6 +214,7 @@ final class SecurityhubConfigurationPolicyDouble {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -214,6 +226,7 @@ final class SecurityhubConfigurationPolicyEnum {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -225,6 +238,7 @@ final class SecurityhubConfigurationPolicyEnumList {
 
   final TfArg<List<String>> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -236,6 +250,7 @@ final class SecurityhubConfigurationPolicyInt {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -247,6 +262,7 @@ final class SecurityhubConfigurationPolicyIntList {
 
   final TfArg<List<num>> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -258,6 +274,7 @@ final class SecurityhubConfigurationPolicyString {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -269,6 +286,7 @@ final class SecurityhubConfigurationPolicyStringList {
 
   final TfArg<List<String>> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 

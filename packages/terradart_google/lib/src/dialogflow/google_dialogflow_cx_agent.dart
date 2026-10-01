@@ -28,6 +28,7 @@ final class DialogflowCxAgentAdvancedSettings {
 
   final DialogflowCxAgentSpeechSettings? speechSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_export_gcs_destination': ?audioExportGcsDestination?.encode(),
     'dtmf_settings': ?dtmfSettings?.encode(),
@@ -44,6 +45,7 @@ final class DialogflowCxAgentAudioExportGcsDestination {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
@@ -63,6 +65,7 @@ final class DialogflowCxAgentDtmfSettings {
 
   final TfArg<num>? maxDigits;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'finish_digit': ?finishDigit?.toTfJson(),
@@ -86,6 +89,7 @@ final class DialogflowCxAgentLoggingSettings {
 
   final TfArg<bool>? enableStackdriverLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_consent_based_redaction': ?enableConsentBasedRedaction?.toTfJson(),
     'enable_interaction_logging': ?enableInteractionLogging?.toTfJson(),
@@ -112,6 +116,7 @@ final class DialogflowCxAgentSpeechSettings {
 
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpointer_sensitivity': ?endpointerSensitivity?.toTfJson(),
     'models': ?models?.toTfJson(),
@@ -128,6 +133,7 @@ final class DialogflowCxAgentAnswerFeedbackSettings {
 
   final TfArg<bool>? enableAnswerFeedback;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_answer_feedback': ?enableAnswerFeedback?.toTfJson(),
   };
@@ -149,6 +155,7 @@ final class DialogflowCxAgentClientCertificateSettings {
 
   final TfArg<String> sslCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'passphrase': ?passphrase?.toTfJson(),
     'private_key': privateKey.toTfJson(),
@@ -164,6 +171,7 @@ final class DialogflowCxAgentGenAppBuilderSettings {
 
   final TfArg<String> engine;
 
+  @internal
   Map<String, Object?> encode() => {'engine': engine.toTfJson()};
 }
 
@@ -175,6 +183,7 @@ final class DialogflowCxAgentGitIntegrationSettings {
 
   final DialogflowCxAgentGithubSettings? githubSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'github_settings': ?githubSettings?.encode(),
   };
@@ -202,6 +211,7 @@ final class DialogflowCxAgentGithubSettings {
 
   final TfArg<String>? trackingBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'branches': ?branches?.toTfJson(),
@@ -219,6 +229,7 @@ final class DialogflowCxAgentPersonalizationSettings {
 
   final TfArg<String>? defaultEndUserMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_end_user_metadata': ?defaultEndUserMetadata?.toTfJson(),
   };
@@ -232,6 +243,7 @@ final class DialogflowCxAgentSpeechToTextSettings {
 
   final TfArg<bool>? enableSpeechAdaptation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_speech_adaptation': ?enableSpeechAdaptation?.toTfJson(),
   };
@@ -245,6 +257,7 @@ final class DialogflowCxAgentTextToSpeechSettings {
 
   final TfArg<String>? synthesizeSpeechConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'synthesize_speech_configs': ?synthesizeSpeechConfigs?.toTfJson(),
   };

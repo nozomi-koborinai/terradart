@@ -74,6 +74,10 @@ barrels:
   data:
     doc: |-
       /// Read-only Cloudflare data sources (no `terraform apply` side effects).
+      ///
+      /// Every data source is also exported from its service barrel
+      /// (`DataCloudflareZone` from `zone.dart`); import this one for data
+      /// sources of several services, or of none.
   dls:
     doc: |-
       /// Cloudflare DLS prefix bindings.

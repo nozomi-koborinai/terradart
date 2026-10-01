@@ -28,6 +28,7 @@ final class ImagebuilderImageRecipeBlockDeviceMapping {
 
   final ImagebuilderImageRecipeEbs? ebs;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
     'no_device': ?noDevice?.toTfJson(),
@@ -67,6 +68,7 @@ final class ImagebuilderImageRecipeEbs {
 
   final ImagebuilderImageRecipeVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -122,6 +124,7 @@ final class ImagebuilderImageRecipeComponent {
 
   final List<ImagebuilderImageRecipeParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'component_arn': componentArn.toTfJson(),
     if (parameter != null)
@@ -142,6 +145,7 @@ final class ImagebuilderImageRecipeParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -158,6 +162,7 @@ final class ImagebuilderImageRecipeSystemsManagerAgent {
 
   final TfArg<bool> uninstallAfterBuild;
 
+  @internal
   Map<String, Object?> encode() => {
     'uninstall_after_build': uninstallAfterBuild.toTfJson(),
   };

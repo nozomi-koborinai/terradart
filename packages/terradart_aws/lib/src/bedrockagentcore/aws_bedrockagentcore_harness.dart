@@ -28,6 +28,7 @@ final class BedrockagentcoreHarnessAuthorizerConfiguration {
 
   final List<BedrockagentcoreHarnessCustomJwtAuthorizer>? customJwtAuthorizer;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
       'custom_jwt_authorizer': [
@@ -69,6 +70,7 @@ final class BedrockagentcoreHarnessCustomJwtAuthorizer {
   final List<BedrockagentcoreHarnessPrivateEndpointOverrides>?
   privateEndpointOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_audience': ?allowedAudience?.toTfJson(),
     'allowed_clients': ?allowedClients?.toTfJson(),
@@ -102,6 +104,7 @@ final class BedrockagentcoreHarnessAllowedWorkloadConfiguration {
 
   final List<BedrockagentcoreHarnessHostingEnvironment>? hostingEnvironment;
 
+  @internal
   Map<String, Object?> encode() => {
     'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
@@ -117,6 +120,7 @@ final class BedrockagentcoreHarnessHostingEnvironment {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -138,6 +142,7 @@ final class BedrockagentcoreHarnessCustomClaim {
   final List<BedrockagentcoreHarnessAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'inbound_token_claim_name': inboundTokenClaimName.toTfJson(),
     'inbound_token_claim_value_type': inboundTokenClaimValueType.toTfJson(),
@@ -184,6 +189,7 @@ final class BedrockagentcoreHarnessAuthorizingClaimMatchValue {
 
   final List<BedrockagentcoreHarnessClaimMatchValue>? claimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
     if (claimMatchValue != null)
@@ -232,6 +238,7 @@ final class BedrockagentcoreHarnessClaimMatchValue {
 
   final TfArg<List<String>>? matchValueStringList;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
     'match_value_string_list': ?matchValueStringList?.toTfJson(),
@@ -253,6 +260,7 @@ final class BedrockagentcoreHarnessPrivateEndpoint {
   final List<BedrockagentcoreHarnessSelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -289,6 +297,7 @@ final class BedrockagentcoreHarnessManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -334,6 +343,7 @@ final class BedrockagentcoreHarnessSelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -353,6 +363,7 @@ final class BedrockagentcoreHarnessPrivateEndpointOverrides {
 
   final List<BedrockagentcoreHarnessPrivateEndpoint>? privateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
@@ -369,6 +380,7 @@ final class BedrockagentcoreHarnessEnvironment {
   final List<BedrockagentcoreHarnessAgentcoreRuntimeEnvironment>?
   agentcoreRuntimeEnvironment;
 
+  @internal
   Map<String, Object?> encode() => {
     if (agentcoreRuntimeEnvironment != null)
       'agentcore_runtime_environment': [
@@ -394,6 +406,7 @@ final class BedrockagentcoreHarnessAgentcoreRuntimeEnvironment {
 
   final List<BedrockagentcoreHarnessNetworkConfiguration>? networkConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'lifecycle_configuration': ?lifecycleConfiguration?.toTfJson(),
     if (filesystemConfiguration != null)
@@ -423,6 +436,7 @@ final class BedrockagentcoreHarnessFilesystemConfiguration {
 
   final List<BedrockagentcoreHarnessSessionStorage>? sessionStorage;
 
+  @internal
   Map<String, Object?> encode() => {
     if (efsAccessPoint != null)
       'efs_access_point': [for (final e in efsAccessPoint!) e.encode()],
@@ -448,6 +462,7 @@ final class BedrockagentcoreHarnessEfsAccessPoint {
 
   final TfArg<String> mountPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point_arn': accessPointArn.toTfJson(),
     'mount_path': mountPath.toTfJson(),
@@ -467,6 +482,7 @@ final class BedrockagentcoreHarnessS3FilesAccessPoint {
 
   final TfArg<String> mountPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point_arn': accessPointArn.toTfJson(),
     'mount_path': mountPath.toTfJson(),
@@ -481,6 +497,7 @@ final class BedrockagentcoreHarnessSessionStorage {
 
   final TfArg<String> mountPath;
 
+  @internal
   Map<String, Object?> encode() => {'mount_path': mountPath.toTfJson()};
 }
 
@@ -497,6 +514,7 @@ final class BedrockagentcoreHarnessNetworkConfiguration {
 
   final List<BedrockagentcoreHarnessNetworkModeConfig>? networkModeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_mode': networkMode.toTfJson(),
     if (networkModeConfig != null)
@@ -534,6 +552,7 @@ final class BedrockagentcoreHarnessNetworkModeConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': securityGroups.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -551,6 +570,7 @@ final class BedrockagentcoreHarnessEnvironmentArtifact {
   final List<BedrockagentcoreHarnessContainerConfiguration>?
   containerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (containerConfiguration != null)
       'container_configuration': [
@@ -569,6 +589,7 @@ final class BedrockagentcoreHarnessContainerConfiguration {
 
   final TfArg<String> containerUri;
 
+  @internal
   Map<String, Object?> encode() => {'container_uri': containerUri.toTfJson()};
 }
 
@@ -590,6 +611,7 @@ final class BedrockagentcoreHarnessMemory {
   final List<BedrockagentcoreHarnessManagedMemoryConfiguration>?
   managedMemoryConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (agentcoreMemoryConfiguration != null)
       'agentcore_memory_configuration': [
@@ -622,6 +644,7 @@ final class BedrockagentcoreHarnessAgentcoreMemoryConfiguration {
 
   final List<BedrockagentcoreHarnessRetrievalConfig>? retrievalConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'actor_id': ?actorId?.toTfJson(),
     'arn': arn.toTfJson(),
@@ -650,6 +673,7 @@ final class BedrockagentcoreHarnessRetrievalConfig {
 
   final TfArg<num>? topK;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
     'relevance_score': ?relevanceScore?.toTfJson(),
@@ -664,6 +688,7 @@ final class BedrockagentcoreHarnessRetrievalConfig {
 final class BedrockagentcoreHarnessDisabled {
   const BedrockagentcoreHarnessDisabled();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -683,6 +708,7 @@ final class BedrockagentcoreHarnessManagedMemoryConfiguration {
 
   final List<BedrockagentcoreHarnessStrategies>? strategies;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
     'event_expiry_duration': ?eventExpiryDuration?.toTfJson(),
@@ -740,6 +766,7 @@ final class BedrockagentcoreHarnessModel {
 
   final List<BedrockagentcoreHarnessOpenaiModelConfig>? openaiModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bedrockModelConfig != null)
       'bedrock_model_config': [for (final e in bedrockModelConfig!) e.encode()],
@@ -777,6 +804,7 @@ final class BedrockagentcoreHarnessBedrockModelConfig {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_params': ?additionalParams?.toTfJson(),
     'api_format': ?apiFormat?.toTfJson(),
@@ -843,6 +871,7 @@ final class BedrockagentcoreHarnessGeminiModelConfig {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_params': ?additionalParams?.toTfJson(),
     'api_key_arn': apiKeyArn.toTfJson(),
@@ -882,6 +911,7 @@ final class BedrockagentcoreHarnessLitellmModelConfig {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_params': ?additionalParams?.toTfJson(),
     'api_base': ?apiBase?.toTfJson(),
@@ -921,6 +951,7 @@ final class BedrockagentcoreHarnessOpenaiModelConfig {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_params': ?additionalParams?.toTfJson(),
     'api_format': ?apiFormat?.toTfJson(),
@@ -974,6 +1005,7 @@ final class BedrockagentcoreHarnessSkill {
 
   final List<BedrockagentcoreHarnessS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     if (awsSkills != null)
@@ -991,6 +1023,7 @@ final class BedrockagentcoreHarnessAwsSkills {
 
   final TfArg<List<String>>? paths;
 
+  @internal
   Map<String, Object?> encode() => {'paths': ?paths?.toTfJson()};
 }
 
@@ -1006,6 +1039,7 @@ final class BedrockagentcoreHarnessGit {
 
   final List<BedrockagentcoreHarnessAuth>? auth;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'url': url.toTfJson(),
@@ -1026,6 +1060,7 @@ final class BedrockagentcoreHarnessAuth {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'credential_arn': credentialArn.toTfJson(),
     'username': ?username?.toTfJson(),
@@ -1040,6 +1075,7 @@ final class BedrockagentcoreHarnessS3 {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -1051,6 +1087,7 @@ final class BedrockagentcoreHarnessSystemPrompt {
 
   final Sensitive<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
@@ -1070,6 +1107,7 @@ final class BedrockagentcoreHarnessTool {
 
   final List<BedrockagentcoreHarnessConfig>? config;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'type': type.toTfJson(),
@@ -1134,6 +1172,7 @@ final class BedrockagentcoreHarnessConfig {
 
   final List<BedrockagentcoreHarnessRemoteMcp>? remoteMcp;
 
+  @internal
   Map<String, Object?> encode() => {
     if (agentcoreBrowser != null)
       'agentcore_browser': [for (final e in agentcoreBrowser!) e.encode()],
@@ -1158,6 +1197,7 @@ final class BedrockagentcoreHarnessAgentcoreBrowser {
 
   final TfArg<String>? browserArn;
 
+  @internal
   Map<String, Object?> encode() => {'browser_arn': ?browserArn?.toTfJson()};
 }
 
@@ -1171,6 +1211,7 @@ final class BedrockagentcoreHarnessAgentcoreCodeInterpreter {
 
   final TfArg<String>? codeInterpreterArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'code_interpreter_arn': ?codeInterpreterArn?.toTfJson(),
   };
@@ -1189,6 +1230,7 @@ final class BedrockagentcoreHarnessAgentcoreGateway {
 
   final List<BedrockagentcoreHarnessOutboundAuth>? outboundAuth;
 
+  @internal
   Map<String, Object?> encode() => {
     'gateway_arn': gatewayArn.toTfJson(),
     if (outboundAuth != null)
@@ -1212,6 +1254,7 @@ final class BedrockagentcoreHarnessOutboundAuth {
 
   final List<BedrockagentcoreHarnessOauth>? oauth;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_iam': ?awsIam?.toTfJson(),
     'none': ?none?.toTfJson(),
@@ -1241,6 +1284,7 @@ final class BedrockagentcoreHarnessOauth {
 
   final TfArg<List<String>> scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_parameters': ?customParameters?.toTfJson(),
     'default_return_url': ?defaultReturnUrl?.toTfJson(),
@@ -1289,6 +1333,7 @@ final class BedrockagentcoreHarnessInlineFunction {
 
   final Sensitive<String> inputSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
     'input_schema': inputSchema.toTfJson(),
@@ -1305,6 +1350,7 @@ final class BedrockagentcoreHarnessRemoteMcp {
 
   final Sensitive<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),
     'url': url.toTfJson(),

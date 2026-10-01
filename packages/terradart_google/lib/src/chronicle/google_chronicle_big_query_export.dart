@@ -42,6 +42,7 @@ final class ChronicleBigQueryExportEntityGraphSettings {
 
   final TfArg<num> retentionDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'retention_days': retentionDays.toTfJson(),
@@ -61,6 +62,7 @@ final class ChronicleBigQueryExportIocMatchesSettings {
 
   final TfArg<num> retentionDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'retention_days': retentionDays.toTfJson(),
@@ -80,6 +82,7 @@ final class ChronicleBigQueryExportRuleDetectionsSettings {
 
   final TfArg<num> retentionDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'retention_days': retentionDays.toTfJson(),
@@ -99,6 +102,7 @@ final class ChronicleBigQueryExportUdmEventsAggregatesSettings {
 
   final TfArg<num> retentionDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'retention_days': retentionDays.toTfJson(),
@@ -118,6 +122,7 @@ final class ChronicleBigQueryExportUdmEventsSettings {
 
   final TfArg<num> retentionDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'retention_days': retentionDays.toTfJson(),

@@ -53,6 +53,7 @@ final class Ec2AllowedImagesSettingsImageCriterion {
   final List<Ec2AllowedImagesSettingsDeprecationTimeCondition>?
   deprecationTimeCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_names': ?imageNames?.toTfJson(),
     'image_providers': ?imageProviders?.toTfJson(),
@@ -78,6 +79,7 @@ final class Ec2AllowedImagesSettingsCreationDateCondition {
 
   final TfArg<num>? maximumDaysSinceCreated;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_days_since_created': ?maximumDaysSinceCreated?.toTfJson(),
   };
@@ -93,6 +95,7 @@ final class Ec2AllowedImagesSettingsDeprecationTimeCondition {
 
   final TfArg<num>? maximumDaysSinceDeprecated;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_days_since_deprecated': ?maximumDaysSinceDeprecated?.toTfJson(),
   };

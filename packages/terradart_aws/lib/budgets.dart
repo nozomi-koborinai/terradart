@@ -3,6 +3,7 @@
 /// AWS Budgets.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/budgets/aws_budgets_budget.dart'
     show
         AwsBudgetsBudget,
@@ -58,3 +59,4 @@ export 'src/budgets/aws_budgets_budget_action.dart'
         BudgetsBudgetActionThreshold,
         BudgetsBudgetActionThresholdType,
         BudgetsBudgetActionType;
+export 'src/data/aws_budgets_budget.dart' show DataAwsBudgetsBudget;

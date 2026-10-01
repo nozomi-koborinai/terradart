@@ -20,6 +20,7 @@ final class DmsMigrationProjectSchemaConversionApplicationAttributes {
 
   final TfArg<String>? s3BucketRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_path': ?s3BucketPath?.toTfJson(),
     's3_bucket_role_arn': ?s3BucketRoleArn?.toTfJson(),
@@ -42,6 +43,7 @@ final class DmsMigrationProjectSourceDataProviderDescriptor {
 
   final TfArg<String>? secretsManagerSecretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_provider_arn': dataProviderArn.toTfJson(),
     'secrets_manager_access_role_arn': ?secretsManagerAccessRoleArn?.toTfJson(),
@@ -65,6 +67,7 @@ final class DmsMigrationProjectTargetDataProviderDescriptor {
 
   final TfArg<String>? secretsManagerSecretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_provider_arn': dataProviderArn.toTfJson(),
     'secrets_manager_access_role_arn': ?secretsManagerAccessRoleArn?.toTfJson(),

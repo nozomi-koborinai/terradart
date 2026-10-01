@@ -3,6 +3,7 @@
 /// AWS Data Lifecycle Manager.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dlm/aws_dlm_lifecycle_policy.dart'
     show
         AwsDlmLifecyclePolicy,

@@ -34,6 +34,7 @@ final class PipelineStreamFormat {
 
   final TfArg<bool>? unstructured;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
     'decimal_encoding': ?decimalEncoding?.toTfJson(),
@@ -142,6 +143,7 @@ final class PipelineStreamHttp {
 
   final PipelineStreamCors? cors;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication': authentication.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -157,6 +159,7 @@ final class PipelineStreamCors {
 
   final TfArg<List<String>>? origins;
 
+  @internal
   Map<String, Object?> encode() => {'origins': ?origins?.toTfJson()};
 }
 
@@ -170,6 +173,7 @@ final class PipelineStreamSchema {
 
   final List<PipelineStreamFields>? fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'inferred': ?inferred?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
@@ -201,6 +205,7 @@ final class PipelineStreamFields {
 
   final PipelineStreamUnit? unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_key': ?metadataKey?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -273,6 +278,7 @@ final class PipelineStreamWorkerBinding {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 

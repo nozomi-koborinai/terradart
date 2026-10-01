@@ -16,6 +16,7 @@ const Set<String> _cloudflareCustomCsrSensitive = <String>{};
 final class DataCustomCsrFilter {
   const DataCustomCsrFilter();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

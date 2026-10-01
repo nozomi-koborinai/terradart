@@ -3,6 +3,7 @@
 /// AWS Bedrock.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bedrock/aws_bedrock_custom_model.dart'
     show
         AwsBedrockCustomModel,
@@ -122,3 +123,18 @@ export 'src/bedrock/aws_bedrock_provisioned_model_throughput.dart'
         BedrockProvisionedModelThroughputCommitmentDuration;
 export 'src/bedrock/aws_bedrock_use_case_for_model_access.dart'
     show AwsBedrockUseCaseForModelAccess;
+export 'src/data/aws_bedrock_custom_model.dart' show DataAwsBedrockCustomModel;
+export 'src/data/aws_bedrock_custom_models.dart'
+    show DataAwsBedrockCustomModels;
+export 'src/data/aws_bedrock_foundation_model.dart'
+    show DataAwsBedrockFoundationModel;
+export 'src/data/aws_bedrock_foundation_model_agreement_offers.dart'
+    show DataAwsBedrockFoundationModelAgreementOffers;
+export 'src/data/aws_bedrock_foundation_models.dart'
+    show DataAwsBedrockFoundationModels;
+export 'src/data/aws_bedrock_inference_profile.dart'
+    show DataAwsBedrockInferenceProfile;
+export 'src/data/aws_bedrock_inference_profiles.dart'
+    show DataAwsBedrockInferenceProfiles;
+export 'src/data/aws_bedrock_use_case_for_model_access.dart'
+    show DataAwsBedrockUseCaseForModelAccess;

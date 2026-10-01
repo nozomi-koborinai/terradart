@@ -17,6 +17,7 @@ final class SnippetMetadata {
 
   final TfArg<String> mainModule;
 
+  @internal
   Map<String, Object?> encode() => {'main_module': mainModule.toTfJson()};
 }
 

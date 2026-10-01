@@ -3,6 +3,9 @@
 /// AWS SageMaker.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_sagemaker_prebuilt_ecr_image.dart'
+    show DataAwsSagemakerPrebuiltEcrImage;
 export 'src/sagemaker/aws_sagemaker_algorithm.dart'
     show
         AwsSagemakerAlgorithm,

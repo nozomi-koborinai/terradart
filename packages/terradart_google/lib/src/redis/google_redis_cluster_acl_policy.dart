@@ -20,6 +20,7 @@ final class RedisClusterAclPolicyRules {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'rule': rule.toTfJson(),
     'username': username.toTfJson(),

@@ -168,8 +168,10 @@ sealed class ComputeHealthCheckProtocol {
   }) = ComputeHealthCheckGrpcTlsHealthCheckConfig;
 
   /// Terraform nested-block key (e.g. `https_health_check`).
+  @internal
   String get blockKey;
 
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -227,9 +229,11 @@ final class ComputeHealthCheckHttpHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'http_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -269,9 +273,11 @@ final class ComputeHealthCheckHttpsHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'https_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -311,9 +317,11 @@ final class ComputeHealthCheckHttp2HealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'http2_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -355,9 +363,11 @@ final class ComputeHealthCheckTcpHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'tcp_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -394,9 +404,11 @@ final class ComputeHealthCheckSslHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'ssl_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -434,9 +446,11 @@ final class ComputeHealthCheckGrpcHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'grpc_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -469,9 +483,11 @@ final class ComputeHealthCheckGrpcTlsHealthCheckConfig
   };
 
   @override
+  @internal
   String get blockKey => 'grpc_tls_health_check';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 

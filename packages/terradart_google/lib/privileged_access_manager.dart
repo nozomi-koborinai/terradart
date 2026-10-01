@@ -5,6 +5,9 @@
 /// entitlement does not grant access until someone requests a grant.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_privileged_access_manager_entitlement.dart'
+    show DataGooglePrivilegedAccessManagerEntitlement;
 export 'src/privileged_access_manager/google_privileged_access_manager_entitlement.dart'
     show
         GooglePrivilegedAccessManagerEntitlement,

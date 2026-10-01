@@ -11,6 +11,43 @@
 /// grant is for.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_iam_policy.dart'
+    show
+        DataGoogleIamPolicy,
+        DataIamPolicyAuditConfig,
+        DataIamPolicyAuditLogConfigs,
+        DataIamPolicyBinding,
+        DataIamPolicyCondition;
+export 'src/data/google_iam_role.dart' show DataGoogleIamRole;
+export 'src/data/google_iam_testable_permissions.dart'
+    show DataGoogleIamTestablePermissions;
+export 'src/data/google_iam_workforce_pool_iam_policy.dart'
+    show DataGoogleIamWorkforcePoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool.dart'
+    show DataGoogleIamWorkloadIdentityPool;
+export 'src/data/google_iam_workload_identity_pool_iam_policy.dart'
+    show DataGoogleIamWorkloadIdentityPoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool_openid_config.dart'
+    show DataGoogleIamWorkloadIdentityPoolOpenidConfig;
+export 'src/data/google_iam_workload_identity_pool_provider.dart'
+    show DataGoogleIamWorkloadIdentityPoolProvider;
+export 'src/data/google_project_iam_custom_role.dart'
+    show DataGoogleProjectIamCustomRole;
+export 'src/data/google_project_iam_policy.dart'
+    show DataGoogleProjectIamPolicy;
+export 'src/data/google_service_account.dart' show DataGoogleServiceAccount;
+export 'src/data/google_service_account_access_token.dart'
+    show DataGoogleServiceAccountAccessToken;
+export 'src/data/google_service_account_iam_policy.dart'
+    show DataGoogleServiceAccountIamPolicy;
+export 'src/data/google_service_account_id_token.dart'
+    show DataGoogleServiceAccountIdToken;
+export 'src/data/google_service_account_jwt.dart'
+    show DataGoogleServiceAccountJwt;
+export 'src/data/google_service_account_key.dart'
+    show DataGoogleServiceAccountKey;
+export 'src/data/google_service_accounts.dart' show DataGoogleServiceAccounts;
 export 'src/iam/google_iam_access_boundary_policy.dart'
     show
         GoogleIamAccessBoundaryPolicy,

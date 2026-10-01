@@ -840,6 +840,7 @@ final class SagemakerNotebookInstanceMetadataServiceConfiguration {
   final SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion?
   minimumInstanceMetadataServiceVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_instance_metadata_service_version':
         ?minimumInstanceMetadataServiceVersion?.toTfJson(),

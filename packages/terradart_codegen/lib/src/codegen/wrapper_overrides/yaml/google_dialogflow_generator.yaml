@@ -68,6 +68,7 @@ prelude: |
     final TfArg<String>? version;
     final TfArg<String>? outputLanguageCode;
 
+    @internal
     Map<String, Object?> encode() => {
           if (version != null) 'version': version!.toTfJson(),
           if (outputLanguageCode != null)

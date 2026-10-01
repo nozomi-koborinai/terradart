@@ -112,6 +112,7 @@ final class ZeroTrustGatewayPolicyExpiration {
 
   final TfArg<String> expiresAt;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': ?duration?.toTfJson(),
     'expires_at': expiresAt.toTfJson(),
@@ -209,6 +210,7 @@ final class ZeroTrustGatewayPolicyRuleSettings {
 
   final ZeroTrustGatewayPolicyUntrustedCert? untrustedCert;
 
+  @internal
   Map<String, Object?> encode() => {
     'add_headers': ?addHeaders?.toTfJson(),
     'allow_child_bypass': ?allowChildBypass?.toTfJson(),
@@ -250,6 +252,7 @@ final class ZeroTrustGatewayPolicyAuditSsh {
 
   final TfArg<bool>? commandLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'command_logging': ?commandLogging?.toTfJson(),
   };
@@ -301,6 +304,7 @@ final class ZeroTrustGatewayPolicyBisoAdminControls {
 
   final TfArg<String>? wmId;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy': ?copy?.toTfJson(),
     'dcp': ?dcp?.toTfJson(),
@@ -492,6 +496,7 @@ final class ZeroTrustGatewayPolicyBlockPage {
 
   final TfArg<String> targetUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_context': ?includeContext?.toTfJson(),
     'target_uri': targetUri.toTfJson(),
@@ -508,6 +513,7 @@ final class ZeroTrustGatewayPolicyCheckSession {
 
   final TfArg<bool>? enforce;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': ?duration?.toTfJson(),
     'enforce': ?enforce?.toTfJson(),
@@ -524,6 +530,7 @@ final class ZeroTrustGatewayPolicyDnsResolvers {
 
   final List<ZeroTrustGatewayPolicyIpv6>? ipv6;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipv4 != null) 'ipv4': [for (final e in ipv4!) e.encode()],
     if (ipv6 != null) 'ipv6': [for (final e in ipv6!) e.encode()],
@@ -549,6 +556,7 @@ final class ZeroTrustGatewayPolicyIpv4 {
 
   final TfArg<String>? vnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip': ip.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -576,6 +584,7 @@ final class ZeroTrustGatewayPolicyIpv6 {
 
   final TfArg<String>? vnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip': ip.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -596,6 +605,7 @@ final class ZeroTrustGatewayPolicyEgress {
 
   final TfArg<String>? ipv6;
 
+  @internal
   Map<String, Object?> encode() => {
     'ipv4': ?ipv4?.toTfJson(),
     'ipv4_fallback': ?ipv4Fallback?.toTfJson(),
@@ -611,6 +621,7 @@ final class ZeroTrustGatewayPolicyForensicCopy {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -624,6 +635,7 @@ final class ZeroTrustGatewayPolicyL4override {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip': ?ip?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -649,6 +661,7 @@ final class ZeroTrustGatewayPolicyNotificationSettings {
 
   final TfArg<String>? supportUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'include_context': ?includeContext?.toTfJson(),
@@ -665,6 +678,7 @@ final class ZeroTrustGatewayPolicyPayloadLog {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -676,6 +690,7 @@ final class ZeroTrustGatewayPolicyQuarantine {
 
   final List<ZeroTrustGatewayPolicyFileTypes>? fileTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fileTypes != null)
       'file_types': [for (final e in fileTypes!) e.toTfJson()],
@@ -738,6 +753,7 @@ final class ZeroTrustGatewayPolicyRedirect {
 
   final TfArg<String> targetUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_context': ?includeContext?.toTfJson(),
     'preserve_path_and_query': ?preservePathAndQuery?.toTfJson(),
@@ -758,6 +774,7 @@ final class ZeroTrustGatewayPolicyResolveDnsInternally {
 
   final TfArg<String>? viewId;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback': ?fallback?.toTfJson(),
     'view_id': ?viewId?.toTfJson(),
@@ -789,6 +806,7 @@ final class ZeroTrustGatewayPolicyUntrustedCert {
 
   final ZeroTrustGatewayPolicyUntrustedCertAction? action;
 
+  @internal
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
@@ -851,6 +869,7 @@ final class ZeroTrustGatewayPolicySchedule {
 
   final TfArg<String>? wed;
 
+  @internal
   Map<String, Object?> encode() => {
     'fri': ?fri?.toTfJson(),
     'mon': ?mon?.toTfJson(),

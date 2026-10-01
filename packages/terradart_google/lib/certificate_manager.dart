@@ -4,6 +4,7 @@
 /// certificates, and certificate maps for HTTPS load balancers.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/certificate_manager/google_certificate_manager_certificate.dart'
     show
         CertificateManagerCertificateManaged,
@@ -45,3 +46,9 @@ export 'src/certificate_manager/google_certificate_manager_trust_config.dart'
         CertificateManagerTrustConfigTrustAnchor,
         CertificateManagerTrustConfigTrustStore,
         GoogleCertificateManagerTrustConfig;
+export 'src/data/google_certificate_manager_certificate_map.dart'
+    show DataGoogleCertificateManagerCertificateMap;
+export 'src/data/google_certificate_manager_certificates.dart'
+    show DataGoogleCertificateManagerCertificates;
+export 'src/data/google_certificate_manager_dns_authorization.dart'
+    show DataGoogleCertificateManagerDnsAuthorization;

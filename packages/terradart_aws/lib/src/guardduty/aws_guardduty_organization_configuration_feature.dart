@@ -102,6 +102,7 @@ final class GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration {
   final GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
   name;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_enable': autoEnable.toTfJson(),
     'name': name.toTfJson(),

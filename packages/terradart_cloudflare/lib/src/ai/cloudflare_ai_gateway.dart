@@ -107,6 +107,7 @@ final class AiGatewayDlp {
 
   final List<AiGatewayPolicies>? policies;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -151,6 +152,7 @@ final class AiGatewayPolicies {
 
   final TfArg<List<String>> profiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'check': [for (final e in check) e.toTfJson()],
@@ -198,6 +200,7 @@ final class AiGatewayGuardrails {
 
   final AiGatewayResponse response;
 
+  @internal
   Map<String, Object?> encode() => {
     'prompt': prompt.encode(),
     'response': response.encode(),
@@ -253,6 +256,7 @@ final class AiGatewayPrompt {
 
   final AiGatewayS9? s9;
 
+  @internal
   Map<String, Object?> encode() => {
     'p1': ?p1?.toTfJson(),
     's1': ?s1?.toTfJson(),
@@ -488,6 +492,7 @@ final class AiGatewayResponse {
 
   final AiGatewayS9? s9;
 
+  @internal
   Map<String, Object?> encode() => {
     'p1': ?p1?.toTfJson(),
     's1': ?s1?.toTfJson(),
@@ -525,6 +530,7 @@ final class AiGatewayOtel {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization': ?authorization?.toTfJson(),
     'content_type': ?contentType?.toTfJson(),
@@ -557,6 +563,7 @@ final class AiGatewaySpendLimits {
 
   final List<AiGatewayRules>? rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
@@ -597,6 +604,7 @@ final class AiGatewayRules {
 
   final AiGatewayModel? model;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -648,6 +656,7 @@ final class AiGatewayProvider {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'values': values.toTfJson(),
@@ -677,6 +686,7 @@ final class AiGatewayMetadata {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -707,6 +717,7 @@ final class AiGatewayModel {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'values': values.toTfJson(),
@@ -726,6 +737,7 @@ final class AiGatewayStripe {
 
   final List<AiGatewayUsageEvents> usageEvents;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization': authorization.toTfJson(),
     'usage_events': [for (final e in usageEvents) e.encode()],
@@ -740,6 +752,7 @@ final class AiGatewayUsageEvents {
 
   final TfArg<String> payload;
 
+  @internal
   Map<String, Object?> encode() => {'payload': payload.toTfJson()};
 }
 

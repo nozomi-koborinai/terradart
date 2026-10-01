@@ -4,6 +4,7 @@
 /// stored info types, and job triggers.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dlp/google_data_loss_prevention_content_policy.dart'
     show
         DataLossPreventionContentPolicyAction,

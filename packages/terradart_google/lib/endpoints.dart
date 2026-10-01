@@ -6,6 +6,11 @@
 /// (`google_endpoints_service*_iam_*`).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_endpoints_service_consumers_iam_policy.dart'
+    show DataGoogleEndpointsServiceConsumersIamPolicy;
+export 'src/data/google_endpoints_service_iam_policy.dart'
+    show DataGoogleEndpointsServiceIamPolicy;
 export 'src/endpoints/google_endpoints_service.dart'
     show GoogleEndpointsService;
 export 'src/endpoints/google_endpoints_service_consumers_iam_binding.dart'

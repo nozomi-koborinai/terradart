@@ -44,6 +44,7 @@ final class S3BucketIntelligentTieringConfigurationFilter {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'tags': ?tags?.toTfJson(),
@@ -63,6 +64,7 @@ final class S3BucketIntelligentTieringConfigurationTiering {
 
   final TfArg<num> days;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_tier': accessTier.toTfJson(),
     'days': days.toTfJson(),

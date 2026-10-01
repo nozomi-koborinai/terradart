@@ -3,6 +3,14 @@
 /// AWS Database Migration Service.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_dms_certificate.dart' show DataAwsDmsCertificate;
+export 'src/data/aws_dms_endpoint.dart' show DataAwsDmsEndpoint;
+export 'src/data/aws_dms_replication_instance.dart'
+    show DataAwsDmsReplicationInstance;
+export 'src/data/aws_dms_replication_subnet_group.dart'
+    show DataAwsDmsReplicationSubnetGroup;
+export 'src/data/aws_dms_replication_task.dart' show DataAwsDmsReplicationTask;
 export 'src/dms/aws_dms_certificate.dart'
     show
         AwsDmsCertificate,

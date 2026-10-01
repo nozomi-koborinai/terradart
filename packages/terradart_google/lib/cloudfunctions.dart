@@ -4,6 +4,7 @@
 /// `google_cloudfunctions_function` resources.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudfunctions/google_cloudfunctions_function.dart'
     show
         CloudfunctionsFunctionAutomaticUpdatePolicy,
@@ -25,3 +26,7 @@ export 'src/cloudfunctions/google_cloudfunctions_function_iam_member.dart'
         GoogleCloudfunctionsFunctionIamMember;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_policy.dart'
     show GoogleCloudfunctionsFunctionIamPolicy;
+export 'src/data/google_cloudfunctions_function.dart'
+    show DataGoogleCloudfunctionsFunction;
+export 'src/data/google_cloudfunctions_function_iam_policy.dart'
+    show DataGoogleCloudfunctionsFunctionIamPolicy;

@@ -32,6 +32,7 @@ final class CloudfrontVpcOriginEndpointConfig {
 
   final List<CloudfrontVpcOriginSslProtocols>? originSslProtocols;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'http_port': httpPort.toTfJson(),
@@ -82,6 +83,7 @@ final class CloudfrontVpcOriginSslProtocols {
 
   final TfArg<num> quantity;
 
+  @internal
   Map<String, Object?> encode() => {
     'items': items.toTfJson(),
     'quantity': quantity.toTfJson(),

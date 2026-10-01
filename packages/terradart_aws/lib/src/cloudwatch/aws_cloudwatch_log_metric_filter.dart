@@ -34,6 +34,7 @@ final class CloudwatchLogMetricFilterMetricTransformation {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value': ?defaultValue?.toTfJson(),
     'dimensions': ?dimensions?.toTfJson(),

@@ -41,12 +41,15 @@ sealed class FmsPolicyResourceType {
   ) = FmsPolicyResourceTypeList;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -56,12 +59,15 @@ final class FmsPolicyResourceTypeChoice extends FmsPolicyResourceType {
 
   final TfArg<String> resourceType;
 
+  @internal
   @override
   String get blockKey => 'resource_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resource_type': resourceType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'resource_type': resourceType};
 }
@@ -72,14 +78,17 @@ final class FmsPolicyResourceTypeList extends FmsPolicyResourceType {
 
   final TfArg<List<String>> resourceTypeList;
 
+  @internal
   @override
   String get blockKey => 'resource_type_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_type_list': resourceTypeList.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'resource_type_list': resourceTypeList,
@@ -96,6 +105,7 @@ final class FmsPolicyExcludeMap {
 
   final TfArg<List<String>>? orgunit;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
     'orgunit': ?orgunit?.toTfJson(),
@@ -112,6 +122,7 @@ final class FmsPolicyIncludeMap {
 
   final TfArg<List<String>>? orgunit;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
     'orgunit': ?orgunit?.toTfJson(),
@@ -134,6 +145,7 @@ final class FmsPolicySecurityServicePolicyData {
 
   final FmsPolicyOption? policyOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'managed_service_data': ?managedServiceData?.toTfJson(),
     'type': type.toTfJson(),
@@ -157,6 +169,7 @@ final class FmsPolicyOption {
 
   final FmsPolicyThirdPartyFirewallPolicy? thirdPartyFirewallPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_acl_common_policy': ?networkAclCommonPolicy?.encode(),
     'network_firewall_policy': ?networkFirewallPolicy?.encode(),
@@ -172,6 +185,7 @@ final class FmsPolicyNetworkAclCommonPolicy {
 
   final FmsPolicyNetworkAclEntrySet? networkAclEntrySet;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_acl_entry_set': ?networkAclEntrySet?.encode(),
   };
@@ -196,6 +210,7 @@ final class FmsPolicyNetworkAclEntrySet {
 
   final List<FmsPolicyLastEntry>? lastEntry;
 
+  @internal
   Map<String, Object?> encode() => {
     'force_remediate_for_first_entries': forceRemediateForFirstEntries
         .toTfJson(),
@@ -235,6 +250,7 @@ final class FmsPolicyFirstEntry {
 
   final List<FmsPolicyPortRange>? portRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_block': ?cidrBlock?.toTfJson(),
     'egress': egress.toTfJson(),
@@ -259,6 +275,7 @@ final class FmsPolicyIcmpTypeCode {
 
   final TfArg<num>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': ?code?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -276,6 +293,7 @@ final class FmsPolicyPortRange {
 
   final TfArg<num>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -310,6 +328,7 @@ final class FmsPolicyLastEntry {
 
   final List<FmsPolicyPortRange>? portRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_block': ?cidrBlock?.toTfJson(),
     'egress': egress.toTfJson(),
@@ -331,6 +350,7 @@ final class FmsPolicyNetworkFirewallPolicy {
 
   final FmsPolicyFirewallDeploymentModel? firewallDeploymentModel;
 
+  @internal
   Map<String, Object?> encode() => {
     'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
   };
@@ -366,6 +386,7 @@ final class FmsPolicyThirdPartyFirewallPolicy {
 
   final FmsPolicyFirewallDeploymentModel? firewallDeploymentModel;
 
+  @internal
   Map<String, Object?> encode() => {
     'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
   };

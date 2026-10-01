@@ -4,6 +4,9 @@
 /// management.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_firestore_document.dart'
+    show DataGoogleFirestoreDocument;
 export 'src/firestore/google_firestore_backup_schedule.dart'
     show
         BackupDayOfWeek,

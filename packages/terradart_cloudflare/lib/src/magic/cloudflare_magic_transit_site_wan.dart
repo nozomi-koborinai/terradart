@@ -25,6 +25,7 @@ final class MagicTransitSiteWanStaticAddressing {
 
   final TfArg<String>? secondaryAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'gateway_address': gatewayAddress.toTfJson(),

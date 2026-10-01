@@ -78,12 +78,15 @@ sealed class MemorystoreInstanceSource {
   ) = MemorystoreInstanceManagedBackupSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -94,12 +97,15 @@ final class MemorystoreInstanceGcsSourceChoice
 
   final MemorystoreInstanceGcsSource gcsSource;
 
+  @internal
   @override
   String get blockKey => 'gcs_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_source': gcsSource.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'gcs_source': TfArg.literal(gcsSource.encode()),
@@ -113,14 +119,17 @@ final class MemorystoreInstanceManagedBackupSourceChoice
 
   final MemorystoreInstanceManagedBackupSource managedBackupSource;
 
+  @internal
   @override
   String get blockKey => 'managed_backup_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'managed_backup_source': managedBackupSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'managed_backup_source': TfArg.literal(managedBackupSource.encode()),
@@ -140,6 +149,7 @@ final class MemorystoreInstanceAutomatedBackupConfig {
 
   final MemorystoreInstanceFixedFrequencySchedule fixedFrequencySchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention': retention.toTfJson(),
     'fixed_frequency_schedule': fixedFrequencySchedule.encode(),
@@ -154,6 +164,7 @@ final class MemorystoreInstanceFixedFrequencySchedule {
 
   final MemorystoreInstanceFixedFrequencyScheduleStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {'start_time': startTime.encode()};
 }
 
@@ -167,6 +178,7 @@ final class MemorystoreInstanceFixedFrequencyScheduleStartTime {
 
   final TfArg<num> hours;
 
+  @internal
   Map<String, Object?> encode() => {'hours': hours.toTfJson()};
 }
 
@@ -186,6 +198,7 @@ final class MemorystoreInstanceCrossInstanceReplicationConfig {
 
   final List<MemorystoreInstanceSecondaryInstances>? secondaryInstances;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_role': ?instanceRole?.toTfJson(),
     'primary_instance': ?primaryInstance?.encode(),
@@ -225,6 +238,7 @@ final class MemorystoreInstancePrimaryInstance {
 
   final TfArg<String>? instance;
 
+  @internal
   Map<String, Object?> encode() => {'instance': ?instance?.toTfJson()};
 }
 
@@ -236,6 +250,7 @@ final class MemorystoreInstanceSecondaryInstances {
 
   final TfArg<String>? instance;
 
+  @internal
   Map<String, Object?> encode() => {'instance': ?instance?.toTfJson()};
 }
 
@@ -252,6 +267,7 @@ final class MemorystoreInstanceDesiredAutoCreatedEndpoints {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -271,6 +287,7 @@ final class MemorystoreInstanceDesiredPscAutoConnections {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -285,6 +302,7 @@ final class MemorystoreInstanceGcsSource {
 
   final TfArg<List<String>> uris;
 
+  @internal
   Map<String, Object?> encode() => {'uris': uris.toTfJson()};
 }
 
@@ -297,6 +315,7 @@ final class MemorystoreInstanceMaintenancePolicy {
   final List<MemorystoreInstanceWeeklyMaintenanceWindow>?
   weeklyMaintenanceWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     if (weeklyMaintenanceWindow != null)
       'weekly_maintenance_window': [
@@ -318,6 +337,7 @@ final class MemorystoreInstanceWeeklyMaintenanceWindow {
 
   final MemorystoreInstanceWeeklyMaintenanceWindowStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'start_time': startTime.encode(),
@@ -374,6 +394,7 @@ final class MemorystoreInstanceWeeklyMaintenanceWindowStartTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -390,6 +411,7 @@ final class MemorystoreInstanceManagedBackupSource {
 
   final TfArg<String> backup;
 
+  @internal
   Map<String, Object?> encode() => {'backup': backup.toTfJson()};
 }
 
@@ -409,6 +431,7 @@ final class MemorystoreInstancePersistenceConfig {
 
   final MemorystoreInstanceRdbConfig? rdbConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'aof_config': ?aofConfig?.encode(),
@@ -451,6 +474,7 @@ final class MemorystoreInstanceAofConfig {
 
   final TfArg<String>? appendFsync;
 
+  @internal
   Map<String, Object?> encode() => {'append_fsync': ?appendFsync?.toTfJson()};
 }
 
@@ -467,6 +491,7 @@ final class MemorystoreInstanceRdbConfig {
 
   final TfArg<String>? rdbSnapshotStartTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'rdb_snapshot_period': ?rdbSnapshotPeriod?.toTfJson(),
     'rdb_snapshot_start_time': ?rdbSnapshotStartTime?.toTfJson(),
@@ -483,6 +508,7 @@ final class MemorystoreInstanceZoneDistributionConfig {
 
   final TfArg<String>? zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'zone': ?zone?.toTfJson(),

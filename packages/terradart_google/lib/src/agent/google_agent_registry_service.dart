@@ -118,7 +118,9 @@ sealed class AgentRegistryServiceSpec {
     required AgentRegistryServiceEndpointSpecType type,
   }) = AgentRegistryServiceEndpointSpec;
 
+  @internal
   String get blockKey;
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -131,9 +133,11 @@ final class AgentRegistryServiceAgentSpec extends AgentRegistryServiceSpec {
   final TfArg<String>? content;
 
   @override
+  @internal
   String get blockKey => 'agent_spec';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (content != null) 'content': content!.toTfJson(),
@@ -149,9 +153,11 @@ final class AgentRegistryServiceMcpServerSpec extends AgentRegistryServiceSpec {
   final TfArg<String>? content;
 
   @override
+  @internal
   String get blockKey => 'mcp_server_spec';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (content != null) 'content': content!.toTfJson(),
@@ -166,9 +172,11 @@ final class AgentRegistryServiceEndpointSpec extends AgentRegistryServiceSpec {
   final AgentRegistryServiceEndpointSpecType type;
 
   @override
+  @internal
   String get blockKey => 'endpoint_spec';
 
   @override
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -183,6 +191,7 @@ final class AgentRegistryServiceInterfaces {
   final AgentRegistryServiceInterfacesProtocolBinding protocolBinding;
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'protocol_binding': protocolBinding.toTfJson(),
     'url': url.toTfJson(),

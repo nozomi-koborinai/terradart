@@ -13,6 +13,7 @@ const Set<String> _awsS3filesFileSystemsSensitive = <String>{};
 final class DataS3filesFileSystems {
   const DataS3filesFileSystems();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

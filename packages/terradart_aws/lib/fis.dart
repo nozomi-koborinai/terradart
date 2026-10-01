@@ -3,6 +3,9 @@
 /// AWS Fault Injection Service.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_fis_experiment_templates.dart'
+    show DataAwsFisExperimentTemplates;
 export 'src/fis/aws_fis_experiment_template.dart'
     show
         AwsFisExperimentTemplate,

@@ -328,6 +328,23 @@ overrides `defaultProvider` (the `terradart_google_beta` wrappers return
 `terradart-migrate` registers each selected configuration with
 `addProvider` (`googleEuProvider`, `googleBetaProvider`) and passes it.
 
+### Fewer imports
+
+Every barrel of every provider package — the service barrels,
+`provider.dart`, `data.dart`, `google_beta.dart` and `terradart_time.dart`
+— re-exports `terradart_core`, so a Stack drops its
+`import 'package:terradart_core/terradart_core.dart';` (the analyzer
+reports it as `unnecessary_import`). A data source is also exported from
+its service barrel when one matches its name, so
+`package:terradart_google/compute.dart` brings `DataGoogleComputeNetwork`;
+`data.dart` still exports every data source.
+
+| 0.31 | 0.32 |
+|------|------|
+| `GoogleProject` (the `google_project` data source) | `DataGoogleProject`, like every other data source |
+| `TfJsonEncoder`, `hasTemplateSequence`, `templateVariableNames` from `terradart_core.dart` | `package:terradart_core/internal.dart` |
+| a helper's `encode()`, a sealed choice's `blockKey` / `encode()` / `argMap` | `@internal`: the generated wrapper calls them, a Stack does not |
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

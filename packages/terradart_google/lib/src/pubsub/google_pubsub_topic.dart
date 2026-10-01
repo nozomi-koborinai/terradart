@@ -76,6 +76,7 @@ final class PubsubTopicIngestionDataSourceSettings {
 
   final PubsubTopicPlatformLogsSettings? platformLogsSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?source?.encode(),
     'platform_logs_settings': ?platformLogsSettings?.encode(),
@@ -114,8 +115,10 @@ sealed class PubsubTopicSource {
   ) = PubsubTopicSourceConfluentCloud;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -125,9 +128,11 @@ final class PubsubTopicSourceAwsKinesis extends PubsubTopicSource {
 
   final PubsubTopicAwsKinesis awsKinesis;
 
+  @internal
   @override
   String get blockKey => 'aws_kinesis';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'aws_kinesis': awsKinesis.encode()};
 }
@@ -138,9 +143,11 @@ final class PubsubTopicSourceCloudStorage extends PubsubTopicSource {
 
   final PubsubTopicCloudStorage cloudStorage;
 
+  @internal
   @override
   String get blockKey => 'cloud_storage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cloud_storage': cloudStorage.encode()};
 }
@@ -151,9 +158,11 @@ final class PubsubTopicSourceAzureEventHubs extends PubsubTopicSource {
 
   final PubsubTopicAzureEventHubs azureEventHubs;
 
+  @internal
   @override
   String get blockKey => 'azure_event_hubs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'azure_event_hubs': azureEventHubs.encode(),
@@ -166,9 +175,11 @@ final class PubsubTopicSourceAwsMsk extends PubsubTopicSource {
 
   final PubsubTopicAwsMsk awsMsk;
 
+  @internal
   @override
   String get blockKey => 'aws_msk';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'aws_msk': awsMsk.encode()};
 }
@@ -179,9 +190,11 @@ final class PubsubTopicSourceConfluentCloud extends PubsubTopicSource {
 
   final PubsubTopicConfluentCloud confluentCloud;
 
+  @internal
   @override
   String get blockKey => 'confluent_cloud';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'confluent_cloud': confluentCloud.encode()};
 }
@@ -205,6 +218,7 @@ final class PubsubTopicAwsKinesis {
 
   final TfArg<String> streamArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_role_arn': awsRoleArn.toTfJson(),
     'consumer_arn': consumerArn.toTfJson(),
@@ -232,6 +246,7 @@ final class PubsubTopicAwsMsk {
 
   final TfArg<String> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_role_arn': awsRoleArn.toTfJson(),
     'cluster_arn': clusterArn.toTfJson(),
@@ -268,6 +283,7 @@ final class PubsubTopicAzureEventHubs {
 
   final TfArg<String>? tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'event_hub': ?eventHub?.toTfJson(),
@@ -298,6 +314,7 @@ final class PubsubTopicCloudStorage {
 
   final PubsubTopicFormat format;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'match_glob': ?matchGlob?.toTfJson(),
@@ -327,8 +344,10 @@ sealed class PubsubTopicFormat {
   ) = PubsubTopicPubsubAvroFormatChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -338,9 +357,11 @@ final class PubsubTopicTextFormatChoice extends PubsubTopicFormat {
 
   final PubsubTopicTextFormat textFormat;
 
+  @internal
   @override
   String get blockKey => 'text_format';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'text_format': textFormat.encode()};
 }
@@ -351,9 +372,11 @@ final class PubsubTopicAvroFormatChoice extends PubsubTopicFormat {
 
   final PubsubTopicAvroFormat avroFormat;
 
+  @internal
   @override
   String get blockKey => 'avro_format';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'avro_format': avroFormat.encode()};
 }
@@ -364,9 +387,11 @@ final class PubsubTopicPubsubAvroFormatChoice extends PubsubTopicFormat {
 
   final PubsubTopicPubsubAvroFormat pubsubAvroFormat;
 
+  @internal
   @override
   String get blockKey => 'pubsub_avro_format';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pubsub_avro_format': pubsubAvroFormat.encode(),
@@ -379,6 +404,7 @@ final class PubsubTopicPubsubAvroFormatChoice extends PubsubTopicFormat {
 final class PubsubTopicAvroFormat {
   const PubsubTopicAvroFormat();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -388,6 +414,7 @@ final class PubsubTopicAvroFormat {
 final class PubsubTopicPubsubAvroFormat {
   const PubsubTopicPubsubAvroFormat();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -399,6 +426,7 @@ final class PubsubTopicTextFormat {
 
   final TfArg<String>? delimiter;
 
+  @internal
   Map<String, Object?> encode() => {'delimiter': ?delimiter?.toTfJson()};
 }
 
@@ -424,6 +452,7 @@ final class PubsubTopicConfluentCloud {
 
   final TfArg<String> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'bootstrap_server': bootstrapServer.toTfJson(),
     'cluster_id': ?clusterId?.toTfJson(),
@@ -441,6 +470,7 @@ final class PubsubTopicPlatformLogsSettings {
 
   final PubsubTopicPlatformLogsSeverity? severity;
 
+  @internal
   Map<String, Object?> encode() => {'severity': ?severity?.toTfJson()};
 }
 
@@ -457,6 +487,7 @@ final class PubsubTopicMessageStoragePolicy {
 
   final TfArg<bool>? enforceInTransit;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_persistence_regions': allowedPersistenceRegions.toTfJson(),
     'enforce_in_transit': ?enforceInTransit?.toTfJson(),
@@ -479,6 +510,7 @@ final class PubsubTopicMessageTransforms {
 
   final PubsubTopicJavascriptUdf? javascriptUdf;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ai_inference': ?aiInference?.encode(),
@@ -502,6 +534,7 @@ final class PubsubTopicAiInference {
 
   final PubsubTopicUnstructuredInference? unstructuredInference;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
@@ -517,6 +550,7 @@ final class PubsubTopicUnstructuredInference {
 
   final TfArg<Map<String, String>>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
 }
 
@@ -533,6 +567,7 @@ final class PubsubTopicJavascriptUdf {
 
   final TfArg<String> functionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'function_name': functionName.toTfJson(),
@@ -558,6 +593,7 @@ final class PubsubTopicSchemaSettings {
 
   final TfArg<String> schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoding': ?encoding?.toTfJson(),
     'first_revision_id': ?firstRevisionId?.toTfJson(),

@@ -43,6 +43,7 @@ final class DefaultNetworkAclEgress {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'cidr_block': ?cidrBlock?.toTfJson(),
@@ -90,6 +91,7 @@ final class DefaultNetworkAclIngress {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'cidr_block': ?cidrBlock?.toTfJson(),

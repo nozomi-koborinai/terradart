@@ -3,6 +3,7 @@
 /// AWS Mainframe Modernization.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/m2/aws_m2_application.dart'
     show
         AwsM2Application,

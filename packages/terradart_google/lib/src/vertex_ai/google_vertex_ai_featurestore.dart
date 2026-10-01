@@ -17,6 +17,7 @@ final class VertexAiFeaturestoreEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -40,8 +41,10 @@ sealed class VertexAiFeaturestoreOnlineServingConfig {
   ) = VertexAiFeaturestoreOnlineServingConfigScaling;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -54,9 +57,11 @@ final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCount
 
   final TfArg<num> fixedNodeCount;
 
+  @internal
   @override
   String get blockKey => 'fixed_node_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'fixed_node_count': fixedNodeCount.toTfJson(),
@@ -70,9 +75,11 @@ final class VertexAiFeaturestoreOnlineServingConfigScaling
 
   final VertexAiFeaturestoreScaling scaling;
 
+  @internal
   @override
   String get blockKey => 'scaling';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'scaling': scaling.encode()};
 }
@@ -90,6 +97,7 @@ final class VertexAiFeaturestoreScaling {
 
   final TfArg<num> minNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_node_count': maxNodeCount.toTfJson(),
     'min_node_count': minNodeCount.toTfJson(),

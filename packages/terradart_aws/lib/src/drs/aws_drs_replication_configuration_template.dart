@@ -119,6 +119,7 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
 
   final DrsReplicationConfigurationTemplateUnits units;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'interval': interval.toTfJson(),

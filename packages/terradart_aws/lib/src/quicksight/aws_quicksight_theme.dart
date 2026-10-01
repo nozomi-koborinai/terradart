@@ -26,6 +26,7 @@ final class QuicksightThemeConfiguration {
 
   final QuicksightThemeUiColorPalette? uiColorPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_color_palette': ?dataColorPalette?.encode(),
     'sheet': ?sheet?.encode(),
@@ -50,6 +51,7 @@ final class QuicksightThemeDataColorPalette {
 
   final TfArg<List<String>>? minMaxGradient;
 
+  @internal
   Map<String, Object?> encode() => {
     'colors': ?colors?.toTfJson(),
     'empty_fill_color': ?emptyFillColor?.toTfJson(),
@@ -67,6 +69,7 @@ final class QuicksightThemeSheet {
 
   final QuicksightThemeTileLayout? tileLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'tile': ?tile?.encode(),
     'tile_layout': ?tileLayout?.encode(),
@@ -81,6 +84,7 @@ final class QuicksightThemeTile {
 
   final QuicksightThemeBorder? border;
 
+  @internal
   Map<String, Object?> encode() => {'border': ?border?.encode()};
 }
 
@@ -92,6 +96,7 @@ final class QuicksightThemeBorder {
 
   final TfArg<bool>? show;
 
+  @internal
   Map<String, Object?> encode() => {'show': ?show?.toTfJson()};
 }
 
@@ -105,6 +110,7 @@ final class QuicksightThemeTileLayout {
 
   final QuicksightThemeMargin? margin;
 
+  @internal
   Map<String, Object?> encode() => {
     'gutter': ?gutter?.encode(),
     'margin': ?margin?.encode(),
@@ -119,6 +125,7 @@ final class QuicksightThemeGutter {
 
   final TfArg<bool>? show;
 
+  @internal
   Map<String, Object?> encode() => {'show': ?show?.toTfJson()};
 }
 
@@ -130,6 +137,7 @@ final class QuicksightThemeMargin {
 
   final TfArg<bool>? show;
 
+  @internal
   Map<String, Object?> encode() => {'show': ?show?.toTfJson()};
 }
 
@@ -141,6 +149,7 @@ final class QuicksightThemeTypography {
 
   final List<QuicksightThemeFontFamilies>? fontFamilies;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fontFamilies != null)
       'font_families': [for (final e in fontFamilies!) e.encode()],
@@ -155,6 +164,7 @@ final class QuicksightThemeFontFamilies {
 
   final TfArg<String>? fontFamily;
 
+  @internal
   Map<String, Object?> encode() => {'font_family': ?fontFamily?.toTfJson()};
 }
 
@@ -213,6 +223,7 @@ final class QuicksightThemeUiColorPalette {
 
   final TfArg<String>? warningForeground;
 
+  @internal
   Map<String, Object?> encode() => {
     'accent': ?accent?.toTfJson(),
     'accent_foreground': ?accentForeground?.toTfJson(),
@@ -246,6 +257,7 @@ final class QuicksightThemePermissions {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),

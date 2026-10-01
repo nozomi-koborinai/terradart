@@ -32,6 +32,7 @@ final class SsoadminApplicationPortalOptions {
 
   final List<SsoadminApplicationSignInOptions>? signInOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     if (signInOptions != null)
@@ -71,6 +72,7 @@ final class SsoadminApplicationSignInOptions {
 
   final SsoadminApplicationOrigin origin;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_url': ?applicationUrl?.toTfJson(),
     'origin': origin.toTfJson(),

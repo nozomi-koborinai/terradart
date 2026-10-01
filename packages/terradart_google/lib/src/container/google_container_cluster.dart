@@ -87,6 +87,7 @@ final class ContainerClusterAddonsConfig {
 
   final ContainerClusterStatefulHaConfig? statefulHaConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_sandbox_config': ?agentSandboxConfig?.encode(),
     'cloudrun_config': ?cloudrunConfig?.encode(),
@@ -121,6 +122,7 @@ final class ContainerClusterAgentSandboxConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -137,6 +139,7 @@ final class ContainerClusterCloudrunConfig {
 
   final TfArg<String>? loadBalancerType;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': disabled.toTfJson(),
     'load_balancer_type': ?loadBalancerType?.toTfJson(),
@@ -151,6 +154,7 @@ final class ContainerClusterConfigConnectorConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -162,6 +166,7 @@ final class ContainerClusterDnsCacheConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -175,6 +180,7 @@ final class ContainerClusterGcePersistentDiskCsiDriverConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -186,6 +192,7 @@ final class ContainerClusterGcpFilestoreCsiDriverConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -197,6 +204,7 @@ final class ContainerClusterGcsFuseCsiDriverConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -208,6 +216,7 @@ final class ContainerClusterGkeBackupAgentConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -219,6 +228,7 @@ final class ContainerClusterHighScaleCheckpointingConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -230,6 +240,7 @@ final class ContainerClusterHorizontalPodAutoscaling {
 
   final TfArg<bool> disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
 }
 
@@ -241,6 +252,7 @@ final class ContainerClusterHttpLoadBalancing {
 
   final TfArg<bool> disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
 }
 
@@ -260,6 +272,7 @@ final class ContainerClusterLustreCsiDriverConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_multi_nic': ?disableMultiNic?.toTfJson(),
     'enable_legacy_lustre_port': ?enableLegacyLustrePort?.toTfJson(),
@@ -275,6 +288,7 @@ final class ContainerClusterNetworkPolicyConfig {
 
   final TfArg<bool> disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
 }
 
@@ -286,6 +300,7 @@ final class ContainerClusterNodeReadinessConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -297,6 +312,7 @@ final class ContainerClusterParallelstoreCsiDriverConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -308,6 +324,7 @@ final class ContainerClusterPodSnapshotConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -327,6 +344,7 @@ final class ContainerClusterRayOperatorConfig {
 
   final ContainerClusterRayClusterMonitoringConfig? rayClusterMonitoringConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'ray_cluster_logging_config': ?rayClusterLoggingConfig?.encode(),
@@ -342,6 +360,7 @@ final class ContainerClusterRayClusterLoggingConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -353,6 +372,7 @@ final class ContainerClusterRayClusterMonitoringConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -364,6 +384,7 @@ final class ContainerClusterSliceControllerConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -375,6 +396,7 @@ final class ContainerClusterSlurmOperatorConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -386,6 +408,7 @@ final class ContainerClusterStatefulHaConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -397,6 +420,7 @@ final class ContainerClusterAnonymousAuthenticationConfig {
 
   final TfArg<String> mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -410,6 +434,7 @@ final class ContainerClusterAuthenticatorGroupsConfig {
 
   final TfArg<String> securityGroup;
 
+  @internal
   Map<String, Object?> encode() => {'security_group': securityGroup.toTfJson()};
 }
 
@@ -432,6 +457,7 @@ final class ContainerClusterAutopilotClusterPolicyConfig {
 
   final TfArg<bool>? noUnsafeWebhooks;
 
+  @internal
   Map<String, Object?> encode() => {
     'no_standard_node_pools': ?noStandardNodePools?.toTfJson(),
     'no_system_impersonation': ?noSystemImpersonation?.toTfJson(),
@@ -453,6 +479,7 @@ final class ContainerClusterBinaryAuthorization {
 
   final TfArg<String>? evaluationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'evaluation_mode': ?evaluationMode?.toTfJson(),
@@ -484,6 +511,7 @@ final class ContainerClusterAutoscaling {
 
   final List<ContainerClusterResourceLimits>? resourceLimits;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_provisioning_locations': ?autoProvisioningLocations?.toTfJson(),
     'autoscaling_profile': ?autoscalingProfile?.toTfJson(),
@@ -533,6 +561,7 @@ final class ContainerClusterAutoProvisioningDefaults {
   final ContainerClusterAutoProvisioningDefaultsUpgradeSettings?
   upgradeSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_kms_key': ?bootDiskKmsKey?.toTfJson(),
     'disk_size': ?diskSize?.toTfJson(),
@@ -558,6 +587,7 @@ final class ContainerClusterManagement {
 
   final TfArg<bool>? autoUpgrade;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_repair': ?autoRepair?.toTfJson(),
     'auto_upgrade': ?autoUpgrade?.toTfJson(),
@@ -578,6 +608,7 @@ final class ContainerClusterShieldedInstanceConfig {
 
   final TfArg<bool>? enableSecureBoot;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -603,6 +634,7 @@ final class ContainerClusterAutoProvisioningDefaultsUpgradeSettings {
 
   final ContainerClusterUpgradeSettingsBlueGreenSettings? blueGreenSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
     'max_unavailable': ?maxUnavailable?.toTfJson(),
@@ -624,6 +656,7 @@ final class ContainerClusterUpgradeSettingsBlueGreenSettings {
 
   final ContainerClusterStandardRolloutPolicy? standardRolloutPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_pool_soak_duration': ?nodePoolSoakDuration?.toTfJson(),
     'standard_rollout_policy': ?standardRolloutPolicy?.encode(),
@@ -647,6 +680,7 @@ final class ContainerClusterStandardRolloutPolicy {
 
   final TfArg<String>? batchSoakDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_node_count': ?batchNodeCount?.toTfJson(),
     'batch_percentage': ?batchPercentage?.toTfJson(),
@@ -670,6 +704,7 @@ final class ContainerClusterResourceLimits {
 
   final TfArg<String> resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum': maximum.toTfJson(),
     'minimum': ?minimum?.toTfJson(),
@@ -691,6 +726,7 @@ final class ContainerClusterConfidentialNodes {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -710,6 +746,7 @@ final class ContainerClusterControlPlaneEndpointsConfig {
 
   final ContainerClusterIpEndpointsConfig? ipEndpointsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_endpoint_config': ?dnsEndpointConfig?.encode(),
     'ip_endpoints_config': ?ipEndpointsConfig?.encode(),
@@ -735,6 +772,7 @@ final class ContainerClusterDnsEndpointConfig {
 
   final TfArg<String>? endpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_external_traffic': ?allowExternalTraffic?.toTfJson(),
     'enable_k8s_certs_via_dns': ?enableK8sCertsViaDns?.toTfJson(),
@@ -751,6 +789,7 @@ final class ContainerClusterIpEndpointsConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -762,6 +801,7 @@ final class ContainerClusterCostManagementConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -775,6 +815,7 @@ final class ContainerClusterDatabaseEncryption {
 
   final TfArg<String> state;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_name': ?keyName?.encodeAs('id').toTfJson(),
     'state': state.toTfJson(),
@@ -789,6 +830,7 @@ final class ContainerClusterDefaultSnatStatus {
 
   final TfArg<bool> disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
 }
 
@@ -811,6 +853,7 @@ final class ContainerClusterDnsConfig {
 
   final TfArg<String>? clusterDnsScope;
 
+  @internal
   Map<String, Object?> encode() => {
     'additive_vpc_scope_dns_domain': ?additiveVpcScopeDnsDomain?.toTfJson(),
     'cluster_dns': ?clusterDns?.toTfJson(),
@@ -827,6 +870,7 @@ final class ContainerClusterEnableK8sBetaApis {
 
   final TfArg<List<String>> enabledApis;
 
+  @internal
   Map<String, Object?> encode() => {'enabled_apis': enabledApis.toTfJson()};
 }
 
@@ -838,6 +882,7 @@ final class ContainerClusterEnterpriseConfig {
 
   final TfArg<String>? desiredTier;
 
+  @internal
   Map<String, Object?> encode() => {'desired_tier': ?desiredTier?.toTfJson()};
 }
 
@@ -851,6 +896,7 @@ final class ContainerClusterFleet {
 
   final TfArg<String>? project;
 
+  @internal
   Map<String, Object?> encode() => {
     'membership_type': ?membershipType?.toTfJson(),
     'project': ?project?.toTfJson(),
@@ -865,6 +911,7 @@ final class ContainerClusterGatewayApiConfig {
 
   final TfArg<String> channel;
 
+  @internal
   Map<String, Object?> encode() => {'channel': channel.toTfJson()};
 }
 
@@ -876,6 +923,7 @@ final class ContainerClusterGkeAutoUpgradeConfig {
 
   final TfArg<String> patchMode;
 
+  @internal
   Map<String, Object?> encode() => {'patch_mode': patchMode.toTfJson()};
 }
 
@@ -887,6 +935,7 @@ final class ContainerClusterIdentityServiceConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -928,6 +977,7 @@ final class ContainerClusterIpAllocationPolicy {
 
   final ContainerClusterPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_ipv4_cidr_block': ?clusterIpv4CidrBlock?.toTfJson(),
     'cluster_secondary_range_name': ?clusterSecondaryRangeName?.toTfJson(),
@@ -961,6 +1011,7 @@ final class ContainerClusterAdditionalIpRangesConfig {
 
   final RefTo<GoogleComputeSubnetwork> subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'pod_ipv4_range_names': ?podIpv4RangeNames?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -978,6 +1029,7 @@ final class ContainerClusterAdditionalPodRangesConfig {
 
   final TfArg<List<String>> podRangeNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'pod_range_names': podRangeNames.toTfJson(),
   };
@@ -991,6 +1043,7 @@ final class ContainerClusterAutoIpamConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -1002,6 +1055,7 @@ final class ContainerClusterNetworkTierConfig {
 
   final TfArg<String> networkTier;
 
+  @internal
   Map<String, Object?> encode() => {'network_tier': networkTier.toTfJson()};
 }
 
@@ -1014,6 +1068,7 @@ final class ContainerClusterPodCidrOverprovisionConfig {
 
   final TfArg<bool> disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
 }
 
@@ -1025,6 +1080,7 @@ final class ContainerClusterLoggingConfig {
 
   final TfArg<List<String>> enableComponents;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_components': enableComponents.toTfJson(),
   };
@@ -1052,6 +1108,7 @@ final class ContainerClusterMaintenancePolicy {
 
   final ContainerClusterRecurringWindow? recurringWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'daily_maintenance_window': ?dailyMaintenanceWindow?.encode(),
     'disruption_budget': ?disruptionBudget?.encode(),
@@ -1072,6 +1129,7 @@ final class ContainerClusterDailyMaintenanceWindow {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {'start_time': startTime.toTfJson()};
 }
 
@@ -1088,6 +1146,7 @@ final class ContainerClusterDisruptionBudget {
 
   final TfArg<String>? patchVersionDisruptionInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'minor_version_disruption_interval': ?minorVersionDisruptionInterval
         ?.toTfJson(),
@@ -1115,6 +1174,7 @@ final class ContainerClusterMaintenanceExclusion {
 
   final ContainerClusterExclusionOptions? exclusionOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
     'exclusion_name': exclusionName.toTfJson(),
@@ -1136,6 +1196,7 @@ final class ContainerClusterExclusionOptions {
 
   final TfArg<String> scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time_behavior': ?endTimeBehavior?.toTfJson(),
     'scope': scope.toTfJson(),
@@ -1161,6 +1222,7 @@ final class ContainerClusterRecurringMaintenanceWindow {
 
   final ContainerClusterWindowStartTime windowStartTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'recurrence': recurrence.toTfJson(),
     'window_duration': windowDuration.toTfJson(),
@@ -1185,6 +1247,7 @@ final class ContainerClusterDelayUntil {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -1208,6 +1271,7 @@ final class ContainerClusterWindowStartTime {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': hours.toTfJson(),
     'minutes': minutes.toTfJson(),
@@ -1231,6 +1295,7 @@ final class ContainerClusterRecurringWindow {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': endTime.toTfJson(),
     'recurrence': recurrence.toTfJson(),
@@ -1246,6 +1311,7 @@ final class ContainerClusterMasterAuth {
 
   final ContainerClusterClientCertificateConfig clientCertificateConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_certificate_config': clientCertificateConfig.encode(),
   };
@@ -1261,6 +1327,7 @@ final class ContainerClusterClientCertificateConfig {
 
   final TfArg<bool> issueClientCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'issue_client_certificate': issueClientCertificate.toTfJson(),
   };
@@ -1282,6 +1349,7 @@ final class ContainerClusterMasterAuthorizedNetworksConfig {
 
   final List<ContainerClusterCidrBlocks>? cidrBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_public_cidrs_access_enabled': ?gcpPublicCidrsAccessEnabled?.toTfJson(),
     'private_endpoint_enforcement_enabled': ?privateEndpointEnforcementEnabled
@@ -1301,6 +1369,7 @@ final class ContainerClusterCidrBlocks {
 
   final TfArg<String>? displayName;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_block': cidrBlock.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -1315,6 +1384,7 @@ final class ContainerClusterMeshCertificates {
 
   final TfArg<bool> enableCertificates;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_certificates': enableCertificates.toTfJson(),
   };
@@ -1337,6 +1407,7 @@ final class ContainerClusterMonitoringConfig {
 
   final ContainerClusterManagedPrometheus? managedPrometheus;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_components': ?enableComponents?.toTfJson(),
     'advanced_datapath_observability_config':
@@ -1358,6 +1429,7 @@ final class ContainerClusterAdvancedDatapathObservabilityConfig {
 
   final TfArg<bool> enableRelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_metrics': enableMetrics.toTfJson(),
     'enable_relay': enableRelay.toTfJson(),
@@ -1377,6 +1449,7 @@ final class ContainerClusterManagedPrometheus {
 
   final ContainerClusterAutoMonitoringConfig? autoMonitoringConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'auto_monitoring_config': ?autoMonitoringConfig?.encode(),
@@ -1391,6 +1464,7 @@ final class ContainerClusterAutoMonitoringConfig {
 
   final TfArg<String> scope;
 
+  @internal
   Map<String, Object?> encode() => {'scope': scope.toTfJson()};
 }
 
@@ -1405,6 +1479,7 @@ final class ContainerClusterNetworkPerformanceConfig {
 
   final TfArg<String> totalEgressBandwidthTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
@@ -1420,6 +1495,7 @@ final class ContainerClusterNetworkPolicy {
 
   final TfArg<String>? provider;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'provider': ?provider?.toTfJson(),
@@ -1573,6 +1649,7 @@ final class ContainerClusterNodeConfig {
 
   final ContainerClusterWorkloadMetadataConfig? workloadMetadataConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_kms_key': ?bootDiskKmsKey?.toTfJson(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -1644,6 +1721,7 @@ final class ContainerClusterAdvancedMachineFeatures {
 
   final TfArg<num> threadsPerCore;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'performance_monitoring_unit': ?performanceMonitoringUnit?.toTfJson(),
@@ -1671,6 +1749,7 @@ final class ContainerClusterBootDisk {
 
   final TfArg<num>? sizeGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_type': ?diskType?.toTfJson(),
     'provisioned_iops': ?provisionedIops?.toTfJson(),
@@ -1697,6 +1776,7 @@ final class ContainerClusterContainerdConfig {
 
   final ContainerClusterWritableCgroups? writableCgroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_registry_access_config': ?privateRegistryAccessConfig?.encode(),
     if (registryHosts != null)
@@ -1720,6 +1800,7 @@ final class ContainerClusterPrivateRegistryAccessConfig {
   final List<ContainerClusterCertificateAuthorityDomainConfig>?
   certificateAuthorityDomainConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     if (certificateAuthorityDomainConfig != null)
@@ -1744,6 +1825,7 @@ final class ContainerClusterCertificateAuthorityDomainConfig {
   final ContainerClusterGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'fqdns': fqdns.toTfJson(),
     'gcp_secret_manager_certificate_config': gcpSecretManagerCertificateConfig
@@ -1762,6 +1844,7 @@ final class ContainerClusterGcpSecretManagerCertificateConfig {
 
   final TfArg<String> secretUri;
 
+  @internal
   Map<String, Object?> encode() => {'secret_uri': secretUri.toTfJson()};
 }
 
@@ -1776,6 +1859,7 @@ final class ContainerClusterRegistryHosts {
 
   final List<ContainerClusterHosts>? hosts;
 
+  @internal
   Map<String, Object?> encode() => {
     'server': server.toTfJson(),
     if (hosts != null) 'hosts': [for (final e in hosts!) e.encode()],
@@ -1811,6 +1895,7 @@ final class ContainerClusterHosts {
 
   final List<ContainerClusterHeader>? header;
 
+  @internal
   Map<String, Object?> encode() => {
     'capabilities': ?capabilities?.toTfJson(),
     'dial_timeout': ?dialTimeout?.toTfJson(),
@@ -1831,6 +1916,7 @@ final class ContainerClusterCa {
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
   };
@@ -1847,6 +1933,7 @@ final class ContainerClusterClient {
 
   final ContainerClusterKey? key;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert': cert.encode(),
     'key': ?key?.encode(),
@@ -1862,6 +1949,7 @@ final class ContainerClusterCert {
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
   };
@@ -1876,6 +1964,7 @@ final class ContainerClusterKey {
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
   };
@@ -1892,6 +1981,7 @@ final class ContainerClusterHeader {
 
   final TfArg<List<String>> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -1907,6 +1997,7 @@ final class ContainerClusterWritableCgroups {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -1924,6 +2015,7 @@ final class ContainerClusterEphemeralStorageLocalSsdConfig {
 
   final TfArg<num> localSsdCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_cache_count': ?dataCacheCount?.toTfJson(),
     'local_ssd_count': localSsdCount.toTfJson(),
@@ -1939,6 +2031,7 @@ final class ContainerClusterFastSocket {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -1951,6 +2044,7 @@ final class ContainerClusterGcfsConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -1978,6 +2072,7 @@ final class ContainerClusterGuestAccelerator {
 
   final ContainerClusterGpuSharingConfig? gpuSharingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'gpu_partition_size': ?gpuPartitionSize?.toTfJson(),
@@ -1998,6 +2093,7 @@ final class ContainerClusterGpuDriverInstallationConfig {
 
   final TfArg<String> gpuDriverVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'gpu_driver_version': gpuDriverVersion.toTfJson(),
   };
@@ -2017,6 +2113,7 @@ final class ContainerClusterGpuSharingConfig {
 
   final TfArg<num> maxSharedClientsPerGpu;
 
+  @internal
   Map<String, Object?> encode() => {
     'gpu_sharing_strategy': gpuSharingStrategy.toTfJson(),
     'max_shared_clients_per_gpu': maxSharedClientsPerGpu.toTfJson(),
@@ -2032,6 +2129,7 @@ final class ContainerClusterGvnic {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -2112,6 +2210,7 @@ final class ContainerClusterKubeletConfig {
 
   final ContainerClusterTopologyManager? topologyManager;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_unsafe_sysctls': ?allowedUnsafeSysctls?.toTfJson(),
     'container_log_max_files': ?containerLogMaxFiles?.toTfJson(),
@@ -2151,6 +2250,7 @@ final class ContainerClusterCrashLoopBackOff {
 
   final TfArg<String>? maxContainerRestartPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_container_restart_period': ?maxContainerRestartPeriod?.toTfJson(),
   };
@@ -2182,6 +2282,7 @@ final class ContainerClusterEvictionMinimumReclaim {
 
   final TfArg<String>? pidAvailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'imagefs_available': ?imagefsAvailable?.toTfJson(),
     'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
@@ -2218,6 +2319,7 @@ final class ContainerClusterEvictionSoft {
 
   final TfArg<String>? pidAvailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'imagefs_available': ?imagefsAvailable?.toTfJson(),
     'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
@@ -2254,6 +2356,7 @@ final class ContainerClusterEvictionSoftGracePeriod {
 
   final TfArg<String>? pidAvailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'imagefs_available': ?imagefsAvailable?.toTfJson(),
     'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
@@ -2273,6 +2376,7 @@ final class ContainerClusterMemoryManager {
 
   final TfArg<String>? policy;
 
+  @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
@@ -2287,6 +2391,7 @@ final class ContainerClusterTopologyManager {
 
   final TfArg<String>? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
     'scope': ?scope?.toTfJson(),
@@ -2328,6 +2433,7 @@ final class ContainerClusterNodeConfigLinuxNodeConfig {
 
   final ContainerClusterSwapConfig? swapConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cgroup_mode': ?cgroupMode?.toTfJson(),
     'sysctls': ?sysctls?.toTfJson(),
@@ -2350,6 +2456,7 @@ final class ContainerClusterAccurateTimeConfig {
 
   final TfArg<bool>? enablePtpKvmTimeSync;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_ptp_kvm_time_sync': ?enablePtpKvmTimeSync?.toTfJson(),
   };
@@ -2364,6 +2471,7 @@ final class ContainerClusterCustomNodeInit {
 
   final ContainerClusterInitScript? initScript;
 
+  @internal
   Map<String, Object?> encode() => {'init_script': ?initScript?.encode()};
 }
 
@@ -2384,6 +2492,7 @@ final class ContainerClusterInitScript {
 
   final TfArg<String>? gcsUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
     'gcs_generation': ?gcsGeneration?.toTfJson(),
@@ -2405,6 +2514,7 @@ final class ContainerClusterHugepagesConfig {
 
   final TfArg<num>? hugepageSize2m;
 
+  @internal
   Map<String, Object?> encode() => {
     'hugepage_size_1g': ?hugepageSize1g?.toTfJson(),
     'hugepage_size_2m': ?hugepageSize2m?.toTfJson(),
@@ -2420,6 +2530,7 @@ final class ContainerClusterNodeKernelModuleLoading {
 
   final TfArg<String>? policy;
 
+  @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
@@ -2446,6 +2557,7 @@ final class ContainerClusterSwapConfig {
 
   final ContainerClusterEphemeralLocalSsdProfile? ephemeralLocalSsdProfile;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'boot_disk_profile': ?bootDiskProfile?.encode(),
@@ -2469,6 +2581,7 @@ final class ContainerClusterBootDiskProfile {
 
   final TfArg<num>? swapSizePercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'swap_size_gib': ?swapSizeGib?.toTfJson(),
     'swap_size_percent': ?swapSizePercent?.toTfJson(),
@@ -2484,6 +2597,7 @@ final class ContainerClusterDedicatedLocalSsdProfile {
 
   final TfArg<num>? diskCount;
 
+  @internal
   Map<String, Object?> encode() => {'disk_count': ?diskCount?.toTfJson()};
 }
 
@@ -2496,6 +2610,7 @@ final class ContainerClusterEncryptionConfig {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
@@ -2513,6 +2628,7 @@ final class ContainerClusterEphemeralLocalSsdProfile {
 
   final TfArg<num>? swapSizePercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'swap_size_gib': ?swapSizeGib?.toTfJson(),
     'swap_size_percent': ?swapSizePercent?.toTfJson(),
@@ -2528,6 +2644,7 @@ final class ContainerClusterLocalNvmeSsdBlockConfig {
 
   final TfArg<num> localSsdCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_ssd_count': localSsdCount.toTfJson(),
   };
@@ -2544,6 +2661,7 @@ final class ContainerClusterNodeImageConfig {
 
   final TfArg<String>? imageProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     'image_project': ?imageProject?.toTfJson(),
@@ -2567,6 +2685,7 @@ final class ContainerClusterReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'consume_reservation_type': consumeReservationType.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -2583,6 +2702,7 @@ final class ContainerClusterSandboxConfig {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -2600,6 +2720,7 @@ final class ContainerClusterSecondaryBootDisks {
 
   final TfArg<String>? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_image': diskImage.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -2620,6 +2741,7 @@ final class ContainerClusterSoleTenantConfig {
 
   final List<ContainerClusterNodeAffinity> nodeAffinity;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_node_cpus': ?minNodeCpus?.toTfJson(),
     'node_affinity': [for (final e in nodeAffinity) e.encode()],
@@ -2643,6 +2765,7 @@ final class ContainerClusterNodeAffinity {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
@@ -2667,6 +2790,7 @@ final class ContainerClusterTaint {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'key': key.toTfJson(),
@@ -2683,6 +2807,7 @@ final class ContainerClusterTaintConfig {
 
   final TfArg<String> architectureTaintBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'architecture_taint_behavior': architectureTaintBehavior.toTfJson(),
   };
@@ -2697,6 +2822,7 @@ final class ContainerClusterWindowsNodeConfig {
 
   final TfArg<String>? osversion;
 
+  @internal
   Map<String, Object?> encode() => {'osversion': ?osversion?.toTfJson()};
 }
 
@@ -2709,6 +2835,7 @@ final class ContainerClusterWorkloadMetadataConfig {
 
   final TfArg<String> mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -2720,6 +2847,7 @@ final class ContainerClusterNodeCreationConfig {
 
   final TfArg<String> nodeCreationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_creation_mode': nodeCreationMode.toTfJson(),
   };
@@ -2783,6 +2911,7 @@ final class ContainerClusterNodePool {
 
   final ContainerClusterUpgradeSettings? upgradeSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'ignore_node_count_changes': ?ignoreNodeCountChanges?.toTfJson(),
     'initial_node_count': ?initialNodeCount?.toTfJson(),
@@ -2828,6 +2957,7 @@ final class ContainerClusterNodePoolAutoscaling {
 
   final TfArg<num>? totalMinNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_policy': ?locationPolicy?.toTfJson(),
     'max_node_count': ?maxNodeCount?.toTfJson(),
@@ -2848,6 +2978,7 @@ final class ContainerClusterNodePoolMaintenancePolicy {
   final List<ContainerClusterExclusionUntilEndOfSupport>?
   exclusionUntilEndOfSupport;
 
+  @internal
   Map<String, Object?> encode() => {
     if (exclusionUntilEndOfSupport != null)
       'exclusion_until_end_of_support': [
@@ -2864,6 +2995,7 @@ final class ContainerClusterExclusionUntilEndOfSupport {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -2906,6 +3038,7 @@ final class ContainerClusterNetworkConfig {
 
   final ContainerClusterPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_network_profile': ?acceleratorNetworkProfile?.toTfJson(),
     'create_pod_range': ?createPodRange?.toTfJson(),
@@ -2939,6 +3072,7 @@ final class ContainerClusterAdditionalNodeNetworkConfigs {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('name').toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('name').toTfJson(),
@@ -2961,6 +3095,7 @@ final class ContainerClusterAdditionalPodNetworkConfigs {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pods_per_node': ?maxPodsPerNode?.toTfJson(),
     'secondary_pod_range': ?secondaryPodRange?.toTfJson(),
@@ -2984,6 +3119,7 @@ final class ContainerClusterNodeDrainConfig {
 
   final TfArg<bool>? respectPdbDuringNodePoolDeletion;
 
+  @internal
   Map<String, Object?> encode() => {
     'grace_termination_duration': ?graceTerminationDuration?.toTfJson(),
     'pdb_timeout_duration': ?pdbTimeoutDuration?.toTfJson(),
@@ -3008,6 +3144,7 @@ final class ContainerClusterPlacementPolicy {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy_name': ?policyName?.toTfJson(),
     'tpu_topology': ?tpuTopology?.toTfJson(),
@@ -3023,6 +3160,7 @@ final class ContainerClusterQueuedProvisioning {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -3045,6 +3183,7 @@ final class ContainerClusterUpgradeSettings {
 
   final ContainerClusterBlueGreenSettings? blueGreenSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
     'max_unavailable': ?maxUnavailable?.toTfJson(),
@@ -3066,6 +3205,7 @@ final class ContainerClusterBlueGreenSettings {
 
   final ContainerClusterStandardRolloutPolicy standardRolloutPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_pool_soak_duration': ?nodePoolSoakDuration?.toTfJson(),
     'standard_rollout_policy': standardRolloutPolicy.encode(),
@@ -3091,6 +3231,7 @@ final class ContainerClusterNodePoolAutoConfig {
 
   final ContainerClusterNodeKubeletConfig? nodeKubeletConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
     'linux_node_config': ?linuxNodeConfig?.encode(),
@@ -3112,6 +3253,7 @@ final class ContainerClusterNodePoolAutoConfigLinuxNodeConfig {
 
   final ContainerClusterNodeKernelModuleLoading? nodeKernelModuleLoading;
 
+  @internal
   Map<String, Object?> encode() => {
     'cgroup_mode': ?cgroupMode?.toTfJson(),
     'node_kernel_module_loading': ?nodeKernelModuleLoading?.encode(),
@@ -3126,6 +3268,7 @@ final class ContainerClusterNetworkTags {
 
   final TfArg<List<String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 
@@ -3139,6 +3282,7 @@ final class ContainerClusterNodeKubeletConfig {
 
   final TfArg<String>? insecureKubeletReadonlyPortEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'insecure_kubelet_readonly_port_enabled':
         ?insecureKubeletReadonlyPortEnabled?.toTfJson(),
@@ -3153,6 +3297,7 @@ final class ContainerClusterNodePoolDefaults {
 
   final ContainerClusterNodeConfigDefaults? nodeConfigDefaults;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_config_defaults': ?nodeConfigDefaults?.encode(),
   };
@@ -3177,6 +3322,7 @@ final class ContainerClusterNodeConfigDefaults {
 
   final ContainerClusterGcfsConfig? gcfsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'insecure_kubelet_readonly_port_enabled':
         ?insecureKubeletReadonlyPortEnabled?.toTfJson(),
@@ -3194,6 +3340,7 @@ final class ContainerClusterNotificationConfig {
 
   final ContainerClusterPubsub pubsub;
 
+  @internal
   Map<String, Object?> encode() => {'pubsub': pubsub.encode()};
 }
 
@@ -3213,6 +3360,7 @@ final class ContainerClusterPubsub {
 
   final ContainerClusterFilter? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
@@ -3228,6 +3376,7 @@ final class ContainerClusterFilter {
 
   final TfArg<List<String>> eventType;
 
+  @internal
   Map<String, Object?> encode() => {'event_type': eventType.toTfJson()};
 }
 
@@ -3239,6 +3388,7 @@ final class ContainerClusterPodAutoscaling {
 
   final TfArg<String> hpaProfile;
 
+  @internal
   Map<String, Object?> encode() => {'hpa_profile': hpaProfile.toTfJson()};
 }
 
@@ -3264,6 +3414,7 @@ final class ContainerClusterPrivateClusterConfig {
 
   final ContainerClusterMasterGlobalAccessConfig? masterGlobalAccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_private_endpoint': ?enablePrivateEndpoint?.toTfJson(),
     'enable_private_nodes': ?enablePrivateNodes?.toTfJson(),
@@ -3281,6 +3432,7 @@ final class ContainerClusterMasterGlobalAccessConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -3297,6 +3449,7 @@ final class ContainerClusterRbacBindingConfig {
 
   final TfArg<bool>? enableInsecureBindingSystemUnauthenticated;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_insecure_binding_system_authenticated':
         ?enableInsecureBindingSystemAuthenticated?.toTfJson(),
@@ -3313,6 +3466,7 @@ final class ContainerClusterReleaseChannel {
 
   final TfArg<String> channel;
 
+  @internal
   Map<String, Object?> encode() => {'channel': channel.toTfJson()};
 }
 
@@ -3332,6 +3486,7 @@ final class ContainerClusterResourceUsageExportConfig {
 
   final ContainerClusterBigqueryDestination bigqueryDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_network_egress_metering': ?enableNetworkEgressMetering?.toTfJson(),
     'enable_resource_consumption_metering': ?enableResourceConsumptionMetering
@@ -3348,6 +3503,7 @@ final class ContainerClusterBigqueryDestination {
 
   final RefTo<GoogleBigqueryDataset> datasetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
   };
@@ -3361,6 +3517,7 @@ final class ContainerClusterRollbackSafeUpgrade {
 
   final TfArg<String>? controlPlaneSoakDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_soak_duration': ?controlPlaneSoakDuration?.toTfJson(),
   };
@@ -3379,6 +3536,7 @@ final class ContainerClusterSecretManagerConfig {
 
   final ContainerClusterRotationConfig? rotationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'rotation_config': ?rotationConfig?.encode(),
@@ -3399,6 +3557,7 @@ final class ContainerClusterRotationConfig {
 
   final TfArg<String>? rotationInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'rotation_interval': ?rotationInterval?.toTfJson(),
@@ -3418,6 +3577,7 @@ final class ContainerClusterSecretSyncConfig {
 
   final ContainerClusterRotationConfig? rotationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'rotation_config': ?rotationConfig?.encode(),
@@ -3437,6 +3597,7 @@ final class ContainerClusterSecurityPostureConfig {
 
   final TfArg<String>? vulnerabilityMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'vulnerability_mode': ?vulnerabilityMode?.toTfJson(),
@@ -3451,6 +3612,7 @@ final class ContainerClusterServiceExternalIpsConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -3485,6 +3647,7 @@ final class ContainerClusterUserManagedKeysConfig {
 
   final TfArg<List<String>>? serviceAccountVerificationKeys;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_ca': ?aggregationCa?.toTfJson(),
     'cluster_ca': ?clusterCa?.toTfJson(),
@@ -3508,6 +3671,7 @@ final class ContainerClusterVerticalPodAutoscaling {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -3519,6 +3683,7 @@ final class ContainerClusterWorkloadIdentityConfig {
 
   final TfArg<String>? workloadPool;
 
+  @internal
   Map<String, Object?> encode() => {'workload_pool': ?workloadPool?.toTfJson()};
 }
 

@@ -15,6 +15,7 @@ final class GlueCatalogTableOpenTableFormatInput {
 
   final GlueCatalogTableIcebergInput icebergInput;
 
+  @internal
   Map<String, Object?> encode() => {'iceberg_input': icebergInput.encode()};
 }
 
@@ -34,6 +35,7 @@ final class GlueCatalogTableIcebergInput {
 
   final GlueCatalogTableIcebergTableInput? icebergTableInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_operation': metadataOperation.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -79,6 +81,7 @@ final class GlueCatalogTableIcebergTableInput {
 
   final GlueCatalogTableSortOrder? sortOrder;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -98,6 +101,7 @@ final class GlueCatalogTablePartitionSpec {
 
   final List<GlueCatalogTablePartitionSpecFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'spec_id': ?specId?.toTfJson(),
     'fields': [for (final e in fields) e.encode()],
@@ -123,6 +127,7 @@ final class GlueCatalogTablePartitionSpecFields {
 
   final TfArg<String> transform;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'name': name.toTfJson(),
@@ -150,6 +155,7 @@ final class GlueCatalogTableIcebergTableInputSchema {
 
   final List<GlueCatalogTableSchemaFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier_field_ids': ?identifierFieldIds?.toTfJson(),
     'schema_id': ?schemaId?.toTfJson(),
@@ -200,6 +206,7 @@ final class GlueCatalogTableSchemaFields {
 
   final TfArg<String>? writeDefault;
 
+  @internal
   Map<String, Object?> encode() => {
     'doc': ?doc?.toTfJson(),
     'id': id.toTfJson(),
@@ -224,6 +231,7 @@ final class GlueCatalogTableSortOrder {
 
   final List<GlueCatalogTableSortOrderFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'order_id': orderId.toTfJson(),
     'fields': [for (final e in fields) e.encode()],
@@ -249,6 +257,7 @@ final class GlueCatalogTableSortOrderFields {
 
   final TfArg<String> transform;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'null_order': nullOrder.toTfJson(),
@@ -304,6 +313,7 @@ final class GlueCatalogTablePartitionIndex {
 
   final TfArg<List<String>> keys;
 
+  @internal
   Map<String, Object?> encode() => {
     'index_name': indexName.toTfJson(),
     'keys': keys.toTfJson(),
@@ -329,6 +339,7 @@ final class GlueCatalogTablePartitionKeys {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
@@ -386,6 +397,7 @@ final class GlueCatalogTableStorageDescriptor {
 
   final List<GlueCatalogTableSortColumns>? sortColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_locations': ?additionalLocations?.toTfJson(),
     'bucket_columns': ?bucketColumns?.toTfJson(),
@@ -424,6 +436,7 @@ final class GlueCatalogTableColumns {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
@@ -445,6 +458,7 @@ final class GlueCatalogTableSchemaReference {
 
   final TfArg<num> schemaVersionNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     ...schema.encode(),
     'schema_version_number': schemaVersionNumber.toTfJson(),
@@ -469,8 +483,10 @@ sealed class GlueCatalogTableSchema {
   ) = GlueCatalogTableSchemaVersionId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -480,9 +496,11 @@ final class GlueCatalogTableSchemaIdChoice extends GlueCatalogTableSchema {
 
   final GlueCatalogTableSchemaId schemaId;
 
+  @internal
   @override
   String get blockKey => 'schema_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'schema_id': schemaId.encode()};
 }
@@ -493,9 +511,11 @@ final class GlueCatalogTableSchemaVersionId extends GlueCatalogTableSchema {
 
   final TfArg<String> schemaVersionId;
 
+  @internal
   @override
   String get blockKey => 'schema_version_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'schema_version_id': schemaVersionId.toTfJson(),
@@ -512,6 +532,7 @@ final class GlueCatalogTableSchemaId {
 
   final GlueCatalogTableSchemaIdSchema schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'registry_name': ?registryName?.toTfJson(),
     ...schema.encode(),
@@ -536,8 +557,10 @@ sealed class GlueCatalogTableSchemaIdSchema {
   ) = GlueCatalogTableSchemaIdSchemaName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -548,9 +571,11 @@ final class GlueCatalogTableSchemaIdSchemaArn
 
   final TfArg<String> schemaArn;
 
+  @internal
   @override
   String get blockKey => 'schema_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'schema_arn': schemaArn.toTfJson()};
 }
@@ -562,9 +587,11 @@ final class GlueCatalogTableSchemaIdSchemaName
 
   final TfArg<String> schemaName;
 
+  @internal
   @override
   String get blockKey => 'schema_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'schema_name': schemaName.toTfJson()};
 }
@@ -585,6 +612,7 @@ final class GlueCatalogTableSerDeInfo {
 
   final TfArg<String>? serializationLibrary;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -608,6 +636,7 @@ final class GlueCatalogTableSkewedInfo {
 
   final TfArg<List<String>>? skewedColumnValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'skewed_column_names': ?skewedColumnNames?.toTfJson(),
     'skewed_column_value_location_maps': ?skewedColumnValueLocationMaps
@@ -629,6 +658,7 @@ final class GlueCatalogTableSortColumns {
 
   final TfArg<num> sortOrder;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': column.toTfJson(),
     'sort_order': sortOrder.toTfJson(),
@@ -654,6 +684,7 @@ final class GlueCatalogTableTargetTable {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': catalogId.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -696,6 +727,7 @@ final class GlueCatalogTableViewDefinition {
 
   final List<GlueCatalogTableRepresentations>? representations;
 
+  @internal
   Map<String, Object?> encode() => {
     'definer': ?definer?.toTfJson(),
     'is_protected': ?isProtected?.toTfJson(),
@@ -752,6 +784,7 @@ final class GlueCatalogTableRepresentations {
 
   final TfArg<String>? viewOriginalText;
 
+  @internal
   Map<String, Object?> encode() => {
     'dialect': ?dialect?.toTfJson(),
     'dialect_version': ?dialectVersion?.toTfJson(),

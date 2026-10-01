@@ -44,9 +44,7 @@ library;
 
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/filestore.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/iap.dart';
@@ -90,7 +88,7 @@ final class NetworkStack extends Stack {
     // real number is interpolated. Data source + IAM members are not
     // API-gated, so no `dependsOn: apiDeps` is required here.
     final current = add(
-      GoogleProject('current', projectId: .literal(projectId)),
+      DataGoogleProject('current', projectId: .literal(projectId)),
     );
 
     // Service accounts that the instance- and disk-scoped IAM bindings below

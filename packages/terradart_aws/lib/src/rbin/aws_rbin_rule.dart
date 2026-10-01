@@ -47,12 +47,15 @@ sealed class RbinRuleTagFilter {
   ) = RbinRuleTagFilterResourceTags;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -62,14 +65,17 @@ final class RbinRuleTagFilterExcludeResourceTags extends RbinRuleTagFilter {
 
   final List<RbinRuleExcludeResourceTags> excludeResourceTags;
 
+  @internal
   @override
   String get blockKey => 'exclude_resource_tags';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'exclude_resource_tags': [for (final e in excludeResourceTags) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'exclude_resource_tags': TfArg.literal([
@@ -84,14 +90,17 @@ final class RbinRuleTagFilterResourceTags extends RbinRuleTagFilter {
 
   final List<RbinRuleResourceTags> resourceTags;
 
+  @internal
   @override
   String get blockKey => 'resource_tags';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_tags': [for (final e in resourceTags) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'resource_tags': TfArg.literal([for (final e in resourceTags) e.encode()]),
@@ -111,6 +120,7 @@ final class RbinRuleExcludeResourceTags {
 
   final TfArg<String>? resourceTagValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_tag_key': resourceTagKey.toTfJson(),
     'resource_tag_value': ?resourceTagValue?.toTfJson(),
@@ -125,6 +135,7 @@ final class RbinRuleLockConfiguration {
 
   final RbinRuleUnlockDelay unlockDelay;
 
+  @internal
   Map<String, Object?> encode() => {'unlock_delay': unlockDelay.encode()};
 }
 
@@ -141,6 +152,7 @@ final class RbinRuleUnlockDelay {
 
   final TfArg<num> unlockDelayValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'unlock_delay_unit': unlockDelayUnit.toTfJson(),
     'unlock_delay_value': unlockDelayValue.toTfJson(),
@@ -173,6 +185,7 @@ final class RbinRuleResourceTags {
 
   final TfArg<String>? resourceTagValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_tag_key': resourceTagKey.toTfJson(),
     'resource_tag_value': ?resourceTagValue?.toTfJson(),
@@ -192,6 +205,7 @@ final class RbinRuleRetentionPeriod {
 
   final TfArg<num> retentionPeriodValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_period_unit': retentionPeriodUnit.toTfJson(),
     'retention_period_value': retentionPeriodValue.toTfJson(),

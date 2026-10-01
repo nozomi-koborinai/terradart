@@ -18,6 +18,7 @@ final class DataElasticacheUserAuthenticationMode {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_count': ?passwordCount?.toTfJson(),
     'type': ?type?.toTfJson(),

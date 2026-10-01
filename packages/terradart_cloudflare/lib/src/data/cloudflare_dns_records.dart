@@ -33,6 +33,7 @@ final class DataDnsRecordsComment {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'absent': ?absent?.toTfJson(),
     'contains': ?contains?.toTfJson(),
@@ -62,6 +63,7 @@ final class DataDnsRecordsContent {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'endswith': ?endswith?.toTfJson(),
@@ -89,6 +91,7 @@ final class DataDnsRecordsName {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'endswith': ?endswith?.toTfJson(),
@@ -122,6 +125,7 @@ final class DataDnsRecordsTag {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'absent': ?absent?.toTfJson(),
     'contains': ?contains?.toTfJson(),

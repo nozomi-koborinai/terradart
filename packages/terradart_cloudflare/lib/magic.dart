@@ -3,6 +3,50 @@
 /// Cloudflare Magic WAN, Magic Transit, and Magic Network Monitoring.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/cloudflare_magic_network_monitoring_configuration.dart'
+    show DataCloudflareMagicNetworkMonitoringConfiguration;
+export 'src/data/cloudflare_magic_network_monitoring_rule.dart'
+    show DataCloudflareMagicNetworkMonitoringRule;
+export 'src/data/cloudflare_magic_network_monitoring_rules.dart'
+    show DataCloudflareMagicNetworkMonitoringRules;
+export 'src/data/cloudflare_magic_transit_cf1_site.dart'
+    show DataCloudflareMagicTransitCf1Site;
+export 'src/data/cloudflare_magic_transit_cf1_sites.dart'
+    show DataCloudflareMagicTransitCf1Sites;
+export 'src/data/cloudflare_magic_transit_connector.dart'
+    show
+        DataCloudflareMagicTransitConnector,
+        DataMagicTransitConnectorDeviceType,
+        DataMagicTransitConnectorFilter;
+export 'src/data/cloudflare_magic_transit_connectors.dart'
+    show DataCloudflareMagicTransitConnectors;
+export 'src/data/cloudflare_magic_transit_site.dart'
+    show DataCloudflareMagicTransitSite, DataMagicTransitSiteFilter;
+export 'src/data/cloudflare_magic_transit_site_acl.dart'
+    show DataCloudflareMagicTransitSiteAcl;
+export 'src/data/cloudflare_magic_transit_site_acls.dart'
+    show DataCloudflareMagicTransitSiteAcls;
+export 'src/data/cloudflare_magic_transit_site_lan.dart'
+    show DataCloudflareMagicTransitSiteLan;
+export 'src/data/cloudflare_magic_transit_site_lans.dart'
+    show DataCloudflareMagicTransitSiteLans;
+export 'src/data/cloudflare_magic_transit_site_wan.dart'
+    show DataCloudflareMagicTransitSiteWan;
+export 'src/data/cloudflare_magic_transit_site_wans.dart'
+    show DataCloudflareMagicTransitSiteWans;
+export 'src/data/cloudflare_magic_transit_sites.dart'
+    show DataCloudflareMagicTransitSites;
+export 'src/data/cloudflare_magic_wan_bgp_filter_profile.dart'
+    show DataCloudflareMagicWanBgpFilterProfile;
+export 'src/data/cloudflare_magic_wan_bgp_filter_profiles.dart'
+    show DataCloudflareMagicWanBgpFilterProfiles;
+export 'src/data/cloudflare_magic_wan_gre_tunnel.dart'
+    show DataCloudflareMagicWanGreTunnel;
+export 'src/data/cloudflare_magic_wan_ipsec_tunnel.dart'
+    show DataCloudflareMagicWanIpsecTunnel;
+export 'src/data/cloudflare_magic_wan_static_route.dart'
+    show DataCloudflareMagicWanStaticRoute;
 export 'src/magic/cloudflare_magic_network_monitoring_configuration.dart'
     show
         CloudflareMagicNetworkMonitoringConfiguration,

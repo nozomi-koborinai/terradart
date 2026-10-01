@@ -27,6 +27,7 @@ final class ElasticBeanstalkConfigurationTemplateSetting {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),

@@ -22,6 +22,7 @@ final class AuditmanagerAssessmentReportsDestination {
 
   final AuditmanagerAssessmentDestinationType destinationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
     'destination_type': destinationType.toTfJson(),
@@ -56,6 +57,7 @@ final class AuditmanagerAssessmentRoles {
 
   final AuditmanagerAssessmentRoleType roleType;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'role_type': roleType.toTfJson(),
@@ -94,6 +96,7 @@ final class AuditmanagerAssessmentScope {
 
   final List<AuditmanagerAssessmentAwsServices>? awsServices;
 
+  @internal
   Map<String, Object?> encode() => {
     if (awsAccounts != null)
       'aws_accounts': [for (final e in awsAccounts!) e.encode()],
@@ -110,6 +113,7 @@ final class AuditmanagerAssessmentAwsAccounts {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -121,6 +125,7 @@ final class AuditmanagerAssessmentAwsServices {
 
   final TfArg<String> serviceName;
 
+  @internal
   Map<String, Object?> encode() => {'service_name': serviceName.toTfJson()};
 }
 

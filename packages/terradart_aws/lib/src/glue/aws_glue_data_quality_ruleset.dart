@@ -23,6 +23,7 @@ final class GlueDataQualityRulesetTargetTable {
 
   final TfArg<String> tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),

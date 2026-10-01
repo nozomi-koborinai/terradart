@@ -15,6 +15,7 @@ final class VpcIpamResourceDiscoveryOperatingRegions {
 
   final TfArg<String> regionName;
 
+  @internal
   Map<String, Object?> encode() => {'region_name': regionName.toTfJson()};
 }
 
@@ -28,6 +29,7 @@ final class VpcIpamResourceDiscoveryOrganizationalUnitExclusion {
 
   final TfArg<String> organizationsEntityPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'organizations_entity_path': organizationsEntityPath.toTfJson(),
   };

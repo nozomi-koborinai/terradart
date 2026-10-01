@@ -31,6 +31,7 @@ final class IotTopicRuleDestinationVpcConfiguration {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),

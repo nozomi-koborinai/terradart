@@ -143,12 +143,15 @@ sealed class CognitoManagedUserPoolClientName {
   ) = CognitoManagedUserPoolClientNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -159,12 +162,15 @@ final class CognitoManagedUserPoolClientNamePattern
 
   final TfArg<String> namePattern;
 
+  @internal
   @override
   String get blockKey => 'name_pattern';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_pattern': namePattern.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_pattern': namePattern};
 }
@@ -176,12 +182,15 @@ final class CognitoManagedUserPoolClientNamePrefix
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -205,6 +214,7 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
 
   final TfArg<bool>? userDataShared;
 
+  @internal
   Map<String, Object?> encode() => {
     ...application.encode(),
     'external_id': ?externalId?.toTfJson(),
@@ -231,8 +241,10 @@ sealed class CognitoManagedUserPoolClientApplication {
   ) = CognitoManagedUserPoolClientApplicationId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -243,9 +255,11 @@ final class CognitoManagedUserPoolClientApplicationArn
 
   final TfArg<String> applicationArn;
 
+  @internal
   @override
   String get blockKey => 'application_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'application_arn': applicationArn.toTfJson(),
@@ -259,9 +273,11 @@ final class CognitoManagedUserPoolClientApplicationId
 
   final TfArg<String> applicationId;
 
+  @internal
   @override
   String get blockKey => 'application_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'application_id': applicationId.toTfJson()};
 }
@@ -279,6 +295,7 @@ final class CognitoManagedUserPoolClientRefreshTokenRotation {
 
   final TfArg<num>? retryGracePeriodSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'feature': feature.toTfJson(),
     'retry_grace_period_seconds': ?retryGracePeriodSeconds?.toTfJson(),
@@ -324,6 +341,7 @@ final class CognitoManagedUserPoolClientTokenValidityUnits {
 
   final TfArg<String>? refreshToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'id_token': ?idToken?.toTfJson(),

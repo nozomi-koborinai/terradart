@@ -20,6 +20,7 @@ final class DatapipelinePipelineDefinitionParameterObject {
 
   final List<DatapipelinePipelineDefinitionAttribute>? attribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     if (attribute != null)
@@ -40,6 +41,7 @@ final class DatapipelinePipelineDefinitionAttribute {
 
   final TfArg<String> stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'string_value': stringValue.toTfJson(),
@@ -59,6 +61,7 @@ final class DatapipelinePipelineDefinitionParameterValue {
 
   final TfArg<String> stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'string_value': stringValue.toTfJson(),
@@ -81,6 +84,7 @@ final class DatapipelinePipelineDefinitionPipelineObject {
 
   final List<DatapipelinePipelineDefinitionField>? field;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'name': name.toTfJson(),
@@ -104,6 +108,7 @@ final class DatapipelinePipelineDefinitionField {
 
   final TfArg<String>? stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'ref_value': ?refValue?.toTfJson(),

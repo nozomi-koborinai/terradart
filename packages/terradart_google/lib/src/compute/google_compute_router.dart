@@ -58,6 +58,7 @@ class ComputeRouterBgp {
   /// Seconds between BGP keepalive messages (hold time is 3× this value).
   final TfArg<int>? keepaliveInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     if (advertiseMode != null) 'advertise_mode': advertiseMode!.toTfJson(),
     if (advertisedGroups != null) 'advertised_groups': advertisedGroups,
@@ -87,12 +88,15 @@ sealed class ComputeRouterNetwork {
       ComputeRouterNetworkNccGateway;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -102,14 +106,17 @@ final class ComputeRouterNetworkChoice extends ComputeRouterNetwork {
 
   final RefTo<GoogleComputeNetwork> network;
 
+  @internal
   @override
   String get blockKey => 'network';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'network': network.encodeAs('id')};
 }
@@ -120,12 +127,15 @@ final class ComputeRouterNetworkNccGateway extends ComputeRouterNetwork {
 
   final TfArg<String> nccGateway;
 
+  @internal
   @override
   String get blockKey => 'ncc_gateway';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ncc_gateway': nccGateway.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ncc_gateway': nccGateway};
 }
@@ -143,6 +153,7 @@ final class ComputeRouterMd5AuthenticationKeys {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'name': name.toTfJson(),
@@ -157,6 +168,7 @@ final class ComputeRouterParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

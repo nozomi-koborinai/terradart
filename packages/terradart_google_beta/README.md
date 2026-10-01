@@ -20,7 +20,6 @@ dependencies:
 
 ```dart
 // lib/my_beta_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google_beta/project.dart';
 import 'package:terradart_google_beta/provider.dart';
 

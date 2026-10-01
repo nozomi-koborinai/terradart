@@ -3,6 +3,7 @@
 /// AWS CodeDeploy.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/codedeploy/aws_codedeploy_app.dart'
     show AwsCodedeployApp, CodedeployAppComputePlatform;
 export 'src/codedeploy/aws_codedeploy_deployment_config.dart'

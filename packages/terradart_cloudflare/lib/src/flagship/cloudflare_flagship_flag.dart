@@ -44,6 +44,7 @@ final class FlagshipFlagRules {
 
   final FlagshipFlagRollout? rollout;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'serve_variation': serveVariation.toTfJson(),
@@ -74,6 +75,7 @@ final class FlagshipFlagConditions {
 
   final List<FlagshipFlagClauses>? clauses;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'logical_operator': ?logicalOperator?.toTfJson(),
@@ -161,6 +163,7 @@ final class FlagshipFlagClauses {
 
   final List<FlagshipFlagClausesClauses>? clauses;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'logical_operator': ?logicalOperator?.toTfJson(),
@@ -192,6 +195,7 @@ final class FlagshipFlagClausesClauses {
 
   final List<FlagshipFlagConditionsClauses>? clauses;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'logical_operator': ?logicalOperator?.toTfJson(),
@@ -223,6 +227,7 @@ final class FlagshipFlagConditionsClauses {
 
   final List<FlagshipFlagRulesClauses>? clauses;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'logical_operator': ?logicalOperator?.toTfJson(),
@@ -254,6 +259,7 @@ final class FlagshipFlagRulesClauses {
 
   final List<FlagshipFlagClausesClausesClauses>? clauses;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'logical_operator': ?logicalOperator?.toTfJson(),
@@ -285,6 +291,7 @@ final class FlagshipFlagClausesClausesClauses {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'clauses': ?clauses?.toTfJson(),
@@ -304,6 +311,7 @@ final class FlagshipFlagRollout {
 
   final TfArg<num> percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'percentage': percentage.toTfJson(),

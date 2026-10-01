@@ -50,6 +50,7 @@ final class NetworkServicesLbTrafficExtensionChains {
 
   final NetworkServicesLbTrafficExtensionMatchCondition matchCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'extensions': [for (final e in extensions) e.encode()],
@@ -91,6 +92,7 @@ final class NetworkServicesLbTrafficExtensionExtensions {
 
   final TfArg<String>? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'authority': ?authority?.toTfJson(),
     'fail_open': ?failOpen?.toTfJson(),
@@ -114,6 +116,7 @@ final class NetworkServicesLbTrafficExtensionMatchCondition {
 
   final TfArg<String> celExpression;
 
+  @internal
   Map<String, Object?> encode() => {'cel_expression': celExpression.toTfJson()};
 }
 

@@ -32,6 +32,7 @@ final class LightsailInstancePublicPortsPortInfo {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_list_aliases': ?cidrListAliases?.toTfJson(),
     'cidrs': ?cidrs?.toTfJson(),

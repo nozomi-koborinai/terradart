@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_config_aggregate_authorization`.
@@ -24,12 +25,15 @@ sealed class ConfigAggregateAuthorizationRegion {
   ) = ConfigAggregateAuthorizationRegionChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,14 +46,17 @@ final class ConfigAggregateAuthorizationAuthorizedAwsRegion
 
   final TfArg<String> authorizedAwsRegion;
 
+  @internal
   @override
   String get blockKey => 'authorized_aws_region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'authorized_aws_region': authorizedAwsRegion.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'authorized_aws_region': authorizedAwsRegion,
@@ -63,12 +70,15 @@ final class ConfigAggregateAuthorizationRegionChoice
 
   final TfArg<String> region;
 
+  @internal
   @override
   String get blockKey => 'region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'region': region};
 }

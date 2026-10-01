@@ -87,7 +87,9 @@ prelude: |
       required TfArg<String> resourceUri,
     }) = NetworkServicesAgentGatewaySelfManaged;
 
+    @internal
     String get blockKey;
+    @internal
     Map<String, Object?> encode();
   }
 
@@ -103,9 +105,11 @@ prelude: |
         governedAccessPath;
 
     @override
+    @internal
     String get blockKey => 'google_managed';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
       'governed_access_path': governedAccessPath.toTfJson(),
     };
@@ -120,9 +124,11 @@ prelude: |
     final TfArg<String> resourceUri;
 
     @override
+    @internal
     String get blockKey => 'self_managed';
 
     @override
+    @internal
     Map<String, Object?> encode() => {
       'resource_uri': resourceUri.toTfJson(),
     };

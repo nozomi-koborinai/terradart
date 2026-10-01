@@ -48,6 +48,7 @@ final class EventarcTriggerDestination {
 
   final EventarcTriggerNetworkConfig? networkConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'workflow': ?workflow?.toTfJson(),
     'cloud_run_service': ?cloudRunService?.encode(),
@@ -73,6 +74,7 @@ final class EventarcTriggerCloudRunService {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'region': ?region?.toTfJson(),
@@ -102,6 +104,7 @@ final class EventarcTriggerGke {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster': cluster.toTfJson(),
     'location': location.toTfJson(),
@@ -119,6 +122,7 @@ final class EventarcTriggerHttpEndpoint {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -130,6 +134,7 @@ final class EventarcTriggerNetworkConfig {
 
   final TfArg<String> networkAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': networkAttachment.toTfJson(),
   };
@@ -151,6 +156,7 @@ final class EventarcTriggerMatchingCriteria {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': attribute.toTfJson(),
     'operator': ?operator?.toTfJson(),
@@ -166,6 +172,7 @@ final class EventarcTriggerRetryPolicy {
 
   final TfArg<num>? maxAttempts;
 
+  @internal
   Map<String, Object?> encode() => {'max_attempts': ?maxAttempts?.toTfJson()};
 }
 
@@ -177,6 +184,7 @@ final class EventarcTriggerTransport {
 
   final EventarcTriggerPubsub? pubsub;
 
+  @internal
   Map<String, Object?> encode() => {'pubsub': ?pubsub?.encode()};
 }
 
@@ -188,6 +196,7 @@ final class EventarcTriggerPubsub {
 
   final RefTo<GooglePubsubTopic>? topic;
 
+  @internal
   Map<String, Object?> encode() => {'topic': ?topic?.encodeAs('id').toTfJson()};
 }
 

@@ -99,6 +99,7 @@ final class EcsTaskDefinitionEphemeralStorage {
 
   final TfArg<num> sizeInGib;
 
+  @internal
   Map<String, Object?> encode() => {'size_in_gib': sizeInGib.toTfJson()};
 }
 
@@ -115,6 +116,7 @@ final class EcsTaskDefinitionPlacementConstraints {
 
   final EcsTaskDefinitionPlacementConstraintsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
@@ -157,6 +159,7 @@ final class EcsTaskDefinitionProxyConfiguration {
 
   final EcsTaskDefinitionProxyConfigurationType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -194,6 +197,7 @@ final class EcsTaskDefinitionRuntimePlatform {
 
   final EcsTaskDefinitionOperatingSystemFamily? operatingSystemFamily;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_architecture': ?cpuArchitecture?.toTfJson(),
     'operating_system_family': ?operatingSystemFamily?.toTfJson(),
@@ -303,6 +307,7 @@ final class EcsTaskDefinitionVolume {
 
   final EcsTaskDefinitionS3filesVolumeConfiguration? s3filesVolumeConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'configure_at_launch': ?configureAtLaunch?.toTfJson(),
     'host_path': ?hostPath?.toTfJson(),
@@ -337,6 +342,7 @@ final class EcsTaskDefinitionDockerVolumeConfiguration {
 
   final EcsTaskDefinitionScope? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoprovision': ?autoprovision?.toTfJson(),
     'driver': ?driver?.toTfJson(),
@@ -383,6 +389,7 @@ final class EcsTaskDefinitionEfsVolumeConfiguration {
   final EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig?
   authorizationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_id': fileSystemId.toTfJson(),
     'root_directory': ?rootDirectory?.toTfJson(),
@@ -427,6 +434,7 @@ final class EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig {
 
   final EcsTaskDefinitionIam? iam;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point_id': ?accessPointId?.toTfJson(),
     'iam': ?iam?.toTfJson(),
@@ -464,6 +472,7 @@ final class EcsTaskDefinitionFsxWindowsFileServerVolumeConfiguration {
   final EcsTaskDefinitionFsxWindowsFileServerVolumeConfigurationAuthorizationConfig
   authorizationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_id': fileSystemId.toTfJson(),
     'root_directory': rootDirectory.toTfJson(),
@@ -484,6 +493,7 @@ final class EcsTaskDefinitionFsxWindowsFileServerVolumeConfigurationAuthorizatio
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials_parameter': credentialsParameter.toTfJson(),
     'domain': domain.toTfJson(),
@@ -509,6 +519,7 @@ final class EcsTaskDefinitionS3filesVolumeConfiguration {
 
   final TfArg<num>? transitEncryptionPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_point_arn': ?accessPointArn?.toTfJson(),
     'file_system_arn': fileSystemArn.toTfJson(),

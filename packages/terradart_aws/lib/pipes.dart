@@ -3,6 +3,7 @@
 /// AWS EventBridge Pipes.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/pipes/aws_pipes_pipe.dart'
     show
         AwsPipesPipe,

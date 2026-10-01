@@ -19,6 +19,7 @@ final class EksFargateProfileSelector {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'namespace': namespace.toTfJson(),

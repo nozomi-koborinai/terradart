@@ -73,6 +73,7 @@ final class VerifiedaccessEndpointCidrOptions {
 
   final List<VerifiedaccessEndpointPortRange> portRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr': cidr.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
@@ -113,6 +114,7 @@ final class VerifiedaccessEndpointPortRange {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
     'to_port': toPort.toTfJson(),
@@ -141,6 +143,7 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
 
   final List<VerifiedaccessEndpointPortRange>? portRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'load_balancer_arn': ?loadBalancerArn?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -195,6 +198,7 @@ final class VerifiedaccessEndpointNetworkInterfaceOptions {
 
   final List<VerifiedaccessEndpointPortRange>? portRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_interface_id': ?networkInterfaceId?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -232,6 +236,7 @@ final class VerifiedaccessEndpointRdsOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
@@ -256,6 +261,7 @@ final class VerifiedaccessEndpointSseSpecification {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_managed_key_enabled': ?customerManagedKeyEnabled?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),

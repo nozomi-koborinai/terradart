@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
@@ -48,8 +49,10 @@ sealed class SpannerDatabaseEncryptionConfig {
   ) = SpannerDatabaseEncryptionConfigKmsKeyNames;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -60,9 +63,11 @@ final class SpannerDatabaseEncryptionConfigKmsKeyName
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   @override
   String get blockKey => 'kms_key_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
@@ -76,9 +81,11 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
 
   final TfArg<List<String>> kmsKeyNames;
 
+  @internal
   @override
   String get blockKey => 'kms_key_names';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'kms_key_names': kmsKeyNames.toTfJson()};
 }

@@ -16,6 +16,7 @@ final class AppEngineServiceNetworkSettings {
   final AppEngineServiceNetworkSettingsIngressTrafficAllowed?
   ingressTrafficAllowed;
 
+  @internal
   Map<String, Object?> encode() => {
     'ingress_traffic_allowed': ?ingressTrafficAllowed?.toTfJson(),
   };

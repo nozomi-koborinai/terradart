@@ -15,6 +15,7 @@ final class ClouddeployDeployPolicyRules {
 
   final ClouddeployDeployPolicyRolloutRestriction? rolloutRestriction;
 
+  @internal
   Map<String, Object?> encode() => {
     'rollout_restriction': ?rolloutRestriction?.encode(),
   };
@@ -39,6 +40,7 @@ final class ClouddeployDeployPolicyRolloutRestriction {
 
   final ClouddeployDeployPolicyTimeWindows? timeWindows;
 
+  @internal
   Map<String, Object?> encode() => {
     if (actions != null) 'actions': [for (final e in actions!) e.toTfJson()],
     'id': id.toTfJson(),
@@ -129,6 +131,7 @@ final class ClouddeployDeployPolicyTimeWindows {
 
   final List<ClouddeployDeployPolicyWeeklyWindows>? weeklyWindows;
 
+  @internal
   Map<String, Object?> encode() => {
     'time_zone': timeZone.toTfJson(),
     if (oneTimeWindows != null)
@@ -157,6 +160,7 @@ final class ClouddeployDeployPolicyOneTimeWindows {
 
   final ClouddeployDeployPolicyStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.encode(),
     'end_time': endTime.encode(),
@@ -177,6 +181,7 @@ final class ClouddeployDeployPolicyEndDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -204,6 +209,7 @@ final class ClouddeployDeployPolicyEndTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -224,6 +230,7 @@ final class ClouddeployDeployPolicyStartDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -251,6 +258,7 @@ final class ClouddeployDeployPolicyStartTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -275,6 +283,7 @@ final class ClouddeployDeployPolicyWeeklyWindows {
 
   final ClouddeployDeployPolicyStartTime? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     if (daysOfWeek != null)
       'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
@@ -335,6 +344,7 @@ final class ClouddeployDeployPolicySelectors {
 
   final ClouddeployDeployPolicyTarget? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_pipeline': ?deliveryPipeline?.encode(),
     'target': ?target?.encode(),
@@ -351,6 +361,7 @@ final class ClouddeployDeployPolicyDeliveryPipeline {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'labels': ?labels?.toTfJson(),
@@ -367,6 +378,7 @@ final class ClouddeployDeployPolicyTarget {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'labels': ?labels?.toTfJson(),

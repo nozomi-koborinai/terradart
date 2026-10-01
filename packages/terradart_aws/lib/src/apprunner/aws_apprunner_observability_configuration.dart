@@ -15,6 +15,7 @@ final class ApprunnerObservabilityConfigurationTraceConfiguration {
 
   final ApprunnerObservabilityConfigurationVendor? vendor;
 
+  @internal
   Map<String, Object?> encode() => {'vendor': ?vendor?.toTfJson()};
 }
 

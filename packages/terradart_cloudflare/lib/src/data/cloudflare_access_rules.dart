@@ -19,6 +19,7 @@ final class DataAccessRulesConfiguration {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'value': ?value?.toTfJson(),

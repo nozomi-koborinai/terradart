@@ -25,6 +25,7 @@ final class S3BucketMetadataConfiguration {
   final List<S3BucketMetadataConfigurationJournalTableConfiguration>?
   journalTableConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inventoryTableConfiguration != null)
       'inventory_table_configuration': [
@@ -51,6 +52,7 @@ final class S3BucketMetadataConfigurationInventoryTableConfiguration {
   final List<S3BucketMetadataConfigurationEncryptionConfiguration>?
   encryptionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration_state': configurationState.toTfJson(),
     if (encryptionConfiguration != null)
@@ -96,6 +98,7 @@ final class S3BucketMetadataConfigurationEncryptionConfiguration {
 
   final S3BucketMetadataConfigurationSseAlgorithm sseAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
@@ -140,6 +143,7 @@ final class S3BucketMetadataConfigurationJournalTableConfiguration {
 
   final List<S3BucketMetadataConfigurationRecordExpiration>? recordExpiration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (encryptionConfiguration != null)
       'encryption_configuration': [
@@ -163,6 +167,7 @@ final class S3BucketMetadataConfigurationRecordExpiration {
 
   final S3BucketMetadataConfigurationExpiration expiration;
 
+  @internal
   Map<String, Object?> encode() => {
     'days': ?days?.toTfJson(),
     'expiration': expiration.toTfJson(),

@@ -49,12 +49,15 @@ sealed class DatasyncLocationHdfsKerberosKeytab {
   ) = DatasyncLocationHdfsKerberosKeytabBase64;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,14 +68,17 @@ final class DatasyncLocationHdfsKerberosKeytabChoice
 
   final TfArg<String> kerberosKeytab;
 
+  @internal
   @override
   String get blockKey => 'kerberos_keytab';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kerberos_keytab': kerberosKeytab.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'kerberos_keytab': kerberosKeytab};
 }
@@ -84,14 +90,17 @@ final class DatasyncLocationHdfsKerberosKeytabBase64
 
   final TfArg<String> kerberosKeytabBase64;
 
+  @internal
   @override
   String get blockKey => 'kerberos_keytab_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kerberos_keytab_base64': kerberosKeytabBase64.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kerberos_keytab_base64': kerberosKeytabBase64,
@@ -117,12 +126,15 @@ sealed class DatasyncLocationHdfsKerberosKrb5Conf {
   ) = DatasyncLocationHdfsKerberosKrb5ConfBase64;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -133,14 +145,17 @@ final class DatasyncLocationHdfsKerberosKrb5ConfChoice
 
   final TfArg<String> kerberosKrb5Conf;
 
+  @internal
   @override
   String get blockKey => 'kerberos_krb5_conf';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kerberos_krb5_conf': kerberosKrb5Conf.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kerberos_krb5_conf': kerberosKrb5Conf,
@@ -154,14 +169,17 @@ final class DatasyncLocationHdfsKerberosKrb5ConfBase64
 
   final TfArg<String> kerberosKrb5ConfBase64;
 
+  @internal
   @override
   String get blockKey => 'kerberos_krb5_conf_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kerberos_krb5_conf_base64': kerberosKrb5ConfBase64.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kerberos_krb5_conf_base64': kerberosKrb5ConfBase64,
@@ -181,6 +199,7 @@ final class DatasyncLocationHdfsNameNode {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'port': port.toTfJson(),
@@ -200,6 +219,7 @@ final class DatasyncLocationHdfsQopConfiguration {
 
   final DatasyncLocationHdfsRpcProtection? rpcProtection;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_transfer_protection': ?dataTransferProtection?.toTfJson(),
     'rpc_protection': ?rpcProtection?.toTfJson(),

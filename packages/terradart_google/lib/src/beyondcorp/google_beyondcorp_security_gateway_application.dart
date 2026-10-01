@@ -45,6 +45,7 @@ final class BeyondcorpSecurityGatewayApplicationEndpointMatchers {
 
   final TfArg<List<num>> ports;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'ports': ports.toTfJson(),
@@ -70,6 +71,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreams {
 
   final BeyondcorpSecurityGatewayApplicationProxyProtocol? proxyProtocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'egress_policy': ?egressPolicy?.encode(),
     'external': ?external?.encode(),
@@ -88,6 +90,7 @@ final class BeyondcorpSecurityGatewayApplicationEgressPolicy {
 
   final TfArg<List<String>> regions;
 
+  @internal
   Map<String, Object?> encode() => {'regions': regions.toTfJson()};
 }
 
@@ -99,6 +102,7 @@ final class BeyondcorpSecurityGatewayApplicationExternal {
 
   final List<BeyondcorpSecurityGatewayApplicationEndpoints> endpoints;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoints': [for (final e in endpoints) e.encode()],
   };
@@ -117,6 +121,7 @@ final class BeyondcorpSecurityGatewayApplicationEndpoints {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'port': port.toTfJson(),
@@ -131,6 +136,7 @@ final class BeyondcorpSecurityGatewayApplicationNetwork {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -157,6 +163,7 @@ final class BeyondcorpSecurityGatewayApplicationProxyProtocol {
   final BeyondcorpSecurityGatewayApplicationContextualHeaders?
   contextualHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_client_headers': ?allowedClientHeaders?.toTfJson(),
     'client_ip': ?clientIp?.toTfJson(),
@@ -185,6 +192,7 @@ final class BeyondcorpSecurityGatewayApplicationContextualHeaders {
 
   final BeyondcorpSecurityGatewayApplicationUserInfo? userInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_type': ?outputType?.toTfJson(),
     'device_info': ?deviceInfo?.encode(),
@@ -229,6 +237,7 @@ final class BeyondcorpSecurityGatewayApplicationDeviceInfo {
 
   final BeyondcorpSecurityGatewayApplicationOutputType? outputType;
 
+  @internal
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
@@ -240,6 +249,7 @@ final class BeyondcorpSecurityGatewayApplicationGroupInfo {
 
   final BeyondcorpSecurityGatewayApplicationOutputType? outputType;
 
+  @internal
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
@@ -251,6 +261,7 @@ final class BeyondcorpSecurityGatewayApplicationUserInfo {
 
   final BeyondcorpSecurityGatewayApplicationOutputType? outputType;
 
+  @internal
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 

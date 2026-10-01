@@ -6,7 +6,6 @@
 /// `terraform plan` against each environment's state reports no changes.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/data.dart';
@@ -34,7 +33,7 @@ final class ConfigTreeStack extends Stack {
       defaultValue: env.projectIdDefault,
     );
     final region = variable<String>('region', defaultValue: 'asia-northeast1');
-    add(GoogleProject('current', projectId: projectId));
+    add(DataGoogleProject('current', projectId: projectId));
     add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
     add(
       GoogleArtifactRegistryRepository(

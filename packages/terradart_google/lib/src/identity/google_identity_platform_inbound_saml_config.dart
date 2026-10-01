@@ -27,6 +27,7 @@ final class IdentityPlatformInboundSamlConfigIdpConfig {
 
   final List<IdentityPlatformInboundSamlConfigIdpCertificates> idpCertificates;
 
+  @internal
   Map<String, Object?> encode() => {
     'idp_entity_id': idpEntityId.toTfJson(),
     'sign_request': ?signRequest?.toTfJson(),
@@ -45,6 +46,7 @@ final class IdentityPlatformInboundSamlConfigIdpCertificates {
 
   final TfArg<String>? x509Certificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'x509_certificate': ?x509Certificate?.toTfJson(),
   };
@@ -63,6 +65,7 @@ final class IdentityPlatformInboundSamlConfigSpConfig {
 
   final TfArg<String>? spEntityId;
 
+  @internal
   Map<String, Object?> encode() => {
     'callback_uri': ?callbackUri?.toTfJson(),
     'sp_entity_id': ?spEntityId?.toTfJson(),

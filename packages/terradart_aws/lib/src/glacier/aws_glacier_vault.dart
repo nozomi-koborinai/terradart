@@ -22,6 +22,7 @@ final class GlacierVaultNotification {
 
   final RefTo<AwsSnsTopic> snsTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'events': [for (final e in events) e.toTfJson()],
     'sns_topic': snsTopic.encodeAs('arn').toTfJson(),

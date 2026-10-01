@@ -3,6 +3,7 @@
 /// AWS CodeConnections.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/codeconnections/aws_codeconnections_connection.dart'
     show
         AwsCodeconnectionsConnection,

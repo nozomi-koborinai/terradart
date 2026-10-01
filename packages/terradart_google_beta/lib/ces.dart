@@ -3,6 +3,7 @@
 /// Customer Engagement Suite evaluation and security settings (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/ces/google_ces_evaluation.dart'
     show
         CesEvaluationAgentResponse,

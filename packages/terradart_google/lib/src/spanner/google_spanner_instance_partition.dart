@@ -51,12 +51,15 @@ sealed class SpannerInstancePartitionCapacity {
   ) = SpannerInstancePartitionCapacityAutoscalingConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -67,12 +70,15 @@ final class SpannerInstancePartitionCapacityNodeCount
 
   final TfArg<num> nodeCount;
 
+  @internal
   @override
   String get blockKey => 'node_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'node_count': nodeCount.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'node_count': nodeCount};
 }
@@ -84,14 +90,17 @@ final class SpannerInstancePartitionCapacityProcessingUnits
 
   final TfArg<num> processingUnits;
 
+  @internal
   @override
   String get blockKey => 'processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'processing_units': processingUnits.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'processing_units': processingUnits,
@@ -107,14 +116,17 @@ final class SpannerInstancePartitionCapacityAutoscalingConfig
 
   final SpannerInstancePartitionAutoscalingConfig autoscalingConfig;
 
+  @internal
   @override
   String get blockKey => 'autoscaling_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'autoscaling_config': autoscalingConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'autoscaling_config': TfArg.literal(autoscalingConfig.encode()),
@@ -134,6 +146,7 @@ final class SpannerInstancePartitionAutoscalingConfig {
 
   final SpannerInstancePartitionAutoscalingTargets? autoscalingTargets;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoscaling_limits': ?autoscalingLimits?.encode(),
     'autoscaling_targets': ?autoscalingTargets?.encode(),
@@ -153,6 +166,7 @@ final class SpannerInstancePartitionAutoscalingLimits {
 
   final SpannerInstancePartitionMinCapacity minCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     ...maxCapacity.encode(),
     ...minCapacity.encode(),
@@ -177,8 +191,10 @@ sealed class SpannerInstancePartitionMinCapacity {
   ) = SpannerInstancePartitionMinCapacityMinNodes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -191,9 +207,11 @@ final class SpannerInstancePartitionMinCapacityMinProcessingUnits
 
   final TfArg<num> minProcessingUnits;
 
+  @internal
   @override
   String get blockKey => 'min_processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'min_processing_units': minProcessingUnits.toTfJson(),
@@ -207,9 +225,11 @@ final class SpannerInstancePartitionMinCapacityMinNodes
 
   final TfArg<num> minNodes;
 
+  @internal
   @override
   String get blockKey => 'min_nodes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'min_nodes': minNodes.toTfJson()};
 }
@@ -232,8 +252,10 @@ sealed class SpannerInstancePartitionMaxCapacity {
   ) = SpannerInstancePartitionMaxCapacityMaxNodes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -246,9 +268,11 @@ final class SpannerInstancePartitionMaxCapacityMaxProcessingUnits
 
   final TfArg<num> maxProcessingUnits;
 
+  @internal
   @override
   String get blockKey => 'max_processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_processing_units': maxProcessingUnits.toTfJson(),
@@ -262,9 +286,11 @@ final class SpannerInstancePartitionMaxCapacityMaxNodes
 
   final TfArg<num> maxNodes;
 
+  @internal
   @override
   String get blockKey => 'max_nodes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'max_nodes': maxNodes.toTfJson()};
 }
@@ -285,6 +311,7 @@ final class SpannerInstancePartitionAutoscalingTargets {
 
   final TfArg<num>? totalCpuUtilizationPercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'high_priority_cpu_utilization_percent': ?highPriorityCpuUtilizationPercent
         ?.toTfJson(),

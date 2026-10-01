@@ -105,6 +105,7 @@ final class EcsDaemonTaskDefinitionContainerDefinition {
 
   final List<EcsDaemonTaskDefinitionUlimit>? ulimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
     'cpu': ?cpu?.toTfJson(),
@@ -166,6 +167,7 @@ final class EcsDaemonTaskDefinitionDependsOn {
 
   final TfArg<String> containerName;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': condition.toTfJson(),
     'container_name': containerName.toTfJson(),
@@ -212,6 +214,7 @@ final class EcsDaemonTaskDefinitionEnvironment {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -231,6 +234,7 @@ final class EcsDaemonTaskDefinitionEnvironmentFile {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -268,6 +272,7 @@ final class EcsDaemonTaskDefinitionFirelensConfiguration {
 
   final EcsDaemonTaskDefinitionFirelensConfigurationType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'options': ?options?.toTfJson(),
     'type': type.toTfJson(),
@@ -320,6 +325,7 @@ final class EcsDaemonTaskDefinitionHealthCheck {
 
   final TfArg<num>? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': command.toTfJson(),
     'interval': ?interval?.toTfJson(),
@@ -348,6 +354,7 @@ final class EcsDaemonTaskDefinitionLinuxParameters {
 
   final List<EcsDaemonTaskDefinitionTmpfs>? tmpfs;
 
+  @internal
   Map<String, Object?> encode() => {
     'init_process_enabled': ?initProcessEnabled?.toTfJson(),
     if (capabilities != null)
@@ -367,6 +374,7 @@ final class EcsDaemonTaskDefinitionCapabilities {
 
   final TfArg<List<String>>? drop;
 
+  @internal
   Map<String, Object?> encode() => {
     'add': ?add?.toTfJson(),
     'drop': ?drop?.toTfJson(),
@@ -389,6 +397,7 @@ final class EcsDaemonTaskDefinitionDevice {
 
   final List<EcsDaemonTaskDefinitionPermissions>? permissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_path': ?containerPath?.toTfJson(),
     'host_path': hostPath.toTfJson(),
@@ -439,6 +448,7 @@ final class EcsDaemonTaskDefinitionTmpfs {
 
   final TfArg<num> size;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_path': containerPath.toTfJson(),
     'mount_options': ?mountOptions?.toTfJson(),
@@ -462,6 +472,7 @@ final class EcsDaemonTaskDefinitionLogConfiguration {
 
   final List<EcsDaemonTaskDefinitionSecretOption>? secretOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_driver': logDriver.toTfJson(),
     'options': ?options?.toTfJson(),
@@ -527,6 +538,7 @@ final class EcsDaemonTaskDefinitionSecretOption {
 
   final TfArg<String> valueFrom;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_from': valueFrom.toTfJson(),
@@ -549,6 +561,7 @@ final class EcsDaemonTaskDefinitionMountPoint {
 
   final TfArg<String>? sourceVolume;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_path': ?containerPath?.toTfJson(),
     'read_only': ?readOnly?.toTfJson(),
@@ -566,6 +579,7 @@ final class EcsDaemonTaskDefinitionRepositoryCredentials {
 
   final TfArg<String> credentialsParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials_parameter': credentialsParameter.toTfJson(),
   };
@@ -587,6 +601,7 @@ final class EcsDaemonTaskDefinitionRestartPolicy {
 
   final TfArg<num>? restartAttemptPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'ignored_exit_codes': ?ignoredExitCodes?.toTfJson(),
@@ -607,6 +622,7 @@ final class EcsDaemonTaskDefinitionSecret {
 
   final TfArg<String> valueFrom;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_from': valueFrom.toTfJson(),
@@ -623,6 +639,7 @@ final class EcsDaemonTaskDefinitionSystemControl {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace': ?namespace?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -645,6 +662,7 @@ final class EcsDaemonTaskDefinitionUlimit {
 
   final TfArg<num> softLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'hard_limit': hardLimit.toTfJson(),
     'name': name.toTfJson(),
@@ -710,6 +728,7 @@ final class EcsDaemonTaskDefinitionVolume {
 
   final List<EcsDaemonTaskDefinitionHost>? host;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (host != null) 'host': [for (final e in host!) e.encode()],
@@ -724,6 +743,7 @@ final class EcsDaemonTaskDefinitionHost {
 
   final TfArg<String>? sourcePath;
 
+  @internal
   Map<String, Object?> encode() => {'source_path': ?sourcePath?.toTfJson()};
 }
 

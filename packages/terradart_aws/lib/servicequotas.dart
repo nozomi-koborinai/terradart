@@ -3,6 +3,13 @@
 /// AWS Service Quotas.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_servicequotas_service.dart'
+    show DataAwsServicequotasService;
+export 'src/data/aws_servicequotas_service_quota.dart'
+    show DataAwsServicequotasServiceQuota;
+export 'src/data/aws_servicequotas_templates.dart'
+    show DataAwsServicequotasTemplates;
 export 'src/servicequotas/aws_servicequotas_auto_management.dart'
     show
         AwsServicequotasAutoManagement,

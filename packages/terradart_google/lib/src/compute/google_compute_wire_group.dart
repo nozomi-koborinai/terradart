@@ -20,6 +20,7 @@ final class ComputeWireGroupEndpoints {
 
   final List<ComputeWireGroupInterconnects>? interconnects;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     if (interconnects != null)
@@ -43,6 +44,7 @@ final class ComputeWireGroupInterconnects {
 
   final TfArg<List<num>>? vlanTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'interconnect': ?interconnect?.toTfJson(),
     'interconnect_name': interconnectName.toTfJson(),
@@ -66,6 +68,7 @@ final class ComputeWireGroupWireProperties {
 
   final TfArg<String>? faultResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'bandwidth_allocation': bandwidthAllocation.toTfJson(),
     'bandwidth_unmetered': ?bandwidthUnmetered?.toTfJson(),

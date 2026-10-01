@@ -48,6 +48,7 @@ final class DataCustomHostnameFilter {
 
   final DataCustomHostnameFilterHostname? hostname;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority': ?certificateAuthority?.toTfJson(),
     'custom_origin_server': ?customOriginServer?.toTfJson(),
@@ -307,6 +308,7 @@ final class DataCustomHostnameFilterHostname {
 
   final TfArg<String>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contain': ?contain?.toTfJson(),
     'exact': ?exact?.toTfJson(),

@@ -19,6 +19,7 @@ final class BiglakeDatabaseHiveOptions {
 
   final TfArg<Map<String, String>>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_uri': ?locationUri?.toTfJson(),
     'parameters': ?parameters?.toTfJson(),

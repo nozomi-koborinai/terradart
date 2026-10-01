@@ -5,6 +5,7 @@
 /// metadata (`google_integrations_auth_config`).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/integrations/google_integrations_auth_config.dart'
     show
         GoogleIntegrationsAuthConfig,

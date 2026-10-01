@@ -83,11 +83,13 @@ prelude: |
 
     /// Terraform attribute key (`publisher_model_name` or
     /// `hugging_face_model_id`).
+    @internal
     String get blockKey;
 
     /// Scalar value written under [blockKey].
     TfArg<String> get value;
 
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -103,6 +105,7 @@ prelude: |
     final TfArg<String> publisherModelName;
 
     @override
+    @internal
     String get blockKey => 'publisher_model_name';
 
     @override
@@ -120,6 +123,7 @@ prelude: |
     final TfArg<String> huggingFaceModelId;
 
     @override
+    @internal
     String get blockKey => 'hugging_face_model_id';
 
     @override

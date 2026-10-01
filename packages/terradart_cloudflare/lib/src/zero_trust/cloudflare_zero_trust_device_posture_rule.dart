@@ -247,6 +247,7 @@ final class ZeroTrustDevicePostureRuleInput {
 
   final ZeroTrustDevicePostureRuleLocations? locations;
 
+  @internal
   Map<String, Object?> encode() => {
     'active_threats': ?activeThreats?.toTfJson(),
     if (authState != null)
@@ -702,6 +703,7 @@ final class ZeroTrustDevicePostureRuleLocations {
 
   final List<ZeroTrustDevicePostureRuleTrustStores>? trustStores;
 
+  @internal
   Map<String, Object?> encode() => {
     'paths': ?paths?.toTfJson(),
     if (trustStores != null)
@@ -740,6 +742,7 @@ final class ZeroTrustDevicePostureRuleMatch {
 
   final ZeroTrustDevicePostureRulePlatform? platform;
 
+  @internal
   Map<String, Object?> encode() => {'platform': ?platform?.toTfJson()};
 }
 

@@ -45,6 +45,7 @@ final class CleanroomsMembershipDefaultResultConfiguration {
 
   final List<CleanroomsMembershipOutputConfiguration>? outputConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     if (outputConfiguration != null)
@@ -62,6 +63,7 @@ final class CleanroomsMembershipOutputConfiguration {
 
   final List<CleanroomsMembershipS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
   };
@@ -83,6 +85,7 @@ final class CleanroomsMembershipS3 {
 
   final TfArg<String> resultFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key_prefix': ?keyPrefix?.toTfJson(),
@@ -98,6 +101,7 @@ final class CleanroomsMembershipPaymentConfiguration {
 
   final List<CleanroomsMembershipQueryCompute>? queryCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     if (queryCompute != null)
       'query_compute': [for (final e in queryCompute!) e.encode()],
@@ -112,6 +116,7 @@ final class CleanroomsMembershipQueryCompute {
 
   final TfArg<bool> isResponsible;
 
+  @internal
   Map<String, Object?> encode() => {'is_responsible': isResponsible.toTfJson()};
 }
 

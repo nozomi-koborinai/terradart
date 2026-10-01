@@ -157,12 +157,15 @@ sealed class ComputeResourcePolicyKind {
   ) = ComputeResourcePolicyKindDiskConsistencyGroupPolicy;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -175,14 +178,17 @@ final class ComputeResourcePolicyKindSnapshotSchedulePolicy
 
   final ComputeResourcePolicySnapshotSchedulePolicy snapshotSchedulePolicy;
 
+  @internal
   @override
   String get blockKey => 'snapshot_schedule_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'snapshot_schedule_policy': snapshotSchedulePolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'snapshot_schedule_policy': TfArg.literal(snapshotSchedulePolicy.encode()),
@@ -198,14 +204,17 @@ final class ComputeResourcePolicyKindGroupPlacementPolicy
 
   final ComputeResourcePolicyGroupPlacementPolicy groupPlacementPolicy;
 
+  @internal
   @override
   String get blockKey => 'group_placement_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'group_placement_policy': groupPlacementPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'group_placement_policy': TfArg.literal(groupPlacementPolicy.encode()),
@@ -221,14 +230,17 @@ final class ComputeResourcePolicyKindInstanceSchedulePolicy
 
   final ComputeResourcePolicyInstanceSchedulePolicy instanceSchedulePolicy;
 
+  @internal
   @override
   String get blockKey => 'instance_schedule_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'instance_schedule_policy': instanceSchedulePolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'instance_schedule_policy': TfArg.literal(instanceSchedulePolicy.encode()),
@@ -245,14 +257,17 @@ final class ComputeResourcePolicyKindDiskConsistencyGroupPolicy
   final ComputeResourcePolicyDiskConsistencyGroupPolicy
   diskConsistencyGroupPolicy;
 
+  @internal
   @override
   String get blockKey => 'disk_consistency_group_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'disk_consistency_group_policy': diskConsistencyGroupPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'disk_consistency_group_policy': TfArg.literal(
@@ -271,6 +286,7 @@ final class ComputeResourcePolicyDiskConsistencyGroupPolicy {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -293,6 +309,7 @@ final class ComputeResourcePolicyGroupPlacementPolicy {
 
   final TfArg<num>? vmCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_domain_count': ?availabilityDomainCount?.toTfJson(),
     'collocation': ?collocation?.toTfJson(),
@@ -323,6 +340,7 @@ final class ComputeResourcePolicyInstanceSchedulePolicy {
 
   final ComputeResourcePolicyVmStopSchedule? vmStopSchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'expiration_time': ?expirationTime?.toTfJson(),
     'start_time': ?startTime?.toTfJson(),
@@ -340,6 +358,7 @@ final class ComputeResourcePolicyVmStartSchedule {
 
   final TfArg<String> schedule;
 
+  @internal
   Map<String, Object?> encode() => {'schedule': schedule.toTfJson()};
 }
 
@@ -351,6 +370,7 @@ final class ComputeResourcePolicyVmStopSchedule {
 
   final TfArg<String> schedule;
 
+  @internal
   Map<String, Object?> encode() => {'schedule': schedule.toTfJson()};
 }
 
@@ -370,6 +390,7 @@ final class ComputeResourcePolicySnapshotSchedulePolicy {
 
   final ComputeResourcePolicySnapshotProperties? snapshotProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_policy': ?retentionPolicy?.encode(),
     'schedule': schedule.encode(),
@@ -390,6 +411,7 @@ final class ComputeResourcePolicyRetentionPolicy {
 
   final ComputeResourcePolicyOnSourceDiskDelete? onSourceDiskDelete;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_retention_days': maxRetentionDays.toTfJson(),
     'on_source_disk_delete': ?onSourceDiskDelete?.toTfJson(),
@@ -419,8 +441,10 @@ sealed class ComputeResourcePolicySchedule {
   ) = ComputeResourcePolicyWeeklyScheduleChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -431,9 +455,11 @@ final class ComputeResourcePolicyHourlyScheduleChoice
 
   final ComputeResourcePolicyHourlySchedule hourlySchedule;
 
+  @internal
   @override
   String get blockKey => 'hourly_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'hourly_schedule': hourlySchedule.encode()};
 }
@@ -445,9 +471,11 @@ final class ComputeResourcePolicyDailyScheduleChoice
 
   final ComputeResourcePolicyDailySchedule dailySchedule;
 
+  @internal
   @override
   String get blockKey => 'daily_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'daily_schedule': dailySchedule.encode()};
 }
@@ -459,9 +487,11 @@ final class ComputeResourcePolicyWeeklyScheduleChoice
 
   final ComputeResourcePolicyWeeklySchedule weeklySchedule;
 
+  @internal
   @override
   String get blockKey => 'weekly_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'weekly_schedule': weeklySchedule.encode()};
 }
@@ -479,6 +509,7 @@ final class ComputeResourcePolicyDailySchedule {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_in_cycle': daysInCycle.toTfJson(),
     'start_time': startTime.toTfJson(),
@@ -498,6 +529,7 @@ final class ComputeResourcePolicyHourlySchedule {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours_in_cycle': hoursInCycle.toTfJson(),
     'start_time': startTime.toTfJson(),
@@ -512,6 +544,7 @@ final class ComputeResourcePolicyWeeklySchedule {
 
   final List<ComputeResourcePolicyDayOfWeeks> dayOfWeeks;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_weeks': [for (final e in dayOfWeeks) e.encode()],
   };
@@ -530,6 +563,7 @@ final class ComputeResourcePolicyDayOfWeeks {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'start_time': startTime.toTfJson(),
@@ -555,6 +589,7 @@ final class ComputeResourcePolicySnapshotProperties {
 
   final TfArg<List<String>>? storageLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'chain_name': ?chainName?.toTfJson(),
     'guest_flush': ?guestFlush?.toTfJson(),
@@ -579,6 +614,7 @@ final class ComputeResourcePolicyWorkloadPolicy {
 
   final ComputeResourcePolicyWorkloadType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_topology': ?acceleratorTopology?.toTfJson(),
     'max_topology_distance': ?maxTopologyDistance?.toTfJson(),

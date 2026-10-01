@@ -32,6 +32,7 @@ final class BcmdataexportsExport {
 
   final List<BcmdataexportsExportRefreshCadence>? refreshCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -59,6 +60,7 @@ final class BcmdataexportsExportDataQuery {
 
   final TfArg<Map<String, dynamic>>? tableConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'query_statement': queryStatement.toTfJson(),
     'table_configurations': ?tableConfigurations?.toTfJson(),
@@ -73,6 +75,7 @@ final class BcmdataexportsExportDestinationConfigurations {
 
   final List<BcmdataexportsExportS3Destination>? s3Destination;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3Destination != null)
       's3_destination': [for (final e in s3Destination!) e.encode()],
@@ -99,6 +102,7 @@ final class BcmdataexportsExportS3Destination {
   final List<BcmdataexportsExportS3OutputConfigurations>?
   s3OutputConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_prefix': s3Prefix.toTfJson(),
@@ -129,6 +133,7 @@ final class BcmdataexportsExportS3OutputConfigurations {
 
   final BcmdataexportsExportOverwrite overwrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
     'format': format.toTfJson(),
@@ -232,6 +237,7 @@ final class BcmdataexportsExportRefreshCadence {
 
   final BcmdataexportsExportFrequency frequency;
 
+  @internal
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 

@@ -20,6 +20,7 @@ final class CesSecuritySettingsEndpointControlPolicy {
 
   final CesSecuritySettingsEnforcementScope? enforcementScope;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'enforcement_scope': ?enforcementScope?.toTfJson(),

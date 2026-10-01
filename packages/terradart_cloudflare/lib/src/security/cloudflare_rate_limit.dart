@@ -21,6 +21,7 @@ final class RateLimitAction {
 
   final RateLimitActionResponse? response;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),
@@ -62,6 +63,7 @@ final class RateLimitActionResponse {
 
   final TfArg<String>? contentType;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'content_type': ?contentType?.toTfJson(),
@@ -80,6 +82,7 @@ final class RateLimitMatch {
 
   final RateLimitMatchResponse? response;
 
+  @internal
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
     'request': ?request?.encode(),
@@ -99,6 +102,7 @@ final class RateLimitHeaders {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'op': ?op?.toTfJson(),
@@ -130,6 +134,7 @@ final class RateLimitRequest {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {
     if (methods != null) 'methods': [for (final e in methods!) e.toTfJson()],
     'schemes': ?schemes?.toTfJson(),
@@ -172,6 +177,7 @@ final class RateLimitMatchResponse {
 
   final TfArg<bool>? originTraffic;
 
+  @internal
   Map<String, Object?> encode() => {
     'origin_traffic': ?originTraffic?.toTfJson(),
   };

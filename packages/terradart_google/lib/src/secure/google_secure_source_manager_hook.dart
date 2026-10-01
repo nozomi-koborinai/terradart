@@ -17,6 +17,7 @@ final class SecureSourceManagerHookPushOption {
 
   final TfArg<String>? branchFilter;
 
+  @internal
   Map<String, Object?> encode() => {'branch_filter': ?branchFilter?.toTfJson()};
 }
 

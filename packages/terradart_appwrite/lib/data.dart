@@ -2,11 +2,11 @@
 // Run `terradart wrap` to regenerate.
 /// Read-only Appwrite data sources (no `terraform apply` side effects).
 ///
-/// ```dart
-/// import 'package:terradart_appwrite/data.dart';
-/// ```
+/// Every data source is also exported from its service barrel; import
+/// this one for data sources of several services, or of none.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/data/appwrite_auth_team.dart' show DataAppwriteAuthTeam;
 export 'src/data/appwrite_auth_user.dart' show DataAppwriteAuthUser;
 export 'src/data/appwrite_function.dart' show DataAppwriteFunction;

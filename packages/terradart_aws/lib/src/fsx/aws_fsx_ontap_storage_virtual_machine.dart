@@ -51,6 +51,7 @@ final class FsxOntapStorageVirtualMachineActiveDirectoryConfiguration {
   final FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration?
   selfManagedActiveDirectoryConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'netbios_name': ?netbiosName?.toTfJson(),
     'self_managed_active_directory_configuration':
@@ -83,6 +84,7 @@ final class FsxOntapStorageVirtualMachineSelfManagedActiveDirectoryConfiguration
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_ips': dnsIps.toTfJson(),
     'domain_name': domainName.toTfJson(),

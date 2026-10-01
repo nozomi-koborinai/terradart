@@ -3,6 +3,7 @@
 /// AWS EventBridge Scheduler.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/scheduler/aws_scheduler_schedule.dart'
     show
         AwsSchedulerSchedule,

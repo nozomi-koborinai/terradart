@@ -26,6 +26,7 @@ final class WafregionalSizeConstraintSetSizeConstraints {
 
   final WafregionalSizeConstraintSetFieldToMatch fieldToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
     'size': size.toTfJson(),
@@ -47,6 +48,7 @@ final class WafregionalSizeConstraintSetFieldToMatch {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'type': type.toTfJson(),

@@ -51,6 +51,7 @@ final class ComputeExternalVpnGatewayInterface {
 
   final TfArg<String>? ipv6Address;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'ip_address': ?ipAddress?.toTfJson(),
@@ -66,6 +67,7 @@ final class ComputeExternalVpnGatewayParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

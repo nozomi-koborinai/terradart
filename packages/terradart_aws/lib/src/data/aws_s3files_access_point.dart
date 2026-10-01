@@ -14,6 +14,7 @@ const Set<String> _awsS3filesAccessPointSensitive = <String>{};
 final class DataS3filesAccessPointPosixUser {
   const DataS3filesAccessPointPosixUser();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -25,6 +26,7 @@ final class DataS3filesAccessPointRootDirectory {
 
   final List<DataS3filesAccessPointCreationPermissions>? creationPermissions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (creationPermissions != null)
       'creation_permissions': [
@@ -39,6 +41,7 @@ final class DataS3filesAccessPointRootDirectory {
 final class DataS3filesAccessPointCreationPermissions {
   const DataS3filesAccessPointCreationPermissions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

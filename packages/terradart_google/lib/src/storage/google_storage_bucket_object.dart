@@ -41,6 +41,7 @@ sealed class StorageBucketObjectBody {
 
   /// argMap key under which this payload is emitted (`'source'` or
   /// `'content'`).
+  @internal
   String get blockKey;
 
   /// The scalar value that will be written to the argMap under
@@ -54,6 +55,7 @@ sealed class StorageBucketObjectBody {
   /// exists for parity with other sealed-class encoders (e.g.
   /// [StorageBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
   /// and is exercised by the Gate 6 encode round-trip test.
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -69,6 +71,7 @@ final class StorageBucketObjectBodySource extends StorageBucketObjectBody {
   final TfArg<String> source;
 
   @override
+  @internal
   String get blockKey => 'source';
 
   @override
@@ -87,6 +90,7 @@ final class StorageBucketObjectBodyContent extends StorageBucketObjectBody {
   final TfArg<String> content;
 
   @override
+  @internal
   String get blockKey => 'content';
 
   @override
@@ -195,6 +199,7 @@ final class StorageBucketObjectContexts {
 
   final List<StorageBucketObjectCustom> custom;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom': [for (final e in custom) e.encode()],
   };
@@ -210,6 +215,7 @@ final class StorageBucketObjectCustom {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

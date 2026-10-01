@@ -26,6 +26,7 @@ final class DataRoute53TrafficPolicyDocumentEndpoint {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'region': ?region?.toTfJson(),
@@ -66,6 +67,7 @@ final class DataRoute53TrafficPolicyDocumentRule {
 
   final DataRoute53TrafficPolicyDocumentSecondary? secondary;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -112,6 +114,7 @@ final class DataRoute53TrafficPolicyDocumentGeoProximityLocation {
 
   final TfArg<String>? ruleReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'bias': ?bias?.toTfJson(),
     'endpoint_reference': ?endpointReference?.toTfJson(),
@@ -137,6 +140,7 @@ final class DataRoute53TrafficPolicyDocumentItems {
 
   final TfArg<String>? healthCheck;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_reference': ?endpointReference?.toTfJson(),
     'health_check': ?healthCheck?.toTfJson(),
@@ -174,6 +178,7 @@ final class DataRoute53TrafficPolicyDocumentLocation {
 
   final TfArg<String>? subdivision;
 
+  @internal
   Map<String, Object?> encode() => {
     'continent': ?continent?.toTfJson(),
     'country': ?country?.toTfJson(),
@@ -205,6 +210,7 @@ final class DataRoute53TrafficPolicyDocumentPrimary {
 
   final TfArg<String>? ruleReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_reference': ?endpointReference?.toTfJson(),
     'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
@@ -235,6 +241,7 @@ final class DataRoute53TrafficPolicyDocumentRegion {
 
   final TfArg<String>? ruleReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_reference': ?endpointReference?.toTfJson(),
     'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),
@@ -263,6 +270,7 @@ final class DataRoute53TrafficPolicyDocumentSecondary {
 
   final TfArg<String>? ruleReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_reference': ?endpointReference?.toTfJson(),
     'evaluate_target_health': ?evaluateTargetHealth?.toTfJson(),

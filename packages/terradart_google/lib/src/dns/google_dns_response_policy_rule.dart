@@ -93,6 +93,7 @@ class DnsResponsePolicyRuleLocalData {
 
   final List<DnsResponsePolicyRuleLocalDataEntry> localDatas;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_datas': localDatas.map((d) => d.toArgMap()).toList(),
   };

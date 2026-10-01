@@ -53,10 +53,12 @@ sealed class DataprocBatchWorkload {
 
   /// argMap key (`pyspark_batch` / `spark_batch` / `spark_sql_batch` /
   /// `spark_r_batch`).
+  @internal
   String get blockKey;
 
   /// JSON fragment for the block value (single-element list —
   /// `nesting_mode: list, max_items: 1`).
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -80,9 +82,11 @@ final class DataprocBatchPysparkWorkload extends DataprocBatchWorkload {
   final TfArg<List<String>>? archiveUris;
 
   @override
+  @internal
   String get blockKey => 'pyspark_batch';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       if (mainPythonFileUri != null)
@@ -118,9 +122,11 @@ final class DataprocBatchSparkWorkload extends DataprocBatchWorkload {
   final TfArg<List<String>>? archiveUris;
 
   @override
+  @internal
   String get blockKey => 'spark_batch';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       if (mainClass != null) 'main_class': mainClass!.toTfJson(),
@@ -148,9 +154,11 @@ final class DataprocBatchSparkSqlWorkload extends DataprocBatchWorkload {
   final TfArg<Map<String, String>>? queryVariables;
 
   @override
+  @internal
   String get blockKey => 'spark_sql_batch';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
@@ -176,9 +184,11 @@ final class DataprocBatchSparkRWorkload extends DataprocBatchWorkload {
   final TfArg<List<String>>? archiveUris;
 
   @override
+  @internal
   String get blockKey => 'spark_r_batch';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       if (mainRFileUri != null) 'main_r_file_uri': mainRFileUri!.toTfJson(),
@@ -202,6 +212,7 @@ final class DataprocBatchEnvironmentConfig {
 
   final DataprocBatchPeripheralsConfig? peripheralsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_config': ?executionConfig?.encode(),
     'peripherals_config': ?peripheralsConfig?.encode(),
@@ -236,6 +247,7 @@ final class DataprocBatchExecutionConfig {
 
   final DataprocBatchAuthenticationConfig? authenticationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
     'network_tags': ?networkTags?.toTfJson(),
@@ -266,8 +278,10 @@ sealed class DataprocBatchNetwork {
   ) = DataprocBatchNetworkSubnetworkUri;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -277,9 +291,11 @@ final class DataprocBatchNetworkUri extends DataprocBatchNetwork {
 
   final RefTo<GoogleComputeNetwork> networkUri;
 
+  @internal
   @override
   String get blockKey => 'network_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network_uri': networkUri.encodeAs('id').toTfJson(),
@@ -292,9 +308,11 @@ final class DataprocBatchNetworkSubnetworkUri extends DataprocBatchNetwork {
 
   final RefTo<GoogleComputeSubnetwork> subnetworkUri;
 
+  @internal
   @override
   String get blockKey => 'subnetwork_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnetwork_uri': subnetworkUri.encodeAs('id').toTfJson(),
@@ -312,6 +330,7 @@ final class DataprocBatchAuthenticationConfig {
   final DataprocBatchUserWorkloadAuthenticationType?
   userWorkloadAuthenticationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_workload_authentication_type': ?userWorkloadAuthenticationType
         ?.toTfJson(),
@@ -356,6 +375,7 @@ final class DataprocBatchPeripheralsConfig {
 
   final DataprocBatchSparkHistoryServerConfig? sparkHistoryServerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'metastore_service': ?metastoreService?.toTfJson(),
     'spark_history_server_config': ?sparkHistoryServerConfig?.encode(),
@@ -370,6 +390,7 @@ final class DataprocBatchSparkHistoryServerConfig {
 
   final TfArg<String>? dataprocCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataproc_cluster': ?dataprocCluster?.toTfJson(),
   };
@@ -397,6 +418,7 @@ final class DataprocBatchRuntimeConfig {
 
   final DataprocBatchAutotuningConfig? autotuningConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cohort': ?cohort?.toTfJson(),
     'container_image': ?containerImage?.toTfJson(),
@@ -414,6 +436,7 @@ final class DataprocBatchAutotuningConfig {
 
   final List<DataprocBatchScenarios>? scenarios;
 
+  @internal
   Map<String, Object?> encode() => {
     if (scenarios != null)
       'scenarios': [for (final e in scenarios!) e.toTfJson()],

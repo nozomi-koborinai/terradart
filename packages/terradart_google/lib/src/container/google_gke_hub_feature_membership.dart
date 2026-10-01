@@ -29,6 +29,7 @@ final class GkeHubFeatureMembershipConfigmanagement {
 
   final GkeHubFeatureMembershipPolicyController? policyController;
 
+  @internal
   Map<String, Object?> encode() => {
     'management': ?management?.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -69,6 +70,7 @@ final class GkeHubFeatureMembershipConfigSync {
 
   final GkeHubFeatureMembershipOci? oci;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'metrics_gcp_service_account_email': ?metricsGcpServiceAccountEmail
@@ -101,6 +103,7 @@ final class GkeHubFeatureMembershipDeploymentOverrides {
 
   final List<GkeHubFeatureMembershipContainers>? containers;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployment_name': ?deploymentName?.toTfJson(),
     'deployment_namespace': ?deploymentNamespace?.toTfJson(),
@@ -131,6 +134,7 @@ final class GkeHubFeatureMembershipContainers {
 
   final TfArg<String>? memoryRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': ?containerName?.toTfJson(),
     'cpu_limit': ?cpuLimit?.toTfJson(),
@@ -171,6 +175,7 @@ final class GkeHubFeatureMembershipGit {
 
   final TfArg<String>? syncWaitSecs;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_service_account_email': ?gcpServiceAccountEmail?.toTfJson(),
     'https_proxy': ?httpsProxy?.toTfJson(),
@@ -205,6 +210,7 @@ final class GkeHubFeatureMembershipOci {
 
   final TfArg<String>? syncWaitSecs;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_service_account_email': ?gcpServiceAccountEmail?.toTfJson(),
     'policy_dir': ?policyDir?.toTfJson(),
@@ -230,6 +236,7 @@ final class GkeHubFeatureMembershipHierarchyController {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_hierarchical_resource_quota': ?enableHierarchicalResourceQuota
         ?.toTfJson(),
@@ -269,6 +276,7 @@ final class GkeHubFeatureMembershipPolicyController {
 
   final GkeHubFeatureMembershipMonitoring? monitoring;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit_interval_seconds': ?auditIntervalSeconds?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -290,6 +298,7 @@ final class GkeHubFeatureMembershipMonitoring {
 
   final TfArg<List<String>>? backends;
 
+  @internal
   Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
 }
 
@@ -303,6 +312,7 @@ final class GkeHubFeatureMembershipMesh {
 
   final GkeHubFeatureMembershipManagement? management;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane': ?controlPlane?.toTfJson(),
     'management': ?management?.toTfJson(),
@@ -377,6 +387,7 @@ final class GkeHubFeatureMembershipPolicycontroller {
   final GkeHubFeatureMembershipPolicyControllerHubConfig
   policyControllerHubConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'version': ?version?.toTfJson(),
     'policy_controller_hub_config': policyControllerHubConfig.encode(),
@@ -420,6 +431,7 @@ final class GkeHubFeatureMembershipPolicyControllerHubConfig {
 
   final GkeHubFeatureMembershipPolicyContent? policyContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit_interval_seconds': ?auditIntervalSeconds?.toTfJson(),
     'constraint_violation_limit': ?constraintViolationLimit?.toTfJson(),
@@ -491,6 +503,7 @@ final class GkeHubFeatureMembershipDeploymentConfigs {
 
   final List<GkeHubFeatureMembershipPodTolerations>? podTolerations;
 
+  @internal
   Map<String, Object?> encode() => {
     'component_name': componentName.toTfJson(),
     'pod_affinity': ?podAffinity?.toTfJson(),
@@ -537,6 +550,7 @@ final class GkeHubFeatureMembershipContainerResources {
 
   final GkeHubFeatureMembershipRequests? requests;
 
+  @internal
   Map<String, Object?> encode() => {
     'limits': ?limits?.encode(),
     'requests': ?requests?.encode(),
@@ -553,6 +567,7 @@ final class GkeHubFeatureMembershipLimits {
 
   final TfArg<String>? memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'memory': ?memory?.toTfJson(),
@@ -569,6 +584,7 @@ final class GkeHubFeatureMembershipRequests {
 
   final TfArg<String>? memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'memory': ?memory?.toTfJson(),
@@ -594,6 +610,7 @@ final class GkeHubFeatureMembershipPodTolerations {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': ?effect?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -615,6 +632,7 @@ final class GkeHubFeatureMembershipPolicyContent {
 
   final GkeHubFeatureMembershipTemplateLibrary? templateLibrary;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bundles != null) 'bundles': [for (final e in bundles!) e.encode()],
     'template_library': ?templateLibrary?.encode(),
@@ -634,6 +652,7 @@ final class GkeHubFeatureMembershipBundles {
 
   final TfArg<List<String>>? exemptedNamespaces;
 
+  @internal
   Map<String, Object?> encode() => {
     'bundle_name': bundleName.toTfJson(),
     'exempted_namespaces': ?exemptedNamespaces?.toTfJson(),
@@ -648,6 +667,7 @@ final class GkeHubFeatureMembershipTemplateLibrary {
 
   final GkeHubFeatureMembershipInstallation? installation;
 
+  @internal
   Map<String, Object?> encode() => {'installation': ?installation?.toTfJson()};
 }
 

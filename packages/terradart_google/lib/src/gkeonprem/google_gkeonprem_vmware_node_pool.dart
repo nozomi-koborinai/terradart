@@ -87,6 +87,7 @@ final class GkeonpremVmwareNodePoolConfig {
 
   final GkeonpremVmwareNodePoolVsphereConfig? vsphereConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
     'cpus': ?cpus?.toTfJson(),
@@ -117,6 +118,7 @@ final class GkeonpremVmwareNodePoolTaints {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': ?effect?.toTfJson(),
     'key': key.toTfJson(),
@@ -170,6 +172,7 @@ final class GkeonpremVmwareNodePoolVsphereConfig {
 
   final List<GkeonpremVmwareNodePoolTags>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'datastore': ?datastore?.toTfJson(),
     'host_groups': ?hostGroups?.toTfJson(),
@@ -187,6 +190,7 @@ final class GkeonpremVmwareNodePoolTags {
 
   final TfArg<String>? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.toTfJson(),
     'tag': ?tag?.toTfJson(),
@@ -206,6 +210,7 @@ final class GkeonpremVmwareNodePoolAutoscaling {
 
   final TfArg<num> minReplicas;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replicas': maxReplicas.toTfJson(),
     'min_replicas': minReplicas.toTfJson(),

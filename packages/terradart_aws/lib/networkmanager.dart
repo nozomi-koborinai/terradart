@@ -3,6 +3,48 @@
 /// AWS Network Manager (Cloud WAN).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_networkmanager_connection.dart'
+    show DataAwsNetworkmanagerConnection;
+export 'src/data/aws_networkmanager_connections.dart'
+    show DataAwsNetworkmanagerConnections;
+export 'src/data/aws_networkmanager_core_network.dart'
+    show DataAwsNetworkmanagerCoreNetwork;
+export 'src/data/aws_networkmanager_core_network_policy_document.dart'
+    show
+        DataAwsNetworkmanagerCoreNetworkPolicyDocument,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRules,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesAction,
+        DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions,
+        DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration,
+        DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocationAssociation,
+        DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations,
+        DataNetworkmanagerCoreNetworkPolicyDocumentMatchConditions,
+        DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroups,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicies,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRoutingPolicyRules,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinition,
+        DataNetworkmanagerCoreNetworkPolicyDocumentRuleDefinitionAction,
+        DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions,
+        DataNetworkmanagerCoreNetworkPolicyDocumentSegments,
+        DataNetworkmanagerCoreNetworkPolicyDocumentVia,
+        DataNetworkmanagerCoreNetworkPolicyDocumentWhenSentTo,
+        DataNetworkmanagerCoreNetworkPolicyDocumentWithEdgeOverride;
+export 'src/data/aws_networkmanager_device.dart'
+    show DataAwsNetworkmanagerDevice;
+export 'src/data/aws_networkmanager_devices.dart'
+    show DataAwsNetworkmanagerDevices;
+export 'src/data/aws_networkmanager_global_network.dart'
+    show DataAwsNetworkmanagerGlobalNetwork;
+export 'src/data/aws_networkmanager_global_networks.dart'
+    show DataAwsNetworkmanagerGlobalNetworks;
+export 'src/data/aws_networkmanager_link.dart' show DataAwsNetworkmanagerLink;
+export 'src/data/aws_networkmanager_links.dart' show DataAwsNetworkmanagerLinks;
+export 'src/data/aws_networkmanager_site.dart' show DataAwsNetworkmanagerSite;
+export 'src/data/aws_networkmanager_sites.dart' show DataAwsNetworkmanagerSites;
 export 'src/networkmanager/aws_networkmanager_attachment_accepter.dart'
     show
         AwsNetworkmanagerAttachmentAccepter,

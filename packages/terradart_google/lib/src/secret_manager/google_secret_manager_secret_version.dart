@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../secret_manager/google_secret_manager_secret.dart'
@@ -30,13 +31,16 @@ sealed class SecretManagerSecretVersionPayload {
 
   /// The key that tells the variants apart (`'secret_data_wo'` or
   /// `'secret_data'`).
+  @internal
   String get blockKey;
 
   /// Wire-format arguments this payload writes on the resource.
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], kept as the caller's [TfArg]s
   /// so synth still checks sensitive literals and variable references.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -57,15 +61,18 @@ final class SecretManagerSecretVersionWriteOnlyPayload
   final TfArg<String> secretDataWoVersion;
 
   @override
+  @internal
   String get blockKey => 'secret_data_wo';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'secret_data_wo': secretDataWo.toTfJson(),
     'secret_data_wo_version': secretDataWoVersion.toTfJson(),
   };
 
   @override
+  @internal
   Map<String, TfArg<Object?>> get argMap => {
     'secret_data_wo': secretDataWo,
     'secret_data_wo_version': secretDataWoVersion,
@@ -86,12 +93,15 @@ final class SecretManagerSecretVersionPlaintextPayload
   final TfArg<String> secretData;
 
   @override
+  @internal
   String get blockKey => 'secret_data';
 
   @override
+  @internal
   Map<String, Object?> encode() => {'secret_data': secretData.toTfJson()};
 
   @override
+  @internal
   Map<String, TfArg<Object?>> get argMap => {'secret_data': secretData};
 }
 

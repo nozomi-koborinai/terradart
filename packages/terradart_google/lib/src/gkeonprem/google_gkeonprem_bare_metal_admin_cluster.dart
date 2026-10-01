@@ -58,6 +58,7 @@ final class GkeonpremBareMetalAdminClusterOperations {
 
   final TfArg<bool>? enableApplicationLogs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_application_logs': ?enableApplicationLogs?.toTfJson(),
   };
@@ -77,6 +78,7 @@ final class GkeonpremBareMetalAdminClusterControlPlane {
   final GkeonpremBareMetalAdminClusterControlPlaneNodePoolConfig
   controlPlaneNodePoolConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (apiServerArgs != null)
       'api_server_args': [for (final e in apiServerArgs!) e.encode()],
@@ -97,6 +99,7 @@ final class GkeonpremBareMetalAdminClusterApiServerArgs {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'argument': argument.toTfJson(),
     'value': value.toTfJson(),
@@ -113,6 +116,7 @@ final class GkeonpremBareMetalAdminClusterControlPlaneNodePoolConfig {
 
   final GkeonpremBareMetalAdminClusterNodePoolConfig nodePoolConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_pool_config': nodePoolConfig.encode(),
   };
@@ -137,6 +141,7 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfig {
 
   final List<GkeonpremBareMetalAdminClusterTaints>? taints;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'operating_system': ?operatingSystem?.toTfJson(),
@@ -157,6 +162,7 @@ final class GkeonpremBareMetalAdminClusterNodeConfigs {
 
   final TfArg<String>? nodeIp;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'node_ip': ?nodeIp?.toTfJson(),
@@ -179,6 +185,7 @@ final class GkeonpremBareMetalAdminClusterTaints {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': ?effect?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -232,6 +239,7 @@ final class GkeonpremBareMetalAdminClusterLoadBalancer {
 
   final GkeonpremBareMetalAdminClusterVipConfig vipConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bgp_lb_config': ?bgpLbConfig?.encode(),
     'manual_lb_config': ?manualLbConfig?.encode(),
@@ -260,6 +268,7 @@ final class GkeonpremBareMetalAdminClusterBgpLbConfig {
   final GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfig?
   loadBalancerNodePoolConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn': ?asn?.toTfJson(),
     if (addressPools != null)
@@ -289,6 +298,7 @@ final class GkeonpremBareMetalAdminClusterAddressPools {
 
   final TfArg<String>? pool;
 
+  @internal
   Map<String, Object?> encode() => {
     'addresses': ?addresses?.toTfJson(),
     'avoid_buggy_ips': ?avoidBuggyIps?.toTfJson(),
@@ -313,6 +323,7 @@ final class GkeonpremBareMetalAdminClusterBgpPeerConfigs {
 
   final TfArg<String>? ipAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn': ?asn?.toTfJson(),
     'control_plane_nodes': ?controlPlaneNodes?.toTfJson(),
@@ -331,6 +342,7 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfig {
   final GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConfig?
   nodePoolConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_pool_config': ?nodePoolConfig?.encode(),
   };
@@ -358,6 +370,7 @@ final class GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConf
 
   final List<GkeonpremBareMetalAdminClusterNodePoolConfigTaints>? taints;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'operating_system': ?operatingSystem?.toTfJson(),
@@ -384,6 +397,7 @@ final class GkeonpremBareMetalAdminClusterKubeletConfig {
 
   final TfArg<bool>? serializeImagePullsDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'registry_burst': ?registryBurst?.toTfJson(),
     'registry_pull_qps': ?registryPullQps?.toTfJson(),
@@ -407,6 +421,7 @@ final class GkeonpremBareMetalAdminClusterNodePoolConfigTaints {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': ?effect?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -422,6 +437,7 @@ final class GkeonpremBareMetalAdminClusterManualLbConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -435,6 +451,7 @@ final class GkeonpremBareMetalAdminClusterPortConfig {
 
   final TfArg<num> controlPlaneLoadBalancerPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_load_balancer_port': controlPlaneLoadBalancerPort.toTfJson(),
   };
@@ -450,6 +467,7 @@ final class GkeonpremBareMetalAdminClusterVipConfig {
 
   final TfArg<String> controlPlaneVip;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_vip': controlPlaneVip.toTfJson(),
   };
@@ -465,6 +483,7 @@ final class GkeonpremBareMetalAdminClusterMaintenanceConfig {
 
   final TfArg<List<String>> maintenanceAddressCidrBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'maintenance_address_cidr_blocks': maintenanceAddressCidrBlocks.toTfJson(),
   };
@@ -487,6 +506,7 @@ final class GkeonpremBareMetalAdminClusterNetworkConfig {
   final GkeonpremBareMetalAdminClusterMultipleNetworkInterfacesConfig?
   multipleNetworkInterfacesConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'advanced_networking': ?advancedNetworking?.toTfJson(),
     'island_mode_cidr': ?islandModeCidr?.encode(),
@@ -508,6 +528,7 @@ final class GkeonpremBareMetalAdminClusterIslandModeCidr {
 
   final TfArg<List<String>> serviceAddressCidrBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),
@@ -524,6 +545,7 @@ final class GkeonpremBareMetalAdminClusterMultipleNetworkInterfacesConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -535,6 +557,7 @@ final class GkeonpremBareMetalAdminClusterNodeAccessConfig {
 
   final TfArg<String>? loginUser;
 
+  @internal
   Map<String, Object?> encode() => {'login_user': ?loginUser?.toTfJson()};
 }
 
@@ -546,6 +569,7 @@ final class GkeonpremBareMetalAdminClusterNodeConfig {
 
   final TfArg<num>? maxPodsPerNode;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pods_per_node': ?maxPodsPerNode?.toTfJson(),
   };
@@ -561,6 +585,7 @@ final class GkeonpremBareMetalAdminClusterProxy {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'no_proxy': ?noProxy?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -575,6 +600,7 @@ final class GkeonpremBareMetalAdminClusterSecurityConfig {
 
   final GkeonpremBareMetalAdminClusterAuthorization? authorization;
 
+  @internal
   Map<String, Object?> encode() => {'authorization': ?authorization?.encode()};
 }
 
@@ -586,6 +612,7 @@ final class GkeonpremBareMetalAdminClusterAuthorization {
 
   final List<GkeonpremBareMetalAdminClusterAdminUsers> adminUsers;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_users': [for (final e in adminUsers) e.encode()],
   };
@@ -599,6 +626,7 @@ final class GkeonpremBareMetalAdminClusterAdminUsers {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {'username': username.toTfJson()};
 }
 
@@ -615,6 +643,7 @@ final class GkeonpremBareMetalAdminClusterStorage {
 
   final GkeonpremBareMetalAdminClusterLvpShareConfig lvpShareConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'lvp_node_mounts_config': lvpNodeMountsConfig.encode(),
     'lvp_share_config': lvpShareConfig.encode(),
@@ -634,6 +663,7 @@ final class GkeonpremBareMetalAdminClusterLvpNodeMountsConfig {
 
   final TfArg<String> storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'storage_class': storageClass.toTfJson(),
@@ -653,6 +683,7 @@ final class GkeonpremBareMetalAdminClusterLvpShareConfig {
 
   final GkeonpremBareMetalAdminClusterLvpConfig lvpConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'shared_path_pv_count': ?sharedPathPvCount?.toTfJson(),
     'lvp_config': lvpConfig.encode(),
@@ -672,6 +703,7 @@ final class GkeonpremBareMetalAdminClusterLvpConfig {
 
   final TfArg<String> storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'storage_class': storageClass.toTfJson(),

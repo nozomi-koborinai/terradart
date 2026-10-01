@@ -17,6 +17,7 @@ final class VectorSearchCollectionEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
   };
@@ -38,6 +39,7 @@ final class VectorSearchCollectionVectorSchema {
 
   final VectorSearchCollectionSparseVector? sparseVector;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
     'dense_vector': ?denseVector?.encode(),
@@ -58,6 +60,7 @@ final class VectorSearchCollectionDenseVector {
 
   final VectorSearchCollectionVertexEmbeddingConfig? vertexEmbeddingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
     'vertex_embedding_config': ?vertexEmbeddingConfig?.encode(),
@@ -80,6 +83,7 @@ final class VectorSearchCollectionVertexEmbeddingConfig {
 
   final TfArg<String> textTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'model_id': modelId.toTfJson(),
     'task_type': taskType.toTfJson(),
@@ -93,6 +97,7 @@ final class VectorSearchCollectionVertexEmbeddingConfig {
 final class VectorSearchCollectionSparseVector {
   const VectorSearchCollectionSparseVector();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

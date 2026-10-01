@@ -137,7 +137,9 @@ prelude: |
       List<String>? ports,
       List<ComputeFirewallDenyRule> additionalRules,
     }) = ComputeFirewallDenyPolicy;
+    @internal
     String get blockKey;
+    @internal
     List<Map<String, Object?>> encode();
   }
 
@@ -191,8 +193,10 @@ prelude: |
     final List<String>? ports;
     final List<ComputeFirewallAllowRule> additionalRules;
     @override
+    @internal
     String get blockKey => 'allow';
     @override
+    @internal
     List<Map<String, Object?>> encode() => [
       {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
       ...additionalRules.map((r) => r.toArgMap()),
@@ -206,8 +210,10 @@ prelude: |
     final List<String>? ports;
     final List<ComputeFirewallDenyRule> additionalRules;
     @override
+    @internal
     String get blockKey => 'deny';
     @override
+    @internal
     List<Map<String, Object?>> encode() => [
       {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
       ...additionalRules.map((r) => r.toArgMap()),

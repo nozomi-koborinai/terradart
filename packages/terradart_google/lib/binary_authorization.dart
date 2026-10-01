@@ -3,6 +3,7 @@
 /// Binary Authorization: project policy, attestors, and attestor IAM members.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/binary_authorization/google_binary_authorization_attestor.dart'
     show
         BinaryAuthorizationAttestorAttestationAuthorityNote,
@@ -27,3 +28,5 @@ export 'src/binary_authorization/google_binary_authorization_policy.dart'
         BinaryAuthorizationPolicyEnforcementMode,
         BinaryAuthorizationPolicyEvaluationMode,
         GoogleBinaryAuthorizationPolicy;
+export 'src/data/google_binary_authorization_attestor_iam_policy.dart'
+    show DataGoogleBinaryAuthorizationAttestorIamPolicy;

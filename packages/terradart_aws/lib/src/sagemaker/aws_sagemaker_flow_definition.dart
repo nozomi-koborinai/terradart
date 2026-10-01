@@ -21,6 +21,7 @@ final class SagemakerFlowDefinitionHumanLoopActivationConfig {
   final SagemakerFlowDefinitionHumanLoopActivationConditionsConfig?
   humanLoopActivationConditionsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'human_loop_activation_conditions_config':
         ?humanLoopActivationConditionsConfig?.encode(),
@@ -37,6 +38,7 @@ final class SagemakerFlowDefinitionHumanLoopActivationConditionsConfig {
 
   final TfArg<String> humanLoopActivationConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'human_loop_activation_conditions': humanLoopActivationConditions
         .toTfJson(),
@@ -78,6 +80,7 @@ final class SagemakerFlowDefinitionHumanLoopConfig {
   final SagemakerFlowDefinitionPublicWorkforceTaskPrice?
   publicWorkforceTaskPrice;
 
+  @internal
   Map<String, Object?> encode() => {
     'human_task_ui_arn': humanTaskUiArn.toTfJson(),
     'task_availability_lifetime_in_seconds': ?taskAvailabilityLifetimeInSeconds
@@ -100,6 +103,7 @@ final class SagemakerFlowDefinitionPublicWorkforceTaskPrice {
 
   final SagemakerFlowDefinitionAmountInUsd? amountInUsd;
 
+  @internal
   Map<String, Object?> encode() => {'amount_in_usd': ?amountInUsd?.encode()};
 }
 
@@ -119,6 +123,7 @@ final class SagemakerFlowDefinitionAmountInUsd {
 
   final TfArg<num>? tenthFractionsOfACent;
 
+  @internal
   Map<String, Object?> encode() => {
     'cents': ?cents?.toTfJson(),
     'dollars': ?dollars?.toTfJson(),
@@ -137,6 +142,7 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
   final SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource
   awsManagedHumanLoopRequestSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_managed_human_loop_request_source': awsManagedHumanLoopRequestSource
         .toTfJson(),
@@ -185,6 +191,7 @@ final class SagemakerFlowDefinitionOutputConfig {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),

@@ -45,11 +45,13 @@ sealed class ComputeSnapshotSource {
   }) = ComputeSnapshotInstantSource;
 
   /// Terraform attribute name (`source_disk` or `source_instant_snapshot`).
+  @internal
   String get blockKey;
 
   /// Scalar value written under [blockKey].
   TfArg<String> get value;
 
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -61,6 +63,7 @@ final class ComputeSnapshotDiskSource extends ComputeSnapshotSource {
   final TfArg<String> sourceDisk;
 
   @override
+  @internal
   String get blockKey => 'source_disk';
 
   @override
@@ -75,6 +78,7 @@ final class ComputeSnapshotInstantSource extends ComputeSnapshotSource {
   final TfArg<String> sourceInstantSnapshot;
 
   @override
+  @internal
   String get blockKey => 'source_instant_snapshot';
 
   @override
@@ -89,6 +93,7 @@ final class ComputeSnapshotParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -113,6 +118,7 @@ final class ComputeSnapshotEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -140,6 +146,7 @@ final class ComputeSnapshotSourceDiskEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),

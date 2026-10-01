@@ -45,12 +45,15 @@ sealed class ElbName {
   const factory ElbName.namePrefix(TfArg<String> namePrefix) = ElbNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -60,12 +63,15 @@ final class ElbNameChoice extends ElbName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -76,12 +82,15 @@ final class ElbNamePrefix extends ElbName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -105,6 +114,7 @@ final class ElbAccessLogs {
 
   final TfArg<num>? interval;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -135,6 +145,7 @@ final class ElbHealthCheck {
 
   final TfArg<num> unhealthyThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'healthy_threshold': healthyThreshold.toTfJson(),
     'interval': interval.toTfJson(),
@@ -166,6 +177,7 @@ final class ElbListener {
 
   final TfArg<String>? sslCertificateId;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_port': instancePort.toTfJson(),
     'instance_protocol': instanceProtocol.toTfJson(),

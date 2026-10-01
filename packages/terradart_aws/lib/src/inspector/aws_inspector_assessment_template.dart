@@ -22,6 +22,7 @@ final class InspectorAssessmentTemplateEventSubscription {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'event': event.toTfJson(),
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),

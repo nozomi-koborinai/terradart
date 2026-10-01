@@ -52,6 +52,7 @@ final class CustomHostnameSsl {
 
   final CustomHostnameSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'bundle_method': ?bundleMethod?.toTfJson(),
     'certificate_authority': ?certificateAuthority?.toTfJson(),
@@ -161,6 +162,7 @@ final class CustomHostnameCustomCertBundle {
 
   final Sensitive<String> customKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_certificate': customCertificate.toTfJson(),
     'custom_key': customKey.toTfJson(),
@@ -189,6 +191,7 @@ final class CustomHostnameSettings {
 
   final CustomHostnameTls13? tls13;
 
+  @internal
   Map<String, Object?> encode() => {
     'ciphers': ?ciphers?.toTfJson(),
     'early_hints': ?earlyHints?.toTfJson(),

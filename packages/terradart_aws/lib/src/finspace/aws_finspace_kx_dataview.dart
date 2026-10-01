@@ -37,6 +37,7 @@ final class FinspaceKxDataviewSegmentConfigurations {
 
   final TfArg<String> volumeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'db_paths': dbPaths.toTfJson(),
     'on_demand': ?onDemand?.toTfJson(),

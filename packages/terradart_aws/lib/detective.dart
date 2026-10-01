@@ -3,6 +3,7 @@
 /// AWS Detective.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/detective/aws_detective_graph.dart' show AwsDetectiveGraph;
 export 'src/detective/aws_detective_invitation_accepter.dart'
     show AwsDetectiveInvitationAccepter;

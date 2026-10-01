@@ -39,6 +39,7 @@ final class RedshiftIdcApplicationAuthorizedTokenIssuer {
 
   final TfArg<String>? trustedTokenIssuerArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorized_audiences_list': ?authorizedAudiencesList?.toTfJson(),
     'trusted_token_issuer_arn': ?trustedTokenIssuerArn?.toTfJson(),
@@ -61,6 +62,7 @@ final class RedshiftIdcApplicationServiceIntegration {
 
   final List<RedshiftIdcApplicationS3AccessGrants>? s3AccessGrants;
 
+  @internal
   Map<String, Object?> encode() => {
     if (lakeFormation != null)
       'lake_formation': [for (final e in lakeFormation!) e.encode()],
@@ -78,6 +80,7 @@ final class RedshiftIdcApplicationLakeFormation {
 
   final List<RedshiftIdcApplicationLakeFormationQuery>? lakeFormationQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     if (lakeFormationQuery != null)
       'lake_formation_query': [for (final e in lakeFormationQuery!) e.encode()],
@@ -92,6 +95,7 @@ final class RedshiftIdcApplicationLakeFormationQuery {
 
   final RedshiftIdcApplicationAuthorization authorization;
 
+  @internal
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
 
@@ -126,6 +130,7 @@ final class RedshiftIdcApplicationRedshift {
 
   final List<RedshiftIdcApplicationConnect>? connect;
 
+  @internal
   Map<String, Object?> encode() => {
     if (connect != null) 'connect': [for (final e in connect!) e.encode()],
   };
@@ -139,6 +144,7 @@ final class RedshiftIdcApplicationConnect {
 
   final RedshiftIdcApplicationAuthorization authorization;
 
+  @internal
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
 
@@ -150,6 +156,7 @@ final class RedshiftIdcApplicationS3AccessGrants {
 
   final List<RedshiftIdcApplicationReadWriteAccess>? readWriteAccess;
 
+  @internal
   Map<String, Object?> encode() => {
     if (readWriteAccess != null)
       'read_write_access': [for (final e in readWriteAccess!) e.encode()],
@@ -164,6 +171,7 @@ final class RedshiftIdcApplicationReadWriteAccess {
 
   final RedshiftIdcApplicationAuthorization authorization;
 
+  @internal
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
 

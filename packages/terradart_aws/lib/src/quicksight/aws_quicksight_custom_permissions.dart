@@ -83,6 +83,7 @@ final class QuicksightCustomPermissionsCapabilities {
 
   final TfArg<String>? viewAccountSpiceCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'add_or_run_anomaly_detection_for_analyses':
         ?addOrRunAnomalyDetectionForAnalyses?.toTfJson(),

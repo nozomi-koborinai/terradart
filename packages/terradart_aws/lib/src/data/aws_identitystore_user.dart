@@ -21,6 +21,7 @@ final class DataIdentitystoreUserAlternateIdentifier {
 
   final DataIdentitystoreUserUniqueAttribute? uniqueAttribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_id': ?externalId?.encode(),
     'unique_attribute': ?uniqueAttribute?.encode(),
@@ -40,6 +41,7 @@ final class DataIdentitystoreUserExternalId {
 
   final TfArg<String> issuer;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'issuer': issuer.toTfJson(),
@@ -59,6 +61,7 @@ final class DataIdentitystoreUserUniqueAttribute {
 
   final TfArg<String> attributeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_path': attributePath.toTfJson(),
     'attribute_value': attributeValue.toTfJson(),

@@ -29,6 +29,7 @@ final class ZoneAccount {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 

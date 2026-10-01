@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -109,12 +110,15 @@ sealed class NetworkServicesGatewayPorts {
       NetworkServicesGatewayPortsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -124,12 +128,15 @@ final class NetworkServicesGatewayAllPorts extends NetworkServicesGatewayPorts {
 
   final TfArg<bool> allPorts;
 
+  @internal
   @override
   String get blockKey => 'all_ports';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'all_ports': allPorts.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'all_ports': allPorts};
 }
@@ -141,12 +148,15 @@ final class NetworkServicesGatewayPortsChoice
 
   final TfArg<List<num>> ports;
 
+  @internal
   @override
   String get blockKey => 'ports';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ports': ports.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ports': ports};
 }

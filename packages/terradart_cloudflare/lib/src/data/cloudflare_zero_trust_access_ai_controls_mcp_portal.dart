@@ -18,6 +18,7 @@ final class DataZeroTrustAccessAiControlsMcpPortalFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {'search': ?search?.toTfJson()};
 }
 

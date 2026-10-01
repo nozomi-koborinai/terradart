@@ -187,6 +187,7 @@ final class AssuredWorkloadsWorkloadKmsSettings {
 
   final TfArg<String> rotationPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'next_rotation_time': nextRotationTime.toTfJson(),
     'rotation_period': rotationPeriod.toTfJson(),
@@ -209,6 +210,7 @@ final class AssuredWorkloadsWorkloadPartnerPermissions {
 
   final TfArg<bool>? serviceAccessApprover;
 
+  @internal
   Map<String, Object?> encode() => {
     'assured_workloads_monitoring': ?assuredWorkloadsMonitoring?.toTfJson(),
     'data_logs_viewer': ?dataLogsViewer?.toTfJson(),
@@ -232,6 +234,7 @@ final class AssuredWorkloadsWorkloadResourceSettings {
 
   final AssuredWorkloadsWorkloadResourceType? resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'resource_id': ?resourceId?.toTfJson(),
@@ -282,6 +285,7 @@ final class AssuredWorkloadsWorkloadOptions {
 
   final AssuredWorkloadsWorkloadKajEnrollmentType? kajEnrollmentType;
 
+  @internal
   Map<String, Object?> encode() => {
     'kaj_enrollment_type': ?kajEnrollmentType?.toTfJson(),
   };

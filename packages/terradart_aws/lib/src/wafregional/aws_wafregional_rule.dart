@@ -23,6 +23,7 @@ final class WafregionalRulePredicate {
 
   final WafregionalRuleType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
     'negated': negated.toTfJson(),

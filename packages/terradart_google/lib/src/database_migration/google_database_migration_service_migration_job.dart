@@ -147,12 +147,15 @@ sealed class DatabaseMigrationServiceMigrationJobConnectivity {
   ) = DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -166,14 +169,17 @@ final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice
   final DatabaseMigrationServiceMigrationJobStaticIpConnectivity
   staticIpConnectivity;
 
+  @internal
   @override
   String get blockKey => 'static_ip_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'static_ip_connectivity': staticIpConnectivity.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'static_ip_connectivity': TfArg.literal(staticIpConnectivity.encode()),
@@ -190,14 +196,17 @@ final class DatabaseMigrationServiceMigrationJobReverseSshConnectivityChoice
   final DatabaseMigrationServiceMigrationJobReverseSshConnectivity
   reverseSshConnectivity;
 
+  @internal
   @override
   String get blockKey => 'reverse_ssh_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'reverse_ssh_connectivity': reverseSshConnectivity.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'reverse_ssh_connectivity': TfArg.literal(reverseSshConnectivity.encode()),
@@ -214,14 +223,17 @@ final class DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityChoice
   final DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity
   vpcPeeringConnectivity;
 
+  @internal
   @override
   String get blockKey => 'vpc_peering_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vpc_peering_connectivity': vpcPeeringConnectivity.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vpc_peering_connectivity': TfArg.literal(vpcPeeringConnectivity.encode()),
@@ -236,6 +248,7 @@ final class DatabaseMigrationServiceMigrationJobDumpFlags {
 
   final List<DatabaseMigrationServiceMigrationJobDumpFlagsDumpFlags>? dumpFlags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dumpFlags != null)
       'dump_flags': [for (final e in dumpFlags!) e.encode()],
@@ -255,6 +268,7 @@ final class DatabaseMigrationServiceMigrationJobDumpFlagsDumpFlags {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -272,6 +286,7 @@ final class DatabaseMigrationServiceMigrationJobObjectsConfig {
   final DatabaseMigrationServiceMigrationJobSourceObjectsConfig?
   sourceObjectsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_objects_config': ?sourceObjectsConfig?.encode(),
   };
@@ -291,6 +306,7 @@ final class DatabaseMigrationServiceMigrationJobSourceObjectsConfig {
 
   final List<DatabaseMigrationServiceMigrationJobObjectConfigs>? objectConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'objects_selection_type': ?objectsSelectionType?.toTfJson(),
     if (objectConfigs != null)
@@ -334,6 +350,7 @@ final class DatabaseMigrationServiceMigrationJobObjectConfigs {
 
   final DatabaseMigrationServiceMigrationJobObjectIdentifier? objectIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'object_identifier': ?objectIdentifier?.encode(),
   };
@@ -358,6 +375,7 @@ final class DatabaseMigrationServiceMigrationJobObjectIdentifier {
 
   final DatabaseMigrationServiceMigrationJobObjectIdentifierType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     'schema': ?schema?.toTfJson(),
@@ -407,6 +425,7 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
   final DatabaseMigrationServiceMigrationJobDumpParallelLevel?
   dumpParallelLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'dump_parallel_level': ?dumpParallelLevel?.toTfJson(),
   };
@@ -453,6 +472,7 @@ final class DatabaseMigrationServiceMigrationJobPostgresHomogeneousConfig {
 
   final TfArg<num>? maxAdditionalSubscriptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_native_logical': isNativeLogical.toTfJson(),
     'max_additional_subscriptions': ?maxAdditionalSubscriptions?.toTfJson(),
@@ -478,6 +498,7 @@ final class DatabaseMigrationServiceMigrationJobReverseSshConnectivity {
 
   final TfArg<String>? vpc;
 
+  @internal
   Map<String, Object?> encode() => {
     'vm': ?vm?.toTfJson(),
     'vm_ip': ?vmIp?.toTfJson(),
@@ -492,6 +513,7 @@ final class DatabaseMigrationServiceMigrationJobReverseSshConnectivity {
 final class DatabaseMigrationServiceMigrationJobStaticIpConnectivity {
   const DatabaseMigrationServiceMigrationJobStaticIpConnectivity();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -503,6 +525,7 @@ final class DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity {
 
   final TfArg<String>? vpc;
 
+  @internal
   Map<String, Object?> encode() => {'vpc': ?vpc?.toTfJson()};
 }
 

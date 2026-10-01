@@ -35,6 +35,7 @@ final class DataZeroTrustResourceLibraryApplicationFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'fields': ?fields?.toTfJson(),
     'filter': ?filter?.toTfJson(),

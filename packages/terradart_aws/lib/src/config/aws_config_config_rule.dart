@@ -51,6 +51,7 @@ final class ConfigConfigRuleEvaluationMode {
 
   final ConfigConfigRuleMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -87,6 +88,7 @@ final class ConfigConfigRuleScope {
 
   final TfArg<String>? tagValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'compliance_resource_id': ?complianceResourceId?.toTfJson(),
     'compliance_resource_types': ?complianceResourceTypes?.toTfJson(),
@@ -114,6 +116,7 @@ final class ConfigConfigRuleSource {
 
   final List<ConfigConfigRuleSourceDetail>? sourceDetail;
 
+  @internal
   Map<String, Object?> encode() => {
     'owner': owner.toTfJson(),
     'source_identifier': ?sourceIdentifier?.toTfJson(),
@@ -162,6 +165,7 @@ final class ConfigConfigRuleCustomPolicyDetails {
 
   final TfArg<String> policyText;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_debug_log_delivery': ?enableDebugLogDelivery?.toTfJson(),
     'policy_runtime': policyRuntime.toTfJson(),
@@ -186,6 +190,7 @@ final class ConfigConfigRuleSourceDetail {
 
   final ConfigConfigRuleMessageType? messageType;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_source': ?eventSource?.toTfJson(),
     'maximum_execution_frequency': ?maximumExecutionFrequency?.toTfJson(),

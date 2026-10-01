@@ -1,6 +1,5 @@
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 // GA: Google Cloud Provider and resource factories
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/firestore.dart';

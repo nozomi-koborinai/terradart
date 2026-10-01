@@ -3,6 +3,7 @@
 /// AWS AppSync.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appsync/aws_appsync_api.dart'
     show
         AppsyncApiAuthProvider,

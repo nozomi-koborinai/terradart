@@ -19,6 +19,7 @@ final class DataZeroTrustAccessIdentityProviderFilter {
 
   final TfArg<String>? scimEnabled;
 
+  @internal
   Map<String, Object?> encode() => {'scim_enabled': ?scimEnabled?.toTfJson()};
 }
 

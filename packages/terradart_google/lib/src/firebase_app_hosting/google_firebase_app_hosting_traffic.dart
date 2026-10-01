@@ -109,12 +109,15 @@ sealed class FirebaseAppHostingTrafficRouting {
   ) = FirebaseAppHostingTrafficRoutingTarget;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -125,14 +128,17 @@ final class FirebaseAppHostingTrafficRoutingRolloutPolicy
 
   final FirebaseAppHostingTrafficRolloutPolicy rolloutPolicy;
 
+  @internal
   @override
   String get blockKey => 'rollout_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rollout_policy': [rolloutPolicy.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),
@@ -146,14 +152,17 @@ final class FirebaseAppHostingTrafficRoutingTarget
 
   final FirebaseAppHostingTrafficTarget target;
 
+  @internal
   @override
   String get blockKey => 'target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'target': [target.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'target': TfArg.literal([target.toArgMap()]),

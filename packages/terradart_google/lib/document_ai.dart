@@ -4,6 +4,7 @@
 /// structured data from documents.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/document_ai/google_document_ai_processor.dart'
     show GoogleDocumentAiProcessor;
 export 'src/document_ai/google_document_ai_processor_default_version.dart'

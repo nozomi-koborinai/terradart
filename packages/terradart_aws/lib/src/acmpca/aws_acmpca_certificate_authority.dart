@@ -98,6 +98,7 @@ final class AcmpcaCertificateAuthorityConfiguration {
 
   final AcmpcaCertificateAuthoritySubject subject;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_algorithm': keyAlgorithm.toTfJson(),
     'signing_algorithm': signingAlgorithm.toTfJson(),
@@ -274,6 +275,7 @@ final class AcmpcaCertificateAuthoritySubject {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'common_name': ?commonName?.toTfJson(),
     'country': ?country?.toTfJson(),
@@ -304,6 +306,7 @@ final class AcmpcaCertificateAuthorityRevocationConfiguration {
 
   final AcmpcaCertificateAuthorityOcspConfiguration? ocspConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'crl_configuration': ?crlConfiguration?.encode(),
     'ocsp_configuration': ?ocspConfiguration?.encode(),
@@ -335,6 +338,7 @@ final class AcmpcaCertificateAuthorityCrlConfiguration {
 
   final AcmpcaCertificateAuthorityS3ObjectAcl? s3ObjectAcl;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_cname': ?customCname?.toTfJson(),
     'custom_path': ?customPath?.toTfJson(),
@@ -381,6 +385,7 @@ final class AcmpcaCertificateAuthorityOcspConfiguration {
 
   final TfArg<String>? ocspCustomCname;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'ocsp_custom_cname': ?ocspCustomCname?.toTfJson(),

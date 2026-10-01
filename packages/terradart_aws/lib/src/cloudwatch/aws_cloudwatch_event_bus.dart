@@ -17,6 +17,7 @@ final class CloudwatchEventBusDeadLetterConfig {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
@@ -30,6 +31,7 @@ final class CloudwatchEventBusLogConfig {
 
   final CloudwatchEventBusLevel? level;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_detail': ?includeDetail?.toTfJson(),
     'level': ?level?.toTfJson(),

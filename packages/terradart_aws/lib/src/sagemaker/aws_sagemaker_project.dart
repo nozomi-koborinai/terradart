@@ -26,6 +26,7 @@ final class SagemakerProjectServiceCatalogProvisioningDetails {
 
   final List<SagemakerProjectProvisioningParameter>? provisioningParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'path_id': ?pathId?.toTfJson(),
     'product_id': productId.toTfJson(),
@@ -47,6 +48,7 @@ final class SagemakerProjectProvisioningParameter {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': ?value?.toTfJson(),

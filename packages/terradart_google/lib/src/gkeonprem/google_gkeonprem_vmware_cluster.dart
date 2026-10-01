@@ -55,6 +55,7 @@ final class GkeonpremVmwareClusterAntiAffinityGroups {
 
   final TfArg<bool> aagConfigDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'aag_config_disabled': aagConfigDisabled.toTfJson(),
   };
@@ -68,6 +69,7 @@ final class GkeonpremVmwareClusterAuthorization {
 
   final List<GkeonpremVmwareClusterAdminUsers>? adminUsers;
 
+  @internal
   Map<String, Object?> encode() => {
     if (adminUsers != null)
       'admin_users': [for (final e in adminUsers!) e.encode()],
@@ -82,6 +84,7 @@ final class GkeonpremVmwareClusterAdminUsers {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {'username': username.toTfJson()};
 }
 
@@ -93,6 +96,7 @@ final class GkeonpremVmwareClusterAutoRepairConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -115,6 +119,7 @@ final class GkeonpremVmwareClusterControlPlaneNode {
 
   final GkeonpremVmwareClusterAutoResizeConfig? autoResizeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpus': ?cpus?.toTfJson(),
     'memory': ?memory?.toTfJson(),
@@ -131,6 +136,7 @@ final class GkeonpremVmwareClusterAutoResizeConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -150,6 +156,7 @@ final class GkeonpremVmwareClusterDataplaneV2 {
 
   final TfArg<bool>? windowsDataplaneV2Enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'advanced_networking': ?advancedNetworking?.toTfJson(),
     'dataplane_v2_enabled': ?dataplaneV2Enabled?.toTfJson(),
@@ -170,6 +177,7 @@ final class GkeonpremVmwareClusterLoadBalancer {
 
   final GkeonpremVmwareClusterVipConfig? vipConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     ...lbConfig.encode(),
     'vip_config': ?vipConfig?.encode(),
@@ -199,8 +207,10 @@ sealed class GkeonpremVmwareClusterLbConfig {
   ) = GkeonpremVmwareClusterMetalLbConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -211,9 +221,11 @@ final class GkeonpremVmwareClusterLbConfigF5Config
 
   final GkeonpremVmwareClusterF5Config f5Config;
 
+  @internal
   @override
   String get blockKey => 'f5_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'f5_config': f5Config.encode()};
 }
@@ -225,9 +237,11 @@ final class GkeonpremVmwareClusterManualLbConfigChoice
 
   final GkeonpremVmwareClusterManualLbConfig manualLbConfig;
 
+  @internal
   @override
   String get blockKey => 'manual_lb_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'manual_lb_config': manualLbConfig.encode(),
@@ -241,9 +255,11 @@ final class GkeonpremVmwareClusterMetalLbConfigChoice
 
   final GkeonpremVmwareClusterMetalLbConfig metalLbConfig;
 
+  @internal
   @override
   String get blockKey => 'metal_lb_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'metal_lb_config': metalLbConfig.encode()};
 }
@@ -264,6 +280,7 @@ final class GkeonpremVmwareClusterF5Config {
 
   final TfArg<String>? snatPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'partition': ?partition?.toTfJson(),
@@ -290,6 +307,7 @@ final class GkeonpremVmwareClusterManualLbConfig {
 
   final TfArg<num>? konnectivityServerNodePort;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_node_port': ?controlPlaneNodePort?.toTfJson(),
     'ingress_http_node_port': ?ingressHttpNodePort?.toTfJson(),
@@ -306,6 +324,7 @@ final class GkeonpremVmwareClusterMetalLbConfig {
 
   final List<GkeonpremVmwareClusterAddressPools> addressPools;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_pools': [for (final e in addressPools) e.encode()],
   };
@@ -330,6 +349,7 @@ final class GkeonpremVmwareClusterAddressPools {
 
   final TfArg<String> pool;
 
+  @internal
   Map<String, Object?> encode() => {
     'addresses': addresses.toTfJson(),
     'avoid_buggy_ips': ?avoidBuggyIps?.toTfJson(),
@@ -351,6 +371,7 @@ final class GkeonpremVmwareClusterVipConfig {
 
   final TfArg<String>? ingressVip;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_vip': ?controlPlaneVip?.toTfJson(),
     'ingress_vip': ?ingressVip?.toTfJson(),
@@ -382,6 +403,7 @@ final class GkeonpremVmwareClusterNetworkConfig {
 
   final GkeonpremVmwareClusterHostConfig? hostConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),
@@ -410,8 +432,10 @@ sealed class GkeonpremVmwareClusterIpConfig {
   ) = GkeonpremVmwareClusterDhcpIpConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -422,9 +446,11 @@ final class GkeonpremVmwareClusterStaticIpConfigChoice
 
   final GkeonpremVmwareClusterStaticIpConfig staticIpConfig;
 
+  @internal
   @override
   String get blockKey => 'static_ip_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'static_ip_config': staticIpConfig.encode(),
@@ -438,9 +464,11 @@ final class GkeonpremVmwareClusterDhcpIpConfigChoice
 
   final GkeonpremVmwareClusterDhcpIpConfig dhcpIpConfig;
 
+  @internal
   @override
   String get blockKey => 'dhcp_ip_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'dhcp_ip_config': dhcpIpConfig.encode()};
 }
@@ -453,6 +481,7 @@ final class GkeonpremVmwareClusterControlPlaneV2Config {
 
   final GkeonpremVmwareClusterControlPlaneIpBlock? controlPlaneIpBlock;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_ip_block': ?controlPlaneIpBlock?.encode(),
   };
@@ -474,6 +503,7 @@ final class GkeonpremVmwareClusterControlPlaneIpBlock {
 
   final List<GkeonpremVmwareClusterControlPlaneIpBlockIps>? ips;
 
+  @internal
   Map<String, Object?> encode() => {
     'gateway': ?gateway?.toTfJson(),
     'netmask': ?netmask?.toTfJson(),
@@ -491,6 +521,7 @@ final class GkeonpremVmwareClusterControlPlaneIpBlockIps {
 
   final TfArg<String>? ip;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'ip': ?ip?.toTfJson(),
@@ -505,6 +536,7 @@ final class GkeonpremVmwareClusterDhcpIpConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -524,6 +556,7 @@ final class GkeonpremVmwareClusterHostConfig {
 
   final TfArg<List<String>>? ntpServers;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_search_domains': ?dnsSearchDomains?.toTfJson(),
     'dns_servers': ?dnsServers?.toTfJson(),
@@ -539,6 +572,7 @@ final class GkeonpremVmwareClusterStaticIpConfig {
 
   final List<GkeonpremVmwareClusterIpBlocks> ipBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_blocks': [for (final e in ipBlocks) e.encode()],
   };
@@ -560,6 +594,7 @@ final class GkeonpremVmwareClusterIpBlocks {
 
   final List<GkeonpremVmwareClusterIpBlocksIps> ips;
 
+  @internal
   Map<String, Object?> encode() => {
     'gateway': gateway.toTfJson(),
     'netmask': netmask.toTfJson(),
@@ -577,6 +612,7 @@ final class GkeonpremVmwareClusterIpBlocksIps {
 
   final TfArg<String> ip;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
     'ip': ip.toTfJson(),
@@ -591,6 +627,7 @@ final class GkeonpremVmwareClusterStorage {
 
   final TfArg<bool> vsphereCsiDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'vsphere_csi_disabled': vsphereCsiDisabled.toTfJson(),
   };
@@ -604,6 +641,7 @@ final class GkeonpremVmwareClusterUpgradePolicy {
 
   final TfArg<bool>? controlPlaneOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_only': ?controlPlaneOnly?.toTfJson(),
   };
@@ -637,6 +675,7 @@ final class GkeonpremVmwareClusterVcenter {
 
   final TfArg<String>? storagePolicyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_cert_data': ?caCertData?.toTfJson(),
     'cluster': ?cluster?.toTfJson(),

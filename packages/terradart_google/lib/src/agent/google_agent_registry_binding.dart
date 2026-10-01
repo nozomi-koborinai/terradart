@@ -23,6 +23,7 @@ final class AgentRegistryBindingAuthProviderBinding {
 
   final TfArg<List<String>>? scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_provider': authProvider.toTfJson(),
     'continue_uri': ?continueUri?.toTfJson(),
@@ -38,6 +39,7 @@ final class AgentRegistryBindingSource {
 
   final TfArg<String> identifier;
 
+  @internal
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 }
 
@@ -49,6 +51,7 @@ final class AgentRegistryBindingTarget {
 
   final TfArg<String> identifier;
 
+  @internal
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 }
 

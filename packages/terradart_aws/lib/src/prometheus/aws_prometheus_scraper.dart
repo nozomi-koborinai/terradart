@@ -21,6 +21,7 @@ final class PrometheusScraperDestination {
 
   final List<PrometheusScraperCloudwatch>? cloudwatch;
 
+  @internal
   Map<String, Object?> encode() => {
     if (amp != null) 'amp': [for (final e in amp!) e.encode()],
     if (cloudwatch != null)
@@ -36,6 +37,7 @@ final class PrometheusScraperAmp {
 
   final TfArg<String> workspaceArn;
 
+  @internal
   Map<String, Object?> encode() => {'workspace_arn': workspaceArn.toTfJson()};
 }
 
@@ -47,6 +49,7 @@ final class PrometheusScraperCloudwatch {
 
   final TfArg<String> datasetArn;
 
+  @internal
   Map<String, Object?> encode() => {'dataset_arn': datasetArn.toTfJson()};
 }
 
@@ -58,6 +61,7 @@ final class PrometheusScraperExporter {
 
   final List<PrometheusScraperOpensearch>? opensearch;
 
+  @internal
   Map<String, Object?> encode() => {
     if (opensearch != null)
       'opensearch': [for (final e in opensearch!) e.encode()],
@@ -72,6 +76,7 @@ final class PrometheusScraperOpensearch {
 
   final TfArg<String> domainArn;
 
+  @internal
   Map<String, Object?> encode() => {'domain_arn': domainArn.toTfJson()};
 }
 
@@ -88,6 +93,7 @@ final class PrometheusScraperRoleConfiguration {
 
   final TfArg<String>? targetRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_role_arn': ?sourceRoleArn?.encodeAs('arn').toTfJson(),
     'target_role_arn': ?targetRoleArn?.toTfJson(),
@@ -104,6 +110,7 @@ final class PrometheusScraperSource {
 
   final List<PrometheusScraperVpc>? vpc;
 
+  @internal
   Map<String, Object?> encode() => {
     if (eks != null) 'eks': [for (final e in eks!) e.encode()],
     if (vpc != null) 'vpc': [for (final e in vpc!) e.encode()],
@@ -126,6 +133,7 @@ final class PrometheusScraperEks {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
@@ -146,6 +154,7 @@ final class PrometheusScraperVpc {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

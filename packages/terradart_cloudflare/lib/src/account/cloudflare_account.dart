@@ -25,6 +25,7 @@ extension type const AccountType._(TfArg<String> _) implements TfArg<String> {
 final class AccountManagedBy {
   const AccountManagedBy();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -38,6 +39,7 @@ final class AccountSettings {
 
   final TfArg<bool>? enforceTwofactor;
 
+  @internal
   Map<String, Object?> encode() => {
     'abuse_contact_email': ?abuseContactEmail?.toTfJson(),
     'enforce_twofactor': ?enforceTwofactor?.toTfJson(),
@@ -52,6 +54,7 @@ final class AccountUnit {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 

@@ -3,6 +3,7 @@
 /// AWS Lex V2.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/lexv2models/aws_lexv2models_bot.dart'
     show
         AwsLexv2modelsBot,

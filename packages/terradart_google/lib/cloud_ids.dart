@@ -4,5 +4,6 @@
 /// networks (endpoint hours while provisioned; never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_ids/google_cloud_ids_endpoint.dart'
     show CloudIdsEndpointSeverity, GoogleCloudIdsEndpoint;

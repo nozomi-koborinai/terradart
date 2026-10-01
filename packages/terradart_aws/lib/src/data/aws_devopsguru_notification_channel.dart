@@ -14,6 +14,7 @@ const Set<String> _awsDevopsguruNotificationChannelSensitive = <String>{};
 final class DataDevopsguruNotificationChannelFilters {
   const DataDevopsguruNotificationChannelFilters();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -23,6 +24,7 @@ final class DataDevopsguruNotificationChannelFilters {
 final class DataDevopsguruNotificationChannelSns {
   const DataDevopsguruNotificationChannelSns();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

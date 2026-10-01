@@ -27,8 +27,10 @@ sealed class PrivilegedAccessManagerSettingsEmailNotificationSettings {
   ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -42,9 +44,11 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNo
   final PrivilegedAccessManagerSettingsDisableAllNotifications
   disableAllNotifications;
 
+  @internal
   @override
   String get blockKey => 'disable_all_notifications';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'disable_all_notifications': disableAllNotifications.encode(),
@@ -61,9 +65,11 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotifi
   final PrivilegedAccessManagerSettingsCustomNotificationBehavior
   customNotificationBehavior;
 
+  @internal
   @override
   String get blockKey => 'custom_notification_behavior';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_notification_behavior': customNotificationBehavior.encode(),
@@ -88,6 +94,7 @@ final class PrivilegedAccessManagerSettingsCustomNotificationBehavior {
   final PrivilegedAccessManagerSettingsRequesterNotifications?
   requesterNotifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_notifications': ?adminNotifications?.encode(),
     'approver_notifications': ?approverNotifications?.encode(),
@@ -116,6 +123,7 @@ final class PrivilegedAccessManagerSettingsAdminNotifications {
   final PrivilegedAccessManagerSettingsGrantExternallyModified?
   grantExternallyModified;
 
+  @internal
   Map<String, Object?> encode() => {
     'grant_activated': ?grantActivated?.toTfJson(),
     'grant_activation_failed': ?grantActivationFailed?.toTfJson(),
@@ -251,6 +259,7 @@ final class PrivilegedAccessManagerSettingsApproverNotifications {
 
   final PrivilegedAccessManagerSettingsPendingApproval? pendingApproval;
 
+  @internal
   Map<String, Object?> encode() => {
     'pending_approval': ?pendingApproval?.toTfJson(),
   };
@@ -318,6 +327,7 @@ final class PrivilegedAccessManagerSettingsRequesterNotifications {
 
   final PrivilegedAccessManagerSettingsGrantRevoked? grantRevoked;
 
+  @internal
   Map<String, Object?> encode() => {
     'entitlement_assigned': ?entitlementAssigned?.toTfJson(),
     'grant_activated': ?grantActivated?.toTfJson(),
@@ -450,6 +460,7 @@ extension type const PrivilegedAccessManagerSettingsGrantRevoked._(
 final class PrivilegedAccessManagerSettingsDisableAllNotifications {
   const PrivilegedAccessManagerSettingsDisableAllNotifications();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -463,6 +474,7 @@ final class PrivilegedAccessManagerSettingsServiceAccountApproverSettings {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

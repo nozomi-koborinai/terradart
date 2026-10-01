@@ -26,6 +26,7 @@ final class MagicNetworkMonitoringConfigurationWarpDevices {
 
   final TfArg<String> routerIp;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'name': name.toTfJson(),

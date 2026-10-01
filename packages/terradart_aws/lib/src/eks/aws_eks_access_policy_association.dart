@@ -20,6 +20,7 @@ final class EksAccessPolicyAssociationAccessScope {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespaces': ?namespaces?.toTfJson(),
     'type': type.toTfJson(),

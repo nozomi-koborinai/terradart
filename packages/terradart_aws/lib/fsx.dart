@@ -3,6 +3,20 @@
 /// AWS FSx.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_fsx_ontap_file_system.dart' show DataAwsFsxOntapFileSystem;
+export 'src/data/aws_fsx_ontap_storage_virtual_machine.dart'
+    show
+        DataAwsFsxOntapStorageVirtualMachine,
+        DataFsxOntapStorageVirtualMachineFilter;
+export 'src/data/aws_fsx_ontap_storage_virtual_machines.dart'
+    show
+        DataAwsFsxOntapStorageVirtualMachines,
+        DataFsxOntapStorageVirtualMachinesFilter;
+export 'src/data/aws_fsx_openzfs_snapshot.dart'
+    show DataAwsFsxOpenzfsSnapshot, DataFsxOpenzfsSnapshotFilter;
+export 'src/data/aws_fsx_windows_file_system.dart'
+    show DataAwsFsxWindowsFileSystem;
 export 'src/fsx/aws_fsx_backup.dart' show AwsFsxBackup;
 export 'src/fsx/aws_fsx_data_repository_association.dart'
     show

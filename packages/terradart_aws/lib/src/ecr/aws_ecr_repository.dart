@@ -52,6 +52,7 @@ final class EcrRepositoryEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_type': ?encryptionType?.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
@@ -88,6 +89,7 @@ final class EcrRepositoryImageScanningConfiguration {
 
   final TfArg<bool> scanOnPush;
 
+  @internal
   Map<String, Object?> encode() => {'scan_on_push': scanOnPush.toTfJson()};
 }
 
@@ -104,6 +106,7 @@ final class EcrRepositoryImageTagMutabilityExclusionFilter {
 
   final EcrRepositoryFilterType filterType;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),

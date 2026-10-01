@@ -30,7 +30,7 @@ void main() {
   group('DataSourceWrapperEmitter', () {
     // L2b-1 — minimal override drives the bare-stub data source surface.
     //
-    // Plan 5.X (v0.5.0-dev): the `<$GoogleProject>` schema generic is gone,
+    // Plan 5.X (v0.5.0-dev): the `<$DataGoogleProject>` schema generic is gone,
     // so the emitted header is `extends Data` (no generic). The override
     // carries no extras (no fileLeadingComment, no classDocComment, no
     // extraGetters). What we are exercising is the emitter's MUST-EMIT
@@ -50,7 +50,7 @@ void main() {
         _googleProject,
         providerSource: 'hashicorp/google',
       );
-      expect(out, contains('final class GoogleProject extends Data {'));
+      expect(out, contains('final class DataGoogleProject extends Data {'));
     });
 
     // L2b-2 — Level A byte-identical: the full production override (sourced

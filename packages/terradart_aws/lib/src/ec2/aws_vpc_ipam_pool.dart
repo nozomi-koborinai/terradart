@@ -71,6 +71,7 @@ final class VpcIpamPoolSourceResource {
 
   final VpcIpamPoolResourceType resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_id': resourceId.toTfJson(),
     'resource_owner': resourceOwner.toTfJson(),

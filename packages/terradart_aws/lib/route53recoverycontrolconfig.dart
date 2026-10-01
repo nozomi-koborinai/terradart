@@ -3,6 +3,7 @@
 /// AWS Route 53 ARC recovery control.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_cluster.dart'
     show
         AwsRoute53recoverycontrolconfigCluster,

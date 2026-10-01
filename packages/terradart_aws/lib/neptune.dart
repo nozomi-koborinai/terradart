@@ -3,6 +3,11 @@
 /// AWS Neptune.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_neptune_engine_version.dart'
+    show DataAwsNeptuneEngineVersion;
+export 'src/data/aws_neptune_orderable_db_instance.dart'
+    show DataAwsNeptuneOrderableDbInstance;
 export 'src/neptune/aws_neptune_cluster.dart'
     show
         AwsNeptuneCluster,

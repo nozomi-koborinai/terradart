@@ -93,6 +93,7 @@ final class D1DatabaseReadReplication {
 
   final D1DatabaseMode mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 

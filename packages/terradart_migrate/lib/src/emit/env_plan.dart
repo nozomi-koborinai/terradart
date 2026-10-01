@@ -10,7 +10,7 @@ library;
 
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart' show hasTemplateSequence;
+import 'package:terradart_core/internal.dart' show hasTemplateSequence;
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'body_map.dart';

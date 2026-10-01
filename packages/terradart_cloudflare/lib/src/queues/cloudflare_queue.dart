@@ -40,6 +40,7 @@ final class QueueSettings {
 
   final TfArg<num>? messageRetentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_delay': ?deliveryDelay?.toTfJson(),
     'delivery_paused': ?deliveryPaused?.toTfJson(),

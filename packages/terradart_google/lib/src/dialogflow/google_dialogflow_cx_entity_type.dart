@@ -66,6 +66,7 @@ final class DialogflowCxEntityTypeEntities {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'synonyms': ?synonyms?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -80,6 +81,7 @@ final class DialogflowCxEntityTypeExcludedPhrases {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 

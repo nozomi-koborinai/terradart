@@ -5,6 +5,7 @@
 /// tenant — not applyable on terradart-validate.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/container_azure/google_container_azure_client.dart'
     show GoogleContainerAzureClient;
 export 'src/container_azure/google_container_azure_cluster.dart'
@@ -33,3 +34,5 @@ export 'src/container_azure/google_container_azure_node_pool.dart'
         ContainerAzureNodePoolRootVolume,
         ContainerAzureNodePoolSshConfig,
         GoogleContainerAzureNodePool;
+export 'src/data/google_container_azure_versions.dart'
+    show DataGoogleContainerAzureVersions;

@@ -38,6 +38,7 @@ final class BackupDrManagementServerNetworks {
 
   final TfArg<String>? peeringMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'peering_mode': ?peeringMode?.toTfJson(),

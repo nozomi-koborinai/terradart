@@ -25,6 +25,7 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
 
   final DevopsguruServiceIntegrationType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'opt_in_status': ?optInStatus?.toTfJson(),
@@ -85,6 +86,7 @@ final class DevopsguruServiceIntegrationLogsAnomalyDetection {
 
   final DevopsguruServiceIntegrationOptInStatus? optInStatus;
 
+  @internal
   Map<String, Object?> encode() => {'opt_in_status': ?optInStatus?.toTfJson()};
 }
 
@@ -96,6 +98,7 @@ final class DevopsguruServiceIntegrationOpsCenter {
 
   final DevopsguruServiceIntegrationOptInStatus? optInStatus;
 
+  @internal
   Map<String, Object?> encode() => {'opt_in_status': ?optInStatus?.toTfJson()};
 }
 

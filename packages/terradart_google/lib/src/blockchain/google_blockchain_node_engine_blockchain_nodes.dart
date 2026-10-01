@@ -58,6 +58,7 @@ final class BlockchainNodeEngineBlockchainNodesEthereumDetails {
 
   final BlockchainNodeEngineBlockchainNodesValidatorConfig? validatorConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_enable_admin': ?apiEnableAdmin?.toTfJson(),
     'api_enable_debug': ?apiEnableDebug?.toTfJson(),
@@ -190,6 +191,7 @@ final class BlockchainNodeEngineBlockchainNodesGethDetails {
   final BlockchainNodeEngineBlockchainNodesGarbageCollectionMode?
   garbageCollectionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'garbage_collection_mode': ?garbageCollectionMode?.toTfJson(),
   };
@@ -234,6 +236,7 @@ final class BlockchainNodeEngineBlockchainNodesValidatorConfig {
 
   final TfArg<List<String>>? mevRelayUrls;
 
+  @internal
   Map<String, Object?> encode() => {
     'beacon_fee_recipient': ?beaconFeeRecipient?.toTfJson(),
     'mev_relay_urls': ?mevRelayUrls?.toTfJson(),

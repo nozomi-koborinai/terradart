@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_ec2_host`.
@@ -50,12 +51,15 @@ sealed class Ec2HostInstance {
       Ec2HostInstanceType;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,14 +69,17 @@ final class Ec2HostInstanceFamily extends Ec2HostInstance {
 
   final TfArg<String> instanceFamily;
 
+  @internal
   @override
   String get blockKey => 'instance_family';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'instance_family': instanceFamily.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'instance_family': instanceFamily};
 }
@@ -83,12 +90,15 @@ final class Ec2HostInstanceType extends Ec2HostInstance {
 
   final TfArg<String> instanceType;
 
+  @internal
   @override
   String get blockKey => 'instance_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'instance_type': instanceType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'instance_type': instanceType};
 }

@@ -111,6 +111,7 @@ sealed class BigqueryDatasetAccess {
 
   /// Encodes this entry into the snake-case map shape expected by
   /// Terraform's bigquery_dataset.access schema.
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -127,6 +128,7 @@ final class BigqueryDatasetAccessUserByEmail extends BigqueryDatasetAccess {
   final TfArg<String>? role;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'user_by_email': userByEmail.toTfJson(),
     if (role != null) 'role': role!.toTfJson(),
@@ -147,6 +149,7 @@ final class BigqueryDatasetAccessGroupByEmail extends BigqueryDatasetAccess {
   final TfArg<String>? role;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'group_by_email': groupByEmail.toTfJson(),
     if (role != null) 'role': role!.toTfJson(),
@@ -169,6 +172,7 @@ final class BigqueryDatasetAccessSpecialGroup extends BigqueryDatasetAccess {
   final TfArg<String>? role;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'special_group': specialGroup.toTfJson(),
     if (role != null) 'role': role!.toTfJson(),
@@ -189,6 +193,7 @@ final class BigqueryDatasetAccessDomain extends BigqueryDatasetAccess {
   final TfArg<String>? role;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (role != null) 'role': role!.toTfJson(),
@@ -210,6 +215,7 @@ final class BigqueryDatasetAccessIamMember extends BigqueryDatasetAccess {
   final TfArg<String>? role;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'iam_member': iamMember.toTfJson(),
     if (role != null) 'role': role!.toTfJson(),
@@ -227,6 +233,7 @@ final class BigqueryDatasetAccessView extends BigqueryDatasetAccess {
   final BigqueryDatasetView view;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'view': [view.encode()],
     if (condition != null) 'condition': [condition!.encode()],
@@ -242,6 +249,7 @@ final class BigqueryDatasetAccessDataset extends BigqueryDatasetAccess {
   final BigqueryDatasetAccessChild dataset;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'dataset': [dataset.encode()],
     if (condition != null) 'condition': [condition!.encode()],
@@ -256,6 +264,7 @@ final class BigqueryDatasetAccessRoutine extends BigqueryDatasetAccess {
   final BigqueryDatasetRoutineRef routine;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'routine': [routine.encode()],
     if (condition != null) 'condition': [condition!.encode()],
@@ -279,6 +288,7 @@ class BigqueryDatasetView {
   final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_id': projectId.toTfJson(),
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
@@ -298,6 +308,7 @@ class BigqueryDatasetAccessChild {
   final BigqueryDatasetReference dataset;
   final List<TfArg<String>> targetTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset': [dataset.encode()],
     'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
@@ -315,6 +326,7 @@ class BigqueryDatasetReference {
   final TfArg<String> projectId;
   final RefTo<GoogleBigqueryDataset> datasetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_id': projectId.toTfJson(),
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
@@ -334,6 +346,7 @@ class BigqueryDatasetRoutineRef {
   final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> routineId;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_id': projectId.toTfJson(),
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
@@ -358,6 +371,7 @@ class BigqueryDatasetAccessCondition {
   final TfArg<String>? description;
   final TfArg<String>? location;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     if (title != null) 'title': title!.toTfJson(),
@@ -384,6 +398,7 @@ final class BigqueryDatasetDefaultEncryptionConfiguration {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -402,6 +417,7 @@ final class BigqueryDatasetExternalCatalogDatasetOptions {
 
   final TfArg<Map<String, String>>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_storage_location_uri': ?defaultStorageLocationUri?.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -421,6 +437,7 @@ final class BigqueryDatasetExternalDatasetReference {
 
   final TfArg<String> externalSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection': connection.toTfJson(),
     'external_source': externalSource.toTfJson(),

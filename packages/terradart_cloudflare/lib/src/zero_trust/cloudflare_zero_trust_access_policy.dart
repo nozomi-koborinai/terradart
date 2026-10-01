@@ -49,6 +49,7 @@ final class ZeroTrustAccessPolicyApprovalGroups {
 
   final TfArg<String>? emailListUuid;
 
+  @internal
   Map<String, Object?> encode() => {
     'approvals_needed': approvalsNeeded.toTfJson(),
     'email_addresses': ?emailAddresses?.toTfJson(),
@@ -64,6 +65,7 @@ final class ZeroTrustAccessPolicyConnectionRules {
 
   final ZeroTrustAccessPolicyRdp? rdp;
 
+  @internal
   Map<String, Object?> encode() => {'rdp': ?rdp?.encode()};
 }
 
@@ -82,6 +84,7 @@ final class ZeroTrustAccessPolicyRdp {
   final List<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>?
   allowedClipboardRemoteToLocalFormats;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedClipboardLocalToRemoteFormats != null)
       'allowed_clipboard_local_to_remote_formats': [
@@ -225,6 +228,7 @@ final class ZeroTrustAccessPolicyExclude {
 
   final ZeroTrustAccessPolicyUserRiskScore? userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -262,6 +266,7 @@ final class ZeroTrustAccessPolicyExclude {
 final class ZeroTrustAccessPolicyAnyValidServiceToken {
   const ZeroTrustAccessPolicyAnyValidServiceToken();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -282,6 +287,7 @@ final class ZeroTrustAccessPolicyAuthContext {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ac_id': acId.toTfJson(),
     'id': id.toTfJson(),
@@ -298,6 +304,7 @@ final class ZeroTrustAccessPolicyAuthMethod {
 
   final TfArg<String> authMethod;
 
+  @internal
   Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
 }
 
@@ -315,6 +322,7 @@ final class ZeroTrustAccessPolicyAzureAd {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'identity_provider_id': identityProviderId.toTfJson(),
@@ -328,6 +336,7 @@ final class ZeroTrustAccessPolicyAzureAd {
 final class ZeroTrustAccessPolicyCertificate {
   const ZeroTrustAccessPolicyCertificate();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -340,6 +349,7 @@ final class ZeroTrustAccessPolicyCloudflareAccountMember {
 
   final RefTo<CloudflareAccount>? accountId;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.encodeAs('id').toTfJson(),
   };
@@ -354,6 +364,7 @@ final class ZeroTrustAccessPolicyCommonName {
 
   final TfArg<String> commonName;
 
+  @internal
   Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
 }
 
@@ -371,6 +382,7 @@ final class ZeroTrustAccessPolicyDevicePosture {
 
   final TfArg<String> integrationUid;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
@@ -386,6 +398,7 @@ final class ZeroTrustAccessPolicyEmail {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {'email': email.toTfJson()};
 }
 
@@ -398,6 +411,7 @@ final class ZeroTrustAccessPolicyEmailDomain {
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 }
 
@@ -410,6 +424,7 @@ final class ZeroTrustAccessPolicyEmailList {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -420,6 +435,7 @@ final class ZeroTrustAccessPolicyEmailList {
 final class ZeroTrustAccessPolicyEveryone {
   const ZeroTrustAccessPolicyEveryone();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -437,6 +453,7 @@ final class ZeroTrustAccessPolicyExternalEvaluation {
 
   final TfArg<String> keysUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluate_url': evaluateUrl.toTfJson(),
     'keys_url': keysUrl.toTfJson(),
@@ -452,6 +469,7 @@ final class ZeroTrustAccessPolicyGeo {
 
   final TfArg<String> countryCode;
 
+  @internal
   Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
 }
 
@@ -472,6 +490,7 @@ final class ZeroTrustAccessPolicyGithubOrganization {
 
   final TfArg<String>? team;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
@@ -488,6 +507,7 @@ final class ZeroTrustAccessPolicyGroup {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -505,6 +525,7 @@ final class ZeroTrustAccessPolicyGsuite {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'identity_provider_id': identityProviderId.toTfJson(),
@@ -520,6 +541,7 @@ final class ZeroTrustAccessPolicyIp {
 
   final TfArg<String> ip;
 
+  @internal
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
 
@@ -532,6 +554,7 @@ final class ZeroTrustAccessPolicyIpList {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -544,6 +567,7 @@ final class ZeroTrustAccessPolicyLinkedAppToken {
 
   final TfArg<String> appUid;
 
+  @internal
   Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
 }
 
@@ -556,6 +580,7 @@ final class ZeroTrustAccessPolicyLoginMethod {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -576,6 +601,7 @@ final class ZeroTrustAccessPolicyOidc {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_name': claimName.toTfJson(),
     'claim_value': claimValue.toTfJson(),
@@ -597,6 +623,7 @@ final class ZeroTrustAccessPolicyOkta {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
@@ -620,6 +647,7 @@ final class ZeroTrustAccessPolicySaml {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'attribute_value': attributeValue.toTfJson(),
@@ -636,6 +664,7 @@ final class ZeroTrustAccessPolicyServiceToken {
 
   final TfArg<String> tokenId;
 
+  @internal
   Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
 }
 
@@ -648,6 +677,7 @@ final class ZeroTrustAccessPolicyUserRiskScore {
 
   final List<ZeroTrustAccessPolicyUserRiskScoreUserRiskScore> userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
@@ -770,6 +800,7 @@ final class ZeroTrustAccessPolicyInclude {
 
   final ZeroTrustAccessPolicyUserRiskScore? userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -816,6 +847,7 @@ final class ZeroTrustAccessPolicyMfaConfig {
 
   final TfArg<String>? sessionDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedAuthenticators != null)
       'allowed_authenticators': [
@@ -939,6 +971,7 @@ final class ZeroTrustAccessPolicyRequire {
 
   final ZeroTrustAccessPolicyUserRiskScore? userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),

@@ -20,6 +20,7 @@ final class AppautoscalingScheduledActionScalableTargetAction {
 
   final TfArg<String>? minCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_capacity': ?maxCapacity?.toTfJson(),
     'min_capacity': ?minCapacity?.toTfJson(),

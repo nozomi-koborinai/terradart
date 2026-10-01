@@ -27,6 +27,7 @@ final class SccV2OrganizationSourceIamMemberCondition {
 
   final TfArg<String> title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

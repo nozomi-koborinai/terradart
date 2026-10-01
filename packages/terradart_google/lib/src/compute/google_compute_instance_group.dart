@@ -19,6 +19,7 @@ final class ComputeInstanceGroupNamedPort {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'port': port.toTfJson(),

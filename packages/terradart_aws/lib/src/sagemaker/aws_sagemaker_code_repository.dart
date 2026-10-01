@@ -23,6 +23,7 @@ final class SagemakerCodeRepositoryGitConfig {
 
   final TfArg<String>? secretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch': ?branch?.toTfJson(),
     'repository_url': repositoryUrl.toTfJson(),

@@ -3,5 +3,6 @@
 /// AWS Simple Workflow Service.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/swf/aws_swf_domain.dart'
     show AwsSwfDomain, SwfDomainName, SwfDomainNameChoice, SwfDomainNamePrefix;

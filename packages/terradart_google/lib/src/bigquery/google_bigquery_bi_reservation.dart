@@ -25,6 +25,7 @@ final class BigqueryBiReservationPreferredTables {
 
   final TfArg<String>? tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),

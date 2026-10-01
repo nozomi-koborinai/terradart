@@ -89,6 +89,7 @@ final class DmsDataProviderSettings {
 
   final List<DmsDataProviderSybaseAseSettings>? sybaseAseSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     if (docDbSettings != null)
       'doc_db_settings': [for (final e in docDbSettings!) e.encode()],
@@ -139,6 +140,7 @@ final class DmsDataProviderDocDbSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),
@@ -182,6 +184,7 @@ final class DmsDataProviderIbmDb2LuwSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),
@@ -223,6 +226,7 @@ final class DmsDataProviderIbmDb2ZosSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),
@@ -259,6 +263,7 @@ final class DmsDataProviderMariaDbSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -297,6 +302,7 @@ final class DmsDataProviderMicrosoftSqlServerSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),
@@ -339,6 +345,7 @@ final class DmsDataProviderMongoDbSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_mechanism': ?authMechanism?.toTfJson(),
     'auth_source': ?authSource?.toTfJson(),
@@ -416,6 +423,7 @@ final class DmsDataProviderMysqlSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -469,6 +477,7 @@ final class DmsDataProviderOracleSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'asm_server': ?asmServer?.toTfJson(),
     'certificate_arn': ?certificateArn?.toTfJson(),
@@ -517,6 +526,7 @@ final class DmsDataProviderPostgresqlSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),
@@ -550,6 +560,7 @@ final class DmsDataProviderRedshiftSettings {
 
   final TfArg<String>? serverName;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': ?databaseName?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -584,6 +595,7 @@ final class DmsDataProviderSybaseAseSettings {
 
   final TfArg<String>? sslMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': ?certificateArn?.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),

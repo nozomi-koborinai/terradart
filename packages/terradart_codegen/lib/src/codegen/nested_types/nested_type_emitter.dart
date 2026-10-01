@@ -212,7 +212,9 @@ String _renderClass(
       ..writeln();
   }
 
-  buf.writeln('  Map<String, Object?> encode() => {');
+  buf
+    ..writeln('  @internal')
+    ..writeln('  Map<String, Object?> encode() => {');
   for (final p in plans) {
     buf.writeln('    ${p.encodeEntry}');
   }

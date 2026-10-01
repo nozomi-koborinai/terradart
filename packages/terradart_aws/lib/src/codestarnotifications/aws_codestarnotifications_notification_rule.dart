@@ -69,6 +69,7 @@ final class CodestarnotificationsNotificationRuleTarget {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'type': ?type?.toTfJson(),

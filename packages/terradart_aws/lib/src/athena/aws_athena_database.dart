@@ -18,6 +18,7 @@ final class AthenaDatabaseAclConfiguration {
 
   final AthenaDatabaseS3AclOption s3AclOption;
 
+  @internal
   Map<String, Object?> encode() => {'s3_acl_option': s3AclOption.toTfJson()};
 }
 
@@ -52,6 +53,7 @@ final class AthenaDatabaseEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_option': encryptionOption.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),

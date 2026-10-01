@@ -51,6 +51,7 @@ final class VmwareengineClusterAutoscalingSettings {
 
   final List<VmwareengineClusterAutoscalingPolicies> autoscalingPolicies;
 
+  @internal
   Map<String, Object?> encode() => {
     'cool_down_period': ?coolDownPeriod?.toTfJson(),
     'max_cluster_node_count': ?maxClusterNodeCount?.toTfJson(),
@@ -84,6 +85,7 @@ final class VmwareengineClusterAutoscalingPolicies {
 
   final VmwareengineClusterStorageThresholds? storageThresholds;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoscale_policy_id': autoscalePolicyId.toTfJson(),
     'node_type_id': nodeTypeId.toTfJson(),
@@ -107,6 +109,7 @@ final class VmwareengineClusterConsumedMemoryThresholds {
 
   final TfArg<num> scaleOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in': scaleIn.toTfJson(),
     'scale_out': scaleOut.toTfJson(),
@@ -126,6 +129,7 @@ final class VmwareengineClusterCpuThresholds {
 
   final TfArg<num> scaleOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in': scaleIn.toTfJson(),
     'scale_out': scaleOut.toTfJson(),
@@ -145,6 +149,7 @@ final class VmwareengineClusterStorageThresholds {
 
   final TfArg<num> scaleOut;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in': scaleIn.toTfJson(),
     'scale_out': scaleOut.toTfJson(),
@@ -173,6 +178,7 @@ final class VmwareengineClusterDatastoreMountConfig {
 
   final VmwareengineClusterDatastoreNetwork datastoreNetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_mode': ?accessMode?.toTfJson(),
     'datastore': datastore.toTfJson(),
@@ -198,6 +204,7 @@ final class VmwareengineClusterDatastoreNetwork {
 
   final TfArg<String> subnet;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_count': ?connectionCount?.toTfJson(),
     'mtu': ?mtu?.toTfJson(),
@@ -221,6 +228,7 @@ final class VmwareengineClusterNodeTypeConfigs {
 
   final TfArg<String> nodeTypeId;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_core_count': ?customCoreCount?.toTfJson(),
     'node_count': nodeCount.toTfJson(),

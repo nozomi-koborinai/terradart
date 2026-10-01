@@ -64,6 +64,7 @@ final class ApigeeKeystoresAliasesSelfSignedCertSubject {
 
   final TfArg<String>? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'common_name': ?commonName?.toTfJson(),
     'country_code': ?countryCode?.toTfJson(),
@@ -85,6 +86,7 @@ final class ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames {
 
   final TfArg<String>? subjectAlternativeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject_alternative_name': ?subjectAlternativeName?.toTfJson(),
   };

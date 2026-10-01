@@ -23,6 +23,7 @@ final class BatchSchedulingPolicyFairSharePolicy {
 
   final List<BatchSchedulingPolicyShareDistribution>? shareDistribution;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_reservation': ?computeReservation?.toTfJson(),
     'share_decay_seconds': ?shareDecaySeconds?.toTfJson(),
@@ -44,6 +45,7 @@ final class BatchSchedulingPolicyShareDistribution {
 
   final TfArg<num>? weightFactor;
 
+  @internal
   Map<String, Object?> encode() => {
     'share_identifier': shareIdentifier.toTfJson(),
     'weight_factor': ?weightFactor?.toTfJson(),

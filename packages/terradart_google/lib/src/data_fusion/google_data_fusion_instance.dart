@@ -71,6 +71,7 @@ final class DataFusionInstanceAccelerators {
 
   final DataFusionInstanceAcceleratorsState state;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_type': acceleratorType.toTfJson(),
     'state': state.toTfJson(),
@@ -132,6 +133,7 @@ final class DataFusionInstanceCryptoKeyConfig {
 
   final TfArg<String> keyReference;
 
+  @internal
   Map<String, Object?> encode() => {'key_reference': keyReference.toTfJson()};
 }
 
@@ -148,6 +150,7 @@ final class DataFusionInstanceEventPublishConfig {
 
   final RefTo<GooglePubsubTopic> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'topic': topic.encodeAs('id').toTfJson(),
@@ -162,6 +165,7 @@ final class DataFusionInstanceMaintenancePolicy {
 
   final DataFusionInstanceMaintenanceWindow? maintenanceWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'maintenance_window': ?maintenanceWindow?.encode(),
   };
@@ -177,6 +181,7 @@ final class DataFusionInstanceMaintenanceWindow {
 
   final DataFusionInstanceRecurringTimeWindow recurringTimeWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'recurring_time_window': recurringTimeWindow.encode(),
   };
@@ -195,6 +200,7 @@ final class DataFusionInstanceRecurringTimeWindow {
 
   final DataFusionInstanceWindow window;
 
+  @internal
   Map<String, Object?> encode() => {
     'recurrence': recurrence.toTfJson(),
     'window': window.encode(),
@@ -214,6 +220,7 @@ final class DataFusionInstanceWindow {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': endTime.toTfJson(),
     'start_time': startTime.toTfJson(),
@@ -240,6 +247,7 @@ final class DataFusionInstanceNetworkConfig {
   final DataFusionInstancePrivateServiceConnectConfig?
   privateServiceConnectConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_type': ?connectionType?.toTfJson(),
     'ip_allocation': ?ipAllocation?.toTfJson(),
@@ -284,6 +292,7 @@ final class DataFusionInstancePrivateServiceConnectConfig {
 
   final TfArg<String>? unreachableCidrBlock;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
     'unreachable_cidr_block': ?unreachableCidrBlock?.toTfJson(),

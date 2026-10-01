@@ -32,6 +32,7 @@ final class SsoadminTrustedTokenIssuerConfiguration {
   final List<SsoadminTrustedTokenIssuerOidcJwtConfiguration>?
   oidcJwtConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (oidcJwtConfiguration != null)
       'oidc_jwt_configuration': [
@@ -59,6 +60,7 @@ final class SsoadminTrustedTokenIssuerOidcJwtConfiguration {
 
   final SsoadminTrustedTokenIssuerJwksRetrievalOption jwksRetrievalOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_attribute_path': claimAttributePath.toTfJson(),
     'identity_store_attribute_path': identityStoreAttributePath.toTfJson(),

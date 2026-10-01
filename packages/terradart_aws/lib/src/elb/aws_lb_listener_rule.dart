@@ -43,6 +43,7 @@ final class LbListenerRuleAction {
 
   final LbListenerRuleRedirect? redirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     'target_group_arn': ?targetGroupArn?.toTfJson(),
@@ -120,6 +121,7 @@ final class LbListenerRuleAuthenticateCognito {
 
   final TfArg<String> userPoolDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -200,6 +202,7 @@ final class LbListenerRuleAuthenticateOidc {
 
   final TfArg<String> userInfoEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -232,6 +235,7 @@ final class LbListenerRuleFixedResponse {
 
   final TfArg<String>? statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
     'message_body': ?messageBody?.toTfJson(),
@@ -281,6 +285,7 @@ final class LbListenerRuleForward {
 
   final List<LbListenerRuleTargetGroup> targetGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'stickiness': ?stickiness?.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
@@ -297,6 +302,7 @@ final class LbListenerRuleStickiness {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -313,6 +319,7 @@ final class LbListenerRuleTargetGroup {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -335,6 +342,7 @@ final class LbListenerRuleJwtValidation {
 
   final List<LbListenerRuleAdditionalClaim>? additionalClaim;
 
+  @internal
   Map<String, Object?> encode() => {
     'issuer': issuer.toTfJson(),
     'jwks_endpoint': jwksEndpoint.toTfJson(),
@@ -359,6 +367,7 @@ final class LbListenerRuleAdditionalClaim {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     'name': name.toTfJson(),
@@ -416,6 +425,7 @@ final class LbListenerRuleRedirect {
 
   final LbListenerRuleStatusCode statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -480,6 +490,7 @@ final class LbListenerRuleCondition {
 
   final LbListenerRuleSourceIp? sourceIp;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_header': ?hostHeader?.encode(),
     'http_header': ?httpHeader?.encode(),
@@ -501,6 +512,7 @@ final class LbListenerRuleHostHeader {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_values': ?regexValues?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -523,6 +535,7 @@ final class LbListenerRuleHttpHeader {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_header_name': httpHeaderName.toTfJson(),
     'regex_values': ?regexValues?.toTfJson(),
@@ -538,6 +551,7 @@ final class LbListenerRuleHttpRequestMethod {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -551,6 +565,7 @@ final class LbListenerRulePathPattern {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_values': ?regexValues?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -567,6 +582,7 @@ final class LbListenerRuleQueryString {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': value.toTfJson(),
@@ -583,6 +599,7 @@ final class LbListenerRuleSourceIp {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -620,6 +637,7 @@ final class LbListenerRuleTransform {
 
   final LbListenerRuleUrlRewriteConfig? urlRewriteConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'host_header_rewrite_config': ?hostHeaderRewriteConfig?.encode(),
@@ -657,6 +675,7 @@ final class LbListenerRuleHostHeaderRewriteConfig {
 
   final LbListenerRuleRewrite? rewrite;
 
+  @internal
   Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 
@@ -671,6 +690,7 @@ final class LbListenerRuleRewrite {
 
   final TfArg<String> replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     'replace': replace.toTfJson(),
@@ -685,6 +705,7 @@ final class LbListenerRuleUrlRewriteConfig {
 
   final LbListenerRuleRewrite? rewrite;
 
+  @internal
   Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 

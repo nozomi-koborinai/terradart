@@ -19,6 +19,7 @@ final class LambdacoreNetworkConnectorConfiguration {
   final List<LambdacoreNetworkConnectorVpcEgressConfiguration>?
   vpcEgressConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (vpcEgressConfiguration != null)
       'vpc_egress_configuration': [
@@ -47,6 +48,7 @@ final class LambdacoreNetworkConnectorVpcEgressConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'associated_compute_resource_types': [
       for (final e in associatedComputeResourceTypes) e.toTfJson(),

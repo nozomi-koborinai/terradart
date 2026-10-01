@@ -20,6 +20,7 @@ final class DialogflowCxGenerativeSettingsFallbackSettings {
 
   final List<DialogflowCxGenerativeSettingsPromptTemplates>? promptTemplates;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_prompt': ?selectedPrompt?.toTfJson(),
     if (promptTemplates != null)
@@ -43,6 +44,7 @@ final class DialogflowCxGenerativeSettingsPromptTemplates {
 
   final TfArg<String>? promptText;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'frozen': ?frozen?.toTfJson(),
@@ -63,6 +65,7 @@ final class DialogflowCxGenerativeSettingsGenerativeSafetySettings {
 
   final List<DialogflowCxGenerativeSettingsBannedPhrases>? bannedPhrases;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_banned_phrase_match_strategy': ?defaultBannedPhraseMatchStrategy
         ?.toTfJson(),
@@ -84,6 +87,7 @@ final class DialogflowCxGenerativeSettingsBannedPhrases {
 
   final TfArg<String> text;
 
+  @internal
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
     'text': text.toTfJson(),
@@ -115,6 +119,7 @@ final class DialogflowCxGenerativeSettingsKnowledgeConnectorSettings {
 
   final TfArg<bool>? disableDataStoreFallback;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent': ?agent?.toTfJson(),
     'agent_identity': ?agentIdentity?.toTfJson(),
@@ -138,6 +143,7 @@ final class DialogflowCxGenerativeSettingsLlmModelSettings {
 
   final TfArg<String>? promptText;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'prompt_text': ?promptText?.toTfJson(),

@@ -29,12 +29,15 @@ sealed class ZeroTrustDeviceDefaultProfileSplitTunnel {
   ) = ZeroTrustDeviceDefaultProfileSplitTunnelInclude;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -45,14 +48,17 @@ final class ZeroTrustDeviceDefaultProfileSplitTunnelExclude
 
   final List<ZeroTrustDeviceDefaultProfileExclude> exclude;
 
+  @internal
   @override
   String get blockKey => 'exclude';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'exclude': [for (final e in exclude) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'exclude': TfArg.literal([for (final e in exclude) e.encode()]),
@@ -66,14 +72,17 @@ final class ZeroTrustDeviceDefaultProfileSplitTunnelInclude
 
   final List<ZeroTrustDeviceDefaultProfileInclude> include;
 
+  @internal
   @override
   String get blockKey => 'include';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'include': [for (final e in include) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'include': TfArg.literal([for (final e in include) e.encode()]),
@@ -93,6 +102,7 @@ final class ZeroTrustDeviceDefaultProfileDnsSearchSuffixes {
 
   final TfArg<String> suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'suffix': suffix.toTfJson(),
@@ -115,6 +125,7 @@ final class ZeroTrustDeviceDefaultProfileExclude {
 
   final TfArg<String>? host;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -141,6 +152,7 @@ final class ZeroTrustDeviceDefaultProfileGlobalAcceleration {
 
   final TfArg<List<String>> wireguardEndpoints;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_endpoints': apiEndpoints.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -165,6 +177,7 @@ final class ZeroTrustDeviceDefaultProfileInclude {
 
   final TfArg<String>? host;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -182,6 +195,7 @@ final class ZeroTrustDeviceDefaultProfileServiceModeV2 {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -201,6 +215,7 @@ final class ZeroTrustDeviceDefaultProfileVirtualNetworks {
 
   final TfArg<String> defaultCase;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed': allowed.toTfJson(),
     'default': defaultCase.toTfJson(),

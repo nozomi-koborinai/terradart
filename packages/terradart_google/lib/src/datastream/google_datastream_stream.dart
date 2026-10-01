@@ -53,12 +53,15 @@ sealed class DatastreamStreamBackfill {
   ) = DatastreamStreamBackfillNoneChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -68,12 +71,15 @@ final class DatastreamStreamBackfillAllChoice extends DatastreamStreamBackfill {
 
   final DatastreamStreamBackfillAll backfillAll;
 
+  @internal
   @override
   String get blockKey => 'backfill_all';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'backfill_all': backfillAll.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'backfill_all': TfArg.literal(backfillAll.encode()),
@@ -87,12 +93,15 @@ final class DatastreamStreamBackfillNoneChoice
 
   final DatastreamStreamBackfillNone backfillNone;
 
+  @internal
   @override
   String get blockKey => 'backfill_none';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'backfill_none': backfillNone.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'backfill_none': TfArg.literal(backfillNone.encode()),
@@ -127,6 +136,7 @@ final class DatastreamStreamBackfillAll {
 
   final DatastreamStreamSqlServerExcludedObjects? sqlServerExcludedObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'mongodb_excluded_objects': ?mongodbExcludedObjects?.encode(),
     'mysql_excluded_objects': ?mysqlExcludedObjects?.encode(),
@@ -146,6 +156,7 @@ final class DatastreamStreamMongodbExcludedObjects {
 
   final List<DatastreamStreamDatabases> databases;
 
+  @internal
   Map<String, Object?> encode() => {
     'databases': [for (final e in databases) e.encode()],
   };
@@ -161,6 +172,7 @@ final class DatastreamStreamDatabases {
 
   final List<DatastreamStreamCollections>? collections;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     if (collections != null)
@@ -178,6 +190,7 @@ final class DatastreamStreamCollections {
 
   final List<DatastreamStreamCollectionsFields>? fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection': collection.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
@@ -193,6 +206,7 @@ final class DatastreamStreamCollectionsFields {
 
   final TfArg<String>? field;
 
+  @internal
   Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
 }
 
@@ -204,6 +218,7 @@ final class DatastreamStreamMysqlExcludedObjects {
 
   final List<DatastreamStreamMysqlDatabases> mysqlDatabases;
 
+  @internal
   Map<String, Object?> encode() => {
     'mysql_databases': [for (final e in mysqlDatabases) e.encode()],
   };
@@ -223,6 +238,7 @@ final class DatastreamStreamMysqlDatabases {
 
   final List<DatastreamStreamMysqlTables>? mysqlTables;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     if (mysqlTables != null)
@@ -241,6 +257,7 @@ final class DatastreamStreamMysqlTables {
 
   final List<DatastreamStreamMysqlColumns>? mysqlColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
     if (mysqlColumns != null)
@@ -274,6 +291,7 @@ final class DatastreamStreamMysqlColumns {
 
   final TfArg<bool>? primaryKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'collation': ?collation?.toTfJson(),
     'column': ?column?.toTfJson(),
@@ -292,6 +310,7 @@ final class DatastreamStreamOracleExcludedObjects {
 
   final List<DatastreamStreamOracleSchemas> oracleSchemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'oracle_schemas': [for (final e in oracleSchemas) e.encode()],
   };
@@ -311,6 +330,7 @@ final class DatastreamStreamOracleSchemas {
 
   final List<DatastreamStreamOracleTables>? oracleTables;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     if (oracleTables != null)
@@ -329,6 +349,7 @@ final class DatastreamStreamOracleTables {
 
   final List<DatastreamStreamOracleColumns>? oracleColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
     if (oracleColumns != null)
@@ -347,6 +368,7 @@ final class DatastreamStreamOracleColumns {
 
   final TfArg<String>? dataType;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': ?column?.toTfJson(),
     'data_type': ?dataType?.toTfJson(),
@@ -363,6 +385,7 @@ final class DatastreamStreamPostgresqlExcludedObjects {
 
   final List<DatastreamStreamPostgresqlSchemas> postgresqlSchemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'postgresql_schemas': [for (final e in postgresqlSchemas) e.encode()],
   };
@@ -382,6 +405,7 @@ final class DatastreamStreamPostgresqlSchemas {
 
   final List<DatastreamStreamPostgresqlTables>? postgresqlTables;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     if (postgresqlTables != null)
@@ -403,6 +427,7 @@ final class DatastreamStreamPostgresqlTables {
 
   final List<DatastreamStreamPostgresqlColumns>? postgresqlColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
     if (postgresqlColumns != null)
@@ -433,6 +458,7 @@ final class DatastreamStreamPostgresqlColumns {
 
   final TfArg<bool>? primaryKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': ?column?.toTfJson(),
     'data_type': ?dataType?.toTfJson(),
@@ -450,6 +476,7 @@ final class DatastreamStreamSalesforceExcludedObjects {
 
   final List<DatastreamStreamObjects> objects;
 
+  @internal
   Map<String, Object?> encode() => {
     'objects': [for (final e in objects) e.encode()],
   };
@@ -466,6 +493,7 @@ final class DatastreamStreamObjects {
 
   final List<DatastreamStreamFields>? fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'object_name': ?objectName?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
@@ -481,6 +509,7 @@ final class DatastreamStreamFields {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -492,6 +521,7 @@ final class DatastreamStreamSpannerExcludedObjects {
 
   final List<DatastreamStreamSpannerExcludedObjectsSchemas> schemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
@@ -510,6 +540,7 @@ final class DatastreamStreamSpannerExcludedObjectsSchemas {
 
   final List<DatastreamStreamSpannerExcludedObjectsTables>? tables;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     if (tables != null) 'tables': [for (final e in tables!) e.encode()],
@@ -529,6 +560,7 @@ final class DatastreamStreamSpannerExcludedObjectsTables {
 
   final List<DatastreamStreamSpannerExcludedObjectsColumns>? columns;
 
+  @internal
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
@@ -543,6 +575,7 @@ final class DatastreamStreamSpannerExcludedObjectsColumns {
 
   final TfArg<String> column;
 
+  @internal
   Map<String, Object?> encode() => {'column': column.toTfJson()};
 }
 
@@ -554,6 +587,7 @@ final class DatastreamStreamSqlServerExcludedObjects {
 
   final List<DatastreamStreamSqlServerExcludedObjectsSchemas> schemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
@@ -573,6 +607,7 @@ final class DatastreamStreamSqlServerExcludedObjectsSchemas {
 
   final List<DatastreamStreamSqlServerExcludedObjectsTables>? tables;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     if (tables != null) 'tables': [for (final e in tables!) e.encode()],
@@ -593,6 +628,7 @@ final class DatastreamStreamSqlServerExcludedObjectsTables {
 
   final List<DatastreamStreamSqlServerExcludedObjectsColumns>? columns;
 
+  @internal
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
@@ -613,6 +649,7 @@ final class DatastreamStreamSqlServerExcludedObjectsColumns {
 
   final TfArg<String>? dataType;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': ?column?.toTfJson(),
     'data_type': ?dataType?.toTfJson(),
@@ -625,6 +662,7 @@ final class DatastreamStreamSqlServerExcludedObjectsColumns {
 final class DatastreamStreamBackfillNone {
   const DatastreamStreamBackfillNone();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -641,6 +679,7 @@ final class DatastreamStreamDestinationConfig {
 
   final DatastreamStreamDestinationConfigSystem system;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_connection_profile': destinationConnectionProfile.toTfJson(),
     ...system.encode(),
@@ -665,8 +704,10 @@ sealed class DatastreamStreamDestinationConfigSystem {
   ) = DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -679,9 +720,11 @@ final class DatastreamStreamDestinationConfigSystemGcsDestinationConfig
 
   final DatastreamStreamGcsDestinationConfig gcsDestinationConfig;
 
+  @internal
   @override
   String get blockKey => 'gcs_destination_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gcs_destination_config': gcsDestinationConfig.encode(),
@@ -697,9 +740,11 @@ final class DatastreamStreamDestinationConfigSystemBigqueryDestinationConfig
 
   final DatastreamStreamBigqueryDestinationConfig bigqueryDestinationConfig;
 
+  @internal
   @override
   String get blockKey => 'bigquery_destination_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bigquery_destination_config': bigqueryDestinationConfig.encode(),
@@ -725,6 +770,7 @@ final class DatastreamStreamBigqueryDestinationConfig {
 
   final DatastreamStreamDataset dataset;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_freshness': ?dataFreshness?.toTfJson(),
     ...?writeMode?.encode(),
@@ -751,8 +797,10 @@ sealed class DatastreamStreamDataset {
   ) = DatastreamStreamDatasetSourceHierarchyDatasets;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -763,9 +811,11 @@ final class DatastreamStreamSingleTargetDatasetChoice
 
   final DatastreamStreamSingleTargetDataset singleTargetDataset;
 
+  @internal
   @override
   String get blockKey => 'single_target_dataset';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'single_target_dataset': singleTargetDataset.encode(),
@@ -781,9 +831,11 @@ final class DatastreamStreamDatasetSourceHierarchyDatasets
 
   final DatastreamStreamSourceHierarchyDatasets sourceHierarchyDatasets;
 
+  @internal
   @override
   String get blockKey => 'source_hierarchy_datasets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_hierarchy_datasets': sourceHierarchyDatasets.encode(),
@@ -808,8 +860,10 @@ sealed class DatastreamStreamWriteMode {
   ) = DatastreamStreamWriteModeAppendOnly;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -819,9 +873,11 @@ final class DatastreamStreamWriteModeMerge extends DatastreamStreamWriteMode {
 
   final DatastreamStreamMerge merge;
 
+  @internal
   @override
   String get blockKey => 'merge';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'merge': merge.encode()};
 }
@@ -833,9 +889,11 @@ final class DatastreamStreamWriteModeAppendOnly
 
   final DatastreamStreamAppendOnly appendOnly;
 
+  @internal
   @override
   String get blockKey => 'append_only';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'append_only': appendOnly.encode()};
 }
@@ -846,6 +904,7 @@ final class DatastreamStreamWriteModeAppendOnly
 final class DatastreamStreamAppendOnly {
   const DatastreamStreamAppendOnly();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -871,6 +930,7 @@ final class DatastreamStreamBlmtConfig {
 
   final TfArg<String> tableFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'connection_name': connectionName.toTfJson(),
@@ -886,6 +946,7 @@ final class DatastreamStreamBlmtConfig {
 final class DatastreamStreamMerge {
   const DatastreamStreamMerge();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -897,6 +958,7 @@ final class DatastreamStreamSingleTargetDataset {
 
   final RefTo<GoogleBigqueryDataset> datasetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('id').toTfJson(),
   };
@@ -915,6 +977,7 @@ final class DatastreamStreamSourceHierarchyDatasets {
 
   final DatastreamStreamDatasetTemplate datasetTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_id': ?projectId?.toTfJson(),
     'dataset_template': datasetTemplate.encode(),
@@ -937,6 +1000,7 @@ final class DatastreamStreamDatasetTemplate {
 
   final TfArg<String> location;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id_prefix': ?datasetIdPrefix?.toTfJson(),
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -963,6 +1027,7 @@ final class DatastreamStreamGcsDestinationConfig {
 
   final DatastreamStreamFileFormat fileFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_rotation_interval': ?fileRotationInterval?.toTfJson(),
     'file_rotation_mb': ?fileRotationMb?.toTfJson(),
@@ -989,8 +1054,10 @@ sealed class DatastreamStreamFileFormat {
   ) = DatastreamStreamJsonFileFormatChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1001,9 +1068,11 @@ final class DatastreamStreamAvroFileFormatChoice
 
   final DatastreamStreamAvroFileFormat avroFileFormat;
 
+  @internal
   @override
   String get blockKey => 'avro_file_format';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'avro_file_format': avroFileFormat.encode(),
@@ -1017,9 +1086,11 @@ final class DatastreamStreamJsonFileFormatChoice
 
   final DatastreamStreamJsonFileFormat jsonFileFormat;
 
+  @internal
   @override
   String get blockKey => 'json_file_format';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'json_file_format': jsonFileFormat.encode(),
@@ -1032,6 +1103,7 @@ final class DatastreamStreamJsonFileFormatChoice
 final class DatastreamStreamAvroFileFormat {
   const DatastreamStreamAvroFileFormat();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1048,6 +1120,7 @@ final class DatastreamStreamJsonFileFormat {
 
   final DatastreamStreamSchemaFileFormat? schemaFileFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
     'schema_file_format': ?schemaFileFormat?.toTfJson(),
@@ -1106,6 +1179,7 @@ final class DatastreamStreamRuleSets {
 
   final DatastreamStreamObjectFilter objectFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'customization_rules': [for (final e in customizationRules) e.encode()],
     'object_filter': objectFilter.encode(),
@@ -1125,6 +1199,7 @@ final class DatastreamStreamCustomizationRules {
 
   final DatastreamStreamBigqueryPartitioning? bigqueryPartitioning;
 
+  @internal
   Map<String, Object?> encode() => {
     'bigquery_clustering': ?bigqueryClustering?.encode(),
     'bigquery_partitioning': ?bigqueryPartitioning?.encode(),
@@ -1139,6 +1214,7 @@ final class DatastreamStreamBigqueryClustering {
 
   final TfArg<List<String>> columns;
 
+  @internal
   Map<String, Object?> encode() => {'columns': columns.toTfJson()};
 }
 
@@ -1161,6 +1237,7 @@ final class DatastreamStreamBigqueryPartitioning {
 
   final DatastreamStreamTimeUnitPartition? timeUnitPartition;
 
+  @internal
   Map<String, Object?> encode() => {
     'require_partition_filter': ?requirePartitionFilter?.toTfJson(),
     'ingestion_time_partition': ?ingestionTimePartition?.encode(),
@@ -1180,6 +1257,7 @@ final class DatastreamStreamIngestionTimePartition {
   final DatastreamStreamPartitioningTimeGranularity?
   partitioningTimeGranularity;
 
+  @internal
   Map<String, Object?> encode() => {
     'partitioning_time_granularity': ?partitioningTimeGranularity?.toTfJson(),
   };
@@ -1245,6 +1323,7 @@ final class DatastreamStreamIntegerRangePartition {
 
   final TfArg<num> start;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': column.toTfJson(),
     'end': end.toTfJson(),
@@ -1267,6 +1346,7 @@ final class DatastreamStreamTimeUnitPartition {
   final DatastreamStreamPartitioningTimeGranularity?
   partitioningTimeGranularity;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': column.toTfJson(),
     'partitioning_time_granularity': ?partitioningTimeGranularity?.toTfJson(),
@@ -1281,6 +1361,7 @@ final class DatastreamStreamObjectFilter {
 
   final DatastreamStreamSourceObjectIdentifier? sourceObjectIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_object_identifier': ?sourceObjectIdentifier?.encode(),
   };
@@ -1314,6 +1395,7 @@ final class DatastreamStreamSourceObjectIdentifier {
 
   final DatastreamStreamSqlServerIdentifier? sqlServerIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'mongodb_identifier': ?mongodbIdentifier?.encode(),
     'mysql_identifier': ?mysqlIdentifier?.encode(),
@@ -1338,6 +1420,7 @@ final class DatastreamStreamMongodbIdentifier {
 
   final TfArg<String> database;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection': collection.toTfJson(),
     'database': database.toTfJson(),
@@ -1357,6 +1440,7 @@ final class DatastreamStreamMysqlIdentifier {
 
   final TfArg<String> table;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'table': table.toTfJson(),
@@ -1376,6 +1460,7 @@ final class DatastreamStreamOracleIdentifier {
 
   final TfArg<String> table;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     'table': table.toTfJson(),
@@ -1395,6 +1480,7 @@ final class DatastreamStreamPostgresqlIdentifier {
 
   final TfArg<String> table;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     'table': table.toTfJson(),
@@ -1409,6 +1495,7 @@ final class DatastreamStreamSalesforceIdentifier {
 
   final TfArg<String> objectName;
 
+  @internal
   Map<String, Object?> encode() => {'object_name': objectName.toTfJson()};
 }
 
@@ -1422,6 +1509,7 @@ final class DatastreamStreamSpannerIdentifier {
 
   final TfArg<String> table;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': ?schema?.toTfJson(),
     'table': table.toTfJson(),
@@ -1441,6 +1529,7 @@ final class DatastreamStreamSqlServerIdentifier {
 
   final TfArg<String> table;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     'table': table.toTfJson(),
@@ -1460,6 +1549,7 @@ final class DatastreamStreamSourceConfig {
 
   final DatastreamStreamSourceConfigSystem system;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_connection_profile': sourceConnectionProfile.toTfJson(),
     ...system.encode(),
@@ -1509,8 +1599,10 @@ sealed class DatastreamStreamSourceConfigSystem {
   ) = DatastreamStreamSourceConfigSystemMongodbSourceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1523,9 +1615,11 @@ final class DatastreamStreamSourceConfigSystemMysqlSourceConfig
 
   final DatastreamStreamMysqlSourceConfig mysqlSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'mysql_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mysql_source_config': mysqlSourceConfig.encode(),
@@ -1541,9 +1635,11 @@ final class DatastreamStreamSourceConfigSystemOracleSourceConfig
 
   final DatastreamStreamOracleSourceConfig oracleSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'oracle_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oracle_source_config': oracleSourceConfig.encode(),
@@ -1559,9 +1655,11 @@ final class DatastreamStreamSourceConfigSystemPostgresqlSourceConfig
 
   final DatastreamStreamPostgresqlSourceConfig postgresqlSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'postgresql_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'postgresql_source_config': postgresqlSourceConfig.encode(),
@@ -1577,9 +1675,11 @@ final class DatastreamStreamSourceConfigSystemSqlServerSourceConfig
 
   final DatastreamStreamSqlServerSourceConfig sqlServerSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'sql_server_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sql_server_source_config': sqlServerSourceConfig.encode(),
@@ -1595,9 +1695,11 @@ final class DatastreamStreamSourceConfigSystemSalesforceSourceConfig
 
   final DatastreamStreamSalesforceSourceConfig salesforceSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'salesforce_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'salesforce_source_config': salesforceSourceConfig.encode(),
@@ -1613,9 +1715,11 @@ final class DatastreamStreamSourceConfigSystemSpannerSourceConfig
 
   final DatastreamStreamSpannerSourceConfig spannerSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'spanner_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spanner_source_config': spannerSourceConfig.encode(),
@@ -1631,9 +1735,11 @@ final class DatastreamStreamSourceConfigSystemMongodbSourceConfig
 
   final DatastreamStreamMongodbSourceConfig mongodbSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'mongodb_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mongodb_source_config': mongodbSourceConfig.encode(),
@@ -1656,6 +1762,7 @@ final class DatastreamStreamMongodbSourceConfig {
 
   final DatastreamStreamMongodbSourceConfigIncludeObjects? includeObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'exclude_objects': ?excludeObjects?.encode(),
@@ -1671,6 +1778,7 @@ final class DatastreamStreamMongodbSourceConfigExcludeObjects {
 
   final List<DatastreamStreamExcludeObjectsDatabases>? databases;
 
+  @internal
   Map<String, Object?> encode() => {
     if (databases != null)
       'databases': [for (final e in databases!) e.encode()],
@@ -1691,6 +1799,7 @@ final class DatastreamStreamExcludeObjectsDatabases {
 
   final List<DatastreamStreamDatabasesCollections>? collections;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     if (collections != null)
@@ -1709,6 +1818,7 @@ final class DatastreamStreamDatabasesCollections {
 
   final List<DatastreamStreamCollectionsFields>? fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection': ?collection?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
@@ -1723,6 +1833,7 @@ final class DatastreamStreamMongodbSourceConfigIncludeObjects {
 
   final List<DatastreamStreamExcludeObjectsDatabases>? databases;
 
+  @internal
   Map<String, Object?> encode() => {
     if (databases != null)
       'databases': [for (final e in databases!) e.encode()],
@@ -1751,6 +1862,7 @@ final class DatastreamStreamMysqlSourceConfig {
 
   final DatastreamStreamMysqlSourceConfigIncludeObjects? includeObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
@@ -1778,8 +1890,10 @@ sealed class DatastreamStreamCdcMethod {
       DatastreamStreamCdcMethodGtid;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1790,9 +1904,11 @@ final class DatastreamStreamCdcMethodBinaryLogPosition
 
   final DatastreamStreamBinaryLogPosition binaryLogPosition;
 
+  @internal
   @override
   String get blockKey => 'binary_log_position';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'binary_log_position': binaryLogPosition.encode(),
@@ -1805,9 +1921,11 @@ final class DatastreamStreamCdcMethodGtid extends DatastreamStreamCdcMethod {
 
   final DatastreamStreamGtid gtid;
 
+  @internal
   @override
   String get blockKey => 'gtid';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gtid': gtid.encode()};
 }
@@ -1818,6 +1936,7 @@ final class DatastreamStreamCdcMethodGtid extends DatastreamStreamCdcMethod {
 final class DatastreamStreamBinaryLogPosition {
   const DatastreamStreamBinaryLogPosition();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1831,6 +1950,7 @@ final class DatastreamStreamMysqlSourceConfigExcludeObjects {
 
   final List<DatastreamStreamMysqlDatabases> mysqlDatabases;
 
+  @internal
   Map<String, Object?> encode() => {
     'mysql_databases': [for (final e in mysqlDatabases) e.encode()],
   };
@@ -1842,6 +1962,7 @@ final class DatastreamStreamMysqlSourceConfigExcludeObjects {
 final class DatastreamStreamGtid {
   const DatastreamStreamGtid();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1855,6 +1976,7 @@ final class DatastreamStreamMysqlSourceConfigIncludeObjects {
 
   final List<DatastreamStreamMysqlDatabases> mysqlDatabases;
 
+  @internal
   Map<String, Object?> encode() => {
     'mysql_databases': [for (final e in mysqlDatabases) e.encode()],
   };
@@ -1885,6 +2007,7 @@ final class DatastreamStreamOracleSourceConfig {
 
   final DatastreamStreamLargeObjects? streamLargeObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
@@ -1901,6 +2024,7 @@ final class DatastreamStreamOracleSourceConfig {
 final class DatastreamStreamDropLargeObjects {
   const DatastreamStreamDropLargeObjects();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1914,6 +2038,7 @@ final class DatastreamStreamOracleSourceConfigExcludeObjects {
 
   final List<DatastreamStreamOracleSchemas> oracleSchemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'oracle_schemas': [for (final e in oracleSchemas) e.encode()],
   };
@@ -1929,6 +2054,7 @@ final class DatastreamStreamOracleSourceConfigIncludeObjects {
 
   final List<DatastreamStreamOracleSchemas> oracleSchemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'oracle_schemas': [for (final e in oracleSchemas) e.encode()],
   };
@@ -1940,6 +2066,7 @@ final class DatastreamStreamOracleSourceConfigIncludeObjects {
 final class DatastreamStreamLargeObjects {
   const DatastreamStreamLargeObjects();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1965,6 +2092,7 @@ final class DatastreamStreamPostgresqlSourceConfig {
 
   final DatastreamStreamPostgresqlSourceConfigIncludeObjects? includeObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'publication': publication.toTfJson(),
@@ -1984,6 +2112,7 @@ final class DatastreamStreamPostgresqlSourceConfigExcludeObjects {
 
   final List<DatastreamStreamPostgresqlSchemas> postgresqlSchemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'postgresql_schemas': [for (final e in postgresqlSchemas) e.encode()],
   };
@@ -1999,6 +2128,7 @@ final class DatastreamStreamPostgresqlSourceConfigIncludeObjects {
 
   final List<DatastreamStreamPostgresqlSchemas> postgresqlSchemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'postgresql_schemas': [for (final e in postgresqlSchemas) e.encode()],
   };
@@ -2020,6 +2150,7 @@ final class DatastreamStreamSalesforceSourceConfig {
 
   final DatastreamStreamSalesforceSourceConfigIncludeObjects? includeObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'polling_interval': pollingInterval.toTfJson(),
     'exclude_objects': ?excludeObjects?.encode(),
@@ -2037,6 +2168,7 @@ final class DatastreamStreamSalesforceSourceConfigExcludeObjects {
 
   final List<DatastreamStreamObjects> objects;
 
+  @internal
   Map<String, Object?> encode() => {
     'objects': [for (final e in objects) e.encode()],
   };
@@ -2052,6 +2184,7 @@ final class DatastreamStreamSalesforceSourceConfigIncludeObjects {
 
   final List<DatastreamStreamObjects> objects;
 
+  @internal
   Map<String, Object?> encode() => {
     'objects': [for (final e in objects) e.encode()],
   };
@@ -2088,6 +2221,7 @@ final class DatastreamStreamSpannerSourceConfig {
 
   final DatastreamStreamSpannerSourceConfigIncludeObjects? includeObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'backfill_data_boost_enabled': ?backfillDataBoostEnabled?.toTfJson(),
     'change_stream_name': ?changeStreamName?.toTfJson(),
@@ -2134,6 +2268,7 @@ final class DatastreamStreamSpannerSourceConfigExcludeObjects {
 
   final List<DatastreamStreamExcludeObjectsSchemas> schemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
@@ -2153,6 +2288,7 @@ final class DatastreamStreamExcludeObjectsSchemas {
 
   final List<DatastreamStreamExcludeObjectsTables>? tables;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema': schema.toTfJson(),
     if (tables != null) 'tables': [for (final e in tables!) e.encode()],
@@ -2173,6 +2309,7 @@ final class DatastreamStreamExcludeObjectsTables {
 
   final List<DatastreamStreamExcludeObjectsColumns>? columns;
 
+  @internal
   Map<String, Object?> encode() => {
     'table': table.toTfJson(),
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
@@ -2188,6 +2325,7 @@ final class DatastreamStreamExcludeObjectsColumns {
 
   final TfArg<String>? column;
 
+  @internal
   Map<String, Object?> encode() => {'column': ?column?.toTfJson()};
 }
 
@@ -2201,6 +2339,7 @@ final class DatastreamStreamSpannerSourceConfigIncludeObjects {
 
   final List<DatastreamStreamExcludeObjectsSchemas> schemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
@@ -2231,6 +2370,7 @@ final class DatastreamStreamSqlServerSourceConfig {
 
   final DatastreamStreamTransactionLogs? transactionLogs;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
@@ -2247,6 +2387,7 @@ final class DatastreamStreamSqlServerSourceConfig {
 final class DatastreamStreamChangeTables {
   const DatastreamStreamChangeTables();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -2260,6 +2401,7 @@ final class DatastreamStreamSqlServerSourceConfigExcludeObjects {
 
   final List<DatastreamStreamSqlServerExcludedObjectsSchemas> schemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
@@ -2275,6 +2417,7 @@ final class DatastreamStreamSqlServerSourceConfigIncludeObjects {
 
   final List<DatastreamStreamSqlServerExcludedObjectsSchemas> schemas;
 
+  @internal
   Map<String, Object?> encode() => {
     'schemas': [for (final e in schemas) e.encode()],
   };
@@ -2286,6 +2429,7 @@ final class DatastreamStreamSqlServerSourceConfigIncludeObjects {
 final class DatastreamStreamTransactionLogs {
   const DatastreamStreamTransactionLogs();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

@@ -69,6 +69,7 @@ final class DmsReplicationConfigComputeConfig {
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
     'dns_name_servers': ?dnsNameServers?.toTfJson(),

@@ -35,6 +35,7 @@ final class DataZeroTrustNetworkHostnameRouteFilter {
 
   final TfArg<String>? tunnelId;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'existed_at': ?existedAt?.toTfJson(),

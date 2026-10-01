@@ -15,6 +15,7 @@ final class Sesv2MultiRegionEndpointDetails {
 
   final List<Sesv2MultiRegionEndpointRoutesDetails>? routesDetails;
 
+  @internal
   Map<String, Object?> encode() => {
     if (routesDetails != null)
       'routes_details': [for (final e in routesDetails!) e.encode()],
@@ -29,6 +30,7 @@ final class Sesv2MultiRegionEndpointRoutesDetails {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 }
 

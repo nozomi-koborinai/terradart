@@ -35,6 +35,7 @@ final class QuicksightTemplateDefinition {
 
   final List<QuicksightTemplateSheets>? sheets;
 
+  @internal
   Map<String, Object?> encode() => {
     'analysis_defaults': ?analysisDefaults?.encode(),
     if (calculatedFields != null)
@@ -67,6 +68,7 @@ final class QuicksightTemplateAnalysisDefaults {
   final QuicksightTemplateDefaultNewSheetConfiguration
   defaultNewSheetConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_new_sheet_configuration': defaultNewSheetConfiguration.encode(),
   };
@@ -90,6 +92,7 @@ final class QuicksightTemplateDefaultNewSheetConfiguration {
   final QuicksightTemplatePaginatedLayoutConfiguration?
   paginatedLayoutConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'sheet_content_type': ?sheetContentType?.toTfJson(),
     'interactive_layout_configuration': ?interactiveLayoutConfiguration
@@ -111,6 +114,7 @@ final class QuicksightTemplateInteractiveLayoutConfiguration {
 
   final QuicksightTemplateGrid? grid;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form': ?freeForm?.encode(),
     'grid': ?grid?.encode(),
@@ -125,6 +129,7 @@ final class QuicksightTemplateFreeForm {
 
   final QuicksightTemplateFreeFormCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -142,6 +147,7 @@ final class QuicksightTemplateFreeFormCanvasSizeOptions {
   final QuicksightTemplateFreeFormScreenCanvasSizeOptions?
   screenCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
@@ -158,6 +164,7 @@ final class QuicksightTemplateFreeFormScreenCanvasSizeOptions {
 
   final TfArg<String> optimizedViewPortWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_view_port_width': optimizedViewPortWidth.toTfJson(),
   };
@@ -171,6 +178,7 @@ final class QuicksightTemplateGrid {
 
   final QuicksightTemplateGridCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -185,6 +193,7 @@ final class QuicksightTemplateGridCanvasSizeOptions {
 
   final QuicksightTemplateGridScreenCanvasSizeOptions? screenCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
@@ -204,6 +213,7 @@ final class QuicksightTemplateGridScreenCanvasSizeOptions {
 
   final TfArg<String> resizeOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_view_port_width': ?optimizedViewPortWidth?.toTfJson(),
     'resize_option': resizeOption.toTfJson(),
@@ -218,6 +228,7 @@ final class QuicksightTemplatePaginatedLayoutConfiguration {
 
   final QuicksightTemplateSectionBased? sectionBased;
 
+  @internal
   Map<String, Object?> encode() => {'section_based': ?sectionBased?.encode()};
 }
 
@@ -229,6 +240,7 @@ final class QuicksightTemplateSectionBased {
 
   final QuicksightTemplateSectionBasedCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -245,6 +257,7 @@ final class QuicksightTemplateSectionBasedCanvasSizeOptions {
 
   final QuicksightTemplatePaperCanvasSizeOptions? paperCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'paper_canvas_size_options': ?paperCanvasSizeOptions?.encode(),
   };
@@ -267,6 +280,7 @@ final class QuicksightTemplatePaperCanvasSizeOptions {
 
   final QuicksightTemplatePaperMargin? paperMargin;
 
+  @internal
   Map<String, Object?> encode() => {
     'paper_orientation': ?paperOrientation?.toTfJson(),
     'paper_size': ?paperSize?.toTfJson(),
@@ -294,6 +308,7 @@ final class QuicksightTemplatePaperMargin {
 
   final TfArg<String>? top;
 
+  @internal
   Map<String, Object?> encode() => {
     'bottom': ?bottom?.toTfJson(),
     'left': ?left?.toTfJson(),
@@ -318,6 +333,7 @@ final class QuicksightTemplateCalculatedFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'expression': expression.toTfJson(),
@@ -341,6 +357,7 @@ final class QuicksightTemplateColumnConfigurations {
 
   final QuicksightTemplateFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     'column': column.encode(),
@@ -362,6 +379,7 @@ final class QuicksightTemplateColumn {
 
   final TfArg<String> dataSetIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'data_set_identifier': dataSetIdentifier.toTfJson(),
@@ -386,6 +404,7 @@ final class QuicksightTemplateFormatConfiguration {
 
   final QuicksightTemplateStringFormatConfiguration? stringFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format_configuration': ?dateTimeFormatConfiguration?.encode(),
     'number_format_configuration': ?numberFormatConfiguration?.encode(),
@@ -412,6 +431,7 @@ final class QuicksightTemplateDateTimeFormatConfiguration {
   final QuicksightTemplateNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
     'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
@@ -430,6 +450,7 @@ final class QuicksightTemplateNullValueFormatConfiguration {
 
   final TfArg<String> nullString;
 
+  @internal
   Map<String, Object?> encode() => {'null_string': nullString.toTfJson()};
 }
 
@@ -453,6 +474,7 @@ final class QuicksightTemplateNumericFormatConfiguration {
   final QuicksightTemplatePercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'currency_display_format_configuration': ?currencyDisplayFormatConfiguration
         ?.encode(),
@@ -498,6 +520,7 @@ final class QuicksightTemplateCurrencyDisplayFormatConfiguration {
 
   final QuicksightTemplateSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -521,6 +544,7 @@ final class QuicksightTemplateDecimalPlacesConfiguration {
 
   final TfArg<num> decimalPlaces;
 
+  @internal
   Map<String, Object?> encode() => {'decimal_places': decimalPlaces.toTfJson()};
 }
 
@@ -535,6 +559,7 @@ final class QuicksightTemplateNegativeValueConfiguration {
 
   final TfArg<String> displayMode;
 
+  @internal
   Map<String, Object?> encode() => {'display_mode': displayMode.toTfJson()};
 }
 
@@ -552,6 +577,7 @@ final class QuicksightTemplateSeparatorConfiguration {
 
   final QuicksightTemplateThousandsSeparator? thousandsSeparator;
 
+  @internal
   Map<String, Object?> encode() => {
     'decimal_separator': ?decimalSeparator?.toTfJson(),
     'thousands_separator': ?thousandsSeparator?.encode(),
@@ -569,6 +595,7 @@ final class QuicksightTemplateThousandsSeparator {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'symbol': ?symbol?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -607,6 +634,7 @@ final class QuicksightTemplateNumberDisplayFormatConfiguration {
 
   final QuicksightTemplateSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -647,6 +675,7 @@ final class QuicksightTemplatePercentageDisplayFormatConfiguration {
 
   final QuicksightTemplateSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'suffix': ?suffix?.toTfJson(),
@@ -669,6 +698,7 @@ final class QuicksightTemplateNumberFormatConfiguration {
   final QuicksightTemplateNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
   };
@@ -690,6 +720,7 @@ final class QuicksightTemplateStringFormatConfiguration {
   final QuicksightTemplateNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
     'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
@@ -712,6 +743,7 @@ final class QuicksightTemplateDataSetConfiguration {
 
   final QuicksightTemplateDataSetSchema? dataSetSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'placeholder': ?placeholder?.toTfJson(),
     if (columnGroupSchemaList != null)
@@ -736,6 +768,7 @@ final class QuicksightTemplateColumnGroupSchemaList {
   final List<QuicksightTemplateColumnGroupColumnSchemaList>?
   columnGroupColumnSchemaList;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (columnGroupColumnSchemaList != null)
@@ -754,6 +787,7 @@ final class QuicksightTemplateColumnGroupColumnSchemaList {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -765,6 +799,7 @@ final class QuicksightTemplateDataSetSchema {
 
   final List<QuicksightTemplateColumnSchemaList>? columnSchemaList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (columnSchemaList != null)
       'column_schema_list': [for (final e in columnSchemaList!) e.encode()],
@@ -787,6 +822,7 @@ final class QuicksightTemplateColumnSchemaList {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_type': ?dataType?.toTfJson(),
     'geographic_role': ?geographicRole?.toTfJson(),
@@ -816,6 +852,7 @@ final class QuicksightTemplateFilterGroups {
 
   final QuicksightTemplateScopeConfiguration scopeConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_dataset': crossDataset.toTfJson(),
     'filter_group_id': filterGroupId.toTfJson(),
@@ -853,6 +890,7 @@ final class QuicksightTemplateFilters {
 
   final QuicksightTemplateTopBottomFilter? topBottomFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
     'numeric_equality_filter': ?numericEqualityFilter?.encode(),
@@ -880,6 +918,7 @@ final class QuicksightTemplateCategoryFilter {
 
   final QuicksightTemplateCategoryFilterConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'column': column.encode(),
@@ -904,6 +943,7 @@ final class QuicksightTemplateCategoryFilterConfiguration {
 
   final QuicksightTemplateFilterListConfiguration? filterListConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_filter_configuration': ?customFilterConfiguration?.encode(),
     'custom_filter_list_configuration': ?customFilterListConfiguration
@@ -934,6 +974,7 @@ final class QuicksightTemplateCustomFilterConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_value': ?categoryValue?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -962,6 +1003,7 @@ final class QuicksightTemplateCustomFilterListConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -986,6 +1028,7 @@ final class QuicksightTemplateFilterListConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -1024,6 +1067,7 @@ final class QuicksightTemplateNumericEqualityFilter {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -1054,6 +1098,7 @@ final class QuicksightTemplateAggregationFunction {
   final QuicksightTemplateNumericalAggregationFunction?
   numericalAggregationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_aggregation_function': ?categoricalAggregationFunction
         ?.toTfJson(),
@@ -1076,6 +1121,7 @@ final class QuicksightTemplateNumericalAggregationFunction {
 
   final QuicksightTemplatePercentileAggregation? percentileAggregation;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_numerical_aggregation': ?simpleNumericalAggregation?.toTfJson(),
     'percentile_aggregation': ?percentileAggregation?.encode(),
@@ -1091,6 +1137,7 @@ final class QuicksightTemplatePercentileAggregation {
 
   final TfArg<num>? percentileValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentile_value': ?percentileValue?.toTfJson(),
   };
@@ -1130,6 +1177,7 @@ final class QuicksightTemplateNumericRangeFilter {
 
   final QuicksightTemplateRangeMaximum? rangeMinimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'include_maximum': ?includeMaximum?.toTfJson(),
@@ -1154,6 +1202,7 @@ final class QuicksightTemplateRangeMaximum {
 
   final TfArg<num>? staticValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'static_value': ?staticValue?.toTfJson(),
@@ -1198,6 +1247,7 @@ final class QuicksightTemplateRelativeDatesFilter {
   final QuicksightTemplateExcludePeriodConfiguration?
   excludePeriodConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'minimum_granularity': minimumGranularity.toTfJson(),
@@ -1225,6 +1275,7 @@ final class QuicksightTemplateAnchorDateConfiguration {
 
   final TfArg<String>? parameterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'anchor_option': ?anchorOption?.toTfJson(),
     'parameter_name': ?parameterName?.toTfJson(),
@@ -1248,6 +1299,7 @@ final class QuicksightTemplateExcludePeriodConfiguration {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'amount': amount.toTfJson(),
     'granularity': granularity.toTfJson(),
@@ -1277,6 +1329,7 @@ final class QuicksightTemplateTimeEqualityFilter {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'parameter_name': ?parameterName?.toTfJson(),
@@ -1321,6 +1374,7 @@ final class QuicksightTemplateTimeRangeFilter {
 
   final QuicksightTemplateRangeMaximumValue? rangeMinimumValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'include_maximum': ?includeMaximum?.toTfJson(),
@@ -1351,6 +1405,7 @@ final class QuicksightTemplateRangeMaximumValue {
 
   final QuicksightTemplateRollingDate? rollingDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'static_value': ?staticValue?.toTfJson(),
@@ -1372,6 +1427,7 @@ final class QuicksightTemplateRollingDate {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': ?dataSetIdentifier?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -1404,6 +1460,7 @@ final class QuicksightTemplateTopBottomFilter {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'limit': ?limit?.toTfJson(),
@@ -1432,6 +1489,7 @@ final class QuicksightTemplateAggregationSortConfiguration {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'sort_direction': sortDirection.toTfJson(),
     'aggregation_function': aggregationFunction.encode(),
@@ -1447,6 +1505,7 @@ final class QuicksightTemplateScopeConfiguration {
 
   final QuicksightTemplateSelectedSheets? selectedSheets;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_sheets': ?selectedSheets?.encode(),
   };
@@ -1463,6 +1522,7 @@ final class QuicksightTemplateSelectedSheets {
   final List<QuicksightTemplateSheetVisualScopingConfigurations>?
   sheetVisualScopingConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sheetVisualScopingConfigurations != null)
       'sheet_visual_scoping_configurations': [
@@ -1487,6 +1547,7 @@ final class QuicksightTemplateSheetVisualScopingConfigurations {
 
   final TfArg<List<String>>? visualIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': scope.toTfJson(),
     'sheet_id': sheetId.toTfJson(),
@@ -1517,6 +1578,7 @@ final class QuicksightTemplateParametersDeclarations {
   final QuicksightTemplateStringParameterDeclaration?
   stringParameterDeclaration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_parameter_declaration': ?dateTimeParameterDeclaration?.encode(),
     'decimal_parameter_declaration': ?decimalParameterDeclaration?.encode(),
@@ -1546,6 +1608,7 @@ final class QuicksightTemplateDateTimeParameterDeclaration {
   final QuicksightTemplateDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'time_granularity': ?timeGranularity?.toTfJson(),
@@ -1570,6 +1633,7 @@ final class QuicksightTemplateDateTimeParameterDeclarationDefaultValues {
 
   final QuicksightTemplateRollingDate? rollingDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1594,6 +1658,7 @@ final class QuicksightTemplateDynamicValue {
 
   final QuicksightTemplateColumn? userNameColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value_column': defaultValueColumn.encode(),
     'group_name_column': ?groupNameColumn?.encode(),
@@ -1615,6 +1680,7 @@ final class QuicksightTemplateDateTimeParameterDeclarationValuesWhenUnset {
 
   final TfArg<String>? valueWhenUnsetOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_value': ?customValue?.toTfJson(),
     'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
@@ -1643,6 +1709,7 @@ final class QuicksightTemplateDecimalParameterDeclaration {
   final QuicksightTemplateDecimalParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
@@ -1665,6 +1732,7 @@ final class QuicksightTemplateDecimalParameterDeclarationDefaultValues {
 
   final QuicksightTemplateDynamicValue? dynamicValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1685,6 +1753,7 @@ final class QuicksightTemplateDecimalParameterDeclarationValuesWhenUnset {
 
   final TfArg<String>? valueWhenUnsetOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_value': ?customValue?.toTfJson(),
     'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
@@ -1712,6 +1781,7 @@ final class QuicksightTemplateStringParameterDeclaration {
   final QuicksightTemplateDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
@@ -1733,6 +1803,7 @@ final class QuicksightTemplateStringParameterDeclarationDefaultValues {
 
   final QuicksightTemplateDynamicValue? dynamicValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1779,6 +1850,7 @@ final class QuicksightTemplateSheets {
 
   final List<QuicksightTemplateVisuals>? visuals;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -1825,6 +1897,7 @@ final class QuicksightTemplateFilterControls {
 
   final QuicksightTemplateFilterControlsTextField? textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
     'dropdown': ?dropdown?.encode(),
@@ -1858,6 +1931,7 @@ final class QuicksightTemplateFilterControlsDateTimePicker {
 
   final QuicksightTemplateDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -1881,6 +1955,7 @@ final class QuicksightTemplateDateTimePickerDisplayOptions {
 
   final QuicksightTemplateTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
     'title_options': ?titleOptions?.encode(),
@@ -1904,6 +1979,7 @@ final class QuicksightTemplateTitleOptions {
 
   final QuicksightTemplateFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -1934,6 +2010,7 @@ final class QuicksightTemplateFontConfiguration {
 
   final QuicksightTemplateColumnGroupColumnSchemaList? fontWeight;
 
+  @internal
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
     'font_decoration': ?fontDecoration?.toTfJson(),
@@ -1952,6 +2029,7 @@ final class QuicksightTemplateFontSize {
 
   final TfArg<String>? relative;
 
+  @internal
   Map<String, Object?> encode() => {'relative': ?relative?.toTfJson()};
 }
 
@@ -1984,6 +2062,7 @@ final class QuicksightTemplateFilterControlsDropdown {
 
   final QuicksightTemplateFilterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2004,6 +2083,7 @@ final class QuicksightTemplateCascadingControlConfiguration {
 
   final List<QuicksightTemplateSourceControls>? sourceControls;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sourceControls != null)
       'source_controls': [for (final e in sourceControls!) e.encode()],
@@ -2024,6 +2104,7 @@ final class QuicksightTemplateSourceControls {
 
   final QuicksightTemplateColumn columnToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_sheet_control_id': ?sourceSheetControlId?.toTfJson(),
     'column_to_match': columnToMatch.encode(),
@@ -2044,6 +2125,7 @@ final class QuicksightTemplateDropdownDisplayOptions {
 
   final QuicksightTemplateTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'select_all_options': ?selectAllOptions?.encode(),
     'title_options': ?titleOptions?.encode(),
@@ -2059,6 +2141,7 @@ final class QuicksightTemplateSelectAllOptions {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {'visibility': ?visibility?.toTfJson()};
 }
 
@@ -2071,6 +2154,7 @@ final class QuicksightTemplateFilterControlsSelectableValues {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {'values': ?values?.toTfJson()};
 }
 
@@ -2103,6 +2187,7 @@ final class QuicksightTemplateFilterControlsList {
 
   final QuicksightTemplateFilterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2131,6 +2216,7 @@ final class QuicksightTemplateListDisplayOptions {
 
   final QuicksightTemplateTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'search_options': ?searchOptions?.encode(),
     'select_all_options': ?selectAllOptions?.encode(),
@@ -2157,6 +2243,7 @@ final class QuicksightTemplateRelativeDateTime {
 
   final QuicksightTemplateDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2196,6 +2283,7 @@ final class QuicksightTemplateFilterControlsSlider {
 
   final QuicksightTemplateSliderDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'maximum_value': maximumValue.toTfJson(),
@@ -2217,6 +2305,7 @@ final class QuicksightTemplateSliderDisplayOptions {
 
   final QuicksightTemplateTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {'title_options': ?titleOptions?.encode()};
 }
 
@@ -2242,6 +2331,7 @@ final class QuicksightTemplateFilterControlsTextArea {
 
   final QuicksightTemplateTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'filter_control_id': filterControlId.toTfJson(),
@@ -2265,6 +2355,7 @@ final class QuicksightTemplateTextAreaDisplayOptions {
 
   final QuicksightTemplateTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'placeholder_options': ?placeholderOptions?.encode(),
     'title_options': ?titleOptions?.encode(),
@@ -2290,6 +2381,7 @@ final class QuicksightTemplateFilterControlsTextField {
 
   final QuicksightTemplateTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2306,6 +2398,7 @@ final class QuicksightTemplateLayouts {
 
   final QuicksightTemplateLayoutsConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
 
@@ -2325,6 +2418,7 @@ final class QuicksightTemplateLayoutsConfiguration {
 
   final QuicksightTemplateSectionBasedLayout? sectionBasedLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form_layout': ?freeFormLayout?.encode(),
     'grid_layout': ?gridLayout?.encode(),
@@ -2345,6 +2439,7 @@ final class QuicksightTemplateFreeFormLayout {
 
   final List<QuicksightTemplateFreeFormLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
@@ -2395,6 +2490,7 @@ final class QuicksightTemplateFreeFormLayoutElements {
 
   final QuicksightTemplateBackgroundStyle? selectedBorderStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'element_id': elementId.toTfJson(),
     'element_type': elementType.toTfJson(),
@@ -2423,6 +2519,7 @@ final class QuicksightTemplateBackgroundStyle {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -2443,6 +2540,7 @@ final class QuicksightTemplateRenderingRules {
 
   final QuicksightTemplateSelectAllOptions configurationOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'configuration_overrides': configurationOverrides.encode(),
@@ -2463,6 +2561,7 @@ final class QuicksightTemplateGridLayout {
 
   final List<QuicksightTemplateGridLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
@@ -2495,6 +2594,7 @@ final class QuicksightTemplateGridLayoutElements {
 
   final TfArg<num> rowSpan;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_index': ?columnIndex?.toTfJson(),
     'column_span': columnSpan.toTfJson(),
@@ -2524,6 +2624,7 @@ final class QuicksightTemplateSectionBasedLayout {
 
   final QuicksightTemplateFooterSections headerSections;
 
+  @internal
   Map<String, Object?> encode() => {
     'body_sections': [for (final e in bodySections) e.encode()],
     'canvas_size_options': ?canvasSizeOptions?.encode(),
@@ -2551,6 +2652,7 @@ final class QuicksightTemplateBodySections {
 
   final QuicksightTemplateStyle? style;
 
+  @internal
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'content': content.encode(),
@@ -2567,6 +2669,7 @@ final class QuicksightTemplateContent {
 
   final QuicksightTemplateLayout? layout;
 
+  @internal
   Map<String, Object?> encode() => {'layout': ?layout?.encode()};
 }
 
@@ -2579,6 +2682,7 @@ final class QuicksightTemplateLayout {
 
   final QuicksightTemplateLayoutFreeFormLayout freeFormLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form_layout': freeFormLayout.encode(),
   };
@@ -2593,6 +2697,7 @@ final class QuicksightTemplateLayoutFreeFormLayout {
 
   final List<QuicksightTemplateFreeFormLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'elements': [for (final e in elements) e.encode()],
   };
@@ -2606,6 +2711,7 @@ final class QuicksightTemplatePageBreakConfiguration {
 
   final QuicksightTemplateAfter? after;
 
+  @internal
   Map<String, Object?> encode() => {'after': ?after?.encode()};
 }
 
@@ -2617,6 +2723,7 @@ final class QuicksightTemplateAfter {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -2631,6 +2738,7 @@ final class QuicksightTemplateStyle {
 
   final QuicksightTemplatePaperMargin? padding;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'padding': ?padding?.encode(),
@@ -2654,6 +2762,7 @@ final class QuicksightTemplateFooterSections {
 
   final QuicksightTemplateStyle? style;
 
+  @internal
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'layout': ?layout?.encode(),
@@ -2686,6 +2795,7 @@ final class QuicksightTemplateParameterControls {
 
   final QuicksightTemplateParameterControlsTextField? textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
     'dropdown': ?dropdown?.encode(),
@@ -2715,6 +2825,7 @@ final class QuicksightTemplateParameterControlsDateTimePicker {
 
   final QuicksightTemplateDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2752,6 +2863,7 @@ final class QuicksightTemplateParameterControlsDropdown {
 
   final QuicksightTemplateParameterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2777,6 +2889,7 @@ final class QuicksightTemplateParameterControlsSelectableValues {
 
   final QuicksightTemplateColumn? linkToDataSetColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'values': ?values?.toTfJson(),
     'link_to_data_set_column': ?linkToDataSetColumn?.encode(),
@@ -2812,6 +2925,7 @@ final class QuicksightTemplateParameterControlsList {
 
   final QuicksightTemplateParameterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2851,6 +2965,7 @@ final class QuicksightTemplateParameterControlsSlider {
 
   final QuicksightTemplateSliderDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_value': maximumValue.toTfJson(),
     'minimum_value': minimumValue.toTfJson(),
@@ -2884,6 +2999,7 @@ final class QuicksightTemplateParameterControlsTextArea {
 
   final QuicksightTemplateTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -2912,6 +3028,7 @@ final class QuicksightTemplateParameterControlsTextField {
 
   final QuicksightTemplateTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2928,6 +3045,7 @@ final class QuicksightTemplateSheetControlLayouts {
 
   final QuicksightTemplateSheetControlLayoutsConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
 
@@ -2939,6 +3057,7 @@ final class QuicksightTemplateSheetControlLayoutsConfiguration {
 
   final QuicksightTemplateGridLayout? gridLayout;
 
+  @internal
   Map<String, Object?> encode() => {'grid_layout': ?gridLayout?.encode()};
 }
 
@@ -2955,6 +3074,7 @@ final class QuicksightTemplateTextBoxes {
 
   final TfArg<String> sheetTextBoxId;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'sheet_text_box_id': sheetTextBoxId.toTfJson(),
@@ -3037,6 +3157,7 @@ final class QuicksightTemplateVisuals {
 
   final QuicksightTemplateWordCloudVisual? wordCloudVisual;
 
+  @internal
   Map<String, Object?> encode() => {
     'bar_chart_visual': ?barChartVisual?.encode(),
     'box_plot_visual': ?boxPlotVisual?.encode(),
@@ -3089,6 +3210,7 @@ final class QuicksightTemplateBarChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -3123,6 +3245,7 @@ final class QuicksightTemplateActions {
 
   final List<QuicksightTemplateActionOperations> actionOperations;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_action_id': customActionId.toTfJson(),
     'name': name.toTfJson(),
@@ -3152,6 +3275,7 @@ final class QuicksightTemplateActionOperations {
 
   final QuicksightTemplateUrlOperation? urlOperation;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_operation': ?filterOperation?.encode(),
     'navigation_operation': ?navigationOperation?.encode(),
@@ -3175,6 +3299,7 @@ final class QuicksightTemplateFilterOperation {
 
   final QuicksightTemplateTargetVisualsConfiguration targetVisualsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_fields_configuration': selectedFieldsConfiguration.encode(),
     'target_visuals_configuration': targetVisualsConfiguration.encode(),
@@ -3195,6 +3320,7 @@ final class QuicksightTemplateSelectedFieldsConfiguration {
 
   final TfArg<List<String>>? selectedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_field_option': ?selectedFieldOption?.toTfJson(),
     'selected_fields': ?selectedFields?.toTfJson(),
@@ -3213,6 +3339,7 @@ final class QuicksightTemplateTargetVisualsConfiguration {
   final QuicksightTemplateSameSheetTargetVisualConfiguration?
   sameSheetTargetVisualConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'same_sheet_target_visual_configuration':
         ?sameSheetTargetVisualConfiguration?.encode(),
@@ -3233,6 +3360,7 @@ final class QuicksightTemplateSameSheetTargetVisualConfiguration {
 
   final TfArg<List<String>>? targetVisuals;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_visual_option': ?targetVisualOption?.toTfJson(),
     'target_visuals': ?targetVisuals?.toTfJson(),
@@ -3251,6 +3379,7 @@ final class QuicksightTemplateNavigationOperation {
   final QuicksightTemplateLocalNavigationConfiguration?
   localNavigationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_navigation_configuration': ?localNavigationConfiguration?.encode(),
   };
@@ -3267,6 +3396,7 @@ final class QuicksightTemplateLocalNavigationConfiguration {
 
   final TfArg<String> targetSheetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_sheet_id': targetSheetId.toTfJson(),
   };
@@ -3284,6 +3414,7 @@ final class QuicksightTemplateSetParametersOperation {
   final List<QuicksightTemplateParameterValueConfigurations>
   parameterValueConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_value_configurations': [
       for (final e in parameterValueConfigurations) e.encode(),
@@ -3305,6 +3436,7 @@ final class QuicksightTemplateParameterValueConfigurations {
 
   final QuicksightTemplateValue value;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_parameter_name': destinationParameterName.toTfJson(),
     'value': value.encode(),
@@ -3331,6 +3463,7 @@ final class QuicksightTemplateValue {
 
   final QuicksightTemplateCustomValuesConfiguration? customValuesConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'select_all_value_options': ?selectAllValueOptions?.toTfJson(),
     'source_field': ?sourceField?.toTfJson(),
@@ -3353,6 +3486,7 @@ final class QuicksightTemplateCustomValuesConfiguration {
 
   final QuicksightTemplateCustomValues customValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_null_value': ?includeNullValue?.toTfJson(),
     'custom_values': customValues.encode(),
@@ -3379,6 +3513,7 @@ final class QuicksightTemplateCustomValues {
 
   final TfArg<List<String>>? stringValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_values': ?dateTimeValues?.toTfJson(),
     'decimal_values': ?decimalValues?.toTfJson(),
@@ -3401,6 +3536,7 @@ final class QuicksightTemplateUrlOperation {
 
   final TfArg<String> urlTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'url_target': urlTarget.toTfJson(),
     'url_template': urlTemplate.toTfJson(),
@@ -3463,6 +3599,7 @@ final class QuicksightTemplateBarChartVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
     'orientation': ?orientation?.toTfJson(),
@@ -3513,6 +3650,7 @@ final class QuicksightTemplateCategoryAxis {
 
   final QuicksightTemplateTickLabelOptions? tickLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_line_visibility': ?axisLineVisibility?.toTfJson(),
     'axis_offset': ?axisOffset?.toTfJson(),
@@ -3537,6 +3675,7 @@ final class QuicksightTemplateDataOptions {
 
   final QuicksightTemplateNumericAxisOptions? numericAxisOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_axis_options': ?dateAxisOptions?.encode(),
     'numeric_axis_options': ?numericAxisOptions?.encode(),
@@ -3552,6 +3691,7 @@ final class QuicksightTemplateDateAxisOptions {
 
   final TfArg<String>? missingDateVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'missing_date_visibility': ?missingDateVisibility?.toTfJson(),
   };
@@ -3568,6 +3708,7 @@ final class QuicksightTemplateNumericAxisOptions {
 
   final QuicksightTemplateScale? scale;
 
+  @internal
   Map<String, Object?> encode() => {
     'range': ?range?.encode(),
     'scale': ?scale?.encode(),
@@ -3588,6 +3729,7 @@ final class QuicksightTemplateNumericAxisOptionsRange {
 
   final QuicksightTemplateMinMax? minMax;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_driven': ?dataDriven?.encode(),
     'min_max': ?minMax?.encode(),
@@ -3601,6 +3743,7 @@ final class QuicksightTemplateNumericAxisOptionsRange {
 final class QuicksightTemplateDataDriven {
   const QuicksightTemplateDataDriven();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3615,6 +3758,7 @@ final class QuicksightTemplateMinMax {
 
   final TfArg<num>? minimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
     'minimum': ?minimum?.toTfJson(),
@@ -3632,6 +3776,7 @@ final class QuicksightTemplateScale {
 
   final QuicksightTemplateLogarithmic? logarithmic;
 
+  @internal
   Map<String, Object?> encode() => {
     'linear': ?linear?.encode(),
     'logarithmic': ?logarithmic?.encode(),
@@ -3649,6 +3794,7 @@ final class QuicksightTemplateLinear {
 
   final TfArg<num>? stepSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'step_count': ?stepCount?.toTfJson(),
     'step_size': ?stepSize?.toTfJson(),
@@ -3664,6 +3810,7 @@ final class QuicksightTemplateLogarithmic {
 
   final TfArg<num>? base;
 
+  @internal
   Map<String, Object?> encode() => {'base': ?base?.toTfJson()};
 }
 
@@ -3681,6 +3828,7 @@ final class QuicksightTemplateScrollbarOptions {
 
   final QuicksightTemplateVisibleRange? visibleRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     'visible_range': ?visibleRange?.encode(),
@@ -3696,6 +3844,7 @@ final class QuicksightTemplateVisibleRange {
 
   final QuicksightTemplatePercentRange? percentRange;
 
+  @internal
   Map<String, Object?> encode() => {'percent_range': ?percentRange?.encode()};
 }
 
@@ -3710,6 +3859,7 @@ final class QuicksightTemplatePercentRange {
 
   final TfArg<num>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -3730,6 +3880,7 @@ final class QuicksightTemplateTickLabelOptions {
 
   final QuicksightTemplateTitleOptions? labelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'rotation_angle': ?rotationAngle?.toTfJson(),
     'label_options': ?labelOptions?.encode(),
@@ -3753,6 +3904,7 @@ final class QuicksightTemplateCategoryLabelOptions {
 
   final QuicksightTemplateAxisLabelOptions? axisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'sort_icon_visibility': ?sortIconVisibility?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -3777,6 +3929,7 @@ final class QuicksightTemplateAxisLabelOptions {
 
   final QuicksightTemplateFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'apply_to': ?applyTo?.encode(),
@@ -3798,6 +3951,7 @@ final class QuicksightTemplateApplyTo {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
@@ -3818,6 +3972,7 @@ final class QuicksightTemplateContributionAnalysisDefaults {
 
   final List<QuicksightTemplateColumn> contributorDimensions;
 
+  @internal
   Map<String, Object?> encode() => {
     'measure_field_id': measureFieldId.toTfJson(),
     'contributor_dimensions': [
@@ -3861,6 +4016,7 @@ final class QuicksightTemplateDataLabels {
 
   final QuicksightTemplateFontConfiguration? labelFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
     'label_color': ?labelColor?.toTfJson(),
@@ -3898,6 +4054,7 @@ final class QuicksightTemplateDataLabelTypes {
 
   final QuicksightTemplateSelectAllOptions? rangeEndsLabelType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_path_label_type': ?dataPathLabelType?.encode(),
     'field_label_type': ?fieldLabelType?.encode(),
@@ -3924,6 +4081,7 @@ final class QuicksightTemplateDataPathLabelType {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'field_value': ?fieldValue?.toTfJson(),
@@ -3942,6 +4100,7 @@ final class QuicksightTemplateFieldLabelType {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -3959,6 +4118,7 @@ final class QuicksightTemplateBarChartVisualFieldWells {
   final QuicksightTemplateBarChartAggregatedFieldWells?
   barChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'bar_chart_aggregated_field_wells': ?barChartAggregatedFieldWells?.encode(),
   };
@@ -3984,6 +4144,7 @@ final class QuicksightTemplateBarChartAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
@@ -4009,6 +4170,7 @@ final class QuicksightTemplateTrendGroups {
 
   final QuicksightTemplateNumericalDimensionField? numericalDimensionField;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_dimension_field': ?categoricalDimensionField?.encode(),
     'date_dimension_field': ?dateDimensionField?.encode(),
@@ -4036,6 +4198,7 @@ final class QuicksightTemplateCategoricalDimensionField {
 
   final QuicksightTemplateStringFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'hierarchy_id': ?hierarchyId?.toTfJson(),
@@ -4067,6 +4230,7 @@ final class QuicksightTemplateDateDimensionField {
 
   final QuicksightTemplateDateTimeFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_granularity': ?dateGranularity?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4096,6 +4260,7 @@ final class QuicksightTemplateNumericalDimensionField {
 
   final QuicksightTemplateNumberFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'hierarchy_id': ?hierarchyId?.toTfJson(),
@@ -4124,6 +4289,7 @@ final class QuicksightTemplateTargetValues {
 
   final QuicksightTemplateNumericalMeasureField? numericalMeasureField;
 
+  @internal
   Map<String, Object?> encode() => {
     'calculated_measure_field': ?calculatedMeasureField?.encode(),
     'categorical_measure_field': ?categoricalMeasureField?.encode(),
@@ -4146,6 +4312,7 @@ final class QuicksightTemplateCalculatedMeasureField {
 
   final TfArg<String> fieldId;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4172,6 +4339,7 @@ final class QuicksightTemplateCategoricalMeasureField {
 
   final QuicksightTemplateStringFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4200,6 +4368,7 @@ final class QuicksightTemplateDateMeasureField {
 
   final QuicksightTemplateDateTimeFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4228,6 +4397,7 @@ final class QuicksightTemplateNumericalMeasureField {
 
   final QuicksightTemplateNumberFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'aggregation_function': ?aggregationFunction?.encode(),
@@ -4259,6 +4429,7 @@ final class QuicksightTemplateLegend {
 
   final QuicksightTemplateTitleOptions? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'position': ?position?.toTfJson(),
@@ -4288,6 +4459,7 @@ final class QuicksightTemplateReferenceLines {
 
   final QuicksightTemplateStyleConfiguration? styleConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'status': ?status?.toTfJson(),
     'data_configuration': dataConfiguration.encode(),
@@ -4313,6 +4485,7 @@ final class QuicksightTemplateDataConfiguration {
 
   final QuicksightTemplateStaticConfiguration? staticConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
     'dynamic_configuration': ?dynamicConfiguration?.encode(),
@@ -4337,6 +4510,7 @@ final class QuicksightTemplateDynamicConfiguration {
 
   final QuicksightTemplateAggregationFunction measureAggregationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'calculation': calculation.encode(),
     'column': column.encode(),
@@ -4353,6 +4527,7 @@ final class QuicksightTemplateStaticConfiguration {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -4382,6 +4557,7 @@ final class QuicksightTemplateLabelConfiguration {
 
   final QuicksightTemplateValueLabelConfiguration? valueLabelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
     'horizontal_position': ?horizontalPosition?.toTfJson(),
@@ -4401,6 +4577,7 @@ final class QuicksightTemplateCustomLabelConfiguration {
 
   final TfArg<String> customLabel;
 
+  @internal
   Map<String, Object?> encode() => {'custom_label': customLabel.toTfJson()};
 }
 
@@ -4418,6 +4595,7 @@ final class QuicksightTemplateValueLabelConfiguration {
 
   final QuicksightTemplateNumericFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'relative_position': ?relativePosition?.toTfJson(),
     'format_configuration': ?formatConfiguration?.encode(),
@@ -4435,6 +4613,7 @@ final class QuicksightTemplateStyleConfiguration {
 
   final TfArg<String>? pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'pattern': ?pattern?.toTfJson(),
@@ -4458,6 +4637,7 @@ final class QuicksightTemplateSmallMultiplesOptions {
 
   final QuicksightTemplatePanelConfiguration? panelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_visible_columns': ?maxVisibleColumns?.toTfJson(),
     'max_visible_rows': ?maxVisibleRows?.toTfJson(),
@@ -4500,6 +4680,7 @@ final class QuicksightTemplatePanelConfiguration {
 
   final QuicksightTemplateTitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'background_visibility': ?backgroundVisibility?.toTfJson(),
@@ -4530,6 +4711,7 @@ final class QuicksightTemplateTitle {
 
   final QuicksightTemplateFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'horizontal_text_alignment': ?horizontalTextAlignment?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -4562,6 +4744,7 @@ final class QuicksightTemplateBarChartVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -4590,6 +4773,7 @@ final class QuicksightTemplateCategoryItemsLimit {
 
   final TfArg<String> otherCategories;
 
+  @internal
   Map<String, Object?> encode() => {
     'items_limit': ?itemsLimit?.toTfJson(),
     'other_categories': otherCategories.toTfJson(),
@@ -4607,6 +4791,7 @@ final class QuicksightTemplateCategorySort {
 
   final QuicksightTemplateFieldSort? fieldSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_sort': ?columnSort?.encode(),
     'field_sort': ?fieldSort?.encode(),
@@ -4630,6 +4815,7 @@ final class QuicksightTemplateColumnSort {
 
   final QuicksightTemplateColumn sortBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'aggregation_function': ?aggregationFunction?.encode(),
@@ -4651,6 +4837,7 @@ final class QuicksightTemplateFieldSort {
 
   final TfArg<String> fieldId;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4674,6 +4861,7 @@ final class QuicksightTemplateTooltip {
 
   final QuicksightTemplateFieldBaseTooltip? fieldBaseTooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_tooltip_type': ?selectedTooltipType?.toTfJson(),
     'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
@@ -4698,6 +4886,7 @@ final class QuicksightTemplateFieldBaseTooltip {
 
   final List<QuicksightTemplateTooltipFields>? tooltipFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_visibility': ?aggregationVisibility?.toTfJson(),
     'tooltip_title_type': ?tooltipTitleType?.toTfJson(),
@@ -4720,6 +4909,7 @@ final class QuicksightTemplateTooltipFields {
 
   final QuicksightTemplateFieldTooltipItem? fieldTooltipItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_tooltip_item': ?columnTooltipItem?.encode(),
     'field_tooltip_item': ?fieldTooltipItem?.encode(),
@@ -4746,6 +4936,7 @@ final class QuicksightTemplateColumnTooltipItem {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'label': ?label?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -4771,6 +4962,7 @@ final class QuicksightTemplateFieldTooltipItem {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'label': ?label?.toTfJson(),
@@ -4789,6 +4981,7 @@ final class QuicksightTemplateVisualPalette {
 
   final List<QuicksightTemplateColorMap>? colorMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'chart_color': ?chartColor?.toTfJson(),
     if (colorMap != null) 'color_map': [for (final e in colorMap!) e.encode()],
@@ -4812,6 +5005,7 @@ final class QuicksightTemplateColorMap {
 
   final QuicksightTemplateElement element;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': color.toTfJson(),
     'time_granularity': ?timeGranularity?.toTfJson(),
@@ -4833,6 +5027,7 @@ final class QuicksightTemplateElement {
 
   final TfArg<String> fieldValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'field_value': fieldValue.toTfJson(),
@@ -4856,6 +5051,7 @@ final class QuicksightTemplateColumnHierarchies {
 
   final QuicksightTemplateExplicitHierarchy? predefinedHierarchy;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_hierarchy': ?dateTimeHierarchy?.encode(),
     'explicit_hierarchy': ?explicitHierarchy?.encode(),
@@ -4877,6 +5073,7 @@ final class QuicksightTemplateDateTimeHierarchy {
 
   final List<QuicksightTemplateDrillDownFilters>? drillDownFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
     if (drillDownFilters != null)
@@ -4902,6 +5099,7 @@ final class QuicksightTemplateDrillDownFilters {
 
   final QuicksightTemplateDrillDownFiltersTimeRangeFilter? timeRangeFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
     'numeric_equality_filter': ?numericEqualityFilter?.encode(),
@@ -4923,6 +5121,7 @@ final class QuicksightTemplateDrillDownFiltersCategoryFilter {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': categoryValues.toTfJson(),
     'column': column.encode(),
@@ -4943,6 +5142,7 @@ final class QuicksightTemplateDrillDownFiltersNumericEqualityFilter {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': value.toTfJson(),
     'column': column.encode(),
@@ -4969,6 +5169,7 @@ final class QuicksightTemplateDrillDownFiltersTimeRangeFilter {
 
   final QuicksightTemplateColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'range_maximum': rangeMaximum.toTfJson(),
     'range_minimum': rangeMinimum.toTfJson(),
@@ -4994,6 +5195,7 @@ final class QuicksightTemplateExplicitHierarchy {
 
   final List<QuicksightTemplateDrillDownFilters>? drillDownFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
     'columns': [for (final e in columns) e.encode()],
@@ -5013,6 +5215,7 @@ final class QuicksightTemplateSubtitle {
 
   final QuicksightTemplateFormatText? formatText;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     'format_text': ?formatText?.encode(),
@@ -5030,6 +5233,7 @@ final class QuicksightTemplateFormatText {
 
   final TfArg<String>? richText;
 
+  @internal
   Map<String, Object?> encode() => {
     'plain_text': ?plainText?.toTfJson(),
     'rich_text': ?richText?.toTfJson(),
@@ -5061,6 +5265,7 @@ final class QuicksightTemplateBoxPlotVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5112,6 +5317,7 @@ final class QuicksightTemplateBoxPlotVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'box_plot_options': ?boxPlotOptions?.encode(),
     'category_axis': ?categoryAxis?.encode(),
@@ -5144,6 +5350,7 @@ final class QuicksightTemplateBoxPlotOptions {
 
   final QuicksightTemplateStyleOptions? styleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_data_points_visibility': ?allDataPointsVisibility?.toTfJson(),
     'outlier_visibility': ?outlierVisibility?.toTfJson(),
@@ -5159,6 +5366,7 @@ final class QuicksightTemplateStyleOptions {
 
   final TfArg<String>? fillStyle;
 
+  @internal
   Map<String, Object?> encode() => {'fill_style': ?fillStyle?.toTfJson()};
 }
 
@@ -5173,6 +5381,7 @@ final class QuicksightTemplateBoxPlotVisualFieldWells {
   final QuicksightTemplateBoxPlotAggregatedFieldWells?
   boxPlotAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'box_plot_aggregated_field_wells': ?boxPlotAggregatedFieldWells?.encode(),
   };
@@ -5191,6 +5400,7 @@ final class QuicksightTemplateBoxPlotAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_by': ?groupBy?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -5210,6 +5420,7 @@ final class QuicksightTemplateBoxPlotVisualSortConfiguration {
 
   final QuicksightTemplatePaginationConfiguration? paginationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
@@ -5231,6 +5442,7 @@ final class QuicksightTemplatePaginationConfiguration {
 
   final TfArg<num> pageSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'page_number': pageNumber.toTfJson(),
     'page_size': pageSize.toTfJson(),
@@ -5263,6 +5475,7 @@ final class QuicksightTemplateComboChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5329,6 +5542,7 @@ final class QuicksightTemplateComboChartVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
     'bar_data_labels': ?barDataLabels?.encode(),
@@ -5361,6 +5575,7 @@ final class QuicksightTemplateComboChartVisualFieldWells {
   final QuicksightTemplateComboChartAggregatedFieldWells?
   comboChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'combo_chart_aggregated_field_wells': ?comboChartAggregatedFieldWells
         ?.encode(),
@@ -5386,6 +5601,7 @@ final class QuicksightTemplateComboChartAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? lineValues;
 
+  @internal
   Map<String, Object?> encode() => {
     if (barValues != null)
       'bar_values': [for (final e in barValues!) e.encode()],
@@ -5416,6 +5632,7 @@ final class QuicksightTemplateComboChartVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? colorSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -5452,6 +5669,7 @@ final class QuicksightTemplateCustomContentVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -5478,6 +5696,7 @@ final class QuicksightTemplateCustomContentVisualChartConfiguration {
 
   final TfArg<String>? imageScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'content_url': ?contentUrl?.toTfJson(),
@@ -5501,6 +5720,7 @@ final class QuicksightTemplateEmptyVisual {
 
   final List<QuicksightTemplateActions>? actions;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -5537,6 +5757,7 @@ final class QuicksightTemplateFilledMapVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5574,6 +5795,7 @@ final class QuicksightTemplateFilledMapVisualChartConfiguration {
 
   final QuicksightTemplateWindowOptions? windowOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'legend': ?legend?.encode(),
@@ -5595,6 +5817,7 @@ final class QuicksightTemplateFilledMapVisualFieldWells {
   final QuicksightTemplateFilledMapAggregatedFieldWells?
   filledMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'filled_map_aggregated_field_wells': ?filledMapAggregatedFieldWells
         ?.encode(),
@@ -5614,6 +5837,7 @@ final class QuicksightTemplateFilledMapAggregatedFieldWells {
 
   final QuicksightTemplateTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'geospatial': ?geospatial?.encode(),
     'values': ?values?.encode(),
@@ -5629,6 +5853,7 @@ final class QuicksightTemplateMapStyleOptions {
 
   final TfArg<String>? baseMapStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_map_style': ?baseMapStyle?.toTfJson(),
   };
@@ -5642,6 +5867,7 @@ final class QuicksightTemplateFilledMapVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
@@ -5659,6 +5885,7 @@ final class QuicksightTemplateWindowOptions {
 
   final QuicksightTemplateBounds? bounds;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_zoom_mode': ?mapZoomMode?.toTfJson(),
     'bounds': ?bounds?.encode(),
@@ -5685,6 +5912,7 @@ final class QuicksightTemplateBounds {
 
   final TfArg<num> west;
 
+  @internal
   Map<String, Object?> encode() => {
     'east': east.toTfJson(),
     'north': north.toTfJson(),
@@ -5704,6 +5932,7 @@ final class QuicksightTemplateFilledMapVisualConditionalFormatting {
   final List<QuicksightTemplateFilledMapVisualConditionalFormattingOptions>
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'conditional_formatting_options': [
       for (final e in conditionalFormattingOptions) e.encode(),
@@ -5721,6 +5950,7 @@ final class QuicksightTemplateFilledMapVisualConditionalFormattingOptions {
 
   final QuicksightTemplateShape shape;
 
+  @internal
   Map<String, Object?> encode() => {'shape': shape.encode()};
 }
 
@@ -5734,6 +5964,7 @@ final class QuicksightTemplateShape {
 
   final QuicksightTemplateFormat? format;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'format': ?format?.encode(),
@@ -5748,6 +5979,7 @@ final class QuicksightTemplateFormat {
 
   final QuicksightTemplateForegroundColor backgroundColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
   };
@@ -5764,6 +5996,7 @@ final class QuicksightTemplateForegroundColor {
 
   final QuicksightTemplateSolid? solid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gradient': ?gradient?.encode(),
     'solid': ?solid?.encode(),
@@ -5784,6 +6017,7 @@ final class QuicksightTemplateGradient {
 
   final QuicksightTemplateColor color;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'color': color.encode(),
@@ -5799,6 +6033,7 @@ final class QuicksightTemplateColor {
 
   final List<QuicksightTemplateStops>? stops;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stops != null) 'stops': [for (final e in stops!) e.encode()],
   };
@@ -5821,6 +6056,7 @@ final class QuicksightTemplateStops {
 
   final TfArg<num> gradientOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'data_value': ?dataValue?.toTfJson(),
@@ -5839,6 +6075,7 @@ final class QuicksightTemplateSolid {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -5871,6 +6108,7 @@ final class QuicksightTemplateFunnelChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5910,6 +6148,7 @@ final class QuicksightTemplateFunnelChartVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     'data_label_options': ?dataLabelOptions?.encode(),
@@ -5949,6 +6188,7 @@ final class QuicksightTemplateDataLabelOptions {
 
   final QuicksightTemplateFontConfiguration? labelFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
     'label_color': ?labelColor?.toTfJson(),
@@ -5971,6 +6211,7 @@ final class QuicksightTemplateFunnelChartVisualFieldWells {
   final QuicksightTemplateFunnelChartAggregatedFieldWells?
   funnelChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'funnel_chart_aggregated_field_wells': ?funnelChartAggregatedFieldWells
         ?.encode(),
@@ -5990,6 +6231,7 @@ final class QuicksightTemplateFunnelChartAggregatedFieldWells {
 
   final QuicksightTemplateTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
     'values': ?values?.encode(),
@@ -6010,6 +6252,7 @@ final class QuicksightTemplateFunnelChartVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -6044,6 +6287,7 @@ final class QuicksightTemplateGaugeChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6076,6 +6320,7 @@ final class QuicksightTemplateGaugeChartVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -6098,6 +6343,7 @@ final class QuicksightTemplateGaugeChartVisualFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetValues != null)
       'target_values': [for (final e in targetValues!) e.encode()],
@@ -6127,6 +6373,7 @@ final class QuicksightTemplateGaugeChartOptions {
 
   final QuicksightTemplateFontConfiguration? primaryValueFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
     'arc': ?arc?.encode(),
@@ -6150,6 +6397,7 @@ final class QuicksightTemplateGaugeChartOptionsArc {
 
   final TfArg<String>? arcThickness;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc_angle': ?arcAngle?.toTfJson(),
     'arc_thickness': ?arcThickness?.toTfJson(),
@@ -6166,6 +6414,7 @@ final class QuicksightTemplateArcAxis {
 
   final QuicksightTemplateRange? range;
 
+  @internal
   Map<String, Object?> encode() => {
     'reserve_range': ?reserveRange?.toTfJson(),
     'range': ?range?.encode(),
@@ -6182,6 +6431,7 @@ final class QuicksightTemplateRange {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -6202,6 +6452,7 @@ final class QuicksightTemplateComparison {
 
   final QuicksightTemplateComparisonFormat? comparisonFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_method': ?comparisonMethod?.toTfJson(),
     'comparison_format': ?comparisonFormat?.encode(),
@@ -6224,6 +6475,7 @@ final class QuicksightTemplateComparisonFormat {
   final QuicksightTemplatePercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_display_format_configuration': ?numberDisplayFormatConfiguration
         ?.encode(),
@@ -6243,6 +6495,7 @@ final class QuicksightTemplateGaugeChartVisualConditionalFormatting {
   final List<QuicksightTemplateGaugeChartVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -6264,6 +6517,7 @@ final class QuicksightTemplateGaugeChartVisualConditionalFormattingOptions {
 
   final QuicksightTemplatePrimaryValue? primaryValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc': ?arc?.encode(),
     'primary_value': ?primaryValue?.encode(),
@@ -6281,6 +6535,7 @@ final class QuicksightTemplateConditionalFormattingOptionsArc {
 
   final QuicksightTemplateForegroundColor foregroundColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'foreground_color': foregroundColor.encode(),
   };
@@ -6297,6 +6552,7 @@ final class QuicksightTemplatePrimaryValue {
 
   final QuicksightTemplateForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon': ?icon?.encode(),
     'text_color': textColor.encode(),
@@ -6314,6 +6570,7 @@ final class QuicksightTemplateIcon {
 
   final QuicksightTemplateIconSet? iconSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_condition': ?customCondition?.encode(),
     'icon_set': ?iconSet?.encode(),
@@ -6340,6 +6597,7 @@ final class QuicksightTemplateCustomCondition {
 
   final QuicksightTemplateIconOptions iconOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -6357,6 +6615,7 @@ final class QuicksightTemplateDisplayConfiguration {
 
   final TfArg<String>? iconDisplayOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon_display_option': ?iconDisplayOption?.toTfJson(),
   };
@@ -6373,6 +6632,7 @@ final class QuicksightTemplateIconOptions {
 
   final TfArg<String>? unicodeIcon;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon': ?icon?.toTfJson(),
     'unicode_icon': ?unicodeIcon?.toTfJson(),
@@ -6390,6 +6650,7 @@ final class QuicksightTemplateIconSet {
 
   final TfArg<String>? iconSetType;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'icon_set_type': ?iconSetType?.toTfJson(),
@@ -6422,6 +6683,7 @@ final class QuicksightTemplateGeospatialMapVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6461,6 +6723,7 @@ final class QuicksightTemplateGeospatialMapVisualChartConfiguration {
 
   final QuicksightTemplateWindowOptions? windowOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'legend': ?legend?.encode(),
@@ -6483,6 +6746,7 @@ final class QuicksightTemplateGeospatialMapVisualFieldWells {
   final QuicksightTemplateGeospatialMapAggregatedFieldWells?
   geospatialMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'geospatial_map_aggregated_field_wells': ?geospatialMapAggregatedFieldWells
         ?.encode(),
@@ -6505,6 +6769,7 @@ final class QuicksightTemplateGeospatialMapAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
     if (geospatial != null)
@@ -6527,6 +6792,7 @@ final class QuicksightTemplatePointStyleOptions {
   final QuicksightTemplateClusterMarkerConfiguration?
   clusterMarkerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_point_style': ?selectedPointStyle?.toTfJson(),
     'cluster_marker_configuration': ?clusterMarkerConfiguration?.encode(),
@@ -6541,6 +6807,7 @@ final class QuicksightTemplateClusterMarkerConfiguration {
 
   final QuicksightTemplateClusterMarker? clusterMarker;
 
+  @internal
   Map<String, Object?> encode() => {'cluster_marker': ?clusterMarker?.encode()};
 }
 
@@ -6552,6 +6819,7 @@ final class QuicksightTemplateClusterMarker {
 
   final QuicksightTemplateSimpleClusterMarker? simpleClusterMarker;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_cluster_marker': ?simpleClusterMarker?.encode(),
   };
@@ -6565,6 +6833,7 @@ final class QuicksightTemplateSimpleClusterMarker {
 
   final TfArg<String>? color;
 
+  @internal
   Map<String, Object?> encode() => {'color': ?color?.toTfJson()};
 }
 
@@ -6593,6 +6862,7 @@ final class QuicksightTemplateHeatMapVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6635,6 +6905,7 @@ final class QuicksightTemplateHeatMapVisualChartConfiguration {
 
   final QuicksightTemplateTooltip? tooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_scale': ?colorScale?.encode(),
     'column_label_options': ?columnLabelOptions?.encode(),
@@ -6664,6 +6935,7 @@ final class QuicksightTemplateColorScale {
 
   final QuicksightTemplateColors? nullValueColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_fill_type': colorFillType.toTfJson(),
     'colors': [for (final e in colors) e.encode()],
@@ -6682,6 +6954,7 @@ final class QuicksightTemplateColors {
 
   final TfArg<num>? dataValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'data_value': ?dataValue?.toTfJson(),
@@ -6699,6 +6972,7 @@ final class QuicksightTemplateHeatMapVisualFieldWells {
   final QuicksightTemplateHeatMapAggregatedFieldWells?
   heatMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'heat_map_aggregated_field_wells': ?heatMapAggregatedFieldWells?.encode(),
   };
@@ -6720,6 +6994,7 @@ final class QuicksightTemplateHeatMapAggregatedFieldWells {
 
   final QuicksightTemplateTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': ?columns?.encode(),
     'rows': ?rows?.encode(),
@@ -6747,6 +7022,7 @@ final class QuicksightTemplateHeatMapVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? heatMapRowSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'heat_map_column_items_limit_configuration':
         ?heatMapColumnItemsLimitConfiguration?.encode(),
@@ -6781,6 +7057,7 @@ final class QuicksightTemplateHistogramVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6821,6 +7098,7 @@ final class QuicksightTemplateHistogramVisualChartConfiguration {
 
   final QuicksightTemplateCategoryAxis? yAxisDisplayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'bin_options': ?binOptions?.encode(),
     'data_labels': ?dataLabels?.encode(),
@@ -6852,6 +7130,7 @@ final class QuicksightTemplateBinOptions {
 
   final QuicksightTemplateBinWidth? binWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_bin_type': ?selectedBinType?.toTfJson(),
     'start_value': ?startValue?.toTfJson(),
@@ -6868,6 +7147,7 @@ final class QuicksightTemplateBinCount {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 
@@ -6881,6 +7161,7 @@ final class QuicksightTemplateBinWidth {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'bin_count_limit': ?binCountLimit?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -6898,6 +7179,7 @@ final class QuicksightTemplateHistogramVisualFieldWells {
   final QuicksightTemplateHistogramAggregatedFieldWells?
   histogramAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'histogram_aggregated_field_wells': ?histogramAggregatedFieldWells
         ?.encode(),
@@ -6912,6 +7194,7 @@ final class QuicksightTemplateHistogramAggregatedFieldWells {
 
   final QuicksightTemplateTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {'values': ?values?.encode()};
 }
 
@@ -6940,6 +7223,7 @@ final class QuicksightTemplateInsightVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -6963,6 +7247,7 @@ final class QuicksightTemplateInsightConfiguration {
 
   final QuicksightTemplateCustomNarrative? customNarrative;
 
+  @internal
   Map<String, Object?> encode() => {
     if (computation != null)
       'computation': [for (final e in computation!) e.encode()],
@@ -7007,6 +7292,7 @@ final class QuicksightTemplateComputation {
 
   final QuicksightTemplateUniqueValues? uniqueValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast': ?forecast?.encode(),
     'growth_rate': ?growthRate?.encode(),
@@ -7061,6 +7347,7 @@ final class QuicksightTemplateForecast {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'custom_seasonality_value': ?customSeasonalityValue?.toTfJson(),
@@ -7098,6 +7385,7 @@ final class QuicksightTemplateGrowthRate {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7129,6 +7417,7 @@ final class QuicksightTemplateMaximumMinimum {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7160,6 +7449,7 @@ final class QuicksightTemplateMetricComparison {
 
   final QuicksightTemplateTrendGroups? time;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7188,6 +7478,7 @@ final class QuicksightTemplatePeriodOverPeriod {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7218,6 +7509,7 @@ final class QuicksightTemplatePeriodToDate {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7258,6 +7550,7 @@ final class QuicksightTemplateTopBottomMovers {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'mover_size': ?moverSize?.toTfJson(),
@@ -7295,6 +7588,7 @@ final class QuicksightTemplateTopBottomRanked {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7321,6 +7615,7 @@ final class QuicksightTemplateTotalAggregation {
 
   final QuicksightTemplateTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7344,6 +7639,7 @@ final class QuicksightTemplateUniqueValues {
 
   final QuicksightTemplateTrendGroups? category;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7359,6 +7655,7 @@ final class QuicksightTemplateCustomNarrative {
 
   final TfArg<String> narrative;
 
+  @internal
   Map<String, Object?> encode() => {'narrative': narrative.toTfJson()};
 }
 
@@ -7390,6 +7687,7 @@ final class QuicksightTemplateKpiVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -7418,6 +7716,7 @@ final class QuicksightTemplateKpiVisualChartConfiguration {
 
   final QuicksightTemplateKpiVisualSortConfiguration? sortConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'kpi_options': ?kpiOptions?.encode(),
@@ -7441,6 +7740,7 @@ final class QuicksightTemplateKpiVisualFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetValues != null)
       'target_values': [for (final e in targetValues!) e.encode()],
@@ -7484,6 +7784,7 @@ final class QuicksightTemplateKpiOptions {
 
   final QuicksightTemplateVisualLayoutOptions? visualLayoutOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
     'comparison': ?comparison?.encode(),
@@ -7518,6 +7819,7 @@ final class QuicksightTemplateSparkline {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
@@ -7534,6 +7836,7 @@ final class QuicksightTemplateVisualLayoutOptions {
 
   final QuicksightTemplateStandardLayout? standardLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'standard_layout': ?standardLayout?.encode(),
   };
@@ -7547,6 +7850,7 @@ final class QuicksightTemplateStandardLayout {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -7558,6 +7862,7 @@ final class QuicksightTemplateKpiVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? trendGroupSort;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trendGroupSort != null)
       'trend_group_sort': [for (final e in trendGroupSort!) e.encode()],
@@ -7575,6 +7880,7 @@ final class QuicksightTemplateKpiVisualConditionalFormatting {
   final List<QuicksightTemplateKpiVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -7602,6 +7908,7 @@ final class QuicksightTemplateKpiVisualConditionalFormattingOptions {
 
   final QuicksightTemplateConditionalFormattingOptionsArc? progressBar;
 
+  @internal
   Map<String, Object?> encode() => {
     'actual_value': ?actualValue?.encode(),
     'comparison_value': ?comparisonValue?.encode(),
@@ -7635,6 +7942,7 @@ final class QuicksightTemplateLineChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -7713,6 +8021,7 @@ final class QuicksightTemplateLineChartVisualChartConfiguration {
 
   final QuicksightTemplateCategoryLabelOptions? xAxisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     if (contributionAnalysisDefaults != null)
@@ -7759,6 +8068,7 @@ final class QuicksightTemplateDefaultSeriesSettings {
 
   final QuicksightTemplateMarkerStyleSettings? markerStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
     'line_style_settings': ?lineStyleSettings?.encode(),
@@ -7786,6 +8096,7 @@ final class QuicksightTemplateLineStyleSettings {
 
   final TfArg<String>? lineWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_interpolation': ?lineInterpolation?.toTfJson(),
     'line_style': ?lineStyle?.toTfJson(),
@@ -7814,6 +8125,7 @@ final class QuicksightTemplateMarkerStyleSettings {
 
   final TfArg<String>? markerVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'marker_color': ?markerColor?.toTfJson(),
     'marker_shape': ?markerShape?.toTfJson(),
@@ -7833,6 +8145,7 @@ final class QuicksightTemplateLineChartVisualFieldWells {
   final QuicksightTemplateBarChartAggregatedFieldWells?
   lineChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_chart_aggregated_field_wells': ?lineChartAggregatedFieldWells
         ?.encode(),
@@ -7852,6 +8165,7 @@ final class QuicksightTemplateForecastConfigurations {
 
   final QuicksightTemplateScenario? scenario;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast_properties': ?forecastProperties?.encode(),
     'scenario': ?scenario?.encode(),
@@ -7883,6 +8197,7 @@ final class QuicksightTemplateForecastProperties {
 
   final TfArg<num>? upperBoundary;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_boundary': ?lowerBoundary?.toTfJson(),
     'periods_backward': ?periodsBackward?.toTfJson(),
@@ -7906,6 +8221,7 @@ final class QuicksightTemplateScenario {
 
   final QuicksightTemplateWhatIfRangeScenario? whatIfRangeScenario;
 
+  @internal
   Map<String, Object?> encode() => {
     'what_if_point_scenario': ?whatIfPointScenario?.encode(),
     'what_if_range_scenario': ?whatIfRangeScenario?.encode(),
@@ -7925,6 +8241,7 @@ final class QuicksightTemplateWhatIfPointScenario {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': date.toTfJson(),
     'value': value.toTfJson(),
@@ -7947,6 +8264,7 @@ final class QuicksightTemplateWhatIfRangeScenario {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.toTfJson(),
     'start_date': startDate.toTfJson(),
@@ -7969,6 +8287,7 @@ final class QuicksightTemplatePrimaryYAxisDisplayOptions {
   final List<QuicksightTemplateMissingDataConfiguration>?
   missingDataConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_options': ?axisOptions?.encode(),
     if (missingDataConfiguration != null)
@@ -7987,6 +8306,7 @@ final class QuicksightTemplateMissingDataConfiguration {
 
   final TfArg<String>? treatmentOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'treatment_option': ?treatmentOption?.toTfJson(),
   };
@@ -8005,6 +8325,7 @@ final class QuicksightTemplateSeries {
 
   final QuicksightTemplateFieldSeriesItem? fieldSeriesItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_field_series_item': ?dataFieldSeriesItem?.encode(),
     'field_series_item': ?fieldSeriesItem?.encode(),
@@ -8030,6 +8351,7 @@ final class QuicksightTemplateDataFieldSeriesItem {
 
   final QuicksightTemplateSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8052,6 +8374,7 @@ final class QuicksightTemplateSettings {
 
   final QuicksightTemplateMarkerStyleSettings? markerStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_style_settings': ?lineStyleSettings?.encode(),
     'marker_style_settings': ?markerStyleSettings?.encode(),
@@ -8074,6 +8397,7 @@ final class QuicksightTemplateFieldSeriesItem {
 
   final QuicksightTemplateSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8103,6 +8427,7 @@ final class QuicksightTemplateLineChartVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit_configuration': ?categoryItemsLimitConfiguration
         ?.encode(),
@@ -8141,6 +8466,7 @@ final class QuicksightTemplatePieChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -8193,6 +8519,7 @@ final class QuicksightTemplatePieChartVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     if (contributionAnalysisDefaults != null)
@@ -8224,6 +8551,7 @@ final class QuicksightTemplateDonutOptions {
 
   final QuicksightTemplateDonutCenterOptions? donutCenterOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc_options': ?arcOptions?.encode(),
     'donut_center_options': ?donutCenterOptions?.encode(),
@@ -8238,6 +8566,7 @@ final class QuicksightTemplateArcOptions {
 
   final TfArg<String>? arcThickness;
 
+  @internal
   Map<String, Object?> encode() => {'arc_thickness': ?arcThickness?.toTfJson()};
 }
 
@@ -8249,6 +8578,7 @@ final class QuicksightTemplateDonutCenterOptions {
 
   final TfArg<String>? labelVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'label_visibility': ?labelVisibility?.toTfJson(),
   };
@@ -8265,6 +8595,7 @@ final class QuicksightTemplatePieChartVisualFieldWells {
   final QuicksightTemplatePieChartAggregatedFieldWells?
   pieChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'pie_chart_aggregated_field_wells': ?pieChartAggregatedFieldWells?.encode(),
   };
@@ -8286,6 +8617,7 @@ final class QuicksightTemplatePieChartAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     'small_multiples': ?smallMultiples?.encode(),
@@ -8312,6 +8644,7 @@ final class QuicksightTemplatePieChartVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -8350,6 +8683,7 @@ final class QuicksightTemplatePivotTableVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -8385,6 +8719,7 @@ final class QuicksightTemplatePivotTableVisualChartConfiguration {
 
   final QuicksightTemplatePivotTableVisualTotalOptions? totalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -8409,6 +8744,7 @@ final class QuicksightTemplatePivotTableVisualFieldOptions {
   final List<QuicksightTemplatePivotTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dataPathOptions != null)
       'data_path_options': [for (final e in dataPathOptions!) e.encode()],
@@ -8432,6 +8768,7 @@ final class QuicksightTemplateDataPathOptions {
 
   final List<QuicksightTemplateElement> dataPathList;
 
+  @internal
   Map<String, Object?> encode() => {
     'width': ?width?.toTfJson(),
     'data_path_list': [for (final e in dataPathList) e.encode()],
@@ -8454,6 +8791,7 @@ final class QuicksightTemplatePivotTableVisualSelectedFieldOptions {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8472,6 +8810,7 @@ final class QuicksightTemplatePivotTableVisualFieldWells {
   final QuicksightTemplatePivotTableAggregatedFieldWells?
   pivotTableAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'pivot_table_aggregated_field_wells': ?pivotTableAggregatedFieldWells
         ?.encode(),
@@ -8494,6 +8833,7 @@ final class QuicksightTemplatePivotTableAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
     if (rows != null) 'rows': [for (final e in rows!) e.encode()],
@@ -8515,6 +8855,7 @@ final class QuicksightTemplatePaginatedReportOptions {
 
   final TfArg<String>? verticalOverflowVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'overflow_column_header_visibility': ?overflowColumnHeaderVisibility
         ?.toTfJson(),
@@ -8532,6 +8873,7 @@ final class QuicksightTemplatePivotTableVisualSortConfiguration {
 
   final List<QuicksightTemplateFieldSortOptions>? fieldSortOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fieldSortOptions != null)
       'field_sort_options': [for (final e in fieldSortOptions!) e.encode()],
@@ -8551,6 +8893,7 @@ final class QuicksightTemplateFieldSortOptions {
 
   final QuicksightTemplateSortBy sortBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'sort_by': sortBy.encode(),
@@ -8569,6 +8912,7 @@ final class QuicksightTemplateSortBy {
 
   final QuicksightTemplateFieldSort? field;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': ?column?.encode(),
     'data_path': ?dataPath?.encode(),
@@ -8589,6 +8933,7 @@ final class QuicksightTemplateDataPath {
 
   final List<QuicksightTemplateElement> sortPaths;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'sort_paths': [for (final e in sortPaths) e.encode()],
@@ -8632,6 +8977,7 @@ final class QuicksightTemplatePivotTableVisualTableOptions {
 
   final QuicksightTemplateCellStyle? rowHeaderStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'collapsed_row_dimensions_visibility': ?collapsedRowDimensionsVisibility
         ?.toTfJson(),
@@ -8679,6 +9025,7 @@ final class QuicksightTemplateCellStyle {
 
   final QuicksightTemplateFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'height': ?height?.toTfJson(),
@@ -8705,6 +9052,7 @@ final class QuicksightTemplateBorder {
 
   final QuicksightTemplateUniformBorder uniformBorder;
 
+  @internal
   Map<String, Object?> encode() => {
     'side_specific_border': ?sideSpecificBorder?.encode(),
     'uniform_border': uniformBorder.encode(),
@@ -8737,6 +9085,7 @@ final class QuicksightTemplateSideSpecificBorder {
 
   final QuicksightTemplateUniformBorder top;
 
+  @internal
   Map<String, Object?> encode() => {
     'bottom': bottom.encode(),
     'inner_horizontal': innerHorizontal.encode(),
@@ -8764,6 +9113,7 @@ final class QuicksightTemplateUniformBorder {
 
   final TfArg<num>? thickness;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'style': ?style?.toTfJson(),
@@ -8785,6 +9135,7 @@ final class QuicksightTemplateRowAlternateColorOptions {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'row_alternate_colors': ?rowAlternateColors?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -8810,6 +9161,7 @@ final class QuicksightTemplatePivotTableVisualTotalOptions {
 
   final QuicksightTemplateColumnTotalOptions? rowTotalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_subtotal_options': ?columnSubtotalOptions?.encode(),
     'column_total_options': ?columnTotalOptions?.encode(),
@@ -8847,6 +9199,7 @@ final class QuicksightTemplateColumnSubtotalOptions {
 
   final QuicksightTemplateCellStyle? valueCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_level': ?fieldLevel?.toTfJson(),
@@ -8868,6 +9221,7 @@ final class QuicksightTemplateFieldLevelOptions {
 
   final TfArg<String>? fieldId;
 
+  @internal
   Map<String, Object?> encode() => {'field_id': ?fieldId?.toTfJson()};
 }
 
@@ -8900,6 +9254,7 @@ final class QuicksightTemplateColumnTotalOptions {
 
   final QuicksightTemplateCellStyle? valueCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'placement': ?placement?.toTfJson(),
@@ -8922,6 +9277,7 @@ final class QuicksightTemplatePivotTableVisualConditionalFormatting {
   final List<QuicksightTemplatePivotTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -8940,6 +9296,7 @@ final class QuicksightTemplatePivotTableVisualConditionalFormattingOptions {
 
   final QuicksightTemplatePivotTableVisualCell? cell;
 
+  @internal
   Map<String, Object?> encode() => {'cell': ?cell?.encode()};
 }
 
@@ -8959,6 +9316,7 @@ final class QuicksightTemplatePivotTableVisualCell {
 
   final QuicksightTemplateTextFormat? textFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'scope': ?scope?.encode(),
@@ -8974,6 +9332,7 @@ final class QuicksightTemplateScope {
 
   final TfArg<String>? role;
 
+  @internal
   Map<String, Object?> encode() => {'role': ?role?.toTfJson()};
 }
 
@@ -8994,6 +9353,7 @@ final class QuicksightTemplateTextFormat {
 
   final QuicksightTemplateForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
     'icon': ?icon?.encode(),
@@ -9027,6 +9387,7 @@ final class QuicksightTemplateRadarChartVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9087,6 +9448,7 @@ final class QuicksightTemplateRadarChartVisualChartConfiguration {
 
   final QuicksightTemplateVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'alternate_band_colors_visibility': ?alternateBandColorsVisibility
         ?.toTfJson(),
@@ -9114,6 +9476,7 @@ final class QuicksightTemplateBaseSeriesSettings {
 
   final QuicksightTemplateSelectAllOptions? areaStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'area_style_settings': ?areaStyleSettings?.encode(),
   };
@@ -9130,6 +9493,7 @@ final class QuicksightTemplateRadarChartVisualFieldWells {
   final QuicksightTemplateRadarChartAggregatedFieldWells?
   radarChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'radar_chart_aggregated_field_wells': ?radarChartAggregatedFieldWells
         ?.encode(),
@@ -9152,6 +9516,7 @@ final class QuicksightTemplateRadarChartAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
     'color': ?color?.encode(),
@@ -9182,6 +9547,7 @@ final class QuicksightTemplateSankeyDiagramVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9208,6 +9574,7 @@ final class QuicksightTemplateSankeyDiagramVisualChartConfiguration {
   final QuicksightTemplateSankeyDiagramVisualSortConfiguration?
   sortConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9226,6 +9593,7 @@ final class QuicksightTemplateSankeyDiagramVisualFieldWells {
   final QuicksightTemplateSankeyDiagramAggregatedFieldWells?
   sankeyDiagramAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'sankey_diagram_aggregated_field_wells': ?sankeyDiagramAggregatedFieldWells
         ?.encode(),
@@ -9248,6 +9616,7 @@ final class QuicksightTemplateSankeyDiagramAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -9272,6 +9641,7 @@ final class QuicksightTemplateSankeyDiagramVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? weightSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_items_limit': ?destinationItemsLimit?.encode(),
     'source_items_limit': ?sourceItemsLimit?.encode(),
@@ -9306,6 +9676,7 @@ final class QuicksightTemplateScatterPlotVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9351,6 +9722,7 @@ final class QuicksightTemplateScatterPlotVisualChartConfiguration {
 
   final QuicksightTemplateCategoryLabelOptions? yAxisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9379,6 +9751,7 @@ final class QuicksightTemplateScatterPlotVisualFieldWells {
   final QuicksightTemplateScatterPlotUnaggregatedFieldWells?
   scatterPlotUnaggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'scatter_plot_categorically_aggregated_field_wells':
         ?scatterPlotCategoricallyAggregatedFieldWells?.encode(),
@@ -9406,6 +9779,7 @@ final class QuicksightTemplateScatterPlotCategoricallyAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? yAxis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (size != null) 'size': [for (final e in size!) e.encode()],
@@ -9430,6 +9804,7 @@ final class QuicksightTemplateScatterPlotUnaggregatedFieldWells {
 
   final List<QuicksightTemplateTrendGroups>? yAxis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (size != null) 'size': [for (final e in size!) e.encode()],
     if (xAxis != null) 'x_axis': [for (final e in xAxis!) e.encode()],
@@ -9463,6 +9838,7 @@ final class QuicksightTemplateTableVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9502,6 +9878,7 @@ final class QuicksightTemplateTableVisualChartConfiguration {
 
   final QuicksightTemplateTableVisualTotalOptions? totalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9530,6 +9907,7 @@ final class QuicksightTemplateTableVisualFieldOptions {
   final List<QuicksightTemplateTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     if (selectedFieldOptions != null)
@@ -9561,6 +9939,7 @@ final class QuicksightTemplateTableVisualSelectedFieldOptions {
 
   final QuicksightTemplateUrlStyling? urlStyling;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -9583,6 +9962,7 @@ final class QuicksightTemplateUrlStyling {
 
   final QuicksightTemplateLinkConfiguration? linkConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_configuration': ?imageConfiguration?.encode(),
     'link_configuration': ?linkConfiguration?.encode(),
@@ -9597,6 +9977,7 @@ final class QuicksightTemplateImageConfiguration {
 
   final QuicksightTemplateSizingOptions? sizingOptions;
 
+  @internal
   Map<String, Object?> encode() => {'sizing_options': ?sizingOptions?.encode()};
 }
 
@@ -9610,6 +9991,7 @@ final class QuicksightTemplateSizingOptions {
 
   final TfArg<String>? tableCellImageScalingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_cell_image_scaling_configuration':
         ?tableCellImageScalingConfiguration?.toTfJson(),
@@ -9626,6 +10008,7 @@ final class QuicksightTemplateLinkConfiguration {
 
   final QuicksightTemplateLinkConfigurationContent? content;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'content': ?content?.encode(),
@@ -9645,6 +10028,7 @@ final class QuicksightTemplateLinkConfigurationContent {
 
   final QuicksightTemplateCustomTextContent? customTextContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_icon_content': ?customIconContent?.encode(),
     'custom_text_content': ?customTextContent?.encode(),
@@ -9659,6 +10043,7 @@ final class QuicksightTemplateCustomIconContent {
 
   final TfArg<String>? icon;
 
+  @internal
   Map<String, Object?> encode() => {'icon': ?icon?.toTfJson()};
 }
 
@@ -9675,6 +10060,7 @@ final class QuicksightTemplateCustomTextContent {
 
   final QuicksightTemplateFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': ?value?.toTfJson(),
     'font_configuration': ?fontConfiguration?.encode(),
@@ -9695,6 +10081,7 @@ final class QuicksightTemplateTableVisualFieldWells {
   final QuicksightTemplateTableUnaggregatedFieldWells?
   tableUnaggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_aggregated_field_wells': ?tableAggregatedFieldWells?.encode(),
     'table_unaggregated_field_wells': ?tableUnaggregatedFieldWells?.encode(),
@@ -9714,6 +10101,7 @@ final class QuicksightTemplateTableAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -9728,6 +10116,7 @@ final class QuicksightTemplateTableUnaggregatedFieldWells {
 
   final List<QuicksightTemplateValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
@@ -9749,6 +10138,7 @@ final class QuicksightTemplateValues {
 
   final QuicksightTemplateFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
@@ -9769,6 +10159,7 @@ final class QuicksightTemplateTableVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? rowSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'pagination_configuration': ?paginationConfiguration?.encode(),
     if (rowSort != null) 'row_sort': [for (final e in rowSort!) e.encode()],
@@ -9783,6 +10174,7 @@ final class QuicksightTemplateTableInlineVisualizations {
 
   final QuicksightTemplateDataBars? dataBars;
 
+  @internal
   Map<String, Object?> encode() => {'data_bars': ?dataBars?.encode()};
 }
 
@@ -9802,6 +10194,7 @@ final class QuicksightTemplateDataBars {
 
   final TfArg<String>? positiveColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'negative_color': ?negativeColor?.toTfJson(),
@@ -9828,6 +10221,7 @@ final class QuicksightTemplateTableVisualTableOptions {
 
   final QuicksightTemplateRowAlternateColorOptions? rowAlternateColorOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'orientation': ?orientation?.toTfJson(),
     'cell_style': ?cellStyle?.encode(),
@@ -9858,6 +10252,7 @@ final class QuicksightTemplateTableVisualTotalOptions {
 
   final QuicksightTemplateCellStyle? totalCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'placement': ?placement?.toTfJson(),
@@ -9878,6 +10273,7 @@ final class QuicksightTemplateTableVisualConditionalFormatting {
   final List<QuicksightTemplateTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -9899,6 +10295,7 @@ final class QuicksightTemplateTableVisualConditionalFormattingOptions {
 
   final QuicksightTemplateRow? row;
 
+  @internal
   Map<String, Object?> encode() => {
     'cell': ?cell?.encode(),
     'row': ?row?.encode(),
@@ -9918,6 +10315,7 @@ final class QuicksightTemplateTableVisualCell {
 
   final QuicksightTemplateTextFormat? textFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'text_format': ?textFormat?.encode(),
@@ -9937,6 +10335,7 @@ final class QuicksightTemplateRow {
 
   final QuicksightTemplateForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
     'text_color': textColor.encode(),
@@ -9968,6 +10367,7 @@ final class QuicksightTemplateTreeMapVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10013,6 +10413,7 @@ final class QuicksightTemplateTreeMapVisualChartConfiguration {
 
   final QuicksightTemplateTooltip? tooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_label_options': ?colorLabelOptions?.encode(),
     'color_scale': ?colorScale?.encode(),
@@ -10037,6 +10438,7 @@ final class QuicksightTemplateTreeMapVisualFieldWells {
   final QuicksightTemplateTreeMapAggregatedFieldWells?
   treeMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'tree_map_aggregated_field_wells': ?treeMapAggregatedFieldWells?.encode(),
   };
@@ -10058,6 +10460,7 @@ final class QuicksightTemplateTreeMapAggregatedFieldWells {
 
   final QuicksightTemplateTargetValues? sizes;
 
+  @internal
   Map<String, Object?> encode() => {
     'colors': ?colors?.encode(),
     'groups': ?groups?.encode(),
@@ -10079,6 +10482,7 @@ final class QuicksightTemplateTreeMapVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? treeMapSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'tree_map_group_items_limit_configuration':
         ?treeMapGroupItemsLimitConfiguration?.encode(),
@@ -10112,6 +10516,7 @@ final class QuicksightTemplateWaterfallVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10160,6 +10565,7 @@ final class QuicksightTemplateWaterfallVisualChartConfiguration {
 
   final QuicksightTemplateWaterfallChartOptions? waterfallChartOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_axis_display_options': ?categoryAxisDisplayOptions?.encode(),
     'category_axis_label_options': ?categoryAxisLabelOptions?.encode(),
@@ -10185,6 +10591,7 @@ final class QuicksightTemplateWaterfallVisualFieldWells {
   final QuicksightTemplateWaterfallChartAggregatedFieldWells?
   waterfallChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'waterfall_chart_aggregated_field_wells':
         ?waterfallChartAggregatedFieldWells?.encode(),
@@ -10207,6 +10614,7 @@ final class QuicksightTemplateWaterfallChartAggregatedFieldWells {
 
   final List<QuicksightTemplateTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (breakdowns != null)
       'breakdowns': [for (final e in breakdowns!) e.encode()],
@@ -10229,6 +10637,7 @@ final class QuicksightTemplateWaterfallVisualSortConfiguration {
 
   final List<QuicksightTemplateCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakdown_items_limit': ?breakdownItemsLimit?.encode(),
     if (categorySort != null)
@@ -10244,6 +10653,7 @@ final class QuicksightTemplateWaterfallChartOptions {
 
   final TfArg<String>? totalBarLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_bar_label': ?totalBarLabel?.toTfJson(),
   };
@@ -10274,6 +10684,7 @@ final class QuicksightTemplateWordCloudVisual {
 
   final QuicksightTemplateSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10304,6 +10715,7 @@ final class QuicksightTemplateWordCloudVisualChartConfiguration {
 
   final QuicksightTemplateWordCloudOptions? wordCloudOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -10323,6 +10735,7 @@ final class QuicksightTemplateWordCloudVisualFieldWells {
   final QuicksightTemplateWordCloudAggregatedFieldWells?
   wordCloudAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'word_cloud_aggregated_field_wells': ?wordCloudAggregatedFieldWells
         ?.encode(),
@@ -10342,6 +10755,7 @@ final class QuicksightTemplateWordCloudAggregatedFieldWells {
 
   final QuicksightTemplateTargetValues? size;
 
+  @internal
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
     'size': ?size?.encode(),
@@ -10373,6 +10787,7 @@ final class QuicksightTemplateWordCloudOptions {
 
   final TfArg<String>? wordScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_layout': ?cloudLayout?.toTfJson(),
     'maximum_string_length': ?maximumStringLength?.toTfJson(),
@@ -10396,6 +10811,7 @@ final class QuicksightTemplatePermissions {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),
@@ -10415,6 +10831,7 @@ final class QuicksightTemplateSourceEntity {
 
   final QuicksightTemplateSourceTemplate? sourceTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_analysis': ?sourceAnalysis?.encode(),
     'source_template': ?sourceTemplate?.encode(),
@@ -10434,6 +10851,7 @@ final class QuicksightTemplateSourceAnalysis {
 
   final List<QuicksightTemplateDataSetReferences> dataSetReferences;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'data_set_references': [for (final e in dataSetReferences) e.encode()],
@@ -10453,6 +10871,7 @@ final class QuicksightTemplateDataSetReferences {
 
   final TfArg<String> dataSetPlaceholder;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_arn': dataSetArn.toTfJson(),
     'data_set_placeholder': dataSetPlaceholder.toTfJson(),
@@ -10467,6 +10886,7 @@ final class QuicksightTemplateSourceTemplate {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 

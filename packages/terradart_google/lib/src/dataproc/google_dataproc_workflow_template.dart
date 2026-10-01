@@ -20,6 +20,7 @@ final class DataprocWorkflowTemplateEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
@@ -68,6 +69,7 @@ final class DataprocWorkflowTemplateJobs {
 
   final DataprocWorkflowTemplateSparkSqlJob? sparkSqlJob;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'prerequisite_step_ids': ?prerequisiteStepIds?.toTfJson(),
@@ -115,6 +117,7 @@ final class DataprocWorkflowTemplateHadoopJob {
 
   final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -136,6 +139,7 @@ final class DataprocWorkflowTemplateLoggingConfig {
 
   final TfArg<Map<String, String>>? driverLogLevels;
 
+  @internal
   Map<String, Object?> encode() => {
     'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
@@ -166,6 +170,7 @@ final class DataprocWorkflowTemplateHiveJob {
 
   final DataprocWorkflowTemplateQueryList? queryList;
 
+  @internal
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -185,6 +190,7 @@ final class DataprocWorkflowTemplateQueryList {
 
   final TfArg<List<String>> queries;
 
+  @internal
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
 
@@ -216,6 +222,7 @@ final class DataprocWorkflowTemplatePigJob {
 
   final DataprocWorkflowTemplateQueryList? queryList;
 
+  @internal
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -255,6 +262,7 @@ final class DataprocWorkflowTemplatePrestoJob {
 
   final DataprocWorkflowTemplateQueryList? queryList;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_tags': ?clientTags?.toTfJson(),
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
@@ -297,6 +305,7 @@ final class DataprocWorkflowTemplatePysparkJob {
 
   final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -322,6 +331,7 @@ final class DataprocWorkflowTemplateScheduling {
 
   final TfArg<num>? maxFailuresTotal;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_failures_per_hour': ?maxFailuresPerHour?.toTfJson(),
     'max_failures_total': ?maxFailuresTotal?.toTfJson(),
@@ -359,6 +369,7 @@ final class DataprocWorkflowTemplateSparkJob {
 
   final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -396,6 +407,7 @@ final class DataprocWorkflowTemplateSparkRJob {
 
   final DataprocWorkflowTemplateLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -431,6 +443,7 @@ final class DataprocWorkflowTemplateSparkSqlJob {
 
   final DataprocWorkflowTemplateQueryList? queryList;
 
+  @internal
   Map<String, Object?> encode() => {
     'jar_file_uris': ?jarFileUris?.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -460,6 +473,7 @@ final class DataprocWorkflowTemplateParameters {
 
   final DataprocWorkflowTemplateValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'fields': fields.toTfJson(),
@@ -478,6 +492,7 @@ final class DataprocWorkflowTemplateValidation {
 
   final DataprocWorkflowTemplateValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex': ?regex?.encode(),
     'values': ?values?.encode(),
@@ -492,6 +507,7 @@ final class DataprocWorkflowTemplateRegex {
 
   final TfArg<List<String>> regexes;
 
+  @internal
   Map<String, Object?> encode() => {'regexes': regexes.toTfJson()};
 }
 
@@ -503,6 +519,7 @@ final class DataprocWorkflowTemplateValues {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -519,6 +536,7 @@ final class DataprocWorkflowTemplatePlacement {
 
   final DataprocWorkflowTemplateManagedCluster? managedCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_selector': ?clusterSelector?.encode(),
     'managed_cluster': ?managedCluster?.encode(),
@@ -538,6 +556,7 @@ final class DataprocWorkflowTemplateClusterSelector {
 
   final TfArg<String>? zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_labels': clusterLabels.toTfJson(),
     'zone': ?zone?.toTfJson(),
@@ -560,6 +579,7 @@ final class DataprocWorkflowTemplateManagedCluster {
 
   final DataprocWorkflowTemplateConfig config;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_name': clusterName.toTfJson(),
     'labels': ?labels?.toTfJson(),
@@ -614,6 +634,7 @@ final class DataprocWorkflowTemplateConfig {
 
   final DataprocWorkflowTemplateWorkerConfig? workerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'staging_bucket': ?stagingBucket?.toTfJson(),
     'temp_bucket': ?tempBucket?.toTfJson(),
@@ -642,6 +663,7 @@ final class DataprocWorkflowTemplateAutoscalingConfig {
 
   final TfArg<String>? policy;
 
+  @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
@@ -653,6 +675,7 @@ final class DataprocWorkflowTemplateConfigEncryptionConfig {
 
   final TfArg<String>? gcePdKmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'gce_pd_kms_key_name': ?gcePdKmsKeyName?.toTfJson(),
   };
@@ -666,6 +689,7 @@ final class DataprocWorkflowTemplateEndpointConfig {
 
   final TfArg<bool>? enableHttpPortAccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_http_port_access': ?enableHttpPortAccess?.toTfJson(),
   };
@@ -715,6 +739,7 @@ final class DataprocWorkflowTemplateGceClusterConfig {
 
   final DataprocWorkflowTemplateShieldedInstanceConfig? shieldedInstanceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'internal_ip_only': ?internalIpOnly?.toTfJson(),
     'metadata': ?metadata?.toTfJson(),
@@ -774,6 +799,7 @@ final class DataprocWorkflowTemplateNodeGroupAffinity {
 
   final TfArg<String> nodeGroup;
 
+  @internal
   Map<String, Object?> encode() => {'node_group': nodeGroup.toTfJson()};
 }
 
@@ -793,6 +819,7 @@ final class DataprocWorkflowTemplateReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'consume_reservation_type': ?consumeReservationType?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -851,6 +878,7 @@ final class DataprocWorkflowTemplateShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -871,6 +899,7 @@ final class DataprocWorkflowTemplateInitializationActions {
 
   final TfArg<String>? executionTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'executable_file': ?executableFile?.toTfJson(),
     'execution_timeout': ?executionTimeout?.toTfJson(),
@@ -893,6 +922,7 @@ final class DataprocWorkflowTemplateLifecycleConfig {
 
   final TfArg<String>? idleDeleteTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_delete_time': ?autoDeleteTime?.toTfJson(),
     'auto_delete_ttl': ?autoDeleteTtl?.toTfJson(),
@@ -932,6 +962,7 @@ final class DataprocWorkflowTemplateMasterConfig {
   final DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -987,6 +1018,7 @@ final class DataprocWorkflowTemplateAccelerators {
 
   final TfArg<String>? acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -1022,6 +1054,7 @@ final class DataprocWorkflowTemplateDiskConfig {
 
   final List<DataprocWorkflowTemplateAttachedDiskConfig>? attachedDiskConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
     'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
@@ -1055,6 +1088,7 @@ final class DataprocWorkflowTemplateAttachedDiskConfig {
 
   final TfArg<num>? provisionedThroughput;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'disk_type': ?diskType?.toTfJson(),
@@ -1075,6 +1109,7 @@ final class DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy {
   final List<DataprocWorkflowTemplateInstanceSelectionList>?
   instanceSelectionList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
       'instance_selection_list': [
@@ -1100,6 +1135,7 @@ final class DataprocWorkflowTemplateInstanceSelectionList {
 
   final DataprocWorkflowTemplateDiskConfig? diskConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_types': ?machineTypes?.toTfJson(),
     'rank': ?rank?.toTfJson(),
@@ -1139,6 +1175,7 @@ final class DataprocWorkflowTemplateSecondaryWorkerConfig {
   final DataprocWorkflowTemplateSecondaryWorkerConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -1166,6 +1203,7 @@ final class DataprocWorkflowTemplateSecondaryWorkerConfigInstanceFlexibilityPoli
 
   final DataprocWorkflowTemplateProvisioningModelMix? provisioningModelMix;
 
+  @internal
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
       'instance_selection_list': [
@@ -1188,6 +1226,7 @@ final class DataprocWorkflowTemplateProvisioningModelMix {
 
   final TfArg<num>? standardCapacityPercentAboveBase;
 
+  @internal
   Map<String, Object?> encode() => {
     'standard_capacity_base': ?standardCapacityBase?.toTfJson(),
     'standard_capacity_percent_above_base': ?standardCapacityPercentAboveBase
@@ -1203,6 +1242,7 @@ final class DataprocWorkflowTemplateSecurityConfig {
 
   final DataprocWorkflowTemplateKerberosConfig? kerberosConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'kerberos_config': ?kerberosConfig?.encode(),
   };
@@ -1260,6 +1300,7 @@ final class DataprocWorkflowTemplateKerberosConfig {
 
   final TfArg<String>? truststorePassword;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_realm_trust_admin_server': ?crossRealmTrustAdminServer?.toTfJson(),
     'cross_realm_trust_kdc': ?crossRealmTrustKdc?.toTfJson(),
@@ -1296,6 +1337,7 @@ final class DataprocWorkflowTemplateSoftwareConfig {
 
   final TfArg<Map<String, String>>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_version': ?imageVersion?.toTfJson(),
     'optional_components': ?optionalComponents?.toTfJson(),
@@ -1335,6 +1377,7 @@ final class DataprocWorkflowTemplateWorkerConfig {
   final DataprocWorkflowTemplateMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),

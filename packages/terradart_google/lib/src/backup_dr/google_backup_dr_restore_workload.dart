@@ -106,6 +106,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 
   final BackupDrRestoreWorkloadTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'deletion_protection': ?deletionProtection?.toTfJson(),
@@ -223,6 +224,7 @@ final class BackupDrRestoreWorkloadAdvancedMachineFeatures {
 
   final TfArg<num>? visibleCoreCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'enable_uefi_networking': ?enableUefiNetworking?.toTfJson(),
@@ -247,6 +249,7 @@ final class BackupDrRestoreWorkloadAllocationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'consume_allocation_type': ?consumeAllocationType?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -297,6 +300,7 @@ final class BackupDrRestoreWorkloadConfidentialInstanceConfig {
 
   final TfArg<bool>? enableConfidentialCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
@@ -357,6 +361,7 @@ final class BackupDrRestoreWorkloadDisks {
 
   final BackupDrRestoreWorkloadInitializeParams? initializeParams;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
     'boot': ?boot?.toTfJson(),
@@ -510,6 +515,7 @@ final class BackupDrRestoreWorkloadDiskEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -527,6 +533,7 @@ final class BackupDrRestoreWorkloadGuestOsFeature {
 
   final BackupDrRestoreWorkloadGuestOsFeatureType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -624,6 +631,7 @@ final class BackupDrRestoreWorkloadInitializeParams {
 
   final TfArg<List<String>>? replicaZones;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_name': ?diskName?.toTfJson(),
     'replica_zones': ?replicaZones?.toTfJson(),
@@ -638,6 +646,7 @@ final class BackupDrRestoreWorkloadDisplayDevice {
 
   final TfArg<bool>? enableDisplay;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_display': ?enableDisplay?.toTfJson(),
   };
@@ -656,6 +665,7 @@ final class BackupDrRestoreWorkloadGuestAccelerators {
 
   final TfArg<String>? acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -681,6 +691,7 @@ final class BackupDrRestoreWorkloadInstanceEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -700,6 +711,7 @@ final class BackupDrRestoreWorkloadLabels {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -714,6 +726,7 @@ final class BackupDrRestoreWorkloadMetadata {
 
   final List<BackupDrRestoreWorkloadItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -729,6 +742,7 @@ final class BackupDrRestoreWorkloadItems {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -781,6 +795,7 @@ final class BackupDrRestoreWorkloadNetworkInterfaces {
 
   final List<BackupDrRestoreWorkloadIpv6AccessConfigs>? ipv6AccessConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
     'ip_address': ?ipAddress?.toTfJson(),
@@ -910,6 +925,7 @@ final class BackupDrRestoreWorkloadAccessConfigs {
 
   final BackupDrRestoreWorkloadAccessConfigsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_ip': ?externalIp?.toTfJson(),
     'external_ipv6': ?externalIpv6?.toTfJson(),
@@ -989,6 +1005,7 @@ final class BackupDrRestoreWorkloadAliasIpRanges {
 
   final TfArg<String>? subnetworkRangeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_cidr_range': ?ipCidrRange?.toTfJson(),
     'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
@@ -1026,6 +1043,7 @@ final class BackupDrRestoreWorkloadIpv6AccessConfigs {
 
   final BackupDrRestoreWorkloadAccessConfigsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_ip': ?externalIp?.toTfJson(),
     'external_ipv6': ?externalIpv6?.toTfJson(),
@@ -1049,6 +1067,7 @@ final class BackupDrRestoreWorkloadNetworkPerformanceConfig {
   final BackupDrRestoreWorkloadTotalEgressBandwidthTier?
   totalEgressBandwidthTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': ?totalEgressBandwidthTier?.toTfJson(),
   };
@@ -1091,6 +1110,7 @@ final class BackupDrRestoreWorkloadParams {
 
   final List<BackupDrRestoreWorkloadResourceManagerTags>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (resourceManagerTags != null)
       'resource_manager_tags': [
@@ -1113,6 +1133,7 @@ final class BackupDrRestoreWorkloadResourceManagerTags {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -1157,6 +1178,7 @@ final class BackupDrRestoreWorkloadScheduling {
 
   final List<BackupDrRestoreWorkloadNodeAffinities>? nodeAffinities;
 
+  @internal
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
     'instance_termination_action': ?instanceTerminationAction?.toTfJson(),
@@ -1270,6 +1292,7 @@ final class BackupDrRestoreWorkloadLocalSsdRecoveryTimeout {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -1286,6 +1309,7 @@ final class BackupDrRestoreWorkloadMaxRunDuration {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -1308,6 +1332,7 @@ final class BackupDrRestoreWorkloadNodeAffinities {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'operator': ?operator?.toTfJson(),
@@ -1349,6 +1374,7 @@ final class BackupDrRestoreWorkloadServiceAccounts {
 
   final TfArg<List<String>>? scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
     'scopes': ?scopes?.toTfJson(),
@@ -1371,6 +1397,7 @@ final class BackupDrRestoreWorkloadShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -1386,6 +1413,7 @@ final class BackupDrRestoreWorkloadTags {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -1405,6 +1433,7 @@ final class BackupDrRestoreWorkloadComputeInstanceTargetEnvironment {
 
   final TfArg<String> zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'project': project.toTfJson(),
     'use_project_service_account': ?useProjectServiceAccount?.toTfJson(),
@@ -1470,6 +1499,7 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
 
   final List<BackupDrRestoreWorkloadResourceManagerTags>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_mode': ?accessMode?.toTfJson(),
     'architecture': ?architecture?.toTfJson(),
@@ -1564,6 +1594,7 @@ final class BackupDrRestoreWorkloadDiskTargetEnvironment {
 
   final TfArg<String> zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'project': project.toTfJson(),
     'use_project_service_account': ?useProjectServiceAccount?.toTfJson(),
@@ -1590,6 +1621,7 @@ final class BackupDrRestoreWorkloadRegionDiskTargetEnvironment {
 
   final TfArg<bool>? useProjectServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'project': project.toTfJson(),
     'region': region.toTfJson(),

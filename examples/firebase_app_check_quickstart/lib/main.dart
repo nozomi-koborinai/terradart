@@ -12,7 +12,6 @@
 /// enforcement config (which decides what happens to unverified requests).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_app_check.dart';
 import 'package:terradart_google/provider.dart';
 

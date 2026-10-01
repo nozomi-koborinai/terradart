@@ -27,12 +27,15 @@ sealed class GameliftScriptCode {
       GameliftScriptCodeZipFile;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,14 +45,17 @@ final class GameliftScriptCodeStorageLocation extends GameliftScriptCode {
 
   final GameliftScriptStorageLocation storageLocation;
 
+  @internal
   @override
   String get blockKey => 'storage_location';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'storage_location': storageLocation.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'storage_location': TfArg.literal(storageLocation.encode()),
@@ -62,12 +68,15 @@ final class GameliftScriptCodeZipFile extends GameliftScriptCode {
 
   final TfArg<String> zipFile;
 
+  @internal
   @override
   String get blockKey => 'zip_file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'zip_file': zipFile.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'zip_file': zipFile};
 }
@@ -91,6 +100,7 @@ final class GameliftScriptStorageLocation {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),

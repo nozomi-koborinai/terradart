@@ -20,6 +20,7 @@ final class WorkspaceswebIpAccessSettingsIpRule {
 
   final TfArg<String> ipRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'ip_range': ipRange.toTfJson(),

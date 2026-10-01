@@ -52,6 +52,7 @@ final class KmsCryptoKeyVersionExternalProtectionLevelOptions {
 
   final TfArg<String>? externalKeyUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'ekm_connection_key_path': ?ekmConnectionKeyPath?.toTfJson(),
     'external_key_uri': ?externalKeyUri?.toTfJson(),

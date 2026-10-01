@@ -107,6 +107,7 @@ final class SpannerInstanceAutoscalingConfig {
 
   final SpannerInstanceAutoscalingTargets? autoscalingTargets;
 
+  @internal
   Map<String, Object?> encode() => {
     if (asymmetricAutoscalingOptions != null)
       'asymmetric_autoscaling_options': [
@@ -130,6 +131,7 @@ final class SpannerInstanceAsymmetricAutoscalingOptions {
 
   final SpannerInstanceReplicaSelection replicaSelection;
 
+  @internal
   Map<String, Object?> encode() => {
     'overrides': overrides.encode(),
     'replica_selection': replicaSelection.encode(),
@@ -158,6 +160,7 @@ final class SpannerInstanceOverrides {
 
   final SpannerInstanceOverridesAutoscalingLimits? autoscalingLimits;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoscaling_target_high_priority_cpu_utilization_percent':
         ?autoscalingTargetHighPriorityCpuUtilizationPercent?.toTfJson(),
@@ -183,6 +186,7 @@ final class SpannerInstanceOverridesAutoscalingLimits {
 
   final SpannerInstanceAutoscalingLimitsMin min;
 
+  @internal
   Map<String, Object?> encode() => {...max.encode(), ...min.encode()};
 }
 
@@ -204,8 +208,10 @@ sealed class SpannerInstanceAutoscalingLimitsMin {
   ) = SpannerInstanceAutoscalingLimitsMinProcessingUnits;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -216,9 +222,11 @@ final class SpannerInstanceAutoscalingLimitsMinNodes
 
   final TfArg<num> minNodes;
 
+  @internal
   @override
   String get blockKey => 'min_nodes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'min_nodes': minNodes.toTfJson()};
 }
@@ -232,9 +240,11 @@ final class SpannerInstanceAutoscalingLimitsMinProcessingUnits
 
   final TfArg<num> minProcessingUnits;
 
+  @internal
   @override
   String get blockKey => 'min_processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'min_processing_units': minProcessingUnits.toTfJson(),
@@ -259,8 +269,10 @@ sealed class SpannerInstanceAutoscalingLimitsMax {
   ) = SpannerInstanceAutoscalingLimitsMaxProcessingUnits;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -271,9 +283,11 @@ final class SpannerInstanceAutoscalingLimitsMaxNodes
 
   final TfArg<num> maxNodes;
 
+  @internal
   @override
   String get blockKey => 'max_nodes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'max_nodes': maxNodes.toTfJson()};
 }
@@ -287,9 +301,11 @@ final class SpannerInstanceAutoscalingLimitsMaxProcessingUnits
 
   final TfArg<num> maxProcessingUnits;
 
+  @internal
   @override
   String get blockKey => 'max_processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_processing_units': maxProcessingUnits.toTfJson(),
@@ -304,6 +320,7 @@ final class SpannerInstanceReplicaSelection {
 
   final TfArg<String> location;
 
+  @internal
   Map<String, Object?> encode() => {'location': location.toTfJson()};
 }
 
@@ -320,6 +337,7 @@ final class SpannerInstanceAutoscalingLimits {
 
   final SpannerInstanceMin min;
 
+  @internal
   Map<String, Object?> encode() => {...max.encode(), ...min.encode()};
 }
 
@@ -340,8 +358,10 @@ sealed class SpannerInstanceMin {
       SpannerInstanceMinNodes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -351,9 +371,11 @@ final class SpannerInstanceMinProcessingUnits extends SpannerInstanceMin {
 
   final TfArg<num> minProcessingUnits;
 
+  @internal
   @override
   String get blockKey => 'min_processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'min_processing_units': minProcessingUnits.toTfJson(),
@@ -366,9 +388,11 @@ final class SpannerInstanceMinNodes extends SpannerInstanceMin {
 
   final TfArg<num> minNodes;
 
+  @internal
   @override
   String get blockKey => 'min_nodes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'min_nodes': minNodes.toTfJson()};
 }
@@ -390,8 +414,10 @@ sealed class SpannerInstanceMax {
       SpannerInstanceMaxNodes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -401,9 +427,11 @@ final class SpannerInstanceMaxProcessingUnits extends SpannerInstanceMax {
 
   final TfArg<num> maxProcessingUnits;
 
+  @internal
   @override
   String get blockKey => 'max_processing_units';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_processing_units': maxProcessingUnits.toTfJson(),
@@ -416,9 +444,11 @@ final class SpannerInstanceMaxNodes extends SpannerInstanceMax {
 
   final TfArg<num> maxNodes;
 
+  @internal
   @override
   String get blockKey => 'max_nodes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'max_nodes': maxNodes.toTfJson()};
 }
@@ -439,6 +469,7 @@ final class SpannerInstanceAutoscalingTargets {
 
   final TfArg<num>? totalCpuUtilizationPercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'high_priority_cpu_utilization_percent': ?highPriorityCpuUtilizationPercent
         ?.toTfJson(),

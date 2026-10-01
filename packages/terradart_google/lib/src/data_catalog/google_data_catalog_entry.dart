@@ -28,12 +28,14 @@ sealed class DataCatalogEntryKind {
   }) = DataCatalogEntryCustomType;
 
   /// argMap key (`type` or `user_specified_type`).
+  @internal
   String get blockKey;
 
   /// Scalar value for that key.
   TfArg<String> get value;
 
   /// Flat `{blockKey: value}` payload (Gate 6 / callers that need a map).
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -43,6 +45,7 @@ final class DataCatalogEntryFileset extends DataCatalogEntryKind {
   const DataCatalogEntryFileset();
 
   @override
+  @internal
   String get blockKey => 'type';
 
   @override
@@ -57,6 +60,7 @@ final class DataCatalogEntryCustomType extends DataCatalogEntryKind {
   final TfArg<String> userSpecifiedType;
 
   @override
+  @internal
   String get blockKey => 'user_specified_type';
 
   @override
@@ -71,6 +75,7 @@ final class DataCatalogEntryGcsFilesetSpec {
 
   final TfArg<List<String>> filePatterns;
 
+  @internal
   Map<String, Object?> encode() => {'file_patterns': filePatterns.toTfJson()};
 }
 

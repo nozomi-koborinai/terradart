@@ -3,6 +3,7 @@
 /// `lambdacore` network connectors.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/lambdacore/aws_lambdacore_network_connector.dart'
     show
         AwsLambdacoreNetworkConnector,

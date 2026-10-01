@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_vpc`.
@@ -37,12 +38,15 @@ sealed class VpcIpv4Cidr {
       VpcIpv4CidrIpv4NetmaskLength;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -52,12 +56,15 @@ final class VpcIpv4CidrBlock extends VpcIpv4Cidr {
 
   final TfArg<String> cidrBlock;
 
+  @internal
   @override
   String get blockKey => 'cidr_block';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cidr_block': cidrBlock.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
 }
@@ -68,14 +75,17 @@ final class VpcIpv4CidrIpv4NetmaskLength extends VpcIpv4Cidr {
 
   final TfArg<num> ipv4NetmaskLength;
 
+  @internal
   @override
   String get blockKey => 'ipv4_netmask_length';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ipv4_netmask_length': ipv4NetmaskLength.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ipv4_netmask_length': ipv4NetmaskLength,

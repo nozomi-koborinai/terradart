@@ -22,6 +22,7 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
 
   final AppstreamDirectoryConfigStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -68,6 +69,7 @@ final class AppstreamDirectoryConfigServiceAccountCredentials {
 
   final Sensitive<String> accountPassword;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_name': accountName.toTfJson(),
     'account_password': accountPassword.toTfJson(),

@@ -3,6 +3,7 @@
 /// AWS DynamoDB Accelerator (DAX).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dax/aws_dax_cluster.dart'
     show
         AwsDaxCluster,

@@ -3,6 +3,9 @@
 /// AWS Directory Service.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_directory_service_directory.dart'
+    show DataAwsDirectoryServiceDirectory;
 export 'src/directory_service/aws_directory_service_conditional_forwarder.dart'
     show AwsDirectoryServiceConditionalForwarder;
 export 'src/directory_service/aws_directory_service_directory.dart'

@@ -158,6 +158,7 @@ final class WorkspaceswebUserSettingsCookieSynchronizationConfiguration {
 
   final List<WorkspaceswebUserSettingsBlocklist>? blocklist;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowlist != null)
       'allowlist': [for (final e in allowlist!) e.encode()],
@@ -182,6 +183,7 @@ final class WorkspaceswebUserSettingsAllowlist {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -205,6 +207,7 @@ final class WorkspaceswebUserSettingsBlocklist {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -231,6 +234,7 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
 
   final WorkspaceswebUserSettingsVisualMode? visualMode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (hiddenToolbarItems != null)
       'hidden_toolbar_items': [

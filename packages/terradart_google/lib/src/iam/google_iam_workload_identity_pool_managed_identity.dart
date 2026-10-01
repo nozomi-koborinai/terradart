@@ -21,6 +21,7 @@ final class IamWorkloadIdentityPoolManagedIdentityAttestationRules {
 
   final TfArg<String> googleCloudResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_cloud_resource': googleCloudResource.toTfJson(),
   };

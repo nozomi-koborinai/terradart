@@ -5,6 +5,7 @@
 /// does not complete OAuth or clone a repository.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/developer_connect/google_developer_connect_account_connector.dart'
     show
         DeveloperConnectAccountConnectorCustomOauthConfig,

@@ -23,6 +23,7 @@ final class ChronicleFindingsRefinementOutcomeFilters {
 
   final TfArg<String> outcomeVariable;
 
+  @internal
   Map<String, Object?> encode() => {
     'outcome_filter_operator': outcomeFilterOperator.toTfJson(),
     'outcome_value': outcomeValue.toTfJson(),

@@ -28,6 +28,7 @@ final class ZeroTrustDnsLocationEndpoints {
 
   final ZeroTrustDnsLocationIpv6 ipv6;
 
+  @internal
   Map<String, Object?> encode() => {
     'doh': doh.encode(),
     'dot': dot.encode(),
@@ -52,6 +53,7 @@ final class ZeroTrustDnsLocationDoh {
 
   final List<ZeroTrustDnsLocationNetworks>? networks;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'require_token': ?requireToken?.toTfJson(),
@@ -68,6 +70,7 @@ final class ZeroTrustDnsLocationNetworks {
 
   final TfArg<String> network;
 
+  @internal
   Map<String, Object?> encode() => {'network': network.toTfJson()};
 }
 
@@ -81,6 +84,7 @@ final class ZeroTrustDnsLocationDot {
 
   final List<ZeroTrustDnsLocationNetworks>? networks;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (networks != null) 'networks': [for (final e in networks!) e.encode()],
@@ -95,6 +99,7 @@ final class ZeroTrustDnsLocationIpv4 {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -108,6 +113,7 @@ final class ZeroTrustDnsLocationIpv6 {
 
   final List<ZeroTrustDnsLocationNetworks>? networks;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (networks != null) 'networks': [for (final e in networks!) e.encode()],
@@ -124,6 +130,7 @@ final class ZeroTrustDnsLocationMaxTtl {
 
   final TfArg<num>? ttlSecs;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'ttl_secs': ?ttlSecs?.toTfJson(),

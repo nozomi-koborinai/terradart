@@ -3,6 +3,43 @@
 /// AWS Route 53.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_route53_delegation_set.dart'
+    show DataAwsRoute53DelegationSet;
+export 'src/data/aws_route53_records.dart' show DataAwsRoute53Records;
+export 'src/data/aws_route53_resolver_endpoint.dart'
+    show DataAwsRoute53ResolverEndpoint, DataRoute53ResolverEndpointFilter;
+export 'src/data/aws_route53_resolver_firewall_config.dart'
+    show DataAwsRoute53ResolverFirewallConfig;
+export 'src/data/aws_route53_resolver_firewall_domain_list.dart'
+    show DataAwsRoute53ResolverFirewallDomainList;
+export 'src/data/aws_route53_resolver_firewall_rule_group.dart'
+    show DataAwsRoute53ResolverFirewallRuleGroup;
+export 'src/data/aws_route53_resolver_firewall_rule_group_association.dart'
+    show DataAwsRoute53ResolverFirewallRuleGroupAssociation;
+export 'src/data/aws_route53_resolver_firewall_rules.dart'
+    show DataAwsRoute53ResolverFirewallRules;
+export 'src/data/aws_route53_resolver_query_log_config.dart'
+    show
+        DataAwsRoute53ResolverQueryLogConfig,
+        DataRoute53ResolverQueryLogConfigFilter;
+export 'src/data/aws_route53_resolver_rule.dart'
+    show DataAwsRoute53ResolverRule;
+export 'src/data/aws_route53_resolver_rules.dart'
+    show DataAwsRoute53ResolverRules;
+export 'src/data/aws_route53_traffic_policy_document.dart'
+    show
+        DataAwsRoute53TrafficPolicyDocument,
+        DataRoute53TrafficPolicyDocumentEndpoint,
+        DataRoute53TrafficPolicyDocumentGeoProximityLocation,
+        DataRoute53TrafficPolicyDocumentItems,
+        DataRoute53TrafficPolicyDocumentLocation,
+        DataRoute53TrafficPolicyDocumentPrimary,
+        DataRoute53TrafficPolicyDocumentRegion,
+        DataRoute53TrafficPolicyDocumentRule,
+        DataRoute53TrafficPolicyDocumentSecondary;
+export 'src/data/aws_route53_zone.dart' show DataAwsRoute53Zone;
+export 'src/data/aws_route53_zones.dart' show DataAwsRoute53Zones;
 export 'src/route53/aws_route53_cidr_collection.dart'
     show AwsRoute53CidrCollection;
 export 'src/route53/aws_route53_cidr_location.dart' show AwsRoute53CidrLocation;

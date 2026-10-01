@@ -62,6 +62,7 @@ final class AppEngineApplicationFeatureSettings {
 
   final TfArg<bool> splitHealthChecks;
 
+  @internal
   Map<String, Object?> encode() => {
     'split_health_checks': splitHealthChecks.toTfJson(),
   };
@@ -83,6 +84,7 @@ final class AppEngineApplicationIap {
 
   final Sensitive<String> oauth2ClientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'oauth2_client_id': oauth2ClientId.toTfJson(),

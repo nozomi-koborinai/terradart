@@ -3,6 +3,7 @@
 /// AWS Chime SDK Voice.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/chimesdkvoice/aws_chimesdkvoice_global_settings.dart'
     show
         AwsChimesdkvoiceGlobalSettings,

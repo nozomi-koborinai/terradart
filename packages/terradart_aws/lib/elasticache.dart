@@ -3,6 +3,22 @@
 /// AWS ElastiCache.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_elasticache_cluster.dart' show DataAwsElasticacheCluster;
+export 'src/data/aws_elasticache_replication_group.dart'
+    show DataAwsElasticacheReplicationGroup;
+export 'src/data/aws_elasticache_reserved_cache_node_offering.dart'
+    show DataAwsElasticacheReservedCacheNodeOffering;
+export 'src/data/aws_elasticache_serverless_cache.dart'
+    show DataAwsElasticacheServerlessCache;
+export 'src/data/aws_elasticache_service_update_actions.dart'
+    show DataAwsElasticacheServiceUpdateActions;
+export 'src/data/aws_elasticache_service_updates.dart'
+    show DataAwsElasticacheServiceUpdates;
+export 'src/data/aws_elasticache_subnet_group.dart'
+    show DataAwsElasticacheSubnetGroup;
+export 'src/data/aws_elasticache_user.dart'
+    show DataAwsElasticacheUser, DataElasticacheUserAuthenticationMode;
 export 'src/elasticache/aws_elasticache_cluster.dart'
     show
         AwsElasticacheCluster,

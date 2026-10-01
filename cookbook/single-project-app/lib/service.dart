@@ -1,7 +1,6 @@
 /// Tier 5: Cloud Run v2 service.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/secret_manager.dart';

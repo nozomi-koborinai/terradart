@@ -17,6 +17,7 @@ final class CloudwatchEventEndpointEventBus {
 
   final TfArg<String> eventBusArn;
 
+  @internal
   Map<String, Object?> encode() => {'event_bus_arn': eventBusArn.toTfJson()};
 }
 
@@ -28,6 +29,7 @@ final class CloudwatchEventEndpointReplicationConfig {
 
   final CloudwatchEventEndpointState? state;
 
+  @internal
   Map<String, Object?> encode() => {'state': ?state?.toTfJson()};
 }
 
@@ -58,6 +60,7 @@ final class CloudwatchEventEndpointRoutingConfig {
 
   final CloudwatchEventEndpointFailoverConfig failoverConfig;
 
+  @internal
   Map<String, Object?> encode() => {'failover_config': failoverConfig.encode()};
 }
 
@@ -74,6 +77,7 @@ final class CloudwatchEventEndpointFailoverConfig {
 
   final CloudwatchEventEndpointSecondary secondary;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary': primary.encode(),
     'secondary': secondary.encode(),
@@ -88,6 +92,7 @@ final class CloudwatchEventEndpointPrimary {
 
   final TfArg<String>? healthCheck;
 
+  @internal
   Map<String, Object?> encode() => {'health_check': ?healthCheck?.toTfJson()};
 }
 
@@ -99,6 +104,7 @@ final class CloudwatchEventEndpointSecondary {
 
   final TfArg<String>? route;
 
+  @internal
   Map<String, Object?> encode() => {'route': ?route?.toTfJson()};
 }
 

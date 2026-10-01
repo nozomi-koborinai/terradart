@@ -55,6 +55,7 @@ final class Apigatewayv2DomainNameConfiguration {
 
   final Apigatewayv2DomainNameSecurityPolicy securityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
     'endpoint_type': endpointType.toTfJson(),
@@ -134,6 +135,7 @@ final class Apigatewayv2DomainNameMutualTlsAuthentication {
 
   final TfArg<String>? truststoreVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'truststore_uri': truststoreUri.toTfJson(),
     'truststore_version': ?truststoreVersion?.toTfJson(),

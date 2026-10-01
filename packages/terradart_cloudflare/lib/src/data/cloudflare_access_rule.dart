@@ -35,6 +35,7 @@ final class DataAccessRuleFilter {
 
   final DataAccessRuleConfiguration? configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'match': ?match?.toTfJson(),
@@ -137,6 +138,7 @@ final class DataAccessRuleConfiguration {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'value': ?value?.toTfJson(),

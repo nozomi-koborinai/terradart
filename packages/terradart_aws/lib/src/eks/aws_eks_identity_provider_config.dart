@@ -38,6 +38,7 @@ final class EksIdentityProviderConfigOidc {
 
   final TfArg<String>? usernamePrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'groups_claim': ?groupsClaim?.toTfJson(),

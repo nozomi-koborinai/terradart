@@ -3,6 +3,16 @@
 /// AWS RDS DB instances, snapshots, and option and parameter groups.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_db_cluster_snapshot.dart' show DataAwsDbClusterSnapshot;
+export 'src/data/aws_db_event_categories.dart' show DataAwsDbEventCategories;
+export 'src/data/aws_db_instance.dart' show DataAwsDbInstance;
+export 'src/data/aws_db_instances.dart'
+    show DataAwsDbInstances, DataDbInstancesFilter;
+export 'src/data/aws_db_parameter_group.dart' show DataAwsDbParameterGroup;
+export 'src/data/aws_db_proxy.dart' show DataAwsDbProxy;
+export 'src/data/aws_db_snapshot.dart' show DataAwsDbSnapshot;
+export 'src/data/aws_db_subnet_group.dart' show DataAwsDbSubnetGroup;
 export 'src/db/aws_db_cluster_snapshot.dart' show AwsDbClusterSnapshot;
 export 'src/db/aws_db_event_subscription.dart'
     show

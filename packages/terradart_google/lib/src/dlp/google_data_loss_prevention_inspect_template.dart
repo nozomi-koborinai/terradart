@@ -43,6 +43,7 @@ final class DataLossPreventionInspectTemplateInspectConfig {
 
   final List<DataLossPreventionInspectTemplateRuleSet>? ruleSet;
 
+  @internal
   Map<String, Object?> encode() => {
     if (contentOptions != null)
       'content_options': [for (final e in contentOptions!) e.toTfJson()],
@@ -153,6 +154,7 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
 
   final DataLossPreventionInspectTemplateSurrogateType? surrogateType;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_type': ?exclusionType?.toTfJson(),
     'likelihood': ?likelihood?.toTfJson(),
@@ -215,6 +217,7 @@ final class DataLossPreventionInspectTemplateDictionary {
 
   final DataLossPreventionInspectTemplateWordList? wordList;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_path': ?cloudStoragePath?.encode(),
     'word_list': ?wordList?.encode(),
@@ -230,6 +233,7 @@ final class DataLossPreventionInspectTemplateCloudStoragePath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -242,6 +246,7 @@ final class DataLossPreventionInspectTemplateWordList {
 
   final TfArg<List<String>> words;
 
+  @internal
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
@@ -262,6 +267,7 @@ final class DataLossPreventionInspectTemplateCustomInfoTypesInfoType {
 
   final DataLossPreventionInspectTemplateSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -280,6 +286,7 @@ final class DataLossPreventionInspectTemplateSensitivityScore {
 
   final DataLossPreventionInspectTemplateScore score;
 
+  @internal
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
@@ -324,6 +331,7 @@ final class DataLossPreventionInspectTemplateRegex {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
@@ -338,6 +346,7 @@ final class DataLossPreventionInspectTemplateStoredType {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -347,6 +356,7 @@ final class DataLossPreventionInspectTemplateStoredType {
 final class DataLossPreventionInspectTemplateSurrogateType {
   const DataLossPreventionInspectTemplateSurrogateType();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -367,6 +377,7 @@ final class DataLossPreventionInspectTemplateInfoTypes {
 
   final DataLossPreventionInspectTemplateSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -391,6 +402,7 @@ final class DataLossPreventionInspectTemplateLimits {
   final List<DataLossPreventionInspectTemplateMaxFindingsPerInfoType>?
   maxFindingsPerInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_findings_per_item': maxFindingsPerItem.toTfJson(),
     'max_findings_per_request': maxFindingsPerRequest.toTfJson(),
@@ -414,6 +426,7 @@ final class DataLossPreventionInspectTemplateMaxFindingsPerInfoType {
 
   final DataLossPreventionInspectTemplateCustomInfoTypesInfoType? infoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_findings': maxFindings.toTfJson(),
     'info_type': ?infoType?.encode(),
@@ -434,6 +447,7 @@ final class DataLossPreventionInspectTemplateMinLikelihoodPerInfoType {
   final DataLossPreventionInspectTemplateMinLikelihoodPerInfoTypeInfoType?
   infoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_likelihood': minLikelihood.toTfJson(),
     'info_type': ?infoType?.encode(),
@@ -453,6 +467,7 @@ final class DataLossPreventionInspectTemplateMinLikelihoodPerInfoTypeInfoType {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -472,6 +487,7 @@ final class DataLossPreventionInspectTemplateRuleSet {
 
   final List<DataLossPreventionInspectTemplateRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
     'rules': [for (final e in rules) e.encode()],
@@ -491,6 +507,7 @@ final class DataLossPreventionInspectTemplateRules {
 
   final DataLossPreventionInspectTemplateHotwordRule? hotwordRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_rule': ?exclusionRule?.encode(),
     'hotword_rule': ?hotwordRule?.encode(),
@@ -519,6 +536,7 @@ final class DataLossPreventionInspectTemplateExclusionRule {
 
   final DataLossPreventionInspectTemplateRegex? regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'matching_type': matchingType.toTfJson(),
     'dictionary': ?dictionary?.encode(),
@@ -572,6 +590,7 @@ final class DataLossPreventionInspectTemplateExcludeByHotword {
 
   final DataLossPreventionInspectTemplateProximity proximity;
 
+  @internal
   Map<String, Object?> encode() => {
     'hotword_regex': hotwordRegex.encode(),
     'proximity': proximity.encode(),
@@ -592,6 +611,7 @@ final class DataLossPreventionInspectTemplateHotwordRegex {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
@@ -612,6 +632,7 @@ final class DataLossPreventionInspectTemplateProximity {
 
   final TfArg<num>? windowBefore;
 
+  @internal
   Map<String, Object?> encode() => {
     'window_after': ?windowAfter?.toTfJson(),
     'window_before': ?windowBefore?.toTfJson(),
@@ -628,6 +649,7 @@ final class DataLossPreventionInspectTemplateExcludeInfoTypes {
 
   final List<DataLossPreventionInspectTemplateInfoTypes> infoTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
@@ -650,6 +672,7 @@ final class DataLossPreventionInspectTemplateHotwordRule {
 
   final DataLossPreventionInspectTemplateProximity proximity;
 
+  @internal
   Map<String, Object?> encode() => {
     'hotword_regex': hotwordRegex.encode(),
     'likelihood_adjustment': likelihoodAdjustment.encode(),
@@ -670,6 +693,7 @@ final class DataLossPreventionInspectTemplateLikelihoodAdjustment {
 
   final TfArg<num>? relativeLikelihood;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_likelihood': ?fixedLikelihood?.toTfJson(),
     'relative_likelihood': ?relativeLikelihood?.toTfJson(),

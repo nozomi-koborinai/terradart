@@ -19,6 +19,7 @@ final class BedrockModelInvocationJobInputDataConfig {
 
   final List<BedrockModelInvocationJobS3InputDataConfig>? s3InputDataConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3InputDataConfig != null)
       's3_input_data_config': [for (final e in s3InputDataConfig!) e.encode()],
@@ -41,6 +42,7 @@ final class BedrockModelInvocationJobS3InputDataConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_owner': ?s3BucketOwner?.toTfJson(),
     's3_input_format': ?s3InputFormat?.toTfJson(),
@@ -73,6 +75,7 @@ final class BedrockModelInvocationJobOutputDataConfig {
 
   final List<BedrockModelInvocationJobS3OutputDataConfig>? s3OutputDataConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3OutputDataConfig != null)
       's3_output_data_config': [
@@ -97,6 +100,7 @@ final class BedrockModelInvocationJobS3OutputDataConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_owner': ?s3BucketOwner?.toTfJson(),
     's3_encryption_key_id': ?s3EncryptionKeyId?.toTfJson(),
@@ -117,6 +121,7 @@ final class BedrockModelInvocationJobVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

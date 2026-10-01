@@ -3,6 +3,9 @@
 /// AWS EMR on EKS.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_emrcontainers_virtual_cluster.dart'
+    show DataAwsEmrcontainersVirtualCluster;
 export 'src/emrcontainers/aws_emrcontainers_job_template.dart'
     show
         AwsEmrcontainersJobTemplate,

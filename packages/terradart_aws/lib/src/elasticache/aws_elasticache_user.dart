@@ -35,6 +35,7 @@ final class ElasticacheUserAuthenticationMode {
 
   final ElasticacheUserType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'passwords': ?passwords?.toTfJson(),
     'type': type.toTfJson(),

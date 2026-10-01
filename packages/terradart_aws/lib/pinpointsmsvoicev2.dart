@@ -3,6 +3,7 @@
 /// AWS End User Messaging SMS.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_configuration_set.dart'
     show
         AwsPinpointsmsvoicev2ConfigurationSet,

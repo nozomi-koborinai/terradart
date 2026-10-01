@@ -52,12 +52,15 @@ sealed class IamWorkforcePoolProviderTrustSource {
   ) = IamWorkforcePoolProviderTrustSourceOidc;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -68,12 +71,15 @@ final class IamWorkforcePoolProviderTrustSourceSaml
 
   final IamWorkforcePoolProviderSaml saml;
 
+  @internal
   @override
   String get blockKey => 'saml';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'saml': saml.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'saml': TfArg.literal(saml.encode()),
@@ -87,12 +93,15 @@ final class IamWorkforcePoolProviderTrustSourceOidc
 
   final IamWorkforcePoolProviderOidc oidc;
 
+  @internal
   @override
   String get blockKey => 'oidc';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oidc': oidc.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'oidc': TfArg.literal(oidc.encode()),
@@ -119,12 +128,15 @@ sealed class IamWorkforcePoolProviderGroupSource {
   ) = IamWorkforcePoolProviderGroupSourceScimUsage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -138,15 +150,18 @@ final class IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client
   final IamWorkforcePoolProviderExtendedAttributesOauth2Client
   extendedAttributesOauth2Client;
 
+  @internal
   @override
   String get blockKey => 'extended_attributes_oauth2_client';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'extended_attributes_oauth2_client': extendedAttributesOauth2Client
         .encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'extended_attributes_oauth2_client': TfArg.literal(
@@ -162,12 +177,15 @@ final class IamWorkforcePoolProviderGroupSourceScimUsage
 
   final IamWorkforcePoolProviderScimUsage scimUsage;
 
+  @internal
   @override
   String get blockKey => 'scim_usage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'scim_usage': scimUsage.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'scim_usage': scimUsage};
 }
@@ -194,6 +212,7 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
 
   final IamWorkforcePoolProviderQueryParameters? queryParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes_type': attributesType.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -212,6 +231,7 @@ final class IamWorkforcePoolProviderClientSecret {
 
   final IamWorkforcePoolProviderValue? value;
 
+  @internal
   Map<String, Object?> encode() => {'value': ?value?.encode()};
 }
 
@@ -229,6 +249,7 @@ final class IamWorkforcePoolProviderValue {
 
   final TfArg<String>? plainTextWoVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     ...plainText.encode(),
     'plain_text_wo_version': ?plainTextWoVersion?.toTfJson(),
@@ -253,8 +274,10 @@ sealed class IamWorkforcePoolProviderPlainText {
   ) = IamWorkforcePoolProviderPlainTextWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -265,9 +288,11 @@ final class IamWorkforcePoolProviderPlainTextChoice
 
   final Sensitive<String> plainText;
 
+  @internal
   @override
   String get blockKey => 'plain_text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'plain_text': plainText.toTfJson()};
 }
@@ -279,9 +304,11 @@ final class IamWorkforcePoolProviderPlainTextWo
 
   final TfArg<String> plainTextWo;
 
+  @internal
   @override
   String get blockKey => 'plain_text_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'plain_text_wo': plainTextWo.toTfJson()};
 }
@@ -295,6 +322,7 @@ final class IamWorkforcePoolProviderQueryParameters {
 
   final TfArg<String>? filter;
 
+  @internal
   Map<String, Object?> encode() => {'filter': ?filter?.toTfJson()};
 }
 
@@ -320,6 +348,7 @@ final class IamWorkforcePoolProviderExtraAttributesOauth2Client {
 
   final IamWorkforcePoolProviderQueryParameters? queryParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes_type': attributesType.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -379,6 +408,7 @@ final class IamWorkforcePoolProviderOidc {
 
   final IamWorkforcePoolProviderWebSsoConfig? webSsoConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'issuer_uri': issuerUri.toTfJson(),
@@ -404,6 +434,7 @@ final class IamWorkforcePoolProviderWebSsoConfig {
 
   final IamWorkforcePoolProviderResponseType responseType;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_scopes': ?additionalScopes?.toTfJson(),
     'assertion_claims_behavior': assertionClaimsBehavior.toTfJson(),
@@ -468,6 +499,7 @@ final class IamWorkforcePoolProviderSaml {
 
   final TfArg<String> idpMetadataXml;
 
+  @internal
   Map<String, Object?> encode() => {
     'idp_metadata_xml': idpMetadataXml.toTfJson(),
   };

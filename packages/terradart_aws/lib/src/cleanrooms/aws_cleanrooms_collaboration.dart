@@ -49,6 +49,7 @@ final class CleanroomsCollaborationDataEncryptionMetadata {
 
   final TfArg<bool> preserveNulls;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_clear_text': allowClearText.toTfJson(),
     'allow_duplicates': allowDuplicates.toTfJson(),
@@ -74,6 +75,7 @@ final class CleanroomsCollaborationMember {
 
   final TfArg<List<String>> memberAbilities;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),
     'display_name': displayName.toTfJson(),

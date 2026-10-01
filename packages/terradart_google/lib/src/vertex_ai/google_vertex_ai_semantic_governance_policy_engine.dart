@@ -33,6 +33,7 @@ final class VertexAiSemanticGovernancePolicyEngineGatewayConfigs {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_projects': ?allowedProjects?.toTfJson(),
     'dns_zone_name': ?dnsZoneName?.toTfJson(),

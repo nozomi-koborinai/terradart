@@ -15,6 +15,7 @@ final class LocationMapConfiguration {
 
   final TfArg<String> style;
 
+  @internal
   Map<String, Object?> encode() => {'style': style.toTfJson()};
 }
 

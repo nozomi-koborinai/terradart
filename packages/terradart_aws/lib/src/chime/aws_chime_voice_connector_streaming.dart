@@ -48,6 +48,7 @@ final class ChimeVoiceConnectorStreamingMediaInsightsConfiguration {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration_arn': ?configurationArn?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),

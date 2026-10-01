@@ -148,12 +148,15 @@ sealed class DataprocMetastoreServiceCapacity {
   ) = DataprocMetastoreServiceCapacityScalingConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -164,12 +167,15 @@ final class DataprocMetastoreServiceCapacityTier
 
   final DataprocMetastoreServiceTier tier;
 
+  @internal
   @override
   String get blockKey => 'tier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tier': tier.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'tier': tier};
 }
@@ -181,12 +187,15 @@ final class DataprocMetastoreServiceCapacityScalingConfig
 
   final DataprocMetastoreServiceScalingConfig scalingConfig;
 
+  @internal
   @override
   String get blockKey => 'scaling_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'scaling_config': scalingConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'scaling_config': TfArg.literal(scalingConfig.encode()),
@@ -201,6 +210,7 @@ final class DataprocMetastoreServiceEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey> kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': kmsKey.encodeAs('id').toTfJson(),
   };
@@ -228,6 +238,7 @@ final class DataprocMetastoreServiceHiveMetastoreConfig {
 
   final DataprocMetastoreServiceKerberosConfig? kerberosConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'config_overrides': ?configOverrides?.toTfJson(),
     'endpoint_protocol': ?endpointProtocol?.toTfJson(),
@@ -254,6 +265,7 @@ final class DataprocMetastoreServiceAuxiliaryVersions {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'config_overrides': ?configOverrides?.toTfJson(),
     'key': key.toTfJson(),
@@ -277,6 +289,7 @@ final class DataprocMetastoreServiceKerberosConfig {
 
   final DataprocMetastoreServiceKeytab keytab;
 
+  @internal
   Map<String, Object?> encode() => {
     'krb5_config_gcs_uri': krb5ConfigGcsUri.toTfJson(),
     'principal': principal.toTfJson(),
@@ -292,6 +305,7 @@ final class DataprocMetastoreServiceKeytab {
 
   final TfArg<String> cloudSecret;
 
+  @internal
   Map<String, Object?> encode() => {'cloud_secret': cloudSecret.toTfJson()};
 }
 
@@ -308,6 +322,7 @@ final class DataprocMetastoreServiceMaintenanceWindow {
 
   final TfArg<num> hourOfDay;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     'hour_of_day': hourOfDay.toTfJson(),
@@ -366,6 +381,7 @@ final class DataprocMetastoreServiceMetadataIntegration {
 
   final DataprocMetastoreServiceDataCatalogConfig dataCatalogConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_catalog_config': dataCatalogConfig.encode(),
   };
@@ -379,6 +395,7 @@ final class DataprocMetastoreServiceDataCatalogConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -390,6 +407,7 @@ final class DataprocMetastoreServiceNetworkConfig {
 
   final List<DataprocMetastoreServiceConsumers> consumers;
 
+  @internal
   Map<String, Object?> encode() => {
     'consumers': [for (final e in consumers) e.encode()],
   };
@@ -403,6 +421,7 @@ final class DataprocMetastoreServiceConsumers {
 
   final RefTo<GoogleComputeSubnetwork> subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'subnetwork': subnetwork.encodeAs('id').toTfJson(),
   };
@@ -431,8 +450,10 @@ sealed class DataprocMetastoreServiceScalingConfig {
   ) = DataprocMetastoreServiceScalingConfigAutoscalingConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -443,9 +464,11 @@ final class DataprocMetastoreServiceScalingConfigInstanceSize
 
   final DataprocMetastoreServiceInstanceSize instanceSize;
 
+  @internal
   @override
   String get blockKey => 'instance_size';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'instance_size': instanceSize.toTfJson()};
 }
@@ -457,9 +480,11 @@ final class DataprocMetastoreServiceScalingConfigScalingFactor
 
   final TfArg<num> scalingFactor;
 
+  @internal
   @override
   String get blockKey => 'scaling_factor';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'scaling_factor': scalingFactor.toTfJson()};
 }
@@ -473,9 +498,11 @@ final class DataprocMetastoreServiceScalingConfigAutoscalingConfig
 
   final DataprocMetastoreServiceAutoscalingConfig autoscalingConfig;
 
+  @internal
   @override
   String get blockKey => 'autoscaling_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'autoscaling_config': autoscalingConfig.encode(),
@@ -530,6 +557,7 @@ final class DataprocMetastoreServiceAutoscalingConfig {
 
   final DataprocMetastoreServiceLimitConfig? limitConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'autoscaling_enabled': ?autoscalingEnabled?.toTfJson(),
     'limit_config': ?limitConfig?.encode(),
@@ -549,6 +577,7 @@ final class DataprocMetastoreServiceLimitConfig {
 
   final TfArg<num>? minScalingFactor;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_scaling_factor': ?maxScalingFactor?.toTfJson(),
     'min_scaling_factor': ?minScalingFactor?.toTfJson(),
@@ -574,6 +603,7 @@ final class DataprocMetastoreServiceScheduledBackup {
 
   final TfArg<String>? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_location': backupLocation.toTfJson(),
     'cron_schedule': ?cronSchedule?.toTfJson(),
@@ -590,6 +620,7 @@ final class DataprocMetastoreServiceTelemetryConfig {
 
   final DataprocMetastoreServiceLogFormat? logFormat;
 
+  @internal
   Map<String, Object?> encode() => {'log_format': ?logFormat?.toTfJson()};
 }
 

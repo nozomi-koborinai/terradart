@@ -31,6 +31,7 @@ final class TokenValidationConfigCredentials {
 
   final List<TokenValidationConfigKeys> keys;
 
+  @internal
   Map<String, Object?> encode() => {
     'keys': [for (final e in keys) e.encode()],
   };
@@ -70,6 +71,7 @@ final class TokenValidationConfigKeys {
 
   final TfArg<String>? y;
 
+  @internal
   Map<String, Object?> encode() => {
     'alg': alg.toTfJson(),
     'crv': ?crv?.toTfJson(),

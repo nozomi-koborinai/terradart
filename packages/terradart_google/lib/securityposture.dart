@@ -4,6 +4,7 @@
 /// Apply-excluded leftover factories.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/securityposture/google_securityposture_posture.dart'
     show
         GoogleSecurityposturePosture,

@@ -36,6 +36,7 @@ final class QuicksightAnalysisDefinition {
 
   final List<QuicksightAnalysisSheets>? sheets;
 
+  @internal
   Map<String, Object?> encode() => {
     'analysis_defaults': ?analysisDefaults?.encode(),
     if (calculatedFields != null)
@@ -68,6 +69,7 @@ final class QuicksightAnalysisDefaults {
   final QuicksightAnalysisDefaultNewSheetConfiguration
   defaultNewSheetConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_new_sheet_configuration': defaultNewSheetConfiguration.encode(),
   };
@@ -91,6 +93,7 @@ final class QuicksightAnalysisDefaultNewSheetConfiguration {
   final QuicksightAnalysisPaginatedLayoutConfiguration?
   paginatedLayoutConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'sheet_content_type': ?sheetContentType?.toTfJson(),
     'interactive_layout_configuration': ?interactiveLayoutConfiguration
@@ -112,6 +115,7 @@ final class QuicksightAnalysisInteractiveLayoutConfiguration {
 
   final QuicksightAnalysisGrid? grid;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form': ?freeForm?.encode(),
     'grid': ?grid?.encode(),
@@ -126,6 +130,7 @@ final class QuicksightAnalysisFreeForm {
 
   final QuicksightAnalysisFreeFormCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -143,6 +148,7 @@ final class QuicksightAnalysisFreeFormCanvasSizeOptions {
   final QuicksightAnalysisFreeFormScreenCanvasSizeOptions?
   screenCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
@@ -159,6 +165,7 @@ final class QuicksightAnalysisFreeFormScreenCanvasSizeOptions {
 
   final TfArg<String> optimizedViewPortWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_view_port_width': optimizedViewPortWidth.toTfJson(),
   };
@@ -172,6 +179,7 @@ final class QuicksightAnalysisGrid {
 
   final QuicksightAnalysisGridCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -186,6 +194,7 @@ final class QuicksightAnalysisGridCanvasSizeOptions {
 
   final QuicksightAnalysisGridScreenCanvasSizeOptions? screenCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'screen_canvas_size_options': ?screenCanvasSizeOptions?.encode(),
   };
@@ -205,6 +214,7 @@ final class QuicksightAnalysisGridScreenCanvasSizeOptions {
 
   final TfArg<String> resizeOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_view_port_width': ?optimizedViewPortWidth?.toTfJson(),
     'resize_option': resizeOption.toTfJson(),
@@ -219,6 +229,7 @@ final class QuicksightAnalysisPaginatedLayoutConfiguration {
 
   final QuicksightAnalysisSectionBased? sectionBased;
 
+  @internal
   Map<String, Object?> encode() => {'section_based': ?sectionBased?.encode()};
 }
 
@@ -230,6 +241,7 @@ final class QuicksightAnalysisSectionBased {
 
   final QuicksightAnalysisSectionBasedCanvasSizeOptions canvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': canvasSizeOptions.encode(),
   };
@@ -246,6 +258,7 @@ final class QuicksightAnalysisSectionBasedCanvasSizeOptions {
 
   final QuicksightAnalysisPaperCanvasSizeOptions? paperCanvasSizeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'paper_canvas_size_options': ?paperCanvasSizeOptions?.encode(),
   };
@@ -268,6 +281,7 @@ final class QuicksightAnalysisPaperCanvasSizeOptions {
 
   final QuicksightAnalysisPaperMargin? paperMargin;
 
+  @internal
   Map<String, Object?> encode() => {
     'paper_orientation': ?paperOrientation?.toTfJson(),
     'paper_size': ?paperSize?.toTfJson(),
@@ -295,6 +309,7 @@ final class QuicksightAnalysisPaperMargin {
 
   final TfArg<String>? top;
 
+  @internal
   Map<String, Object?> encode() => {
     'bottom': ?bottom?.toTfJson(),
     'left': ?left?.toTfJson(),
@@ -319,6 +334,7 @@ final class QuicksightAnalysisCalculatedFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'expression': expression.toTfJson(),
@@ -342,6 +358,7 @@ final class QuicksightAnalysisColumnConfigurations {
 
   final QuicksightAnalysisFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     'column': column.encode(),
@@ -363,6 +380,7 @@ final class QuicksightAnalysisColumn {
 
   final TfArg<String> dataSetIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'data_set_identifier': dataSetIdentifier.toTfJson(),
@@ -387,6 +405,7 @@ final class QuicksightAnalysisFormatConfiguration {
 
   final QuicksightAnalysisStringFormatConfiguration? stringFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format_configuration': ?dateTimeFormatConfiguration?.encode(),
     'number_format_configuration': ?numberFormatConfiguration?.encode(),
@@ -413,6 +432,7 @@ final class QuicksightAnalysisDateTimeFormatConfiguration {
   final QuicksightAnalysisNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
     'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
@@ -431,6 +451,7 @@ final class QuicksightAnalysisNullValueFormatConfiguration {
 
   final TfArg<String> nullString;
 
+  @internal
   Map<String, Object?> encode() => {'null_string': nullString.toTfJson()};
 }
 
@@ -454,6 +475,7 @@ final class QuicksightAnalysisNumericFormatConfiguration {
   final QuicksightAnalysisPercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'currency_display_format_configuration': ?currencyDisplayFormatConfiguration
         ?.encode(),
@@ -499,6 +521,7 @@ final class QuicksightAnalysisCurrencyDisplayFormatConfiguration {
 
   final QuicksightAnalysisSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -522,6 +545,7 @@ final class QuicksightAnalysisDecimalPlacesConfiguration {
 
   final TfArg<num> decimalPlaces;
 
+  @internal
   Map<String, Object?> encode() => {'decimal_places': decimalPlaces.toTfJson()};
 }
 
@@ -536,6 +560,7 @@ final class QuicksightAnalysisNegativeValueConfiguration {
 
   final TfArg<String> displayMode;
 
+  @internal
   Map<String, Object?> encode() => {'display_mode': displayMode.toTfJson()};
 }
 
@@ -553,6 +578,7 @@ final class QuicksightAnalysisSeparatorConfiguration {
 
   final QuicksightAnalysisThousandsSeparator? thousandsSeparator;
 
+  @internal
   Map<String, Object?> encode() => {
     'decimal_separator': ?decimalSeparator?.toTfJson(),
     'thousands_separator': ?thousandsSeparator?.encode(),
@@ -570,6 +596,7 @@ final class QuicksightAnalysisThousandsSeparator {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'symbol': ?symbol?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -608,6 +635,7 @@ final class QuicksightAnalysisNumberDisplayFormatConfiguration {
 
   final QuicksightAnalysisSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_scale': ?numberScale?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -648,6 +676,7 @@ final class QuicksightAnalysisPercentageDisplayFormatConfiguration {
 
   final QuicksightAnalysisSeparatorConfiguration? separatorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'suffix': ?suffix?.toTfJson(),
@@ -670,6 +699,7 @@ final class QuicksightAnalysisNumberFormatConfiguration {
   final QuicksightAnalysisNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
   };
@@ -691,6 +721,7 @@ final class QuicksightAnalysisStringFormatConfiguration {
   final QuicksightAnalysisNumericFormatConfiguration?
   numericFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'null_value_format_configuration': ?nullValueFormatConfiguration?.encode(),
     'numeric_format_configuration': ?numericFormatConfiguration?.encode(),
@@ -710,6 +741,7 @@ final class QuicksightAnalysisDataSetIdentifiersDeclarations {
 
   final TfArg<String>? identifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_arn': ?dataSetArn?.toTfJson(),
     'identifier': ?identifier?.toTfJson(),
@@ -738,6 +770,7 @@ final class QuicksightAnalysisFilterGroups {
 
   final QuicksightAnalysisScopeConfiguration scopeConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_dataset': crossDataset.toTfJson(),
     'filter_group_id': filterGroupId.toTfJson(),
@@ -775,6 +808,7 @@ final class QuicksightAnalysisFilters {
 
   final QuicksightAnalysisTopBottomFilter? topBottomFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
     'numeric_equality_filter': ?numericEqualityFilter?.encode(),
@@ -802,6 +836,7 @@ final class QuicksightAnalysisCategoryFilter {
 
   final QuicksightAnalysisCategoryFilterConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'column': column.encode(),
@@ -826,6 +861,7 @@ final class QuicksightAnalysisCategoryFilterConfiguration {
 
   final QuicksightAnalysisFilterListConfiguration? filterListConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_filter_configuration': ?customFilterConfiguration?.encode(),
     'custom_filter_list_configuration': ?customFilterListConfiguration
@@ -856,6 +892,7 @@ final class QuicksightAnalysisCustomFilterConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_value': ?categoryValue?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -884,6 +921,7 @@ final class QuicksightAnalysisCustomFilterListConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -908,6 +946,7 @@ final class QuicksightAnalysisFilterListConfiguration {
 
   final TfArg<String>? selectAllOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': ?categoryValues?.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -946,6 +985,7 @@ final class QuicksightAnalysisNumericEqualityFilter {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'match_operator': matchOperator.toTfJson(),
@@ -976,6 +1016,7 @@ final class QuicksightAnalysisAggregationFunction {
   final QuicksightAnalysisNumericalAggregationFunction?
   numericalAggregationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_aggregation_function': ?categoricalAggregationFunction
         ?.toTfJson(),
@@ -998,6 +1039,7 @@ final class QuicksightAnalysisNumericalAggregationFunction {
 
   final QuicksightAnalysisPercentileAggregation? percentileAggregation;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_numerical_aggregation': ?simpleNumericalAggregation?.toTfJson(),
     'percentile_aggregation': ?percentileAggregation?.encode(),
@@ -1013,6 +1055,7 @@ final class QuicksightAnalysisPercentileAggregation {
 
   final TfArg<num>? percentileValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentile_value': ?percentileValue?.toTfJson(),
   };
@@ -1052,6 +1095,7 @@ final class QuicksightAnalysisNumericRangeFilter {
 
   final QuicksightAnalysisRangeMaximum? rangeMinimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'include_maximum': ?includeMaximum?.toTfJson(),
@@ -1076,6 +1120,7 @@ final class QuicksightAnalysisRangeMaximum {
 
   final TfArg<num>? staticValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'static_value': ?staticValue?.toTfJson(),
@@ -1120,6 +1165,7 @@ final class QuicksightAnalysisRelativeDatesFilter {
   final QuicksightAnalysisExcludePeriodConfiguration?
   excludePeriodConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'minimum_granularity': minimumGranularity.toTfJson(),
@@ -1147,6 +1193,7 @@ final class QuicksightAnalysisAnchorDateConfiguration {
 
   final TfArg<String>? parameterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'anchor_option': ?anchorOption?.toTfJson(),
     'parameter_name': ?parameterName?.toTfJson(),
@@ -1170,6 +1217,7 @@ final class QuicksightAnalysisExcludePeriodConfiguration {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'amount': amount.toTfJson(),
     'granularity': granularity.toTfJson(),
@@ -1199,6 +1247,7 @@ final class QuicksightAnalysisTimeEqualityFilter {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'parameter_name': ?parameterName?.toTfJson(),
@@ -1243,6 +1292,7 @@ final class QuicksightAnalysisTimeRangeFilter {
 
   final QuicksightAnalysisRangeMaximumValue? rangeMinimumValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'include_maximum': ?includeMaximum?.toTfJson(),
@@ -1273,6 +1323,7 @@ final class QuicksightAnalysisRangeMaximumValue {
 
   final QuicksightAnalysisRollingDate? rollingDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'static_value': ?staticValue?.toTfJson(),
@@ -1294,6 +1345,7 @@ final class QuicksightAnalysisRollingDate {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': ?dataSetIdentifier?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -1326,6 +1378,7 @@ final class QuicksightAnalysisTopBottomFilter {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_id': filterId.toTfJson(),
     'limit': ?limit?.toTfJson(),
@@ -1354,6 +1407,7 @@ final class QuicksightAnalysisAggregationSortConfiguration {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'sort_direction': sortDirection.toTfJson(),
     'aggregation_function': aggregationFunction.encode(),
@@ -1369,6 +1423,7 @@ final class QuicksightAnalysisScopeConfiguration {
 
   final QuicksightAnalysisSelectedSheets? selectedSheets;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_sheets': ?selectedSheets?.encode(),
   };
@@ -1385,6 +1440,7 @@ final class QuicksightAnalysisSelectedSheets {
   final List<QuicksightAnalysisSheetVisualScopingConfigurations>?
   sheetVisualScopingConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sheetVisualScopingConfigurations != null)
       'sheet_visual_scoping_configurations': [
@@ -1409,6 +1465,7 @@ final class QuicksightAnalysisSheetVisualScopingConfigurations {
 
   final TfArg<List<String>>? visualIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': scope.toTfJson(),
     'sheet_id': sheetId.toTfJson(),
@@ -1439,6 +1496,7 @@ final class QuicksightAnalysisParameterDeclarations {
   final QuicksightAnalysisStringParameterDeclaration?
   stringParameterDeclaration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_parameter_declaration': ?dateTimeParameterDeclaration?.encode(),
     'decimal_parameter_declaration': ?decimalParameterDeclaration?.encode(),
@@ -1468,6 +1526,7 @@ final class QuicksightAnalysisDateTimeParameterDeclaration {
   final QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'time_granularity': ?timeGranularity?.toTfJson(),
@@ -1492,6 +1551,7 @@ final class QuicksightAnalysisDateTimeParameterDeclarationDefaultValues {
 
   final QuicksightAnalysisRollingDate? rollingDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1516,6 +1576,7 @@ final class QuicksightAnalysisDynamicValue {
 
   final QuicksightAnalysisColumn? userNameColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value_column': defaultValueColumn.encode(),
     'group_name_column': ?groupNameColumn?.encode(),
@@ -1537,6 +1598,7 @@ final class QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset {
 
   final TfArg<String>? valueWhenUnsetOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_value': ?customValue?.toTfJson(),
     'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
@@ -1565,6 +1627,7 @@ final class QuicksightAnalysisDecimalParameterDeclaration {
   final QuicksightAnalysisDecimalParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
@@ -1587,6 +1650,7 @@ final class QuicksightAnalysisDecimalParameterDeclarationDefaultValues {
 
   final QuicksightAnalysisDynamicValue? dynamicValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1607,6 +1671,7 @@ final class QuicksightAnalysisDecimalParameterDeclarationValuesWhenUnset {
 
   final TfArg<String>? valueWhenUnsetOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_value': ?customValue?.toTfJson(),
     'value_when_unset_option': ?valueWhenUnsetOption?.toTfJson(),
@@ -1634,6 +1699,7 @@ final class QuicksightAnalysisStringParameterDeclaration {
   final QuicksightAnalysisDateTimeParameterDeclarationValuesWhenUnset?
   valuesWhenUnset;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value_type': parameterValueType.toTfJson(),
@@ -1655,6 +1721,7 @@ final class QuicksightAnalysisStringParameterDeclarationDefaultValues {
 
   final QuicksightAnalysisDynamicValue? dynamicValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_values': ?staticValues?.toTfJson(),
     'dynamic_value': ?dynamicValue?.encode(),
@@ -1701,6 +1768,7 @@ final class QuicksightAnalysisSheets {
 
   final List<QuicksightAnalysisVisuals>? visuals;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -1747,6 +1815,7 @@ final class QuicksightAnalysisFilterControls {
 
   final QuicksightAnalysisFilterControlsTextField? textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
     'dropdown': ?dropdown?.encode(),
@@ -1780,6 +1849,7 @@ final class QuicksightAnalysisFilterControlsDateTimePicker {
 
   final QuicksightAnalysisDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -1803,6 +1873,7 @@ final class QuicksightAnalysisDateTimePickerDisplayOptions {
 
   final QuicksightAnalysisTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_format': ?dateTimeFormat?.toTfJson(),
     'title_options': ?titleOptions?.encode(),
@@ -1826,6 +1897,7 @@ final class QuicksightAnalysisTitleOptions {
 
   final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -1856,6 +1928,7 @@ final class QuicksightAnalysisFontConfiguration {
 
   final QuicksightAnalysisFontWeight? fontWeight;
 
+  @internal
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
     'font_decoration': ?fontDecoration?.toTfJson(),
@@ -1874,6 +1947,7 @@ final class QuicksightAnalysisFontSize {
 
   final TfArg<String>? relative;
 
+  @internal
   Map<String, Object?> encode() => {'relative': ?relative?.toTfJson()};
 }
 
@@ -1886,6 +1960,7 @@ final class QuicksightAnalysisFontWeight {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -1918,6 +1993,7 @@ final class QuicksightAnalysisFilterControlsDropdown {
 
   final QuicksightAnalysisFilterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -1938,6 +2014,7 @@ final class QuicksightAnalysisCascadingControlConfiguration {
 
   final List<QuicksightAnalysisSourceControls>? sourceControls;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sourceControls != null)
       'source_controls': [for (final e in sourceControls!) e.encode()],
@@ -1958,6 +2035,7 @@ final class QuicksightAnalysisSourceControls {
 
   final QuicksightAnalysisColumn columnToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_sheet_control_id': ?sourceSheetControlId?.toTfJson(),
     'column_to_match': columnToMatch.encode(),
@@ -1978,6 +2056,7 @@ final class QuicksightAnalysisDropdownDisplayOptions {
 
   final QuicksightAnalysisTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'select_all_options': ?selectAllOptions?.encode(),
     'title_options': ?titleOptions?.encode(),
@@ -1993,6 +2072,7 @@ final class QuicksightAnalysisSelectAllOptions {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {'visibility': ?visibility?.toTfJson()};
 }
 
@@ -2005,6 +2085,7 @@ final class QuicksightAnalysisFilterControlsSelectableValues {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {'values': ?values?.toTfJson()};
 }
 
@@ -2037,6 +2118,7 @@ final class QuicksightAnalysisFilterControlsList {
 
   final QuicksightAnalysisFilterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2065,6 +2147,7 @@ final class QuicksightAnalysisListDisplayOptions {
 
   final QuicksightAnalysisTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'search_options': ?searchOptions?.encode(),
     'select_all_options': ?selectAllOptions?.encode(),
@@ -2091,6 +2174,7 @@ final class QuicksightAnalysisRelativeDateTime {
 
   final QuicksightAnalysisDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2130,6 +2214,7 @@ final class QuicksightAnalysisFilterControlsSlider {
 
   final QuicksightAnalysisSliderDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'maximum_value': maximumValue.toTfJson(),
@@ -2151,6 +2236,7 @@ final class QuicksightAnalysisSliderDisplayOptions {
 
   final QuicksightAnalysisTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {'title_options': ?titleOptions?.encode()};
 }
 
@@ -2176,6 +2262,7 @@ final class QuicksightAnalysisFilterControlsTextArea {
 
   final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'filter_control_id': filterControlId.toTfJson(),
@@ -2199,6 +2286,7 @@ final class QuicksightAnalysisTextAreaDisplayOptions {
 
   final QuicksightAnalysisTitleOptions? titleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'placeholder_options': ?placeholderOptions?.encode(),
     'title_options': ?titleOptions?.encode(),
@@ -2224,6 +2312,7 @@ final class QuicksightAnalysisFilterControlsTextField {
 
   final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_control_id': filterControlId.toTfJson(),
     'source_filter_id': sourceFilterId.toTfJson(),
@@ -2240,6 +2329,7 @@ final class QuicksightAnalysisLayouts {
 
   final QuicksightAnalysisLayoutsConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
 
@@ -2259,6 +2349,7 @@ final class QuicksightAnalysisLayoutsConfiguration {
 
   final QuicksightAnalysisSectionBasedLayout? sectionBasedLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form_layout': ?freeFormLayout?.encode(),
     'grid_layout': ?gridLayout?.encode(),
@@ -2279,6 +2370,7 @@ final class QuicksightAnalysisFreeFormLayout {
 
   final List<QuicksightAnalysisFreeFormLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
@@ -2329,6 +2421,7 @@ final class QuicksightAnalysisFreeFormLayoutElements {
 
   final QuicksightAnalysisBackgroundStyle? selectedBorderStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'element_id': elementId.toTfJson(),
     'element_type': elementType.toTfJson(),
@@ -2357,6 +2450,7 @@ final class QuicksightAnalysisBackgroundStyle {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -2377,6 +2471,7 @@ final class QuicksightAnalysisRenderingRules {
 
   final QuicksightAnalysisSelectAllOptions configurationOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'configuration_overrides': configurationOverrides.encode(),
@@ -2397,6 +2492,7 @@ final class QuicksightAnalysisGridLayout {
 
   final List<QuicksightAnalysisGridLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'canvas_size_options': ?canvasSizeOptions?.encode(),
     'elements': [for (final e in elements) e.encode()],
@@ -2429,6 +2525,7 @@ final class QuicksightAnalysisGridLayoutElements {
 
   final TfArg<num> rowSpan;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_index': ?columnIndex?.toTfJson(),
     'column_span': columnSpan.toTfJson(),
@@ -2458,6 +2555,7 @@ final class QuicksightAnalysisSectionBasedLayout {
 
   final QuicksightAnalysisFooterSections headerSections;
 
+  @internal
   Map<String, Object?> encode() => {
     'body_sections': [for (final e in bodySections) e.encode()],
     'canvas_size_options': ?canvasSizeOptions?.encode(),
@@ -2485,6 +2583,7 @@ final class QuicksightAnalysisBodySections {
 
   final QuicksightAnalysisStyle? style;
 
+  @internal
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'content': content.encode(),
@@ -2501,6 +2600,7 @@ final class QuicksightAnalysisContent {
 
   final QuicksightAnalysisLayout? layout;
 
+  @internal
   Map<String, Object?> encode() => {'layout': ?layout?.encode()};
 }
 
@@ -2513,6 +2613,7 @@ final class QuicksightAnalysisLayout {
 
   final QuicksightAnalysisLayoutFreeFormLayout freeFormLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'free_form_layout': freeFormLayout.encode(),
   };
@@ -2527,6 +2628,7 @@ final class QuicksightAnalysisLayoutFreeFormLayout {
 
   final List<QuicksightAnalysisFreeFormLayoutElements> elements;
 
+  @internal
   Map<String, Object?> encode() => {
     'elements': [for (final e in elements) e.encode()],
   };
@@ -2540,6 +2642,7 @@ final class QuicksightAnalysisPageBreakConfiguration {
 
   final QuicksightAnalysisAfter? after;
 
+  @internal
   Map<String, Object?> encode() => {'after': ?after?.encode()};
 }
 
@@ -2551,6 +2654,7 @@ final class QuicksightAnalysisAfter {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -2565,6 +2669,7 @@ final class QuicksightAnalysisStyle {
 
   final QuicksightAnalysisPaperMargin? padding;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'padding': ?padding?.encode(),
@@ -2588,6 +2693,7 @@ final class QuicksightAnalysisFooterSections {
 
   final QuicksightAnalysisStyle? style;
 
+  @internal
   Map<String, Object?> encode() => {
     'section_id': sectionId.toTfJson(),
     'layout': ?layout?.encode(),
@@ -2620,6 +2726,7 @@ final class QuicksightAnalysisParameterControls {
 
   final QuicksightAnalysisParameterControlsTextField? textField;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_picker': ?dateTimePicker?.encode(),
     'dropdown': ?dropdown?.encode(),
@@ -2649,6 +2756,7 @@ final class QuicksightAnalysisParameterControlsDateTimePicker {
 
   final QuicksightAnalysisDateTimePickerDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2686,6 +2794,7 @@ final class QuicksightAnalysisParameterControlsDropdown {
 
   final QuicksightAnalysisParameterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2711,6 +2820,7 @@ final class QuicksightAnalysisParameterControlsSelectableValues {
 
   final QuicksightAnalysisColumn? linkToDataSetColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'values': ?values?.toTfJson(),
     'link_to_data_set_column': ?linkToDataSetColumn?.encode(),
@@ -2746,6 +2856,7 @@ final class QuicksightAnalysisParameterControlsList {
 
   final QuicksightAnalysisParameterControlsSelectableValues? selectableValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2785,6 +2896,7 @@ final class QuicksightAnalysisParameterControlsSlider {
 
   final QuicksightAnalysisSliderDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_value': maximumValue.toTfJson(),
     'minimum_value': minimumValue.toTfJson(),
@@ -2818,6 +2930,7 @@ final class QuicksightAnalysisParameterControlsTextArea {
 
   final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'parameter_control_id': parameterControlId.toTfJson(),
@@ -2846,6 +2959,7 @@ final class QuicksightAnalysisParameterControlsTextField {
 
   final QuicksightAnalysisTextAreaDisplayOptions? displayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_control_id': parameterControlId.toTfJson(),
     'source_parameter_name': sourceParameterName.toTfJson(),
@@ -2862,6 +2976,7 @@ final class QuicksightAnalysisSheetControlLayouts {
 
   final QuicksightAnalysisSheetControlLayoutsConfiguration configuration;
 
+  @internal
   Map<String, Object?> encode() => {'configuration': configuration.encode()};
 }
 
@@ -2873,6 +2988,7 @@ final class QuicksightAnalysisSheetControlLayoutsConfiguration {
 
   final QuicksightAnalysisGridLayout? gridLayout;
 
+  @internal
   Map<String, Object?> encode() => {'grid_layout': ?gridLayout?.encode()};
 }
 
@@ -2889,6 +3005,7 @@ final class QuicksightAnalysisTextBoxes {
 
   final TfArg<String> sheetTextBoxId;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'sheet_text_box_id': sheetTextBoxId.toTfJson(),
@@ -2971,6 +3088,7 @@ final class QuicksightAnalysisVisuals {
 
   final QuicksightAnalysisWordCloudVisual? wordCloudVisual;
 
+  @internal
   Map<String, Object?> encode() => {
     'bar_chart_visual': ?barChartVisual?.encode(),
     'box_plot_visual': ?boxPlotVisual?.encode(),
@@ -3023,6 +3141,7 @@ final class QuicksightAnalysisBarChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -3057,6 +3176,7 @@ final class QuicksightAnalysisActions {
 
   final List<QuicksightAnalysisActionOperations> actionOperations;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_action_id': customActionId.toTfJson(),
     'name': name.toTfJson(),
@@ -3086,6 +3206,7 @@ final class QuicksightAnalysisActionOperations {
 
   final QuicksightAnalysisUrlOperation? urlOperation;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_operation': ?filterOperation?.encode(),
     'navigation_operation': ?navigationOperation?.encode(),
@@ -3109,6 +3230,7 @@ final class QuicksightAnalysisFilterOperation {
 
   final QuicksightAnalysisTargetVisualsConfiguration targetVisualsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_fields_configuration': selectedFieldsConfiguration.encode(),
     'target_visuals_configuration': targetVisualsConfiguration.encode(),
@@ -3129,6 +3251,7 @@ final class QuicksightAnalysisSelectedFieldsConfiguration {
 
   final TfArg<List<String>>? selectedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_field_option': ?selectedFieldOption?.toTfJson(),
     'selected_fields': ?selectedFields?.toTfJson(),
@@ -3147,6 +3270,7 @@ final class QuicksightAnalysisTargetVisualsConfiguration {
   final QuicksightAnalysisSameSheetTargetVisualConfiguration?
   sameSheetTargetVisualConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'same_sheet_target_visual_configuration':
         ?sameSheetTargetVisualConfiguration?.encode(),
@@ -3167,6 +3291,7 @@ final class QuicksightAnalysisSameSheetTargetVisualConfiguration {
 
   final TfArg<List<String>>? targetVisuals;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_visual_option': ?targetVisualOption?.toTfJson(),
     'target_visuals': ?targetVisuals?.toTfJson(),
@@ -3185,6 +3310,7 @@ final class QuicksightAnalysisNavigationOperation {
   final QuicksightAnalysisLocalNavigationConfiguration?
   localNavigationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_navigation_configuration': ?localNavigationConfiguration?.encode(),
   };
@@ -3201,6 +3327,7 @@ final class QuicksightAnalysisLocalNavigationConfiguration {
 
   final TfArg<String> targetSheetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_sheet_id': targetSheetId.toTfJson(),
   };
@@ -3218,6 +3345,7 @@ final class QuicksightAnalysisSetParametersOperation {
   final List<QuicksightAnalysisParameterValueConfigurations>
   parameterValueConfigurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_value_configurations': [
       for (final e in parameterValueConfigurations) e.encode(),
@@ -3239,6 +3367,7 @@ final class QuicksightAnalysisParameterValueConfigurations {
 
   final QuicksightAnalysisValue value;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_parameter_name': destinationParameterName.toTfJson(),
     'value': value.encode(),
@@ -3265,6 +3394,7 @@ final class QuicksightAnalysisValue {
 
   final QuicksightAnalysisCustomValuesConfiguration? customValuesConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'select_all_value_options': ?selectAllValueOptions?.toTfJson(),
     'source_field': ?sourceField?.toTfJson(),
@@ -3287,6 +3417,7 @@ final class QuicksightAnalysisCustomValuesConfiguration {
 
   final QuicksightAnalysisCustomValues customValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_null_value': ?includeNullValue?.toTfJson(),
     'custom_values': customValues.encode(),
@@ -3313,6 +3444,7 @@ final class QuicksightAnalysisCustomValues {
 
   final TfArg<List<String>>? stringValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_values': ?dateTimeValues?.toTfJson(),
     'decimal_values': ?decimalValues?.toTfJson(),
@@ -3335,6 +3467,7 @@ final class QuicksightAnalysisUrlOperation {
 
   final TfArg<String> urlTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'url_target': urlTarget.toTfJson(),
     'url_template': urlTemplate.toTfJson(),
@@ -3397,6 +3530,7 @@ final class QuicksightAnalysisBarChartVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
     'orientation': ?orientation?.toTfJson(),
@@ -3447,6 +3581,7 @@ final class QuicksightAnalysisCategoryAxis {
 
   final QuicksightAnalysisTickLabelOptions? tickLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_line_visibility': ?axisLineVisibility?.toTfJson(),
     'axis_offset': ?axisOffset?.toTfJson(),
@@ -3471,6 +3606,7 @@ final class QuicksightAnalysisDataOptions {
 
   final QuicksightAnalysisNumericAxisOptions? numericAxisOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_axis_options': ?dateAxisOptions?.encode(),
     'numeric_axis_options': ?numericAxisOptions?.encode(),
@@ -3486,6 +3622,7 @@ final class QuicksightAnalysisDateAxisOptions {
 
   final TfArg<String>? missingDateVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'missing_date_visibility': ?missingDateVisibility?.toTfJson(),
   };
@@ -3502,6 +3639,7 @@ final class QuicksightAnalysisNumericAxisOptions {
 
   final QuicksightAnalysisScale? scale;
 
+  @internal
   Map<String, Object?> encode() => {
     'range': ?range?.encode(),
     'scale': ?scale?.encode(),
@@ -3522,6 +3660,7 @@ final class QuicksightAnalysisNumericAxisOptionsRange {
 
   final QuicksightAnalysisMinMax? minMax;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_driven': ?dataDriven?.encode(),
     'min_max': ?minMax?.encode(),
@@ -3535,6 +3674,7 @@ final class QuicksightAnalysisNumericAxisOptionsRange {
 final class QuicksightAnalysisDataDriven {
   const QuicksightAnalysisDataDriven();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3549,6 +3689,7 @@ final class QuicksightAnalysisMinMax {
 
   final TfArg<num>? minimum;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
     'minimum': ?minimum?.toTfJson(),
@@ -3566,6 +3707,7 @@ final class QuicksightAnalysisScale {
 
   final QuicksightAnalysisLogarithmic? logarithmic;
 
+  @internal
   Map<String, Object?> encode() => {
     'linear': ?linear?.encode(),
     'logarithmic': ?logarithmic?.encode(),
@@ -3583,6 +3725,7 @@ final class QuicksightAnalysisLinear {
 
   final TfArg<num>? stepSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'step_count': ?stepCount?.toTfJson(),
     'step_size': ?stepSize?.toTfJson(),
@@ -3598,6 +3741,7 @@ final class QuicksightAnalysisLogarithmic {
 
   final TfArg<num>? base;
 
+  @internal
   Map<String, Object?> encode() => {'base': ?base?.toTfJson()};
 }
 
@@ -3615,6 +3759,7 @@ final class QuicksightAnalysisScrollbarOptions {
 
   final QuicksightAnalysisVisibleRange? visibleRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     'visible_range': ?visibleRange?.encode(),
@@ -3630,6 +3775,7 @@ final class QuicksightAnalysisVisibleRange {
 
   final QuicksightAnalysisPercentRange? percentRange;
 
+  @internal
   Map<String, Object?> encode() => {'percent_range': ?percentRange?.encode()};
 }
 
@@ -3644,6 +3790,7 @@ final class QuicksightAnalysisPercentRange {
 
   final TfArg<num>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -3664,6 +3811,7 @@ final class QuicksightAnalysisTickLabelOptions {
 
   final QuicksightAnalysisTitleOptions? labelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'rotation_angle': ?rotationAngle?.toTfJson(),
     'label_options': ?labelOptions?.encode(),
@@ -3687,6 +3835,7 @@ final class QuicksightAnalysisCategoryLabelOptions {
 
   final QuicksightAnalysisAxisLabelOptions? axisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'sort_icon_visibility': ?sortIconVisibility?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -3711,6 +3860,7 @@ final class QuicksightAnalysisAxisLabelOptions {
 
   final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'apply_to': ?applyTo?.encode(),
@@ -3732,6 +3882,7 @@ final class QuicksightAnalysisApplyTo {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
@@ -3752,6 +3903,7 @@ final class QuicksightAnalysisContributionAnalysisDefaults {
 
   final List<QuicksightAnalysisColumn> contributorDimensions;
 
+  @internal
   Map<String, Object?> encode() => {
     'measure_field_id': measureFieldId.toTfJson(),
     'contributor_dimensions': [
@@ -3795,6 +3947,7 @@ final class QuicksightAnalysisDataLabels {
 
   final QuicksightAnalysisFontConfiguration? labelFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
     'label_color': ?labelColor?.toTfJson(),
@@ -3832,6 +3985,7 @@ final class QuicksightAnalysisDataLabelTypes {
 
   final QuicksightAnalysisSelectAllOptions? rangeEndsLabelType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_path_label_type': ?dataPathLabelType?.encode(),
     'field_label_type': ?fieldLabelType?.encode(),
@@ -3858,6 +4012,7 @@ final class QuicksightAnalysisDataPathLabelType {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'field_value': ?fieldValue?.toTfJson(),
@@ -3876,6 +4031,7 @@ final class QuicksightAnalysisFieldLabelType {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': ?fieldId?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -3893,6 +4049,7 @@ final class QuicksightAnalysisBarChartVisualFieldWells {
   final QuicksightAnalysisBarChartAggregatedFieldWells?
   barChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'bar_chart_aggregated_field_wells': ?barChartAggregatedFieldWells?.encode(),
   };
@@ -3918,6 +4075,7 @@ final class QuicksightAnalysisBarChartAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
@@ -3943,6 +4101,7 @@ final class QuicksightAnalysisTrendGroups {
 
   final QuicksightAnalysisNumericalDimensionField? numericalDimensionField;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_dimension_field': ?categoricalDimensionField?.encode(),
     'date_dimension_field': ?dateDimensionField?.encode(),
@@ -3970,6 +4129,7 @@ final class QuicksightAnalysisCategoricalDimensionField {
 
   final QuicksightAnalysisStringFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'hierarchy_id': ?hierarchyId?.toTfJson(),
@@ -4001,6 +4161,7 @@ final class QuicksightAnalysisDateDimensionField {
 
   final QuicksightAnalysisDateTimeFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_granularity': ?dateGranularity?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4030,6 +4191,7 @@ final class QuicksightAnalysisNumericalDimensionField {
 
   final QuicksightAnalysisNumberFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'hierarchy_id': ?hierarchyId?.toTfJson(),
@@ -4058,6 +4220,7 @@ final class QuicksightAnalysisTargetValues {
 
   final QuicksightAnalysisNumericalMeasureField? numericalMeasureField;
 
+  @internal
   Map<String, Object?> encode() => {
     'calculated_measure_field': ?calculatedMeasureField?.encode(),
     'categorical_measure_field': ?categoricalMeasureField?.encode(),
@@ -4080,6 +4243,7 @@ final class QuicksightAnalysisCalculatedMeasureField {
 
   final TfArg<String> fieldId;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4106,6 +4270,7 @@ final class QuicksightAnalysisCategoricalMeasureField {
 
   final QuicksightAnalysisStringFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4134,6 +4299,7 @@ final class QuicksightAnalysisDateMeasureField {
 
   final QuicksightAnalysisDateTimeFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_function': ?aggregationFunction?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4162,6 +4328,7 @@ final class QuicksightAnalysisNumericalMeasureField {
 
   final QuicksightAnalysisNumberFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'aggregation_function': ?aggregationFunction?.encode(),
@@ -4193,6 +4360,7 @@ final class QuicksightAnalysisLegend {
 
   final QuicksightAnalysisTitleOptions? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'position': ?position?.toTfJson(),
@@ -4222,6 +4390,7 @@ final class QuicksightAnalysisReferenceLines {
 
   final QuicksightAnalysisStyleConfiguration? styleConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'status': ?status?.toTfJson(),
     'data_configuration': dataConfiguration.encode(),
@@ -4247,6 +4416,7 @@ final class QuicksightAnalysisDataConfiguration {
 
   final QuicksightAnalysisStaticConfiguration? staticConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
     'dynamic_configuration': ?dynamicConfiguration?.encode(),
@@ -4271,6 +4441,7 @@ final class QuicksightAnalysisDynamicConfiguration {
 
   final QuicksightAnalysisAggregationFunction measureAggregationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'calculation': calculation.encode(),
     'column': column.encode(),
@@ -4287,6 +4458,7 @@ final class QuicksightAnalysisStaticConfiguration {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -4316,6 +4488,7 @@ final class QuicksightAnalysisLabelConfiguration {
 
   final QuicksightAnalysisValueLabelConfiguration? valueLabelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'font_color': ?fontColor?.toTfJson(),
     'horizontal_position': ?horizontalPosition?.toTfJson(),
@@ -4335,6 +4508,7 @@ final class QuicksightAnalysisCustomLabelConfiguration {
 
   final TfArg<String> customLabel;
 
+  @internal
   Map<String, Object?> encode() => {'custom_label': customLabel.toTfJson()};
 }
 
@@ -4352,6 +4526,7 @@ final class QuicksightAnalysisValueLabelConfiguration {
 
   final QuicksightAnalysisNumericFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'relative_position': ?relativePosition?.toTfJson(),
     'format_configuration': ?formatConfiguration?.encode(),
@@ -4369,6 +4544,7 @@ final class QuicksightAnalysisStyleConfiguration {
 
   final TfArg<String>? pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'pattern': ?pattern?.toTfJson(),
@@ -4392,6 +4568,7 @@ final class QuicksightAnalysisSmallMultiplesOptions {
 
   final QuicksightAnalysisPanelConfiguration? panelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_visible_columns': ?maxVisibleColumns?.toTfJson(),
     'max_visible_rows': ?maxVisibleRows?.toTfJson(),
@@ -4434,6 +4611,7 @@ final class QuicksightAnalysisPanelConfiguration {
 
   final QuicksightAnalysisTitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'background_visibility': ?backgroundVisibility?.toTfJson(),
@@ -4464,6 +4642,7 @@ final class QuicksightAnalysisTitle {
 
   final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'horizontal_text_alignment': ?horizontalTextAlignment?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -4496,6 +4675,7 @@ final class QuicksightAnalysisBarChartVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -4524,6 +4704,7 @@ final class QuicksightAnalysisCategoryItemsLimit {
 
   final TfArg<String> otherCategories;
 
+  @internal
   Map<String, Object?> encode() => {
     'items_limit': ?itemsLimit?.toTfJson(),
     'other_categories': otherCategories.toTfJson(),
@@ -4541,6 +4722,7 @@ final class QuicksightAnalysisCategorySort {
 
   final QuicksightAnalysisFieldSort? fieldSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_sort': ?columnSort?.encode(),
     'field_sort': ?fieldSort?.encode(),
@@ -4564,6 +4746,7 @@ final class QuicksightAnalysisColumnSort {
 
   final QuicksightAnalysisColumn sortBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'aggregation_function': ?aggregationFunction?.encode(),
@@ -4585,6 +4768,7 @@ final class QuicksightAnalysisFieldSort {
 
   final TfArg<String> fieldId;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -4608,6 +4792,7 @@ final class QuicksightAnalysisTooltip {
 
   final QuicksightAnalysisFieldBaseTooltip? fieldBaseTooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_tooltip_type': ?selectedTooltipType?.toTfJson(),
     'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
@@ -4632,6 +4817,7 @@ final class QuicksightAnalysisFieldBaseTooltip {
 
   final List<QuicksightAnalysisTooltipFields>? tooltipFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_visibility': ?aggregationVisibility?.toTfJson(),
     'tooltip_title_type': ?tooltipTitleType?.toTfJson(),
@@ -4654,6 +4840,7 @@ final class QuicksightAnalysisTooltipFields {
 
   final QuicksightAnalysisFieldTooltipItem? fieldTooltipItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_tooltip_item': ?columnTooltipItem?.encode(),
     'field_tooltip_item': ?fieldTooltipItem?.encode(),
@@ -4680,6 +4867,7 @@ final class QuicksightAnalysisColumnTooltipItem {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'label': ?label?.toTfJson(),
     'visibility': ?visibility?.toTfJson(),
@@ -4705,6 +4893,7 @@ final class QuicksightAnalysisFieldTooltipItem {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'label': ?label?.toTfJson(),
@@ -4723,6 +4912,7 @@ final class QuicksightAnalysisVisualPalette {
 
   final List<QuicksightAnalysisColorMap>? colorMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'chart_color': ?chartColor?.toTfJson(),
     if (colorMap != null) 'color_map': [for (final e in colorMap!) e.encode()],
@@ -4746,6 +4936,7 @@ final class QuicksightAnalysisColorMap {
 
   final QuicksightAnalysisElement element;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': color.toTfJson(),
     'time_granularity': ?timeGranularity?.toTfJson(),
@@ -4767,6 +4958,7 @@ final class QuicksightAnalysisElement {
 
   final TfArg<String> fieldValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'field_value': fieldValue.toTfJson(),
@@ -4790,6 +4982,7 @@ final class QuicksightAnalysisColumnHierarchies {
 
   final QuicksightAnalysisExplicitHierarchy? predefinedHierarchy;
 
+  @internal
   Map<String, Object?> encode() => {
     'date_time_hierarchy': ?dateTimeHierarchy?.encode(),
     'explicit_hierarchy': ?explicitHierarchy?.encode(),
@@ -4811,6 +5004,7 @@ final class QuicksightAnalysisDateTimeHierarchy {
 
   final List<QuicksightAnalysisDrillDownFilters>? drillDownFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
     if (drillDownFilters != null)
@@ -4836,6 +5030,7 @@ final class QuicksightAnalysisDrillDownFilters {
 
   final QuicksightAnalysisDrillDownFiltersTimeRangeFilter? timeRangeFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_filter': ?categoryFilter?.encode(),
     'numeric_equality_filter': ?numericEqualityFilter?.encode(),
@@ -4857,6 +5052,7 @@ final class QuicksightAnalysisDrillDownFiltersCategoryFilter {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_values': categoryValues.toTfJson(),
     'column': column.encode(),
@@ -4877,6 +5073,7 @@ final class QuicksightAnalysisDrillDownFiltersNumericEqualityFilter {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': value.toTfJson(),
     'column': column.encode(),
@@ -4903,6 +5100,7 @@ final class QuicksightAnalysisDrillDownFiltersTimeRangeFilter {
 
   final QuicksightAnalysisColumn column;
 
+  @internal
   Map<String, Object?> encode() => {
     'range_maximum': rangeMaximum.toTfJson(),
     'range_minimum': rangeMinimum.toTfJson(),
@@ -4928,6 +5126,7 @@ final class QuicksightAnalysisExplicitHierarchy {
 
   final List<QuicksightAnalysisDrillDownFilters>? drillDownFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'hierarchy_id': hierarchyId.toTfJson(),
     'columns': [for (final e in columns) e.encode()],
@@ -4947,6 +5146,7 @@ final class QuicksightAnalysisSubtitle {
 
   final QuicksightAnalysisFormatText? formatText;
 
+  @internal
   Map<String, Object?> encode() => {
     'visibility': ?visibility?.toTfJson(),
     'format_text': ?formatText?.encode(),
@@ -4964,6 +5164,7 @@ final class QuicksightAnalysisFormatText {
 
   final TfArg<String>? richText;
 
+  @internal
   Map<String, Object?> encode() => {
     'plain_text': ?plainText?.toTfJson(),
     'rich_text': ?richText?.toTfJson(),
@@ -4995,6 +5196,7 @@ final class QuicksightAnalysisBoxPlotVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5046,6 +5248,7 @@ final class QuicksightAnalysisBoxPlotVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'box_plot_options': ?boxPlotOptions?.encode(),
     'category_axis': ?categoryAxis?.encode(),
@@ -5078,6 +5281,7 @@ final class QuicksightAnalysisBoxPlotOptions {
 
   final QuicksightAnalysisStyleOptions? styleOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_data_points_visibility': ?allDataPointsVisibility?.toTfJson(),
     'outlier_visibility': ?outlierVisibility?.toTfJson(),
@@ -5093,6 +5297,7 @@ final class QuicksightAnalysisStyleOptions {
 
   final TfArg<String>? fillStyle;
 
+  @internal
   Map<String, Object?> encode() => {'fill_style': ?fillStyle?.toTfJson()};
 }
 
@@ -5107,6 +5312,7 @@ final class QuicksightAnalysisBoxPlotVisualFieldWells {
   final QuicksightAnalysisBoxPlotAggregatedFieldWells?
   boxPlotAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'box_plot_aggregated_field_wells': ?boxPlotAggregatedFieldWells?.encode(),
   };
@@ -5125,6 +5331,7 @@ final class QuicksightAnalysisBoxPlotAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_by': ?groupBy?.encode(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -5144,6 +5351,7 @@ final class QuicksightAnalysisBoxPlotVisualSortConfiguration {
 
   final QuicksightAnalysisPaginationConfiguration? paginationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
@@ -5165,6 +5373,7 @@ final class QuicksightAnalysisPaginationConfiguration {
 
   final TfArg<num> pageSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'page_number': pageNumber.toTfJson(),
     'page_size': pageSize.toTfJson(),
@@ -5197,6 +5406,7 @@ final class QuicksightAnalysisComboChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5263,6 +5473,7 @@ final class QuicksightAnalysisComboChartVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'bars_arrangement': ?barsArrangement?.toTfJson(),
     'bar_data_labels': ?barDataLabels?.encode(),
@@ -5295,6 +5506,7 @@ final class QuicksightAnalysisComboChartVisualFieldWells {
   final QuicksightAnalysisComboChartAggregatedFieldWells?
   comboChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'combo_chart_aggregated_field_wells': ?comboChartAggregatedFieldWells
         ?.encode(),
@@ -5320,6 +5532,7 @@ final class QuicksightAnalysisComboChartAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? lineValues;
 
+  @internal
   Map<String, Object?> encode() => {
     if (barValues != null)
       'bar_values': [for (final e in barValues!) e.encode()],
@@ -5350,6 +5563,7 @@ final class QuicksightAnalysisComboChartVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? colorSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -5386,6 +5600,7 @@ final class QuicksightAnalysisCustomContentVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -5412,6 +5627,7 @@ final class QuicksightAnalysisCustomContentVisualChartConfiguration {
 
   final TfArg<String>? imageScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': ?contentType?.toTfJson(),
     'content_url': ?contentUrl?.toTfJson(),
@@ -5435,6 +5651,7 @@ final class QuicksightAnalysisEmptyVisual {
 
   final List<QuicksightAnalysisActions>? actions;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -5471,6 +5688,7 @@ final class QuicksightAnalysisFilledMapVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5508,6 +5726,7 @@ final class QuicksightAnalysisFilledMapVisualChartConfiguration {
 
   final QuicksightAnalysisWindowOptions? windowOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'legend': ?legend?.encode(),
@@ -5529,6 +5748,7 @@ final class QuicksightAnalysisFilledMapVisualFieldWells {
   final QuicksightAnalysisFilledMapAggregatedFieldWells?
   filledMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'filled_map_aggregated_field_wells': ?filledMapAggregatedFieldWells
         ?.encode(),
@@ -5548,6 +5768,7 @@ final class QuicksightAnalysisFilledMapAggregatedFieldWells {
 
   final QuicksightAnalysisTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'geospatial': ?geospatial?.encode(),
     'values': ?values?.encode(),
@@ -5563,6 +5784,7 @@ final class QuicksightAnalysisMapStyleOptions {
 
   final TfArg<String>? baseMapStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_map_style': ?baseMapStyle?.toTfJson(),
   };
@@ -5576,6 +5798,7 @@ final class QuicksightAnalysisFilledMapVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     if (categorySort != null)
       'category_sort': [for (final e in categorySort!) e.encode()],
@@ -5593,6 +5816,7 @@ final class QuicksightAnalysisWindowOptions {
 
   final QuicksightAnalysisBounds? bounds;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_zoom_mode': ?mapZoomMode?.toTfJson(),
     'bounds': ?bounds?.encode(),
@@ -5619,6 +5843,7 @@ final class QuicksightAnalysisBounds {
 
   final TfArg<num> west;
 
+  @internal
   Map<String, Object?> encode() => {
     'east': east.toTfJson(),
     'north': north.toTfJson(),
@@ -5638,6 +5863,7 @@ final class QuicksightAnalysisFilledMapVisualConditionalFormatting {
   final List<QuicksightAnalysisFilledMapVisualConditionalFormattingOptions>
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'conditional_formatting_options': [
       for (final e in conditionalFormattingOptions) e.encode(),
@@ -5655,6 +5881,7 @@ final class QuicksightAnalysisFilledMapVisualConditionalFormattingOptions {
 
   final QuicksightAnalysisShape shape;
 
+  @internal
   Map<String, Object?> encode() => {'shape': shape.encode()};
 }
 
@@ -5668,6 +5895,7 @@ final class QuicksightAnalysisShape {
 
   final QuicksightAnalysisFormat? format;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'format': ?format?.encode(),
@@ -5682,6 +5910,7 @@ final class QuicksightAnalysisFormat {
 
   final QuicksightAnalysisForegroundColor backgroundColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
   };
@@ -5698,6 +5927,7 @@ final class QuicksightAnalysisForegroundColor {
 
   final QuicksightAnalysisSolid? solid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gradient': ?gradient?.encode(),
     'solid': ?solid?.encode(),
@@ -5718,6 +5948,7 @@ final class QuicksightAnalysisGradient {
 
   final QuicksightAnalysisColor color;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'color': color.encode(),
@@ -5733,6 +5964,7 @@ final class QuicksightAnalysisColor {
 
   final List<QuicksightAnalysisStops>? stops;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stops != null) 'stops': [for (final e in stops!) e.encode()],
   };
@@ -5755,6 +5987,7 @@ final class QuicksightAnalysisStops {
 
   final TfArg<num> gradientOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'data_value': ?dataValue?.toTfJson(),
@@ -5773,6 +6006,7 @@ final class QuicksightAnalysisSolid {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -5805,6 +6039,7 @@ final class QuicksightAnalysisFunnelChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -5844,6 +6079,7 @@ final class QuicksightAnalysisFunnelChartVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     'data_label_options': ?dataLabelOptions?.encode(),
@@ -5883,6 +6119,7 @@ final class QuicksightAnalysisDataLabelOptions {
 
   final QuicksightAnalysisFontConfiguration? labelFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_visibility': ?categoryLabelVisibility?.toTfJson(),
     'label_color': ?labelColor?.toTfJson(),
@@ -5905,6 +6142,7 @@ final class QuicksightAnalysisFunnelChartVisualFieldWells {
   final QuicksightAnalysisFunnelChartAggregatedFieldWells?
   funnelChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'funnel_chart_aggregated_field_wells': ?funnelChartAggregatedFieldWells
         ?.encode(),
@@ -5924,6 +6162,7 @@ final class QuicksightAnalysisFunnelChartAggregatedFieldWells {
 
   final QuicksightAnalysisTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
     'values': ?values?.encode(),
@@ -5944,6 +6183,7 @@ final class QuicksightAnalysisFunnelChartVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -5978,6 +6218,7 @@ final class QuicksightAnalysisGaugeChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6010,6 +6251,7 @@ final class QuicksightAnalysisGaugeChartVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -6032,6 +6274,7 @@ final class QuicksightAnalysisGaugeChartVisualFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetValues != null)
       'target_values': [for (final e in targetValues!) e.encode()],
@@ -6061,6 +6304,7 @@ final class QuicksightAnalysisGaugeChartOptions {
 
   final QuicksightAnalysisFontConfiguration? primaryValueFontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
     'arc': ?arc?.encode(),
@@ -6084,6 +6328,7 @@ final class QuicksightAnalysisGaugeChartOptionsArc {
 
   final TfArg<String>? arcThickness;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc_angle': ?arcAngle?.toTfJson(),
     'arc_thickness': ?arcThickness?.toTfJson(),
@@ -6100,6 +6345,7 @@ final class QuicksightAnalysisArcAxis {
 
   final QuicksightAnalysisRange? range;
 
+  @internal
   Map<String, Object?> encode() => {
     'reserve_range': ?reserveRange?.toTfJson(),
     'range': ?range?.encode(),
@@ -6116,6 +6362,7 @@ final class QuicksightAnalysisRange {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -6136,6 +6383,7 @@ final class QuicksightAnalysisComparison {
 
   final QuicksightAnalysisComparisonFormat? comparisonFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_method': ?comparisonMethod?.toTfJson(),
     'comparison_format': ?comparisonFormat?.encode(),
@@ -6158,6 +6406,7 @@ final class QuicksightAnalysisComparisonFormat {
   final QuicksightAnalysisPercentageDisplayFormatConfiguration?
   percentageDisplayFormatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_display_format_configuration': ?numberDisplayFormatConfiguration
         ?.encode(),
@@ -6177,6 +6426,7 @@ final class QuicksightAnalysisGaugeChartVisualConditionalFormatting {
   final List<QuicksightAnalysisGaugeChartVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -6198,6 +6448,7 @@ final class QuicksightAnalysisGaugeChartVisualConditionalFormattingOptions {
 
   final QuicksightAnalysisPrimaryValue? primaryValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc': ?arc?.encode(),
     'primary_value': ?primaryValue?.encode(),
@@ -6215,6 +6466,7 @@ final class QuicksightAnalysisConditionalFormattingOptionsArc {
 
   final QuicksightAnalysisForegroundColor foregroundColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'foreground_color': foregroundColor.encode(),
   };
@@ -6231,6 +6483,7 @@ final class QuicksightAnalysisPrimaryValue {
 
   final QuicksightAnalysisForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon': ?icon?.encode(),
     'text_color': textColor.encode(),
@@ -6248,6 +6501,7 @@ final class QuicksightAnalysisIcon {
 
   final QuicksightAnalysisIconSet? iconSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_condition': ?customCondition?.encode(),
     'icon_set': ?iconSet?.encode(),
@@ -6274,6 +6528,7 @@ final class QuicksightAnalysisCustomCondition {
 
   final QuicksightAnalysisIconOptions iconOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -6291,6 +6546,7 @@ final class QuicksightAnalysisDisplayConfiguration {
 
   final TfArg<String>? iconDisplayOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon_display_option': ?iconDisplayOption?.toTfJson(),
   };
@@ -6307,6 +6563,7 @@ final class QuicksightAnalysisIconOptions {
 
   final TfArg<String>? unicodeIcon;
 
+  @internal
   Map<String, Object?> encode() => {
     'icon': ?icon?.toTfJson(),
     'unicode_icon': ?unicodeIcon?.toTfJson(),
@@ -6324,6 +6581,7 @@ final class QuicksightAnalysisIconSet {
 
   final TfArg<String>? iconSetType;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'icon_set_type': ?iconSetType?.toTfJson(),
@@ -6356,6 +6614,7 @@ final class QuicksightAnalysisGeospatialMapVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6395,6 +6654,7 @@ final class QuicksightAnalysisGeospatialMapVisualChartConfiguration {
 
   final QuicksightAnalysisWindowOptions? windowOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'legend': ?legend?.encode(),
@@ -6417,6 +6677,7 @@ final class QuicksightAnalysisGeospatialMapVisualFieldWells {
   final QuicksightAnalysisGeospatialMapAggregatedFieldWells?
   geospatialMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'geospatial_map_aggregated_field_wells': ?geospatialMapAggregatedFieldWells
         ?.encode(),
@@ -6439,6 +6700,7 @@ final class QuicksightAnalysisGeospatialMapAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (colors != null) 'colors': [for (final e in colors!) e.encode()],
     if (geospatial != null)
@@ -6461,6 +6723,7 @@ final class QuicksightAnalysisPointStyleOptions {
   final QuicksightAnalysisClusterMarkerConfiguration?
   clusterMarkerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_point_style': ?selectedPointStyle?.toTfJson(),
     'cluster_marker_configuration': ?clusterMarkerConfiguration?.encode(),
@@ -6475,6 +6738,7 @@ final class QuicksightAnalysisClusterMarkerConfiguration {
 
   final QuicksightAnalysisClusterMarker? clusterMarker;
 
+  @internal
   Map<String, Object?> encode() => {'cluster_marker': ?clusterMarker?.encode()};
 }
 
@@ -6486,6 +6750,7 @@ final class QuicksightAnalysisClusterMarker {
 
   final QuicksightAnalysisSimpleClusterMarker? simpleClusterMarker;
 
+  @internal
   Map<String, Object?> encode() => {
     'simple_cluster_marker': ?simpleClusterMarker?.encode(),
   };
@@ -6499,6 +6764,7 @@ final class QuicksightAnalysisSimpleClusterMarker {
 
   final TfArg<String>? color;
 
+  @internal
   Map<String, Object?> encode() => {'color': ?color?.toTfJson()};
 }
 
@@ -6527,6 +6793,7 @@ final class QuicksightAnalysisHeatMapVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6569,6 +6836,7 @@ final class QuicksightAnalysisHeatMapVisualChartConfiguration {
 
   final QuicksightAnalysisTooltip? tooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_scale': ?colorScale?.encode(),
     'column_label_options': ?columnLabelOptions?.encode(),
@@ -6598,6 +6866,7 @@ final class QuicksightAnalysisColorScale {
 
   final QuicksightAnalysisColors? nullValueColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_fill_type': colorFillType.toTfJson(),
     'colors': [for (final e in colors) e.encode()],
@@ -6616,6 +6885,7 @@ final class QuicksightAnalysisColors {
 
   final TfArg<num>? dataValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'data_value': ?dataValue?.toTfJson(),
@@ -6633,6 +6903,7 @@ final class QuicksightAnalysisHeatMapVisualFieldWells {
   final QuicksightAnalysisHeatMapAggregatedFieldWells?
   heatMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'heat_map_aggregated_field_wells': ?heatMapAggregatedFieldWells?.encode(),
   };
@@ -6654,6 +6925,7 @@ final class QuicksightAnalysisHeatMapAggregatedFieldWells {
 
   final QuicksightAnalysisTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': ?columns?.encode(),
     'rows': ?rows?.encode(),
@@ -6681,6 +6953,7 @@ final class QuicksightAnalysisHeatMapVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? heatMapRowSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'heat_map_column_items_limit_configuration':
         ?heatMapColumnItemsLimitConfiguration?.encode(),
@@ -6715,6 +6988,7 @@ final class QuicksightAnalysisHistogramVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -6755,6 +7029,7 @@ final class QuicksightAnalysisHistogramVisualChartConfiguration {
 
   final QuicksightAnalysisCategoryAxis? yAxisDisplayOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'bin_options': ?binOptions?.encode(),
     'data_labels': ?dataLabels?.encode(),
@@ -6786,6 +7061,7 @@ final class QuicksightAnalysisBinOptions {
 
   final QuicksightAnalysisBinWidth? binWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_bin_type': ?selectedBinType?.toTfJson(),
     'start_value': ?startValue?.toTfJson(),
@@ -6802,6 +7078,7 @@ final class QuicksightAnalysisBinCount {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 
@@ -6815,6 +7092,7 @@ final class QuicksightAnalysisBinWidth {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'bin_count_limit': ?binCountLimit?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -6832,6 +7110,7 @@ final class QuicksightAnalysisHistogramVisualFieldWells {
   final QuicksightAnalysisHistogramAggregatedFieldWells?
   histogramAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'histogram_aggregated_field_wells': ?histogramAggregatedFieldWells
         ?.encode(),
@@ -6846,6 +7125,7 @@ final class QuicksightAnalysisHistogramAggregatedFieldWells {
 
   final QuicksightAnalysisTargetValues? values;
 
+  @internal
   Map<String, Object?> encode() => {'values': ?values?.encode()};
 }
 
@@ -6874,6 +7154,7 @@ final class QuicksightAnalysisInsightVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_identifier': dataSetIdentifier.toTfJson(),
     'visual_id': visualId.toTfJson(),
@@ -6897,6 +7178,7 @@ final class QuicksightAnalysisInsightConfiguration {
 
   final QuicksightAnalysisCustomNarrative? customNarrative;
 
+  @internal
   Map<String, Object?> encode() => {
     if (computation != null)
       'computation': [for (final e in computation!) e.encode()],
@@ -6941,6 +7223,7 @@ final class QuicksightAnalysisComputation {
 
   final QuicksightAnalysisUniqueValues? uniqueValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast': ?forecast?.encode(),
     'growth_rate': ?growthRate?.encode(),
@@ -6995,6 +7278,7 @@ final class QuicksightAnalysisForecast {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'custom_seasonality_value': ?customSeasonalityValue?.toTfJson(),
@@ -7032,6 +7316,7 @@ final class QuicksightAnalysisGrowthRate {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7063,6 +7348,7 @@ final class QuicksightAnalysisMaximumMinimum {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7094,6 +7380,7 @@ final class QuicksightAnalysisMetricComparison {
 
   final QuicksightAnalysisTrendGroups? time;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7122,6 +7409,7 @@ final class QuicksightAnalysisPeriodOverPeriod {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7152,6 +7440,7 @@ final class QuicksightAnalysisPeriodToDate {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7192,6 +7481,7 @@ final class QuicksightAnalysisTopBottomMovers {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'mover_size': ?moverSize?.toTfJson(),
@@ -7229,6 +7519,7 @@ final class QuicksightAnalysisTopBottomRanked {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7255,6 +7546,7 @@ final class QuicksightAnalysisTotalAggregation {
 
   final QuicksightAnalysisTargetValues? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7278,6 +7570,7 @@ final class QuicksightAnalysisUniqueValues {
 
   final QuicksightAnalysisTrendGroups? category;
 
+  @internal
   Map<String, Object?> encode() => {
     'computation_id': computationId.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -7293,6 +7586,7 @@ final class QuicksightAnalysisCustomNarrative {
 
   final TfArg<String> narrative;
 
+  @internal
   Map<String, Object?> encode() => {'narrative': narrative.toTfJson()};
 }
 
@@ -7324,6 +7618,7 @@ final class QuicksightAnalysisKpiVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -7352,6 +7647,7 @@ final class QuicksightAnalysisKpiVisualChartConfiguration {
 
   final QuicksightAnalysisKpiVisualSortConfiguration? sortConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_wells': ?fieldWells?.encode(),
     'kpi_options': ?kpiOptions?.encode(),
@@ -7375,6 +7671,7 @@ final class QuicksightAnalysisKpiVisualFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (targetValues != null)
       'target_values': [for (final e in targetValues!) e.encode()],
@@ -7418,6 +7715,7 @@ final class QuicksightAnalysisKpiOptions {
 
   final QuicksightAnalysisVisualLayoutOptions? visualLayoutOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_value_display_type': ?primaryValueDisplayType?.toTfJson(),
     'comparison': ?comparison?.encode(),
@@ -7452,6 +7750,7 @@ final class QuicksightAnalysisSparkline {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'tooltip_visibility': ?tooltipVisibility?.toTfJson(),
@@ -7468,6 +7767,7 @@ final class QuicksightAnalysisVisualLayoutOptions {
 
   final QuicksightAnalysisStandardLayout? standardLayout;
 
+  @internal
   Map<String, Object?> encode() => {
     'standard_layout': ?standardLayout?.encode(),
   };
@@ -7481,6 +7781,7 @@ final class QuicksightAnalysisStandardLayout {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -7492,6 +7793,7 @@ final class QuicksightAnalysisKpiVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? trendGroupSort;
 
+  @internal
   Map<String, Object?> encode() => {
     if (trendGroupSort != null)
       'trend_group_sort': [for (final e in trendGroupSort!) e.encode()],
@@ -7509,6 +7811,7 @@ final class QuicksightAnalysisKpiVisualConditionalFormatting {
   final List<QuicksightAnalysisKpiVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -7536,6 +7839,7 @@ final class QuicksightAnalysisKpiVisualConditionalFormattingOptions {
 
   final QuicksightAnalysisConditionalFormattingOptionsArc? progressBar;
 
+  @internal
   Map<String, Object?> encode() => {
     'actual_value': ?actualValue?.encode(),
     'comparison_value': ?comparisonValue?.encode(),
@@ -7569,6 +7873,7 @@ final class QuicksightAnalysisLineChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -7647,6 +7952,7 @@ final class QuicksightAnalysisLineChartVisualChartConfiguration {
 
   final QuicksightAnalysisCategoryLabelOptions? xAxisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     if (contributionAnalysisDefaults != null)
@@ -7693,6 +7999,7 @@ final class QuicksightAnalysisDefaultSeriesSettings {
 
   final QuicksightAnalysisMarkerStyleSettings? markerStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': ?axisBinding?.toTfJson(),
     'line_style_settings': ?lineStyleSettings?.encode(),
@@ -7720,6 +8027,7 @@ final class QuicksightAnalysisLineStyleSettings {
 
   final TfArg<String>? lineWidth;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_interpolation': ?lineInterpolation?.toTfJson(),
     'line_style': ?lineStyle?.toTfJson(),
@@ -7748,6 +8056,7 @@ final class QuicksightAnalysisMarkerStyleSettings {
 
   final TfArg<String>? markerVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'marker_color': ?markerColor?.toTfJson(),
     'marker_shape': ?markerShape?.toTfJson(),
@@ -7767,6 +8076,7 @@ final class QuicksightAnalysisLineChartVisualFieldWells {
   final QuicksightAnalysisBarChartAggregatedFieldWells?
   lineChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_chart_aggregated_field_wells': ?lineChartAggregatedFieldWells
         ?.encode(),
@@ -7786,6 +8096,7 @@ final class QuicksightAnalysisForecastConfigurations {
 
   final QuicksightAnalysisScenario? scenario;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast_properties': ?forecastProperties?.encode(),
     'scenario': ?scenario?.encode(),
@@ -7817,6 +8128,7 @@ final class QuicksightAnalysisForecastProperties {
 
   final TfArg<num>? upperBoundary;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_boundary': ?lowerBoundary?.toTfJson(),
     'periods_backward': ?periodsBackward?.toTfJson(),
@@ -7840,6 +8152,7 @@ final class QuicksightAnalysisScenario {
 
   final QuicksightAnalysisWhatIfRangeScenario? whatIfRangeScenario;
 
+  @internal
   Map<String, Object?> encode() => {
     'what_if_point_scenario': ?whatIfPointScenario?.encode(),
     'what_if_range_scenario': ?whatIfRangeScenario?.encode(),
@@ -7859,6 +8172,7 @@ final class QuicksightAnalysisWhatIfPointScenario {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': date.toTfJson(),
     'value': value.toTfJson(),
@@ -7881,6 +8195,7 @@ final class QuicksightAnalysisWhatIfRangeScenario {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.toTfJson(),
     'start_date': startDate.toTfJson(),
@@ -7903,6 +8218,7 @@ final class QuicksightAnalysisPrimaryYAxisDisplayOptions {
   final List<QuicksightAnalysisMissingDataConfiguration>?
   missingDataConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_options': ?axisOptions?.encode(),
     if (missingDataConfiguration != null)
@@ -7921,6 +8237,7 @@ final class QuicksightAnalysisMissingDataConfiguration {
 
   final TfArg<String>? treatmentOption;
 
+  @internal
   Map<String, Object?> encode() => {
     'treatment_option': ?treatmentOption?.toTfJson(),
   };
@@ -7939,6 +8256,7 @@ final class QuicksightAnalysisSeries {
 
   final QuicksightAnalysisFieldSeriesItem? fieldSeriesItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_field_series_item': ?dataFieldSeriesItem?.encode(),
     'field_series_item': ?fieldSeriesItem?.encode(),
@@ -7964,6 +8282,7 @@ final class QuicksightAnalysisDataFieldSeriesItem {
 
   final QuicksightAnalysisSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -7986,6 +8305,7 @@ final class QuicksightAnalysisSettings {
 
   final QuicksightAnalysisMarkerStyleSettings? markerStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'line_style_settings': ?lineStyleSettings?.encode(),
     'marker_style_settings': ?markerStyleSettings?.encode(),
@@ -8008,6 +8328,7 @@ final class QuicksightAnalysisFieldSeriesItem {
 
   final QuicksightAnalysisSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'axis_binding': axisBinding.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8037,6 +8358,7 @@ final class QuicksightAnalysisLineChartVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit_configuration': ?categoryItemsLimitConfiguration
         ?.encode(),
@@ -8075,6 +8397,7 @@ final class QuicksightAnalysisPieChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -8127,6 +8450,7 @@ final class QuicksightAnalysisPieChartVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     if (contributionAnalysisDefaults != null)
@@ -8158,6 +8482,7 @@ final class QuicksightAnalysisDonutOptions {
 
   final QuicksightAnalysisDonutCenterOptions? donutCenterOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'arc_options': ?arcOptions?.encode(),
     'donut_center_options': ?donutCenterOptions?.encode(),
@@ -8172,6 +8497,7 @@ final class QuicksightAnalysisArcOptions {
 
   final TfArg<String>? arcThickness;
 
+  @internal
   Map<String, Object?> encode() => {'arc_thickness': ?arcThickness?.toTfJson()};
 }
 
@@ -8183,6 +8509,7 @@ final class QuicksightAnalysisDonutCenterOptions {
 
   final TfArg<String>? labelVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'label_visibility': ?labelVisibility?.toTfJson(),
   };
@@ -8199,6 +8526,7 @@ final class QuicksightAnalysisPieChartVisualFieldWells {
   final QuicksightAnalysisPieChartAggregatedFieldWells?
   pieChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'pie_chart_aggregated_field_wells': ?pieChartAggregatedFieldWells?.encode(),
   };
@@ -8220,6 +8548,7 @@ final class QuicksightAnalysisPieChartAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     'small_multiples': ?smallMultiples?.encode(),
@@ -8246,6 +8575,7 @@ final class QuicksightAnalysisPieChartVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? smallMultiplesSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_items_limit': ?categoryItemsLimit?.encode(),
     if (categorySort != null)
@@ -8284,6 +8614,7 @@ final class QuicksightAnalysisPivotTableVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -8319,6 +8650,7 @@ final class QuicksightAnalysisPivotTableVisualChartConfiguration {
 
   final QuicksightAnalysisPivotTableVisualTotalOptions? totalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -8343,6 +8675,7 @@ final class QuicksightAnalysisPivotTableVisualFieldOptions {
   final List<QuicksightAnalysisPivotTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dataPathOptions != null)
       'data_path_options': [for (final e in dataPathOptions!) e.encode()],
@@ -8366,6 +8699,7 @@ final class QuicksightAnalysisDataPathOptions {
 
   final List<QuicksightAnalysisElement> dataPathList;
 
+  @internal
   Map<String, Object?> encode() => {
     'width': ?width?.toTfJson(),
     'data_path_list': [for (final e in dataPathList) e.encode()],
@@ -8388,6 +8722,7 @@ final class QuicksightAnalysisPivotTableVisualSelectedFieldOptions {
 
   final TfArg<String>? visibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -8406,6 +8741,7 @@ final class QuicksightAnalysisPivotTableVisualFieldWells {
   final QuicksightAnalysisPivotTableAggregatedFieldWells?
   pivotTableAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'pivot_table_aggregated_field_wells': ?pivotTableAggregatedFieldWells
         ?.encode(),
@@ -8428,6 +8764,7 @@ final class QuicksightAnalysisPivotTableAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
     if (rows != null) 'rows': [for (final e in rows!) e.encode()],
@@ -8449,6 +8786,7 @@ final class QuicksightAnalysisPaginatedReportOptions {
 
   final TfArg<String>? verticalOverflowVisibility;
 
+  @internal
   Map<String, Object?> encode() => {
     'overflow_column_header_visibility': ?overflowColumnHeaderVisibility
         ?.toTfJson(),
@@ -8466,6 +8804,7 @@ final class QuicksightAnalysisPivotTableVisualSortConfiguration {
 
   final List<QuicksightAnalysisFieldSortOptions>? fieldSortOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fieldSortOptions != null)
       'field_sort_options': [for (final e in fieldSortOptions!) e.encode()],
@@ -8485,6 +8824,7 @@ final class QuicksightAnalysisFieldSortOptions {
 
   final QuicksightAnalysisSortBy sortBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'sort_by': sortBy.encode(),
@@ -8503,6 +8843,7 @@ final class QuicksightAnalysisSortBy {
 
   final QuicksightAnalysisFieldSort? field;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': ?column?.encode(),
     'data_path': ?dataPath?.encode(),
@@ -8523,6 +8864,7 @@ final class QuicksightAnalysisDataPath {
 
   final List<QuicksightAnalysisElement> sortPaths;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': direction.toTfJson(),
     'sort_paths': [for (final e in sortPaths) e.encode()],
@@ -8566,6 +8908,7 @@ final class QuicksightAnalysisPivotTableVisualTableOptions {
 
   final QuicksightAnalysisCellStyle? rowHeaderStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'collapsed_row_dimensions_visibility': ?collapsedRowDimensionsVisibility
         ?.toTfJson(),
@@ -8613,6 +8956,7 @@ final class QuicksightAnalysisCellStyle {
 
   final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'height': ?height?.toTfJson(),
@@ -8639,6 +8983,7 @@ final class QuicksightAnalysisBorder {
 
   final QuicksightAnalysisUniformBorder uniformBorder;
 
+  @internal
   Map<String, Object?> encode() => {
     'side_specific_border': ?sideSpecificBorder?.encode(),
     'uniform_border': uniformBorder.encode(),
@@ -8671,6 +9016,7 @@ final class QuicksightAnalysisSideSpecificBorder {
 
   final QuicksightAnalysisUniformBorder top;
 
+  @internal
   Map<String, Object?> encode() => {
     'bottom': bottom.encode(),
     'inner_horizontal': innerHorizontal.encode(),
@@ -8698,6 +9044,7 @@ final class QuicksightAnalysisUniformBorder {
 
   final TfArg<num>? thickness;
 
+  @internal
   Map<String, Object?> encode() => {
     'color': ?color?.toTfJson(),
     'style': ?style?.toTfJson(),
@@ -8719,6 +9066,7 @@ final class QuicksightAnalysisRowAlternateColorOptions {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'row_alternate_colors': ?rowAlternateColors?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -8744,6 +9092,7 @@ final class QuicksightAnalysisPivotTableVisualTotalOptions {
 
   final QuicksightAnalysisColumnTotalOptions? rowTotalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_subtotal_options': ?columnSubtotalOptions?.encode(),
     'column_total_options': ?columnTotalOptions?.encode(),
@@ -8781,6 +9130,7 @@ final class QuicksightAnalysisColumnSubtotalOptions {
 
   final QuicksightAnalysisCellStyle? valueCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_level': ?fieldLevel?.toTfJson(),
@@ -8802,6 +9152,7 @@ final class QuicksightAnalysisFieldLevelOptions {
 
   final TfArg<String>? fieldId;
 
+  @internal
   Map<String, Object?> encode() => {'field_id': ?fieldId?.toTfJson()};
 }
 
@@ -8834,6 +9185,7 @@ final class QuicksightAnalysisColumnTotalOptions {
 
   final QuicksightAnalysisCellStyle? valueCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'placement': ?placement?.toTfJson(),
@@ -8856,6 +9208,7 @@ final class QuicksightAnalysisPivotTableVisualConditionalFormatting {
   final List<QuicksightAnalysisPivotTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -8874,6 +9227,7 @@ final class QuicksightAnalysisPivotTableVisualConditionalFormattingOptions {
 
   final QuicksightAnalysisPivotTableVisualCell? cell;
 
+  @internal
   Map<String, Object?> encode() => {'cell': ?cell?.encode()};
 }
 
@@ -8893,6 +9247,7 @@ final class QuicksightAnalysisPivotTableVisualCell {
 
   final QuicksightAnalysisTextFormat? textFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'scope': ?scope?.encode(),
@@ -8908,6 +9263,7 @@ final class QuicksightAnalysisScope {
 
   final TfArg<String>? role;
 
+  @internal
   Map<String, Object?> encode() => {'role': ?role?.toTfJson()};
 }
 
@@ -8928,6 +9284,7 @@ final class QuicksightAnalysisTextFormat {
 
   final QuicksightAnalysisForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
     'icon': ?icon?.encode(),
@@ -8961,6 +9318,7 @@ final class QuicksightAnalysisRadarChartVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9021,6 +9379,7 @@ final class QuicksightAnalysisRadarChartVisualChartConfiguration {
 
   final QuicksightAnalysisVisualPalette? visualPalette;
 
+  @internal
   Map<String, Object?> encode() => {
     'alternate_band_colors_visibility': ?alternateBandColorsVisibility
         ?.toTfJson(),
@@ -9048,6 +9407,7 @@ final class QuicksightAnalysisBaseSeriesSettings {
 
   final QuicksightAnalysisSelectAllOptions? areaStyleSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'area_style_settings': ?areaStyleSettings?.encode(),
   };
@@ -9064,6 +9424,7 @@ final class QuicksightAnalysisRadarChartVisualFieldWells {
   final QuicksightAnalysisRadarChartAggregatedFieldWells?
   radarChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'radar_chart_aggregated_field_wells': ?radarChartAggregatedFieldWells
         ?.encode(),
@@ -9086,6 +9447,7 @@ final class QuicksightAnalysisRadarChartAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.encode(),
     'color': ?color?.encode(),
@@ -9116,6 +9478,7 @@ final class QuicksightAnalysisSankeyDiagramVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9142,6 +9505,7 @@ final class QuicksightAnalysisSankeyDiagramVisualChartConfiguration {
   final QuicksightAnalysisSankeyDiagramVisualSortConfiguration?
   sortConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9160,6 +9524,7 @@ final class QuicksightAnalysisSankeyDiagramVisualFieldWells {
   final QuicksightAnalysisSankeyDiagramAggregatedFieldWells?
   sankeyDiagramAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'sankey_diagram_aggregated_field_wells': ?sankeyDiagramAggregatedFieldWells
         ?.encode(),
@@ -9182,6 +9547,7 @@ final class QuicksightAnalysisSankeyDiagramAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -9206,6 +9572,7 @@ final class QuicksightAnalysisSankeyDiagramVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? weightSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_items_limit': ?destinationItemsLimit?.encode(),
     'source_items_limit': ?sourceItemsLimit?.encode(),
@@ -9240,6 +9607,7 @@ final class QuicksightAnalysisScatterPlotVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9285,6 +9653,7 @@ final class QuicksightAnalysisScatterPlotVisualChartConfiguration {
 
   final QuicksightAnalysisCategoryLabelOptions? yAxisLabelOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_labels': ?dataLabels?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9313,6 +9682,7 @@ final class QuicksightAnalysisScatterPlotVisualFieldWells {
   final QuicksightAnalysisScatterPlotUnaggregatedFieldWells?
   scatterPlotUnaggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'scatter_plot_categorically_aggregated_field_wells':
         ?scatterPlotCategoricallyAggregatedFieldWells?.encode(),
@@ -9340,6 +9710,7 @@ final class QuicksightAnalysisScatterPlotCategoricallyAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? yAxis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (category != null) 'category': [for (final e in category!) e.encode()],
     if (size != null) 'size': [for (final e in size!) e.encode()],
@@ -9364,6 +9735,7 @@ final class QuicksightAnalysisScatterPlotUnaggregatedFieldWells {
 
   final List<QuicksightAnalysisTrendGroups>? yAxis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (size != null) 'size': [for (final e in size!) e.encode()],
     if (xAxis != null) 'x_axis': [for (final e in xAxis!) e.encode()],
@@ -9397,6 +9769,7 @@ final class QuicksightAnalysisTableVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9436,6 +9809,7 @@ final class QuicksightAnalysisTableVisualChartConfiguration {
 
   final QuicksightAnalysisTableVisualTotalOptions? totalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_options': ?fieldOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -9464,6 +9838,7 @@ final class QuicksightAnalysisTableVisualFieldOptions {
   final List<QuicksightAnalysisTableVisualSelectedFieldOptions>?
   selectedFieldOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     if (selectedFieldOptions != null)
@@ -9495,6 +9870,7 @@ final class QuicksightAnalysisTableVisualSelectedFieldOptions {
 
   final QuicksightAnalysisUrlStyling? urlStyling;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'field_id': fieldId.toTfJson(),
@@ -9517,6 +9893,7 @@ final class QuicksightAnalysisUrlStyling {
 
   final QuicksightAnalysisLinkConfiguration? linkConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_configuration': ?imageConfiguration?.encode(),
     'link_configuration': ?linkConfiguration?.encode(),
@@ -9531,6 +9908,7 @@ final class QuicksightAnalysisImageConfiguration {
 
   final QuicksightAnalysisSizingOptions? sizingOptions;
 
+  @internal
   Map<String, Object?> encode() => {'sizing_options': ?sizingOptions?.encode()};
 }
 
@@ -9544,6 +9922,7 @@ final class QuicksightAnalysisSizingOptions {
 
   final TfArg<String>? tableCellImageScalingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_cell_image_scaling_configuration':
         ?tableCellImageScalingConfiguration?.toTfJson(),
@@ -9560,6 +9939,7 @@ final class QuicksightAnalysisLinkConfiguration {
 
   final QuicksightAnalysisLinkConfigurationContent? content;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'content': ?content?.encode(),
@@ -9579,6 +9959,7 @@ final class QuicksightAnalysisLinkConfigurationContent {
 
   final QuicksightAnalysisCustomTextContent? customTextContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_icon_content': ?customIconContent?.encode(),
     'custom_text_content': ?customTextContent?.encode(),
@@ -9593,6 +9974,7 @@ final class QuicksightAnalysisCustomIconContent {
 
   final TfArg<String>? icon;
 
+  @internal
   Map<String, Object?> encode() => {'icon': ?icon?.toTfJson()};
 }
 
@@ -9609,6 +9991,7 @@ final class QuicksightAnalysisCustomTextContent {
 
   final QuicksightAnalysisFontConfiguration? fontConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': ?value?.toTfJson(),
     'font_configuration': ?fontConfiguration?.encode(),
@@ -9629,6 +10012,7 @@ final class QuicksightAnalysisTableVisualFieldWells {
   final QuicksightAnalysisTableUnaggregatedFieldWells?
   tableUnaggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'table_aggregated_field_wells': ?tableAggregatedFieldWells?.encode(),
     'table_unaggregated_field_wells': ?tableUnaggregatedFieldWells?.encode(),
@@ -9648,6 +10032,7 @@ final class QuicksightAnalysisTableAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -9662,6 +10047,7 @@ final class QuicksightAnalysisTableUnaggregatedFieldWells {
 
   final List<QuicksightAnalysisValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (values != null) 'values': [for (final e in values!) e.encode()],
   };
@@ -9683,6 +10069,7 @@ final class QuicksightAnalysisValues {
 
   final QuicksightAnalysisFormatConfiguration? formatConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'column': column.encode(),
@@ -9703,6 +10090,7 @@ final class QuicksightAnalysisTableVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? rowSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'pagination_configuration': ?paginationConfiguration?.encode(),
     if (rowSort != null) 'row_sort': [for (final e in rowSort!) e.encode()],
@@ -9717,6 +10105,7 @@ final class QuicksightAnalysisTableInlineVisualizations {
 
   final QuicksightAnalysisDataBars? dataBars;
 
+  @internal
   Map<String, Object?> encode() => {'data_bars': ?dataBars?.encode()};
 }
 
@@ -9736,6 +10125,7 @@ final class QuicksightAnalysisDataBars {
 
   final TfArg<String>? positiveColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'negative_color': ?negativeColor?.toTfJson(),
@@ -9762,6 +10152,7 @@ final class QuicksightAnalysisTableVisualTableOptions {
 
   final QuicksightAnalysisRowAlternateColorOptions? rowAlternateColorOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'orientation': ?orientation?.toTfJson(),
     'cell_style': ?cellStyle?.encode(),
@@ -9792,6 +10183,7 @@ final class QuicksightAnalysisTableVisualTotalOptions {
 
   final QuicksightAnalysisCellStyle? totalCellStyle;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_label': ?customLabel?.toTfJson(),
     'placement': ?placement?.toTfJson(),
@@ -9812,6 +10204,7 @@ final class QuicksightAnalysisTableVisualConditionalFormatting {
   final List<QuicksightAnalysisTableVisualConditionalFormattingOptions>?
   conditionalFormattingOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditionalFormattingOptions != null)
       'conditional_formatting_options': [
@@ -9833,6 +10226,7 @@ final class QuicksightAnalysisTableVisualConditionalFormattingOptions {
 
   final QuicksightAnalysisRow? row;
 
+  @internal
   Map<String, Object?> encode() => {
     'cell': ?cell?.encode(),
     'row': ?row?.encode(),
@@ -9852,6 +10246,7 @@ final class QuicksightAnalysisTableVisualCell {
 
   final QuicksightAnalysisTextFormat? textFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'text_format': ?textFormat?.encode(),
@@ -9871,6 +10266,7 @@ final class QuicksightAnalysisRow {
 
   final QuicksightAnalysisForegroundColor textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': backgroundColor.encode(),
     'text_color': textColor.encode(),
@@ -9902,6 +10298,7 @@ final class QuicksightAnalysisTreeMapVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -9947,6 +10344,7 @@ final class QuicksightAnalysisTreeMapVisualChartConfiguration {
 
   final QuicksightAnalysisTooltip? tooltip;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_label_options': ?colorLabelOptions?.encode(),
     'color_scale': ?colorScale?.encode(),
@@ -9971,6 +10369,7 @@ final class QuicksightAnalysisTreeMapVisualFieldWells {
   final QuicksightAnalysisTreeMapAggregatedFieldWells?
   treeMapAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'tree_map_aggregated_field_wells': ?treeMapAggregatedFieldWells?.encode(),
   };
@@ -9992,6 +10391,7 @@ final class QuicksightAnalysisTreeMapAggregatedFieldWells {
 
   final QuicksightAnalysisTargetValues? sizes;
 
+  @internal
   Map<String, Object?> encode() => {
     'colors': ?colors?.encode(),
     'groups': ?groups?.encode(),
@@ -10013,6 +10413,7 @@ final class QuicksightAnalysisTreeMapVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? treeMapSort;
 
+  @internal
   Map<String, Object?> encode() => {
     'tree_map_group_items_limit_configuration':
         ?treeMapGroupItemsLimitConfiguration?.encode(),
@@ -10046,6 +10447,7 @@ final class QuicksightAnalysisWaterfallVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10094,6 +10496,7 @@ final class QuicksightAnalysisWaterfallVisualChartConfiguration {
 
   final QuicksightAnalysisWaterfallChartOptions? waterfallChartOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_axis_display_options': ?categoryAxisDisplayOptions?.encode(),
     'category_axis_label_options': ?categoryAxisLabelOptions?.encode(),
@@ -10119,6 +10522,7 @@ final class QuicksightAnalysisWaterfallVisualFieldWells {
   final QuicksightAnalysisWaterfallChartAggregatedFieldWells?
   waterfallChartAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'waterfall_chart_aggregated_field_wells':
         ?waterfallChartAggregatedFieldWells?.encode(),
@@ -10141,6 +10545,7 @@ final class QuicksightAnalysisWaterfallChartAggregatedFieldWells {
 
   final List<QuicksightAnalysisTargetValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     if (breakdowns != null)
       'breakdowns': [for (final e in breakdowns!) e.encode()],
@@ -10163,6 +10568,7 @@ final class QuicksightAnalysisWaterfallVisualSortConfiguration {
 
   final List<QuicksightAnalysisCategorySort>? categorySort;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakdown_items_limit': ?breakdownItemsLimit?.encode(),
     if (categorySort != null)
@@ -10178,6 +10584,7 @@ final class QuicksightAnalysisWaterfallChartOptions {
 
   final TfArg<String>? totalBarLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_bar_label': ?totalBarLabel?.toTfJson(),
   };
@@ -10208,6 +10615,7 @@ final class QuicksightAnalysisWordCloudVisual {
 
   final QuicksightAnalysisSubtitle? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'visual_id': visualId.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -10238,6 +10646,7 @@ final class QuicksightAnalysisWordCloudVisualChartConfiguration {
 
   final QuicksightAnalysisWordCloudOptions? wordCloudOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'category_label_options': ?categoryLabelOptions?.encode(),
     'field_wells': ?fieldWells?.encode(),
@@ -10257,6 +10666,7 @@ final class QuicksightAnalysisWordCloudVisualFieldWells {
   final QuicksightAnalysisWordCloudAggregatedFieldWells?
   wordCloudAggregatedFieldWells;
 
+  @internal
   Map<String, Object?> encode() => {
     'word_cloud_aggregated_field_wells': ?wordCloudAggregatedFieldWells
         ?.encode(),
@@ -10276,6 +10686,7 @@ final class QuicksightAnalysisWordCloudAggregatedFieldWells {
 
   final QuicksightAnalysisTargetValues? size;
 
+  @internal
   Map<String, Object?> encode() => {
     if (groupBy != null) 'group_by': [for (final e in groupBy!) e.encode()],
     'size': ?size?.encode(),
@@ -10307,6 +10718,7 @@ final class QuicksightAnalysisWordCloudOptions {
 
   final TfArg<String>? wordScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_layout': ?cloudLayout?.toTfJson(),
     'maximum_string_length': ?maximumStringLength?.toTfJson(),
@@ -10336,6 +10748,7 @@ final class QuicksightAnalysisParameters {
 
   final List<QuicksightAnalysisDateTimeParameters>? stringParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dateTimeParameters != null)
       'date_time_parameters': [for (final e in dateTimeParameters!) e.encode()],
@@ -10362,6 +10775,7 @@ final class QuicksightAnalysisDateTimeParameters {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -10382,6 +10796,7 @@ final class QuicksightAnalysisDecimalParameters {
 
   final TfArg<List<num>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -10401,6 +10816,7 @@ final class QuicksightAnalysisPermissions {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),
@@ -10415,6 +10831,7 @@ final class QuicksightAnalysisSourceEntity {
 
   final QuicksightAnalysisSourceTemplate? sourceTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_template': ?sourceTemplate?.encode(),
   };
@@ -10433,6 +10850,7 @@ final class QuicksightAnalysisSourceTemplate {
 
   final List<QuicksightAnalysisDataSetReferences> dataSetReferences;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'data_set_references': [for (final e in dataSetReferences) e.encode()],
@@ -10452,6 +10870,7 @@ final class QuicksightAnalysisDataSetReferences {
 
   final TfArg<String> dataSetPlaceholder;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_arn': dataSetArn.toTfJson(),
     'data_set_placeholder': dataSetPlaceholder.toTfJson(),

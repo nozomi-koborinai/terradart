@@ -21,6 +21,7 @@ final class DataAccountMemberFilter {
 
   final DataAccountMemberFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'order': ?order?.toTfJson(),

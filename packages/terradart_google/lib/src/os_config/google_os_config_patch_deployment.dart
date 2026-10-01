@@ -27,12 +27,15 @@ sealed class OsConfigPatchDeploymentSchedule {
   ) = OsConfigPatchDeploymentRecurringScheduleChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -43,14 +46,17 @@ final class OsConfigPatchDeploymentOneTimeScheduleChoice
 
   final OsConfigPatchDeploymentOneTimeSchedule oneTimeSchedule;
 
+  @internal
   @override
   String get blockKey => 'one_time_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'one_time_schedule': oneTimeSchedule.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'one_time_schedule': TfArg.literal(oneTimeSchedule.encode()),
@@ -64,14 +70,17 @@ final class OsConfigPatchDeploymentRecurringScheduleChoice
 
   final OsConfigPatchDeploymentRecurringSchedule recurringSchedule;
 
+  @internal
   @override
   String get blockKey => 'recurring_schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'recurring_schedule': recurringSchedule.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'recurring_schedule': TfArg.literal(recurringSchedule.encode()),
@@ -100,6 +109,7 @@ final class OsConfigPatchDeploymentInstanceFilter {
 
   final List<OsConfigPatchDeploymentGroupLabels>? groupLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     'instance_name_prefixes': ?instanceNamePrefixes?.toTfJson(),
@@ -118,6 +128,7 @@ final class OsConfigPatchDeploymentGroupLabels {
 
   final TfArg<Map<String, String>> labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': labels.toTfJson()};
 }
 
@@ -129,6 +140,7 @@ final class OsConfigPatchDeploymentOneTimeSchedule {
 
   final TfArg<String> executeTime;
 
+  @internal
   Map<String, Object?> encode() => {'execute_time': executeTime.toTfJson()};
 }
 
@@ -169,6 +181,7 @@ final class OsConfigPatchDeploymentPatchConfig {
 
   final OsConfigPatchDeploymentZypper? zypper;
 
+  @internal
   Map<String, Object?> encode() => {
     'mig_instances_allowed': ?migInstancesAllowed?.toTfJson(),
     'reboot_config': ?rebootConfig?.toTfJson(),
@@ -226,6 +239,7 @@ final class OsConfigPatchDeploymentApt {
 
   final OsConfigPatchDeploymentType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
     'exclusive_packages': ?exclusivePackages?.toTfJson(),
@@ -256,6 +270,7 @@ final class OsConfigPatchDeploymentGoo {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -272,6 +287,7 @@ final class OsConfigPatchDeploymentPostStep {
 
   final OsConfigPatchDeploymentWindowsExecStepConfig? windowsExecStepConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'linux_exec_step_config': ?linuxExecStepConfig?.encode(),
     'windows_exec_step_config': ?windowsExecStepConfig?.encode(),
@@ -295,6 +311,7 @@ final class OsConfigPatchDeploymentLinuxExecStepConfig {
 
   final OsConfigPatchDeploymentLinuxExecStepConfigScript script;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
     'interpreter': ?interpreter?.toTfJson(),
@@ -320,8 +337,10 @@ sealed class OsConfigPatchDeploymentLinuxExecStepConfigScript {
   ) = OsConfigPatchDeploymentLinuxExecStepConfigScriptGcsObject;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -334,9 +353,11 @@ final class OsConfigPatchDeploymentLinuxExecStepConfigScriptLocalPath
 
   final TfArg<String> localPath;
 
+  @internal
   @override
   String get blockKey => 'local_path';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
 }
@@ -350,9 +371,11 @@ final class OsConfigPatchDeploymentLinuxExecStepConfigScriptGcsObject
 
   final OsConfigPatchDeploymentGcsObject gcsObject;
 
+  @internal
   @override
   String get blockKey => 'gcs_object';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
@@ -396,6 +419,7 @@ final class OsConfigPatchDeploymentGcsObject {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'generation_number': generationNumber.toTfJson(),
@@ -420,6 +444,7 @@ final class OsConfigPatchDeploymentWindowsExecStepConfig {
 
   final OsConfigPatchDeploymentWindowsExecStepConfigScript script;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_success_codes': ?allowedSuccessCodes?.toTfJson(),
     'interpreter': ?interpreter?.toTfJson(),
@@ -445,8 +470,10 @@ sealed class OsConfigPatchDeploymentWindowsExecStepConfigScript {
   ) = OsConfigPatchDeploymentWindowsExecStepConfigScriptGcsObject;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -459,9 +486,11 @@ final class OsConfigPatchDeploymentWindowsExecStepConfigScriptLocalPath
 
   final TfArg<String> localPath;
 
+  @internal
   @override
   String get blockKey => 'local_path';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'local_path': localPath.toTfJson()};
 }
@@ -475,9 +504,11 @@ final class OsConfigPatchDeploymentWindowsExecStepConfigScriptGcsObject
 
   final OsConfigPatchDeploymentGcsObject gcsObject;
 
+  @internal
   @override
   String get blockKey => 'gcs_object';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_object': gcsObject.encode()};
 }
@@ -495,6 +526,7 @@ final class OsConfigPatchDeploymentPreStep {
 
   final OsConfigPatchDeploymentWindowsExecStepConfig? windowsExecStepConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'linux_exec_step_config': ?linuxExecStepConfig?.encode(),
     'windows_exec_step_config': ?windowsExecStepConfig?.encode(),
@@ -517,6 +549,7 @@ final class OsConfigPatchDeploymentWindowsUpdate {
 
   final TfArg<List<String>>? exclusivePatches;
 
+  @internal
   Map<String, Object?> encode() => {
     if (classifications != null)
       'classifications': [for (final e in classifications!) e.toTfJson()],
@@ -595,6 +628,7 @@ final class OsConfigPatchDeploymentYum {
 
   final TfArg<bool>? security;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
     'exclusive_packages': ?exclusivePackages?.toTfJson(),
@@ -628,6 +662,7 @@ final class OsConfigPatchDeploymentZypper {
 
   final TfArg<bool>? withUpdate;
 
+  @internal
   Map<String, Object?> encode() => {
     'categories': ?categories?.toTfJson(),
     'excludes': ?excludes?.toTfJson(),
@@ -663,6 +698,7 @@ final class OsConfigPatchDeploymentRecurringSchedule {
 
   final OsConfigPatchDeploymentWeekly? weekly;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
     'start_time': ?startTime?.toTfJson(),
@@ -690,8 +726,10 @@ sealed class OsConfigPatchDeploymentMonthly {
       OsConfigPatchDeploymentMonthlyMonthDay;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -702,9 +740,11 @@ final class OsConfigPatchDeploymentMonthlyWeekDayOfMonth
 
   final OsConfigPatchDeploymentWeekDayOfMonth weekDayOfMonth;
 
+  @internal
   @override
   String get blockKey => 'week_day_of_month';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'week_day_of_month': weekDayOfMonth.encode(),
@@ -718,9 +758,11 @@ final class OsConfigPatchDeploymentMonthlyMonthDay
 
   final TfArg<num> monthDay;
 
+  @internal
   @override
   String get blockKey => 'month_day';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'month_day': monthDay.toTfJson()};
 }
@@ -741,6 +783,7 @@ final class OsConfigPatchDeploymentWeekDayOfMonth {
 
   final TfArg<num> weekOrdinal;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     'day_offset': ?dayOffset?.toTfJson(),
@@ -809,6 +852,7 @@ final class OsConfigPatchDeploymentTimeOfDay {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -827,6 +871,7 @@ final class OsConfigPatchDeploymentTimeZone {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -841,6 +886,7 @@ final class OsConfigPatchDeploymentWeekly {
 
   final OsConfigPatchDeploymentDayOfWeek dayOfWeek;
 
+  @internal
   Map<String, Object?> encode() => {'day_of_week': dayOfWeek.toTfJson()};
 }
 
@@ -857,6 +903,7 @@ final class OsConfigPatchDeploymentRollout {
 
   final OsConfigPatchDeploymentDisruptionBudget disruptionBudget;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'disruption_budget': disruptionBudget.encode(),
@@ -903,8 +950,10 @@ sealed class OsConfigPatchDeploymentDisruptionBudget {
   ) = OsConfigPatchDeploymentDisruptionBudgetPercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -915,9 +964,11 @@ final class OsConfigPatchDeploymentDisruptionBudgetFixed
 
   final TfArg<num> fixed;
 
+  @internal
   @override
   String get blockKey => 'fixed';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'fixed': fixed.toTfJson()};
 }
@@ -929,9 +980,11 @@ final class OsConfigPatchDeploymentDisruptionBudgetPercentage
 
   final TfArg<num> percentage;
 
+  @internal
   @override
   String get blockKey => 'percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'percentage': percentage.toTfJson()};
 }

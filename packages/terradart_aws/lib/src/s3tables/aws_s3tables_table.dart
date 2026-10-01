@@ -28,6 +28,7 @@ final class S3tablesTableMetadata {
 
   final List<S3tablesTableIceberg>? iceberg;
 
+  @internal
   Map<String, Object?> encode() => {
     if (iceberg != null) 'iceberg': [for (final e in iceberg!) e.encode()],
   };
@@ -43,6 +44,7 @@ final class S3tablesTableIceberg {
 
   final List<S3tablesTableSchema>? schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'properties': ?properties?.toTfJson(),
     if (schema != null) 'schema': [for (final e in schema!) e.encode()],
@@ -57,6 +59,7 @@ final class S3tablesTableSchema {
 
   final List<S3tablesTableField>? field;
 
+  @internal
   Map<String, Object?> encode() => {
     if (field != null) 'field': [for (final e in field!) e.encode()],
   };
@@ -78,6 +81,7 @@ final class S3tablesTableField {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'required': ?required?.toTfJson(),

@@ -66,6 +66,7 @@ final class CloudAssetProjectFeedCondition {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -82,6 +83,7 @@ final class CloudAssetProjectFeedOutputConfig {
 
   final CloudAssetProjectFeedPubsubDestination pubsubDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'pubsub_destination': pubsubDestination.encode(),
   };
@@ -95,6 +97,7 @@ final class CloudAssetProjectFeedPubsubDestination {
 
   final RefTo<GooglePubsubTopic> topic;
 
+  @internal
   Map<String, Object?> encode() => {'topic': topic.encodeAs('id').toTfJson()};
 }
 

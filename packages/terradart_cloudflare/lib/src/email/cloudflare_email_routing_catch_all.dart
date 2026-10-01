@@ -36,6 +36,7 @@ final class EmailRoutingCatchAllActions {
 
   final TfArg<List<String>>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -74,6 +75,7 @@ final class EmailRoutingCatchAllMatchers {
 
   final EmailRoutingCatchAllMatchersType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 

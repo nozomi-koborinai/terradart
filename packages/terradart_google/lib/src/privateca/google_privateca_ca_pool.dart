@@ -29,6 +29,7 @@ final class PrivatecaCaPoolEncryptionSpec {
 
   final TfArg<String>? cloudKmsKey;
 
+  @internal
   Map<String, Object?> encode() => {'cloud_kms_key': ?cloudKmsKey?.toTfJson()};
 }
 
@@ -57,6 +58,7 @@ final class PrivatecaCaPoolIssuancePolicy {
 
   final PrivatecaCaPoolIdentityConstraints? identityConstraints;
 
+  @internal
   Map<String, Object?> encode() => {
     'backdate_duration': ?backdateDuration?.toTfJson(),
     'maximum_lifetime': ?maximumLifetime?.toTfJson(),
@@ -81,6 +83,7 @@ final class PrivatecaCaPoolAllowedIssuanceModes {
 
   final TfArg<bool> allowCsrBasedIssuance;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_config_based_issuance': allowConfigBasedIssuance.toTfJson(),
     'allow_csr_based_issuance': allowCsrBasedIssuance.toTfJson(),
@@ -97,6 +100,7 @@ final class PrivatecaCaPoolAllowedKeyTypes {
 
   final PrivatecaCaPoolRsa? rsa;
 
+  @internal
   Map<String, Object?> encode() => {
     'elliptic_curve': ?ellipticCurve?.encode(),
     'rsa': ?rsa?.encode(),
@@ -111,6 +115,7 @@ final class PrivatecaCaPoolEllipticCurve {
 
   final PrivatecaCaPoolSignatureAlgorithm signatureAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'signature_algorithm': signatureAlgorithm.toTfJson(),
   };
@@ -152,6 +157,7 @@ final class PrivatecaCaPoolRsa {
 
   final TfArg<String>? minModulusSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_modulus_size': ?maxModulusSize?.toTfJson(),
     'min_modulus_size': ?minModulusSize?.toTfJson(),
@@ -183,6 +189,7 @@ final class PrivatecaCaPoolBaselineValues {
 
   final List<PrivatecaCaPoolPolicyIds>? policyIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'aia_ocsp_servers': ?aiaOcspServers?.toTfJson(),
     if (additionalExtensions != null)
@@ -213,6 +220,7 @@ final class PrivatecaCaPoolAdditionalExtensions {
 
   final PrivatecaCaPoolObjectId objectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
     'value': value.toTfJson(),
@@ -228,6 +236,7 @@ final class PrivatecaCaPoolObjectId {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -250,6 +259,7 @@ final class PrivatecaCaPoolCaOptions {
 
   final TfArg<bool>? zeroMaxIssuerPathLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_ca': ?isCa?.toTfJson(),
     'max_issuer_path_length': ?maxIssuerPathLength?.toTfJson(),
@@ -274,6 +284,7 @@ final class PrivatecaCaPoolKeyUsage {
 
   final List<PrivatecaCaPoolUnknownExtendedKeyUsages>? unknownExtendedKeyUsages;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_key_usage': baseKeyUsage.encode(),
     'extended_key_usage': extendedKeyUsage.encode(),
@@ -318,6 +329,7 @@ final class PrivatecaCaPoolBaseKeyUsage {
 
   final TfArg<bool>? keyEncipherment;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert_sign': ?certSign?.toTfJson(),
     'content_commitment': ?contentCommitment?.toTfJson(),
@@ -356,6 +368,7 @@ final class PrivatecaCaPoolExtendedKeyUsage {
 
   final TfArg<bool>? timeStamping;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_auth': ?clientAuth?.toTfJson(),
     'code_signing': ?codeSigning?.toTfJson(),
@@ -374,6 +387,7 @@ final class PrivatecaCaPoolUnknownExtendedKeyUsages {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -411,6 +425,7 @@ final class PrivatecaCaPoolNameConstraints {
 
   final TfArg<List<String>>? permittedUris;
 
+  @internal
   Map<String, Object?> encode() => {
     'critical': critical.toTfJson(),
     'excluded_dns_names': ?excludedDnsNames?.toTfJson(),
@@ -432,6 +447,7 @@ final class PrivatecaCaPoolPolicyIds {
 
   final TfArg<List<num>> objectIdPath;
 
+  @internal
   Map<String, Object?> encode() => {'object_id_path': objectIdPath.toTfJson()};
 }
 
@@ -451,6 +467,7 @@ final class PrivatecaCaPoolIdentityConstraints {
 
   final PrivatecaCaPoolCelExpression? celExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_subject_alt_names_passthrough': allowSubjectAltNamesPassthrough
         .toTfJson(),
@@ -478,6 +495,7 @@ final class PrivatecaCaPoolCelExpression {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -502,6 +520,7 @@ final class PrivatecaCaPoolPublishingOptions {
 
   final TfArg<bool> publishCrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoding_format': ?encodingFormat?.toTfJson(),
     'publish_ca_cert': publishCaCert.toTfJson(),

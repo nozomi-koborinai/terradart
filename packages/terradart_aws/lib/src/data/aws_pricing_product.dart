@@ -17,6 +17,7 @@ final class DataPricingProductFilters {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': field.toTfJson(),
     'value': value.toTfJson(),

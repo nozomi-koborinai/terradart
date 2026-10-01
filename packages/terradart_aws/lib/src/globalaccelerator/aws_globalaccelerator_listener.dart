@@ -55,6 +55,7 @@ final class GlobalacceleratorListenerPortRange {
 
   final TfArg<num>? toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': ?fromPort?.toTfJson(),
     'to_port': ?toPort?.toTfJson(),

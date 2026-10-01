@@ -3,6 +3,7 @@
 /// AWS Rekognition.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/rekognition/aws_rekognition_collection.dart'
     show AwsRekognitionCollection;
 export 'src/rekognition/aws_rekognition_project.dart'

@@ -33,6 +33,7 @@ final class StorageTransferJobEventStream {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_stream_expiration_time': ?eventStreamExpirationTime?.toTfJson(),
     'event_stream_start_time': ?eventStreamStartTime?.toTfJson(),
@@ -56,6 +57,7 @@ final class StorageTransferJobLoggingConfig {
 
   final TfArg<List<String>>? logActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_on_prem_gcs_transfer_logs': ?enableOnPremGcsTransferLogs
         ?.toTfJson(),
@@ -80,6 +82,7 @@ final class StorageTransferJobNotificationConfig {
 
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_types': ?eventTypes?.toTfJson(),
     'payload_format': payloadFormat.toTfJson(),
@@ -106,6 +109,7 @@ final class StorageTransferJobReplicationSpec {
 
   final StorageTransferJobTransferOptions? transferOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcs_data_sink': ?gcsDataSink?.encode(),
     'gcs_data_source': ?gcsDataSource?.encode(),
@@ -125,6 +129,7 @@ final class StorageTransferJobGcsDataSink {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
     'path': ?path?.toTfJson(),
@@ -142,6 +147,7 @@ final class StorageTransferJobGcsDataSource {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
     'path': ?path?.toTfJson(),
@@ -174,6 +180,7 @@ final class StorageTransferJobObjectConditions {
 
   final TfArg<String>? minTimeElapsedSinceLastModification;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_prefixes': ?excludePrefixes?.toTfJson(),
     'include_prefixes': ?includePrefixes?.toTfJson(),
@@ -209,6 +216,7 @@ final class StorageTransferJobTransferOptions {
 
   final StorageTransferJobMetadataOptions? metadataOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_objects_from_source_after_transfer':
         ?deleteObjectsFromSourceAfterTransfer?.toTfJson(),
@@ -255,6 +263,7 @@ final class StorageTransferJobMetadataOptions {
 
   final TfArg<String>? uid;
 
+  @internal
   Map<String, Object?> encode() => {
     'acl': ?acl?.toTfJson(),
     'gid': ?gid?.toTfJson(),
@@ -287,6 +296,7 @@ final class StorageTransferJobSchedule {
 
   final StorageTransferJobStartTimeOfDay? startTimeOfDay;
 
+  @internal
   Map<String, Object?> encode() => {
     'repeat_interval': ?repeatInterval?.toTfJson(),
     'schedule_end_date': ?scheduleEndDate?.encode(),
@@ -311,6 +321,7 @@ final class StorageTransferJobScheduleEndDate {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -334,6 +345,7 @@ final class StorageTransferJobScheduleStartDate {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -360,6 +372,7 @@ final class StorageTransferJobStartTimeOfDay {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': hours.toTfJson(),
     'minutes': minutes.toTfJson(),
@@ -418,6 +431,7 @@ final class StorageTransferJobTransferSpec {
 
   final StorageTransferJobTransferOptions? transferOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'sink_agent_pool_name': ?sinkAgentPoolName?.toTfJson(),
     'source_agent_pool_name': ?sourceAgentPoolName?.toTfJson(),
@@ -458,6 +472,7 @@ final class StorageTransferJobAwsS3CompatibleDataSource {
 
   final StorageTransferJobS3Metadata? s3Metadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
     'endpoint': endpoint.toTfJson(),
@@ -486,6 +501,7 @@ final class StorageTransferJobS3Metadata {
 
   final TfArg<String>? requestModel;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_method': ?authMethod?.toTfJson(),
     'list_api': ?listApi?.toTfJson(),
@@ -522,6 +538,7 @@ final class StorageTransferJobAwsS3DataSource {
 
   final StorageTransferJobAwsAccessKey? awsAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
     'cloudfront_domain': ?cloudfrontDomain?.toTfJson(),
@@ -546,6 +563,7 @@ final class StorageTransferJobAwsAccessKey {
 
   final Sensitive<String> secretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'secret_access_key': secretAccessKey.toTfJson(),
@@ -580,6 +598,7 @@ final class StorageTransferJobAzureBlobStorageDataSource {
 
   final StorageTransferJobFederatedIdentityConfig? federatedIdentityConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'container': container.toTfJson(),
     'credentials_secret': ?credentialsSecret?.toTfJson(),
@@ -599,6 +618,7 @@ final class StorageTransferJobAzureCredentials {
 
   final Sensitive<String> sasToken;
 
+  @internal
   Map<String, Object?> encode() => {'sas_token': sasToken.toTfJson()};
 }
 
@@ -615,6 +635,7 @@ final class StorageTransferJobFederatedIdentityConfig {
 
   final Sensitive<String> tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'tenant_id': tenantId.toTfJson(),
@@ -629,6 +650,7 @@ final class StorageTransferJobHdfsDataSource {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -640,6 +662,7 @@ final class StorageTransferJobHttpDataSource {
 
   final TfArg<String> listUrl;
 
+  @internal
   Map<String, Object?> encode() => {'list_url': listUrl.toTfJson()};
 }
 
@@ -651,6 +674,7 @@ final class StorageTransferJobPosixDataSink {
 
   final TfArg<String> rootDirectory;
 
+  @internal
   Map<String, Object?> encode() => {'root_directory': rootDirectory.toTfJson()};
 }
 
@@ -662,6 +686,7 @@ final class StorageTransferJobPosixDataSource {
 
   final TfArg<String> rootDirectory;
 
+  @internal
   Map<String, Object?> encode() => {'root_directory': rootDirectory.toTfJson()};
 }
 
@@ -673,6 +698,7 @@ final class StorageTransferJobTransferManifest {
 
   final TfArg<String> location;
 
+  @internal
   Map<String, Object?> encode() => {'location': location.toTfJson()};
 }
 

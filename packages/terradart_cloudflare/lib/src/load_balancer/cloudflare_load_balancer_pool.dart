@@ -96,6 +96,7 @@ final class LoadBalancerPoolLoadShedding {
 
   final LoadBalancerPoolSessionPolicy? sessionPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_percent': ?defaultPercent?.toTfJson(),
     'default_policy': ?defaultPolicy?.toTfJson(),
@@ -143,6 +144,7 @@ final class LoadBalancerPoolNotificationFilter {
 
   final LoadBalancerPool? pool;
 
+  @internal
   Map<String, Object?> encode() => {
     'origin': ?origin?.encode(),
     'pool': ?pool?.encode(),
@@ -159,6 +161,7 @@ final class LoadBalancerPoolOrigin {
 
   final TfArg<bool>? healthy;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable': ?disable?.toTfJson(),
     'healthy': ?healthy?.toTfJson(),
@@ -175,6 +178,7 @@ final class LoadBalancerPool {
 
   final TfArg<bool>? healthy;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable': ?disable?.toTfJson(),
     'healthy': ?healthy?.toTfJson(),
@@ -189,6 +193,7 @@ final class LoadBalancerPoolOriginSteering {
 
   final LoadBalancerPoolPolicy? policy;
 
+  @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
@@ -248,6 +253,7 @@ final class LoadBalancerPoolOrigins {
 
   final LoadBalancerPoolHeader? header;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -268,6 +274,7 @@ final class LoadBalancerPoolHeader {
 
   final TfArg<List<String>>? host;
 
+  @internal
   Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }
 

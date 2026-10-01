@@ -3,6 +3,7 @@
 /// AWS Chime.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/chime/aws_chime_voice_connector.dart'
     show AwsChimeVoiceConnector, ChimeVoiceConnectorAwsRegion;
 export 'src/chime/aws_chime_voice_connector_group.dart'

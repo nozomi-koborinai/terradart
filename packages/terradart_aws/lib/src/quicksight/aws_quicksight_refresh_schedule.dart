@@ -23,6 +23,7 @@ final class QuicksightRefreshSchedule {
 
   final List<QuicksightRefreshScheduleFrequency>? scheduleFrequency;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_type': refreshType.toTfJson(),
     'start_after_date_time': ?startAfterDateTime?.toTfJson(),
@@ -73,6 +74,7 @@ final class QuicksightRefreshScheduleFrequency {
 
   final List<QuicksightRefreshScheduleRefreshOnDay>? refreshOnDay;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'time_of_the_day': ?timeOfTheDay?.toTfJson(),
@@ -139,8 +141,10 @@ sealed class QuicksightRefreshScheduleRefreshOnDay {
   ) = QuicksightRefreshScheduleRefreshOnDayOfWeek;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -151,9 +155,11 @@ final class QuicksightRefreshScheduleRefreshOnDayOfMonth
 
   final TfArg<String> dayOfMonth;
 
+  @internal
   @override
   String get blockKey => 'day_of_month';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'day_of_month': dayOfMonth.toTfJson()};
 }
@@ -165,9 +171,11 @@ final class QuicksightRefreshScheduleRefreshOnDayOfWeek
 
   final QuicksightRefreshScheduleDayOfWeek dayOfWeek;
 
+  @internal
   @override
   String get blockKey => 'day_of_week';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'day_of_week': dayOfWeek.toTfJson()};
 }

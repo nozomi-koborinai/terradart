@@ -52,6 +52,7 @@ final class SagemakerModelContainer {
 
   final SagemakerModelMultiModelConfig? multiModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_hostname': ?containerHostname?.toTfJson(),
     'environment': ?environment?.toTfJson(),
@@ -106,6 +107,7 @@ final class SagemakerModelAdditionalModelDataSource {
 
   final List<SagemakerModelS3DataSource> s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
     's3_data_source': [for (final e in s3DataSource) e.encode()],
@@ -132,6 +134,7 @@ final class SagemakerModelS3DataSource {
 
   final SagemakerModelAccessConfig? modelAccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': compressionType.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
@@ -178,6 +181,7 @@ final class SagemakerModelAccessConfig {
 
   final TfArg<bool> acceptEula;
 
+  @internal
   Map<String, Object?> encode() => {'accept_eula': acceptEula.toTfJson()};
 }
 
@@ -195,6 +199,7 @@ final class SagemakerModelImageConfig {
 
   final SagemakerModelRepositoryAuthConfig? repositoryAuthConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_access_mode': repositoryAccessMode.toTfJson(),
     'repository_auth_config': ?repositoryAuthConfig?.encode(),
@@ -232,6 +237,7 @@ final class SagemakerModelRepositoryAuthConfig {
 
   final TfArg<String> repositoryCredentialsProviderArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_credentials_provider_arn': repositoryCredentialsProviderArn
         .toTfJson(),
@@ -247,6 +253,7 @@ final class SagemakerModelDataSource {
 
   final List<SagemakerModelS3DataSource> s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_data_source': [for (final e in s3DataSource) e.encode()],
   };
@@ -261,6 +268,7 @@ final class SagemakerModelMultiModelConfig {
 
   final SagemakerModelCacheSetting? modelCacheSetting;
 
+  @internal
   Map<String, Object?> encode() => {
     'model_cache_setting': ?modelCacheSetting?.toTfJson(),
   };
@@ -291,6 +299,7 @@ final class SagemakerModelInferenceExecutionConfig {
 
   final SagemakerModelInferenceExecutionConfigMode mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -359,6 +368,7 @@ final class SagemakerModelPrimaryContainer {
 
   final SagemakerModelMultiModelConfig? multiModelConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_hostname': ?containerHostname?.toTfJson(),
     'environment': ?environment?.toTfJson(),
@@ -390,6 +400,7 @@ final class SagemakerModelVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

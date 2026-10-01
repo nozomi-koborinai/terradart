@@ -3,6 +3,9 @@
 /// Cloud Data Fusion — managed CDAP data integration instances.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_data_fusion_instance_iam_policy.dart'
+    show DataGoogleDataFusionInstanceIamPolicy;
 export 'src/data_fusion/google_data_fusion_instance.dart'
     show
         DataFusionInstanceAcceleratorType,

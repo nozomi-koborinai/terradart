@@ -28,12 +28,15 @@ sealed class BackupRestoreTestingSelectionProtectedResource {
   ) = BackupRestoreTestingSelectionProtectedResourceConditionsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -46,14 +49,17 @@ final class BackupRestoreTestingSelectionProtectedResourceArns
 
   final TfArg<List<String>> protectedResourceArns;
 
+  @internal
   @override
   String get blockKey => 'protected_resource_arns';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'protected_resource_arns': protectedResourceArns.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'protected_resource_arns': protectedResourceArns,
@@ -70,9 +76,11 @@ final class BackupRestoreTestingSelectionProtectedResourceConditionsChoice
   final List<BackupRestoreTestingSelectionProtectedResourceConditions>
   protectedResourceConditions;
 
+  @internal
   @override
   String get blockKey => 'protected_resource_conditions';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'protected_resource_conditions': [
@@ -80,6 +88,7 @@ final class BackupRestoreTestingSelectionProtectedResourceConditionsChoice
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'protected_resource_conditions': TfArg.literal([
@@ -101,6 +110,7 @@ final class BackupRestoreTestingSelectionProtectedResourceConditions {
 
   final List<BackupRestoreTestingSelectionStringNotEquals>? stringNotEquals;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stringEquals != null)
       'string_equals': [for (final e in stringEquals!) e.encode()],
@@ -122,6 +132,7 @@ final class BackupRestoreTestingSelectionStringEquals {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -141,6 +152,7 @@ final class BackupRestoreTestingSelectionStringNotEquals {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

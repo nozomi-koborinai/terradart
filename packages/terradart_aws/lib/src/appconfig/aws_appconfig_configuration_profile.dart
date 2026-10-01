@@ -46,6 +46,7 @@ final class AppconfigConfigurationProfileValidator {
 
   final AppconfigConfigurationProfileValidatorType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'type': type.toTfJson(),

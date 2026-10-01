@@ -39,6 +39,7 @@ final class CloudfrontResponseHeadersPolicyCorsConfig {
   final CloudfrontResponseHeadersPolicyAccessControlExposeHeaders?
   accessControlExposeHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_control_allow_credentials': accessControlAllowCredentials
         .toTfJson(),
@@ -59,6 +60,7 @@ final class CloudfrontResponseHeadersPolicyAccessControlAllowHeaders {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -70,6 +72,7 @@ final class CloudfrontResponseHeadersPolicyAccessControlAllowMethods {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -81,6 +84,7 @@ final class CloudfrontResponseHeadersPolicyAccessControlAllowOrigins {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -92,6 +96,7 @@ final class CloudfrontResponseHeadersPolicyAccessControlExposeHeaders {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -103,6 +108,7 @@ final class CloudfrontResponseHeadersPolicyCustomHeadersConfig {
 
   final List<CloudfrontResponseHeadersPolicyCustomHeadersConfigItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -124,6 +130,7 @@ final class CloudfrontResponseHeadersPolicyCustomHeadersConfigItems {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'header': header.toTfJson(),
     'override': override.toTfJson(),
@@ -139,6 +146,7 @@ final class CloudfrontResponseHeadersPolicyRemoveHeadersConfig {
 
   final List<CloudfrontResponseHeadersPolicyRemoveHeadersConfigItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -154,6 +162,7 @@ final class CloudfrontResponseHeadersPolicyRemoveHeadersConfigItems {
 
   final TfArg<String> header;
 
+  @internal
   Map<String, Object?> encode() => {'header': header.toTfJson()};
 }
 
@@ -184,6 +193,7 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfig {
 
   final CloudfrontResponseHeadersPolicyXssProtection? xssProtection;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_security_policy': ?contentSecurityPolicy?.encode(),
     'content_type_options': ?contentTypeOptions?.encode(),
@@ -207,6 +217,7 @@ final class CloudfrontResponseHeadersPolicyContentSecurityPolicy {
 
   final TfArg<bool> override;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_security_policy': contentSecurityPolicy.toTfJson(),
     'override': override.toTfJson(),
@@ -223,6 +234,7 @@ final class CloudfrontResponseHeadersPolicyContentTypeOptions {
 
   final TfArg<bool> override;
 
+  @internal
   Map<String, Object?> encode() => {'override': override.toTfJson()};
 }
 
@@ -239,6 +251,7 @@ final class CloudfrontResponseHeadersPolicyFrameOptions {
 
   final TfArg<bool> override;
 
+  @internal
   Map<String, Object?> encode() => {
     'frame_option': frameOption.toTfJson(),
     'override': override.toTfJson(),
@@ -283,6 +296,7 @@ final class CloudfrontResponseHeadersPolicyReferrerPolicy {
   final CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
   referrerPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'override': override.toTfJson(),
     'referrer_policy': referrerPolicy.toTfJson(),
@@ -370,6 +384,7 @@ final class CloudfrontResponseHeadersPolicyStrictTransportSecurity {
 
   final TfArg<bool>? preload;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_control_max_age_sec': accessControlMaxAgeSec.toTfJson(),
     'include_subdomains': ?includeSubdomains?.toTfJson(),
@@ -397,6 +412,7 @@ final class CloudfrontResponseHeadersPolicyXssProtection {
 
   final TfArg<String>? reportUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode_block': ?modeBlock?.toTfJson(),
     'override': override.toTfJson(),
@@ -418,6 +434,7 @@ final class CloudfrontResponseHeadersPolicyServerTimingHeadersConfig {
 
   final TfArg<num> samplingRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'sampling_rate': samplingRate.toTfJson(),

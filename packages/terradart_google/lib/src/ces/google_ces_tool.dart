@@ -21,6 +21,7 @@ final class CesToolAgentTool {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent': ?agent?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -47,6 +48,7 @@ final class CesToolClientFunction {
 
   final CesToolResponse? response;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -120,6 +122,7 @@ final class CesToolParameters {
 
   final TfArg<bool>? uniqueItems;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_properties': ?additionalProperties?.toTfJson(),
     'any_of': ?anyOf?.toTfJson(),
@@ -207,6 +210,7 @@ final class CesToolResponse {
 
   final TfArg<bool>? uniqueItems;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_properties': ?additionalProperties?.toTfJson(),
     'any_of': ?anyOf?.toTfJson(),
@@ -258,6 +262,7 @@ final class CesToolDataStoreTool {
 
   final List<CesToolModalityConfigs>? modalityConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'filter_parameter_behavior': ?filterParameterBehavior?.toTfJson(),
@@ -289,8 +294,10 @@ sealed class CesToolSource {
       CesToolEngineSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -300,9 +307,11 @@ final class CesToolDataStoreSourceChoice extends CesToolSource {
 
   final CesToolDataStoreSource dataStoreSource;
 
+  @internal
   @override
   String get blockKey => 'data_store_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_store_source': dataStoreSource.encode(),
@@ -315,9 +324,11 @@ final class CesToolEngineSourceChoice extends CesToolSource {
 
   final CesToolEngineSource engineSource;
 
+  @internal
   @override
   String get blockKey => 'engine_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'engine_source': engineSource.encode()};
 }
@@ -359,6 +370,7 @@ final class CesToolBoostSpecs {
 
   final List<CesToolSpec> spec;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_stores': dataStores.toTfJson(),
     'spec': [for (final e in spec) e.encode()],
@@ -373,6 +385,7 @@ final class CesToolSpec {
 
   final List<CesToolConditionBoostSpecs> conditionBoostSpecs;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_boost_specs': [for (final e in conditionBoostSpecs) e.encode()],
   };
@@ -394,6 +407,7 @@ final class CesToolConditionBoostSpecs {
 
   final CesToolBoostControlSpec? boostControlSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'boost': ?boost?.toTfJson(),
     'condition': condition.toTfJson(),
@@ -420,6 +434,7 @@ final class CesToolBoostControlSpec {
 
   final List<CesToolControlPoints>? controlPoints;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_type': ?attributeType?.toTfJson(),
     'field_name': ?fieldName?.toTfJson(),
@@ -439,6 +454,7 @@ final class CesToolControlPoints {
 
   final TfArg<num>? boostAmount;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_value': ?attributeValue?.toTfJson(),
     'boost_amount': ?boostAmount?.toTfJson(),
@@ -455,6 +471,7 @@ final class CesToolDataStoreSource {
 
   final CesToolDataStore? dataStore;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),
     'data_store': ?dataStore?.encode(),
@@ -470,6 +487,7 @@ final class CesToolDataStore {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -489,6 +507,7 @@ final class CesToolEngineSource {
 
   final List<CesToolDataStoreSources>? dataStoreSources;
 
+  @internal
   Map<String, Object?> encode() => {
     'engine': engine.toTfJson(),
     'filter': ?filter?.toTfJson(),
@@ -507,6 +526,7 @@ final class CesToolDataStoreSources {
 
   final CesToolDataStore? dataStore;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),
     'data_store': ?dataStore?.encode(),
@@ -535,6 +555,7 @@ final class CesToolModalityConfigs {
 
   final CesToolSummarizationConfig? summarizationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'modality_type': modalityType.toTfJson(),
     'grounding_config': ?groundingConfig?.encode(),
@@ -554,6 +575,7 @@ final class CesToolGroundingConfig {
 
   final TfArg<num>? groundingLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'grounding_level': ?groundingLevel?.toTfJson(),
@@ -576,6 +598,7 @@ final class CesToolRewriterConfig {
 
   final CesToolModelSettings modelSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'prompt': ?prompt?.toTfJson(),
@@ -594,6 +617,7 @@ final class CesToolModelSettings {
 
   final TfArg<num>? temperature;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
@@ -608,6 +632,7 @@ final class CesToolSnippetsConfig {
 
   final TfArg<bool>? enableSnippets;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_snippets': ?enableSnippets?.toTfJson(),
   };
@@ -629,6 +654,7 @@ final class CesToolSummarizationConfig {
 
   final CesToolModelSettings? modelSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'prompt': ?prompt?.toTfJson(),
@@ -655,6 +681,7 @@ final class CesToolFileSearchTool {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'corpus_type': ?corpusType?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -711,6 +738,7 @@ final class CesToolGoogleSearchTool {
 
   final CesToolPromptConfig? promptConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'context_urls': ?contextUrls?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -731,6 +759,7 @@ final class CesToolPromptConfig {
 
   final TfArg<String>? voicePrompt;
 
+  @internal
   Map<String, Object?> encode() => {
     'text_prompt': ?textPrompt?.toTfJson(),
     'voice_prompt': ?voicePrompt?.toTfJson(),
@@ -753,6 +782,7 @@ final class CesToolPythonFunction {
 
   final CesToolServiceDirectoryConfig? serviceDirectoryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'python_code': ?pythonCode?.toTfJson(),
@@ -768,6 +798,7 @@ final class CesToolServiceDirectoryConfig {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
@@ -781,6 +812,7 @@ final class CesToolFakeConfig {
 
   final CesToolCodeBlock? codeBlock;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_fake_mode': ?enableFakeMode?.toTfJson(),
     'code_block': ?codeBlock?.encode(),
@@ -795,6 +827,7 @@ final class CesToolCodeBlock {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {'python_code': pythonCode.toTfJson()};
 }
 
@@ -826,6 +859,7 @@ final class CesToolWidgetTool {
 
   final CesToolTextResponseConfig? textResponseConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -915,6 +949,7 @@ final class CesToolDataMapping {
 
   final CesToolDataMappingPythonFunction? pythonFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_mappings': ?fieldMappings?.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -952,6 +987,7 @@ final class CesToolDataMappingPythonFunction {
 
   final TfArg<String>? pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'python_code': ?pythonCode?.toTfJson(),
@@ -974,6 +1010,7 @@ final class CesToolTextResponseConfig {
 
   final CesToolType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_text': ?staticText?.toTfJson(),
     'text_response_instruction': ?textResponseInstruction?.toTfJson(),

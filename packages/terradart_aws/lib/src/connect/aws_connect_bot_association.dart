@@ -17,6 +17,7 @@ final class ConnectBotAssociationLexBot {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'lex_region': ?lexRegion?.toTfJson(),
     'name': name.toTfJson(),
