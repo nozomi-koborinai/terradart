@@ -498,7 +498,7 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 ///   = `connection.name`.
 ///
 /// Output-only state:
-/// - [installationStateRef]: per-stage installation progress
+/// - [installationState]: per-stage installation progress
 ///   (`PENDING_CREATE_APP` / `PENDING_USER_OAUTH` /
 ///   `PENDING_INSTALL_APP` / `COMPLETE`).
 /// - [reconciling]: server-side reconciliation flag.

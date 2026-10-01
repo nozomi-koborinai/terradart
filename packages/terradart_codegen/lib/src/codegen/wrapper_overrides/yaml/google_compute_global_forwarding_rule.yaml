@@ -40,12 +40,10 @@ curatedDoc: |-
   /// - `portRange`: a single port (e.g. `'443'`) or a range
   ///   (e.g. `'80-443'`). Required for proxy / Application Load Balancers.
   ///
-  /// [ipAddressRef] is the output reference to `ip_address` — populated
-  /// with the actual VIP after apply. Useful when [ipAddress] was left
-  /// unset and GCP allocated an ephemeral IP, or when downstream DNS
-  /// records need the resolved address. (`ip_address` is
-  /// `optional + computed`; the derive gate skips it, so [ipAddressRef]
-  /// is the sole reference accessor.)
+  /// The [ipAddress] getter reads `ip_address` — populated with the actual
+  /// VIP after apply. Useful when the `ipAddress` argument was left unset
+  /// and GCP allocated an ephemeral IP, or when downstream DNS records need
+  /// the resolved address.
   ///
   /// [pscConnectionId] is populated only for Private Service Connect
   /// consumer forwarding rules; empty otherwise. [pscConnectionStatus]
