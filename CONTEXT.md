@@ -37,11 +37,11 @@ The name of a sealed argument, like a protobuf `oneof`: what its members are alt
 _Avoid_: Or name, option type
 
 **Synth issue**:
-One reason a Stack cannot synthesize — a subtype of the sealed `SynthIssue` (`UnregisteredReference`, `SensitiveLiteral`, `MissingProvider`, ...) carrying the address of the block that holds it and a fix. Synth collects every issue before it encodes anything and throws them together as one `SynthException`; `Stack.validate()` returns them without throwing. A name problem is not a synth issue: `add` / `addVariable` / `addOutput` throw `ArgumentError` where the name is registered.
+One reason a Stack cannot synthesize — a subtype of the sealed `SynthIssue` (`UnregisteredReference`, `SensitiveLiteral`, `MissingProvider`, ...) carrying the address of the block that holds it and a fix. Synth collects every issue before it encodes anything and throws them together as one `SynthException`; `Stack.validate()` returns them without throwing. A name problem is not a synth issue: `add` / `variable` / `addOutput` throw `ArgumentError` where the name is registered.
 _Avoid_: Synth error, validation failure
 
 **External block**:
-A resource, data source or module call a hand-written file beside `main.tf.json` declares, which the Stack reads without owning (`Stack.addExternalBlock`), as `addExternalVariable` does for a variable. The migrator declares every block it keeps in the leftover sidecar and the Stack still reads.
+A resource, data source or module call a hand-written file beside `main.tf.json` declares, which the Stack reads without owning (`Stack.addExternalBlock`), as `externalVariable` does for a variable. The migrator declares every block it keeps in the leftover sidecar and the Stack still reads.
 _Avoid_: Unregistered reference (that is the issue an undeclared one raises)
 
 **Attribute getter**:
@@ -85,7 +85,7 @@ The Terraform files the migrator writes next to `main.tf.json` — `terradart_le
 _Avoid_: Fallback file, TODO file
 
 **Child-module mode**:
-The migrator's Stack output for a directory a `module` block's `source` points at: providers registered without configuration (synth emits only `required_providers`), `variable` → `addVariable`, `output` → exports; provider configurations and a backend found there stay in the sidecar. The caller's `module` block becomes a **module call wrapper**, whose `source` still points at the child's directory in the mirrored `tf-out/` tree, so plan addresses keep the `module.<name>.` prefix.
+The migrator's Stack output for a directory a `module` block's `source` points at: providers registered without configuration (synth emits only `required_providers`), `variable` → `variable<T>(...)`, `output` → exports; provider configurations and a backend found there stay in the sidecar. The caller's `module` block becomes a **module call wrapper**, whose `source` still points at the child's directory in the mirrored `tf-out/` tree, so plan addresses keep the `module.<name>.` prefix.
 _Avoid_: Nested Stack
 
 **Partial backend configuration**:

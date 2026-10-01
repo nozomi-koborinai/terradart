@@ -27,38 +27,35 @@ final class DevStack extends Stack {
           prefix: 'infra/dev',
         ),
       ) {
-    addVariable(
+    final projectId = variable<String>(
       'project_id',
-      const TfVariable(type: 'string', defaultValue: 'example-project-dev'),
+      defaultValue: 'example-project-dev',
     );
-    addVariable(
-      'region',
-      const TfVariable(type: 'string', defaultValue: 'asia-northeast1'),
-    );
+    final region = variable<String>('region', defaultValue: 'asia-northeast1');
     // Environment root module. Resources declared directly here, plus calls into
     // the shared local modules under ../modules.
-    add(GoogleProject('current', projectId: .variable('project_id')));
+    add(GoogleProject('current', projectId: projectId));
     add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
     add(
       GoogleArtifactRegistryRepository(
         'images',
         repositoryId: .literal('app-images'),
         format: .literal('DOCKER'),
-        location: .variable('region'),
+        location: region,
       ),
     );
     final assets = add(
       GoogleStorageBucket(
         'assets',
         name: .literal('app-dev-assets'),
-        location: .variable('region'),
+        location: region,
       ),
     );
     final uploads = add(
       GoogleStorageBucket(
         'uploads',
         name: .literal('app-dev-uploads'),
-        location: .variable('region'),
+        location: region,
       ),
     );
     add(
@@ -73,7 +70,7 @@ final class DevStack extends Stack {
       GoogleCloudRunV2Job(
         'db_migrate',
         name: .literal('app-db-migrate'),
-        location: .variable('region'),
+        location: region,
         template: CloudRunV2JobTemplate(
           template: .new(
             containers: [
@@ -170,7 +167,7 @@ final class DevStack extends Stack {
     add(
       GoogleProjectIamMember(
         'worker_token_creator',
-        project: .variable('project_id'),
+        project: projectId,
         role: .literal('roles/iam.serviceAccountTokenCreator'),
         member: .arg(saWorker.member),
       ),

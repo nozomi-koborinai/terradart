@@ -124,10 +124,15 @@ final class EmitContext {
   /// what a reference may resolve to.
   final Map<String, ModuleTarget> moduleTargets = {};
 
-  /// Variables declared by `variable` blocks that become `addVariable`.
+  /// Variables declared by `variable` blocks that become `variable<T>(...)`.
   final Set<String> declaredVariables = {};
 
-  /// Variables referenced but not declared: `addExternalVariable`.
+  /// The handle each declared variable's `variable<T>(...)` returns: its
+  /// Dart local and `T`. A reference whose argument takes a `TfArg<T>`
+  /// reads the local; anything else names the variable.
+  final Map<String, ({String dartName, String dartType})> variableHandles = {};
+
+  /// Variables referenced but not declared: `externalVariable(...)`.
   final Set<String> externalVariables = {};
 
   /// Addresses whose Dart local is used by another statement.

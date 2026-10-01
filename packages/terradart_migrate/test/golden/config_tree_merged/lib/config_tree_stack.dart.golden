@@ -29,36 +29,33 @@ final class ConfigTreeStack extends Stack {
           prefix: env.backendPrefix,
         ),
       ) {
-    addVariable(
+    final projectId = variable<String>(
       'project_id',
-      TfVariable(type: 'string', defaultValue: env.projectIdDefault),
+      defaultValue: env.projectIdDefault,
     );
-    addVariable(
-      'region',
-      const TfVariable(type: 'string', defaultValue: 'asia-northeast1'),
-    );
-    add(GoogleProject('current', projectId: .variable('project_id')));
+    final region = variable<String>('region', defaultValue: 'asia-northeast1');
+    add(GoogleProject('current', projectId: projectId));
     add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
     add(
       GoogleArtifactRegistryRepository(
         'images',
         repositoryId: .literal('app-images'),
         format: .literal('DOCKER'),
-        location: .variable('region'),
+        location: region,
       ),
     );
     final assets = add(
       GoogleStorageBucket(
         'assets',
         name: .literal(env.assetsName),
-        location: .variable('region'),
+        location: region,
       ),
     );
     final uploads = add(
       GoogleStorageBucket(
         'uploads',
         name: .literal(env.uploadsName),
-        location: .variable('region'),
+        location: region,
       ),
     );
     final backups = env.isProd
@@ -66,7 +63,7 @@ final class ConfigTreeStack extends Stack {
             GoogleStorageBucket(
               'backups',
               name: .literal('app-prod-backups'),
-              location: .variable('region'),
+              location: region,
             ),
           )
         : null;
@@ -82,7 +79,7 @@ final class ConfigTreeStack extends Stack {
       GoogleCloudRunV2Job(
         'db_migrate',
         name: .literal('app-db-migrate'),
-        location: .variable('region'),
+        location: region,
         template: CloudRunV2JobTemplate(
           template: .new(
             containers: [
@@ -189,7 +186,7 @@ final class ConfigTreeStack extends Stack {
     add(
       GoogleProjectIamMember(
         'worker_token_creator',
-        project: .variable('project_id'),
+        project: projectId,
         role: .literal('roles/iam.serviceAccountTokenCreator'),
         member: .arg(saWorker.member),
       ),

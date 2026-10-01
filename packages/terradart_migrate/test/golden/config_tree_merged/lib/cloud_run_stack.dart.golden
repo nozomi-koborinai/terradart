@@ -11,11 +11,11 @@ import 'package:terradart_google/provider.dart';
 
 final class CloudRunStack extends Stack {
   CloudRunStack() : super(providers: [const GoogleProvider()]) {
-    addVariable('name', const TfVariable(type: 'string'));
+    final name = variable<String>('name');
     final thisCloudRunV2Service = add(
       GoogleCloudRunV2Service(
         'this',
-        name: .variable('name'),
+        name: name,
         location: .literal('asia-northeast1'),
         template: CloudRunV2ServiceTemplate(
           containers: [

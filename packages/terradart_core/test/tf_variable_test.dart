@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_variable.dart';
@@ -14,7 +16,7 @@ void main() {
 
     test('every set field maps to its Terraform key', () {
       const variable = TfVariable(
-        type: 'string',
+        type: TfType.string,
         description: 'Database password.',
         defaultValue: 'changeme',
         sensitive: true,
@@ -33,38 +35,97 @@ void main() {
     });
 
     test('an unset default emits no default key', () {
-      const variable = TfVariable(type: 'string');
+      const variable = TfVariable(type: TfType.string);
       expect(variable.toTfJson().containsKey('default'), isFalse);
     });
   });
 
-  group('Stack.addExternalVariable', () {
+  group('TfType', () {
+    test('writes each constraint as Terraform does', () {
+      const cases = <TfType, String>{
+        TfType.string: 'string',
+        TfType.number: 'number',
+        TfType.bool: 'bool',
+        TfType.any: 'any',
+        TfType.list(TfType.string): 'list(string)',
+        TfType.set(TfType.number): 'set(number)',
+        TfType.map(TfType.list(TfType.bool)): 'map(list(bool))',
+        TfType.tuple([TfType.string, TfType.number]): 'tuple([string, number])',
+        TfType.object({}): 'object({})',
+        TfType.object({
+          'name': TfType.string,
+          'port': TfType.optional(TfType.number, 8080),
+          'tags': TfType.optional(TfType.list(TfType.string)),
+          'my.key': TfType.string,
+        }): 'object({ name = string, port = optional(number, 8080), '
+            'tags = optional(list(string)), "my.key" = string })',
+      };
+      cases.forEach((type, expression) {
+        expect(type.expression, expression);
+      });
+    });
+
+    test('derives the constraint from a Dart type', () {
+      const cases = <String, String?>{
+        'String': 'string',
+        'String?': 'string',
+        'int': 'number',
+        'double': 'number',
+        'num': 'number',
+        'bool': 'bool',
+        'List<String>': 'list(string)',
+        'Set<int>': 'set(number)',
+        'Map<String, List<bool>>': 'map(list(bool))',
+        'List<Object?>': 'list(any)',
+        'Object?': null,
+        'dynamic': null,
+      };
+      cases.forEach((dart, expression) {
+        expect(TfType.fromDartTypeName(dart)?.expression, expression);
+      });
+    });
+
+    test('a Dart type with no Terraform counterpart throws', () {
+      for (final dart in ['DateTime', 'Map<int, String>', 'List<Duration>']) {
+        expect(() => TfType.fromDartTypeName(dart), throwsFormatException);
+      }
+    });
+  });
+
+  group('Stack.externalVariable', () {
+    test('returns the handle', () {
+      final stack = TestStack();
+      final handle = stack.externalVariable<String>('db_password');
+      expect(handle.toTfJson(), r'${var.db_password}');
+      expect(stack.externalVariables, {'db_password'});
+    });
+
     test('rejects an empty name', () {
       final stack = TestStack();
       expect(
-        () => stack.addExternalVariable(''),
+        () => stack.externalVariable<String>(''),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('rejects a duplicate', () {
-      final stack = TestStack()..addExternalVariable('db_password');
+      final stack = TestStack()..externalVariable<String>('db_password');
       expect(
-        () => stack.addExternalVariable('db_password'),
+        () => stack.externalVariable<String>('db_password'),
         throwsA(isA<ArgumentError>()),
       );
     });
 
-    test('rejects a name already declared with addVariable', () {
-      final stack = TestStack()..addVariable('db_password', const TfVariable());
+    test('rejects a name already declared with variable', () {
+      final stack = TestStack()..variable<String>('db_password');
       expect(
-        () => stack.addExternalVariable('db_password'),
+        () => stack.externalVariable<String>('db_password'),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('the exposed set is read-only', () {
-      final stack = TestStack()..addExternalVariable('db_password');
+      final stack = TestStack()..externalVariable<String>('db_password');
       expect(
         () => stack.externalVariables.add('other'),
         throwsUnsupportedError,
@@ -72,42 +133,111 @@ void main() {
     });
   });
 
-  group('Stack.addVariable', () {
+  group('Stack.variable', () {
+    test('returns the handle an argument takes', () {
+      final stack = TestStack();
+      final TfArg<String> password = stack.variable<String>(
+        'db_password',
+        sensitive: true,
+      );
+      expect(password.toTfJson(), r'${var.db_password}');
+      expect((password as TfArgVariable).interpolation, r'${var.db_password}');
+    });
+
     test('registers a variable and exposes it in insertion order', () {
       final stack = TestStack()
-        ..addVariable('b', const TfVariable(type: 'string'))
-        ..addVariable('a', const TfVariable(type: 'number'));
+        ..variable<String>('b')
+        ..variable<int>('a', defaultValue: 3, description: 'd');
       expect(stack.variables.keys, equals(['b', 'a']));
-      expect(stack.variables['a']!.type, equals('number'));
+      expect(stack.variables['a']!.toTfJson(), {
+        'type': 'number',
+        'description': 'd',
+        'default': 3,
+      });
+    });
+
+    test('a Set default is written as a JSON list', () {
+      final stack = TestStack()
+        ..variable<Set<String>>('zones', defaultValue: {'a', 'b'})
+        ..variable<Object?>(
+          'cfg',
+          type: const .object({
+            'tags': .optional(.set(.string), {'x'}),
+          }),
+        );
+      expect(stack.variables['zones']!.toTfJson()['default'], ['a', 'b']);
+      expect(
+        jsonEncode(stack.variables['cfg']!.toTfJson()),
+        contains(r'optional(set(string), [\"x\"])'),
+      );
+    });
+
+    test('derives the type from T, and an explicit type wins', () {
+      final stack = TestStack()
+        ..variable<List<String>>('zones')
+        ..variable<Map<String, String>>('labels')
+        ..variable<Object?>('anything')
+        ..variable<Object?>(
+          'service',
+          type: const .object({'name': .string, 'port': .optional(.number)}),
+        )
+        ..variable<List<String>>('ids', type: const .set(.string));
+      expect(
+        {
+          for (final MapEntry(:key, :value) in stack.variables.entries)
+            key: value.type?.expression,
+        },
+        {
+          'zones': 'list(string)',
+          'labels': 'map(string)',
+          'anything': null,
+          'service': 'object({ name = string, port = optional(number) })',
+          'ids': 'set(string)',
+        },
+      );
+    });
+
+    test('a T with no Terraform type needs an explicit type', () {
+      final stack = TestStack();
+      expect(
+        () => stack.variable<DateTime>('when'),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('pass type:'),
+          ),
+        ),
+      );
+      expect(
+        stack.variable<DateTime>('when', type: .string).toTfJson(),
+        r'${var.when}',
+      );
     });
 
     test('rejects a duplicate name', () {
-      final stack = TestStack()
-        ..addVariable('db_password', const TfVariable(type: 'string'));
+      final stack = TestStack()..variable<String>('db_password');
       expect(
-        () => stack.addVariable('db_password', const TfVariable()),
+        () => stack.variable<String>('db_password'),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('rejects an empty name', () {
       final stack = TestStack();
-      expect(
-        () => stack.addVariable('', const TfVariable()),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => stack.variable<String>(''), throwsA(isA<ArgumentError>()));
     });
 
     test('rejects a name already registered as external', () {
-      final stack = TestStack()..addExternalVariable('db_password');
+      final stack = TestStack()..externalVariable<String>('db_password');
       expect(
-        () => stack.addVariable('db_password', const TfVariable()),
+        () => stack.variable<String>('db_password'),
         throwsA(isA<ArgumentError>()),
       );
     });
 
     test('the exposed map is read-only', () {
-      final stack = TestStack()..addVariable('db_password', const TfVariable());
+      final stack = TestStack()..variable<String>('db_password');
       expect(
         () => stack.variables['other'] = const TfVariable(),
         throwsUnsupportedError,
@@ -117,7 +247,7 @@ void main() {
 
   group('synth emission', () {
     TestStack stackWith({
-      Map<String, TfVariable> variables = const {},
+      List<String> variables = const [],
       Map<String, TfArg<dynamic>?> topicArgs = const {},
     }) {
       final stack = TestStack(
@@ -129,8 +259,13 @@ void main() {
           ),
         ],
       );
-      variables.forEach(stack.addVariable);
-      stack.addExternalVariable('declared_elsewhere');
+      for (final name in variables) {
+        stack.variable<String>(
+          name,
+          sensitive: name == 'db_password' ? true : null,
+        );
+      }
+      stack.externalVariable<String>('declared_elsewhere');
       stack.add(
         FakePubsubTopic(
           'orders',
@@ -147,9 +282,7 @@ void main() {
 
     test('declared variables are emitted under the variable key', () {
       final json = stackWith(
-        variables: {
-          'db_password': const TfVariable(type: 'string', sensitive: true),
-        },
+        variables: ['db_password'],
         topicArgs: {'labels': TfArg.variable('db_password')},
       ).synth().tfJson;
       expect(
@@ -161,9 +294,7 @@ void main() {
     });
 
     test('a declared but unused variable is still emitted', () {
-      final json = stackWith(
-        variables: {'unused': const TfVariable(type: 'string')},
-      ).synth().tfJson;
+      final json = stackWith(variables: ['unused']).synth().tfJson;
       expect(
         json['variable'],
         equals({
@@ -184,7 +315,7 @@ void main() {
             allOf(
               contains('db_password'),
               contains('google_pubsub_topic.orders'),
-              contains('addVariable'),
+              contains('variable<T>'),
             ),
           ),
         ),
@@ -200,7 +331,7 @@ void main() {
 
     test('an external declaration emits no block of its own', () {
       final stack = stackWith(
-        variables: {'in_dart': const TfVariable(type: 'string')},
+        variables: ['in_dart'],
         topicArgs: {'labels': TfArg.variable<String>('declared_elsewhere')},
       );
       expect(
@@ -260,7 +391,7 @@ void main() {
     test('an undeclared reference inside an expression is caught', () {
       expect(
         () => stackWith(
-          variables: {'a': const TfVariable(type: 'string')},
+          variables: ['a'],
           topicArgs: {
             'labels': TfArg.expression<String>(r'${var.a}-${lower(var.b)}'),
           },
@@ -277,11 +408,11 @@ void main() {
 
     test('an expression whose variables are declared synthesizes', () {
       final stack = stackWith(
-        variables: {'a': const TfVariable(type: 'string')},
+        variables: ['a'],
         topicArgs: {
           'labels': TfArg.expression<String>(r'${var.a}-${lower(var.b)}'),
         },
-      )..addExternalVariable('b');
+      )..externalVariable<String>('b');
       final json = stack.synth().tfJson;
       expect(
         (json['resource'] as Map)['google_pubsub_topic']['orders']['labels'],

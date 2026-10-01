@@ -90,10 +90,10 @@ abstract interface class StackProvider {
 /// - `setBackend(...)` / `backend` — late binding for backend config
 ///   (alternative to passing it via constructor; useful when backend
 ///   config depends on values resolved during stack construction).
-/// - `addVariable(...)` / `variables` — `variable "<name>" { ... }`
-///   declarations backing the `TfArg.variable` references in this
-///   stack. `addExternalVariable(...)` / `externalVariables` covers
-///   names declared in a hand-written file instead.
+/// - `variable<T>(...)` / `variables` — `variable "<name>" { ... }`
+///   declarations, each returning the handle an argument takes.
+///   `externalVariable<T>(...)` / `externalVariables` covers names
+///   declared in a hand-written file instead.
 /// - `addExternalBlock(...)` / `externalBlocks` — resources, data sources
 ///   and module calls a hand-written file declares, which this stack may
 ///   reference without holding.
@@ -143,7 +143,7 @@ abstract base class Stack {
   /// Insertion-ordered so the emitted `variable` block is stable.
   final Map<String, TfVariable> _variables = {};
 
-  /// Names declared outside synth output — see [addExternalVariable].
+  /// Names declared outside synth output — see [externalVariable].
   final Set<String> _externalVariables = {};
 
   /// Block addresses declared outside synth output — see
@@ -453,21 +453,49 @@ abstract base class Stack {
     _constants[name] = constant;
   }
 
-  /// Declare a `variable "<name>" { ... }` block, making
-  /// `TfArg.variable('<name>')` references in this stack resolvable.
-  /// Order is preserved for deterministic output. Throws
-  /// [ArgumentError] if `name` is not a Terraform identifier or is already
-  /// declared.
-  void addVariable(String name, TfVariable variable) {
-    _checkVariableName(name);
-    if (_variables.containsKey(name) || _externalVariables.contains(name)) {
+  /// Declare a `variable "<name>" { ... }` block and return the handle an
+  /// argument takes: `name: region` reads `var.region`.
+  ///
+  /// ```dart
+  /// final region = variable<String>('region', defaultValue: 'us-east1');
+  /// final password = variable<String>('db_password', sensitive: true);
+  /// final zones = variable<List<String>>('zones');
+  /// ```
+  ///
+  /// The Terraform `type` comes from [T] — `String`, `int` / `double` /
+  /// `num`, `bool`, and `List` / `Set` / `Map<String, _>` of those — unless
+  /// [type] says otherwise; `Object?` declares no type. Order is preserved
+  /// for deterministic output. Throws [ArgumentError] if `name` is not a
+  /// Terraform identifier or is already declared, or when [T] has no
+  /// Terraform type and [type] is not given.
+  TfArgVariable<T> variable<T>(
+    String name, {
+    TfType? type,
+    String? description,
+    T? defaultValue,
+    bool? sensitive,
+    bool? nullable,
+  }) {
+    _declareVariableName(name);
+    final TfType? resolved;
+    try {
+      resolved = type ?? TfType.fromDartTypeName('$T');
+    } on FormatException {
       throw ArgumentError.value(
         name,
         'name',
-        'Variable "$name" is already declared on this Stack.',
+        'Variable "$name" has Dart type $T, which has no Terraform type; '
+            'pass type: (e.g. type: .object({...})) or use Object?.',
       );
     }
-    _variables[name] = variable;
+    _variables[name] = TfVariable(
+      type: resolved,
+      description: description,
+      defaultValue: defaultValue,
+      sensitive: sensitive,
+      nullable: nullable,
+    );
+    return TfArgVariable<T>(name);
   }
 
   /// Record a `moved { from = <from> to = <to> }` block: the state object
@@ -500,8 +528,8 @@ abstract base class Stack {
     _moved.add(TfMoved(from: from, to: to));
   }
 
-  /// Accept `TfArg.variable('<name>')` references to a variable declared
-  /// in a hand-written file beside the generated `main.tf.json`, without
+  /// The handle for a variable declared in a hand-written file beside the
+  /// generated `main.tf.json`, accepted by the reference check without
   /// emitting a block for it.
   ///
   /// Terraform merges every `.tf` / `.tf.json` file in the module
@@ -511,12 +539,18 @@ abstract base class Stack {
   /// declaration for the same name would be a duplicate-variable error,
   /// so this registers the name for the reference check alone.
   ///
-  /// Prefer [addVariable] when the declaration can live in Dart: it keeps
+  /// Prefer [variable] when the declaration can live in Dart: it keeps
   /// the whole module in one place, and the block travels with the stack.
   ///
   /// Throws [ArgumentError] if `name` is not a Terraform identifier or is
-  /// already registered by either [addVariable] or this method.
-  void addExternalVariable(String name) {
+  /// already registered by either [variable] or this method.
+  TfArgVariable<T> externalVariable<T>(String name) {
+    _declareVariableName(name);
+    _externalVariables.add(name);
+    return TfArgVariable<T>(name);
+  }
+
+  void _declareVariableName(String name) {
     _checkVariableName(name);
     if (_variables.containsKey(name) || _externalVariables.contains(name)) {
       throw ArgumentError.value(
@@ -525,7 +559,6 @@ abstract base class Stack {
         'Variable "$name" is already declared on this Stack.',
       );
     }
-    _externalVariables.add(name);
   }
 
   static void _checkVariableName(String name) {
@@ -547,7 +580,7 @@ abstract base class Stack {
   /// Stack as an [UnregisteredReference]: usually a resource that was
   /// built but never passed to [add]. A block Terraform reads from another
   /// file of the module directory is the legitimate exception, the
-  /// counterpart of [addExternalVariable] for variables.
+  /// counterpart of [externalVariable] for variables.
   ///
   /// Throws [ArgumentError] when [address] is not a block address
   /// (`<type>.<name>`, `data.<type>.<name>` or `module.<name>`) or is

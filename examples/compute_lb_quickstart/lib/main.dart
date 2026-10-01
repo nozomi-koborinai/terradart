@@ -58,37 +58,37 @@ final class ComputeLbStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
+    final lbSelfManagedCertificate = variable<String>(
       'lb_self_managed_certificate',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final lbSelfManagedPrivateKey = variable<String>(
       'lb_self_managed_private_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final lbRegionalCertificate = variable<String>(
       'lb_regional_certificate',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final lbRegionalPrivateKey = variable<String>(
       'lb_regional_private_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final cmTrustAnchorPem = variable<String>(
       'cm_trust_anchor_pem',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final cmCasCertCsrPem = variable<String>(
       'cm_cas_cert_csr_pem',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final lbBackendBucketSignedUrlKey = variable<String>(
       'lb_backend_bucket_signed_url_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final lbBackendServiceSignedUrlKey = variable<String>(
       'lb_backend_service_signed_url_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
 
     const region = 'asia-northeast1';
@@ -168,8 +168,8 @@ final class ComputeLbStack extends Stack {
       GoogleComputeSslCertificate(
         'self_managed_cert',
         name: .literal('app-self-managed-cert'),
-        certificate: TfArg.variable('lb_self_managed_certificate'),
-        privateKey: .privateKey(TfArg.variable('lb_self_managed_private_key')),
+        certificate: lbSelfManagedCertificate,
+        privateKey: .privateKey(lbSelfManagedPrivateKey),
       ),
     );
 
@@ -281,7 +281,7 @@ final class ComputeLbStack extends Stack {
         location: .literal(region),
         certificateAuthority: .literal('app-root-ca'),
         lifetime: .literal('86400s'),
-        request: .pemCsr(TfArg.variable('cm_cas_cert_csr_pem')),
+        request: .pemCsr(cmCasCertCsrPem),
         certificateTemplate: cmCertTemplate.ref,
         dependsOn: [cmRootCa, cmCertTemplate],
       ),
@@ -308,9 +308,7 @@ final class ComputeLbStack extends Stack {
         location: .literal('global'),
         trustStores: [
           CertificateManagerTrustConfigTrustStore(
-            trustAnchors: [
-              .new(pemCertificate: TfArg.variable('cm_trust_anchor_pem')),
-            ],
+            trustAnchors: [.new(pemCertificate: cmTrustAnchorPem)],
           ),
         ],
         dependsOn: [apiCertificateManager],
@@ -464,7 +462,7 @@ final class ComputeLbStack extends Stack {
         'lb_backend_signed_url_key',
         name: .literal('app-lb-cdn-key'),
         backendService: lbBackend.ref,
-        keyValue: TfArg.variable('lb_backend_service_signed_url_key'),
+        keyValue: lbBackendServiceSignedUrlKey,
       ),
     );
 
@@ -636,8 +634,8 @@ final class ComputeLbStack extends Stack {
         'regional_cert',
         name: .literal('app-regional-cert'),
         region: .literal(region),
-        certificate: TfArg.variable('lb_regional_certificate'),
-        privateKey: .privateKey(TfArg.variable('lb_regional_private_key')),
+        certificate: lbRegionalCertificate,
+        privateKey: .privateKey(lbRegionalPrivateKey),
       ),
     );
 
@@ -785,7 +783,7 @@ final class ComputeLbStack extends Stack {
         'static_assets_signed_url_key',
         name: .literal('app-static-cdn-key'),
         backendBucket: staticAssets.ref,
-        keyValue: TfArg.variable('lb_backend_bucket_signed_url_key'),
+        keyValue: lbBackendBucketSignedUrlKey,
       ),
     );
 

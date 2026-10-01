@@ -118,7 +118,7 @@ This recipe uses the terradart v0.9.0 API surface. Key changes from v0.8.0-dev:
 - **`LocalBackend`** — `Stack(backend: const LocalBackend())` emits `terraform.backend.local: {}` in `main.tf.json`. The handwritten `tf-out/terraform.tf` is gone.
 - **`devMode: true`** — `Stack(devMode: true)` flips `deletion_protection: false` on Cloud Run, Cloud SQL, and Secret Manager at synth time. No more per-resource `deletionProtection: TfArg.literal(false)` calls in sample code.
 - **Concrete `synth()`** — `Stack.synth()` is now a concrete default that writes `tf-out/main.tf.json`. The `@override synth(...)` boilerplate and `dart:convert` import are gone from the Stack subclass.
-- **`TfArg.variable('name')`** — route secrets through Terraform variable blocks (`${var.db_password}`) instead of masking workarounds.
+- **`variable<String>('name', sensitive: true)`** — route secrets through Terraform variable blocks (`${var.db_password}`) instead of masking workarounds.
 - **`.principal` getter** — `GoogleServiceAccount.principal` is the account as an `IamPrincipal`, so an IAM binding takes `member: runSa.principal`.
 - **Service-prefixed helper classes** — `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceServiceContainer`, `CloudRunV2ServiceEnvVar`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyAlertCondition`, etc. Prevents name collisions when importing multiple barrels.
 - **Enum name polish** — `Comparison.lessThan` (was `.lt`), `Aligner.alignNextOlder` (was `.nextOlder`).

@@ -239,7 +239,7 @@ void main() {
             },
           ),
         ),
-        contains("network: .variable('network')"),
+        contains('network: .arg(network)'),
       );
       expect(
         _stack(
