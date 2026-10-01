@@ -2233,6 +2233,40 @@ resource "google_pubsub_topic" "x" {
       expect(src, contains('provider: googleBetaProvider'));
     });
 
+    test('labels that camel-case alike get distinct handles', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'provider': {
+          'google': [
+            {'project': 'p'},
+            {'alias': 'beta', 'region': 'europe-west1'},
+          ],
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            'a': {'name': 'a', 'provider': 'google-beta'},
+            'b': {'name': 'b', 'provider': 'google.beta'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          'final googleBetaProvider = addProvider(const GoogleBetaProvider());',
+        ),
+      );
+      expect(
+        src,
+        contains(
+          'final googleBetaProvider2 = addProvider('
+          "const GoogleProvider(alias: 'beta', region: 'europe-west1'));",
+        ),
+      );
+      expect(src, contains('provider: googleBetaProvider2'));
+    });
+
     test('a beta resource selects google-beta, not google', () {
       final r = _migrateJson({
         'terraform': {
