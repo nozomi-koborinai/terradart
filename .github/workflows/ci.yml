@@ -81,7 +81,7 @@ jobs:
         working-directory: packages/${{ matrix.package }}
 
   example_gates:
-    name: example gates (synth, analyze, topology, coverage page)
+    name: example gates (synth, analyze, topology, coverage pages)
     runs-on: ubuntu-latest
     # example_synth_gates synths every example once (running the coverage +
     # API-enablement gates); the analyzer then checks the examples against
