@@ -182,9 +182,9 @@ final class DartServerStack extends Stack {
     add(AwsEcsExpressGatewayService(
       localName: 'server',
       serviceName: .literal('dart-server'),
-      cluster: .ref(cluster.nameRef),
+      cluster: cluster.ref,
       executionRoleArn: execution.ref,
-      infrastructureRoleArn: .ref(infrastructure.arn),
+      infrastructureRoleArn: infrastructure.ref,
       cpu: .literal('256'),
       memory: .literal('512'),
       healthCheckPath: .literal('/'),
@@ -254,7 +254,7 @@ final class FlutterWebStack extends Stack {
         CloudfrontDistributionOrigin(
           originId: .literal('site'),
           domainName: .ref(bucket.bucketRegionalDomainName),
-          originAccessControlId: .ref(oac.id),
+          originAccessControlId: oac.ref,
         ),
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
@@ -264,7 +264,7 @@ final class FlutterWebStack extends Stack {
         ),
         allowedMethods: .literal(['GET', 'HEAD']),
         cachedMethods: .literal(['GET', 'HEAD']),
-        cachePolicyId: .ref(cachePolicy.id),
+        cachePolicyId: cachePolicy.ref,
       ),
       // Flutter Web routes are client-side: serve index.html for unknown paths.
       customErrorResponse: [

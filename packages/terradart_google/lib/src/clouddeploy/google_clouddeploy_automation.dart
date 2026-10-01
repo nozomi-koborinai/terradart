@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_delivery_pipeline.dart'
+    show GoogleClouddeployDeliveryPipeline;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_clouddeploy_automation`.
@@ -375,7 +377,7 @@ final class ClouddeployAutomationTargets {
 ///   localName: 'promote',
 ///   name: .literal('terradart-automation'),
 ///   location: .literal('us-central1'),
-///   deliveryPipeline: .ref(pipeline.nameRef),
+///   deliveryPipeline: pipeline.ref,
 ///   serviceAccount: .of(deployer),
 ///   suspended: .literal(true),
 ///   selector: ClouddeployAutomationSelector(
@@ -401,7 +403,7 @@ final class GoogleClouddeployAutomation extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> deliveryPipeline,
+    required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required RefTo<GoogleServiceAccount> serviceAccount,
     required ClouddeployAutomationSelector selector,
     required List<ClouddeployAutomationRules> rules,
@@ -420,7 +422,7 @@ final class GoogleClouddeployAutomation extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'delivery_pipeline': deliveryPipeline,
+           'delivery_pipeline': deliveryPipeline.encodeAs('name'),
            'service_account': serviceAccount.encodeAs('email'),
            'selector': TfArg.literal(selector.encode()),
            'rules': TfArg.literal([for (final e in rules) e.encode()]),

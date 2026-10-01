@@ -22,7 +22,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleDocumentAiProcessorDefaultVersion(
   ///   localName: 'ocr_default',
-  ///   processor: TfArg.ref(ocr.id),
+  ///   processor: ocr.ref,
   ///   version: TfArg.literal(
   ///     '${ocr.id.interpolation}/processorVersions/stable',
   ///   ),

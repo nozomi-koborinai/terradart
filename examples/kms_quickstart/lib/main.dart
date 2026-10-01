@@ -71,7 +71,7 @@ final class CryptoStack extends Stack {
     final paymentsKey = GoogleKmsCryptoKey(
       localName: 'payments',
       name: .literal('payments'),
-      keyRing: .ref(ring.id),
+      keyRing: ring.ref,
       purpose: .literal(.encryptDecrypt),
       rotationPeriod: TfArg.duration(const Duration(days: 90)),
       versionTemplate: KmsCryptoKeyVersionTemplate(
@@ -163,7 +163,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsKeyRingImportJob(
         localName: 'import_software',
-        keyRing: .ref(ring.id),
+        keyRing: ring.ref,
         importJobId: .literal('terradart-import'),
         importMethod: .literal(.rsaOaep3072Sha1Aes256),
         protectionLevel: .literal(.software),

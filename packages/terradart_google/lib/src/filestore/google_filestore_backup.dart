@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../filestore/google_filestore_instance.dart'
+    show GoogleFilestoreInstance;
+
 /// Sensitive field paths for `google_filestore_backup`.
 const Set<String> _googleFilestoreBackupSensitive = <String>{};
 
@@ -25,7 +28,7 @@ const Set<String> _googleFilestoreBackupSensitive = <String>{};
 ///   localName: 'share_backup',
 ///   name: TfArg.literal('share-backup-1'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   sourceInstance: TfArg.ref(nfs.id),
+///   sourceInstance: nfs.ref,
 ///   sourceFileShare: TfArg.literal('share1'),
 /// );
 /// ```
@@ -36,7 +39,7 @@ final class GoogleFilestoreBackup extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> sourceInstance,
+    required RefTo<GoogleFilestoreInstance> sourceInstance,
     required TfArg<String> sourceFileShare,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
@@ -49,7 +52,7 @@ final class GoogleFilestoreBackup extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'source_instance': sourceInstance,
+           'source_instance': sourceInstance.encodeAs('id'),
            'source_file_share': sourceFileShare,
            'description': ?description,
            'labels': ?labels,

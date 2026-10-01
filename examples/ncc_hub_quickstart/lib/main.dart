@@ -54,7 +54,7 @@ final class NccHubStack extends Stack {
     final centerGroup = add(
       GoogleNetworkConnectivityGroup(
         localName: 'center',
-        hub: .ref(hub.id),
+        hub: hub.ref,
         name: .literal(.center),
         description: .literal('STAR center group'),
         dependsOn: [...apiDeps, ResourceDependency(hub)],
@@ -87,9 +87,9 @@ final class NccHubStack extends Stack {
         localName: 'vpc_spoke',
         name: .literal('terradart-vpc-spoke'),
         location: .literal('global'),
-        hub: .ref(hub.id),
+        hub: hub.ref,
         group: .literal('center'),
-        attachment: .linkedVpcNetwork(.new(uri: .ref(vpc.id))),
+        attachment: .linkedVpcNetwork(.new(uri: vpc.ref)),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(hub),

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../tags/google_tags_tag_key.dart' show GoogleTagsTagKey;
+
 /// Sensitive field paths for `google_tags_tag_value`.
 const Set<String> _googleTagsTagValueSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class GoogleTagsTagValue extends Resource {
   GoogleTagsTagValue({
     required super.localName,
     required TfArg<String> shortName,
-    required TfArg<String> parent,
+    required RefTo<GoogleTagsTagKey> parent,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -27,7 +29,7 @@ final class GoogleTagsTagValue extends Resource {
          terraformType: tfType,
          argMap: {
            'short_name': shortName,
-           'parent': parent,
+           'parent': parent.encodeAs('id'),
            'description': ?description,
            'deletion_policy': ?deletionPolicy,
          },

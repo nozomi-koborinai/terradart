@@ -42,7 +42,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleAlloydbInstance(
   ///   localName: 'primary',
-  ///   cluster: TfArg.ref(cluster.id),
+  ///   cluster: cluster.ref,
   ///   instanceId: TfArg.literal('primary'),
   ///   instanceType: TfArg.literal(AlloydbInstanceType.primary),
   ///   machineConfig: AlloydbInstanceMachineConfig(

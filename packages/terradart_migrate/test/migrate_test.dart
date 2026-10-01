@@ -318,6 +318,33 @@ resource "aws_s3_bucket" "logs" {
       expect(r.stackSource, isNot(contains('azurerm_resource_group')));
     });
 
+    test('a kept block the Stack reads is declared external', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'kept': {'name': 'k', 'count': r'${var.n}'},
+            'unread': {'name': 'u', 'count': r'${var.n}'},
+            'bare': {'name': 'b', 'count': r'${var.n}'},
+            'reader': {'name': r'${google_pubsub_topic.kept[0].name}-r'},
+            'counter': {'name': r'n-${length(google_pubsub_topic.bare)}'},
+          },
+        },
+      });
+      expect(
+        r.report.kept.map((k) => k.address),
+        containsAll(['google_pubsub_topic.kept', 'google_pubsub_topic.unread']),
+      );
+      expect(
+        r.stackSource,
+        allOf(
+          contains("addExternalBlock('google_pubsub_topic.kept');"),
+          contains("addExternalBlock('google_pubsub_topic.bare');"),
+        ),
+      );
+      expect(r.stackSource, isNot(contains('google_pubsub_topic.unread')));
+    });
+
     test('count / for_each / dynamic / provisioner', () {
       expect(
         reasonOf(

@@ -141,7 +141,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
       GoogleDiscoveryEngineSchema(
         localName: 'docs_schema',
         location: .literal('global'),
-        dataStoreId: .ref(schemaStore.dataStoreIdRef),
+        dataStoreId: schemaStore.ref,
         schemaId: .literal('terradart-docs'),
         jsonSchema: .literal(
           r'{"$schema":"https://json-schema.org/draft/2020-12/schema","datetime_detection":true,"type":"object","geolocation_detection":true}',
@@ -155,7 +155,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         localName: 'synonyms',
         location: .literal('global'),
         collectionId: .literal('default_collection'),
-        engineId: .ref(searchEngine.engineIdRef),
+        engineId: searchEngine.ref,
         controlId: .literal('terradart-synonyms'),
         displayName: .literal('terradart synonyms'),
         solutionType: .literal(.solutionTypeSearch),
@@ -172,7 +172,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         localName: 'default_search',
         location: .literal('global'),
         collectionId: .literal('default_collection'),
-        engineId: .ref(searchEngine.engineIdRef),
+        engineId: searchEngine.ref,
         servingConfigId: .literal('default_search'),
         synonymsControlIds: .literal([synonyms.controlIdRef.interpolation]),
         dependsOn: [

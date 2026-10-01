@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../migration/google_migration_center_source.dart'
+    show GoogleMigrationCenterSource;
+
 /// Sensitive field paths for `google_migration_center_import_job`.
 const Set<String> _googleMigrationCenterImportJobSensitive = <String>{};
 
@@ -32,7 +35,7 @@ final class GoogleMigrationCenterImportJob extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> importJobId,
-    required TfArg<String> assetSource,
+    required RefTo<GoogleMigrationCenterSource> assetSource,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
     TfArg<MigrationCenterImportJobDeletionPolicy>? deletionPolicy,
@@ -46,7 +49,7 @@ final class GoogleMigrationCenterImportJob extends Resource {
          argMap: {
            'location': location,
            'import_job_id': importJobId,
-           'asset_source': assetSource,
+           'asset_source': assetSource.encodeAs('name'),
            'display_name': ?displayName,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

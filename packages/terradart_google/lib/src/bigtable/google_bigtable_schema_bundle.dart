@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+import '../bigtable/google_bigtable_table.dart' show GoogleBigtableTable;
+
 /// Sensitive field paths for `google_bigtable_schema_bundle`.
 const Set<String> _googleBigtableSchemaBundleSensitive = <String>{};
 
@@ -36,8 +39,8 @@ class BigtableSchemaBundleProtoSchema {
 /// GoogleBigtableSchemaBundle(
 ///   localName: 'events_proto',
 ///   schemaBundleId: TfArg.literal('events-proto'),
-///   instance: TfArg.ref(instance.nameRef),
-///   table: TfArg.ref(table.nameRef),
+///   instance: instance.ref,
+///   table: table.ref,
 ///   protoSchema: BigtableSchemaBundleProtoSchema(
 ///     protoDescriptors: TfArg.literal('<base64-encoded FileDescriptorSet>'),
 ///   ),
@@ -49,8 +52,8 @@ final class GoogleBigtableSchemaBundle extends Resource {
   GoogleBigtableSchemaBundle({
     required super.localName,
     required TfArg<String> schemaBundleId,
-    TfArg<String>? instance,
-    TfArg<String>? table,
+    RefTo<GoogleBigtableInstance>? instance,
+    RefTo<GoogleBigtableTable>? table,
     required BigtableSchemaBundleProtoSchema protoSchema,
     TfArg<bool>? ignoreWarnings,
     TfArg<String>? deletionPolicy,
@@ -63,8 +66,8 @@ final class GoogleBigtableSchemaBundle extends Resource {
          terraformType: tfType,
          argMap: {
            'schema_bundle_id': schemaBundleId,
-           'instance': ?instance,
-           'table': ?table,
+           'instance': ?instance?.encodeAs('name'),
+           'table': ?table?.encodeAs('name'),
            'proto_schema': TfArg.literal([protoSchema.toArgMap()]),
            'ignore_warnings': ?ignoreWarnings,
            'deletion_policy': ?deletionPolicy,

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firebase_app_hosting/google_firebase_app_hosting_backend.dart'
+    show GoogleFirebaseAppHostingBackend;
+
 /// Sensitive field paths for `google_firebase_app_hosting_default_domain`.
 const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 
@@ -24,7 +27,7 @@ const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 /// ```dart
 /// final defaultDomain = GoogleFirebaseAppHostingDefaultDomain(
 ///   localName: 'default',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('my-backend--my-project.us-central1.hosted.app'),
 /// );
@@ -39,7 +42,7 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
 
   GoogleFirebaseAppHostingDefaultDomain({
     required super.localName,
-    required TfArg<String> backend,
+    required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required TfArg<String> domainId,
     TfArg<bool>? disabled,
@@ -51,7 +54,7 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backend': backend,
+           'backend': backend.encodeAs('backend_id'),
            'location': location,
            'domain_id': domainId,
            'disabled': ?disabled,

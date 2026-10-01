@@ -20,9 +20,7 @@ final class WorkloadIdentityStack extends Stack {
     add(
       GoogleIamWorkloadIdentityPoolProvider(
         localName: 'github',
-        workloadIdentityPoolId: .ref(
-          TfRef.attribute<String>(github, 'workload_identity_pool_id'),
-        ),
+        workloadIdentityPoolId: github.ref,
         workloadIdentityPoolProviderId: .literal('github-provider'),
         trustSource: .oidc(
           .new(

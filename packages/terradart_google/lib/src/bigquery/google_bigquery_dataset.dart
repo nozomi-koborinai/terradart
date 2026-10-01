@@ -442,7 +442,7 @@ final class BigqueryDatasetExternalDatasetReference {
 /// ```dart
 /// final analytics = GoogleBigqueryDataset(
 ///   localName: 'analytics',
-///   datasetId: TfArg.literal('analytics_prod'),
+///   datasetId: .literal('analytics_prod'),
 ///   location: TfArg.literal('US'),
 ///   friendlyName: TfArg.literal('Analytics Production'),
 ///   defaultTableExpirationMs: TfArg.literal(3600000),

@@ -40,7 +40,7 @@ curatedDoc: |-
   ///
   /// Matching pipeline (request flow):
   ///
-  /// ```
+  /// ```text
   /// incoming request
   ///   -> match Host: header against host_rule.hosts[]
   ///        -> dispatch to path_matcher named host_rule.path_matcher
@@ -66,7 +66,7 @@ curatedDoc: |-
   ///   localName: 'urlmap',
   ///   name: TfArg.literal('regionurlmap-prod'),
   ///   region: TfArg.literal('us-central1'),
-  ///   defaultService: TfArg.ref(login.selfLink),
+  ///   defaultService: login.ref,
   ///   hostRule: [
   ///     ComputeRegionUrlMapHostRule(
   ///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
@@ -76,15 +76,15 @@ curatedDoc: |-
   ///   pathMatcher: [
   ///     ComputeRegionUrlMapPathMatcher(
   ///       name: TfArg.literal('allpaths'),
-  ///       defaultService: TfArg.ref(login.selfLink),
+  ///       defaultService: login.ref,
   ///       pathRule: [
   ///         .new(
   ///           paths: TfArg.literal(const ['/home']),
-  ///           service: TfArg.ref(login.selfLink),
+  ///           service: login.ref,
   ///         ),
   ///         .new(
   ///           paths: TfArg.literal(const ['/static']),
-  ///           service: TfArg.ref(staticBucket.selfLink),
+  ///           service: staticBucket.ref,
   ///         ),
   ///       ],
   ///     ),
@@ -93,7 +93,7 @@ curatedDoc: |-
   ///     ComputeRegionUrlMapTest(
   ///       host: TfArg.literal('mysite.com'),
   ///       path: TfArg.literal('/home'),
-  ///       service: TfArg.ref(login.selfLink),
+  ///       service: login.ref,
   ///     ),
   ///   ],
   /// );

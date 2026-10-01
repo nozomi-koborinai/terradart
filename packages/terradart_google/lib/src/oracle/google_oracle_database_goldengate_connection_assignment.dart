@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../oracle/google_oracle_database_goldengate_connection.dart'
+    show GoogleOracleDatabaseGoldengateConnection;
+import '../oracle/google_oracle_database_goldengate_deployment.dart'
+    show GoogleOracleDatabaseGoldengateDeployment;
+
 /// Sensitive field paths for `google_oracle_database_goldengate_connection_assignment`.
 const Set<String> _googleOracleDatabaseGoldengateConnectionAssignmentSensitive =
     <String>{};
@@ -31,13 +36,13 @@ final class OracleDatabaseGoldengateConnectionAssignmentProperties {
     required this.goldengateDeployment,
   });
 
-  final TfArg<String> goldengateConnection;
+  final RefTo<GoogleOracleDatabaseGoldengateConnection> goldengateConnection;
 
-  final TfArg<String> goldengateDeployment;
+  final RefTo<GoogleOracleDatabaseGoldengateDeployment> goldengateDeployment;
 
   Map<String, Object?> encode() => {
-    'goldengate_connection': goldengateConnection.toTfJson(),
-    'goldengate_deployment': goldengateDeployment.toTfJson(),
+    'goldengate_connection': goldengateConnection.encodeAs('name').toTfJson(),
+    'goldengate_deployment': goldengateDeployment.encodeAs('name').toTfJson(),
   };
 }
 

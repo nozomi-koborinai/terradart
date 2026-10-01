@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ecs/aws_ecs_cluster.dart' show AwsEcsCluster;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_ecs_task_execution`.
@@ -211,7 +212,7 @@ final class DataAwsEcsTaskExecution extends Data {
   DataAwsEcsTaskExecution({
     required super.localName,
     TfArg<String>? clientToken,
-    required TfArg<String> cluster,
+    required RefTo<AwsEcsCluster> cluster,
     TfArg<num>? desiredCount,
     TfArg<bool>? enableEcsManagedTags,
     TfArg<bool>? enableExecuteCommand,
@@ -236,7 +237,7 @@ final class DataAwsEcsTaskExecution extends Data {
          terraformType: tfType,
          argMap: {
            'client_token': ?clientToken,
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('arn'),
            'desired_count': ?desiredCount,
            'enable_ecs_managed_tags': ?enableEcsManagedTags,
            'enable_execute_command': ?enableExecuteCommand,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_service_attachment`.
 const Set<String> _googleComputeServiceAttachmentSensitive = <String>{};
 
@@ -32,14 +35,14 @@ final class ComputeServiceAttachmentConsumerAcceptLists {
 
   final TfArg<String>? endpointUrl;
 
-  final TfArg<String>? networkUrl;
+  final RefTo<GoogleComputeNetwork>? networkUrl;
 
   final TfArg<String>? projectIdOrNum;
 
   Map<String, Object?> encode() => {
     'connection_limit': connectionLimit.toTfJson(),
     'endpoint_url': ?endpointUrl?.toTfJson(),
-    'network_url': ?networkUrl?.toTfJson(),
+    'network_url': ?networkUrl?.encodeAs('id').toTfJson(),
     'project_id_or_num': ?projectIdOrNum?.toTfJson(),
   };
 }
@@ -58,7 +61,7 @@ final class GoogleComputeServiceAttachment extends Resource {
     TfArg<List<String>>? domainNames,
     required TfArg<bool> enableProxyProtocol,
     required TfArg<String> name,
-    required TfArg<List<String>> natSubnets,
+    required TfArg<List<RefTo<GoogleComputeSubnetwork>>> natSubnets,
     TfArg<String>? project,
     TfArg<num>? propagatedConnectionLimit,
     TfArg<bool>? reconcileConnections,
@@ -80,7 +83,7 @@ final class GoogleComputeServiceAttachment extends Resource {
            'domain_names': ?domainNames,
            'enable_proxy_protocol': enableProxyProtocol,
            'name': name,
-           'nat_subnets': natSubnets,
+           'nat_subnets': natSubnets.encodeAs('self_link'),
            'project': ?project,
            'propagated_connection_limit': ?propagatedConnectionLimit,
            'reconcile_connections': ?reconcileConnections,

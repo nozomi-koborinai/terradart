@@ -4,6 +4,13 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../oracle/google_oracle_database_exascale_db_storage_vault.dart'
+    show GoogleOracleDatabaseExascaleDbStorageVault;
+import '../oracle/google_oracle_database_odb_network.dart'
+    show GoogleOracleDatabaseOdbNetwork;
+import '../oracle/google_oracle_database_odb_subnet.dart'
+    show GoogleOracleDatabaseOdbSubnet;
+
 /// Sensitive field paths for `google_oracle_database_exadb_vm_cluster`.
 const Set<String> _googleOracleDatabaseExadbVmClusterSensitive = <String>{};
 
@@ -45,7 +52,8 @@ final class OracleDatabaseExadbVmClusterProperties {
 
   final TfArg<num> enabledEcpuCountPerNode;
 
-  final TfArg<String> exascaleDbStorageVault;
+  final RefTo<GoogleOracleDatabaseExascaleDbStorageVault>
+  exascaleDbStorageVault;
 
   final TfArg<String> gridImageId;
 
@@ -72,7 +80,9 @@ final class OracleDatabaseExadbVmClusterProperties {
     'additional_ecpu_count_per_node': ?additionalEcpuCountPerNode?.toTfJson(),
     'cluster_name': ?clusterName?.toTfJson(),
     'enabled_ecpu_count_per_node': enabledEcpuCountPerNode.toTfJson(),
-    'exascale_db_storage_vault': exascaleDbStorageVault.toTfJson(),
+    'exascale_db_storage_vault': exascaleDbStorageVault
+        .encodeAs('id')
+        .toTfJson(),
     'grid_image_id': gridImageId.toTfJson(),
     'hostname_prefix': hostnamePrefix.toTfJson(),
     'license_model': ?licenseModel?.toTfJson(),
@@ -157,9 +167,9 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
     required TfArg<String> location,
     required TfArg<String> exadbVmClusterId,
     required TfArg<String> displayName,
-    required TfArg<String> odbSubnet,
-    required TfArg<String> backupOdbSubnet,
-    TfArg<String>? odbNetwork,
+    required RefTo<GoogleOracleDatabaseOdbSubnet> odbSubnet,
+    required RefTo<GoogleOracleDatabaseOdbSubnet> backupOdbSubnet,
+    RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     required OracleDatabaseExadbVmClusterProperties properties,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseExadbVmClusterDeletionPolicy>? deletionPolicy,
@@ -175,9 +185,9 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
            'location': location,
            'exadb_vm_cluster_id': exadbVmClusterId,
            'display_name': displayName,
-           'odb_subnet': odbSubnet,
-           'backup_odb_subnet': backupOdbSubnet,
-           'odb_network': ?odbNetwork,
+           'odb_subnet': odbSubnet.encodeAs('name'),
+           'backup_odb_subnet': backupOdbSubnet.encodeAs('name'),
+           'odb_network': ?odbNetwork?.encodeAs('name'),
            'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

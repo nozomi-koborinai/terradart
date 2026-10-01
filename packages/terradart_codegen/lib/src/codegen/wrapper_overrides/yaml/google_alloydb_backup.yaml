@@ -31,7 +31,7 @@ curatedDoc: |-
   /// GoogleAlloydbBackup(
   ///   localName: 'nightly',
   ///   backupId: TfArg.literal('nightly-backup'),
-  ///   clusterName: TfArg.ref(alloyCluster.id),
+  ///   clusterName: alloyCluster.ref,
   ///   location: TfArg.literal('asia-northeast1'),
   /// );
   /// ```

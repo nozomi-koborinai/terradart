@@ -25,7 +25,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleAccessContextManagerServicePerimeterDryRunResource(
   ///   localName: 'dry_run_project',
-  ///   perimeterName: TfArg.ref(dryRun.nameRef),
+  ///   perimeterName: dryRun.ref,
   ///   resource: TfArg.literal('projects/987654321'),
   ///   deletionPolicy: TfArg.literal('DELETE'),
   /// );

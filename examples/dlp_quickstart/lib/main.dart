@@ -120,7 +120,7 @@ final class DlpStack extends Stack {
           ),
         ],
         inspectJob: DataLossPreventionJobTriggerInspectJob(
-          inspectTemplateName: .ref(inspect.nameRef),
+          inspectTemplateName: inspect.ref,
           storageConfig: .new(
             cloudStorageOptions: .new(
               fileSet: .url(

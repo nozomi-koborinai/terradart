@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_url_map.dart' show GoogleComputeUrlMap;
+
 /// Sensitive field paths for `google_compute_target_http_proxy`.
 const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 
@@ -14,7 +16,7 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 /// A global HTTP target proxy — one node in the GCP external HTTP(S)
 /// load-balancer chain. The full chain is:
 ///
-/// ```
+/// ```text
 /// google_compute_global_forwarding_rule.target
 ///   → google_compute_target_http_proxy
 ///     → google_compute_target_http_proxy.url_map
@@ -37,7 +39,7 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 /// final httpProxy = GoogleComputeTargetHttpProxy(
 ///   localName: 'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),
-///   urlMap: TfArg.ref(urlMap.selfLink),
+///   urlMap: urlMap.ref,
 /// );
 /// ```
 ///
@@ -49,7 +51,7 @@ final class GoogleComputeTargetHttpProxy extends Resource {
   GoogleComputeTargetHttpProxy({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> urlMap,
+    required RefTo<GoogleComputeUrlMap> urlMap,
     TfArg<bool>? proxyBind,
     TfArg<num>? httpKeepAliveTimeoutSec,
     TfArg<String>? description,
@@ -62,7 +64,7 @@ final class GoogleComputeTargetHttpProxy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'url_map': urlMap,
+           'url_map': urlMap.encodeAs('self_link'),
            'proxy_bind': ?proxyBind,
            'http_keep_alive_timeout_sec': ?httpKeepAliveTimeoutSec,
            'description': ?description,

@@ -50,7 +50,7 @@ final class AppHostingStack extends Stack {
     add(
       GoogleFirebaseAppHostingDomain(
         localName: 'quickstart_domain',
-        backend: .ref(backend.backendIdRef),
+        backend: backend.ref,
         location: .literal('us-central1'),
         domainId: .literal('apphosting.example.com'),
       ),
@@ -61,7 +61,7 @@ final class AppHostingStack extends Stack {
     add(
       GoogleFirebaseAppHostingDefaultDomain(
         localName: 'default_domain',
-        backend: .ref(backend.backendIdRef),
+        backend: backend.ref,
         location: .literal('us-central1'),
         domainId: .literal(
           'quickstart-backend--$projectId.us-central1.hosted.app',
@@ -72,7 +72,7 @@ final class AppHostingStack extends Stack {
     final releaseBuild = add(
       GoogleFirebaseAppHostingBuild(
         localName: 'release_build',
-        backend: .ref(backend.backendIdRef),
+        backend: backend.ref,
         location: .literal('us-central1'),
         buildId: .literal('release-1'),
         source: .codebase(.new(branch: .literal('main'))),
@@ -83,16 +83,11 @@ final class AppHostingStack extends Stack {
     add(
       GoogleFirebaseAppHostingTraffic(
         localName: 'live_traffic',
-        backend: .ref(backend.backendIdRef),
+        backend: backend.ref,
         location: .literal('us-central1'),
         routing: .target(
           .new(
-            splits: [
-              .new(
-                build: .ref(releaseBuild.buildIdRef),
-                percent: .literal(100),
-              ),
-            ],
+            splits: [.new(build: releaseBuild.ref, percent: .literal(100))],
           ),
         ),
       ),

@@ -289,7 +289,7 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 ///
 /// Slots into the L7 Application LB chain as the backend leaf:
 ///
-/// ```
+/// ```text
 /// google_compute_global_forwarding_rule
 ///   → google_compute_target_https_proxy
 ///     → google_compute_url_map

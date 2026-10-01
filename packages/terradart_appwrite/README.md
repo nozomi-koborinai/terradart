@@ -23,6 +23,7 @@ dependencies:
 ## Usage example
 
 ```dart
+// lib/appwrite_infra_stack.dart
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/storage.dart';
@@ -50,7 +51,7 @@ final class AppwriteInfraStack extends Stack {
 
 ```dart
 // bin/infra.dart
-import 'package:my_infra/appwrite_infra_stack.dart';
+import 'package:my_app/appwrite_infra_stack.dart';
 
 Future<void> main() async {
   final stack = AppwriteInfraStack();

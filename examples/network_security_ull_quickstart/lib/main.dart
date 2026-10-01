@@ -35,7 +35,7 @@ final class NetworkSecurityUllStack extends Stack {
       localName: 'appliance',
       location: .literal(zone),
       ullMirroringCollectorId: .literal('terradart-ull-collector'),
-      engine: .ref(engine.nameRef),
+      engine: engine.ref,
       forwardingRule: .literal(
         'projects/$projectId/regions/us-south1/forwardingRules/terradart-ull-fr',
       ),
@@ -47,7 +47,7 @@ final class NetworkSecurityUllStack extends Stack {
       GoogleNetworkSecurityUllMirroringCollectorRule(
         localName: 'mirror_tcp',
         location: .literal(zone),
-        ullMirroringCollector: .ref(collector.nameRef),
+        ullMirroringCollector: collector.ref,
         ullMirroringCollectorRuleId: .literal('terradart-ull-rule'),
         match: NetworkSecurityUllMirroringCollectorRuleMatch(
           direction: NetworkSecurityUllMirroringCollectorRuleDirection.ingress,

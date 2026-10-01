@@ -106,7 +106,7 @@ final class NetworkRouteStack extends Stack {
       GoogleComputeRouterNamedSet(
         localName: 'prefixes',
         name: .literal('terradart-prefixes'),
-        router: .ref(router.nameRef),
+        router: router.ref,
         region: .literal('us-central1'),
         type: .literal(.namedSetTypePrefix),
         description: .literal('Demo PREFIX named set for route policies'),
@@ -254,7 +254,7 @@ final class NetworkRouteStack extends Stack {
       GoogleComputeDiskResourcePolicyAttachment(
         localName: 'data_snapshots',
         name: .literal('terradart-daily-snapshots'),
-        disk: .ref(disk.nameRef),
+        disk: disk.ref,
         zone: .literal('us-central1-a'),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [

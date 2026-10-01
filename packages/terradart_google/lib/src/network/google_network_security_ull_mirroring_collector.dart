@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_security_ull_mirroring_engine.dart'
+    show GoogleNetworkSecurityUllMirroringEngine;
+
 /// Sensitive field paths for `google_network_security_ull_mirroring_collector`.
 const Set<String> _googleNetworkSecurityUllMirroringCollectorSensitive =
     <String>{};
@@ -36,7 +39,7 @@ final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> ullMirroringCollectorId,
-    required TfArg<String> engine,
+    required RefTo<GoogleNetworkSecurityUllMirroringEngine> engine,
     required TfArg<String> forwardingRule,
     TfArg<Map<String, String>>? labels,
     TfArg<NetworkSecurityUllMirroringCollectorDeletionPolicy>? deletionPolicy,
@@ -50,7 +53,7 @@ final class GoogleNetworkSecurityUllMirroringCollector extends Resource {
          argMap: {
            'location': location,
            'ull_mirroring_collector_id': ullMirroringCollectorId,
-           'engine': engine,
+           'engine': engine.encodeAs('name'),
            'forwarding_rule': forwardingRule,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

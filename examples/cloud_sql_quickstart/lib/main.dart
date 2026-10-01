@@ -106,11 +106,11 @@ final class CloudSqlStack extends Stack {
           diskType: .literal(.pdSsd),
           ipConfiguration: .new(
             ipv4Enabled: .literal(false),
-            privateNetwork: .ref(vpc.selfLink),
+            privateNetwork: vpc.ref,
             // Pins the instance to the named PSA range; without this the
             // API would pick any peered range, which is ambiguous when a
             // VPC has multiple PSA peerings.
-            allocatedIpRange: .ref(psaRange.nameRef),
+            allocatedIpRange: psaRange.ref,
           ),
           insightsConfig: .new(
             queryInsightsEnabled: .literal(true),
@@ -128,7 +128,7 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleSqlDatabase(
         localName: 'orders',
-        instance: .ref(primary.nameRef),
+        instance: primary.ref,
         name: .literal('orders'),
       ),
     );
@@ -138,7 +138,7 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleSqlUser(
         localName: 'app',
-        instance: .ref(primary.nameRef),
+        instance: primary.ref,
         name: .literal('app'),
         type: .literal(.builtIn),
         passwordWo: .literal(dbPassword),
@@ -149,7 +149,7 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleSqlSslCert(
         localName: 'client_cert',
-        instance: .ref(primary.nameRef),
+        instance: primary.ref,
         commonName: .literal('app-client'),
       ),
     );
@@ -178,7 +178,7 @@ final class CloudSqlStack extends Stack {
         location: .literal('asia-northeast1'),
         networkConfig: AlloydbClusterNetworkConfig(
           network: vpc.ref,
-          allocatedIpRange: .ref(psaRange.nameRef),
+          allocatedIpRange: psaRange.ref,
         ),
         initialUser: AlloydbClusterInitialUser(
           user: .literal('postgres'),
@@ -192,7 +192,7 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleAlloydbInstance(
         localName: 'alloydb_primary',
-        cluster: .ref(alloyCluster.id),
+        cluster: alloyCluster.ref,
         instanceId: .literal('primary'),
         instanceType: .literal(.primary),
         machineConfig: AlloydbInstanceMachineConfig(cpuCount: .literal(2)),
@@ -202,7 +202,7 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleAlloydbUser(
         localName: 'alloydb_app',
-        cluster: .ref(alloyCluster.id),
+        cluster: alloyCluster.ref,
         userId: .literal('app'),
         userType: .literal(.alloydbBuiltIn),
         password: .passwordWo(.literal(dbPassword)),
@@ -214,7 +214,7 @@ final class CloudSqlStack extends Stack {
       GoogleAlloydbBackup(
         localName: 'alloydb_nightly',
         backupId: .literal('nightly-backup'),
-        clusterName: .ref(alloyCluster.id),
+        clusterName: alloyCluster.ref,
         location: .literal('asia-northeast1'),
       ),
     );

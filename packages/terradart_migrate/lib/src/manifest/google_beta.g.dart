@@ -2676,9 +2676,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_instance',
           dartName: 'sourceInstance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'machine_image_encryption_key',
@@ -2957,9 +2958,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetworkFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -3715,9 +3717,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_policy',
           dartName: 'networkPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionNetworkPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -4505,9 +4508,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_product_id',
           dartName: 'dataProductId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataplexDataProduct',
+          attribute: 'data_product_id',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -5520,9 +5524,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'version_name',
           dartName: 'versionName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleFirebaseHostingVersion',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11039,9 +11044,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'toolset',
           dartName: 'toolset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCesToolset',
+          attribute: 'name',
         ),
       ],
     ),
@@ -11317,9 +11323,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'toolset',
           dartName: 'toolset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleCesToolset',
+          attribute: 'name',
         ),
       ],
     ),

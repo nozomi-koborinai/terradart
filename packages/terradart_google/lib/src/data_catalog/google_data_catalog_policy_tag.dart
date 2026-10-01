@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_taxonomy.dart'
+    show GoogleDataCatalogTaxonomy;
+
 /// Sensitive field paths for `google_data_catalog_policy_tag`.
 const Set<String> _googleDataCatalogPolicyTagSensitive = <String>{};
 
@@ -19,7 +22,7 @@ const Set<String> _googleDataCatalogPolicyTagSensitive = <String>{};
 /// GoogleDataCatalogPolicyTag(
 ///   localName: 'email',
 ///   displayName: TfArg.literal('email'),
-///   taxonomy: TfArg.ref(taxonomy.id),
+///   taxonomy: taxonomy.ref,
 ///   description: TfArg.literal('Email addresses'),
 /// );
 /// ```
@@ -29,7 +32,7 @@ final class GoogleDataCatalogPolicyTag extends Resource {
   GoogleDataCatalogPolicyTag({
     required super.localName,
     required TfArg<String> displayName,
-    required TfArg<String> taxonomy,
+    required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     TfArg<String>? description,
     TfArg<String>? parentPolicyTag,
     TfArg<String>? deletionPolicy,
@@ -41,7 +44,7 @@ final class GoogleDataCatalogPolicyTag extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           'taxonomy': taxonomy,
+           'taxonomy': taxonomy.encodeAs('id'),
            'description': ?description,
            'parent_policy_tag': ?parentPolicyTag,
            'deletion_policy': ?deletionPolicy,

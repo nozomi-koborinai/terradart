@@ -1,5 +1,6 @@
 import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/module_call.dart';
+import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
@@ -7,6 +8,7 @@ import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
+import 'helpers/synth_issues.dart';
 
 void main() {
   const google = FakeStackProvider(
@@ -250,12 +252,8 @@ void main() {
         );
       expect(
         () => stack.synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            allOf(contains('google.eu'), contains('providers.google')),
-          ),
+        throwsSynthIssue<MissingProvider>(
+          allOf(startsWith('module.events: '), contains('"google.eu"')),
         ),
       );
     });
@@ -271,12 +269,8 @@ void main() {
         );
       expect(
         () => stack.synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            allOf(contains('"env"'), contains('module.events')),
-          ),
+        throwsSynthIssue<UndeclaredVariable>(
+          allOf(startsWith('module.events: '), contains('"env"')),
         ),
       );
     });
@@ -313,16 +307,7 @@ void main() {
         ..addModule(
           ModuleCall(localName: 'events', source: './modules/events'),
         );
-      expect(
-        () => stack.synth(),
-        throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
-            contains('no providers registered'),
-          ),
-        ),
-      );
+      expect(() => stack.synth(), throwsSynthIssue<NoProviders>());
     });
 
     test('a declared variable in a module input passes', () {

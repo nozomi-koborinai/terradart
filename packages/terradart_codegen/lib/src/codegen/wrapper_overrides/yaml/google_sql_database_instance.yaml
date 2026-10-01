@@ -35,7 +35,7 @@ curatedDoc: |-
   ///
   /// Private-IP wiring (the canonical Wave 5 chain):
   ///
-  /// ```
+  /// ```text
   /// google_compute_network              ┐
   /// google_compute_global_address       ├─ build the peering bridge first
   /// google_service_networking_connection┘
@@ -62,7 +62,7 @@ curatedDoc: |-
   ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
   ///     ipConfiguration: .new(
   ///       ipv4Enabled: TfArg.literal(false),
-  ///       privateNetwork: TfArg.ref(vpc.selfLink),
+  ///       privateNetwork: vpc.ref,
   ///     ),
   ///     backupConfiguration: .new(
   ///       enabled: TfArg.literal(true),

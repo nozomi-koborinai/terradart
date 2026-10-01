@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_bigquery_data_transfer_config`.
@@ -172,43 +173,43 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 /// `scheduled_query` — re-runs a SQL query and writes the result to a
 /// destination table:
 /// ```dart
-/// params: TfArg.literal(const {
+/// final params = TfArg.literal(const {
 ///   'query':
 ///       'SELECT date, COUNT(*) AS n FROM `proj.ds.events` '
 ///       'WHERE date = @run_date GROUP BY date',
 ///   'destination_table_name_template': 'daily_event_counts_{run_date}',
 ///   'write_disposition': 'WRITE_APPEND',       // or WRITE_TRUNCATE
 ///   'partitioning_field': '',                  // optional
-/// }),
+/// });
 /// ```
 ///
 /// `google_cloud_storage` — loads CSV / JSON / Avro / Parquet files from
 /// a GCS prefix into a destination table:
 /// ```dart
-/// params: TfArg.literal(const {
+/// final params = TfArg.literal(const {
 ///   'data_path_template': 'gs://my-bucket/exports/{run_date}/*.csv',
 ///   'destination_table_name_template': 'gcs_import_{run_date}',
 ///   'file_format': 'CSV',                      // CSV|JSON|AVRO|PARQUET|ORC
 ///   'field_delimiter': ',',
 ///   'skip_leading_rows': '1',
 ///   'write_disposition': 'WRITE_APPEND',
-/// }),
+/// });
 /// ```
 ///
 /// `amazon_s3` — pulls files from an S3 prefix. The plaintext key id
 /// goes in [params], the secret key goes in [sensitiveParams] (the
 /// provider rejects configurations that put the secret in [params]):
 /// ```dart
-/// params: TfArg.literal(const {
+/// final params = TfArg.literal(const {
 ///   'data_path': 's3://my-bucket/exports/{run_date}/*.csv',
 ///   'destination_table_name_template': 's3_import_{run_date}',
 ///   'access_key_id': 'AKIAIOSFODNN7EXAMPLE',
 ///   'file_format': 'CSV',
-/// }),
-/// sensitiveParams: BigqueryDataTransferConfigSensitiveParams(
+/// });
+/// final sensitiveParams = BigqueryDataTransferConfigSensitiveParams(
 ///   secretAccessKey: .secretAccessKeyWo(.literal(awsSecretAccessKey)),
 ///   secretAccessKeyWoVersion: .literal('1'),
-/// ),
+/// );
 /// ```
 ///
 /// Schedule shapes for `schedule` (App Engine cron syntax — the only
@@ -237,7 +238,7 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 ///   localName: 'daily_gcs_import',
 ///   displayName: TfArg.literal('Daily GCS export -> BigQuery'),
 ///   dataSourceId: TfArg.literal('google_cloud_storage'),
-///   destinationDatasetId: TfArg.ref(analytics.datasetIdRef),
+///   destinationDatasetId: analytics.ref,
 ///   location: TfArg.literal('US'),
 ///   schedule: TfArg.literal('every day 03:00'),
 ///   params: TfArg.literal(const {
@@ -260,7 +261,7 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
     required super.localName,
     required TfArg<String> displayName,
     required TfArg<String> dataSourceId,
-    TfArg<String>? destinationDatasetId,
+    RefTo<GoogleBigqueryDataset>? destinationDatasetId,
     TfArg<String>? location,
     required TfArg<Map<String, String>> params,
     TfArg<String>? schedule,
@@ -282,7 +283,9 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
          argMap: {
            'display_name': displayName,
            'data_source_id': dataSourceId,
-           'destination_dataset_id': ?destinationDatasetId,
+           'destination_dataset_id': ?destinationDatasetId?.encodeAs(
+             'dataset_id',
+           ),
            'location': ?location,
            'params': params,
            'schedule': ?schedule,

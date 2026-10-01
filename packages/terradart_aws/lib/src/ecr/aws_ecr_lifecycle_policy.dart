@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ecr/aws_ecr_repository.dart' show AwsEcrRepository;
+
 /// Sensitive field paths for `aws_ecr_lifecycle_policy`.
 const Set<String> _awsEcrLifecyclePolicySensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsEcrLifecyclePolicy extends Resource {
     required super.localName,
     required TfArg<String> policy,
     TfArg<String>? region,
-    required TfArg<String> repository,
+    required RefTo<AwsEcrRepository> repository,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +26,7 @@ final class AwsEcrLifecyclePolicy extends Resource {
          argMap: {
            'policy': policy,
            'region': ?region,
-           'repository': repository,
+           'repository': repository.encodeAs('name'),
          },
        );
 

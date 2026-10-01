@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_network_attachment.dart'
+    show GoogleComputeNetworkAttachment;
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
@@ -507,7 +509,7 @@ final class ComputeInstanceNetworkInterface {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<String>? networkAttachment;
+  final RefTo<GoogleComputeNetworkAttachment>? networkAttachment;
 
   final TfArg<String>? networkIp;
 
@@ -534,7 +536,7 @@ final class ComputeInstanceNetworkInterface {
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
     'ipv6_address': ?ipv6Address?.toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
-    'network_attachment': ?networkAttachment?.toTfJson(),
+    'network_attachment': ?networkAttachment?.encodeAs('self_link').toTfJson(),
     'network_ip': ?networkIp?.toTfJson(),
     'nic_type': ?nicType?.toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),

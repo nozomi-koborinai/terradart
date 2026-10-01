@@ -4,7 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/terradart_google.dart' show GoogleKmsCryptoKey;
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeInstance, GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_compute_machine_image`.
 const Set<String> _googleComputeMachineImageSensitive = <String>{
@@ -62,7 +63,7 @@ final class GoogleComputeMachineImage extends Resource {
     TfArg<bool>? guestFlush,
     required TfArg<String> name,
     TfArg<String>? project,
-    required TfArg<String> sourceInstance,
+    required RefTo<GoogleComputeInstance> sourceInstance,
     ComputeMachineImageEncryptionKey? machineImageEncryptionKey,
     ComputeMachineImageParams? params,
     super.lifecycle,
@@ -78,7 +79,7 @@ final class GoogleComputeMachineImage extends Resource {
            'guest_flush': ?guestFlush,
            'name': name,
            'project': ?project,
-           'source_instance': sourceInstance,
+           'source_instance': sourceInstance.encodeAs('self_link'),
            if (machineImageEncryptionKey != null)
              'machine_image_encryption_key': TfArg.literal(
                machineImageEncryptionKey.encode(),

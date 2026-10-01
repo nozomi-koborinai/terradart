@@ -698,10 +698,12 @@ final class StackEmitter {
 
     // --- resources and data sources -------------------------------------
     final commented = <String>{};
+    final keptAt = <({int at, String address})>[];
     for (final b in blocks) {
       final e = emitted[b.address];
       if (e == null) {
         _kept.add(KeptItem(address: b.address, reason: kept[b.address]!));
+        if (!noStack) keptAt.add((at: body.length, address: b.address));
         continue;
       }
       if (noStack) {
@@ -761,6 +763,23 @@ final class StackEmitter {
     }
 
     body.addAll(outputStatements);
+
+    // A kept block the Stack still reads lives in the sidecar beside
+    // main.tf.json; synth accepts the reference once it is declared
+    // external. It takes the place the block had in the source.
+    for (final (:at, :address) in keptAt.reversed) {
+      final read = RegExp(
+        '(?<![\\w.\\-])${RegExp.escape(address)}(?![\\w\\-])',
+      );
+      if (!body.any((s) => read.hasMatch(s.text))) continue;
+      body.insert(
+        at,
+        StackStatement(
+          tag: 'external.$address',
+          text: 'addExternalBlock(${dartString(address)});',
+        ),
+      );
+    }
 
     // --- everything else stays in Terraform ------------------------------
     for (final l in module.locals) {
@@ -1497,9 +1516,7 @@ final class StackEmitter {
           'duration string',
         );
       }
-      try {
-        TfTimeouts(create: text).toTfJson();
-      } on ArgumentError {
+      if (!TfTimeouts.isDuration(text)) {
         throw MigrateBlocker(
           'timeouts.${entry.key} = "$text" is not a Terraform duration '
           'string (e.g. "30m")',

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../privateca/google_privateca_certificate_authority.dart';
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
 
 /// Sensitive field paths for `google_privateca_certificate_authority`.
 const Set<String> _googlePrivatecaCertificateAuthoritySensitive = <String>{};
@@ -18,7 +19,7 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
     required super.localName,
     TfArg<String>? certificateAuthorityId,
     TfArg<String>? location,
-    TfArg<String>? pool,
+    RefTo<GooglePrivatecaCaPool>? pool,
     TfArg<String>? project,
     super.provider,
     super.timeouts,
@@ -27,7 +28,7 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
          argMap: {
            'certificate_authority_id': ?certificateAuthorityId,
            'location': ?location,
-           'pool': ?pool,
+           'pool': ?pool?.encodeAs('name'),
            'project': ?project,
          },
        );

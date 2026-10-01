@@ -19,7 +19,7 @@ curatedDoc: |-
   /// GoogleBigtableLogicalView(
   ///   localName: 'recent_events',
   ///   logicalViewId: TfArg.literal('recent-events'),
-  ///   instance: TfArg.ref(instance.nameRef),
+  ///   instance: instance.ref,
   ///   query: TfArg.literal('SELECT * FROM events WHERE timestamp > 0'),
   /// );
   /// ```

@@ -96,6 +96,7 @@ See [FRICTIONS.md](./FRICTIONS.md) for the full context. This is a GCP / Terrafo
 typed reader to `lib/generated/single_project_app.app.dart`, so an app built
 into the container reads the same values without repeating a variable name:
 
+<!-- doc-snippets: skip: imports the reader the recipe's synth writes; tool/check_cookbook.sh analyzes the recipe -->
 ```dart
 import 'dart:io';
 

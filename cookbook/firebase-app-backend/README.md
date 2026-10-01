@@ -71,10 +71,15 @@ terraform destroy
 
 1. **Both Providers in `Stack.providers`**:
    ```dart
-   providers: [
-     GoogleProvider(project: projectId, region: 'asia-northeast1'),
-     GoogleBetaProvider(project: projectId, region: 'asia-northeast1'),
-   ]
+   final class AppStack extends Stack {
+     AppStack(String projectId)
+       : super(
+           providers: [
+             GoogleProvider(project: projectId, region: 'asia-northeast1'),
+             GoogleBetaProvider(project: projectId, region: 'asia-northeast1'),
+           ],
+         );
+   }
    ```
 2. **Automatic Provider Routing**:
    Wrappers in `terradart_google_beta` automatically set `provider = "google-beta"` in the synthesized Terraform JSON, so resources are cleanly partitioned between the GA and Beta provider instances.

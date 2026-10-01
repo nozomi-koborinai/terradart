@@ -59,7 +59,7 @@ final class HttpFunctionStack extends Stack {
           runtime: .literal('python311'),
           entryPoint: .literal('hello'),
           source: .storageSource(
-            .new(bucket: .of(sourceBucket), object: .ref(sourceObject.nameRef)),
+            .new(bucket: .of(sourceBucket), object: sourceObject.ref),
           ),
           updatePolicy: .automaticUpdatePolicy(.new()),
         ),

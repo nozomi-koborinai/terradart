@@ -15,7 +15,7 @@ curatedDoc: |-
   /// final cryptoKey = GoogleKmsCryptoKey(
   ///   localName: 'payments',
   ///   name: TfArg.literal('payments'),
-  ///   keyRing: TfArg.ref(ring.id),
+  ///   keyRing: ring.ref,
   ///   purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
   ///   // Must be > 86400s (1 day). `TfArg.duration` converts the
   ///   // Duration into the `"{seconds}s"` form Terraform expects.

@@ -60,7 +60,8 @@ abstract final class Apis {
   /// add(
   ///   GoogleRedisInstance(
   ///     localName: 'cache',
-  ///     // ...
+  ///     name: .literal('cache'),
+  ///     memorySizeGb: .literal(1),
   ///     dependsOn: apiDeps,
   ///   ),
   /// );

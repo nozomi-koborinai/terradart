@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_cross_site_network.dart'
+    show GoogleComputeCrossSiteNetwork;
+
 /// Sensitive field paths for `google_compute_wire_group`.
 const Set<String> _googleComputeWireGroupSensitive = <String>{};
 
@@ -93,7 +96,7 @@ final class GoogleComputeWireGroup extends Resource {
   GoogleComputeWireGroup({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> crossSiteNetwork,
+    required RefTo<GoogleComputeCrossSiteNetwork> crossSiteNetwork,
     TfArg<String>? description,
     TfArg<bool>? adminEnabled,
     List<ComputeWireGroupEndpoints>? endpoints,
@@ -108,7 +111,7 @@ final class GoogleComputeWireGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'cross_site_network': crossSiteNetwork,
+           'cross_site_network': crossSiteNetwork.encodeAs('name'),
            'description': ?description,
            'admin_enabled': ?adminEnabled,
            if (endpoints != null)

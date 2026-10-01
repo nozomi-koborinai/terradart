@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** synth validation is one sealed type. `Stack.synth()` / `writeTo()` throw one `SynthException` listing every `SynthIssue` (`NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant`) instead of throwing `StateError` / `SensitiveLiteralError` / `ArgumentError` at the first problem; `Stack.validate()` returns the issues without throwing. `SensitiveLiteralError`, `TfJsonEncoder.validateProviders` and `TfJsonEncoder.encodeArgMapWithSensitive` are removed, and the remaining `TfJsonEncoder` helpers no longer validate.
+- **New check:** a reference (or `depends_on` / `replace_triggered_by`) to a resource, data source or module the Stack does not hold is an `UnregisteredReference`. `Stack.addExternalBlock(address)` / `externalBlocks` declare a block a hand-written file holds.
+- `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a name that is not a Terraform identifier.
+- `TfTimeouts.isDuration(value)`; `TfTimeouts.toTfJson()` no longer throws (an invalid value is an `InvalidTimeout` issue).
+- Every Dart example in a doc comment compiles (`tool/doc_snippets.dart`): the `TfTimeouts`, `TfMoved`, `ModuleCall`, `Stack.outputEnvironment`, `Stack.addModule`, `AppExports`, `S3Backend.r2` and `TfArg` examples name every required argument. Doc comments only.
+
 ## 0.31.0 - 2026-10-01
 
 - The `appExports` file also holds `<Stack>Outputs`, a typed reader of the Stack's non-sensitive outputs: a lowerCamelCase getter per output, typed like its value, from `<Stack>Outputs.fromTerraformJson(Map<String, Object?>)` (`terraform output -json`) or `<Stack>Outputs.fromEnvironment(Map<String, String>)` (`ORDERS_TOPIC_ID` for `orders_topic_id`; a `String` is the raw value, any other type JSON). Getters read lazily and throw `StateError` on a missing or mistyped value. With `appExports` set, `addOutput` throws `ArgumentError` when the output's getter is not a usable Dart identifier or its getter or variable is another output's. The file now imports `dart:convert`.

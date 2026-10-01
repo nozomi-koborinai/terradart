@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../edgenetwork/google_edgenetwork_network.dart'
+    show GoogleEdgenetworkNetwork;
+
 /// Sensitive field paths for `google_edgenetwork_subnet`.
 const Set<String> _googleEdgenetworkSubnetSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleEdgenetworkSubnet extends Resource {
   GoogleEdgenetworkSubnet({
     required super.localName,
     required TfArg<String> subnetId,
-    required TfArg<String> network,
+    required RefTo<GoogleEdgenetworkNetwork> network,
     required TfArg<String> location,
     required TfArg<String> zone,
     TfArg<List<String>>? ipv4Cidr,
@@ -59,7 +62,7 @@ final class GoogleEdgenetworkSubnet extends Resource {
          terraformType: tfType,
          argMap: {
            'subnet_id': subnetId,
-           'network': network,
+           'network': network.encodeAs('name'),
            'location': location,
            'zone': zone,
            'ipv4_cidr': ?ipv4Cidr,

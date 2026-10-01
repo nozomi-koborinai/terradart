@@ -464,8 +464,10 @@ class WrapCommand extends Command<int> {
     var dataReferences = const <String, Map<String, ResolvedReference>>{};
     if (referenceLedger != null) {
       final List<ReferenceRule> rules;
+      final MmReferenceRule? mmRule;
       try {
         rules = loadReferenceRules(referenceLedger, provider);
+        mmRule = loadMmReferenceRule(referenceLedger, provider);
       } on FormatException catch (e) {
         stderr.writeln('[E406] terradart wrap: ${e.message}');
         return CliExitCodes.dataError;
@@ -502,6 +504,8 @@ class WrapCommand extends Command<int> {
       }
       final resolution = resolveReferences(
         rules: rules,
+        mmRule: mmRule,
+        mm: mmOverrides,
         external: external,
         resourceSchemas: _rawSchemaBlocks(
           schemaSrc,

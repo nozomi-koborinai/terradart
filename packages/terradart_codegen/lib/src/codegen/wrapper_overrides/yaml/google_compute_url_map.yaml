@@ -29,7 +29,7 @@ curatedDoc: |-
   ///
   /// Matching pipeline (request flow):
   ///
-  /// ```
+  /// ```text
   /// incoming request
   ///   -> match Host: header against host_rule.hosts[]
   ///        -> dispatch to path_matcher named host_rule.path_matcher
@@ -53,7 +53,7 @@ curatedDoc: |-
   /// final urlMap = GoogleComputeUrlMap(
   ///   localName: 'urlmap',
   ///   name: TfArg.literal('urlmap-prod'),
-  ///   defaultService: TfArg.ref(login.selfLink),
+  ///   defaultService: login.ref,
   ///   hostRule: [
   ///     ComputeUrlMapHostRule(
   ///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
@@ -63,15 +63,15 @@ curatedDoc: |-
   ///   pathMatcher: [
   ///     ComputeUrlMapPathMatcher(
   ///       name: TfArg.literal('allpaths'),
-  ///       defaultService: TfArg.ref(login.selfLink),
+  ///       defaultService: login.ref,
   ///       pathRule: [
   ///         .new(
   ///           paths: TfArg.literal(const ['/home']),
-  ///           service: TfArg.ref(login.selfLink),
+  ///           service: login.ref,
   ///         ),
   ///         .new(
   ///           paths: TfArg.literal(const ['/static']),
-  ///           service: TfArg.ref(staticBucket.selfLink),
+  ///           service: staticBucket.ref,
   ///         ),
   ///       ],
   ///     ),

@@ -30,7 +30,7 @@ curatedDoc: |-
   ///   app: TfArg.ref(app.appIdRef),
   ///   exampleId: TfArg.literal('terradart-ces-example'),
   ///   displayName: TfArg.literal('terradart-ces-example'),
-  ///   entryAgent: TfArg.ref(agent.nameRef),
+  ///   entryAgent: agent.ref,
   ///   messages: [
   ///     CesExampleMessages(
   ///       role: TfArg.literal('user'),

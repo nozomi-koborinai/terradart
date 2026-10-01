@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
+
 /// Sensitive field paths for `google_kms_key_ring_import_job`.
 const Set<String> _googleKmsKeyRingImportJobSensitive = <String>{};
 
@@ -53,7 +55,7 @@ enum KmsKeyRingImportJobProtectionLevel implements TerraformEnum {
 /// ```dart
 /// GoogleKmsKeyRingImportJob(
 ///   localName: 'import',
-///   keyRing: TfArg.ref(ring.id),
+///   keyRing: ring.ref,
 ///   importJobId: TfArg.literal('terradart-import'),
 ///   importMethod: TfArg.literal(
 ///     KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
@@ -68,7 +70,7 @@ final class GoogleKmsKeyRingImportJob extends Resource {
 
   GoogleKmsKeyRingImportJob({
     required super.localName,
-    required TfArg<String> keyRing,
+    required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> importJobId,
     required TfArg<KmsKeyRingImportJobImportMethod> importMethod,
     required TfArg<KmsKeyRingImportJobProtectionLevel> protectionLevel,
@@ -80,7 +82,7 @@ final class GoogleKmsKeyRingImportJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'key_ring': keyRing,
+           'key_ring': keyRing.encodeAs('id'),
            'import_job_id': importJobId,
            'import_method': importMethod,
            'protection_level': protectionLevel,

@@ -85,7 +85,7 @@ final class AwsStaticSiteStack extends Stack {
     final option = 'tolist(${cert.domainValidationOptions.bareAddress})[0]';
     final validationRecord = AwsRoute53Record(
       localName: 'site_validation',
-      zoneId: .ref(zone.id),
+      zoneId: zone.ref,
       name: TfArg.expression('\${$option.resource_record_name}'),
       type: TfArg.expression('\${$option.resource_record_type}'),
       target: .records(.literal(['\${$option.resource_record_value}'])),
@@ -96,7 +96,7 @@ final class AwsStaticSiteStack extends Stack {
 
     final validation = AwsAcmCertificateValidation(
       localName: 'site',
-      certificateArn: .ref(cert.arn),
+      certificateArn: cert.ref,
       validationRecordFqdns: .literal([validationRecord.fqdn.interpolation]),
     );
     add(validation);
@@ -119,7 +119,7 @@ final class AwsStaticSiteStack extends Stack {
         CloudfrontDistributionOrigin(
           originId: .literal(_originId),
           domainName: .ref(bucket.bucketRegionalDomainName),
-          originAccessControlId: .ref(oac.id),
+          originAccessControlId: oac.ref,
         ),
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
@@ -129,7 +129,7 @@ final class AwsStaticSiteStack extends Stack {
         ),
         allowedMethods: .literal(['GET', 'HEAD']),
         cachedMethods: .literal(['GET', 'HEAD']),
-        cachePolicyId: .ref(cachingOptimized.id),
+        cachePolicyId: cachingOptimized.ref,
         compress: .literal(true),
       ),
       customErrorResponse: [
@@ -146,7 +146,7 @@ final class AwsStaticSiteStack extends Stack {
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(
-        acmCertificateArn: .ref(cert.arn),
+        acmCertificateArn: cert.ref,
         sslSupportMethod: .literal(.sniOnly),
         minimumProtocolVersion: .literal(
           CloudfrontDistributionMinimumProtocolVersion.tlsv1p2x2021,
@@ -193,7 +193,7 @@ final class AwsStaticSiteStack extends Stack {
       add(
         AwsRoute53Record(
           localName: 'site_${type.name}',
-          zoneId: .ref(zone.id),
+          zoneId: zone.ref,
           name: .literal(siteDomain),
           type: .literal(type),
           target: .alias(

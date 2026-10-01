@@ -21,7 +21,7 @@ curatedDoc: |-
   /// ```dart
   /// final auditView = GoogleLoggingLogView(
   ///   localName: 'audit_view',
-  ///   bucket: TfArg.ref(auditBucket.bucketIdRef),
+  ///   bucket: auditBucket.ref,
   ///   name: TfArg.literal('audit-only'),
   ///   filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
   /// );

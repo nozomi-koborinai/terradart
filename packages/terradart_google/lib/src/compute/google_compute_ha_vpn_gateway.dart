@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_interconnect_attachment.dart'
+    show GoogleComputeInterconnectAttachment;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_ha_vpn_gateway`.
@@ -54,11 +56,13 @@ final class ComputeHaVpnGatewayVpnInterfaces {
 
   final TfArg<num>? id;
 
-  final TfArg<String>? interconnectAttachment;
+  final RefTo<GoogleComputeInterconnectAttachment>? interconnectAttachment;
 
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
-    'interconnect_attachment': ?interconnectAttachment?.toTfJson(),
+    'interconnect_attachment': ?interconnectAttachment
+        ?.encodeAs('self_link')
+        .toTfJson(),
   };
 }
 

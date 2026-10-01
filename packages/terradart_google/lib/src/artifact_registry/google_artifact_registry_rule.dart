@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../artifact_registry/google_artifact_registry_repository.dart'
+    show GoogleArtifactRegistryRepository;
+
 /// Sensitive field paths for `google_artifact_registry_rule`.
 const Set<String> _googleArtifactRegistryRuleSensitive = <String>{};
 
@@ -76,7 +79,7 @@ final class ArtifactRegistryRuleCondition {
 /// ```dart
 /// GoogleArtifactRegistryRule(
 ///   localName: 'deny_download',
-///   repositoryId: TfArg.literal('terradart-docker'),
+///   repositoryId: .literal('terradart-docker'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   ruleId: TfArg.literal('deny-all-downloads'),
 ///   action: TfArg.literal(ArtifactRegistryRuleAction.deny),
@@ -88,7 +91,7 @@ final class GoogleArtifactRegistryRule extends Resource {
 
   GoogleArtifactRegistryRule({
     required super.localName,
-    required TfArg<String> repositoryId,
+    required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     TfArg<String>? location,
     required TfArg<String> ruleId,
     TfArg<ArtifactRegistryRuleAction>? action,
@@ -104,7 +107,7 @@ final class GoogleArtifactRegistryRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository_id': repositoryId,
+           'repository_id': repositoryId.encodeAs('repository_id'),
            'location': ?location,
            'rule_id': ruleId,
            'action': ?action,

@@ -36,7 +36,7 @@ GoogleCloudRunV2Service buildCloudRunService({
             source: .valueSource(
               .new(
                 secretKeyRef: .new(
-                  secret: .ref(dbPasswordSecret.id),
+                  secret: dbPasswordSecret.ref,
                   version: .literal('latest'),
                 ),
               ),

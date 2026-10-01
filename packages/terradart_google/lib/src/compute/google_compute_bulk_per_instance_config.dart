@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_group_manager.dart'
+    show GoogleComputeInstanceGroupManager;
+
 /// Sensitive field paths for `google_compute_bulk_per_instance_config`.
 const Set<String> _googleComputeBulkPerInstanceConfigSensitive = <String>{};
 
@@ -24,7 +27,7 @@ final class GoogleComputeBulkPerInstanceConfig extends Resource {
 
   GoogleComputeBulkPerInstanceConfig({
     required super.localName,
-    required TfArg<String> instanceGroupManager,
+    required RefTo<GoogleComputeInstanceGroupManager> instanceGroupManager,
     List<ComputeBulkPerInstanceConfigInstances>? instances,
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,
@@ -36,7 +39,7 @@ final class GoogleComputeBulkPerInstanceConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_group_manager': instanceGroupManager,
+           'instance_group_manager': instanceGroupManager.encodeAs('name'),
            if (instances != null)
              'instances': TfArg.literal([
                for (final e in instances) e.encode(),

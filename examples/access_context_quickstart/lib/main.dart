@@ -106,7 +106,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterDryRunResource(
         localName: 'dry_run_project',
-        perimeterName: .ref(dryRun.nameRef),
+        perimeterName: dryRun.ref,
         resource: .literal('projects/987654321'),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(dryRun)],
@@ -140,7 +140,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAccessLevelCondition(
         localName: 'chromeos_condition',
-        accessLevel: .ref(chromeos.nameRef),
+        accessLevel: chromeos.ref,
         ipSubnetworks: .literal(['192.0.4.0/24']),
         members: .literal(['user:test@google.com', 'user:test2@google.com']),
         negate: .literal(false),
@@ -255,7 +255,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterResource(
         localName: 'live_project',
-        perimeterName: .ref(attach.nameRef),
+        perimeterName: attach.ref,
         resource: .literal('projects/987654322'),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(attach)],
@@ -265,7 +265,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterIngressPolicy(
         localName: 'attach_ingress',
-        perimeter: .ref(attach.nameRef),
+        perimeter: attach.ref,
         title: .literal('allow identities'),
         ingressFrom:
             AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
@@ -281,7 +281,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterEgressPolicy(
         localName: 'attach_egress',
-        perimeter: .ref(attach.nameRef),
+        perimeter: attach.ref,
         title: .literal('allow egress'),
         egressFrom: AccessContextManagerServicePerimeterEgressPolicyEgressFrom(
           identityType: .literal(
@@ -296,7 +296,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy(
         localName: 'dry_run_ingress',
-        perimeter: .ref(dryRun.nameRef),
+        perimeter: dryRun.ref,
         title: .literal('dry-run ingress'),
         ingressFrom:
             AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom(
@@ -312,7 +312,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterDryRunEgressPolicy(
         localName: 'dry_run_egress',
-        perimeter: .ref(dryRun.nameRef),
+        perimeter: dryRun.ref,
         title: .literal('dry-run egress'),
         egressFrom:
             AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom(

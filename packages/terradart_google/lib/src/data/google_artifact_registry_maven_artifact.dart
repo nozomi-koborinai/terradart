@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../artifact_registry/google_artifact_registry_repository.dart'
+    show GoogleArtifactRegistryRepository;
 
 /// Sensitive field paths for `google_artifact_registry_maven_artifact`.
 const Set<String> _googleArtifactRegistryMavenArtifactSensitive = <String>{};
@@ -19,7 +21,7 @@ final class DataGoogleArtifactRegistryMavenArtifact extends Data {
     required TfArg<String> groupId,
     required TfArg<String> location,
     TfArg<String>? project,
-    required TfArg<String> repositoryId,
+    required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -29,7 +31,7 @@ final class DataGoogleArtifactRegistryMavenArtifact extends Data {
            'group_id': groupId,
            'location': location,
            'project': ?project,
-           'repository_id': repositoryId,
+           'repository_id': repositoryId.encodeAs('repository_id'),
          },
        );
 

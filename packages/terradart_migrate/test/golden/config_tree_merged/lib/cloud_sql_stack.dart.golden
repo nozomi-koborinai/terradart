@@ -25,14 +25,14 @@ final class CloudSqlStack extends Stack {
       GoogleSqlDatabase(
         localName: 'app',
         name: .literal('app'),
-        instance: .ref(thisSqlDatabaseInstance.nameRef),
+        instance: thisSqlDatabaseInstance.ref,
       ),
     );
     add(
       GoogleSqlUser(
         localName: 'app',
         name: .literal('app'),
-        instance: .ref(thisSqlDatabaseInstance.nameRef),
+        instance: thisSqlDatabaseInstance.ref,
       ),
     );
   }

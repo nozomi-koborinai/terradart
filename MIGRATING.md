@@ -1,5 +1,76 @@
 # Migrating terradart
 
+## 0.31.x → 0.32.0
+
+### More arguments take `RefTo<R>`
+
+More arguments that name another resource are typed `RefTo<R>`, as
+`network: vpc.ref` already was. `dart analyze` reports each one as an
+argument type error; pass the resource's `ref`, or `.literal(...)` for a
+resource outside the stack:
+
+| 0.31 | 0.32 |
+|------|------|
+| `instance: .ref(primary.nameRef)` | `instance: primary.ref` |
+| `keyRing: .ref(ring.id)` | `keyRing: ring.ref` |
+| `managedZone: .ref(zone.nameRef)` | `managedZone: zone.ref` |
+| `router: .ref(router.nameRef)` | `router: router.ref` |
+| `cachePolicyId: .ref(policy.id)` | `cachePolicyId: policy.ref` |
+| `instance: TfArg.literal('db')` | `instance: .literal('db')` |
+
+The reference emits the attribute the provider expects, which is not
+always the one the 0.31 call site passed. Review `terraform plan` for
+these inputs; the new value is the one upstream documents:
+
+| Input | 0.31 example | 0.32 emits |
+|-------|--------------|------------|
+| `GooglePrivatecaCertificate(Authority).pool` | `id` | `name` |
+| `GoogleFilestoreSnapshot.instance` | `id` | `name` |
+| `GoogleIamWorkloadIdentityPoolProvider.workloadIdentityPoolId` | `name` | `workload_identity_pool_id` |
+| `GoogleLoggingLinkedDataset.bucket`, `GoogleLoggingLogView.bucket`, `GoogleLoggingMetric.bucketName` | `bucket_id` | `id` |
+| `GoogleSecretManagerSecretVersion.secret` | `id` | `name` (the same full name) |
+| `GoogleAlloydbInstance.cluster`, `GoogleAlloydbUser.cluster` | `id` | `name` (the same full name) |
+| `AwsRoute53Record.zoneId` | `id` | `zone_id` (the same value) |
+| `AwsEcsExpressGatewayService.cluster` | `name` | `arn` |
+
+The migrator writes the typed form, so re-running `terradart-migrate`
+produces `x.ref` for these inputs.
+
+### Synth issues
+
+Synth output does not change for a Stack that synthesized before, unless it
+read a block it never registered — which `terraform plan` rejected anyway.
+
+Synth now checks the whole Stack before it encodes anything and throws one
+`SynthException` listing every problem, each a subtype of the sealed
+`SynthIssue`. Code that caught the old errors catches the new one:
+
+| Before (0.31) | After (0.32) |
+|---------------|--------------|
+| `on SensitiveLiteralError catch (e)` → `e.fieldPath` | `on SynthException catch (e)` → `e.issues.whereType<SensitiveLiteral>()`, `.field` |
+| `on StateError` from `synth()` (no provider, undeclared variable, unresolvable constant, invalid `moved` target, provider conflict) | `on SynthException` — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnresolvableConstant`, `InvalidMoveTarget` |
+| `on ArgumentError` from `TfTimeouts.toTfJson()` | `InvalidTimeout` at synth; `TfTimeouts.isDuration(value)` to check one value |
+| `expect(stack.synth, throwsStateError)` | `expect(stack.validate(), isEmpty)`, or match `isA<SynthException>()` |
+| `TfJsonEncoder.validateProviders(stack)` / `encodeArgMapWithSensitive(...)` | `stack.validate()` / `TfJsonEncoder.encodeArgMap(...)` |
+
+### Unregistered references
+
+A reference — in an argument, `depends_on` or `replace_triggered_by` — to a
+resource, data source or module the Stack does not hold is now an
+`UnregisteredReference`. Usually the block was built but never passed to
+`add(...)`: pass it. When a hand-written `.tf` file beside `main.tf.json`
+declares it, say so with `addExternalBlock('google_pubsub_topic.legacy')`, the
+counterpart of `addExternalVariable`. A package `terradart-migrate` wrote
+before 0.32.0 needs one such line per sidecar block its Stack reads; migrating
+again writes them.
+
+### Names
+
+`add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw
+`ArgumentError` for a `localName` or variable name that is not a Terraform
+identifier (letters, digits, `_` and `-`, not starting with a digit), as
+`addOutput` already did. Terraform rejected those names at `plan`.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

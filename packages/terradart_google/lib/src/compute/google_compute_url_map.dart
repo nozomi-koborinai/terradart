@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_backend_bucket.dart'
+    show GoogleComputeBackendBucket;
+import '../compute/google_compute_backend_service.dart'
+    show GoogleComputeBackendService;
+
 /// Sensitive field paths for `google_compute_url_map`.
 const Set<String> _googleComputeUrlMapSensitive = <String>{};
 
@@ -153,12 +158,12 @@ final class ComputeUrlMapDefaultCustomErrorResponsePolicy {
     this.errorResponseRule,
   });
 
-  final TfArg<String>? errorService;
+  final RefTo<GoogleComputeBackendBucket>? errorService;
 
   final List<ComputeUrlMapErrorResponseRule>? errorResponseRule;
 
   Map<String, Object?> encode() => {
-    'error_service': ?errorService?.toTfJson(),
+    'error_service': ?errorService?.encodeAs('self_link').toTfJson(),
     if (errorResponseRule != null)
       'error_response_rule': [for (final e in errorResponseRule!) e.encode()],
   };
@@ -622,10 +627,10 @@ final class ComputeUrlMapMaxStreamDuration {
 final class ComputeUrlMapRequestMirrorPolicy {
   const ComputeUrlMapRequestMirrorPolicy({required this.backendService});
 
-  final TfArg<String> backendService;
+  final RefTo<GoogleComputeBackendService> backendService;
 
   Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
+    'backend_service': backendService.encodeAs('self_link').toTfJson(),
   };
 }
 
@@ -715,14 +720,14 @@ final class ComputeUrlMapWeightedBackendServices {
     this.headerAction,
   });
 
-  final TfArg<String>? backendService;
+  final RefTo<GoogleComputeBackendService>? backendService;
 
   final TfArg<num>? weight;
 
   final ComputeUrlMapWeightedBackendServicesHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
-    'backend_service': ?backendService?.toTfJson(),
+    'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
     'weight': ?weight?.toTfJson(),
     'header_action': ?headerAction?.encode(),
   };
@@ -968,7 +973,7 @@ final class ComputeUrlMapPathMatcher {
     this.routeRules,
   });
 
-  final TfArg<String>? defaultService;
+  final RefTo<GoogleComputeBackendService>? defaultService;
 
   final TfArg<String>? description;
 
@@ -988,7 +993,7 @@ final class ComputeUrlMapPathMatcher {
   final List<ComputeUrlMapRouteRules>? routeRules;
 
   Map<String, Object?> encode() => {
-    'default_service': ?defaultService?.toTfJson(),
+    'default_service': ?defaultService?.encodeAs('self_link').toTfJson(),
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     'default_custom_error_response_policy': ?defaultCustomErrorResponsePolicy
@@ -1162,7 +1167,7 @@ final class ComputeUrlMapPathRule {
 
   final TfArg<List<String>> paths;
 
-  final TfArg<String>? service;
+  final RefTo<GoogleComputeBackendService>? service;
 
   final ComputeUrlMapCustomErrorResponsePolicy? customErrorResponsePolicy;
 
@@ -1172,7 +1177,7 @@ final class ComputeUrlMapPathRule {
 
   Map<String, Object?> encode() => {
     'paths': paths.toTfJson(),
-    'service': ?service?.toTfJson(),
+    'service': ?service?.encodeAs('self_link').toTfJson(),
     'custom_error_response_policy': ?customErrorResponsePolicy?.encode(),
     'route_action': ?routeAction?.encode(),
     'url_redirect': ?urlRedirect?.encode(),
@@ -1189,12 +1194,12 @@ final class ComputeUrlMapCustomErrorResponsePolicy {
     this.errorResponseRule,
   });
 
-  final TfArg<String>? errorService;
+  final RefTo<GoogleComputeBackendBucket>? errorService;
 
   final List<ComputeUrlMapErrorResponseRule>? errorResponseRule;
 
   Map<String, Object?> encode() => {
-    'error_service': ?errorService?.toTfJson(),
+    'error_service': ?errorService?.encodeAs('self_link').toTfJson(),
     if (errorResponseRule != null)
       'error_response_rule': [for (final e in errorResponseRule!) e.encode()],
   };
@@ -1436,14 +1441,14 @@ final class ComputeUrlMapRouteActionWeightedBackendServices {
     this.headerAction,
   });
 
-  final TfArg<String> backendService;
+  final RefTo<GoogleComputeBackendService> backendService;
 
   final TfArg<num> weight;
 
   final ComputeUrlMapHeaderAction? headerAction;
 
   Map<String, Object?> encode() => {
-    'backend_service': backendService.toTfJson(),
+    'backend_service': backendService.encodeAs('self_link').toTfJson(),
     'weight': weight.toTfJson(),
     'header_action': ?headerAction?.encode(),
   };
@@ -1500,7 +1505,7 @@ final class ComputeUrlMapRouteRules {
 
   final TfArg<num> priority;
 
-  final TfArg<String>? service;
+  final RefTo<GoogleComputeBackendService>? service;
 
   final ComputeUrlMapCustomErrorResponsePolicy? customErrorResponsePolicy;
 
@@ -1514,7 +1519,7 @@ final class ComputeUrlMapRouteRules {
 
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
-    'service': ?service?.toTfJson(),
+    'service': ?service?.encodeAs('self_link').toTfJson(),
     'custom_error_response_policy': ?customErrorResponsePolicy?.encode(),
     'header_action': ?headerAction?.encode(),
     if (matchRules != null)
@@ -1884,7 +1889,7 @@ final class ComputeUrlMapTest {
 
   final TfArg<String> path;
 
-  final TfArg<String>? service;
+  final RefTo<GoogleComputeBackendService>? service;
 
   final List<ComputeUrlMapHeaders>? headers;
 
@@ -1895,7 +1900,7 @@ final class ComputeUrlMapTest {
         ?.toTfJson(),
     'host': host.toTfJson(),
     'path': path.toTfJson(),
-    'service': ?service?.toTfJson(),
+    'service': ?service?.encodeAs('self_link').toTfJson(),
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
   };
 }
@@ -1945,7 +1950,7 @@ final class ComputeUrlMapHeaders {
 ///
 /// Matching pipeline (request flow):
 ///
-/// ```
+/// ```text
 /// incoming request
 ///   -> match Host: header against host_rule.hosts[]
 ///        -> dispatch to path_matcher named host_rule.path_matcher
@@ -1969,7 +1974,7 @@ final class ComputeUrlMapHeaders {
 /// final urlMap = GoogleComputeUrlMap(
 ///   localName: 'urlmap',
 ///   name: TfArg.literal('urlmap-prod'),
-///   defaultService: TfArg.ref(login.selfLink),
+///   defaultService: login.ref,
 ///   hostRule: [
 ///     ComputeUrlMapHostRule(
 ///       hosts: TfArg.literal(['mysite.com', 'myothersite.com']),
@@ -1979,15 +1984,15 @@ final class ComputeUrlMapHeaders {
 ///   pathMatcher: [
 ///     ComputeUrlMapPathMatcher(
 ///       name: TfArg.literal('allpaths'),
-///       defaultService: TfArg.ref(login.selfLink),
+///       defaultService: login.ref,
 ///       pathRule: [
 ///         .new(
 ///           paths: TfArg.literal(const ['/home']),
-///           service: TfArg.ref(login.selfLink),
+///           service: login.ref,
 ///         ),
 ///         .new(
 ///           paths: TfArg.literal(const ['/static']),
-///           service: TfArg.ref(staticBucket.selfLink),
+///           service: staticBucket.ref,
 ///         ),
 ///       ],
 ///     ),
@@ -2021,7 +2026,7 @@ final class GoogleComputeUrlMap extends Resource {
   GoogleComputeUrlMap({
     required super.localName,
     required TfArg<String> name,
-    TfArg<String>? defaultService,
+    RefTo<GoogleComputeBackendService>? defaultService,
     TfArg<String>? description,
     List<ComputeUrlMapHostRule>? hostRule,
     List<ComputeUrlMapPathMatcher>? pathMatcher,
@@ -2039,7 +2044,7 @@ final class GoogleComputeUrlMap extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'default_service': ?defaultService,
+           'default_service': ?defaultService?.encodeAs('self_link'),
            'description': ?description,
            if (hostRule != null)
              'host_rule': TfArg.literal([for (final e in hostRule) e.encode()]),

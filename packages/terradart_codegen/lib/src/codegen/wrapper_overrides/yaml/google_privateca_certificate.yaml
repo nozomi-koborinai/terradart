@@ -39,7 +39,7 @@ curatedDoc: |-
   /// GooglePrivatecaCertificate(
   ///   localName: 'leaf_cert',
   ///   name: TfArg.literal('app-leaf-cert'),
-  ///   pool: .ref(caPool.id),
+  ///   pool: caPool.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   certificateAuthority: TfArg.literal('app-root-ca'),
   ///   lifetime: TfArg.literal('86400s'),

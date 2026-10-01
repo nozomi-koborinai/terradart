@@ -2,6 +2,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
+import 'helpers/synth_issues.dart';
 
 enum _Tier implements TerraformEnum {
   standard('STANDARD');
@@ -36,6 +37,10 @@ Matcher _argumentError(String message) => throwsA(
 
 Matcher _stateError(String message) => throwsA(
   isA<StateError>().having((e) => e.message, 'message', contains(message)),
+);
+
+Matcher _unresolvable(String message) => throwsSynthIssue<UnresolvableConstant>(
+  allOf(startsWith('constant.x: '), contains(message)),
 );
 
 void main() {
@@ -231,7 +236,7 @@ void main() {
           ..addVariable('v', const TfVariable(type: 'string'));
         final topic = _topic(stack, {'name': name});
         stack.addConstant('x', .ref(TfRef.attribute<String>(topic, 'name')));
-        expect(stack.synth, _stateError(message));
+        expect(stack.synth, _unresolvable(message));
       }
 
       test('unset', () => expectFailure(null, 'not set in the Stack'));
@@ -268,7 +273,7 @@ void main() {
           'x',
           .ref(TfRef.attribute<Map<String, String>>(topic, 'labels')),
         );
-        expect(stack.synth, _stateError('a literal holding a reference'));
+        expect(stack.synth, _unresolvable('a literal holding a reference'));
       });
 
       test('a value of another type', () {
@@ -287,7 +292,7 @@ void main() {
           'x',
           .ref(TfRef.attribute<String>(version, 'secret_data')),
         );
-        expect(stack.synth, _stateError('sensitive field'));
+        expect(stack.synth, _unresolvable('sensitive field'));
       });
 
       test('a sensitive field of a data source', () {
@@ -299,7 +304,7 @@ void main() {
           ),
         );
         stack.addConstant('x', .ref(TfRef.data<String>(secret, 'plaintext')));
-        expect(stack.synth, _stateError('sensitive field'));
+        expect(stack.synth, _unresolvable('sensitive field'));
       });
 
       test('an owner that is not registered', () {
@@ -309,7 +314,7 @@ void main() {
           argMap: const {'name': TfArgLiteral<String>('o')},
         );
         stack.addConstant('x', .ref(TfRef.attribute<String>(topic, 'name')));
-        expect(stack.synth, _stateError('not registered on this Stack'));
+        expect(stack.synth, _unresolvable('not registered on this Stack'));
       });
     });
   });

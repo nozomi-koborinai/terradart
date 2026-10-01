@@ -16,6 +16,8 @@ import 'tf_ref.dart';
 import 'tf_variable.dart';
 import 'synth/app_exports_emitter.dart';
 import 'synth/stack_synth.dart';
+import 'synth/stack_validator.dart';
+import 'synth/synth_issue.dart';
 
 /// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
 /// `LocalBackend`; anything else implements this interface in the caller.
@@ -93,6 +95,11 @@ abstract interface class StackProvider {
 ///   declarations backing the `TfArg.variable` references in this
 ///   stack. `addExternalVariable(...)` / `externalVariables` covers
 ///   names declared in a hand-written file instead.
+/// - `addExternalBlock(...)` / `externalBlocks` — resources, data sources
+///   and module calls a hand-written file declares, which this stack may
+///   reference without holding.
+/// - `validate()` — every [SynthIssue] that keeps the stack from
+///   synthesizing; `synth()` throws them as one [SynthException].
 /// - `addMoved(...)` / `moved` — `moved { from = ... to = ... }` entries
 ///   that carry existing state across a resource rename.
 /// - `addModule(...)` / `modules` — `module "<name>" { ... }` calls, whose
@@ -140,6 +147,10 @@ abstract base class Stack {
   /// Names declared outside synth output — see [addExternalVariable].
   final Set<String> _externalVariables = {};
 
+  /// Block addresses declared outside synth output — see
+  /// [addExternalBlock].
+  final Set<String> _externalBlocks = {};
+
   /// Insertion-ordered so the emitted `moved` list is stable.
   final List<TfMoved> _moved = [];
 
@@ -178,6 +189,10 @@ abstract base class Stack {
   /// Synth accepts references to these but emits no block for them.
   Set<String> get externalVariables =>
       Set<String>.unmodifiable(_externalVariables);
+
+  /// Read-only view of block addresses declared outside synth output.
+  /// Synth accepts references to these but emits nothing for them.
+  Set<String> get externalBlocks => Set<String>.unmodifiable(_externalBlocks);
 
   /// The `moved` entries registered with [addMoved], in registration order.
   List<TfMoved> get moved => List<TfMoved>.unmodifiable(_moved);
@@ -256,7 +271,9 @@ abstract base class Stack {
   /// ```dart
   /// addOutput('orders_topic_id', .ref(topic.id));
   /// final service = add(GoogleCloudRunV2Service(
-  ///   // ...
+  ///   localName: 'orders',
+  ///   name: .literal('orders'),
+  ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(containers: [
   ///     .new(
   ///       image: .literal(image),
@@ -440,11 +457,10 @@ abstract base class Stack {
   /// Declare a `variable "<name>" { ... }` block, making
   /// `TfArg.variable('<name>')` references in this stack resolvable.
   /// Order is preserved for deterministic output. Throws
-  /// [ArgumentError] if `name` is empty or already declared.
+  /// [ArgumentError] if `name` is not a Terraform identifier or is already
+  /// declared.
   void addVariable(String name, TfVariable variable) {
-    if (name.isEmpty) {
-      throw ArgumentError.value(name, 'name', 'must not be empty');
-    }
+    _checkVariableName(name);
     if (_variables.containsKey(name) || _externalVariables.contains(name)) {
       throw ArgumentError.value(
         name,
@@ -499,12 +515,10 @@ abstract base class Stack {
   /// Prefer [addVariable] when the declaration can live in Dart: it keeps
   /// the whole module in one place, and the block travels with the stack.
   ///
-  /// Throws [ArgumentError] if `name` is empty or already registered by
-  /// either [addVariable] or this method.
+  /// Throws [ArgumentError] if `name` is not a Terraform identifier or is
+  /// already registered by either [addVariable] or this method.
   void addExternalVariable(String name) {
-    if (name.isEmpty) {
-      throw ArgumentError.value(name, 'name', 'must not be empty');
-    }
+    _checkVariableName(name);
     if (_variables.containsKey(name) || _externalVariables.contains(name)) {
       throw ArgumentError.value(
         name,
@@ -514,6 +528,53 @@ abstract base class Stack {
     }
     _externalVariables.add(name);
   }
+
+  static void _checkVariableName(String name) {
+    if (isTerraformIdentifier(name)) return;
+    throw ArgumentError.value(
+      name,
+      'name',
+      'must be a Terraform identifier (letters, digits, underscores and '
+          'hyphens; not starting with a digit), e.g. "db_password"',
+    );
+  }
+
+  /// Accept references to a block declared in a hand-written file beside
+  /// the generated `main.tf.json` — `google_pubsub_topic.legacy`,
+  /// `data.google_project.current` or `module.network` — without emitting
+  /// it.
+  ///
+  /// Synth reports a reference to a block that is not registered on the
+  /// Stack as an [UnregisteredReference]: usually a resource that was
+  /// built but never passed to [add]. A block Terraform reads from another
+  /// file of the module directory is the legitimate exception, the
+  /// counterpart of [addExternalVariable] for variables.
+  ///
+  /// Throws [ArgumentError] when [address] is not a block address
+  /// (`<type>.<name>`, `data.<type>.<name>` or `module.<name>`) or is
+  /// already registered.
+  void addExternalBlock(String address) {
+    if (!_blockAddress.hasMatch(address)) {
+      throw ArgumentError.value(
+        address,
+        'address',
+        'must be a block address: <type>.<name>, data.<type>.<name> or '
+            'module.<name>',
+      );
+    }
+    if (!_externalBlocks.add(address)) {
+      throw ArgumentError.value(
+        address,
+        'address',
+        'Block "$address" is already declared external on this Stack.',
+      );
+    }
+  }
+
+  static final RegExp _blockAddress = RegExp(
+    r'^(?:data\.[A-Za-z][A-Za-z0-9_]*\.|module\.|'
+    r'(?!data\.|module\.)[A-Za-z][A-Za-z0-9_]*\.)[A-Za-z_][A-Za-z0-9_-]*$',
+  );
 
   /// Override the default `>= 1.11.0` version constraint.
   void setRequiredVersion(String constraint) => _requiredVersion = constraint;
@@ -525,12 +586,17 @@ abstract base class Stack {
   // ---- Resource registration ---------------------------------------------
 
   /// Register a resource. Returns the same instance for fluent assignment.
+  ///
+  /// Throws [ArgumentError] when [resource] is a [Data] (use [addData]) or
+  /// its `localName` is not a Terraform identifier, and
+  /// [DuplicateResourceError] when its address is already registered.
   T add<T extends Resource>(T resource) {
     if (resource is Data) {
       throw ArgumentError(
         'Use Stack.addData() to register a Data, not Stack.add().',
       );
     }
+    _checkLocalName(resource.localName, resource.tfAddress);
     final key = (
       kind: resource.kind,
       type: resource.terraformType,
@@ -551,18 +617,19 @@ abstract base class Stack {
   /// instance, so the call site can read the module's outputs from it:
   ///
   /// ```dart
-  /// final sa = addModule(ServiceAccountModule(
+  /// final sa = addModule(ModuleCall(
   ///   localName: 'sa_bff',
   ///   source: '../modules/service_account',
-  ///   accountId: TfArg.literal('app-bff-sa'),
+  ///   inputs: {'account_id': .literal('app-bff-sa')},
   /// ));
-  /// // ... member: TfArg.ref(sa.member)
+  /// addOutput('bff_member', .ref(sa.output<String>('member')));
   /// ```
   ///
   /// Throws [DuplicateModuleError] when a call of the same
   /// [ModuleCall.localName] is already registered — Terraform addresses both
   /// as `module.<localName>`.
   T addModule<T extends ModuleCall>(T call) {
+    _checkLocalName(call.localName, call.tfAddress);
     if (_modules.containsKey(call.localName)) {
       throw DuplicateModuleError(call.localName);
     }
@@ -571,7 +638,12 @@ abstract base class Stack {
   }
 
   /// Register a data source. Returns the same instance.
+  ///
+  /// Throws [ArgumentError] when its `localName` is not a Terraform
+  /// identifier, and [DuplicateResourceError] when its address is already
+  /// registered.
   T addData<T extends Data>(T data) {
+    _checkLocalName(data.localName, data.tfAddress);
     final key = (
       kind: data.kind,
       type: data.terraformType,
@@ -588,6 +660,31 @@ abstract base class Stack {
     return data;
   }
 
+  static void _checkLocalName(String localName, String address) {
+    if (isTerraformIdentifier(localName)) return;
+    throw ArgumentError.value(
+      localName,
+      'localName',
+      '$address: must be a Terraform identifier (letters, digits, '
+          'underscores and hyphens; not starting with a digit), e.g. '
+          '"orders_topic"',
+    );
+  }
+
+  /// Every [SynthIssue] that keeps this Stack from synthesizing, in Stack
+  /// order — empty when [synth] would succeed. [synth] and [writeTo] run
+  /// the same checks and throw them as one [SynthException]; call this to
+  /// inspect them without the throw, e.g. in a test.
+  ///
+  /// ```dart
+  /// void report(Stack stack) {
+  ///   for (final issue in stack.validate()) {
+  ///     print(issue);
+  ///   }
+  /// }
+  /// ```
+  List<SynthIssue> validate() => StackValidator.validate(this);
+
   /// Synthesise this Stack into an in-memory [SynthResult] bundle.
   ///
   /// Pure / side-effect-free: produces the Terraform JSON map plus the
@@ -595,8 +692,8 @@ abstract base class Stack {
   /// filesystem. Use [writeTo] to persist the result to disk under a
   /// chosen output directory.
   ///
-  /// Throws [StateError] when a constant cannot be resolved (see
-  /// [AppConstant.ref]).
+  /// Throws a [SynthException] listing every [SynthIssue] (see [validate])
+  /// when the Stack cannot be synthesized.
   SynthResult synth() => StackSynth.synth(this);
 
   /// Synthesise this Stack and write the result to [outDir].
