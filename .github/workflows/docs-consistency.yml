@@ -18,10 +18,9 @@ env:
 
 jobs:
   docs_consistency:
-    # The job name is a required status check in branch protection, so it
-    # keeps its historical name. The pubsub smoke it names was retired: CI's
-    # example gates synth and analyze every example.
-    name: docs consistency + pubsub smoke
+    # The job name is a required status check in branch protection; rename
+    # it only together with that setting.
+    name: docs consistency
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

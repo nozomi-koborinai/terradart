@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_variable.dart';
@@ -152,6 +154,22 @@ void main() {
         'description': 'd',
         'default': 3,
       });
+    });
+
+    test('a Set default is written as a JSON list', () {
+      final stack = TestStack()
+        ..variable<Set<String>>('zones', defaultValue: {'a', 'b'})
+        ..variable<Object?>(
+          'cfg',
+          type: const .object({
+            'tags': .optional(.set(.string), {'x'}),
+          }),
+        );
+      expect(stack.variables['zones']!.toTfJson()['default'], ['a', 'b']);
+      expect(
+        jsonEncode(stack.variables['cfg']!.toTfJson()),
+        contains(r'optional(set(string), [\"x\"])'),
+      );
     });
 
     test('derives the type from T, and an explicit type wins', () {
