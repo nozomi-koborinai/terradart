@@ -436,7 +436,7 @@ properties:
     });
 
     test('keys by the Terraform name, not the REST api_name', () {
-      final proxy = MmYamlParser().parseString('''
+      final proxy = const MmYamlParser().parseString('''
 name: Proxy
 properties:
   - name: backendService
