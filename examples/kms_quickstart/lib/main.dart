@@ -37,9 +37,9 @@ final class CryptoStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
+    final kmsSecretPlaintext = variable<String>(
       'kms_secret_plaintext',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
 
     // ---- API enablement ---------------------------------------------------
@@ -155,7 +155,7 @@ final class CryptoStack extends Stack {
         'payments_secret',
         cryptoKey: paymentsKey.ref,
         // Schema-sensitive — must be a Terraform variable (see bin/infra.dart).
-        plaintext: TfArg.variable('kms_secret_plaintext'),
+        plaintext: kmsSecretPlaintext,
         dependsOn: [...apiDeps, paymentsKey],
       ),
     );

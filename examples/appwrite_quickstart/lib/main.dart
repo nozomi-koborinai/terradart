@@ -46,22 +46,19 @@ final class AppwriteDemoStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
+    final backupAccessKey = variable<String>(
       'backup_access_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final backupSecretKey = variable<String>(
       'backup_secret_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final functionApiUrl = variable<String>(
       'function_api_url',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
-      'site_api_url',
-      const TfVariable(type: 'string', sensitive: true),
-    );
+    final siteApiUrl = variable<String>('site_api_url', sensitive: true);
 
     add(AppwriteProject('demo', name: .literal('terradart-demo')));
 
@@ -157,8 +154,8 @@ final class AppwriteDemoStack extends Stack {
         databaseId: pg.ref,
         bucket: .literal('terradart-pg-backups'),
         storageProvider: .s3,
-        accessKey: TfArg.variable('backup_access_key'),
-        secretKey: TfArg.variable('backup_secret_key'),
+        accessKey: backupAccessKey,
+        secretKey: backupSecretKey,
       ),
     );
     add(AppwritePostgresqlBranch('pg_dev', databaseId: pg.ref));
@@ -189,8 +186,8 @@ final class AppwriteDemoStack extends Stack {
         databaseId: mysql.ref,
         bucket: .literal('terradart-mysql-backups'),
         storageProvider: .s3,
-        accessKey: TfArg.variable('backup_access_key'),
-        secretKey: TfArg.variable('backup_secret_key'),
+        accessKey: backupAccessKey,
+        secretKey: backupSecretKey,
       ),
     );
     add(AppwriteMysqlBranch('mysql_dev', databaseId: mysql.ref));
@@ -214,8 +211,8 @@ final class AppwriteDemoStack extends Stack {
         databaseId: mongo.ref,
         bucket: .literal('terradart-mongo-backups'),
         storageProvider: .s3,
-        accessKey: TfArg.variable('backup_access_key'),
-        secretKey: TfArg.variable('backup_secret_key'),
+        accessKey: backupAccessKey,
+        secretKey: backupSecretKey,
       ),
     );
     add(AppwriteMongoBranch('mongo_dev', databaseId: mongo.ref));
@@ -234,7 +231,7 @@ final class AppwriteDemoStack extends Stack {
         'api_url',
         functionId: fn.ref,
         key: .literal('API_URL'),
-        value: TfArg.variable('function_api_url'),
+        value: functionApiUrl,
       ),
     );
     add(
@@ -265,7 +262,7 @@ final class AppwriteDemoStack extends Stack {
         'public_api',
         siteId: site.ref,
         key: .literal('NEXT_PUBLIC_API_URL'),
-        value: TfArg.variable('site_api_url'),
+        value: siteApiUrl,
       ),
     );
     add(

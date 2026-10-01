@@ -196,7 +196,7 @@ output "label" {
         sidecar.files[variablesFileName],
         isNot(contains('variable "name"')),
       );
-      expect(r.stackSource, contains("addExternalVariable('checked');"));
+      expect(r.stackSource, contains("externalVariable('checked');"));
       expect(
         sidecar.files[localsFileName],
         contains('locals {\n  prefix = "app"\n  suffix = "x"\n}'),

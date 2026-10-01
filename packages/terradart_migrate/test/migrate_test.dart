@@ -914,8 +914,8 @@ resource "aws_s3_bucket" "logs" {
         ),
       );
       // The variables inside the expressions are declared, like references.
-      expect(src, contains("addExternalVariable('n');"));
-      expect(src, contains("addExternalVariable('env');"));
+      expect(src, contains("externalVariable('n');"));
+      expect(src, contains("externalVariable('env');"));
     });
 
     test('an expression on an enum argument is TfArg.expression', () {
@@ -1372,7 +1372,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(unknown.report.kept.single.reason, contains('backend "azurerm"'));
     });
 
-    test('variables become addVariable; validation keeps them external', () {
+    test('variables become handles; validation keeps them external', () {
       final r = _migrateJson({
         'terraform': _google,
         'variable': {
@@ -1402,12 +1402,12 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "addVariable('project', const TfVariable(type: 'string', description: 'd', defaultValue: 'p', sensitive: false));",
+          "final project = variable<String>('project', description: 'd', defaultValue: 'p', sensitive: false);",
         ),
       );
-      expect(r.stackSource, contains("addExternalVariable('checked');"));
-      expect(r.stackSource, contains("addExternalVariable('other');"));
-      expect(r.stackSource, contains("name: .variable('project')"));
+      expect(r.stackSource, contains("externalVariable('checked');"));
+      expect(r.stackSource, contains("externalVariable('other');"));
+      expect(r.stackSource, contains('name: project'));
       expect(
         r.stackSource,
         contains(r"labels: .literal({'k': r'${var.other}'})"),

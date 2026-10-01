@@ -17,10 +17,7 @@ final class AwsLeftoverStack extends Stack {
     const policy =
         '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:GetObject","Resource":"*"}]}';
 
-    addVariable(
-      'leftover_secret',
-      const TfVariable(type: 'string', sensitive: true),
-    );
+    final leftoverSecret = variable<String>('leftover_secret', sensitive: true);
 
     add(
       AwsAccessanalyzerAnalyzer(
@@ -732,7 +729,7 @@ final class AwsLeftoverStack extends Stack {
         'appconfig_hosted_configuration_version',
         applicationId: .literal(leftover),
         configurationProfileId: .literal(leftover),
-        content: .variable('leftover_secret'),
+        content: leftoverSecret,
         contentType: .literal(leftover),
       ),
     );
@@ -745,7 +742,7 @@ final class AwsLeftoverStack extends Stack {
         authType: .oauth2,
         credential: [
           AppfabricAppAuthorizationCredential(
-            apiKeyCredential: [.new(apiKey: .variable('leftover_secret'))],
+            apiKeyCredential: [.new(apiKey: leftoverSecret)],
           ),
         ],
         tenant: [
@@ -811,7 +808,7 @@ final class AwsLeftoverStack extends Stack {
           connectorProfileCredentials: .new(
             amplitude: .new(
               apiKey: .literal(leftover),
-              secretKey: .variable('leftover_secret'),
+              secretKey: leftoverSecret,
             ),
           ),
           connectorProfileProperties: .new(amplitude: .new()),
@@ -1046,7 +1043,7 @@ final class AwsLeftoverStack extends Stack {
         serviceAccountCredentials:
             AppstreamDirectoryConfigServiceAccountCredentials(
               accountName: .literal(leftover),
-              accountPassword: .variable('leftover_secret'),
+              accountPassword: leftoverSecret,
             ),
       ),
     );
@@ -1819,7 +1816,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsBedrockagentcoreApiKeyCredentialProvider(
         'bedrockagentcore_api_key_credential_provider',
-        apiKey: .apiKey(.variable('leftover_secret')),
+        apiKey: .apiKey(leftoverSecret),
         name: .literal(leftover),
       ),
     );
@@ -1909,9 +1906,7 @@ final class AwsLeftoverStack extends Stack {
           ),
         ],
         systemPrompt: [
-          BedrockagentcoreHarnessSystemPrompt(
-            text: .variable('leftover_secret'),
-          ),
+          BedrockagentcoreHarnessSystemPrompt(text: leftoverSecret),
         ],
       ),
     );
@@ -1942,10 +1937,7 @@ final class AwsLeftoverStack extends Stack {
         oauth2ProviderConfig: [
           BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfig(
             googleOauth2ProviderConfig: [
-              .new(
-                clientId: .variable('leftover_secret'),
-                clientSecret: .variable('leftover_secret'),
-              ),
+              .new(clientId: leftoverSecret, clientSecret: leftoverSecret),
             ],
           ),
         ],
@@ -2185,7 +2177,7 @@ final class AwsLeftoverStack extends Stack {
         voiceConnectorId: .literal(leftover),
         credentials: [
           ChimeVoiceConnectorTerminationCredentials(
-            password: .variable('leftover_secret'),
+            password: leftoverSecret,
             username: .literal(leftover),
           ),
         ],
@@ -2760,9 +2752,7 @@ final class AwsLeftoverStack extends Stack {
         authorizationType: .basic,
         name: .literal(leftover),
         authParameters: CloudwatchEventConnectionAuthParameters(
-          auth: .apiKey(
-            .new(key: .literal(leftover), value: .variable('leftover_secret')),
-          ),
+          auth: .apiKey(.new(key: .literal(leftover), value: leftoverSecret)),
         ),
       ),
     );
@@ -3075,7 +3065,7 @@ final class AwsLeftoverStack extends Stack {
         'codebuild_source_credential',
         authType: .oauth,
         serverType: .github,
-        token: .variable('leftover_secret'),
+        token: leftoverSecret,
       ),
     );
 
@@ -3959,7 +3949,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDatasyncLocationFsxWindowsFileSystem(
         'datasync_location_fsx_windows_file_system',
         fsxFilesystemArn: .literal(arn),
-        password: .variable('leftover_secret'),
+        password: leftoverSecret,
         securityGroupArns: .literal([arn]),
         user: .literal(leftover),
       ),
@@ -4010,7 +4000,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDatasyncLocationSmb(
         'datasync_location_smb',
         agentArns: .literal([arn]),
-        password: .variable('leftover_secret'),
+        password: leftoverSecret,
         serverHostname: .literal(leftover),
         subdirectory: .literal(leftover),
         user: .literal(leftover),
@@ -4414,7 +4404,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDirectoryServiceDirectory(
         'directory_service_directory',
         name: .literal('example.com'),
-        password: .variable('leftover_secret'),
+        password: leftoverSecret,
       ),
     );
 
@@ -4436,7 +4426,7 @@ final class AwsLeftoverStack extends Stack {
         radiusRetries: .literal(0),
         radiusServers: .literal([leftover]),
         radiusTimeout: .literal(1),
-        sharedSecret: .variable('leftover_secret'),
+        sharedSecret: leftoverSecret,
       ),
     );
 
@@ -4491,7 +4481,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDmsCertificate(
         'dms_certificate',
         certificateId: .literal(leftover),
-        content: .certificatePem(.variable('leftover_secret')),
+        content: .certificatePem(leftoverSecret),
       ),
     );
 
@@ -4649,7 +4639,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDocdbelasticCluster(
         'docdbelastic_cluster',
         adminUserName: .literal(leftover),
-        adminUserPassword: .variable('leftover_secret'),
+        adminUserPassword: leftoverSecret,
         authType: .plainText,
         name: .literal(leftover),
         shardCapacity: .literal(200),
@@ -6979,7 +6969,7 @@ final class AwsLeftoverStack extends Stack {
       AwsIamServerCertificate(
         'iam_server_certificate',
         certificateBody: .literal(leftover),
-        privateKey: .variable('leftover_secret'),
+        privateKey: leftoverSecret,
       ),
     );
 
@@ -7338,7 +7328,7 @@ final class AwsLeftoverStack extends Stack {
         'iot_ca_certificate',
         active: .literal(true),
         allowAutoRegistration: .literal(true),
-        caCertificatePem: .variable('leftover_secret'),
+        caCertificatePem: leftoverSecret,
       ),
     );
 
@@ -7622,7 +7612,7 @@ final class AwsLeftoverStack extends Stack {
       AwsKmsCiphertext(
         'kms_ciphertext',
         keyId: .literal(leftover),
-        plaintext: .plaintext(.variable('leftover_secret')),
+        plaintext: .plaintext(leftoverSecret),
       ),
     );
 
@@ -8226,7 +8216,7 @@ final class AwsLeftoverStack extends Stack {
         blueprintId: .literal(leftover),
         bundleId: .literal(leftover),
         masterDatabaseName: .literal(leftover),
-        masterPassword: .variable('leftover_secret'),
+        masterPassword: leftoverSecret,
         masterUsername: .literal(leftover),
         relationalDatabaseName: .literal(leftover),
       ),
@@ -9936,8 +9926,8 @@ final class AwsLeftoverStack extends Stack {
       AwsPinpointAdmChannel(
         'pinpoint_adm_channel',
         applicationId: .literal(leftover),
-        clientId: .variable('leftover_secret'),
-        clientSecret: .variable('leftover_secret'),
+        clientId: leftoverSecret,
+        clientSecret: leftoverSecret,
       ),
     );
 
@@ -9974,9 +9964,9 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsPinpointBaiduChannel(
         'pinpoint_baidu_channel',
-        apiKey: .variable('leftover_secret'),
+        apiKey: leftoverSecret,
         applicationId: .literal(leftover),
-        secretKey: .variable('leftover_secret'),
+        secretKey: leftoverSecret,
       ),
     );
 
@@ -10008,7 +9998,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsPinpointGcmChannel(
         'pinpoint_gcm_channel',
-        credentials: .serviceJson(.variable('leftover_secret')),
+        credentials: .serviceJson(leftoverSecret),
         applicationId: .literal(leftover),
       ),
     );
@@ -10740,7 +10730,7 @@ final class AwsLeftoverStack extends Stack {
         hsmConfigurationIdentifier: .literal(leftover),
         hsmIpAddress: .literal('10.0.0.1'),
         hsmPartitionName: .literal(leftover),
-        hsmPartitionPassword: .variable('leftover_secret'),
+        hsmPartitionPassword: leftoverSecret,
         hsmServerPublicCertificate: .literal(leftover),
       ),
     );
@@ -13239,7 +13229,7 @@ final class AwsLeftoverStack extends Stack {
         'sns_platform_application',
         name: .literal(leftover),
         platform: .literal(leftover),
-        platformCredential: .variable('leftover_secret'),
+        platformCredential: leftoverSecret,
       ),
     );
 
@@ -13394,7 +13384,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsSsmParameter(
         'ssm_parameter',
-        value: .value(.variable('leftover_secret')),
+        value: .value(leftoverSecret),
         name: .literal(leftover),
         type: .string,
       ),
@@ -13678,7 +13668,7 @@ final class AwsLeftoverStack extends Stack {
         'storagegateway_file_system_association',
         gatewayArn: .literal(arn),
         locationArn: .literal(arn),
-        password: .variable('leftover_secret'),
+        password: leftoverSecret,
         username: .literal(leftover),
       ),
     );
@@ -13795,7 +13785,7 @@ final class AwsLeftoverStack extends Stack {
         dbInstanceType: .dbInfluxMedium,
         name: .literal(leftover),
         organization: .literal(leftover),
-        password: .variable('leftover_secret'),
+        password: leftoverSecret,
         username: .literal(leftover),
         vpcSecurityGroupIds: .literal([.literal('sg-huetvnpt7rr')]),
         vpcSubnetIds: .literal(['subnet-d7c56hy72wj']),
@@ -13917,7 +13907,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsTransferCertificate(
         'transfer_certificate',
-        certificate: .variable('leftover_secret'),
+        certificate: leftoverSecret,
         usage: .signing,
       ),
     );
@@ -13932,7 +13922,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsTransferHostKey(
         'transfer_host_key',
-        hostKeyBody: .hostKeyBodyWo(.variable('leftover_secret')),
+        hostKeyBody: .hostKeyBodyWo(leftoverSecret),
         serverId: .literal(leftover),
       ),
     );
@@ -16945,7 +16935,7 @@ final class AwsLeftoverStack extends Stack {
       DataAwsKmsCiphertext(
         'd_kms_ciphertext',
         keyId: .literal(leftover),
-        plaintext: .variable('leftover_secret'),
+        plaintext: leftoverSecret,
       ),
     );
 

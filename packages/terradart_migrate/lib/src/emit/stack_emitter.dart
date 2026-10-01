@@ -27,6 +27,7 @@ import 'module_wrapper.dart';
 import 'naming.dart';
 import 'tf_expr.dart';
 import 'value_emitter.dart';
+import 'variable_type.dart';
 
 /// One statement of the Stack constructor body, tagged with the block it
 /// came from so `--merge-envs` can line two environments' bodies up.
@@ -277,6 +278,7 @@ final class _Emitted {
     required this.usesWorkspace,
     required this.usedTargets,
     required this.usedVariables,
+    required this.usedHandles,
     required this.package,
     required this.barrel,
     this.providerName,
@@ -312,6 +314,9 @@ final class _Emitted {
   final bool usesWorkspace;
   final Set<String> usedTargets;
   final Set<String> usedVariables;
+
+  /// Declared variables whose handle local the block reads.
+  final Set<String> usedHandles;
   final String package;
   final String barrel;
 }
@@ -412,8 +417,14 @@ final class StackEmitter {
   final _warnings = <String>[];
 
   EmittedStack emit() {
+    final variableTypes = <String, VariableType>{};
     for (final v in module.variables) {
       ctx.declaredVariables.add(v.name);
+      try {
+        variableTypes[v.name] = _variableType(v);
+      } on MigrateBlocker {
+        // _variable keeps it external with the reason.
+      }
     }
 
     // A literal count / for_each is unrolled into one block per instance
@@ -437,6 +448,15 @@ final class StackEmitter {
             suffix: NameAllocator.typeSuffix(b.type),
           ),
       };
+      ctx.variableHandles
+        ..clear()
+        ..addAll({
+          for (final MapEntry(:key, :value) in variableTypes.entries)
+            key: (
+              dartName: names.allocate(key, suffix: 'Var'),
+              dartType: value.dartType,
+            ),
+        });
       // Resource-atomic translation to a fixpoint: a resource that
       // references a kept resource may need to be kept too (depends_on), so
       // re-run until the kept set is stable.
@@ -497,10 +517,12 @@ final class StackEmitter {
 
     final referenced = <String>{};
     final usedVariables = <String>{};
+    final usedHandles = <String>{};
     _moduleWrappers.clear();
     for (final e in emitted.values) {
       referenced.addAll(e.usedTargets);
       usedVariables.addAll(e.usedVariables);
+      usedHandles.addAll(e.usedHandles);
       if (e.isModule) {
         final wrapper = e.wrapperFile;
         if (wrapper != null) _moduleWrappers.add(wrapper);
@@ -656,15 +678,27 @@ final class StackEmitter {
         _keep('variable.${v.name}', _noStackReason);
         continue;
       }
-      final stmt = _variable(v);
-      if (stmt != null) {
-        write('variable.${v.name}', stmt);
-        _migrated.add(MigratedItem(address: 'variable.${v.name}'));
+      final type = variableTypes[v.name];
+      final handle = ctx.variableHandles[v.name];
+      final declares =
+          type != null && handle != null && usedHandles.contains(v.name);
+      final stmt = type == null ? null : _variable(v, type);
+      if (stmt == null) {
+        write('variable.${v.name}', _externalVariable(v.name));
+        continue;
       }
+      body.add(
+        StackStatement(
+          tag: 'variable.${v.name}',
+          text: declares ? 'final ${handle.dartName} = $stmt' : stmt,
+          declaresLocal: declares,
+        ),
+      );
+      _migrated.add(MigratedItem(address: 'variable.${v.name}'));
     }
     for (final name in usedVariables) {
       if (!noStack && !ctx.declaredVariables.contains(name)) {
-        write('variable.$name', 'addExternalVariable(${dartString(name)});');
+        write('variable.$name', _externalVariable(name));
         _warnings.add(
           'variable "$name" is referenced but not declared in this module; '
           'declared as external',
@@ -723,7 +757,10 @@ final class StackEmitter {
           comments: commented.add(b.sourceAddress)
               ? _blockComments[b.sourceAddress] ?? ''
               : '',
-          uses: e.usedTargets,
+          uses: {
+            ...e.usedTargets,
+            for (final name in e.usedHandles) 'variable.$name',
+          },
           declaresLocal: declares,
         ),
       );
@@ -1182,6 +1219,7 @@ final class StackEmitter {
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
+      usedHandles: emitter.usedHandles,
       package: manifest.package,
       barrel: entry.barrel,
       providerName: providerName,
@@ -1303,6 +1341,7 @@ final class StackEmitter {
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
+      usedHandles: emitter.usedHandles,
       package: '',
       barrel: '',
       isModule: true,
@@ -1720,23 +1759,34 @@ final class StackEmitter {
     }
   }
 
-  String? _variable(VariableBlock v) {
+  /// The handle type of [v], or a [MigrateBlocker] when its `type` is not
+  /// readable.
+  VariableType _variableType(VariableBlock v) {
+    final values = objectMap(bodyAsObject(v.body)) ?? {};
+    final defaultExpr = values['default'];
+    final defaultValue = defaultExpr == null ? null : jsonValue(defaultExpr);
+    return variableTypeOf(values['type'], defaultValue: defaultValue);
+  }
+
+  static String _externalVariable(String name) =>
+      'externalVariable(${dartString(name)});';
+
+  /// `variable<T>('name', ...);` for [v], or `null` (the reason recorded)
+  /// when it stays in Terraform.
+  String? _variable(VariableBlock v, VariableType type) {
     final values = objectMap(bodyAsObject(v.body)) ?? {};
     final overrides =
         envValues['variable.${v.name}'] ?? const <String, String>{};
-    var isConst = true;
-    final args = <String>[];
+    final args = <String>[dartString(v.name)];
     try {
       for (final entry in values.entries) {
         final value = entry.value;
         final override = overrides[entry.key];
         switch (entry.key) {
           case 'type':
-            final s = value.constantString ?? hclSource(value);
-            args.add('type: ${dartString(s)}');
+            if (type.tfType case final tfType?) args.add('type: $tfType');
           case 'description':
             if (override != null) {
-              isConst = false;
               args.add('description: $override');
               break;
             }
@@ -1745,7 +1795,9 @@ final class StackEmitter {
             args.add('description: ${dartString(s)}');
           case 'default':
             if (override != null) {
-              isConst = false;
+              if (type.dartType != 'Object?') {
+                _envSlotTypes[override] = type.dartType;
+              }
               args.add('defaultValue: $override');
               break;
             }
@@ -1757,17 +1809,16 @@ final class StackEmitter {
             args.add('${entry.key}: ${value.value}');
           default:
             throw MigrateBlocker(
-              '"${entry.key}" has no TfVariable field; the variable stays in '
-              'Terraform (declared as external)',
+              '"${entry.key}" has no Stack.variable argument; the variable '
+              'stays in Terraform (declared as external)',
             );
         }
       }
     } on MigrateBlocker catch (e) {
       _keep('variable.${v.name}', e.reason);
-      return 'addExternalVariable(${dartString(v.name)});';
+      return null;
     }
-    return 'addVariable(${dartString(v.name)}, '
-        '${isConst ? 'const ' : ''}TfVariable(${args.join(', ')}));';
+    return 'variable<${type.dartType}>(${args.join(', ')});';
   }
 
   ({String statement, String address})? _output(OutputBlock o) {

@@ -103,8 +103,8 @@ final class UndeclaredVariable extends SynthIssue {
   @override
   String get message =>
       'references the variable "$name", which the Stack does not declare. '
-      "Declare it with `addVariable('$name', TfVariable(...))`, or with "
-      "`addExternalVariable('$name')` when a hand-written file beside "
+      "Declare it with `variable<T>('$name')`, or with "
+      "`externalVariable<T>('$name')` when a hand-written file beside "
       'main.tf.json declares it.';
 }
 
@@ -147,9 +147,10 @@ final class SensitiveLiteral extends SynthIssue {
     final param = _camel(field.split('.').last);
     return 'the sensitive field "$field" is set to a literal, which would '
         'write the secret into main.tf.json. Pass a variable instead — '
-        "`$param: .variable('<name>')` with "
-        "`addVariable('<name>', const TfVariable(type: 'string', "
-        "sensitive: true))`, supplied at `terraform apply -var` time — or a "
+        "`$param: $param` with "
+        "`final $param = variable<String>('${field.split('.').last}', "
+        'sensitive: true)`, '
+        'supplied at `terraform apply -var` time — or a '
         'reference or expression Terraform computes. A write-only '
         '`${field.split('.').last}_wo` argument, where the resource has '
         'one, takes the literal instead.';

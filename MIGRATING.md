@@ -109,13 +109,13 @@ resource, data source or module the Stack does not hold is now an
 `UnregisteredReference`. Usually the block was built but never passed to
 `add(...)`: pass it. When a hand-written `.tf` file beside `main.tf.json`
 declares it, say so with `addExternalBlock('google_pubsub_topic.legacy')`, the
-counterpart of `addExternalVariable`. A package `terradart-migrate` wrote
+counterpart of `externalVariable`. A package `terradart-migrate` wrote
 before 0.32.0 needs one such line per sidecar block its Stack reads; migrating
 again writes them.
 
 ### Names
 
-`add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw
+`add`, `addModule`, `variable` and `externalVariable` throw
 `ArgumentError` for a `localName` or variable name that is not a Terraform
 identifier (letters, digits, `_` and `-`, not starting with a digit), as
 `addOutput` already did. Terraform rejected those names at `plan`.
@@ -231,6 +231,36 @@ keep a record or a map when a loop needs a name next to each member
 passed to `TfArg.literal` now throws at synth time; declare it as an
 extension type over `TfArg<String>` instead (the `terradart_core` README
 shows the shape).
+
+### Variables are typed handles
+
+`Stack.variable<T>(...)` declares a variable and returns its handle, a
+`TfArgVariable<T>` an argument takes as it is. The Terraform `type` comes
+from `T` — `String`, `int` / `double` / `num`, `bool`, and `List`, `Set`
+and `Map<String, _>` of those — so `TfVariable` and its type string are no
+longer written by hand. `addVariable` is removed, and `addExternalVariable`
+is `externalVariable<T>`, which returns the handle too. Synth output does
+not change.
+
+| 0.31 | 0.32 |
+|------|------|
+| `addVariable('db_password', const TfVariable(type: 'string', sensitive: true));` | `final dbPassword = variable<String>('db_password', sensitive: true);` |
+| `password: TfArg.variable('db_password')` | `password: dbPassword` |
+| `addVariable('zones', const TfVariable(type: 'list(string)'));` | `final zones = variable<List<String>>('zones');` |
+| `addVariable('replicas', const TfVariable(type: 'number', defaultValue: 2));` | `final replicas = variable<num>('replicas', defaultValue: 2);` |
+| `addVariable('svc', const TfVariable(type: 'object({ name = string })'));` | `final svc = variable<Object?>('svc', type: .object({'name': .string}));` |
+| `addExternalVariable('region');` | `final region = externalVariable<String>('region');` |
+| `TfArg.expression('gs://\${var.bucket}/x')` | `.expression('gs://${bucket.interpolation}/x')` |
+
+`TfVariable.type` is a `TfType` (`.string`, `.list(.number)`,
+`.object({'port': .optional(.number, 8080)})`, ...) rather than a string,
+and `variable<T>` throws `ArgumentError` for a `T` with no Terraform type
+unless `type:` is given. An enum or `RefTo` slot takes the handle through
+`.arg(handle)`, and `TfArg.variable('name')` still names a variable where
+the handle's type does not fit. `terradart-migrate` writes
+`final region = variable<String>('region', ...)` and passes `region` where
+the argument takes a `TfArg<String>`; a package it wrote before 0.32.0
+needs the rewrite above, or migrating again.
 
 ## 0.30.x → 0.31.0
 

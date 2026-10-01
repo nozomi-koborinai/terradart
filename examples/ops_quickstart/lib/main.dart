@@ -26,8 +26,8 @@ final class AuditPipelineStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable('ops_folder_id', const TfVariable(type: 'string'));
-    addVariable('ops_organization_id', const TfVariable(type: 'string'));
+    final opsFolderId = variable<String>('ops_folder_id');
+    final opsOrganizationId = variable<String>('ops_organization_id');
 
     const bucketId = 'audit-logs';
     const viewName = 'audit-only';
@@ -192,7 +192,7 @@ final class AuditPipelineStack extends Stack {
       GoogleLoggingFolderSink(
         'folder_audit_to_bq',
         name: .literal('folder-audit-to-bq'),
-        folder: TfArg.variable('ops_folder_id'),
+        folder: opsFolderId,
         destination: projectSinkDestination,
         filter: .literal('logName:"cloudaudit.googleapis.com"'),
         includeChildren: .literal(true),
@@ -207,7 +207,7 @@ final class AuditPipelineStack extends Stack {
       GoogleLoggingOrganizationSink(
         'org_audit_to_bq',
         name: .literal('org-audit-to-bq'),
-        orgId: TfArg.variable('ops_organization_id'),
+        orgId: opsOrganizationId,
         destination: projectSinkDestination,
         filter: .literal('logName:"cloudaudit.googleapis.com"'),
         includeChildren: .literal(true),

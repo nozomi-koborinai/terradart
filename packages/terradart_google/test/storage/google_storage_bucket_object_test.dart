@@ -83,18 +83,16 @@ void main() {
 
     test('a variable content synths to a var reference', () {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
-      stack.addVariable(
+      final seedContent = stack.variable<String>(
         'seed_content',
-        const TfVariable(type: 'string', sensitive: true),
+        sensitive: true,
       );
       stack.add(
         GoogleStorageBucketObject(
           'seed',
           bucket: .literal('assets'),
           name: TfArg.literal('seed.json'),
-          body: StorageBucketObjectBodyContent(
-            content: TfArg.variable('seed_content'),
-          ),
+          body: StorageBucketObjectBodyContent(content: seedContent),
         ),
       );
       final tfJson = stack.synth().tfJson;

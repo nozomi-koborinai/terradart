@@ -5,7 +5,7 @@
 /// and these files form one module again. The sidecar never carries what the
 /// Stack owns — `required_providers` of the providers it registers, the
 /// provider configurations it translated, the backend it typed, variables
-/// that became `addVariable` — because Terraform rejects those twice.
+/// that became `variable<T>(...)` — because Terraform rejects those twice.
 library;
 
 import 'package:terradart_hcl/terradart_hcl.dart';

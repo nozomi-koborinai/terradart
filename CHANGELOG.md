@@ -16,6 +16,12 @@ Per-package changelogs live alongside each package and are the system of record 
   member bare (`routingMode: .regional`, `actions: [.getcertificate]`) and
   `.variable(...)` / `.expression(...)` / `.arg(...)` cover the rest.
   `TerraformEnum` and `terraformValue` are removed.
+- **Variables are typed handles** (`terradart_core`, `terradart_migrate`,
+  every example) — `final region = variable<String>('region')` declares the
+  variable, derives its Terraform `type` from `T` and returns the handle an
+  argument takes (`location: region`). `addVariable` is removed,
+  `addExternalVariable` is `externalVariable<T>`, and `TfVariable.type` is
+  a `TfType` (`.list(.string)`, `.object({...})`).
 - **The local name is the first argument** (every provider package,
   `terradart_core`, `terradart_time`, `terradart_codegen`,
   `terradart_migrate`) — `GooglePubsubTopic('orders', name: ...)`,

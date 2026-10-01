@@ -138,6 +138,9 @@ final class ValueEmitter {
   final Set<String> usedTargets = {};
   final Set<String> usedVariables = {};
 
+  /// Declared variables whose handle local a value read.
+  final Set<String> usedHandles = {};
+
   /// Whether the slot being emitted fills a parameter whose static type
   /// Dart can resolve a dot shorthand against (`.literal(...)`, `.variable(...)`,
   /// an enum's `.member`). A module call's `inputs` map is `Object?`-valued,
@@ -597,13 +600,19 @@ final class ValueEmitter {
   // References
   // ---------------------------------------------------------------------
 
-  /// An attribute getter (`topic.name`) or `TfArg.variable(...)` for a
-  /// reference the Stack can express, or `null` when the target is not
-  /// migrated (the caller falls back to the verbatim expression).
+  /// An attribute getter (`topic.name`), a variable handle or
+  /// `TfArg.variable(...)` for a reference the Stack can express, or `null`
+  /// when the target is not migrated (the caller falls back to the verbatim
+  /// expression).
   String? _refArg(TraversalExpr t, {required String type}) {
     switch (classifyTraversal(t)) {
       case VariableReference(:final name):
         usedVariables.add(name);
+        final handle = ctx.variableHandles[name];
+        if (handle != null && handle.dartType == type) {
+          usedHandles.add(name);
+          return handle.dartName;
+        }
         return _arg('variable(${dartString(name)})');
       case BlockReference(:final address, :final attribute):
         final target = ctx.targets[address];

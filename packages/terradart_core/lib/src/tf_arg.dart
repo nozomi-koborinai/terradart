@@ -23,12 +23,13 @@ sealed class TfArg<T> {
   /// callers that need a `const` expression.
   static TfArg<T> literal<T>(T value) => TfArgLiteral<T>(value);
 
-  /// Convenience: `TfArg.variable('db_password')` (T inferred) or
-  /// `TfArg.variable<String>('db_password')` (explicit).
+  /// `var.<name>` by name: `.variable('db_password')`.
   ///
-  /// Use this for sensitive runtime values supplied via
-  /// `terraform apply -var '...'`. Synth emits the interpolation
-  /// `"\${var.<name>}"`; the literal value never appears in any
+  /// `Stack.variable<T>(...)` declares a variable and returns this already,
+  /// typed — pass that handle where its type fits. Spell the name out where
+  /// it does not: an enum or `RefTo` slot, or a variable of another Dart
+  /// type. Synth emits the interpolation `"\${var.<name>}"`; the value is
+  /// supplied at `terraform apply -var '...'` time and never appears in any
   /// Dart-side artifact.
   static TfArg<T> variable<T>(String name) => TfArgVariable<T>(name);
 
@@ -45,7 +46,7 @@ sealed class TfArg<T> {
   ///
   /// Like a reference it is accepted in sensitive positions (no plaintext
   /// value is stored in it), and every `var.<name>` it mentions must be
-  /// declared on the Stack (`addVariable` / `addExternalVariable`) — synth
+  /// declared on the Stack (`variable` / `externalVariable`) — synth
   /// checks that, as it does for [variable]. A plain value is not an
   /// expression: `TfArg.expression('x')` throws; use [literal].
   static TfArg<T> expression<T>(String template) =>
@@ -136,14 +137,17 @@ final class TfArgVariable<T> extends TfArg<T> {
   /// Terraform variable name. Emitted as `"\${var.<name>}"` so consumers
   /// can supply the value at `terraform apply -var '<name>=...'` time.
   ///
-  /// Declare the matching `variable "<name>" { ... }` block with
-  /// `Stack.addVariable`. Synth throws when a reference has no
-  /// declaration, so a typo here fails at synth time rather than at
-  /// `terraform plan`.
+  /// `Stack.variable` declares the matching `variable "<name>" { ... }`
+  /// block. Synth throws when a reference has no declaration, so a typo
+  /// here fails at synth time rather than at `terraform plan`.
   final String name;
 
+  /// `${var.<name>}`, for building a string around the variable:
+  /// `.expression('gs://${bucket.interpolation}/data')`.
+  String get interpolation => '\${var.$name}';
+
   @override
-  Object? toTfJson() => '\${var.$name}';
+  Object? toTfJson() => interpolation;
 }
 
 /// A raw Terraform expression — the tf.json template string, verbatim.
