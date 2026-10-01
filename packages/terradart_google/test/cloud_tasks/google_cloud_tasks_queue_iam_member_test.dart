@@ -3,7 +3,7 @@ import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('queue IAM member emits name + location + role + member', () {
+  test('queue IAM member emits name + location + project + role + member', () {
     final q = GoogleCloudTasksQueue(
       localName: 'jobs',
       name: TfArg.literal('jobs-prod'),
@@ -11,14 +11,13 @@ void main() {
     );
     final iam = GoogleCloudTasksQueueIamMember(
       localName: 'jobs_enqueuer',
-      name: TfArg.ref(q.nameRef),
-      location: TfArg.ref(q.locationRef),
+      queue: q.ref,
       role: TfArg.literal('roles/cloudtasks.enqueuer'),
       member: TfArg.literal('serviceAccount:enq@p.iam.gserviceaccount.com'),
     );
     expect(
       iam.argMap.keys.toList(),
-      equals(<String>['name', 'location', 'role', 'member']),
+      equals(<String>['name', 'location', 'role', 'member', 'project']),
     );
     expect(
       iam.argMap['name']!.toTfJson(),
@@ -27,6 +26,10 @@ void main() {
     expect(
       iam.argMap['location']!.toTfJson(),
       equals(r'${google_cloud_tasks_queue.jobs.location}'),
+    );
+    expect(
+      iam.argMap['project']!.toTfJson(),
+      equals(r'${google_cloud_tasks_queue.jobs.project}'),
     );
     expect(iam.terraformType, equals('google_cloud_tasks_queue_iam_member'));
   });

@@ -65,7 +65,7 @@ void main() {
     stack.add(
       GooglePubsubSubscriptionIamMember(
         localName: 'orders_consumer',
-        subscription: TfArg.ref(sub.nameRef),
+        subscription: sub.ref,
         role: TfArg.literal('roles/pubsub.subscriber'),
         member: TfArg.literal(
           'serviceAccount:consumer@demo.iam.gserviceaccount.com',
@@ -116,8 +116,7 @@ void main() {
     stack.add(
       GoogleCloudTasksQueueIamMember(
         localName: 'jobs_enqueuer',
-        name: TfArg.ref(q.nameRef),
-        location: TfArg.ref(q.locationRef),
+        queue: q.ref,
         role: TfArg.literal('roles/cloudtasks.enqueuer'),
         member: TfArg.literal(
           'serviceAccount:enq@demo.iam.gserviceaccount.com',
@@ -196,7 +195,7 @@ void main() {
     stack.add(
       GoogleSecretManagerSecretIamMember(
         localName: 'api_key_reader',
-        secretId: TfArg.ref(secret.secretIdRef),
+        secret: secret.ref,
         role: TfArg.literal('roles/secretmanager.secretAccessor'),
         member: TfArg.literal(
           'serviceAccount:app@demo.iam.gserviceaccount.com',
