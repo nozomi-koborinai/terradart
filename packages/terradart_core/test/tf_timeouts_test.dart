@@ -1,9 +1,11 @@
 import 'package:terradart_core/src/synth/json_encoder.dart';
+import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_timeouts.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
+import 'helpers/synth_issues.dart';
 
 void main() {
   group('TfTimeouts', () {
@@ -30,14 +32,39 @@ void main() {
       }
     });
 
-    test('a value that is not a duration string is refused', () {
+    test('a value that is not a duration string is an invalid operation', () {
       for (final value in ['30', '', 'half an hour', '-5m', r'${var.t}']) {
-        expect(
-          () => TfTimeouts(read: value).toTfJson(),
-          throwsA(isA<ArgumentError>()),
-          reason: value,
-        );
+        expect(TfTimeouts(create: '30m', read: value).invalidOperations, [
+          ('read', value),
+        ], reason: value);
       }
+      expect(const TfTimeouts(create: '1h30m').invalidOperations, isEmpty);
+    });
+
+    test('synth reports an invalid timeout as an InvalidTimeout', () {
+      final stack =
+          TestStack(
+            providers: const [
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+              ),
+            ],
+          )..add(
+            FakePubsubTopic.withMeta(
+              localName: 'orders',
+              argMap: const {},
+              timeouts: const TfTimeouts(delete: '30'),
+            ),
+          );
+      expect(
+        () => stack.synth(),
+        throwsSynthIssue<InvalidTimeout>(
+          'google_pubsub_topic.orders: timeouts.delete is "30", which is not '
+          'a Terraform duration string (e.g. "30m", "1h30m", "90s").',
+        ),
+      );
     });
 
     test('TfTimeouts.of renders Durations as whole seconds', () {

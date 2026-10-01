@@ -8,7 +8,7 @@ import '../_helpers.dart';
 /// Behavior tests for the `source` | `content` sealed payload on
 /// `google_storage_bucket_object`, including the part only a synth pass
 /// can show: `content` is provider-Sensitive, so a literal must fail
-/// fast (SensitiveLiteralError) instead of silently landing in state.
+/// fast (a SensitiveLiteral synth issue) instead of silently landing in state.
 void main() {
   group('StorageBucketObjectBody', () {
     test('FromSource encodes under source only', () {
@@ -57,7 +57,7 @@ void main() {
       );
     });
 
-    test('a literal content fails synth with SensitiveLiteralError', () {
+    test('a literal content fails synth with a SensitiveLiteral issue', () {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
       stack.add(
         GoogleStorageBucketObject(
@@ -69,7 +69,16 @@ void main() {
           ),
         ),
       );
-      expect(() => stack.synth(), throwsA(isA<SensitiveLiteralError>()));
+      expect(
+        () => stack.synth(),
+        throwsA(
+          isA<SynthException>().having(
+            (e) => e.issues.single,
+            'issue',
+            isA<SensitiveLiteral>().having((i) => i.field, 'field', 'content'),
+          ),
+        ),
+      );
     });
 
     test('a variable content synths to a var reference', () {

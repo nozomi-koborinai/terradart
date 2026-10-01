@@ -3,10 +3,9 @@ import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/module_call.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
-import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
+import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
-import 'package:terradart_core/src/tf_template.dart';
 
 /// Synth-time JSON encoder: builds the JSON structure for `main.tf.json`.
 ///
@@ -24,72 +23,10 @@ class TfJsonEncoder {
   /// The top-level `terraform { ... }` block: `required_version`,
   /// `required_providers`, optional `backend`.
   ///
-  /// Validates provider coverage: every registered resource / data source
-  /// must have a [StackProvider] whose `providerName` equals the resource
-  /// type's provider prefix (the segment before the first `_`, e.g.
-  /// `google_redis_instance` → `google`, `time_sleep` → `time`). An explicit
-  /// [Resource.provider] meta-argument (e.g. `'google-beta'`), and every
-  /// value of a [ModuleCall.providers] map, must also match a registered
-  /// provider. Without this, Terraform silently falls back to an unpinned
-  /// implied `hashicorp/<prefix>` provider, bypassing the version pin the
-  /// concrete provider class promises.
+  /// Assumes [Stack.validate] found no issue: provider coverage (every
+  /// resource, data source and module call has its [StackProvider]) is a
+  /// [MissingProvider] there, not a throw here.
   static Map<String, dynamic> terraformBlock(Stack stack) {
-    // A root that only calls modules declares no provider of its own — the
-    // child modules pin what they use — so there is nothing to require and
-    // nothing for Terraform to imply. Any resource or data source of its own
-    // brings the guard back.
-    final modulesOnly =
-        stack.modules.isNotEmpty &&
-        stack.resources.isEmpty &&
-        stack.dataSources.isEmpty;
-    if (stack.providers.isEmpty && !modulesOnly) {
-      throw StateError(
-        'Stack has no providers registered. '
-        'Pass at least one StackProvider in `Stack(providers: [...])` '
-        'before calling synth().',
-      );
-    }
-
-    validateProviders(stack);
-    final registered = <String>{
-      for (final p in stack.providers) providerReference(p),
-    };
-    final missingByPrefix = <String, List<String>>{};
-    for (final r in [...stack.resources, ...stack.dataSources]) {
-      // An explicit provider meta-argument REPLACES the implied prefix
-      // provider (Terraform semantics) — google-beta wrappers share the
-      // GA google_* type prefix, so requiring both would force beta-only
-      // stacks to register a google provider they never use. `google.eu`
-      // selects the registered provider carrying that alias.
-      final explicit = r.provider;
-      final needed = explicit ?? r.terraformType.split('_').first;
-      if (!registered.contains(needed)) {
-        missingByPrefix.putIfAbsent(needed, () => []).add(r.tfAddress);
-      }
-    }
-    // `providers = { google = google.eu }` passes one of this Stack's
-    // configurations into the child module; the value names it.
-    for (final m in stack.modules) {
-      for (final e in m.providers.entries) {
-        if (registered.contains(e.value)) continue;
-        missingByPrefix
-            .putIfAbsent(e.value, () => [])
-            .add('${m.tfAddress} (providers.${e.key})');
-      }
-    }
-    if (missingByPrefix.isNotEmpty) {
-      final detail = missingByPrefix.entries
-          .map((e) => '"${e.key}" (required by ${e.value.join(', ')})')
-          .join('; ');
-      throw StateError(
-        'Stack.providers declares no provider named $detail. Terraform '
-        'would fall back to an unpinned implied provider for these '
-        'resources. Add the matching StackProvider to '
-        '`Stack(providers: [...])` — for a `name.alias` reference, one '
-        "registered with `alias: '<alias>'`.",
-      );
-    }
-
     final requiredProviders = <String, dynamic>{
       for (final p in stack.providers)
         p.providerName: {'source': p.source, 'version': p.versionConstraint},
@@ -133,7 +70,6 @@ class TfJsonEncoder {
   /// registration order, the aliased ones carrying `"alias"`; a default
   /// configuration with no args is left out (Terraform supplies it).
   static Map<String, dynamic>? providerBlock(Stack stack) {
-    validateProviders(stack);
     final byName = <String, List<StackProvider>>{};
     for (final p in stack.providers) {
       byName.putIfAbsent(p.providerName, () => []).add(p);
@@ -142,7 +78,7 @@ class TfJsonEncoder {
     for (final e in byName.entries) {
       final configs = e.value;
       if (configs.every((p) => p.alias == null)) {
-        // Validated above: exactly one default configuration.
+        // Stack.validate: exactly one default configuration.
         final args = configs.single.configArgs;
         if (args.isEmpty) continue;
         entries[e.key] = Map<String, dynamic>.from(args);
@@ -166,125 +102,11 @@ class TfJsonEncoder {
   static String providerReference(StackProvider p) =>
       p.alias == null ? p.providerName : '${p.providerName}.${p.alias}';
 
-  static final RegExp _aliasPattern = RegExp(r'^[A-Za-z_][A-Za-z0-9_-]*$');
-
-  /// Rejects a provider registration Terraform would: two default
-  /// configurations of one name, a repeated alias, an alias that is not an
-  /// identifier, or aliases of one name that disagree on `source` /
-  /// `versionConstraint` (they share the `required_providers` entry).
-  static void validateProviders(Stack stack) {
-    final seen = <String>{};
-    final firstOfName = <String, StackProvider>{};
-    for (final p in stack.providers) {
-      final alias = p.alias;
-      if (alias != null && !_aliasPattern.hasMatch(alias)) {
-        throw StateError(
-          'Provider "${p.providerName}" has the alias "$alias", which is not '
-          'a Terraform identifier (letters, digits, "_" and "-", not '
-          'starting with a digit).',
-        );
-      }
-      final ref = providerReference(p);
-      if (!seen.add(ref)) {
-        throw StateError(
-          alias == null
-              ? 'Provider "${p.providerName}" is registered twice without an '
-                    'alias. Give every configuration after the default one an '
-                    "`alias:` and select it with `provider: '${p.providerName}"
-                    ".<alias>'` on the resource."
-              : 'Provider alias "$ref" is registered twice.',
-        );
-      }
-      final first = firstOfName.putIfAbsent(p.providerName, () => p);
-      if (!identical(first, p) &&
-          (first.source != p.source ||
-              first.versionConstraint != p.versionConstraint)) {
-        throw StateError(
-          'Provider "${p.providerName}" is registered with different '
-          'source / version constraints (${first.source} '
-          '${first.versionConstraint} vs ${p.source} '
-          '${p.versionConstraint}); every configuration of one name shares '
-          'its required_providers entry.',
-        );
-      }
-    }
-  }
-
   /// The top-level `variable { ... }` value, or `null` when the stack
   /// declares none (Terraform rejects an empty `variable` block).
-  ///
-  /// Also validates that every `TfArg.variable` reference in the stack
-  /// has a matching declaration — the counterpart to the provider
-  /// coverage check in [terraformBlock]. Without it, a typo synthesises
-  /// cleanly and then fails at `terraform plan` with "Reference to
-  /// undeclared input variable", typically in CI rather than locally.
   static Map<String, dynamic>? variableBlock(Stack stack) {
-    _validateVariableReferences(stack);
     if (stack.variables.isEmpty) return null;
     return {for (final e in stack.variables.entries) e.key: e.value.toTfJson()};
-  }
-
-  static void _validateVariableReferences(Stack stack) {
-    final declared = {...stack.variables.keys, ...stack.externalVariables};
-    // name -> addresses that reference it, insertion-ordered so the
-    // error message is stable across runs.
-    final undeclared = <String, Set<String>>{};
-    void scan(String address, Iterable<TfArg<dynamic>?> args) {
-      for (final arg in args) {
-        for (final name in _referencedVariableNames(arg)) {
-          if (declared.contains(name)) continue;
-          undeclared.putIfAbsent(name, () => <String>{}).add(address);
-        }
-      }
-    }
-
-    for (final r in [...stack.resources, ...stack.dataSources]) {
-      scan(r.tfAddress, r.argMap.values);
-    }
-    for (final m in stack.modules) {
-      scan(m.tfAddress, [...m.inputs.values, m.count, m.forEach]);
-    }
-    for (final MapEntry(key: name, value: o) in stack.outputs.entries) {
-      scan('output.$name', [o.value]);
-    }
-    if (undeclared.isEmpty) return;
-
-    final detail = undeclared.entries
-        .map((e) => '"${e.key}" (referenced by ${e.value.join(', ')})')
-        .join('; ');
-    throw StateError(
-      'Stack references undeclared Terraform variable(s): $detail. '
-      "Declare each one with `addVariable('<name>', TfVariable(...))` "
-      'in your Stack constructor, or drop the TfArg.variable reference. '
-      'Terraform rejects a config that interpolates \${var.<name>} with '
-      'no matching variable block.\n\n'
-      'If the block lives in a hand-written file beside the generated '
-      "main.tf.json, register it with `addExternalVariable('<name>')` "
-      'instead — synth then accepts the reference and emits no block.',
-    );
-  }
-
-  /// Every variable name reachable from [v], including references nested
-  /// inside literal Maps and Lists (mirrors [_encodeLiteralValue]).
-  static Iterable<String> _referencedVariableNames(Object? v) sync* {
-    switch (v) {
-      case TfArgVariable(:final name):
-        yield name;
-      case TfArgExpression(:final referencedVariables):
-        yield* referencedVariables;
-      case TfArgLiteral(:final value):
-        yield* _referencedVariableNames(value);
-      case List():
-        for (final e in v) {
-          yield* _referencedVariableNames(e);
-        }
-      case Map():
-        for (final e in v.values) {
-          yield* _referencedVariableNames(e);
-        }
-      default:
-        break;
-    }
   }
 
   /// Encode a single `TfArg` into a JSON-serialisable value.
@@ -340,151 +162,6 @@ class TfJsonEncoder {
   /// Delegates to `TfRef.bareAddress`.
   static String encodeBareAddress(TfRef<dynamic> ref) => ref.bareAddress;
 
-  /// Like [encodeArgMap] but masks literal values for sensitive fields.
-  /// Refs in sensitive fields are passed through (Terraform sees only
-  /// the interpolation, never a plaintext literal).
-  ///
-  /// Supports both top-level keys (`'secret_data'`) and dotted nested
-  /// paths (`'customer_encryption.encryption_key'`) — the latter walks
-  /// through `List<Map>` nested-block wrappings to reach the leaf.
-  static Map<String, Object?> encodeArgMapWithSensitive({
-    required Map<String, TfArg<dynamic>?> argMap,
-    required Set<String> sensitiveFields,
-    required String resourceAddress,
-  }) {
-    // Partition sensitive paths by top-level key.
-    final topLevel = <String>{};
-    final nested = <String, List<List<String>>>{};
-    for (final path in sensitiveFields) {
-      final parts = path.split('.');
-      if (parts.length == 1) {
-        topLevel.add(parts.first);
-      } else {
-        nested
-            .putIfAbsent(parts.first, () => <List<String>>[])
-            .add(parts.sublist(1));
-      }
-    }
-
-    final out = <String, Object?>{};
-    argMap.forEach((k, v) {
-      if (v == null) return;
-      if (topLevel.contains(k) && v is TfArgLiteral) {
-        throw SensitiveLiteralError(
-          resourceAddress: resourceAddress,
-          fieldPath: k,
-        );
-      }
-      final encoded = encodeArg(v);
-      if (encoded == null) return;
-      if (nested.containsKey(k)) {
-        out[k] = _checkNestedPaths(
-          encoded,
-          nested[k]!,
-          resourceAddress: resourceAddress,
-          parentKey: k,
-        );
-      } else {
-        out[k] = encoded;
-      }
-    });
-    return out;
-  }
-
-  /// Walks the encoded structure checking the leaf of every path in
-  /// [paths]. Each path is the remaining segment list (the top-level
-  /// key has already been consumed by the caller).
-  ///
-  /// - `List`: applied to every element (handles `[{...}]` single-block
-  ///   wrappings and unbounded `[...]` block lists alike).
-  /// - `Map`: descends one segment per path; **throws** at literal leaves.
-  ///   A `*` segment stands for every key of the map (a `nesting_mode: map`
-  ///   block's entry names).
-  /// - Other (primitive, or `${...}` ref string): returned unchanged.
-  ///
-  /// Leaves whose value is a Terraform template — it holds an unescaped
-  /// `${ ... }` or `%{ ... }` sequence — are passed through: refs,
-  /// variables and expressions are safe in sensitive positions, since the
-  /// value is computed by Terraform rather than stored in the config. Plain
-  /// string / int / bool literals at a sensitive leaf throw
-  /// [SensitiveLiteralError] with the dotted `<parentKey>.<leaf>` path as
-  /// `fieldPath`.
-  static dynamic _checkNestedPaths(
-    dynamic value,
-    List<List<String>> paths, {
-    required String resourceAddress,
-    required String parentKey,
-  }) {
-    if (value is List) {
-      return value
-          .map(
-            (e) => _checkNestedPaths(
-              e,
-              paths,
-              resourceAddress: resourceAddress,
-              parentKey: parentKey,
-            ),
-          )
-          .toList();
-    }
-    if (value is Map) {
-      final leavesToCheck = <String>{};
-      final byHead = <String, List<List<String>>>{};
-      for (final path in paths) {
-        if (path.isEmpty) continue;
-        if (path.length == 1) {
-          leavesToCheck.add(path.first);
-        } else {
-          byHead
-              .putIfAbsent(path.first, () => <List<String>>[])
-              .add(path.sublist(1));
-        }
-      }
-
-      final keys = [
-        for (final leaf in leavesToCheck)
-          if (leaf == '*') ...value.keys.cast<String>() else leaf,
-      ];
-      for (final leaf in keys) {
-        if (!value.containsKey(leaf)) continue;
-        final leafValue = value[leaf];
-        if (leafValue is String && hasTemplateSequence(leafValue)) {
-          // A template (ref, variable or expression) — safe, pass through.
-          continue;
-        }
-        // Primitive literal at a sensitive leaf — throw.
-        throw SensitiveLiteralError(
-          resourceAddress: resourceAddress,
-          fieldPath: '$parentKey.$leaf',
-        );
-      }
-      final out = Map<String, dynamic>.from(value);
-      final any = byHead.remove('*');
-      if (any != null) {
-        for (final key in out.keys.toList()) {
-          out[key] = _checkNestedPaths(
-            out[key],
-            any,
-            resourceAddress: resourceAddress,
-            parentKey: '$parentKey.$key',
-          );
-        }
-      }
-      byHead.forEach((head, remaining) {
-        if (out.containsKey(head)) {
-          out[head] = _checkNestedPaths(
-            out[head],
-            remaining,
-            resourceAddress: resourceAddress,
-            parentKey: '$parentKey.$head',
-          );
-        }
-      });
-      return out;
-    }
-    return value;
-  }
-
   /// `lifecycle { ... }` nested block, or `null` when no fields are set.
   static Map<String, dynamic>? lifecycleBlock(LifecycleOptions opts) {
     final out = <String, dynamic>{};
@@ -508,8 +185,7 @@ class TfJsonEncoder {
   }
 
   /// JSON for one resource block: `argMap` + optional `depends_on` +
-  /// optional `lifecycle` + optional `timeouts`. Sensitive fields are
-  /// masked per `Resource.sensitiveFields`.
+  /// optional `lifecycle` + optional `timeouts`.
   ///
   /// When [devModeInjectDeletionProtection] is `true` and the resource
   /// exposes `supportsDeletionProtection == true` and its `argMap` does
@@ -532,12 +208,7 @@ class TfJsonEncoder {
             'deletion_protection': const TfArgLiteral<bool>(false),
           }
         : r.argMap;
-    final out = encodeArgMapWithSensitive(
-      argMap: argMap,
-      // ignore: invalid_use_of_protected_member
-      sensitiveFields: r.sensitiveFields,
-      resourceAddress: r.tfAddress,
-    );
+    final out = encodeArgMap(argMap);
     if (r.provider != null) {
       out['provider'] = r.provider;
     }
@@ -623,24 +294,9 @@ class TfJsonEncoder {
   /// Top-level `moved` list — one `{"from": ..., "to": ...}` object per
   /// [Stack.addMoved] entry, in registration order — or `null` when the
   /// stack recorded none.
-  ///
-  /// Every `to` must name a resource registered on the stack (Terraform
-  /// rejects a move whose target is not in the configuration) or an
-  /// address inside a `module.` call, which the stack cannot see.
   static List<Map<String, String>>? movedBlock(Stack stack) {
     final moved = stack.moved;
     if (moved.isEmpty) return null;
-    final addresses = {for (final r in stack.resources) r.tfAddress};
-    for (final m in moved) {
-      final to = m.to;
-      if (to.startsWith('module.') || addresses.contains(to)) continue;
-      throw StateError(
-        'moved block "${m.from}" -> "$to": no resource "$to" is registered '
-        'on this Stack. Terraform only moves state onto a resource the '
-        'configuration declares — add the resource, or point the block at '
-        'its address (`<type>.<localName>`).',
-      );
-    }
     return [for (final m in moved) m.toTfJson()];
   }
 }

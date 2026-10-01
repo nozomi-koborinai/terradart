@@ -1,3 +1,4 @@
+import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
@@ -177,9 +178,9 @@ void main() {
           topicArgs: {'labels': TfArg.variable('db_password')},
         ).synth(),
         throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
+          isA<SynthException>().having(
+            (e) => e.toString(),
+            'toString',
             allOf(
               contains('db_password'),
               contains('google_pubsub_topic.orders'),
@@ -219,9 +220,9 @@ void main() {
           },
         ).synth(),
         throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
+          isA<SynthException>().having(
+            (e) => e.toString(),
+            'toString',
             contains('api_token'),
           ),
         ),
@@ -247,9 +248,9 @@ void main() {
       expect(
         () => stack.synth(),
         throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
+          isA<SynthException>().having(
+            (e) => e.toString(),
+            'toString',
             contains('data.google_project.current'),
           ),
         ),
@@ -265,9 +266,9 @@ void main() {
           },
         ).synth(),
         throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
+          isA<SynthException>().having(
+            (e) => e.toString(),
+            'toString',
             allOf(contains('"b"'), isNot(contains('"a"'))),
           ),
         ),
@@ -297,9 +298,9 @@ void main() {
           },
         ).synth(),
         throwsA(
-          isA<StateError>().having(
-            (e) => e.message,
-            'message',
+          isA<SynthException>().having(
+            (e) => e.toString(),
+            'toString',
             allOf(contains('one'), contains('two')),
           ),
         ),
