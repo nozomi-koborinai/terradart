@@ -712,6 +712,14 @@ hashicorp/aws:
     attribute: zone_id
     slots: '^zone_id$'
     types: '^aws_route53_'
+  # The policy an IAM attachment grants. An AWS managed policy is
+  # `.literal('arn:aws:iam::aws:policy/...')`. IAM user and group names stay
+  # strings: `data.aws_iam_user` / `data.aws_iam_group` export them as
+  # `user_name` / `group_name`, not as the resources' `name`.
+  - target: aws_iam_policy
+    attribute: arn
+    slots: '(^|\.)(policy_arn|policy_arns|managed_policy_arns|permissions_boundary)$'
+    types: '^aws_iam_|^aws_budgets_budget_action$|^aws_rolesanywhere_profile$|^aws_quicksight_iam_policy_assignment$'
 
 cloudflare/cloudflare:
   - target: cloudflare_account
@@ -720,6 +728,14 @@ cloudflare/cloudflare:
   - target: cloudflare_zone
     attribute: id
     slots: '(^|\.)(zone_id|zone_ids)$'
+  # Who belongs to a user group.
+  - target: cloudflare_account_member
+    attribute: id
+    slots: '^members\.id$'
+    types: '^cloudflare_user_group_members$'
+  - target: cloudflare_user_group
+    attribute: id
+    slots: '^user_group_id$'
 
 appwrite/appwrite:
   - target: appwrite_project

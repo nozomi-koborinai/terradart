@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
+
 /// Sensitive field paths for `aws_quicksight_iam_policy_assignment`.
 const Set<String> _awsQuicksightIamPolicyAssignmentSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class AwsQuicksightIamPolicyAssignment extends Resource {
     required TfArg<QuicksightIamPolicyAssignmentStatus> assignmentStatus,
     TfArg<String>? awsAccountId,
     TfArg<String>? namespace,
-    TfArg<String>? policyArn,
+    RefTo<AwsIamPolicy>? policyArn,
     TfArg<String>? region,
     List<QuicksightIamPolicyAssignmentIdentities>? identities,
     super.lifecycle,
@@ -58,7 +60,7 @@ final class AwsQuicksightIamPolicyAssignment extends Resource {
            'assignment_status': assignmentStatus,
            'aws_account_id': ?awsAccountId,
            'namespace': ?namespace,
-           'policy_arn': ?policyArn,
+           'policy_arn': ?policyArn?.encodeAs('arn'),
            'region': ?region,
            if (identities != null)
              'identities': TfArg.literal([

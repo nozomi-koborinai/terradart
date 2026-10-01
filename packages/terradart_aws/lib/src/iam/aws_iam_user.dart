@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
+
 /// Sensitive field paths for `aws_iam_user`.
 const Set<String> _awsIamUserSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsIamUser extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,
     TfArg<String>? path,
-    TfArg<String>? permissionsBoundary,
+    RefTo<AwsIamPolicy>? permissionsBoundary,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -27,7 +29,7 @@ final class AwsIamUser extends Resource {
            'force_destroy': ?forceDestroy,
            'name': name,
            'path': ?path,
-           'permissions_boundary': ?permissionsBoundary,
+           'permissions_boundary': ?permissionsBoundary?.encodeAs('arn'),
            'tags': ?tags,
          },
        );
