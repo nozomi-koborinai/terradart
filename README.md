@@ -81,12 +81,24 @@ final class OrdersStack extends Stack {
       ),
     ));
 
+    // Pub/Sub pushes as its own service account, which may invoke the API.
+    final pushSa = add(GoogleServiceAccount(localName: 'push', accountId: .literal('orders-push')));
+    add(GoogleCloudRunV2ServiceIamMember(
+      localName: 'push_invokes_api',
+      name: .ref(api.nameRef),
+      location: .ref(api.locationRef),
+      role: .literal('roles/run.invoker'),
+      member: .ref(pushSa.iamMember),
+    ));
     add(GooglePubsubSubscription(
       localName: 'orders_push',
       name: .literal('orders-push'),
       topic: orders.ref,
       // A sealed choice: push, BigQuery or Cloud Storage — exactly one.
-      delivery: .pushConfig(PubsubSubscriptionPushConfig(pushEndpoint: .ref(api.uri))),
+      delivery: .pushConfig(PubsubSubscriptionPushConfig(
+        pushEndpoint: .ref(api.uri),
+        oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: pushSa.ref),
+      )),
     ));
   }
 }
