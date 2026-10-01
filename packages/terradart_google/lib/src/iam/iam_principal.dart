@@ -10,11 +10,22 @@ import 'google_iam_workload_identity_pool.dart';
 /// service account, a service agent, a default service account data source):
 ///
 /// ```dart
-/// member: runtime.principal,
-/// member: .user('alice@example.com'),
-/// member: .allUsers,
-/// members: .literal([.group('sre@example.com'), runtime.principal]),
+/// add(GoogleProjectIamMember(
+///   localName: 'runtime_logs',
+///   project: .literal('my-project'),
+///   role: .literal('roles/logging.logWriter'),
+///   member: runtime.principal,
+/// ));
+/// add(GoogleProjectIamBinding(
+///   localName: 'viewers',
+///   project: .literal('my-project'),
+///   role: .literal('roles/viewer'),
+///   members: .literal([.group('sre@example.com'), runtime.principal]),
+/// ));
 /// ```
+///
+/// Other kinds: `.user('alice@example.com')`, `.allUsers`,
+/// `.principalSet(pool, 'attribute.repository/org/repo')`.
 ///
 /// A principal is a `TfArg<String>`: it synthesizes to the provider's
 /// `<kind>:<id>` string.

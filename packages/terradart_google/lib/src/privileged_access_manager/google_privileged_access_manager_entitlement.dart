@@ -285,8 +285,8 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 ///   maxRequestDuration: TfArg.literal('1800s'),
 ///   eligibleUsers: [
 ///     PrivilegedAccessManagerEntitlementEligibleUsers(
-///       principals: TfArg.literal([
-///         'serviceAccount:pam-requester@my-project.iam.gserviceaccount.com',
+///       principals: .literal([
+///         .serviceAccount('pam-requester@my-project.iam.gserviceaccount.com'),
 ///       ]),
 ///     ),
 ///   ],
