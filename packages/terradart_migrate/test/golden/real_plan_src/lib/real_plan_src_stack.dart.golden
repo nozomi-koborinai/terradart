@@ -18,42 +18,42 @@ final class RealPlanSrcStack extends Stack {
     : super(
         providers: [
           const GoogleProvider(
-            project: r'example-dogfood-project',
-            region: r'us-central1',
+            project: 'example-dogfood-project',
+            region: 'us-central1',
           ),
         ],
       ) {
     // --- Curated by terradart_google (expected: supported) ---
     add(
       GoogleStorageBucket(
-        localName: r'assets',
-        name: .literal(r'example-dogfood-assets'),
-        location: .literal(r'US'),
+        localName: 'assets',
+        name: .literal('example-dogfood-assets'),
+        location: .literal('US'),
         forceDestroy: .literal(true),
       ),
     );
-    add(GooglePubsubTopic(localName: r'events', name: .literal(r'events')));
+    add(GooglePubsubTopic(localName: 'events', name: .literal('events')));
     add(
       GoogleServiceAccount(
-        localName: r'ci',
-        accountId: .literal(r'ci-runner'),
-        displayName: .literal(r'CI Runner'),
+        localName: 'ci',
+        accountId: .literal('ci-runner'),
+        displayName: .literal('CI Runner'),
       ),
     );
     final router = add(
       GoogleComputeRouter(
-        localName: r'router',
-        name: .literal(r'example-router'),
-        network: .network(.literal(r'default')),
-        region: .literal(r'us-central1'),
+        localName: 'router',
+        name: .literal('example-router'),
+        network: .network(.literal('default')),
+        region: .literal('us-central1'),
       ),
     );
     add(
       GoogleComputeRouterNat(
-        localName: r'nat',
-        name: .literal(r'example-nat'),
+        localName: 'nat',
+        name: .literal('example-nat'),
         router: .ref(router.nameRef),
-        region: .literal(r'us-central1'),
+        region: .literal('us-central1'),
         sourceSubnetworkIpRangesToNat: .literal(.allSubnetworksAllIpRanges),
         natIpAllocateOption: .literal(.autoOnly),
       ),
@@ -61,12 +61,12 @@ final class RealPlanSrcStack extends Stack {
     // --- Still uncurated in terradart_google (not a required sentinel) ---
     add(
       GoogleIdentityPlatformOauthIdpConfig(
-        localName: r'hello',
-        name: .literal(r'oidc.hello'),
-        issuer: .literal(r'https://accounts.example.com'),
-        clientId: .literal(r'dummy'),
+        localName: 'hello',
+        name: .literal('oidc.hello'),
+        issuer: .literal('https://accounts.example.com'),
+        clientId: .literal('dummy'),
       ),
     );
-    addModule(ModuleCall(localName: r'network', source: r'./modules/network'));
+    addModule(ModuleCall(localName: 'network', source: './modules/network'));
   }
 }

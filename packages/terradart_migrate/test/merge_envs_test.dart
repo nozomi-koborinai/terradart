@@ -85,11 +85,11 @@ void main() {
     test('the enum carries one member per environment', () {
       expect(
         merged.envSource,
-        contains("dev(path: r'envs/dev', assetsName: r'a-dev')"),
+        contains("dev(path: 'envs/dev', assetsName: 'a-dev')"),
       );
       expect(
         merged.envSource,
-        contains("prod(path: r'envs/prod', assetsName: r'a-prod')"),
+        contains("prod(path: 'envs/prod', assetsName: 'a-prod')"),
       );
       expect(merged.envSource, contains('final String assetsName;'));
       expect(merged.envSource, contains('static Env? byName(String name)'));
@@ -165,7 +165,7 @@ resource "google_storage_bucket" "backups" {
       expect(merged.guards.single.dartName, 'isProd');
       expect(merged.guards.single.members, ['prod']);
       expect(merged.source, contains('if (env.isProd) {'));
-      expect(merged.source, contains("localName: r'backups'"));
+      expect(merged.source, contains("localName: 'backups'"));
     });
 
     test('the flag is false where the block is absent', () {
@@ -202,9 +202,9 @@ resource "google_storage_bucket_iam_member" "backups_reader" {
 ''',
       });
       expect(m.refusal, isNull);
-      expect(m.source, contains('late final GoogleStorageBucket backups;'));
-      expect(m.source, contains('backups = add('));
-      expect(m.source, isNot(contains('final backups = add(')));
+      expect(m.source, contains('final backups = env.isProd ? add('));
+      expect(m.source, contains('if (env.isProd && backups != null) {'));
+      expect(m.source, isNot(contains('late final')));
     });
   });
 
@@ -242,7 +242,7 @@ resource "google_storage_bucket" "assets" {
       );
       expect(merged.envSource, contains('assetsStorageClass: .standard'));
       expect(merged.envSource, contains('assetsStorageClass: .nearline'));
-      expect(merged.envSource, isNot(contains("r'NEARLINE'")));
+      expect(merged.envSource, isNot(contains("'NEARLINE'")));
       // The enum's own barrel, so the file compiles on its own.
       expect(
         merged.envSource,

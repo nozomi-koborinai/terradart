@@ -119,15 +119,15 @@ output "label" {
         r.stackSource,
         allOf(
           contains(
-            "GooglePubsubSubscription(localName: r'many_0', "
-            "name: .literal(r's-0'), topic: t.ref.pinned(r'name'))",
+            "GooglePubsubSubscription(localName: 'many_0', "
+            "name: .literal('s-0'), topic: t.ref.pinned('name'))",
           ),
           contains(
-            "addMoved(r'google_pubsub_subscription.many[1]', "
-            "r'google_pubsub_subscription.many_1');",
+            "addMoved('google_pubsub_subscription.many[1]', "
+            "'google_pubsub_subscription.many_1');",
           ),
           contains(
-            "addMoved(r'google_pubsub_topic.old', r'google_pubsub_topic.t');",
+            "addMoved('google_pubsub_topic.old', 'google_pubsub_topic.t');",
           ),
         ),
       );
@@ -144,8 +144,8 @@ output "label" {
       expect(
         r.stackSource,
         contains(
-          "providers: [const GoogleProvider(project: r'p'), "
-          "const GoogleProvider(alias: r'west', region: r'us-west1')]",
+          "providers: [const GoogleProvider(project: 'p'), "
+          "const GoogleProvider(alias: 'west', region: 'us-west1')]",
         ),
       );
     });
@@ -184,7 +184,7 @@ output "label" {
           reason: '${k.address} has no sidecar file',
         );
       }
-      expect(r.stackSource, contains("setRequiredVersion(r'>= 1.11.0');"));
+      expect(r.stackSource, contains("setRequiredVersion('>= 1.11.0');"));
     });
 
     test('variables, locals and outputs keep only what the Stack left', () {
@@ -196,7 +196,7 @@ output "label" {
         sidecar.files[variablesFileName],
         isNot(contains('variable "name"')),
       );
-      expect(r.stackSource, contains("addExternalVariable(r'checked');"));
+      expect(r.stackSource, contains("addExternalVariable('checked');"));
       expect(
         sidecar.files[localsFileName],
         contains('locals {\n  prefix = "app"\n  suffix = "x"\n}'),
@@ -205,7 +205,7 @@ output "label" {
       expect(sidecar.placements['local.suffix'], localsFileName);
       expect(sidecar.files[outputsFileName], contains('output "label" {'));
       expect(sidecar.files[outputsFileName], isNot(contains('output "topic"')));
-      expect(r.stackSource, contains("addOutput(r'topic'"));
+      expect(r.stackSource, contains("addOutput('topic'"));
     });
   });
 
@@ -270,7 +270,7 @@ output "id" {
 ''', childModule: true);
     expect(r.stackSource, contains('providers: [const GoogleProvider()]'));
     expect(r.stackSource, isNot(contains('GcsBackend')));
-    expect(r.stackSource, contains("addOutput(r'id'"));
+    expect(r.stackSource, contains("addOutput('id'"));
     expect(
       r.report.kept.map((k) => k.address),
       unorderedEquals(['provider.google', 'terraform.backend']),

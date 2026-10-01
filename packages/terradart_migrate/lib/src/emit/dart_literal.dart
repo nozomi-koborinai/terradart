@@ -44,14 +44,16 @@ final RegExp _identifier = RegExp(r'^[A-Za-z_$][A-Za-z0-9_$]*$');
 bool isDartIdentifier(String name) =>
     _identifier.hasMatch(name) && !dartReservedWords.contains(name);
 
-/// A Dart string literal for [value] that always compiles: a raw string when
-/// nothing needs escaping (`r'...'`, or `r"..."` when the text has a single
-/// quote), else an escaped single-quoted string.
+/// A Dart string literal for [value] that always compiles: a plain string
+/// (`'...'`, or `"..."` when the text has a single quote), raw only when it
+/// holds a `$` or `\` (`r'${google_x.y.id}'`), else an escaped single-quoted
+/// string.
 String dartString(String value) {
   final hasControl = value.codeUnits.any((c) => c < 0x20 || c == 0x7f);
   if (!hasControl) {
-    if (!value.contains("'")) return "r'$value'";
-    if (!value.contains('"')) return 'r"$value"';
+    final raw = value.contains(r'$') || value.contains(r'\') ? 'r' : '';
+    if (!value.contains("'")) return "$raw'$value'";
+    if (!value.contains('"')) return '$raw"$value"';
   }
   final buf = StringBuffer("'");
   for (final rune in value.runes) {

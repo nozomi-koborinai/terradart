@@ -7,6 +7,6 @@ import 'package:real_plan_src/network_stack.dart';
 import 'package:real_plan_src/real_plan_src_stack.dart';
 
 Future<void> main() async {
-  await RealPlanSrcStack().writeTo(r'tf-out');
-  await NetworkStack().writeTo(r'tf-out/modules/network');
+  await RealPlanSrcStack().writeTo('tf-out');
+  await NetworkStack().writeTo('tf-out/modules/network');
 }
