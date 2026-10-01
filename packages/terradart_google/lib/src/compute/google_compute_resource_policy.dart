@@ -534,15 +534,14 @@ final class ComputeResourcePolicyWorkloadPolicy {
 ///   name: .literal('daily-snapshots'),
 ///   region: .literal('us-central1'),
 ///   kind: .snapshotSchedulePolicy(
-///     ComputeResourcePolicySnapshotSchedulePolicy(
+///     .new(
 ///       schedule: .dailySchedule(
-///         ComputeResourcePolicyDailySchedule(
+///         .new(
 ///           daysInCycle: .literal(1),
 ///           startTime: .literal('04:00'),
 ///         ),
 ///       ),
-///       retentionPolicy:
-///           ComputeResourcePolicyRetentionPolicy(
+///       retentionPolicy: .new(
 ///             maxRetentionDays: .literal(7),
 ///             onSourceDiskDelete: .literal(.applyRetentionPolicy),
 ///           ),

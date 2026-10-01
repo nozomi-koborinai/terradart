@@ -63,7 +63,7 @@ final class GkeHubMembershipGkeCluster {
 ///   localName: 'main',
 ///   membershipId: TfArg.literal('main-cluster'),
 ///   endpoint: GkeHubMembershipEndpoint(
-///     gkeCluster: GkeHubMembershipGkeCluster(
+///     gkeCluster: .new(
 ///       resourceLink: TfArg.ref(cluster.id),
 ///     ),
 ///   ),

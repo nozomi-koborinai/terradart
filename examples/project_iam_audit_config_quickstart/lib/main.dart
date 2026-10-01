@@ -73,7 +73,7 @@ final class ProjectIamAuditConfigStack extends Stack {
             description: .literal(
               'Deny storage.objects.get for the in-stack SA only.',
             ),
-            denyRule: IamDenyPolicyDenyRule(
+            denyRule: .new(
               deniedPrincipals: .literal([
                 'principal://iam.googleapis.com/projects/-/serviceAccounts/${denied.email.interpolation}',
               ]),

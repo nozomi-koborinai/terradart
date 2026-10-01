@@ -113,19 +113,15 @@ final class ChronicleCustomListStack extends Stack {
           displayName: .literal('DNS events'),
           tileType: ChronicleDashboardChartTileType.tileTypeVisualization,
           visualization: [
-            ChronicleDashboardChartVisualization(
-              series: [
-                ChronicleDashboardChartSeries(
-                  seriesType: ChronicleDashboardChartSeriesType.bar,
-                ),
-              ],
+            .new(
+              series: [.new(seriesType: ChronicleDashboardChartSeriesType.bar)],
             ),
           ],
         ),
         dashboardQuery: ChronicleDashboardChartQuery(
           query: .literal('metadata.event_type = "NETWORK_DNS"'),
-          input: ChronicleDashboardChartQueryInput(
-            relativeTime: ChronicleDashboardChartRelativeTime(
+          input: .new(
+            relativeTime: .new(
               startTimeVal: .literal('1'),
               timeUnit: ChronicleDashboardChartTimeUnit.hour,
             ),

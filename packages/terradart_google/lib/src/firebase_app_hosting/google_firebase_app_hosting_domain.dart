@@ -85,7 +85,7 @@ class FirebaseAppHostingDomainRedirect {
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('example.com'),
 ///   serve: FirebaseAppHostingDomainServe(
-///     redirect: FirebaseAppHostingDomainRedirect(
+///     redirect: .new(
 ///       uri: TfArg.literal('https://www.example.com'),
 ///       status: TfArg.literal('301'),
 ///     ),

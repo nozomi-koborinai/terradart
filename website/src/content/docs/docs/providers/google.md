@@ -134,13 +134,13 @@ final class MobileAppBackendStack extends Stack {
       location: .literal('asia-northeast1'),
       template: CloudRunV2ServiceTemplate(
         containers: [
-          CloudRunV2ServiceContainers(
+          .new(
             name: .literal('server'),
             image: .literal(
               'us-docker.pkg.dev/cloudrun/container/hello',
             ),
             env: [
-              CloudRunV2ServiceEnv(
+              .new(
                 name: .literal('UPLOAD_BUCKET'),
                 source: .value(.ref(uploadsBucket.nameRef)),
               ),

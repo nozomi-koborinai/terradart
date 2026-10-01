@@ -51,11 +51,7 @@ final class DlpStack extends Stack {
         displayName: .literal('terradart-email-inspect'),
         description: .literal('Quickstart inspect template'),
         inspectConfig: DataLossPreventionInspectTemplateInspectConfig(
-          infoTypes: [
-            DataLossPreventionInspectTemplateInfoTypes(
-              name: .literal('EMAIL_ADDRESS'),
-            ),
-          ],
+          infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
           minLikelihood: .literal(.possible),
         ),
         dependsOn: [ResourceDependency(apiDlp)],
@@ -70,18 +66,13 @@ final class DlpStack extends Stack {
         displayName: .literal('terradart-email-redact'),
         description: .literal('Quickstart de-identify template'),
         deidentifyConfig: .infoTypeTransformations(
-          DataLossPreventionDeidentifyTemplateInfoTypeTransformations(
+          .new(
             transformations: [
-              DataLossPreventionDeidentifyTemplateTransformations(
-                infoTypes: [
-                  DataLossPreventionDeidentifyTemplateInfoTypes(
-                    name: .literal('EMAIL_ADDRESS'),
-                  ),
-                ],
-                primitiveTransformation:
-                    DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation(
-                      replaceWithInfoTypeConfig: .literal(true),
-                    ),
+              .new(
+                infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
+                primitiveTransformation: .new(
+                  replaceWithInfoTypeConfig: .literal(true),
+                ),
               ),
             ],
           ),
@@ -97,11 +88,7 @@ final class DlpStack extends Stack {
         storedInfoTypeId: .literal('terradart-patient-id'),
         displayName: .literal('terradart-patient-id'),
         description: .literal('Quickstart regex stored info type'),
-        definition: .regex(
-          DataLossPreventionStoredInfoTypeRegex(
-            pattern: .literal(r'patient-\d{4}'),
-          ),
-        ),
+        definition: .regex(.new(pattern: .literal(r'patient-\d{4}'))),
         dependsOn: [ResourceDependency(apiDlp)],
       ),
     );
@@ -129,28 +116,20 @@ final class DlpStack extends Stack {
         status: .literal(.paused),
         triggers: [
           DataLossPreventionJobTriggerTriggers(
-            schedule: DataLossPreventionJobTriggerSchedule(
-              recurrencePeriodDuration: .literal('86400s'),
-            ),
+            schedule: .new(recurrencePeriodDuration: .literal('86400s')),
           ),
         ],
         inspectJob: DataLossPreventionJobTriggerInspectJob(
           inspectTemplateName: .ref(inspect.nameRef),
-          storageConfig: DataLossPreventionJobTriggerStorageConfig(
-            cloudStorageOptions:
-                DataLossPreventionJobTriggerCloudStorageOptions(
-                  fileSet: .url(
-                    .literal('gs://${scanBucket.nameRef.interpolation}/'),
-                  ),
-                ),
+          storageConfig: .new(
+            cloudStorageOptions: .new(
+              fileSet: .url(
+                .literal('gs://${scanBucket.nameRef.interpolation}/'),
+              ),
+            ),
           ),
           // Empty notification action — avoids BigQuery save_findings deps.
-          actions: [
-            DataLossPreventionJobTriggerActions(
-              jobNotificationEmails:
-                  DataLossPreventionJobTriggerJobNotificationEmails(),
-            ),
-          ],
+          actions: [.new(jobNotificationEmails: .new())],
         ),
         dependsOn: [
           ResourceDependency(inspect),
@@ -167,24 +146,15 @@ final class DlpStack extends Stack {
         parent: .literal('$parent/locations/us-central1'),
         displayName: .literal('terradart-block-emails'),
         inspectConfig: DataLossPreventionContentPolicyInspectConfig(
-          infoTypes: [
-            DataLossPreventionContentPolicyInfoTypes(
-              name: .literal('EMAIL_ADDRESS'),
-            ),
-          ],
+          infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
         ),
         rules: [
           DataLossPreventionContentPolicyRules(
-            action: DataLossPreventionContentPolicyAction(
-              returnVerdict: .literal(.block),
-            ),
+            action: .new(returnVerdict: .literal(.block)),
             conditions: [
-              DataLossPreventionContentPolicyConditions(
-                infoTypeCondition: DataLossPreventionContentPolicyInfoTypeCondition(
-                  infoTypes:
-                      DataLossPreventionContentPolicyInfoTypeConditionInfoTypes(
-                        infoTypeNames: .literal(['EMAIL_ADDRESS']),
-                      ),
+              .new(
+                infoTypeCondition: .new(
+                  infoTypes: .new(infoTypeNames: .literal(['EMAIL_ADDRESS'])),
                 ),
               ),
             ],

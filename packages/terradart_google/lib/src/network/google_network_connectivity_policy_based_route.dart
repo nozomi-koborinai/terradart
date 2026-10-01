@@ -254,7 +254,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///     ),
 ///   ),
 ///   scope: .virtualMachine(
-///     NetworkConnectivityPolicyBasedRouteVirtualMachine(
+///     .new(
 ///       tags: TfArg.literal(['terradart-pbr']),
 ///     ),
 ///   ),

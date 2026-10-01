@@ -222,9 +222,9 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
 ///   name: .literal('customer_view'),
 ///   region: .literal('us-central1'),
 ///   source: .featureRegistrySource(
-///     VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
+///     .new(
 ///       featureGroups: [
-///         VertexAiFeatureOnlineStoreFeatureviewFeatureGroups(
+///         .new(
 ///           featureGroupId: .literal('terradart_customer_features'),
 ///           featureIds: .literal(['feature_score']),
 ///         ),

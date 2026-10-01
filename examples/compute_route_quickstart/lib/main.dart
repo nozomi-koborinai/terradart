@@ -222,14 +222,11 @@ final class NetworkRouteStack extends Stack {
         name: .literal('terradart-daily-snapshots'),
         region: .literal('us-central1'),
         kind: .snapshotSchedulePolicy(
-          ComputeResourcePolicySnapshotSchedulePolicy(
+          .new(
             schedule: .dailySchedule(
-              ComputeResourcePolicyDailySchedule(
-                daysInCycle: .literal(1),
-                startTime: .literal('04:00'),
-              ),
+              .new(daysInCycle: .literal(1), startTime: .literal('04:00')),
             ),
-            retentionPolicy: ComputeResourcePolicyRetentionPolicy(
+            retentionPolicy: .new(
               maxRetentionDays: .literal(7),
               onSourceDiskDelete: .literal(.applyRetentionPolicy),
             ),

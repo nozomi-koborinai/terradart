@@ -65,7 +65,7 @@ final class ContainerAnalysisNoteRelatedUrl {
 ///   localName: 'attestor',
 ///   name: TfArg.literal('terradart-attestor-note'),
 ///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
-///     hint: ContainerAnalysisNoteHint(
+///     hint: .new(
 ///       humanReadableName: TfArg.literal('TerraDart attestor'),
 ///     ),
 ///   ),

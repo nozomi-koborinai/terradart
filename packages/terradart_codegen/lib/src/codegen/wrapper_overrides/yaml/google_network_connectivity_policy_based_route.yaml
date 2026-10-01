@@ -42,7 +42,7 @@ curatedDoc: |-
   ///     ),
   ///   ),
   ///   scope: .virtualMachine(
-  ///     NetworkConnectivityPolicyBasedRouteVirtualMachine(
+  ///     .new(
   ///       tags: TfArg.literal(['terradart-pbr']),
   ///     ),
   ///   ),

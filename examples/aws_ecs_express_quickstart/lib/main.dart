@@ -117,10 +117,7 @@ final class AwsEcsExpressStack extends Stack {
             ),
             containerPort: .literal(_port),
             environment: [
-              EcsExpressGatewayServiceEnvironment(
-                name: .literal('PORT'),
-                value: .literal('$_port'),
-              ),
+              .new(name: .literal('PORT'), value: .literal('$_port')),
             ],
             awsLogsConfiguration: .literal([
               {
@@ -152,10 +149,7 @@ final class AwsEcsExpressStack extends Stack {
           effect: .literal('Allow'),
           actions: .literal(['sts:AssumeRole']),
           principals: [
-            DataIamPolicyDocumentPrincipals(
-              type: .literal('Service'),
-              identifiers: .literal([service]),
-            ),
+            .new(type: .literal('Service'), identifiers: .literal([service])),
           ],
         ),
       ],

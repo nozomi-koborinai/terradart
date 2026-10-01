@@ -78,7 +78,7 @@ final class FirebaserulesRulesetFiles {
 ///   localName: 'deny_all',
 ///   source: FirebaserulesRulesetSource(
 ///     files: [
-///       FirebaserulesRulesetFiles(
+///       .new(
 ///         name: TfArg.literal('firestore.rules'),
 ///         content: TfArg.literal(
 ///           'service cloud.firestore {'

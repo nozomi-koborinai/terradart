@@ -177,7 +177,7 @@ final class AnalyticsStack extends Stack {
         listingId: .literal('events-listing'),
         displayName: .literal('Events dataset listing'),
         source: .bigqueryDataset(
-          BigqueryAnalyticsHubListingBigqueryDataset(
+          .new(
             dataset: .literal('projects/$projectId/datasets/analytics_prod'),
           ),
         ),
@@ -244,13 +244,12 @@ final class AnalyticsStack extends Stack {
         listingId: .literal('events-listing'),
         location: .literal('asia-northeast1'),
         destination: .destinationDataset(
-          BigqueryAnalyticsHubListingSubscriptionDestinationDataset(
+          .new(
             location: .literal('asia-northeast1'),
-            datasetReference:
-                BigqueryAnalyticsHubListingSubscriptionDatasetReference(
-                  datasetId: .literal('analytics_prod'),
-                  projectId: .literal(projectId),
-                ),
+            datasetReference: .new(
+              datasetId: .literal('analytics_prod'),
+              projectId: .literal(projectId),
+            ),
           ),
         ),
       ),
@@ -283,12 +282,12 @@ final class AnalyticsStack extends Stack {
         jobId: .literal('events-count-backfill'),
         location: .literal('asia-northeast1'),
         configuration: .query(
-          BigqueryJobQuery(
+          .new(
             query: .literal(
               'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
             ),
             useLegacySql: .literal(false),
-            destinationTable: BigqueryJobDestinationTable(
+            destinationTable: .new(
               projectId: .literal(projectId),
               datasetId: dataset.ref,
               tableId: .literal('events_daily_count'),

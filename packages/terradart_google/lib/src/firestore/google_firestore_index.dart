@@ -274,11 +274,11 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
 ///   fields: [
 ///     FirestoreIndexField(
 ///       fieldPath: TfArg.literal('user_id'),
-///       spec: const FirestoreIndexFieldOrder(FirestoreIndexOrder.ascending),
+///       spec: .order(.ascending),
 ///     ),
 ///     FirestoreIndexField(
 ///       fieldPath: TfArg.literal('created_at'),
-///       spec: const FirestoreIndexFieldOrder(FirestoreIndexOrder.descending),
+///       spec: .order(.descending),
 ///     ),
 ///   ],
 /// );
@@ -292,7 +292,7 @@ final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
 ///   fields: [
 ///     FirestoreIndexField(
 ///       fieldPath: TfArg.literal('tags'),
-///       spec: const FirestoreIndexFieldArrayConfig(),
+///       spec: .arrayConfig(),
 ///     ),
 ///   ],
 /// );

@@ -380,14 +380,14 @@ final class ClouddeployAutomationTargets {
 ///   suspended: .literal(true),
 ///   selector: ClouddeployAutomationSelector(
 ///     targets: [
-///       ClouddeployAutomationTargets(
+///       .new(
 ///         id: .literal('terradart-run-target'),
 ///       ),
 ///     ],
 ///   ),
 ///   rules: [
 ///     .promoteReleaseRule(
-///       ClouddeployAutomationPromoteReleaseRule(
+///       .new(
 ///         id: .literal('promote-release'),
 ///       ),
 ///     ),

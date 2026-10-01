@@ -4,6 +4,19 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [Unreleased]
+
+### Changed
+
+- **Nested blocks use `.new(...)`** — the examples, cookbook, README,
+  website, generated doc comments, the aws / cloudflare leftover-example
+  generators and `terradart-migrate` output build a block that sits inside
+  another block or inside a sealed choice with the Dart 3.10 `.new(...)`
+  shorthand (`template: CloudRunV2ServiceTemplate(containers: [.new(...)])`);
+  a resource's own arguments keep their class name. A few doc examples that
+  named a sealed variant class now call its factory (`spec: .order(.ascending)`).
+  No API or synth output changes.
+
 ## [0.31.0] - 2026-10-01
 
 Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits a different attribute. Every exactly-one and at-most-one input group is a sealed type named by concept and built with a Dart 3.10 dot shorthand (`code: .filename(...)`); arguments that name another resource take `RefTo<R>` (`network: vpc.ref`); `addOutput` / `addConstant` replace `addExport`, with a typed `<Stack>Outputs` reader and `outputEnvironment()`; Google blocks take derived helper classes (no `TfArg<Map>` block is left); generated type names are short; and every package requires Dart 3.10. Read the upgrade guide in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1366 curated resource factories + 468 data sources** (1834 entries).

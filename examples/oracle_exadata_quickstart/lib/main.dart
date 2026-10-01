@@ -84,10 +84,7 @@ final class OracleExadataStack extends Stack {
       exascaleDbStorageVaultId: .literal(vaultId),
       displayName: .literal('TerraDart Exascale vault'),
       properties: OracleDatabaseExascaleDbStorageVaultProperties(
-        exascaleDbStorageDetails:
-            OracleDatabaseExascaleDbStorageVaultExascaleDbStorageDetails(
-              totalSizeGbs: .literal(512),
-            ),
+        exascaleDbStorageDetails: .new(totalSizeGbs: .literal(512)),
       ),
       dependsOn: apiDeps,
     );
@@ -109,9 +106,7 @@ final class OracleExadataStack extends Stack {
         nodeCount: .literal(1),
         shapeAttribute: .literal('SMART_STORAGE'),
         sshPublicKeys: .literal([_placeholderSshPublicKey]),
-        vmFileSystemStorage: OracleDatabaseExadbVmClusterVmFileSystemStorage(
-          sizeInGbsPerNode: .literal(220),
-        ),
+        vmFileSystemStorage: .new(sizeInGbsPerNode: .literal(220)),
       ),
       dependsOn: [
         ...apiDeps,

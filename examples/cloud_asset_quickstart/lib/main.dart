@@ -81,9 +81,7 @@ final class CloudAssetStack extends Stack {
         ]),
         contentType: .literal(.resource),
         feedOutputConfig: CloudAssetProjectFeedOutputConfig(
-          pubsubDestination: CloudAssetProjectFeedPubsubDestination(
-            topic: topic.ref,
-          ),
+          pubsubDestination: .new(topic: topic.ref),
         ),
         dependsOn: [ResourceDependency(feedIamReady)],
       ),

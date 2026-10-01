@@ -130,9 +130,7 @@ final class ComputeLbStack extends Stack {
         machineType: .literal('e2-small'),
         zone: .literal(zone),
         bootDisk: ComputeInstanceBootDisk(
-          initializeParams: ComputeInstanceInitializeParams(
-            image: .literal('debian-cloud/debian-12'),
-          ),
+          initializeParams: .new(image: .literal('debian-cloud/debian-12')),
         ),
         networkInterface: [
           ComputeInstanceNetworkInterface(subnetwork: lbSubnet.ref),
@@ -219,7 +217,7 @@ final class ComputeLbStack extends Stack {
       identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
         allowSubjectAltNamesPassthrough: .literal(true),
         allowSubjectPassthrough: .literal(true),
-        celExpression: PrivatecaCertificateTemplateCelExpression(
+        celExpression: .new(
           expression: .literal('true'),
           title: .literal('allow-all'),
           location: .literal('any.file.anywhere'),
@@ -257,21 +255,17 @@ final class ComputeLbStack extends Stack {
       pool: .ref(cmCaPool.id),
       location: .literal(region),
       config: PrivatecaCertificateAuthorityConfig(
-        subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
-          subject: PrivatecaCertificateAuthoritySubject(
-            commonName: .literal('app.example.com'),
-          ),
+        subjectConfig: .new(
+          subject: .new(commonName: .literal('app.example.com')),
         ),
-        x509Config: PrivatecaCertificateAuthorityX509Config(
-          caOptions: PrivatecaCertificateAuthorityCaOptions(
-            isCa: .literal(true),
-          ),
-          keyUsage: PrivatecaCertificateAuthorityKeyUsage(
-            baseKeyUsage: PrivatecaCertificateAuthorityBaseKeyUsage(
+        x509Config: .new(
+          caOptions: .new(isCa: .literal(true)),
+          keyUsage: .new(
+            baseKeyUsage: .new(
               certSign: .literal(true),
               crlSign: .literal(true),
             ),
-            extendedKeyUsage: PrivatecaCertificateAuthorityExtendedKeyUsage(),
+            extendedKeyUsage: .new(),
           ),
         ),
       ),
@@ -302,10 +296,7 @@ final class ComputeLbStack extends Stack {
       name: .literal('app-cm-issuance'),
       certificateAuthorityConfig:
           CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
-            certificateAuthorityServiceConfig:
-                CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
-                  caPool: .ref(cmCaPool.id),
-                ),
+            certificateAuthorityServiceConfig: .new(caPool: .ref(cmCaPool.id)),
           ),
       keyAlgorithm: .literal(.rsa2048),
       lifetime: .literal('2592000s'),
@@ -326,9 +317,7 @@ final class ComputeLbStack extends Stack {
         trustStores: [
           CertificateManagerTrustConfigTrustStore(
             trustAnchors: [
-              CertificateManagerTrustConfigTrustAnchor(
-                pemCertificate: TfArg.variable('cm_trust_anchor_pem'),
-              ),
+              .new(pemCertificate: TfArg.variable('cm_trust_anchor_pem')),
             ],
           ),
         ],
@@ -340,7 +329,7 @@ final class ComputeLbStack extends Stack {
       localName: 'cm_cert',
       name: .literal('app-cm-cert'),
       provisioning: .managed(
-        CertificateManagerCertificateManaged(
+        .new(
           domains: .literal(['app.example.com']),
           dnsAuthorizations: .literal([cmDnsAuth.id.interpolation]),
         ),
@@ -443,7 +432,7 @@ final class ComputeLbStack extends Stack {
             action: SecurityPolicyRuleAction.allow,
             match: ComputeSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+              config: .new(srcIpRanges: ['*']),
             ),
             description: .literal('default allow-all'),
           ),
@@ -572,9 +561,7 @@ final class ComputeLbStack extends Stack {
         description: .literal('Block example CIDR'),
         match: const ComputeSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-          config: ComputeSecurityPolicyRuleMatchConfig(
-            srcIpRanges: ['203.0.113.0/24'],
-          ),
+          config: .new(srcIpRanges: ['203.0.113.0/24']),
         ),
       ),
     );
@@ -674,9 +661,7 @@ final class ComputeLbStack extends Stack {
             action: .literal('allow'),
             match: ComputeRegionSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: ComputeRegionSecurityPolicyRulesMatchConfig(
-                srcIpRanges: const ['*'],
-              ),
+              config: .new(srcIpRanges: const ['*']),
             ),
             description: .literal('default allow-all'),
           ),
@@ -694,9 +679,7 @@ final class ComputeLbStack extends Stack {
         description: .literal('Block example CIDR (regional)'),
         match: const ComputeRegionSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-          config: ComputeRegionSecurityPolicyRuleMatchConfig(
-            srcIpRanges: ['198.51.100.0/24'],
-          ),
+          config: .new(srcIpRanges: ['198.51.100.0/24']),
         ),
       ),
     );
@@ -791,9 +774,7 @@ final class ComputeLbStack extends Stack {
         autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
           minReplicas: .literal(1),
           maxReplicas: .literal(3),
-          cpuUtilization: ComputeAutoscalerCpuUtilization(
-            target: .literal(0.7),
-          ),
+          cpuUtilization: .new(target: .literal(0.7)),
         ),
       ),
     );
@@ -907,9 +888,7 @@ final class ComputeLbStack extends Stack {
         autoscalingPolicy: ComputeRegionAutoscalerAutoscalingPolicy(
           minReplicas: .literal(2),
           maxReplicas: .literal(6),
-          cpuUtilization: ComputeRegionAutoscalerCpuUtilization(
-            target: .literal(0.65),
-          ),
+          cpuUtilization: .new(target: .literal(0.65)),
         ),
       ),
     );

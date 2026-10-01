@@ -26,11 +26,11 @@ curatedDoc: |-
   ///   fields: [
   ///     FirestoreIndexField(
   ///       fieldPath: TfArg.literal('user_id'),
-  ///       spec: const FirestoreIndexFieldOrder(FirestoreIndexOrder.ascending),
+  ///       spec: .order(.ascending),
   ///     ),
   ///     FirestoreIndexField(
   ///       fieldPath: TfArg.literal('created_at'),
-  ///       spec: const FirestoreIndexFieldOrder(FirestoreIndexOrder.descending),
+  ///       spec: .order(.descending),
   ///     ),
   ///   ],
   /// );
@@ -44,7 +44,7 @@ curatedDoc: |-
   ///   fields: [
   ///     FirestoreIndexField(
   ///       fieldPath: TfArg.literal('tags'),
-  ///       spec: const FirestoreIndexFieldArrayConfig(),
+  ///       spec: .arrayConfig(),
   ///     ),
   ///   ],
   /// );

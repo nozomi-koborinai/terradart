@@ -625,10 +625,10 @@ final class TranscoderJobTemplatePubsubDestination {
 ///   location: TfArg.literal('us-central1'),
 ///   config: TranscoderJobTemplateConfig(
 ///     elementaryStreams: [
-///       TranscoderJobTemplateElementaryStreams(
+///       .new(
 ///         key: TfArg.literal('video-stream0'),
-///         videoStream: TranscoderJobTemplateVideoStream(
-///           h264: TranscoderJobTemplateH264(
+///         videoStream: .new(
+///           h264: .new(
 ///             widthPixels: TfArg.literal(640),
 ///             heightPixels: TfArg.literal(360),
 ///             bitrateBps: TfArg.literal(550000),

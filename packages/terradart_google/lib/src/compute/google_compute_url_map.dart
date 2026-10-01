@@ -1981,11 +1981,11 @@ final class ComputeUrlMapHeaders {
 ///       name: TfArg.literal('allpaths'),
 ///       defaultService: TfArg.ref(login.selfLink),
 ///       pathRule: [
-///         ComputeUrlMapPathRule(
+///         .new(
 ///           paths: TfArg.literal(const ['/home']),
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
-///         ComputeUrlMapPathRule(
+///         .new(
 ///           paths: TfArg.literal(const ['/static']),
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),

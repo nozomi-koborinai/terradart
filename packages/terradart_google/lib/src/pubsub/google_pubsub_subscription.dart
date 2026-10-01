@@ -474,7 +474,7 @@ final class PubsubSubscriptionRetryPolicy {
 ///   name: .literal('orders-push'),
 ///   topic: .of(orders),
 ///   delivery: .pushConfig(
-///     PubsubSubscriptionPushConfig(
+///     .new(
 ///       pushEndpoint: .literal('https://app.example.com/push'),
 ///     ),
 ///   ),

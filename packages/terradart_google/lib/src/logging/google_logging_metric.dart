@@ -232,7 +232,7 @@ class LoggingMetricBucketOptions {
 ///     unit: TfArgLiteral('s'),
 ///   ),
 ///   bucketOptions: const LoggingMetricBucketOptions(
-///     exponentialBuckets: LoggingMetricExponentialBuckets(
+///     exponentialBuckets: .new(
 ///       numFiniteBuckets: TfArgLiteral(64),
 ///       growthFactor: TfArgLiteral(2),
 ///       scale: TfArgLiteral(0.01),

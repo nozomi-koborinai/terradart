@@ -123,7 +123,7 @@ final class VectorSearchCollectionSparseVector {
 ///   vectorSchema: [
 ///     VectorSearchCollectionVectorSchema(
 ///       fieldName: TfArg.literal('text_embedding'),
-///       denseVector: VectorSearchCollectionDenseVector(
+///       denseVector: .new(
 ///         dimensions: TfArg.literal(768),
 ///       ),
 ///     ),

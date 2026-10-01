@@ -53,7 +53,7 @@ add(GoogleCloudRunV2Service(
   location: .literal('us-central1'),
   ingress: .literal(.all), // .al → compile error
   template: CloudRunV2ServiceTemplate(containers: [
-    CloudRunV2ServiceContainers(image: .literal('us-docker.pkg.dev/cloudrun/container/hello')),
+    .new(image: .literal('us-docker.pkg.dev/cloudrun/container/hello')),
   ]),
 ));
 ```

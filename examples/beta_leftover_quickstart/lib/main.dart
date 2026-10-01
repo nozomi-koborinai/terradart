@@ -67,8 +67,8 @@ final class BetaLeftoverStack extends Stack {
         localName: 'api_gateway_api_config',
         api: .literal('terradart-leftover'),
         spec: .openapiDocuments([
-          ApiGatewayApiConfigOpenapiDocuments(
-            document: ApiGatewayApiConfigDocument(
+          .new(
+            document: .new(
               contents: .literal('b3BlbmFwaTogIjMuMC4wIg=='),
               path: .literal('openapi.yaml'),
             ),
@@ -296,11 +296,7 @@ final class BetaLeftoverStack extends Stack {
         priority: .literal(1000),
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
           srcIpRanges: .literal(['0.0.0.0/0']),
-          layer4Configs: [
-            ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs(
-              ipProtocol: .literal('tcp'),
-            ),
-          ],
+          layer4Configs: [.new(ipProtocol: .literal('tcp'))],
         ),
       ),
     );
@@ -371,11 +367,7 @@ final class BetaLeftoverStack extends Stack {
         priority: .literal(1000),
         match: ComputeRegionNetworkPolicyTrafficClassificationRuleMatch(
           srcIpRanges: .literal(['0.0.0.0/0']),
-          layer4Configs: [
-            ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs(
-              ipProtocol: .literal('tcp'),
-            ),
-          ],
+          layer4Configs: [.new(ipProtocol: .literal('tcp'))],
         ),
       ),
     );

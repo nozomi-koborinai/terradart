@@ -208,7 +208,7 @@ final class CesExampleToolResponse {
 ///     CesExampleMessages(
 ///       role: TfArg.literal('user'),
 ///       chunks: [
-///         CesExampleChunks(
+///         .new(
 ///           text: TfArg.literal('Hello'),
 ///         ),
 ///       ],

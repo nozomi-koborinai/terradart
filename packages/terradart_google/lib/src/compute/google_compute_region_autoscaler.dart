@@ -425,9 +425,9 @@ class ComputeRegionAutoscalerScalingSchedule {
 ///     minReplicas: .literal(2),
 ///     maxReplicas: .literal(20),
 ///     cooldownPeriod: .literal(90),
-///     cpuUtilization: ComputeRegionAutoscalerCpuUtilization(target: .literal(0.65)),
+///     cpuUtilization: .new(target: .literal(0.65)),
 ///     scalingSchedules: {
-///       'business_hours': ComputeRegionAutoscalerScalingSchedule(
+///       'business_hours': .new(
 ///         minRequiredReplicas: .literal(8),
 ///         schedule: .literal('0 9 * * MON-FRI'),
 ///         durationSec: .literal(28800),

@@ -151,7 +151,7 @@ final class AuditPipelineStack extends Stack {
         location: .literal(location),
         visibility: .literal(.private),
         definition: .loggingQuery(
-          LoggingSavedQueryLoggingQuery(
+          .new(
             filter: .literal(
               'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
             ),

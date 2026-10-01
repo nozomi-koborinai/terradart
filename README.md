@@ -70,11 +70,11 @@ final class OrdersStack extends Stack {
       template: CloudRunV2ServiceTemplate(
         serviceAccount: apiSa.ref,
         containers: [
-          CloudRunV2ServiceContainers(
+          .new(
             image: .literal('us-docker.pkg.dev/my-project/app/orders-api'),
             env: [
               for (final MapEntry(:key, :value) in outputEnvironment().entries)
-                CloudRunV2ServiceEnv(name: .literal(key), source: .value(value)),
+                .new(name: .literal(key), source: .value(value)),
             ],
           ),
         ],
@@ -95,9 +95,9 @@ final class OrdersStack extends Stack {
       name: .literal('orders-push'),
       topic: orders.ref,
       // A sealed choice: push, BigQuery or Cloud Storage — exactly one.
-      delivery: .pushConfig(PubsubSubscriptionPushConfig(
+      delivery: .pushConfig(.new(
         pushEndpoint: .ref(api.uri),
-        oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: pushSa.ref),
+        oidcToken: .new(serviceAccountEmail: pushSa.ref),
       )),
     ));
   }

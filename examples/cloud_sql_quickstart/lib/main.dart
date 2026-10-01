@@ -104,7 +104,7 @@ final class CloudSqlStack extends Stack {
           edition: .literal(.enterprise),
           diskSize: .literal(20),
           diskType: .literal(.pdSsd),
-          ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+          ipConfiguration: .new(
             ipv4Enabled: .literal(false),
             privateNetwork: .ref(vpc.selfLink),
             // Pins the instance to the named PSA range; without this the
@@ -112,7 +112,7 @@ final class CloudSqlStack extends Stack {
             // VPC has multiple PSA peerings.
             allocatedIpRange: .ref(psaRange.nameRef),
           ),
-          insightsConfig: SqlDatabaseInstanceInsightsConfig(
+          insightsConfig: .new(
             queryInsightsEnabled: .literal(true),
             queryStringLength: .literal(1024),
             recordApplicationTags: .literal(true),

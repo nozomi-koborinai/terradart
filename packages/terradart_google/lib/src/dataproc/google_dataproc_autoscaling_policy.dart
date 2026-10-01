@@ -126,7 +126,7 @@ final class DataprocAutoscalingPolicyWorkerConfig {
 ///     maxInstances: TfArg.literal(3),
 ///   ),
 ///   basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(
-///     yarnConfig: DataprocAutoscalingPolicyYarnConfig(
+///     yarnConfig: .new(
 ///       gracefulDecommissionTimeout: TfArg.literal('30s'),
 ///       scaleUpFactor: TfArg.literal(0.5),
 ///       scaleDownFactor: TfArg.literal(0.5),

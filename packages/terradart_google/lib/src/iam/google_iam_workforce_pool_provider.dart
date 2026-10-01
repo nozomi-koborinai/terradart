@@ -435,7 +435,7 @@ final class IamWorkforcePoolProviderSaml {
 ///   workforcePoolId: .ref(pool.workforcePoolIdRef),
 ///   providerId: .literal('terradart-oidc'),
 ///   trustSource: .oidc(
-///     IamWorkforcePoolProviderOidc(
+///     .new(
 ///       issuerUri: .literal('https://accounts.google.com'),
 ///       clientId: .literal('client.apps.googleusercontent.com'),
 ///     ),

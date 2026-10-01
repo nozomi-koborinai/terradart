@@ -185,9 +185,9 @@ final class ManagedKafkaClusterCasConfigs {
 ///     memoryBytes: TfArg.literal('3221225472'), // 3 GiB
 ///   ),
 ///   gcpConfig: ManagedKafkaClusterGcpConfig(
-///     accessConfig: ManagedKafkaClusterAccessConfig(
+///     accessConfig: .new(
 ///       networkConfigs: [
-///         ManagedKafkaClusterNetworkConfigs(
+///         .new(
 ///           subnet: subnet.ref,
 ///         ),
 ///       ],

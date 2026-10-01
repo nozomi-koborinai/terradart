@@ -109,7 +109,7 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
 ///   region: TfArg.literal('us-central1'),
 ///   dedicatedResources: VertexAiDeploymentResourcePoolDedicatedResources(
 ///     minReplicaCount: TfArg.literal(1),
-///     machineSpec: VertexAiDeploymentResourcePoolMachineSpec(
+///     machineSpec: .new(
 ///       machineType: TfArg.literal('n1-standard-2'),
 ///     ),
 ///   ),

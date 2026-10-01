@@ -235,10 +235,10 @@ final class SccLeftoverStack extends Stack {
         customConfig: SccOrganizationCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
           severity: .literal(.low),
-          predicate: SccOrganizationCustomModulePredicate(
+          predicate: .new(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
-          resourceSelector: SccOrganizationCustomModuleResourceSelector(
+          resourceSelector: .new(
             resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),
@@ -255,10 +255,10 @@ final class SccLeftoverStack extends Stack {
         customConfig: SccFolderCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
           severity: .literal(.low),
-          predicate: SccFolderCustomModulePredicate(
+          predicate: .new(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
-          resourceSelector: SccFolderCustomModuleResourceSelector(
+          resourceSelector: .new(
             resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),
@@ -274,10 +274,10 @@ final class SccLeftoverStack extends Stack {
         customConfig: SccProjectCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
           severity: .literal(.low),
-          predicate: SccProjectCustomModulePredicate(
+          predicate: .new(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
-          resourceSelector: SccProjectCustomModuleResourceSelector(
+          resourceSelector: .new(
             resourceTypes: .literal(['cloudkms.googleapis.com/CryptoKey']),
           ),
         ),

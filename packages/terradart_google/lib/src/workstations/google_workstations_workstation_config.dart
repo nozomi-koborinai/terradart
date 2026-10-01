@@ -437,7 +437,7 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 ///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   host: WorkstationsWorkstationConfigHost(
-///     gceInstance: WorkstationsWorkstationConfigGceInstance(
+///     gceInstance: .new(
 ///       machineType: TfArg.literal('e2-standard-4'),
 ///       bootDiskSizeGb: TfArg.literal(50),
 ///     ),

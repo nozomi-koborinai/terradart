@@ -112,7 +112,7 @@ final class FirebaseAppHostingBuildContainer {
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
 ///   source: .codebase(
-///     FirebaseAppHostingBuildCodebase(branch: .literal('main')),
+///     .new(branch: .literal('main')),
 ///   ),
 ///   displayName: TfArg.literal('First release'),
 /// );
@@ -126,7 +126,7 @@ final class FirebaseAppHostingBuildContainer {
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
 ///   source: .container(
-///     FirebaseAppHostingBuildContainer(
+///     .new(
 ///       image: .literal('us-central1-docker.pkg.dev/p/r/web:1.2.3'),
 ///     ),
 ///   ),

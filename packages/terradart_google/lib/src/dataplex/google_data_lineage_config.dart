@@ -96,13 +96,13 @@ final class DataLineageConfigLineageEnablement {
 ///   location: TfArg.literal('global'),
 ///   ingestion: DataLineageConfigIngestion(
 ///     rule: [
-///       DataLineageConfigRule(
-///         integrationSelector: DataLineageConfigIntegrationSelector(
+///       .new(
+///         integrationSelector: .new(
 ///           integration: TfArg.literal(
 ///             DataLineageConfigIntegration.dataproc,
 ///           ),
 ///         ),
-///         lineageEnablement: DataLineageConfigLineageEnablement(
+///         lineageEnablement: .new(
 ///           enabled: TfArg.literal(true),
 ///         ),
 ///       ),

@@ -483,10 +483,9 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 ///   name: TfArg.literal('repo-github'),
 ///   location: TfArg.literal('us-central1'),
 ///   host: .githubConfig(
-///     Cloudbuildv2ConnectionGithubConfig(
+///     .new(
 ///       appInstallationId: TfArg.literal(123456),
-///       authorizerCredential:
-///           Cloudbuildv2ConnectionGithubAuthorizerCredential(
+///       authorizerCredential: .new(
 ///             oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),
 ///           ),
 ///     ),

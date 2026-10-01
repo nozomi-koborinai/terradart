@@ -524,7 +524,7 @@ final class IntegrationsAuthConfigUsernameAndPassword {
 ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
 ///     credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
 ///     secret: .usernameAndPassword(
-///       IntegrationsAuthConfigUsernameAndPassword(
+///       .new(
 ///         username: TfArg.literal('terradart-dummy'),
 ///         password: TfArg.literal('terradart-dummy-password'),
 ///       ),
