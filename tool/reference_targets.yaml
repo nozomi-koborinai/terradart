@@ -48,6 +48,8 @@ hashicorp/google:
     attributes:
       # The hub's URI; its `name` is the short name.
       google_network_connectivity_spoke.hub: id
+      # As upstream documents it: `projects/<id>/secrets/<name>`.
+      google_secret_manager_secret_version.secret: id
     exclude:
       # Also a managed SSL certificate.
       - google_compute_target_https_proxy.ssl_certificates

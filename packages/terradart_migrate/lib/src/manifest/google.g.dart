@@ -157494,7 +157494,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.reference,
           required: true,
           dartType: 'GoogleSecretManagerSecret',
-          attribute: 'name',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: '',

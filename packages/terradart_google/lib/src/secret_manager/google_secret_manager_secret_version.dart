@@ -146,7 +146,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret': secret.encodeAs('name'),
+           'secret': secret.encodeAs('id'),
            ...payload.argMap,
            'enabled': ?enabled,
            'is_secret_data_base64': ?isSecretDataBase64,
