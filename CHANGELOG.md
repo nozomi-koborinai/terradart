@@ -29,6 +29,18 @@ Per-package changelogs live alongside each package and are the system of record 
   `workload_identity_pool_id`, the Logging bucket inputs (the bucket's
   `id`), and the MM-imported attribute on a few compute, AlloyDB, Secret
   Manager and Healthcare inputs.
+- **Appwrite `permissions` take `AppwritePermission`** (`terradart_codegen`,
+  `terradart_appwrite`, `terradart_migrate`) — the `permissions` of
+  storage buckets, files, TablesDB tables and rows are
+  `TfArg<List<AppwritePermission>>` (`- principals: AppwritePermission` in
+  `tool/reference_targets.yaml`): an extension type over `TfArg<String>`
+  built from an action (`.read`, `.create`, `.update`, `.delete`,
+  `.write`) and an `AppwriteRole` (`.any`, `.guests`,
+  `.users(verified: ...)`, `.user(user.ref)`, `.team(team.ref, role: ...)`,
+  `.member(id)`, `.label(name)`), plus `.literal` / `.arg`. Both live in
+  `package:terradart_appwrite/auth.dart`. `AppwriteStorageBucket` gains its
+  `permissions` argument. The migrator writes `.read(.any)` for a literal.
+  Synth output is unchanged.
 - **AWS IAM policy attachments and Cloudflare user groups take `RefTo<R>`**
   (`terradart_aws`, `terradart_cloudflare`, `terradart_migrate`) — the
   `policy_arn` / `policy_arns` / `managed_policy_arns` /

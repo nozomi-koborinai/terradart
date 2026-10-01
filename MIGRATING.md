@@ -36,6 +36,20 @@ these inputs; the new value is the one upstream documents:
 The migrator writes the typed form, so re-running `terradart-migrate`
 produces `x.ref` for these inputs.
 
+### Appwrite permissions
+
+The `permissions` of `AppwriteStorageBucket`, `AppwriteStorageFile`,
+`AppwriteTablesdbTable` and `AppwriteTablesdbRow` are a list of
+`AppwritePermission` (`package:terradart_appwrite/auth.dart`). Synth
+output does not change:
+
+| 0.31 | 0.32 |
+|------|------|
+| `permissions: .literal(['read("any")'])` | `permissions: .literal([.read(.any)])` |
+| `permissions: .literal(['create("users")'])` | `permissions: .literal([.create(.users())])` |
+| `permissions: .literal(['write("team:${team.id.interpolation}/owner")'])` | `permissions: .literal([.write(.team(team.ref, role: 'owner'))])` |
+| a string the roles do not spell | `.literal('read("...")')` |
+
 ### AWS IAM policies and Cloudflare user groups
 
 `policyArn`, `policyArns`, `managedPolicyArns` and `permissionsBoundary` on
