@@ -9,7 +9,7 @@
 
 > **Type-safe IaC for Dart.**
 >
-> Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
+> Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. Keep the `terraform apply` you already run.
 
 **Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.31.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
@@ -20,158 +20,93 @@
 
 ---
 
-See [terradart.dev](https://terradart.dev) for documentation, guides, and API reference.
-
-| Package | Description | Pub |
-| :--- | :--- | :--- |
-| [`terradart_core`](packages/terradart_core) | Core runtime — `Stack`, `Resource`, `Provider`, `Data`, `TfArg`, and synth behavior. | [![pub](https://img.shields.io/pub/v/terradart_core.svg)](https://pub.dev/packages/terradart_core) |
-| [`terradart_google`](packages/terradart_google) | Curated factory wrappers for Google Cloud resources (`hashicorp/google`). | [![pub](https://img.shields.io/pub/v/terradart_google.svg)](https://pub.dev/packages/terradart_google) |
-| [`terradart_google_beta`](packages/terradart_google_beta) | Curated factory wrappers for beta-only Google Cloud resources (`hashicorp/google-beta`). | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
-| [`terradart_appwrite`](packages/terradart_appwrite) | Curated factory wrappers for Appwrite resources (`appwrite/appwrite`). | [![pub](https://img.shields.io/pub/v/terradart_appwrite.svg)](https://pub.dev/packages/terradart_appwrite) |
-| [`terradart_cloudflare`](packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare edge infrastructure (`cloudflare/cloudflare`). | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
-| [`terradart_aws`](packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). Guide: [Dart apps on AWS](https://terradart.dev/docs/aws/). | [![pub](https://img.shields.io/pub/v/terradart_aws.svg)](https://pub.dev/packages/terradart_aws) |
-| [`terradart_time`](packages/terradart_time) | `TimeProvider` / `TimeSleep` (`hashicorp/time`) — the propagation wait for stacks on any provider package. | [![pub](https://img.shields.io/pub/v/terradart_time.svg)](https://pub.dev/packages/terradart_time) |
-| [`terradart_codegen`](packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
-| [`terradart_hcl`](packages/terradart_hcl) | Pure Dart HCL / `*.tf.json` front-end and Terraform module model — the input side of `terradart-migrate`. | [![pub](https://img.shields.io/pub/v/terradart_hcl.svg)](https://pub.dev/packages/terradart_hcl) |
-| [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): migration manifests, emitter, leftover sidecar and the CLI that turns a Terraform source tree into a Stack per directory. `dart pub global activate terradart_migrate`. | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
-
----
-
 ## Quickstart
 
 ```yaml
 # pubspec.yaml
+name: my_app
+environment:
+  sdk: ^3.10.0
 dependencies:
   terradart_core: ^0.31.x
-  terradart_google: ^0.31.x
-  # Optional: terradart_cloudflare / terradart_appwrite / terradart_google_beta
+  terradart_google: ^0.31.x  # or terradart_aws / terradart_cloudflare / terradart_appwrite
 ```
+
+A `Stack` is one Terraform root module, written as a Dart class. This one runs an API on Cloud Run that publishes to a Pub/Sub topic, and tells the app which topic that is:
 
 ```dart
 // docs:pitch:start
-// infra/lib/app_infra.dart
-// A Stack is one Terraform root module of GCP resources, written in Dart.
-import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/cloud_run.dart';
-import 'package:terradart_google/cloud_sql.dart';
-import 'package:terradart_google/iam.dart';
-import 'package:terradart_google/provider.dart';
-
-final class AppInfraStack extends Stack {
-  AppInfraStack({required String projectId})
-      : super(providers: [
-          GoogleProvider(project: projectId, region: 'asia-northeast1'),
-        ]) {
-    add(GoogleSqlDatabaseInstance(
-      localName: 'app_sql',
-      name: .literal('app-sql'),
-      databaseVersion: .literal(.postgres15),
-      region: .literal('asia-northeast1'),
-      settings: SqlDatabaseInstanceSettings(
-        tier: .literal('db-f1-micro'),
-      ),
-    ));
-
-    final runSa = add(GoogleServiceAccount(
-      localName: 'run_sa',
-      accountId: .literal('app-run-sa'),
-    ));
-    add(GoogleProjectIamMember(
-      localName: 'run_sa_sql_client',
-      project: .literal(projectId),
-      role: .literal('roles/cloudsql.client'),
-      member: .ref(runSa.iamMember),
-    ));
-
-    add(GoogleCloudRunV2Service(
-      localName: 'app',
-      name: .literal('app'),
-      location: .literal('asia-northeast1'),
-      template: CloudRunV2ServiceTemplate(
-        serviceAccount: runSa.ref,
-        containers: [
-          CloudRunV2ServiceContainers(
-            name: .literal('app'),
-            image: .literal('gcr.io/cloudrun/hello'),
-            ports: CloudRunV2ServicePorts(
-              containerPort: .literal(8080),
-            ),
-            env: [
-              CloudRunV2ServiceEnv(
-                name: .literal('DATABASE_URL'),
-                source: .value(
-                  .literal(
-                    'postgresql://app-client@${projectId}.iam@localhost:5432/app',
-                  ),
-                ),
-              ),
-            ],
-          ),
-          CloudRunV2ServiceContainers(
-            name: .literal('cloud-sql-proxy'),
-            image: .literal(
-              'gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.18.1',
-            ),
-            args: .literal([
-              '--port=5432',
-              '--auto-iam-authn',
-              '${projectId}:asia-northeast1:app-sql',
-            ]),
-          ),
-        ],
-      ),
-    ));
-  }
-}
-// docs:pitch:end
-```
-
-```bash
-dart pub get
-dart run bin/infra.dart                                  # synth → tf-out/
-cd tf-out && terraform init && terraform apply
-```
-
-`.literal(...)` wraps known values at synth time, while `.ref(...)` (e.g. `runSa.iamMember` or `runSa.email`) passes typed references between resources that Terraform resolves during plan/apply. An argument that names another resource — a network, a service account, a bucket, an IAM role, a zone — takes that resource's `ref` instead (`network: vpc.ref`): the argument picks the attribute it emits, and passing the wrong kind of resource does not compile. `.literal` and `.ref` are Dart 3.10 dot shorthands for `TfArg.literal` / `TfArg.ref`: every constructor argument is typed `TfArg<T>`, so the class name (and an enum's type name, as in `.literal(.postgres15)`) can be left out; spell it out where there is no context type, such as `final x = TfArg.literal('a');`. `TfArg.variable('name')` reads a Terraform input variable declared with `addVariable`, and `TfArg.expression(r'${...}')` passes a raw Terraform expression through verbatim — accepted on sensitive fields, checked for undeclared variables at synth time.
-
-Per-service imports (`cloud_run.dart`, `cloud_sql.dart`, …) keep IDE completion scoped; the legacy `package:terradart_google/terradart_google.dart` barrel re-export remains supported.
-
-Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_quickstart/). Looking for edge infrastructure? See the [Cloudflare DNS quickstart](examples/cloudflare_dns_quickstart/).
-
----
-
-## What you get
-
-### The boundary: type-safe handoff to your runtime code
-
-**the boundary** = the place where infrastructure values (topic names, queue names, service URLs) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
-
-- A Pub/Sub topic name is hand-typed in HCL and again as a string literal in a Cloud Function.
-- A renamed topic or secret silently breaks runtime resolution because the reference is a string.
-
-TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), each `addConstant` becomes a typed Dart constant in `<stack>.app.dart` that your app/function code imports directly — `.ref` reads the literal a resource attribute is set to, so the value is written once — while `addOutput` declares a standard Terraform output for values only known after apply (IDs, URLs).
-
-```dart
 // lib/orders_stack.dart
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
     : super(
-        providers: [GoogleProvider(project: projectId)],
+        providers: [GoogleProvider(project: projectId, region: 'asia-northeast1')],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final orders = add(GooglePubsubTopic(
-      localName: 'orders',
-      name: .literal('orders-prod'),
-      messageRetentionDuration: .literal('604800s'),
+    final orders = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders')));
+    final apiSa = add(GoogleServiceAccount(localName: 'api', accountId: .literal('orders-api')));
+    add(GooglePubsubTopicIamMember(
+      localName: 'api_publishes_orders',
+      topic: orders.ref, // only a GooglePubsubTopic fits here
+      role: .literal('roles/pubsub.publisher'),
+      member: .ref(apiSa.iamMember),
     ));
+
+    // Typed in the app: a constant now, an output after apply.
     addConstant('ordersTopic', .ref(orders.nameRef));
     addOutput('orders_topic_id', .ref(orders.id));
+
+    final api = add(GoogleCloudRunV2Service(
+      localName: 'api',
+      name: .literal('orders-api'),
+      location: .literal('asia-northeast1'),
+      ingress: .literal(.all), // an enum, not a string
+      template: CloudRunV2ServiceTemplate(
+        serviceAccount: apiSa.ref,
+        containers: [
+          CloudRunV2ServiceContainers(
+            image: .literal('us-docker.pkg.dev/my-project/app/orders-api'),
+            env: [
+              for (final MapEntry(:key, :value) in outputEnvironment().entries)
+                CloudRunV2ServiceEnv(name: .literal(key), source: .value(value)),
+            ],
+          ),
+        ],
+      ),
+    ));
+
+    add(GooglePubsubSubscription(
+      localName: 'orders_push',
+      name: .literal('orders-push'),
+      topic: orders.ref,
+      // A sealed choice: push, BigQuery or Cloud Storage — exactly one.
+      delivery: .pushConfig(PubsubSubscriptionPushConfig(pushEndpoint: .ref(api.uri))),
+    ));
   }
 }
+// docs:pitch:end
+```
+
+The app imports the file synth generates. Constants are plain Dart; outputs are read from the environment the Stack gave the service:
+
+```dart
+// lib/orders_api.dart
+import 'dart:io';
+
+import 'generated/orders_stack.app.dart';
+
+/// The topic this service publishes to, passed in as ORDERS_TOPIC_ID.
+String ordersTopicId() =>
+    OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
+
+/// Whether a pushed message came from the orders topic.
+bool fromOrders(String topicName) => topicName == OrdersStackConstants.ordersTopic;
 ```
 
 ```dart
@@ -183,88 +118,72 @@ Future<void> main() async {
 }
 ```
 
-```dart
-// lib/orders_handler.dart
-import 'generated/orders_stack.app.dart'; // regenerated on synth
-
-bool handles(String topic) => topic == OrdersStackConstants.ordersTopic;
+```bash
+dart pub get
+dart run bin/infra.dart                     # synth: tf-out/main.tf.json + lib/generated/
+cd tf-out && terraform init && terraform apply
 ```
 
-Values known only after apply are typed too: the same file holds `OrdersStackOutputs`, with a getter per output (`ordersTopicId`), built from `terraform output -json` (`OrdersStackOutputs.fromTerraformJson(...)`) or the service's environment (`OrdersStackOutputs.fromEnvironment(Platform.environment)`, reading `ORDERS_TOPIC_ID`).
+What the compiler now checks for you:
 
-Rename `orders-prod` in the Stack and the handler follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and the handler stops compiling.
+- **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every input also has a `<name>Ref` getter (`orders.nameRef`) for wiring it elsewhere.
+- **Fixed value sets are enums and exclusive blocks are sealed types**, written as Dart 3.10 dot shorthands: `.literal(.all)`, `.pushConfig(...)`, `.value(...)`. A typo or a second delivery mode is a compile error, not a failed plan.
+- **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice.
+- **It is plain Dart.** Loops, conditionals and your own classes work as they always do. There is no synth CLI: `bin/infra.dart` calls `writeTo`, and `terraform` does the rest.
 
-### Typed enums for every fixed-value field
-
-```dart
-GoogleStorageBucket(
-  localName: 'assets',
-  name: .literal('my-app-assets-prod'),
-  location: .literal('US'),
-  storageClass: .literal(.standard),  // not 'STANDARD'
-);
-// .standerd ← typo: compile error
-```
-
-The `.terraformValue` getter convention encodes `BucketStorageClass.standard` as `"STANDARD"` at synth time. `ArgumentError` (not silent wrong JSON) on missing convention.
-
-### Sealed types for exactly-one-of nested blocks
-
-```dart
-GoogleCloudRunV2Service(
-  localName: 'api',
-  name: .literal('api'),
-  location: .literal('us-central1'),
-  template: CloudRunV2ServiceTemplate(
-    containers: [
-      CloudRunV2ServiceContainers(
-        image: .literal('gcr.io/cloudrun/hello'),
-        env: [
-          CloudRunV2ServiceEnv(
-            name: .literal('LOG_LEVEL'),
-            source: .value(.literal('info')),
-          ),
-          CloudRunV2ServiceEnv(
-            name: .literal('DB_PASSWORD'),
-            source: .valueSource(
-              CloudRunV2ServiceValueSource(
-                secretKeyRef: CloudRunV2ServiceSecretKeyRef(
-                  secret: .literal('db-pwd'),
-                  version: .literal('latest'),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ],
-  ),
-);
-```
-
-`CloudRunV2ServiceEnvSource` is a sealed type — the compiler keeps `env.value` and `env.value_source` mutually exclusive, and each choice is a dot shorthand (`.value`, `.valueSource`). Same pattern for BigQuery's 8-variant `BigqueryDatasetAccess`, Cloud Storage's `StorageBucketObjectBody`, AWS Lambda's `code`.
-
-### Plain Dart, not a templating DSL
-
-`Stack` subclasses are regular Dart classes. Loops, conditionals, env config, dependency injection — all work the way they already work. There is no synth CLI; you call `stack.writeTo('tf-out')` from your own `bin/infra.dart` (or `stack.synth()` for an in-memory `SynthResult` without writing to disk).
+Runnable versions: [`examples/pubsub_quickstart`](examples/pubsub_quickstart/) and the [`single-project-app` cookbook recipe](cookbook/single-project-app/) (Cloud Run + Cloud SQL + the app). Full walkthrough: [Getting Started](https://terradart.dev/docs/getting-started/).
 
 ---
 
-## Coding agents (Agent Skill)
+## Providers
 
-The factories are generated Dart committed to the provider packages, so a coding agent can read the exact constructor, its doc comment and a CI-validated example instead of guessing a name. The [TerraDart Agent Skill](skills/terradart/SKILL.md) tells the agent where to look: each package's generated catalog (`lib/src/_catalog.g.dart`, Terraform type → class and barrel), the [`examples/`](examples/), [`/llms.txt`](https://terradart.dev/llms.txt) and the [coverage page](https://terradart.dev/docs/coverage/).
+Each package wraps an official Terraform provider: one generated factory per resource and data source, with the provider's own docs, enums and exclusive groups.
 
-```sh
-npx skills add nozomi-koborinai/terradart --skill terradart
+| Package | Terraform provider | Catalog | Pub |
+| :--- | :--- | :--- | :--- |
+| [`terradart_google`](packages/terradart_google) | `hashicorp/google` | **1366 curated resource factories + 468 data sources** (1834 catalog entries) | [![pub](https://img.shields.io/pub/v/terradart_google.svg)](https://pub.dev/packages/terradart_google) |
+| [`terradart_google_beta`](packages/terradart_google_beta) | `hashicorp/google-beta` | the beta-only types (**112 resource factories**); everything also in GA stays in `terradart_google` | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
+| [`terradart_aws`](packages/terradart_aws) | `hashicorp/aws` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_aws.svg)](https://pub.dev/packages/terradart_aws) |
+| [`terradart_cloudflare`](packages/terradart_cloudflare) | `cloudflare/cloudflare` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
+| [`terradart_appwrite`](packages/terradart_appwrite) | `appwrite/appwrite` | every resource and data source at `2.0.0-beta.1` (38 resource factories + 24 data sources) | [![pub](https://img.shields.io/pub/v/terradart_appwrite.svg)](https://pub.dev/packages/terradart_appwrite) |
+| [`terradart_time`](packages/terradart_time) | `hashicorp/time` | `TimeSleep`, the propagation wait for a stack on any provider | [![pub](https://img.shields.io/pub/v/terradart_time.svg)](https://pub.dev/packages/terradart_time) |
+
+All of them build on [`terradart_core`](packages/terradart_core) ([![pub](https://img.shields.io/pub/v/terradart_core.svg)](https://pub.dev/packages/terradart_core)): `Stack`, `Resource`, `Data`, `TfArg`, `RefTo` and synth. One Stack can mix providers — this one puts a Cloudflare zone in front of the Cloud Run service:
+
+```dart
+// lib/edge_stack.dart
+import 'package:terradart_cloudflare/dns.dart';
+import 'package:terradart_cloudflare/provider.dart';
+import 'package:terradart_cloudflare/zone.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+final class EdgeStack extends Stack {
+  EdgeStack({required String accountId}) : super(providers: [const CloudflareProvider()]) {
+    final zone = add(CloudflareZone(
+      localName: 'main',
+      name: .literal('example.com'),
+      account: ZoneAccount(id: .literal(accountId)),
+    ));
+    add(CloudflareDnsRecord(
+      localName: 'api',
+      zoneId: zone.ref,
+      name: .literal('api.example.com'),
+      type: .literal(.cname),
+      ttl: .literal(1),
+      content: .content(.literal('ghs.googlehosted.com')),
+      proxied: .literal(true),
+    ));
+  }
+}
 ```
 
-Docs: [terradart.dev/docs/agents/](https://terradart.dev/docs/agents/). The earlier `terradart-mcp` server was retired in favour of the skill (see [MIGRATING.md](MIGRATING.md)).
+Credentials never enter the synthesized JSON: each provider authenticates at apply time through its usual environment variables or credential chain. Per-provider guides: [Dart apps on AWS](https://terradart.dev/docs/aws/) (Lambda, ECS Express Mode, S3 + CloudFront); examples for [Cloudflare DNS](examples/cloudflare_dns_quickstart/), [Appwrite](examples/appwrite_quickstart/) and every [Google Cloud product](examples/).
 
 ---
 
-## Migrating from HCL (`terradart-migrate`)
+## Already on Terraform?
 
-**Alpha.** [`terradart-migrate`](packages/terradart_migrate/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** (`terradart_leftover.tf` and friends) beside each `main.tf.json` holding, verbatim and with a reason each, every block the curated factories do not cover yet. Resource addresses are preserved, so `terraform plan` against the existing state reports *No changes* — migrate one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access, nothing written into the source tree.
+[`terradart-migrate`](packages/terradart_migrate/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** beside each `main.tf.json` holding, verbatim and with a reason, every block it cannot translate yet. Resource addresses are preserved, so `terraform plan` against your existing state reports *No changes* — move one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access.
 
 ```sh
 dart pub global activate terradart_migrate
@@ -272,42 +191,25 @@ terradart-migrate --dir infra --out infra_dart
 cd infra_dart && dart pub get && dart run bin/infra.dart   # then: terraform init && terraform plan in tf-out/<root>
 ```
 
-Docs: [terradart.dev/docs/migrate-from-hcl/](https://terradart.dev/docs/migrate-from-hcl/)
+`terradart-migrate --report` sizes a tree without writing anything. Guide: [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).
 
 ---
 
-## Coverage & Examples
+## Tools
 
-- [`terradart_google`](packages/terradart_google/README.md) ships **1366 curated resource factories + 468 data sources** (1834 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
-- [`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**112 resource factories**, schema pin tracking the weekly GA bump).
-- [`terradart_appwrite`](packages/terradart_appwrite/README.md) ships the filled `appwrite/appwrite` catalog at `2.0.0-beta.1` (38 resource factories + 24 data sources).
-- [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) ships the filled `cloudflare/cloudflare` catalog at its exact provider pin (every resource and data source). Nested plugin-framework objects are typed Dart helpers.
-- [`terradart_aws`](packages/terradart_aws/README.md) fills the `hashicorp/aws` catalog at its exact provider pin (every resource and data source).
+| Package | What it is | Pub |
+| :--- | :--- | :--- |
+| [`terradart_migrate`](packages/terradart_migrate) | The HCL → Dart migrator (`terradart-migrate`). | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
+| [`terradart_hcl`](packages/terradart_hcl) | A pure Dart HCL / `*.tf.json` parser and Terraform module model — the migrator's input side. | [![pub](https://img.shields.io/pub/v/terradart_hcl.svg)](https://pub.dev/packages/terradart_hcl) |
+| [`terradart_codegen`](packages/terradart_codegen) | The maintainer generation CLI (`terradart wrap`) that produces the provider packages. | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 
-Explore ready-to-run examples in [`examples/`](examples/):
-- **Foundational & IAM**: [Pub/Sub](examples/pubsub_quickstart/), [Cloud Tasks](examples/cloud_tasks_quickstart/), [Secret Manager](examples/secret_manager_quickstart/), [IAM](examples/iam_quickstart/)
-- **Compute & Networking**: [Compute & Firewall](examples/compute_quickstart/), [GKE](examples/gke_quickstart/), [Cloud DNS](examples/dns_quickstart/)
-- **Data & Storage**: [Cloud Storage](examples/storage_quickstart/), [BigQuery](examples/bigquery_quickstart/), [Cloud Bigtable](examples/bigtable_quickstart/), [KMS](examples/kms_quickstart/)
-- **Application Platform**: [Cloud Run v2](examples/cloud_run_quickstart/), [Cloud Monitoring](examples/monitoring_quickstart/), [Workflows](examples/workflows_quickstart/), [Eventarc](examples/eventarc_quickstart/)
-- **AI & Agents**: [Vertex AI](examples/vertex_ai_quickstart/), [Agentic Applications](examples/agentic_applications_quickstart/)
-- **Multi-provider & Edge**: [Cloudflare DNS](examples/cloudflare_dns_quickstart/), [Appwrite](examples/appwrite_quickstart/)
-- **AWS**: [Lambda](examples/aws_lambda_quickstart/), [Static site on S3 + CloudFront](examples/aws_static_site_quickstart/), [ECS Express Mode](examples/aws_ecs_express_quickstart/)
+**Coding agents.** The factories are generated Dart committed to the provider packages, so an agent can read the exact constructor, its doc comment and a CI-validated example instead of guessing. The [TerraDart Agent Skill](skills/terradart/SKILL.md) tells it where to look (each package's `lib/src/_catalog.g.dart`, [`examples/`](examples/), [`/llms.txt`](https://terradart.dev/llms.txt)):
 
-See the full factory table on [terradart.dev/docs/coverage/](https://terradart.dev/docs/coverage/).
+```sh
+npx skills add nozomi-koborinai/terradart --skill terradart
+```
 
----
-
-## How it compares
-
-|   | TerraDart | HCL | CDKTF | Pulumi |
-|---|---|---|---|---|
-| Dart authoring | ✅ | ❌ | ❌ (TS / Py / Java / Go) | ⚠️ (community host; no official SDK) |
-| Type-safe handoff to your app | ✅ (compile-time) | ❌ (`terraform output` + parse) | ❌ (no Dart) | ❌ (no typed Dart export) |
-| Drop-in for `terraform apply` | ✅ (emits `*.tf.json`) | ✅ (native) | ✅ | ❌ (different state engine) |
-| Execution engine | Plain `terraform` | Plain `terraform` | Plain `terraform` | Pulumi engine + state backend |
-| Project status | Alpha | Mature | **Archived Dec 2025** | Active |
-
-**Already using Pulumi?** If your team already runs on Pulumi and wants to write stacks in Dart, check out [Pulumi Dart](https://github.com/kingwill101/pulumi-dart) (`kingwill101/pulumi-dart`), an active community language runtime and provider SDK ecosystem for Pulumi. TerraDart is designed specifically for teams using **Terraform** who want type-safe Dart authoring without replacing their existing Terraform state or execution pipeline.
+Docs: [terradart.dev/docs/agents/](https://terradart.dev/docs/agents/).
 
 ---
 
@@ -318,19 +220,17 @@ See the full factory table on [terradart.dev/docs/coverage/](https://terradart.d
 - **Not a constructs framework.** Composite abstractions are out of scope for the pre-1.0 cycle.
 - **Not module-block support.** Compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json` — both feed the same `terraform apply`.
 
+How TerraDart compares with HCL, CDKTF and Pulumi: [Why TerraDart](https://terradart.dev/docs/why-terradart/).
+
 ---
 
 ## Status
 
-**Alpha**, pre-1.0 (0.31.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.31.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
-
----
+**Alpha**, pre-1.0 (0.31.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.31.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta).
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). For security issues, use the [GitHub private security advisory flow](SECURITY.md).
-
----
 
 ## Trademarks
 
@@ -339,8 +239,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). For security issues, use the [GitHub pri
 Dart™ and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.
 
 TerraDart is an independent open-source project and is not affiliated with, endorsed by, or sponsored by HashiCorp or Google.
-
----
 
 ## License & acknowledgements
 

@@ -40,24 +40,25 @@ const highlightedHtml = await codeToHtml(code, {
 <section class="section rule-top pitch-code-section">
   <div class="container-edit section-inner">
     <p class="section-label">Example</p>
-    <h2 class="display-section">Cloud infrastructure in Dart</h2>
+    <h2 class="display-section">Infrastructure and app, one typed source</h2>
     <p class="pitch-code-lead">
-      Cloud SQL, IAM, and a multi-container Cloud Run service with a
-      <code>cloud-sql-proxy</code> sidecar&nbsp;&mdash; a
-      <code>final class … extends Stack</code>. Same snippet as the
-      repository README.
+      A Pub/Sub topic, a Cloud Run service and a push subscription&nbsp;&mdash;
+      a <code>final class … extends Stack</code>. <code>addConstant</code> and
+      <code>addOutput</code> become a generated Dart file the app imports, and
+      <code>outputEnvironment()</code> hands the outputs to the service. Same
+      snippet as the repository README, compiled in CI.
     </p>
     <div class="pitch-code-figure">
       <div class="terra-stratum" aria-hidden="true"></div>
       <div class="pitch-code-wrap" set:html={highlightedHtml} />
     </div>
     <p class="pitch-code-meta">
-      Curated packages wrap official Terraform providers:
+      The same API wraps every official Terraform provider TerraDart ships:
       <code>terradart_google</code> (GA catalog, 1834 entries),
       <code>terradart_google_beta</code> (112 beta-only factories),
-      <code>terradart_appwrite</code>, <code>terradart_cloudflare</code>, and
-      <code>terradart_aws</code>.
-      The full factory list with runnable examples is on
+      <code>terradart_aws</code>, <code>terradart_cloudflare</code> and
+      <code>terradart_appwrite</code>.
+      The Google factory list with runnable examples is on
       <a href="/docs/coverage/" class="link-mark">Coverage</a>; complete stacks live in the
       <a
         href="https://github.com/nozomi-koborinai/terradart/tree/main/cookbook"
