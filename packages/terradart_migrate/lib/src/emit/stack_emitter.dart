@@ -418,12 +418,13 @@ final class StackEmitter {
 
   EmittedStack emit() {
     final variableTypes = <String, VariableType>{};
+    final untypedVariables = <String, String>{};
     for (final v in module.variables) {
       ctx.declaredVariables.add(v.name);
       try {
         variableTypes[v.name] = _variableType(v);
-      } on MigrateBlocker {
-        // _variable keeps it external with the reason.
+      } on MigrateBlocker catch (e) {
+        untypedVariables[v.name] = e.reason;
       }
     }
 
@@ -682,6 +683,9 @@ final class StackEmitter {
       final handle = ctx.variableHandles[v.name];
       final declares =
           type != null && handle != null && usedHandles.contains(v.name);
+      if (untypedVariables[v.name] case final reason?) {
+        _keep('variable.${v.name}', reason);
+      }
       final stmt = type == null ? null : _variable(v, type);
       if (stmt == null) {
         write('variable.${v.name}', _externalVariable(v.name));
