@@ -287,21 +287,24 @@ jobs:
           echo "Exit: $rc"
           cat /tmp/wrap_check.txt
 
-      - name: Sync catalog counts in the docs
+      - name: Sync catalog counts and coverage pages in the docs
         run: |
           # Only the terradart_google catalog is restated in prose
-          # (tool/doc_expectations.dart); the coverage page renders from the
-          # catalog plus every example's synth output.
-          if git diff --quiet -- "$CATALOG" || [ "$LANE" != "google" ]; then
-            echo "Catalog unchanged or not restated; docs untouched."
+          # (tool/doc_expectations.dart); the coverage pages, one per
+          # provider package, render from every catalog plus every example's
+          # synth output.
+          if git diff --quiet -- "$CATALOG"; then
+            echo "Catalog unchanged; docs untouched."
             exit 0
           fi
-          dart tool/check_docs_consistency.dart --fix \
-            || echo "::warning::docs consistency still fails after --fix (the lane gates report it)."
+          if [ "$LANE" = "google" ]; then
+            dart tool/check_docs_consistency.dart --fix \
+              || echo "::warning::docs consistency still fails after --fix (the lane gates report it)."
+          fi
           if dart tool/example_synth_gates.dart --skip-validate > /tmp/synth_gates.txt 2>&1; then
             echo "Synth gates green."
           else
-            echo "::warning::example synth gates fail; the coverage page renders from what synthed."
+            echo "::warning::example synth gates fail; the coverage pages render from what synthed."
             tail -n 40 /tmp/synth_gates.txt
           fi
           dart tool/render_coverage_page.dart

@@ -69,7 +69,7 @@ Future<void> main(List<String> args) async {
   );
   _checkPhrase(
     errors,
-    'website/src/content/docs/docs/coverage.md',
+    'website/src/content/docs/docs/coverage/google.md',
     '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
     '($catalogEntryCount catalog entries)',
   );
@@ -312,9 +312,13 @@ List<String> _proseFiles() {
     (p) => p.endsWith('.yaml'),
   );
   under('.agents/skills', (p) => p.endsWith('.md'));
+  // The coverage pages state every catalog's counts on purpose: they are
+  // rendered from the catalogs, and the bump re-renders them.
   under(
     'website/src',
-    (p) => p.endsWith('.md') || p.endsWith('.mdx') || p.endsWith('.astro'),
+    (p) =>
+        !p.startsWith('website/src/content/docs/docs/coverage/') &&
+        (p.endsWith('.md') || p.endsWith('.mdx') || p.endsWith('.astro')),
   );
   return files..sort();
 }

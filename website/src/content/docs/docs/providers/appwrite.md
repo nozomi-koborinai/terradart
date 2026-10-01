@@ -68,4 +68,5 @@ Inputs with a fixed value set are Dart enums, taken from the provider's validato
 ## Reference
 
 - [`terradart_appwrite` API docs](https://pub.dev/documentation/terradart_appwrite/latest/)
+- [Appwrite coverage](/docs/coverage/appwrite/) — every factory, its barrel and its example
 - [`lib/src/_catalog.g.dart`](https://github.com/nozomi-koborinai/terradart/blob/main/packages/terradart_appwrite/lib/src/_catalog.g.dart) — Terraform type → Dart class and import, for every factory
