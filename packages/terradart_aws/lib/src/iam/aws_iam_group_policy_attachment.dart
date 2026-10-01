@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
+
 /// Sensitive field paths for `aws_iam_group_policy_attachment`.
 const Set<String> _awsIamGroupPolicyAttachmentSensitive = <String>{};
 
@@ -13,14 +15,14 @@ final class AwsIamGroupPolicyAttachment extends Resource {
   AwsIamGroupPolicyAttachment({
     required super.localName,
     required TfArg<String> group,
-    required TfArg<String> policyArn,
+    required RefTo<AwsIamPolicy> policyArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'group': group, 'policy_arn': policyArn},
+         argMap: {'group': group, 'policy_arn': policyArn.encodeAs('arn')},
        );
 
   @override

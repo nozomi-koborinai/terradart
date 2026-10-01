@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
+
 /// Sensitive field paths for `aws_rolesanywhere_profile`.
 const Set<String> _awsRolesanywhereProfileSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsRolesanywhereProfile extends Resource {
     TfArg<bool>? acceptRoleSessionName,
     TfArg<num>? durationSeconds,
     TfArg<bool>? enabled,
-    TfArg<List<String>>? managedPolicyArns,
+    TfArg<List<RefTo<AwsIamPolicy>>>? managedPolicyArns,
     required TfArg<String> name,
     TfArg<bool>? requireInstanceProperties,
     TfArg<List<String>>? roleArns,
@@ -31,7 +33,7 @@ final class AwsRolesanywhereProfile extends Resource {
            'accept_role_session_name': ?acceptRoleSessionName,
            'duration_seconds': ?durationSeconds,
            'enabled': ?enabled,
-           'managed_policy_arns': ?managedPolicyArns,
+           'managed_policy_arns': ?managedPolicyArns?.encodeAs('arn'),
            'name': name,
            'require_instance_properties': ?requireInstanceProperties,
            'role_arns': ?roleArns,

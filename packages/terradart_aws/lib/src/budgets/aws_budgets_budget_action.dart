@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_budgets_budget_action`.
@@ -105,7 +106,7 @@ final class BudgetsBudgetActionIamActionDefinition {
 
   final TfArg<List<String>>? groups;
 
-  final TfArg<String> policyArn;
+  final RefTo<AwsIamPolicy> policyArn;
 
   final TfArg<List<RefTo<AwsIamRole>>>? roles;
 
@@ -113,7 +114,7 @@ final class BudgetsBudgetActionIamActionDefinition {
 
   Map<String, Object?> encode() => {
     'groups': ?groups?.toTfJson(),
-    'policy_arn': policyArn.toTfJson(),
+    'policy_arn': policyArn.encodeAs('arn').toTfJson(),
     'roles': ?roles?.encodeAs('name').toTfJson(),
     'users': ?users?.toTfJson(),
   };

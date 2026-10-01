@@ -97618,9 +97618,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arn',
           dartName: 'policyArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
       ],
       getters: <MigrateGetter>[
@@ -97649,9 +97650,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arns',
           dartName: 'policyArns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
       ],
       getters: <MigrateGetter>[
@@ -98156,9 +98159,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arn',
           dartName: 'policyArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'roles',
@@ -98468,9 +98472,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_policy_arns',
           dartName: 'managedPolicyArns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'max_session_duration',
@@ -98501,9 +98507,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'permissions_boundary',
           dartName: 'permissionsBoundary',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -98765,9 +98772,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arn',
           dartName: 'policyArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -98837,9 +98845,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arns',
           dartName: 'policyArns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'role_name',
@@ -99486,9 +99496,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'permissions_boundary',
           dartName: 'permissionsBoundary',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -99761,9 +99772,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arn',
           dartName: 'policyArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'user',
@@ -99792,9 +99804,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arns',
           dartName: 'policyArns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'user_name',
@@ -148798,9 +148812,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arn',
           dartName: 'policyArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -160035,9 +160050,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_policy_arns',
           dartName: 'managedPolicyArns',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -241591,9 +241608,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_arn',
           dartName: 'policyArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamPolicy',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'roles',
