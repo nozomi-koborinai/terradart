@@ -54,7 +54,9 @@ graph LR
 `Stack`, `Resource`, and `Data` are `abstract base class`. Your subclasses must declare a class modifier:
 
 ```dart
-final class AppInfraStack extends Stack { /* ... */ }
+final class AppInfraStack extends Stack {
+  AppInfraStack() : super(providers: [GoogleProvider(project: 'my-project')]);
+}
 ```
 
 `base` and `sealed` are also valid; what is rejected is plain `class` (or `implements Stack`, which would bypass the base-class state that synth depends on).
@@ -118,6 +120,11 @@ graph LR
 The constants file is configured once, on the constructor, and `addConstant` throws when it is missing:
 
 ```dart
+// lib/orders_stack.dart
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
+
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
     : super(
@@ -131,20 +138,43 @@ final class OrdersStack extends Stack {
 }
 ```
 
+`bin/infra.dart` writes `tf-out/main.tf.json` and the generated file:
+
+```dart
+// bin/infra.dart
+import 'package:my_app/orders_stack.dart';
+
+Future<void> main() async {
+  await OrdersStack(projectId: 'my-project').writeTo('tf-out');
+}
+```
+
 ### Reading outputs in the app
 
 The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', .ref(topic.id))` becomes `String get ordersTopicId`). The app builds it from either source:
 
 ```dart
-// A script or test that runs after apply:
-final applied = OrdersStackOutputs.fromTerraformJson(
-  jsonDecode((await Process.run('terraform', ['output', '-json'], workingDirectory: 'tf-out')).stdout as String)
-      as Map<String, Object?>,
-);
+// lib/read_outputs.dart
+import 'dart:convert';
+import 'dart:io';
 
-// A deployed service, whose environment carries ORDERS_TOPIC_ID:
-final deployed = OrdersStackOutputs.fromEnvironment(Platform.environment);
-print(deployed.ordersTopicId);
+import 'generated/orders_stack.app.dart';
+
+/// A script or test that runs after apply.
+Future<String> appliedTopicId() async {
+  final output = await Process.run('terraform', [
+    'output',
+    '-json',
+  ], workingDirectory: 'tf-out');
+  final outputs = OrdersStackOutputs.fromTerraformJson(
+    jsonDecode(output.stdout as String) as Map<String, Object?>,
+  );
+  return outputs.ordersTopicId;
+}
+
+/// A deployed service, whose environment carries ORDERS_TOPIC_ID.
+String deployedTopicId() =>
+    OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
 ```
 
 `fromEnvironment` reads each output from the variable named after it in SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`); a `String` output is the variable's value and any other type is JSON. Each getter reads when called, so a service whose environment sets only some of the variables can read those, and a missing or mistyped value throws a `StateError` naming the output and the variable. A sensitive output has no getter — read a secret from its secret store. With `appExports` set, `addOutput` rejects an output whose getter is not a usable Dart identifier, or whose getter or variable another output already has.
@@ -154,12 +184,15 @@ print(deployed.ordersTopicId);
 `outputEnvironment()` returns exactly those variables — each non-sensitive output registered so far, by variable name, as a `TfArg<String>`: a `String` output as is, any other as `jsonencode(...)` — so a Cloud Run service (or a function) receives the outputs it reads, with no variable name written twice:
 
 ```dart
+final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
 addOutput('orders_topic_id', .ref(topic.id));
 final service = add(GoogleCloudRunV2Service(
-  // ...
+  localName: 'api',
+  name: .literal('orders-api'),
+  location: .literal('asia-northeast1'),
   template: CloudRunV2ServiceTemplate(containers: [
     CloudRunV2ServiceContainers(
-      image: .literal(image),
+      image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
       env: [
         for (final MapEntry(:key, :value) in outputEnvironment().entries)
           CloudRunV2ServiceEnv(name: .literal(key), source: .value(value)),

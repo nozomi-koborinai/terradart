@@ -39,6 +39,7 @@ The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart
 Create `lib/orders_stack.dart` (or follow the [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart)):
 
 ```dart
+// lib/orders_stack.dart
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
@@ -64,7 +65,8 @@ final class OrdersStack extends Stack {
 From `bin/infra.dart`:
 
 ```dart
-import 'package:my_pkg/orders_stack.dart';
+// bin/infra.dart
+import 'package:my_app/orders_stack.dart';
 
 Future<void> main() async {
   final stack = OrdersStack(projectId: 'YOUR-PROJECT-ID');
@@ -94,17 +96,20 @@ Your existing remote state backend and modules stay unchanged — TerraDart only
 Import generated constants in app code instead of string literals:
 
 ```dart
+// lib/subscriber.dart
+import 'dart:io';
+
 import 'generated/orders_stack.app.dart';
 
 bool acceptsTopic(String eventTopic) =>
     eventTopic == OrdersStackConstants.ordersTopicName;
+
+/// Known only after apply, so it comes from the generated outputs reader.
+String ordersTopicId() =>
+    OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
 ```
 
-Values known only after apply, such as the topic's full ID, come from the generated `OrdersStackOutputs` reader. A deployed service reads them from its environment (`ORDERS_TOPIC_ID`); a script can read `terraform output -json`:
-
-```dart
-final topicId = OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
-```
+Values known only after apply, such as the topic's full ID, come from the generated `OrdersStackOutputs` reader, as `ordersTopicId()` shows: a deployed service reads them from its environment (`ORDERS_TOPIC_ID`), and a script can read `terraform output -json` with `OrdersStackOutputs.fromTerraformJson`.
 
 Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
@@ -168,7 +173,7 @@ final class MobileAppBackendStack extends Stack {
       localName: 'web_client',
       displayName: .literal('Web Client'),
       project: .literal(projectId),
-      dependsOn: [fb],
+      dependsOn: [ResourceDependency(fb)],
     ));
 
     // 3. [GA] Firestore Database (Native mode)
@@ -177,7 +182,7 @@ final class MobileAppBackendStack extends Stack {
       name: .literal('(default)'),
       locationId: .literal('asia-northeast1'),
       type: .literal(.firestoreNative),
-      dependsOn: [fb],
+      dependsOn: [ResourceDependency(fb)],
     ));
 
     // 4. [GA] Cloud Storage for user uploads
@@ -196,13 +201,13 @@ final class MobileAppBackendStack extends Stack {
       location: .literal('asia-northeast1'),
       template: CloudRunV2ServiceTemplate(
         containers: [
-          CloudRunV2ServiceServiceContainer(
+          CloudRunV2ServiceContainers(
             name: .literal('server'),
             image: .literal(
               'us-docker.pkg.dev/cloudrun/container/hello',
             ),
             env: [
-              CloudRunV2ServiceEnvVar(
+              CloudRunV2ServiceEnv(
                 name: .literal('UPLOAD_BUCKET'),
                 source: .value(.ref(uploadsBucket.nameRef)),
               ),
@@ -210,7 +215,7 @@ final class MobileAppBackendStack extends Stack {
           ),
         ],
       ),
-      dependsOn: [db],
+      dependsOn: [ResourceDependency(db)],
     ));
   }
 }

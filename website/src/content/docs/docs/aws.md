@@ -31,6 +31,7 @@ Synth needs no credentials at all. `assumeRole`, `defaultTags`, `ignoreTags` and
 Lambda has no Dart runtime, but its `provided.al2023` custom runtime runs any Linux binary named `bootstrap`. `dart compile exe` produces one:
 
 ```dart
+// lib/hello_lambda_stack.dart
 import 'package:terradart_aws/cloudwatch.dart';
 import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/iam.dart';
@@ -87,11 +88,11 @@ final class HelloLambdaStack extends Stack {
       localName: 'hello',
       functionName: .literal('hello-dart'),
       role: role.ref,
-      runtime: .literal('provided.al2023'),
+      runtime: .literal(.providedAl2023),
       handler: .literal('bootstrap'),
-      filename: .literal('../build/bootstrap.zip'),
+      code: .filename(.literal('../build/bootstrap.zip')),
       loggingConfig: LambdaFunctionLoggingConfig(
-        logFormat: .literal('Text'),
+        logFormat: .literal(.text),
         logGroup: logs.ref,
       ),
     );
@@ -99,7 +100,7 @@ final class HelloLambdaStack extends Stack {
     add(AwsLambdaFunctionUrl(
       localName: 'hello',
       functionName: fn.ref,
-      authorizationType: .literal('NONE'),
+      authorizationType: .literal(.none),
     ));
   }
 }
@@ -223,7 +224,7 @@ final class FlutterWebStack extends Stack {
     add(bucket);
     add(AwsS3BucketPublicAccessBlock(
       localName: 'site',
-      bucket: .ref(bucket.id),
+      bucket: bucket.ref,
       blockPublicAcls: .literal(true),
       blockPublicPolicy: .literal(true),
       ignorePublicAcls: .literal(true),
@@ -233,9 +234,9 @@ final class FlutterWebStack extends Stack {
     final oac = AwsCloudfrontOriginAccessControl(
       localName: 'site',
       name: .literal('flutter-web'),
-      originAccessControlOriginType: .literal('s3'),
-      signingBehavior: .literal('always'),
-      signingProtocol: .literal('sigv4'),
+      originAccessControlOriginType: .literal(.s3),
+      signingBehavior: .literal(.always),
+      signingProtocol: .literal(.sigv4),
     );
     add(oac);
 
@@ -258,7 +259,9 @@ final class FlutterWebStack extends Stack {
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
         targetOriginId: .literal('site'),
-        viewerProtocolPolicy: .literal('redirect-to-https'),
+        viewerProtocolPolicy: .literal(
+          CloudfrontDistributionViewerProtocolPolicy.redirectToHttps,
+        ),
         allowedMethods: .literal(['GET', 'HEAD']),
         cachedMethods: .literal(['GET', 'HEAD']),
         cachePolicyId: .ref(cachePolicy.id),
@@ -274,7 +277,7 @@ final class FlutterWebStack extends Stack {
       ],
       restrictions: CloudfrontDistributionRestrictions(
         geoRestriction: CloudfrontDistributionGeoRestriction(
-          restrictionType: .literal('none'),
+          restrictionType: .literal(CloudfrontDistributionRestrictionType.none),
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(
@@ -308,7 +311,7 @@ final class FlutterWebStack extends Stack {
     addData(readFromCloudFront);
     add(AwsS3BucketPolicy(
       localName: 'site',
-      bucket: .ref(bucket.id),
+      bucket: bucket.ref,
       policy: .ref(readFromCloudFront.json),
     ));
   }
@@ -333,6 +336,8 @@ Each Stack synths like any other TerraDart Stack:
 
 ```dart
 // bin/infra.dart
+import 'package:my_app/hello_lambda_stack.dart';
+
 Future<void> main() async {
   await HelloLambdaStack().writeTo('tf-out');
 }

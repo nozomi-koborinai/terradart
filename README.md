@@ -88,16 +88,16 @@ final class AppInfraStack extends Stack {
       name: .literal('app'),
       location: .literal('asia-northeast1'),
       template: CloudRunV2ServiceTemplate(
-        serviceAccount: .ref(runSa.email),
+        serviceAccount: runSa.ref,
         containers: [
-          CloudRunV2ServiceServiceContainer(
+          CloudRunV2ServiceContainers(
             name: .literal('app'),
             image: .literal('gcr.io/cloudrun/hello'),
-            ports: CloudRunV2ServiceContainerPort(
+            ports: CloudRunV2ServicePorts(
               containerPort: .literal(8080),
             ),
             env: [
-              CloudRunV2ServiceEnvVar(
+              CloudRunV2ServiceEnv(
                 name: .literal('DATABASE_URL'),
                 source: .value(
                   .literal(
@@ -107,7 +107,7 @@ final class AppInfraStack extends Stack {
               ),
             ],
           ),
-          CloudRunV2ServiceServiceContainer(
+          CloudRunV2ServiceContainers(
             name: .literal('cloud-sql-proxy'),
             image: .literal(
               'gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.18.1',
@@ -152,7 +152,7 @@ Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_qui
 TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), each `addConstant` becomes a typed Dart constant in `<stack>.app.dart` that your app/function code imports directly — `.ref` reads the literal a resource attribute is set to, so the value is written once — while `addOutput` declares a standard Terraform output for values only known after apply (IDs, URLs).
 
 ```dart
-// infra/lib/orders_stack.dart
+// lib/orders_stack.dart
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
@@ -175,14 +175,19 @@ final class OrdersStack extends Stack {
 ```
 
 ```dart
-// functions/lib/orders_handler.dart  (regenerated on synth)
-import 'package:my_app_infra/generated/orders_stack.app.dart';
+// bin/infra.dart
+import 'package:my_app/orders_stack.dart';
 
-Future<void> handle(PubsubEvent event) async {
-  if (event.topic == OrdersStackConstants.ordersTopic) {
-    // ... process event
-  }
+Future<void> main() async {
+  await OrdersStack(projectId: 'my-project').writeTo('tf-out');
 }
+```
+
+```dart
+// lib/orders_handler.dart
+import 'generated/orders_stack.app.dart'; // regenerated on synth
+
+bool handles(String topic) => topic == OrdersStackConstants.ordersTopic;
 ```
 
 Values known only after apply are typed too: the same file holds `OrdersStackOutputs`, with a getter per output (`ordersTopicId`), built from `terraform output -json` (`OrdersStackOutputs.fromTerraformJson(...)`) or the service's environment (`OrdersStackOutputs.fromEnvironment(Platform.environment)`, reading `ORDERS_TOPIC_ID`).
@@ -195,6 +200,7 @@ Rename `orders-prod` in the Stack and the handler follows on the next synth — 
 GoogleStorageBucket(
   localName: 'assets',
   name: .literal('my-app-assets-prod'),
+  location: .literal('US'),
   storageClass: .literal(.standard),  // not 'STANDARD'
 );
 // .standerd ← typo: compile error
@@ -206,21 +212,37 @@ The `.terraformValue` getter convention encodes `BucketStorageClass.standard` as
 
 ```dart
 GoogleCloudRunV2Service(
-  template: Template(
-    containers: [ServiceContainer(
-      image: .literal('gcr.io/cloudrun/hello'),
-      env: [
-        EnvVar(name: 'LOG_LEVEL',
-               source: EnvVarFromLiteral(.literal('info'))),
-        EnvVar(name: 'DB_PASSWORD',
-               source: EnvVarFromSecret(secret: .literal('db-pwd'))),
-      ],
-    )],
+  localName: 'api',
+  name: .literal('api'),
+  location: .literal('us-central1'),
+  template: CloudRunV2ServiceTemplate(
+    containers: [
+      CloudRunV2ServiceContainers(
+        image: .literal('gcr.io/cloudrun/hello'),
+        env: [
+          CloudRunV2ServiceEnv(
+            name: .literal('LOG_LEVEL'),
+            source: .value(.literal('info')),
+          ),
+          CloudRunV2ServiceEnv(
+            name: .literal('DB_PASSWORD'),
+            source: .valueSource(
+              CloudRunV2ServiceValueSource(
+                secretKeyRef: CloudRunV2ServiceSecretKeyRef(
+                  secret: .literal('db-pwd'),
+                  version: .literal('latest'),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ],
   ),
 );
 ```
 
-`EnvVarSource` is a sealed type — the compiler keeps `env.value` and `env.value_source.secret_key_ref` mutually exclusive. Same pattern for BigQuery's 8-variant `Access`, Cloud Storage's `BucketObjectContent`, Cloud Run's `VolumeSource`.
+`CloudRunV2ServiceEnvSource` is a sealed type — the compiler keeps `env.value` and `env.value_source` mutually exclusive, and each choice is a dot shorthand (`.value`, `.valueSource`). Same pattern for BigQuery's 8-variant `BigqueryDatasetAccess`, Cloud Storage's `StorageBucketObjectBody`, AWS Lambda's `code`.
 
 ### Plain Dart, not a templating DSL
 
