@@ -94,8 +94,8 @@ final class ComputeRegionSslCertificatePrivateKeyWo
 /// GoogleComputeRegionSslCertificate(
 ///   'regional_cert',
 ///   name: TfArg.literal('regional-cert'),
-///   certificate: TfArg.literal(pemCertificate),
-///   privateKey: .privateKey(.literal(pemPrivateKey)),
+///   certificate: .variable('regional_cert_pem'),
+///   privateKey: .privateKey(.variable('regional_cert_private_key')),
 ///   region: TfArg.literal('asia-northeast1'),
 /// );
 /// ```

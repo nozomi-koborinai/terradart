@@ -1416,6 +1416,24 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(r.report.warnings.single, contains('"other"'));
     });
 
+    test('a variable whose type is unreadable stays in the sidecar', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'provider': {'google': <String, Object?>{}},
+        'variable': {
+          'odd': {'type': 'strin(g'},
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            'x': {'name': r'${var.odd}'},
+          },
+        },
+      });
+      expect(r.stackSource, contains("externalVariable('odd');"));
+      expect(r.report.kept.single.address, 'variable.odd');
+      expect(r.report.kept.single.reason, contains('not readable'));
+    });
+
     test('outputs: one attribute becomes addOutput, anything else is kept', () {
       final r = _migrateJson({
         'terraform': _google,
