@@ -64,7 +64,6 @@ paramOrder:
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-  - "import 'google_firebase_app_hosting_build.dart' show GoogleFirebaseAppHostingBuild;"
 
 extraGetters: |2
     /// Reference to `name` attribute (full resource path

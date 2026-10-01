@@ -13,8 +13,6 @@ curatedDoc: |-
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-  - "import 'google_migration_center_group.dart' show GoogleMigrationCenterGroup;"
-  - "import 'google_migration_center_preference_set.dart' show GoogleMigrationCenterPreferenceSet;"
 
 paramOrder:
   - location

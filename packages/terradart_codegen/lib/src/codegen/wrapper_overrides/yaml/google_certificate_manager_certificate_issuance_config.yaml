@@ -5,9 +5,6 @@ deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true
 
-extraImports:
-  - "import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;"
-
 dartTypeOverrides:
   key_algorithm: CertificateManagerCertificateIssuanceConfigKeyAlgorithm
 

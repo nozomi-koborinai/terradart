@@ -2,8 +2,6 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
-import 'google_firebase_app_hosting_build.dart'
-    show GoogleFirebaseAppHostingBuild;
 import 'package:terradart_core/terradart_core.dart';
 
 import '../firebase_app_hosting/google_firebase_app_hosting_backend.dart'
