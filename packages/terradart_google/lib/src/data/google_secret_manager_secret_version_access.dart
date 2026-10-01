@@ -38,7 +38,7 @@ final class DataGoogleSecretManagerSecretVersionAccess extends Data {
       _googleSecretManagerSecretVersionAccessSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -47,15 +47,15 @@ final class DataGoogleSecretManagerSecretVersionAccess extends Data {
   TfRef<String> get secretData => TfRef.attribute<String>(this, 'secret_data');
 
   /// Reference to `is_secret_data_base64` attribute.
-  TfRef<bool> get isSecretDataBase64Ref =>
+  TfRef<bool> get isSecretDataBase64 =>
       TfRef.attribute<bool>(this, 'is_secret_data_base64');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `secret` attribute.
-  TfRef<String> get secretRef => TfRef.attribute<String>(this, 'secret');
+  TfRef<String> get secret => TfRef.attribute<String>(this, 'secret');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

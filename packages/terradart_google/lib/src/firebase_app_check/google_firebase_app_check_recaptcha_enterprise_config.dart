@@ -76,7 +76,7 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
   /// Reference to `name` attribute (the relative resource name of the
   /// reCAPTCHA Enterprise configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/recaptchaEnterpriseConfig`).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute. Same as `nameRef` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

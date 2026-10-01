@@ -179,6 +179,9 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
   /// `RefTo<GoogleVertexAiIndexEndpointDeployedIndex>`.
   RefTo<GoogleVertexAiIndexEndpointDeployedIndex> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -194,42 +197,36 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'private_endpoints');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deployed_index_id` attribute.
-  TfRef<String> get deployedIndexIdRef =>
+  TfRef<String> get deployedIndexId =>
       TfRef.attribute<String>(this, 'deployed_index_id');
 
   /// Reference to `deployment_group` attribute.
-  TfRef<String> get deploymentGroupRef =>
+  TfRef<String> get deploymentGroup =>
       TfRef.attribute<String>(this, 'deployment_group');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_access_logging` attribute.
-  TfRef<bool> get enableAccessLoggingRef =>
+  TfRef<bool> get enableAccessLogging =>
       TfRef.attribute<bool>(this, 'enable_access_logging');
 
   /// Reference to `index` attribute.
-  TfRef<String> get indexRef => TfRef.attribute<String>(this, 'index');
+  TfRef<String> get index => TfRef.attribute<String>(this, 'index');
 
   /// Reference to `index_endpoint` attribute.
-  TfRef<String> get indexEndpointRef =>
+  TfRef<String> get indexEndpoint =>
       TfRef.attribute<String>(this, 'index_endpoint');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reserved_ip_ranges` attribute.
-  TfRef<List<String>> get reservedIpRangesRef =>
+  TfRef<List<String>> get reservedIpRanges =>
       TfRef.attribute<List<String>>(this, 'reserved_ip_ranges');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

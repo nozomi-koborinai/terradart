@@ -41,9 +41,9 @@ final class DataCloudflareSnippets extends Data {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `snippet_name` attribute.
-  TfRef<String> get snippetNameRef =>
+  TfRef<String> get snippetName =>
       TfRef.attribute<String>(this, 'snippet_name');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

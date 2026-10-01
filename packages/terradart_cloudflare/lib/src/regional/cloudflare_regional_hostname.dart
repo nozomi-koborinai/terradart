@@ -50,14 +50,14 @@ final class CloudflareRegionalHostname extends Resource {
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
 
   /// Reference to `hostname` attribute.
-  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `region_key` attribute.
-  TfRef<String> get regionKeyRef => TfRef.attribute<String>(this, 'region_key');
+  TfRef<String> get regionKey => TfRef.attribute<String>(this, 'region_key');
 
   /// Reference to `routing` attribute.
-  TfRef<String> get routingRef => TfRef.attribute<String>(this, 'routing');
+  TfRef<String> get routing => TfRef.attribute<String>(this, 'routing');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

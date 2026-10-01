@@ -81,7 +81,7 @@ final class GoogleCloudIdentityGroup extends Resource {
   RefTo<GoogleCloudIdentityGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -100,25 +100,24 @@ final class GoogleCloudIdentityGroup extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `initial_group_config` attribute.
-  TfRef<String> get initialGroupConfigRef =>
+  TfRef<String> get initialGroupConfig =>
       TfRef.attribute<String>(this, 'initial_group_config');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

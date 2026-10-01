@@ -71,38 +71,38 @@ final class AwsAutoscalingLifecycleHook extends Resource {
   RefTo<AwsAutoscalingLifecycleHook> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `autoscaling_group_name` attribute.
-  TfRef<String> get autoscalingGroupNameRef =>
+  TfRef<String> get autoscalingGroupName =>
       TfRef.attribute<String>(this, 'autoscaling_group_name');
 
   /// Reference to `default_result` attribute.
-  TfRef<String> get defaultResultRef =>
+  TfRef<String> get defaultResult =>
       TfRef.attribute<String>(this, 'default_result');
 
   /// Reference to `heartbeat_timeout` attribute.
-  TfRef<num> get heartbeatTimeoutRef =>
+  TfRef<num> get heartbeatTimeout =>
       TfRef.attribute<num>(this, 'heartbeat_timeout');
 
   /// Reference to `lifecycle_transition` attribute.
-  TfRef<String> get lifecycleTransitionRef =>
+  TfRef<String> get lifecycleTransition =>
       TfRef.attribute<String>(this, 'lifecycle_transition');
 
   /// Reference to `notification_metadata` attribute.
-  TfRef<String> get notificationMetadataRef =>
+  TfRef<String> get notificationMetadata =>
       TfRef.attribute<String>(this, 'notification_metadata');
 
   /// Reference to `notification_target_arn` attribute.
-  TfRef<String> get notificationTargetArnRef =>
+  TfRef<String> get notificationTargetArn =>
       TfRef.attribute<String>(this, 'notification_target_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 }

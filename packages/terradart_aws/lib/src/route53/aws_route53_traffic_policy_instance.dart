@@ -40,7 +40,7 @@ final class AwsRoute53TrafficPolicyInstance extends Resource {
   RefTo<AwsRoute53TrafficPolicyInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -49,17 +49,17 @@ final class AwsRoute53TrafficPolicyInstance extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `hosted_zone_id` attribute.
-  TfRef<String> get hostedZoneIdRef =>
+  TfRef<String> get hostedZoneId =>
       TfRef.attribute<String>(this, 'hosted_zone_id');
 
   /// Reference to `traffic_policy_id` attribute.
-  TfRef<String> get trafficPolicyIdRef =>
+  TfRef<String> get trafficPolicyId =>
       TfRef.attribute<String>(this, 'traffic_policy_id');
 
   /// Reference to `traffic_policy_version` attribute.
-  TfRef<num> get trafficPolicyVersionRef =>
+  TfRef<num> get trafficPolicyVersion =>
       TfRef.attribute<num>(this, 'traffic_policy_version');
 
   /// Reference to `ttl` attribute.
-  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+  TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 }

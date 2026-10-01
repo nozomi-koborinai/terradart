@@ -64,51 +64,49 @@ final class AwsXraySamplingRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `attributes` attribute.
-  TfRef<Map<String, String>> get attributesRef =>
+  TfRef<Map<String, String>> get attributes =>
       TfRef.attribute<Map<String, String>>(this, 'attributes');
 
   /// Reference to `fixed_rate` attribute.
-  TfRef<num> get fixedRateRef => TfRef.attribute<num>(this, 'fixed_rate');
+  TfRef<num> get fixedRate => TfRef.attribute<num>(this, 'fixed_rate');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `http_method` attribute.
-  TfRef<String> get httpMethodRef =>
-      TfRef.attribute<String>(this, 'http_method');
+  TfRef<String> get httpMethod => TfRef.attribute<String>(this, 'http_method');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reservoir_size` attribute.
-  TfRef<num> get reservoirSizeRef =>
-      TfRef.attribute<num>(this, 'reservoir_size');
+  TfRef<num> get reservoirSize => TfRef.attribute<num>(this, 'reservoir_size');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 
   /// Reference to `rule_name` attribute.
-  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+  TfRef<String> get ruleName => TfRef.attribute<String>(this, 'rule_name');
 
   /// Reference to `service_name` attribute.
-  TfRef<String> get serviceNameRef =>
+  TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 
   /// Reference to `service_type` attribute.
-  TfRef<String> get serviceTypeRef =>
+  TfRef<String> get serviceType =>
       TfRef.attribute<String>(this, 'service_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `url_path` attribute.
-  TfRef<String> get urlPathRef => TfRef.attribute<String>(this, 'url_path');
+  TfRef<String> get urlPath => TfRef.attribute<String>(this, 'url_path');
 
   /// Reference to `version` attribute.
-  TfRef<num> get versionRef => TfRef.attribute<num>(this, 'version');
+  TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 }

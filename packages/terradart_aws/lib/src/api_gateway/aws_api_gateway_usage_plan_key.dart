@@ -38,7 +38,7 @@ final class AwsApiGatewayUsagePlanKey extends Resource {
   RefTo<AwsApiGatewayUsagePlanKey> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -47,15 +47,15 @@ final class AwsApiGatewayUsagePlanKey extends Resource {
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 
   /// Reference to `key_id` attribute.
-  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+  TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
 
   /// Reference to `key_type` attribute.
-  TfRef<String> get keyTypeRef => TfRef.attribute<String>(this, 'key_type');
+  TfRef<String> get keyType => TfRef.attribute<String>(this, 'key_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `usage_plan_id` attribute.
-  TfRef<String> get usagePlanIdRef =>
+  TfRef<String> get usagePlanId =>
       TfRef.attribute<String>(this, 'usage_plan_id');
 }

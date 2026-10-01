@@ -83,7 +83,7 @@ final class GooglePubsubSchema extends Resource {
   RefTo<GooglePubsubSchema> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -92,16 +92,15 @@ final class GooglePubsubSchema extends Resource {
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
 
   /// Reference to `definition` attribute.
-  TfRef<String> get definitionRef =>
-      TfRef.attribute<String>(this, 'definition');
+  TfRef<String> get definition => TfRef.attribute<String>(this, 'definition');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

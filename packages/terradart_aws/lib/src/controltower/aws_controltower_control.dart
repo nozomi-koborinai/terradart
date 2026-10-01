@@ -64,13 +64,13 @@ final class AwsControltowerControl extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `control_identifier` attribute.
-  TfRef<String> get controlIdentifierRef =>
+  TfRef<String> get controlIdentifier =>
       TfRef.attribute<String>(this, 'control_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_identifier` attribute.
-  TfRef<String> get targetIdentifierRef =>
+  TfRef<String> get targetIdentifier =>
       TfRef.attribute<String>(this, 'target_identifier');
 }

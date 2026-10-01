@@ -122,27 +122,27 @@ final class CloudflareStreamLiveInput extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `default_creator` attribute.
-  TfRef<String> get defaultCreatorRef =>
+  TfRef<String> get defaultCreator =>
       TfRef.attribute<String>(this, 'default_creator');
 
   /// Reference to `delete_recording_after_days` attribute.
-  TfRef<num> get deleteRecordingAfterDaysRef =>
+  TfRef<num> get deleteRecordingAfterDays =>
       TfRef.attribute<num>(this, 'delete_recording_after_days');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `live_input_identifier` attribute.
-  TfRef<String> get liveInputIdentifierRef =>
+  TfRef<String> get liveInputIdentifier =>
       TfRef.attribute<String>(this, 'live_input_identifier');
 
   /// Reference to `meta` attribute.
-  TfRef<String> get metaRef => TfRef.attribute<String>(this, 'meta');
+  TfRef<String> get meta => TfRef.attribute<String>(this, 'meta');
 
   /// Reference to `prefer_low_latency` attribute.
-  TfRef<bool> get preferLowLatencyRef =>
+  TfRef<bool> get preferLowLatency =>
       TfRef.attribute<bool>(this, 'prefer_low_latency');
 }

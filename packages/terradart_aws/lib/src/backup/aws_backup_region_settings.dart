@@ -40,17 +40,17 @@ final class AwsBackupRegionSettings extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_type_management_preference` attribute.
-  TfRef<Map<String, bool>> get resourceTypeManagementPreferenceRef =>
+  TfRef<Map<String, bool>> get resourceTypeManagementPreference =>
       TfRef.attribute<Map<String, bool>>(
         this,
         'resource_type_management_preference',
       );
 
   /// Reference to `resource_type_opt_in_preference` attribute.
-  TfRef<Map<String, bool>> get resourceTypeOptInPreferenceRef =>
+  TfRef<Map<String, bool>> get resourceTypeOptInPreference =>
       TfRef.attribute<Map<String, bool>>(
         this,
         'resource_type_opt_in_preference',

@@ -104,7 +104,7 @@ final class CloudflareAccount extends Resource {
   RefTo<CloudflareAccount> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -113,8 +113,8 @@ final class CloudflareAccount extends Resource {
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
 
   /// Reference to `standalone` attribute.
-  TfRef<bool> get standaloneRef => TfRef.attribute<bool>(this, 'standalone');
+  TfRef<bool> get standalone => TfRef.attribute<bool>(this, 'standalone');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

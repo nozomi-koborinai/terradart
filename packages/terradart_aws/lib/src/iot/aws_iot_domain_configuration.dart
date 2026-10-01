@@ -135,7 +135,7 @@ final class AwsIotDomainConfiguration extends Resource {
   RefTo<AwsIotDomainConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -147,36 +147,35 @@ final class AwsIotDomainConfiguration extends Resource {
   TfRef<String> get domainType => TfRef.attribute<String>(this, 'domain_type');
 
   /// Reference to `application_protocol` attribute.
-  TfRef<String> get applicationProtocolRef =>
+  TfRef<String> get applicationProtocol =>
       TfRef.attribute<String>(this, 'application_protocol');
 
   /// Reference to `authentication_type` attribute.
-  TfRef<String> get authenticationTypeRef =>
+  TfRef<String> get authenticationType =>
       TfRef.attribute<String>(this, 'authentication_type');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_certificate_arns` attribute.
-  TfRef<List<String>> get serverCertificateArnsRef =>
+  TfRef<List<String>> get serverCertificateArns =>
       TfRef.attribute<List<String>>(this, 'server_certificate_arns');
 
   /// Reference to `service_type` attribute.
-  TfRef<String> get serviceTypeRef =>
+  TfRef<String> get serviceType =>
       TfRef.attribute<String>(this, 'service_type');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `validation_certificate_arn` attribute.
-  TfRef<String> get validationCertificateArnRef =>
+  TfRef<String> get validationCertificateArn =>
       TfRef.attribute<String>(this, 'validation_certificate_arn');
 }

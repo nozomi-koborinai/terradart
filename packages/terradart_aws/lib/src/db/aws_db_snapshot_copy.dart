@@ -104,43 +104,43 @@ final class AwsDbSnapshotCopy extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `copy_tags` attribute.
-  TfRef<bool> get copyTagsRef => TfRef.attribute<bool>(this, 'copy_tags');
+  TfRef<bool> get copyTags => TfRef.attribute<bool>(this, 'copy_tags');
 
   /// Reference to `destination_region` attribute.
-  TfRef<String> get destinationRegionRef =>
+  TfRef<String> get destinationRegion =>
       TfRef.attribute<String>(this, 'destination_region');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `option_group_name` attribute.
-  TfRef<String> get optionGroupNameRef =>
+  TfRef<String> get optionGroupName =>
       TfRef.attribute<String>(this, 'option_group_name');
 
   /// Reference to `presigned_url` attribute.
-  TfRef<String> get presignedUrlRef =>
+  TfRef<String> get presignedUrl =>
       TfRef.attribute<String>(this, 'presigned_url');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `shared_accounts` attribute.
-  TfRef<List<String>> get sharedAccountsRef =>
+  TfRef<List<String>> get sharedAccounts =>
       TfRef.attribute<List<String>>(this, 'shared_accounts');
 
   /// Reference to `source_db_snapshot_identifier` attribute.
-  TfRef<String> get sourceDbSnapshotIdentifierRef =>
+  TfRef<String> get sourceDbSnapshotIdentifier =>
       TfRef.attribute<String>(this, 'source_db_snapshot_identifier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_custom_availability_zone` attribute.
-  TfRef<String> get targetCustomAvailabilityZoneRef =>
+  TfRef<String> get targetCustomAvailabilityZone =>
       TfRef.attribute<String>(this, 'target_custom_availability_zone');
 
   /// Reference to `target_db_snapshot_identifier` attribute.
-  TfRef<String> get targetDbSnapshotIdentifierRef =>
+  TfRef<String> get targetDbSnapshotIdentifier =>
       TfRef.attribute<String>(this, 'target_db_snapshot_identifier');
 }

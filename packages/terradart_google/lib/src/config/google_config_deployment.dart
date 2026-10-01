@@ -230,7 +230,7 @@ final class GoogleConfigDeployment extends Resource {
   RefTo<GoogleConfigDeployment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -255,48 +255,46 @@ final class GoogleConfigDeployment extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `artifacts_gcs_bucket` attribute.
-  TfRef<String> get artifactsGcsBucketRef =>
+  TfRef<String> get artifactsGcsBucket =>
       TfRef.attribute<String>(this, 'artifacts_gcs_bucket');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `import_existing_resources` attribute.
-  TfRef<bool> get importExistingResourcesRef =>
+  TfRef<bool> get importExistingResources =>
       TfRef.attribute<bool>(this, 'import_existing_resources');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `quota_validation` attribute.
-  TfRef<String> get quotaValidationRef =>
+  TfRef<String> get quotaValidation =>
       TfRef.attribute<String>(this, 'quota_validation');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `tf_version_constraint` attribute.
-  TfRef<String> get tfVersionConstraintRef =>
+  TfRef<String> get tfVersionConstraint =>
       TfRef.attribute<String>(this, 'tf_version_constraint');
 
   /// Reference to `worker_pool` attribute.
-  TfRef<String> get workerPoolRef =>
-      TfRef.attribute<String>(this, 'worker_pool');
+  TfRef<String> get workerPool => TfRef.attribute<String>(this, 'worker_pool');
 }

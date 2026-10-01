@@ -39,5 +39,5 @@ final class DataGoogleFolderIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 }

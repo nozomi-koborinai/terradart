@@ -69,16 +69,16 @@ final class AwsXrayGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `filter_expression` attribute.
-  TfRef<String> get filterExpressionRef =>
+  TfRef<String> get filterExpression =>
       TfRef.attribute<String>(this, 'filter_expression');
 
   /// Reference to `group_name` attribute.
-  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+  TfRef<String> get groupName => TfRef.attribute<String>(this, 'group_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

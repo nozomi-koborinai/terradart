@@ -806,7 +806,7 @@ final class AwsGlueCatalogTable extends Resource {
   RefTo<AwsGlueCatalogTable> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -815,37 +815,36 @@ final class AwsGlueCatalogTable extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `catalog_id` attribute.
-  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+  TfRef<String> get catalogId => TfRef.attribute<String>(this, 'catalog_id');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `owner` attribute.
-  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+  TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention` attribute.
-  TfRef<num> get retentionRef => TfRef.attribute<num>(this, 'retention');
+  TfRef<num> get retention => TfRef.attribute<num>(this, 'retention');
 
   /// Reference to `table_type` attribute.
-  TfRef<String> get tableTypeRef => TfRef.attribute<String>(this, 'table_type');
+  TfRef<String> get tableType => TfRef.attribute<String>(this, 'table_type');
 
   /// Reference to `view_expanded_text` attribute.
-  TfRef<String> get viewExpandedTextRef =>
+  TfRef<String> get viewExpandedText =>
       TfRef.attribute<String>(this, 'view_expanded_text');
 
   /// Reference to `view_original_text` attribute.
-  TfRef<String> get viewOriginalTextRef =>
+  TfRef<String> get viewOriginalText =>
       TfRef.attribute<String>(this, 'view_original_text');
 }

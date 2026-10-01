@@ -79,7 +79,7 @@ final class AwsQuicksightFolder extends Resource {
   RefTo<AwsQuicksightFolder> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -100,24 +100,23 @@ final class AwsQuicksightFolder extends Resource {
       TfRef.attribute<String>(this, 'last_updated_time');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `folder_id` attribute.
-  TfRef<String> get folderIdRef => TfRef.attribute<String>(this, 'folder_id');
+  TfRef<String> get folderId => TfRef.attribute<String>(this, 'folder_id');
 
   /// Reference to `folder_type` attribute.
-  TfRef<String> get folderTypeRef =>
-      TfRef.attribute<String>(this, 'folder_type');
+  TfRef<String> get folderType => TfRef.attribute<String>(this, 'folder_type');
 
   /// Reference to `parent_folder_arn` attribute.
-  TfRef<String> get parentFolderArnRef =>
+  TfRef<String> get parentFolderArn =>
       TfRef.attribute<String>(this, 'parent_folder_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

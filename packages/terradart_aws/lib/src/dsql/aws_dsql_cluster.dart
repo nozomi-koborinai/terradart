@@ -80,21 +80,20 @@ final class AwsDsqlCluster extends Resource {
       TfRef.attribute<String>(this, 'vpc_endpoint_service_name');
 
   /// Reference to `deletion_protection_enabled` attribute.
-  TfRef<bool> get deletionProtectionEnabledRef =>
+  TfRef<bool> get deletionProtectionEnabled =>
       TfRef.attribute<bool>(this, 'deletion_protection_enabled');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `kms_encryption_key` attribute.
-  TfRef<String> get kmsEncryptionKeyRef =>
+  TfRef<String> get kmsEncryptionKey =>
       TfRef.attribute<String>(this, 'kms_encryption_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

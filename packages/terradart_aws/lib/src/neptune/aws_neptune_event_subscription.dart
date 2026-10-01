@@ -109,7 +109,7 @@ final class AwsNeptuneEventSubscription extends Resource {
   RefTo<AwsNeptuneEventSubscription> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -122,32 +122,30 @@ final class AwsNeptuneEventSubscription extends Resource {
       TfRef.attribute<String>(this, 'customer_aws_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `event_categories` attribute.
-  TfRef<List<String>> get eventCategoriesRef =>
+  TfRef<List<String>> get eventCategories =>
       TfRef.attribute<List<String>>(this, 'event_categories');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sns_topic_arn` attribute.
-  TfRef<String> get snsTopicArnRef =>
+  TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
 
   /// Reference to `source_ids` attribute.
-  TfRef<List<String>> get sourceIdsRef =>
+  TfRef<List<String>> get sourceIds =>
       TfRef.attribute<List<String>>(this, 'source_ids');
 
   /// Reference to `source_type` attribute.
-  TfRef<String> get sourceTypeRef =>
-      TfRef.attribute<String>(this, 'source_type');
+  TfRef<String> get sourceType => TfRef.attribute<String>(this, 'source_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

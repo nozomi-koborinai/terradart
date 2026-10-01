@@ -234,12 +234,12 @@ final class GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `perimeter` attribute.
-  TfRef<String> get perimeterRef => TfRef.attribute<String>(this, 'perimeter');
+  TfRef<String> get perimeter => TfRef.attribute<String>(this, 'perimeter');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 }

@@ -74,12 +74,12 @@ final class GoogleHealthcareHl7V2StoreIamMember extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `hl7_v2_store_id` attribute.
-  TfRef<String> get hl7V2StoreIdRef =>
+  TfRef<String> get hl7V2StoreId =>
       TfRef.attribute<String>(this, 'hl7_v2_store_id');
 
   /// Reference to `member` attribute.
-  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

@@ -33,18 +33,18 @@ final class DataGoogleActiveFolder extends Data {
   Set<String> get sensitiveFields => _googleActiveFolderSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_method` attribute.
-  TfRef<String> get apiMethodRef => TfRef.attribute<String>(this, 'api_method');
+  TfRef<String> get apiMethod => TfRef.attribute<String>(this, 'api_method');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

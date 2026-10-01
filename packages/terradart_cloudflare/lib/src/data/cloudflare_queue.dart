@@ -64,8 +64,8 @@ final class DataCloudflareQueue extends Data {
   TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `queue_id` attribute.
-  TfRef<String> get queueIdRef => TfRef.attribute<String>(this, 'queue_id');
+  TfRef<String> get queueId => TfRef.attribute<String>(this, 'queue_id');
 }

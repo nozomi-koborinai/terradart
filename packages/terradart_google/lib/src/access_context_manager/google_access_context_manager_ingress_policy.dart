@@ -58,13 +58,13 @@ final class GoogleAccessContextManagerIngressPolicy extends Resource {
       TfRef.attribute<String>(this, 'access_policy_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `ingress_policy_name` attribute.
-  TfRef<String> get ingressPolicyNameRef =>
+  TfRef<String> get ingressPolicyName =>
       TfRef.attribute<String>(this, 'ingress_policy_name');
 
   /// Reference to `resource` attribute.
-  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
+  TfRef<String> get resource => TfRef.attribute<String>(this, 'resource');
 }

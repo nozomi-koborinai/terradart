@@ -297,94 +297,92 @@ final class AwsS3BucketObject extends Resource {
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 
   /// Reference to `acl` attribute.
-  TfRef<String> get aclRef => TfRef.attribute<String>(this, 'acl');
+  TfRef<String> get acl => TfRef.attribute<String>(this, 'acl');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `bucket_key_enabled` attribute.
-  TfRef<bool> get bucketKeyEnabledRef =>
+  TfRef<bool> get bucketKeyEnabled =>
       TfRef.attribute<bool>(this, 'bucket_key_enabled');
 
   /// Reference to `cache_control` attribute.
-  TfRef<String> get cacheControlRef =>
+  TfRef<String> get cacheControl =>
       TfRef.attribute<String>(this, 'cache_control');
 
   /// Reference to `content` attribute.
-  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+  TfRef<String> get content => TfRef.attribute<String>(this, 'content');
 
   /// Reference to `content_base64` attribute.
-  TfRef<String> get contentBase64Ref =>
+  TfRef<String> get contentBase64 =>
       TfRef.attribute<String>(this, 'content_base64');
 
   /// Reference to `content_disposition` attribute.
-  TfRef<String> get contentDispositionRef =>
+  TfRef<String> get contentDisposition =>
       TfRef.attribute<String>(this, 'content_disposition');
 
   /// Reference to `content_encoding` attribute.
-  TfRef<String> get contentEncodingRef =>
+  TfRef<String> get contentEncoding =>
       TfRef.attribute<String>(this, 'content_encoding');
 
   /// Reference to `content_language` attribute.
-  TfRef<String> get contentLanguageRef =>
+  TfRef<String> get contentLanguage =>
       TfRef.attribute<String>(this, 'content_language');
 
   /// Reference to `content_type` attribute.
-  TfRef<String> get contentTypeRef =>
+  TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `metadata` attribute.
-  TfRef<Map<String, String>> get metadataRef =>
+  TfRef<Map<String, String>> get metadata =>
       TfRef.attribute<Map<String, String>>(this, 'metadata');
 
   /// Reference to `object_lock_legal_hold_status` attribute.
-  TfRef<String> get objectLockLegalHoldStatusRef =>
+  TfRef<String> get objectLockLegalHoldStatus =>
       TfRef.attribute<String>(this, 'object_lock_legal_hold_status');
 
   /// Reference to `object_lock_mode` attribute.
-  TfRef<String> get objectLockModeRef =>
+  TfRef<String> get objectLockMode =>
       TfRef.attribute<String>(this, 'object_lock_mode');
 
   /// Reference to `object_lock_retain_until_date` attribute.
-  TfRef<String> get objectLockRetainUntilDateRef =>
+  TfRef<String> get objectLockRetainUntilDate =>
       TfRef.attribute<String>(this, 'object_lock_retain_until_date');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_side_encryption` attribute.
-  TfRef<String> get serverSideEncryptionRef =>
+  TfRef<String> get serverSideEncryption =>
       TfRef.attribute<String>(this, 'server_side_encryption');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `source_hash` attribute.
-  TfRef<String> get sourceHashRef =>
-      TfRef.attribute<String>(this, 'source_hash');
+  TfRef<String> get sourceHash => TfRef.attribute<String>(this, 'source_hash');
 
   /// Reference to `storage_class` attribute.
-  TfRef<String> get storageClassRef =>
+  TfRef<String> get storageClass =>
       TfRef.attribute<String>(this, 'storage_class');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `website_redirect` attribute.
-  TfRef<String> get websiteRedirectRef =>
+  TfRef<String> get websiteRedirect =>
       TfRef.attribute<String>(this, 'website_redirect');
 }

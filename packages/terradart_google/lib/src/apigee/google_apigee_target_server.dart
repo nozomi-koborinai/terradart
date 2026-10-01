@@ -140,35 +140,31 @@ final class GoogleApigeeTargetServer extends Resource {
   /// `RefTo<GoogleApigeeTargetServer>`.
   RefTo<GoogleApigeeTargetServer> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `env_id` attribute.
-  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+  TfRef<String> get envId => TfRef.attribute<String>(this, 'env_id');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `is_enabled` attribute.
-  TfRef<bool> get isEnabledRef => TfRef.attribute<bool>(this, 'is_enabled');
+  TfRef<bool> get isEnabled => TfRef.attribute<bool>(this, 'is_enabled');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 }

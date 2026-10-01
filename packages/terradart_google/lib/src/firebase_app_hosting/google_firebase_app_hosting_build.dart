@@ -182,14 +182,14 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/builds/{build_id}`).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute. Same as `nameRef` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `build_id` -- the segment downstream Traffic resources
   /// pass to [AppHostingTrafficSplit.build].
-  TfRef<String> get buildIdRef => TfRef.attribute<String>(this, 'build_id');
+  TfRef<String> get buildId => TfRef.attribute<String>(this, 'build_id');
 
   /// Reference to `state` -- one of `BUILDING`, `BUILT`, `DEPLOYING`,
   /// `READY`, `FAILED`. Server-set; surfaced as a string for parity with

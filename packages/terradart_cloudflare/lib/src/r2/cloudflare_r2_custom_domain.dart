@@ -79,29 +79,28 @@ final class CloudflareR2CustomDomain extends Resource {
   TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `bucket_name` attribute.
-  TfRef<String> get bucketNameRef =>
-      TfRef.attribute<String>(this, 'bucket_name');
+  TfRef<String> get bucketName => TfRef.attribute<String>(this, 'bucket_name');
 
   /// Reference to `ciphers` attribute.
-  TfRef<List<String>> get ciphersRef =>
+  TfRef<List<String>> get ciphers =>
       TfRef.attribute<List<String>>(this, 'ciphers');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `jurisdiction` attribute.
-  TfRef<String> get jurisdictionRef =>
+  TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `min_tls` attribute.
-  TfRef<String> get minTlsRef => TfRef.attribute<String>(this, 'min_tls');
+  TfRef<String> get minTls => TfRef.attribute<String>(this, 'min_tls');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

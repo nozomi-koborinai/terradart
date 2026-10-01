@@ -83,6 +83,9 @@ final class GoogleNetworkSecurityFirewallEndpointAssociation extends Resource {
   RefTo<GoogleNetworkSecurityFirewallEndpointAssociation> get ref =>
       RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -110,39 +113,30 @@ final class GoogleNetworkSecurityFirewallEndpointAssociation extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `firewall_endpoint` attribute.
-  TfRef<String> get firewallEndpointRef =>
+  TfRef<String> get firewallEndpoint =>
       TfRef.attribute<String>(this, 'firewall_endpoint');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `tls_inspection_policy` attribute.
-  TfRef<String> get tlsInspectionPolicyRef =>
+  TfRef<String> get tlsInspectionPolicy =>
       TfRef.attribute<String>(this, 'tls_inspection_policy');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `self_link` attribute.
-  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
 }

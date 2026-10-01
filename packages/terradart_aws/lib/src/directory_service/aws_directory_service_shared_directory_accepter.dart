@@ -51,9 +51,9 @@ final class AwsDirectoryServiceSharedDirectoryAccepter extends Resource {
       TfRef.attribute<String>(this, 'owner_directory_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `shared_directory_id` attribute.
-  TfRef<String> get sharedDirectoryIdRef =>
+  TfRef<String> get sharedDirectoryId =>
       TfRef.attribute<String>(this, 'shared_directory_id');
 }

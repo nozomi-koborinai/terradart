@@ -62,28 +62,28 @@ final class AwsApigatewayv2IntegrationResponse extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `content_handling_strategy` attribute.
-  TfRef<String> get contentHandlingStrategyRef =>
+  TfRef<String> get contentHandlingStrategy =>
       TfRef.attribute<String>(this, 'content_handling_strategy');
 
   /// Reference to `integration_id` attribute.
-  TfRef<String> get integrationIdRef =>
+  TfRef<String> get integrationId =>
       TfRef.attribute<String>(this, 'integration_id');
 
   /// Reference to `integration_response_key` attribute.
-  TfRef<String> get integrationResponseKeyRef =>
+  TfRef<String> get integrationResponseKey =>
       TfRef.attribute<String>(this, 'integration_response_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `response_templates` attribute.
-  TfRef<Map<String, String>> get responseTemplatesRef =>
+  TfRef<Map<String, String>> get responseTemplates =>
       TfRef.attribute<Map<String, String>>(this, 'response_templates');
 
   /// Reference to `template_selection_expression` attribute.
-  TfRef<String> get templateSelectionExpressionRef =>
+  TfRef<String> get templateSelectionExpression =>
       TfRef.attribute<String>(this, 'template_selection_expression');
 }

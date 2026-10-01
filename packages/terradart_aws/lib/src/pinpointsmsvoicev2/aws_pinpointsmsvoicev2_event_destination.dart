@@ -286,20 +286,20 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
       TfRef.attribute<String>(this, 'configuration_set_arn');
 
   /// Reference to `configuration_set_name` attribute.
-  TfRef<String> get configurationSetNameRef =>
+  TfRef<String> get configurationSetName =>
       TfRef.attribute<String>(this, 'configuration_set_name');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `event_destination_name` attribute.
-  TfRef<String> get eventDestinationNameRef =>
+  TfRef<String> get eventDestinationName =>
       TfRef.attribute<String>(this, 'event_destination_name');
 
   /// Reference to `matching_event_types` attribute.
-  TfRef<List<String>> get matchingEventTypesRef =>
+  TfRef<List<String>> get matchingEventTypes =>
       TfRef.attribute<List<String>>(this, 'matching_event_types');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

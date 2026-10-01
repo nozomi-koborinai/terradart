@@ -106,61 +106,59 @@ final class AwsDefaultSubnet extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `assign_ipv6_address_on_creation` attribute.
-  TfRef<bool> get assignIpv6AddressOnCreationRef =>
+  TfRef<bool> get assignIpv6AddressOnCreation =>
       TfRef.attribute<bool>(this, 'assign_ipv6_address_on_creation');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `customer_owned_ipv4_pool` attribute.
-  TfRef<String> get customerOwnedIpv4PoolRef =>
+  TfRef<String> get customerOwnedIpv4Pool =>
       TfRef.attribute<String>(this, 'customer_owned_ipv4_pool');
 
   /// Reference to `enable_dns64` attribute.
-  TfRef<bool> get enableDns64Ref => TfRef.attribute<bool>(this, 'enable_dns64');
+  TfRef<bool> get enableDns64 => TfRef.attribute<bool>(this, 'enable_dns64');
 
   /// Reference to `enable_resource_name_dns_a_record_on_launch` attribute.
-  TfRef<bool> get enableResourceNameDnsARecordOnLaunchRef =>
-      TfRef.attribute<bool>(
-        this,
-        'enable_resource_name_dns_a_record_on_launch',
-      );
+  TfRef<bool> get enableResourceNameDnsARecordOnLaunch => TfRef.attribute<bool>(
+    this,
+    'enable_resource_name_dns_a_record_on_launch',
+  );
 
   /// Reference to `enable_resource_name_dns_aaaa_record_on_launch` attribute.
-  TfRef<bool> get enableResourceNameDnsAaaaRecordOnLaunchRef =>
+  TfRef<bool> get enableResourceNameDnsAaaaRecordOnLaunch =>
       TfRef.attribute<bool>(
         this,
         'enable_resource_name_dns_aaaa_record_on_launch',
       );
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `ipv6_cidr_block` attribute.
-  TfRef<String> get ipv6CidrBlockRef =>
+  TfRef<String> get ipv6CidrBlock =>
       TfRef.attribute<String>(this, 'ipv6_cidr_block');
 
   /// Reference to `ipv6_native` attribute.
-  TfRef<bool> get ipv6NativeRef => TfRef.attribute<bool>(this, 'ipv6_native');
+  TfRef<bool> get ipv6Native => TfRef.attribute<bool>(this, 'ipv6_native');
 
   /// Reference to `map_customer_owned_ip_on_launch` attribute.
-  TfRef<bool> get mapCustomerOwnedIpOnLaunchRef =>
+  TfRef<bool> get mapCustomerOwnedIpOnLaunch =>
       TfRef.attribute<bool>(this, 'map_customer_owned_ip_on_launch');
 
   /// Reference to `map_public_ip_on_launch` attribute.
-  TfRef<bool> get mapPublicIpOnLaunchRef =>
+  TfRef<bool> get mapPublicIpOnLaunch =>
       TfRef.attribute<bool>(this, 'map_public_ip_on_launch');
 
   /// Reference to `private_dns_hostname_type_on_launch` attribute.
-  TfRef<String> get privateDnsHostnameTypeOnLaunchRef =>
+  TfRef<String> get privateDnsHostnameTypeOnLaunch =>
       TfRef.attribute<String>(this, 'private_dns_hostname_type_on_launch');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

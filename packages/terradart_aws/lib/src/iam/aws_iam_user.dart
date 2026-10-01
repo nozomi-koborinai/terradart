@@ -40,7 +40,7 @@ final class AwsIamUser extends Resource {
   RefTo<AwsIamUser> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,17 +52,16 @@ final class AwsIamUser extends Resource {
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `path` attribute.
-  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
 
   /// Reference to `permissions_boundary` attribute.
-  TfRef<String> get permissionsBoundaryRef =>
+  TfRef<String> get permissionsBoundary =>
       TfRef.attribute<String>(this, 'permissions_boundary');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

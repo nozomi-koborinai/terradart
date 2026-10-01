@@ -114,9 +114,9 @@ final class DataAwsElasticacheReplicationGroup extends Data {
       TfRef.attribute<String>(this, 'snapshot_window');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_group_id` attribute.
-  TfRef<String> get replicationGroupIdRef =>
+  TfRef<String> get replicationGroupId =>
       TfRef.attribute<String>(this, 'replication_group_id');
 }

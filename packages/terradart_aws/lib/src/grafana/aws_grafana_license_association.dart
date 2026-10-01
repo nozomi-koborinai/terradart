@@ -59,17 +59,17 @@ final class AwsGrafanaLicenseAssociation extends Resource {
       TfRef.attribute<String>(this, 'license_expiration');
 
   /// Reference to `grafana_token` attribute.
-  TfRef<String> get grafanaTokenRef =>
+  TfRef<String> get grafanaToken =>
       TfRef.attribute<String>(this, 'grafana_token');
 
   /// Reference to `license_type` attribute.
-  TfRef<String> get licenseTypeRef =>
+  TfRef<String> get licenseType =>
       TfRef.attribute<String>(this, 'license_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

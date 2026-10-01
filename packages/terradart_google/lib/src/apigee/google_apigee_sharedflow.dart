@@ -54,6 +54,9 @@ final class GoogleApigeeSharedflow extends Resource {
   /// `RefTo<GoogleApigeeSharedflow>`.
   RefTo<GoogleApigeeSharedflow> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -73,27 +76,17 @@ final class GoogleApigeeSharedflow extends Resource {
       TfRef.attribute<List<String>>(this, 'revision');
 
   /// Reference to `config_bundle` attribute.
-  TfRef<String> get configBundleRef =>
+  TfRef<String> get configBundle =>
       TfRef.attribute<String>(this, 'config_bundle');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `detect_md5hash` attribute.
-  TfRef<String> get detectMd5hashRef =>
+  TfRef<String> get detectMd5hash =>
       TfRef.attribute<String>(this, 'detect_md5hash');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `latest_revision_id` attribute.
-  TfRef<String> get latestRevisionIdRef =>
-      TfRef.attribute<String>(this, 'latest_revision_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 }

@@ -41,19 +41,19 @@ final class AwsQuicksightUserCustomPermission extends Resource {
   RefTo<AwsQuicksightUserCustomPermission> get ref => RefTo.of(this);
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `custom_permissions_name` attribute.
-  TfRef<String> get customPermissionsNameRef =>
+  TfRef<String> get customPermissionsName =>
       TfRef.attribute<String>(this, 'custom_permissions_name');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

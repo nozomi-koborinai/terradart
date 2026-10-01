@@ -60,31 +60,31 @@ final class AwsRdsShardGroup extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `compute_redundancy` attribute.
-  TfRef<num> get computeRedundancyRef =>
+  TfRef<num> get computeRedundancy =>
       TfRef.attribute<num>(this, 'compute_redundancy');
 
   /// Reference to `db_cluster_identifier` attribute.
-  TfRef<String> get dbClusterIdentifierRef =>
+  TfRef<String> get dbClusterIdentifier =>
       TfRef.attribute<String>(this, 'db_cluster_identifier');
 
   /// Reference to `db_shard_group_identifier` attribute.
-  TfRef<String> get dbShardGroupIdentifierRef =>
+  TfRef<String> get dbShardGroupIdentifier =>
       TfRef.attribute<String>(this, 'db_shard_group_identifier');
 
   /// Reference to `max_acu` attribute.
-  TfRef<num> get maxAcuRef => TfRef.attribute<num>(this, 'max_acu');
+  TfRef<num> get maxAcu => TfRef.attribute<num>(this, 'max_acu');
 
   /// Reference to `min_acu` attribute.
-  TfRef<num> get minAcuRef => TfRef.attribute<num>(this, 'min_acu');
+  TfRef<num> get minAcu => TfRef.attribute<num>(this, 'min_acu');
 
   /// Reference to `publicly_accessible` attribute.
-  TfRef<bool> get publiclyAccessibleRef =>
+  TfRef<bool> get publiclyAccessible =>
       TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

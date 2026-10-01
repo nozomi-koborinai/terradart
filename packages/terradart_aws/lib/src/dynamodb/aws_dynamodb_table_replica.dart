@@ -62,29 +62,28 @@ final class AwsDynamodbTableReplica extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `deletion_protection_enabled` attribute.
-  TfRef<bool> get deletionProtectionEnabledRef =>
+  TfRef<bool> get deletionProtectionEnabled =>
       TfRef.attribute<bool>(this, 'deletion_protection_enabled');
 
   /// Reference to `global_table_arn` attribute.
-  TfRef<String> get globalTableArnRef =>
+  TfRef<String> get globalTableArn =>
       TfRef.attribute<String>(this, 'global_table_arn');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `point_in_time_recovery` attribute.
-  TfRef<bool> get pointInTimeRecoveryRef =>
+  TfRef<bool> get pointInTimeRecovery =>
       TfRef.attribute<bool>(this, 'point_in_time_recovery');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_class_override` attribute.
-  TfRef<String> get tableClassOverrideRef =>
+  TfRef<String> get tableClassOverride =>
       TfRef.attribute<String>(this, 'table_class_override');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

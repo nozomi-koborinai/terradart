@@ -38,19 +38,19 @@ final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
   RefTo<AwsBedrockagentcoreWorkloadIdentity> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `workload_identity_arn` attribute.
   TfRef<String> get workloadIdentityArn =>
       TfRef.attribute<String>(this, 'workload_identity_arn');
 
   /// Reference to `allowed_resource_oauth2_return_urls` attribute.
-  TfRef<List<String>> get allowedResourceOauth2ReturnUrlsRef =>
+  TfRef<List<String>> get allowedResourceOauth2ReturnUrls =>
       TfRef.attribute<List<String>>(
         this,
         'allowed_resource_oauth2_return_urls',
       );
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

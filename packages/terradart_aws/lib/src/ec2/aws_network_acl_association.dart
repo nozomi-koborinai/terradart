@@ -41,12 +41,12 @@ final class AwsNetworkAclAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `network_acl_id` attribute.
-  TfRef<String> get networkAclIdRef =>
+  TfRef<String> get networkAclId =>
       TfRef.attribute<String>(this, 'network_acl_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 }

@@ -77,13 +77,11 @@ final class AwsApiGatewayDocumentationPart extends Resource {
       TfRef.attribute<String>(this, 'documentation_part_id');
 
   /// Reference to `properties` attribute.
-  TfRef<String> get propertiesRef =>
-      TfRef.attribute<String>(this, 'properties');
+  TfRef<String> get properties => TfRef.attribute<String>(this, 'properties');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 }

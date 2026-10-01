@@ -42,20 +42,20 @@ final class DataAwsElasticacheReservedCacheNodeOffering extends Data {
   TfRef<String> get offeringId => TfRef.attribute<String>(this, 'offering_id');
 
   /// Reference to `cache_node_type` attribute.
-  TfRef<String> get cacheNodeTypeRef =>
+  TfRef<String> get cacheNodeType =>
       TfRef.attribute<String>(this, 'cache_node_type');
 
   /// Reference to `duration` attribute.
-  TfRef<String> get durationRef => TfRef.attribute<String>(this, 'duration');
+  TfRef<String> get duration => TfRef.attribute<String>(this, 'duration');
 
   /// Reference to `offering_type` attribute.
-  TfRef<String> get offeringTypeRef =>
+  TfRef<String> get offeringType =>
       TfRef.attribute<String>(this, 'offering_type');
 
   /// Reference to `product_description` attribute.
-  TfRef<String> get productDescriptionRef =>
+  TfRef<String> get productDescription =>
       TfRef.attribute<String>(this, 'product_description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

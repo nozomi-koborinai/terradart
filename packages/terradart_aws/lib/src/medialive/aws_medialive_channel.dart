@@ -4386,7 +4386,7 @@ final class AwsMedialiveChannel extends Resource {
   RefTo<AwsMedialiveChannel> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -4398,23 +4398,22 @@ final class AwsMedialiveChannel extends Resource {
   TfRef<String> get channelId => TfRef.attribute<String>(this, 'channel_id');
 
   /// Reference to `channel_class` attribute.
-  TfRef<String> get channelClassRef =>
+  TfRef<String> get channelClass =>
       TfRef.attribute<String>(this, 'channel_class');
 
   /// Reference to `log_level` attribute.
-  TfRef<String> get logLevelRef => TfRef.attribute<String>(this, 'log_level');
+  TfRef<String> get logLevel => TfRef.attribute<String>(this, 'log_level');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `start_channel` attribute.
-  TfRef<bool> get startChannelRef =>
-      TfRef.attribute<bool>(this, 'start_channel');
+  TfRef<bool> get startChannel => TfRef.attribute<bool>(this, 'start_channel');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

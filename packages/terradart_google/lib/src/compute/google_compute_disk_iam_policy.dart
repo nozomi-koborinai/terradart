@@ -45,7 +45,7 @@ final class GoogleComputeDiskIamPolicy extends Resource {
   RefTo<GoogleComputeDiskIamPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -54,12 +54,11 @@ final class GoogleComputeDiskIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

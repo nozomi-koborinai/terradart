@@ -119,6 +119,9 @@ final class GoogleDialogflowCxPlaybook extends Resource {
   /// `RefTo<GoogleDialogflowCxPlaybook>`.
   RefTo<GoogleDialogflowCxPlaybook> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -140,30 +143,24 @@ final class GoogleDialogflowCxPlaybook extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `goal` attribute.
-  TfRef<String> get goalRef => TfRef.attribute<String>(this, 'goal');
+  TfRef<String> get goal => TfRef.attribute<String>(this, 'goal');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `playbook_type` attribute.
-  TfRef<String> get playbookTypeRef =>
+  TfRef<String> get playbookType =>
       TfRef.attribute<String>(this, 'playbook_type');
 
   /// Reference to `referenced_tools` attribute.
-  TfRef<List<String>> get referencedToolsRef =>
+  TfRef<List<String>> get referencedTools =>
       TfRef.attribute<List<String>>(this, 'referenced_tools');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

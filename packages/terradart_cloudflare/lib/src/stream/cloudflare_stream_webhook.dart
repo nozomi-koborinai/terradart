@@ -46,9 +46,9 @@ final class CloudflareStreamWebhook extends Resource {
   TfRef<String> get secret => TfRef.attribute<String>(this, 'secret');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `notification_url` attribute.
-  TfRef<String> get notificationUrlRef =>
+  TfRef<String> get notificationUrl =>
       TfRef.attribute<String>(this, 'notification_url');
 }

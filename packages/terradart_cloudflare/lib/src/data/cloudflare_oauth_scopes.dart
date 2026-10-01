@@ -21,5 +21,5 @@ final class DataCloudflareOauthScopes extends Data {
   Set<String> get sensitiveFields => _cloudflareOauthScopesSensitive;
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 }

@@ -52,7 +52,7 @@ final class AppwriteAuthUser extends Resource {
   RefTo<AppwriteAuthUser> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -64,29 +64,29 @@ final class AppwriteAuthUser extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `email_verification` attribute.
-  TfRef<bool> get emailVerificationRef =>
+  TfRef<bool> get emailVerification =>
       TfRef.attribute<bool>(this, 'email_verification');
 
   /// Reference to `labels` attribute.
-  TfRef<List<String>> get labelsRef =>
+  TfRef<List<String>> get labels =>
       TfRef.attribute<List<String>>(this, 'labels');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `phone` attribute.
-  TfRef<String> get phoneRef => TfRef.attribute<String>(this, 'phone');
+  TfRef<String> get phone => TfRef.attribute<String>(this, 'phone');
 
   /// Reference to `phone_verification` attribute.
-  TfRef<bool> get phoneVerificationRef =>
+  TfRef<bool> get phoneVerification =>
       TfRef.attribute<bool>(this, 'phone_verification');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `status` attribute.
-  TfRef<bool> get statusRef => TfRef.attribute<bool>(this, 'status');
+  TfRef<bool> get status => TfRef.attribute<bool>(this, 'status');
 }

@@ -48,23 +48,23 @@ final class CloudflareDnsZoneTransfersPeer extends Resource {
   RefTo<CloudflareDnsZoneTransfersPeer> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ip` attribute.
-  TfRef<String> get ipRef => TfRef.attribute<String>(this, 'ip');
+  TfRef<String> get ip => TfRef.attribute<String>(this, 'ip');
 
   /// Reference to `ixfr_enable` attribute.
-  TfRef<bool> get ixfrEnableRef => TfRef.attribute<bool>(this, 'ixfr_enable');
+  TfRef<bool> get ixfrEnable => TfRef.attribute<bool>(this, 'ixfr_enable');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `tsig_id` attribute.
-  TfRef<String> get tsigIdRef => TfRef.attribute<String>(this, 'tsig_id');
+  TfRef<String> get tsigId => TfRef.attribute<String>(this, 'tsig_id');
 }

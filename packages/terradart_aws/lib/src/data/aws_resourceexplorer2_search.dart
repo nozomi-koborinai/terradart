@@ -41,12 +41,12 @@ final class DataAwsResourceexplorer2Search extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'resources');
 
   /// Reference to `query_string` attribute.
-  TfRef<String> get queryStringRef =>
+  TfRef<String> get queryString =>
       TfRef.attribute<String>(this, 'query_string');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `view_arn` attribute.
-  TfRef<String> get viewArnRef => TfRef.attribute<String>(this, 'view_arn');
+  TfRef<String> get viewArn => TfRef.attribute<String>(this, 'view_arn');
 }

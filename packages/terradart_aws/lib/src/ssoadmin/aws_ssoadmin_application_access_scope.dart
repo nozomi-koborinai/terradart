@@ -42,16 +42,16 @@ final class AwsSsoadminApplicationAccessScope extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `application_arn` attribute.
-  TfRef<String> get applicationArnRef =>
+  TfRef<String> get applicationArn =>
       TfRef.attribute<String>(this, 'application_arn');
 
   /// Reference to `authorized_targets` attribute.
-  TfRef<List<String>> get authorizedTargetsRef =>
+  TfRef<List<String>> get authorizedTargets =>
       TfRef.attribute<List<String>>(this, 'authorized_targets');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 }

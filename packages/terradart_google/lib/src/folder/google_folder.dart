@@ -50,7 +50,7 @@ final class GoogleFolder extends Resource {
   RefTo<GoogleFolder> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -74,21 +74,21 @@ final class GoogleFolder extends Resource {
       TfRef.attribute<String>(this, 'management_project');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

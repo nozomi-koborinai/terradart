@@ -37,21 +37,21 @@ final class DataCloudflareAiSearchInstances extends Data {
   Set<String> get sensitiveFields => _cloudflareAiSearchInstancesSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `order_by` attribute.
-  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
+  TfRef<String> get orderBy => TfRef.attribute<String>(this, 'order_by');
 
   /// Reference to `order_by_direction` attribute.
-  TfRef<String> get orderByDirectionRef =>
+  TfRef<String> get orderByDirection =>
       TfRef.attribute<String>(this, 'order_by_direction');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 }

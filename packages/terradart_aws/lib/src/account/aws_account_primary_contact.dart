@@ -59,51 +59,49 @@ final class AwsAccountPrimaryContact extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `address_line_1` attribute.
-  TfRef<String> get addressLine1Ref =>
+  TfRef<String> get addressLine1 =>
       TfRef.attribute<String>(this, 'address_line_1');
 
   /// Reference to `address_line_2` attribute.
-  TfRef<String> get addressLine2Ref =>
+  TfRef<String> get addressLine2 =>
       TfRef.attribute<String>(this, 'address_line_2');
 
   /// Reference to `address_line_3` attribute.
-  TfRef<String> get addressLine3Ref =>
+  TfRef<String> get addressLine3 =>
       TfRef.attribute<String>(this, 'address_line_3');
 
   /// Reference to `city` attribute.
-  TfRef<String> get cityRef => TfRef.attribute<String>(this, 'city');
+  TfRef<String> get city => TfRef.attribute<String>(this, 'city');
 
   /// Reference to `company_name` attribute.
-  TfRef<String> get companyNameRef =>
+  TfRef<String> get companyName =>
       TfRef.attribute<String>(this, 'company_name');
 
   /// Reference to `country_code` attribute.
-  TfRef<String> get countryCodeRef =>
+  TfRef<String> get countryCode =>
       TfRef.attribute<String>(this, 'country_code');
 
   /// Reference to `district_or_county` attribute.
-  TfRef<String> get districtOrCountyRef =>
+  TfRef<String> get districtOrCounty =>
       TfRef.attribute<String>(this, 'district_or_county');
 
   /// Reference to `full_name` attribute.
-  TfRef<String> get fullNameRef => TfRef.attribute<String>(this, 'full_name');
+  TfRef<String> get fullName => TfRef.attribute<String>(this, 'full_name');
 
   /// Reference to `phone_number` attribute.
-  TfRef<String> get phoneNumberRef =>
+  TfRef<String> get phoneNumber =>
       TfRef.attribute<String>(this, 'phone_number');
 
   /// Reference to `postal_code` attribute.
-  TfRef<String> get postalCodeRef =>
-      TfRef.attribute<String>(this, 'postal_code');
+  TfRef<String> get postalCode => TfRef.attribute<String>(this, 'postal_code');
 
   /// Reference to `state_or_region` attribute.
-  TfRef<String> get stateOrRegionRef =>
+  TfRef<String> get stateOrRegion =>
       TfRef.attribute<String>(this, 'state_or_region');
 
   /// Reference to `website_url` attribute.
-  TfRef<String> get websiteUrlRef =>
-      TfRef.attribute<String>(this, 'website_url');
+  TfRef<String> get websiteUrl => TfRef.attribute<String>(this, 'website_url');
 }

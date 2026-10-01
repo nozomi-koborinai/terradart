@@ -65,9 +65,8 @@ final class DataCloudflarePageRule extends Data {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `pagerule_id` attribute.
-  TfRef<String> get pageruleIdRef =>
-      TfRef.attribute<String>(this, 'pagerule_id');
+  TfRef<String> get pageruleId => TfRef.attribute<String>(this, 'pagerule_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

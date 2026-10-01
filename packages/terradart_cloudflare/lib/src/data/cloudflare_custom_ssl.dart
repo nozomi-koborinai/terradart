@@ -121,9 +121,9 @@ final class DataCloudflareCustomSsl extends Data {
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
 
   /// Reference to `custom_certificate_id` attribute.
-  TfRef<String> get customCertificateIdRef =>
+  TfRef<String> get customCertificateId =>
       TfRef.attribute<String>(this, 'custom_certificate_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

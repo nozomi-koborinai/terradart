@@ -54,19 +54,18 @@ final class AwsQuicksightRoleMembership extends Resource {
   RefTo<AwsQuicksightRoleMembership> get ref => RefTo.of(this);
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `member_name` attribute.
-  TfRef<String> get memberNameRef =>
-      TfRef.attribute<String>(this, 'member_name');
+  TfRef<String> get memberName => TfRef.attribute<String>(this, 'member_name');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

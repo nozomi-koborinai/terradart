@@ -211,34 +211,33 @@ final class AwsEbsSnapshotImport extends Resource {
   TfRef<num> get volumeSize => TfRef.attribute<num>(this, 'volume_size');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `encrypted` attribute.
-  TfRef<bool> get encryptedRef => TfRef.attribute<bool>(this, 'encrypted');
+  TfRef<bool> get encrypted => TfRef.attribute<bool>(this, 'encrypted');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `permanent_restore` attribute.
-  TfRef<bool> get permanentRestoreRef =>
+  TfRef<bool> get permanentRestore =>
       TfRef.attribute<bool>(this, 'permanent_restore');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_name` attribute.
-  TfRef<String> get roleNameRef => TfRef.attribute<String>(this, 'role_name');
+  TfRef<String> get roleName => TfRef.attribute<String>(this, 'role_name');
 
   /// Reference to `storage_tier` attribute.
-  TfRef<String> get storageTierRef =>
+  TfRef<String> get storageTier =>
       TfRef.attribute<String>(this, 'storage_tier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `temporary_restore_days` attribute.
-  TfRef<num> get temporaryRestoreDaysRef =>
+  TfRef<num> get temporaryRestoreDays =>
       TfRef.attribute<num>(this, 'temporary_restore_days');
 }

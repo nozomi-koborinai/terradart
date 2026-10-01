@@ -204,7 +204,7 @@ final class GoogleComputeRoute extends Resource {
   RefTo<GoogleComputeRoute> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -254,50 +254,46 @@ final class GoogleComputeRoute extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'warnings');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `dest_range` attribute.
-  TfRef<String> get destRangeRef => TfRef.attribute<String>(this, 'dest_range');
+  TfRef<String> get destRange => TfRef.attribute<String>(this, 'dest_range');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `next_hop_gateway` attribute.
-  TfRef<String> get nextHopGatewayRef =>
+  TfRef<String> get nextHopGateway =>
       TfRef.attribute<String>(this, 'next_hop_gateway');
 
   /// Reference to `next_hop_ilb` attribute.
-  TfRef<String> get nextHopIlbRef =>
-      TfRef.attribute<String>(this, 'next_hop_ilb');
+  TfRef<String> get nextHopIlb => TfRef.attribute<String>(this, 'next_hop_ilb');
 
   /// Reference to `next_hop_instance` attribute.
-  TfRef<String> get nextHopInstanceRef =>
+  TfRef<String> get nextHopInstance =>
       TfRef.attribute<String>(this, 'next_hop_instance');
 
   /// Reference to `next_hop_instance_zone` attribute.
-  TfRef<String> get nextHopInstanceZoneRef =>
+  TfRef<String> get nextHopInstanceZone =>
       TfRef.attribute<String>(this, 'next_hop_instance_zone');
 
   /// Reference to `next_hop_ip` attribute.
-  TfRef<String> get nextHopIpRef =>
-      TfRef.attribute<String>(this, 'next_hop_ip');
+  TfRef<String> get nextHopIp => TfRef.attribute<String>(this, 'next_hop_ip');
 
   /// Reference to `next_hop_vpn_tunnel` attribute.
-  TfRef<String> get nextHopVpnTunnelRef =>
+  TfRef<String> get nextHopVpnTunnel =>
       TfRef.attribute<String>(this, 'next_hop_vpn_tunnel');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 }

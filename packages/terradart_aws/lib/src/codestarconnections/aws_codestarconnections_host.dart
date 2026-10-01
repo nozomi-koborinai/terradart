@@ -86,7 +86,7 @@ final class AwsCodestarconnectionsHost extends Resource {
   RefTo<AwsCodestarconnectionsHost> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -98,13 +98,13 @@ final class AwsCodestarconnectionsHost extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `provider_endpoint` attribute.
-  TfRef<String> get providerEndpointRef =>
+  TfRef<String> get providerEndpoint =>
       TfRef.attribute<String>(this, 'provider_endpoint');
 
   /// Reference to `provider_type` attribute.
-  TfRef<String> get providerTypeRef =>
+  TfRef<String> get providerType =>
       TfRef.attribute<String>(this, 'provider_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

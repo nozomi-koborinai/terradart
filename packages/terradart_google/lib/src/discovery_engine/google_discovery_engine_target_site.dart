@@ -82,7 +82,7 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
   RefTo<GoogleDiscoveryEngineTargetSite> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -118,26 +118,26 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `data_store_id` attribute.
-  TfRef<String> get dataStoreIdRef =>
+  TfRef<String> get dataStoreId =>
       TfRef.attribute<String>(this, 'data_store_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `exact_match` attribute.
-  TfRef<bool> get exactMatchRef => TfRef.attribute<bool>(this, 'exact_match');
+  TfRef<bool> get exactMatch => TfRef.attribute<bool>(this, 'exact_match');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `provided_uri_pattern` attribute.
-  TfRef<String> get providedUriPatternRef =>
+  TfRef<String> get providedUriPattern =>
       TfRef.attribute<String>(this, 'provided_uri_pattern');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

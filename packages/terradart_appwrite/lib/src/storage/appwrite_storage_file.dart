@@ -49,7 +49,7 @@ final class AppwriteStorageFile extends Resource {
   RefTo<AppwriteStorageFile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -67,15 +67,15 @@ final class AppwriteStorageFile extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `bucket_id` attribute.
-  TfRef<String> get bucketIdRef => TfRef.attribute<String>(this, 'bucket_id');
+  TfRef<String> get bucketId => TfRef.attribute<String>(this, 'bucket_id');
 
   /// Reference to `file_path` attribute.
-  TfRef<String> get filePathRef => TfRef.attribute<String>(this, 'file_path');
+  TfRef<String> get filePath => TfRef.attribute<String>(this, 'file_path');
 
   /// Reference to `permissions` attribute.
-  TfRef<List<String>> get permissionsRef =>
+  TfRef<List<String>> get permissions =>
       TfRef.attribute<List<String>>(this, 'permissions');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 }

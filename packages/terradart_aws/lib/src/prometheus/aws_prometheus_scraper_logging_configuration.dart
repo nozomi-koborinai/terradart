@@ -97,12 +97,12 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   RefTo<AwsPrometheusScraperLoggingConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scraper_components` attribute.
-  TfRef<List<String>> get scraperComponentsRef =>
+  TfRef<List<String>> get scraperComponents =>
       TfRef.attribute<List<String>>(this, 'scraper_components');
 
   /// Reference to `scraper_id` attribute.
-  TfRef<String> get scraperIdRef => TfRef.attribute<String>(this, 'scraper_id');
+  TfRef<String> get scraperId => TfRef.attribute<String>(this, 'scraper_id');
 }

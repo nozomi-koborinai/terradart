@@ -43,21 +43,21 @@ final class AwsLoadBalancerListenerPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `load_balancer_name` attribute.
-  TfRef<String> get loadBalancerNameRef =>
+  TfRef<String> get loadBalancerName =>
       TfRef.attribute<String>(this, 'load_balancer_name');
 
   /// Reference to `load_balancer_port` attribute.
-  TfRef<num> get loadBalancerPortRef =>
+  TfRef<num> get loadBalancerPort =>
       TfRef.attribute<num>(this, 'load_balancer_port');
 
   /// Reference to `policy_names` attribute.
-  TfRef<List<String>> get policyNamesRef =>
+  TfRef<List<String>> get policyNames =>
       TfRef.attribute<List<String>>(this, 'policy_names');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `triggers` attribute.
-  TfRef<Map<String, String>> get triggersRef =>
+  TfRef<Map<String, String>> get triggers =>
       TfRef.attribute<Map<String, String>>(this, 'triggers');
 }

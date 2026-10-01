@@ -1029,7 +1029,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
   RefTo<GoogleArtifactRegistryRepository> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1053,40 +1053,36 @@ final class GoogleArtifactRegistryRepository extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `cleanup_policy_dry_run` attribute.
-  TfRef<bool> get cleanupPolicyDryRunRef =>
+  TfRef<bool> get cleanupPolicyDryRun =>
       TfRef.attribute<bool>(this, 'cleanup_policy_dry_run');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `format` attribute.
-  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+  TfRef<String> get format => TfRef.attribute<String>(this, 'format');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `mode` attribute.
-  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
-  /// Reference to `repository_id` attribute (short id; sibling
-  /// `*_iam_member` resources consume this as their `repository`
-  /// argument).
-  TfRef<String> get repositoryIdRef =>
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 }

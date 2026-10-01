@@ -907,21 +907,21 @@ final class GoogleBigqueryJob extends Resource {
   TfRef<String> get userEmail => TfRef.attribute<String>(this, 'user_email');
 
   /// Reference to `job_id` attribute.
-  TfRef<String> get jobIdRef => TfRef.attribute<String>(this, 'job_id');
+  TfRef<String> get jobId => TfRef.attribute<String>(this, 'job_id');
 
   /// Reference to `job_timeout_ms` attribute.
-  TfRef<String> get jobTimeoutMsRef =>
+  TfRef<String> get jobTimeoutMs =>
       TfRef.attribute<String>(this, 'job_timeout_ms');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `status` — server-computed terminal status of the
   /// job (a list-of-object with `state`, `error_result`, `errors`).

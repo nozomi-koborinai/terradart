@@ -89,24 +89,21 @@ final class GoogleApigeeDeveloper extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
+  /// Reference to `email` attribute.
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
+
   /// Reference to `first_name` attribute.
-  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+  TfRef<String> get firstName => TfRef.attribute<String>(this, 'first_name');
 
   /// Reference to `last_name` attribute.
-  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+  TfRef<String> get lastName => TfRef.attribute<String>(this, 'last_name');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

@@ -79,6 +79,9 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
   /// `RefTo<GoogleNetworkSecurityFirewallEndpoint>`.
   RefTo<GoogleNetworkSecurityFirewallEndpoint> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -110,29 +113,20 @@ final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `billing_project_id` attribute.
-  TfRef<String> get billingProjectIdRef =>
+  TfRef<String> get billingProjectId =>
       TfRef.attribute<String>(this, 'billing_project_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `self_link` attribute.
-  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

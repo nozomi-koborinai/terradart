@@ -51,17 +51,16 @@ final class AwsIdentitystoreGroup extends Resource {
   TfRef<String> get groupId => TfRef.attribute<String>(this, 'group_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `identity_store_id` attribute.
-  TfRef<String> get identityStoreIdRef =>
+  TfRef<String> get identityStoreId =>
       TfRef.attribute<String>(this, 'identity_store_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

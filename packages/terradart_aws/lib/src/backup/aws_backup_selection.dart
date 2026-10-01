@@ -185,26 +185,25 @@ final class AwsBackupSelection extends Resource {
   RefTo<AwsBackupSelection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `iam_role_arn` attribute.
-  TfRef<String> get iamRoleArnRef =>
-      TfRef.attribute<String>(this, 'iam_role_arn');
+  TfRef<String> get iamRoleArn => TfRef.attribute<String>(this, 'iam_role_arn');
 
   /// Reference to `not_resources` attribute.
-  TfRef<List<String>> get notResourcesRef =>
+  TfRef<List<String>> get notResources =>
       TfRef.attribute<List<String>>(this, 'not_resources');
 
   /// Reference to `plan_id` attribute.
-  TfRef<String> get planIdRef => TfRef.attribute<String>(this, 'plan_id');
+  TfRef<String> get planId => TfRef.attribute<String>(this, 'plan_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resources` attribute.
-  TfRef<List<String>> get resourcesRef =>
+  TfRef<List<String>> get resources =>
       TfRef.attribute<List<String>>(this, 'resources');
 }

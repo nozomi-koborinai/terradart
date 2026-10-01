@@ -45,12 +45,12 @@ final class AwsSsmServiceSetting extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `setting_id` attribute.
-  TfRef<String> get settingIdRef => TfRef.attribute<String>(this, 'setting_id');
+  TfRef<String> get settingId => TfRef.attribute<String>(this, 'setting_id');
 
   /// Reference to `setting_value` attribute.
-  TfRef<String> get settingValueRef =>
+  TfRef<String> get settingValue =>
       TfRef.attribute<String>(this, 'setting_value');
 }

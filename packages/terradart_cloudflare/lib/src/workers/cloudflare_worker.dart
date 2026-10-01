@@ -385,7 +385,7 @@ final class CloudflareWorker extends Resource {
   RefTo<CloudflareWorker> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -400,15 +400,14 @@ final class CloudflareWorker extends Resource {
   TfRef<String> get updatedOn => TfRef.attribute<String>(this, 'updated_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `force` attribute.
-  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
+  TfRef<bool> get force => TfRef.attribute<bool>(this, 'force');
 
   /// Reference to `logpush` attribute.
-  TfRef<bool> get logpushRef => TfRef.attribute<bool>(this, 'logpush');
+  TfRef<bool> get logpush => TfRef.attribute<bool>(this, 'logpush');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 }

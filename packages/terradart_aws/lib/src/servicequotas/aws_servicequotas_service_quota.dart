@@ -68,15 +68,15 @@ final class AwsServicequotasServiceQuota extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'usage_metric');
 
   /// Reference to `quota_code` attribute.
-  TfRef<String> get quotaCodeRef => TfRef.attribute<String>(this, 'quota_code');
+  TfRef<String> get quotaCode => TfRef.attribute<String>(this, 'quota_code');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_code` attribute.
-  TfRef<String> get serviceCodeRef =>
+  TfRef<String> get serviceCode =>
       TfRef.attribute<String>(this, 'service_code');
 
   /// Reference to `value` attribute.
-  TfRef<num> get valueRef => TfRef.attribute<num>(this, 'value');
+  TfRef<num> get value => TfRef.attribute<num>(this, 'value');
 }

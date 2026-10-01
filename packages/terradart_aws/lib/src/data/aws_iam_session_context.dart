@@ -37,5 +37,5 @@ final class DataAwsIamSessionContext extends Data {
       TfRef.attribute<String>(this, 'session_name');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 }

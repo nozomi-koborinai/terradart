@@ -35,12 +35,11 @@ final class DataCloudflareMagicTransitConnectors extends Data {
   Set<String> get sensitiveFields => _cloudflareMagicTransitConnectorsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `device_type` attribute.
-  TfRef<String> get deviceTypeRef =>
-      TfRef.attribute<String>(this, 'device_type');
+  TfRef<String> get deviceType => TfRef.attribute<String>(this, 'device_type');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 }

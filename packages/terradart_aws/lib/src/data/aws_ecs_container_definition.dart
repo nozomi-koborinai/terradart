@@ -62,13 +62,13 @@ final class DataAwsEcsContainerDefinition extends Data {
       TfRef.attribute<num>(this, 'memory_reservation');
 
   /// Reference to `container_name` attribute.
-  TfRef<String> get containerNameRef =>
+  TfRef<String> get containerName =>
       TfRef.attribute<String>(this, 'container_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `task_definition` attribute.
-  TfRef<String> get taskDefinitionRef =>
+  TfRef<String> get taskDefinition =>
       TfRef.attribute<String>(this, 'task_definition');
 }

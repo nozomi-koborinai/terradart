@@ -145,7 +145,7 @@ final class GoogleKmsCryptoKey extends Resource {
   RefTo<GoogleKmsCryptoKey> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -163,35 +163,35 @@ final class GoogleKmsCryptoKey extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `crypto_key_backend` attribute.
-  TfRef<String> get cryptoKeyBackendRef =>
+  TfRef<String> get cryptoKeyBackend =>
       TfRef.attribute<String>(this, 'crypto_key_backend');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `destroy_scheduled_duration` attribute.
-  TfRef<String> get destroyScheduledDurationRef =>
+  TfRef<String> get destroyScheduledDuration =>
       TfRef.attribute<String>(this, 'destroy_scheduled_duration');
 
   /// Reference to `import_only` attribute.
-  TfRef<bool> get importOnlyRef => TfRef.attribute<bool>(this, 'import_only');
+  TfRef<bool> get importOnly => TfRef.attribute<bool>(this, 'import_only');
 
   /// Reference to `key_ring` attribute.
-  TfRef<String> get keyRingRef => TfRef.attribute<String>(this, 'key_ring');
+  TfRef<String> get keyRing => TfRef.attribute<String>(this, 'key_ring');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `purpose` attribute.
-  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+  TfRef<String> get purpose => TfRef.attribute<String>(this, 'purpose');
 
   /// Reference to `rotation_period` attribute.
-  TfRef<String> get rotationPeriodRef =>
+  TfRef<String> get rotationPeriod =>
       TfRef.attribute<String>(this, 'rotation_period');
 
   /// Reference to `skip_initial_version_creation` attribute.
-  TfRef<bool> get skipInitialVersionCreationRef =>
+  TfRef<bool> get skipInitialVersionCreation =>
       TfRef.attribute<bool>(this, 'skip_initial_version_creation');
 }

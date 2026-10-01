@@ -1275,40 +1275,39 @@ final class AwsBedrockagentcoreHarness extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `allowed_tools` attribute.
-  TfRef<List<String>> get allowedToolsRef =>
+  TfRef<List<String>> get allowedTools =>
       TfRef.attribute<List<String>>(this, 'allowed_tools');
 
   /// Reference to `environment_variables` attribute.
-  TfRef<Map<String, String>> get environmentVariablesRef =>
+  TfRef<Map<String, String>> get environmentVariables =>
       TfRef.attribute<Map<String, String>>(this, 'environment_variables');
 
   /// Reference to `execution_role_arn` attribute.
-  TfRef<String> get executionRoleArnRef =>
+  TfRef<String> get executionRoleArn =>
       TfRef.attribute<String>(this, 'execution_role_arn');
 
   /// Reference to `harness_name` attribute.
-  TfRef<String> get harnessNameRef =>
+  TfRef<String> get harnessName =>
       TfRef.attribute<String>(this, 'harness_name');
 
   /// Reference to `max_iterations` attribute.
-  TfRef<num> get maxIterationsRef =>
-      TfRef.attribute<num>(this, 'max_iterations');
+  TfRef<num> get maxIterations => TfRef.attribute<num>(this, 'max_iterations');
 
   /// Reference to `max_tokens` attribute.
-  TfRef<num> get maxTokensRef => TfRef.attribute<num>(this, 'max_tokens');
+  TfRef<num> get maxTokens => TfRef.attribute<num>(this, 'max_tokens');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `timeout_seconds` attribute.
-  TfRef<num> get timeoutSecondsRef =>
+  TfRef<num> get timeoutSeconds =>
       TfRef.attribute<num>(this, 'timeout_seconds');
 
   /// Reference to `truncation` attribute.
-  TfRef<List<Map<String, Object?>>> get truncationRef =>
+  TfRef<List<Map<String, Object?>>> get truncation =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'truncation');
 }

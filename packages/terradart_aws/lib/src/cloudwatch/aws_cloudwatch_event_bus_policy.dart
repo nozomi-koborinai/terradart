@@ -39,12 +39,12 @@ final class AwsCloudwatchEventBusPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `event_bus_name` attribute.
-  TfRef<String> get eventBusNameRef =>
+  TfRef<String> get eventBusName =>
       TfRef.attribute<String>(this, 'event_bus_name');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -65,57 +65,57 @@ final class AwsGrafanaWorkspaceSamlConfiguration extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `admin_role_values` attribute.
-  TfRef<List<String>> get adminRoleValuesRef =>
+  TfRef<List<String>> get adminRoleValues =>
       TfRef.attribute<List<String>>(this, 'admin_role_values');
 
   /// Reference to `allowed_organizations` attribute.
-  TfRef<List<String>> get allowedOrganizationsRef =>
+  TfRef<List<String>> get allowedOrganizations =>
       TfRef.attribute<List<String>>(this, 'allowed_organizations');
 
   /// Reference to `editor_role_values` attribute.
-  TfRef<List<String>> get editorRoleValuesRef =>
+  TfRef<List<String>> get editorRoleValues =>
       TfRef.attribute<List<String>>(this, 'editor_role_values');
 
   /// Reference to `email_assertion` attribute.
-  TfRef<String> get emailAssertionRef =>
+  TfRef<String> get emailAssertion =>
       TfRef.attribute<String>(this, 'email_assertion');
 
   /// Reference to `groups_assertion` attribute.
-  TfRef<String> get groupsAssertionRef =>
+  TfRef<String> get groupsAssertion =>
       TfRef.attribute<String>(this, 'groups_assertion');
 
   /// Reference to `idp_metadata_url` attribute.
-  TfRef<String> get idpMetadataUrlRef =>
+  TfRef<String> get idpMetadataUrl =>
       TfRef.attribute<String>(this, 'idp_metadata_url');
 
   /// Reference to `idp_metadata_xml` attribute.
-  TfRef<String> get idpMetadataXmlRef =>
+  TfRef<String> get idpMetadataXml =>
       TfRef.attribute<String>(this, 'idp_metadata_xml');
 
   /// Reference to `login_assertion` attribute.
-  TfRef<String> get loginAssertionRef =>
+  TfRef<String> get loginAssertion =>
       TfRef.attribute<String>(this, 'login_assertion');
 
   /// Reference to `login_validity_duration` attribute.
-  TfRef<num> get loginValidityDurationRef =>
+  TfRef<num> get loginValidityDuration =>
       TfRef.attribute<num>(this, 'login_validity_duration');
 
   /// Reference to `name_assertion` attribute.
-  TfRef<String> get nameAssertionRef =>
+  TfRef<String> get nameAssertion =>
       TfRef.attribute<String>(this, 'name_assertion');
 
   /// Reference to `org_assertion` attribute.
-  TfRef<String> get orgAssertionRef =>
+  TfRef<String> get orgAssertion =>
       TfRef.attribute<String>(this, 'org_assertion');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_assertion` attribute.
-  TfRef<String> get roleAssertionRef =>
+  TfRef<String> get roleAssertion =>
       TfRef.attribute<String>(this, 'role_assertion');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

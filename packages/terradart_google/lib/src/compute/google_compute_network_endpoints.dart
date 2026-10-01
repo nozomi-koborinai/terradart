@@ -89,16 +89,16 @@ final class GoogleComputeNetworkEndpoints extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `network_endpoint_group` attribute.
-  TfRef<String> get networkEndpointGroupRef =>
+  TfRef<String> get networkEndpointGroup =>
       TfRef.attribute<String>(this, 'network_endpoint_group');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

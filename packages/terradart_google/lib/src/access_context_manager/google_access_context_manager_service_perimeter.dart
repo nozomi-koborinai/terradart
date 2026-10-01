@@ -504,6 +504,9 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
   /// `RefTo<GoogleAccessContextManagerServicePerimeter>`.
   RefTo<GoogleAccessContextManagerServicePerimeter> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
@@ -514,27 +517,25 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `perimeter_type` attribute.
-  TfRef<String> get perimeterTypeRef =>
+  TfRef<String> get perimeterType =>
       TfRef.attribute<String>(this, 'perimeter_type');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 
   /// Reference to `use_explicit_dry_run_spec` attribute.
-  TfRef<bool> get useExplicitDryRunSpecRef =>
+  TfRef<bool> get useExplicitDryRunSpec =>
       TfRef.attribute<bool>(this, 'use_explicit_dry_run_spec');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

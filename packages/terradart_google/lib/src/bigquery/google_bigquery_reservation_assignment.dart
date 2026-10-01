@@ -57,7 +57,7 @@ final class GoogleBigqueryReservationAssignment extends Resource {
   RefTo<GoogleBigqueryReservationAssignment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -66,25 +66,24 @@ final class GoogleBigqueryReservationAssignment extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `assignee` attribute.
-  TfRef<String> get assigneeRef => TfRef.attribute<String>(this, 'assignee');
+  TfRef<String> get assignee => TfRef.attribute<String>(this, 'assignee');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `job_type` attribute.
-  TfRef<String> get jobTypeRef => TfRef.attribute<String>(this, 'job_type');
+  TfRef<String> get jobType => TfRef.attribute<String>(this, 'job_type');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `principal` attribute.
-  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+  TfRef<String> get principal => TfRef.attribute<String>(this, 'principal');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reservation` attribute.
-  TfRef<String> get reservationRef =>
-      TfRef.attribute<String>(this, 'reservation');
+  TfRef<String> get reservation => TfRef.attribute<String>(this, 'reservation');
 }

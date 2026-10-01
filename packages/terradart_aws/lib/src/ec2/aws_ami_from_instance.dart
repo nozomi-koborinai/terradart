@@ -73,7 +73,7 @@ final class AwsAmiFromInstance extends Resource {
   RefTo<AwsAmiFromInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -163,25 +163,24 @@ final class AwsAmiFromInstance extends Resource {
       TfRef.attribute<String>(this, 'virtualization_type');
 
   /// Reference to `deprecation_time` attribute.
-  TfRef<String> get deprecationTimeRef =>
+  TfRef<String> get deprecationTime =>
       TfRef.attribute<String>(this, 'deprecation_time');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `snapshot_without_reboot` attribute.
-  TfRef<bool> get snapshotWithoutRebootRef =>
+  TfRef<bool> get snapshotWithoutReboot =>
       TfRef.attribute<bool>(this, 'snapshot_without_reboot');
 
   /// Reference to `source_instance_id` attribute.
-  TfRef<String> get sourceInstanceIdRef =>
+  TfRef<String> get sourceInstanceId =>
       TfRef.attribute<String>(this, 'source_instance_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

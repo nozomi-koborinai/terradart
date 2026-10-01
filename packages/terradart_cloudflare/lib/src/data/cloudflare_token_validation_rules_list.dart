@@ -50,27 +50,27 @@ final class DataCloudflareTokenValidationRulesList extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `hostname` attribute.
-  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `rule_id` attribute.
-  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+  TfRef<String> get ruleId => TfRef.attribute<String>(this, 'rule_id');
 
   /// Reference to `token_configuration` attribute.
-  TfRef<List<String>> get tokenConfigurationRef =>
+  TfRef<List<String>> get tokenConfiguration =>
       TfRef.attribute<List<String>>(this, 'token_configuration');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

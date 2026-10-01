@@ -226,6 +226,9 @@ final class GoogleComputeNodeTemplate extends Resource {
   /// `RefTo<GoogleComputeNodeTemplate>`.
   RefTo<GoogleComputeNodeTemplate> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -234,35 +237,28 @@ final class GoogleComputeNodeTemplate extends Resource {
       TfRef.attribute<String>(this, 'creation_timestamp');
 
   /// Reference to `cpu_overcommit_type` attribute.
-  TfRef<String> get cpuOvercommitTypeRef =>
+  TfRef<String> get cpuOvercommitType =>
       TfRef.attribute<String>(this, 'cpu_overcommit_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `node_affinity_labels` attribute.
-  TfRef<Map<String, String>> get nodeAffinityLabelsRef =>
+  TfRef<Map<String, String>> get nodeAffinityLabels =>
       TfRef.attribute<Map<String, String>>(this, 'node_affinity_labels');
 
   /// Reference to `node_type` attribute.
-  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+  TfRef<String> get nodeType => TfRef.attribute<String>(this, 'node_type');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` / self-link style id attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `self_link` for [GoogleComputeNodeGroup.nodeTemplate].
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

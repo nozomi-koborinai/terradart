@@ -80,11 +80,11 @@ final class CloudflareUrlNormalizationSettings extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

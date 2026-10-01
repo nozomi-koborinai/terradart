@@ -38,8 +38,8 @@ final class AwsSecurityhubInviteAccepter extends Resource {
       TfRef.attribute<String>(this, 'invitation_id');
 
   /// Reference to `master_id` attribute.
-  TfRef<String> get masterIdRef => TfRef.attribute<String>(this, 'master_id');
+  TfRef<String> get masterId => TfRef.attribute<String>(this, 'master_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

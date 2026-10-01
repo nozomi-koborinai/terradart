@@ -45,25 +45,25 @@ final class AwsRedshiftSnapshotCopy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `destination_region` attribute.
-  TfRef<String> get destinationRegionRef =>
+  TfRef<String> get destinationRegion =>
       TfRef.attribute<String>(this, 'destination_region');
 
   /// Reference to `manual_snapshot_retention_period` attribute.
-  TfRef<num> get manualSnapshotRetentionPeriodRef =>
+  TfRef<num> get manualSnapshotRetentionPeriod =>
       TfRef.attribute<num>(this, 'manual_snapshot_retention_period');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention_period` attribute.
-  TfRef<num> get retentionPeriodRef =>
+  TfRef<num> get retentionPeriod =>
       TfRef.attribute<num>(this, 'retention_period');
 
   /// Reference to `snapshot_copy_grant_name` attribute.
-  TfRef<String> get snapshotCopyGrantNameRef =>
+  TfRef<String> get snapshotCopyGrantName =>
       TfRef.attribute<String>(this, 'snapshot_copy_grant_name');
 }

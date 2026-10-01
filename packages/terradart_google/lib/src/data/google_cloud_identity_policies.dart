@@ -31,5 +31,5 @@ final class DataGoogleCloudIdentityPolicies extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'policies');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 }

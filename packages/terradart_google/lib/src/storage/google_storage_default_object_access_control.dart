@@ -97,18 +97,18 @@ final class GoogleStorageDefaultObjectAccessControl extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'project_team');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `entity` attribute.
-  TfRef<String> get entityRef => TfRef.attribute<String>(this, 'entity');
+  TfRef<String> get entity => TfRef.attribute<String>(this, 'entity');
 
   /// Reference to `object` attribute.
-  TfRef<String> get objectRef => TfRef.attribute<String>(this, 'object');
+  TfRef<String> get object => TfRef.attribute<String>(this, 'object');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

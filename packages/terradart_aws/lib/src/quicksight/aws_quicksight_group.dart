@@ -46,19 +46,18 @@ final class AwsQuicksightGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `group_name` attribute.
-  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+  TfRef<String> get groupName => TfRef.attribute<String>(this, 'group_name');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

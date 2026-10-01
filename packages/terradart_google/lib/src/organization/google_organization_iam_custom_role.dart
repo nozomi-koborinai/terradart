@@ -51,7 +51,7 @@ final class GoogleOrganizationIamCustomRole extends Resource {
   RefTo<GoogleOrganizationIamCustomRole> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -60,26 +60,25 @@ final class GoogleOrganizationIamCustomRole extends Resource {
   TfRef<bool> get deleted => TfRef.attribute<bool>(this, 'deleted');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `permissions` attribute.
-  TfRef<List<String>> get permissionsRef =>
+  TfRef<List<String>> get permissions =>
       TfRef.attribute<List<String>>(this, 'permissions');
 
   /// Reference to `role_id` attribute.
-  TfRef<String> get roleIdRef => TfRef.attribute<String>(this, 'role_id');
+  TfRef<String> get roleId => TfRef.attribute<String>(this, 'role_id');
 
   /// Reference to `stage` attribute.
-  TfRef<String> get stageRef => TfRef.attribute<String>(this, 'stage');
+  TfRef<String> get stage => TfRef.attribute<String>(this, 'stage');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 }

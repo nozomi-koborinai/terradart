@@ -32,5 +32,5 @@ final class DataGoogleComputeInterconnectLocations extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'locations');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -56,7 +56,7 @@ final class GoogleSccOrganizationSccBigQueryExport extends Resource {
   RefTo<GoogleSccOrganizationSccBigQueryExport> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -75,24 +75,23 @@ final class GoogleSccOrganizationSccBigQueryExport extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `big_query_export_id` attribute.
-  TfRef<String> get bigQueryExportIdRef =>
+  TfRef<String> get bigQueryExportId =>
       TfRef.attribute<String>(this, 'big_query_export_id');
 
   /// Reference to `dataset` attribute.
-  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+  TfRef<String> get dataset => TfRef.attribute<String>(this, 'dataset');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 }

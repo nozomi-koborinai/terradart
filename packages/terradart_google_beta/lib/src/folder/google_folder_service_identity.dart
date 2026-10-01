@@ -50,12 +50,12 @@ final class GoogleFolderServiceIdentity extends Resource {
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
-      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 }

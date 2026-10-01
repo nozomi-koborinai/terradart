@@ -251,18 +251,18 @@ final class AwsGlueCatalogTableOptimizer extends Resource {
   RefTo<AwsGlueCatalogTableOptimizer> get ref => RefTo.of(this);
 
   /// Reference to `catalog_id` attribute.
-  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+  TfRef<String> get catalogId => TfRef.attribute<String>(this, 'catalog_id');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_name` attribute.
-  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
+  TfRef<String> get tableName => TfRef.attribute<String>(this, 'table_name');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

@@ -69,6 +69,6 @@ final class DataAwsCloudfrontDistribution extends Data {
   TfRef<String> get webAclId => TfRef.attribute<String>(this, 'web_acl_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

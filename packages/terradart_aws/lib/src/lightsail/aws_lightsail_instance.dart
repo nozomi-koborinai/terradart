@@ -84,7 +84,7 @@ final class AwsLightsailInstance extends Resource {
   RefTo<AwsLightsailInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -120,31 +120,31 @@ final class AwsLightsailInstance extends Resource {
   TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `blueprint_id` attribute.
-  TfRef<String> get blueprintIdRef =>
+  TfRef<String> get blueprintId =>
       TfRef.attribute<String>(this, 'blueprint_id');
 
   /// Reference to `bundle_id` attribute.
-  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+  TfRef<String> get bundleId => TfRef.attribute<String>(this, 'bundle_id');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `key_pair_name` attribute.
-  TfRef<String> get keyPairNameRef =>
+  TfRef<String> get keyPairName =>
       TfRef.attribute<String>(this, 'key_pair_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_data` attribute.
-  TfRef<String> get userDataRef => TfRef.attribute<String>(this, 'user_data');
+  TfRef<String> get userData => TfRef.attribute<String>(this, 'user_data');
 }

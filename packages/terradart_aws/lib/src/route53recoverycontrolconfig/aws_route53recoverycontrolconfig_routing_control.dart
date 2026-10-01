@@ -40,7 +40,7 @@ final class AwsRoute53recoverycontrolconfigRoutingControl extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,10 +52,9 @@ final class AwsRoute53recoverycontrolconfigRoutingControl extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `cluster_arn` attribute.
-  TfRef<String> get clusterArnRef =>
-      TfRef.attribute<String>(this, 'cluster_arn');
+  TfRef<String> get clusterArn => TfRef.attribute<String>(this, 'cluster_arn');
 
   /// Reference to `control_panel_arn` attribute.
-  TfRef<String> get controlPanelArnRef =>
+  TfRef<String> get controlPanelArn =>
       TfRef.attribute<String>(this, 'control_panel_arn');
 }

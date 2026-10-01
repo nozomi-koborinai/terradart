@@ -97,11 +97,11 @@ final class AwsRoute53VpcAssociationAuthorization extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `vpc_region` attribute.
-  TfRef<String> get vpcRegionRef => TfRef.attribute<String>(this, 'vpc_region');
+  TfRef<String> get vpcRegion => TfRef.attribute<String>(this, 'vpc_region');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -79,16 +79,16 @@ final class AwsMemorydbUser extends Resource {
       TfRef.attribute<String>(this, 'minimum_engine_version');
 
   /// Reference to `access_string` attribute.
-  TfRef<String> get accessStringRef =>
+  TfRef<String> get accessString =>
       TfRef.attribute<String>(this, 'access_string');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

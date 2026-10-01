@@ -55,33 +55,32 @@ final class AwsRedshiftIntegration extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `additional_encryption_context` attribute.
-  TfRef<Map<String, String>> get additionalEncryptionContextRef =>
+  TfRef<Map<String, String>> get additionalEncryptionContext =>
       TfRef.attribute<Map<String, String>>(
         this,
         'additional_encryption_context',
       );
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `integration_name` attribute.
-  TfRef<String> get integrationNameRef =>
+  TfRef<String> get integrationName =>
       TfRef.attribute<String>(this, 'integration_name');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_arn` attribute.
-  TfRef<String> get sourceArnRef => TfRef.attribute<String>(this, 'source_arn');
+  TfRef<String> get sourceArn => TfRef.attribute<String>(this, 'source_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_arn` attribute.
-  TfRef<String> get targetArnRef => TfRef.attribute<String>(this, 'target_arn');
+  TfRef<String> get targetArn => TfRef.attribute<String>(this, 'target_arn');
 }

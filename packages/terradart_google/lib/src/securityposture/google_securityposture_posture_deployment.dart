@@ -62,7 +62,7 @@ final class GoogleSecurityposturePostureDeployment extends Resource {
   RefTo<GoogleSecurityposturePostureDeployment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -95,31 +95,30 @@ final class GoogleSecurityposturePostureDeployment extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `posture_deployment_id` attribute.
-  TfRef<String> get postureDeploymentIdRef =>
+  TfRef<String> get postureDeploymentId =>
       TfRef.attribute<String>(this, 'posture_deployment_id');
 
   /// Reference to `posture_id` attribute.
-  TfRef<String> get postureIdRef => TfRef.attribute<String>(this, 'posture_id');
+  TfRef<String> get postureId => TfRef.attribute<String>(this, 'posture_id');
 
   /// Reference to `posture_revision_id` attribute.
-  TfRef<String> get postureRevisionIdRef =>
+  TfRef<String> get postureRevisionId =>
       TfRef.attribute<String>(this, 'posture_revision_id');
 
   /// Reference to `target_resource` attribute.
-  TfRef<String> get targetResourceRef =>
+  TfRef<String> get targetResource =>
       TfRef.attribute<String>(this, 'target_resource');
 }

@@ -296,20 +296,20 @@ final class AwsKeyspacesTable extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `default_time_to_live` attribute.
-  TfRef<num> get defaultTimeToLiveRef =>
+  TfRef<num> get defaultTimeToLive =>
       TfRef.attribute<num>(this, 'default_time_to_live');
 
   /// Reference to `keyspace_name` attribute.
-  TfRef<String> get keyspaceNameRef =>
+  TfRef<String> get keyspaceName =>
       TfRef.attribute<String>(this, 'keyspace_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_name` attribute.
-  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
+  TfRef<String> get tableName => TfRef.attribute<String>(this, 'table_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

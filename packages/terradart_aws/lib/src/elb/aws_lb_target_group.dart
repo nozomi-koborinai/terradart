@@ -435,7 +435,7 @@ final class AwsLbTargetGroup extends Resource {
   RefTo<AwsLbTargetGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -451,73 +451,71 @@ final class AwsLbTargetGroup extends Resource {
       TfRef.attribute<List<String>>(this, 'load_balancer_arns');
 
   /// Reference to `connection_termination` attribute.
-  TfRef<bool> get connectionTerminationRef =>
+  TfRef<bool> get connectionTermination =>
       TfRef.attribute<bool>(this, 'connection_termination');
 
   /// Reference to `deregistration_delay` attribute.
-  TfRef<String> get deregistrationDelayRef =>
+  TfRef<String> get deregistrationDelay =>
       TfRef.attribute<String>(this, 'deregistration_delay');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `lambda_multi_value_headers_enabled` attribute.
-  TfRef<bool> get lambdaMultiValueHeadersEnabledRef =>
+  TfRef<bool> get lambdaMultiValueHeadersEnabled =>
       TfRef.attribute<bool>(this, 'lambda_multi_value_headers_enabled');
 
   /// Reference to `load_balancing_algorithm_type` attribute.
-  TfRef<String> get loadBalancingAlgorithmTypeRef =>
+  TfRef<String> get loadBalancingAlgorithmType =>
       TfRef.attribute<String>(this, 'load_balancing_algorithm_type');
 
   /// Reference to `load_balancing_anomaly_mitigation` attribute.
-  TfRef<String> get loadBalancingAnomalyMitigationRef =>
+  TfRef<String> get loadBalancingAnomalyMitigation =>
       TfRef.attribute<String>(this, 'load_balancing_anomaly_mitigation');
 
   /// Reference to `load_balancing_cross_zone_enabled` attribute.
-  TfRef<String> get loadBalancingCrossZoneEnabledRef =>
+  TfRef<String> get loadBalancingCrossZoneEnabled =>
       TfRef.attribute<String>(this, 'load_balancing_cross_zone_enabled');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `preserve_client_ip` attribute.
-  TfRef<String> get preserveClientIpRef =>
+  TfRef<String> get preserveClientIp =>
       TfRef.attribute<String>(this, 'preserve_client_ip');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `protocol_version` attribute.
-  TfRef<String> get protocolVersionRef =>
+  TfRef<String> get protocolVersion =>
       TfRef.attribute<String>(this, 'protocol_version');
 
   /// Reference to `proxy_protocol_v2` attribute.
-  TfRef<bool> get proxyProtocolV2Ref =>
+  TfRef<bool> get proxyProtocolV2 =>
       TfRef.attribute<bool>(this, 'proxy_protocol_v2');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `slow_start` attribute.
-  TfRef<num> get slowStartRef => TfRef.attribute<num>(this, 'slow_start');
+  TfRef<num> get slowStart => TfRef.attribute<num>(this, 'slow_start');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_control_port` attribute.
-  TfRef<num> get targetControlPortRef =>
+  TfRef<num> get targetControlPort =>
       TfRef.attribute<num>(this, 'target_control_port');
 
   /// Reference to `target_type` attribute.
-  TfRef<String> get targetTypeRef =>
-      TfRef.attribute<String>(this, 'target_type');
+  TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

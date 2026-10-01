@@ -76,7 +76,7 @@ final class GoogleChronicleCustomList extends Resource {
   RefTo<GoogleChronicleCustomList> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -86,26 +86,26 @@ final class GoogleChronicleCustomList extends Resource {
       TfRef.attribute<String>(this, 'custom_list_id');
 
   /// Reference to `category` attribute.
-  TfRef<String> get categoryRef => TfRef.attribute<String>(this, 'category');
+  TfRef<String> get category => TfRef.attribute<String>(this, 'category');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `entity_identifier` attribute.
-  TfRef<String> get entityIdentifierRef =>
+  TfRef<String> get entityIdentifier =>
       TfRef.attribute<String>(this, 'entity_identifier');
 
   /// Reference to `environments` attribute.
-  TfRef<String> get environmentsRef =>
+  TfRef<String> get environments =>
       TfRef.attribute<String>(this, 'environments');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

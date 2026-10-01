@@ -42,7 +42,7 @@ final class DataAwsConnectContactFlow extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -57,20 +57,19 @@ final class DataAwsConnectContactFlow extends Data {
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `contact_flow_id` attribute.
-  TfRef<String> get contactFlowIdRef =>
+  TfRef<String> get contactFlowId =>
       TfRef.attribute<String>(this, 'contact_flow_id');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

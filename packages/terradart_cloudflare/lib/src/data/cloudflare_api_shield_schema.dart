@@ -42,10 +42,10 @@ final class DataCloudflareApiShieldSchema extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
@@ -58,11 +58,11 @@ final class DataCloudflareApiShieldSchema extends Data {
       TfRef.attribute<bool>(this, 'validation_enabled');
 
   /// Reference to `omit_source` attribute.
-  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+  TfRef<bool> get omitSource => TfRef.attribute<bool>(this, 'omit_source');
 
   /// Reference to `schema_id` attribute.
-  TfRef<String> get schemaIdRef => TfRef.attribute<String>(this, 'schema_id');
+  TfRef<String> get schemaId => TfRef.attribute<String>(this, 'schema_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -33,7 +33,7 @@ final class AwsNotificationscontactsEmailContact extends Resource {
   RefTo<AwsNotificationscontactsEmailContact> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -43,10 +43,10 @@ final class AwsNotificationscontactsEmailContact extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `email_address` attribute.
-  TfRef<String> get emailAddressRef =>
+  TfRef<String> get emailAddress =>
       TfRef.attribute<String>(this, 'email_address');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

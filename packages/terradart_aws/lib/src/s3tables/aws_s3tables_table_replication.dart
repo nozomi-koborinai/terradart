@@ -75,11 +75,11 @@ final class AwsS3tablesTableReplication extends Resource {
       TfRef.attribute<String>(this, 'version_token');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `table_arn` attribute.
-  TfRef<String> get tableArnRef => TfRef.attribute<String>(this, 'table_arn');
+  TfRef<String> get tableArn => TfRef.attribute<String>(this, 'table_arn');
 }

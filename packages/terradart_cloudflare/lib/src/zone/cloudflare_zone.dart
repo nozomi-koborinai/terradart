@@ -88,7 +88,7 @@ final class CloudflareZone extends Resource {
   RefTo<CloudflareZone> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -139,12 +139,12 @@ final class CloudflareZone extends Resource {
       TfRef.attribute<String>(this, 'verification_key');
 
   /// Reference to `paused` attribute.
-  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+  TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `vanity_name_servers` attribute.
-  TfRef<List<String>> get vanityNameServersRef =>
+  TfRef<List<String>> get vanityNameServers =>
       TfRef.attribute<List<String>>(this, 'vanity_name_servers');
 }

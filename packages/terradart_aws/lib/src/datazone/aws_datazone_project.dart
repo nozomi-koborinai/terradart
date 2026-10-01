@@ -42,7 +42,7 @@ final class AwsDatazoneProject extends Resource {
   RefTo<AwsDatazoneProject> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -66,21 +66,20 @@ final class AwsDatazoneProject extends Resource {
       TfRef.attribute<String>(this, 'project_status');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `glossary_terms` attribute.
-  TfRef<List<String>> get glossaryTermsRef =>
+  TfRef<List<String>> get glossaryTerms =>
       TfRef.attribute<List<String>>(this, 'glossary_terms');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_deletion_check` attribute.
-  TfRef<bool> get skipDeletionCheckRef =>
+  TfRef<bool> get skipDeletionCheck =>
       TfRef.attribute<bool>(this, 'skip_deletion_check');
 }

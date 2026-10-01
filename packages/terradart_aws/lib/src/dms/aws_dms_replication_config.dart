@@ -122,45 +122,45 @@ final class AwsDmsReplicationConfig extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_config_identifier` attribute.
-  TfRef<String> get replicationConfigIdentifierRef =>
+  TfRef<String> get replicationConfigIdentifier =>
       TfRef.attribute<String>(this, 'replication_config_identifier');
 
   /// Reference to `replication_settings` attribute.
-  TfRef<String> get replicationSettingsRef =>
+  TfRef<String> get replicationSettings =>
       TfRef.attribute<String>(this, 'replication_settings');
 
   /// Reference to `replication_type` attribute.
-  TfRef<String> get replicationTypeRef =>
+  TfRef<String> get replicationType =>
       TfRef.attribute<String>(this, 'replication_type');
 
   /// Reference to `resource_identifier` attribute.
-  TfRef<String> get resourceIdentifierRef =>
+  TfRef<String> get resourceIdentifier =>
       TfRef.attribute<String>(this, 'resource_identifier');
 
   /// Reference to `source_endpoint_arn` attribute.
-  TfRef<String> get sourceEndpointArnRef =>
+  TfRef<String> get sourceEndpointArn =>
       TfRef.attribute<String>(this, 'source_endpoint_arn');
 
   /// Reference to `start_replication` attribute.
-  TfRef<bool> get startReplicationRef =>
+  TfRef<bool> get startReplication =>
       TfRef.attribute<bool>(this, 'start_replication');
 
   /// Reference to `supplemental_settings` attribute.
-  TfRef<String> get supplementalSettingsRef =>
+  TfRef<String> get supplementalSettings =>
       TfRef.attribute<String>(this, 'supplemental_settings');
 
   /// Reference to `table_mappings` attribute.
-  TfRef<String> get tableMappingsRef =>
+  TfRef<String> get tableMappings =>
       TfRef.attribute<String>(this, 'table_mappings');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_endpoint_arn` attribute.
-  TfRef<String> get targetEndpointArnRef =>
+  TfRef<String> get targetEndpointArn =>
       TfRef.attribute<String>(this, 'target_endpoint_arn');
 }

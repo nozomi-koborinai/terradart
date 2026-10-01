@@ -47,9 +47,6 @@ final class GoogleProject extends Data {
   @override
   Set<String> get sensitiveFields => _googleProjectSensitive;
 
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -90,6 +87,8 @@ final class GoogleProject extends Data {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
+
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

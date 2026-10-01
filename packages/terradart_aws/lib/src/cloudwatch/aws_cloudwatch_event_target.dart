@@ -605,31 +605,30 @@ final class AwsCloudwatchEventTarget extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `event_bus_name` attribute.
-  TfRef<String> get eventBusNameRef =>
+  TfRef<String> get eventBusName =>
       TfRef.attribute<String>(this, 'event_bus_name');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `input` attribute.
-  TfRef<String> get inputRef => TfRef.attribute<String>(this, 'input');
+  TfRef<String> get input => TfRef.attribute<String>(this, 'input');
 
   /// Reference to `input_path` attribute.
-  TfRef<String> get inputPathRef => TfRef.attribute<String>(this, 'input_path');
+  TfRef<String> get inputPath => TfRef.attribute<String>(this, 'input_path');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `rule` attribute.
-  TfRef<String> get ruleRef => TfRef.attribute<String>(this, 'rule');
+  TfRef<String> get rule => TfRef.attribute<String>(this, 'rule');
 
   /// Reference to `target_id` attribute.
-  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
+  TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
 }

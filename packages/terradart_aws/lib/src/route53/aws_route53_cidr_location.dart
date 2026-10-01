@@ -36,16 +36,16 @@ final class AwsRoute53CidrLocation extends Resource {
   RefTo<AwsRoute53CidrLocation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cidr_blocks` attribute.
-  TfRef<List<String>> get cidrBlocksRef =>
+  TfRef<List<String>> get cidrBlocks =>
       TfRef.attribute<List<String>>(this, 'cidr_blocks');
 
   /// Reference to `cidr_collection_id` attribute.
-  TfRef<String> get cidrCollectionIdRef =>
+  TfRef<String> get cidrCollectionId =>
       TfRef.attribute<String>(this, 'cidr_collection_id');
 }

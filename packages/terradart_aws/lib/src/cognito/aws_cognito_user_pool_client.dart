@@ -271,7 +271,7 @@ final class AwsCognitoUserPoolClient extends Resource {
   RefTo<AwsCognitoUserPoolClient> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -281,84 +281,83 @@ final class AwsCognitoUserPoolClient extends Resource {
       TfRef.attribute<String>(this, 'client_secret');
 
   /// Reference to `access_token_validity` attribute.
-  TfRef<num> get accessTokenValidityRef =>
+  TfRef<num> get accessTokenValidity =>
       TfRef.attribute<num>(this, 'access_token_validity');
 
   /// Reference to `allowed_oauth_flows` attribute.
-  TfRef<List<String>> get allowedOauthFlowsRef =>
+  TfRef<List<String>> get allowedOauthFlows =>
       TfRef.attribute<List<String>>(this, 'allowed_oauth_flows');
 
   /// Reference to `allowed_oauth_flows_user_pool_client` attribute.
-  TfRef<bool> get allowedOauthFlowsUserPoolClientRef =>
+  TfRef<bool> get allowedOauthFlowsUserPoolClient =>
       TfRef.attribute<bool>(this, 'allowed_oauth_flows_user_pool_client');
 
   /// Reference to `allowed_oauth_scopes` attribute.
-  TfRef<List<String>> get allowedOauthScopesRef =>
+  TfRef<List<String>> get allowedOauthScopes =>
       TfRef.attribute<List<String>>(this, 'allowed_oauth_scopes');
 
   /// Reference to `auth_session_validity` attribute.
-  TfRef<num> get authSessionValidityRef =>
+  TfRef<num> get authSessionValidity =>
       TfRef.attribute<num>(this, 'auth_session_validity');
 
   /// Reference to `callback_urls` attribute.
-  TfRef<List<String>> get callbackUrlsRef =>
+  TfRef<List<String>> get callbackUrls =>
       TfRef.attribute<List<String>>(this, 'callback_urls');
 
   /// Reference to `default_redirect_uri` attribute.
-  TfRef<String> get defaultRedirectUriRef =>
+  TfRef<String> get defaultRedirectUri =>
       TfRef.attribute<String>(this, 'default_redirect_uri');
 
   /// Reference to `enable_propagate_additional_user_context_data` attribute.
-  TfRef<bool> get enablePropagateAdditionalUserContextDataRef =>
+  TfRef<bool> get enablePropagateAdditionalUserContextData =>
       TfRef.attribute<bool>(
         this,
         'enable_propagate_additional_user_context_data',
       );
 
   /// Reference to `enable_token_revocation` attribute.
-  TfRef<bool> get enableTokenRevocationRef =>
+  TfRef<bool> get enableTokenRevocation =>
       TfRef.attribute<bool>(this, 'enable_token_revocation');
 
   /// Reference to `explicit_auth_flows` attribute.
-  TfRef<List<String>> get explicitAuthFlowsRef =>
+  TfRef<List<String>> get explicitAuthFlows =>
       TfRef.attribute<List<String>>(this, 'explicit_auth_flows');
 
   /// Reference to `generate_secret` attribute.
-  TfRef<bool> get generateSecretRef =>
+  TfRef<bool> get generateSecret =>
       TfRef.attribute<bool>(this, 'generate_secret');
 
   /// Reference to `id_token_validity` attribute.
-  TfRef<num> get idTokenValidityRef =>
+  TfRef<num> get idTokenValidity =>
       TfRef.attribute<num>(this, 'id_token_validity');
 
   /// Reference to `logout_urls` attribute.
-  TfRef<List<String>> get logoutUrlsRef =>
+  TfRef<List<String>> get logoutUrls =>
       TfRef.attribute<List<String>>(this, 'logout_urls');
 
   /// Reference to `prevent_user_existence_errors` attribute.
-  TfRef<String> get preventUserExistenceErrorsRef =>
+  TfRef<String> get preventUserExistenceErrors =>
       TfRef.attribute<String>(this, 'prevent_user_existence_errors');
 
   /// Reference to `read_attributes` attribute.
-  TfRef<List<String>> get readAttributesRef =>
+  TfRef<List<String>> get readAttributes =>
       TfRef.attribute<List<String>>(this, 'read_attributes');
 
   /// Reference to `refresh_token_validity` attribute.
-  TfRef<num> get refreshTokenValidityRef =>
+  TfRef<num> get refreshTokenValidity =>
       TfRef.attribute<num>(this, 'refresh_token_validity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `supported_identity_providers` attribute.
-  TfRef<List<String>> get supportedIdentityProvidersRef =>
+  TfRef<List<String>> get supportedIdentityProviders =>
       TfRef.attribute<List<String>>(this, 'supported_identity_providers');
 
   /// Reference to `user_pool_id` attribute.
-  TfRef<String> get userPoolIdRef =>
-      TfRef.attribute<String>(this, 'user_pool_id');
+  TfRef<String> get userPoolId => TfRef.attribute<String>(this, 'user_pool_id');
 
   /// Reference to `write_attributes` attribute.
-  TfRef<List<String>> get writeAttributesRef =>
+  TfRef<List<String>> get writeAttributes =>
       TfRef.attribute<List<String>>(this, 'write_attributes');
 }

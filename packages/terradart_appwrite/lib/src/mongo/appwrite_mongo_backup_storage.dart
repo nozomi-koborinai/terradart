@@ -81,31 +81,30 @@ final class AppwriteMongoBackupStorage extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `access_key` attribute.
-  TfRef<String> get accessKeyRef => TfRef.attribute<String>(this, 'access_key');
+  TfRef<String> get accessKey => TfRef.attribute<String>(this, 'access_key');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `endpoint` attribute.
-  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+  TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_key` attribute.
-  TfRef<String> get secretKeyRef => TfRef.attribute<String>(this, 'secret_key');
+  TfRef<String> get secretKey => TfRef.attribute<String>(this, 'secret_key');
 
   /// Reference to `storage_provider` attribute.
-  TfRef<String> get storageProviderRef =>
+  TfRef<String> get storageProvider =>
       TfRef.attribute<String>(this, 'storage_provider');
 }

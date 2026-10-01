@@ -28,7 +28,7 @@ final class DataAwsDxGateway extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -45,6 +45,6 @@ final class DataAwsDxGateway extends Data {
       TfRef.attribute<String>(this, 'owner_account_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

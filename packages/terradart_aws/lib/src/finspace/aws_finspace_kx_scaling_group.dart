@@ -42,7 +42,7 @@ final class AwsFinspaceKxScalingGroup extends Resource {
   RefTo<AwsFinspaceKxScalingGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -70,20 +70,20 @@ final class AwsFinspaceKxScalingGroup extends Resource {
       TfRef.attribute<String>(this, 'status_reason');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `environment_id` attribute.
-  TfRef<String> get environmentIdRef =>
+  TfRef<String> get environmentId =>
       TfRef.attribute<String>(this, 'environment_id');
 
   /// Reference to `host_type` attribute.
-  TfRef<String> get hostTypeRef => TfRef.attribute<String>(this, 'host_type');
+  TfRef<String> get hostType => TfRef.attribute<String>(this, 'host_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

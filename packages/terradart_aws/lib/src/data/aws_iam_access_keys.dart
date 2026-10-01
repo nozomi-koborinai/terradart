@@ -28,5 +28,5 @@ final class DataAwsIamAccessKeys extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'access_keys');
 
   /// Reference to `user` attribute.
-  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
+  TfRef<String> get user => TfRef.attribute<String>(this, 'user');
 }

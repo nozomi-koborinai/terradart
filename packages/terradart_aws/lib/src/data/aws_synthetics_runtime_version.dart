@@ -50,14 +50,14 @@ final class DataAwsSyntheticsRuntimeVersion extends Data {
       TfRef.attribute<String>(this, 'version_name');
 
   /// Reference to `latest` attribute.
-  TfRef<bool> get latestRef => TfRef.attribute<bool>(this, 'latest');
+  TfRef<bool> get latest => TfRef.attribute<bool>(this, 'latest');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

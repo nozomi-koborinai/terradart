@@ -48,6 +48,6 @@ final class AwsIamSecurityTokenServicePreferences extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `global_endpoint_token_version` attribute.
-  TfRef<String> get globalEndpointTokenVersionRef =>
+  TfRef<String> get globalEndpointTokenVersion =>
       TfRef.attribute<String>(this, 'global_endpoint_token_version');
 }

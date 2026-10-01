@@ -43,9 +43,9 @@ final class AwsRoute53QueryLog extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `cloudwatch_log_group_arn` attribute.
-  TfRef<String> get cloudwatchLogGroupArnRef =>
+  TfRef<String> get cloudwatchLogGroupArn =>
       TfRef.attribute<String>(this, 'cloudwatch_log_group_arn');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

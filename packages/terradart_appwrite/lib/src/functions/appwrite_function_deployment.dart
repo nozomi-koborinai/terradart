@@ -100,50 +100,45 @@ final class AppwriteFunctionDeployment extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `activate` attribute.
-  TfRef<bool> get activateRef => TfRef.attribute<bool>(this, 'activate');
+  TfRef<bool> get activate => TfRef.attribute<bool>(this, 'activate');
 
   /// Reference to `code_hash` attribute.
-  TfRef<String> get codeHashRef => TfRef.attribute<String>(this, 'code_hash');
+  TfRef<String> get codeHash => TfRef.attribute<String>(this, 'code_hash');
 
   /// Reference to `code_path` attribute.
-  TfRef<String> get codePathRef => TfRef.attribute<String>(this, 'code_path');
+  TfRef<String> get codePath => TfRef.attribute<String>(this, 'code_path');
 
   /// Reference to `commands` attribute.
-  TfRef<String> get commandsRef => TfRef.attribute<String>(this, 'commands');
+  TfRef<String> get commands => TfRef.attribute<String>(this, 'commands');
 
   /// Reference to `entrypoint` attribute.
-  TfRef<String> get entrypointRef =>
-      TfRef.attribute<String>(this, 'entrypoint');
+  TfRef<String> get entrypoint => TfRef.attribute<String>(this, 'entrypoint');
 
   /// Reference to `function_id` attribute.
-  TfRef<String> get functionIdRef =>
-      TfRef.attribute<String>(this, 'function_id');
+  TfRef<String> get functionId => TfRef.attribute<String>(this, 'function_id');
 
   /// Reference to `owner` attribute.
-  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+  TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `reference` attribute.
-  TfRef<String> get referenceRef => TfRef.attribute<String>(this, 'reference');
+  TfRef<String> get reference => TfRef.attribute<String>(this, 'reference');
 
   /// Reference to `repository` attribute.
-  TfRef<String> get repositoryRef =>
-      TfRef.attribute<String>(this, 'repository');
+  TfRef<String> get repository => TfRef.attribute<String>(this, 'repository');
 
   /// Reference to `root_directory` attribute.
-  TfRef<String> get rootDirectoryRef =>
+  TfRef<String> get rootDirectory =>
       TfRef.attribute<String>(this, 'root_directory');
 
   /// Reference to `source_type` attribute.
-  TfRef<String> get sourceTypeRef =>
-      TfRef.attribute<String>(this, 'source_type');
+  TfRef<String> get sourceType => TfRef.attribute<String>(this, 'source_type');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `wait_for_ready` attribute.
-  TfRef<bool> get waitForReadyRef =>
-      TfRef.attribute<bool>(this, 'wait_for_ready');
+  TfRef<bool> get waitForReady => TfRef.attribute<bool>(this, 'wait_for_ready');
 }

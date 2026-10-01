@@ -208,42 +208,42 @@ final class CloudflareSpectrumApplication extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `argo_smart_routing` attribute.
-  TfRef<bool> get argoSmartRoutingRef =>
+  TfRef<bool> get argoSmartRouting =>
       TfRef.attribute<bool>(this, 'argo_smart_routing');
 
   /// Reference to `ip_firewall` attribute.
-  TfRef<bool> get ipFirewallRef => TfRef.attribute<bool>(this, 'ip_firewall');
+  TfRef<bool> get ipFirewall => TfRef.attribute<bool>(this, 'ip_firewall');
 
   /// Reference to `origin_direct` attribute.
-  TfRef<List<String>> get originDirectRef =>
+  TfRef<List<String>> get originDirect =>
       TfRef.attribute<List<String>>(this, 'origin_direct');
 
   /// Reference to `origin_port` attribute.
-  TfRef<Object?> get originPortRef =>
+  TfRef<Object?> get originPort =>
       TfRef.attribute<Object?>(this, 'origin_port');
 
   /// Reference to `origin_worker_id` attribute.
-  TfRef<String> get originWorkerIdRef =>
+  TfRef<String> get originWorkerId =>
       TfRef.attribute<String>(this, 'origin_worker_id');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `proxy_protocol` attribute.
-  TfRef<String> get proxyProtocolRef =>
+  TfRef<String> get proxyProtocol =>
       TfRef.attribute<String>(this, 'proxy_protocol');
 
   /// Reference to `tls` attribute.
-  TfRef<String> get tlsRef => TfRef.attribute<String>(this, 'tls');
+  TfRef<String> get tls => TfRef.attribute<String>(this, 'tls');
 
   /// Reference to `traffic_type` attribute.
-  TfRef<String> get trafficTypeRef =>
+  TfRef<String> get trafficType =>
       TfRef.attribute<String>(this, 'traffic_type');
 
   /// Reference to `virtual_network_id` attribute.
-  TfRef<String> get virtualNetworkIdRef =>
+  TfRef<String> get virtualNetworkId =>
       TfRef.attribute<String>(this, 'virtual_network_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

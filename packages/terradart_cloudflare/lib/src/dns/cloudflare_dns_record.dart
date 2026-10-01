@@ -353,7 +353,7 @@ final class CloudflareDnsRecord extends Resource {
   RefTo<CloudflareDnsRecord> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -379,35 +379,34 @@ final class CloudflareDnsRecord extends Resource {
       TfRef.attribute<String>(this, 'tags_modified_on');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `content` attribute.
-  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+  TfRef<String> get content => TfRef.attribute<String>(this, 'content');
 
   /// Reference to `include_shadow_metadata` attribute.
-  TfRef<bool> get includeShadowMetadataRef =>
+  TfRef<bool> get includeShadowMetadata =>
       TfRef.attribute<bool>(this, 'include_shadow_metadata');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `private_routing` attribute.
-  TfRef<bool> get privateRoutingRef =>
+  TfRef<bool> get privateRouting =>
       TfRef.attribute<bool>(this, 'private_routing');
 
   /// Reference to `proxied` attribute.
-  TfRef<bool> get proxiedRef => TfRef.attribute<bool>(this, 'proxied');
+  TfRef<bool> get proxied => TfRef.attribute<bool>(this, 'proxied');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 
   /// Reference to `ttl` attribute.
-  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+  TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

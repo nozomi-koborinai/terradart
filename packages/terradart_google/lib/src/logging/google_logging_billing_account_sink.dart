@@ -102,7 +102,7 @@ final class GoogleLoggingBillingAccountSink extends Resource {
   RefTo<GoogleLoggingBillingAccountSink> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -112,24 +112,22 @@ final class GoogleLoggingBillingAccountSink extends Resource {
       TfRef.attribute<String>(this, 'writer_identity');
 
   /// Reference to `billing_account` attribute.
-  TfRef<String> get billingAccountRef =>
+  TfRef<String> get billingAccount =>
       TfRef.attribute<String>(this, 'billing_account');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 }

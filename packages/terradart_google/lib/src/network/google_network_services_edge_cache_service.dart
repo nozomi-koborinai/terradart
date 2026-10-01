@@ -781,6 +781,9 @@ final class GoogleNetworkServicesEdgeCacheService extends Resource {
   /// `RefTo<GoogleNetworkServicesEdgeCacheService>`.
   RefTo<GoogleNetworkServicesEdgeCacheService> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -801,44 +804,36 @@ final class GoogleNetworkServicesEdgeCacheService extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_http2` attribute.
-  TfRef<bool> get disableHttp2Ref =>
-      TfRef.attribute<bool>(this, 'disable_http2');
+  TfRef<bool> get disableHttp2 => TfRef.attribute<bool>(this, 'disable_http2');
 
   /// Reference to `disable_quic` attribute.
-  TfRef<bool> get disableQuicRef => TfRef.attribute<bool>(this, 'disable_quic');
+  TfRef<bool> get disableQuic => TfRef.attribute<bool>(this, 'disable_quic');
 
   /// Reference to `edge_security_policy` attribute.
-  TfRef<String> get edgeSecurityPolicyRef =>
+  TfRef<String> get edgeSecurityPolicy =>
       TfRef.attribute<String>(this, 'edge_security_policy');
 
   /// Reference to `edge_ssl_certificates` attribute.
-  TfRef<List<String>> get edgeSslCertificatesRef =>
+  TfRef<List<String>> get edgeSslCertificates =>
       TfRef.attribute<List<String>>(this, 'edge_ssl_certificates');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `require_tls` attribute.
-  TfRef<bool> get requireTlsRef => TfRef.attribute<bool>(this, 'require_tls');
+  TfRef<bool> get requireTls => TfRef.attribute<bool>(this, 'require_tls');
 
   /// Reference to `ssl_policy` attribute.
-  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 }

@@ -71,36 +71,36 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
       TfRef.attribute<String>(this, 'tracking_server_url');
 
   /// Reference to `artifact_store_uri` attribute.
-  TfRef<String> get artifactStoreUriRef =>
+  TfRef<String> get artifactStoreUri =>
       TfRef.attribute<String>(this, 'artifact_store_uri');
 
   /// Reference to `automatic_model_registration` attribute.
-  TfRef<bool> get automaticModelRegistrationRef =>
+  TfRef<bool> get automaticModelRegistration =>
       TfRef.attribute<bool>(this, 'automatic_model_registration');
 
   /// Reference to `mlflow_version` attribute.
-  TfRef<String> get mlflowVersionRef =>
+  TfRef<String> get mlflowVersion =>
       TfRef.attribute<String>(this, 'mlflow_version');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tracking_server_name` attribute.
-  TfRef<String> get trackingServerNameRef =>
+  TfRef<String> get trackingServerName =>
       TfRef.attribute<String>(this, 'tracking_server_name');
 
   /// Reference to `tracking_server_size` attribute.
-  TfRef<String> get trackingServerSizeRef =>
+  TfRef<String> get trackingServerSize =>
       TfRef.attribute<String>(this, 'tracking_server_size');
 
   /// Reference to `weekly_maintenance_window_start` attribute.
-  TfRef<String> get weeklyMaintenanceWindowStartRef =>
+  TfRef<String> get weeklyMaintenanceWindowStart =>
       TfRef.attribute<String>(this, 'weekly_maintenance_window_start');
 }

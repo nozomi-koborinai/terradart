@@ -286,7 +286,7 @@ final class GoogleModelArmorFloorsetting extends Resource {
   RefTo<GoogleModelArmorFloorsetting> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -298,16 +298,16 @@ final class GoogleModelArmorFloorsetting extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `enable_floor_setting_enforcement` attribute.
-  TfRef<bool> get enableFloorSettingEnforcementRef =>
+  TfRef<bool> get enableFloorSettingEnforcement =>
       TfRef.attribute<bool>(this, 'enable_floor_setting_enforcement');
 
   /// Reference to `integrated_services` attribute.
-  TfRef<List<String>> get integratedServicesRef =>
+  TfRef<List<String>> get integratedServices =>
       TfRef.attribute<List<String>>(this, 'integrated_services');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

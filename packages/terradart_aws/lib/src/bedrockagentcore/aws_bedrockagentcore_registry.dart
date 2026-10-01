@@ -360,7 +360,7 @@ final class AwsBedrockagentcoreRegistry extends Resource {
   RefTo<AwsBedrockagentcoreRegistry> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `registry_arn` attribute.
   TfRef<String> get registryArn =>
@@ -370,20 +370,19 @@ final class AwsBedrockagentcoreRegistry extends Resource {
   TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
 
   /// Reference to `approval_configuration` attribute.
-  TfRef<List<Map<String, Object?>>> get approvalConfigurationRef =>
+  TfRef<List<Map<String, Object?>>> get approvalConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'approval_configuration',
       );
 
   /// Reference to `authorizer_type` attribute.
-  TfRef<String> get authorizerTypeRef =>
+  TfRef<String> get authorizerType =>
       TfRef.attribute<String>(this, 'authorizer_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

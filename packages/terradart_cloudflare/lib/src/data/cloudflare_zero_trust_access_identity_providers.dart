@@ -42,15 +42,15 @@ final class DataCloudflareZeroTrustAccessIdentityProviders extends Data {
       _cloudflareZeroTrustAccessIdentityProvidersSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `scim_enabled` attribute.
-  TfRef<String> get scimEnabledRef =>
+  TfRef<String> get scimEnabled =>
       TfRef.attribute<String>(this, 'scim_enabled');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

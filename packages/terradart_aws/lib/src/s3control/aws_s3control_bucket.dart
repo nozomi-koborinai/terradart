@@ -52,15 +52,15 @@ final class AwsS3controlBucket extends Resource {
       TfRef.attribute<bool>(this, 'public_access_block_enabled');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `outpost_id` attribute.
-  TfRef<String> get outpostIdRef => TfRef.attribute<String>(this, 'outpost_id');
+  TfRef<String> get outpostId => TfRef.attribute<String>(this, 'outpost_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

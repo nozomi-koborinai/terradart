@@ -52,24 +52,23 @@ final class AwsS3vectorsVectorBucket extends Resource {
       TfRef.attribute<String>(this, 'vector_bucket_arn');
 
   /// Reference to `encryption_configuration` attribute.
-  TfRef<List<Map<String, Object?>>> get encryptionConfigurationRef =>
+  TfRef<List<Map<String, Object?>>> get encryptionConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'encryption_configuration',
       );
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vector_bucket_name` attribute.
-  TfRef<String> get vectorBucketNameRef =>
+  TfRef<String> get vectorBucketName =>
       TfRef.attribute<String>(this, 'vector_bucket_name');
 }

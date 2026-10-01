@@ -53,15 +53,14 @@ final class GoogleDataprocClusterIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

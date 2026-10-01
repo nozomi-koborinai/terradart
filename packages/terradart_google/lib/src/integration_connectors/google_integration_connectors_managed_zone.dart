@@ -60,6 +60,9 @@ final class GoogleIntegrationConnectorsManagedZone extends Resource {
   /// `RefTo<GoogleIntegrationConnectorsManagedZone>`.
   RefTo<GoogleIntegrationConnectorsManagedZone> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -78,33 +81,26 @@ final class GoogleIntegrationConnectorsManagedZone extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `dns` attribute.
-  TfRef<String> get dnsRef => TfRef.attribute<String>(this, 'dns');
+  TfRef<String> get dns => TfRef.attribute<String>(this, 'dns');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `target_project` attribute.
-  TfRef<String> get targetProjectRef =>
+  TfRef<String> get targetProject =>
       TfRef.attribute<String>(this, 'target_project');
 
   /// Reference to `target_vpc` attribute.
-  TfRef<String> get targetVpcRef => TfRef.attribute<String>(this, 'target_vpc');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get targetVpc => TfRef.attribute<String>(this, 'target_vpc');
 }

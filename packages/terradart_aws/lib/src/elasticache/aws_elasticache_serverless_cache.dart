@@ -148,7 +148,7 @@ final class AwsElasticacheServerlessCache extends Resource {
   RefTo<AwsElasticacheServerlessCache> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -179,51 +179,50 @@ final class AwsElasticacheServerlessCache extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `daily_snapshot_time` attribute.
-  TfRef<String> get dailySnapshotTimeRef =>
+  TfRef<String> get dailySnapshotTime =>
       TfRef.attribute<String>(this, 'daily_snapshot_time');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `major_engine_version` attribute.
-  TfRef<String> get majorEngineVersionRef =>
+  TfRef<String> get majorEngineVersion =>
       TfRef.attribute<String>(this, 'major_engine_version');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `snapshot_arns_to_restore` attribute.
-  TfRef<List<String>> get snapshotArnsToRestoreRef =>
+  TfRef<List<String>> get snapshotArnsToRestore =>
       TfRef.attribute<List<String>>(this, 'snapshot_arns_to_restore');
 
   /// Reference to `snapshot_retention_limit` attribute.
-  TfRef<num> get snapshotRetentionLimitRef =>
+  TfRef<num> get snapshotRetentionLimit =>
       TfRef.attribute<num>(this, 'snapshot_retention_limit');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_group_id` attribute.
-  TfRef<String> get userGroupIdRef =>
+  TfRef<String> get userGroupId =>
       TfRef.attribute<String>(this, 'user_group_id');
 }

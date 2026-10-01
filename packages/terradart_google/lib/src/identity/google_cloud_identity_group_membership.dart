@@ -116,7 +116,7 @@ final class GoogleCloudIdentityGroupMembership extends Resource {
   RefTo<GoogleCloudIdentityGroupMembership> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -131,13 +131,13 @@ final class GoogleCloudIdentityGroupMembership extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `create_ignore_already_exists` attribute.
-  TfRef<bool> get createIgnoreAlreadyExistsRef =>
+  TfRef<bool> get createIgnoreAlreadyExists =>
       TfRef.attribute<bool>(this, 'create_ignore_already_exists');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `group` attribute.
-  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+  TfRef<String> get group => TfRef.attribute<String>(this, 'group');
 }

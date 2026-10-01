@@ -58,14 +58,14 @@ final class AwsIamUserSshKey extends Resource {
       TfRef.attribute<String>(this, 'ssh_public_key_id');
 
   /// Reference to `encoding` attribute.
-  TfRef<String> get encodingRef => TfRef.attribute<String>(this, 'encoding');
+  TfRef<String> get encoding => TfRef.attribute<String>(this, 'encoding');
 
   /// Reference to `public_key` attribute.
-  TfRef<String> get publicKeyRef => TfRef.attribute<String>(this, 'public_key');
+  TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

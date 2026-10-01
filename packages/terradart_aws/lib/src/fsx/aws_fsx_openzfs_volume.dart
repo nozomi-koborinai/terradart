@@ -194,7 +194,7 @@ final class AwsFsxOpenzfsVolume extends Resource {
   RefTo<AwsFsxOpenzfsVolume> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -203,44 +203,42 @@ final class AwsFsxOpenzfsVolume extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `copy_tags_to_snapshots` attribute.
-  TfRef<bool> get copyTagsToSnapshotsRef =>
+  TfRef<bool> get copyTagsToSnapshots =>
       TfRef.attribute<bool>(this, 'copy_tags_to_snapshots');
 
   /// Reference to `data_compression_type` attribute.
-  TfRef<String> get dataCompressionTypeRef =>
+  TfRef<String> get dataCompressionType =>
       TfRef.attribute<String>(this, 'data_compression_type');
 
   /// Reference to `delete_volume_options` attribute.
-  TfRef<List<String>> get deleteVolumeOptionsRef =>
+  TfRef<List<String>> get deleteVolumeOptions =>
       TfRef.attribute<List<String>>(this, 'delete_volume_options');
 
   /// Reference to `parent_volume_id` attribute.
-  TfRef<String> get parentVolumeIdRef =>
+  TfRef<String> get parentVolumeId =>
       TfRef.attribute<String>(this, 'parent_volume_id');
 
   /// Reference to `read_only` attribute.
-  TfRef<bool> get readOnlyRef => TfRef.attribute<bool>(this, 'read_only');
+  TfRef<bool> get readOnly => TfRef.attribute<bool>(this, 'read_only');
 
   /// Reference to `record_size_kib` attribute.
-  TfRef<num> get recordSizeKibRef =>
-      TfRef.attribute<num>(this, 'record_size_kib');
+  TfRef<num> get recordSizeKib => TfRef.attribute<num>(this, 'record_size_kib');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `storage_capacity_quota_gib` attribute.
-  TfRef<num> get storageCapacityQuotaGibRef =>
+  TfRef<num> get storageCapacityQuotaGib =>
       TfRef.attribute<num>(this, 'storage_capacity_quota_gib');
 
   /// Reference to `storage_capacity_reservation_gib` attribute.
-  TfRef<num> get storageCapacityReservationGibRef =>
+  TfRef<num> get storageCapacityReservationGib =>
       TfRef.attribute<num>(this, 'storage_capacity_reservation_gib');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `volume_type` attribute.
-  TfRef<String> get volumeTypeRef =>
-      TfRef.attribute<String>(this, 'volume_type');
+  TfRef<String> get volumeType => TfRef.attribute<String>(this, 'volume_type');
 }

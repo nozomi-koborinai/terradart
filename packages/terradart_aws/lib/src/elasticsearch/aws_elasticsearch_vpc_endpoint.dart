@@ -65,8 +65,8 @@ final class AwsElasticsearchVpcEndpoint extends Resource {
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `domain_arn` attribute.
-  TfRef<String> get domainArnRef => TfRef.attribute<String>(this, 'domain_arn');
+  TfRef<String> get domainArn => TfRef.attribute<String>(this, 'domain_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

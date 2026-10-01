@@ -319,7 +319,7 @@ final class AwsSagemakerNotebookInstance extends Resource {
   RefTo<AwsSagemakerNotebookInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -335,53 +335,52 @@ final class AwsSagemakerNotebookInstance extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `additional_code_repositories` attribute.
-  TfRef<List<String>> get additionalCodeRepositoriesRef =>
+  TfRef<List<String>> get additionalCodeRepositories =>
       TfRef.attribute<List<String>>(this, 'additional_code_repositories');
 
   /// Reference to `default_code_repository` attribute.
-  TfRef<String> get defaultCodeRepositoryRef =>
+  TfRef<String> get defaultCodeRepository =>
       TfRef.attribute<String>(this, 'default_code_repository');
 
   /// Reference to `direct_internet_access` attribute.
-  TfRef<String> get directInternetAccessRef =>
+  TfRef<String> get directInternetAccess =>
       TfRef.attribute<String>(this, 'direct_internet_access');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `lifecycle_config_name` attribute.
-  TfRef<String> get lifecycleConfigNameRef =>
+  TfRef<String> get lifecycleConfigName =>
       TfRef.attribute<String>(this, 'lifecycle_config_name');
 
   /// Reference to `platform_identifier` attribute.
-  TfRef<String> get platformIdentifierRef =>
+  TfRef<String> get platformIdentifier =>
       TfRef.attribute<String>(this, 'platform_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `root_access` attribute.
-  TfRef<String> get rootAccessRef =>
-      TfRef.attribute<String>(this, 'root_access');
+  TfRef<String> get rootAccess => TfRef.attribute<String>(this, 'root_access');
 
   /// Reference to `security_groups` attribute.
-  TfRef<List<String>> get securityGroupsRef =>
+  TfRef<List<String>> get securityGroups =>
       TfRef.attribute<List<String>>(this, 'security_groups');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `volume_size` attribute.
-  TfRef<num> get volumeSizeRef => TfRef.attribute<num>(this, 'volume_size');
+  TfRef<num> get volumeSize => TfRef.attribute<num>(this, 'volume_size');
 }

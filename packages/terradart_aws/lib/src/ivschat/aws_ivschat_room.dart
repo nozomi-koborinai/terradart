@@ -65,7 +65,7 @@ final class AwsIvschatRoom extends Resource {
   RefTo<AwsIvschatRoom> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -74,21 +74,21 @@ final class AwsIvschatRoom extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `logging_configuration_identifiers` attribute.
-  TfRef<List<String>> get loggingConfigurationIdentifiersRef =>
+  TfRef<List<String>> get loggingConfigurationIdentifiers =>
       TfRef.attribute<List<String>>(this, 'logging_configuration_identifiers');
 
   /// Reference to `maximum_message_length` attribute.
-  TfRef<num> get maximumMessageLengthRef =>
+  TfRef<num> get maximumMessageLength =>
       TfRef.attribute<num>(this, 'maximum_message_length');
 
   /// Reference to `maximum_message_rate_per_second` attribute.
-  TfRef<num> get maximumMessageRatePerSecondRef =>
+  TfRef<num> get maximumMessageRatePerSecond =>
       TfRef.attribute<num>(this, 'maximum_message_rate_per_second');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

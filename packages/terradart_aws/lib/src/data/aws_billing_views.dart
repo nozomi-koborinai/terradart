@@ -28,6 +28,6 @@ final class DataAwsBillingViews extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'billing_view');
 
   /// Reference to `billing_view_types` attribute.
-  TfRef<List<String>> get billingViewTypesRef =>
+  TfRef<List<String>> get billingViewTypes =>
       TfRef.attribute<List<String>>(this, 'billing_view_types');
 }

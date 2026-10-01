@@ -68,7 +68,7 @@ final class AwsDatazoneEnvironmentProfile extends Resource {
   RefTo<AwsDatazoneEnvironmentProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -83,29 +83,28 @@ final class AwsDatazoneEnvironmentProfile extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `aws_account_region` attribute.
-  TfRef<String> get awsAccountRegionRef =>
+  TfRef<String> get awsAccountRegion =>
       TfRef.attribute<String>(this, 'aws_account_region');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `environment_blueprint_identifier` attribute.
-  TfRef<String> get environmentBlueprintIdentifierRef =>
+  TfRef<String> get environmentBlueprintIdentifier =>
       TfRef.attribute<String>(this, 'environment_blueprint_identifier');
 
   /// Reference to `project_identifier` attribute.
-  TfRef<String> get projectIdentifierRef =>
+  TfRef<String> get projectIdentifier =>
       TfRef.attribute<String>(this, 'project_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

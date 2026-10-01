@@ -440,7 +440,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
   RefTo<AwsServicecatalogProvisionedProduct> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -487,46 +487,45 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `accept_language` attribute.
-  TfRef<String> get acceptLanguageRef =>
+  TfRef<String> get acceptLanguage =>
       TfRef.attribute<String>(this, 'accept_language');
 
   /// Reference to `ignore_errors` attribute.
-  TfRef<bool> get ignoreErrorsRef =>
-      TfRef.attribute<bool>(this, 'ignore_errors');
+  TfRef<bool> get ignoreErrors => TfRef.attribute<bool>(this, 'ignore_errors');
 
   /// Reference to `notification_arns` attribute.
-  TfRef<List<String>> get notificationArnsRef =>
+  TfRef<List<String>> get notificationArns =>
       TfRef.attribute<List<String>>(this, 'notification_arns');
 
   /// Reference to `path_id` attribute.
-  TfRef<String> get pathIdRef => TfRef.attribute<String>(this, 'path_id');
+  TfRef<String> get pathId => TfRef.attribute<String>(this, 'path_id');
 
   /// Reference to `path_name` attribute.
-  TfRef<String> get pathNameRef => TfRef.attribute<String>(this, 'path_name');
+  TfRef<String> get pathName => TfRef.attribute<String>(this, 'path_name');
 
   /// Reference to `product_id` attribute.
-  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+  TfRef<String> get productId => TfRef.attribute<String>(this, 'product_id');
 
   /// Reference to `product_name` attribute.
-  TfRef<String> get productNameRef =>
+  TfRef<String> get productName =>
       TfRef.attribute<String>(this, 'product_name');
 
   /// Reference to `provisioning_artifact_id` attribute.
-  TfRef<String> get provisioningArtifactIdRef =>
+  TfRef<String> get provisioningArtifactId =>
       TfRef.attribute<String>(this, 'provisioning_artifact_id');
 
   /// Reference to `provisioning_artifact_name` attribute.
-  TfRef<String> get provisioningArtifactNameRef =>
+  TfRef<String> get provisioningArtifactName =>
       TfRef.attribute<String>(this, 'provisioning_artifact_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retain_physical_resources` attribute.
-  TfRef<bool> get retainPhysicalResourcesRef =>
+  TfRef<bool> get retainPhysicalResources =>
       TfRef.attribute<bool>(this, 'retain_physical_resources');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

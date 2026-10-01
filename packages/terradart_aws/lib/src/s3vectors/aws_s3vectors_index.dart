@@ -97,33 +97,33 @@ final class AwsS3vectorsIndex extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `data_type` attribute.
-  TfRef<String> get dataTypeRef => TfRef.attribute<String>(this, 'data_type');
+  TfRef<String> get dataType => TfRef.attribute<String>(this, 'data_type');
 
   /// Reference to `dimension` attribute.
-  TfRef<num> get dimensionRef => TfRef.attribute<num>(this, 'dimension');
+  TfRef<num> get dimension => TfRef.attribute<num>(this, 'dimension');
 
   /// Reference to `distance_metric` attribute.
-  TfRef<String> get distanceMetricRef =>
+  TfRef<String> get distanceMetric =>
       TfRef.attribute<String>(this, 'distance_metric');
 
   /// Reference to `encryption_configuration` attribute.
-  TfRef<List<Map<String, Object?>>> get encryptionConfigurationRef =>
+  TfRef<List<Map<String, Object?>>> get encryptionConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'encryption_configuration',
       );
 
   /// Reference to `index_name` attribute.
-  TfRef<String> get indexNameRef => TfRef.attribute<String>(this, 'index_name');
+  TfRef<String> get indexName => TfRef.attribute<String>(this, 'index_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vector_bucket_name` attribute.
-  TfRef<String> get vectorBucketNameRef =>
+  TfRef<String> get vectorBucketName =>
       TfRef.attribute<String>(this, 'vector_bucket_name');
 }

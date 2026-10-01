@@ -93,6 +93,6 @@ final class GoogleKmsOrganizationKajPolicyConfig extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 }

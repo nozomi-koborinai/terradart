@@ -365,20 +365,21 @@ final class GoogleAccessContextManagerAccessLevel extends Resource {
   /// `RefTo<GoogleAccessContextManagerAccessLevel>`.
   RefTo<GoogleAccessContextManagerAccessLevel> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

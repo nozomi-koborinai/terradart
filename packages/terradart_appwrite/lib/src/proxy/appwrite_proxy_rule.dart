@@ -72,18 +72,17 @@ final class AppwriteProxyRule extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `branch` attribute.
-  TfRef<String> get branchRef => TfRef.attribute<String>(this, 'branch');
+  TfRef<String> get branch => TfRef.attribute<String>(this, 'branch');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

@@ -43,7 +43,7 @@ final class AwsGrafanaWorkspaceServiceAccountToken extends Resource {
   RefTo<AwsGrafanaWorkspaceServiceAccountToken> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -62,17 +62,16 @@ final class AwsGrafanaWorkspaceServiceAccountToken extends Resource {
       TfRef.attribute<String>(this, 'service_account_token_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `seconds_to_live` attribute.
-  TfRef<num> get secondsToLiveRef =>
-      TfRef.attribute<num>(this, 'seconds_to_live');
+  TfRef<num> get secondsToLive => TfRef.attribute<num>(this, 'seconds_to_live');
 
   /// Reference to `service_account_id` attribute.
-  TfRef<String> get serviceAccountIdRef =>
+  TfRef<String> get serviceAccountId =>
       TfRef.attribute<String>(this, 'service_account_id');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

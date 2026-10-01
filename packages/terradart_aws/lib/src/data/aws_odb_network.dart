@@ -117,5 +117,5 @@ final class DataAwsOdbNetwork extends Data {
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

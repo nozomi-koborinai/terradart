@@ -57,7 +57,7 @@ final class GoogleIamOauthClientCredential extends Resource {
   RefTo<GoogleIamOauthClientCredential> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -67,27 +67,26 @@ final class GoogleIamOauthClientCredential extends Resource {
       TfRef.attribute<String>(this, 'client_secret');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `oauth_client_credential_id` attribute.
-  TfRef<String> get oauthClientCredentialIdRef =>
+  TfRef<String> get oauthClientCredentialId =>
       TfRef.attribute<String>(this, 'oauth_client_credential_id');
 
   /// Reference to `oauthclient` attribute.
-  TfRef<String> get oauthclientRef =>
-      TfRef.attribute<String>(this, 'oauthclient');
+  TfRef<String> get oauthclient => TfRef.attribute<String>(this, 'oauthclient');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

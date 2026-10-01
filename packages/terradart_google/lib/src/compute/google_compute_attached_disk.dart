@@ -49,28 +49,27 @@ final class GoogleComputeAttachedDisk extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `device_name` attribute.
-  TfRef<String> get deviceNameRef =>
-      TfRef.attribute<String>(this, 'device_name');
+  TfRef<String> get deviceName => TfRef.attribute<String>(this, 'device_name');
 
   /// Reference to `disk` attribute.
-  TfRef<String> get diskRef => TfRef.attribute<String>(this, 'disk');
+  TfRef<String> get disk => TfRef.attribute<String>(this, 'disk');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `interface` attribute.
-  TfRef<String> get interfaceRef => TfRef.attribute<String>(this, 'interface');
+  TfRef<String> get interface => TfRef.attribute<String>(this, 'interface');
 
   /// Reference to `mode` attribute.
-  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

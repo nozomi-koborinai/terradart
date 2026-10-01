@@ -44,7 +44,7 @@ final class AwsApiGatewayApiKey extends Resource {
   RefTo<AwsApiGatewayApiKey> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -61,23 +61,21 @@ final class AwsApiGatewayApiKey extends Resource {
       TfRef.attribute<String>(this, 'last_updated_date');
 
   /// Reference to `customer_id` attribute.
-  TfRef<String> get customerIdRef =>
-      TfRef.attribute<String>(this, 'customer_id');
+  TfRef<String> get customerId => TfRef.attribute<String>(this, 'customer_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

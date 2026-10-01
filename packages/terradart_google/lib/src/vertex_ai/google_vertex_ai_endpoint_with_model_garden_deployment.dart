@@ -762,26 +762,20 @@ final class GoogleVertexAiEndpointWithModelGardenDeployment extends Resource {
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `hugging_face_model_id` attribute.
-  TfRef<String> get huggingFaceModelIdRef =>
+  TfRef<String> get huggingFaceModelId =>
       TfRef.attribute<String>(this, 'hugging_face_model_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `publisher_model_name` attribute.
-  TfRef<String> get publisherModelNameRef =>
+  TfRef<String> get publisherModelName =>
       TfRef.attribute<String>(this, 'publisher_model_name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `endpoint` attribute.
-  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
 }

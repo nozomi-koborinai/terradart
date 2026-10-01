@@ -125,7 +125,7 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
   RefTo<AwsFsxOntapStorageVirtualMachine> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -144,21 +144,21 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
 
   /// Reference to `file_system_id` attribute.
-  TfRef<String> get fileSystemIdRef =>
+  TfRef<String> get fileSystemId =>
       TfRef.attribute<String>(this, 'file_system_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `root_volume_security_style` attribute.
-  TfRef<String> get rootVolumeSecurityStyleRef =>
+  TfRef<String> get rootVolumeSecurityStyle =>
       TfRef.attribute<String>(this, 'root_volume_security_style');
 
   /// Reference to `svm_admin_password` attribute.
-  TfRef<String> get svmAdminPasswordRef =>
+  TfRef<String> get svmAdminPassword =>
       TfRef.attribute<String>(this, 'svm_admin_password');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

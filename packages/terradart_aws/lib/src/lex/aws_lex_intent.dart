@@ -393,7 +393,7 @@ final class AwsLexIntent extends Resource {
   RefTo<AwsLexIntent> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -416,21 +416,20 @@ final class AwsLexIntent extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `create_version` attribute.
-  TfRef<bool> get createVersionRef =>
+  TfRef<bool> get createVersion =>
       TfRef.attribute<bool>(this, 'create_version');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `parent_intent_signature` attribute.
-  TfRef<String> get parentIntentSignatureRef =>
+  TfRef<String> get parentIntentSignature =>
       TfRef.attribute<String>(this, 'parent_intent_signature');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sample_utterances` attribute.
-  TfRef<List<String>> get sampleUtterancesRef =>
+  TfRef<List<String>> get sampleUtterances =>
       TfRef.attribute<List<String>>(this, 'sample_utterances');
 }

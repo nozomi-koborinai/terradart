@@ -56,28 +56,27 @@ final class AwsAppconfigHostedConfigurationVersion extends Resource {
   TfRef<num> get versionNumber => TfRef.attribute<num>(this, 'version_number');
 
   /// Reference to `application_id` attribute.
-  TfRef<String> get applicationIdRef =>
+  TfRef<String> get applicationId =>
       TfRef.attribute<String>(this, 'application_id');
 
   /// Reference to `configuration_profile_id` attribute.
-  TfRef<String> get configurationProfileIdRef =>
+  TfRef<String> get configurationProfileId =>
       TfRef.attribute<String>(this, 'configuration_profile_id');
 
   /// Reference to `content` attribute.
-  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+  TfRef<String> get content => TfRef.attribute<String>(this, 'content');
 
   /// Reference to `content_type` attribute.
-  TfRef<String> get contentTypeRef =>
+  TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `version_label` attribute.
-  TfRef<String> get versionLabelRef =>
+  TfRef<String> get versionLabel =>
       TfRef.attribute<String>(this, 'version_label');
 }

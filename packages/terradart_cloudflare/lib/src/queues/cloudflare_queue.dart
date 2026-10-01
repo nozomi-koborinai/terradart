@@ -100,12 +100,12 @@ final class CloudflareQueue extends Resource {
   TfRef<String> get queueId => TfRef.attribute<String>(this, 'queue_id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `jurisdiction` attribute.
-  TfRef<String> get jurisdictionRef =>
+  TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `queue_name` attribute.
-  TfRef<String> get queueNameRef => TfRef.attribute<String>(this, 'queue_name');
+  TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');
 }

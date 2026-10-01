@@ -38,10 +38,10 @@ final class AwsNotificationsOrganizationalUnitAssociation extends Resource {
       RefTo.of(this);
 
   /// Reference to `notification_configuration_arn` attribute.
-  TfRef<String> get notificationConfigurationArnRef =>
+  TfRef<String> get notificationConfigurationArn =>
       TfRef.attribute<String>(this, 'notification_configuration_arn');
 
   /// Reference to `organizational_unit_id` attribute.
-  TfRef<String> get organizationalUnitIdRef =>
+  TfRef<String> get organizationalUnitId =>
       TfRef.attribute<String>(this, 'organizational_unit_id');
 }

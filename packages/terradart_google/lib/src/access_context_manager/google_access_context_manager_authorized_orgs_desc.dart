@@ -128,7 +128,7 @@ final class GoogleAccessContextManagerAuthorizedOrgsDesc extends Resource {
   RefTo<GoogleAccessContextManagerAuthorizedOrgsDesc> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -140,24 +140,23 @@ final class GoogleAccessContextManagerAuthorizedOrgsDesc extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `asset_type` attribute.
-  TfRef<String> get assetTypeRef => TfRef.attribute<String>(this, 'asset_type');
+  TfRef<String> get assetType => TfRef.attribute<String>(this, 'asset_type');
 
   /// Reference to `authorization_direction` attribute.
-  TfRef<String> get authorizationDirectionRef =>
+  TfRef<String> get authorizationDirection =>
       TfRef.attribute<String>(this, 'authorization_direction');
 
   /// Reference to `authorization_type` attribute.
-  TfRef<String> get authorizationTypeRef =>
+  TfRef<String> get authorizationType =>
       TfRef.attribute<String>(this, 'authorization_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `orgs` attribute.
-  TfRef<List<String>> get orgsRef =>
-      TfRef.attribute<List<String>>(this, 'orgs');
+  TfRef<List<String>> get orgs => TfRef.attribute<List<String>>(this, 'orgs');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

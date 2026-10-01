@@ -132,7 +132,7 @@ final class AwsBillingView extends Resource {
   RefTo<AwsBillingView> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -172,14 +172,13 @@ final class AwsBillingView extends Resource {
       TfRef.attribute<String>(this, 'view_definition_last_updated_at');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `source_views` attribute.
-  TfRef<List<String>> get sourceViewsRef =>
+  TfRef<List<String>> get sourceViews =>
       TfRef.attribute<List<String>>(this, 'source_views');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

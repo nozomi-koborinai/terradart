@@ -99,17 +99,17 @@ final class AwsSagemakerProject extends Resource {
   TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `project_description` attribute.
-  TfRef<String> get projectDescriptionRef =>
+  TfRef<String> get projectDescription =>
       TfRef.attribute<String>(this, 'project_description');
 
   /// Reference to `project_name` attribute.
-  TfRef<String> get projectNameRef =>
+  TfRef<String> get projectName =>
       TfRef.attribute<String>(this, 'project_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

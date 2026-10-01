@@ -79,20 +79,18 @@ final class AwsLocationPlaceIndex extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `data_source` attribute.
-  TfRef<String> get dataSourceRef =>
-      TfRef.attribute<String>(this, 'data_source');
+  TfRef<String> get dataSource => TfRef.attribute<String>(this, 'data_source');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `index_name` attribute.
-  TfRef<String> get indexNameRef => TfRef.attribute<String>(this, 'index_name');
+  TfRef<String> get indexName => TfRef.attribute<String>(this, 'index_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

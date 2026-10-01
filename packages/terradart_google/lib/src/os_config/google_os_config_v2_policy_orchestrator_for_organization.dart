@@ -907,7 +907,7 @@ final class GoogleOsConfigV2PolicyOrchestratorForOrganization extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -937,28 +937,27 @@ final class GoogleOsConfigV2PolicyOrchestratorForOrganization extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `organization_id` attribute.
-  TfRef<String> get organizationIdRef =>
+  TfRef<String> get organizationId =>
       TfRef.attribute<String>(this, 'organization_id');
 
   /// Reference to `policy_orchestrator_id` attribute.
-  TfRef<String> get policyOrchestratorIdRef =>
+  TfRef<String> get policyOrchestratorId =>
       TfRef.attribute<String>(this, 'policy_orchestrator_id');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 }

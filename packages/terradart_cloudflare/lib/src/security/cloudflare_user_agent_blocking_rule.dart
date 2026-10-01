@@ -88,15 +88,14 @@ final class CloudflareUserAgentBlockingRule extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `mode` attribute.
-  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `paused` attribute.
-  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+  TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

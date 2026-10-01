@@ -148,35 +148,35 @@ final class AwsNeptunegraphGraph extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `graph_name` attribute.
-  TfRef<String> get graphNameRef => TfRef.attribute<String>(this, 'graph_name');
+  TfRef<String> get graphName => TfRef.attribute<String>(this, 'graph_name');
 
   /// Reference to `graph_name_prefix` attribute.
-  TfRef<String> get graphNamePrefixRef =>
+  TfRef<String> get graphNamePrefix =>
       TfRef.attribute<String>(this, 'graph_name_prefix');
 
   /// Reference to `kms_key_identifier` attribute.
-  TfRef<String> get kmsKeyIdentifierRef =>
+  TfRef<String> get kmsKeyIdentifier =>
       TfRef.attribute<String>(this, 'kms_key_identifier');
 
   /// Reference to `provisioned_memory` attribute.
-  TfRef<num> get provisionedMemoryRef =>
+  TfRef<num> get provisionedMemory =>
       TfRef.attribute<num>(this, 'provisioned_memory');
 
   /// Reference to `public_connectivity` attribute.
-  TfRef<bool> get publicConnectivityRef =>
+  TfRef<bool> get publicConnectivity =>
       TfRef.attribute<bool>(this, 'public_connectivity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replica_count` attribute.
-  TfRef<num> get replicaCountRef => TfRef.attribute<num>(this, 'replica_count');
+  TfRef<num> get replicaCount => TfRef.attribute<num>(this, 'replica_count');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

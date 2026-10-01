@@ -44,19 +44,19 @@ final class DataGoogleVertexAiReasoningEngineQuery extends Data {
   TfRef<String> get output => TfRef.attribute<String>(this, 'output');
 
   /// Reference to `class_method` attribute.
-  TfRef<String> get classMethodRef =>
+  TfRef<String> get classMethod =>
       TfRef.attribute<String>(this, 'class_method');
 
   /// Reference to `input` attribute.
-  TfRef<String> get inputRef => TfRef.attribute<String>(this, 'input');
+  TfRef<String> get input => TfRef.attribute<String>(this, 'input');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reasoning_engine_id` attribute.
-  TfRef<String> get reasoningEngineIdRef =>
+  TfRef<String> get reasoningEngineId =>
       TfRef.attribute<String>(this, 'reasoning_engine_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

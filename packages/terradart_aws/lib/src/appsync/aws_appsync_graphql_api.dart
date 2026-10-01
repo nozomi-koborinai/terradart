@@ -378,7 +378,7 @@ final class AwsAppsyncGraphqlApi extends Resource {
   RefTo<AwsAppsyncGraphqlApi> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -391,42 +391,41 @@ final class AwsAppsyncGraphqlApi extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'uris');
 
   /// Reference to `api_type` attribute.
-  TfRef<String> get apiTypeRef => TfRef.attribute<String>(this, 'api_type');
+  TfRef<String> get apiType => TfRef.attribute<String>(this, 'api_type');
 
   /// Reference to `authentication_type` attribute.
-  TfRef<String> get authenticationTypeRef =>
+  TfRef<String> get authenticationType =>
       TfRef.attribute<String>(this, 'authentication_type');
 
   /// Reference to `introspection_config` attribute.
-  TfRef<String> get introspectionConfigRef =>
+  TfRef<String> get introspectionConfig =>
       TfRef.attribute<String>(this, 'introspection_config');
 
   /// Reference to `merged_api_execution_role_arn` attribute.
-  TfRef<String> get mergedApiExecutionRoleArnRef =>
+  TfRef<String> get mergedApiExecutionRoleArn =>
       TfRef.attribute<String>(this, 'merged_api_execution_role_arn');
 
   /// Reference to `query_depth_limit` attribute.
-  TfRef<num> get queryDepthLimitRef =>
+  TfRef<num> get queryDepthLimit =>
       TfRef.attribute<num>(this, 'query_depth_limit');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resolver_count_limit` attribute.
-  TfRef<num> get resolverCountLimitRef =>
+  TfRef<num> get resolverCountLimit =>
       TfRef.attribute<num>(this, 'resolver_count_limit');
 
   /// Reference to `schema` attribute.
-  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+  TfRef<String> get schema => TfRef.attribute<String>(this, 'schema');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `visibility` attribute.
-  TfRef<String> get visibilityRef =>
-      TfRef.attribute<String>(this, 'visibility');
+  TfRef<String> get visibility => TfRef.attribute<String>(this, 'visibility');
 
   /// Reference to `xray_enabled` attribute.
-  TfRef<bool> get xrayEnabledRef => TfRef.attribute<bool>(this, 'xray_enabled');
+  TfRef<bool> get xrayEnabled => TfRef.attribute<bool>(this, 'xray_enabled');
 }

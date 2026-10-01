@@ -76,32 +76,32 @@ final class AwsRedshiftdataStatement extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `database` attribute.
-  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+  TfRef<String> get database => TfRef.attribute<String>(this, 'database');
 
   /// Reference to `db_user` attribute.
-  TfRef<String> get dbUserRef => TfRef.attribute<String>(this, 'db_user');
+  TfRef<String> get dbUser => TfRef.attribute<String>(this, 'db_user');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_arn` attribute.
-  TfRef<String> get secretArnRef => TfRef.attribute<String>(this, 'secret_arn');
+  TfRef<String> get secretArn => TfRef.attribute<String>(this, 'secret_arn');
 
   /// Reference to `sql` attribute.
-  TfRef<String> get sqlRef => TfRef.attribute<String>(this, 'sql');
+  TfRef<String> get sql => TfRef.attribute<String>(this, 'sql');
 
   /// Reference to `statement_name` attribute.
-  TfRef<String> get statementNameRef =>
+  TfRef<String> get statementName =>
       TfRef.attribute<String>(this, 'statement_name');
 
   /// Reference to `with_event` attribute.
-  TfRef<bool> get withEventRef => TfRef.attribute<bool>(this, 'with_event');
+  TfRef<bool> get withEvent => TfRef.attribute<bool>(this, 'with_event');
 
   /// Reference to `workgroup_name` attribute.
-  TfRef<String> get workgroupNameRef =>
+  TfRef<String> get workgroupName =>
       TfRef.attribute<String>(this, 'workgroup_name');
 }

@@ -87,24 +87,24 @@ final class AwsEc2InstanceConnectEndpoint extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `preserve_client_ip` attribute.
-  TfRef<bool> get preserveClientIpRef =>
+  TfRef<bool> get preserveClientIp =>
       TfRef.attribute<bool>(this, 'preserve_client_ip');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -120,7 +120,7 @@ final class AwsImagebuilderWorkflow extends Resource {
   RefTo<AwsImagebuilderWorkflow> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -136,32 +136,31 @@ final class AwsImagebuilderWorkflow extends Resource {
   TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `change_description` attribute.
-  TfRef<String> get changeDescriptionRef =>
+  TfRef<String> get changeDescription =>
       TfRef.attribute<String>(this, 'change_description');
 
   /// Reference to `data` attribute.
-  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+  TfRef<String> get data => TfRef.attribute<String>(this, 'data');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `uri` attribute.
-  TfRef<String> get uriRef => TfRef.attribute<String>(this, 'uri');
+  TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

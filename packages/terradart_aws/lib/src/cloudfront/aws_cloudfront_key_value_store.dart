@@ -32,7 +32,7 @@ final class AwsCloudfrontKeyValueStore extends Resource {
   RefTo<AwsCloudfrontKeyValueStore> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,9 +52,9 @@ final class AwsCloudfrontKeyValueStore extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

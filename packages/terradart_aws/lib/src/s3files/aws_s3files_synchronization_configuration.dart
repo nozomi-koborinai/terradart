@@ -97,13 +97,13 @@ final class AwsS3filesSynchronizationConfiguration extends Resource {
   RefTo<AwsS3filesSynchronizationConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `file_system_id` attribute.
-  TfRef<String> get fileSystemIdRef =>
+  TfRef<String> get fileSystemId =>
       TfRef.attribute<String>(this, 'file_system_id');
 
   /// Reference to `latest_version_number` attribute.
-  TfRef<num> get latestVersionNumberRef =>
+  TfRef<num> get latestVersionNumber =>
       TfRef.attribute<num>(this, 'latest_version_number');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

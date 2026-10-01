@@ -123,55 +123,52 @@ final class AwsEc2CapacityReservation extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `ebs_optimized` attribute.
-  TfRef<bool> get ebsOptimizedRef =>
-      TfRef.attribute<bool>(this, 'ebs_optimized');
+  TfRef<bool> get ebsOptimized => TfRef.attribute<bool>(this, 'ebs_optimized');
 
   /// Reference to `end_date` attribute.
-  TfRef<String> get endDateRef => TfRef.attribute<String>(this, 'end_date');
+  TfRef<String> get endDate => TfRef.attribute<String>(this, 'end_date');
 
   /// Reference to `end_date_type` attribute.
-  TfRef<String> get endDateTypeRef =>
+  TfRef<String> get endDateType =>
       TfRef.attribute<String>(this, 'end_date_type');
 
   /// Reference to `ephemeral_storage` attribute.
-  TfRef<bool> get ephemeralStorageRef =>
+  TfRef<bool> get ephemeralStorage =>
       TfRef.attribute<bool>(this, 'ephemeral_storage');
 
   /// Reference to `instance_count` attribute.
-  TfRef<num> get instanceCountRef =>
-      TfRef.attribute<num>(this, 'instance_count');
+  TfRef<num> get instanceCount => TfRef.attribute<num>(this, 'instance_count');
 
   /// Reference to `instance_match_criteria` attribute.
-  TfRef<String> get instanceMatchCriteriaRef =>
+  TfRef<String> get instanceMatchCriteria =>
       TfRef.attribute<String>(this, 'instance_match_criteria');
 
   /// Reference to `instance_platform` attribute.
-  TfRef<String> get instancePlatformRef =>
+  TfRef<String> get instancePlatform =>
       TfRef.attribute<String>(this, 'instance_platform');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `outpost_arn` attribute.
-  TfRef<String> get outpostArnRef =>
-      TfRef.attribute<String>(this, 'outpost_arn');
+  TfRef<String> get outpostArn => TfRef.attribute<String>(this, 'outpost_arn');
 
   /// Reference to `placement_group_arn` attribute.
-  TfRef<String> get placementGroupArnRef =>
+  TfRef<String> get placementGroupArn =>
       TfRef.attribute<String>(this, 'placement_group_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tenancy` attribute.
-  TfRef<String> get tenancyRef => TfRef.attribute<String>(this, 'tenancy');
+  TfRef<String> get tenancy => TfRef.attribute<String>(this, 'tenancy');
 }

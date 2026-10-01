@@ -51,7 +51,7 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
   RefTo<CloudflareZeroTrustDeviceIpProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,21 +63,20 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `match` attribute.
-  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+  TfRef<String> get match => TfRef.attribute<String>(this, 'match');
 
   /// Reference to `precedence` attribute.
-  TfRef<num> get precedenceRef => TfRef.attribute<num>(this, 'precedence');
+  TfRef<num> get precedence => TfRef.attribute<num>(this, 'precedence');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 }

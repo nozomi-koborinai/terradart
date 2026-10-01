@@ -46,7 +46,7 @@ final class AwsDxLag extends Resource {
   RefTo<AwsDxLag> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -71,28 +71,27 @@ final class AwsDxLag extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rate_limiter_status');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `connections_bandwidth` attribute.
-  TfRef<String> get connectionsBandwidthRef =>
+  TfRef<String> get connectionsBandwidth =>
       TfRef.attribute<String>(this, 'connections_bandwidth');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `provider_name` attribute.
-  TfRef<String> get providerNameRef =>
+  TfRef<String> get providerName =>
       TfRef.attribute<String>(this, 'provider_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -35,7 +35,7 @@ final class DataGoogleKmsCryptoKeyVersion extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -55,8 +55,8 @@ final class DataGoogleKmsCryptoKeyVersion extends Data {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `crypto_key` attribute.
-  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+  TfRef<String> get cryptoKey => TfRef.attribute<String>(this, 'crypto_key');
 
   /// Reference to `version` attribute.
-  TfRef<num> get versionRef => TfRef.attribute<num>(this, 'version');
+  TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 }

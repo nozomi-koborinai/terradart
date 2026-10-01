@@ -163,7 +163,7 @@ final class GoogleComputeSslCertificate extends Resource {
   RefTo<GoogleComputeSslCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -182,29 +182,25 @@ final class GoogleComputeSslCertificate extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `certificate` attribute.
-  TfRef<String> get certificateRef =>
-      TfRef.attribute<String>(this, 'certificate');
+  TfRef<String> get certificate => TfRef.attribute<String>(this, 'certificate');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `private_key` attribute.
-  TfRef<String> get privateKeyRef =>
-      TfRef.attribute<String>(this, 'private_key');
+  TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
 
   /// Reference to `private_key_wo_version` attribute.
-  TfRef<String> get privateKeyWoVersionRef =>
+  TfRef<String> get privateKeyWoVersion =>
       TfRef.attribute<String>(this, 'private_key_wo_version');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

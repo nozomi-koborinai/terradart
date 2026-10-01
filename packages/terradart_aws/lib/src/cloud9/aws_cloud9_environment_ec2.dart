@@ -90,7 +90,7 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
   RefTo<AwsCloud9EnvironmentEc2> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -102,34 +102,33 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `automatic_stop_time_minutes` attribute.
-  TfRef<num> get automaticStopTimeMinutesRef =>
+  TfRef<num> get automaticStopTimeMinutes =>
       TfRef.attribute<num>(this, 'automatic_stop_time_minutes');
 
   /// Reference to `connection_type` attribute.
-  TfRef<String> get connectionTypeRef =>
+  TfRef<String> get connectionType =>
       TfRef.attribute<String>(this, 'connection_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `image_id` attribute.
-  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+  TfRef<String> get imageId => TfRef.attribute<String>(this, 'image_id');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `owner_arn` attribute.
-  TfRef<String> get ownerArnRef => TfRef.attribute<String>(this, 'owner_arn');
+  TfRef<String> get ownerArn => TfRef.attribute<String>(this, 'owner_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

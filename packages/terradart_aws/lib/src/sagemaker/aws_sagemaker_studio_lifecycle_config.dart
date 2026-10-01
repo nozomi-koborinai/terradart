@@ -60,21 +60,21 @@ final class AwsSagemakerStudioLifecycleConfig extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `studio_lifecycle_config_app_type` attribute.
-  TfRef<String> get studioLifecycleConfigAppTypeRef =>
+  TfRef<String> get studioLifecycleConfigAppType =>
       TfRef.attribute<String>(this, 'studio_lifecycle_config_app_type');
 
   /// Reference to `studio_lifecycle_config_content` attribute.
-  TfRef<String> get studioLifecycleConfigContentRef =>
+  TfRef<String> get studioLifecycleConfigContent =>
       TfRef.attribute<String>(this, 'studio_lifecycle_config_content');
 
   /// Reference to `studio_lifecycle_config_name` attribute.
-  TfRef<String> get studioLifecycleConfigNameRef =>
+  TfRef<String> get studioLifecycleConfigName =>
       TfRef.attribute<String>(this, 'studio_lifecycle_config_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -40,19 +40,19 @@ final class AwsS3tablesTablePolicy extends Resource {
   RefTo<AwsS3tablesTablePolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_policy` attribute.
-  TfRef<String> get resourcePolicyRef =>
+  TfRef<String> get resourcePolicy =>
       TfRef.attribute<String>(this, 'resource_policy');
 
   /// Reference to `table_bucket_arn` attribute.
-  TfRef<String> get tableBucketArnRef =>
+  TfRef<String> get tableBucketArn =>
       TfRef.attribute<String>(this, 'table_bucket_arn');
 }

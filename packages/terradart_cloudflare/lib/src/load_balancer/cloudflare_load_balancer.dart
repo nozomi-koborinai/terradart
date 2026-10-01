@@ -409,7 +409,7 @@ final class CloudflareLoadBalancer extends Resource {
   RefTo<CloudflareLoadBalancer> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -424,54 +424,53 @@ final class CloudflareLoadBalancer extends Resource {
   TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
 
   /// Reference to `country_pools` attribute.
-  TfRef<Map<String, List<String>>> get countryPoolsRef =>
+  TfRef<Map<String, List<String>>> get countryPools =>
       TfRef.attribute<Map<String, List<String>>>(this, 'country_pools');
 
   /// Reference to `default_pools` attribute.
-  TfRef<List<String>> get defaultPoolsRef =>
+  TfRef<List<String>> get defaultPools =>
       TfRef.attribute<List<String>>(this, 'default_pools');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `fallback_pool` attribute.
-  TfRef<String> get fallbackPoolRef =>
+  TfRef<String> get fallbackPool =>
       TfRef.attribute<String>(this, 'fallback_pool');
 
   /// Reference to `networks` attribute.
-  TfRef<List<String>> get networksRef =>
+  TfRef<List<String>> get networks =>
       TfRef.attribute<List<String>>(this, 'networks');
 
   /// Reference to `pop_pools` attribute.
-  TfRef<Map<String, List<String>>> get popPoolsRef =>
+  TfRef<Map<String, List<String>>> get popPools =>
       TfRef.attribute<Map<String, List<String>>>(this, 'pop_pools');
 
   /// Reference to `proxied` attribute.
-  TfRef<bool> get proxiedRef => TfRef.attribute<bool>(this, 'proxied');
+  TfRef<bool> get proxied => TfRef.attribute<bool>(this, 'proxied');
 
   /// Reference to `region_pools` attribute.
-  TfRef<Map<String, List<String>>> get regionPoolsRef =>
+  TfRef<Map<String, List<String>>> get regionPools =>
       TfRef.attribute<Map<String, List<String>>>(this, 'region_pools');
 
   /// Reference to `session_affinity` attribute.
-  TfRef<String> get sessionAffinityRef =>
+  TfRef<String> get sessionAffinity =>
       TfRef.attribute<String>(this, 'session_affinity');
 
   /// Reference to `session_affinity_ttl` attribute.
-  TfRef<num> get sessionAffinityTtlRef =>
+  TfRef<num> get sessionAffinityTtl =>
       TfRef.attribute<num>(this, 'session_affinity_ttl');
 
   /// Reference to `steering_policy` attribute.
-  TfRef<String> get steeringPolicyRef =>
+  TfRef<String> get steeringPolicy =>
       TfRef.attribute<String>(this, 'steering_policy');
 
   /// Reference to `ttl` attribute.
-  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+  TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

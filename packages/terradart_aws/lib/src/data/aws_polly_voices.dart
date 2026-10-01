@@ -48,16 +48,16 @@ final class DataAwsPollyVoices extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `include_additional_language_codes` attribute.
-  TfRef<bool> get includeAdditionalLanguageCodesRef =>
+  TfRef<bool> get includeAdditionalLanguageCodes =>
       TfRef.attribute<bool>(this, 'include_additional_language_codes');
 
   /// Reference to `language_code` attribute.
-  TfRef<String> get languageCodeRef =>
+  TfRef<String> get languageCode =>
       TfRef.attribute<String>(this, 'language_code');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

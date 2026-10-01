@@ -91,66 +91,63 @@ final class AwsBedrockagentAgent extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `agent_collaboration` attribute.
-  TfRef<String> get agentCollaborationRef =>
+  TfRef<String> get agentCollaboration =>
       TfRef.attribute<String>(this, 'agent_collaboration');
 
   /// Reference to `agent_name` attribute.
-  TfRef<String> get agentNameRef => TfRef.attribute<String>(this, 'agent_name');
+  TfRef<String> get agentName => TfRef.attribute<String>(this, 'agent_name');
 
   /// Reference to `agent_resource_role_arn` attribute.
-  TfRef<String> get agentResourceRoleArnRef =>
+  TfRef<String> get agentResourceRoleArn =>
       TfRef.attribute<String>(this, 'agent_resource_role_arn');
 
   /// Reference to `customer_encryption_key_arn` attribute.
-  TfRef<String> get customerEncryptionKeyArnRef =>
+  TfRef<String> get customerEncryptionKeyArn =>
       TfRef.attribute<String>(this, 'customer_encryption_key_arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `foundation_model` attribute.
-  TfRef<String> get foundationModelRef =>
+  TfRef<String> get foundationModel =>
       TfRef.attribute<String>(this, 'foundation_model');
 
   /// Reference to `guardrail_configuration` attribute.
-  TfRef<List<Map<String, Object?>>> get guardrailConfigurationRef =>
+  TfRef<List<Map<String, Object?>>> get guardrailConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'guardrail_configuration',
       );
 
   /// Reference to `idle_session_ttl_in_seconds` attribute.
-  TfRef<num> get idleSessionTtlInSecondsRef =>
+  TfRef<num> get idleSessionTtlInSeconds =>
       TfRef.attribute<num>(this, 'idle_session_ttl_in_seconds');
 
   /// Reference to `instruction` attribute.
-  TfRef<String> get instructionRef =>
-      TfRef.attribute<String>(this, 'instruction');
+  TfRef<String> get instruction => TfRef.attribute<String>(this, 'instruction');
 
   /// Reference to `memory_configuration` attribute.
-  TfRef<List<Map<String, Object?>>> get memoryConfigurationRef =>
+  TfRef<List<Map<String, Object?>>> get memoryConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'memory_configuration');
 
   /// Reference to `prepare_agent` attribute.
-  TfRef<bool> get prepareAgentRef =>
-      TfRef.attribute<bool>(this, 'prepare_agent');
+  TfRef<bool> get prepareAgent => TfRef.attribute<bool>(this, 'prepare_agent');
 
   /// Reference to `prompt_override_configuration` attribute.
-  TfRef<List<Map<String, Object?>>> get promptOverrideConfigurationRef =>
+  TfRef<List<Map<String, Object?>>> get promptOverrideConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'prompt_override_configuration',
       );
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_resource_in_use_check` attribute.
-  TfRef<bool> get skipResourceInUseCheckRef =>
+  TfRef<bool> get skipResourceInUseCheck =>
       TfRef.attribute<bool>(this, 'skip_resource_in_use_check');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

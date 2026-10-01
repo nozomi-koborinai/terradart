@@ -344,7 +344,7 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
   RefTo<GoogleDataprocGdcSparkApplication> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -388,50 +388,50 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `application_environment` attribute.
-  TfRef<String> get applicationEnvironmentRef =>
+  TfRef<String> get applicationEnvironment =>
       TfRef.attribute<String>(this, 'application_environment');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `dependency_images` attribute.
-  TfRef<List<String>> get dependencyImagesRef =>
+  TfRef<List<String>> get dependencyImages =>
       TfRef.attribute<List<String>>(this, 'dependency_images');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `properties` attribute.
-  TfRef<Map<String, String>> get propertiesRef =>
+  TfRef<Map<String, String>> get properties =>
       TfRef.attribute<Map<String, String>>(this, 'properties');
 
   /// Reference to `serviceinstance` attribute.
-  TfRef<String> get serviceinstanceRef =>
+  TfRef<String> get serviceinstance =>
       TfRef.attribute<String>(this, 'serviceinstance');
 
   /// Reference to `spark_application_id` attribute.
-  TfRef<String> get sparkApplicationIdRef =>
+  TfRef<String> get sparkApplicationId =>
       TfRef.attribute<String>(this, 'spark_application_id');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

@@ -40,11 +40,11 @@ final class DataCloudflareLogpushDatasetField extends Data {
       TfRef.attribute<Map<String, String>>(this, 'fields');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `dataset_id` attribute.
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

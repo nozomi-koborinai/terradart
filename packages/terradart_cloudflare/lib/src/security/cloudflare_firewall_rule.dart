@@ -113,6 +113,10 @@ final class CloudflareFirewallRule extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareFirewallRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareFirewallRule>`.
+  RefTo<CloudflareFirewallRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -130,8 +134,8 @@ final class CloudflareFirewallRule extends Resource {
       TfRef.attribute<List<String>>(this, 'products');
 
   /// Reference to `ref` attribute.
-  TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');
+  TfRef<String> get refAttr => TfRef.attribute<String>(this, 'ref');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

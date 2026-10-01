@@ -71,6 +71,9 @@ final class GoogleNetappVolumeQuotaRule extends Resource {
   /// `RefTo<GoogleNetappVolumeQuotaRule>`.
   RefTo<GoogleNetappVolumeQuotaRule> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -93,40 +96,31 @@ final class GoogleNetappVolumeQuotaRule extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disk_limit_mib` attribute.
-  TfRef<num> get diskLimitMibRef =>
-      TfRef.attribute<num>(this, 'disk_limit_mib');
+  TfRef<num> get diskLimitMib => TfRef.attribute<num>(this, 'disk_limit_mib');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `volume_name` attribute.
-  TfRef<String> get volumeNameRef =>
-      TfRef.attribute<String>(this, 'volume_name');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get volumeName => TfRef.attribute<String>(this, 'volume_name');
 }

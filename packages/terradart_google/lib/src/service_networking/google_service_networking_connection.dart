@@ -97,20 +97,20 @@ final class GoogleServiceNetworkingConnection extends Resource {
   TfRef<String> get peering => TfRef.attribute<String>(this, 'peering');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `reserved_peering_ranges` attribute.
-  TfRef<List<String>> get reservedPeeringRangesRef =>
+  TfRef<List<String>> get reservedPeeringRanges =>
       TfRef.attribute<List<String>>(this, 'reserved_peering_ranges');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// Reference to `update_on_creation_fail` attribute.
-  TfRef<bool> get updateOnCreationFailRef =>
+  TfRef<bool> get updateOnCreationFail =>
       TfRef.attribute<bool>(this, 'update_on_creation_fail');
 }

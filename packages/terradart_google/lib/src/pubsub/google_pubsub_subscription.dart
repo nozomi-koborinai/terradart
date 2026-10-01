@@ -541,7 +541,7 @@ final class GooglePubsubSubscription extends Resource {
   RefTo<GooglePubsubSubscription> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -555,43 +555,43 @@ final class GooglePubsubSubscription extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `ack_deadline_seconds` attribute.
-  TfRef<num> get ackDeadlineSecondsRef =>
+  TfRef<num> get ackDeadlineSeconds =>
       TfRef.attribute<num>(this, 'ack_deadline_seconds');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enable_exactly_once_delivery` attribute.
-  TfRef<bool> get enableExactlyOnceDeliveryRef =>
+  TfRef<bool> get enableExactlyOnceDelivery =>
       TfRef.attribute<bool>(this, 'enable_exactly_once_delivery');
 
   /// Reference to `enable_message_ordering` attribute.
-  TfRef<bool> get enableMessageOrderingRef =>
+  TfRef<bool> get enableMessageOrdering =>
       TfRef.attribute<bool>(this, 'enable_message_ordering');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `message_retention_duration` attribute.
-  TfRef<String> get messageRetentionDurationRef =>
+  TfRef<String> get messageRetentionDuration =>
       TfRef.attribute<String>(this, 'message_retention_duration');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `retain_acked_messages` attribute.
-  TfRef<bool> get retainAckedMessagesRef =>
+  TfRef<bool> get retainAckedMessages =>
       TfRef.attribute<bool>(this, 'retain_acked_messages');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `topic` attribute.
-  TfRef<String> get topicRef => TfRef.attribute<String>(this, 'topic');
+  TfRef<String> get topic => TfRef.attribute<String>(this, 'topic');
 }

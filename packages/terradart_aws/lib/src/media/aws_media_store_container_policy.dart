@@ -39,12 +39,12 @@ final class AwsMediaStoreContainerPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `container_name` attribute.
-  TfRef<String> get containerNameRef =>
+  TfRef<String> get containerName =>
       TfRef.attribute<String>(this, 'container_name');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

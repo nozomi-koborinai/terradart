@@ -46,19 +46,19 @@ final class AwsLambdaProvisionedConcurrencyConfig extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `function_name` attribute.
-  TfRef<String> get functionNameRef =>
+  TfRef<String> get functionName =>
       TfRef.attribute<String>(this, 'function_name');
 
   /// Reference to `provisioned_concurrent_executions` attribute.
-  TfRef<num> get provisionedConcurrentExecutionsRef =>
+  TfRef<num> get provisionedConcurrentExecutions =>
       TfRef.attribute<num>(this, 'provisioned_concurrent_executions');
 
   /// Reference to `qualifier` attribute.
-  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+  TfRef<String> get qualifier => TfRef.attribute<String>(this, 'qualifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 }

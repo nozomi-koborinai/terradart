@@ -41,12 +41,12 @@ final class AwsVpcEndpointSubnetAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `vpc_endpoint_id` attribute.
-  TfRef<String> get vpcEndpointIdRef =>
+  TfRef<String> get vpcEndpointId =>
       TfRef.attribute<String>(this, 'vpc_endpoint_id');
 }

@@ -69,6 +69,9 @@ final class GoogleVertexAiFeaturestoreEntitytypeFeature extends Resource {
   /// `RefTo<GoogleVertexAiFeaturestoreEntitytypeFeature>`.
   RefTo<GoogleVertexAiFeaturestoreEntitytypeFeature> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -93,27 +96,19 @@ final class GoogleVertexAiFeaturestoreEntitytypeFeature extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `entitytype` attribute.
-  TfRef<String> get entitytypeRef =>
-      TfRef.attribute<String>(this, 'entitytype');
+  TfRef<String> get entitytype => TfRef.attribute<String>(this, 'entitytype');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `value_type` attribute.
-  TfRef<String> get valueTypeRef => TfRef.attribute<String>(this, 'value_type');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get valueType => TfRef.attribute<String>(this, 'value_type');
 }

@@ -48,19 +48,18 @@ final class DataAwsApiGatewaySdk extends Data {
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 
   /// Reference to `sdk_type` attribute.
-  TfRef<String> get sdkTypeRef => TfRef.attribute<String>(this, 'sdk_type');
+  TfRef<String> get sdkType => TfRef.attribute<String>(this, 'sdk_type');
 
   /// Reference to `stage_name` attribute.
-  TfRef<String> get stageNameRef => TfRef.attribute<String>(this, 'stage_name');
+  TfRef<String> get stageName => TfRef.attribute<String>(this, 'stage_name');
 }

@@ -57,8 +57,8 @@ final class DataAwsSecretsmanagerSecretRotation extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rotation_rules');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_id` attribute.
-  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
+  TfRef<String> get secretId => TfRef.attribute<String>(this, 'secret_id');
 }

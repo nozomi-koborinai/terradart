@@ -186,7 +186,7 @@ final class AwsRumAppMonitor extends Resource {
   RefTo<AwsRumAppMonitor> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -202,20 +202,19 @@ final class AwsRumAppMonitor extends Resource {
   TfRef<String> get cwLogGroup => TfRef.attribute<String>(this, 'cw_log_group');
 
   /// Reference to `cw_log_enabled` attribute.
-  TfRef<bool> get cwLogEnabledRef =>
-      TfRef.attribute<bool>(this, 'cw_log_enabled');
+  TfRef<bool> get cwLogEnabled => TfRef.attribute<bool>(this, 'cw_log_enabled');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `domain_list` attribute.
-  TfRef<List<String>> get domainListRef =>
+  TfRef<List<String>> get domainList =>
       TfRef.attribute<List<String>>(this, 'domain_list');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

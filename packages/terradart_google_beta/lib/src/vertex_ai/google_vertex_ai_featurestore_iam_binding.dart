@@ -83,19 +83,19 @@ final class GoogleVertexAiFeaturestoreIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `featurestore` attribute.
-  TfRef<String> get featurestoreRef =>
+  TfRef<String> get featurestore =>
       TfRef.attribute<String>(this, 'featurestore');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

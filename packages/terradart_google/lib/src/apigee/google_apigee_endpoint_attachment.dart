@@ -55,6 +55,9 @@ final class GoogleApigeeEndpointAttachment extends Resource {
   /// `RefTo<GoogleApigeeEndpointAttachment>`.
   RefTo<GoogleApigeeEndpointAttachment> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -66,29 +69,20 @@ final class GoogleApigeeEndpointAttachment extends Resource {
   TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `endpoint_attachment_id` attribute.
-  TfRef<String> get endpointAttachmentIdRef =>
+  TfRef<String> get endpointAttachmentId =>
       TfRef.attribute<String>(this, 'endpoint_attachment_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `service_attachment` attribute.
-  TfRef<String> get serviceAttachmentRef =>
+  TfRef<String> get serviceAttachment =>
       TfRef.attribute<String>(this, 'service_attachment');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `host` attribute (PSC consumer host).
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
 }

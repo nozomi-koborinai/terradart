@@ -44,8 +44,8 @@ final class DataGoogleKmsSecretCiphertext extends Data {
   TfRef<String> get ciphertext => TfRef.attribute<String>(this, 'ciphertext');
 
   /// Reference to `crypto_key` attribute.
-  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+  TfRef<String> get cryptoKey => TfRef.attribute<String>(this, 'crypto_key');
 
   /// Reference to `plaintext` attribute.
-  TfRef<String> get plaintextRef => TfRef.attribute<String>(this, 'plaintext');
+  TfRef<String> get plaintext => TfRef.attribute<String>(this, 'plaintext');
 }

@@ -35,9 +35,8 @@ final class DataAwsGuarddutyFindingIds extends Data {
   TfRef<bool> get hasFindings => TfRef.attribute<bool>(this, 'has_findings');
 
   /// Reference to `detector_id` attribute.
-  TfRef<String> get detectorIdRef =>
-      TfRef.attribute<String>(this, 'detector_id');
+  TfRef<String> get detectorId => TfRef.attribute<String>(this, 'detector_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -67,10 +67,10 @@ final class AwsCostoptimizationhubPreferences extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `member_account_discount_visibility` attribute.
-  TfRef<String> get memberAccountDiscountVisibilityRef =>
+  TfRef<String> get memberAccountDiscountVisibility =>
       TfRef.attribute<String>(this, 'member_account_discount_visibility');
 
   /// Reference to `savings_estimation_mode` attribute.
-  TfRef<String> get savingsEstimationModeRef =>
+  TfRef<String> get savingsEstimationMode =>
       TfRef.attribute<String>(this, 'savings_estimation_mode');
 }

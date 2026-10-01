@@ -81,9 +81,8 @@ final class DataAwsLicensemanagerReceivedLicense extends Data {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `license_arn` attribute.
-  TfRef<String> get licenseArnRef =>
-      TfRef.attribute<String>(this, 'license_arn');
+  TfRef<String> get licenseArn => TfRef.attribute<String>(this, 'license_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

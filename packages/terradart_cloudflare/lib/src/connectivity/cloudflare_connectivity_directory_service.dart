@@ -149,7 +149,7 @@ final class CloudflareConnectivityDirectoryService extends Resource {
   RefTo<CloudflareConnectivityDirectoryService> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -164,21 +164,21 @@ final class CloudflareConnectivityDirectoryService extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `app_protocol` attribute.
-  TfRef<String> get appProtocolRef =>
+  TfRef<String> get appProtocol =>
       TfRef.attribute<String>(this, 'app_protocol');
 
   /// Reference to `http_port` attribute.
-  TfRef<num> get httpPortRef => TfRef.attribute<num>(this, 'http_port');
+  TfRef<num> get httpPort => TfRef.attribute<num>(this, 'http_port');
 
   /// Reference to `https_port` attribute.
-  TfRef<num> get httpsPortRef => TfRef.attribute<num>(this, 'https_port');
+  TfRef<num> get httpsPort => TfRef.attribute<num>(this, 'https_port');
 
   /// Reference to `tcp_port` attribute.
-  TfRef<num> get tcpPortRef => TfRef.attribute<num>(this, 'tcp_port');
+  TfRef<num> get tcpPort => TfRef.attribute<num>(this, 'tcp_port');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

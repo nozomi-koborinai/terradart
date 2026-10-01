@@ -919,7 +919,7 @@ final class AwsCodebuildProject extends Resource {
   RefTo<AwsCodebuildProject> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -935,52 +935,49 @@ final class AwsCodebuildProject extends Resource {
       TfRef.attribute<String>(this, 'public_project_alias');
 
   /// Reference to `auto_retry_limit` attribute.
-  TfRef<num> get autoRetryLimitRef =>
+  TfRef<num> get autoRetryLimit =>
       TfRef.attribute<num>(this, 'auto_retry_limit');
 
   /// Reference to `badge_enabled` attribute.
-  TfRef<bool> get badgeEnabledRef =>
-      TfRef.attribute<bool>(this, 'badge_enabled');
+  TfRef<bool> get badgeEnabled => TfRef.attribute<bool>(this, 'badge_enabled');
 
   /// Reference to `build_timeout` attribute.
-  TfRef<num> get buildTimeoutRef => TfRef.attribute<num>(this, 'build_timeout');
+  TfRef<num> get buildTimeout => TfRef.attribute<num>(this, 'build_timeout');
 
   /// Reference to `concurrent_build_limit` attribute.
-  TfRef<num> get concurrentBuildLimitRef =>
+  TfRef<num> get concurrentBuildLimit =>
       TfRef.attribute<num>(this, 'concurrent_build_limit');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `encryption_key` attribute.
-  TfRef<String> get encryptionKeyRef =>
+  TfRef<String> get encryptionKey =>
       TfRef.attribute<String>(this, 'encryption_key');
 
   /// Reference to `project_visibility` attribute.
-  TfRef<String> get projectVisibilityRef =>
+  TfRef<String> get projectVisibility =>
       TfRef.attribute<String>(this, 'project_visibility');
 
   /// Reference to `queued_timeout` attribute.
-  TfRef<num> get queuedTimeoutRef =>
-      TfRef.attribute<num>(this, 'queued_timeout');
+  TfRef<num> get queuedTimeout => TfRef.attribute<num>(this, 'queued_timeout');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_access_role` attribute.
-  TfRef<String> get resourceAccessRoleRef =>
+  TfRef<String> get resourceAccessRole =>
       TfRef.attribute<String>(this, 'resource_access_role');
 
   /// Reference to `service_role` attribute.
-  TfRef<String> get serviceRoleRef =>
+  TfRef<String> get serviceRole =>
       TfRef.attribute<String>(this, 'service_role');
 
   /// Reference to `source_version` attribute.
-  TfRef<String> get sourceVersionRef =>
+  TfRef<String> get sourceVersion =>
       TfRef.attribute<String>(this, 'source_version');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

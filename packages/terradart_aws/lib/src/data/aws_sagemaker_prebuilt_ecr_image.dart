@@ -42,15 +42,15 @@ final class DataAwsSagemakerPrebuiltEcrImage extends Data {
       TfRef.attribute<String>(this, 'registry_path');
 
   /// Reference to `dns_suffix` attribute.
-  TfRef<String> get dnsSuffixRef => TfRef.attribute<String>(this, 'dns_suffix');
+  TfRef<String> get dnsSuffix => TfRef.attribute<String>(this, 'dns_suffix');
 
   /// Reference to `image_tag` attribute.
-  TfRef<String> get imageTagRef => TfRef.attribute<String>(this, 'image_tag');
+  TfRef<String> get imageTag => TfRef.attribute<String>(this, 'image_tag');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository_name` attribute.
-  TfRef<String> get repositoryNameRef =>
+  TfRef<String> get repositoryName =>
       TfRef.attribute<String>(this, 'repository_name');
 }

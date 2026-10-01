@@ -34,5 +34,5 @@ final class DataGoogleCloudIdentityGroupTransitiveMemberships extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'memberships');
 
   /// Reference to `group` attribute.
-  TfRef<String> get groupRef => TfRef.attribute<String>(this, 'group');
+  TfRef<String> get group => TfRef.attribute<String>(this, 'group');
 }

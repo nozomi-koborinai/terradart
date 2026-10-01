@@ -54,7 +54,7 @@ final class AwsCloudfrontFunction extends Resource {
   RefTo<AwsCloudfrontFunction> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -73,22 +73,22 @@ final class AwsCloudfrontFunction extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `code` attribute.
-  TfRef<String> get codeRef => TfRef.attribute<String>(this, 'code');
+  TfRef<String> get code => TfRef.attribute<String>(this, 'code');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `key_value_store_associations` attribute.
-  TfRef<List<String>> get keyValueStoreAssociationsRef =>
+  TfRef<List<String>> get keyValueStoreAssociations =>
       TfRef.attribute<List<String>>(this, 'key_value_store_associations');
 
   /// Reference to `publish` attribute.
-  TfRef<bool> get publishRef => TfRef.attribute<bool>(this, 'publish');
+  TfRef<bool> get publish => TfRef.attribute<bool>(this, 'publish');
 
   /// Reference to `runtime` attribute.
-  TfRef<String> get runtimeRef => TfRef.attribute<String>(this, 'runtime');
+  TfRef<String> get runtime => TfRef.attribute<String>(this, 'runtime');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

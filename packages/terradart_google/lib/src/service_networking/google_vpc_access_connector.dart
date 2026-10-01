@@ -227,7 +227,7 @@ final class GoogleVpcAccessConnector extends Resource {
   RefTo<GoogleVpcAccessConnector> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -243,37 +243,35 @@ final class GoogleVpcAccessConnector extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `ip_cidr_range` attribute.
-  TfRef<String> get ipCidrRangeRef =>
+  TfRef<String> get ipCidrRange =>
       TfRef.attribute<String>(this, 'ip_cidr_range');
 
   /// Reference to `machine_type` attribute.
-  TfRef<String> get machineTypeRef =>
+  TfRef<String> get machineType =>
       TfRef.attribute<String>(this, 'machine_type');
 
   /// Reference to `max_instances` attribute.
-  TfRef<num> get maxInstancesRef => TfRef.attribute<num>(this, 'max_instances');
+  TfRef<num> get maxInstances => TfRef.attribute<num>(this, 'max_instances');
 
   /// Reference to `max_throughput` attribute.
-  TfRef<num> get maxThroughputRef =>
-      TfRef.attribute<num>(this, 'max_throughput');
+  TfRef<num> get maxThroughput => TfRef.attribute<num>(this, 'max_throughput');
 
   /// Reference to `min_instances` attribute.
-  TfRef<num> get minInstancesRef => TfRef.attribute<num>(this, 'min_instances');
+  TfRef<num> get minInstances => TfRef.attribute<num>(this, 'min_instances');
 
   /// Reference to `min_throughput` attribute.
-  TfRef<num> get minThroughputRef =>
-      TfRef.attribute<num>(this, 'min_throughput');
+  TfRef<num> get minThroughput => TfRef.attribute<num>(this, 'min_throughput');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -100,7 +100,7 @@ final class AwsIamServerCertificate extends Resource {
   RefTo<AwsIamServerCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -115,25 +115,23 @@ final class AwsIamServerCertificate extends Resource {
   TfRef<String> get uploadDate => TfRef.attribute<String>(this, 'upload_date');
 
   /// Reference to `certificate_body` attribute.
-  TfRef<String> get certificateBodyRef =>
+  TfRef<String> get certificateBody =>
       TfRef.attribute<String>(this, 'certificate_body');
 
   /// Reference to `certificate_chain` attribute.
-  TfRef<String> get certificateChainRef =>
+  TfRef<String> get certificateChain =>
       TfRef.attribute<String>(this, 'certificate_chain');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `path` attribute.
-  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
 
   /// Reference to `private_key` attribute.
-  TfRef<String> get privateKeyRef =>
-      TfRef.attribute<String>(this, 'private_key');
+  TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

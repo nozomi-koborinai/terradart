@@ -110,8 +110,8 @@ final class AwsSsmcontactsPlan extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `contact_id` attribute.
-  TfRef<String> get contactIdRef => TfRef.attribute<String>(this, 'contact_id');
+  TfRef<String> get contactId => TfRef.attribute<String>(this, 'contact_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

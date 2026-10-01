@@ -48,12 +48,11 @@ final class DataGoogleEventarcPipelineIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `pipeline_id` attribute.
-  TfRef<String> get pipelineIdRef =>
-      TfRef.attribute<String>(this, 'pipeline_id');
+  TfRef<String> get pipelineId => TfRef.attribute<String>(this, 'pipeline_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

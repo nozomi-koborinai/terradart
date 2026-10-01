@@ -53,7 +53,7 @@ final class GoogleBigqueryDataTransferDataSourceEnrollment extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -112,17 +112,17 @@ final class GoogleBigqueryDataTransferDataSourceEnrollment extends Resource {
       TfRef.attribute<num>(this, 'update_deadline_seconds');
 
   /// Reference to `data_source_id` attribute.
-  TfRef<String> get dataSourceIdRef =>
+  TfRef<String> get dataSourceId =>
       TfRef.attribute<String>(this, 'data_source_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `unenroll_location` attribute.
-  TfRef<String> get unenrollLocationRef =>
+  TfRef<String> get unenrollLocation =>
       TfRef.attribute<String>(this, 'unenroll_location');
 }

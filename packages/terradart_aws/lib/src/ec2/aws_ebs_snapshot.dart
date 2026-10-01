@@ -71,32 +71,30 @@ final class AwsEbsSnapshot extends Resource {
   TfRef<num> get volumeSize => TfRef.attribute<num>(this, 'volume_size');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `outpost_arn` attribute.
-  TfRef<String> get outpostArnRef =>
-      TfRef.attribute<String>(this, 'outpost_arn');
+  TfRef<String> get outpostArn => TfRef.attribute<String>(this, 'outpost_arn');
 
   /// Reference to `permanent_restore` attribute.
-  TfRef<bool> get permanentRestoreRef =>
+  TfRef<bool> get permanentRestore =>
       TfRef.attribute<bool>(this, 'permanent_restore');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `storage_tier` attribute.
-  TfRef<String> get storageTierRef =>
+  TfRef<String> get storageTier =>
       TfRef.attribute<String>(this, 'storage_tier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `temporary_restore_days` attribute.
-  TfRef<num> get temporaryRestoreDaysRef =>
+  TfRef<num> get temporaryRestoreDays =>
       TfRef.attribute<num>(this, 'temporary_restore_days');
 
   /// Reference to `volume_id` attribute.
-  TfRef<String> get volumeIdRef => TfRef.attribute<String>(this, 'volume_id');
+  TfRef<String> get volumeId => TfRef.attribute<String>(this, 'volume_id');
 }

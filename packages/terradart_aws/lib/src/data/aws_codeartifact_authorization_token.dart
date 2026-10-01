@@ -45,16 +45,16 @@ final class DataAwsCodeartifactAuthorizationToken extends Data {
   TfRef<String> get expiration => TfRef.attribute<String>(this, 'expiration');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `domain_owner` attribute.
-  TfRef<String> get domainOwnerRef =>
+  TfRef<String> get domainOwner =>
       TfRef.attribute<String>(this, 'domain_owner');
 
   /// Reference to `duration_seconds` attribute.
-  TfRef<num> get durationSecondsRef =>
+  TfRef<num> get durationSeconds =>
       TfRef.attribute<num>(this, 'duration_seconds');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

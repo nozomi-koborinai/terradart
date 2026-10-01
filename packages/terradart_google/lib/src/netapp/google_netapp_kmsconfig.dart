@@ -57,6 +57,9 @@ final class GoogleNetappKmsconfig extends Resource {
   /// `RefTo<GoogleNetappKmsconfig>`.
   RefTo<GoogleNetappKmsconfig> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -77,34 +80,23 @@ final class GoogleNetappKmsconfig extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `crypto_key_name` attribute.
-  TfRef<String> get cryptoKeyNameRef =>
+  TfRef<String> get cryptoKeyName =>
       TfRef.attribute<String>(this, 'crypto_key_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `service_account` attribute (SA that must hold the CMEK).
-  TfRef<String> get serviceAccountRef =>
-      TfRef.attribute<String>(this, 'service_account');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

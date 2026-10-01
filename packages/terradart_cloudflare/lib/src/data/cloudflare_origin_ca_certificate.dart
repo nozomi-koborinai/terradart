@@ -83,6 +83,6 @@ final class DataCloudflareOriginCaCertificate extends Data {
       TfRef.attribute<num>(this, 'requested_validity');
 
   /// Reference to `certificate_id` attribute.
-  TfRef<String> get certificateIdRef =>
+  TfRef<String> get certificateId =>
       TfRef.attribute<String>(this, 'certificate_id');
 }

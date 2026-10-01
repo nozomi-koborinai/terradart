@@ -648,7 +648,7 @@ final class AwsDynamodbTable extends Resource {
   RefTo<AwsDynamodbTable> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -664,62 +664,60 @@ final class AwsDynamodbTable extends Resource {
       TfRef.attribute<String>(this, 'stream_label');
 
   /// Reference to `billing_mode` attribute.
-  TfRef<String> get billingModeRef =>
+  TfRef<String> get billingMode =>
       TfRef.attribute<String>(this, 'billing_mode');
 
   /// Reference to `deletion_protection_enabled` attribute.
-  TfRef<bool> get deletionProtectionEnabledRef =>
+  TfRef<bool> get deletionProtectionEnabled =>
       TfRef.attribute<bool>(this, 'deletion_protection_enabled');
 
   /// Reference to `hash_key` attribute.
-  TfRef<String> get hashKeyRef => TfRef.attribute<String>(this, 'hash_key');
+  TfRef<String> get hashKey => TfRef.attribute<String>(this, 'hash_key');
 
   /// Reference to `range_key` attribute.
-  TfRef<String> get rangeKeyRef => TfRef.attribute<String>(this, 'range_key');
+  TfRef<String> get rangeKey => TfRef.attribute<String>(this, 'range_key');
 
   /// Reference to `read_capacity` attribute.
-  TfRef<num> get readCapacityRef => TfRef.attribute<num>(this, 'read_capacity');
+  TfRef<num> get readCapacity => TfRef.attribute<num>(this, 'read_capacity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `restore_backup_arn` attribute.
-  TfRef<String> get restoreBackupArnRef =>
+  TfRef<String> get restoreBackupArn =>
       TfRef.attribute<String>(this, 'restore_backup_arn');
 
   /// Reference to `restore_date_time` attribute.
-  TfRef<String> get restoreDateTimeRef =>
+  TfRef<String> get restoreDateTime =>
       TfRef.attribute<String>(this, 'restore_date_time');
 
   /// Reference to `restore_source_name` attribute.
-  TfRef<String> get restoreSourceNameRef =>
+  TfRef<String> get restoreSourceName =>
       TfRef.attribute<String>(this, 'restore_source_name');
 
   /// Reference to `restore_source_table_arn` attribute.
-  TfRef<String> get restoreSourceTableArnRef =>
+  TfRef<String> get restoreSourceTableArn =>
       TfRef.attribute<String>(this, 'restore_source_table_arn');
 
   /// Reference to `restore_to_latest_time` attribute.
-  TfRef<bool> get restoreToLatestTimeRef =>
+  TfRef<bool> get restoreToLatestTime =>
       TfRef.attribute<bool>(this, 'restore_to_latest_time');
 
   /// Reference to `stream_enabled` attribute.
-  TfRef<bool> get streamEnabledRef =>
+  TfRef<bool> get streamEnabled =>
       TfRef.attribute<bool>(this, 'stream_enabled');
 
   /// Reference to `stream_view_type` attribute.
-  TfRef<String> get streamViewTypeRef =>
+  TfRef<String> get streamViewType =>
       TfRef.attribute<String>(this, 'stream_view_type');
 
   /// Reference to `table_class` attribute.
-  TfRef<String> get tableClassRef =>
-      TfRef.attribute<String>(this, 'table_class');
+  TfRef<String> get tableClass => TfRef.attribute<String>(this, 'table_class');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `write_capacity` attribute.
-  TfRef<num> get writeCapacityRef =>
-      TfRef.attribute<num>(this, 'write_capacity');
+  TfRef<num> get writeCapacity => TfRef.attribute<num>(this, 'write_capacity');
 }

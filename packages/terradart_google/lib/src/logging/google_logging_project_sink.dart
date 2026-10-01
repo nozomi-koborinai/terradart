@@ -104,7 +104,7 @@ final class GoogleLoggingProjectSink extends Resource {
   RefTo<GoogleLoggingProjectSink> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -114,37 +114,29 @@ final class GoogleLoggingProjectSink extends Resource {
       TfRef.attribute<String>(this, 'writer_identity');
 
   /// Reference to `custom_writer_identity` attribute.
-  TfRef<String> get customWriterIdentityRef =>
+  TfRef<String> get customWriterIdentity =>
       TfRef.attribute<String>(this, 'custom_writer_identity');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `unique_writer_identity` attribute.
-  TfRef<bool> get uniqueWriterIdentityRef =>
+  TfRef<bool> get uniqueWriterIdentity =>
       TfRef.attribute<bool>(this, 'unique_writer_identity');
-
-  /// Reference to `writer_identity` attribute. Auto-populated when
-  /// `unique_writer_identity = true`; pass via `TfArg.ref(sink.writerIdentityRef)`
-  /// to the destination's IAM member resource so the sink can write logs.
-  TfRef<String> get writerIdentityRef =>
-      TfRef.attribute<String>(this, 'writer_identity');
 }

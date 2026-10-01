@@ -89,23 +89,23 @@ final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `code_repository_index` attribute.
-  TfRef<String> get codeRepositoryIndexRef =>
+  TfRef<String> get codeRepositoryIndex =>
       TfRef.attribute<String>(this, 'code_repository_index');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_group_id` attribute.
-  TfRef<String> get repositoryGroupIdRef =>
+  TfRef<String> get repositoryGroupId =>
       TfRef.attribute<String>(this, 'repository_group_id');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

@@ -89,24 +89,22 @@ final class AwsCodeartifactRepository extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `domain_owner` attribute.
-  TfRef<String> get domainOwnerRef =>
+  TfRef<String> get domainOwner =>
       TfRef.attribute<String>(this, 'domain_owner');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository` attribute.
-  TfRef<String> get repositoryRef =>
-      TfRef.attribute<String>(this, 'repository');
+  TfRef<String> get repository => TfRef.attribute<String>(this, 'repository');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

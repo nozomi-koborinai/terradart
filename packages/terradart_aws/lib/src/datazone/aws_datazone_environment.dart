@@ -72,7 +72,7 @@ final class AwsDatazoneEnvironment extends Resource {
   RefTo<AwsDatazoneEnvironment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -99,37 +99,36 @@ final class AwsDatazoneEnvironment extends Resource {
       );
 
   /// Reference to `account_identifier` attribute.
-  TfRef<String> get accountIdentifierRef =>
+  TfRef<String> get accountIdentifier =>
       TfRef.attribute<String>(this, 'account_identifier');
 
   /// Reference to `account_region` attribute.
-  TfRef<String> get accountRegionRef =>
+  TfRef<String> get accountRegion =>
       TfRef.attribute<String>(this, 'account_region');
 
   /// Reference to `blueprint_identifier` attribute.
-  TfRef<String> get blueprintIdentifierRef =>
+  TfRef<String> get blueprintIdentifier =>
       TfRef.attribute<String>(this, 'blueprint_identifier');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `glossary_terms` attribute.
-  TfRef<List<String>> get glossaryTermsRef =>
+  TfRef<List<String>> get glossaryTerms =>
       TfRef.attribute<List<String>>(this, 'glossary_terms');
 
   /// Reference to `profile_identifier` attribute.
-  TfRef<String> get profileIdentifierRef =>
+  TfRef<String> get profileIdentifier =>
       TfRef.attribute<String>(this, 'profile_identifier');
 
   /// Reference to `project_identifier` attribute.
-  TfRef<String> get projectIdentifierRef =>
+  TfRef<String> get projectIdentifier =>
       TfRef.attribute<String>(this, 'project_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

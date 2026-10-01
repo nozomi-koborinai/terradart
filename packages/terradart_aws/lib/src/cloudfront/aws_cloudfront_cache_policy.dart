@@ -198,7 +198,7 @@ final class AwsCloudfrontCachePolicy extends Resource {
   RefTo<AwsCloudfrontCachePolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -210,14 +210,14 @@ final class AwsCloudfrontCachePolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `default_ttl` attribute.
-  TfRef<num> get defaultTtlRef => TfRef.attribute<num>(this, 'default_ttl');
+  TfRef<num> get defaultTtl => TfRef.attribute<num>(this, 'default_ttl');
 
   /// Reference to `max_ttl` attribute.
-  TfRef<num> get maxTtlRef => TfRef.attribute<num>(this, 'max_ttl');
+  TfRef<num> get maxTtl => TfRef.attribute<num>(this, 'max_ttl');
 
   /// Reference to `min_ttl` attribute.
-  TfRef<num> get minTtlRef => TfRef.attribute<num>(this, 'min_ttl');
+  TfRef<num> get minTtl => TfRef.attribute<num>(this, 'min_ttl');
 }

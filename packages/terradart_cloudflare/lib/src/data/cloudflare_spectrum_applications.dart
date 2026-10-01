@@ -37,14 +37,14 @@ final class DataCloudflareSpectrumApplications extends Data {
   Set<String> get sensitiveFields => _cloudflareSpectrumApplicationsSensitive;
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

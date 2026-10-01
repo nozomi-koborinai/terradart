@@ -46,12 +46,12 @@ final class DataAwsSesv2DedicatedIpPool extends Data {
       TfRef.attribute<String>(this, 'scaling_mode');
 
   /// Reference to `pool_name` attribute.
-  TfRef<String> get poolNameRef => TfRef.attribute<String>(this, 'pool_name');
+  TfRef<String> get poolName => TfRef.attribute<String>(this, 'pool_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

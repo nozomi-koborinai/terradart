@@ -46,13 +46,13 @@ final class AwsRedshiftHsmClientCertificate extends Resource {
       TfRef.attribute<String>(this, 'hsm_client_certificate_public_key');
 
   /// Reference to `hsm_client_certificate_identifier` attribute.
-  TfRef<String> get hsmClientCertificateIdentifierRef =>
+  TfRef<String> get hsmClientCertificateIdentifier =>
       TfRef.attribute<String>(this, 'hsm_client_certificate_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

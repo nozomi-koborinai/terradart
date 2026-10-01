@@ -112,25 +112,24 @@ final class AwsEc2ClientVpnAuthorizationRule extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `access_group_id` attribute.
-  TfRef<String> get accessGroupIdRef =>
+  TfRef<String> get accessGroupId =>
       TfRef.attribute<String>(this, 'access_group_id');
 
   /// Reference to `authorize_all_groups` attribute.
-  TfRef<bool> get authorizeAllGroupsRef =>
+  TfRef<bool> get authorizeAllGroups =>
       TfRef.attribute<bool>(this, 'authorize_all_groups');
 
   /// Reference to `client_vpn_endpoint_id` attribute.
-  TfRef<String> get clientVpnEndpointIdRef =>
+  TfRef<String> get clientVpnEndpointId =>
       TfRef.attribute<String>(this, 'client_vpn_endpoint_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_network_cidr` attribute.
-  TfRef<String> get targetNetworkCidrRef =>
+  TfRef<String> get targetNetworkCidr =>
       TfRef.attribute<String>(this, 'target_network_cidr');
 }

@@ -1109,7 +1109,7 @@ final class AwsKinesisanalyticsv2Application extends Resource {
   RefTo<AwsKinesisanalyticsv2Application> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1132,32 +1132,31 @@ final class AwsKinesisanalyticsv2Application extends Resource {
   TfRef<num> get versionId => TfRef.attribute<num>(this, 'version_id');
 
   /// Reference to `application_mode` attribute.
-  TfRef<String> get applicationModeRef =>
+  TfRef<String> get applicationMode =>
       TfRef.attribute<String>(this, 'application_mode');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `force_stop` attribute.
-  TfRef<bool> get forceStopRef => TfRef.attribute<bool>(this, 'force_stop');
+  TfRef<bool> get forceStop => TfRef.attribute<bool>(this, 'force_stop');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `runtime_environment` attribute.
-  TfRef<String> get runtimeEnvironmentRef =>
+  TfRef<String> get runtimeEnvironment =>
       TfRef.attribute<String>(this, 'runtime_environment');
 
   /// Reference to `service_execution_role` attribute.
-  TfRef<String> get serviceExecutionRoleRef =>
+  TfRef<String> get serviceExecutionRole =>
       TfRef.attribute<String>(this, 'service_execution_role');
 
   /// Reference to `start_application` attribute.
-  TfRef<bool> get startApplicationRef =>
+  TfRef<bool> get startApplication =>
       TfRef.attribute<bool>(this, 'start_application');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

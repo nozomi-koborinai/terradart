@@ -230,7 +230,7 @@ final class AwsSesEventDestination extends Resource {
   RefTo<AwsSesEventDestination> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -239,16 +239,16 @@ final class AwsSesEventDestination extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `configuration_set_name` attribute.
-  TfRef<String> get configurationSetNameRef =>
+  TfRef<String> get configurationSetName =>
       TfRef.attribute<String>(this, 'configuration_set_name');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `matching_types` attribute.
-  TfRef<List<String>> get matchingTypesRef =>
+  TfRef<List<String>> get matchingTypes =>
       TfRef.attribute<List<String>>(this, 'matching_types');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

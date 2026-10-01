@@ -31,5 +31,5 @@ final class DataAwsOrganizationsOrganizationalUnitChildAccounts extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'accounts');
 
   /// Reference to `parent_id` attribute.
-  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+  TfRef<String> get parentId => TfRef.attribute<String>(this, 'parent_id');
 }

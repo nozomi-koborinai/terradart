@@ -56,20 +56,20 @@ final class AwsElasticacheUserGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_group_id` attribute.
-  TfRef<String> get userGroupIdRef =>
+  TfRef<String> get userGroupId =>
       TfRef.attribute<String>(this, 'user_group_id');
 
   /// Reference to `user_ids` attribute.
-  TfRef<List<String>> get userIdsRef =>
+  TfRef<List<String>> get userIds =>
       TfRef.attribute<List<String>>(this, 'user_ids');
 }

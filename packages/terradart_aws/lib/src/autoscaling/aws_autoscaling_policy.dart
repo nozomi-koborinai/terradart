@@ -811,7 +811,7 @@ final class AwsAutoscalingPolicy extends Resource {
   RefTo<AwsAutoscalingPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -820,39 +820,38 @@ final class AwsAutoscalingPolicy extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `adjustment_type` attribute.
-  TfRef<String> get adjustmentTypeRef =>
+  TfRef<String> get adjustmentType =>
       TfRef.attribute<String>(this, 'adjustment_type');
 
   /// Reference to `autoscaling_group_name` attribute.
-  TfRef<String> get autoscalingGroupNameRef =>
+  TfRef<String> get autoscalingGroupName =>
       TfRef.attribute<String>(this, 'autoscaling_group_name');
 
   /// Reference to `cooldown` attribute.
-  TfRef<num> get cooldownRef => TfRef.attribute<num>(this, 'cooldown');
+  TfRef<num> get cooldown => TfRef.attribute<num>(this, 'cooldown');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `estimated_instance_warmup` attribute.
-  TfRef<num> get estimatedInstanceWarmupRef =>
+  TfRef<num> get estimatedInstanceWarmup =>
       TfRef.attribute<num>(this, 'estimated_instance_warmup');
 
   /// Reference to `metric_aggregation_type` attribute.
-  TfRef<String> get metricAggregationTypeRef =>
+  TfRef<String> get metricAggregationType =>
       TfRef.attribute<String>(this, 'metric_aggregation_type');
 
   /// Reference to `min_adjustment_magnitude` attribute.
-  TfRef<num> get minAdjustmentMagnitudeRef =>
+  TfRef<num> get minAdjustmentMagnitude =>
       TfRef.attribute<num>(this, 'min_adjustment_magnitude');
 
   /// Reference to `policy_type` attribute.
-  TfRef<String> get policyTypeRef =>
-      TfRef.attribute<String>(this, 'policy_type');
+  TfRef<String> get policyType => TfRef.attribute<String>(this, 'policy_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scaling_adjustment` attribute.
-  TfRef<num> get scalingAdjustmentRef =>
+  TfRef<num> get scalingAdjustment =>
       TfRef.attribute<num>(this, 'scaling_adjustment');
 }

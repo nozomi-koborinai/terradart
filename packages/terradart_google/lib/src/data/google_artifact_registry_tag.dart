@@ -39,7 +39,7 @@ final class DataGoogleArtifactRegistryTag extends Data {
   Set<String> get sensitiveFields => _googleArtifactRegistryTagSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -48,19 +48,19 @@ final class DataGoogleArtifactRegistryTag extends Data {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `package_name` attribute.
-  TfRef<String> get packageNameRef =>
+  TfRef<String> get packageName =>
       TfRef.attribute<String>(this, 'package_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_id` attribute.
-  TfRef<String> get repositoryIdRef =>
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 
   /// Reference to `tag_name` attribute.
-  TfRef<String> get tagNameRef => TfRef.attribute<String>(this, 'tag_name');
+  TfRef<String> get tagName => TfRef.attribute<String>(this, 'tag_name');
 }

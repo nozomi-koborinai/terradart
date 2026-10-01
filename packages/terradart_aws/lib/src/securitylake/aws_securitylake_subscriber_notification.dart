@@ -130,9 +130,9 @@ final class AwsSecuritylakeSubscriberNotification extends Resource {
       TfRef.attribute<String>(this, 'subscriber_endpoint');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subscriber_id` attribute.
-  TfRef<String> get subscriberIdRef =>
+  TfRef<String> get subscriberId =>
       TfRef.attribute<String>(this, 'subscriber_id');
 }

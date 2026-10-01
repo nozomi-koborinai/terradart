@@ -141,25 +141,25 @@ final class AwsEc2SecondarySubnet extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `ipv4_cidr_block` attribute.
-  TfRef<String> get ipv4CidrBlockRef =>
+  TfRef<String> get ipv4CidrBlock =>
       TfRef.attribute<String>(this, 'ipv4_cidr_block');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secondary_network_id` attribute.
-  TfRef<String> get secondaryNetworkIdRef =>
+  TfRef<String> get secondaryNetworkId =>
       TfRef.attribute<String>(this, 'secondary_network_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

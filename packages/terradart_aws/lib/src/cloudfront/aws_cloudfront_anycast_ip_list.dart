@@ -32,7 +32,7 @@ final class AwsCloudfrontAnycastIpList extends Resource {
   RefTo<AwsCloudfrontAnycastIpList> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,9 +52,9 @@ final class AwsCloudfrontAnycastIpList extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `ip_count` attribute.
-  TfRef<num> get ipCountRef => TfRef.attribute<num>(this, 'ip_count');
+  TfRef<num> get ipCount => TfRef.attribute<num>(this, 'ip_count');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

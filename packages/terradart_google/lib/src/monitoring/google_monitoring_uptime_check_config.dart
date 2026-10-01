@@ -720,7 +720,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
   RefTo<GoogleMonitoringUptimeCheckConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -730,40 +730,35 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
       TfRef.attribute<String>(this, 'uptime_check_id');
 
   /// Reference to `checker_type` attribute.
-  TfRef<String> get checkerTypeRef =>
+  TfRef<String> get checkerType =>
       TfRef.attribute<String>(this, 'checker_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `log_check_failures` attribute.
-  TfRef<bool> get logCheckFailuresRef =>
+  TfRef<bool> get logCheckFailures =>
       TfRef.attribute<bool>(this, 'log_check_failures');
 
   /// Reference to `period` attribute.
-  TfRef<String> get periodRef => TfRef.attribute<String>(this, 'period');
+  TfRef<String> get period => TfRef.attribute<String>(this, 'period');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `selected_regions` attribute.
-  TfRef<List<String>> get selectedRegionsRef =>
+  TfRef<List<String>> get selectedRegions =>
       TfRef.attribute<List<String>>(this, 'selected_regions');
 
   /// Reference to `timeout` attribute.
-  TfRef<String> get timeoutRef => TfRef.attribute<String>(this, 'timeout');
+  TfRef<String> get timeout => TfRef.attribute<String>(this, 'timeout');
 
   /// Reference to `user_labels` attribute.
-  TfRef<Map<String, String>> get userLabelsRef =>
+  TfRef<Map<String, String>> get userLabels =>
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
-
-  /// Reference to `uptime_check_id` (the bare ID segment, without the
-  /// `projects/.../uptimeCheckConfigs/` prefix).
-  TfRef<String> get uptimeCheckIdRef =>
-      TfRef.attribute<String>(this, 'uptime_check_id');
 }

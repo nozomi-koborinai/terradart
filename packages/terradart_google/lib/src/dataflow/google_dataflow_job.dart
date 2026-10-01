@@ -89,6 +89,9 @@ final class GoogleDataflowJob extends Resource {
   /// `RefTo<GoogleDataflowJob>`.
   RefTo<GoogleDataflowJob> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -110,85 +113,74 @@ final class GoogleDataflowJob extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `additional_experiments` attribute.
-  TfRef<List<String>> get additionalExperimentsRef =>
+  TfRef<List<String>> get additionalExperiments =>
       TfRef.attribute<List<String>>(this, 'additional_experiments');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enable_streaming_engine` attribute.
-  TfRef<bool> get enableStreamingEngineRef =>
+  TfRef<bool> get enableStreamingEngine =>
       TfRef.attribute<bool>(this, 'enable_streaming_engine');
 
   /// Reference to `ip_configuration` attribute.
-  TfRef<String> get ipConfigurationRef =>
+  TfRef<String> get ipConfiguration =>
       TfRef.attribute<String>(this, 'ip_configuration');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `machine_type` attribute.
-  TfRef<String> get machineTypeRef =>
+  TfRef<String> get machineType =>
       TfRef.attribute<String>(this, 'machine_type');
 
   /// Reference to `max_workers` attribute.
-  TfRef<num> get maxWorkersRef => TfRef.attribute<num>(this, 'max_workers');
+  TfRef<num> get maxWorkers => TfRef.attribute<num>(this, 'max_workers');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `on_delete` attribute.
-  TfRef<String> get onDeleteRef => TfRef.attribute<String>(this, 'on_delete');
+  TfRef<String> get onDelete => TfRef.attribute<String>(this, 'on_delete');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_account_email` attribute.
-  TfRef<String> get serviceAccountEmailRef =>
+  TfRef<String> get serviceAccountEmail =>
       TfRef.attribute<String>(this, 'service_account_email');
 
   /// Reference to `skip_wait_on_job_termination` attribute.
-  TfRef<bool> get skipWaitOnJobTerminationRef =>
+  TfRef<bool> get skipWaitOnJobTermination =>
       TfRef.attribute<bool>(this, 'skip_wait_on_job_termination');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 
   /// Reference to `temp_gcs_location` attribute.
-  TfRef<String> get tempGcsLocationRef =>
+  TfRef<String> get tempGcsLocation =>
       TfRef.attribute<String>(this, 'temp_gcs_location');
 
   /// Reference to `template_gcs_path` attribute.
-  TfRef<String> get templateGcsPathRef =>
+  TfRef<String> get templateGcsPath =>
       TfRef.attribute<String>(this, 'template_gcs_path');
 
   /// Reference to `transform_name_mapping` attribute.
-  TfRef<Map<String, String>> get transformNameMappingRef =>
+  TfRef<Map<String, String>> get transformNameMapping =>
       TfRef.attribute<Map<String, String>>(this, 'transform_name_mapping');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `job_id` attribute.
-  TfRef<String> get jobIdRef => TfRef.attribute<String>(this, 'job_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

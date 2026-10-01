@@ -49,11 +49,11 @@ final class DataGoogleBigqueryTableIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `dataset_id` attribute.
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `table_id` attribute.
-  TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
+  TfRef<String> get tableId => TfRef.attribute<String>(this, 'table_id');
 }

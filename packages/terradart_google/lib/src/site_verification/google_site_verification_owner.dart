@@ -46,13 +46,13 @@ final class GoogleSiteVerificationOwner extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `web_resource_id` attribute.
-  TfRef<String> get webResourceIdRef =>
+  TfRef<String> get webResourceId =>
       TfRef.attribute<String>(this, 'web_resource_id');
 }

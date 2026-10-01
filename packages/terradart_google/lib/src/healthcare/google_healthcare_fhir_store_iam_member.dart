@@ -79,12 +79,12 @@ final class GoogleHealthcareFhirStoreIamMember extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `fhir_store_id` attribute.
-  TfRef<String> get fhirStoreIdRef =>
+  TfRef<String> get fhirStoreId =>
       TfRef.attribute<String>(this, 'fhir_store_id');
 
   /// Reference to `member` attribute.
-  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

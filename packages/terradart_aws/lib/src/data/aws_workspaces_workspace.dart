@@ -72,20 +72,20 @@ final class DataAwsWorkspacesWorkspace extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'workspace_properties');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

@@ -55,21 +55,20 @@ final class CloudflareWorkersCustomDomain extends Resource {
   TfRef<String> get certId => TfRef.attribute<String>(this, 'cert_id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `environment` attribute.
-  TfRef<String> get environmentRef =>
-      TfRef.attribute<String>(this, 'environment');
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `hostname` attribute.
-  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 
   /// Reference to `zone_name` attribute.
-  TfRef<String> get zoneNameRef => TfRef.attribute<String>(this, 'zone_name');
+  TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
 }

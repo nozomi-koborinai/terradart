@@ -76,13 +76,13 @@ final class GoogleBillingAccountIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `billing_account_id` attribute.
-  TfRef<String> get billingAccountIdRef =>
+  TfRef<String> get billingAccountId =>
       TfRef.attribute<String>(this, 'billing_account_id');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

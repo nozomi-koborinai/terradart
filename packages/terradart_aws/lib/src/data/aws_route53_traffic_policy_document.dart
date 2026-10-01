@@ -309,16 +309,15 @@ final class DataAwsRoute53TrafficPolicyDocument extends Data {
   TfRef<String> get json => TfRef.attribute<String>(this, 'json');
 
   /// Reference to `record_type` attribute.
-  TfRef<String> get recordTypeRef =>
-      TfRef.attribute<String>(this, 'record_type');
+  TfRef<String> get recordType => TfRef.attribute<String>(this, 'record_type');
 
   /// Reference to `start_endpoint` attribute.
-  TfRef<String> get startEndpointRef =>
+  TfRef<String> get startEndpoint =>
       TfRef.attribute<String>(this, 'start_endpoint');
 
   /// Reference to `start_rule` attribute.
-  TfRef<String> get startRuleRef => TfRef.attribute<String>(this, 'start_rule');
+  TfRef<String> get startRule => TfRef.attribute<String>(this, 'start_rule');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

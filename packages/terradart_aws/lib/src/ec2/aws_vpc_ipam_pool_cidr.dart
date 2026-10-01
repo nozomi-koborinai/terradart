@@ -123,16 +123,14 @@ final class AwsVpcIpamPoolCidr extends Resource {
       TfRef.attribute<String>(this, 'ipam_pool_cidr_id');
 
   /// Reference to `cidr` attribute.
-  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+  TfRef<String> get cidr => TfRef.attribute<String>(this, 'cidr');
 
   /// Reference to `ipam_pool_id` attribute.
-  TfRef<String> get ipamPoolIdRef =>
-      TfRef.attribute<String>(this, 'ipam_pool_id');
+  TfRef<String> get ipamPoolId => TfRef.attribute<String>(this, 'ipam_pool_id');
 
   /// Reference to `netmask_length` attribute.
-  TfRef<num> get netmaskLengthRef =>
-      TfRef.attribute<num>(this, 'netmask_length');
+  TfRef<num> get netmaskLength => TfRef.attribute<num>(this, 'netmask_length');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

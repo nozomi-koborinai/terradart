@@ -39,13 +39,13 @@ final class AwsRamResourceAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 
   /// Reference to `resource_share_arn` attribute.
-  TfRef<String> get resourceShareArnRef =>
+  TfRef<String> get resourceShareArn =>
       TfRef.attribute<String>(this, 'resource_share_arn');
 }

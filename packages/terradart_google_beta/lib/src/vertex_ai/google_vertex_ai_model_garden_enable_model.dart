@@ -68,9 +68,9 @@ final class GoogleVertexAiModelGardenEnableModel extends Resource {
       TfRef.attribute<String>(this, 'publisher_endpoint');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `publisher_model_name` attribute.
-  TfRef<String> get publisherModelNameRef =>
+  TfRef<String> get publisherModelName =>
       TfRef.attribute<String>(this, 'publisher_model_name');
 }

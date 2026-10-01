@@ -56,27 +56,27 @@ final class AwsVpcIpv6CidrBlockAssociation extends Resource {
       TfRef.attribute<String>(this, 'ipv6_address_attribute');
 
   /// Reference to `assign_generated_ipv6_cidr_block` attribute.
-  TfRef<bool> get assignGeneratedIpv6CidrBlockRef =>
+  TfRef<bool> get assignGeneratedIpv6CidrBlock =>
       TfRef.attribute<bool>(this, 'assign_generated_ipv6_cidr_block');
 
   /// Reference to `ipv6_cidr_block` attribute.
-  TfRef<String> get ipv6CidrBlockRef =>
+  TfRef<String> get ipv6CidrBlock =>
       TfRef.attribute<String>(this, 'ipv6_cidr_block');
 
   /// Reference to `ipv6_ipam_pool_id` attribute.
-  TfRef<String> get ipv6IpamPoolIdRef =>
+  TfRef<String> get ipv6IpamPoolId =>
       TfRef.attribute<String>(this, 'ipv6_ipam_pool_id');
 
   /// Reference to `ipv6_netmask_length` attribute.
-  TfRef<num> get ipv6NetmaskLengthRef =>
+  TfRef<num> get ipv6NetmaskLength =>
       TfRef.attribute<num>(this, 'ipv6_netmask_length');
 
   /// Reference to `ipv6_pool` attribute.
-  TfRef<String> get ipv6PoolRef => TfRef.attribute<String>(this, 'ipv6_pool');
+  TfRef<String> get ipv6Pool => TfRef.attribute<String>(this, 'ipv6_pool');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

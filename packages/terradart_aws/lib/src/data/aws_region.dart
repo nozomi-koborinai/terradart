@@ -26,7 +26,7 @@ final class DataAwsRegion extends Data {
   Set<String> get sensitiveFields => _awsRegionSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -35,8 +35,8 @@ final class DataAwsRegion extends Data {
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `endpoint` attribute.
-  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+  TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

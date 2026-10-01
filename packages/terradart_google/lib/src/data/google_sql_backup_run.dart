@@ -49,14 +49,14 @@ final class DataGoogleSqlBackupRun extends Data {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `backup_id` attribute.
-  TfRef<num> get backupIdRef => TfRef.attribute<num>(this, 'backup_id');
+  TfRef<num> get backupId => TfRef.attribute<num>(this, 'backup_id');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `most_recent` attribute.
-  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+  TfRef<bool> get mostRecent => TfRef.attribute<bool>(this, 'most_recent');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -54,8 +54,8 @@ final class DataCloudflareZeroTrustAccessMtlsHostnameSettings extends Data {
   TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

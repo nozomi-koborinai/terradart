@@ -75,7 +75,7 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
   RefTo<GoogleDataplexDataProductDataAsset> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,28 +91,28 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
+  /// Reference to `data_asset_id` attribute.
+  TfRef<String> get dataAssetId =>
+      TfRef.attribute<String>(this, 'data_asset_id');
+
   /// Reference to `data_product_id` attribute.
-  TfRef<String> get dataProductIdRef =>
+  TfRef<String> get dataProductId =>
       TfRef.attribute<String>(this, 'data_product_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `resource` attribute.
-  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
-
-  /// Reference to `data_asset_id` attribute.
-  TfRef<String> get dataAssetIdRef =>
-      TfRef.attribute<String>(this, 'data_asset_id');
+  TfRef<String> get resource => TfRef.attribute<String>(this, 'resource');
 }

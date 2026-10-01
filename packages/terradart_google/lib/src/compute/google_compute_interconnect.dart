@@ -163,6 +163,9 @@ final class GoogleComputeInterconnect extends Resource {
   /// `RefTo<GoogleComputeInterconnect>`.
   RefTo<GoogleComputeInterconnect> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `available_features` attribute.
   TfRef<List<String>> get availableFeatures =>
       TfRef.attribute<List<String>>(this, 'available_features');
@@ -234,58 +237,55 @@ final class GoogleComputeInterconnect extends Resource {
       TfRef.attribute<List<String>>(this, 'wire_groups');
 
   /// Reference to `admin_enabled` attribute.
-  TfRef<bool> get adminEnabledRef =>
-      TfRef.attribute<bool>(this, 'admin_enabled');
+  TfRef<bool> get adminEnabled => TfRef.attribute<bool>(this, 'admin_enabled');
 
   /// Reference to `customer_name` attribute.
-  TfRef<String> get customerNameRef =>
+  TfRef<String> get customerName =>
       TfRef.attribute<String>(this, 'customer_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `interconnect_type` attribute.
-  TfRef<String> get interconnectTypeRef =>
+  TfRef<String> get interconnectType =>
       TfRef.attribute<String>(this, 'interconnect_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `link_type` attribute.
-  TfRef<String> get linkTypeRef => TfRef.attribute<String>(this, 'link_type');
+  TfRef<String> get linkType => TfRef.attribute<String>(this, 'link_type');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `macsec_enabled` attribute.
-  TfRef<bool> get macsecEnabledRef =>
+  TfRef<bool> get macsecEnabled =>
       TfRef.attribute<bool>(this, 'macsec_enabled');
 
   /// Reference to `noc_contact_email` attribute.
-  TfRef<String> get nocContactEmailRef =>
+  TfRef<String> get nocContactEmail =>
       TfRef.attribute<String>(this, 'noc_contact_email');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `remote_location` attribute.
-  TfRef<String> get remoteLocationRef =>
+  TfRef<String> get remoteLocation =>
       TfRef.attribute<String>(this, 'remote_location');
 
   /// Reference to `requested_features` attribute.
-  TfRef<List<String>> get requestedFeaturesRef =>
+  TfRef<List<String>> get requestedFeatures =>
       TfRef.attribute<List<String>>(this, 'requested_features');
 
   /// Reference to `requested_link_count` attribute.
-  TfRef<num> get requestedLinkCountRef =>
+  TfRef<num> get requestedLinkCount =>
       TfRef.attribute<num>(this, 'requested_link_count');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

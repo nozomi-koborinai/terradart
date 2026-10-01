@@ -79,17 +79,17 @@ final class AwsElasticacheReservedCacheNode extends Resource {
   TfRef<num> get usagePrice => TfRef.attribute<num>(this, 'usage_price');
 
   /// Reference to `cache_node_count` attribute.
-  TfRef<num> get cacheNodeCountRef =>
+  TfRef<num> get cacheNodeCount =>
       TfRef.attribute<num>(this, 'cache_node_count');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reserved_cache_nodes_offering_id` attribute.
-  TfRef<String> get reservedCacheNodesOfferingIdRef =>
+  TfRef<String> get reservedCacheNodesOfferingId =>
       TfRef.attribute<String>(this, 'reserved_cache_nodes_offering_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

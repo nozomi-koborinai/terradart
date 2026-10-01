@@ -70,7 +70,7 @@ final class AwsSagemakerMlflowApp extends Resource {
   RefTo<AwsSagemakerMlflowApp> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -80,32 +80,32 @@ final class AwsSagemakerMlflowApp extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `account_default_status` attribute.
-  TfRef<String> get accountDefaultStatusRef =>
+  TfRef<String> get accountDefaultStatus =>
       TfRef.attribute<String>(this, 'account_default_status');
 
   /// Reference to `artifact_store_uri` attribute.
-  TfRef<String> get artifactStoreUriRef =>
+  TfRef<String> get artifactStoreUri =>
       TfRef.attribute<String>(this, 'artifact_store_uri');
 
   /// Reference to `default_domain_id_list` attribute.
-  TfRef<List<String>> get defaultDomainIdListRef =>
+  TfRef<List<String>> get defaultDomainIdList =>
       TfRef.attribute<List<String>>(this, 'default_domain_id_list');
 
   /// Reference to `model_registration_mode` attribute.
-  TfRef<String> get modelRegistrationModeRef =>
+  TfRef<String> get modelRegistrationMode =>
       TfRef.attribute<String>(this, 'model_registration_mode');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `weekly_maintenance_window_start` attribute.
-  TfRef<String> get weeklyMaintenanceWindowStartRef =>
+  TfRef<String> get weeklyMaintenanceWindowStart =>
       TfRef.attribute<String>(this, 'weekly_maintenance_window_start');
 }

@@ -89,8 +89,8 @@ final class DataAwsSignerSigningJob extends Data {
       TfRef.attribute<String>(this, 'status_reason');
 
   /// Reference to `job_id` attribute.
-  TfRef<String> get jobIdRef => TfRef.attribute<String>(this, 'job_id');
+  TfRef<String> get jobId => TfRef.attribute<String>(this, 'job_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -129,18 +129,18 @@ final class DataAwsNatGateway extends Data {
       TfRef.attribute<List<String>>(this, 'secondary_private_ip_addresses');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

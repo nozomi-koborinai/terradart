@@ -32,7 +32,7 @@ final class AwsShieldProtection extends Resource {
   RefTo<AwsShieldProtection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -41,10 +41,10 @@ final class AwsShieldProtection extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

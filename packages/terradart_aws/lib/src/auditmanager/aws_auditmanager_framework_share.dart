@@ -46,20 +46,20 @@ final class AwsAuditmanagerFrameworkShare extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `destination_account` attribute.
-  TfRef<String> get destinationAccountRef =>
+  TfRef<String> get destinationAccount =>
       TfRef.attribute<String>(this, 'destination_account');
 
   /// Reference to `destination_region` attribute.
-  TfRef<String> get destinationRegionRef =>
+  TfRef<String> get destinationRegion =>
       TfRef.attribute<String>(this, 'destination_region');
 
   /// Reference to `framework_id` attribute.
-  TfRef<String> get frameworkIdRef =>
+  TfRef<String> get frameworkId =>
       TfRef.attribute<String>(this, 'framework_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

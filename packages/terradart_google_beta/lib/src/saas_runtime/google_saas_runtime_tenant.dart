@@ -51,7 +51,7 @@ final class GoogleSaasRuntimeTenant extends Resource {
   RefTo<GoogleSaasRuntimeTenant> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,30 +78,30 @@ final class GoogleSaasRuntimeTenant extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `consumer_resource` attribute.
-  TfRef<String> get consumerResourceRef =>
+  TfRef<String> get consumerResource =>
       TfRef.attribute<String>(this, 'consumer_resource');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `saas` attribute.
-  TfRef<String> get saasRef => TfRef.attribute<String>(this, 'saas');
+  TfRef<String> get saas => TfRef.attribute<String>(this, 'saas');
 
   /// Reference to `tenant_id` attribute.
-  TfRef<String> get tenantIdRef => TfRef.attribute<String>(this, 'tenant_id');
+  TfRef<String> get tenantId => TfRef.attribute<String>(this, 'tenant_id');
 }

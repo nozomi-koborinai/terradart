@@ -127,7 +127,7 @@ final class AwsResiliencehubv2Service extends Resource {
   RefTo<AwsResiliencehubv2Service> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -137,27 +137,26 @@ final class AwsResiliencehubv2Service extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `dependency_discovery` attribute.
-  TfRef<String> get dependencyDiscoveryRef =>
+  TfRef<String> get dependencyDiscovery =>
       TfRef.attribute<String>(this, 'dependency_discovery');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `policy_arn` attribute.
-  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+  TfRef<String> get policyArn => TfRef.attribute<String>(this, 'policy_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `regions` attribute.
-  TfRef<List<String>> get regionsRef =>
+  TfRef<List<String>> get regions =>
       TfRef.attribute<List<String>>(this, 'regions');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

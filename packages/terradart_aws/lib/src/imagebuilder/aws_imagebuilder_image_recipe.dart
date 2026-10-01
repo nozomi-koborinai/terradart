@@ -202,7 +202,7 @@ final class AwsImagebuilderImageRecipe extends Resource {
   RefTo<AwsImagebuilderImageRecipe> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -221,32 +221,31 @@ final class AwsImagebuilderImageRecipe extends Resource {
   TfRef<String> get platform => TfRef.attribute<String>(this, 'platform');
 
   /// Reference to `ami_tags` attribute.
-  TfRef<Map<String, String>> get amiTagsRef =>
+  TfRef<Map<String, String>> get amiTags =>
       TfRef.attribute<Map<String, String>>(this, 'ami_tags');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `parent_image` attribute.
-  TfRef<String> get parentImageRef =>
+  TfRef<String> get parentImage =>
       TfRef.attribute<String>(this, 'parent_image');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_data_base64` attribute.
-  TfRef<String> get userDataBase64Ref =>
+  TfRef<String> get userDataBase64 =>
       TfRef.attribute<String>(this, 'user_data_base64');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `working_directory` attribute.
-  TfRef<String> get workingDirectoryRef =>
+  TfRef<String> get workingDirectory =>
       TfRef.attribute<String>(this, 'working_directory');
 }

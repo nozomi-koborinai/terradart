@@ -130,45 +130,44 @@ final class CloudflareStream extends Resource {
   TfRef<String> get uploaded => TfRef.attribute<String>(this, 'uploaded');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `allowed_origins` attribute.
-  TfRef<List<String>> get allowedOriginsRef =>
+  TfRef<List<String>> get allowedOrigins =>
       TfRef.attribute<List<String>>(this, 'allowed_origins');
 
   /// Reference to `creator` attribute.
-  TfRef<String> get creatorRef => TfRef.attribute<String>(this, 'creator');
+  TfRef<String> get creator => TfRef.attribute<String>(this, 'creator');
 
   /// Reference to `direct_user` attribute.
-  TfRef<bool> get directUserRef => TfRef.attribute<bool>(this, 'direct_user');
+  TfRef<bool> get directUser => TfRef.attribute<bool>(this, 'direct_user');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `max_duration_seconds` attribute.
-  TfRef<num> get maxDurationSecondsRef =>
+  TfRef<num> get maxDurationSeconds =>
       TfRef.attribute<num>(this, 'max_duration_seconds');
 
   /// Reference to `meta` attribute.
-  TfRef<String> get metaRef => TfRef.attribute<String>(this, 'meta');
+  TfRef<String> get meta => TfRef.attribute<String>(this, 'meta');
 
   /// Reference to `require_signed_urls` attribute.
-  TfRef<bool> get requireSignedUrlsRef =>
+  TfRef<bool> get requireSignedUrls =>
       TfRef.attribute<bool>(this, 'require_signed_urls');
 
   /// Reference to `scheduled_deletion` attribute.
-  TfRef<String> get scheduledDeletionRef =>
+  TfRef<String> get scheduledDeletion =>
       TfRef.attribute<String>(this, 'scheduled_deletion');
 
   /// Reference to `thumbnail_timestamp_pct` attribute.
-  TfRef<num> get thumbnailTimestampPctRef =>
+  TfRef<num> get thumbnailTimestampPct =>
       TfRef.attribute<num>(this, 'thumbnail_timestamp_pct');
 
   /// Reference to `uid` attribute.
-  TfRef<String> get uidRef => TfRef.attribute<String>(this, 'uid');
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `upload_expiry` attribute.
-  TfRef<String> get uploadExpiryRef =>
+  TfRef<String> get uploadExpiry =>
       TfRef.attribute<String>(this, 'upload_expiry');
 }

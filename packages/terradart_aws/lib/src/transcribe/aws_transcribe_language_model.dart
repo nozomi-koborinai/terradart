@@ -207,20 +207,20 @@ final class AwsTranscribeLanguageModel extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `base_model_name` attribute.
-  TfRef<String> get baseModelNameRef =>
+  TfRef<String> get baseModelName =>
       TfRef.attribute<String>(this, 'base_model_name');
 
   /// Reference to `language_code` attribute.
-  TfRef<String> get languageCodeRef =>
+  TfRef<String> get languageCode =>
       TfRef.attribute<String>(this, 'language_code');
 
   /// Reference to `model_name` attribute.
-  TfRef<String> get modelNameRef => TfRef.attribute<String>(this, 'model_name');
+  TfRef<String> get modelName => TfRef.attribute<String>(this, 'model_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

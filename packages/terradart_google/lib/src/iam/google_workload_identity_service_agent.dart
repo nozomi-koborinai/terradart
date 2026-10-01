@@ -65,5 +65,5 @@ final class GoogleWorkloadIdentityServiceAgent extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'service_agents');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

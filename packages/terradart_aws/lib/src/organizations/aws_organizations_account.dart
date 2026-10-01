@@ -56,7 +56,7 @@ final class AwsOrganizationsAccount extends Resource {
   RefTo<AwsOrganizationsAccount> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -82,27 +82,27 @@ final class AwsOrganizationsAccount extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `close_on_deletion` attribute.
-  TfRef<bool> get closeOnDeletionRef =>
+  TfRef<bool> get closeOnDeletion =>
       TfRef.attribute<bool>(this, 'close_on_deletion');
 
   /// Reference to `create_govcloud` attribute.
-  TfRef<bool> get createGovcloudRef =>
+  TfRef<bool> get createGovcloud =>
       TfRef.attribute<bool>(this, 'create_govcloud');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `iam_user_access_to_billing` attribute.
-  TfRef<String> get iamUserAccessToBillingRef =>
+  TfRef<String> get iamUserAccessToBilling =>
       TfRef.attribute<String>(this, 'iam_user_access_to_billing');
 
   /// Reference to `parent_id` attribute.
-  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+  TfRef<String> get parentId => TfRef.attribute<String>(this, 'parent_id');
 
   /// Reference to `role_name` attribute.
-  TfRef<String> get roleNameRef => TfRef.attribute<String>(this, 'role_name');
+  TfRef<String> get roleName => TfRef.attribute<String>(this, 'role_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

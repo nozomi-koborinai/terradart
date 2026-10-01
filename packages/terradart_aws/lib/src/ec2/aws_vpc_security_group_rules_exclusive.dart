@@ -41,17 +41,17 @@ final class AwsVpcSecurityGroupRulesExclusive extends Resource {
   RefTo<AwsVpcSecurityGroupRulesExclusive> get ref => RefTo.of(this);
 
   /// Reference to `egress_rule_ids` attribute.
-  TfRef<List<String>> get egressRuleIdsRef =>
+  TfRef<List<String>> get egressRuleIds =>
       TfRef.attribute<List<String>>(this, 'egress_rule_ids');
 
   /// Reference to `ingress_rule_ids` attribute.
-  TfRef<List<String>> get ingressRuleIdsRef =>
+  TfRef<List<String>> get ingressRuleIds =>
       TfRef.attribute<List<String>>(this, 'ingress_rule_ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_id` attribute.
-  TfRef<String> get securityGroupIdRef =>
+  TfRef<String> get securityGroupId =>
       TfRef.attribute<String>(this, 'security_group_id');
 }

@@ -33,7 +33,7 @@ final class DataGoogleApphubDiscoveredService extends Data {
   Set<String> get sensitiveFields => _googleApphubDiscoveredServiceSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -47,12 +47,11 @@ final class DataGoogleApphubDiscoveredService extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'service_reference');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_uri` attribute.
-  TfRef<String> get serviceUriRef =>
-      TfRef.attribute<String>(this, 'service_uri');
+  TfRef<String> get serviceUri => TfRef.attribute<String>(this, 'service_uri');
 }

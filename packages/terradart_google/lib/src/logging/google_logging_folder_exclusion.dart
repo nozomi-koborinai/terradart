@@ -47,21 +47,20 @@ final class GoogleLoggingFolderExclusion extends Resource {
   RefTo<GoogleLoggingFolderExclusion> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 }

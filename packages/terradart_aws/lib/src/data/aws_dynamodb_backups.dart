@@ -38,20 +38,19 @@ final class DataAwsDynamodbBackups extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'backup_summaries');
 
   /// Reference to `backup_type` attribute.
-  TfRef<String> get backupTypeRef =>
-      TfRef.attribute<String>(this, 'backup_type');
+  TfRef<String> get backupType => TfRef.attribute<String>(this, 'backup_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_name` attribute.
-  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
+  TfRef<String> get tableName => TfRef.attribute<String>(this, 'table_name');
 
   /// Reference to `time_range_lower_bound` attribute.
-  TfRef<String> get timeRangeLowerBoundRef =>
+  TfRef<String> get timeRangeLowerBound =>
       TfRef.attribute<String>(this, 'time_range_lower_bound');
 
   /// Reference to `time_range_upper_bound` attribute.
-  TfRef<String> get timeRangeUpperBoundRef =>
+  TfRef<String> get timeRangeUpperBound =>
       TfRef.attribute<String>(this, 'time_range_upper_bound');
 }

@@ -112,12 +112,12 @@ final class DataCloudflareShareResource extends Data {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `share_id` attribute.
-  TfRef<String> get shareIdRef => TfRef.attribute<String>(this, 'share_id');
+  TfRef<String> get shareId => TfRef.attribute<String>(this, 'share_id');
 
   /// Reference to `share_resource_id` attribute.
-  TfRef<String> get shareResourceIdRef =>
+  TfRef<String> get shareResourceId =>
       TfRef.attribute<String>(this, 'share_resource_id');
 }

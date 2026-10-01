@@ -130,7 +130,7 @@ final class AwsCeAnomalyMonitor extends Resource {
   RefTo<AwsCeAnomalyMonitor> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -139,18 +139,18 @@ final class AwsCeAnomalyMonitor extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `monitor_dimension` attribute.
-  TfRef<String> get monitorDimensionRef =>
+  TfRef<String> get monitorDimension =>
       TfRef.attribute<String>(this, 'monitor_dimension');
 
   /// Reference to `monitor_specification` attribute.
-  TfRef<String> get monitorSpecificationRef =>
+  TfRef<String> get monitorSpecification =>
       TfRef.attribute<String>(this, 'monitor_specification');
 
   /// Reference to `monitor_type` attribute.
-  TfRef<String> get monitorTypeRef =>
+  TfRef<String> get monitorType =>
       TfRef.attribute<String>(this, 'monitor_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -105,7 +105,7 @@ final class GoogleNetworkConnectivityTransport extends Resource {
   RefTo<GoogleNetworkConnectivityTransport> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -130,48 +130,47 @@ final class GoogleNetworkConnectivityTransport extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `advertised_routes` attribute.
-  TfRef<List<String>> get advertisedRoutesRef =>
+  TfRef<List<String>> get advertisedRoutes =>
       TfRef.attribute<List<String>>(this, 'advertised_routes');
 
   /// Reference to `bandwidth` attribute.
-  TfRef<String> get bandwidthRef => TfRef.attribute<String>(this, 'bandwidth');
+  TfRef<String> get bandwidth => TfRef.attribute<String>(this, 'bandwidth');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `mtu_limit` attribute.
-  TfRef<num> get mtuLimitRef => TfRef.attribute<num>(this, 'mtu_limit');
+  TfRef<num> get mtuLimit => TfRef.attribute<num>(this, 'mtu_limit');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `provided_activation_key` attribute.
-  TfRef<String> get providedActivationKeyRef =>
+  TfRef<String> get providedActivationKey =>
       TfRef.attribute<String>(this, 'provided_activation_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `remote_account_id` attribute.
-  TfRef<String> get remoteAccountIdRef =>
+  TfRef<String> get remoteAccountId =>
       TfRef.attribute<String>(this, 'remote_account_id');
 
   /// Reference to `remote_profile` attribute.
-  TfRef<String> get remoteProfileRef =>
+  TfRef<String> get remoteProfile =>
       TfRef.attribute<String>(this, 'remote_profile');
 
   /// Reference to `stack_type` attribute.
-  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
+  TfRef<String> get stackType => TfRef.attribute<String>(this, 'stack_type');
 }

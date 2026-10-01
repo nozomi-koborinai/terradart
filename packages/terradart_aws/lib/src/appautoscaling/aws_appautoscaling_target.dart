@@ -81,30 +81,29 @@ final class AwsAppautoscalingTarget extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `max_capacity` attribute.
-  TfRef<num> get maxCapacityRef => TfRef.attribute<num>(this, 'max_capacity');
+  TfRef<num> get maxCapacity => TfRef.attribute<num>(this, 'max_capacity');
 
   /// Reference to `min_capacity` attribute.
-  TfRef<num> get minCapacityRef => TfRef.attribute<num>(this, 'min_capacity');
+  TfRef<num> get minCapacity => TfRef.attribute<num>(this, 'min_capacity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `scalable_dimension` attribute.
-  TfRef<String> get scalableDimensionRef =>
+  TfRef<String> get scalableDimension =>
       TfRef.attribute<String>(this, 'scalable_dimension');
 
   /// Reference to `service_namespace` attribute.
-  TfRef<String> get serviceNamespaceRef =>
+  TfRef<String> get serviceNamespace =>
       TfRef.attribute<String>(this, 'service_namespace');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

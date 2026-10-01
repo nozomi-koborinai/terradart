@@ -119,45 +119,45 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
   RefTo<CloudflareMagicNetworkMonitoringRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `automatic_advertisement` attribute.
-  TfRef<bool> get automaticAdvertisementRef =>
+  TfRef<bool> get automaticAdvertisement =>
       TfRef.attribute<bool>(this, 'automatic_advertisement');
 
   /// Reference to `bandwidth_threshold` attribute.
-  TfRef<num> get bandwidthThresholdRef =>
+  TfRef<num> get bandwidthThreshold =>
       TfRef.attribute<num>(this, 'bandwidth_threshold');
 
   /// Reference to `duration` attribute.
-  TfRef<String> get durationRef => TfRef.attribute<String>(this, 'duration');
+  TfRef<String> get duration => TfRef.attribute<String>(this, 'duration');
 
   /// Reference to `packet_threshold` attribute.
-  TfRef<num> get packetThresholdRef =>
+  TfRef<num> get packetThreshold =>
       TfRef.attribute<num>(this, 'packet_threshold');
 
   /// Reference to `prefix_match` attribute.
-  TfRef<String> get prefixMatchRef =>
+  TfRef<String> get prefixMatch =>
       TfRef.attribute<String>(this, 'prefix_match');
 
   /// Reference to `prefixes` attribute.
-  TfRef<List<String>> get prefixesRef =>
+  TfRef<List<String>> get prefixes =>
       TfRef.attribute<List<String>>(this, 'prefixes');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zscore_sensitivity` attribute.
-  TfRef<String> get zscoreSensitivityRef =>
+  TfRef<String> get zscoreSensitivity =>
       TfRef.attribute<String>(this, 'zscore_sensitivity');
 
   /// Reference to `zscore_target` attribute.
-  TfRef<String> get zscoreTargetRef =>
+  TfRef<String> get zscoreTarget =>
       TfRef.attribute<String>(this, 'zscore_target');
 }

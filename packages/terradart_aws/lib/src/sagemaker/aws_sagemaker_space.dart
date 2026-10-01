@@ -572,19 +572,19 @@ final class AwsSagemakerSpace extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `domain_id` attribute.
-  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+  TfRef<String> get domainId => TfRef.attribute<String>(this, 'domain_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `space_display_name` attribute.
-  TfRef<String> get spaceDisplayNameRef =>
+  TfRef<String> get spaceDisplayName =>
       TfRef.attribute<String>(this, 'space_display_name');
 
   /// Reference to `space_name` attribute.
-  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
+  TfRef<String> get spaceName => TfRef.attribute<String>(this, 'space_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

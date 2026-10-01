@@ -51,12 +51,12 @@ final class DataGooglePrivatecaCertificateTemplateIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `certificate_template` attribute.
-  TfRef<String> get certificateTemplateRef =>
+  TfRef<String> get certificateTemplate =>
       TfRef.attribute<String>(this, 'certificate_template');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

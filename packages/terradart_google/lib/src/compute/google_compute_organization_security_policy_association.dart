@@ -58,7 +58,7 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -68,21 +68,21 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `attachment_id` attribute.
-  TfRef<String> get attachmentIdRef =>
+  TfRef<String> get attachmentId =>
       TfRef.attribute<String>(this, 'attachment_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `excluded_folders` attribute.
-  TfRef<List<String>> get excludedFoldersRef =>
+  TfRef<List<String>> get excludedFolders =>
       TfRef.attribute<List<String>>(this, 'excluded_folders');
 
   /// Reference to `excluded_projects` attribute.
-  TfRef<List<String>> get excludedProjectsRef =>
+  TfRef<List<String>> get excludedProjects =>
       TfRef.attribute<List<String>>(this, 'excluded_projects');
 
   /// Reference to `policy_id` attribute.
-  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+  TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 }

@@ -56,21 +56,21 @@ final class AwsApprunnerVpcConnector extends Resource {
       TfRef.attribute<num>(this, 'vpc_connector_revision');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_groups` attribute.
-  TfRef<List<String>> get securityGroupsRef =>
+  TfRef<List<String>> get securityGroups =>
       TfRef.attribute<List<String>>(this, 'security_groups');
 
   /// Reference to `subnets` attribute.
-  TfRef<List<String>> get subnetsRef =>
+  TfRef<List<String>> get subnets =>
       TfRef.attribute<List<String>>(this, 'subnets');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_connector_name` attribute.
-  TfRef<String> get vpcConnectorNameRef =>
+  TfRef<String> get vpcConnectorName =>
       TfRef.attribute<String>(this, 'vpc_connector_name');
 }

@@ -56,49 +56,48 @@ final class AwsSsmMaintenanceWindow extends Resource {
   RefTo<AwsSsmMaintenanceWindow> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `allow_unassociated_targets` attribute.
-  TfRef<bool> get allowUnassociatedTargetsRef =>
+  TfRef<bool> get allowUnassociatedTargets =>
       TfRef.attribute<bool>(this, 'allow_unassociated_targets');
 
   /// Reference to `cutoff` attribute.
-  TfRef<num> get cutoffRef => TfRef.attribute<num>(this, 'cutoff');
+  TfRef<num> get cutoff => TfRef.attribute<num>(this, 'cutoff');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `duration` attribute.
-  TfRef<num> get durationRef => TfRef.attribute<num>(this, 'duration');
+  TfRef<num> get duration => TfRef.attribute<num>(this, 'duration');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `end_date` attribute.
-  TfRef<String> get endDateRef => TfRef.attribute<String>(this, 'end_date');
+  TfRef<String> get endDate => TfRef.attribute<String>(this, 'end_date');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `schedule_offset` attribute.
-  TfRef<num> get scheduleOffsetRef =>
+  TfRef<num> get scheduleOffset =>
       TfRef.attribute<num>(this, 'schedule_offset');
 
   /// Reference to `schedule_timezone` attribute.
-  TfRef<String> get scheduleTimezoneRef =>
+  TfRef<String> get scheduleTimezone =>
       TfRef.attribute<String>(this, 'schedule_timezone');
 
   /// Reference to `start_date` attribute.
-  TfRef<String> get startDateRef => TfRef.attribute<String>(this, 'start_date');
+  TfRef<String> get startDate => TfRef.attribute<String>(this, 'start_date');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

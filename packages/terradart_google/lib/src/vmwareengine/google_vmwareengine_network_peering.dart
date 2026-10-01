@@ -85,6 +85,9 @@ final class GoogleVmwareengineNetworkPeering extends Resource {
   /// `RefTo<GoogleVmwareengineNetworkPeering>`.
   RefTo<GoogleVmwareengineNetworkPeering> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -109,47 +112,40 @@ final class GoogleVmwareengineNetworkPeering extends Resource {
       TfRef.attribute<String>(this, 'vmware_engine_network_canonical');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `export_custom_routes` attribute.
-  TfRef<bool> get exportCustomRoutesRef =>
+  TfRef<bool> get exportCustomRoutes =>
       TfRef.attribute<bool>(this, 'export_custom_routes');
 
   /// Reference to `export_custom_routes_with_public_ip` attribute.
-  TfRef<bool> get exportCustomRoutesWithPublicIpRef =>
+  TfRef<bool> get exportCustomRoutesWithPublicIp =>
       TfRef.attribute<bool>(this, 'export_custom_routes_with_public_ip');
 
   /// Reference to `import_custom_routes` attribute.
-  TfRef<bool> get importCustomRoutesRef =>
+  TfRef<bool> get importCustomRoutes =>
       TfRef.attribute<bool>(this, 'import_custom_routes');
 
   /// Reference to `import_custom_routes_with_public_ip` attribute.
-  TfRef<bool> get importCustomRoutesWithPublicIpRef =>
+  TfRef<bool> get importCustomRoutesWithPublicIp =>
       TfRef.attribute<bool>(this, 'import_custom_routes_with_public_ip');
 
   /// Reference to `peer_network` attribute.
-  TfRef<String> get peerNetworkRef =>
+  TfRef<String> get peerNetwork =>
       TfRef.attribute<String>(this, 'peer_network');
 
   /// Reference to `peer_network_type` attribute.
-  TfRef<String> get peerNetworkTypeRef =>
+  TfRef<String> get peerNetworkType =>
       TfRef.attribute<String>(this, 'peer_network_type');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `vmware_engine_network` attribute.
-  TfRef<String> get vmwareEngineNetworkRef =>
+  TfRef<String> get vmwareEngineNetwork =>
       TfRef.attribute<String>(this, 'vmware_engine_network');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

@@ -82,6 +82,9 @@ final class GoogleComputeInstanceGroup extends Resource {
   /// `RefTo<GoogleComputeInstanceGroup>`.
   RefTo<GoogleComputeInstanceGroup> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -89,28 +92,24 @@ final class GoogleComputeInstanceGroup extends Resource {
   TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `instances` attribute.
-  TfRef<List<String>> get instancesRef =>
+  TfRef<List<String>> get instances =>
       TfRef.attribute<List<String>>(this, 'instances');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

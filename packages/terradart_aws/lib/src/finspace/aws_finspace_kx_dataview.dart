@@ -91,7 +91,7 @@ final class AwsFinspaceKxDataview extends Resource {
   RefTo<AwsFinspaceKxDataview> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -111,38 +111,37 @@ final class AwsFinspaceKxDataview extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `auto_update` attribute.
-  TfRef<bool> get autoUpdateRef => TfRef.attribute<bool>(this, 'auto_update');
+  TfRef<bool> get autoUpdate => TfRef.attribute<bool>(this, 'auto_update');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `az_mode` attribute.
-  TfRef<String> get azModeRef => TfRef.attribute<String>(this, 'az_mode');
+  TfRef<String> get azMode => TfRef.attribute<String>(this, 'az_mode');
 
   /// Reference to `changeset_id` attribute.
-  TfRef<String> get changesetIdRef =>
+  TfRef<String> get changesetId =>
       TfRef.attribute<String>(this, 'changeset_id');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `environment_id` attribute.
-  TfRef<String> get environmentIdRef =>
+  TfRef<String> get environmentId =>
       TfRef.attribute<String>(this, 'environment_id');
 
   /// Reference to `read_write` attribute.
-  TfRef<bool> get readWriteRef => TfRef.attribute<bool>(this, 'read_write');
+  TfRef<bool> get readWrite => TfRef.attribute<bool>(this, 'read_write');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

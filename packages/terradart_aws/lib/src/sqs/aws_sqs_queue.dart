@@ -70,7 +70,7 @@ final class AwsSqsQueue extends Resource {
   RefTo<AwsSqsQueue> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -82,70 +82,69 @@ final class AwsSqsQueue extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `content_based_deduplication` attribute.
-  TfRef<bool> get contentBasedDeduplicationRef =>
+  TfRef<bool> get contentBasedDeduplication =>
       TfRef.attribute<bool>(this, 'content_based_deduplication');
 
   /// Reference to `deduplication_scope` attribute.
-  TfRef<String> get deduplicationScopeRef =>
+  TfRef<String> get deduplicationScope =>
       TfRef.attribute<String>(this, 'deduplication_scope');
 
   /// Reference to `delay_seconds` attribute.
-  TfRef<num> get delaySecondsRef => TfRef.attribute<num>(this, 'delay_seconds');
+  TfRef<num> get delaySeconds => TfRef.attribute<num>(this, 'delay_seconds');
 
   /// Reference to `fifo_queue` attribute.
-  TfRef<bool> get fifoQueueRef => TfRef.attribute<bool>(this, 'fifo_queue');
+  TfRef<bool> get fifoQueue => TfRef.attribute<bool>(this, 'fifo_queue');
 
   /// Reference to `fifo_throughput_limit` attribute.
-  TfRef<String> get fifoThroughputLimitRef =>
+  TfRef<String> get fifoThroughputLimit =>
       TfRef.attribute<String>(this, 'fifo_throughput_limit');
 
   /// Reference to `kms_data_key_reuse_period_seconds` attribute.
-  TfRef<num> get kmsDataKeyReusePeriodSecondsRef =>
+  TfRef<num> get kmsDataKeyReusePeriodSeconds =>
       TfRef.attribute<num>(this, 'kms_data_key_reuse_period_seconds');
 
   /// Reference to `kms_master_key_id` attribute.
-  TfRef<String> get kmsMasterKeyIdRef =>
+  TfRef<String> get kmsMasterKeyId =>
       TfRef.attribute<String>(this, 'kms_master_key_id');
 
   /// Reference to `max_message_size` attribute.
-  TfRef<num> get maxMessageSizeRef =>
+  TfRef<num> get maxMessageSize =>
       TfRef.attribute<num>(this, 'max_message_size');
 
   /// Reference to `message_retention_seconds` attribute.
-  TfRef<num> get messageRetentionSecondsRef =>
+  TfRef<num> get messageRetentionSeconds =>
       TfRef.attribute<num>(this, 'message_retention_seconds');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `receive_wait_time_seconds` attribute.
-  TfRef<num> get receiveWaitTimeSecondsRef =>
+  TfRef<num> get receiveWaitTimeSeconds =>
       TfRef.attribute<num>(this, 'receive_wait_time_seconds');
 
   /// Reference to `redrive_allow_policy` attribute.
-  TfRef<String> get redriveAllowPolicyRef =>
+  TfRef<String> get redriveAllowPolicy =>
       TfRef.attribute<String>(this, 'redrive_allow_policy');
 
   /// Reference to `redrive_policy` attribute.
-  TfRef<String> get redrivePolicyRef =>
+  TfRef<String> get redrivePolicy =>
       TfRef.attribute<String>(this, 'redrive_policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sqs_managed_sse_enabled` attribute.
-  TfRef<bool> get sqsManagedSseEnabledRef =>
+  TfRef<bool> get sqsManagedSseEnabled =>
       TfRef.attribute<bool>(this, 'sqs_managed_sse_enabled');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `visibility_timeout_seconds` attribute.
-  TfRef<num> get visibilityTimeoutSecondsRef =>
+  TfRef<num> get visibilityTimeoutSeconds =>
       TfRef.attribute<num>(this, 'visibility_timeout_seconds');
 }

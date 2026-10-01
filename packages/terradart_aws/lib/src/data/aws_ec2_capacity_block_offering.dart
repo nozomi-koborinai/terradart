@@ -54,25 +54,24 @@ final class DataAwsEc2CapacityBlockOffering extends Data {
   TfRef<String> get upfrontFee => TfRef.attribute<String>(this, 'upfront_fee');
 
   /// Reference to `capacity_duration_hours` attribute.
-  TfRef<num> get capacityDurationHoursRef =>
+  TfRef<num> get capacityDurationHours =>
       TfRef.attribute<num>(this, 'capacity_duration_hours');
 
   /// Reference to `end_date_range` attribute.
-  TfRef<String> get endDateRangeRef =>
+  TfRef<String> get endDateRange =>
       TfRef.attribute<String>(this, 'end_date_range');
 
   /// Reference to `instance_count` attribute.
-  TfRef<num> get instanceCountRef =>
-      TfRef.attribute<num>(this, 'instance_count');
+  TfRef<num> get instanceCount => TfRef.attribute<num>(this, 'instance_count');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `start_date_range` attribute.
-  TfRef<String> get startDateRangeRef =>
+  TfRef<String> get startDateRange =>
       TfRef.attribute<String>(this, 'start_date_range');
 }

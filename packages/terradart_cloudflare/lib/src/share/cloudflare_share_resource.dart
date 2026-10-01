@@ -75,23 +75,22 @@ final class CloudflareShareResource extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `meta` attribute.
-  TfRef<String> get metaRef => TfRef.attribute<String>(this, 'meta');
+  TfRef<String> get meta => TfRef.attribute<String>(this, 'meta');
 
   /// Reference to `resource_account_id` attribute.
-  TfRef<String> get resourceAccountIdRef =>
+  TfRef<String> get resourceAccountId =>
       TfRef.attribute<String>(this, 'resource_account_id');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
   /// Reference to `share_id` attribute.
-  TfRef<String> get shareIdRef => TfRef.attribute<String>(this, 'share_id');
+  TfRef<String> get shareId => TfRef.attribute<String>(this, 'share_id');
 }

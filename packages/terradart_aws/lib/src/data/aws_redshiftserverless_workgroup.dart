@@ -68,9 +68,9 @@ final class DataAwsRedshiftserverlessWorkgroup extends Data {
       TfRef.attribute<String>(this, 'workgroup_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `workgroup_name` attribute.
-  TfRef<String> get workgroupNameRef =>
+  TfRef<String> get workgroupName =>
       TfRef.attribute<String>(this, 'workgroup_name');
 }

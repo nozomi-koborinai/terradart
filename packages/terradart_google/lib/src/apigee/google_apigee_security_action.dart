@@ -331,34 +331,32 @@ final class GoogleApigeeSecurityAction extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `api_proxies` attribute.
-  TfRef<List<String>> get apiProxiesRef =>
+  TfRef<List<String>> get apiProxies =>
       TfRef.attribute<List<String>>(this, 'api_proxies');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `env_id` attribute.
-  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+  TfRef<String> get envId => TfRef.attribute<String>(this, 'env_id');
 
   /// Reference to `expire_time` attribute.
-  TfRef<String> get expireTimeRef =>
-      TfRef.attribute<String>(this, 'expire_time');
+  TfRef<String> get expireTime => TfRef.attribute<String>(this, 'expire_time');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `security_action_id` attribute.
-  TfRef<String> get securityActionIdRef =>
+  TfRef<String> get securityActionId =>
       TfRef.attribute<String>(this, 'security_action_id');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `ttl` attribute.
-  TfRef<String> get ttlRef => TfRef.attribute<String>(this, 'ttl');
+  TfRef<String> get ttl => TfRef.attribute<String>(this, 'ttl');
 }

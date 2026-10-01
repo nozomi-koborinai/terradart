@@ -83,21 +83,21 @@ final class GoogleBigqueryAnalyticsHubListingIamMember extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `data_exchange_id` attribute.
-  TfRef<String> get dataExchangeIdRef =>
+  TfRef<String> get dataExchangeId =>
       TfRef.attribute<String>(this, 'data_exchange_id');
 
   /// Reference to `listing_id` attribute.
-  TfRef<String> get listingIdRef => TfRef.attribute<String>(this, 'listing_id');
+  TfRef<String> get listingId => TfRef.attribute<String>(this, 'listing_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `member` attribute.
-  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

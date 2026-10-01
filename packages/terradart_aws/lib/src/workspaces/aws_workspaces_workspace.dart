@@ -138,31 +138,31 @@ final class AwsWorkspacesWorkspace extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `bundle_id` attribute.
-  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+  TfRef<String> get bundleId => TfRef.attribute<String>(this, 'bundle_id');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `root_volume_encryption_enabled` attribute.
-  TfRef<bool> get rootVolumeEncryptionEnabledRef =>
+  TfRef<bool> get rootVolumeEncryptionEnabled =>
       TfRef.attribute<bool>(this, 'root_volume_encryption_enabled');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 
   /// Reference to `user_volume_encryption_enabled` attribute.
-  TfRef<bool> get userVolumeEncryptionEnabledRef =>
+  TfRef<bool> get userVolumeEncryptionEnabled =>
       TfRef.attribute<bool>(this, 'user_volume_encryption_enabled');
 
   /// Reference to `volume_encryption_key` attribute.
-  TfRef<String> get volumeEncryptionKeyRef =>
+  TfRef<String> get volumeEncryptionKey =>
       TfRef.attribute<String>(this, 'volume_encryption_key');
 }

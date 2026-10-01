@@ -79,12 +79,12 @@ final class DataAwsEcrRepositoryCreationTemplate extends Data {
       TfRef.attribute<String>(this, 'repository_policy');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_tags` attribute.
-  TfRef<Map<String, String>> get resourceTagsRef =>
+  TfRef<Map<String, String>> get resourceTags =>
       TfRef.attribute<Map<String, String>>(this, 'resource_tags');
 }

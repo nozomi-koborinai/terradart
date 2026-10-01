@@ -96,17 +96,17 @@ final class AwsEc2TransitGatewayPolicyTableEntry extends Resource {
   RefTo<AwsEc2TransitGatewayPolicyTableEntry> get ref => RefTo.of(this);
 
   /// Reference to `policy_rule_number` attribute.
-  TfRef<String> get policyRuleNumberRef =>
+  TfRef<String> get policyRuleNumber =>
       TfRef.attribute<String>(this, 'policy_rule_number');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_route_table_id` attribute.
-  TfRef<String> get targetRouteTableIdRef =>
+  TfRef<String> get targetRouteTableId =>
       TfRef.attribute<String>(this, 'target_route_table_id');
 
   /// Reference to `transit_gateway_policy_table_id` attribute.
-  TfRef<String> get transitGatewayPolicyTableIdRef =>
+  TfRef<String> get transitGatewayPolicyTableId =>
       TfRef.attribute<String>(this, 'transit_gateway_policy_table_id');
 }

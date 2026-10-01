@@ -82,7 +82,7 @@ final class AwsInspectorAssessmentTemplate extends Resource {
   RefTo<AwsInspectorAssessmentTemplate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,19 +91,19 @@ final class AwsInspectorAssessmentTemplate extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `duration` attribute.
-  TfRef<num> get durationRef => TfRef.attribute<num>(this, 'duration');
+  TfRef<num> get duration => TfRef.attribute<num>(this, 'duration');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rules_package_arns` attribute.
-  TfRef<List<String>> get rulesPackageArnsRef =>
+  TfRef<List<String>> get rulesPackageArns =>
       TfRef.attribute<List<String>>(this, 'rules_package_arns');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_arn` attribute.
-  TfRef<String> get targetArnRef => TfRef.attribute<String>(this, 'target_arn');
+  TfRef<String> get targetArn => TfRef.attribute<String>(this, 'target_arn');
 }

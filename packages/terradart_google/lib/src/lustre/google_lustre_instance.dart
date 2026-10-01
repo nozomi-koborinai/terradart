@@ -300,7 +300,7 @@ final class GoogleLustreInstance extends Resource {
   RefTo<GoogleLustreInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -340,50 +340,47 @@ final class GoogleLustreInstance extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `capacity_gib` attribute.
-  TfRef<String> get capacityGibRef =>
+  TfRef<String> get capacityGib =>
       TfRef.attribute<String>(this, 'capacity_gib');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `filesystem` attribute.
-  TfRef<String> get filesystemRef =>
-      TfRef.attribute<String>(this, 'filesystem');
+  TfRef<String> get filesystem => TfRef.attribute<String>(this, 'filesystem');
 
   /// Reference to `gke_support_enabled` attribute.
-  TfRef<bool> get gkeSupportEnabledRef =>
+  TfRef<bool> get gkeSupportEnabled =>
       TfRef.attribute<bool>(this, 'gke_support_enabled');
 
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
+
   /// Reference to `kms_key` attribute.
-  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+  TfRef<String> get kmsKey => TfRef.attribute<String>(this, 'kms_key');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `per_unit_storage_throughput` attribute.
-  TfRef<String> get perUnitStorageThroughputRef =>
+  TfRef<String> get perUnitStorageThroughput =>
       TfRef.attribute<String>(this, 'per_unit_storage_throughput');
 
   /// Reference to `placement_policy` attribute.
-  TfRef<String> get placementPolicyRef =>
+  TfRef<String> get placementPolicy =>
       TfRef.attribute<String>(this, 'placement_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `instance_id` / name segment.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

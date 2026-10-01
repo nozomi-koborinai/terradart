@@ -132,30 +132,29 @@ final class AwsNetworkmanagerDevice extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `global_network_id` attribute.
-  TfRef<String> get globalNetworkIdRef =>
+  TfRef<String> get globalNetworkId =>
       TfRef.attribute<String>(this, 'global_network_id');
 
   /// Reference to `model` attribute.
-  TfRef<String> get modelRef => TfRef.attribute<String>(this, 'model');
+  TfRef<String> get model => TfRef.attribute<String>(this, 'model');
 
   /// Reference to `serial_number` attribute.
-  TfRef<String> get serialNumberRef =>
+  TfRef<String> get serialNumber =>
       TfRef.attribute<String>(this, 'serial_number');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `vendor` attribute.
-  TfRef<String> get vendorRef => TfRef.attribute<String>(this, 'vendor');
+  TfRef<String> get vendor => TfRef.attribute<String>(this, 'vendor');
 }

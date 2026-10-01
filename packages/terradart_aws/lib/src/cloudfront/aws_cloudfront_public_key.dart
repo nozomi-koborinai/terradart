@@ -94,7 +94,7 @@ final class AwsCloudfrontPublicKey extends Resource {
   RefTo<AwsCloudfrontPublicKey> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -107,13 +107,11 @@ final class AwsCloudfrontPublicKey extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `encoded_key` attribute.
-  TfRef<String> get encodedKeyRef =>
-      TfRef.attribute<String>(this, 'encoded_key');
+  TfRef<String> get encodedKey => TfRef.attribute<String>(this, 'encoded_key');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 }

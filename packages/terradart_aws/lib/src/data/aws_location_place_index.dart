@@ -57,12 +57,12 @@ final class DataAwsLocationPlaceIndex extends Data {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `index_name` attribute.
-  TfRef<String> get indexNameRef => TfRef.attribute<String>(this, 'index_name');
+  TfRef<String> get indexName => TfRef.attribute<String>(this, 'index_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

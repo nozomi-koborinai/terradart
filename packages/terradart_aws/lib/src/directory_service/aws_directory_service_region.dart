@@ -69,21 +69,20 @@ final class AwsDirectoryServiceRegion extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `desired_number_of_domain_controllers` attribute.
-  TfRef<num> get desiredNumberOfDomainControllersRef =>
+  TfRef<num> get desiredNumberOfDomainControllers =>
       TfRef.attribute<num>(this, 'desired_number_of_domain_controllers');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `region_name` attribute.
-  TfRef<String> get regionNameRef =>
-      TfRef.attribute<String>(this, 'region_name');
+  TfRef<String> get regionName => TfRef.attribute<String>(this, 'region_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

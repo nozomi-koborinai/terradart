@@ -32,7 +32,7 @@ final class AwsRoute53TrafficPolicy extends Resource {
   RefTo<AwsRoute53TrafficPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -47,8 +47,8 @@ final class AwsRoute53TrafficPolicy extends Resource {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `document` attribute.
-  TfRef<String> get documentRef => TfRef.attribute<String>(this, 'document');
+  TfRef<String> get document => TfRef.attribute<String>(this, 'document');
 }

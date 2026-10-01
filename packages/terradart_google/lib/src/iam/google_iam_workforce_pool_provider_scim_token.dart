@@ -60,7 +60,7 @@ final class GoogleIamWorkforcePoolProviderScimToken extends Resource {
   RefTo<GoogleIamWorkforcePoolProviderScimToken> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -73,29 +73,28 @@ final class GoogleIamWorkforcePoolProviderScimToken extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `provider_id` attribute.
-  TfRef<String> get providerIdRef =>
-      TfRef.attribute<String>(this, 'provider_id');
+  TfRef<String> get providerId => TfRef.attribute<String>(this, 'provider_id');
 
   /// Reference to `scim_tenant_id` attribute.
-  TfRef<String> get scimTenantIdRef =>
+  TfRef<String> get scimTenantId =>
       TfRef.attribute<String>(this, 'scim_tenant_id');
 
   /// Reference to `scim_token_id` attribute.
-  TfRef<String> get scimTokenIdRef =>
+  TfRef<String> get scimTokenId =>
       TfRef.attribute<String>(this, 'scim_token_id');
 
   /// Reference to `workforce_pool_id` attribute.
-  TfRef<String> get workforcePoolIdRef =>
+  TfRef<String> get workforcePoolId =>
       TfRef.attribute<String>(this, 'workforce_pool_id');
 }

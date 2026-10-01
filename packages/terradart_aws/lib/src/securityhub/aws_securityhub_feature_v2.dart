@@ -55,13 +55,13 @@ final class AwsSecurityhubFeatureV2 extends Resource {
   RefTo<AwsSecurityhubFeatureV2> get ref => RefTo.of(this);
 
   /// Reference to `feature_name` attribute.
-  TfRef<String> get featureNameRef =>
+  TfRef<String> get featureName =>
       TfRef.attribute<String>(this, 'feature_name');
 
   /// Reference to `feature_status` attribute.
-  TfRef<String> get featureStatusRef =>
+  TfRef<String> get featureStatus =>
       TfRef.attribute<String>(this, 'feature_status');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

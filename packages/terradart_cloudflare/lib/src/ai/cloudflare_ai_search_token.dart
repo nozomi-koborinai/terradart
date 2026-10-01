@@ -42,7 +42,7 @@ final class CloudflareAiSearchToken extends Resource {
   RefTo<CloudflareAiSearchToken> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,14 +63,14 @@ final class CloudflareAiSearchToken extends Resource {
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `cf_api_id` attribute.
-  TfRef<String> get cfApiIdRef => TfRef.attribute<String>(this, 'cf_api_id');
+  TfRef<String> get cfApiId => TfRef.attribute<String>(this, 'cf_api_id');
 
   /// Reference to `cf_api_key` attribute.
-  TfRef<String> get cfApiKeyRef => TfRef.attribute<String>(this, 'cf_api_key');
+  TfRef<String> get cfApiKey => TfRef.attribute<String>(this, 'cf_api_key');
 
   /// Reference to `legacy` attribute.
-  TfRef<bool> get legacyRef => TfRef.attribute<bool>(this, 'legacy');
+  TfRef<bool> get legacy => TfRef.attribute<bool>(this, 'legacy');
 }

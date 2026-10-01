@@ -164,7 +164,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
   RefTo<AwsFsxS3AccessPointAttachment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `s3_access_point_alias` attribute.
   TfRef<String> get s3AccessPointAlias =>
@@ -175,8 +175,8 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
       TfRef.attribute<String>(this, 's3_access_point_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

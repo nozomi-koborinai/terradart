@@ -74,19 +74,19 @@ final class AwsDatazoneUserProfile extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `user_identifier` attribute.
-  TfRef<String> get userIdentifierRef =>
+  TfRef<String> get userIdentifier =>
       TfRef.attribute<String>(this, 'user_identifier');
 
   /// Reference to `user_type` attribute.
-  TfRef<String> get userTypeRef => TfRef.attribute<String>(this, 'user_type');
+  TfRef<String> get userType => TfRef.attribute<String>(this, 'user_type');
 }

@@ -40,17 +40,17 @@ final class DataCloudflareTurnstileWidgets extends Data {
   Set<String> get sensitiveFields => _cloudflareTurnstileWidgetsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 }

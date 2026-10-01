@@ -43,13 +43,13 @@ final class DataAwsIpRanges extends Data {
   TfRef<num> get syncToken => TfRef.attribute<num>(this, 'sync_token');
 
   /// Reference to `regions` attribute.
-  TfRef<List<String>> get regionsRef =>
+  TfRef<List<String>> get regions =>
       TfRef.attribute<List<String>>(this, 'regions');
 
   /// Reference to `services` attribute.
-  TfRef<List<String>> get servicesRef =>
+  TfRef<List<String>> get services =>
       TfRef.attribute<List<String>>(this, 'services');
 
   /// Reference to `url` attribute.
-  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
+  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 }

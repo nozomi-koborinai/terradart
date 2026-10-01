@@ -32,5 +32,5 @@ final class DataCloudflareDcvDelegation extends Data {
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

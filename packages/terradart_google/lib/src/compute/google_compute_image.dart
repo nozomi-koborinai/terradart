@@ -474,6 +474,9 @@ final class GoogleComputeImage extends Resource {
   /// `RefTo<GoogleComputeImage>`.
   RefTo<GoogleComputeImage> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -498,48 +501,43 @@ final class GoogleComputeImage extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disk_size_gb` attribute.
-  TfRef<num> get diskSizeGbRef => TfRef.attribute<num>(this, 'disk_size_gb');
+  TfRef<num> get diskSizeGb => TfRef.attribute<num>(this, 'disk_size_gb');
 
   /// Reference to `family` attribute.
-  TfRef<String> get familyRef => TfRef.attribute<String>(this, 'family');
+  TfRef<String> get family => TfRef.attribute<String>(this, 'family');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `licenses` attribute.
-  TfRef<List<String>> get licensesRef =>
+  TfRef<List<String>> get licenses =>
       TfRef.attribute<List<String>>(this, 'licenses');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `source_disk` attribute.
-  TfRef<String> get sourceDiskRef =>
-      TfRef.attribute<String>(this, 'source_disk');
+  TfRef<String> get sourceDisk => TfRef.attribute<String>(this, 'source_disk');
 
   /// Reference to `source_image` attribute.
-  TfRef<String> get sourceImageRef =>
+  TfRef<String> get sourceImage =>
       TfRef.attribute<String>(this, 'source_image');
 
   /// Reference to `source_snapshot` attribute.
-  TfRef<String> get sourceSnapshotRef =>
+  TfRef<String> get sourceSnapshot =>
       TfRef.attribute<String>(this, 'source_snapshot');
 
   /// Reference to `storage_locations` attribute.
-  TfRef<List<String>> get storageLocationsRef =>
+  TfRef<List<String>> get storageLocations =>
       TfRef.attribute<List<String>>(this, 'storage_locations');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

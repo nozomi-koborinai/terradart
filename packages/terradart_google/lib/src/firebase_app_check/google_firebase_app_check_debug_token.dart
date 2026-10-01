@@ -84,6 +84,6 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
 
   /// Reference to `debug_token_id` -- the server-assigned last segment of
   /// the resource name. Populated after apply.
-  TfRef<String> get debugTokenIdRef =>
+  TfRef<String> get debugTokenId =>
       TfRef.attribute<String>(this, 'debug_token_id');
 }

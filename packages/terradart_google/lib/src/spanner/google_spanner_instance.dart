@@ -481,7 +481,7 @@ final class GoogleSpannerInstance extends Resource {
   RefTo<GoogleSpannerInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -498,42 +498,41 @@ final class GoogleSpannerInstance extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `config` attribute.
-  TfRef<String> get configRef => TfRef.attribute<String>(this, 'config');
+  TfRef<String> get config => TfRef.attribute<String>(this, 'config');
 
   /// Reference to `default_backup_schedule_type` attribute.
-  TfRef<String> get defaultBackupScheduleTypeRef =>
+  TfRef<String> get defaultBackupScheduleType =>
       TfRef.attribute<String>(this, 'default_backup_schedule_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `edition` attribute.
-  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+  TfRef<String> get edition => TfRef.attribute<String>(this, 'edition');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `num_nodes` attribute.
-  TfRef<num> get numNodesRef => TfRef.attribute<num>(this, 'num_nodes');
+  TfRef<num> get numNodes => TfRef.attribute<num>(this, 'num_nodes');
 
   /// Reference to `processing_units` attribute.
-  TfRef<num> get processingUnitsRef =>
+  TfRef<num> get processingUnits =>
       TfRef.attribute<num>(this, 'processing_units');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

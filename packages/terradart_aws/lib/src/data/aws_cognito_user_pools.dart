@@ -22,7 +22,7 @@ final class DataAwsCognitoUserPools extends Data {
   Set<String> get sensitiveFields => _awsCognitoUserPoolsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -34,5 +34,5 @@ final class DataAwsCognitoUserPools extends Data {
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -635,7 +635,7 @@ final class AwsBatchJobDefinition extends Resource {
   RefTo<AwsBatchJobDefinition> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -650,44 +650,44 @@ final class AwsBatchJobDefinition extends Resource {
   TfRef<num> get revision => TfRef.attribute<num>(this, 'revision');
 
   /// Reference to `container_properties` attribute.
-  TfRef<String> get containerPropertiesRef =>
+  TfRef<String> get containerProperties =>
       TfRef.attribute<String>(this, 'container_properties');
 
   /// Reference to `deregister_on_new_revision` attribute.
-  TfRef<bool> get deregisterOnNewRevisionRef =>
+  TfRef<bool> get deregisterOnNewRevision =>
       TfRef.attribute<bool>(this, 'deregister_on_new_revision');
 
   /// Reference to `ecs_properties` attribute.
-  TfRef<String> get ecsPropertiesRef =>
+  TfRef<String> get ecsProperties =>
       TfRef.attribute<String>(this, 'ecs_properties');
 
   /// Reference to `node_properties` attribute.
-  TfRef<String> get nodePropertiesRef =>
+  TfRef<String> get nodeProperties =>
       TfRef.attribute<String>(this, 'node_properties');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `platform_capabilities` attribute.
-  TfRef<List<String>> get platformCapabilitiesRef =>
+  TfRef<List<String>> get platformCapabilities =>
       TfRef.attribute<List<String>>(this, 'platform_capabilities');
 
   /// Reference to `propagate_tags` attribute.
-  TfRef<bool> get propagateTagsRef =>
+  TfRef<bool> get propagateTags =>
       TfRef.attribute<bool>(this, 'propagate_tags');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scheduling_priority` attribute.
-  TfRef<num> get schedulingPriorityRef =>
+  TfRef<num> get schedulingPriority =>
       TfRef.attribute<num>(this, 'scheduling_priority');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

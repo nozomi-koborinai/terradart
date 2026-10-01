@@ -29,5 +29,5 @@ final class DataAwsOrganizationsDelegatedServices extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'delegated_services');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 }

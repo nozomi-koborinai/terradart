@@ -102,16 +102,15 @@ final class CloudflareR2BucketEventNotification extends Resource {
   TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `bucket_name` attribute.
-  TfRef<String> get bucketNameRef =>
-      TfRef.attribute<String>(this, 'bucket_name');
+  TfRef<String> get bucketName => TfRef.attribute<String>(this, 'bucket_name');
 
   /// Reference to `jurisdiction` attribute.
-  TfRef<String> get jurisdictionRef =>
+  TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `queue_id` attribute.
-  TfRef<String> get queueIdRef => TfRef.attribute<String>(this, 'queue_id');
+  TfRef<String> get queueId => TfRef.attribute<String>(this, 'queue_id');
 }

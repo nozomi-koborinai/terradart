@@ -104,7 +104,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnector extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -136,8 +136,8 @@ final class DataCloudflareZeroTrustTunnelWarpConnector extends Data {
   TfRef<String> get tunType => TfRef.attribute<String>(this, 'tun_type');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `tunnel_id` attribute.
-  TfRef<String> get tunnelIdRef => TfRef.attribute<String>(this, 'tunnel_id');
+  TfRef<String> get tunnelId => TfRef.attribute<String>(this, 'tunnel_id');
 }

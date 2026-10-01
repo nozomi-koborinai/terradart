@@ -71,42 +71,42 @@ final class DataAwsSavingsplansOfferings extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'offerings');
 
   /// Reference to `currencies` attribute.
-  TfRef<List<String>> get currenciesRef =>
+  TfRef<List<String>> get currencies =>
       TfRef.attribute<List<String>>(this, 'currencies');
 
   /// Reference to `descriptions` attribute.
-  TfRef<List<String>> get descriptionsRef =>
+  TfRef<List<String>> get descriptions =>
       TfRef.attribute<List<String>>(this, 'descriptions');
 
   /// Reference to `durations` attribute.
-  TfRef<List<num>> get durationsRef =>
+  TfRef<List<num>> get durations =>
       TfRef.attribute<List<num>>(this, 'durations');
 
   /// Reference to `offering_ids` attribute.
-  TfRef<List<String>> get offeringIdsRef =>
+  TfRef<List<String>> get offeringIds =>
       TfRef.attribute<List<String>>(this, 'offering_ids');
 
   /// Reference to `operations` attribute.
-  TfRef<List<String>> get operationsRef =>
+  TfRef<List<String>> get operations =>
       TfRef.attribute<List<String>>(this, 'operations');
 
   /// Reference to `payment_options` attribute.
-  TfRef<List<String>> get paymentOptionsRef =>
+  TfRef<List<String>> get paymentOptions =>
       TfRef.attribute<List<String>>(this, 'payment_options');
 
   /// Reference to `plan_types` attribute.
-  TfRef<List<String>> get planTypesRef =>
+  TfRef<List<String>> get planTypes =>
       TfRef.attribute<List<String>>(this, 'plan_types');
 
   /// Reference to `product_type` attribute.
-  TfRef<String> get productTypeRef =>
+  TfRef<String> get productType =>
       TfRef.attribute<String>(this, 'product_type');
 
   /// Reference to `service_codes` attribute.
-  TfRef<List<String>> get serviceCodesRef =>
+  TfRef<List<String>> get serviceCodes =>
       TfRef.attribute<List<String>>(this, 'service_codes');
 
   /// Reference to `usage_types` attribute.
-  TfRef<List<String>> get usageTypesRef =>
+  TfRef<List<String>> get usageTypes =>
       TfRef.attribute<List<String>>(this, 'usage_types');
 }

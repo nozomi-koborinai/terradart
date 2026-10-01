@@ -652,6 +652,9 @@ final class GoogleNetappVolume extends Resource {
   /// `RefTo<GoogleNetappVolume>`.
   RefTo<GoogleNetappVolume> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -724,77 +727,70 @@ final class GoogleNetappVolume extends Resource {
   TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `capacity_gib` attribute.
-  TfRef<String> get capacityGibRef =>
+  TfRef<String> get capacityGib =>
       TfRef.attribute<String>(this, 'capacity_gib');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kerberos_enabled` attribute.
-  TfRef<bool> get kerberosEnabledRef =>
+  TfRef<bool> get kerberosEnabled =>
       TfRef.attribute<bool>(this, 'kerberos_enabled');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `large_capacity` attribute.
-  TfRef<bool> get largeCapacityRef =>
+  TfRef<bool> get largeCapacity =>
       TfRef.attribute<bool>(this, 'large_capacity');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `multiple_endpoints` attribute.
-  TfRef<bool> get multipleEndpointsRef =>
+  TfRef<bool> get multipleEndpoints =>
       TfRef.attribute<bool>(this, 'multiple_endpoints');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `protocols` attribute.
-  TfRef<List<String>> get protocolsRef =>
+  TfRef<List<String>> get protocols =>
       TfRef.attribute<List<String>>(this, 'protocols');
 
   /// Reference to `restricted_actions` attribute.
-  TfRef<List<String>> get restrictedActionsRef =>
+  TfRef<List<String>> get restrictedActions =>
       TfRef.attribute<List<String>>(this, 'restricted_actions');
 
   /// Reference to `security_style` attribute.
-  TfRef<String> get securityStyleRef =>
+  TfRef<String> get securityStyle =>
       TfRef.attribute<String>(this, 'security_style');
 
   /// Reference to `share_name` attribute.
-  TfRef<String> get shareNameRef => TfRef.attribute<String>(this, 'share_name');
+  TfRef<String> get shareName => TfRef.attribute<String>(this, 'share_name');
 
   /// Reference to `smb_settings` attribute.
-  TfRef<List<String>> get smbSettingsRef =>
+  TfRef<List<String>> get smbSettings =>
       TfRef.attribute<List<String>>(this, 'smb_settings');
 
   /// Reference to `snapshot_directory` attribute.
-  TfRef<bool> get snapshotDirectoryRef =>
+  TfRef<bool> get snapshotDirectory =>
       TfRef.attribute<bool>(this, 'snapshot_directory');
 
   /// Reference to `storage_pool` attribute.
-  TfRef<String> get storagePoolRef =>
+  TfRef<String> get storagePool =>
       TfRef.attribute<String>(this, 'storage_pool');
 
   /// Reference to `throughput_mibps` attribute.
-  TfRef<num> get throughputMibpsRef =>
+  TfRef<num> get throughputMibps =>
       TfRef.attribute<num>(this, 'throughput_mibps');
 
   /// Reference to `unix_permissions` attribute.
-  TfRef<String> get unixPermissionsRef =>
+  TfRef<String> get unixPermissions =>
       TfRef.attribute<String>(this, 'unix_permissions');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

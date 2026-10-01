@@ -80,35 +80,35 @@ final class DataCloudflareCustomHostnames extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `certificate_authority` attribute.
-  TfRef<String> get certificateAuthorityRef =>
+  TfRef<String> get certificateAuthority =>
       TfRef.attribute<String>(this, 'certificate_authority');
 
   /// Reference to `custom_origin_server` attribute.
-  TfRef<String> get customOriginServerRef =>
+  TfRef<String> get customOriginServer =>
       TfRef.attribute<String>(this, 'custom_origin_server');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `hostname_status` attribute.
-  TfRef<String> get hostnameStatusRef =>
+  TfRef<String> get hostnameStatus =>
       TfRef.attribute<String>(this, 'hostname_status');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `ssl` attribute.
-  TfRef<num> get sslRef => TfRef.attribute<num>(this, 'ssl');
+  TfRef<num> get ssl => TfRef.attribute<num>(this, 'ssl');
 
   /// Reference to `ssl_status` attribute.
-  TfRef<String> get sslStatusRef => TfRef.attribute<String>(this, 'ssl_status');
+  TfRef<String> get sslStatus => TfRef.attribute<String>(this, 'ssl_status');
 
   /// Reference to `wildcard` attribute.
-  TfRef<bool> get wildcardRef => TfRef.attribute<bool>(this, 'wildcard');
+  TfRef<bool> get wildcard => TfRef.attribute<bool>(this, 'wildcard');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

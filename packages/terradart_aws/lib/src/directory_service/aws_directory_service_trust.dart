@@ -92,36 +92,36 @@ final class AwsDirectoryServiceTrust extends Resource {
       TfRef.attribute<String>(this, 'trust_state_reason');
 
   /// Reference to `conditional_forwarder_ip_addrs` attribute.
-  TfRef<List<String>> get conditionalForwarderIpAddrsRef =>
+  TfRef<List<String>> get conditionalForwarderIpAddrs =>
       TfRef.attribute<List<String>>(this, 'conditional_forwarder_ip_addrs');
 
   /// Reference to `delete_associated_conditional_forwarder` attribute.
-  TfRef<bool> get deleteAssociatedConditionalForwarderRef =>
+  TfRef<bool> get deleteAssociatedConditionalForwarder =>
       TfRef.attribute<bool>(this, 'delete_associated_conditional_forwarder');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `remote_domain_name` attribute.
-  TfRef<String> get remoteDomainNameRef =>
+  TfRef<String> get remoteDomainName =>
       TfRef.attribute<String>(this, 'remote_domain_name');
 
   /// Reference to `selective_auth` attribute.
-  TfRef<String> get selectiveAuthRef =>
+  TfRef<String> get selectiveAuth =>
       TfRef.attribute<String>(this, 'selective_auth');
 
   /// Reference to `trust_direction` attribute.
-  TfRef<String> get trustDirectionRef =>
+  TfRef<String> get trustDirection =>
       TfRef.attribute<String>(this, 'trust_direction');
 
   /// Reference to `trust_password` attribute.
-  TfRef<String> get trustPasswordRef =>
+  TfRef<String> get trustPassword =>
       TfRef.attribute<String>(this, 'trust_password');
 
   /// Reference to `trust_type` attribute.
-  TfRef<String> get trustTypeRef => TfRef.attribute<String>(this, 'trust_type');
+  TfRef<String> get trustType => TfRef.attribute<String>(this, 'trust_type');
 }

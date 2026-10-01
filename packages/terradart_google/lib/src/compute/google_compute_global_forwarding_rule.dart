@@ -374,7 +374,7 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
   RefTo<GoogleComputeGlobalForwardingRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -411,72 +411,67 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `external_managed_backend_bucket_migration_state` attribute.
-  TfRef<String> get externalManagedBackendBucketMigrationStateRef =>
+  TfRef<String> get externalManagedBackendBucketMigrationState =>
       TfRef.attribute<String>(
         this,
         'external_managed_backend_bucket_migration_state',
       );
 
   /// Reference to `external_managed_backend_bucket_migration_testing_percentage` attribute.
-  TfRef<num> get externalManagedBackendBucketMigrationTestingPercentageRef =>
+  TfRef<num> get externalManagedBackendBucketMigrationTestingPercentage =>
       TfRef.attribute<num>(
         this,
         'external_managed_backend_bucket_migration_testing_percentage',
       );
 
+  /// Reference to `ip_address` attribute.
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
+
   /// Reference to `ip_protocol` attribute.
-  TfRef<String> get ipProtocolRef =>
-      TfRef.attribute<String>(this, 'ip_protocol');
+  TfRef<String> get ipProtocol => TfRef.attribute<String>(this, 'ip_protocol');
 
   /// Reference to `ip_version` attribute.
-  TfRef<String> get ipVersionRef => TfRef.attribute<String>(this, 'ip_version');
+  TfRef<String> get ipVersion => TfRef.attribute<String>(this, 'ip_version');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `load_balancing_scheme` attribute.
-  TfRef<String> get loadBalancingSchemeRef =>
+  TfRef<String> get loadBalancingScheme =>
       TfRef.attribute<String>(this, 'load_balancing_scheme');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `network_tier` attribute.
-  TfRef<String> get networkTierRef =>
+  TfRef<String> get networkTier =>
       TfRef.attribute<String>(this, 'network_tier');
 
   /// Reference to `no_automate_dns_zone` attribute.
-  TfRef<bool> get noAutomateDnsZoneRef =>
+  TfRef<bool> get noAutomateDnsZone =>
       TfRef.attribute<bool>(this, 'no_automate_dns_zone');
 
   /// Reference to `port_range` attribute.
-  TfRef<String> get portRangeRef => TfRef.attribute<String>(this, 'port_range');
+  TfRef<String> get portRange => TfRef.attribute<String>(this, 'port_range');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `source_ip_ranges` attribute.
-  TfRef<List<String>> get sourceIpRangesRef =>
+  TfRef<List<String>> get sourceIpRanges =>
       TfRef.attribute<List<String>>(this, 'source_ip_ranges');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
-
-  /// Reference to `ip_address` — populated with the actual VIP after
-  /// apply. (`ip_address` is `optional + computed`; the derive gate
-  /// skips it, so this is the sole reference accessor.)
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 }

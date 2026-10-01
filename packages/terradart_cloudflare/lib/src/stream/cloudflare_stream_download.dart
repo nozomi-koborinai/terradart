@@ -40,9 +40,8 @@ final class CloudflareStreamDownload extends Resource {
   RefTo<CloudflareStreamDownload> get ref => RefTo.of(this);
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 }

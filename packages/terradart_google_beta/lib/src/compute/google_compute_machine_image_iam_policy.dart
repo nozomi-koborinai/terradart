@@ -52,13 +52,12 @@ final class GoogleComputeMachineImageIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `machine_image` attribute.
-  TfRef<String> get machineImageRef =>
+  TfRef<String> get machineImage =>
       TfRef.attribute<String>(this, 'machine_image');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

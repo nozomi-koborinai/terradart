@@ -94,7 +94,7 @@ final class CloudflareKeylessCertificate extends Resource {
   RefTo<CloudflareKeylessCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -113,22 +113,21 @@ final class CloudflareKeylessCertificate extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `bundle_method` attribute.
-  TfRef<String> get bundleMethodRef =>
+  TfRef<String> get bundleMethod =>
       TfRef.attribute<String>(this, 'bundle_method');
 
   /// Reference to `certificate` attribute.
-  TfRef<String> get certificateRef =>
-      TfRef.attribute<String>(this, 'certificate');
+  TfRef<String> get certificate => TfRef.attribute<String>(this, 'certificate');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

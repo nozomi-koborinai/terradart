@@ -88,7 +88,7 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
   RefTo<AwsCloudwatchLogDeliveryDestination> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -98,17 +98,17 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `delivery_destination_type` attribute.
-  TfRef<String> get deliveryDestinationTypeRef =>
+  TfRef<String> get deliveryDestinationType =>
       TfRef.attribute<String>(this, 'delivery_destination_type');
 
   /// Reference to `output_format` attribute.
-  TfRef<String> get outputFormatRef =>
+  TfRef<String> get outputFormat =>
       TfRef.attribute<String>(this, 'output_format');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

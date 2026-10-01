@@ -107,9 +107,9 @@ final class DataCloudflareZoneLockdown extends Data {
   TfRef<List<String>> get urls => TfRef.attribute<List<String>>(this, 'urls');
 
   /// Reference to `lock_downs_id` attribute.
-  TfRef<String> get lockDownsIdRef =>
+  TfRef<String> get lockDownsId =>
       TfRef.attribute<String>(this, 'lock_downs_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

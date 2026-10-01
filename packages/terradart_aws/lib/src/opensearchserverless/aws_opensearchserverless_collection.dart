@@ -49,7 +49,7 @@ final class AwsOpensearchserverlessCollection extends Resource {
   RefTo<AwsOpensearchserverlessCollection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -73,32 +73,31 @@ final class AwsOpensearchserverlessCollection extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `collection_group_name` attribute.
-  TfRef<String> get collectionGroupNameRef =>
+  TfRef<String> get collectionGroupName =>
       TfRef.attribute<String>(this, 'collection_group_name');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `encryption_config` attribute.
-  TfRef<List<Map<String, Object?>>> get encryptionConfigRef =>
+  TfRef<List<Map<String, Object?>>> get encryptionConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'encryption_config');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `standby_replicas` attribute.
-  TfRef<String> get standbyReplicasRef =>
+  TfRef<String> get standbyReplicas =>
       TfRef.attribute<String>(this, 'standby_replicas');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `vector_options` attribute.
-  TfRef<List<Map<String, Object?>>> get vectorOptionsRef =>
+  TfRef<List<Map<String, Object?>>> get vectorOptions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vector_options');
 }

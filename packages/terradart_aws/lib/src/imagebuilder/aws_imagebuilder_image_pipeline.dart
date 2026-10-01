@@ -321,7 +321,7 @@ final class AwsImagebuilderImagePipeline extends Resource {
   RefTo<AwsImagebuilderImagePipeline> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -349,40 +349,39 @@ final class AwsImagebuilderImagePipeline extends Resource {
   TfRef<String> get platform => TfRef.attribute<String>(this, 'platform');
 
   /// Reference to `container_recipe_arn` attribute.
-  TfRef<String> get containerRecipeArnRef =>
+  TfRef<String> get containerRecipeArn =>
       TfRef.attribute<String>(this, 'container_recipe_arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `distribution_configuration_arn` attribute.
-  TfRef<String> get distributionConfigurationArnRef =>
+  TfRef<String> get distributionConfigurationArn =>
       TfRef.attribute<String>(this, 'distribution_configuration_arn');
 
   /// Reference to `enhanced_image_metadata_enabled` attribute.
-  TfRef<bool> get enhancedImageMetadataEnabledRef =>
+  TfRef<bool> get enhancedImageMetadataEnabled =>
       TfRef.attribute<bool>(this, 'enhanced_image_metadata_enabled');
 
   /// Reference to `execution_role` attribute.
-  TfRef<String> get executionRoleRef =>
+  TfRef<String> get executionRole =>
       TfRef.attribute<String>(this, 'execution_role');
 
   /// Reference to `image_recipe_arn` attribute.
-  TfRef<String> get imageRecipeArnRef =>
+  TfRef<String> get imageRecipeArn =>
       TfRef.attribute<String>(this, 'image_recipe_arn');
 
   /// Reference to `infrastructure_configuration_arn` attribute.
-  TfRef<String> get infrastructureConfigurationArnRef =>
+  TfRef<String> get infrastructureConfigurationArn =>
       TfRef.attribute<String>(this, 'infrastructure_configuration_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

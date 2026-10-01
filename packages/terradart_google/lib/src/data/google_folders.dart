@@ -31,5 +31,5 @@ final class DataGoogleFolders extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'folders');
 
   /// Reference to `parent_id` attribute.
-  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+  TfRef<String> get parentId => TfRef.attribute<String>(this, 'parent_id');
 }

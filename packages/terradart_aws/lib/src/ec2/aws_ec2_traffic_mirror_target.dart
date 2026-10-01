@@ -149,25 +149,24 @@ final class AwsEc2TrafficMirrorTarget extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `gateway_load_balancer_endpoint_id` attribute.
-  TfRef<String> get gatewayLoadBalancerEndpointIdRef =>
+  TfRef<String> get gatewayLoadBalancerEndpointId =>
       TfRef.attribute<String>(this, 'gateway_load_balancer_endpoint_id');
 
   /// Reference to `network_interface_id` attribute.
-  TfRef<String> get networkInterfaceIdRef =>
+  TfRef<String> get networkInterfaceId =>
       TfRef.attribute<String>(this, 'network_interface_id');
 
   /// Reference to `network_load_balancer_arn` attribute.
-  TfRef<String> get networkLoadBalancerArnRef =>
+  TfRef<String> get networkLoadBalancerArn =>
       TfRef.attribute<String>(this, 'network_load_balancer_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

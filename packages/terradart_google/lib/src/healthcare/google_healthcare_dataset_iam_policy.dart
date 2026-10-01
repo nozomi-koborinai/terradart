@@ -48,9 +48,8 @@ final class GoogleHealthcareDatasetIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `dataset_id` attribute.
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 }

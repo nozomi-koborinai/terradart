@@ -31,7 +31,7 @@ final class DataGoogleNetworkManagementConnectivityTestRun extends Data {
       _googleNetworkManagementConnectivityTestRunSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -41,5 +41,5 @@ final class DataGoogleNetworkManagementConnectivityTestRun extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'reachability_details');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -51,6 +51,6 @@ final class DataAwsPricingProduct extends Data {
   TfRef<String> get result => TfRef.attribute<String>(this, 'result');
 
   /// Reference to `service_code` attribute.
-  TfRef<String> get serviceCodeRef =>
+  TfRef<String> get serviceCode =>
       TfRef.attribute<String>(this, 'service_code');
 }

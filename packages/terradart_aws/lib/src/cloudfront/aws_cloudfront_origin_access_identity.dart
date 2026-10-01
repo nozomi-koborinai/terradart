@@ -52,5 +52,5 @@ final class AwsCloudfrontOriginAccessIdentity extends Resource {
       TfRef.attribute<String>(this, 's3_canonical_user_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 }

@@ -45,12 +45,12 @@ final class AwsMainRouteTableAssociation extends Resource {
       TfRef.attribute<String>(this, 'original_route_table_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_table_id` attribute.
-  TfRef<String> get routeTableIdRef =>
+  TfRef<String> get routeTableId =>
       TfRef.attribute<String>(this, 'route_table_id');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

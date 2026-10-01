@@ -417,7 +417,7 @@ final class CloudflareNotificationPolicy extends Resource {
   RefTo<CloudflareNotificationPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -429,19 +429,18 @@ final class CloudflareNotificationPolicy extends Resource {
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `alert_interval` attribute.
-  TfRef<String> get alertIntervalRef =>
+  TfRef<String> get alertInterval =>
       TfRef.attribute<String>(this, 'alert_interval');
 
   /// Reference to `alert_type` attribute.
-  TfRef<String> get alertTypeRef => TfRef.attribute<String>(this, 'alert_type');
+  TfRef<String> get alertType => TfRef.attribute<String>(this, 'alert_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 }

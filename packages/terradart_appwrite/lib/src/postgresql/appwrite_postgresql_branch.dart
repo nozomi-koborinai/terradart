@@ -90,15 +90,14 @@ final class AppwritePostgresqlBranch extends Resource {
   TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 
   /// Reference to `branch_id` attribute.
-  TfRef<String> get branchIdRef => TfRef.attribute<String>(this, 'branch_id');
+  TfRef<String> get branchId => TfRef.attribute<String>(this, 'branch_id');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `ttl` attribute.
-  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+  TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 }

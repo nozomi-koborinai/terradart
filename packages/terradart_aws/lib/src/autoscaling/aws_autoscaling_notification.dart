@@ -43,16 +43,16 @@ final class AwsAutoscalingNotification extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `group_names` attribute.
-  TfRef<List<String>> get groupNamesRef =>
+  TfRef<List<String>> get groupNames =>
       TfRef.attribute<List<String>>(this, 'group_names');
 
   /// Reference to `notifications` attribute.
-  TfRef<List<String>> get notificationsRef =>
+  TfRef<List<String>> get notifications =>
       TfRef.attribute<List<String>>(this, 'notifications');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `topic_arn` attribute.
-  TfRef<String> get topicArnRef => TfRef.attribute<String>(this, 'topic_arn');
+  TfRef<String> get topicArn => TfRef.attribute<String>(this, 'topic_arn');
 }

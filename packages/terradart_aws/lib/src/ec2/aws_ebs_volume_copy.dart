@@ -73,26 +73,25 @@ final class AwsEbsVolumeCopy extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `iops` attribute.
-  TfRef<num> get iopsRef => TfRef.attribute<num>(this, 'iops');
+  TfRef<num> get iops => TfRef.attribute<num>(this, 'iops');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `size` attribute.
-  TfRef<num> get sizeRef => TfRef.attribute<num>(this, 'size');
+  TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 
   /// Reference to `source_volume_id` attribute.
-  TfRef<String> get sourceVolumeIdRef =>
+  TfRef<String> get sourceVolumeId =>
       TfRef.attribute<String>(this, 'source_volume_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `throughput` attribute.
-  TfRef<num> get throughputRef => TfRef.attribute<num>(this, 'throughput');
+  TfRef<num> get throughput => TfRef.attribute<num>(this, 'throughput');
 
   /// Reference to `volume_type` attribute.
-  TfRef<String> get volumeTypeRef =>
-      TfRef.attribute<String>(this, 'volume_type');
+  TfRef<String> get volumeType => TfRef.attribute<String>(this, 'volume_type');
 }

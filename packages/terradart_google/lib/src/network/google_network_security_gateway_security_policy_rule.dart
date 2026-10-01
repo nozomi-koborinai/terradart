@@ -107,7 +107,7 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -122,42 +122,41 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `application_matcher` attribute.
-  TfRef<String> get applicationMatcherRef =>
+  TfRef<String> get applicationMatcher =>
       TfRef.attribute<String>(this, 'application_matcher');
 
   /// Reference to `basic_profile` attribute.
-  TfRef<String> get basicProfileRef =>
+  TfRef<String> get basicProfile =>
       TfRef.attribute<String>(this, 'basic_profile');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `gateway_security_policy` attribute.
-  TfRef<String> get gatewaySecurityPolicyRef =>
+  TfRef<String> get gatewaySecurityPolicy =>
       TfRef.attribute<String>(this, 'gateway_security_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `session_matcher` attribute.
-  TfRef<String> get sessionMatcherRef =>
+  TfRef<String> get sessionMatcher =>
       TfRef.attribute<String>(this, 'session_matcher');
 
   /// Reference to `tls_inspection_enabled` attribute.
-  TfRef<bool> get tlsInspectionEnabledRef =>
+  TfRef<bool> get tlsInspectionEnabled =>
       TfRef.attribute<bool>(this, 'tls_inspection_enabled');
 }

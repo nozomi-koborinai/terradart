@@ -55,7 +55,7 @@ final class DataCloudflareCustomCsr extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -99,12 +99,12 @@ final class DataCloudflareCustomCsr extends Data {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `custom_csr_id` attribute.
-  TfRef<String> get customCsrIdRef =>
+  TfRef<String> get customCsrId =>
       TfRef.attribute<String>(this, 'custom_csr_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

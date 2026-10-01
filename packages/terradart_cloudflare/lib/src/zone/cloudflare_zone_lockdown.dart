@@ -86,19 +86,17 @@ final class CloudflareZoneLockdown extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `paused` attribute.
-  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+  TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `urls` attribute.
-  TfRef<List<String>> get urlsRef =>
-      TfRef.attribute<List<String>>(this, 'urls');
+  TfRef<List<String>> get urls => TfRef.attribute<List<String>>(this, 'urls');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

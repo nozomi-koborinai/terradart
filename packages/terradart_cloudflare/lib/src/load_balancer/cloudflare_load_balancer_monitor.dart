@@ -94,61 +94,59 @@ final class CloudflareLoadBalancerMonitor extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `allow_insecure` attribute.
-  TfRef<bool> get allowInsecureRef =>
+  TfRef<bool> get allowInsecure =>
       TfRef.attribute<bool>(this, 'allow_insecure');
 
   /// Reference to `consecutive_down` attribute.
-  TfRef<num> get consecutiveDownRef =>
+  TfRef<num> get consecutiveDown =>
       TfRef.attribute<num>(this, 'consecutive_down');
 
   /// Reference to `consecutive_up` attribute.
-  TfRef<num> get consecutiveUpRef =>
-      TfRef.attribute<num>(this, 'consecutive_up');
+  TfRef<num> get consecutiveUp => TfRef.attribute<num>(this, 'consecutive_up');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `expected_body` attribute.
-  TfRef<String> get expectedBodyRef =>
+  TfRef<String> get expectedBody =>
       TfRef.attribute<String>(this, 'expected_body');
 
   /// Reference to `expected_codes` attribute.
-  TfRef<String> get expectedCodesRef =>
+  TfRef<String> get expectedCodes =>
       TfRef.attribute<String>(this, 'expected_codes');
 
   /// Reference to `follow_redirects` attribute.
-  TfRef<bool> get followRedirectsRef =>
+  TfRef<bool> get followRedirects =>
       TfRef.attribute<bool>(this, 'follow_redirects');
 
   /// Reference to `header` attribute.
-  TfRef<Map<String, List<String>>> get headerRef =>
+  TfRef<Map<String, List<String>>> get header =>
       TfRef.attribute<Map<String, List<String>>>(this, 'header');
 
   /// Reference to `interval` attribute.
-  TfRef<num> get intervalRef => TfRef.attribute<num>(this, 'interval');
+  TfRef<num> get interval => TfRef.attribute<num>(this, 'interval');
 
   /// Reference to `method` attribute.
-  TfRef<String> get methodRef => TfRef.attribute<String>(this, 'method');
+  TfRef<String> get method => TfRef.attribute<String>(this, 'method');
 
   /// Reference to `path` attribute.
-  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `probe_zone` attribute.
-  TfRef<String> get probeZoneRef => TfRef.attribute<String>(this, 'probe_zone');
+  TfRef<String> get probeZone => TfRef.attribute<String>(this, 'probe_zone');
 
   /// Reference to `retries` attribute.
-  TfRef<num> get retriesRef => TfRef.attribute<num>(this, 'retries');
+  TfRef<num> get retries => TfRef.attribute<num>(this, 'retries');
 
   /// Reference to `timeout` attribute.
-  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+  TfRef<num> get timeout => TfRef.attribute<num>(this, 'timeout');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

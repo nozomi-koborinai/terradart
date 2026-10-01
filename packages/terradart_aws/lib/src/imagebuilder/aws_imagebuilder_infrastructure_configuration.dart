@@ -223,7 +223,7 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
   RefTo<AwsImagebuilderInfrastructureConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -240,43 +240,42 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
       TfRef.attribute<String>(this, 'date_updated');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `instance_profile_name` attribute.
-  TfRef<String> get instanceProfileNameRef =>
+  TfRef<String> get instanceProfileName =>
       TfRef.attribute<String>(this, 'instance_profile_name');
 
   /// Reference to `instance_types` attribute.
-  TfRef<List<String>> get instanceTypesRef =>
+  TfRef<List<String>> get instanceTypes =>
       TfRef.attribute<List<String>>(this, 'instance_types');
 
   /// Reference to `key_pair` attribute.
-  TfRef<String> get keyPairRef => TfRef.attribute<String>(this, 'key_pair');
+  TfRef<String> get keyPair => TfRef.attribute<String>(this, 'key_pair');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_tags` attribute.
-  TfRef<Map<String, String>> get resourceTagsRef =>
+  TfRef<Map<String, String>> get resourceTags =>
       TfRef.attribute<Map<String, String>>(this, 'resource_tags');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `sns_topic_arn` attribute.
-  TfRef<String> get snsTopicArnRef =>
+  TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `terminate_instance_on_failure` attribute.
-  TfRef<bool> get terminateInstanceOnFailureRef =>
+  TfRef<bool> get terminateInstanceOnFailure =>
       TfRef.attribute<bool>(this, 'terminate_instance_on_failure');
 }

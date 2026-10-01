@@ -47,9 +47,8 @@ final class GoogleTagsTagValueIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `tag_value` attribute.
-  TfRef<String> get tagValueRef => TfRef.attribute<String>(this, 'tag_value');
+  TfRef<String> get tagValue => TfRef.attribute<String>(this, 'tag_value');
 }

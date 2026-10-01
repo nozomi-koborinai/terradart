@@ -37,14 +37,14 @@ final class DataCloudflareEmailRoutingAddresses extends Data {
   Set<String> get sensitiveFields => _cloudflareEmailRoutingAddressesSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `verified` attribute.
-  TfRef<bool> get verifiedRef => TfRef.attribute<bool>(this, 'verified');
+  TfRef<bool> get verified => TfRef.attribute<bool>(this, 'verified');
 }

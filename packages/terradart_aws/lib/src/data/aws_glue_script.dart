@@ -116,8 +116,8 @@ final class DataAwsGlueScript extends Data {
   TfRef<String> get scalaCode => TfRef.attribute<String>(this, 'scala_code');
 
   /// Reference to `language` attribute.
-  TfRef<String> get languageRef => TfRef.attribute<String>(this, 'language');
+  TfRef<String> get language => TfRef.attribute<String>(this, 'language');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

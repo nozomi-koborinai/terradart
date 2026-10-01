@@ -66,13 +66,13 @@ final class DataAwsSesv2ConfigurationSet extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vdm_options');
 
   /// Reference to `configuration_set_name` attribute.
-  TfRef<String> get configurationSetNameRef =>
+  TfRef<String> get configurationSetName =>
       TfRef.attribute<String>(this, 'configuration_set_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

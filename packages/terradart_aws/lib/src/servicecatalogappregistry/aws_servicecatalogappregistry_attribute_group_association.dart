@@ -41,13 +41,13 @@ final class AwsServicecatalogappregistryAttributeGroupAssociation
       RefTo.of(this);
 
   /// Reference to `application_id` attribute.
-  TfRef<String> get applicationIdRef =>
+  TfRef<String> get applicationId =>
       TfRef.attribute<String>(this, 'application_id');
 
   /// Reference to `attribute_group_id` attribute.
-  TfRef<String> get attributeGroupIdRef =>
+  TfRef<String> get attributeGroupId =>
       TfRef.attribute<String>(this, 'attribute_group_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

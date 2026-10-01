@@ -56,44 +56,45 @@ final class GoogleComputeRouterInterface extends Resource {
   /// `RefTo<GoogleComputeRouterInterface>`.
   RefTo<GoogleComputeRouterInterface> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `interconnect_attachment` attribute.
-  TfRef<String> get interconnectAttachmentRef =>
+  TfRef<String> get interconnectAttachment =>
       TfRef.attribute<String>(this, 'interconnect_attachment');
 
   /// Reference to `ip_range` attribute.
-  TfRef<String> get ipRangeRef => TfRef.attribute<String>(this, 'ip_range');
+  TfRef<String> get ipRange => TfRef.attribute<String>(this, 'ip_range');
 
   /// Reference to `ip_version` attribute.
-  TfRef<String> get ipVersionRef => TfRef.attribute<String>(this, 'ip_version');
+  TfRef<String> get ipVersion => TfRef.attribute<String>(this, 'ip_version');
 
   /// Reference to `private_ip_address` attribute.
-  TfRef<String> get privateIpAddressRef =>
+  TfRef<String> get privateIpAddress =>
       TfRef.attribute<String>(this, 'private_ip_address');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `redundant_interface` attribute.
-  TfRef<String> get redundantInterfaceRef =>
+  TfRef<String> get redundantInterface =>
       TfRef.attribute<String>(this, 'redundant_interface');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `router` attribute.
-  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+  TfRef<String> get router => TfRef.attribute<String>(this, 'router');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 
   /// Reference to `vpn_tunnel` attribute.
-  TfRef<String> get vpnTunnelRef => TfRef.attribute<String>(this, 'vpn_tunnel');
+  TfRef<String> get vpnTunnel => TfRef.attribute<String>(this, 'vpn_tunnel');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

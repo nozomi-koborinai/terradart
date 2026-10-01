@@ -37,5 +37,5 @@ final class DataAwsSesActiveReceiptRuleSet extends Data {
       TfRef.attribute<String>(this, 'rule_set_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

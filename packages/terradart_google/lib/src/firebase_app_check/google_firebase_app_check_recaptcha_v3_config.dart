@@ -43,7 +43,7 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
   RefTo<GoogleFirebaseAppCheckRecaptchaV3Config> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,15 +53,14 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
       TfRef.attribute<bool>(this, 'site_secret_set');
 
   /// Reference to `app_id` attribute.
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `site_secret` attribute.
-  TfRef<String> get siteSecretRef =>
-      TfRef.attribute<String>(this, 'site_secret');
+  TfRef<String> get siteSecret => TfRef.attribute<String>(this, 'site_secret');
 
   /// Reference to `token_ttl` attribute.
-  TfRef<String> get tokenTtlRef => TfRef.attribute<String>(this, 'token_ttl');
+  TfRef<String> get tokenTtl => TfRef.attribute<String>(this, 'token_ttl');
 }

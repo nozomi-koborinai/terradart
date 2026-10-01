@@ -117,22 +117,22 @@ final class AwsCloudwatchLogMetricFilter extends Resource {
   RefTo<AwsCloudwatchLogMetricFilter> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `apply_on_transformed_logs` attribute.
-  TfRef<bool> get applyOnTransformedLogsRef =>
+  TfRef<bool> get applyOnTransformedLogs =>
       TfRef.attribute<bool>(this, 'apply_on_transformed_logs');
 
   /// Reference to `log_group_name` attribute.
-  TfRef<String> get logGroupNameRef =>
+  TfRef<String> get logGroupName =>
       TfRef.attribute<String>(this, 'log_group_name');
 
   /// Reference to `pattern` attribute.
-  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+  TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

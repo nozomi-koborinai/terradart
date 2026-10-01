@@ -129,8 +129,8 @@ final class AwsS3controlBucketLifecycleConfiguration extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

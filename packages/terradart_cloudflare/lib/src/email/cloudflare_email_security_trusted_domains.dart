@@ -62,21 +62,20 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comments` attribute.
-  TfRef<String> get commentsRef => TfRef.attribute<String>(this, 'comments');
+  TfRef<String> get comments => TfRef.attribute<String>(this, 'comments');
 
   /// Reference to `is_recent` attribute.
-  TfRef<bool> get isRecentRef => TfRef.attribute<bool>(this, 'is_recent');
+  TfRef<bool> get isRecent => TfRef.attribute<bool>(this, 'is_recent');
 
   /// Reference to `is_regex` attribute.
-  TfRef<bool> get isRegexRef => TfRef.attribute<bool>(this, 'is_regex');
+  TfRef<bool> get isRegex => TfRef.attribute<bool>(this, 'is_regex');
 
   /// Reference to `is_similarity` attribute.
-  TfRef<bool> get isSimilarityRef =>
-      TfRef.attribute<bool>(this, 'is_similarity');
+  TfRef<bool> get isSimilarity => TfRef.attribute<bool>(this, 'is_similarity');
 
   /// Reference to `pattern` attribute.
-  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+  TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
 }

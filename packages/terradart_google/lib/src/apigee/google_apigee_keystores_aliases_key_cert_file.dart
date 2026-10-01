@@ -71,28 +71,24 @@ final class GoogleApigeeKeystoresAliasesKeyCertFile extends Resource {
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
+  /// Reference to `alias` attribute.
+  TfRef<String> get alias => TfRef.attribute<String>(this, 'alias');
+
   /// Reference to `cert` attribute.
-  TfRef<String> get certRef => TfRef.attribute<String>(this, 'cert');
+  TfRef<String> get cert => TfRef.attribute<String>(this, 'cert');
 
   /// Reference to `environment` attribute.
-  TfRef<String> get environmentRef =>
-      TfRef.attribute<String>(this, 'environment');
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `keystore` attribute.
-  TfRef<String> get keystoreRef => TfRef.attribute<String>(this, 'keystore');
+  TfRef<String> get keystore => TfRef.attribute<String>(this, 'keystore');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `alias` attribute.
-  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 }

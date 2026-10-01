@@ -97,17 +97,17 @@ final class AwsSesv2EmailIdentity extends Resource {
       TfRef.attribute<bool>(this, 'verified_for_sending_status');
 
   /// Reference to `configuration_set_name` attribute.
-  TfRef<String> get configurationSetNameRef =>
+  TfRef<String> get configurationSetName =>
       TfRef.attribute<String>(this, 'configuration_set_name');
 
   /// Reference to `email_identity` attribute.
-  TfRef<String> get emailIdentityRef =>
+  TfRef<String> get emailIdentity =>
       TfRef.attribute<String>(this, 'email_identity');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

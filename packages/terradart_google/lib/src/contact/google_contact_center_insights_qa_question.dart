@@ -183,7 +183,7 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
   RefTo<GoogleContactCenterInsightsQaQuestion> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -195,42 +195,41 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `abbreviation` attribute.
-  TfRef<String> get abbreviationRef =>
+  TfRef<String> get abbreviation =>
       TfRef.attribute<String>(this, 'abbreviation');
 
   /// Reference to `answer_instructions` attribute.
-  TfRef<String> get answerInstructionsRef =>
+  TfRef<String> get answerInstructions =>
       TfRef.attribute<String>(this, 'answer_instructions');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `order` attribute.
-  TfRef<num> get orderRef => TfRef.attribute<num>(this, 'order');
+  TfRef<num> get order => TfRef.attribute<num>(this, 'order');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `qa_scorecard` attribute.
-  TfRef<String> get qaScorecardRef =>
+  TfRef<String> get qaScorecard =>
       TfRef.attribute<String>(this, 'qa_scorecard');
 
   /// Reference to `question_body` attribute.
-  TfRef<String> get questionBodyRef =>
+  TfRef<String> get questionBody =>
       TfRef.attribute<String>(this, 'question_body');
 
   /// Reference to `question_type` attribute.
-  TfRef<String> get questionTypeRef =>
+  TfRef<String> get questionType =>
       TfRef.attribute<String>(this, 'question_type');
 
   /// Reference to `revision` attribute.
-  TfRef<String> get revisionRef => TfRef.attribute<String>(this, 'revision');
+  TfRef<String> get revision => TfRef.attribute<String>(this, 'revision');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 }

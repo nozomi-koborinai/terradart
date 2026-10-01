@@ -60,27 +60,26 @@ final class DataAwsAcmCertificate extends Data {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `key_types` attribute.
-  TfRef<List<String>> get keyTypesRef =>
+  TfRef<List<String>> get keyTypes =>
       TfRef.attribute<List<String>>(this, 'key_types');
 
   /// Reference to `most_recent` attribute.
-  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+  TfRef<bool> get mostRecent => TfRef.attribute<bool>(this, 'most_recent');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `statuses` attribute.
-  TfRef<List<String>> get statusesRef =>
+  TfRef<List<String>> get statuses =>
       TfRef.attribute<List<String>>(this, 'statuses');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `types` attribute.
-  TfRef<List<String>> get typesRef =>
-      TfRef.attribute<List<String>>(this, 'types');
+  TfRef<List<String>> get types => TfRef.attribute<List<String>>(this, 'types');
 }

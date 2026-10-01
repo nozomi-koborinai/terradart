@@ -59,7 +59,7 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
   RefTo<CloudflareZeroTrustAccessCustomPage> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -68,16 +68,15 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `contract_version` attribute.
-  TfRef<num> get contractVersionRef =>
+  TfRef<num> get contractVersion =>
       TfRef.attribute<num>(this, 'contract_version');
 
   /// Reference to `custom_html` attribute.
-  TfRef<String> get customHtmlRef =>
-      TfRef.attribute<String>(this, 'custom_html');
+  TfRef<String> get customHtml => TfRef.attribute<String>(this, 'custom_html');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

@@ -35,11 +35,11 @@ final class DataCloudflareImages extends Data {
   Set<String> get sensitiveFields => _cloudflareImagesSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `creator` attribute.
-  TfRef<String> get creatorRef => TfRef.attribute<String>(this, 'creator');
+  TfRef<String> get creator => TfRef.attribute<String>(this, 'creator');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 }

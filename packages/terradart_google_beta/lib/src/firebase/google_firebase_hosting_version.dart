@@ -160,7 +160,7 @@ final class GoogleFirebaseHostingVersion extends Resource {
   RefTo<GoogleFirebaseHostingVersion> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -169,5 +169,5 @@ final class GoogleFirebaseHostingVersion extends Resource {
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 }

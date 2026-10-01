@@ -526,7 +526,7 @@ final class GoogleWorkstationsWorkstationConfig extends Resource {
   RefTo<GoogleWorkstationsWorkstationConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -560,59 +560,56 @@ final class GoogleWorkstationsWorkstationConfig extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disable_tcp_connections` attribute.
-  TfRef<bool> get disableTcpConnectionsRef =>
+  TfRef<bool> get disableTcpConnections =>
       TfRef.attribute<bool>(this, 'disable_tcp_connections');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_audit_agent` attribute.
-  TfRef<bool> get enableAuditAgentRef =>
+  TfRef<bool> get enableAuditAgent =>
       TfRef.attribute<bool>(this, 'enable_audit_agent');
 
   /// Reference to `idle_timeout` attribute.
-  TfRef<String> get idleTimeoutRef =>
+  TfRef<String> get idleTimeout =>
       TfRef.attribute<String>(this, 'idle_timeout');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `max_usable_workstations` attribute.
-  TfRef<num> get maxUsableWorkstationsRef =>
+  TfRef<num> get maxUsableWorkstations =>
       TfRef.attribute<num>(this, 'max_usable_workstations');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `replica_zones` attribute.
-  TfRef<List<String>> get replicaZonesRef =>
+  TfRef<List<String>> get replicaZones =>
       TfRef.attribute<List<String>>(this, 'replica_zones');
 
   /// Reference to `running_timeout` attribute.
-  TfRef<String> get runningTimeoutRef =>
+  TfRef<String> get runningTimeout =>
       TfRef.attribute<String>(this, 'running_timeout');
 
   /// Reference to `workstation_cluster_id` attribute.
-  TfRef<String> get workstationClusterIdRef =>
+  TfRef<String> get workstationClusterId =>
       TfRef.attribute<String>(this, 'workstation_cluster_id');
 
   /// Reference to `workstation_config_id` attribute.
-  TfRef<String> get workstationConfigIdRef =>
+  TfRef<String> get workstationConfigId =>
       TfRef.attribute<String>(this, 'workstation_config_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

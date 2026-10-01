@@ -51,34 +51,33 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
       _cloudflareApiShieldDiscoveryOperationsSensitive;
 
   /// Reference to `diff` attribute.
-  TfRef<bool> get diffRef => TfRef.attribute<bool>(this, 'diff');
+  TfRef<bool> get diff => TfRef.attribute<bool>(this, 'diff');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `endpoint` attribute.
-  TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
+  TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `host` attribute.
-  TfRef<List<String>> get hostRef =>
-      TfRef.attribute<List<String>>(this, 'host');
+  TfRef<List<String>> get host => TfRef.attribute<List<String>>(this, 'host');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `method` attribute.
-  TfRef<List<String>> get methodRef =>
+  TfRef<List<String>> get method =>
       TfRef.attribute<List<String>>(this, 'method');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `origin` attribute.
-  TfRef<String> get originRef => TfRef.attribute<String>(this, 'origin');
+  TfRef<String> get origin => TfRef.attribute<String>(this, 'origin');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

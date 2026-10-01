@@ -45,7 +45,7 @@ final class CloudflareZeroTrustDlpIntegrationEntry extends Resource {
   RefTo<CloudflareZeroTrustDlpIntegrationEntry> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -80,14 +80,14 @@ final class CloudflareZeroTrustDlpIntegrationEntry extends Resource {
   TfRef<String> get wordList => TfRef.attribute<String>(this, 'word_list');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `entry_id` attribute.
-  TfRef<String> get entryIdRef => TfRef.attribute<String>(this, 'entry_id');
+  TfRef<String> get entryId => TfRef.attribute<String>(this, 'entry_id');
 
   /// Reference to `profile_id` attribute.
-  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
+  TfRef<String> get profileId => TfRef.attribute<String>(this, 'profile_id');
 }

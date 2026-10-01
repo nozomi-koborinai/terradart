@@ -80,7 +80,7 @@ final class DataCloudflareWorker extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -101,8 +101,8 @@ final class DataCloudflareWorker extends Data {
   TfRef<String> get updatedOn => TfRef.attribute<String>(this, 'updated_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `worker_id` attribute.
-  TfRef<String> get workerIdRef => TfRef.attribute<String>(this, 'worker_id');
+  TfRef<String> get workerId => TfRef.attribute<String>(this, 'worker_id');
 }

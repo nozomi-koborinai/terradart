@@ -80,7 +80,7 @@ final class AwsDevicefarmUpload extends Resource {
   RefTo<AwsDevicefarmUpload> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -98,16 +98,15 @@ final class AwsDevicefarmUpload extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `content_type` attribute.
-  TfRef<String> get contentTypeRef =>
+  TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `project_arn` attribute.
-  TfRef<String> get projectArnRef =>
-      TfRef.attribute<String>(this, 'project_arn');
+  TfRef<String> get projectArn => TfRef.attribute<String>(this, 'project_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

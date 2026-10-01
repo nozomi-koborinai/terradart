@@ -117,10 +117,10 @@ final class GoogleContainerAnalysisNote extends Resource {
   RefTo<GoogleContainerAnalysisNote> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -132,25 +132,25 @@ final class GoogleContainerAnalysisNote extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `expiration_time` attribute.
-  TfRef<String> get expirationTimeRef =>
+  TfRef<String> get expirationTime =>
       TfRef.attribute<String>(this, 'expiration_time');
 
   /// Reference to `long_description` attribute.
-  TfRef<String> get longDescriptionRef =>
+  TfRef<String> get longDescription =>
       TfRef.attribute<String>(this, 'long_description');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `related_note_names` attribute.
-  TfRef<List<String>> get relatedNoteNamesRef =>
+  TfRef<List<String>> get relatedNoteNames =>
       TfRef.attribute<List<String>>(this, 'related_note_names');
 
   /// Reference to `short_description` attribute.
-  TfRef<String> get shortDescriptionRef =>
+  TfRef<String> get shortDescription =>
       TfRef.attribute<String>(this, 'short_description');
 }

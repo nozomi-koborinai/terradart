@@ -118,7 +118,7 @@ final class AwsVpclatticeListener extends Resource {
   RefTo<AwsVpclatticeListener> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -137,23 +137,22 @@ final class AwsVpclatticeListener extends Resource {
   TfRef<String> get listenerId => TfRef.attribute<String>(this, 'listener_id');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_arn` attribute.
-  TfRef<String> get serviceArnRef =>
-      TfRef.attribute<String>(this, 'service_arn');
+  TfRef<String> get serviceArn => TfRef.attribute<String>(this, 'service_arn');
 
   /// Reference to `service_identifier` attribute.
-  TfRef<String> get serviceIdentifierRef =>
+  TfRef<String> get serviceIdentifier =>
       TfRef.attribute<String>(this, 'service_identifier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

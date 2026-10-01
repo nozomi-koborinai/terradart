@@ -47,7 +47,7 @@ final class GoogleFirebaseAiLogicPromptTemplateLock extends Resource {
   RefTo<GoogleFirebaseAiLogicPromptTemplateLock> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -56,20 +56,19 @@ final class GoogleFirebaseAiLogicPromptTemplateLock extends Resource {
   TfRef<bool> get locked => TfRef.attribute<bool>(this, 'locked');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `regional_propagation_disabled` attribute.
-  TfRef<bool> get regionalPropagationDisabledRef =>
+  TfRef<bool> get regionalPropagationDisabled =>
       TfRef.attribute<bool>(this, 'regional_propagation_disabled');
 
   /// Reference to `template_id` attribute.
-  TfRef<String> get templateIdRef =>
-      TfRef.attribute<String>(this, 'template_id');
+  TfRef<String> get templateId => TfRef.attribute<String>(this, 'template_id');
 }

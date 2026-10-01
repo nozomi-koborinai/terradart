@@ -98,7 +98,7 @@ final class GoogleWorkflowsWorkflow extends Resource {
   RefTo<GoogleWorkflowsWorkflow> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -124,56 +124,54 @@ final class GoogleWorkflowsWorkflow extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `call_log_level` attribute.
-  TfRef<String> get callLogLevelRef =>
+  TfRef<String> get callLogLevel =>
       TfRef.attribute<String>(this, 'call_log_level');
 
   /// Reference to `crypto_key_name` attribute.
-  TfRef<String> get cryptoKeyNameRef =>
+  TfRef<String> get cryptoKeyName =>
       TfRef.attribute<String>(this, 'crypto_key_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `execution_history_level` attribute.
-  TfRef<String> get executionHistoryLevelRef =>
+  TfRef<String> get executionHistoryLevel =>
       TfRef.attribute<String>(this, 'execution_history_level');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `source_contents` attribute.
-  TfRef<String> get sourceContentsRef =>
+  TfRef<String> get sourceContents =>
       TfRef.attribute<String>(this, 'source_contents');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_env_vars` attribute.
-  TfRef<Map<String, String>> get userEnvVarsRef =>
+  TfRef<Map<String, String>> get userEnvVars =>
       TfRef.attribute<Map<String, String>>(this, 'user_env_vars');
 }

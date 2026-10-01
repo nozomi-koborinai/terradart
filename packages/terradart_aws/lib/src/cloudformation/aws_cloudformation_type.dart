@@ -121,19 +121,19 @@ final class AwsCloudformationType extends Resource {
   TfRef<String> get visibility => TfRef.attribute<String>(this, 'visibility');
 
   /// Reference to `execution_role_arn` attribute.
-  TfRef<String> get executionRoleArnRef =>
+  TfRef<String> get executionRoleArn =>
       TfRef.attribute<String>(this, 'execution_role_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `schema_handler_package` attribute.
-  TfRef<String> get schemaHandlerPackageRef =>
+  TfRef<String> get schemaHandlerPackage =>
       TfRef.attribute<String>(this, 'schema_handler_package');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `type_name` attribute.
-  TfRef<String> get typeNameRef => TfRef.attribute<String>(this, 'type_name');
+  TfRef<String> get typeName => TfRef.attribute<String>(this, 'type_name');
 }

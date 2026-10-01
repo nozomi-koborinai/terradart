@@ -318,26 +318,25 @@ final class AwsConnectPhoneNumber extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
   /// Reference to `country_code` attribute.
-  TfRef<String> get countryCodeRef =>
+  TfRef<String> get countryCode =>
       TfRef.attribute<String>(this, 'country_code');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_arn` attribute.
-  TfRef<String> get targetArnRef => TfRef.attribute<String>(this, 'target_arn');
+  TfRef<String> get targetArn => TfRef.attribute<String>(this, 'target_arn');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

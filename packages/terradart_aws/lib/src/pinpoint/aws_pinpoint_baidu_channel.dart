@@ -46,18 +46,18 @@ final class AwsPinpointBaiduChannel extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_key` attribute.
-  TfRef<String> get apiKeyRef => TfRef.attribute<String>(this, 'api_key');
+  TfRef<String> get apiKey => TfRef.attribute<String>(this, 'api_key');
 
   /// Reference to `application_id` attribute.
-  TfRef<String> get applicationIdRef =>
+  TfRef<String> get applicationId =>
       TfRef.attribute<String>(this, 'application_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_key` attribute.
-  TfRef<String> get secretKeyRef => TfRef.attribute<String>(this, 'secret_key');
+  TfRef<String> get secretKey => TfRef.attribute<String>(this, 'secret_key');
 }

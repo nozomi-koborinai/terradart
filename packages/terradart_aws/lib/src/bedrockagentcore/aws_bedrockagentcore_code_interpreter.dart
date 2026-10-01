@@ -147,7 +147,7 @@ final class AwsBedrockagentcoreCodeInterpreter extends Resource {
   RefTo<AwsBedrockagentcoreCodeInterpreter> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `code_interpreter_arn` attribute.
   TfRef<String> get codeInterpreterArn =>
@@ -162,17 +162,16 @@ final class AwsBedrockagentcoreCodeInterpreter extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `execution_role_arn` attribute.
-  TfRef<String> get executionRoleArnRef =>
+  TfRef<String> get executionRoleArn =>
       TfRef.attribute<String>(this, 'execution_role_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

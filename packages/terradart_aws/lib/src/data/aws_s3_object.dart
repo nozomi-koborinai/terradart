@@ -151,29 +151,29 @@ final class DataAwsS3Object extends Data {
       TfRef.attribute<String>(this, 'website_redirect_location');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `checksum_mode` attribute.
-  TfRef<String> get checksumModeRef =>
+  TfRef<String> get checksumMode =>
       TfRef.attribute<String>(this, 'checksum_mode');
 
   /// Reference to `download_body` attribute.
-  TfRef<String> get downloadBodyRef =>
+  TfRef<String> get downloadBody =>
       TfRef.attribute<String>(this, 'download_body');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `range` attribute.
-  TfRef<String> get rangeRef => TfRef.attribute<String>(this, 'range');
+  TfRef<String> get range => TfRef.attribute<String>(this, 'range');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `version_id` attribute.
-  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
+  TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 }

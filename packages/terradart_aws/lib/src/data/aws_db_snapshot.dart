@@ -114,32 +114,32 @@ final class DataAwsDbSnapshot extends Data {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `db_instance_identifier` attribute.
-  TfRef<String> get dbInstanceIdentifierRef =>
+  TfRef<String> get dbInstanceIdentifier =>
       TfRef.attribute<String>(this, 'db_instance_identifier');
 
   /// Reference to `db_snapshot_identifier` attribute.
-  TfRef<String> get dbSnapshotIdentifierRef =>
+  TfRef<String> get dbSnapshotIdentifier =>
       TfRef.attribute<String>(this, 'db_snapshot_identifier');
 
   /// Reference to `include_public` attribute.
-  TfRef<bool> get includePublicRef =>
+  TfRef<bool> get includePublic =>
       TfRef.attribute<bool>(this, 'include_public');
 
   /// Reference to `include_shared` attribute.
-  TfRef<bool> get includeSharedRef =>
+  TfRef<bool> get includeShared =>
       TfRef.attribute<bool>(this, 'include_shared');
 
   /// Reference to `most_recent` attribute.
-  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+  TfRef<bool> get mostRecent => TfRef.attribute<bool>(this, 'most_recent');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `snapshot_type` attribute.
-  TfRef<String> get snapshotTypeRef =>
+  TfRef<String> get snapshotType =>
       TfRef.attribute<String>(this, 'snapshot_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

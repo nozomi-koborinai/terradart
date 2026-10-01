@@ -148,24 +148,24 @@ final class AwsSecretsmanagerSecretVersion extends Resource {
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_binary` attribute.
-  TfRef<String> get secretBinaryRef =>
+  TfRef<String> get secretBinary =>
       TfRef.attribute<String>(this, 'secret_binary');
 
   /// Reference to `secret_id` attribute.
-  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
+  TfRef<String> get secretId => TfRef.attribute<String>(this, 'secret_id');
 
   /// Reference to `secret_string` attribute.
-  TfRef<String> get secretStringRef =>
+  TfRef<String> get secretString =>
       TfRef.attribute<String>(this, 'secret_string');
 
   /// Reference to `secret_string_wo_version` attribute.
-  TfRef<num> get secretStringWoVersionRef =>
+  TfRef<num> get secretStringWoVersion =>
       TfRef.attribute<num>(this, 'secret_string_wo_version');
 
   /// Reference to `version_stages` attribute.
-  TfRef<List<String>> get versionStagesRef =>
+  TfRef<List<String>> get versionStages =>
       TfRef.attribute<List<String>>(this, 'version_stages');
 }

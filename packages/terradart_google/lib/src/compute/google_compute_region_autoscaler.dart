@@ -479,6 +479,9 @@ final class GoogleComputeRegionAutoscaler extends Resource {
   /// `RefTo<GoogleComputeRegionAutoscaler>`.
   RefTo<GoogleComputeRegionAutoscaler> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
@@ -487,24 +490,20 @@ final class GoogleComputeRegionAutoscaler extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/regions/{region}/autoscalers/{name}`).

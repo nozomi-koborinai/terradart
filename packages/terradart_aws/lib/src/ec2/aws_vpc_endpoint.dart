@@ -287,58 +287,58 @@ final class AwsVpcEndpoint extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `auto_accept` attribute.
-  TfRef<bool> get autoAcceptRef => TfRef.attribute<bool>(this, 'auto_accept');
+  TfRef<bool> get autoAccept => TfRef.attribute<bool>(this, 'auto_accept');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `private_dns_enabled` attribute.
-  TfRef<bool> get privateDnsEnabledRef =>
+  TfRef<bool> get privateDnsEnabled =>
       TfRef.attribute<bool>(this, 'private_dns_enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_configuration_arn` attribute.
-  TfRef<String> get resourceConfigurationArnRef =>
+  TfRef<String> get resourceConfigurationArn =>
       TfRef.attribute<String>(this, 'resource_configuration_arn');
 
   /// Reference to `route_table_ids` attribute.
-  TfRef<List<String>> get routeTableIdsRef =>
+  TfRef<List<String>> get routeTableIds =>
       TfRef.attribute<List<String>>(this, 'route_table_ids');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `service_name` attribute.
-  TfRef<String> get serviceNameRef =>
+  TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 
   /// Reference to `service_network_arn` attribute.
-  TfRef<String> get serviceNetworkArnRef =>
+  TfRef<String> get serviceNetworkArn =>
       TfRef.attribute<String>(this, 'service_network_arn');
 
   /// Reference to `service_region` attribute.
-  TfRef<String> get serviceRegionRef =>
+  TfRef<String> get serviceRegion =>
       TfRef.attribute<String>(this, 'service_region');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_endpoint_type` attribute.
-  TfRef<String> get vpcEndpointTypeRef =>
+  TfRef<String> get vpcEndpointType =>
       TfRef.attribute<String>(this, 'vpc_endpoint_type');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

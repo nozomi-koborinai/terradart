@@ -561,7 +561,7 @@ final class AwsElastictranscoderPreset extends Resource {
   RefTo<AwsElastictranscoderPreset> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -570,19 +570,18 @@ final class AwsElastictranscoderPreset extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `container` attribute.
-  TfRef<String> get containerRef => TfRef.attribute<String>(this, 'container');
+  TfRef<String> get container => TfRef.attribute<String>(this, 'container');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `video_codec_options` attribute.
-  TfRef<Map<String, String>> get videoCodecOptionsRef =>
+  TfRef<Map<String, String>> get videoCodecOptions =>
       TfRef.attribute<Map<String, String>>(this, 'video_codec_options');
 }

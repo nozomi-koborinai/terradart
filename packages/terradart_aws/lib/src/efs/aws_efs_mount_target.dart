@@ -87,27 +87,27 @@ final class AwsEfsMountTarget extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `file_system_id` attribute.
-  TfRef<String> get fileSystemIdRef =>
+  TfRef<String> get fileSystemId =>
       TfRef.attribute<String>(this, 'file_system_id');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `ipv6_address` attribute.
-  TfRef<String> get ipv6AddressRef =>
+  TfRef<String> get ipv6Address =>
       TfRef.attribute<String>(this, 'ipv6_address');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_groups` attribute.
-  TfRef<List<String>> get securityGroupsRef =>
+  TfRef<List<String>> get securityGroups =>
       TfRef.attribute<List<String>>(this, 'security_groups');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 }

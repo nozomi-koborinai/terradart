@@ -79,15 +79,15 @@ final class GooglePubsubTopicIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `topic` attribute.
-  TfRef<String> get topicRef => TfRef.attribute<String>(this, 'topic');
+  TfRef<String> get topic => TfRef.attribute<String>(this, 'topic');
 }

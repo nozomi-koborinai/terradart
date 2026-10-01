@@ -40,10 +40,10 @@ final class DataAwsNetworkmanagerGlobalNetwork extends Data {
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `global_network_id` attribute.
-  TfRef<String> get globalNetworkIdRef =>
+  TfRef<String> get globalNetworkId =>
       TfRef.attribute<String>(this, 'global_network_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

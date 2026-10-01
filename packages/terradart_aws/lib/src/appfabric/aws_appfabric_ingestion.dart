@@ -61,23 +61,23 @@ final class AwsAppfabricIngestion extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `app` attribute.
-  TfRef<String> get appRef => TfRef.attribute<String>(this, 'app');
+  TfRef<String> get app => TfRef.attribute<String>(this, 'app');
 
   /// Reference to `app_bundle_arn` attribute.
-  TfRef<String> get appBundleArnRef =>
+  TfRef<String> get appBundleArn =>
       TfRef.attribute<String>(this, 'app_bundle_arn');
 
   /// Reference to `ingestion_type` attribute.
-  TfRef<String> get ingestionTypeRef =>
+  TfRef<String> get ingestionType =>
       TfRef.attribute<String>(this, 'ingestion_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tenant_id` attribute.
-  TfRef<String> get tenantIdRef => TfRef.attribute<String>(this, 'tenant_id');
+  TfRef<String> get tenantId => TfRef.attribute<String>(this, 'tenant_id');
 }

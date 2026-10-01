@@ -1369,7 +1369,7 @@ final class AwsAutoscalingGroup extends Resource {
   RefTo<AwsAutoscalingGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -1385,121 +1385,120 @@ final class AwsAutoscalingGroup extends Resource {
   TfRef<num> get warmPoolSize => TfRef.attribute<num>(this, 'warm_pool_size');
 
   /// Reference to `availability_zones` attribute.
-  TfRef<List<String>> get availabilityZonesRef =>
+  TfRef<List<String>> get availabilityZones =>
       TfRef.attribute<List<String>>(this, 'availability_zones');
 
   /// Reference to `capacity_rebalance` attribute.
-  TfRef<bool> get capacityRebalanceRef =>
+  TfRef<bool> get capacityRebalance =>
       TfRef.attribute<bool>(this, 'capacity_rebalance');
 
   /// Reference to `context` attribute.
-  TfRef<String> get contextRef => TfRef.attribute<String>(this, 'context');
+  TfRef<String> get context => TfRef.attribute<String>(this, 'context');
 
   /// Reference to `default_cooldown` attribute.
-  TfRef<num> get defaultCooldownRef =>
+  TfRef<num> get defaultCooldown =>
       TfRef.attribute<num>(this, 'default_cooldown');
 
   /// Reference to `default_instance_warmup` attribute.
-  TfRef<num> get defaultInstanceWarmupRef =>
+  TfRef<num> get defaultInstanceWarmup =>
       TfRef.attribute<num>(this, 'default_instance_warmup');
 
   /// Reference to `desired_capacity` attribute.
-  TfRef<num> get desiredCapacityRef =>
+  TfRef<num> get desiredCapacity =>
       TfRef.attribute<num>(this, 'desired_capacity');
 
   /// Reference to `desired_capacity_type` attribute.
-  TfRef<String> get desiredCapacityTypeRef =>
+  TfRef<String> get desiredCapacityType =>
       TfRef.attribute<String>(this, 'desired_capacity_type');
 
   /// Reference to `enabled_metrics` attribute.
-  TfRef<List<String>> get enabledMetricsRef =>
+  TfRef<List<String>> get enabledMetrics =>
       TfRef.attribute<List<String>>(this, 'enabled_metrics');
 
   /// Reference to `force_delete` attribute.
-  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+  TfRef<bool> get forceDelete => TfRef.attribute<bool>(this, 'force_delete');
 
   /// Reference to `force_delete_warm_pool` attribute.
-  TfRef<bool> get forceDeleteWarmPoolRef =>
+  TfRef<bool> get forceDeleteWarmPool =>
       TfRef.attribute<bool>(this, 'force_delete_warm_pool');
 
   /// Reference to `health_check_grace_period` attribute.
-  TfRef<num> get healthCheckGracePeriodRef =>
+  TfRef<num> get healthCheckGracePeriod =>
       TfRef.attribute<num>(this, 'health_check_grace_period');
 
   /// Reference to `health_check_type` attribute.
-  TfRef<String> get healthCheckTypeRef =>
+  TfRef<String> get healthCheckType =>
       TfRef.attribute<String>(this, 'health_check_type');
 
   /// Reference to `ignore_failed_scaling_activities` attribute.
-  TfRef<bool> get ignoreFailedScalingActivitiesRef =>
+  TfRef<bool> get ignoreFailedScalingActivities =>
       TfRef.attribute<bool>(this, 'ignore_failed_scaling_activities');
 
   /// Reference to `launch_configuration` attribute.
-  TfRef<String> get launchConfigurationRef =>
+  TfRef<String> get launchConfiguration =>
       TfRef.attribute<String>(this, 'launch_configuration');
 
   /// Reference to `load_balancers` attribute.
-  TfRef<List<String>> get loadBalancersRef =>
+  TfRef<List<String>> get loadBalancers =>
       TfRef.attribute<List<String>>(this, 'load_balancers');
 
   /// Reference to `max_instance_lifetime` attribute.
-  TfRef<num> get maxInstanceLifetimeRef =>
+  TfRef<num> get maxInstanceLifetime =>
       TfRef.attribute<num>(this, 'max_instance_lifetime');
 
   /// Reference to `max_size` attribute.
-  TfRef<num> get maxSizeRef => TfRef.attribute<num>(this, 'max_size');
+  TfRef<num> get maxSize => TfRef.attribute<num>(this, 'max_size');
 
   /// Reference to `metrics_granularity` attribute.
-  TfRef<String> get metricsGranularityRef =>
+  TfRef<String> get metricsGranularity =>
       TfRef.attribute<String>(this, 'metrics_granularity');
 
   /// Reference to `min_elb_capacity` attribute.
-  TfRef<num> get minElbCapacityRef =>
+  TfRef<num> get minElbCapacity =>
       TfRef.attribute<num>(this, 'min_elb_capacity');
 
   /// Reference to `min_size` attribute.
-  TfRef<num> get minSizeRef => TfRef.attribute<num>(this, 'min_size');
+  TfRef<num> get minSize => TfRef.attribute<num>(this, 'min_size');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `placement_group` attribute.
-  TfRef<String> get placementGroupRef =>
+  TfRef<String> get placementGroup =>
       TfRef.attribute<String>(this, 'placement_group');
 
   /// Reference to `protect_from_scale_in` attribute.
-  TfRef<bool> get protectFromScaleInRef =>
+  TfRef<bool> get protectFromScaleIn =>
       TfRef.attribute<bool>(this, 'protect_from_scale_in');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_linked_role_arn` attribute.
-  TfRef<String> get serviceLinkedRoleArnRef =>
+  TfRef<String> get serviceLinkedRoleArn =>
       TfRef.attribute<String>(this, 'service_linked_role_arn');
 
   /// Reference to `suspended_processes` attribute.
-  TfRef<List<String>> get suspendedProcessesRef =>
+  TfRef<List<String>> get suspendedProcesses =>
       TfRef.attribute<List<String>>(this, 'suspended_processes');
 
   /// Reference to `target_group_arns` attribute.
-  TfRef<List<String>> get targetGroupArnsRef =>
+  TfRef<List<String>> get targetGroupArns =>
       TfRef.attribute<List<String>>(this, 'target_group_arns');
 
   /// Reference to `termination_policies` attribute.
-  TfRef<List<String>> get terminationPoliciesRef =>
+  TfRef<List<String>> get terminationPolicies =>
       TfRef.attribute<List<String>>(this, 'termination_policies');
 
   /// Reference to `vpc_zone_identifier` attribute.
-  TfRef<List<String>> get vpcZoneIdentifierRef =>
+  TfRef<List<String>> get vpcZoneIdentifier =>
       TfRef.attribute<List<String>>(this, 'vpc_zone_identifier');
 
   /// Reference to `wait_for_capacity_timeout` attribute.
-  TfRef<String> get waitForCapacityTimeoutRef =>
+  TfRef<String> get waitForCapacityTimeout =>
       TfRef.attribute<String>(this, 'wait_for_capacity_timeout');
 
   /// Reference to `wait_for_elb_capacity` attribute.
-  TfRef<num> get waitForElbCapacityRef =>
+  TfRef<num> get waitForElbCapacity =>
       TfRef.attribute<num>(this, 'wait_for_elb_capacity');
 }

@@ -152,7 +152,7 @@ final class AwsAppstreamFleet extends Resource {
   RefTo<AwsAppstreamFleet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -168,58 +168,55 @@ final class AwsAppstreamFleet extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disconnect_timeout_in_seconds` attribute.
-  TfRef<num> get disconnectTimeoutInSecondsRef =>
+  TfRef<num> get disconnectTimeoutInSeconds =>
       TfRef.attribute<num>(this, 'disconnect_timeout_in_seconds');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_default_internet_access` attribute.
-  TfRef<bool> get enableDefaultInternetAccessRef =>
+  TfRef<bool> get enableDefaultInternetAccess =>
       TfRef.attribute<bool>(this, 'enable_default_internet_access');
 
   /// Reference to `fleet_type` attribute.
-  TfRef<String> get fleetTypeRef => TfRef.attribute<String>(this, 'fleet_type');
+  TfRef<String> get fleetType => TfRef.attribute<String>(this, 'fleet_type');
 
   /// Reference to `iam_role_arn` attribute.
-  TfRef<String> get iamRoleArnRef =>
-      TfRef.attribute<String>(this, 'iam_role_arn');
+  TfRef<String> get iamRoleArn => TfRef.attribute<String>(this, 'iam_role_arn');
 
   /// Reference to `idle_disconnect_timeout_in_seconds` attribute.
-  TfRef<num> get idleDisconnectTimeoutInSecondsRef =>
+  TfRef<num> get idleDisconnectTimeoutInSeconds =>
       TfRef.attribute<num>(this, 'idle_disconnect_timeout_in_seconds');
 
   /// Reference to `image_arn` attribute.
-  TfRef<String> get imageArnRef => TfRef.attribute<String>(this, 'image_arn');
+  TfRef<String> get imageArn => TfRef.attribute<String>(this, 'image_arn');
 
   /// Reference to `image_name` attribute.
-  TfRef<String> get imageNameRef => TfRef.attribute<String>(this, 'image_name');
+  TfRef<String> get imageName => TfRef.attribute<String>(this, 'image_name');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `max_sessions_per_instance` attribute.
-  TfRef<num> get maxSessionsPerInstanceRef =>
+  TfRef<num> get maxSessionsPerInstance =>
       TfRef.attribute<num>(this, 'max_sessions_per_instance');
 
   /// Reference to `max_user_duration_in_seconds` attribute.
-  TfRef<num> get maxUserDurationInSecondsRef =>
+  TfRef<num> get maxUserDurationInSeconds =>
       TfRef.attribute<num>(this, 'max_user_duration_in_seconds');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `stream_view` attribute.
-  TfRef<String> get streamViewRef =>
-      TfRef.attribute<String>(this, 'stream_view');
+  TfRef<String> get streamView => TfRef.attribute<String>(this, 'stream_view');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

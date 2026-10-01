@@ -36,7 +36,7 @@ final class DataAwsApiGatewayAuthorizer extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -72,13 +72,12 @@ final class DataAwsApiGatewayAuthorizer extends Data {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `authorizer_id` attribute.
-  TfRef<String> get authorizerIdRef =>
+  TfRef<String> get authorizerId =>
       TfRef.attribute<String>(this, 'authorizer_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 }

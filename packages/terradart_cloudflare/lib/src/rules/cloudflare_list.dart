@@ -209,10 +209,10 @@ final class CloudflareList extends Resource {
   RefTo<CloudflareList> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -231,9 +231,8 @@ final class CloudflareList extends Resource {
       TfRef.attribute<num>(this, 'num_referencing_filters');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 }

@@ -89,7 +89,7 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
   RefTo<GoogleSaasRuntimeRolloutKind> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -116,39 +116,38 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `rollout_kind_id` attribute.
-  TfRef<String> get rolloutKindIdRef =>
+  TfRef<String> get rolloutKindId =>
       TfRef.attribute<String>(this, 'rollout_kind_id');
 
   /// Reference to `rollout_orchestration_strategy` attribute.
-  TfRef<String> get rolloutOrchestrationStrategyRef =>
+  TfRef<String> get rolloutOrchestrationStrategy =>
       TfRef.attribute<String>(this, 'rollout_orchestration_strategy');
 
   /// Reference to `unit_filter` attribute.
-  TfRef<String> get unitFilterRef =>
-      TfRef.attribute<String>(this, 'unit_filter');
+  TfRef<String> get unitFilter => TfRef.attribute<String>(this, 'unit_filter');
 
   /// Reference to `unit_kind` attribute.
-  TfRef<String> get unitKindRef => TfRef.attribute<String>(this, 'unit_kind');
+  TfRef<String> get unitKind => TfRef.attribute<String>(this, 'unit_kind');
 
   /// Reference to `update_unit_kind_strategy` attribute.
-  TfRef<String> get updateUnitKindStrategyRef =>
+  TfRef<String> get updateUnitKindStrategy =>
       TfRef.attribute<String>(this, 'update_unit_kind_strategy');
 }

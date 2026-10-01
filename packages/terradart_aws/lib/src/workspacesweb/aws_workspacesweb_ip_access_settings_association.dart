@@ -39,12 +39,12 @@ final class AwsWorkspaceswebIpAccessSettingsAssociation extends Resource {
   RefTo<AwsWorkspaceswebIpAccessSettingsAssociation> get ref => RefTo.of(this);
 
   /// Reference to `ip_access_settings_arn` attribute.
-  TfRef<String> get ipAccessSettingsArnRef =>
+  TfRef<String> get ipAccessSettingsArn =>
       TfRef.attribute<String>(this, 'ip_access_settings_arn');
 
   /// Reference to `portal_arn` attribute.
-  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+  TfRef<String> get portalArn => TfRef.attribute<String>(this, 'portal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -74,7 +74,7 @@ final class AppwriteFunction extends Resource {
   RefTo<AppwriteFunction> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -90,71 +90,70 @@ final class AppwriteFunction extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `build_specification` attribute.
-  TfRef<String> get buildSpecificationRef =>
+  TfRef<String> get buildSpecification =>
       TfRef.attribute<String>(this, 'build_specification');
 
   /// Reference to `commands` attribute.
-  TfRef<String> get commandsRef => TfRef.attribute<String>(this, 'commands');
+  TfRef<String> get commands => TfRef.attribute<String>(this, 'commands');
 
   /// Reference to `deployment_retention` attribute.
-  TfRef<num> get deploymentRetentionRef =>
+  TfRef<num> get deploymentRetention =>
       TfRef.attribute<num>(this, 'deployment_retention');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `entrypoint` attribute.
-  TfRef<String> get entrypointRef =>
-      TfRef.attribute<String>(this, 'entrypoint');
+  TfRef<String> get entrypoint => TfRef.attribute<String>(this, 'entrypoint');
 
   /// Reference to `events` attribute.
-  TfRef<List<String>> get eventsRef =>
+  TfRef<List<String>> get events =>
       TfRef.attribute<List<String>>(this, 'events');
 
   /// Reference to `execute` attribute.
-  TfRef<List<String>> get executeRef =>
+  TfRef<List<String>> get execute =>
       TfRef.attribute<List<String>>(this, 'execute');
 
   /// Reference to `installation_id` attribute.
-  TfRef<String> get installationIdRef =>
+  TfRef<String> get installationId =>
       TfRef.attribute<String>(this, 'installation_id');
 
   /// Reference to `logging` attribute.
-  TfRef<bool> get loggingRef => TfRef.attribute<bool>(this, 'logging');
+  TfRef<bool> get logging => TfRef.attribute<bool>(this, 'logging');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `provider_branch` attribute.
-  TfRef<String> get providerBranchRef =>
+  TfRef<String> get providerBranch =>
       TfRef.attribute<String>(this, 'provider_branch');
 
   /// Reference to `provider_repository_id` attribute.
-  TfRef<String> get providerRepositoryIdRef =>
+  TfRef<String> get providerRepositoryId =>
       TfRef.attribute<String>(this, 'provider_repository_id');
 
   /// Reference to `provider_root_directory` attribute.
-  TfRef<String> get providerRootDirectoryRef =>
+  TfRef<String> get providerRootDirectory =>
       TfRef.attribute<String>(this, 'provider_root_directory');
 
   /// Reference to `provider_silent_mode` attribute.
-  TfRef<bool> get providerSilentModeRef =>
+  TfRef<bool> get providerSilentMode =>
       TfRef.attribute<bool>(this, 'provider_silent_mode');
 
   /// Reference to `runtime` attribute.
-  TfRef<String> get runtimeRef => TfRef.attribute<String>(this, 'runtime');
+  TfRef<String> get runtime => TfRef.attribute<String>(this, 'runtime');
 
   /// Reference to `runtime_specification` attribute.
-  TfRef<String> get runtimeSpecificationRef =>
+  TfRef<String> get runtimeSpecification =>
       TfRef.attribute<String>(this, 'runtime_specification');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `scopes` attribute.
-  TfRef<List<String>> get scopesRef =>
+  TfRef<List<String>> get scopes =>
       TfRef.attribute<List<String>>(this, 'scopes');
 
   /// Reference to `timeout` attribute.
-  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+  TfRef<num> get timeout => TfRef.attribute<num>(this, 'timeout');
 }

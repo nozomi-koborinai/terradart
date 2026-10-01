@@ -59,10 +59,10 @@ final class AwsNotificationsManagedNotificationAccountContactAssociation
       RefTo.of(this);
 
   /// Reference to `contact_identifier` attribute.
-  TfRef<String> get contactIdentifierRef =>
+  TfRef<String> get contactIdentifier =>
       TfRef.attribute<String>(this, 'contact_identifier');
 
   /// Reference to `managed_notification_configuration_arn` attribute.
-  TfRef<String> get managedNotificationConfigurationArnRef =>
+  TfRef<String> get managedNotificationConfigurationArn =>
       TfRef.attribute<String>(this, 'managed_notification_configuration_arn');
 }

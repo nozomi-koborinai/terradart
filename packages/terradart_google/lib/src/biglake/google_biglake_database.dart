@@ -61,7 +61,7 @@ final class GoogleBiglakeDatabase extends Resource {
   RefTo<GoogleBiglakeDatabase> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -79,12 +79,12 @@ final class GoogleBiglakeDatabase extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `catalog` attribute.
-  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

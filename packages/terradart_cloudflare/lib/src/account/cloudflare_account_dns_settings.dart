@@ -177,9 +177,9 @@ final class CloudflareAccountDnsSettings extends Resource {
   RefTo<CloudflareAccountDnsSettings> get ref => RefTo.of(this);
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `enforce_dns_only` attribute.
-  TfRef<bool> get enforceDnsOnlyRef =>
+  TfRef<bool> get enforceDnsOnly =>
       TfRef.attribute<bool>(this, 'enforce_dns_only');
 }

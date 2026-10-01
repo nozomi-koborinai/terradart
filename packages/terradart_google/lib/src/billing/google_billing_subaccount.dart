@@ -43,7 +43,7 @@ final class GoogleBillingSubaccount extends Resource {
   RefTo<GoogleBillingSubaccount> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -56,14 +56,14 @@ final class GoogleBillingSubaccount extends Resource {
   TfRef<bool> get open => TfRef.attribute<bool>(this, 'open');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `master_billing_account` attribute.
-  TfRef<String> get masterBillingAccountRef =>
+  TfRef<String> get masterBillingAccount =>
       TfRef.attribute<String>(this, 'master_billing_account');
 }

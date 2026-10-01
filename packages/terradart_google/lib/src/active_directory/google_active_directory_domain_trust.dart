@@ -83,35 +83,35 @@ final class GoogleActiveDirectoryDomainTrust extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `selective_authentication` attribute.
-  TfRef<bool> get selectiveAuthenticationRef =>
+  TfRef<bool> get selectiveAuthentication =>
       TfRef.attribute<bool>(this, 'selective_authentication');
 
   /// Reference to `target_dns_ip_addresses` attribute.
-  TfRef<List<String>> get targetDnsIpAddressesRef =>
+  TfRef<List<String>> get targetDnsIpAddresses =>
       TfRef.attribute<List<String>>(this, 'target_dns_ip_addresses');
 
   /// Reference to `target_domain_name` attribute.
-  TfRef<String> get targetDomainNameRef =>
+  TfRef<String> get targetDomainName =>
       TfRef.attribute<String>(this, 'target_domain_name');
 
   /// Reference to `trust_direction` attribute.
-  TfRef<String> get trustDirectionRef =>
+  TfRef<String> get trustDirection =>
       TfRef.attribute<String>(this, 'trust_direction');
 
   /// Reference to `trust_handshake_secret` attribute.
-  TfRef<String> get trustHandshakeSecretRef =>
+  TfRef<String> get trustHandshakeSecret =>
       TfRef.attribute<String>(this, 'trust_handshake_secret');
 
   /// Reference to `trust_type` attribute.
-  TfRef<String> get trustTypeRef => TfRef.attribute<String>(this, 'trust_type');
+  TfRef<String> get trustType => TfRef.attribute<String>(this, 'trust_type');
 }

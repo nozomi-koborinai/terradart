@@ -105,8 +105,8 @@ final class DataCloudflarePageShieldScripts extends Data {
       TfRef.attribute<bool>(this, 'url_reported_malicious');
 
   /// Reference to `script_id` attribute.
-  TfRef<String> get scriptIdRef => TfRef.attribute<String>(this, 'script_id');
+  TfRef<String> get scriptId => TfRef.attribute<String>(this, 'script_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

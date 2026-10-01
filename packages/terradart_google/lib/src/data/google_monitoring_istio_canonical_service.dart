@@ -36,7 +36,7 @@ final class DataGoogleMonitoringIstioCanonicalService extends Data {
       _googleMonitoringIstioCanonicalServiceSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -61,16 +61,16 @@ final class DataGoogleMonitoringIstioCanonicalService extends Data {
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
 
   /// Reference to `canonical_service` attribute.
-  TfRef<String> get canonicalServiceRef =>
+  TfRef<String> get canonicalService =>
       TfRef.attribute<String>(this, 'canonical_service');
 
   /// Reference to `canonical_service_namespace` attribute.
-  TfRef<String> get canonicalServiceNamespaceRef =>
+  TfRef<String> get canonicalServiceNamespace =>
       TfRef.attribute<String>(this, 'canonical_service_namespace');
 
   /// Reference to `mesh_uid` attribute.
-  TfRef<String> get meshUidRef => TfRef.attribute<String>(this, 'mesh_uid');
+  TfRef<String> get meshUid => TfRef.attribute<String>(this, 'mesh_uid');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

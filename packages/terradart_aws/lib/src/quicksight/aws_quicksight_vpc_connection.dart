@@ -52,7 +52,7 @@ final class AwsQuicksightVpcConnection extends Resource {
   RefTo<AwsQuicksightVpcConnection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -69,32 +69,32 @@ final class AwsQuicksightVpcConnection extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `dns_resolvers` attribute.
-  TfRef<List<String>> get dnsResolversRef =>
+  TfRef<List<String>> get dnsResolvers =>
       TfRef.attribute<List<String>>(this, 'dns_resolvers');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_connection_id` attribute.
-  TfRef<String> get vpcConnectionIdRef =>
+  TfRef<String> get vpcConnectionId =>
       TfRef.attribute<String>(this, 'vpc_connection_id');
 }

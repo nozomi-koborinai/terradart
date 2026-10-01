@@ -69,7 +69,7 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
   RefTo<GoogleOrgPolicyCustomConstraint> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,32 +78,30 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `action_type` attribute.
-  TfRef<String> get actionTypeRef =>
-      TfRef.attribute<String>(this, 'action_type');
+  TfRef<String> get actionType => TfRef.attribute<String>(this, 'action_type');
 
   /// Reference to `condition` attribute.
-  TfRef<String> get conditionRef => TfRef.attribute<String>(this, 'condition');
+  TfRef<String> get condition => TfRef.attribute<String>(this, 'condition');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `method_types` attribute.
-  TfRef<List<String>> get methodTypesRef =>
+  TfRef<List<String>> get methodTypes =>
       TfRef.attribute<List<String>>(this, 'method_types');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `resource_types` attribute.
-  TfRef<List<String>> get resourceTypesRef =>
+  TfRef<List<String>> get resourceTypes =>
       TfRef.attribute<List<String>>(this, 'resource_types');
 }

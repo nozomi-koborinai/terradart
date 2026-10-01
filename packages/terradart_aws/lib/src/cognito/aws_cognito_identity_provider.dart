@@ -61,29 +61,28 @@ final class AwsCognitoIdentityProvider extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `attribute_mapping` attribute.
-  TfRef<Map<String, String>> get attributeMappingRef =>
+  TfRef<Map<String, String>> get attributeMapping =>
       TfRef.attribute<Map<String, String>>(this, 'attribute_mapping');
 
   /// Reference to `idp_identifiers` attribute.
-  TfRef<List<String>> get idpIdentifiersRef =>
+  TfRef<List<String>> get idpIdentifiers =>
       TfRef.attribute<List<String>>(this, 'idp_identifiers');
 
   /// Reference to `provider_details` attribute.
-  TfRef<Map<String, String>> get providerDetailsRef =>
+  TfRef<Map<String, String>> get providerDetails =>
       TfRef.attribute<Map<String, String>>(this, 'provider_details');
 
   /// Reference to `provider_name` attribute.
-  TfRef<String> get providerNameRef =>
+  TfRef<String> get providerName =>
       TfRef.attribute<String>(this, 'provider_name');
 
   /// Reference to `provider_type` attribute.
-  TfRef<String> get providerTypeRef =>
+  TfRef<String> get providerType =>
       TfRef.attribute<String>(this, 'provider_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_pool_id` attribute.
-  TfRef<String> get userPoolIdRef =>
-      TfRef.attribute<String>(this, 'user_pool_id');
+  TfRef<String> get userPoolId => TfRef.attribute<String>(this, 'user_pool_id');
 }

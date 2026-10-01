@@ -98,7 +98,7 @@ final class GoogleKmsKeyRingImportJob extends Resource {
   RefTo<GoogleKmsKeyRingImportJob> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -118,21 +118,21 @@ final class GoogleKmsKeyRingImportJob extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `import_job_id` attribute.
-  TfRef<String> get importJobIdRef =>
+  TfRef<String> get importJobId =>
       TfRef.attribute<String>(this, 'import_job_id');
 
   /// Reference to `import_method` attribute.
-  TfRef<String> get importMethodRef =>
+  TfRef<String> get importMethod =>
       TfRef.attribute<String>(this, 'import_method');
 
   /// Reference to `key_ring` attribute.
-  TfRef<String> get keyRingRef => TfRef.attribute<String>(this, 'key_ring');
+  TfRef<String> get keyRing => TfRef.attribute<String>(this, 'key_ring');
 
   /// Reference to `protection_level` attribute.
-  TfRef<String> get protectionLevelRef =>
+  TfRef<String> get protectionLevel =>
       TfRef.attribute<String>(this, 'protection_level');
 }

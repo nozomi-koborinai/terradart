@@ -30,5 +30,5 @@ final class DataAppwriteMysqlSpecifications extends Data {
   Set<String> get sensitiveFields => _appwriteMysqlSpecificationsSensitive;
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 }

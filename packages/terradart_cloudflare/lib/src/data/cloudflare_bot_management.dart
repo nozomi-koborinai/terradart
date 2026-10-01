@@ -121,5 +121,5 @@ final class DataCloudflareBotManagement extends Data {
       TfRef.attribute<bool>(this, 'using_latest_model');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

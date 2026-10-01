@@ -61,24 +61,23 @@ final class DataCloudflareZones extends Data {
   Set<String> get sensitiveFields => _cloudflareZonesSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `match` attribute.
-  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+  TfRef<String> get match => TfRef.attribute<String>(this, 'match');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `type` attribute.
-  TfRef<List<String>> get typeRef =>
-      TfRef.attribute<List<String>>(this, 'type');
+  TfRef<List<String>> get type => TfRef.attribute<List<String>>(this, 'type');
 }

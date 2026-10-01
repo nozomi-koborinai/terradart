@@ -46,14 +46,14 @@ final class DataGoogleStorageControlProjectIntelligenceFindingRevisions
       TfRef.attribute<List<Map<String, Object?>>>(this, 'revisions');
 
   /// Reference to `finding_id` attribute.
-  TfRef<String> get findingIdRef => TfRef.attribute<String>(this, 'finding_id');
+  TfRef<String> get findingId => TfRef.attribute<String>(this, 'finding_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `page_size` attribute.
-  TfRef<num> get pageSizeRef => TfRef.attribute<num>(this, 'page_size');
+  TfRef<num> get pageSize => TfRef.attribute<num>(this, 'page_size');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

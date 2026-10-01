@@ -48,19 +48,19 @@ final class AwsIotRoleAlias extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `alias` attribute.
-  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+  TfRef<String> get alias => TfRef.attribute<String>(this, 'alias');
 
   /// Reference to `credential_duration` attribute.
-  TfRef<num> get credentialDurationRef =>
+  TfRef<num> get credentialDuration =>
       TfRef.attribute<num>(this, 'credential_duration');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

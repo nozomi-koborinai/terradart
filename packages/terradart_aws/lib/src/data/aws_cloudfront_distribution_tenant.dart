@@ -32,7 +32,7 @@ final class DataAwsCloudfrontDistributionTenant extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,8 +78,8 @@ final class DataAwsCloudfrontDistributionTenant extends Data {
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 }

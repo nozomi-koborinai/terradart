@@ -50,7 +50,7 @@ final class CloudflareZeroTrustDlpDataset extends Resource {
   RefTo<CloudflareZeroTrustDlpDataset> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -74,23 +74,22 @@ final class CloudflareZeroTrustDlpDataset extends Resource {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `case_sensitive` attribute.
-  TfRef<bool> get caseSensitiveRef =>
+  TfRef<bool> get caseSensitive =>
       TfRef.attribute<bool>(this, 'case_sensitive');
 
   /// Reference to `dataset_id` attribute.
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `encoding_version` attribute.
-  TfRef<num> get encodingVersionRef =>
+  TfRef<num> get encodingVersion =>
       TfRef.attribute<num>(this, 'encoding_version');
 
   /// Reference to `secret` attribute.
-  TfRef<bool> get secretRef => TfRef.attribute<bool>(this, 'secret');
+  TfRef<bool> get secret => TfRef.attribute<bool>(this, 'secret');
 }

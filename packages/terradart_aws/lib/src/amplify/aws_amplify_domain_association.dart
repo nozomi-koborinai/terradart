@@ -106,20 +106,19 @@ final class AwsAmplifyDomainAssociation extends Resource {
       TfRef.attribute<String>(this, 'certificate_verification_dns_record');
 
   /// Reference to `app_id` attribute.
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `enable_auto_sub_domain` attribute.
-  TfRef<bool> get enableAutoSubDomainRef =>
+  TfRef<bool> get enableAutoSubDomain =>
       TfRef.attribute<bool>(this, 'enable_auto_sub_domain');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `wait_for_verification` attribute.
-  TfRef<bool> get waitForVerificationRef =>
+  TfRef<bool> get waitForVerification =>
       TfRef.attribute<bool>(this, 'wait_for_verification');
 }

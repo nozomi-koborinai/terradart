@@ -107,18 +107,17 @@ final class AwsOrganizationsOrganization extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'roots');
 
   /// Reference to `aws_service_access_principals` attribute.
-  TfRef<List<String>> get awsServiceAccessPrincipalsRef =>
+  TfRef<List<String>> get awsServiceAccessPrincipals =>
       TfRef.attribute<List<String>>(this, 'aws_service_access_principals');
 
   /// Reference to `enabled_policy_types` attribute.
-  TfRef<List<String>> get enabledPolicyTypesRef =>
+  TfRef<List<String>> get enabledPolicyTypes =>
       TfRef.attribute<List<String>>(this, 'enabled_policy_types');
 
   /// Reference to `feature_set` attribute.
-  TfRef<String> get featureSetRef =>
-      TfRef.attribute<String>(this, 'feature_set');
+  TfRef<String> get featureSet => TfRef.attribute<String>(this, 'feature_set');
 
   /// Reference to `return_organization_only` attribute.
-  TfRef<bool> get returnOrganizationOnlyRef =>
+  TfRef<bool> get returnOrganizationOnly =>
       TfRef.attribute<bool>(this, 'return_organization_only');
 }

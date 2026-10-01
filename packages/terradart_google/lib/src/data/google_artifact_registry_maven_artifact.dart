@@ -40,7 +40,7 @@ final class DataGoogleArtifactRegistryMavenArtifact extends Data {
       _googleArtifactRegistryMavenArtifactSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -58,19 +58,18 @@ final class DataGoogleArtifactRegistryMavenArtifact extends Data {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `artifact_id` attribute.
-  TfRef<String> get artifactIdRef =>
-      TfRef.attribute<String>(this, 'artifact_id');
+  TfRef<String> get artifactId => TfRef.attribute<String>(this, 'artifact_id');
 
   /// Reference to `group_id` attribute.
-  TfRef<String> get groupIdRef => TfRef.attribute<String>(this, 'group_id');
+  TfRef<String> get groupId => TfRef.attribute<String>(this, 'group_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_id` attribute.
-  TfRef<String> get repositoryIdRef =>
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 }

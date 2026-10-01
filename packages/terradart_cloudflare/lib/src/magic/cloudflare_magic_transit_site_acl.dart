@@ -132,30 +132,29 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
   RefTo<CloudflareMagicTransitSiteAcl> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `forward_locally` attribute.
-  TfRef<bool> get forwardLocallyRef =>
+  TfRef<bool> get forwardLocally =>
       TfRef.attribute<bool>(this, 'forward_locally');
 
   /// Reference to `protocols` attribute.
-  TfRef<List<String>> get protocolsRef =>
+  TfRef<List<String>> get protocols =>
       TfRef.attribute<List<String>>(this, 'protocols');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 
   /// Reference to `unidirectional` attribute.
-  TfRef<bool> get unidirectionalRef =>
+  TfRef<bool> get unidirectional =>
       TfRef.attribute<bool>(this, 'unidirectional');
 }

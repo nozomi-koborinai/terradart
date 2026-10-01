@@ -158,7 +158,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
   RefTo<CloudflareZeroTrustAccessAiControlsMcpPortal> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -176,23 +176,22 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `allow_code_mode` attribute.
-  TfRef<bool> get allowCodeModeRef =>
+  TfRef<bool> get allowCodeMode =>
       TfRef.attribute<bool>(this, 'allow_code_mode');
 
   /// Reference to `code_mode` attribute.
-  TfRef<String> get codeModeRef => TfRef.attribute<String>(this, 'code_mode');
+  TfRef<String> get codeMode => TfRef.attribute<String>(this, 'code_mode');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `hostname` attribute.
-  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `secure_web_gateway` attribute.
-  TfRef<bool> get secureWebGatewayRef =>
+  TfRef<bool> get secureWebGateway =>
       TfRef.attribute<bool>(this, 'secure_web_gateway');
 }

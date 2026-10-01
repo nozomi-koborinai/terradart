@@ -34,15 +34,15 @@ final class AwsConfigRetentionConfiguration extends Resource {
   RefTo<AwsConfigRetentionConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention_period_in_days` attribute.
-  TfRef<num> get retentionPeriodInDaysRef =>
+  TfRef<num> get retentionPeriodInDays =>
       TfRef.attribute<num>(this, 'retention_period_in_days');
 }

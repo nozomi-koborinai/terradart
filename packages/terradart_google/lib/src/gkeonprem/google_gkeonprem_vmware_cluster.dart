@@ -714,8 +714,12 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
   /// `RefTo<GoogleGkeonpremVmwareCluster>`.
   RefTo<GoogleGkeonpremVmwareCluster> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `local_name` attribute.
-  TfRef<String> get localNameRef => TfRef.attribute<String>(this, 'local_name');
+  TfRef<String> get localNameAttr =>
+      TfRef.attribute<String>(this, 'local_name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -761,54 +765,47 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validation_check');
 
   /// Reference to `admin_cluster_membership` attribute.
-  TfRef<String> get adminClusterMembershipRef =>
+  TfRef<String> get adminClusterMembership =>
       TfRef.attribute<String>(this, 'admin_cluster_membership');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_bundled_ingress` attribute.
-  TfRef<bool> get disableBundledIngressRef =>
+  TfRef<bool> get disableBundledIngress =>
       TfRef.attribute<bool>(this, 'disable_bundled_ingress');
 
   /// Reference to `enable_advanced_cluster` attribute.
-  TfRef<bool> get enableAdvancedClusterRef =>
+  TfRef<bool> get enableAdvancedCluster =>
       TfRef.attribute<bool>(this, 'enable_advanced_cluster');
 
   /// Reference to `enable_control_plane_v2` attribute.
-  TfRef<bool> get enableControlPlaneV2Ref =>
+  TfRef<bool> get enableControlPlaneV2 =>
       TfRef.attribute<bool>(this, 'enable_control_plane_v2');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `on_prem_version` attribute.
-  TfRef<String> get onPremVersionRef =>
+  TfRef<String> get onPremVersion =>
       TfRef.attribute<String>(this, 'on_prem_version');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `skip_validations` attribute.
-  TfRef<List<String>> get skipValidationsRef =>
+  TfRef<List<String>> get skipValidations =>
       TfRef.attribute<List<String>>(this, 'skip_validations');
 
   /// Reference to `vm_tracking_enabled` attribute.
-  TfRef<bool> get vmTrackingEnabledRef =>
+  TfRef<bool> get vmTrackingEnabled =>
       TfRef.attribute<bool>(this, 'vm_tracking_enabled');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

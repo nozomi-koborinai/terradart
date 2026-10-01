@@ -53,21 +53,20 @@ final class AwsEc2ClientVpnRoute extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `client_vpn_endpoint_id` attribute.
-  TfRef<String> get clientVpnEndpointIdRef =>
+  TfRef<String> get clientVpnEndpointId =>
       TfRef.attribute<String>(this, 'client_vpn_endpoint_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination_cidr_block` attribute.
-  TfRef<String> get destinationCidrBlockRef =>
+  TfRef<String> get destinationCidrBlock =>
       TfRef.attribute<String>(this, 'destination_cidr_block');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_vpc_subnet_id` attribute.
-  TfRef<String> get targetVpcSubnetIdRef =>
+  TfRef<String> get targetVpcSubnetId =>
       TfRef.attribute<String>(this, 'target_vpc_subnet_id');
 }

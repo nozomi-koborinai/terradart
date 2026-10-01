@@ -162,6 +162,9 @@ final class GoogleComputeNodeGroup extends Resource {
   /// `RefTo<GoogleComputeNodeGroup>`.
   RefTo<GoogleComputeNodeGroup> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -176,33 +179,26 @@ final class GoogleComputeNodeGroup extends Resource {
   TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `initial_size` attribute.
-  TfRef<num> get initialSizeRef => TfRef.attribute<num>(this, 'initial_size');
+  TfRef<num> get initialSize => TfRef.attribute<num>(this, 'initial_size');
 
   /// Reference to `maintenance_policy` attribute.
-  TfRef<String> get maintenancePolicyRef =>
+  TfRef<String> get maintenancePolicy =>
       TfRef.attribute<String>(this, 'maintenance_policy');
 
   /// Reference to `node_template` attribute.
-  TfRef<String> get nodeTemplateRef =>
+  TfRef<String> get nodeTemplate =>
       TfRef.attribute<String>(this, 'node_template');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

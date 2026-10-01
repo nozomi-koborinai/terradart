@@ -40,8 +40,8 @@ final class DataCloudflareApiShield extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `normalize` attribute.
-  TfRef<bool> get normalizeRef => TfRef.attribute<bool>(this, 'normalize');
+  TfRef<bool> get normalize => TfRef.attribute<bool>(this, 'normalize');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

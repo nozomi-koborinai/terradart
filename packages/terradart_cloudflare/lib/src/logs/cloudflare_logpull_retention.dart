@@ -40,8 +40,8 @@ final class CloudflareLogpullRetention extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `flag` attribute.
-  TfRef<bool> get flagRef => TfRef.attribute<bool>(this, 'flag');
+  TfRef<bool> get flag => TfRef.attribute<bool>(this, 'flag');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

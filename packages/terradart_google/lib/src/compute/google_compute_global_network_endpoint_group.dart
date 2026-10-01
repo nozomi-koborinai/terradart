@@ -109,7 +109,7 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   RefTo<GoogleComputeGlobalNetworkEndpointGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -118,20 +118,19 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `default_port` attribute.
-  TfRef<num> get defaultPortRef => TfRef.attribute<num>(this, 'default_port');
+  TfRef<num> get defaultPort => TfRef.attribute<num>(this, 'default_port');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `network_endpoint_type` attribute.
-  TfRef<String> get networkEndpointTypeRef =>
+  TfRef<String> get networkEndpointType =>
       TfRef.attribute<String>(this, 'network_endpoint_type');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

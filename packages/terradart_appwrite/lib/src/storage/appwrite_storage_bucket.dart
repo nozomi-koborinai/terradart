@@ -66,7 +66,7 @@ final class AppwriteStorageBucket extends Resource {
   RefTo<AppwriteStorageBucket> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,38 +78,36 @@ final class AppwriteStorageBucket extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `allowed_file_extensions` attribute.
-  TfRef<List<String>> get allowedFileExtensionsRef =>
+  TfRef<List<String>> get allowedFileExtensions =>
       TfRef.attribute<List<String>>(this, 'allowed_file_extensions');
 
   /// Reference to `antivirus` attribute.
-  TfRef<bool> get antivirusRef => TfRef.attribute<bool>(this, 'antivirus');
+  TfRef<bool> get antivirus => TfRef.attribute<bool>(this, 'antivirus');
 
   /// Reference to `compression` attribute.
-  TfRef<String> get compressionRef =>
-      TfRef.attribute<String>(this, 'compression');
+  TfRef<String> get compression => TfRef.attribute<String>(this, 'compression');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `encryption` attribute.
-  TfRef<bool> get encryptionRef => TfRef.attribute<bool>(this, 'encryption');
+  TfRef<bool> get encryption => TfRef.attribute<bool>(this, 'encryption');
 
   /// Reference to `file_security` attribute.
-  TfRef<bool> get fileSecurityRef =>
-      TfRef.attribute<bool>(this, 'file_security');
+  TfRef<bool> get fileSecurity => TfRef.attribute<bool>(this, 'file_security');
 
   /// Reference to `maximum_file_size` attribute.
-  TfRef<num> get maximumFileSizeRef =>
+  TfRef<num> get maximumFileSize =>
       TfRef.attribute<num>(this, 'maximum_file_size');
 
   /// Reference to `permissions` attribute.
-  TfRef<List<String>> get permissionsRef =>
+  TfRef<List<String>> get permissions =>
       TfRef.attribute<List<String>>(this, 'permissions');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `transformations` attribute.
-  TfRef<bool> get transformationsRef =>
+  TfRef<bool> get transformations =>
       TfRef.attribute<bool>(this, 'transformations');
 }

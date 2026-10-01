@@ -36,5 +36,5 @@ final class DataCloudflareIpRanges extends Data {
       TfRef.attribute<List<String>>(this, 'jdcloud_cidrs');
 
   /// Reference to `networks` attribute.
-  TfRef<String> get networksRef => TfRef.attribute<String>(this, 'networks');
+  TfRef<String> get networks => TfRef.attribute<String>(this, 'networks');
 }

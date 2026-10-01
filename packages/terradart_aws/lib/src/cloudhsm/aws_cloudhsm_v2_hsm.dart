@@ -119,18 +119,18 @@ final class AwsCloudhsmV2Hsm extends Resource {
   TfRef<String> get hsmState => TfRef.attribute<String>(this, 'hsm_state');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `cluster_id` attribute.
-  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+  TfRef<String> get clusterId => TfRef.attribute<String>(this, 'cluster_id');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 }

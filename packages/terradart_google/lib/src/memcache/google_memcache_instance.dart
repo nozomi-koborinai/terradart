@@ -168,7 +168,7 @@ final class GoogleMemcacheInstance extends Resource {
   RefTo<GoogleMemcacheInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -201,43 +201,42 @@ final class GoogleMemcacheInstance extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `authorized_network` attribute.
-  TfRef<String> get authorizedNetworkRef =>
+  TfRef<String> get authorizedNetwork =>
       TfRef.attribute<String>(this, 'authorized_network');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `memcache_version` attribute.
-  TfRef<String> get memcacheVersionRef =>
+  TfRef<String> get memcacheVersion =>
       TfRef.attribute<String>(this, 'memcache_version');
 
   /// Reference to `node_count` attribute.
-  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+  TfRef<num> get nodeCount => TfRef.attribute<num>(this, 'node_count');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reserved_ip_range_id` attribute.
-  TfRef<List<String>> get reservedIpRangeIdRef =>
+  TfRef<List<String>> get reservedIpRangeId =>
       TfRef.attribute<List<String>>(this, 'reserved_ip_range_id');
 
   /// Reference to `zones` attribute.
-  TfRef<List<String>> get zonesRef =>
-      TfRef.attribute<List<String>>(this, 'zones');
+  TfRef<List<String>> get zones => TfRef.attribute<List<String>>(this, 'zones');
 }

@@ -1987,29 +1987,28 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
   RefTo<AwsKinesisFirehoseDeliveryStream> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `destination_id` attribute.
-  TfRef<String> get destinationIdRef =>
+  TfRef<String> get destinationId =>
       TfRef.attribute<String>(this, 'destination_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `version_id` attribute.
-  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
+  TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 }

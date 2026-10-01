@@ -114,20 +114,19 @@ final class AwsNetworkfirewallContainerAssociation extends Resource {
       TfRef.attribute<String>(this, 'update_token');
 
   /// Reference to `container_association_name` attribute.
-  TfRef<String> get containerAssociationNameRef =>
+  TfRef<String> get containerAssociationName =>
       TfRef.attribute<String>(this, 'container_association_name');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

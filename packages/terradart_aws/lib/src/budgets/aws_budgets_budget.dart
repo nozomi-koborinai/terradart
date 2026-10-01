@@ -898,7 +898,7 @@ final class AwsBudgetsBudget extends Resource {
   RefTo<AwsBudgetsBudget> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -907,43 +907,41 @@ final class AwsBudgetsBudget extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `billing_view_arn` attribute.
-  TfRef<String> get billingViewArnRef =>
+  TfRef<String> get billingViewArn =>
       TfRef.attribute<String>(this, 'billing_view_arn');
 
   /// Reference to `budget_type` attribute.
-  TfRef<String> get budgetTypeRef =>
-      TfRef.attribute<String>(this, 'budget_type');
+  TfRef<String> get budgetType => TfRef.attribute<String>(this, 'budget_type');
 
   /// Reference to `limit_amount` attribute.
-  TfRef<String> get limitAmountRef =>
+  TfRef<String> get limitAmount =>
       TfRef.attribute<String>(this, 'limit_amount');
 
   /// Reference to `limit_unit` attribute.
-  TfRef<String> get limitUnitRef => TfRef.attribute<String>(this, 'limit_unit');
+  TfRef<String> get limitUnit => TfRef.attribute<String>(this, 'limit_unit');
 
   /// Reference to `metrics` attribute.
-  TfRef<List<String>> get metricsRef =>
+  TfRef<List<String>> get metrics =>
       TfRef.attribute<List<String>>(this, 'metrics');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `time_period_end` attribute.
-  TfRef<String> get timePeriodEndRef =>
+  TfRef<String> get timePeriodEnd =>
       TfRef.attribute<String>(this, 'time_period_end');
 
   /// Reference to `time_period_start` attribute.
-  TfRef<String> get timePeriodStartRef =>
+  TfRef<String> get timePeriodStart =>
       TfRef.attribute<String>(this, 'time_period_start');
 
   /// Reference to `time_unit` attribute.
-  TfRef<String> get timeUnitRef => TfRef.attribute<String>(this, 'time_unit');
+  TfRef<String> get timeUnit => TfRef.attribute<String>(this, 'time_unit');
 }

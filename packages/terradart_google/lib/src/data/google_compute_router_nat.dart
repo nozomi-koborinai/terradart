@@ -41,7 +41,7 @@ final class DataGoogleComputeRouterNat extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -138,11 +138,11 @@ final class DataGoogleComputeRouterNat extends Data {
       TfRef.attribute<num>(this, 'udp_idle_timeout_sec');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `router` attribute.
-  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+  TfRef<String> get router => TfRef.attribute<String>(this, 'router');
 }

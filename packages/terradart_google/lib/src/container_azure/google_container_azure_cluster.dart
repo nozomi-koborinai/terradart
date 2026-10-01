@@ -301,6 +301,9 @@ final class GoogleContainerAzureCluster extends Resource {
   /// `RefTo<GoogleContainerAzureCluster>`.
   RefTo<GoogleContainerAzureCluster> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -337,37 +340,30 @@ final class GoogleContainerAzureCluster extends Resource {
       );
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `azure_region` attribute.
-  TfRef<String> get azureRegionRef =>
+  TfRef<String> get azureRegion =>
       TfRef.attribute<String>(this, 'azure_region');
 
   /// Reference to `client` attribute.
-  TfRef<String> get clientRef => TfRef.attribute<String>(this, 'client');
+  TfRef<String> get client => TfRef.attribute<String>(this, 'client');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `resource_group_id` attribute.
-  TfRef<String> get resourceGroupIdRef =>
+  TfRef<String> get resourceGroupId =>
       TfRef.attribute<String>(this, 'resource_group_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

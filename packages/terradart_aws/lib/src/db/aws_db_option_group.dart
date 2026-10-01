@@ -158,7 +158,7 @@ final class AwsDbOptionGroup extends Resource {
   RefTo<AwsDbOptionGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -167,28 +167,26 @@ final class AwsDbOptionGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `engine_name` attribute.
-  TfRef<String> get engineNameRef =>
-      TfRef.attribute<String>(this, 'engine_name');
+  TfRef<String> get engineName => TfRef.attribute<String>(this, 'engine_name');
 
   /// Reference to `major_engine_version` attribute.
-  TfRef<String> get majorEngineVersionRef =>
+  TfRef<String> get majorEngineVersion =>
       TfRef.attribute<String>(this, 'major_engine_version');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `option_group_description` attribute.
-  TfRef<String> get optionGroupDescriptionRef =>
+  TfRef<String> get optionGroupDescription =>
       TfRef.attribute<String>(this, 'option_group_description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

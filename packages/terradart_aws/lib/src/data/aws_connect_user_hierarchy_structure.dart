@@ -38,9 +38,8 @@ final class DataAwsConnectUserHierarchyStructure extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'hierarchy_structure');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

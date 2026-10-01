@@ -40,7 +40,7 @@ final class CloudflareEmailRoutingSettings extends Resource {
   RefTo<CloudflareEmailRoutingSettings> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -64,9 +64,9 @@ final class CloudflareEmailRoutingSettings extends Resource {
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
 
   /// Reference to `support_subaddress` attribute.
-  TfRef<bool> get supportSubaddressRef =>
+  TfRef<bool> get supportSubaddress =>
       TfRef.attribute<bool>(this, 'support_subaddress');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -179,84 +179,84 @@ final class AwsRoute53HealthCheck extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `child_health_threshold` attribute.
-  TfRef<num> get childHealthThresholdRef =>
+  TfRef<num> get childHealthThreshold =>
       TfRef.attribute<num>(this, 'child_health_threshold');
 
   /// Reference to `child_healthchecks` attribute.
-  TfRef<List<String>> get childHealthchecksRef =>
+  TfRef<List<String>> get childHealthchecks =>
       TfRef.attribute<List<String>>(this, 'child_healthchecks');
 
   /// Reference to `cloudwatch_alarm_name` attribute.
-  TfRef<String> get cloudwatchAlarmNameRef =>
+  TfRef<String> get cloudwatchAlarmName =>
       TfRef.attribute<String>(this, 'cloudwatch_alarm_name');
 
   /// Reference to `cloudwatch_alarm_region` attribute.
-  TfRef<String> get cloudwatchAlarmRegionRef =>
+  TfRef<String> get cloudwatchAlarmRegion =>
       TfRef.attribute<String>(this, 'cloudwatch_alarm_region');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `enable_sni` attribute.
-  TfRef<bool> get enableSniRef => TfRef.attribute<bool>(this, 'enable_sni');
+  TfRef<bool> get enableSni => TfRef.attribute<bool>(this, 'enable_sni');
 
   /// Reference to `failure_threshold` attribute.
-  TfRef<num> get failureThresholdRef =>
+  TfRef<num> get failureThreshold =>
       TfRef.attribute<num>(this, 'failure_threshold');
 
   /// Reference to `fqdn` attribute.
-  TfRef<String> get fqdnRef => TfRef.attribute<String>(this, 'fqdn');
+  TfRef<String> get fqdn => TfRef.attribute<String>(this, 'fqdn');
 
   /// Reference to `insufficient_data_health_status` attribute.
-  TfRef<String> get insufficientDataHealthStatusRef =>
+  TfRef<String> get insufficientDataHealthStatus =>
       TfRef.attribute<String>(this, 'insufficient_data_health_status');
 
   /// Reference to `invert_healthcheck` attribute.
-  TfRef<bool> get invertHealthcheckRef =>
+  TfRef<bool> get invertHealthcheck =>
       TfRef.attribute<bool>(this, 'invert_healthcheck');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `measure_latency` attribute.
-  TfRef<bool> get measureLatencyRef =>
+  TfRef<bool> get measureLatency =>
       TfRef.attribute<bool>(this, 'measure_latency');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `reference_name` attribute.
-  TfRef<String> get referenceNameRef =>
+  TfRef<String> get referenceName =>
       TfRef.attribute<String>(this, 'reference_name');
 
   /// Reference to `regions` attribute.
-  TfRef<List<String>> get regionsRef =>
+  TfRef<List<String>> get regions =>
       TfRef.attribute<List<String>>(this, 'regions');
 
   /// Reference to `request_interval` attribute.
-  TfRef<num> get requestIntervalRef =>
+  TfRef<num> get requestInterval =>
       TfRef.attribute<num>(this, 'request_interval');
 
   /// Reference to `resource_path` attribute.
-  TfRef<String> get resourcePathRef =>
+  TfRef<String> get resourcePath =>
       TfRef.attribute<String>(this, 'resource_path');
 
   /// Reference to `routing_control_arn` attribute.
-  TfRef<String> get routingControlArnRef =>
+  TfRef<String> get routingControlArn =>
       TfRef.attribute<String>(this, 'routing_control_arn');
 
   /// Reference to `search_string` attribute.
-  TfRef<String> get searchStringRef =>
+  TfRef<String> get searchString =>
       TfRef.attribute<String>(this, 'search_string');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `triggers` attribute.
-  TfRef<Map<String, String>> get triggersRef =>
+  TfRef<Map<String, String>> get triggers =>
       TfRef.attribute<Map<String, String>>(this, 'triggers');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

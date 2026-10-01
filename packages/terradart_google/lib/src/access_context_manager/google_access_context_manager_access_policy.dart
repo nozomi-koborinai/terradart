@@ -44,9 +44,6 @@ final class GoogleAccessContextManagerAccessPolicy extends Resource {
   /// `RefTo<GoogleAccessContextManagerAccessPolicy>`.
   RefTo<GoogleAccessContextManagerAccessPolicy> get ref => RefTo.of(this);
 
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
@@ -54,18 +51,18 @@ final class GoogleAccessContextManagerAccessPolicy extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `scopes` attribute.
-  TfRef<List<String>> get scopesRef =>
+  TfRef<List<String>> get scopes =>
       TfRef.attribute<List<String>>(this, 'scopes');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

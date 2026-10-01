@@ -116,7 +116,7 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   /// Reference to `name` attribute (the fully-qualified resource name of
   /// the service enforcement configuration, in the shape
   /// `projects/{project}/services/{service_id}`).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute. Same as `nameRef` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

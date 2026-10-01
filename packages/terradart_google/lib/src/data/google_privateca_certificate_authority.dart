@@ -43,7 +43,7 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -133,15 +133,15 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
       );
 
   /// Reference to `certificate_authority_id` attribute.
-  TfRef<String> get certificateAuthorityIdRef =>
+  TfRef<String> get certificateAuthorityId =>
       TfRef.attribute<String>(this, 'certificate_authority_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `pool` attribute.
-  TfRef<String> get poolRef => TfRef.attribute<String>(this, 'pool');
+  TfRef<String> get pool => TfRef.attribute<String>(this, 'pool');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

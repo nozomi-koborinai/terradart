@@ -152,7 +152,7 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
   RefTo<AwsRoute53recoverycontrolconfigSafetyRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -164,26 +164,25 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `asserted_controls` attribute.
-  TfRef<List<String>> get assertedControlsRef =>
+  TfRef<List<String>> get assertedControls =>
       TfRef.attribute<List<String>>(this, 'asserted_controls');
 
   /// Reference to `control_panel_arn` attribute.
-  TfRef<String> get controlPanelArnRef =>
+  TfRef<String> get controlPanelArn =>
       TfRef.attribute<String>(this, 'control_panel_arn');
 
   /// Reference to `gating_controls` attribute.
-  TfRef<List<String>> get gatingControlsRef =>
+  TfRef<List<String>> get gatingControls =>
       TfRef.attribute<List<String>>(this, 'gating_controls');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_controls` attribute.
-  TfRef<List<String>> get targetControlsRef =>
+  TfRef<List<String>> get targetControls =>
       TfRef.attribute<List<String>>(this, 'target_controls');
 
   /// Reference to `wait_period_ms` attribute.
-  TfRef<num> get waitPeriodMsRef =>
-      TfRef.attribute<num>(this, 'wait_period_ms');
+  TfRef<num> get waitPeriodMs => TfRef.attribute<num>(this, 'wait_period_ms');
 }

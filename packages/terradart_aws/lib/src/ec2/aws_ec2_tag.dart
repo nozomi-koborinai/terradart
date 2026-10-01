@@ -41,15 +41,14 @@ final class AwsEc2Tag extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

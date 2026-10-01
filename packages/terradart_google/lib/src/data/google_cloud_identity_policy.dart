@@ -24,7 +24,7 @@ final class DataGoogleCloudIdentityPolicy extends Data {
   Set<String> get sensitiveFields => _googleCloudIdentityPolicySensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

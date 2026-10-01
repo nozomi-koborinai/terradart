@@ -264,49 +264,47 @@ final class AwsAcmCertificate extends Resource {
       TfRef.attribute<List<String>>(this, 'validation_emails');
 
   /// Reference to `certificate_authority_arn` attribute.
-  TfRef<String> get certificateAuthorityArnRef =>
+  TfRef<String> get certificateAuthorityArn =>
       TfRef.attribute<String>(this, 'certificate_authority_arn');
 
   /// Reference to `certificate_body` attribute.
-  TfRef<String> get certificateBodyRef =>
+  TfRef<String> get certificateBody =>
       TfRef.attribute<String>(this, 'certificate_body');
 
   /// Reference to `certificate_chain` attribute.
-  TfRef<String> get certificateChainRef =>
+  TfRef<String> get certificateChain =>
       TfRef.attribute<String>(this, 'certificate_chain');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `early_renewal_duration` attribute.
-  TfRef<String> get earlyRenewalDurationRef =>
+  TfRef<String> get earlyRenewalDuration =>
       TfRef.attribute<String>(this, 'early_renewal_duration');
 
   /// Reference to `key_algorithm` attribute.
-  TfRef<String> get keyAlgorithmRef =>
+  TfRef<String> get keyAlgorithm =>
       TfRef.attribute<String>(this, 'key_algorithm');
 
   /// Reference to `private_key` attribute.
-  TfRef<String> get privateKeyRef =>
-      TfRef.attribute<String>(this, 'private_key');
+  TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
 
   /// Reference to `private_key_wo_version` attribute.
-  TfRef<num> get privateKeyWoVersionRef =>
+  TfRef<num> get privateKeyWoVersion =>
       TfRef.attribute<num>(this, 'private_key_wo_version');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subject_alternative_names` attribute.
-  TfRef<List<String>> get subjectAlternativeNamesRef =>
+  TfRef<List<String>> get subjectAlternativeNames =>
       TfRef.attribute<List<String>>(this, 'subject_alternative_names');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `validation_method` attribute.
-  TfRef<String> get validationMethodRef =>
+  TfRef<String> get validationMethod =>
       TfRef.attribute<String>(this, 'validation_method');
 }

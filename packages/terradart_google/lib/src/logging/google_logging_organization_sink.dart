@@ -109,7 +109,7 @@ final class GoogleLoggingOrganizationSink extends Resource {
   RefTo<GoogleLoggingOrganizationSink> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -119,37 +119,29 @@ final class GoogleLoggingOrganizationSink extends Resource {
       TfRef.attribute<String>(this, 'writer_identity');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `include_children` attribute.
-  TfRef<bool> get includeChildrenRef =>
+  TfRef<bool> get includeChildren =>
       TfRef.attribute<bool>(this, 'include_children');
 
   /// Reference to `intercept_children` attribute.
-  TfRef<bool> get interceptChildrenRef =>
+  TfRef<bool> get interceptChildren =>
       TfRef.attribute<bool>(this, 'intercept_children');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
-
-  /// Reference to `writer_identity` attribute. Auto-populated by the
-  /// provider; pass via `TfArg.ref(sink.writerIdentityRef)` to the
-  /// destination's IAM member resource so the sink can write logs.
-  TfRef<String> get writerIdentityRef =>
-      TfRef.attribute<String>(this, 'writer_identity');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 }

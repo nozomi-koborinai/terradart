@@ -53,21 +53,20 @@ final class CloudflareWebAnalyticsRule extends Resource {
   TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `inclusive` attribute.
-  TfRef<bool> get inclusiveRef => TfRef.attribute<bool>(this, 'inclusive');
+  TfRef<bool> get inclusive => TfRef.attribute<bool>(this, 'inclusive');
 
   /// Reference to `is_paused` attribute.
-  TfRef<bool> get isPausedRef => TfRef.attribute<bool>(this, 'is_paused');
+  TfRef<bool> get isPaused => TfRef.attribute<bool>(this, 'is_paused');
 
   /// Reference to `paths` attribute.
-  TfRef<List<String>> get pathsRef =>
-      TfRef.attribute<List<String>>(this, 'paths');
+  TfRef<List<String>> get paths => TfRef.attribute<List<String>>(this, 'paths');
 
   /// Reference to `ruleset_id` attribute.
-  TfRef<String> get rulesetIdRef => TfRef.attribute<String>(this, 'ruleset_id');
+  TfRef<String> get rulesetId => TfRef.attribute<String>(this, 'ruleset_id');
 }

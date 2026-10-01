@@ -56,13 +56,13 @@ final class AwsSagemakerHumanTaskUi extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `human_task_ui_name` attribute.
-  TfRef<String> get humanTaskUiNameRef =>
+  TfRef<String> get humanTaskUiName =>
       TfRef.attribute<String>(this, 'human_task_ui_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -74,6 +74,9 @@ final class GoogleNetappBackupPolicy extends Resource {
   /// `RefTo<GoogleNetappBackupPolicy>`.
   RefTo<GoogleNetappBackupPolicy> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -96,38 +99,34 @@ final class GoogleNetappBackupPolicy extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `daily_backup_limit` attribute.
-  TfRef<num> get dailyBackupLimitRef =>
+  TfRef<num> get dailyBackupLimit =>
       TfRef.attribute<num>(this, 'daily_backup_limit');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `monthly_backup_limit` attribute.
-  TfRef<num> get monthlyBackupLimitRef =>
+  TfRef<num> get monthlyBackupLimit =>
       TfRef.attribute<num>(this, 'monthly_backup_limit');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `weekly_backup_limit` attribute.
-  TfRef<num> get weeklyBackupLimitRef =>
+  TfRef<num> get weeklyBackupLimit =>
       TfRef.attribute<num>(this, 'weekly_backup_limit');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

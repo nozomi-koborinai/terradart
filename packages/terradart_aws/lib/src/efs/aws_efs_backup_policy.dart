@@ -61,9 +61,9 @@ final class AwsEfsBackupPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `file_system_id` attribute.
-  TfRef<String> get fileSystemIdRef =>
+  TfRef<String> get fileSystemId =>
       TfRef.attribute<String>(this, 'file_system_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

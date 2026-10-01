@@ -212,38 +212,38 @@ final class GoogleComputeRegionPerInstanceConfig extends Resource {
   RefTo<GoogleComputeRegionPerInstanceConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `minimal_action` attribute.
-  TfRef<String> get minimalActionRef =>
+  TfRef<String> get minimalAction =>
       TfRef.attribute<String>(this, 'minimal_action');
 
   /// Reference to `most_disruptive_allowed_action` attribute.
-  TfRef<String> get mostDisruptiveAllowedActionRef =>
+  TfRef<String> get mostDisruptiveAllowedAction =>
       TfRef.attribute<String>(this, 'most_disruptive_allowed_action');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `region_instance_group_manager` attribute.
-  TfRef<String> get regionInstanceGroupManagerRef =>
+  TfRef<String> get regionInstanceGroupManager =>
       TfRef.attribute<String>(this, 'region_instance_group_manager');
 
   /// Reference to `remove_instance_on_destroy` attribute.
-  TfRef<bool> get removeInstanceOnDestroyRef =>
+  TfRef<bool> get removeInstanceOnDestroy =>
       TfRef.attribute<bool>(this, 'remove_instance_on_destroy');
 
   /// Reference to `remove_instance_state_on_destroy` attribute.
-  TfRef<bool> get removeInstanceStateOnDestroyRef =>
+  TfRef<bool> get removeInstanceStateOnDestroy =>
       TfRef.attribute<bool>(this, 'remove_instance_state_on_destroy');
 }

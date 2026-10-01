@@ -309,7 +309,7 @@ final class AwsCloudtrail extends Resource {
   RefTo<AwsCloudtrail> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -325,52 +325,52 @@ final class AwsCloudtrail extends Resource {
       TfRef.attribute<String>(this, 'sns_topic_arn');
 
   /// Reference to `cloud_watch_logs_group_arn` attribute.
-  TfRef<String> get cloudWatchLogsGroupArnRef =>
+  TfRef<String> get cloudWatchLogsGroupArn =>
       TfRef.attribute<String>(this, 'cloud_watch_logs_group_arn');
 
   /// Reference to `cloud_watch_logs_role_arn` attribute.
-  TfRef<String> get cloudWatchLogsRoleArnRef =>
+  TfRef<String> get cloudWatchLogsRoleArn =>
       TfRef.attribute<String>(this, 'cloud_watch_logs_role_arn');
 
   /// Reference to `enable_log_file_validation` attribute.
-  TfRef<bool> get enableLogFileValidationRef =>
+  TfRef<bool> get enableLogFileValidation =>
       TfRef.attribute<bool>(this, 'enable_log_file_validation');
 
   /// Reference to `enable_logging` attribute.
-  TfRef<bool> get enableLoggingRef =>
+  TfRef<bool> get enableLogging =>
       TfRef.attribute<bool>(this, 'enable_logging');
 
   /// Reference to `include_global_service_events` attribute.
-  TfRef<bool> get includeGlobalServiceEventsRef =>
+  TfRef<bool> get includeGlobalServiceEvents =>
       TfRef.attribute<bool>(this, 'include_global_service_events');
 
   /// Reference to `is_multi_region_trail` attribute.
-  TfRef<bool> get isMultiRegionTrailRef =>
+  TfRef<bool> get isMultiRegionTrail =>
       TfRef.attribute<bool>(this, 'is_multi_region_trail');
 
   /// Reference to `is_organization_trail` attribute.
-  TfRef<bool> get isOrganizationTrailRef =>
+  TfRef<bool> get isOrganizationTrail =>
       TfRef.attribute<bool>(this, 'is_organization_trail');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `s3_bucket_name` attribute.
-  TfRef<String> get s3BucketNameRef =>
+  TfRef<String> get s3BucketName =>
       TfRef.attribute<String>(this, 's3_bucket_name');
 
   /// Reference to `s3_key_prefix` attribute.
-  TfRef<String> get s3KeyPrefixRef =>
+  TfRef<String> get s3KeyPrefix =>
       TfRef.attribute<String>(this, 's3_key_prefix');
 
   /// Reference to `sns_topic_name` attribute.
-  TfRef<String> get snsTopicNameRef =>
+  TfRef<String> get snsTopicName =>
       TfRef.attribute<String>(this, 'sns_topic_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

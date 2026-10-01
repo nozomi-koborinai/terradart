@@ -50,9 +50,9 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
       TfRef.attribute<List<String>>(this, 'hostnames');
 
   /// Reference to `mtls_certificate_id` attribute.
-  TfRef<String> get mtlsCertificateIdRef =>
+  TfRef<String> get mtlsCertificateId =>
       TfRef.attribute<String>(this, 'mtls_certificate_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

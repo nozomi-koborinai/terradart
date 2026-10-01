@@ -323,7 +323,7 @@ final class GoogleComputeSubnetwork extends Resource {
   RefTo<GoogleComputeSubnetwork> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -357,72 +357,71 @@ final class GoogleComputeSubnetwork extends Resource {
   TfRef<num> get subnetworkId => TfRef.attribute<num>(this, 'subnetwork_id');
 
   /// Reference to `allow_subnet_cidr_routes_overlap` attribute.
-  TfRef<bool> get allowSubnetCidrRoutesOverlapRef =>
+  TfRef<bool> get allowSubnetCidrRoutesOverlap =>
       TfRef.attribute<bool>(this, 'allow_subnet_cidr_routes_overlap');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `external_ipv6_prefix` attribute.
-  TfRef<String> get externalIpv6PrefixRef =>
+  TfRef<String> get externalIpv6Prefix =>
       TfRef.attribute<String>(this, 'external_ipv6_prefix');
 
   /// Reference to `internal_ipv6_prefix` attribute.
-  TfRef<String> get internalIpv6PrefixRef =>
+  TfRef<String> get internalIpv6Prefix =>
       TfRef.attribute<String>(this, 'internal_ipv6_prefix');
 
   /// Reference to `ip_cidr_range` attribute.
-  TfRef<String> get ipCidrRangeRef =>
+  TfRef<String> get ipCidrRange =>
       TfRef.attribute<String>(this, 'ip_cidr_range');
 
   /// Reference to `ip_collection` attribute.
-  TfRef<String> get ipCollectionRef =>
+  TfRef<String> get ipCollection =>
       TfRef.attribute<String>(this, 'ip_collection');
 
   /// Reference to `ipv6_access_type` attribute.
-  TfRef<String> get ipv6AccessTypeRef =>
+  TfRef<String> get ipv6AccessType =>
       TfRef.attribute<String>(this, 'ipv6_access_type');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `private_ip_google_access` attribute.
-  TfRef<bool> get privateIpGoogleAccessRef =>
+  TfRef<bool> get privateIpGoogleAccess =>
       TfRef.attribute<bool>(this, 'private_ip_google_access');
 
   /// Reference to `private_ipv6_google_access` attribute.
-  TfRef<String> get privateIpv6GoogleAccessRef =>
+  TfRef<String> get privateIpv6GoogleAccess =>
       TfRef.attribute<String>(this, 'private_ipv6_google_access');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `purpose` attribute.
-  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+  TfRef<String> get purpose => TfRef.attribute<String>(this, 'purpose');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reserved_internal_range` attribute.
-  TfRef<String> get reservedInternalRangeRef =>
+  TfRef<String> get reservedInternalRange =>
       TfRef.attribute<String>(this, 'reserved_internal_range');
 
   /// Reference to `resolve_subnet_mask` attribute.
-  TfRef<String> get resolveSubnetMaskRef =>
+  TfRef<String> get resolveSubnetMask =>
       TfRef.attribute<String>(this, 'resolve_subnet_mask');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `send_secondary_ip_range_if_empty` attribute.
-  TfRef<bool> get sendSecondaryIpRangeIfEmptyRef =>
+  TfRef<bool> get sendSecondaryIpRangeIfEmpty =>
       TfRef.attribute<bool>(this, 'send_secondary_ip_range_if_empty');
 
   /// Reference to `stack_type` attribute.
-  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
+  TfRef<String> get stackType => TfRef.attribute<String>(this, 'stack_type');
 }

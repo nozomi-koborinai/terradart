@@ -287,74 +287,72 @@ final class AwsCustomerprofilesProfile extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_number` attribute.
-  TfRef<String> get accountNumberRef =>
+  TfRef<String> get accountNumber =>
       TfRef.attribute<String>(this, 'account_number');
 
   /// Reference to `additional_information` attribute.
-  TfRef<String> get additionalInformationRef =>
+  TfRef<String> get additionalInformation =>
       TfRef.attribute<String>(this, 'additional_information');
 
   /// Reference to `attributes` attribute.
-  TfRef<Map<String, String>> get attributesRef =>
+  TfRef<Map<String, String>> get attributes =>
       TfRef.attribute<Map<String, String>>(this, 'attributes');
 
   /// Reference to `birth_date` attribute.
-  TfRef<String> get birthDateRef => TfRef.attribute<String>(this, 'birth_date');
+  TfRef<String> get birthDate => TfRef.attribute<String>(this, 'birth_date');
 
   /// Reference to `business_email_address` attribute.
-  TfRef<String> get businessEmailAddressRef =>
+  TfRef<String> get businessEmailAddress =>
       TfRef.attribute<String>(this, 'business_email_address');
 
   /// Reference to `business_name` attribute.
-  TfRef<String> get businessNameRef =>
+  TfRef<String> get businessName =>
       TfRef.attribute<String>(this, 'business_name');
 
   /// Reference to `business_phone_number` attribute.
-  TfRef<String> get businessPhoneNumberRef =>
+  TfRef<String> get businessPhoneNumber =>
       TfRef.attribute<String>(this, 'business_phone_number');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `email_address` attribute.
-  TfRef<String> get emailAddressRef =>
+  TfRef<String> get emailAddress =>
       TfRef.attribute<String>(this, 'email_address');
 
   /// Reference to `first_name` attribute.
-  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+  TfRef<String> get firstName => TfRef.attribute<String>(this, 'first_name');
 
   /// Reference to `gender_string` attribute.
-  TfRef<String> get genderStringRef =>
+  TfRef<String> get genderString =>
       TfRef.attribute<String>(this, 'gender_string');
 
   /// Reference to `home_phone_number` attribute.
-  TfRef<String> get homePhoneNumberRef =>
+  TfRef<String> get homePhoneNumber =>
       TfRef.attribute<String>(this, 'home_phone_number');
 
   /// Reference to `last_name` attribute.
-  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+  TfRef<String> get lastName => TfRef.attribute<String>(this, 'last_name');
 
   /// Reference to `middle_name` attribute.
-  TfRef<String> get middleNameRef =>
-      TfRef.attribute<String>(this, 'middle_name');
+  TfRef<String> get middleName => TfRef.attribute<String>(this, 'middle_name');
 
   /// Reference to `mobile_phone_number` attribute.
-  TfRef<String> get mobilePhoneNumberRef =>
+  TfRef<String> get mobilePhoneNumber =>
       TfRef.attribute<String>(this, 'mobile_phone_number');
 
   /// Reference to `party_type_string` attribute.
-  TfRef<String> get partyTypeStringRef =>
+  TfRef<String> get partyTypeString =>
       TfRef.attribute<String>(this, 'party_type_string');
 
   /// Reference to `personal_email_address` attribute.
-  TfRef<String> get personalEmailAddressRef =>
+  TfRef<String> get personalEmailAddress =>
       TfRef.attribute<String>(this, 'personal_email_address');
 
   /// Reference to `phone_number` attribute.
-  TfRef<String> get phoneNumberRef =>
+  TfRef<String> get phoneNumber =>
       TfRef.attribute<String>(this, 'phone_number');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

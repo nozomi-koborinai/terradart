@@ -88,6 +88,9 @@ final class GoogleVmwareengineNetworkPolicy extends Resource {
   /// `RefTo<GoogleVmwareengineNetworkPolicy>`.
   RefTo<GoogleVmwareengineNetworkPolicy> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -105,30 +108,23 @@ final class GoogleVmwareengineNetworkPolicy extends Resource {
       TfRef.attribute<String>(this, 'vmware_engine_network_canonical');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `edge_services_cidr` attribute.
-  TfRef<String> get edgeServicesCidrRef =>
+  TfRef<String> get edgeServicesCidr =>
       TfRef.attribute<String>(this, 'edge_services_cidr');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `vmware_engine_network` attribute.
-  TfRef<String> get vmwareEngineNetworkRef =>
+  TfRef<String> get vmwareEngineNetwork =>
       TfRef.attribute<String>(this, 'vmware_engine_network');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

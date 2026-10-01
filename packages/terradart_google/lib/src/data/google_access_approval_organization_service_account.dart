@@ -30,7 +30,7 @@ final class DataGoogleAccessApprovalOrganizationServiceAccount extends Data {
       _googleAccessApprovalOrganizationServiceAccountSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -40,6 +40,6 @@ final class DataGoogleAccessApprovalOrganizationServiceAccount extends Data {
       TfRef.attribute<String>(this, 'account_email');
 
   /// Reference to `organization_id` attribute.
-  TfRef<String> get organizationIdRef =>
+  TfRef<String> get organizationId =>
       TfRef.attribute<String>(this, 'organization_id');
 }

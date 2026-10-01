@@ -155,7 +155,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
   RefTo<GoogleNetworkConnectivityInternalRange> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -172,48 +172,47 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
   TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `exclude_cidr_ranges` attribute.
-  TfRef<List<String>> get excludeCidrRangesRef =>
+  TfRef<List<String>> get excludeCidrRanges =>
       TfRef.attribute<List<String>>(this, 'exclude_cidr_ranges');
 
   /// Reference to `immutable` attribute.
-  TfRef<bool> get immutableRef => TfRef.attribute<bool>(this, 'immutable');
+  TfRef<bool> get immutable => TfRef.attribute<bool>(this, 'immutable');
 
   /// Reference to `ip_cidr_range` attribute.
-  TfRef<String> get ipCidrRangeRef =>
+  TfRef<String> get ipCidrRange =>
       TfRef.attribute<String>(this, 'ip_cidr_range');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `overlaps` attribute.
-  TfRef<List<String>> get overlapsRef =>
+  TfRef<List<String>> get overlaps =>
       TfRef.attribute<List<String>>(this, 'overlaps');
 
   /// Reference to `peering` attribute.
-  TfRef<String> get peeringRef => TfRef.attribute<String>(this, 'peering');
+  TfRef<String> get peering => TfRef.attribute<String>(this, 'peering');
 
   /// Reference to `prefix_length` attribute.
-  TfRef<num> get prefixLengthRef => TfRef.attribute<num>(this, 'prefix_length');
+  TfRef<num> get prefixLength => TfRef.attribute<num>(this, 'prefix_length');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `target_cidr_range` attribute.
-  TfRef<List<String>> get targetCidrRangeRef =>
+  TfRef<List<String>> get targetCidrRange =>
       TfRef.attribute<List<String>>(this, 'target_cidr_range');
 
   /// Reference to `usage` attribute.
-  TfRef<String> get usageRef => TfRef.attribute<String>(this, 'usage');
+  TfRef<String> get usage => TfRef.attribute<String>(this, 'usage');
 }

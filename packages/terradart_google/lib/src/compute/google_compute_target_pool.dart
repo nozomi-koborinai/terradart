@@ -53,45 +53,42 @@ final class GoogleComputeTargetPool extends Resource {
   /// `RefTo<GoogleComputeTargetPool>`.
   RefTo<GoogleComputeTargetPool> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `backup_pool` attribute.
-  TfRef<String> get backupPoolRef =>
-      TfRef.attribute<String>(this, 'backup_pool');
+  TfRef<String> get backupPool => TfRef.attribute<String>(this, 'backup_pool');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `failover_ratio` attribute.
-  TfRef<num> get failoverRatioRef =>
-      TfRef.attribute<num>(this, 'failover_ratio');
+  TfRef<num> get failoverRatio => TfRef.attribute<num>(this, 'failover_ratio');
 
   /// Reference to `health_checks` attribute.
-  TfRef<List<String>> get healthChecksRef =>
+  TfRef<List<String>> get healthChecks =>
       TfRef.attribute<List<String>>(this, 'health_checks');
 
   /// Reference to `instances` attribute.
-  TfRef<List<String>> get instancesRef =>
+  TfRef<List<String>> get instances =>
       TfRef.attribute<List<String>>(this, 'instances');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `session_affinity` attribute.
-  TfRef<String> get sessionAffinityRef =>
+  TfRef<String> get sessionAffinity =>
       TfRef.attribute<String>(this, 'session_affinity');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

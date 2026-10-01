@@ -25,5 +25,5 @@ final class DataAwsOdbCloudVmClusters extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'cloud_vm_clusters');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -42,25 +42,24 @@ final class AwsApigatewayv2Model extends Resource {
   RefTo<AwsApigatewayv2Model> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `content_type` attribute.
-  TfRef<String> get contentTypeRef =>
+  TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `schema` attribute.
-  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+  TfRef<String> get schema => TfRef.attribute<String>(this, 'schema');
 }

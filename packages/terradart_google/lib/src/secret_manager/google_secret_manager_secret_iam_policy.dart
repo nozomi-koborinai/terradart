@@ -51,12 +51,11 @@ final class GoogleSecretManagerSecretIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `secret_id` attribute.
-  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
+  TfRef<String> get secretId => TfRef.attribute<String>(this, 'secret_id');
 }

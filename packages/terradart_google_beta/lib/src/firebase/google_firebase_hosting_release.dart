@@ -58,7 +58,7 @@ final class GoogleFirebaseHostingRelease extends Resource {
   RefTo<GoogleFirebaseHostingRelease> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -67,18 +67,18 @@ final class GoogleFirebaseHostingRelease extends Resource {
   TfRef<String> get releaseId => TfRef.attribute<String>(this, 'release_id');
 
   /// Reference to `channel_id` attribute.
-  TfRef<String> get channelIdRef => TfRef.attribute<String>(this, 'channel_id');
+  TfRef<String> get channelId => TfRef.attribute<String>(this, 'channel_id');
 
   /// Reference to `message` attribute.
-  TfRef<String> get messageRef => TfRef.attribute<String>(this, 'message');
+  TfRef<String> get message => TfRef.attribute<String>(this, 'message');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `version_name` attribute.
-  TfRef<String> get versionNameRef =>
+  TfRef<String> get versionName =>
       TfRef.attribute<String>(this, 'version_name');
 }

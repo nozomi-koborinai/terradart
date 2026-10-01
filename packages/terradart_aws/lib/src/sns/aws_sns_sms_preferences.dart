@@ -48,29 +48,29 @@ final class AwsSnsSmsPreferences extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `default_sender_id` attribute.
-  TfRef<String> get defaultSenderIdRef =>
+  TfRef<String> get defaultSenderId =>
       TfRef.attribute<String>(this, 'default_sender_id');
 
   /// Reference to `default_sms_type` attribute.
-  TfRef<String> get defaultSmsTypeRef =>
+  TfRef<String> get defaultSmsType =>
       TfRef.attribute<String>(this, 'default_sms_type');
 
   /// Reference to `delivery_status_iam_role_arn` attribute.
-  TfRef<String> get deliveryStatusIamRoleArnRef =>
+  TfRef<String> get deliveryStatusIamRoleArn =>
       TfRef.attribute<String>(this, 'delivery_status_iam_role_arn');
 
   /// Reference to `delivery_status_success_sampling_rate` attribute.
-  TfRef<String> get deliveryStatusSuccessSamplingRateRef =>
+  TfRef<String> get deliveryStatusSuccessSamplingRate =>
       TfRef.attribute<String>(this, 'delivery_status_success_sampling_rate');
 
   /// Reference to `monthly_spend_limit` attribute.
-  TfRef<num> get monthlySpendLimitRef =>
+  TfRef<num> get monthlySpendLimit =>
       TfRef.attribute<num>(this, 'monthly_spend_limit');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `usage_report_s3_bucket` attribute.
-  TfRef<String> get usageReportS3BucketRef =>
+  TfRef<String> get usageReportS3Bucket =>
       TfRef.attribute<String>(this, 'usage_report_s3_bucket');
 }

@@ -36,7 +36,7 @@ final class AwsIamSamlProvider extends Resource {
   RefTo<AwsIamSamlProvider> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,10 +52,10 @@ final class AwsIamSamlProvider extends Resource {
   TfRef<String> get validUntil => TfRef.attribute<String>(this, 'valid_until');
 
   /// Reference to `saml_metadata_document` attribute.
-  TfRef<String> get samlMetadataDocumentRef =>
+  TfRef<String> get samlMetadataDocument =>
       TfRef.attribute<String>(this, 'saml_metadata_document');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

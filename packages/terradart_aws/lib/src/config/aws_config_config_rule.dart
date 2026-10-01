@@ -240,7 +240,7 @@ final class AwsConfigConfigRule extends Resource {
   RefTo<AwsConfigConfigRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -252,21 +252,20 @@ final class AwsConfigConfigRule extends Resource {
   TfRef<String> get ruleId => TfRef.attribute<String>(this, 'rule_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `input_parameters` attribute.
-  TfRef<String> get inputParametersRef =>
+  TfRef<String> get inputParameters =>
       TfRef.attribute<String>(this, 'input_parameters');
 
   /// Reference to `maximum_execution_frequency` attribute.
-  TfRef<String> get maximumExecutionFrequencyRef =>
+  TfRef<String> get maximumExecutionFrequency =>
       TfRef.attribute<String>(this, 'maximum_execution_frequency');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

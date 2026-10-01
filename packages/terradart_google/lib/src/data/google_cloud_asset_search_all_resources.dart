@@ -37,12 +37,12 @@ final class DataGoogleCloudAssetSearchAllResources extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'results');
 
   /// Reference to `asset_types` attribute.
-  TfRef<List<String>> get assetTypesRef =>
+  TfRef<List<String>> get assetTypes =>
       TfRef.attribute<List<String>>(this, 'asset_types');
 
   /// Reference to `query` attribute.
-  TfRef<String> get queryRef => TfRef.attribute<String>(this, 'query');
+  TfRef<String> get query => TfRef.attribute<String>(this, 'query');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 }

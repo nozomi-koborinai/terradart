@@ -139,7 +139,7 @@ final class AwsGlueDevEndpoint extends Resource {
   RefTo<AwsGlueDevEndpoint> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -178,58 +178,56 @@ final class AwsGlueDevEndpoint extends Resource {
       TfRef.attribute<num>(this, 'zeppelin_remote_spark_interpreter_port');
 
   /// Reference to `arguments` attribute.
-  TfRef<Map<String, String>> get argumentsRef =>
+  TfRef<Map<String, String>> get arguments =>
       TfRef.attribute<Map<String, String>>(this, 'arguments');
 
   /// Reference to `extra_jars_s3_path` attribute.
-  TfRef<String> get extraJarsS3PathRef =>
+  TfRef<String> get extraJarsS3Path =>
       TfRef.attribute<String>(this, 'extra_jars_s3_path');
 
   /// Reference to `extra_python_libs_s3_path` attribute.
-  TfRef<String> get extraPythonLibsS3PathRef =>
+  TfRef<String> get extraPythonLibsS3Path =>
       TfRef.attribute<String>(this, 'extra_python_libs_s3_path');
 
   /// Reference to `glue_version` attribute.
-  TfRef<String> get glueVersionRef =>
+  TfRef<String> get glueVersion =>
       TfRef.attribute<String>(this, 'glue_version');
 
   /// Reference to `number_of_nodes` attribute.
-  TfRef<num> get numberOfNodesRef =>
-      TfRef.attribute<num>(this, 'number_of_nodes');
+  TfRef<num> get numberOfNodes => TfRef.attribute<num>(this, 'number_of_nodes');
 
   /// Reference to `number_of_workers` attribute.
-  TfRef<num> get numberOfWorkersRef =>
+  TfRef<num> get numberOfWorkers =>
       TfRef.attribute<num>(this, 'number_of_workers');
 
   /// Reference to `public_key` attribute.
-  TfRef<String> get publicKeyRef => TfRef.attribute<String>(this, 'public_key');
+  TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
 
   /// Reference to `public_keys` attribute.
-  TfRef<List<String>> get publicKeysRef =>
+  TfRef<List<String>> get publicKeys =>
       TfRef.attribute<List<String>>(this, 'public_keys');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `security_configuration` attribute.
-  TfRef<String> get securityConfigurationRef =>
+  TfRef<String> get securityConfiguration =>
       TfRef.attribute<String>(this, 'security_configuration');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `subnet_id` attribute.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `worker_type` attribute.
-  TfRef<String> get workerTypeRef =>
-      TfRef.attribute<String>(this, 'worker_type');
+  TfRef<String> get workerType => TfRef.attribute<String>(this, 'worker_type');
 }

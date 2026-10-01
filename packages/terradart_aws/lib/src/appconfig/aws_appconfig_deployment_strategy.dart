@@ -68,7 +68,7 @@ final class AwsAppconfigDeploymentStrategy extends Resource {
   RefTo<AwsAppconfigDeploymentStrategy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -77,32 +77,30 @@ final class AwsAppconfigDeploymentStrategy extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `deployment_duration_in_minutes` attribute.
-  TfRef<num> get deploymentDurationInMinutesRef =>
+  TfRef<num> get deploymentDurationInMinutes =>
       TfRef.attribute<num>(this, 'deployment_duration_in_minutes');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `final_bake_time_in_minutes` attribute.
-  TfRef<num> get finalBakeTimeInMinutesRef =>
+  TfRef<num> get finalBakeTimeInMinutes =>
       TfRef.attribute<num>(this, 'final_bake_time_in_minutes');
 
   /// Reference to `growth_factor` attribute.
-  TfRef<num> get growthFactorRef => TfRef.attribute<num>(this, 'growth_factor');
+  TfRef<num> get growthFactor => TfRef.attribute<num>(this, 'growth_factor');
 
   /// Reference to `growth_type` attribute.
-  TfRef<String> get growthTypeRef =>
-      TfRef.attribute<String>(this, 'growth_type');
+  TfRef<String> get growthType => TfRef.attribute<String>(this, 'growth_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replicate_to` attribute.
-  TfRef<String> get replicateToRef =>
+  TfRef<String> get replicateTo =>
       TfRef.attribute<String>(this, 'replicate_to');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

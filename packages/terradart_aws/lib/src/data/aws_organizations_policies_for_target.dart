@@ -32,8 +32,8 @@ final class DataAwsOrganizationsPoliciesForTarget extends Data {
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `target_id` attribute.
-  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
+  TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
 }

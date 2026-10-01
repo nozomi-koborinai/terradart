@@ -538,7 +538,7 @@ final class GoogleCloudbuildv2Connection extends Resource {
   RefTo<GoogleCloudbuildv2Connection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -564,26 +564,19 @@ final class GoogleCloudbuildv2Connection extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to the computed `installation_state` block. Surfaced as a
-  /// dynamic ref because the underlying type is a list of objects
-  /// (`stage`, `message`, `action_uri`) — index into it from HCL when
-  /// needed.
-  TfRef<Object?> get installationStateRef =>
-      TfRef.attribute<Object?>(this, 'installation_state');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

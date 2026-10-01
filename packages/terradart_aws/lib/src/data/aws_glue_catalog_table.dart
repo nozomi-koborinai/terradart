@@ -42,7 +42,7 @@ final class DataAwsGlueCatalogTable extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,20 +91,19 @@ final class DataAwsGlueCatalogTable extends Data {
       TfRef.attribute<String>(this, 'view_original_text');
 
   /// Reference to `catalog_id` attribute.
-  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+  TfRef<String> get catalogId => TfRef.attribute<String>(this, 'catalog_id');
 
   /// Reference to `database_name` attribute.
-  TfRef<String> get databaseNameRef =>
+  TfRef<String> get databaseName =>
       TfRef.attribute<String>(this, 'database_name');
 
   /// Reference to `query_as_of_time` attribute.
-  TfRef<String> get queryAsOfTimeRef =>
+  TfRef<String> get queryAsOfTime =>
       TfRef.attribute<String>(this, 'query_as_of_time');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `transaction_id` attribute.
-  TfRef<num> get transactionIdRef =>
-      TfRef.attribute<num>(this, 'transaction_id');
+  TfRef<num> get transactionId => TfRef.attribute<num>(this, 'transaction_id');
 }

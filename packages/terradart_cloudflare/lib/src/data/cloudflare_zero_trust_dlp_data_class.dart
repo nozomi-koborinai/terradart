@@ -39,7 +39,7 @@ final class DataCloudflareZeroTrustDlpDataClass extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -61,9 +61,9 @@ final class DataCloudflareZeroTrustDlpDataClass extends Data {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `data_class_id` attribute.
-  TfRef<String> get dataClassIdRef =>
+  TfRef<String> get dataClassId =>
       TfRef.attribute<String>(this, 'data_class_id');
 }

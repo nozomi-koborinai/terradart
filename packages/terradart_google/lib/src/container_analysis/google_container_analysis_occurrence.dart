@@ -110,10 +110,10 @@ final class GoogleContainerAnalysisOccurrence extends Resource {
   RefTo<GoogleContainerAnalysisOccurrence> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -125,20 +125,19 @@ final class GoogleContainerAnalysisOccurrence extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `note_name` attribute.
-  TfRef<String> get noteNameRef => TfRef.attribute<String>(this, 'note_name');
+  TfRef<String> get noteName => TfRef.attribute<String>(this, 'note_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `remediation` attribute.
-  TfRef<String> get remediationRef =>
-      TfRef.attribute<String>(this, 'remediation');
+  TfRef<String> get remediation => TfRef.attribute<String>(this, 'remediation');
 
   /// Reference to `resource_uri` attribute.
-  TfRef<String> get resourceUriRef =>
+  TfRef<String> get resourceUri =>
       TfRef.attribute<String>(this, 'resource_uri');
 }

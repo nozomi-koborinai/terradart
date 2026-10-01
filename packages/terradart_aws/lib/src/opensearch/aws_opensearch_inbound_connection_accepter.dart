@@ -39,9 +39,9 @@ final class AwsOpensearchInboundConnectionAccepter extends Resource {
       TfRef.attribute<String>(this, 'connection_status');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

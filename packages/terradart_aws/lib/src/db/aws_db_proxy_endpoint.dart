@@ -71,29 +71,28 @@ final class AwsDbProxyEndpoint extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `db_proxy_endpoint_name` attribute.
-  TfRef<String> get dbProxyEndpointNameRef =>
+  TfRef<String> get dbProxyEndpointName =>
       TfRef.attribute<String>(this, 'db_proxy_endpoint_name');
 
   /// Reference to `db_proxy_name` attribute.
-  TfRef<String> get dbProxyNameRef =>
+  TfRef<String> get dbProxyName =>
       TfRef.attribute<String>(this, 'db_proxy_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_role` attribute.
-  TfRef<String> get targetRoleRef =>
-      TfRef.attribute<String>(this, 'target_role');
+  TfRef<String> get targetRole => TfRef.attribute<String>(this, 'target_role');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 
   /// Reference to `vpc_subnet_ids` attribute.
-  TfRef<List<String>> get vpcSubnetIdsRef =>
+  TfRef<List<String>> get vpcSubnetIds =>
       TfRef.attribute<List<String>>(this, 'vpc_subnet_ids');
 }

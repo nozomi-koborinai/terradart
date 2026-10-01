@@ -31,7 +31,7 @@ final class DataAwsAgentregistryRegistry extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `approval_configuration` attribute.
   TfRef<List<Map<String, Object?>>> get approvalConfiguration =>
@@ -75,9 +75,8 @@ final class DataAwsAgentregistryRegistry extends Data {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `registry_id` attribute.
-  TfRef<String> get registryIdRef =>
-      TfRef.attribute<String>(this, 'registry_id');
+  TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
 }

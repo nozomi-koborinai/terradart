@@ -54,9 +54,9 @@ final class CloudflareZeroTrustAccessKeyConfiguration extends Resource {
       TfRef.attribute<String>(this, 'last_key_rotation_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `key_rotation_interval_days` attribute.
-  TfRef<num> get keyRotationIntervalDaysRef =>
+  TfRef<num> get keyRotationIntervalDays =>
       TfRef.attribute<num>(this, 'key_rotation_interval_days');
 }

@@ -68,10 +68,9 @@ final class DataAwsCurReportDefinition extends Data {
   TfRef<String> get timeUnit => TfRef.attribute<String>(this, 'time_unit');
 
   /// Reference to `report_name` attribute.
-  TfRef<String> get reportNameRef =>
-      TfRef.attribute<String>(this, 'report_name');
+  TfRef<String> get reportName => TfRef.attribute<String>(this, 'report_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

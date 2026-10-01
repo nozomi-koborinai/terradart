@@ -40,13 +40,13 @@ final class AwsSagemakerModelPackageGroupPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `model_package_group_name` attribute.
-  TfRef<String> get modelPackageGroupNameRef =>
+  TfRef<String> get modelPackageGroupName =>
       TfRef.attribute<String>(this, 'model_package_group_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_policy` attribute.
-  TfRef<String> get resourcePolicyRef =>
+  TfRef<String> get resourcePolicy =>
       TfRef.attribute<String>(this, 'resource_policy');
 }

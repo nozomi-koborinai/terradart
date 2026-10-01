@@ -43,7 +43,7 @@ final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   RefTo<AwsRoute53recoverycontrolconfigCluster> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -59,10 +59,10 @@ final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

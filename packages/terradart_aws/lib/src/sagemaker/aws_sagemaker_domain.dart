@@ -1533,38 +1533,37 @@ final class AwsSagemakerDomain extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `app_network_access_type` attribute.
-  TfRef<String> get appNetworkAccessTypeRef =>
+  TfRef<String> get appNetworkAccessType =>
       TfRef.attribute<String>(this, 'app_network_access_type');
 
   /// Reference to `app_security_group_management` attribute.
-  TfRef<String> get appSecurityGroupManagementRef =>
+  TfRef<String> get appSecurityGroupManagement =>
       TfRef.attribute<String>(this, 'app_security_group_management');
 
   /// Reference to `auth_mode` attribute.
-  TfRef<String> get authModeRef => TfRef.attribute<String>(this, 'auth_mode');
+  TfRef<String> get authMode => TfRef.attribute<String>(this, 'auth_mode');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tag_propagation` attribute.
-  TfRef<String> get tagPropagationRef =>
+  TfRef<String> get tagPropagation =>
       TfRef.attribute<String>(this, 'tag_propagation');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

@@ -50,15 +50,15 @@ final class DataGoogleDataplexZoneIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `dataplex_zone` attribute.
-  TfRef<String> get dataplexZoneRef =>
+  TfRef<String> get dataplexZone =>
       TfRef.attribute<String>(this, 'dataplex_zone');
 
   /// Reference to `lake` attribute.
-  TfRef<String> get lakeRef => TfRef.attribute<String>(this, 'lake');
+  TfRef<String> get lake => TfRef.attribute<String>(this, 'lake');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

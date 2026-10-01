@@ -92,13 +92,13 @@ final class DataAwsEc2TransitGatewayAttachment extends Data {
       TfRef.attribute<String>(this, 'transit_gateway_owner_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_attachment_id` attribute.
-  TfRef<String> get transitGatewayAttachmentIdRef =>
+  TfRef<String> get transitGatewayAttachmentId =>
       TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
 }

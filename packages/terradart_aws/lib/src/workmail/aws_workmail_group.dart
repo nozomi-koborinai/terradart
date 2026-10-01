@@ -40,7 +40,7 @@ final class AwsWorkmailGroup extends Resource {
   RefTo<AwsWorkmailGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `disabled_date` attribute.
   TfRef<String> get disabledDate =>
@@ -57,16 +57,16 @@ final class AwsWorkmailGroup extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `hidden_from_global_address_list` attribute.
-  TfRef<bool> get hiddenFromGlobalAddressListRef =>
+  TfRef<bool> get hiddenFromGlobalAddressList =>
       TfRef.attribute<bool>(this, 'hidden_from_global_address_list');
 
   /// Reference to `organization_id` attribute.
-  TfRef<String> get organizationIdRef =>
+  TfRef<String> get organizationId =>
       TfRef.attribute<String>(this, 'organization_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

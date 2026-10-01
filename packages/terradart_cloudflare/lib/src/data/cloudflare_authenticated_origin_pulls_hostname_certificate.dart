@@ -64,9 +64,9 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificate
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
 
   /// Reference to `certificate_id` attribute.
-  TfRef<String> get certificateIdRef =>
+  TfRef<String> get certificateId =>
       TfRef.attribute<String>(this, 'certificate_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

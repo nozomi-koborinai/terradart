@@ -68,32 +68,30 @@ final class AwsDxBgpPeer extends Resource {
   TfRef<String> get bgpStatus => TfRef.attribute<String>(this, 'bgp_status');
 
   /// Reference to `address_family` attribute.
-  TfRef<String> get addressFamilyRef =>
+  TfRef<String> get addressFamily =>
       TfRef.attribute<String>(this, 'address_family');
 
   /// Reference to `amazon_address` attribute.
-  TfRef<String> get amazonAddressRef =>
+  TfRef<String> get amazonAddress =>
       TfRef.attribute<String>(this, 'amazon_address');
 
   /// Reference to `bgp_asn` attribute.
-  TfRef<num> get bgpAsnRef => TfRef.attribute<num>(this, 'bgp_asn');
+  TfRef<num> get bgpAsn => TfRef.attribute<num>(this, 'bgp_asn');
 
   /// Reference to `bgp_asn_long` attribute.
-  TfRef<String> get bgpAsnLongRef =>
-      TfRef.attribute<String>(this, 'bgp_asn_long');
+  TfRef<String> get bgpAsnLong => TfRef.attribute<String>(this, 'bgp_asn_long');
 
   /// Reference to `bgp_auth_key` attribute.
-  TfRef<String> get bgpAuthKeyRef =>
-      TfRef.attribute<String>(this, 'bgp_auth_key');
+  TfRef<String> get bgpAuthKey => TfRef.attribute<String>(this, 'bgp_auth_key');
 
   /// Reference to `customer_address` attribute.
-  TfRef<String> get customerAddressRef =>
+  TfRef<String> get customerAddress =>
       TfRef.attribute<String>(this, 'customer_address');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `virtual_interface_id` attribute.
-  TfRef<String> get virtualInterfaceIdRef =>
+  TfRef<String> get virtualInterfaceId =>
       TfRef.attribute<String>(this, 'virtual_interface_id');
 }

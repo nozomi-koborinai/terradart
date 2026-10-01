@@ -37,7 +37,7 @@ final class DataGoogleContainerRegistryImage extends Data {
   Set<String> get sensitiveFields => _googleContainerRegistryImageSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -46,14 +46,14 @@ final class DataGoogleContainerRegistryImage extends Data {
   TfRef<String> get imageUrl => TfRef.attribute<String>(this, 'image_url');
 
   /// Reference to `digest` attribute.
-  TfRef<String> get digestRef => TfRef.attribute<String>(this, 'digest');
+  TfRef<String> get digest => TfRef.attribute<String>(this, 'digest');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tag` attribute.
-  TfRef<String> get tagRef => TfRef.attribute<String>(this, 'tag');
+  TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
 }

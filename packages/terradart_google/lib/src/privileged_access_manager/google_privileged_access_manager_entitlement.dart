@@ -371,7 +371,7 @@ final class GooglePrivilegedAccessManagerEntitlement extends Resource {
   RefTo<GooglePrivilegedAccessManagerEntitlement> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -389,20 +389,20 @@ final class GooglePrivilegedAccessManagerEntitlement extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `entitlement_id` attribute.
-  TfRef<String> get entitlementIdRef =>
+  TfRef<String> get entitlementId =>
       TfRef.attribute<String>(this, 'entitlement_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `max_request_duration` attribute.
-  TfRef<String> get maxRequestDurationRef =>
+  TfRef<String> get maxRequestDuration =>
       TfRef.attribute<String>(this, 'max_request_duration');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

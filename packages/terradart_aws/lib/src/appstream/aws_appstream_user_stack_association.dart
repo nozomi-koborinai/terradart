@@ -56,19 +56,19 @@ final class AwsAppstreamUserStackAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `authentication_type` attribute.
-  TfRef<String> get authenticationTypeRef =>
+  TfRef<String> get authenticationType =>
       TfRef.attribute<String>(this, 'authentication_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `send_email_notification` attribute.
-  TfRef<bool> get sendEmailNotificationRef =>
+  TfRef<bool> get sendEmailNotification =>
       TfRef.attribute<bool>(this, 'send_email_notification');
 
   /// Reference to `stack_name` attribute.
-  TfRef<String> get stackNameRef => TfRef.attribute<String>(this, 'stack_name');
+  TfRef<String> get stackName => TfRef.attribute<String>(this, 'stack_name');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

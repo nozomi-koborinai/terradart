@@ -601,7 +601,7 @@ final class AwsBedrockagentcoreGateway extends Resource {
   RefTo<AwsBedrockagentcoreGateway> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `gateway_arn` attribute.
   TfRef<String> get gatewayArn => TfRef.attribute<String>(this, 'gateway_arn');
@@ -624,32 +624,30 @@ final class AwsBedrockagentcoreGateway extends Resource {
       );
 
   /// Reference to `authorizer_type` attribute.
-  TfRef<String> get authorizerTypeRef =>
+  TfRef<String> get authorizerType =>
       TfRef.attribute<String>(this, 'authorizer_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `exception_level` attribute.
-  TfRef<String> get exceptionLevelRef =>
+  TfRef<String> get exceptionLevel =>
       TfRef.attribute<String>(this, 'exception_level');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `protocol_type` attribute.
-  TfRef<String> get protocolTypeRef =>
+  TfRef<String> get protocolType =>
       TfRef.attribute<String>(this, 'protocol_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

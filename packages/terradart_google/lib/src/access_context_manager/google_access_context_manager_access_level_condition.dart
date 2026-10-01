@@ -268,29 +268,29 @@ final class GoogleAccessContextManagerAccessLevelCondition extends Resource {
       TfRef.attribute<String>(this, 'access_policy_id');
 
   /// Reference to `access_level` attribute.
-  TfRef<String> get accessLevelRef =>
+  TfRef<String> get accessLevel =>
       TfRef.attribute<String>(this, 'access_level');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `ip_subnetworks` attribute.
-  TfRef<List<String>> get ipSubnetworksRef =>
+  TfRef<List<String>> get ipSubnetworks =>
       TfRef.attribute<List<String>>(this, 'ip_subnetworks');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `negate` attribute.
-  TfRef<bool> get negateRef => TfRef.attribute<bool>(this, 'negate');
+  TfRef<bool> get negate => TfRef.attribute<bool>(this, 'negate');
 
   /// Reference to `regions` attribute.
-  TfRef<List<String>> get regionsRef =>
+  TfRef<List<String>> get regions =>
       TfRef.attribute<List<String>>(this, 'regions');
 
   /// Reference to `required_access_levels` attribute.
-  TfRef<List<String>> get requiredAccessLevelsRef =>
+  TfRef<List<String>> get requiredAccessLevels =>
       TfRef.attribute<List<String>>(this, 'required_access_levels');
 }

@@ -307,34 +307,34 @@ final class AwsGameliftGameServerGroup extends Resource {
       TfRef.attribute<String>(this, 'auto_scaling_group_arn');
 
   /// Reference to `balancing_strategy` attribute.
-  TfRef<String> get balancingStrategyRef =>
+  TfRef<String> get balancingStrategy =>
       TfRef.attribute<String>(this, 'balancing_strategy');
 
   /// Reference to `game_server_group_name` attribute.
-  TfRef<String> get gameServerGroupNameRef =>
+  TfRef<String> get gameServerGroupName =>
       TfRef.attribute<String>(this, 'game_server_group_name');
 
   /// Reference to `game_server_protection_policy` attribute.
-  TfRef<String> get gameServerProtectionPolicyRef =>
+  TfRef<String> get gameServerProtectionPolicy =>
       TfRef.attribute<String>(this, 'game_server_protection_policy');
 
   /// Reference to `max_size` attribute.
-  TfRef<num> get maxSizeRef => TfRef.attribute<num>(this, 'max_size');
+  TfRef<num> get maxSize => TfRef.attribute<num>(this, 'max_size');
 
   /// Reference to `min_size` attribute.
-  TfRef<num> get minSizeRef => TfRef.attribute<num>(this, 'min_size');
+  TfRef<num> get minSize => TfRef.attribute<num>(this, 'min_size');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_subnets` attribute.
-  TfRef<List<String>> get vpcSubnetsRef =>
+  TfRef<List<String>> get vpcSubnets =>
       TfRef.attribute<List<String>>(this, 'vpc_subnets');
 }

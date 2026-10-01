@@ -102,77 +102,77 @@ final class AwsQuicksightAccountSubscription extends Resource {
       TfRef.attribute<String>(this, 'account_subscription_status');
 
   /// Reference to `account_name` attribute.
-  TfRef<String> get accountNameRef =>
+  TfRef<String> get accountName =>
       TfRef.attribute<String>(this, 'account_name');
 
   /// Reference to `active_directory_name` attribute.
-  TfRef<String> get activeDirectoryNameRef =>
+  TfRef<String> get activeDirectoryName =>
       TfRef.attribute<String>(this, 'active_directory_name');
 
   /// Reference to `admin_group` attribute.
-  TfRef<List<String>> get adminGroupRef =>
+  TfRef<List<String>> get adminGroup =>
       TfRef.attribute<List<String>>(this, 'admin_group');
 
   /// Reference to `admin_pro_group` attribute.
-  TfRef<List<String>> get adminProGroupRef =>
+  TfRef<List<String>> get adminProGroup =>
       TfRef.attribute<List<String>>(this, 'admin_pro_group');
 
   /// Reference to `authentication_method` attribute.
-  TfRef<String> get authenticationMethodRef =>
+  TfRef<String> get authenticationMethod =>
       TfRef.attribute<String>(this, 'authentication_method');
 
   /// Reference to `author_group` attribute.
-  TfRef<List<String>> get authorGroupRef =>
+  TfRef<List<String>> get authorGroup =>
       TfRef.attribute<List<String>>(this, 'author_group');
 
   /// Reference to `author_pro_group` attribute.
-  TfRef<List<String>> get authorProGroupRef =>
+  TfRef<List<String>> get authorProGroup =>
       TfRef.attribute<List<String>>(this, 'author_pro_group');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `contact_number` attribute.
-  TfRef<String> get contactNumberRef =>
+  TfRef<String> get contactNumber =>
       TfRef.attribute<String>(this, 'contact_number');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `edition` attribute.
-  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+  TfRef<String> get edition => TfRef.attribute<String>(this, 'edition');
 
   /// Reference to `email_address` attribute.
-  TfRef<String> get emailAddressRef =>
+  TfRef<String> get emailAddress =>
       TfRef.attribute<String>(this, 'email_address');
 
   /// Reference to `first_name` attribute.
-  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+  TfRef<String> get firstName => TfRef.attribute<String>(this, 'first_name');
 
   /// Reference to `iam_identity_center_instance_arn` attribute.
-  TfRef<String> get iamIdentityCenterInstanceArnRef =>
+  TfRef<String> get iamIdentityCenterInstanceArn =>
       TfRef.attribute<String>(this, 'iam_identity_center_instance_arn');
 
   /// Reference to `last_name` attribute.
-  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+  TfRef<String> get lastName => TfRef.attribute<String>(this, 'last_name');
 
   /// Reference to `notification_email` attribute.
-  TfRef<String> get notificationEmailRef =>
+  TfRef<String> get notificationEmail =>
       TfRef.attribute<String>(this, 'notification_email');
 
   /// Reference to `reader_group` attribute.
-  TfRef<List<String>> get readerGroupRef =>
+  TfRef<List<String>> get readerGroup =>
       TfRef.attribute<List<String>>(this, 'reader_group');
 
   /// Reference to `reader_pro_group` attribute.
-  TfRef<List<String>> get readerProGroupRef =>
+  TfRef<List<String>> get readerProGroup =>
       TfRef.attribute<List<String>>(this, 'reader_pro_group');
 
   /// Reference to `realm` attribute.
-  TfRef<String> get realmRef => TfRef.attribute<String>(this, 'realm');
+  TfRef<String> get realm => TfRef.attribute<String>(this, 'realm');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

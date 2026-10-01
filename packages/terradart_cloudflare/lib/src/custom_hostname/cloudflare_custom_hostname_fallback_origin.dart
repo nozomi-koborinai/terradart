@@ -54,8 +54,8 @@ final class CloudflareCustomHostnameFallbackOrigin extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `origin` attribute.
-  TfRef<String> get originRef => TfRef.attribute<String>(this, 'origin');
+  TfRef<String> get origin => TfRef.attribute<String>(this, 'origin');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -46,7 +46,7 @@ final class GoogleNetworkConnectivityHub extends Resource {
   RefTo<GoogleNetworkConnectivityHub> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -76,28 +76,26 @@ final class GoogleNetworkConnectivityHub extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `export_psc` attribute.
-  TfRef<bool> get exportPscRef => TfRef.attribute<bool>(this, 'export_psc');
+  TfRef<bool> get exportPsc => TfRef.attribute<bool>(this, 'export_psc');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `policy_mode` attribute.
-  TfRef<String> get policyModeRef =>
-      TfRef.attribute<String>(this, 'policy_mode');
+  TfRef<String> get policyMode => TfRef.attribute<String>(this, 'policy_mode');
 
   /// Reference to `preset_topology` attribute.
-  TfRef<String> get presetTopologyRef =>
+  TfRef<String> get presetTopology =>
       TfRef.attribute<String>(this, 'preset_topology');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

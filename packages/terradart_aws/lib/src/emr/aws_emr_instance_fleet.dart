@@ -238,7 +238,7 @@ final class AwsEmrInstanceFleet extends Resource {
   RefTo<AwsEmrInstanceFleet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -252,16 +252,16 @@ final class AwsEmrInstanceFleet extends Resource {
       TfRef.attribute<num>(this, 'provisioned_spot_capacity');
 
   /// Reference to `cluster_id` attribute.
-  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+  TfRef<String> get clusterId => TfRef.attribute<String>(this, 'cluster_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_on_demand_capacity` attribute.
-  TfRef<num> get targetOnDemandCapacityRef =>
+  TfRef<num> get targetOnDemandCapacity =>
       TfRef.attribute<num>(this, 'target_on_demand_capacity');
 
   /// Reference to `target_spot_capacity` attribute.
-  TfRef<num> get targetSpotCapacityRef =>
+  TfRef<num> get targetSpotCapacity =>
       TfRef.attribute<num>(this, 'target_spot_capacity');
 }

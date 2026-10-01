@@ -211,7 +211,7 @@ final class AwsElastictranscoderPipeline extends Resource {
   RefTo<AwsElastictranscoderPipeline> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -220,20 +220,20 @@ final class AwsElastictranscoderPipeline extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `aws_kms_key_arn` attribute.
-  TfRef<String> get awsKmsKeyArnRef =>
+  TfRef<String> get awsKmsKeyArn =>
       TfRef.attribute<String>(this, 'aws_kms_key_arn');
 
   /// Reference to `input_bucket` attribute.
-  TfRef<String> get inputBucketRef =>
+  TfRef<String> get inputBucket =>
       TfRef.attribute<String>(this, 'input_bucket');
 
   /// Reference to `output_bucket` attribute.
-  TfRef<String> get outputBucketRef =>
+  TfRef<String> get outputBucket =>
       TfRef.attribute<String>(this, 'output_bucket');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

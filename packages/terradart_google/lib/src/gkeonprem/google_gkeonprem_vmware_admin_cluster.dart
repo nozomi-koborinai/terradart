@@ -676,8 +676,12 @@ final class GoogleGkeonpremVmwareAdminCluster extends Resource {
   /// `RefTo<GoogleGkeonpremVmwareAdminCluster>`.
   RefTo<GoogleGkeonpremVmwareAdminCluster> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `local_name` attribute.
-  TfRef<String> get localNameRef => TfRef.attribute<String>(this, 'local_name');
+  TfRef<String> get localNameAttr =>
+      TfRef.attribute<String>(this, 'local_name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -716,37 +720,30 @@ final class GoogleGkeonpremVmwareAdminCluster extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `bootstrap_cluster_membership` attribute.
-  TfRef<String> get bootstrapClusterMembershipRef =>
+  TfRef<String> get bootstrapClusterMembership =>
       TfRef.attribute<String>(this, 'bootstrap_cluster_membership');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_advanced_cluster` attribute.
-  TfRef<bool> get enableAdvancedClusterRef =>
+  TfRef<bool> get enableAdvancedCluster =>
       TfRef.attribute<bool>(this, 'enable_advanced_cluster');
 
   /// Reference to `image_type` attribute.
-  TfRef<String> get imageTypeRef => TfRef.attribute<String>(this, 'image_type');
+  TfRef<String> get imageType => TfRef.attribute<String>(this, 'image_type');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `on_prem_version` attribute.
-  TfRef<String> get onPremVersionRef =>
+  TfRef<String> get onPremVersion =>
       TfRef.attribute<String>(this, 'on_prem_version');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

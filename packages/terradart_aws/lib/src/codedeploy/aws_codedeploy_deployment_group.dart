@@ -553,36 +553,36 @@ final class AwsCodedeployDeploymentGroup extends Resource {
       TfRef.attribute<String>(this, 'deployment_group_id');
 
   /// Reference to `app_name` attribute.
-  TfRef<String> get appNameRef => TfRef.attribute<String>(this, 'app_name');
+  TfRef<String> get appName => TfRef.attribute<String>(this, 'app_name');
 
   /// Reference to `autoscaling_groups` attribute.
-  TfRef<List<String>> get autoscalingGroupsRef =>
+  TfRef<List<String>> get autoscalingGroups =>
       TfRef.attribute<List<String>>(this, 'autoscaling_groups');
 
   /// Reference to `deployment_config_name` attribute.
-  TfRef<String> get deploymentConfigNameRef =>
+  TfRef<String> get deploymentConfigName =>
       TfRef.attribute<String>(this, 'deployment_config_name');
 
   /// Reference to `deployment_group_name` attribute.
-  TfRef<String> get deploymentGroupNameRef =>
+  TfRef<String> get deploymentGroupName =>
       TfRef.attribute<String>(this, 'deployment_group_name');
 
   /// Reference to `outdated_instances_strategy` attribute.
-  TfRef<String> get outdatedInstancesStrategyRef =>
+  TfRef<String> get outdatedInstancesStrategy =>
       TfRef.attribute<String>(this, 'outdated_instances_strategy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_role_arn` attribute.
-  TfRef<String> get serviceRoleArnRef =>
+  TfRef<String> get serviceRoleArn =>
       TfRef.attribute<String>(this, 'service_role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `termination_hook_enabled` attribute.
-  TfRef<bool> get terminationHookEnabledRef =>
+  TfRef<bool> get terminationHookEnabled =>
       TfRef.attribute<bool>(this, 'termination_hook_enabled');
 }

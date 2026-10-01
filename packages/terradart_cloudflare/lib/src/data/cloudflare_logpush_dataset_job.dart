@@ -38,10 +38,10 @@ final class DataCloudflareLogpushDatasetJob extends Data {
   Set<String> get sensitiveFields => _cloudflareLogpushDatasetJobSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,11 +91,11 @@ final class DataCloudflareLogpushDatasetJob extends Data {
       TfRef.attribute<num>(this, 'max_upload_records');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `dataset_id` attribute.
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

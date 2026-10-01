@@ -58,13 +58,12 @@ final class AwsEc2DefaultCreditSpecification extends Resource {
   RefTo<AwsEc2DefaultCreditSpecification> get ref => RefTo.of(this);
 
   /// Reference to `cpu_credits` attribute.
-  TfRef<String> get cpuCreditsRef =>
-      TfRef.attribute<String>(this, 'cpu_credits');
+  TfRef<String> get cpuCredits => TfRef.attribute<String>(this, 'cpu_credits');
 
   /// Reference to `instance_family` attribute.
-  TfRef<String> get instanceFamilyRef =>
+  TfRef<String> get instanceFamily =>
       TfRef.attribute<String>(this, 'instance_family');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -38,7 +38,7 @@ final class AwsCloudwatchQueryDefinition extends Resource {
   RefTo<AwsCloudwatchQueryDefinition> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -51,13 +51,13 @@ final class AwsCloudwatchQueryDefinition extends Resource {
       TfRef.attribute<String>(this, 'query_definition_id');
 
   /// Reference to `log_group_names` attribute.
-  TfRef<List<String>> get logGroupNamesRef =>
+  TfRef<List<String>> get logGroupNames =>
       TfRef.attribute<List<String>>(this, 'log_group_names');
 
   /// Reference to `query_string` attribute.
-  TfRef<String> get queryStringRef =>
+  TfRef<String> get queryString =>
       TfRef.attribute<String>(this, 'query_string');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

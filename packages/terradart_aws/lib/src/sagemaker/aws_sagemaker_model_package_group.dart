@@ -44,17 +44,17 @@ final class AwsSagemakerModelPackageGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `model_package_group_description` attribute.
-  TfRef<String> get modelPackageGroupDescriptionRef =>
+  TfRef<String> get modelPackageGroupDescription =>
       TfRef.attribute<String>(this, 'model_package_group_description');
 
   /// Reference to `model_package_group_name` attribute.
-  TfRef<String> get modelPackageGroupNameRef =>
+  TfRef<String> get modelPackageGroupName =>
       TfRef.attribute<String>(this, 'model_package_group_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

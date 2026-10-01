@@ -56,6 +56,9 @@ final class GoogleComputeRegionCompositeHealthCheck extends Resource {
   /// `RefTo<GoogleComputeRegionCompositeHealthCheck>`.
   RefTo<GoogleComputeRegionCompositeHealthCheck> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -67,29 +70,25 @@ final class GoogleComputeRegionCompositeHealthCheck extends Resource {
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `health_destination` attribute.
-  TfRef<String> get healthDestinationRef =>
+  TfRef<String> get healthDestination =>
       TfRef.attribute<String>(this, 'health_destination');
 
   /// Reference to `health_sources` attribute.
-  TfRef<List<String>> get healthSourcesRef =>
+  TfRef<List<String>> get healthSources =>
       TfRef.attribute<List<String>>(this, 'health_sources');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `self_link_with_id` attribute.
   TfRef<String> get selfLinkWithId =>

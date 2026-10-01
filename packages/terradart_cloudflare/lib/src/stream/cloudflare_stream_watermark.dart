@@ -52,7 +52,7 @@ final class CloudflareStreamWatermark extends Resource {
   RefTo<CloudflareStreamWatermark> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `created` attribute.
   TfRef<String> get created => TfRef.attribute<String>(this, 'created');
@@ -74,24 +74,23 @@ final class CloudflareStreamWatermark extends Resource {
   TfRef<num> get width => TfRef.attribute<num>(this, 'width');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `opacity` attribute.
-  TfRef<num> get opacityRef => TfRef.attribute<num>(this, 'opacity');
+  TfRef<num> get opacity => TfRef.attribute<num>(this, 'opacity');
 
   /// Reference to `padding` attribute.
-  TfRef<num> get paddingRef => TfRef.attribute<num>(this, 'padding');
+  TfRef<num> get padding => TfRef.attribute<num>(this, 'padding');
 
   /// Reference to `position` attribute.
-  TfRef<String> get positionRef => TfRef.attribute<String>(this, 'position');
+  TfRef<String> get position => TfRef.attribute<String>(this, 'position');
 
   /// Reference to `scale` attribute.
-  TfRef<num> get scaleRef => TfRef.attribute<num>(this, 'scale');
+  TfRef<num> get scale => TfRef.attribute<num>(this, 'scale');
 
   /// Reference to `url` attribute.
-  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
+  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 }

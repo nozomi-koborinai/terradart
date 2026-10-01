@@ -44,8 +44,8 @@ final class DataGooglePubsubTopicIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `topic` attribute.
-  TfRef<String> get topicRef => TfRef.attribute<String>(this, 'topic');
+  TfRef<String> get topic => TfRef.attribute<String>(this, 'topic');
 }

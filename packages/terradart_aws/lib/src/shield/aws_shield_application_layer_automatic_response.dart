@@ -47,9 +47,9 @@ final class AwsShieldApplicationLayerAutomaticResponse extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 }

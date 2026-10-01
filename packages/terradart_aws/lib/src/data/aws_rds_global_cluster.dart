@@ -71,9 +71,8 @@ final class DataAwsRdsGlobalCluster extends Data {
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

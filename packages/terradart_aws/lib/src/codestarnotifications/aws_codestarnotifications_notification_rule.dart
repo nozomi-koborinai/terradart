@@ -89,7 +89,7 @@ final class AwsCodestarnotificationsNotificationRule extends Resource {
   RefTo<AwsCodestarnotificationsNotificationRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -98,23 +98,22 @@ final class AwsCodestarnotificationsNotificationRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `detail_type` attribute.
-  TfRef<String> get detailTypeRef =>
-      TfRef.attribute<String>(this, 'detail_type');
+  TfRef<String> get detailType => TfRef.attribute<String>(this, 'detail_type');
 
   /// Reference to `event_type_ids` attribute.
-  TfRef<List<String>> get eventTypeIdsRef =>
+  TfRef<List<String>> get eventTypeIds =>
       TfRef.attribute<List<String>>(this, 'event_type_ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource` attribute.
-  TfRef<String> get resourceRef => TfRef.attribute<String>(this, 'resource');
+  TfRef<String> get resource => TfRef.attribute<String>(this, 'resource');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

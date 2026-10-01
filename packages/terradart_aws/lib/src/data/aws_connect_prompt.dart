@@ -26,7 +26,7 @@ final class DataAwsConnectPrompt extends Data {
   Set<String> get sensitiveFields => _awsConnectPromptSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -38,9 +38,8 @@ final class DataAwsConnectPrompt extends Data {
   TfRef<String> get promptId => TfRef.attribute<String>(this, 'prompt_id');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

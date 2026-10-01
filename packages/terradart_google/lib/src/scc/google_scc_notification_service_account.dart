@@ -48,13 +48,13 @@ final class GoogleSccNotificationServiceAccount extends Resource {
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
-      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 }

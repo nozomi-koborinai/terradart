@@ -99,9 +99,9 @@ final class CloudflareImageVariant extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `never_require_signed_urls` attribute.
-  TfRef<bool> get neverRequireSignedUrlsRef =>
+  TfRef<bool> get neverRequireSignedUrls =>
       TfRef.attribute<bool>(this, 'never_require_signed_urls');
 }

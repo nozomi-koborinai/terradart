@@ -132,7 +132,7 @@ final class AwsSsmAssociation extends Resource {
   RefTo<AwsSsmAssociation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -145,56 +145,56 @@ final class AwsSsmAssociation extends Resource {
       TfRef.attribute<String>(this, 'association_id');
 
   /// Reference to `apply_only_at_cron_interval` attribute.
-  TfRef<bool> get applyOnlyAtCronIntervalRef =>
+  TfRef<bool> get applyOnlyAtCronInterval =>
       TfRef.attribute<bool>(this, 'apply_only_at_cron_interval');
 
   /// Reference to `association_name` attribute.
-  TfRef<String> get associationNameRef =>
+  TfRef<String> get associationName =>
       TfRef.attribute<String>(this, 'association_name');
 
   /// Reference to `automation_target_parameter_name` attribute.
-  TfRef<String> get automationTargetParameterNameRef =>
+  TfRef<String> get automationTargetParameterName =>
       TfRef.attribute<String>(this, 'automation_target_parameter_name');
 
   /// Reference to `calendar_names` attribute.
-  TfRef<List<String>> get calendarNamesRef =>
+  TfRef<List<String>> get calendarNames =>
       TfRef.attribute<List<String>>(this, 'calendar_names');
 
   /// Reference to `compliance_severity` attribute.
-  TfRef<String> get complianceSeverityRef =>
+  TfRef<String> get complianceSeverity =>
       TfRef.attribute<String>(this, 'compliance_severity');
 
   /// Reference to `document_version` attribute.
-  TfRef<String> get documentVersionRef =>
+  TfRef<String> get documentVersion =>
       TfRef.attribute<String>(this, 'document_version');
 
   /// Reference to `max_concurrency` attribute.
-  TfRef<String> get maxConcurrencyRef =>
+  TfRef<String> get maxConcurrency =>
       TfRef.attribute<String>(this, 'max_concurrency');
 
   /// Reference to `max_errors` attribute.
-  TfRef<String> get maxErrorsRef => TfRef.attribute<String>(this, 'max_errors');
+  TfRef<String> get maxErrors => TfRef.attribute<String>(this, 'max_errors');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `schedule_expression` attribute.
-  TfRef<String> get scheduleExpressionRef =>
+  TfRef<String> get scheduleExpression =>
       TfRef.attribute<String>(this, 'schedule_expression');
 
   /// Reference to `sync_compliance` attribute.
-  TfRef<String> get syncComplianceRef =>
+  TfRef<String> get syncCompliance =>
       TfRef.attribute<String>(this, 'sync_compliance');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `wait_for_success_timeout_seconds` attribute.
-  TfRef<num> get waitForSuccessTimeoutSecondsRef =>
+  TfRef<num> get waitForSuccessTimeoutSeconds =>
       TfRef.attribute<num>(this, 'wait_for_success_timeout_seconds');
 }

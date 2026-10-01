@@ -59,7 +59,7 @@ final class GoogleDataCatalogPolicyTag extends Resource {
   RefTo<GoogleDataCatalogPolicyTag> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -69,21 +69,20 @@ final class GoogleDataCatalogPolicyTag extends Resource {
       TfRef.attribute<List<String>>(this, 'child_policy_tags');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `parent_policy_tag` attribute.
-  TfRef<String> get parentPolicyTagRef =>
+  TfRef<String> get parentPolicyTag =>
       TfRef.attribute<String>(this, 'parent_policy_tag');
 
   /// Reference to `taxonomy` attribute.
-  TfRef<String> get taxonomyRef => TfRef.attribute<String>(this, 'taxonomy');
+  TfRef<String> get taxonomy => TfRef.attribute<String>(this, 'taxonomy');
 }

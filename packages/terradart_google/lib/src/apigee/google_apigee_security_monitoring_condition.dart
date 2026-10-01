@@ -83,7 +83,7 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
   RefTo<GoogleApigeeSecurityMonitoringCondition> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -103,19 +103,19 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `condition_id` attribute.
-  TfRef<String> get conditionIdRef =>
+  TfRef<String> get conditionId =>
       TfRef.attribute<String>(this, 'condition_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `profile` attribute.
-  TfRef<String> get profileRef => TfRef.attribute<String>(this, 'profile');
+  TfRef<String> get profile => TfRef.attribute<String>(this, 'profile');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 }

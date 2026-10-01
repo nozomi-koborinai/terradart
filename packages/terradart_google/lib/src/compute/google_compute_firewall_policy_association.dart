@@ -54,7 +54,7 @@ final class GoogleComputeFirewallPolicyAssociation extends Resource {
   RefTo<GoogleComputeFirewallPolicyAssociation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,14 +63,14 @@ final class GoogleComputeFirewallPolicyAssociation extends Resource {
   TfRef<String> get shortName => TfRef.attribute<String>(this, 'short_name');
 
   /// Reference to `attachment_target` attribute.
-  TfRef<String> get attachmentTargetRef =>
+  TfRef<String> get attachmentTarget =>
       TfRef.attribute<String>(this, 'attachment_target');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `firewall_policy` attribute.
-  TfRef<String> get firewallPolicyRef =>
+  TfRef<String> get firewallPolicy =>
       TfRef.attribute<String>(this, 'firewall_policy');
 }

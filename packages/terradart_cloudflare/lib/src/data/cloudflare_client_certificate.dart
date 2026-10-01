@@ -129,9 +129,9 @@ final class DataCloudflareClientCertificate extends Data {
   TfRef<num> get validityDays => TfRef.attribute<num>(this, 'validity_days');
 
   /// Reference to `client_certificate_id` attribute.
-  TfRef<String> get clientCertificateIdRef =>
+  TfRef<String> get clientCertificateId =>
       TfRef.attribute<String>(this, 'client_certificate_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

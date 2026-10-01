@@ -2004,7 +2004,7 @@ final class AwsLaunchTemplate extends Resource {
   RefTo<AwsLaunchTemplate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -2016,69 +2016,66 @@ final class AwsLaunchTemplate extends Resource {
   TfRef<num> get latestVersion => TfRef.attribute<num>(this, 'latest_version');
 
   /// Reference to `default_version` attribute.
-  TfRef<num> get defaultVersionRef =>
+  TfRef<num> get defaultVersion =>
       TfRef.attribute<num>(this, 'default_version');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_api_stop` attribute.
-  TfRef<bool> get disableApiStopRef =>
+  TfRef<bool> get disableApiStop =>
       TfRef.attribute<bool>(this, 'disable_api_stop');
 
   /// Reference to `disable_api_termination` attribute.
-  TfRef<bool> get disableApiTerminationRef =>
+  TfRef<bool> get disableApiTermination =>
       TfRef.attribute<bool>(this, 'disable_api_termination');
 
   /// Reference to `ebs_optimized` attribute.
-  TfRef<String> get ebsOptimizedRef =>
+  TfRef<String> get ebsOptimized =>
       TfRef.attribute<String>(this, 'ebs_optimized');
 
   /// Reference to `image_id` attribute.
-  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+  TfRef<String> get imageId => TfRef.attribute<String>(this, 'image_id');
 
   /// Reference to `instance_initiated_shutdown_behavior` attribute.
-  TfRef<String> get instanceInitiatedShutdownBehaviorRef =>
+  TfRef<String> get instanceInitiatedShutdownBehavior =>
       TfRef.attribute<String>(this, 'instance_initiated_shutdown_behavior');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `kernel_id` attribute.
-  TfRef<String> get kernelIdRef => TfRef.attribute<String>(this, 'kernel_id');
+  TfRef<String> get kernelId => TfRef.attribute<String>(this, 'kernel_id');
 
   /// Reference to `key_name` attribute.
-  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+  TfRef<String> get keyName => TfRef.attribute<String>(this, 'key_name');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `ram_disk_id` attribute.
-  TfRef<String> get ramDiskIdRef =>
-      TfRef.attribute<String>(this, 'ram_disk_id');
+  TfRef<String> get ramDiskId => TfRef.attribute<String>(this, 'ram_disk_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_names` attribute.
-  TfRef<List<String>> get securityGroupNamesRef =>
+  TfRef<List<String>> get securityGroupNames =>
       TfRef.attribute<List<String>>(this, 'security_group_names');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `update_default_version` attribute.
-  TfRef<bool> get updateDefaultVersionRef =>
+  TfRef<bool> get updateDefaultVersion =>
       TfRef.attribute<bool>(this, 'update_default_version');
 
   /// Reference to `user_data` attribute.
-  TfRef<String> get userDataRef => TfRef.attribute<String>(this, 'user_data');
+  TfRef<String> get userData => TfRef.attribute<String>(this, 'user_data');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

@@ -867,7 +867,7 @@ final class GoogleCesApp extends Resource {
   RefTo<GoogleCesApp> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -885,49 +885,48 @@ final class GoogleCesApp extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `global_instruction` attribute.
-  TfRef<String> get globalInstructionRef =>
+  TfRef<String> get globalInstruction =>
       TfRef.attribute<String>(this, 'global_instruction');
 
   /// Reference to `guardrails` attribute.
-  TfRef<List<String>> get guardrailsRef =>
+  TfRef<List<String>> get guardrails =>
       TfRef.attribute<List<String>>(this, 'guardrails');
 
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
   /// Reference to `locked` attribute.
-  TfRef<bool> get lockedRef => TfRef.attribute<bool>(this, 'locked');
+  TfRef<bool> get locked => TfRef.attribute<bool>(this, 'locked');
 
   /// Reference to `metadata` attribute.
-  TfRef<Map<String, String>> get metadataRef =>
+  TfRef<Map<String, String>> get metadata =>
       TfRef.attribute<Map<String, String>>(this, 'metadata');
 
   /// Reference to `pinned` attribute.
-  TfRef<bool> get pinnedRef => TfRef.attribute<bool>(this, 'pinned');
+  TfRef<bool> get pinned => TfRef.attribute<bool>(this, 'pinned');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `root_agent` attribute.
-  TfRef<String> get rootAgentRef => TfRef.attribute<String>(this, 'root_agent');
+  TfRef<String> get rootAgent => TfRef.attribute<String>(this, 'root_agent');
 
   /// Reference to `tool_execution_mode` attribute.
-  TfRef<String> get toolExecutionModeRef =>
+  TfRef<String> get toolExecutionMode =>
       TfRef.attribute<String>(this, 'tool_execution_mode');
-
-  /// Reference to `app_id` (parent segment for agents / tools / guardrails).
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
-
-  /// Reference to `location`.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

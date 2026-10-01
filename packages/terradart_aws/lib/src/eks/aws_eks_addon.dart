@@ -124,39 +124,39 @@ final class AwsEksAddon extends Resource {
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
 
   /// Reference to `addon_name` attribute.
-  TfRef<String> get addonNameRef => TfRef.attribute<String>(this, 'addon_name');
+  TfRef<String> get addonName => TfRef.attribute<String>(this, 'addon_name');
 
   /// Reference to `addon_version` attribute.
-  TfRef<String> get addonVersionRef =>
+  TfRef<String> get addonVersion =>
       TfRef.attribute<String>(this, 'addon_version');
 
   /// Reference to `cluster_name` attribute.
-  TfRef<String> get clusterNameRef =>
+  TfRef<String> get clusterName =>
       TfRef.attribute<String>(this, 'cluster_name');
 
   /// Reference to `configuration_values` attribute.
-  TfRef<String> get configurationValuesRef =>
+  TfRef<String> get configurationValues =>
       TfRef.attribute<String>(this, 'configuration_values');
 
   /// Reference to `preserve` attribute.
-  TfRef<bool> get preserveRef => TfRef.attribute<bool>(this, 'preserve');
+  TfRef<bool> get preserve => TfRef.attribute<bool>(this, 'preserve');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resolve_conflicts_on_create` attribute.
-  TfRef<String> get resolveConflictsOnCreateRef =>
+  TfRef<String> get resolveConflictsOnCreate =>
       TfRef.attribute<String>(this, 'resolve_conflicts_on_create');
 
   /// Reference to `resolve_conflicts_on_update` attribute.
-  TfRef<String> get resolveConflictsOnUpdateRef =>
+  TfRef<String> get resolveConflictsOnUpdate =>
       TfRef.attribute<String>(this, 'resolve_conflicts_on_update');
 
   /// Reference to `service_account_role_arn` attribute.
-  TfRef<String> get serviceAccountRoleArnRef =>
+  TfRef<String> get serviceAccountRoleArn =>
       TfRef.attribute<String>(this, 'service_account_role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -202,21 +202,21 @@ final class AwsBedrockModelInvocationJob extends Resource {
       TfRef.attribute<num>(this, 'total_record_count');
 
   /// Reference to `job_name` attribute.
-  TfRef<String> get jobNameRef => TfRef.attribute<String>(this, 'job_name');
+  TfRef<String> get jobName => TfRef.attribute<String>(this, 'job_name');
 
   /// Reference to `model_id` attribute.
-  TfRef<String> get modelIdRef => TfRef.attribute<String>(this, 'model_id');
+  TfRef<String> get modelId => TfRef.attribute<String>(this, 'model_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `timeout_duration_in_hours` attribute.
-  TfRef<num> get timeoutDurationInHoursRef =>
+  TfRef<num> get timeoutDurationInHours =>
       TfRef.attribute<num>(this, 'timeout_duration_in_hours');
 }

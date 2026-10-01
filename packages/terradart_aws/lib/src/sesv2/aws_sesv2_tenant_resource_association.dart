@@ -37,13 +37,12 @@ final class AwsSesv2TenantResourceAssociation extends Resource {
   RefTo<AwsSesv2TenantResourceAssociation> get ref => RefTo.of(this);
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 
   /// Reference to `tenant_name` attribute.
-  TfRef<String> get tenantNameRef =>
-      TfRef.attribute<String>(this, 'tenant_name');
+  TfRef<String> get tenantName => TfRef.attribute<String>(this, 'tenant_name');
 }

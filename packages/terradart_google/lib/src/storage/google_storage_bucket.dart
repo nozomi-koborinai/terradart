@@ -548,7 +548,7 @@ final class GoogleStorageBucket extends Resource {
   RefTo<GoogleStorageBucket> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -578,47 +578,46 @@ final class GoogleStorageBucket extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `default_event_based_hold` attribute.
-  TfRef<bool> get defaultEventBasedHoldRef =>
+  TfRef<bool> get defaultEventBasedHold =>
       TfRef.attribute<bool>(this, 'default_event_based_hold');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enable_object_retention` attribute.
-  TfRef<bool> get enableObjectRetentionRef =>
+  TfRef<bool> get enableObjectRetention =>
       TfRef.attribute<bool>(this, 'enable_object_retention');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `public_access_prevention` attribute.
-  TfRef<String> get publicAccessPreventionRef =>
+  TfRef<String> get publicAccessPrevention =>
       TfRef.attribute<String>(this, 'public_access_prevention');
 
   /// Reference to `requester_pays` attribute.
-  TfRef<bool> get requesterPaysRef =>
+  TfRef<bool> get requesterPays =>
       TfRef.attribute<bool>(this, 'requester_pays');
 
   /// Reference to `rpo` attribute.
-  TfRef<String> get rpoRef => TfRef.attribute<String>(this, 'rpo');
+  TfRef<String> get rpo => TfRef.attribute<String>(this, 'rpo');
 
   /// Reference to `storage_class` attribute.
-  TfRef<String> get storageClassRef =>
+  TfRef<String> get storageClass =>
       TfRef.attribute<String>(this, 'storage_class');
 
   /// Reference to `uniform_bucket_level_access` attribute.
-  TfRef<bool> get uniformBucketLevelAccessRef =>
+  TfRef<bool> get uniformBucketLevelAccess =>
       TfRef.attribute<bool>(this, 'uniform_bucket_level_access');
 }

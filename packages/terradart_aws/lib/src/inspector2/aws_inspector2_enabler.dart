@@ -54,13 +54,13 @@ final class AwsInspector2Enabler extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_ids` attribute.
-  TfRef<List<String>> get accountIdsRef =>
+  TfRef<List<String>> get accountIds =>
       TfRef.attribute<List<String>>(this, 'account_ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_types` attribute.
-  TfRef<List<String>> get resourceTypesRef =>
+  TfRef<List<String>> get resourceTypes =>
       TfRef.attribute<List<String>>(this, 'resource_types');
 }

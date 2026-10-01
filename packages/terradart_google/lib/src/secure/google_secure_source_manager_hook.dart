@@ -75,6 +75,9 @@ final class GoogleSecureSourceManagerHook extends Resource {
   /// `RefTo<GoogleSecureSourceManagerHook>`.
   RefTo<GoogleSecureSourceManagerHook> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -88,39 +91,33 @@ final class GoogleSecureSourceManagerHook extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `events` attribute.
-  TfRef<List<String>> get eventsRef =>
+  TfRef<List<String>> get events =>
       TfRef.attribute<List<String>>(this, 'events');
 
+  /// Reference to `hook_id` attribute.
+  TfRef<String> get hookId => TfRef.attribute<String>(this, 'hook_id');
+
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_id` attribute.
-  TfRef<String> get repositoryIdRef =>
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 
   /// Reference to `sensitive_query_string` attribute.
-  TfRef<String> get sensitiveQueryStringRef =>
+  TfRef<String> get sensitiveQueryString =>
       TfRef.attribute<String>(this, 'sensitive_query_string');
 
   /// Reference to `target_uri` attribute.
-  TfRef<String> get targetUriRef => TfRef.attribute<String>(this, 'target_uri');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `hook_id` attribute.
-  TfRef<String> get hookIdRef => TfRef.attribute<String>(this, 'hook_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get targetUri => TfRef.attribute<String>(this, 'target_uri');
 }

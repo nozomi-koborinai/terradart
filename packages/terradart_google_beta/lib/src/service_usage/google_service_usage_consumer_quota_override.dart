@@ -54,35 +54,35 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
   RefTo<GoogleServiceUsageConsumerQuotaOverride> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `dimensions` attribute.
-  TfRef<Map<String, String>> get dimensionsRef =>
+  TfRef<Map<String, String>> get dimensions =>
       TfRef.attribute<Map<String, String>>(this, 'dimensions');
 
   /// Reference to `force` attribute.
-  TfRef<bool> get forceRef => TfRef.attribute<bool>(this, 'force');
+  TfRef<bool> get force => TfRef.attribute<bool>(this, 'force');
 
   /// Reference to `limit` attribute.
-  TfRef<String> get limitRef => TfRef.attribute<String>(this, 'limit');
+  TfRef<String> get limit => TfRef.attribute<String>(this, 'limit');
 
   /// Reference to `metric` attribute.
-  TfRef<String> get metricRef => TfRef.attribute<String>(this, 'metric');
+  TfRef<String> get metric => TfRef.attribute<String>(this, 'metric');
 
   /// Reference to `override_value` attribute.
-  TfRef<String> get overrideValueRef =>
+  TfRef<String> get overrideValue =>
       TfRef.attribute<String>(this, 'override_value');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 }

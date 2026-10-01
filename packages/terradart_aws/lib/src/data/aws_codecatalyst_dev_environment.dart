@@ -89,25 +89,25 @@ final class DataAwsCodecatalystDevEnvironment extends Data {
       TfRef.attribute<String>(this, 'status_reason');
 
   /// Reference to `alias` attribute.
-  TfRef<String> get aliasRef => TfRef.attribute<String>(this, 'alias');
+  TfRef<String> get alias => TfRef.attribute<String>(this, 'alias');
 
   /// Reference to `creator_id` attribute.
-  TfRef<String> get creatorIdRef => TfRef.attribute<String>(this, 'creator_id');
+  TfRef<String> get creatorId => TfRef.attribute<String>(this, 'creator_id');
 
   /// Reference to `env_id` attribute.
-  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+  TfRef<String> get envId => TfRef.attribute<String>(this, 'env_id');
 
   /// Reference to `project_name` attribute.
-  TfRef<String> get projectNameRef =>
+  TfRef<String> get projectName =>
       TfRef.attribute<String>(this, 'project_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `space_name` attribute.
-  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
+  TfRef<String> get spaceName => TfRef.attribute<String>(this, 'space_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -120,45 +120,45 @@ final class AwsRedshiftserverlessWorkgroup extends Resource {
       TfRef.attribute<String>(this, 'workgroup_id');
 
   /// Reference to `base_capacity` attribute.
-  TfRef<num> get baseCapacityRef => TfRef.attribute<num>(this, 'base_capacity');
+  TfRef<num> get baseCapacity => TfRef.attribute<num>(this, 'base_capacity');
 
   /// Reference to `enhanced_vpc_routing` attribute.
-  TfRef<bool> get enhancedVpcRoutingRef =>
+  TfRef<bool> get enhancedVpcRouting =>
       TfRef.attribute<bool>(this, 'enhanced_vpc_routing');
 
   /// Reference to `max_capacity` attribute.
-  TfRef<num> get maxCapacityRef => TfRef.attribute<num>(this, 'max_capacity');
+  TfRef<num> get maxCapacity => TfRef.attribute<num>(this, 'max_capacity');
 
   /// Reference to `namespace_name` attribute.
-  TfRef<String> get namespaceNameRef =>
+  TfRef<String> get namespaceName =>
       TfRef.attribute<String>(this, 'namespace_name');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `publicly_accessible` attribute.
-  TfRef<bool> get publiclyAccessibleRef =>
+  TfRef<bool> get publiclyAccessible =>
       TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `track_name` attribute.
-  TfRef<String> get trackNameRef => TfRef.attribute<String>(this, 'track_name');
+  TfRef<String> get trackName => TfRef.attribute<String>(this, 'track_name');
 
   /// Reference to `workgroup_name` attribute.
-  TfRef<String> get workgroupNameRef =>
+  TfRef<String> get workgroupName =>
       TfRef.attribute<String>(this, 'workgroup_name');
 }

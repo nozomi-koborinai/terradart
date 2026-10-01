@@ -49,23 +49,23 @@ final class DataAwsRdsReservedInstanceOffering extends Data {
   TfRef<String> get offeringId => TfRef.attribute<String>(this, 'offering_id');
 
   /// Reference to `db_instance_class` attribute.
-  TfRef<String> get dbInstanceClassRef =>
+  TfRef<String> get dbInstanceClass =>
       TfRef.attribute<String>(this, 'db_instance_class');
 
   /// Reference to `duration` attribute.
-  TfRef<num> get durationRef => TfRef.attribute<num>(this, 'duration');
+  TfRef<num> get duration => TfRef.attribute<num>(this, 'duration');
 
   /// Reference to `multi_az` attribute.
-  TfRef<bool> get multiAzRef => TfRef.attribute<bool>(this, 'multi_az');
+  TfRef<bool> get multiAz => TfRef.attribute<bool>(this, 'multi_az');
 
   /// Reference to `offering_type` attribute.
-  TfRef<String> get offeringTypeRef =>
+  TfRef<String> get offeringType =>
       TfRef.attribute<String>(this, 'offering_type');
 
   /// Reference to `product_description` attribute.
-  TfRef<String> get productDescriptionRef =>
+  TfRef<String> get productDescription =>
       TfRef.attribute<String>(this, 'product_description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }
