@@ -177,7 +177,10 @@ void main() {
         'network': r'${google_x_network.main.self_link}',
         'zone': r'${google_x_bucket.b.zone}',
       });
-      expect(_stack(other), contains('zone: .ref('));
+      expect(
+        _stack(other),
+        contains("zone: TfRef.attribute<String>(b, 'zone')"),
+      );
     });
 
     test('stays when the reference is not a migrated block', () {
@@ -185,7 +188,10 @@ void main() {
         'network': 'projects/p/global/networks/n',
         'zone': r'${google_x_network.main.zone}',
       });
-      expect(_stack(r), contains('zone: .ref('));
+      expect(
+        _stack(r),
+        contains("zone: TfRef.attribute<String>(main, 'zone')"),
+      );
     });
   });
 

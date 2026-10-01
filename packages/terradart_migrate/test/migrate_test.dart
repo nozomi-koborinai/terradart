@@ -1364,15 +1364,12 @@ resource "aws_cloudwatch_log_group" "fn" {
           "addOutput('topic-id', x.id, description: 'the id', sensitive: true);",
         ),
       );
-      expect(
-        r.stackSource,
-        contains("addOutput('labels', x.labels);"),
-      );
+      expect(r.stackSource, contains("addOutput('labels', x.labels);"));
       expect(
         r.stackSource,
         contains(
           "addOutput('unknown', "
-          ".ref(TfRef.attribute<Object?>(x, 'not_in_schema')));",
+          "TfRef.attribute<Object?>(x, 'not_in_schema'));",
         ),
       );
       expect(r.report.kept.single.address, 'output.literal');
@@ -2228,10 +2225,7 @@ resource "google_pubsub_topic" "x" {
       );
       final src = r.stackSource;
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(
-        src,
-        contains("name: TfRef.attribute<String>(naming, 'topic')"),
-      );
+      expect(src, contains("name: TfRef.attribute<String>(naming, 'topic')"));
       expect(
         src.indexOf('addModule('),
         lessThan(src.indexOf('GooglePubsubTopic(')),
