@@ -26,7 +26,7 @@ Or copy the file into your agent's skills directory, for example `.claude/skills
 ## Without a checkout
 
 - [`/llms.txt`](/llms.txt) is these docs, condensed for LLMs.
-- [Coverage](/docs/coverage/) lists every `google_*` factory with its barrel and the examples that use it.
+- [Coverage](/docs/coverage/) lists every factory of every provider package with its barrel and the examples that use it.
 
 ## terradart-mcp was retired
 

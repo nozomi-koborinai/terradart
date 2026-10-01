@@ -157,6 +157,15 @@ dev_dependencies:
   yaml: any
   terradart_google:
     path: packages/terradart_google
+  # tool/render_coverage_page.dart reads every provider package's catalog.
+  terradart_google_beta:
+    path: packages/terradart_google_beta
+  terradart_aws:
+    path: packages/terradart_aws
+  terradart_cloudflare:
+    path: packages/terradart_cloudflare
+  terradart_appwrite:
+    path: packages/terradart_appwrite
   terradart_codegen:
     path: packages/terradart_codegen
   # tool/migrate_roundtrip_gates.dart migrates every quickstart in-process.
