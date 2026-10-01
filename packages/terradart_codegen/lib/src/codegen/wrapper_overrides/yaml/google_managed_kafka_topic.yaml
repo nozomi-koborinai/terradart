@@ -18,7 +18,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaTopic(
   ///   localName: 'events',
   ///   topicId: TfArg.literal('events'),
-  ///   cluster: cluster.clusterIdRef,
+  ///   cluster: cluster.clusterId,
   ///   location: TfArg.literal('us-central1'),
   ///   replicationFactor: TfArg.literal(3),
   ///   partitionCount: TfArg.literal(3),

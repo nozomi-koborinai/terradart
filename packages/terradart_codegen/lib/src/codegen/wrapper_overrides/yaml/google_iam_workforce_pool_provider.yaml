@@ -16,7 +16,7 @@ curatedDoc: |-
   /// GoogleIamWorkforcePoolProvider(
   ///   localName: 'oidc',
   ///   location: .literal('global'),
-  ///   workforcePoolId: pool.workforcePoolIdRef,
+  ///   workforcePoolId: pool.workforcePoolId,
   ///   providerId: .literal('terradart-oidc'),
   ///   trustSource: .oidc(
   ///     .new(

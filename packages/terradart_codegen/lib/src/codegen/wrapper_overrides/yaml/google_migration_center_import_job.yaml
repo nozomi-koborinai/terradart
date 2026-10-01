@@ -8,7 +8,7 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// Migration Center import job that ingests uploaded data into a source.
   ///
-  /// Set [assetSource] to `source.nameRef`.
+  /// Set [assetSource] to `source.name`.
 
 paramOrder:
   - location

@@ -19,7 +19,7 @@ curatedDoc: |-
   ///   localName: 'snap',
   ///   name: TfArg.literal('daily'),
   ///   location: TfArg.literal('us-central1'),
-  ///   volumeName: vol.nameRef,
+  ///   volumeName: vol.name,
   /// );
   /// ```
 

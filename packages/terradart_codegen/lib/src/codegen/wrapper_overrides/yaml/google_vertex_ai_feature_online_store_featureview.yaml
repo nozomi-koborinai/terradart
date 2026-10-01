@@ -25,7 +25,7 @@ curatedDoc: |-
   /// ```dart
   /// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
   ///   localName: 'fv',
-  ///   featureOnlineStore: fos.nameRef,
+  ///   featureOnlineStore: fos.name,
   ///   name: .literal('customer_view'),
   ///   region: .literal('us-central1'),
   ///   source: .featureRegistrySource(

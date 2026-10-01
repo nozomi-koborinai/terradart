@@ -8,7 +8,7 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// Migration Center on-prem discovery client bound to a [GoogleMigrationCenterSource].
   ///
-  /// Set [source] to `source.nameRef` and [serviceAccount] to the
+  /// Set [source] to `source.name` and [serviceAccount] to the
   /// discovery agent service account email.
 
 paramOrder:

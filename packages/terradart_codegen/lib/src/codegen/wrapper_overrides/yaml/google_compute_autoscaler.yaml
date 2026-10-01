@@ -27,7 +27,7 @@ curatedDoc: |-
   ///   `...` against a tfvar.
   /// - [target]: self-link to the `google_compute_instance_group_manager`
   ///   this autoscaler will scale. Pass
-  ///   `igm.selfLink` — `igm.nameRef` (just the bare name) is
+  ///   `igm.selfLink` — `igm.name` (just the bare name) is
   ///   **not** sufficient because the API requires the full
   ///   `projects/{project}/zones/{zone}/instanceGroupManagers/{name}` URL.
   ///   Both resources must live in the **same zone**.

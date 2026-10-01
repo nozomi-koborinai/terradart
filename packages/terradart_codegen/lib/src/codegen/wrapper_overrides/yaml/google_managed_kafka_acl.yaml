@@ -22,7 +22,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaAcl(
   ///   localName: 'eventsAcl',
   ///   aclId: TfArg.literal('topic/events'),
-  ///   cluster: cluster.clusterIdRef,
+  ///   cluster: cluster.clusterId,
   ///   location: TfArg.literal('us-central1'),
   ///   aclEntries: [
   ///     ManagedKafkaAclEntries(

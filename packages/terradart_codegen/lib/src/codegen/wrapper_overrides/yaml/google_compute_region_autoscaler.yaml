@@ -28,7 +28,7 @@ curatedDoc: |-
   ///   tfvar.
   /// - [target]: self-link to the
   ///   `google_compute_region_instance_group_manager` this autoscaler will
-  ///   scale. Pass `rigm.selfLink` — `rigm.nameRef` (just the
+  ///   scale. Pass `rigm.selfLink` — `rigm.name` (just the
   ///   bare name) is **not** sufficient because the API requires the full
   ///   `projects/{project}/regions/{region}/instanceGroupManagers/{name}`
   ///   URL. Both resources must live in the **same region**.

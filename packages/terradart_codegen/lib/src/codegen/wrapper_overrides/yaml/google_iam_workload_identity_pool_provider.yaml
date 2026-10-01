@@ -13,7 +13,7 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - `workloadIdentityPoolId`: pool ID string **or**
-  ///   `pool.nameRef` from [GoogleIamWorkloadIdentityPool].
+  ///   `pool.name` from [GoogleIamWorkloadIdentityPool].
   /// - `workloadIdentityPoolProviderId`: provider ID (4–32 chars, `[a-z0-9-]`).
   /// - `trustSource`: exactly one trust binding — sealed so the API's
   ///   `exactly_one_of` (`oidc` / `aws` / `saml` / `x509`) is enforced at

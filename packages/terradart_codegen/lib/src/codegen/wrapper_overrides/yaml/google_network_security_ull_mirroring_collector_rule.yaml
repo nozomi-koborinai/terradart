@@ -8,7 +8,7 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// ULL mirroring collector rule — traffic match criteria on a collector.
   ///
-  /// Set [ullMirroringCollector] to `collector.nameRef`. Requires a
+  /// Set [ullMirroringCollector] to `collector.name`. Requires a
   /// [NetworkSecurityUllMirroringCollectorRuleMatch] block.
 
 extraImports:

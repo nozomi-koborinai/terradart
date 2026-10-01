@@ -18,8 +18,8 @@ curatedDoc: |-
   /// GoogleWorkstationsWorkstation(
   ///   localName: 'alice',
   ///   workstationId: TfArg.literal('alice'),
-  ///   workstationConfigId: cfg.workstationConfigIdRef,
-  ///   workstationClusterId: cluster.workstationClusterIdRef,
+  ///   workstationConfigId: cfg.workstationConfigId,
+  ///   workstationClusterId: cluster.workstationClusterId,
   ///   location: TfArg.literal('us-central1'),
   /// );
   /// ```

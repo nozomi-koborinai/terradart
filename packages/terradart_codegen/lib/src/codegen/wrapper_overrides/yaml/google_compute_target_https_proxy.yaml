@@ -20,7 +20,7 @@ curatedDoc: |-
   ///   `google_compute_target_https_proxy.`).
   /// - `name`: GCP target proxy resource name. Pass
   ///   `TfArg.literal('lb-https-proxy')` or
-  ///   `otherProxy.nameRef`.
+  ///   `otherProxy.name`.
   /// - `urlMap`: self-link of the upstream
   ///   [GoogleComputeUrlMap]. Pass `urlMap.selfLink` so the
   ///   value resolves to

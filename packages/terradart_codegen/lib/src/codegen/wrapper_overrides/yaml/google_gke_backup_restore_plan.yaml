@@ -13,7 +13,7 @@ curatedDoc: |-
   /// - [localName]: Terraform local name.
   /// - `name`: restore plan ID (unique per project/location).
   /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-  /// - `backupPlan`: source plan — `backupPlan.nameRef`.
+  /// - `backupPlan`: source plan — `backupPlan.name`.
   /// - `cluster`: target cluster — `cluster.id`.
 
 paramOrder:
