@@ -30,16 +30,13 @@ extension type const AppwritePermission._(TfArg<String> _arg)
 
   /// `create("<role>")` — create resources under it (files in a bucket,
   /// rows in a table).
-  AppwritePermission.create(AppwriteRole role)
-    : this._(role._grant('create'));
+  AppwritePermission.create(AppwriteRole role) : this._(role._grant('create'));
 
   /// `update("<role>")` — update the resource.
-  AppwritePermission.update(AppwriteRole role)
-    : this._(role._grant('update'));
+  AppwritePermission.update(AppwriteRole role) : this._(role._grant('update'));
 
   /// `delete("<role>")` — delete the resource.
-  AppwritePermission.delete(AppwriteRole role)
-    : this._(role._grant('delete'));
+  AppwritePermission.delete(AppwriteRole role) : this._(role._grant('delete'));
 
   /// `write("<role>")` — create, update and delete.
   AppwritePermission.write(AppwriteRole role) : this._(role._grant('write'));

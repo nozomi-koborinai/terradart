@@ -380,7 +380,10 @@ resource "aws_s3_bucket" "logs" {
       'terraform': {
         'required_version': '>= 1.11.0',
         'required_providers': {
-          'appwrite': {'source': 'appwrite/appwrite', 'version': '2.0.0-beta.1'},
+          'appwrite': {
+            'source': 'appwrite/appwrite',
+            'version': '2.0.0-beta.1',
+          },
         },
       },
       'variable': {

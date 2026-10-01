@@ -431,10 +431,10 @@ final class ResolvedReference {
     this.package,
     this.className = principalClassName,
   }) : target = principalTypes[className]!.file,
-      outputDir = principalTypes[className]!.outputDir,
-      attribute = '',
-      dartName = null,
-      absorbed = const [];
+       outputDir = principalTypes[className]!.outputDir,
+       attribute = '',
+       dartName = null,
+       absorbed = const [];
 
   final String target;
   final String className;
@@ -630,12 +630,12 @@ ReferenceResolution resolveReferences({
         if (!principalRule.slots.hasMatch(path)) continue;
         matched = true;
         claimedBy['$at.$path'] = 'principals';
-        ((data ? byDataSource : byResource)[type] ??= {})[path] =
-            ResolvedReference.principal(
-              list: list,
-              package: external?.package,
-              className: principalRule.className,
-            );
+        ((data ? byDataSource : byResource)[type] ??=
+            {})[path] = ResolvedReference.principal(
+          list: list,
+          package: external?.package,
+          className: principalRule.className,
+        );
       }
     }
     if (complete && !matched) {
