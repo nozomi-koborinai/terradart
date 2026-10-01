@@ -57,11 +57,10 @@ final class GoogleVertexAiModelGardenEnableModel extends Resource {
     required TfArg<String> publisherModelName,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'project': ?project,
            'publisher_model_name': publisherModelName,
@@ -71,6 +70,9 @@ final class GoogleVertexAiModelGardenEnableModel extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiModelGardenEnableModelSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleVertexAiModelGardenEnableModel>`.

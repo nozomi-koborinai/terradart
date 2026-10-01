@@ -765,11 +765,10 @@ final class GoogleComputeInstanceFromMachineImage extends Resource {
     workloadIdentityConfig,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'allow_stopping_for_update': ?allowStoppingForUpdate,
            'can_ip_forward': ?canIpForward,
@@ -844,6 +843,9 @@ final class GoogleComputeInstanceFromMachineImage extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeInstanceFromMachineImageSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   @override
   bool get supportsDeletionProtection => true;

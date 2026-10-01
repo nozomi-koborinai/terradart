@@ -42,11 +42,11 @@ void main() {
         'sa',
         source: './m',
         inputs: inputs,
-        providers: const {'google': 'google.eu'},
+        providers: const {'google': googleEu},
       );
       inputs['account_id'] = const TfArgLiteral<String>('b');
       expect((call.inputs['account_id']! as TfArgLiteral).value, equals('a'));
-      expect(() => call.providers['google'] = 'google', throwsUnsupportedError);
+      expect(() => call.providers['google'] = google, throwsUnsupportedError);
     });
 
     test('an empty localName or source is refused', () {
@@ -165,7 +165,7 @@ void main() {
           ModuleCall(
             'events',
             source: './modules/events',
-            providers: const {'google': 'google.eu'},
+            providers: const {'google': googleEu},
             count: const TfArgLiteral<num>(2),
             dependsOn: [topic],
           ),
@@ -241,7 +241,7 @@ void main() {
           ModuleCall(
             'events',
             source: './modules/events',
-            providers: const {'google': 'google.eu'},
+            providers: const {'google': googleEu},
           ),
         );
       expect(

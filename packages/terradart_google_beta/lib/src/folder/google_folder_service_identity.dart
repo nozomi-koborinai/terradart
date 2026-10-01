@@ -25,16 +25,18 @@ final class GoogleFolderServiceIdentity extends Resource {
     required TfArg<String> folder,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {'service': service, 'folder': folder},
        );
 
   @override
   Set<String> get sensitiveFields => _googleFolderServiceIdentitySensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFolderServiceIdentity>`.

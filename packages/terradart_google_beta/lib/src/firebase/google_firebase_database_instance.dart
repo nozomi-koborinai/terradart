@@ -84,11 +84,10 @@ final class GoogleFirebaseDatabaseInstance extends Resource {
     FirebaseDatabaseInstanceType? type,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'desired_state': ?desiredState,
@@ -101,6 +100,9 @@ final class GoogleFirebaseDatabaseInstance extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseDatabaseInstanceSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFirebaseDatabaseInstance>`.

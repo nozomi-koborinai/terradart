@@ -18,11 +18,10 @@ final class GoogleRuntimeconfigConfig extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
@@ -33,6 +32,9 @@ final class GoogleRuntimeconfigConfig extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleRuntimeconfigConfigSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleRuntimeconfigConfig>`.

@@ -283,6 +283,7 @@ final class _Emitted {
     required this.package,
     required this.barrel,
     this.providerName,
+    this.providerLabel,
     this.isModule = false,
     this.moduleProviders = const [],
     this.wrapperFile,
@@ -296,8 +297,8 @@ final class _Emitted {
   /// and the type prefix implies no provider.
   final bool isModule;
 
-  /// Provider names a module call's `providers = { ... }` map selects, which
-  /// the Stack must register.
+  /// Provider configurations a module call's `providers = { ... }` map
+  /// selects (`google`, `google.eu`), which the Stack must register.
   final List<String> moduleProviders;
 
   /// The generated wrapper library the call's class comes from
@@ -307,6 +308,10 @@ final class _Emitted {
   /// The provider the block's `provider` meta-argument selects (`google`
   /// of `google.eu`, `google-beta`), or `null` for the type's default.
   final String? providerName;
+
+  /// The configuration the block's `provider` meta-argument selects
+  /// (`google.eu`), or `null` for the type's default.
+  final String? providerLabel;
 
   /// `add(...)` without the `final x =` prefix.
   final String call;
@@ -399,6 +404,28 @@ final class StackEmitter {
   /// Provider local names the Stack registers (`google`, `time`, ...).
   final _registeredProviders = <String>[];
 
+  /// The Dart local holding each provider configuration a block may select,
+  /// by its label (`google.eu` → `googleEuProvider`). Reserved before any
+  /// block is named. Labels that camel-case alike (`google-beta`,
+  /// `google.beta`) get numbered handles.
+  late final Map<String, String> _providerHandles = () {
+    final handles = <String, String>{};
+    final used = <String>{};
+    for (final label in {
+      ..._providerRecipes.keys,
+      for (final p in module.providers)
+        p.alias == null ? p.name : '${p.name}.${p.alias}',
+    }) {
+      final base = lowerCamel('${label}_provider');
+      var handle = base;
+      for (var n = 2; !used.add(handle); n++) {
+        handle = '$base$n';
+      }
+      handles[label] = handle;
+    }
+    return handles;
+  }();
+
   /// Blocks unrolled from a literal `count` / `for_each`, by their address
   /// as written; filled by [_blocksInOrder].
   final _expansions = <String, Expansion>{};
@@ -441,7 +468,11 @@ final class StackEmitter {
     while (true) {
       blocks = _blocksInOrder(refused);
       final names = NameAllocator(
-        reserved: {...reservedNames, if (liftWorkspace) 'workspace'},
+        reserved: {
+          ...reservedNames,
+          ..._providerHandles.values,
+          if (liftWorkspace) 'workspace',
+        },
       );
       dartNames = <String, String>{
         for (final b in blocks)
@@ -549,7 +580,8 @@ final class StackEmitter {
         // A module call implies no provider of its own — the child module
         // declares what it needs; only an explicit `providers = { ... }`
         // hands one of this Stack's configurations down.
-        for (final name in e.moduleProviders) {
+        for (final label in e.moduleProviders) {
+          final name = label.split('.').first;
           if (!providerNames.contains(name)) providerNames.add(name);
         }
         continue;
@@ -557,7 +589,33 @@ final class StackEmitter {
       final needed = e.providerName ?? _defaultProviderFor(e.package, e.tfType);
       if (!providerNames.contains(needed)) providerNames.add(needed);
     }
+    // Every configuration a translated block selects with `provider` /
+    // `providers` (`google.eu`, `google-beta`).
+    final selectedProviders = {
+      for (final e in emitted.values) ...[
+        ?e.providerLabel,
+        ...e.moduleProviders,
+      ],
+      for (final tag in forceLocals)
+        if (tag.startsWith('provider.')) tag.substring('provider.'.length),
+    };
     final providerExprs = <String>[];
+    // A configuration a block selects is registered in the body instead,
+    // where `addProvider` hands back the instance the block passes.
+    void register(String label, String expr) {
+      if (!selectedProviders.contains(label)) {
+        providerExprs.add(expr);
+        return;
+      }
+      body.add(
+        StackStatement(
+          tag: 'provider.$label',
+          text: 'final ${_providerHandles[label]} = addProvider($expr);',
+          declaresLocal: true,
+        ),
+      );
+    }
+
     for (final name in providerNames) {
       final recipe = _providerRecipes[name];
       if (recipe == null) {
@@ -600,7 +658,8 @@ final class StackEmitter {
         );
       }
       ctx.import(recipe.package, recipe.barrel);
-      providerExprs.add(
+      register(
+        name,
         '${config.isConst ? 'const ' : ''}'
         '${recipe.className}(${args.join(', ')})',
       );
@@ -609,14 +668,15 @@ final class StackEmitter {
         _migrated.add(MigratedItem(address: 'provider.$name'));
       }
       // Every aliased configuration of the name is registered too, with
-      // its alias; a resource selects it with `provider: 'name.alias'`.
+      // its alias; a resource selects it by passing its instance.
       for (final p in aliases) {
         final alias = p.alias!;
         final aliasConfig = _providerArgs(recipe, '$name.$alias', p);
         final aliasArgs = ['alias: ${dartString(alias)}', ...aliasConfig.args];
-        providerExprs.add(
+        register(
+          '$name.$alias',
           '${aliasConfig.isConst ? 'const ' : ''}'
-          '${recipe.className}(${aliasArgs.join(', ')})',
+              '${recipe.className}(${aliasArgs.join(', ')})',
         );
         _migrated.add(MigratedItem(address: 'provider.$name.$alias'));
       }
@@ -628,7 +688,9 @@ final class StackEmitter {
     // A root that only calls modules is the exception — it declares no
     // provider of its own, and synth accepts that.
     final noStack =
-        providerExprs.isEmpty && !emitted.values.any((e) => e.isModule);
+        providerExprs.isEmpty &&
+        !body.any((s) => s.tag.startsWith('provider.')) &&
+        !emitted.values.any((e) => e.isModule);
 
     // --- backend ----------------------------------------------------------
     final backendExpr = noStack
@@ -765,6 +827,8 @@ final class StackEmitter {
           uses: {
             ...e.usedTargets,
             for (final name in e.usedHandles) 'variable.$name',
+            if (e.providerLabel case final label?) 'provider.$label',
+            for (final label in e.moduleProviders) 'provider.$label',
           },
           declaresLocal: declares,
         ),
@@ -1147,6 +1211,7 @@ final class StackEmitter {
     // Meta-arguments the base class takes.
     final extras = <String>[];
     String? providerName;
+    String? providerLabel;
     final provider = values.remove('provider');
     if (provider != null) {
       // `provider = google.west` is a traversal in HCL and the string
@@ -1181,7 +1246,8 @@ final class StackEmitter {
           }
         }
         providerName = name;
-        extras.add('provider: ${dartString(selected)}');
+        providerLabel = selected;
+        extras.add('provider: ${_selectProvider(selected)}');
       }
     }
     final dependsOn = values.remove('depends_on');
@@ -1228,6 +1294,7 @@ final class StackEmitter {
       package: manifest.package,
       barrel: entry.barrel,
       providerName: providerName,
+      providerLabel: providerLabel,
     );
   }
 
@@ -1370,8 +1437,8 @@ final class StackEmitter {
     dartType: dartType,
   );
 
-  /// `providers: {'google': 'google.eu'}` — the Stack's configurations the
-  /// call hands down, recorded in [selected] so they get registered.
+  /// `providers: {'google': googleEuProvider}` — the Stack's configurations
+  /// the call hands down, recorded in [selected] so they get registered.
   String _moduleProviders(Expr value, List<String> selected) {
     final m = objectMap(value);
     if (m == null) {
@@ -1417,11 +1484,15 @@ final class StackEmitter {
           );
         }
       }
-      selected.add(name);
-      entries.add('${dartString(entry.key)}: ${dartString(ref)}');
+      selected.add(ref);
+      entries.add('${dartString(entry.key)}: ${_selectProvider(ref)}');
     }
     return 'providers: {${entries.join(', ')}}';
   }
+
+  /// The Dart local of the provider configuration [label] (`google.eu`),
+  /// which the Stack then registers with `addProvider`.
+  String _selectProvider(String label) => _providerHandles[label]!;
 
   /// `addMoved(...)` statements for one of the module's own `moved` blocks.
   ///

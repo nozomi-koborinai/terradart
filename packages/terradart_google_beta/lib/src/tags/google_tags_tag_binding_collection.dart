@@ -17,11 +17,10 @@ final class GoogleTagsTagBindingCollection extends Resource {
     required TfArg<Map<String, String>> tags,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'full_resource_name': fullResourceName,
            'location': ?location,
@@ -31,6 +30,9 @@ final class GoogleTagsTagBindingCollection extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleTagsTagBindingCollectionSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleTagsTagBindingCollection>`.

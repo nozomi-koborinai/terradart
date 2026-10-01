@@ -44,11 +44,10 @@ final class GoogleSaasRuntimeUnit extends Resource {
     SaasRuntimeUnitMaintenance? maintenance,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'annotations': ?annotations,
            'deletion_policy': ?deletionPolicy,
@@ -66,6 +65,9 @@ final class GoogleSaasRuntimeUnit extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeUnitSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSaasRuntimeUnit>`.

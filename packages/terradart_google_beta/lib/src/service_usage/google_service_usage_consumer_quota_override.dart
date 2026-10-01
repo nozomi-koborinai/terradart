@@ -28,11 +28,10 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
     required TfArg<String> service,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'dimensions': ?dimensions,
@@ -48,6 +47,9 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleServiceUsageConsumerQuotaOverrideSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleServiceUsageConsumerQuotaOverride>`.

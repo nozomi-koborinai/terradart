@@ -2135,14 +2135,15 @@ resource "google_pubsub_topic" "y" {
       );
       expect(r.report.providers, ['google']);
       final src = r.stackSource;
+      expect(src, contains("providers: [const GoogleProvider(project: 'p')]"));
       expect(
         src,
         contains(
-          "providers: [const GoogleProvider(project: 'p'), "
-          "const GoogleProvider(alias: 'west', region: 'us-west1')]",
+          'final googleWestProvider = addProvider('
+          "const GoogleProvider(alias: 'west', region: 'us-west1'));",
         ),
       );
-      expect(src, contains("provider: 'google.west'"));
+      expect(src, contains('provider: googleWestProvider'));
       // The default configuration stays implicit on `y`.
       expect(src, contains("GooglePubsubTopic('y', name: .literal('y'))"));
     });
@@ -2195,11 +2196,14 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         r.stackSource,
-        contains("add(GoogleProject('current', provider: 'google.eu'))"),
+        contains("add(GoogleProject('current', provider: googleEuProvider))"),
       );
       expect(
         r.stackSource,
-        contains("const GoogleProvider(alias: 'eu', region: 'europe-west1')"),
+        contains(
+          'final googleEuProvider = addProvider('
+          "const GoogleProvider(alias: 'eu', region: 'europe-west1'));",
+        ),
       );
     });
 
@@ -2219,13 +2223,48 @@ resource "google_pubsub_topic" "x" {
         unorderedEquals(['terradart_google', 'terradart_google_beta']),
       );
       final src = r.stackSource;
+      expect(src, contains('providers: [const GoogleProvider()]'));
       expect(
         src,
         contains(
-          'providers: [const GoogleProvider(), const GoogleBetaProvider()]',
+          'final googleBetaProvider = addProvider(const GoogleBetaProvider());',
         ),
       );
-      expect(src, contains("provider: 'google-beta'"));
+      expect(src, contains('provider: googleBetaProvider'));
+    });
+
+    test('labels that camel-case alike get distinct handles', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'provider': {
+          'google': [
+            {'project': 'p'},
+            {'alias': 'beta', 'region': 'europe-west1'},
+          ],
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            'a': {'name': 'a', 'provider': 'google-beta'},
+            'b': {'name': 'b', 'provider': 'google.beta'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          'final googleBetaProvider = addProvider(const GoogleBetaProvider());',
+        ),
+      );
+      expect(
+        src,
+        contains(
+          'final googleBetaProvider2 = addProvider('
+          "const GoogleProvider(alias: 'beta', region: 'europe-west1'));",
+        ),
+      );
+      expect(src, contains('provider: googleBetaProvider2'));
     });
 
     test('a beta resource selects google-beta, not google', () {
@@ -2396,7 +2435,14 @@ resource "google_pubsub_topic" "x" {
         ]),
       );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(r.stackSource, contains("providers: {'google': 'google.eu'}"));
+      expect(
+        r.stackSource,
+        contains("providers: {'google': googleEuProvider}"),
+      );
+      expect(
+        r.stackSource,
+        contains('final googleEuProvider = addProvider(const GoogleProvider('),
+      );
       expect(r.report.providers, ['google']);
     });
 

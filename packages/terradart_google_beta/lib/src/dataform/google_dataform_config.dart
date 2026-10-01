@@ -20,11 +20,10 @@ final class GoogleDataformConfig extends Resource {
     required TfArg<String> region,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'default_kms_key_name': ?defaultKmsKeyName,
            'project': ?project,
@@ -34,6 +33,9 @@ final class GoogleDataformConfig extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleDataformConfigSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataformConfig>`.

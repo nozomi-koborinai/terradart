@@ -22,8 +22,9 @@ final class GoogleBetaProvider implements StackProvider {
   const GoogleBetaProvider({this.alias, this.project, this.region, this.zone});
 
   /// Provider alias (`provider "google-beta" { alias = "eu" }`), or `null` for
-  /// the default configuration. Select it on a resource with
-  /// `provider: 'google-beta.<alias>'`.
+  /// the default configuration. Select it on a resource by passing the
+  /// instance as `provider:`; `Stack.addProvider` registers it and returns
+  /// it for that.
   @override
   final String? alias;
 
@@ -61,8 +62,9 @@ final class GoogleBetaProvider implements StackProvider {
 /// does **not** create that agent — topic/project IAM then 400s with
 /// "Service account … does not exist".
 ///
-/// Always emits `provider = google-beta`. Add [GoogleBetaProvider] to
-/// `Stack.providers` next to `GoogleProvider`.
+/// Emits `provider = google-beta` unless `provider:` selects another
+/// configuration. Add [GoogleBetaProvider] to `Stack.providers` next to
+/// `GoogleProvider`.
 ///
 /// ```dart
 /// final assetSa = GoogleProjectServiceIdentity(
@@ -79,14 +81,17 @@ final class GoogleProjectServiceIdentity extends Resource {
     TfArg<String>? project,
     super.dependsOn,
     super.lifecycle,
+    super.provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
          argMap: {'service': service, if (project != null) 'project': project},
        );
 
   @override
   Set<String> get sensitiveFields => const {};
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// Google-managed agent email (`service-{number}@gcp-sa-….gserviceaccount.com`).
   TfRef<String> get email => TfRef.attribute<String>(this, 'email');

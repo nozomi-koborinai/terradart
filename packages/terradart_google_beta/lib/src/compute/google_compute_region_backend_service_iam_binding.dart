@@ -54,11 +54,10 @@ final class GoogleComputeRegionBackendServiceIamBinding extends Resource {
     ComputeRegionBackendServiceIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'members': members,
            'name': backendService.encodeAs('name'),
@@ -73,6 +72,9 @@ final class GoogleComputeRegionBackendServiceIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionBackendServiceIamBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeRegionBackendServiceIamBinding>`.

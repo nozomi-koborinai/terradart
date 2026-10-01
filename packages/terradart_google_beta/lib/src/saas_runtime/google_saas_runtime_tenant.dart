@@ -26,11 +26,10 @@ final class GoogleSaasRuntimeTenant extends Resource {
     required TfArg<String> tenantId,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'annotations': ?annotations,
            'consumer_resource': ?consumerResource,
@@ -45,6 +44,9 @@ final class GoogleSaasRuntimeTenant extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeTenantSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSaasRuntimeTenant>`.

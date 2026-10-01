@@ -191,26 +191,28 @@ Wrappers from `terradart_google_beta` automatically attach `provider = "google-b
 
 ## Several provider configurations
 
-Every factory also takes a `provider:` parameter — Terraform's `provider` meta-argument. Register a second configuration of a provider with `alias:` and select it per resource; everything else keeps using the default configuration:
+Every factory also takes a `provider:` parameter — Terraform's `provider` meta-argument. Register a second configuration of a provider with `alias:` through `addProvider`, which returns the instance, and pass that instance per resource; everything else keeps using the default configuration:
 
 ```dart
 final class MultiRegionStack extends Stack {
   MultiRegionStack({required String projectId})
       : super(providers: [
           GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          GoogleProvider(alias: 'eu', project: projectId, region: 'europe-west1'),
         ]) {
+    final eu = addProvider(
+      GoogleProvider(alias: 'eu', project: projectId, region: 'europe-west1'),
+    );
     add(GoogleStorageBucket(
       'assets_eu',
       name: .literal('my-app-assets-eu'),
       location: .literal('EUROPE-WEST1'),
-      provider: 'google.eu', // provider = google.eu
+      provider: eu, // provider = google.eu
     ));
   }
 }
 ```
 
-Synth emits `provider.google` as a list when a name has more than one configuration, and rejects a `provider:` that matches no registered configuration. `provider: 'google-beta'` on a GA-catalog factory puts that one resource on the beta provider.
+Synth emits `provider.google` as a list when a name has more than one configuration, and rejects a `provider:` instance the Stack does not register (an equal-looking copy included, since its settings may differ). A registered `GoogleBetaProvider` passed as `provider:` on a GA-catalog factory puts that one resource on the beta provider.
 
 ## Examples
 

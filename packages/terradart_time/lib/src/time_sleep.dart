@@ -35,6 +35,7 @@ final class TimeSleep extends Resource {
     TfArg<Map<String, String>>? triggers,
     super.dependsOn,
     super.lifecycle,
+    super.provider,
   }) : super(
          terraformType: 'time_sleep',
          argMap: {

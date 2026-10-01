@@ -53,11 +53,10 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamBinding extends Resource {
     VertexAiFeaturestoreEntitytypeIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'entitytype': entitytype.encodeAs('name'),
            'featurestore': ?(featurestore ?? entitytype.alsoAs('featurestore')),
@@ -71,6 +70,9 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiFeaturestoreEntitytypeIamBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleVertexAiFeaturestoreEntitytypeIamBinding>`.
