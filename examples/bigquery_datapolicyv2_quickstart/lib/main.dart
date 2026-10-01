@@ -67,7 +67,7 @@ final class DataPolicyV2Stack extends Stack {
     add(
       GoogleBigqueryDatapolicyv2DataPolicyIamMember(
         localName: 'email_mask_reader',
-        dataPolicyId: .literal('email-mask-v2'),
+        dataPolicy: .literal('email-mask-v2'),
         location: .literal('us-central1'),
         role: .literal('roles/bigquerydatapolicy.maskedReader'),
         member: .ref(reader.iamMember),

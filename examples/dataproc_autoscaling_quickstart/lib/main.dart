@@ -59,7 +59,7 @@ final class DataprocAutoscalingStack extends Stack {
     add(
       GoogleDataprocAutoscalingPolicyIamMember(
         localName: 'policy_reader_grant',
-        policyId: .literal('terradart-asp'),
+        autoscalingPolicy: .literal('terradart-asp'),
         location: .literal('us-central1'),
         role: .literal('roles/viewer'),
         member: .ref(policyReader.iamMember),

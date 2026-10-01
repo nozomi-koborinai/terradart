@@ -123,8 +123,7 @@ final class CloudBuildStack extends Stack {
     add(
       GoogleCloudbuildv2ConnectionIamMember(
         localName: 'lb_conn_iam',
-        name: TfArg.ref<String>(lbConn.nameRef),
-        location: .literal(region),
+        connection: lbConn.ref,
         role: .literal('roles/cloudbuild.connectionViewer'),
         member: TfArg.ref<String>(buildSa.iamMember),
         dependsOn: [ResourceDependency(lbConn), ResourceDependency(buildSa)],
@@ -176,8 +175,7 @@ final class CloudBuildStack extends Stack {
     final arIam = add(
       GoogleArtifactRegistryRepositoryIamMember(
         localName: 'lb_ar_iam',
-        location: .literal(region),
-        repository: TfArg.ref<String>(lbAr.nameRef),
+        repository: lbAr.ref,
         role: .literal('roles/artifactregistry.writer'),
         member: TfArg.ref<String>(buildSa.iamMember),
       ),

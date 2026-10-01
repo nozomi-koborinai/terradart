@@ -107,7 +107,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamWorkloadIdentityPoolIamMember(
         localName: 'wif_pool_viewer',
-        workloadIdentityPoolId: .ref(wifPool.nameRef),
+        workloadIdentityPool: wifPool.ref,
         role: .literal('roles/iam.workloadIdentityPoolViewer'),
         member: saMember,
         dependsOn: [ResourceDependency(wifPool), ResourceDependency(sa)],
@@ -199,7 +199,7 @@ final class IamShowcaseStack extends Stack {
       GooglePubsubSubscriptionIamMember(
         localName: 'sub_subscriber',
         // Subscription IAM uses the subscription **name**.
-        subscription: .ref(subscription.nameRef),
+        subscription: subscription.ref,
         role: .literal('roles/pubsub.subscriber'),
         member: saMember,
       ),
@@ -211,8 +211,7 @@ final class IamShowcaseStack extends Stack {
       GoogleCloudTasksQueueIamMember(
         localName: 'queue_enqueuer',
         // Queue IAM identifies via **name + location** (not id).
-        name: .ref(queue.nameRef),
-        location: .ref(queue.locationRef),
+        queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),
         member: saMember,
       ),
@@ -224,7 +223,7 @@ final class IamShowcaseStack extends Stack {
       GoogleSecretManagerSecretIamMember(
         localName: 'secret_accessor',
         // Secret IAM identifies via **secret_id** (not id / name).
-        secretId: .ref(secret.secretIdRef),
+        secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: saMember,
       ),
@@ -372,7 +371,7 @@ final class IamShowcaseStack extends Stack {
       GoogleServiceAccountIamMember(
         localName: 'demo_sa_user',
         // Target SA is the demo SA; identified by its full resource path.
-        serviceAccountId: sa.ref,
+        serviceAccount: sa.ref,
         role: .literal('roles/iam.serviceAccountUser'),
         member: .ref(impersonator.iamMember),
       ),
@@ -478,7 +477,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamWorkforcePoolIamMember(
         localName: 'workforce_viewer',
-        workforcePoolId: .literal('terradart-wf'),
+        workforcePool: .literal('terradart-wf'),
         location: .literal('global'),
         role: .literal('roles/iam.workforcePoolViewer'),
         member: saMember,

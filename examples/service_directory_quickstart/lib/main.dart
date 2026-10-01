@@ -92,7 +92,7 @@ final class RegistryStack extends Stack {
     final namespaceViewer = add(
       GoogleServiceDirectoryNamespaceIamMember(
         localName: 'namespace_viewer',
-        name: .ref(namespace.id),
+        namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
         member: .ref(consumer.iamMember),
         dependsOn: [
@@ -105,7 +105,7 @@ final class RegistryStack extends Stack {
     final namespaceViewerBinding = add(
       GoogleServiceDirectoryNamespaceIamBinding(
         localName: 'namespace_viewer_binding',
-        name: .ref(namespace.id),
+        namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
         members: .literal([consumer.iamMember.interpolation]),
         dependsOn: [
@@ -118,7 +118,7 @@ final class RegistryStack extends Stack {
     add(
       GoogleServiceDirectoryNamespaceIamPolicy(
         localName: 'namespace_viewer_policy',
-        name: .ref(namespace.id),
+        namespace: namespace.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/servicedirectory.viewer',
@@ -137,7 +137,7 @@ final class RegistryStack extends Stack {
     final serviceEditor = add(
       GoogleServiceDirectoryServiceIamMember(
         localName: 'service_editor',
-        name: .ref(service.id),
+        service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
         member: .ref(consumer.iamMember),
         dependsOn: [ResourceDependency(service), ResourceDependency(consumer)],
@@ -147,7 +147,7 @@ final class RegistryStack extends Stack {
     final serviceEditorBinding = add(
       GoogleServiceDirectoryServiceIamBinding(
         localName: 'service_editor_binding',
-        name: .ref(service.id),
+        service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
         members: .literal([consumer.iamMember.interpolation]),
         dependsOn: [
@@ -160,7 +160,7 @@ final class RegistryStack extends Stack {
     add(
       GoogleServiceDirectoryServiceIamPolicy(
         localName: 'service_editor_policy',
-        name: .ref(service.id),
+        service: service.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/servicedirectory.editor',

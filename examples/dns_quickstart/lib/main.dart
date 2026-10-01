@@ -55,9 +55,7 @@ final class InternalDnsStack extends Stack {
       description: .literal('Private DNS for internal services in gnd-vpc.'),
       visibility: .literal(.private),
       privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
-        networks: [
-          DnsManagedZonePrivateVisibilityNetwork(networkUrl: vpc.ref),
-        ],
+        networks: [DnsManagedZonePrivateVisibilityNetwork(networkUrl: vpc.ref)],
       ),
       // NOTE: DNSSEC is a public-internet chain-of-trust feature and is only
       // valid on PUBLIC managed zones; a PRIVATE zone rejects `dnssec_config`
@@ -86,7 +84,7 @@ final class InternalDnsStack extends Stack {
     final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
         localName: 'internal_zone_admin_member',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         member: .ref(zoneAdmin.iamMember),
         dependsOn: [
@@ -99,7 +97,7 @@ final class InternalDnsStack extends Stack {
     final zoneAdminBinding = add(
       GoogleDnsManagedZoneIamBinding(
         localName: 'internal_zone_admin_binding',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         members: .literal([zoneAdmin.iamMember.interpolation]),
         dependsOn: [
@@ -112,7 +110,7 @@ final class InternalDnsStack extends Stack {
     add(
       GoogleDnsManagedZoneIamPolicy(
         localName: 'internal_zone_admin_policy',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/dns.admin',

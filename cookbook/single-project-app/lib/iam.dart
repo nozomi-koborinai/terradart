@@ -39,7 +39,7 @@ GoogleSecretManagerSecretIamMember buildSecretIamMember(
   GoogleServiceAccount runSa,
 ) => GoogleSecretManagerSecretIamMember(
   localName: 'db_password_access',
-  secretId: .ref(dbPasswordSecret.id),
+  secret: dbPasswordSecret.ref,
   role: .literal('roles/secretmanager.secretAccessor'),
   member: .ref(runSa.iamMember),
 );

@@ -69,7 +69,7 @@ final class DataprocMetastoreStack extends Stack {
     add(
       GoogleDataprocMetastoreServiceIamMember(
         localName: 'viewer',
-        serviceId: .literal(serviceId),
+        service: .literal(serviceId),
         location: .literal(location),
         role: .literal('roles/metastore.metadataViewer'),
         member: .ref(viewerSa.iamMember),
@@ -100,7 +100,7 @@ final class DataprocMetastoreStack extends Stack {
     add(
       GoogleDataprocMetastoreFederationIamMember(
         localName: 'fed_viewer',
-        federationId: .literal(federationId),
+        federation: .literal(federationId),
         location: .literal(location),
         role: .literal('roles/metastore.federationViewer'),
         member: .ref(viewerSa.iamMember),

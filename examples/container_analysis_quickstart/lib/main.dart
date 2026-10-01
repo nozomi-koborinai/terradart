@@ -62,7 +62,7 @@ final class ContainerAnalysisStack extends Stack {
     add(
       GoogleContainerAnalysisNoteIamMember(
         localName: 'note_viewer',
-        note: .ref(note.nameRef),
+        note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
         member: .ref(viewer.iamMember),
         dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
@@ -72,7 +72,7 @@ final class ContainerAnalysisStack extends Stack {
     final noteBinding = add(
       GoogleContainerAnalysisNoteIamBinding(
         localName: 'note_viewer_binding',
-        note: .ref(note.nameRef),
+        note: note.ref,
         role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
         members: .literal([viewer.iamMember.interpolation]),
         dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
@@ -82,7 +82,7 @@ final class ContainerAnalysisStack extends Stack {
     add(
       GoogleContainerAnalysisNoteIamPolicy(
         localName: 'note_viewer_policy',
-        note: .ref(note.nameRef),
+        note: note.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/containeranalysis.notes.occurrences.viewer',
