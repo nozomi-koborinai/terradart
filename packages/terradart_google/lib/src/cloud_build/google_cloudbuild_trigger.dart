@@ -1382,7 +1382,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///     owner: .literal('myorg'),
 ///     name: .literal('my-repo'),
 ///     event: .push(
-///       CloudbuildTriggerBitbucketServerTriggerConfigPush(revision: .branch(.literal(r'^main$'))),
+///       .new(revision: .branch(.literal(r'^main$'))),
 ///     ),
 ///   ),
 /// );
@@ -1400,7 +1400,7 @@ final class CloudbuildTriggerWebhookConfig {
 ///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
 ///     repository: .ref(repository.id),
 ///     event: .pullRequest(
-///       CloudbuildTriggerDeveloperConnectEventConfigPullRequest(
+///       .new(
 ///         branch: .literal(r'^main$'),
 ///         commentControl: .literal(.commentsEnabled),
 ///       ),

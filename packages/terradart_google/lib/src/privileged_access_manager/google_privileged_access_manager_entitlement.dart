@@ -292,8 +292,7 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 ///   ],
 ///   privilegedAccess:
 ///       PrivilegedAccessManagerEntitlementPrivilegedAccess(
-///     gcpIamAccess:
-///         PrivilegedAccessManagerEntitlementGcpIamAccess(
+///     gcpIamAccess: .new(
 ///       resourceType: TfArg.literal(
 ///         'cloudresourcemanager.googleapis.com/Project',
 ///       ),
@@ -301,7 +300,7 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 ///         '//cloudresourcemanager.googleapis.com/projects/my-project',
 ///       ),
 ///       roleBindings: [
-///         PrivilegedAccessManagerEntitlementRoleBindings(
+///         .new(
 ///           role: TfArg.literal('roles/browser'),
 ///         ),
 ///       ],
@@ -310,7 +309,7 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 ///   requesterJustificationConfig:
 ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
 ///     requirement: .unstructured(
-///       const PrivilegedAccessManagerEntitlementUnstructured(),
+///       const .new(),
 ///     ),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),

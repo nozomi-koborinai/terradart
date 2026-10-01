@@ -155,9 +155,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
         solutionType: .literal(.solutionTypeSearch),
         useCases: .literal(['SEARCH_USE_CASE_SEARCH']),
         action: .synonymsAction(
-          DiscoveryEngineControlSynonymsAction(
-            synonyms: .literal(['quickstart', 'demo']),
-          ),
+          .new(synonyms: .literal(['quickstart', 'demo'])),
         ),
         dependsOn: [ResourceDependency(searchEngine)],
       ),

@@ -183,9 +183,9 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .target(
-///     FirebaseAppHostingTrafficTarget(
+///     .new(
 ///       splits: [
-///         FirebaseAppHostingTrafficSplit(
+///         .new(
 ///           build: build.ref,
 ///           percent: TfArg.literal(100),
 ///         ),
@@ -202,7 +202,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .rolloutPolicy(
-///     FirebaseAppHostingTrafficRolloutPolicy(
+///     .new(
 ///       codebaseBranch: TfArg.literal('main'),
 ///     ),
 ///   ),

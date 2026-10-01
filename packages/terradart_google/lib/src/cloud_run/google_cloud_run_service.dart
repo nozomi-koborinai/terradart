@@ -889,9 +889,9 @@ final class CloudRunServiceTraffic {
 ///   location: TfArg.literal('us-central1'),
 ///   name: TfArg.literal('terradart-run-v1'),
 ///   template: CloudRunServiceTemplate(
-///     spec: CloudRunServiceSpec(
+///     spec: .new(
 ///       containers: [
-///         CloudRunServiceContainers(
+///         .new(
 ///           image: TfArg.literal(
 ///             'us-docker.pkg.dev/cloudrun/container/hello',
 ///           ),

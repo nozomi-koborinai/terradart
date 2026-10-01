@@ -66,7 +66,7 @@ final class ContainerAnalysisOccurrenceSignatures {
 ///   attestation: ContainerAnalysisOccurrenceAttestation(
 ///     serializedPayload: TfArg.literal('<base64-payload>'),
 ///     signatures: [
-///       ContainerAnalysisOccurrenceSignatures(
+///       .new(
 ///         publicKeyId: TfArg.literal('//cloudkms.googleapis.com/…'),
 ///         signature: TfArg.literal('<base64-signature>'),
 ///       ),

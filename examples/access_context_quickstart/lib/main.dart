@@ -53,11 +53,9 @@ final class AccessControlsStack extends Stack {
         parent: .ref(policy.name),
         title: .literal('US-only access'),
         definition: .basic(
-          AccessContextManagerAccessLevelBasic(
+          .new(
             conditions: [
-              AccessContextManagerAccessLevelConditions(
-                regions: .literal(['US']),
-              ),
+              .new(regions: .literal(['US'])),
             ],
           ),
         ),
@@ -126,11 +124,9 @@ final class AccessControlsStack extends Stack {
         parent: .ref(policy.name),
         title: .literal('chromeos_no_lock'),
         definition: .basic(
-          AccessContextManagerAccessLevelBasic(
+          .new(
             conditions: [
-              AccessContextManagerAccessLevelConditions(
-                regions: .literal(['US']),
-              ),
+              .new(regions: .literal(['US'])),
             ],
           ),
         ),
@@ -153,7 +149,7 @@ final class AccessControlsStack extends Stack {
           requireAdminApproval: .literal(false),
           requireCorpOwned: .literal(true),
           osConstraints: [
-            AccessContextManagerAccessLevelConditionOsConstraints(
+            .new(
               osType: .literal(
                 AccessContextManagerAccessLevelConditionOsType.desktopChromeOs,
               ),
@@ -208,11 +204,9 @@ final class AccessControlsStack extends Stack {
               '/accessLevels/bulk_eu',
             ),
             title: .literal('bulk_eu'),
-            basic: AccessContextManagerAccessLevelsBasic(
+            basic: .new(
               conditions: [
-                AccessContextManagerAccessLevelsConditions(
-                  regions: .literal(['DE']),
-                ),
+                .new(regions: .literal(['DE'])),
               ],
             ),
           ),

@@ -696,10 +696,10 @@ final class StorageTransferJobTransferManifest {
 ///   description: TfArg.literal('terradart disabled gcs copy'),
 ///   status: TfArg.literal('DISABLED'),
 ///   transferSpec: StorageTransferJobTransferSpec(
-///     gcsDataSource: StorageTransferJobGcsDataSource(
+///     gcsDataSource: .new(
 ///       bucketName: src.ref,
 ///     ),
-///     gcsDataSink: StorageTransferJobGcsDataSink(
+///     gcsDataSink: .new(
 ///       bucketName: dst.ref,
 ///     ),
 ///   ),

@@ -329,14 +329,14 @@ final class ClouddeployDeployPolicyTarget {
 ///   location: TfArg.literal('us-central1'),
 ///   selectors: [
 ///     ClouddeployDeployPolicySelectors(
-///       deliveryPipeline: ClouddeployDeployPolicyDeliveryPipeline(
+///       deliveryPipeline: .new(
 ///         id: TfArg.literal('terradart-pipeline'),
 ///       ),
 ///     ),
 ///   ],
 ///   rules: [
 ///     ClouddeployDeployPolicyRules(
-///       rolloutRestriction: ClouddeployDeployPolicyRolloutRestriction(
+///       rolloutRestriction: .new(
 ///         id: TfArg.literal('no-automation'),
 ///         invokers: [TfArg.literal(.deployAutomation)],
 ///       ),

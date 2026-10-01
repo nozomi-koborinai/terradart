@@ -64,6 +64,14 @@ Per-package changelogs live alongside each package and are the system of record 
   slots as `MigrateSlotKind.principal`, and the migrator writes
   `member: sa.principal` / `.user('a@example.com')`. Synth output is
   unchanged.
+- **Nested blocks use `.new(...)`** — the examples, cookbook, README,
+  website, generated doc comments, the aws / cloudflare leftover-example
+  generators and `terradart-migrate` output build a block that sits inside
+  another block or inside a sealed choice with the Dart 3.10 `.new(...)`
+  shorthand (`template: CloudRunV2ServiceTemplate(containers: [.new(...)])`);
+  a resource's own arguments keep their class name. A few doc examples that
+  named a sealed variant class now call its factory (`spec: .order(.ascending)`).
+  No API or synth output changes.
 
 ### Fixed
 

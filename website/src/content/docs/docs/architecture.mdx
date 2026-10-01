@@ -230,11 +230,11 @@ final service = add(GoogleCloudRunV2Service(
   name: .literal('orders-api'),
   location: .literal('asia-northeast1'),
   template: CloudRunV2ServiceTemplate(containers: [
-    CloudRunV2ServiceContainers(
+    .new(
       image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
       env: [
         for (final MapEntry(:key, :value) in outputEnvironment().entries)
-          CloudRunV2ServiceEnv(name: .literal(key), source: .value(value)),
+          .new(name: .literal(key), source: .value(value)),
       ],
     ),
   ]),

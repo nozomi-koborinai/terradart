@@ -126,9 +126,7 @@ final class DataCatalogTagTemplateField {
 ///       fieldId: TfArg.literal('source'),
 ///       displayName: TfArg.literal('Source of data asset'),
 ///       isRequired: TfArg.literal(true),
-///       type: const DataCatalogTagTemplatePrimitiveFieldType(
-///         DataCatalogTagTemplatePrimitiveType.string,
-///       ),
+///       type: .primitiveType(.string),
 ///     ),
 ///   ],
 ///   forceDelete: TfArg.literal(true),

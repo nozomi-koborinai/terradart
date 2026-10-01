@@ -773,9 +773,9 @@ final class MonitoringSloMetricSumInRange {
 ///   displayName: .literal('API availability'),
 ///   period: .rollingPeriodDays(.literal(30)),
 ///   sli: .basicSli(
-///     MonitoringSloBasicSli(
+///     .new(
 ///       objective: .availability(
-///         MonitoringSloAvailability(enabled: .literal(true)),
+///         .new(enabled: .literal(true)),
 ///       ),
 ///     ),
 ///   ),

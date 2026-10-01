@@ -78,7 +78,7 @@ final class DeployStack extends Stack {
         description: .literal('App delivery pipeline'),
         serialPipeline: ClouddeployDeliveryPipelineSerialPipeline(
           stages: [
-            ClouddeployDeliveryPipelineStages(
+            .new(
               targetId: .literal('terradart-run-target'),
               profiles: .literal([]),
             ),
@@ -98,7 +98,7 @@ final class DeployStack extends Stack {
         location: .literal('us-central1'),
         description: .literal('Custom target type (render + deploy)'),
         actions: .customActions(
-          ClouddeployCustomTargetTypeCustomActions(
+          .new(
             renderAction: .literal('render'),
             deployAction: .literal('deploy'),
           ),
@@ -180,17 +180,9 @@ final class DeployStack extends Stack {
         serviceAccount: deployer.ref,
         suspended: .literal(true),
         selector: ClouddeployAutomationSelector(
-          targets: [
-            ClouddeployAutomationTargets(id: .literal('terradart-run-target')),
-          ],
+          targets: [.new(id: .literal('terradart-run-target'))],
         ),
-        rules: [
-          .promoteReleaseRule(
-            ClouddeployAutomationPromoteReleaseRule(
-              id: .literal('promote-release'),
-            ),
-          ),
-        ],
+        rules: [.promoteReleaseRule(.new(id: .literal('promote-release')))],
         dependsOn: [
           ResourceDependency(apiClouddeploy),
           ResourceDependency(pipeline),
@@ -209,14 +201,12 @@ final class DeployStack extends Stack {
         location: .literal('us-central1'),
         selectors: [
           ClouddeployDeployPolicySelectors(
-            deliveryPipeline: ClouddeployDeployPolicyDeliveryPipeline(
-              id: .literal('terradart-pipeline'),
-            ),
+            deliveryPipeline: .new(id: .literal('terradart-pipeline')),
           ),
         ],
         rules: [
           ClouddeployDeployPolicyRules(
-            rolloutRestriction: ClouddeployDeployPolicyRolloutRestriction(
+            rolloutRestriction: .new(
               id: .literal('no-automation'),
               invokers: [.literal(.deployAutomation)],
             ),

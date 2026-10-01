@@ -75,8 +75,7 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfi
 ///   name: TfArg.literal('app-issuance'),
 ///   certificateAuthorityConfig:
 ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
-///     certificateAuthorityServiceConfig:
-///         CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
+///     certificateAuthorityServiceConfig: .new(
 ///       caPool: pool.ref,
 ///     ),
 ///   ),

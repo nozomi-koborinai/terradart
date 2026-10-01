@@ -80,7 +80,7 @@ final class MetastoreStack extends Stack {
         type: .literal('HIVE'),
         hiveOptions: BiglakeTableHiveOptions(
           tableType: .literal('MANAGED_TABLE'),
-          storageDescriptor: BiglakeTableStorageDescriptor(
+          storageDescriptor: .new(
             locationUri: .literal('$warehouse/terradart_db/orders'),
             inputFormat: .literal('org.apache.hadoop.mapred.TextInputFormat'),
             outputFormat: .literal(
@@ -137,14 +137,14 @@ final class MetastoreStack extends Stack {
         schema: BiglakeIcebergTableSchema(
           type: .literal('struct'),
           fields: [
-            BiglakeIcebergTableSchemaFields(
+            .new(
               id: .literal(1),
               name: .literal('id'),
               type: .literal('long'),
               required: .literal(true),
               doc: .literal('The ID of the record'),
             ),
-            BiglakeIcebergTableSchemaFields(
+            .new(
               id: .literal(2),
               name: .literal('name'),
               type: .literal('string'),
@@ -155,7 +155,7 @@ final class MetastoreStack extends Stack {
         ),
         partitionSpec: BiglakeIcebergTablePartitionSpec(
           fields: [
-            BiglakeIcebergTablePartitionSpecFields(
+            .new(
               name: .literal('id_partition'),
               sourceId: .literal(1),
               transform: .literal('identity'),

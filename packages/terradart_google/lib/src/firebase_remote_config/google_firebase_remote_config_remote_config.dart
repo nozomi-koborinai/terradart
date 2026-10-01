@@ -293,9 +293,9 @@ class FirebaseRemoteConfigRemoteConfigParameterGroup {
 ///       parameterName: .literal('feature_x_enabled'),
 ///       valueType: RemoteConfigValueType.boolean,
 ///       description: .literal('Gates the feature X rollout.'),
-///       defaultValue: FirebaseRemoteConfigRemoteConfigDefaultValue(value: .literal('false')),
+///       defaultValue: .new(value: .literal('false')),
 ///       conditionalValues: [
-///         FirebaseRemoteConfigRemoteConfigConditionalValue(
+///         .new(
 ///           conditionName: .literal('staging_only'),
 ///           value: .literal('true'),
 ///         ),
@@ -314,10 +314,10 @@ class FirebaseRemoteConfigRemoteConfigParameterGroup {
 ///       parameterGroupName: .literal('search_v2'),
 ///       description: .literal('New mobile search view.'),
 ///       parameters: [
-///         FirebaseRemoteConfigRemoteConfigParameter(
+///         .new(
 ///           parameterName: .literal('search_layout'),
 ///           valueType: RemoteConfigValueType.string,
-///           defaultValue: FirebaseRemoteConfigRemoteConfigDefaultValue(value: .literal('grid')),
+///           defaultValue: .new(value: .literal('grid')),
 ///         ),
 ///       ],
 ///     ),

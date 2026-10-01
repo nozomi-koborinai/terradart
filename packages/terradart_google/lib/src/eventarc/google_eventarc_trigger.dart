@@ -248,7 +248,7 @@ final class EventarcTriggerPubsub {
 ///     ),
 ///   ],
 ///   destination: EventarcTriggerDestination(
-///     cloudRunService: EventarcTriggerCloudRunService(
+///     cloudRunService: .new(
 ///       service: .literal('image-processor'),
 ///       region: .literal('asia-northeast1'),
 ///       path: .literal('/events'),

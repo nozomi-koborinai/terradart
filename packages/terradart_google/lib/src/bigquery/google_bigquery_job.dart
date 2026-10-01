@@ -808,7 +808,7 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///   location: .literal('US'),
 ///   labels: .literal({'pipeline': 'analytics', 'env': 'prod'}),
 ///   configuration: .query(
-///     BigqueryJobQuery(
+///     .new(
 ///       query: .literal(
 ///         'SELECT user_id, COUNT(*) AS events '
 ///         'FROM analytics_prod.events '
@@ -816,7 +816,7 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///         'GROUP BY user_id',
 ///       ),
 ///       useLegacySql: .literal(false),
-///       destinationTable: BigqueryJobDestinationTable(
+///       destinationTable: .new(
 ///         datasetId: analyticsProd.ref,
 ///         tableId: .literal('daily_user_events'),
 ///       ),
@@ -835,11 +835,11 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///   jobId: .literal('ingest_csv_2026_05_19'),
 ///   location: .literal('US'),
 ///   configuration: .load(
-///     BigqueryJobLoad(
+///     .new(
 ///       sourceUris: .literal([
 ///         'gs://my-landing-bucket/users/2026-05-19/users-*.csv',
 ///       ]),
-///       destinationTable: BigqueryJobDestinationTable(
+///       destinationTable: .new(
 ///         datasetId: staging.ref,
 ///         tableId: .literal('users_raw'),
 ///       ),

@@ -85,7 +85,7 @@ final class DeferredLeftoverStack extends Stack {
         securityActionId: .literal('terradart-leftover'),
         state: .literal(.enabled),
         conditionConfig: const ApigeeSecurityActionConditionConfig(),
-        effect: const .deny(ApigeeSecurityActionDeny()),
+        effect: const .deny(.new()),
       ),
     );
 
@@ -134,9 +134,7 @@ final class DeferredLeftoverStack extends Stack {
         feedId: .literal('terradart-leftover'),
         folder: .literal('folders/123456789'),
         feedOutputConfig: CloudAssetFolderFeedOutputConfig(
-          pubsubDestination: CloudAssetFolderFeedPubsubDestination(
-            topic: .literal('terradart-leftover'),
-          ),
+          pubsubDestination: .new(topic: .literal('terradart-leftover')),
         ),
       ),
     );
@@ -149,9 +147,7 @@ final class DeferredLeftoverStack extends Stack {
         feedId: .literal('terradart-leftover'),
         orgId: .literal('organizations/123456789'),
         feedOutputConfig: CloudAssetOrganizationFeedOutputConfig(
-          pubsubDestination: CloudAssetOrganizationFeedPubsubDestination(
-            topic: .literal('terradart-leftover'),
-          ),
+          pubsubDestination: .new(topic: .literal('terradart-leftover')),
         ),
       ),
     );
@@ -216,11 +212,10 @@ final class DeferredLeftoverStack extends Stack {
         cloudControlMetadata: [
           CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata(
             enforcementMode: .literal('terradart-leftover'),
-            cloudControlDetails:
-                CloudSecurityComplianceFrameworkDeploymentCloudControlDetails(
-                  majorRevisionId: .literal('terradart-leftover'),
-                  name: .literal('terradart-leftover'),
-                ),
+            cloudControlDetails: .new(
+              majorRevisionId: .literal('terradart-leftover'),
+              name: .literal('terradart-leftover'),
+            ),
           ),
         ],
         framework: CloudSecurityComplianceFrameworkDeploymentFramework(
@@ -257,26 +252,20 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         contactSettings: ClouddomainsRegistrationContactSettings(
           privacy: .literal('REDACTED_CONTACT_DATA'),
-          adminContact: ClouddomainsRegistrationAdminContact(
+          adminContact: .new(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
-            postalAddress: ClouddomainsRegistrationPostalAddress(
-              regionCode: .literal('US'),
-            ),
+            postalAddress: .new(regionCode: .literal('US')),
           ),
-          registrantContact: ClouddomainsRegistrationRegistrantContact(
+          registrantContact: .new(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
-            postalAddress: ClouddomainsRegistrationPostalAddress(
-              regionCode: .literal('US'),
-            ),
+            postalAddress: .new(regionCode: .literal('US')),
           ),
-          technicalContact: ClouddomainsRegistrationTechnicalContact(
+          technicalContact: .new(
             email: .literal('leftover@example.com'),
             phoneNumber: .literal('+15555550100'),
-            postalAddress: ClouddomainsRegistrationPostalAddress(
-              regionCode: .literal('US'),
-            ),
+            postalAddress: .new(regionCode: .literal('US')),
           ),
         ),
         yearlyPrice: const ClouddomainsRegistrationYearlyPrice(),
@@ -318,9 +307,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'serviceconnectionprofile',
         connectionProfileId: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        engine: const .postgresql(
-          DatabaseMigrationServiceConnectionProfilePostgresql(),
-        ),
+        engine: const .postgresql(.new()),
       ),
     );
 
@@ -358,9 +345,7 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         serviceinstance: .literal('terradart-leftover'),
         sparkApplicationId: .literal('terradart-leftover'),
-        workload: const .sparkApplicationConfig(
-          DataprocGdcSparkApplicationConfig(),
-        ),
+        workload: const .sparkApplicationConfig(.new()),
       ),
     );
 
@@ -371,11 +356,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         displayName: .literal('terradart-leftover'),
         location: .literal('us-central1'),
-        endpoint: .gcsProfile(
-          DatastreamConnectionProfileGcsProfile(
-            bucket: .literal('terradart-leftover'),
-          ),
-        ),
+        endpoint: .gcsProfile(.new(bucket: .literal('terradart-leftover'))),
       ),
     );
 
@@ -387,7 +368,7 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         privateConnectionId: .literal('terradart-leftover'),
         connectivity: .vpcPeeringConfig(
-          DatastreamPrivateConnectionVpcPeeringConfig(
+          .new(
             subnet: .literal('10.0.0.0/29'),
             vpc: .literal(
               'projects/ci-test-project-id/global/networks/default',
@@ -407,16 +388,14 @@ final class DeferredLeftoverStack extends Stack {
         destinationConfig: DatastreamStreamDestinationConfig(
           destinationConnectionProfile: .literal('terradart-leftover'),
           system: const .gcsDestinationConfig(
-            DatastreamStreamGcsDestinationConfig(
-              fileFormat: .avroFileFormat(DatastreamStreamAvroFileFormat()),
-            ),
+            .new(fileFormat: .avroFileFormat(.new())),
           ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: .literal('terradart-leftover'),
-          system: const .mysqlSourceConfig(DatastreamStreamMysqlSourceConfig()),
+          system: const .mysqlSourceConfig(.new()),
         ),
-        backfill: const .backfillNone(DatastreamStreamBackfillNone()),
+        backfill: const .backfillNone(.new()),
       ),
     );
 
@@ -426,9 +405,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         name: .literal('terradart-leftover'),
         target: DeploymentManagerDeploymentTarget(
-          config: DeploymentManagerDeploymentConfig(
-            content: .literal('terradart-leftover'),
-          ),
+          config: .new(content: .literal('terradart-leftover')),
         ),
       ),
     );
@@ -674,9 +651,7 @@ final class DeferredLeftoverStack extends Stack {
         idpConfig: IdentityPlatformInboundSamlConfigIdpConfig(
           idpEntityId: .literal('terradart-leftover'),
           ssoUrl: .literal('terradart-leftover'),
-          idpCertificates: [
-            const IdentityPlatformInboundSamlConfigIdpCertificates(),
-          ],
+          idpCertificates: [const .new()],
         ),
         spConfig: const IdentityPlatformInboundSamlConfigSpConfig(),
       ),
@@ -703,9 +678,7 @@ final class DeferredLeftoverStack extends Stack {
         idpConfig: IdentityPlatformTenantInboundSamlConfigIdpConfig(
           idpEntityId: .literal('terradart-leftover'),
           ssoUrl: .literal('terradart-leftover'),
-          idpCertificates: [
-            const IdentityPlatformTenantInboundSamlConfigIdpCertificates(),
-          ],
+          idpCertificates: [const .new()],
         ),
         spConfig: IdentityPlatformTenantInboundSamlConfigSpConfig(
           callbackUri: .literal('terradart-leftover'),
@@ -988,9 +961,9 @@ final class DeferredLeftoverStack extends Stack {
           SecurityposturePosturePolicySets(
             policySetId: .literal('terradart-leftover'),
             policies: [
-              SecurityposturePosturePolicies(
+              .new(
                 policyId: .literal('terradart-leftover'),
-                constraint: const SecurityposturePostureConstraint(),
+                constraint: const .new(),
               ),
             ],
           ),
@@ -1143,12 +1116,7 @@ final class DeferredLeftoverStack extends Stack {
         name: .literal('terradart-leftover'),
         storageDescriptor: BiglakeHiveTableStorageDescriptor(
           locationUri: .literal('gs://terradart-leftover'),
-          columns: [
-            BiglakeHiveTableColumns(
-              name: .literal('id'),
-              type: .literal('string'),
-            ),
-          ],
+          columns: [.new(name: .literal('id'), type: .literal('string'))],
         ),
       ),
     );
@@ -1215,10 +1183,10 @@ final class DeferredLeftoverStack extends Stack {
         folder: .literal('123456789'),
         details: IamFolderAccessPolicyDetails(
           rules: [
-            IamFolderAccessPolicyRules(
+            .new(
               effect: .literal(.deny),
               principals: .literal(['principalSet://goog/public:all']),
-              operation: IamFolderAccessPolicyOperation(
+              operation: .new(
                 permissions: .literal(['storage.googleapis.com/objects.get']),
               ),
             ),
@@ -1234,10 +1202,10 @@ final class DeferredLeftoverStack extends Stack {
         organization: .literal('123456789'),
         details: IamOrganizationAccessPolicyDetails(
           rules: [
-            IamOrganizationAccessPolicyRules(
+            .new(
               effect: .literal(.deny),
               principals: .literal(['principalSet://goog/public:all']),
-              operation: IamOrganizationAccessPolicyOperation(
+              operation: .new(
                 permissions: .literal(['storage.googleapis.com/objects.get']),
               ),
             ),
@@ -1339,11 +1307,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'vertex_ai_rag_corpus',
         displayName: .literal('terradart leftover'),
         region: .literal('us-central1'),
-        backend: .vectorDbConfig(
-          VertexAiRagCorpusVectorDbConfig(
-            backend: .ragManagedDb(.knn(VertexAiRagCorpusKnn())),
-          ),
-        ),
+        backend: .vectorDbConfig(.new(backend: .ragManagedDb(.knn(.new())))),
       ),
     );
 

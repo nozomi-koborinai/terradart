@@ -191,12 +191,12 @@ final class VertexAiIndexTreeAhConfig {
 ///   region: TfArg.literal('us-central1'),
 ///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),
 ///   metadata: VertexAiIndexMetadata(
-///     config: VertexAiIndexConfig(
+///     config: .new(
 ///       dimensions: TfArg.literal(128),
 ///       approximateNeighborsCount: TfArg.literal(10),
 ///       distanceMeasureType: TfArg.literal('DOT_PRODUCT_DISTANCE'),
 ///       algorithmConfig: .treeAhConfig(
-///         VertexAiIndexTreeAhConfig(
+///         .new(
 ///           leafNodeEmbeddingCount: TfArg.literal(1000),
 ///           leafNodesToSearchPercent: TfArg.literal(10),
 ///         ),

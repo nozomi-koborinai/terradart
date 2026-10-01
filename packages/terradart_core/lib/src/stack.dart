@@ -275,11 +275,11 @@ abstract base class Stack {
   ///   name: .literal('orders'),
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(containers: [
-  ///     CloudRunV2ServiceContainers(
+  ///     .new(
   ///       image: .literal(image),
   ///       env: [
   ///         for (final MapEntry(:key, :value) in outputEnvironment().entries)
-  ///           CloudRunV2ServiceEnv(
+  ///           .new(
   ///             name: .literal(key),
   ///             source: .value(value),
   ///           ),

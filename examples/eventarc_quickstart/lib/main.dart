@@ -158,9 +158,7 @@ final class EventarcStack extends Stack {
           ),
         ],
         destination: EventarcTriggerDestination(
-          httpEndpoint: EventarcTriggerHttpEndpoint(
-            uri: .literal('https://example.com/events'),
-          ),
+          httpEndpoint: .new(uri: .literal('https://example.com/events')),
         ),
         dependsOn: eventarcDeps,
       ),

@@ -86,9 +86,7 @@ final class GkeQuickstartStack extends Stack {
         ),
         // Backup for GKE (Wave 10) requires the agent addon on the cluster.
         addonsConfig: ContainerClusterAddonsConfig(
-          gkeBackupAgentConfig: ContainerClusterGkeBackupAgentConfig(
-            enabled: .literal(true),
-          ),
+          gkeBackupAgentConfig: .new(enabled: .literal(true)),
         ),
         dependsOn: [
           ResourceDependency(apiContainer),
@@ -118,7 +116,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'main',
         membershipId: .literal('main-cluster'),
         endpoint: GkeHubMembershipEndpoint(
-          gkeCluster: GkeHubMembershipGkeCluster(resourceLink: cluster.ref),
+          gkeCluster: .new(resourceLink: cluster.ref),
         ),
         authority: GkeHubMembershipAuthority(
           issuer: .literal(

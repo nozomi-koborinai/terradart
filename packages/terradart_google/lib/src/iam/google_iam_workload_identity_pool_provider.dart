@@ -257,7 +257,7 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 ///     'attribute.repository_owner': 'assertion.repository_owner',
 ///   }),
 ///   trustSource: .oidc(
-///     IamWorkloadIdentityPoolProviderOidc(
+///     .new(
 ///       allowedAudiences: .literal(['https://github.com/my-org']),
 ///       issuerUri: .literal('https://token.actions.githubusercontent.com'),
 ///     ),

@@ -162,7 +162,7 @@ final class ConfigDeploymentInputValues {
 ///   ),
 ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
 ///     source: .gitSource(
-///       ConfigDeploymentGitSource(
+///       .new(
 ///         repo: .literal(
 ///           'https://github.com/terraform-google-modules/terraform-google-network',
 ///         ),
@@ -171,7 +171,7 @@ final class ConfigDeploymentInputValues {
 ///       ),
 ///     ),
 ///     inputValues: [
-///       ConfigDeploymentInputValues(
+///       .new(
 ///         variableName: .literal('project_id'),
 ///         inputValue: .literal('"my-project"'),
 ///       ),

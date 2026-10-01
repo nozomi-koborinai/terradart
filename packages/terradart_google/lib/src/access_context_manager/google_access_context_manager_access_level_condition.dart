@@ -200,7 +200,7 @@ final class AccessContextManagerAccessLevelConditionVpcSubnetwork {
 ///     requireAdminApproval: TfArg.literal(false),
 ///     requireCorpOwned: TfArg.literal(true),
 ///     osConstraints: [
-///       AccessContextManagerAccessLevelConditionOsConstraints(
+///       .new(
 ///         osType: TfArg.literal(
 ///           AccessContextManagerAccessLevelConditionOsType
 ///               .desktopChromeOs,

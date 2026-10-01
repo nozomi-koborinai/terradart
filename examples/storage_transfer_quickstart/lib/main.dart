@@ -124,8 +124,8 @@ final class StorageTransferStack extends Stack {
         description: .literal('terradart disabled gcs copy'),
         status: .literal('DISABLED'),
         transferSpec: StorageTransferJobTransferSpec(
-          gcsDataSource: StorageTransferJobGcsDataSource(bucketName: src.ref),
-          gcsDataSink: StorageTransferJobGcsDataSink(bucketName: dst.ref),
+          gcsDataSource: .new(bucketName: src.ref),
+          gcsDataSink: .new(bucketName: dst.ref),
         ),
         dependsOn: [
           ...apiDeps,
@@ -146,12 +146,12 @@ final class StorageTransferStack extends Stack {
         format: .csv(delimiter: .literal(','), headerRequired: .literal(true)),
         frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
           frequency: .literal(.weekly),
-          startDate: StorageInsightsReportConfigStartDate(
+          startDate: .new(
             year: .literal(2099),
             month: .literal(1),
             day: .literal(1),
           ),
-          endDate: StorageInsightsReportConfigEndDate(
+          endDate: .new(
             year: .literal(2099),
             month: .literal(12),
             day: .literal(31),
@@ -160,14 +160,11 @@ final class StorageTransferStack extends Stack {
         objectMetadataReportOptions:
             StorageInsightsReportConfigObjectMetadataReportOptions(
               metadataFields: .literal(['name', 'size']),
-              storageDestinationOptions:
-                  StorageInsightsReportConfigStorageDestinationOptions(
-                    bucket: src.ref,
-                    destinationPath: .literal('insights-reports/'),
-                  ),
-              storageFilters: StorageInsightsReportConfigStorageFilters(
+              storageDestinationOptions: .new(
                 bucket: src.ref,
+                destinationPath: .literal('insights-reports/'),
               ),
+              storageFilters: .new(bucket: src.ref),
             ),
         dependsOn: [
           ...apiDeps,

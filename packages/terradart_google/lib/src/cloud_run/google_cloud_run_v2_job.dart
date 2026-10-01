@@ -926,9 +926,9 @@ final class CloudRunV2JobNetworkInterfaces {
 ///   name: .literal('nightly-etl'),
 ///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2JobTemplate(
-///     template: CloudRunV2JobTemplateTemplate(
+///     template: .new(
 ///       containers: [
-///         CloudRunV2JobContainers(
+///         .new(
 ///           image: .literal('gcr.io/p/etl:v1'),
 ///         ),
 ///       ],

@@ -107,7 +107,7 @@ final class CloudAssetProjectFeedPubsubDestination {
 ///   ]),
 ///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
 ///   feedOutputConfig: CloudAssetProjectFeedOutputConfig(
-///     pubsubDestination: CloudAssetProjectFeedPubsubDestination(
+///     pubsubDestination: .new(
 ///       topic: topic.ref,
 ///     ),
 ///   ),

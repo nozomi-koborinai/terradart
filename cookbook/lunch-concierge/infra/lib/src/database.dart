@@ -43,12 +43,12 @@ LunchDatabase addDatabase({
         diskSize: .literal(10),
         diskType: .literal(.pdSsd),
         databaseFlags: [
-          SqlDatabaseInstanceDatabaseFlags(
+          .new(
             name: .literal('cloudsql.iam_authentication'),
             value: .literal('on'),
           ),
         ],
-        ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+        ipConfiguration: .new(
           ipv4Enabled: .literal(false),
           privateNetwork: network.vpc.ref,
           allocatedIpRange: network.psaRange.ref,

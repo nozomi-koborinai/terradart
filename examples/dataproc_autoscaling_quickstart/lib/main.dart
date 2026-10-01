@@ -38,7 +38,7 @@ final class DataprocAutoscalingStack extends Stack {
           maxInstances: .literal(3),
         ),
         basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(
-          yarnConfig: DataprocAutoscalingPolicyYarnConfig(
+          yarnConfig: .new(
             gracefulDecommissionTimeout: .literal('30s'),
             scaleUpFactor: .literal(0.5),
             scaleDownFactor: .literal(0.5),
@@ -76,19 +76,17 @@ final class DataprocAutoscalingStack extends Stack {
         name: .literal('terradart-wf'),
         location: .literal('us-central1'),
         placement: DataprocWorkflowTemplatePlacement(
-          managedCluster: DataprocWorkflowTemplateManagedCluster(
+          managedCluster: .new(
             clusterName: .literal('terradart-wf-cluster'),
-            config: DataprocWorkflowTemplateConfig(
-              gceClusterConfig: DataprocWorkflowTemplateGceClusterConfig(
-                zone: .literal('us-central1-a'),
-              ),
+            config: .new(
+              gceClusterConfig: .new(zone: .literal('us-central1-a')),
             ),
           ),
         ),
         jobs: [
           DataprocWorkflowTemplateJobs(
             stepId: .literal('sparkpi'),
-            sparkJob: DataprocWorkflowTemplateSparkJob(
+            sparkJob: .new(
               mainClass: .literal('org.apache.spark.examples.SparkPi'),
             ),
           ),

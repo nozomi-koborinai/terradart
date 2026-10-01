@@ -53,12 +53,10 @@ final class RemoteConfigStack extends Stack {
           FirebaseRemoteConfigRemoteConfigParameter(
             parameterName: .literal('enable_new_checkout'),
             valueType: RemoteConfigValueType.boolean,
-            defaultValue: FirebaseRemoteConfigRemoteConfigDefaultValue(
-              value: .literal('false'),
-            ),
+            defaultValue: .new(value: .literal('false')),
             conditionalValues: [
               // Enable for Japan before global rollout.
-              FirebaseRemoteConfigRemoteConfigConditionalValue(
+              .new(
                 conditionName: .literal('is_japan'),
                 value: .literal('true'),
               ),
@@ -68,11 +66,9 @@ final class RemoteConfigStack extends Stack {
           FirebaseRemoteConfigRemoteConfigParameter(
             parameterName: .literal('welcome_banner_text'),
             valueType: RemoteConfigValueType.string,
-            defaultValue: FirebaseRemoteConfigRemoteConfigDefaultValue(
-              value: .literal('Welcome!'),
-            ),
+            defaultValue: .new(value: .literal('Welcome!')),
             conditionalValues: [
-              FirebaseRemoteConfigRemoteConfigConditionalValue(
+              .new(
                 conditionName: .literal('is_japan'),
                 value: .literal('ようこそ！'),
               ),
@@ -85,12 +81,10 @@ final class RemoteConfigStack extends Stack {
             parameterGroupName: .literal('feature_flags'),
             description: .literal('Progressive feature rollout flags.'),
             parameters: [
-              FirebaseRemoteConfigRemoteConfigParameter(
+              .new(
                 parameterName: .literal('enable_dark_mode'),
                 valueType: RemoteConfigValueType.boolean,
-                defaultValue: FirebaseRemoteConfigRemoteConfigDefaultValue(
-                  value: .literal('false'),
-                ),
+                defaultValue: .new(value: .literal('false')),
               ),
             ],
           ),

@@ -68,7 +68,7 @@ final class ComputePreviewFeatureRolloutInput {
 ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
 ///   ),
 ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
-///     rolloutInput: ComputePreviewFeatureRolloutInput(
+///     rolloutInput: .new(
 ///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
 ///     ),
 ///   ),

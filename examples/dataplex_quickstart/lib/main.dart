@@ -522,14 +522,14 @@ final class DataplexCatalogStack extends Stack {
         localName: 'lake_discovery',
         dataScanId: .literal('terradart-lake-discovery'),
         location: .literal('us-central1'),
-        scanSpec: const .dataDiscoverySpec(DataplexDatascanDataDiscoverySpec()),
+        scanSpec: const .dataDiscoverySpec(.new()),
         data: .resource(
           .literal(
             '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',
           ),
         ),
         executionSpec: DataplexDatascanExecutionSpec(
-          trigger: const .onDemand(DataplexDatascanOnDemand()),
+          trigger: const .onDemand(.new()),
         ),
         displayName: .literal('Lake data discovery scan'),
         description: .literal(
@@ -566,9 +566,7 @@ final class DataplexCatalogStack extends Stack {
         taskId: .literal('terradart-sql-task'),
         location: .literal('us-central1'),
         lake: .literal('terradart-lake'),
-        workload: .spark(
-          DataplexTaskSpark(driver: .sqlScript(.literal('SELECT 1'))),
-        ),
+        workload: .spark(.new(driver: .sqlScript(.literal('SELECT 1')))),
         triggerSpec: DataplexTaskTriggerSpec(type: .literal(.onDemand)),
         executionSpec: DataplexTaskExecutionSpec(
           serviceAccount: .literal(reader.email.interpolation),
