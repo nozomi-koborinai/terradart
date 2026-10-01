@@ -43,9 +43,9 @@ final class ObservabilityStack extends Stack {
     );
 
     // Literal trace-scope id -- emitted as a Dart constant at synth time.
-    addConstant('traceScopeId', .ref(traceScope.traceScopeIdRef));
+    addConstant('traceScopeId', .ref(traceScope.traceScopeId));
 
     // Full trace-scope resource name -- Terraform output only (computed).
-    addOutput('trace_scope_name', .ref(traceScope.id));
+    addOutput('trace_scope_name', traceScope.id);
   }
 }

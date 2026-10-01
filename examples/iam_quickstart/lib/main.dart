@@ -155,7 +155,7 @@ final class IamShowcaseStack extends Stack {
       GooglePubsubSubscription(
         localName: 'demo_sub',
         name: .literal('demo-sub'),
-        // topic.id (NOT topic.nameRef) -- subscriptions need full path.
+        // topic.id (NOT topic.name) -- subscriptions need full path.
         topic: topic.ref,
         dependsOn: [ResourceDependency(apiPubsub)],
       ),
@@ -345,7 +345,7 @@ final class IamShowcaseStack extends Stack {
         project: .literal(projectId),
         // Reference the custom role's full path so Terraform binds against
         // the created resource (not just a string literal).
-        role: .ref(customRole.nameRef),
+        role: customRole.name,
         member: sa.principal,
         dependsOn: [ResourceDependency(customRole)],
       ),
@@ -406,7 +406,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleOsLoginSshPublicKey(
         localName: 'demo_ssh',
-        user: .ref(sa.email),
+        user: sa.email,
         key: .literal(
           'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
         ),
@@ -571,10 +571,10 @@ final class IamShowcaseStack extends Stack {
 
     // The seam: export each resource path so the application side has
     // typed lookup keys for all four resources.
-    addOutput('topic_id', .ref(topic.id));
-    addOutput('subscription_id', .ref(subscription.id));
-    addOutput('queue_id', .ref(queue.id));
-    addOutput('secret_id', .ref(secret.id));
-    addOutput('custom_role_name', .ref(customRole.nameRef));
+    addOutput('topic_id', topic.id);
+    addOutput('subscription_id', subscription.id);
+    addOutput('queue_id', queue.id);
+    addOutput('secret_id', secret.id);
+    addOutput('custom_role_name', customRole.name);
   }
 }

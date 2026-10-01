@@ -332,7 +332,7 @@ final class AssetsStack extends Stack {
           StorageNotificationEventType.objectFinalize,
           StorageNotificationEventType.objectDelete,
         ],
-        objectNamePrefix: .ref(objectPrefix.output<String>('prefix')),
+        objectNamePrefix: objectPrefix.output<String>('prefix'),
         dependsOn: [ResourceDependency(objectEventsTopic)],
       ),
     );

@@ -66,9 +66,9 @@ final class DocAiStack extends Stack {
     );
 
     // Literal processor display name -- emitted as a Dart constant at synth.
-    addConstant('ocrProcessorDisplayName', .ref(ocr.displayNameRef));
+    addConstant('ocrProcessorDisplayName', .ref(ocr.displayName));
 
     // Full processor resource id -- Terraform output only (computed).
-    addOutput('ocr_processor_id', .ref(ocr.id));
+    addOutput('ocr_processor_id', ocr.id);
   }
 }

@@ -52,9 +52,9 @@ main:
     );
 
     // Literal workflow name -- emitted as a Dart constant at synth time.
-    addConstant('helloWorkflowName', .ref(hello.nameRef));
+    addConstant('helloWorkflowName', .ref(hello.name));
 
     // Full workflow resource id -- Terraform output only (computed).
-    addOutput('hello_workflow_id', .ref(hello.id));
+    addOutput('hello_workflow_id', hello.id);
   }
 }

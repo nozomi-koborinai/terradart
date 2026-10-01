@@ -97,7 +97,7 @@ final class AuditPipelineStack extends Stack {
         bucket: auditBucket.ref,
         linkId: .literal('audit-analytics'),
         bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
-          datasetId: .ref(dataset.datasetIdRef),
+          datasetId: dataset.datasetId,
         ),
         dependsOn: [
           ResourceDependency(auditBucket),

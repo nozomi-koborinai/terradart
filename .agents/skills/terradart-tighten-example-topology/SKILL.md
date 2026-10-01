@@ -25,7 +25,7 @@ Use after [`terradart-backfill-examples`](../terradart-backfill-examples/SKILL.m
   | `GoogleComputeTargetHttpProxy` | `target` on `GoogleComputeGlobalForwardingRule` (port 80) |
   | `GoogleComputeRegionTargetHttpProxy` | `target` on `GoogleComputeForwardingRule` (regional ILB) |
 
-- [ ] 3. **Reorder** `add(...)` blocks so referenced resources are created before consumers; capture `final x = add(...)` when later siblings need `TfArg.ref(x.*)`.
+- [ ] 3. **Reorder** `add(...)` blocks so referenced resources are created before consumers; capture `final x = add(...)` when later siblings need `x.*`.
 - [ ] 4. **Sensitive fields** — keep `TfArg.variable` + `variables.tf.json` (see backfill skill).
 - [ ] 5. **Register strict quickstarts** — add slug to `strict:` in `tool/example_topology_allowlist.yaml` when the example should enforce must-reference rules in CI.
 - [ ] 6. **Verify**:

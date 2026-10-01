@@ -137,7 +137,7 @@ final class FeatureStack extends Stack {
     // numeric ID — the full resource name in `tensorboard.name` produces a
     // doubled path and a 404. Extract the trailing segment.
     final tensorboardShortId = TfArg.expression<String>(
-      '\${element(split("/", ${tensorboard.nameRef.bareAddress}), 5)}',
+      '\${element(split("/", ${tensorboard.name.bareAddress}), 5)}',
     );
 
     final experiment = add(
@@ -196,9 +196,9 @@ final class FeatureStack extends Stack {
     );
 
     // Literal feature-group name -- emitted as a Dart constant at synth time.
-    addConstant('featureGroupName', .ref(featureGroup.nameRef));
+    addConstant('featureGroupName', .ref(featureGroup.name));
 
     // Full feature-group resource id -- Terraform output only (computed).
-    addOutput('feature_group_id', .ref(featureGroup.id));
+    addOutput('feature_group_id', featureGroup.id);
   }
 }

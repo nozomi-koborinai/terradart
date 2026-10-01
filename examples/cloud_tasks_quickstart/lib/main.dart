@@ -80,7 +80,7 @@ final class EmailJobsStack extends Stack {
     );
 
     // Export queue identifiers as typed Dart constants.
-    addConstant('emailQueueName', .ref(queue.nameRef));
-    addConstant('emailQueueLocation', .ref(queue.locationRef));
+    addConstant('emailQueueName', .ref(queue.name));
+    addConstant('emailQueueLocation', .ref(queue.location));
   }
 }

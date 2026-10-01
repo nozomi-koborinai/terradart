@@ -94,7 +94,7 @@ final class GoogleProjectServiceIdentity extends Resource {
   /// The agent as an IAM principal (`serviceAccount:{email}`), for the
   /// `member` of an IAM adjunct.
   IamPrincipal get principal =>
-      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 
   /// Terraform id.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

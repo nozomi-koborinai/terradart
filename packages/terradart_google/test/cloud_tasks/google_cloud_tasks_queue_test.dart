@@ -40,7 +40,7 @@ void main() {
         equals(r'${google_cloud_tasks_queue.jobs.id}'),
       );
       expect(
-        q.locationRef.interpolation,
+        q.location.interpolation,
         equals(r'${google_cloud_tasks_queue.jobs.location}'),
       );
     });

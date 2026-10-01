@@ -99,7 +99,7 @@ final class ArtifactRegistryStack extends Stack {
         parent: .literal(
           '//artifactregistry.googleapis.com/projects/'
           '${current.number.interpolation}/locations/$location/repositories/'
-          '${repo.repositoryIdRef.interpolation}',
+          '${repo.repositoryId.interpolation}',
         ),
         tagValue: smoke.ref,
         location: .literal(location),
@@ -107,6 +107,6 @@ final class ArtifactRegistryStack extends Stack {
       ),
     );
 
-    addOutput('ar_project_config_name', .ref(projectConfig.nameRef));
+    addOutput('ar_project_config_name', projectConfig.name);
   }
 }

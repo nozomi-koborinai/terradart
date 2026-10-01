@@ -168,9 +168,9 @@ final class TagsStack extends Stack {
     );
 
     // Literal tag-key short name -- emitted as a Dart constant at synth time.
-    addConstant('envTagKeyShortName', .ref(envKey.shortNameRef));
+    addConstant('envTagKeyShortName', .ref(envKey.shortName));
 
     // Full tag-key resource id (`tagKeys/...`) -- Terraform output only.
-    addOutput('env_tag_key_id', .ref(envKey.id));
+    addOutput('env_tag_key_id', envKey.id);
   }
 }

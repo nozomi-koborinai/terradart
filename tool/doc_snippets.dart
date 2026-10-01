@@ -30,7 +30,7 @@
 //
 // Doc-comment fences share one sandbox per package, a file per fence. An
 // example there shows one resource and may name a value it does not build
-// (`instance: .ref(primary.nameRef)`): a lowerCamel name the fence leaves
+// (`instance: primary.name`): a lowerCamel name the fence leaves
 // undefined becomes a `dynamic` stand-in, so the rest of the fence — class,
 // parameter, enum and helper names — must still resolve. A doc-comment fence
 // needs a language: dartdoc renders an unlabeled one as Dart, so a diagram

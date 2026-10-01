@@ -47,7 +47,7 @@ final class DataformStack extends Stack {
         localName: 'apps',
         displayName: .literal('terradart-apps'),
         region: .literal('us-central1'),
-        containingFolder: .ref(team.nameRef),
+        containingFolder: team.name,
         dependsOn: [ResourceDependency(team)],
       ),
     );

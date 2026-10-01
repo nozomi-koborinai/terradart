@@ -1,6 +1,6 @@
 # Cloud Scheduler quickstart
 
-Provisions a `google_cloud_scheduler_job` with a Pub/Sub target. **The point of this example** is the cross-resource reference pattern -- the scheduler's `pubsub_target.topic_name` consumes `topic.id` (the fully-qualified resource path), not `topic.nameRef` or `topic.name`. Cloud Scheduler requires the full `projects/{project}/topics/{name}` form; passing only the bare name fails at `terraform apply`.
+Provisions a `google_cloud_scheduler_job` with a Pub/Sub target. **The point of this example** is the cross-resource reference pattern -- the scheduler's `pubsub_target.topic_name` consumes `topic.id` (the fully-qualified resource path), not `topic.name` or `topic.name`. Cloud Scheduler requires the full `projects/{project}/topics/{name}` form; passing only the bare name fails at `terraform apply`.
 
 ## Prerequisites
 

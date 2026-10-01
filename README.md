@@ -59,8 +59,8 @@ final class OrdersStack extends Stack {
     ));
 
     // Typed in the app: a constant now, an output after apply.
-    addConstant('ordersTopic', .ref(orders.nameRef));
-    addOutput('orders_topic_id', .ref(orders.id));
+    addConstant('ordersTopic', .ref(orders.name));
+    addOutput('orders_topic_id', orders.id);
 
     final api = add(GoogleCloudRunV2Service(
       localName: 'api',
@@ -95,7 +95,7 @@ final class OrdersStack extends Stack {
       topic: orders.ref,
       // A sealed choice: push, BigQuery or Cloud Storage — exactly one.
       delivery: .pushConfig(.new(
-        pushEndpoint: .ref(api.uri),
+        pushEndpoint: api.uri,
         oidcToken: .new(serviceAccountEmail: pushSa.ref),
       )),
     ));
@@ -137,7 +137,7 @@ cd tf-out && terraform init && terraform apply
 
 What the compiler now checks for you:
 
-- **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every input also has a `<name>Ref` getter (`orders.nameRef`) for wiring it elsewhere.
+- **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every input also has a `<name>Ref` getter (`orders.name`) for wiring it elsewhere.
 - **Fixed value sets are enums and exclusive blocks are sealed types**, written as Dart 3.10 dot shorthands: `.literal(.all)`, `.pushConfig(...)`, `.value(...)`. A typo or a second delivery mode is a compile error, not a failed plan.
 - **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice.
 - **It is plain Dart.** Loops, conditionals and your own classes work as they always do. There is no synth CLI: `bin/infra.dart` calls `writeTo`, and `terraform` does the rest.

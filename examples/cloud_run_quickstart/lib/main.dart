@@ -174,7 +174,7 @@ final class ApiServiceStack extends Stack {
         localName: 'psa',
         network: vpc.ref,
         service: .literal('servicenetworking.googleapis.com'),
-        reservedPeeringRanges: .literal([psaRange.nameRef.interpolation]),
+        reservedPeeringRanges: .literal([psaRange.name.interpolation]),
         dependsOn: apiDeps,
       ),
     );
@@ -242,7 +242,7 @@ final class ApiServiceStack extends Stack {
         // secret-backed env var below (see the IAM member above).
         serviceAccount: .of(runtimeSa),
         vpcAccess: .new(
-          connection: .connector(.ref(runConnector.selfLink)),
+          connection: .connector(runConnector.selfLink),
           egress: .literal(.privateRangesOnly),
         ),
         containers: [
@@ -269,7 +269,7 @@ final class ApiServiceStack extends Stack {
               // ordering without an explicit dependsOn entry.
               .new(
                 name: .literal('REDIS_HOST'),
-                source: .value(.ref(cache.host)),
+                source: .value(cache.host),
               ),
             ],
             ports: .new(containerPort: .literal(8080)),
@@ -373,7 +373,7 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleIapWebCloudRunServiceIamMember(
         localName: 'api_iap_accessor',
-        cloudRunServiceName: .ref(apiService.nameRef),
+        cloudRunServiceName: apiService.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: runtimeSa.principal,
         location: .literal('asia-northeast1'),

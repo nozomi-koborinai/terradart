@@ -63,7 +63,7 @@ Before it encodes anything, synth checks the whole Stack and collects every prob
 | `SensitiveLiteral` | a sensitive field is set to a literal, which would write the secret into `main.tf.json` |
 | `InvalidTimeout` | a `TfTimeouts` value is not a Go duration string |
 | `InvalidMoveTarget` | an `addMoved` target names no resource of the Stack |
-| `UnresolvableConstant` | an `addConstant(.ref(...))` attribute has no literal value at synth |
+| `UnresolvableConstant` | an `addConstant(...)` attribute has no literal value at synth |
 
 `stack.validate()` returns the same list without throwing — the shape a test or a pre-commit check wants. The sealed hierarchy lets a `switch` handle the issues it cares about:
 
@@ -148,9 +148,9 @@ graph LR
   TFO -.terraform output -json / environment.-> RD
 ```
 
-- **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL — and a getter of the generated reader (see below). It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', .ref(service.uri), description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field. Read it with `terraform output -raw service_url`.
+- **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL — and a getter of the generated reader (see below). It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', service.uri, description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field. Read it with `terraform output -raw service_url`.
 - **`addConstant`** declares a `static const` on the generated `<StackName>Constants` class, for a value known at synth. The value is a sealed `AppConstant<T>`, picked with a dot shorthand:
-  - `.ref(topic.nameRef)` — the literal an attribute of the Stack is set to (`name: .literal('orders-prod')`), so the string is written once. Every input has such a getter, named `<input>Ref` (`scope.scopeIdRef` for `scope_id`), and other resources can take it too (`scopeId: .ref(scope.scopeIdRef)`). Synth reports an `UnresolvableConstant` issue that says what the attribute is set by when it is not a literal (a reference, a variable, an expression, or left for the provider to compute) or is a sensitive field.
+  - `topic.name` — the literal an attribute of the Stack is set to (`name: .literal('orders-prod')`), so the string is written once. Every input has such a getter, named `<input>Ref` (`scope.scopeId` for `scope_id`), and other resources can take it too (`scopeId: scope.scopeId`). Synth reports an `UnresolvableConstant` issue that says what the attribute is set by when it is not a literal (a reference, a variable, an expression, or left for the provider to compute) or is a sensitive field.
   - `.value(5)` — a value that belongs to no resource, such as an API version.
   - `.fromEnvironment('API_BASE_URL')` — a `String.fromEnvironment` read at the app's compile time.
 
@@ -171,8 +171,8 @@ final class OrdersStack extends Stack {
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
     final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
-    addConstant('ordersTopicName', .ref(topic.nameRef));
-    addOutput('orders_topic_id', .ref(topic.id));
+    addConstant('ordersTopicName', .ref(topic.name));
+    addOutput('orders_topic_id', topic.id);
   }
 }
 ```
@@ -190,7 +190,7 @@ Future<void> main() async {
 
 ### Reading outputs in the app
 
-The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', .ref(topic.id))` becomes `String get ordersTopicId`). The app builds it from either source:
+The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', topic.id)` becomes `String get ordersTopicId`). The app builds it from either source:
 
 ```dart
 // lib/read_outputs.dart
@@ -224,7 +224,7 @@ String deployedTopicId() =>
 
 ```dart
 final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
-addOutput('orders_topic_id', .ref(topic.id));
+addOutput('orders_topic_id', topic.id);
 final service = add(GoogleCloudRunV2Service(
   localName: 'api',
   name: .literal('orders-api'),
@@ -239,7 +239,7 @@ final service = add(GoogleCloudRunV2Service(
     ),
   ]),
 ));
-addOutput('service_uri', .ref(service.uri)); // after: a service cannot read itself
+addOutput('service_uri', service.uri); // after: a service cannot read itself
 ```
 
 `outputEnvironment(only: [...])` picks outputs by name. Register an output that reads the service itself after the call — a resource whose environment references its own attributes is a Terraform cycle.

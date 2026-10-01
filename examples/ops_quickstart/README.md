@@ -39,7 +39,7 @@ terraform apply
 - A logging project sink `audit-to-bq` routing entries matching `logName:"cloudaudit.googleapis.com"`:
   - `BigqueryOptions(usePartitionedTables: true)` so the resulting tables use `_PARTITIONTIME` partitioning instead of date-sharded tables.
   - One `LogSinkExclusion` dropping `resource.type="dns_query"` entries before they hit BigQuery.
-  - `uniqueWriterIdentity: .literal(true)` — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentityRef` for downstream IAM grants.
+  - `uniqueWriterIdentity: .literal(true)` — GCP mints a dedicated writer service account whose ID is exposed as `sink.writerIdentity` for downstream IAM grants.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
@@ -65,7 +65,7 @@ terraform apply
 }
 ```
 
-To wire the sink's writer identity to the destination's IAM, add a separate `GoogleBigqueryDatasetIamMember` granting `roles/bigquery.dataEditor` to `TfArg.ref(sink.writerIdentityRef)` once it is added to the curated surface (open an issue to request curation).
+To wire the sink's writer identity to the destination's IAM, add a separate `GoogleBigqueryDatasetIamMember` granting `roles/bigquery.dataEditor` to `sink.writerIdentity` once it is added to the curated surface (open an issue to request curation).
 
 ## Next steps
 

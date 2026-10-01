@@ -136,7 +136,7 @@ final class ColabStack extends Stack {
 
     final templateResourceName =
         'projects/$projectId/locations/$location/notebookRuntimeTemplates/'
-        '${template.nameRef.interpolation}';
+        '${template.name.interpolation}';
 
     add(
       GoogleColabSchedule(
@@ -153,7 +153,7 @@ final class ColabStack extends Stack {
               source: .gcsNotebookSource(
                 .new(
                   uri: .literal(
-                    'gs://${bucket.nameRef.interpolation}/${notebook.nameRef.interpolation}',
+                    'gs://${bucket.name.interpolation}/${notebook.name.interpolation}',
                   ),
                   generation: .literal(notebook.generation.interpolation),
                 ),
@@ -162,7 +162,7 @@ final class ColabStack extends Stack {
                 .literal(templateResourceName),
               ),
               gcsOutputUri: .literal(
-                'gs://${bucket.nameRef.interpolation}/out',
+                'gs://${bucket.name.interpolation}/out',
               ),
               identity: .serviceAccount(.of(runner)),
             ),

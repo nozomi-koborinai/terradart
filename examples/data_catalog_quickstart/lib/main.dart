@@ -105,7 +105,7 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogTag(
         localName: 'entry_source',
-        parent: .ref(customEntry.id),
+        parent: customEntry.id,
         template: tagTemplate.ref,
         fields: [
           DataCatalogTagField(

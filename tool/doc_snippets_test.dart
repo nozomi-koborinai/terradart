@@ -108,7 +108,7 @@ final class A {}
         lib("final topic = add(GooglePubsubTopic(localName: 'o'));"),
         isFalse,
       );
-      expect(lib("addOutput('x', .ref(topic.id));"), isFalse);
+      expect(lib("addOutput('x', topic.id);"), isFalse);
       expect(lib('GoogleStorageBucket(localName: "a");'), isFalse);
     });
   });

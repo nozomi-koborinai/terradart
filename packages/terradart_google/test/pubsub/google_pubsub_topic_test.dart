@@ -58,7 +58,7 @@ void main() {
         name: TfArg.literal('orders-prod'),
       );
       expect(
-        topic.nameRef.interpolation,
+        topic.name.interpolation,
         equals(r'${google_pubsub_topic.orders.name}'),
       );
       expect(

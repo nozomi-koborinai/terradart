@@ -175,7 +175,7 @@ final class MobileAppBackendStack extends Stack {
             env: [
               .new(
                 name: .literal('UPLOAD_BUCKET'),
-                source: .value(.ref(uploadsBucket.nameRef)),
+                source: .value(uploadsBucket.name),
               ),
             ],
           ),

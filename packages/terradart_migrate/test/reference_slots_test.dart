@@ -210,7 +210,7 @@ void main() {
 
     test('keeps a block of another type as an unchecked arg, warning', () {
       final r = _migrate({'network': r'${google_x_bucket.b.id}'});
-      expect(_stack(r), contains('network: .arg(.ref(b.id))'));
+      expect(_stack(r), contains('network: .arg(b.id)'));
       expect(
         r.report.warnings,
         contains(

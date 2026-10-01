@@ -50,7 +50,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerAccessLevel(
         localName: 'us_only',
         name: .literal('us_only'),
-        parent: .ref(policy.name),
+        parent: policy.name,
         title: .literal('US-only access'),
         definition: .basic(
           .new(
@@ -67,12 +67,12 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerServicePerimeter(
         localName: 'storage_perimeter',
         name: .literal('storage_perimeter'),
-        parent: .ref(policy.name),
+        parent: policy.name,
         title: .literal('Restrict Storage to US-only clients'),
         status: AccessContextManagerServicePerimeterStatus(
           resources: .literal(['projects/$projectId']),
           restrictedServices: .literal(['storage.googleapis.com']),
-          accessLevels: .literal([usOnly.nameRef.interpolation]),
+          accessLevels: .literal([usOnly.name.interpolation]),
         ),
         dependsOn: [ResourceDependency(policy), ResourceDependency(usOnly)],
       ),
@@ -86,7 +86,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerServicePerimeter(
         localName: 'storage_dry_run',
         name: .literal('storage_dry_run'),
-        parent: .ref(policy.name),
+        parent: policy.name,
         title: .literal('Storage dry-run perimeter'),
         useExplicitDryRunSpec: .literal(true),
         spec: AccessContextManagerServicePerimeterSpec(
@@ -121,7 +121,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerAccessLevel(
         localName: 'chromeos_no_lock',
         name: .literal('chromeos_no_lock'),
-        parent: .ref(policy.name),
+        parent: policy.name,
         title: .literal('chromeos_no_lock'),
         definition: .basic(
           .new(
@@ -196,7 +196,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAccessLevels(
         localName: 'bulk_levels',
-        parent: .ref(policy.name),
+        parent: policy.name,
         accessLevels: [
           AccessContextManagerAccessLevels(
             name: .literal(
@@ -218,7 +218,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeters(
         localName: 'bulk_perimeters',
-        parent: .ref(policy.name),
+        parent: policy.name,
         servicePerimeters: [
           AccessContextManagerServicePerimeters(
             name: .literal(
@@ -236,7 +236,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerServicePerimeter(
         localName: 'attach_perimeter',
         name: .literal('attach_perimeter'),
-        parent: .ref(policy.name),
+        parent: policy.name,
         title: .literal('Attachment perimeter'),
         status: AccessContextManagerServicePerimeterStatus(
           restrictedServices: .literal(['storage.googleapis.com']),
@@ -329,7 +329,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerIngressPolicy(
         localName: 'legacy_ingress',
         ingressPolicyName: .literal(
-          '${attach.nameRef.interpolation}/ingressPolicies/legacy',
+          '${attach.name.interpolation}/ingressPolicies/legacy',
         ),
         resource: .literal('projects/987654323'),
         deletionPolicy: .literal('DELETE'),
@@ -341,7 +341,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerEgressPolicy(
         localName: 'legacy_egress',
         egressPolicyName: .literal(
-          '${attach.nameRef.interpolation}/egressPolicies/legacy',
+          '${attach.name.interpolation}/egressPolicies/legacy',
         ),
         resource: .literal('projects/987654323'),
         deletionPolicy: .literal('DELETE'),
@@ -354,7 +354,7 @@ final class AccessControlsStack extends Stack {
         localName: 'group_binding',
         organizationId: TfArg.expression('\${var.ops_organization_id}'),
         subject: .groupKey(.literal('00abcde12345678')),
-        accessLevels: .literal([usOnly.nameRef.interpolation]),
+        accessLevels: .literal([usOnly.name.interpolation]),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(usOnly)],
       ),

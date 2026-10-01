@@ -220,9 +220,9 @@ final class DeployStack extends Stack {
     );
 
     // Literal pipeline name -- emitted as a Dart constant at synth time.
-    addConstant('pipelineName', .ref(pipeline.nameRef));
+    addConstant('pipelineName', .ref(pipeline.name));
 
     // Full target resource id -- Terraform output only (computed).
-    addOutput('run_target_id', .ref(runTarget.id));
+    addOutput('run_target_id', runTarget.id);
   }
 }
