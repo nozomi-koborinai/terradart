@@ -63,7 +63,7 @@ bool _fits(String rest, int parts, Set<String> segments) {
 /// most one segment (two for a sealed variant) past the resource stem.
 typedef TypeName = ({String name, String file, bool irreducible});
 
-final _header = '// GENERATED FILE - DO NOT EDIT';
+const _header = '// GENERATED FILE - DO NOT EDIT';
 final _decl = RegExp(
   r'^(?:sealed class|final class|class|enum) (\w+)',
   multiLine: true,
