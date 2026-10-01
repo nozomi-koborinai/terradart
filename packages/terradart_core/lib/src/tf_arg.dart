@@ -71,8 +71,11 @@ sealed class TfArg<T> {
   /// workspace, `${terraform.workspace}`.
   ///
   /// ```dart
-  /// name: TfArg.expression(r'my-app-${terraform.workspace}'),
-  /// labels: TfArg.literal({'env': TfArg.workspace<String>()}),
+  /// add(GooglePubsubTopic(
+  ///   localName: 'orders',
+  ///   name: .expression(r'orders-${terraform.workspace}'),
+  /// ));
+  /// addOutput('workspace', TfArg.workspace<String>());
   /// ```
   ///
   /// Terraform resolves it per `terraform workspace select`, so a stack that
@@ -90,8 +93,13 @@ sealed class TfArg<T> {
   /// when expressed in string-seconds form, etc.).
   ///
   /// ```dart
-  /// rotationPeriod: TfArg.duration(const Duration(days: 90)),
-  /// // emits "rotation_period": "7776000s"
+  /// add(GoogleKmsCryptoKey(
+  ///   localName: 'app',
+  ///   name: .literal('app'),
+  ///   keyRing: .literal('projects/my-project/locations/global/keyRings/app'),
+  ///   rotationPeriod: .duration(const Duration(days: 90)),
+  ///   // emits "rotation_period": "7776000s"
+  /// ));
   /// ```
   ///
   /// Equivalent to `TfArg.literal(duration.toTfDurationString())` — the

@@ -12,8 +12,8 @@ import 'package:meta/meta.dart';
 ///
 /// ```dart
 /// // `count = 2` unrolled into two resources, state preserved.
-/// add(GooglePubsubTopic(localName: 'orders_0', ...));
-/// add(GooglePubsubTopic(localName: 'orders_1', ...));
+/// add(GooglePubsubTopic(localName: 'orders_0', name: .literal('orders-0')));
+/// add(GooglePubsubTopic(localName: 'orders_1', name: .literal('orders-1')));
 /// addMoved('google_pubsub_topic.orders[0]', 'google_pubsub_topic.orders_0');
 /// addMoved('google_pubsub_topic.orders[1]', 'google_pubsub_topic.orders_1');
 /// ```

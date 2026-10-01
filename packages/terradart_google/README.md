@@ -21,6 +21,7 @@ dependencies:
 ## Usage example
 
 ```dart
+// lib/assets_stack.dart
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
@@ -33,6 +34,7 @@ final class AssetsStack extends Stack {
     add(GoogleStorageBucket(
       localName: 'assets',
       name: .literal('my-app-assets-prod'),
+      location: .literal('ASIA-NORTHEAST1'),
       storageClass: .literal(.standard),
     ));
   }
@@ -41,7 +43,7 @@ final class AssetsStack extends Stack {
 
 ```dart
 // bin/infra.dart
-import 'package:my_infra/assets_stack.dart';
+import 'package:my_app/assets_stack.dart';
 
 Future<void> main() async {
   final stack = AssetsStack(projectId: 'my-project-id');

@@ -35,6 +35,22 @@ x: 1
       expect(s[1].code, '// lib/b.dart\nfinal b = 2;');
     });
 
+    test('leaves out a fence after a skip marker with a reason', () {
+      const doc = '''
+<!-- doc-snippets: skip: needs genkit -->
+```dart
+vertexAI();
+```
+
+<!-- doc-snippets: skip: -->
+```dart
+final kept = 1;
+```
+''';
+      final s = extractSnippets('d.md', doc);
+      expect(s.map((x) => x.code), ['final kept = 1;']);
+    });
+
     test('reads the path comment after the pitch marker', () {
       final s = Snippet(
         doc: 'README.md',
@@ -46,6 +62,32 @@ x: 1
         Snippet(doc: 'd', line: 1, code: '// a comment\nfinal x = 1;').path,
         isNull,
       );
+    });
+  });
+
+  group('extractDocCommentSnippets', () {
+    test('finds dart fences and flags fences without a language', () {
+      const source = '''
+/// A topic.
+///
+/// ```dart
+/// add(GooglePubsubTopic(localName: 'o', name: .literal('o')));
+/// ```
+///
+/// ```text
+/// a -> b
+/// ```
+///
+/// ```
+/// a -> b
+/// ```
+final class A {}
+''';
+      final found = extractDocCommentSnippets('a.dart', source);
+      expect(found.snippets.map((s) => (s.line, s.code)), [
+        (4, "add(GooglePubsubTopic(localName: 'o', name: .literal('o')));"),
+      ]);
+      expect(found.unlabeled, [startsWith('a.dart:11: ')]);
     });
   });
 
@@ -97,7 +139,7 @@ final topic = add(GooglePubsubTopic(
 ));
 ```
 ''');
-      final failures = await checkDocSnippets(root, docs: [doc]);
+      final failures = await checkDocSnippets(root, docs: [doc], libs: []);
       expect(
         failures,
         contains(startsWith("$doc:6: The named parameter 'nmae'")),
@@ -106,7 +148,40 @@ final topic = add(GooglePubsubTopic(
     },
   );
 
-  test('every Dart snippet in the README and website docs compiles', () async {
+  test('a doc-comment fence may read values it does not build', () async {
+    final root = Directory.current.path;
+    final tmp = await Directory.systemTemp.createTemp('doc_snippets_lib_');
+    addTearDown(() => tmp.deleteSync(recursive: true));
+    final file = p.join(tmp.path, 'a.dart');
+    File(file).writeAsStringSync('''
+/// ```dart
+/// final build = GoogleFirebaseAppHostingBuild(
+///   localName: 'v1',
+///   backend: backend.ref,
+///   location: .literal(region),
+///   buildId: .literal('v1'),
+///   source: .container(
+///     FirebaseAppHostingBuildContainer(image: .literal('img')),
+///   ),
+/// );
+/// ```
+///
+/// ```dart
+/// add(GooglePubsubTopic(localName: 'o', nmae: .literal(topicName)));
+/// ```
+final class A {}
+''');
+    final failures = await checkDocSnippets(root, docs: [], libs: [tmp.path]);
+    final rel = p.relative(file, from: root);
+    expect(failures, everyElement(startsWith('$rel:14: ')));
+    expect(
+      failures,
+      contains(startsWith("$rel:14: The named parameter 'nmae' isn't defined")),
+    );
+  });
+
+  test('every Dart snippet in the READMEs, the website docs and the doc '
+      'comments compiles', () async {
     final failures = await checkDocSnippets(Directory.current.path);
     expect(failures, isEmpty, reason: failures.join('\n'));
   });

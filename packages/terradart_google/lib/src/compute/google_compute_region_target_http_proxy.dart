@@ -17,7 +17,7 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 /// A regional HTTP target proxy — one node in the GCP regional external
 /// or internal HTTP(S) load-balancer chain. The full chain is:
 ///
-/// ```
+/// ```text
 /// google_compute_forwarding_rule.target
 ///   → google_compute_region_target_http_proxy
 ///     → google_compute_region_target_http_proxy.url_map

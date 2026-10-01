@@ -534,7 +534,7 @@ enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
 ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
 ///     certificateAuthorityServiceConfig:
 ///         CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
-///       caPool: TfArg.ref(pool.id),
+///       caPool: pool.ref,
 ///     ),
 ///   ),
 ///   keyAlgorithm: TfArg.literal(
