@@ -157,7 +157,7 @@ final topic = add(GooglePubsubTopic(
 /// ```dart
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   localName: 'v1',
-///   backend: .ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: .literal(region),
 ///   buildId: .literal('v1'),
 ///   source: .container(
