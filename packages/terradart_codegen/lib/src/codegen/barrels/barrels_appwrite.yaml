@@ -45,7 +45,11 @@ barrels:
       /// Appwrite file storage (buckets and files).
   auth:
     doc: |-
-      /// Appwrite Auth — users and teams.
+      /// Appwrite Auth — users and teams, and the `AppwritePermission` /
+      /// `AppwriteRole` that grant them access to buckets, files, tables
+      /// and rows.
+    extraExports:
+      - "export 'src/auth/appwrite_permission.dart' show AppwritePermission, AppwriteRole;"
   functions:
     doc: |-
       /// Appwrite Functions — runtimes, variables, and deployments.

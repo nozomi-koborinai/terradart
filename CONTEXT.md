@@ -52,6 +52,10 @@ _Avoid_: nameRef, ref getter
 Who a Google IAM grant is for — the `member` of an IAM member adjunct, each entry of a binding's `members`. In Dart it is `IamPrincipal`, a `TfArg<String>` built with a dot shorthand of its kind (`.user(email)`, `.serviceAccount(email)`, `.allUsers`) or read from the `principal` getter of a block with an IAM identity (`runtime.principal`); it synthesizes to the provider's `<kind>:<id>` string.
 _Avoid_: member string, iamMember
 
+**Appwrite permission**:
+One entry of the `permissions` of an Appwrite bucket, file, table or row — an action granted to a role. In Dart it is `AppwritePermission`, a `TfArg<String>` built from the action and an `AppwriteRole` (`.read(.any)`, `.write(.team(editors.ref, role: 'owner'))`); it synthesizes to the provider's `<action>("<role>")` string. It is the Appwrite counterpart of an IAM principal, typed through the same `- principals:` ledger entry.
+_Avoid_: permission string
+
 **Agent guide**:
 Committed operational guidance that cloud and local agents can rely on without access to private notes. In this repository, `AGENTS.md` is the agent guide.
 _Avoid_: Local notes, chat transcript dump

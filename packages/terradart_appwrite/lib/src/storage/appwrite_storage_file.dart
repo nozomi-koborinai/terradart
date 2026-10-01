@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../auth/appwrite_permission.dart' show AppwritePermission;
 import '../project/appwrite_project.dart' show AppwriteProject;
 import '../storage/appwrite_storage_bucket.dart' show AppwriteStorageBucket;
 
@@ -24,7 +25,7 @@ final class AppwriteStorageFile extends Resource {
     required RefTo<AppwriteStorageBucket> bucketId,
     required TfArg<String> filePath,
     TfArg<String>? name,
-    TfArg<List<String>>? permissions,
+    TfArg<List<AppwritePermission>>? permissions,
     RefTo<AppwriteProject>? projectId,
     super.lifecycle,
     super.dependsOn,

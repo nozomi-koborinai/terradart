@@ -65,12 +65,27 @@ final class AppwriteDemoStack extends Stack {
 
     add(AppwriteProject(localName: 'demo', name: .literal('terradart-demo')));
 
+    final team = add(
+      AppwriteAuthTeam(localName: 'editors', name: .literal('editors')),
+    );
+    final user = add(
+      AppwriteAuthUser(
+        localName: 'demo_user',
+        name: .literal('Demo User'),
+        email: .literal('demo@example.com'),
+      ),
+    );
+
     final bucket = add(
       AppwriteStorageBucket(
         localName: 'uploads',
         name: .literal('uploads'),
         fileSecurity: .literal(true),
         maximumFileSize: .literal(10485760),
+        permissions: .literal([
+          .read(.any),
+          .write(.team(team.ref, role: 'owner')),
+        ]),
       ),
     );
     add(
@@ -79,6 +94,7 @@ final class AppwriteDemoStack extends Stack {
         bucketId: bucket.ref,
         filePath: .literal('seed.txt'),
         name: .literal('seed.txt'),
+        permissions: .literal([.read(.user(user.ref))]),
       ),
     );
 
@@ -88,6 +104,10 @@ final class AppwriteDemoStack extends Stack {
         localName: 'users',
         databaseId: db.ref,
         name: .literal('users'),
+        permissions: .literal([
+          .read(.users()),
+          .create(.users(verified: true)),
+        ]),
       ),
     );
     add(
@@ -117,6 +137,7 @@ final class AppwriteDemoStack extends Stack {
         databaseId: db.ref,
         tableId: table.ref,
         data: .literal('{"name":"demo"}'),
+        permissions: .literal([.read(.any), .update(.label('admin'))]),
       ),
     );
 
@@ -209,17 +230,6 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
     add(AppwriteMongoBranch(localName: 'mongo_dev', databaseId: mongo.ref));
-
-    final team = add(
-      AppwriteAuthTeam(localName: 'editors', name: .literal('editors')),
-    );
-    final user = add(
-      AppwriteAuthUser(
-        localName: 'demo_user',
-        name: .literal('Demo User'),
-        email: .literal('demo@example.com'),
-      ),
-    );
 
     final fn = add(
       AppwriteFunction(
