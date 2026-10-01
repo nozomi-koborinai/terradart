@@ -51,11 +51,10 @@ final class GoogleApiGatewayApiIamBinding extends Resource {
     ApiGatewayApiIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'api': api.encodeAs('name'),
            'members': members,
@@ -68,6 +67,9 @@ final class GoogleApiGatewayApiIamBinding extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleApiGatewayApiIamBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleApiGatewayApiIamBinding>`.

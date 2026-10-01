@@ -52,11 +52,10 @@ final class GoogleComputeMachineImageIamBinding extends Resource {
     ComputeMachineImageIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'machine_image': machineImage.encodeAs('name'),
            'members': members,
@@ -70,6 +69,9 @@ final class GoogleComputeMachineImageIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeMachineImageIamBindingSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeMachineImageIamBinding>`.

@@ -1,5 +1,7 @@
 import 'package:terradart_core/src/backends.dart';
 import 'package:terradart_core/src/lifecycle.dart';
+import 'package:terradart_core/src/resource.dart';
+import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/synth/stack_validator.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
@@ -241,39 +243,40 @@ void main() {
       );
     });
 
-    test('a resource selects an alias with provider: name.alias', () {
-      TestStack stackWith(String? provider) =>
-          TestStack(
-            providers: const [
-              FakeStackProvider(
-                providerName: 'google',
-                source: 'hashicorp/google',
-                versionConstraint: '~> 7.0',
-              ),
-              FakeStackProvider(
-                providerName: 'google',
-                source: 'hashicorp/google',
-                versionConstraint: '~> 7.0',
-                alias: 'eu',
-              ),
-            ],
-          )..add(
+    test('a resource selects an alias with the provider instance', () {
+      const google = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 7.0',
+      );
+      const eu = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 7.0',
+        alias: 'eu',
+      );
+      const us = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 7.0',
+        alias: 'us',
+      );
+      TestStack stackWith(StackProvider? provider) =>
+          TestStack(providers: const [google, eu])..add(
             FakePubsubTopic.withMeta(
               'orders',
               argMap: {'name': const TfArgLiteral<String>('orders')},
               provider: provider,
             ),
           );
-      final json = stackWith('google.eu').synth().tfJson;
+      final json = stackWith(eu).synth().tfJson;
       expect(
         (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
         equals('google.eu'),
       );
       // A data source selects an alias the same way, and synth keeps it.
-      final withData = stackWith('google.eu')
-        ..add(
-          FakeProjectData('current', argMap: const {}, provider: 'google.eu'),
-        );
+      final withData = stackWith(eu)
+        ..add(FakeProjectData('current', argMap: const {}, provider: eu));
       expect(
         (withData.synth().tfJson['data'] as Map)['google_project']['current'],
         equals({'provider': 'google.eu'}),
@@ -281,11 +284,7 @@ void main() {
       expect(
         () =>
             (TestStack(providers: stackWith(null).providers)..add(
-                  FakeProjectData(
-                    'current',
-                    argMap: const {},
-                    provider: 'google.us',
-                  ),
+                  FakeProjectData('current', argMap: const {}, provider: us),
                 ))
                 .synth(),
         throwsSynthIssue<MissingProvider>(
@@ -296,15 +295,60 @@ void main() {
         ),
       );
       expect(
-        () => stackWith('google.us').synth(),
+        () => stackWith(us).synth(),
         throwsSynthIssue<MissingProvider>(
           allOf(
             startsWith('google_pubsub_topic.orders: '),
             contains('"google.us"'),
-            contains("alias: 'us'"),
+            contains('addProvider'),
           ),
         ),
       );
+    });
+
+    test('an equal-looking copy of a registered provider is refused', () {
+      final stack =
+          TestStack(
+            providers: [
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+                configArgs: {'region': 'europe-west1'},
+              ),
+            ],
+          )..add(
+            FakePubsubTopic.withMeta(
+              'orders',
+              argMap: {'name': const TfArgLiteral<String>('orders')},
+              provider: FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+                configArgs: {'region': 'us-central1'},
+              ),
+            ),
+          );
+      expect(stack.validate(), [
+        isA<MissingProvider>().having(
+          (i) => i.unregisteredInstance,
+          'unregisteredInstance',
+          isTrue,
+        ),
+      ]);
+    });
+
+    test('addProvider registers the provider and returns it', () {
+      const eu = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 7.0',
+        alias: 'eu',
+      );
+      final stack = TestStack(providers: const []);
+      expect(stack.addProvider(eu), same(eu));
+      expect(stack.providers, [same(eu)]);
+      expect(() => stack.providers.add(eu), throwsUnsupportedError);
     });
 
     test('provider registrations Terraform would reject are refused', () {
@@ -711,7 +755,11 @@ void main() {
       final r = FakePubsubTopic.withMeta(
         'orders',
         argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        provider: 'google-beta',
+        provider: const FakeStackProvider(
+          providerName: 'google-beta',
+          source: 'hashicorp/google-beta',
+          versionConstraint: '~> 7.0',
+        ),
       );
       final out = TfJsonEncoder.resourceBlock(r);
       expect(out, equals({'name': 'orders-prod', 'provider': 'google-beta'}));
@@ -899,7 +947,12 @@ void main() {
         FakeProjectData(
           'eu',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
-          provider: 'google.eu',
+          provider: const FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+            alias: 'eu',
+          ),
         ),
       );
       expect(
@@ -1083,7 +1136,7 @@ void main() {
         FakePubsubTopic.withMeta(
           't',
           argMap: {'name': TfArg.literal('x')},
-          provider: 'google-beta',
+          provider: betaProvider,
         ),
       );
       expect(stack.validate(), isEmpty);
@@ -1095,16 +1148,54 @@ void main() {
         FakePubsubTopic.withMeta(
           't',
           argMap: {'name': TfArg.literal('x')},
-          provider: 'google-beta-nope',
+          provider: const FakeStackProvider(
+            providerName: 'google-beta',
+            source: 'hashicorp/google-beta',
+            versionConstraint: '~> 7.0',
+            alias: 'nope',
+          ),
         ),
       );
       expect(stack.validate(), [
         isA<MissingProvider>().having(
           (i) => i.provider,
           'provider',
-          'google-beta-nope',
+          'google-beta.nope',
         ),
       ]);
+    });
+
+    test('a defaultProvider override is emitted and must be registered', () {
+      final topic = _BetaTopic('t');
+      expect(TfJsonEncoder.resourceBlock(topic)['provider'], 'google-beta');
+      expect(
+        TestStack(providers: const [betaProvider]).add(topic),
+        same(topic),
+      );
+      expect(
+        (TestStack(
+          providers: const [betaProvider],
+        )..add(_BetaTopic('u'))).validate(),
+        isEmpty,
+      );
+      expect(
+        (TestStack(
+          providers: const [
+            FakeStackProvider(
+              providerName: 'google',
+              source: 'hashicorp/google',
+              versionConstraint: '~> 7.0',
+            ),
+          ],
+        )..add(_BetaTopic('v'))).validate(),
+        [
+          isA<MissingProvider>().having(
+            (i) => i.provider,
+            'provider',
+            'google-beta',
+          ),
+        ],
+      );
     });
 
     test(
@@ -1122,4 +1213,18 @@ void main() {
       },
     );
   });
+}
+
+final class _BetaTopic extends Resource {
+  _BetaTopic(super.localName)
+    : super(
+        terraformType: 'google_pubsub_topic',
+        argMap: const <String, TfArg<dynamic>?>{},
+      );
+
+  @override
+  Set<String> get sensitiveFields => const {};
+
+  @override
+  String get defaultProvider => 'google-beta';
 }

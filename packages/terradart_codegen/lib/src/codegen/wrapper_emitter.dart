@@ -462,23 +462,16 @@ class WrapperEmitter {
     }
     buf.writeln('    super.lifecycle,');
     buf.writeln('    super.dependsOn,');
-    // The `provider` meta-argument (`'google.eu'`, `'google-beta'` on a GA
-    // type). A lane with a fixed [resourceProvider] keeps it as the default
-    // so `provider:` can still select an alias of that provider.
-    if (resourceProvider == null) {
-      buf.writeln('    super.provider,');
-    } else {
-      buf.writeln('    String? provider,');
-    }
+    // The `provider` meta-argument: a registered `StackProvider` instance
+    // (an alias, or `google-beta` on a GA type). A lane with a fixed
+    // [resourceProvider] overrides `defaultProvider` below instead.
+    buf.writeln('    super.provider,');
     // The `timeouts` meta-argument, provider-neutral like `lifecycle`:
     // `terraform validate` decides whether this type's schema declares the
     // operations set on it.
     buf.writeln('    super.timeouts,');
     buf.writeln('  }) : super(');
     buf.writeln('         terraformType: tfType,');
-    if (resourceProvider != null) {
-      buf.writeln("         provider: provider ?? '$resourceProvider',");
-    }
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {
       final snippet = argMapByName[name];
@@ -504,6 +497,12 @@ class WrapperEmitter {
     // propagates to overrides automatically).
     buf.writeln('  @override');
     buf.writeln('  Set<String> get sensitiveFields => $sensitiveConst;');
+
+    if (resourceProvider != null) {
+      buf.writeln();
+      buf.writeln('  @override');
+      buf.writeln("  String get defaultProvider => '$resourceProvider';");
+    }
 
     // `supportsDeletionProtection` override. Emitted only when the resource
     // schema exposes a top-level `deletion_protection` attribute, indicating

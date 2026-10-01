@@ -23,11 +23,10 @@ final class GoogleFirebaseAndroidApp extends Resource {
     TfArg<List<String>>? sha256Hashes,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'api_key_id': ?apiKeyId,
            'deletion_policy': ?deletionPolicy,
@@ -41,6 +40,9 @@ final class GoogleFirebaseAndroidApp extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseAndroidAppSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFirebaseAndroidApp>`.

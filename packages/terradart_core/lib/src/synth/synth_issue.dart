@@ -52,7 +52,11 @@ final class NoProviders extends SynthIssue {
 /// the provider its type implies (`google` for `google_pubsub_topic`), the
 /// one its `provider` meta-argument names, or one a module call passes on.
 final class MissingProvider extends SynthIssue {
-  const MissingProvider({required this.address, required this.provider});
+  const MissingProvider({
+    required this.address,
+    required this.provider,
+    this.unregisteredInstance = false,
+  });
 
   @override
   final String address;
@@ -60,8 +64,18 @@ final class MissingProvider extends SynthIssue {
   /// `google`, or `google.eu` for an aliased configuration.
   final String provider;
 
+  /// Whether the block names a [StackProvider] instance as its `provider:`
+  /// that the Stack does not hold — an equal-looking copy does not count,
+  /// because its configuration may differ from the registered one.
+  final bool unregisteredInstance;
+
   @override
   String get message {
+    if (unregisteredInstance) {
+      return 'selects the provider "$provider" with an instance the Stack '
+          'does not register. Pass the instance `addProvider` returned (or '
+          'one listed in `Stack(providers: [...])`), not a new one.';
+    }
     final alias = provider.contains('.')
         ? " registered with `alias: '${provider.split('.').last}'`"
         : '';

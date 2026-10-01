@@ -48,11 +48,10 @@ final class GoogleApiGatewayGatewayIamMember extends Resource {
     ApiGatewayGatewayIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'gateway': gateway.encodeAs('name'),
            'member': member,
@@ -66,6 +65,9 @@ final class GoogleApiGatewayGatewayIamMember extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleApiGatewayGatewayIamMemberSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleApiGatewayGatewayIamMember>`.

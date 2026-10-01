@@ -226,11 +226,10 @@ final class GoogleApiGatewayApiConfig extends Resource {
     List<ApiGatewayApiConfigManagedServiceConfigs>? managedServiceConfigs,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'api': api,
            'api_config_id': ?apiConfigId,
@@ -251,6 +250,9 @@ final class GoogleApiGatewayApiConfig extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleApiGatewayApiConfigSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleApiGatewayApiConfig>`.

@@ -101,6 +101,16 @@ class TfJsonEncoder {
   static String providerReference(StackProvider p) =>
       p.alias == null ? p.providerName : '${p.providerName}.${p.alias}';
 
+  /// The block's `provider` meta-argument: its [Resource.provider], else its
+  /// [Resource.defaultProvider] when that is not the type's implied prefix
+  /// provider, else `null`.
+  static String? blockProvider(Resource r) {
+    final explicit = r.provider;
+    if (explicit != null) return providerReference(explicit);
+    final fallback = r.defaultProvider;
+    return fallback == r.terraformType.split('_').first ? null : fallback;
+  }
+
   /// The top-level `variable { ... }` value, or `null` when the stack
   /// declares none (Terraform rejects an empty `variable` block).
   static Map<String, dynamic>? variableBlock(Stack stack) {
@@ -240,9 +250,8 @@ class TfJsonEncoder {
           }
         : r.argMap;
     final out = encodeArgMap(argMap);
-    if (r.provider != null) {
-      out['provider'] = r.provider;
-    }
+    final provider = blockProvider(r);
+    if (provider != null) out['provider'] = provider;
     final deps = r.dependsOn;
     if (deps != null) {
       final dep = dependsOn(deps);
@@ -281,9 +290,8 @@ class TfJsonEncoder {
     final out = <String, Map<String, dynamic>>{};
     for (final d in stack.dataSources) {
       final block = encodeArgMap(d.argMap);
-      if (d.provider != null) {
-        block['provider'] = d.provider;
-      }
+      final provider = blockProvider(d);
+      if (provider != null) block['provider'] = provider;
       final timeouts = d.timeouts?.toTfJson();
       if (timeouts != null) block['timeouts'] = timeouts;
       out.putIfAbsent(d.terraformType, () => {})[d.localName] = block;
@@ -306,7 +314,10 @@ class TfJsonEncoder {
       if (m.version != null) block['version'] = m.version;
       block.addAll(encodeArgMap(m.inputs));
       if (m.providers.isNotEmpty) {
-        block['providers'] = Map<String, String>.from(m.providers);
+        block['providers'] = {
+          for (final MapEntry(:key, :value) in m.providers.entries)
+            key: providerReference(value),
+        };
       }
       final count = m.count;
       if (count != null) block['count'] = encodeArg(count);

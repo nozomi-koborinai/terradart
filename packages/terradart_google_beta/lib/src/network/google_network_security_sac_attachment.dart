@@ -76,11 +76,10 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
     NetworkSecuritySacAttachmentSymantecOptions? symantecOptions,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'country': ?country,
            'deletion_policy': ?deletionPolicy,
@@ -99,6 +98,9 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleNetworkSecuritySacAttachmentSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleNetworkSecuritySacAttachment>`.

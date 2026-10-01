@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** generated factories forward `provider:` as `super.provider` (a `StackProvider?`). A lane with `--resource-provider` overrides `Resource.defaultProvider` instead of defaulting `provider` to a string. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** `wrap` types an input the provider schema marks sensitive (write-only `_wo` inputs included) `Sensitive<T>` instead of `TfArg<T>` — constructor parameters, nested helper fields and sealed variants. A helper shared between blocks takes `Sensitive<T>` wherever one occurrence is sensitive. The migration manifest records these slots as before. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).
 - **Breaking:** `wrap` emits every enum (derived, prelude and `wrap-promote` valid values) as an extension type implementing `TfArg<String>` with `.variable` / `.expression` / `.arg` constructors, and an enum slot takes the enum bare (`E`, `List<E>`) instead of `TfArg<E>`. `EnumExtractor.lenient()` is removed; the one extractor reads the new shape. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** generated resource and data-source factories take the local name first: `GooglePubsubTopic(super.localName, {...})`.

@@ -53,7 +53,11 @@ void main() {
         FakePubsubTopic.withMeta(
           'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-          provider: 'google-beta',
+          provider: const FakeStackProvider(
+            providerName: 'google-beta',
+            source: 'hashicorp/google-beta',
+            versionConstraint: '~> 7.0',
+          ),
         ),
       );
       expect(

@@ -141,11 +141,10 @@ final class GoogleFirebaseHostingVersion extends Resource {
     FirebaseHostingVersionConfig? config,
     super.lifecycle,
     super.dependsOn,
-    String? provider,
+    super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         provider: provider ?? 'google-beta',
          argMap: {
            'site_id': siteId,
            if (config != null) 'config': TfArg.literal(config.encode()),
@@ -154,6 +153,9 @@ final class GoogleFirebaseHostingVersion extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingVersionSensitive;
+
+  @override
+  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFirebaseHostingVersion>`.

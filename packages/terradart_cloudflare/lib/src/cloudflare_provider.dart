@@ -36,8 +36,9 @@ final class CloudflareProvider implements StackProvider {
   });
 
   /// Provider alias (`provider "cloudflare" { alias = "eu" }`), or `null` for
-  /// the default configuration. Select it on a resource with
-  /// `provider: 'cloudflare.<alias>'`.
+  /// the default configuration. Select it on a resource by passing the
+  /// instance as `provider:`; `Stack.addProvider` registers it and returns
+  /// it for that.
   @override
   final String? alias;
 
