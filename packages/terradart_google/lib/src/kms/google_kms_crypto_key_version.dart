@@ -55,15 +55,15 @@ final class KmsCryptoKeyVersionExternalProtectionLevelOptions {
 /// Example:
 /// ```dart
 /// GoogleKmsCryptoKeyVersion(
-///   localName: 'v1',
+///   'v1',
 ///   cryptoKey: ringKey.ref,
 /// );
 /// ```
 final class GoogleKmsCryptoKeyVersion extends Resource {
   static const String tfType = 'google_kms_crypto_key_version';
 
-  GoogleKmsCryptoKeyVersion({
-    required super.localName,
+  GoogleKmsCryptoKeyVersion(
+    super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     TfArg<KmsCryptoKeyVersionState>? state,
     KmsCryptoKeyVersionExternalProtectionLevelOptions?

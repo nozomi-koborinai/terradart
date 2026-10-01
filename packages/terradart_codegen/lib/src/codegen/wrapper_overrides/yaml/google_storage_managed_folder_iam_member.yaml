@@ -11,7 +11,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageManagedFolderIamMember(
-  ///   localName: 'folder_viewer',
+  ///   'folder_viewer',
   ///   bucket: assets.ref,
   ///   managedFolder: folder.ref,
   ///   role: TfArg.literal('roles/storage.objectViewer'),

@@ -22,7 +22,7 @@ final class TranscoderStack extends Stack {
       ) {
     final apiTranscoder = add(
       GoogleProjectService(
-        localName: 'api_transcoder',
+        'api_transcoder',
         service: .literal('transcoder.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class TranscoderStack extends Stack {
 
     add(
       GoogleTranscoderJobTemplate(
-        localName: 'sd',
+        'sd',
         jobTemplateId: .literal('terradart-sd'),
         location: .literal('us-central1'),
         config: TranscoderJobTemplateConfig(

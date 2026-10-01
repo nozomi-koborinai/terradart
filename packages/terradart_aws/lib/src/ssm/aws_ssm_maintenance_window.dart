@@ -10,8 +10,8 @@ const Set<String> _awsSsmMaintenanceWindowSensitive = <String>{};
 final class AwsSsmMaintenanceWindow extends Resource {
   static const String tfType = 'aws_ssm_maintenance_window';
 
-  AwsSsmMaintenanceWindow({
-    required super.localName,
+  AwsSsmMaintenanceWindow(
+    super.localName, {
     TfArg<bool>? allowUnassociatedTargets,
     required TfArg<num> cutoff,
     TfArg<String>? description,

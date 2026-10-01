@@ -37,7 +37,7 @@ enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// final dnsAuth = GoogleCertificateManagerDnsAuthorization(
-///   localName: 'app_dns',
+///   'app_dns',
 ///   name: TfArg.literal('app-dns'),
 ///   domain: TfArg.literal('app.example.com'),
 /// );
@@ -45,8 +45,8 @@ enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
 final class GoogleCertificateManagerDnsAuthorization extends Resource {
   static const String tfType = 'google_certificate_manager_dns_authorization';
 
-  GoogleCertificateManagerDnsAuthorization({
-    required super.localName,
+  GoogleCertificateManagerDnsAuthorization(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> domain,
     TfArg<String>? description,

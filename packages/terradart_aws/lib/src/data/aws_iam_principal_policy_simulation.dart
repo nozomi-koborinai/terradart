@@ -34,8 +34,8 @@ final class DataIamPrincipalPolicySimulationContext {
 final class DataAwsIamPrincipalPolicySimulation extends Data {
   static const String tfType = 'aws_iam_principal_policy_simulation';
 
-  DataAwsIamPrincipalPolicySimulation({
-    required super.localName,
+  DataAwsIamPrincipalPolicySimulation(
+    super.localName, {
     required TfArg<List<String>> actionNames,
     TfArg<List<String>>? additionalPoliciesJson,
     TfArg<String>? callerArn,

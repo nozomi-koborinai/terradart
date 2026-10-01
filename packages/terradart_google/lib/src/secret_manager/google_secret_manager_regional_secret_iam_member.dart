@@ -40,8 +40,8 @@ final class GoogleSecretManagerRegionalSecretIamMember extends Resource {
   static const String tfType =
       'google_secret_manager_regional_secret_iam_member';
 
-  GoogleSecretManagerRegionalSecretIamMember({
-    required super.localName,
+  GoogleSecretManagerRegionalSecretIamMember(
+    super.localName, {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
     TfArg<String>? location,
     required TfArg<String> role,

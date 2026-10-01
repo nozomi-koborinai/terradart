@@ -20,8 +20,8 @@ enum VpcEndpointServiceSupportedIpAddressTypes implements TerraformEnum {
 final class AwsVpcEndpointService extends Resource {
   static const String tfType = 'aws_vpc_endpoint_service';
 
-  AwsVpcEndpointService({
-    required super.localName,
+  AwsVpcEndpointService(
+    super.localName, {
     required TfArg<bool> acceptanceRequired,
     TfArg<List<String>>? allowedPrincipals,
     TfArg<List<String>>? gatewayLoadBalancerArns,

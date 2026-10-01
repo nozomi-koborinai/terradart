@@ -24,8 +24,8 @@ enum EksAccessEntryType implements TerraformEnum {
 final class AwsEksAccessEntry extends Resource {
   static const String tfType = 'aws_eks_access_entry';
 
-  AwsEksAccessEntry({
-    required super.localName,
+  AwsEksAccessEntry(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<List<String>>? kubernetesGroups,
     required TfArg<String> principalArn,

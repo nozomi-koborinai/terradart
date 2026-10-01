@@ -10,8 +10,8 @@ const Set<String> _googleRuntimeconfigConfigSensitive = <String>{};
 final class GoogleRuntimeconfigConfig extends Resource {
   static const String tfType = 'google_runtimeconfig_config';
 
-  GoogleRuntimeconfigConfig({
-    required super.localName,
+  GoogleRuntimeconfigConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> name,

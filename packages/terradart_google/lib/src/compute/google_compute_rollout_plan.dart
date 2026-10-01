@@ -219,8 +219,8 @@ final class ComputeRolloutPlanTimeBasedValidationMetadata {
 final class GoogleComputeRolloutPlan extends Resource {
   static const String tfType = 'google_compute_rollout_plan';
 
-  GoogleComputeRolloutPlan({
-    required super.localName,
+  GoogleComputeRolloutPlan(
+    super.localName, {
     required TfArg<String> name,
     TfArg<ComputeRolloutPlanLocationScope>? locationScope,
     TfArg<String>? description,

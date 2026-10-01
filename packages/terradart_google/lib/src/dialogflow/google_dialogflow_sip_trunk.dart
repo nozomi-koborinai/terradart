@@ -30,7 +30,7 @@ enum DialogflowSipTrunkDeletionPolicy implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleDialogflowSipTrunk(
-///   localName: 'carrier_trunk',
+///   'carrier_trunk',
 ///   location: TfArg.literal('global'),
 ///   expectedHostname: TfArg.literal(['sip.carrier.example.com']),
 ///   displayName: TfArg.literal('Primary carrier trunk'),
@@ -39,8 +39,8 @@ enum DialogflowSipTrunkDeletionPolicy implements TerraformEnum {
 final class GoogleDialogflowSipTrunk extends Resource {
   static const String tfType = 'google_dialogflow_sip_trunk';
 
-  GoogleDialogflowSipTrunk({
-    required super.localName,
+  GoogleDialogflowSipTrunk(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<List<String>> expectedHostname,
     TfArg<String>? displayName,

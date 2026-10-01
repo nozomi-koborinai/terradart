@@ -128,8 +128,8 @@ final class MagicWanIpsecTunnelTarget {
 final class CloudflareMagicWanIpsecTunnel extends Resource {
   static const String tfType = 'cloudflare_magic_wan_ipsec_tunnel';
 
-  CloudflareMagicWanIpsecTunnel({
-    required super.localName,
+  CloudflareMagicWanIpsecTunnel(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? automaticReturnRouting,
     required TfArg<String> cloudflareEndpoint,

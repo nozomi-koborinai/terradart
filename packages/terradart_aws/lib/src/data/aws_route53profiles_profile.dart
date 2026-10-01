@@ -11,8 +11,8 @@ const Set<String> _awsRoute53profilesProfileSensitive = <String>{};
 final class DataAwsRoute53profilesProfile extends Data {
   static const String tfType = 'aws_route53profiles_profile';
 
-  DataAwsRoute53profilesProfile({
-    required super.localName,
+  DataAwsRoute53profilesProfile(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     super.provider,

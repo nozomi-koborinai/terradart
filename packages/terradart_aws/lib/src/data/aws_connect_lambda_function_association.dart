@@ -12,8 +12,8 @@ const Set<String> _awsConnectLambdaFunctionAssociationSensitive = <String>{};
 final class DataAwsConnectLambdaFunctionAssociation extends Data {
   static const String tfType = 'aws_connect_lambda_function_association';
 
-  DataAwsConnectLambdaFunctionAssociation({
-    required super.localName,
+  DataAwsConnectLambdaFunctionAssociation(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionArn,
     required TfArg<String> instanceId,
     TfArg<String>? region,

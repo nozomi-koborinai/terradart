@@ -81,8 +81,8 @@ final class GuarddutyFilterCriterion {
 final class AwsGuarddutyFilter extends Resource {
   static const String tfType = 'aws_guardduty_filter';
 
-  AwsGuarddutyFilter({
-    required super.localName,
+  AwsGuarddutyFilter(
+    super.localName, {
     required TfArg<GuarddutyFilterAction> action,
     TfArg<String>? description,
     required TfArg<String> detectorId,

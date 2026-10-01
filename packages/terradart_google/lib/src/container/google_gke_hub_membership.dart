@@ -64,7 +64,7 @@ final class GkeHubMembershipGkeCluster {
 /// Example:
 /// ```dart
 /// final membership = GoogleGkeHubMembership(
-///   localName: 'main',
+///   'main',
 ///   membershipId: TfArg.literal('main-cluster'),
 ///   endpoint: GkeHubMembershipEndpoint(
 ///     gkeCluster: .new(
@@ -81,8 +81,8 @@ final class GkeHubMembershipGkeCluster {
 final class GoogleGkeHubMembership extends Resource {
   static const String tfType = 'google_gke_hub_membership';
 
-  GoogleGkeHubMembership({
-    required super.localName,
+  GoogleGkeHubMembership(
+    super.localName, {
     required TfArg<String> membershipId,
     TfArg<String>? location,
     TfArg<Map<String, String>>? labels,

@@ -21,8 +21,8 @@ enum AccountAlternateContactType implements TerraformEnum {
 final class AwsAccountAlternateContact extends Resource {
   static const String tfType = 'aws_account_alternate_contact';
 
-  AwsAccountAlternateContact({
-    required super.localName,
+  AwsAccountAlternateContact(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<AccountAlternateContactType> alternateContactType,
     required TfArg<String> emailAddress,

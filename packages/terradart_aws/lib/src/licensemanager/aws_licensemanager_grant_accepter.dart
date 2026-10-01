@@ -10,8 +10,8 @@ const Set<String> _awsLicensemanagerGrantAccepterSensitive = <String>{};
 final class AwsLicensemanagerGrantAccepter extends Resource {
   static const String tfType = 'aws_licensemanager_grant_accepter';
 
-  AwsLicensemanagerGrantAccepter({
-    required super.localName,
+  AwsLicensemanagerGrantAccepter(
+    super.localName, {
     required TfArg<String> grantArn,
     TfArg<String>? region,
     super.lifecycle,

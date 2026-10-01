@@ -68,8 +68,8 @@ final class IamUserPolicyNamePrefix extends IamUserPolicyName {
 final class AwsIamUserPolicy extends Resource {
   static const String tfType = 'aws_iam_user_policy';
 
-  AwsIamUserPolicy({
-    required super.localName,
+  AwsIamUserPolicy(
+    super.localName, {
     IamUserPolicyName? name,
     required TfArg<String> policy,
     required TfArg<String> user,

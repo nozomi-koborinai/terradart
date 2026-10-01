@@ -14,8 +14,8 @@ const Set<String> _googleComputeNetworkEndpointGroupSensitive = <String>{};
 final class DataGoogleComputeNetworkEndpointGroup extends Data {
   static const String tfType = 'google_compute_network_endpoint_group';
 
-  DataGoogleComputeNetworkEndpointGroup({
-    required super.localName,
+  DataGoogleComputeNetworkEndpointGroup(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLink,

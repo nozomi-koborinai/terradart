@@ -39,8 +39,8 @@ enum MemorydbUserType implements TerraformEnum {
 final class AwsMemorydbUser extends Resource {
   static const String tfType = 'aws_memorydb_user';
 
-  AwsMemorydbUser({
-    required super.localName,
+  AwsMemorydbUser(
+    super.localName, {
     required TfArg<String> accessString,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

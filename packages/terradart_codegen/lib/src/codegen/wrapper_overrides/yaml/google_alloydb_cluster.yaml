@@ -55,7 +55,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleAlloydbCluster(
-  ///   localName: 'app',
+  ///   'app',
   ///   clusterId: .literal('app-cluster'),
   ///   location: .literal('asia-northeast1'),
   ///   networkConfig: AlloydbClusterNetworkConfig(

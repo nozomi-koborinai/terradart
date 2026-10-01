@@ -16,8 +16,8 @@ const Set<String> _cloudflarePageShieldScriptsListSensitive = <String>{};
 final class DataCloudflarePageShieldScriptsList extends Data {
   static const String tfType = 'cloudflare_page_shield_scripts_list';
 
-  DataCloudflarePageShieldScriptsList({
-    required super.localName,
+  DataCloudflarePageShieldScriptsList(
+    super.localName, {
     TfArg<String>? direction,
     TfArg<bool>? excludeCdnCgi,
     TfArg<bool>? excludeDuplicates,

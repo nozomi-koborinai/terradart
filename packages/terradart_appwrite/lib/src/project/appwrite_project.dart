@@ -20,8 +20,8 @@ const Set<String> _appwriteProjectSensitive = <String>{};
 final class AppwriteProject extends Resource {
   static const String tfType = 'appwrite_project';
 
-  AppwriteProject({
-    required super.localName,
+  AppwriteProject(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? organizationId,
     TfArg<String>? region,

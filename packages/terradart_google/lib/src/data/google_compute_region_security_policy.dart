@@ -14,8 +14,8 @@ const Set<String> _googleComputeRegionSecurityPolicySensitive = <String>{};
 final class DataGoogleComputeRegionSecurityPolicy extends Data {
   static const String tfType = 'google_compute_region_security_policy';
 
-  DataGoogleComputeRegionSecurityPolicy({
-    required super.localName,
+  DataGoogleComputeRegionSecurityPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

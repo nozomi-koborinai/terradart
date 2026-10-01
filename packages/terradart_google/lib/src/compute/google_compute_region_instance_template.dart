@@ -686,8 +686,8 @@ final class ComputeRegionInstanceTemplateWorkloadIdentityConfig {
 final class GoogleComputeRegionInstanceTemplate extends Resource {
   static const String tfType = 'google_compute_region_instance_template';
 
-  GoogleComputeRegionInstanceTemplate({
-    required super.localName,
+  GoogleComputeRegionInstanceTemplate(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     required TfArg<String> machineType,

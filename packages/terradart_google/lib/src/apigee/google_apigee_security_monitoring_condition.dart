@@ -38,7 +38,7 @@ final class ApigeeSecurityMonitoringConditionIncludeAllResources {
 /// Example:
 /// ```dart
 /// GoogleApigeeSecurityMonitoringCondition(
-///   localName: 'demo_smc',
+///   'demo_smc',
 ///   conditionId: TfArg.literal('terradart-smc'),
 ///   orgId: TfArg.literal('organizations/demo-org'),
 ///   profile: TfArg.literal('demo-profile'),
@@ -49,8 +49,8 @@ final class ApigeeSecurityMonitoringConditionIncludeAllResources {
 final class GoogleApigeeSecurityMonitoringCondition extends Resource {
   static const String tfType = 'google_apigee_security_monitoring_condition';
 
-  GoogleApigeeSecurityMonitoringCondition({
-    required super.localName,
+  GoogleApigeeSecurityMonitoringCondition(
+    super.localName, {
     required TfArg<String> conditionId,
     required TfArg<String> orgId,
     required TfArg<String> profile,

@@ -26,8 +26,8 @@ final class CodeguruprofilerProfilingGroupAgentOrchestrationConfig {
 final class AwsCodeguruprofilerProfilingGroup extends Resource {
   static const String tfType = 'aws_codeguruprofiler_profiling_group';
 
-  AwsCodeguruprofilerProfilingGroup({
-    required super.localName,
+  AwsCodeguruprofilerProfilingGroup(
+    super.localName, {
     TfArg<String>? computePlatform,
     required TfArg<String> name,
     TfArg<String>? region,

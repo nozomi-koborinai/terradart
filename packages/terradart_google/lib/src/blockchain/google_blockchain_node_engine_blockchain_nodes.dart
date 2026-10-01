@@ -172,8 +172,8 @@ final class BlockchainNodeEngineBlockchainNodesValidatorConfig {
 final class GoogleBlockchainNodeEngineBlockchainNodes extends Resource {
   static const String tfType = 'google_blockchain_node_engine_blockchain_nodes';
 
-  GoogleBlockchainNodeEngineBlockchainNodes({
-    required super.localName,
+  GoogleBlockchainNodeEngineBlockchainNodes(
+    super.localName, {
     required TfArg<String> blockchainNodeId,
     required TfArg<String> location,
     TfArg<BlockchainNodeEngineBlockchainNodesBlockchainType>? blockchainType,

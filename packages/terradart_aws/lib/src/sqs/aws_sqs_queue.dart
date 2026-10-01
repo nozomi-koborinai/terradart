@@ -12,8 +12,8 @@ const Set<String> _awsSqsQueueSensitive = <String>{};
 final class AwsSqsQueue extends Resource {
   static const String tfType = 'aws_sqs_queue';
 
-  AwsSqsQueue({
-    required super.localName,
+  AwsSqsQueue(
+    super.localName, {
     TfArg<bool>? contentBasedDeduplication,
     TfArg<String>? deduplicationScope,
     TfArg<num>? delaySeconds,

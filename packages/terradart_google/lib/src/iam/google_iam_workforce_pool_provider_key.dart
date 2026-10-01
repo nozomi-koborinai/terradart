@@ -44,8 +44,8 @@ enum IamWorkforcePoolProviderKeySpec implements TerraformEnum {
 final class GoogleIamWorkforcePoolProviderKey extends Resource {
   static const String tfType = 'google_iam_workforce_pool_provider_key';
 
-  GoogleIamWorkforcePoolProviderKey({
-    required super.localName,
+  GoogleIamWorkforcePoolProviderKey(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> keyId,
     required TfArg<String> location,

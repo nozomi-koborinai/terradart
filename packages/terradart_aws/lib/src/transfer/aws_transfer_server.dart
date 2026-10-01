@@ -293,8 +293,8 @@ final class TransferServerOnUpload {
 final class AwsTransferServer extends Resource {
   static const String tfType = 'aws_transfer_server';
 
-  AwsTransferServer({
-    required super.localName,
+  AwsTransferServer(
+    super.localName, {
     TfArg<String>? certificate,
     TfArg<String>? directoryId,
     TfArg<TransferServerDomain>? domain,

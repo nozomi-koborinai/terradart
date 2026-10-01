@@ -45,8 +45,8 @@ final class DataCatalogEntryGroupIamBindingCondition {
 final class GoogleDataCatalogEntryGroupIamBinding extends Resource {
   static const String tfType = 'google_data_catalog_entry_group_iam_binding';
 
-  GoogleDataCatalogEntryGroupIamBinding({
-    required super.localName,
+  GoogleDataCatalogEntryGroupIamBinding(
+    super.localName, {
     required RefTo<GoogleDataCatalogEntryGroup> entryGroup,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

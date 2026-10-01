@@ -28,8 +28,8 @@ final class DataVpcFilter {
 final class DataAwsVpc extends Data {
   static const String tfType = 'aws_vpc';
 
-  DataAwsVpc({
-    required super.localName,
+  DataAwsVpc(
+    super.localName, {
     TfArg<String>? cidrBlock,
     TfArg<bool>? defaultCase,
     TfArg<String>? dhcpOptionsId,

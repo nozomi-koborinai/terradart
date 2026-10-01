@@ -63,7 +63,7 @@ enum SpannerInstanceConfigReplicasType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleSpannerInstanceConfig(
-///   localName: 'custom_nam11',
+///   'custom_nam11',
 ///   name: TfArg.literal('custom-td-nam11-ro'),
 ///   displayName: TfArg.literal('TerraDart nam11 + us-west1 RO'),
 ///   baseConfig: TfArg.literal('nam11'),
@@ -80,8 +80,8 @@ enum SpannerInstanceConfigReplicasType implements TerraformEnum {
 final class GoogleSpannerInstanceConfig extends Resource {
   static const String tfType = 'google_spanner_instance_config';
 
-  GoogleSpannerInstanceConfig({
-    required super.localName,
+  GoogleSpannerInstanceConfig(
+    super.localName, {
     TfArg<String>? name,
     required TfArg<String> displayName,
     TfArg<String>? baseConfig,

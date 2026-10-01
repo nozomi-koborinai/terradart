@@ -11,8 +11,8 @@ const Set<String> _awsNetworkmanagerConnectionSensitive = <String>{};
 final class DataAwsNetworkmanagerConnection extends Data {
   static const String tfType = 'aws_networkmanager_connection';
 
-  DataAwsNetworkmanagerConnection({
-    required super.localName,
+  DataAwsNetworkmanagerConnection(
+    super.localName, {
     required TfArg<String> connectionId,
     required TfArg<String> globalNetworkId,
     TfArg<Map<String, String>>? tags,

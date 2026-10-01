@@ -25,7 +25,7 @@ final class ProjectIamAuditConfigStack extends Stack {
       ) {
     final apiIam = add(
       GoogleProjectService(
-        localName: 'api_iam',
+        'api_iam',
         service: .literal('iam.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -33,7 +33,7 @@ final class ProjectIamAuditConfigStack extends Stack {
 
     add(
       GoogleProjectIamAuditConfig(
-        localName: 'storage_admin_read',
+        'storage_admin_read',
         project: .literal(projectId),
         service: .literal('storage.googleapis.com'),
         auditLogConfig: [
@@ -50,7 +50,7 @@ final class ProjectIamAuditConfigStack extends Stack {
 
     final denied = add(
       GoogleServiceAccount(
-        localName: 'denied',
+        'denied',
         accountId: .literal('terradart-denied'),
         displayName: .literal('TerraDart deny-policy target'),
         dependsOn: [apiIam],
@@ -59,7 +59,7 @@ final class ProjectIamAuditConfigStack extends Stack {
 
     add(
       GoogleIamDenyPolicy(
-        localName: 'storage_get_deny',
+        'storage_get_deny',
         parent: .literal(
           Uri.encodeComponent(
             'cloudresourcemanager.googleapis.com/projects/$projectId',

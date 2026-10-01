@@ -357,8 +357,8 @@ final class FmsPolicyThirdPartyFirewallPolicy {
 final class AwsFmsPolicy extends Resource {
   static const String tfType = 'aws_fms_policy';
 
-  AwsFmsPolicy({
-    required super.localName,
+  AwsFmsPolicy(
+    super.localName, {
     TfArg<bool>? deleteAllPolicyResources,
     TfArg<bool>? deleteUnusedFmManagedResources,
     TfArg<String>? description,

@@ -14,8 +14,8 @@ const Set<String> _googleObservabilityFolderSettingsSensitive = <String>{};
 final class GoogleObservabilityFolderSettings extends Resource {
   static const String tfType = 'google_observability_folder_settings';
 
-  GoogleObservabilityFolderSettings({
-    required super.localName,
+  GoogleObservabilityFolderSettings(
+    super.localName, {
     TfArg<String>? defaultStorageLocation,
     required TfArg<String> folder,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,

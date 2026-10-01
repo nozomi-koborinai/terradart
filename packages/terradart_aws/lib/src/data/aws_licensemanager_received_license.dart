@@ -10,8 +10,8 @@ const Set<String> _awsLicensemanagerReceivedLicenseSensitive = <String>{};
 final class DataAwsLicensemanagerReceivedLicense extends Data {
   static const String tfType = 'aws_licensemanager_received_license';
 
-  DataAwsLicensemanagerReceivedLicense({
-    required super.localName,
+  DataAwsLicensemanagerReceivedLicense(
+    super.localName, {
     required TfArg<String> licenseArn,
     TfArg<String>? region,
     super.provider,

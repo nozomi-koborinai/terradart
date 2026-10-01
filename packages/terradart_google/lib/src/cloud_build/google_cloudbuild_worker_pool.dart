@@ -132,7 +132,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 /// Example (minimal regional pool on the service-producer network):
 /// ```dart
 /// final pool = GoogleCloudbuildWorkerPool(
-///   localName: 'main_pool',
+///   'main_pool',
 ///   name: TfArg.literal('main-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   workerConfig: CloudbuildWorkerPoolWorkerConfig(
@@ -146,7 +146,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 /// Example (pool peered into an existing VPC):
 /// ```dart
 /// final pool = GoogleCloudbuildWorkerPool(
-///   localName: 'vpc_pool',
+///   'vpc_pool',
 ///   name: TfArg.literal('vpc-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   workerConfig: CloudbuildWorkerPoolWorkerConfig(
@@ -167,8 +167,8 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 final class GoogleCloudbuildWorkerPool extends Resource {
   static const String tfType = 'google_cloudbuild_worker_pool';
 
-  GoogleCloudbuildWorkerPool({
-    required super.localName,
+  GoogleCloudbuildWorkerPool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? displayName,

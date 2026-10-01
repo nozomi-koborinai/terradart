@@ -79,8 +79,8 @@ final class DbProxyTargetDatabaseDbInstanceIdentifier
 final class AwsDbProxyTarget extends Resource {
   static const String tfType = 'aws_db_proxy_target';
 
-  AwsDbProxyTarget({
-    required super.localName,
+  AwsDbProxyTarget(
+    super.localName, {
     required DbProxyTargetDatabase database,
     required TfArg<String> dbProxyName,
     TfArg<String>? region,

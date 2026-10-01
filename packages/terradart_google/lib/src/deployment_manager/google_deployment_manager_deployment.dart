@@ -100,8 +100,8 @@ final class DeploymentManagerDeploymentImports {
 final class GoogleDeploymentManagerDeployment extends Resource {
   static const String tfType = 'google_deployment_manager_deployment';
 
-  GoogleDeploymentManagerDeployment({
-    required super.localName,
+  GoogleDeploymentManagerDeployment(
+    super.localName, {
     TfArg<DeploymentManagerDeploymentCreatePolicy>? createPolicy,
     TfArg<DeploymentManagerDeploymentDeletePolicy>? deletePolicy,
     TfArg<String>? deletionPolicy,

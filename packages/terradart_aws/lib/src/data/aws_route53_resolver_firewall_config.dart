@@ -11,8 +11,8 @@ const Set<String> _awsRoute53ResolverFirewallConfigSensitive = <String>{};
 final class DataAwsRoute53ResolverFirewallConfig extends Data {
   static const String tfType = 'aws_route53_resolver_firewall_config';
 
-  DataAwsRoute53ResolverFirewallConfig({
-    required super.localName,
+  DataAwsRoute53ResolverFirewallConfig(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceId,
     super.provider,

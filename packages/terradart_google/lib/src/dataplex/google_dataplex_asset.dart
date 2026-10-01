@@ -135,8 +135,8 @@ enum DataplexAssetType implements TerraformEnum {
 final class GoogleDataplexAsset extends Resource {
   static const String tfType = 'google_dataplex_asset';
 
-  GoogleDataplexAsset({
-    required super.localName,
+  GoogleDataplexAsset(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleDataplexZone> dataplexZone,
     required RefTo<GoogleDataplexLake> lake,

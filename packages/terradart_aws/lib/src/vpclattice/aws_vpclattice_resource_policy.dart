@@ -10,8 +10,8 @@ const Set<String> _awsVpclatticeResourcePolicySensitive = <String>{};
 final class AwsVpclatticeResourcePolicy extends Resource {
   static const String tfType = 'aws_vpclattice_resource_policy';
 
-  AwsVpclatticeResourcePolicy({
-    required super.localName,
+  AwsVpclatticeResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

@@ -218,8 +218,8 @@ final class CodedeployDeploymentConfigMinimumHealthyHostsPerZone {
 final class AwsCodedeployDeploymentConfig extends Resource {
   static const String tfType = 'aws_codedeploy_deployment_config';
 
-  AwsCodedeployDeploymentConfig({
-    required super.localName,
+  AwsCodedeployDeploymentConfig(
+    super.localName, {
     TfArg<CodedeployDeploymentConfigComputePlatform>? computePlatform,
     required TfArg<String> deploymentConfigName,
     TfArg<String>? region,

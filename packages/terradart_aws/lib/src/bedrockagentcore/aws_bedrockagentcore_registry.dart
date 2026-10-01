@@ -324,8 +324,8 @@ final class BedrockagentcoreRegistryPrivateEndpointOverrides {
 final class AwsBedrockagentcoreRegistry extends Resource {
   static const String tfType = 'aws_bedrockagentcore_registry';
 
-  AwsBedrockagentcoreRegistry({
-    required super.localName,
+  AwsBedrockagentcoreRegistry(
+    super.localName, {
     TfArg<List<Map<String, Object?>>>? approvalConfiguration,
     TfArg<BedrockagentcoreRegistryAuthorizerType>? authorizerType,
     TfArg<String>? description,

@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GooglePrivilegedAccessManagerEntitlement(
-  ///   localName: 'viewer',
+  ///   'viewer',
   ///   location: TfArg.literal('global'),
   ///   entitlementId: TfArg.literal('terradart-pam'),
   ///   parent: TfArg.literal('projects/my-project'),

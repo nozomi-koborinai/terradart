@@ -50,8 +50,8 @@ enum CloudQuotasQuotaAdjusterSettingsEnablement implements TerraformEnum {
 final class GoogleCloudQuotasQuotaAdjusterSettings extends Resource {
   static const String tfType = 'google_cloud_quotas_quota_adjuster_settings';
 
-  GoogleCloudQuotasQuotaAdjusterSettings({
-    required super.localName,
+  GoogleCloudQuotasQuotaAdjusterSettings(
+    super.localName, {
     required TfArg<CloudQuotasQuotaAdjusterSettingsEnablement> enablement,
     TfArg<String>? parent,
     super.lifecycle,

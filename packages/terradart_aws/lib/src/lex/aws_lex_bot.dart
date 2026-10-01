@@ -121,8 +121,8 @@ final class LexBotIntent {
 final class AwsLexBot extends Resource {
   static const String tfType = 'aws_lex_bot';
 
-  AwsLexBot({
-    required super.localName,
+  AwsLexBot(
+    super.localName, {
     required TfArg<bool> childDirected,
     TfArg<bool>? createVersion,
     TfArg<String>? description,

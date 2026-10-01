@@ -44,7 +44,7 @@ _googleAccessContextManagerServicePerimeterDryRunResourceSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleAccessContextManagerServicePerimeterDryRunResource(
-///   localName: 'dry_run_project',
+///   'dry_run_project',
 ///   perimeterName: dryRun.ref,
 ///   resource: TfArg.literal('projects/987654321'),
 ///   deletionPolicy: TfArg.literal('DELETE'),
@@ -55,8 +55,8 @@ final class GoogleAccessContextManagerServicePerimeterDryRunResource
   static const String tfType =
       'google_access_context_manager_service_perimeter_dry_run_resource';
 
-  GoogleAccessContextManagerServicePerimeterDryRunResource({
-    required super.localName,
+  GoogleAccessContextManagerServicePerimeterDryRunResource(
+    super.localName, {
     required RefTo<GoogleAccessContextManagerServicePerimeter> perimeterName,
     required TfArg<String> resource,
     TfArg<String>? deletionPolicy,

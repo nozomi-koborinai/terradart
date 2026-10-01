@@ -10,8 +10,8 @@ const Set<String> _awsIvsStreamKeySensitive = <String>{};
 final class DataAwsIvsStreamKey extends Data {
   static const String tfType = 'aws_ivs_stream_key';
 
-  DataAwsIvsStreamKey({
-    required super.localName,
+  DataAwsIvsStreamKey(
+    super.localName, {
     required TfArg<String> channelArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

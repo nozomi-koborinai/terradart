@@ -29,8 +29,8 @@ final class GoogleNetworkServicesMulticastProducerAssociation extends Resource {
   static const String tfType =
       'google_network_services_multicast_producer_association';
 
-  GoogleNetworkServicesMulticastProducerAssociation({
-    required super.localName,
+  GoogleNetworkServicesMulticastProducerAssociation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastProducerAssociationId,
     required TfArg<String> multicastDomainActivation,

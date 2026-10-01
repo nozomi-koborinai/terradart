@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftserverlessResourcePolicySensitive = <String>{};
 final class AwsRedshiftserverlessResourcePolicy extends Resource {
   static const String tfType = 'aws_redshiftserverless_resource_policy';
 
-  AwsRedshiftserverlessResourcePolicy({
-    required super.localName,
+  AwsRedshiftserverlessResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

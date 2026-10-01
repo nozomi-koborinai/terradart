@@ -27,8 +27,8 @@ final class ConnectBotAssociationLexBot {
 final class AwsConnectBotAssociation extends Resource {
   static const String tfType = 'aws_connect_bot_association';
 
-  AwsConnectBotAssociation({
-    required super.localName,
+  AwsConnectBotAssociation(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required ConnectBotAssociationLexBot lexBot,

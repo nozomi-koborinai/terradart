@@ -118,8 +118,8 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_access_ai_controls_mcp_portal';
 
-  CloudflareZeroTrustAccessAiControlsMcpPortal({
-    required super.localName,
+  CloudflareZeroTrustAccessAiControlsMcpPortal(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowCodeMode,
     TfArg<ZeroTrustAccessAiControlsMcpPortalCodeMode>? codeMode,

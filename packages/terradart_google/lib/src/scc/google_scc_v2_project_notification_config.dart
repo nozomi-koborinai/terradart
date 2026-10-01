@@ -46,11 +46,11 @@ final class SccV2ProjectNotificationConfigStreamingConfig {
 /// Example:
 /// ```dart
 /// final topic = GooglePubsubTopic(
-///   localName: 'scc_findings',
+///   'scc_findings',
 ///   name: TfArg.literal('scc-findings'),
 /// );
 /// GoogleSccV2ProjectNotificationConfig(
-///   localName: 'findings_export',
+///   'findings_export',
 ///   configId: TfArg.literal('terradart-findings'),
 ///   description: TfArg.literal('Export ACTIVE findings to Pub/Sub'),
 ///   pubsubTopic: topic.ref,
@@ -62,8 +62,8 @@ final class SccV2ProjectNotificationConfigStreamingConfig {
 final class GoogleSccV2ProjectNotificationConfig extends Resource {
   static const String tfType = 'google_scc_v2_project_notification_config';
 
-  GoogleSccV2ProjectNotificationConfig({
-    required super.localName,
+  GoogleSccV2ProjectNotificationConfig(
+    super.localName, {
     required TfArg<String> configId,
     RefTo<GooglePubsubTopic>? pubsubTopic,
     required SccV2ProjectNotificationConfigStreamingConfig streamingConfig,

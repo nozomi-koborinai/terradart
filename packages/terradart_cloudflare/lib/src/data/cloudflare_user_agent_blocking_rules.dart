@@ -15,8 +15,8 @@ const Set<String> _cloudflareUserAgentBlockingRulesSensitive = <String>{};
 final class DataCloudflareUserAgentBlockingRules extends Data {
   static const String tfType = 'cloudflare_user_agent_blocking_rules';
 
-  DataCloudflareUserAgentBlockingRules({
-    required super.localName,
+  DataCloudflareUserAgentBlockingRules(
+    super.localName, {
     TfArg<String>? description,
     TfArg<num>? maxItems,
     TfArg<bool>? paused,

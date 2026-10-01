@@ -112,8 +112,8 @@ final class Ec2TrafficMirrorTargetDestinationNetworkLoadBalancerArn
 final class AwsEc2TrafficMirrorTarget extends Resource {
   static const String tfType = 'aws_ec2_traffic_mirror_target';
 
-  AwsEc2TrafficMirrorTarget({
-    required super.localName,
+  AwsEc2TrafficMirrorTarget(
+    super.localName, {
     TfArg<String>? description,
     required Ec2TrafficMirrorTargetDestination destination,
     TfArg<String>? region,

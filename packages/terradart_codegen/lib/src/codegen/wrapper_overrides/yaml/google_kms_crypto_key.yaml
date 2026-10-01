@@ -7,13 +7,13 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final ring = GoogleKmsKeyRing(
-  ///   localName: 'main',
+  ///   'main',
   ///   name: TfArg.literal('main-ring'),
   ///   location: TfArg.literal('asia-northeast1'),
   /// );
   ///
   /// final cryptoKey = GoogleKmsCryptoKey(
-  ///   localName: 'payments',
+  ///   'payments',
   ///   name: TfArg.literal('payments'),
   ///   keyRing: ring.ref,
   ///   purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),

@@ -235,7 +235,7 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 /// Example (daily GCS → BigQuery import):
 /// ```dart
 /// final dailyImport = GoogleBigqueryDataTransferConfig(
-///   localName: 'daily_gcs_import',
+///   'daily_gcs_import',
 ///   displayName: TfArg.literal('Daily GCS export -> BigQuery'),
 ///   dataSourceId: TfArg.literal('google_cloud_storage'),
 ///   destinationDatasetId: analytics.ref,
@@ -257,8 +257,8 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 final class GoogleBigqueryDataTransferConfig extends Resource {
   static const String tfType = 'google_bigquery_data_transfer_config';
 
-  GoogleBigqueryDataTransferConfig({
-    required super.localName,
+  GoogleBigqueryDataTransferConfig(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> dataSourceId,
     RefTo<GoogleBigqueryDataset>? destinationDatasetId,

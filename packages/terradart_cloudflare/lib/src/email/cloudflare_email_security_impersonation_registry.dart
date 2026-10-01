@@ -30,8 +30,8 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
   static const String tfType =
       'cloudflare_email_security_impersonation_registry';
 
-  CloudflareEmailSecurityImpersonationRegistry({
-    required super.localName,
+  CloudflareEmailSecurityImpersonationRegistry(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     TfArg<num>? directoryId,

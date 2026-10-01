@@ -12,8 +12,8 @@ const Set<String> _googleChronicleCaseStageDefinitionSensitive = <String>{};
 final class GoogleChronicleCaseStageDefinition extends Resource {
   static const String tfType = 'google_chronicle_case_stage_definition';
 
-  GoogleChronicleCaseStageDefinition({
-    required super.localName,
+  GoogleChronicleCaseStageDefinition(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     required TfArg<String> displayName,

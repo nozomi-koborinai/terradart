@@ -22,8 +22,8 @@ final class BedrockInferenceProfileModelSource {
 final class AwsBedrockInferenceProfile extends Resource {
   static const String tfType = 'aws_bedrock_inference_profile';
 
-  AwsBedrockInferenceProfile({
-    required super.localName,
+  AwsBedrockInferenceProfile(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -17,8 +17,8 @@ final class DataGoogleStorageControlOrganizationIntelligenceFindingsSummary
   static const String tfType =
       'google_storage_control_organization_intelligence_findings_summary';
 
-  DataGoogleStorageControlOrganizationIntelligenceFindingsSummary({
-    required super.localName,
+  DataGoogleStorageControlOrganizationIntelligenceFindingsSummary(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? location,
     required TfArg<String> organization,

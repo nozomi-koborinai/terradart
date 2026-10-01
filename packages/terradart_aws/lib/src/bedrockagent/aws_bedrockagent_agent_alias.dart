@@ -10,8 +10,8 @@ const Set<String> _awsBedrockagentAgentAliasSensitive = <String>{};
 final class AwsBedrockagentAgentAlias extends Resource {
   static const String tfType = 'aws_bedrockagent_agent_alias';
 
-  AwsBedrockagentAgentAlias({
-    required super.localName,
+  AwsBedrockagentAgentAlias(
+    super.localName, {
     required TfArg<String> agentAliasName,
     required TfArg<String> agentId,
     TfArg<String>? description,

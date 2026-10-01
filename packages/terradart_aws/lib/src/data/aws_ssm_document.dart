@@ -11,8 +11,8 @@ const Set<String> _awsSsmDocumentSensitive = <String>{};
 final class DataAwsSsmDocument extends Data {
   static const String tfType = 'aws_ssm_document';
 
-  DataAwsSsmDocument({
-    required super.localName,
+  DataAwsSsmDocument(
+    super.localName, {
     TfArg<String>? documentFormat,
     TfArg<String>? documentVersion,
     required TfArg<String> name,

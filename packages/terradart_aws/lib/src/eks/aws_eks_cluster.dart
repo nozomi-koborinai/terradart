@@ -565,8 +565,8 @@ final class EksClusterZonalShiftConfig {
 final class AwsEksCluster extends Resource {
   static const String tfType = 'aws_eks_cluster';
 
-  AwsEksCluster({
-    required super.localName,
+  AwsEksCluster(
+    super.localName, {
     TfArg<bool>? bootstrapSelfManagedAddons,
     TfArg<bool>? deletionProtection,
     List<TfArg<EksClusterEnabledClusterLogTypes>>? enabledClusterLogTypes,

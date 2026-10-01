@@ -30,8 +30,8 @@ final class GoogleIdentityPlatformTenantDefaultSupportedIdpConfig
   static const String tfType =
       'google_identity_platform_tenant_default_supported_idp_config';
 
-  GoogleIdentityPlatformTenantDefaultSupportedIdpConfig({
-    required super.localName,
+  GoogleIdentityPlatformTenantDefaultSupportedIdpConfig(
+    super.localName, {
     required TfArg<String> clientId,
     required TfArg<String> clientSecret,
     TfArg<String>? deletionPolicy,

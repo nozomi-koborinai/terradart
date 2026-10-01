@@ -21,8 +21,8 @@ enum VpcRouteServerPersistRoutes implements TerraformEnum {
 final class AwsVpcRouteServer extends Resource {
   static const String tfType = 'aws_vpc_route_server';
 
-  AwsVpcRouteServer({
-    required super.localName,
+  AwsVpcRouteServer(
+    super.localName, {
     required TfArg<num> amazonSideAsn,
     TfArg<VpcRouteServerPersistRoutes>? persistRoutes,
     TfArg<num>? persistRoutesDuration,

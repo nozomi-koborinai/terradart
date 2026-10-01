@@ -26,8 +26,8 @@ enum DocdbelasticClusterAuthType implements TerraformEnum {
 final class AwsDocdbelasticCluster extends Resource {
   static const String tfType = 'aws_docdbelastic_cluster';
 
-  AwsDocdbelasticCluster({
-    required super.localName,
+  AwsDocdbelasticCluster(
+    super.localName, {
     required TfArg<String> adminUserName,
     required TfArg<String> adminUserPassword,
     required TfArg<DocdbelasticClusterAuthType> authType,

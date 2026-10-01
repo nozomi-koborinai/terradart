@@ -27,8 +27,8 @@ enum ContentScanningValue implements TerraformEnum {
 final class CloudflareContentScanning extends Resource {
   static const String tfType = 'cloudflare_content_scanning';
 
-  CloudflareContentScanning({
-    required super.localName,
+  CloudflareContentScanning(
+    super.localName, {
     required TfArg<ContentScanningValue> value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

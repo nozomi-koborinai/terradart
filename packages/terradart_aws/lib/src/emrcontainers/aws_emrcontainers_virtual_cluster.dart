@@ -65,8 +65,8 @@ final class EmrcontainersVirtualClusterEksInfo {
 final class AwsEmrcontainersVirtualCluster extends Resource {
   static const String tfType = 'aws_emrcontainers_virtual_cluster';
 
-  AwsEmrcontainersVirtualCluster({
-    required super.localName,
+  AwsEmrcontainersVirtualCluster(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

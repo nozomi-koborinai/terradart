@@ -10,8 +10,8 @@ const Set<String> _awsRdsReservedInstanceOfferingSensitive = <String>{};
 final class DataAwsRdsReservedInstanceOffering extends Data {
   static const String tfType = 'aws_rds_reserved_instance_offering';
 
-  DataAwsRdsReservedInstanceOffering({
-    required super.localName,
+  DataAwsRdsReservedInstanceOffering(
+    super.localName, {
     required TfArg<String> dbInstanceClass,
     required TfArg<num> duration,
     required TfArg<bool> multiAz,

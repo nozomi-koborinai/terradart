@@ -16,8 +16,8 @@ const Set<String> _googleEventarcEnrollmentSensitive = <String>{};
 final class GoogleEventarcEnrollment extends Resource {
   static const String tfType = 'google_eventarc_enrollment';
 
-  GoogleEventarcEnrollment({
-    required super.localName,
+  GoogleEventarcEnrollment(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     required TfArg<String> celMatch,
     required RefTo<GoogleEventarcPipeline> destination,

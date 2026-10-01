@@ -60,8 +60,8 @@ final class EcsDaemonAlarms {
 final class AwsEcsDaemon extends Resource {
   static const String tfType = 'aws_ecs_daemon';
 
-  AwsEcsDaemon({
-    required super.localName,
+  AwsEcsDaemon(
+    super.localName, {
     required TfArg<List<String>> capacityProviderArns,
     TfArg<String>? clusterArn,
     required TfArg<String> daemonTaskDefinitionArn,

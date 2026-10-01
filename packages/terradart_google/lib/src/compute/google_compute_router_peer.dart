@@ -114,8 +114,8 @@ final class ComputeRouterPeerMd5AuthenticationKey {
 final class GoogleComputeRouterPeer extends Resource {
   static const String tfType = 'google_compute_router_peer';
 
-  GoogleComputeRouterPeer({
-    required super.localName,
+  GoogleComputeRouterPeer(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
     required TfArg<String> interface,

@@ -21,8 +21,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamPolicy
   static const String tfType =
       'google_vertex_ai_feature_online_store_featureview_iam_policy';
 
-  GoogleVertexAiFeatureOnlineStoreFeatureviewIamPolicy({
-    required super.localName,
+  GoogleVertexAiFeatureOnlineStoreFeatureviewIamPolicy(
+    super.localName, {
     TfArg<String>? featureOnlineStore,
     required RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview> featureView,
     required TfArg<String> policyData,

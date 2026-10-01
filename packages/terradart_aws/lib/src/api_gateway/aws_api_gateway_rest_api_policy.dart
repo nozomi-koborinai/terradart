@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayRestApiPolicySensitive = <String>{};
 final class AwsApiGatewayRestApiPolicy extends Resource {
   static const String tfType = 'aws_api_gateway_rest_api_policy';
 
-  AwsApiGatewayRestApiPolicy({
-    required super.localName,
+  AwsApiGatewayRestApiPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> restApiId,

@@ -16,8 +16,8 @@ const Set<String> _googleIapWebIamPolicySensitive = <String>{};
 final class GoogleIapWebIamPolicy extends Resource {
   static const String tfType = 'google_iap_web_iam_policy';
 
-  GoogleIapWebIamPolicy({
-    required super.localName,
+  GoogleIapWebIamPolicy(
+    super.localName, {
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,

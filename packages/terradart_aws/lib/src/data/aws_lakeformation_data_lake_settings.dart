@@ -11,8 +11,8 @@ const Set<String> _awsLakeformationDataLakeSettingsSensitive = <String>{};
 final class DataAwsLakeformationDataLakeSettings extends Data {
   static const String tfType = 'aws_lakeformation_data_lake_settings';
 
-  DataAwsLakeformationDataLakeSettings({
-    required super.localName,
+  DataAwsLakeformationDataLakeSettings(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? region,
     super.provider,

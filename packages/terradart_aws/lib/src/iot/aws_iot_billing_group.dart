@@ -22,8 +22,8 @@ final class IotBillingGroupProperties {
 final class AwsIotBillingGroup extends Resource {
   static const String tfType = 'aws_iot_billing_group';
 
-  AwsIotBillingGroup({
-    required super.localName,
+  AwsIotBillingGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

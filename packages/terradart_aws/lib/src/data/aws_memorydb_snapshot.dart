@@ -11,8 +11,8 @@ const Set<String> _awsMemorydbSnapshotSensitive = <String>{};
 final class DataAwsMemorydbSnapshot extends Data {
   static const String tfType = 'aws_memorydb_snapshot';
 
-  DataAwsMemorydbSnapshot({
-    required super.localName,
+  DataAwsMemorydbSnapshot(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

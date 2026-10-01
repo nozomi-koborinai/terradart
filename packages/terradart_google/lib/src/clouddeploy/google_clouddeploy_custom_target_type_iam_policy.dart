@@ -20,8 +20,8 @@ final class GoogleClouddeployCustomTargetTypeIamPolicy extends Resource {
   static const String tfType =
       'google_clouddeploy_custom_target_type_iam_policy';
 
-  GoogleClouddeployCustomTargetTypeIamPolicy({
-    required super.localName,
+  GoogleClouddeployCustomTargetTypeIamPolicy(
+    super.localName, {
     required RefTo<GoogleClouddeployCustomTargetType> customTargetType,
     required TfArg<String> policyData,
     TfArg<String>? location,

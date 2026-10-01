@@ -24,8 +24,8 @@ enum ChatbotTeamsChannelConfigurationLoggingLevel implements TerraformEnum {
 final class AwsChatbotTeamsChannelConfiguration extends Resource {
   static const String tfType = 'aws_chatbot_teams_channel_configuration';
 
-  AwsChatbotTeamsChannelConfiguration({
-    required super.localName,
+  AwsChatbotTeamsChannelConfiguration(
+    super.localName, {
     required TfArg<String> channelId,
     TfArg<String>? channelName,
     required TfArg<String> configurationName,

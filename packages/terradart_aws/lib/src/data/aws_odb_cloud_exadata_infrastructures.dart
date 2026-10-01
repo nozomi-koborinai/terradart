@@ -10,8 +10,8 @@ const Set<String> _awsOdbCloudExadataInfrastructuresSensitive = <String>{};
 final class DataAwsOdbCloudExadataInfrastructures extends Data {
   static const String tfType = 'aws_odb_cloud_exadata_infrastructures';
 
-  DataAwsOdbCloudExadataInfrastructures({
-    required super.localName,
+  DataAwsOdbCloudExadataInfrastructures(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

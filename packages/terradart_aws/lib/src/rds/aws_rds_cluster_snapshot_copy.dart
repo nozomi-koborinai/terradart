@@ -12,8 +12,8 @@ const Set<String> _awsRdsClusterSnapshotCopySensitive = <String>{};
 final class AwsRdsClusterSnapshotCopy extends Resource {
   static const String tfType = 'aws_rds_cluster_snapshot_copy';
 
-  AwsRdsClusterSnapshotCopy({
-    required super.localName,
+  AwsRdsClusterSnapshotCopy(
+    super.localName, {
     TfArg<bool>? copyTags,
     TfArg<String>? destinationRegion,
     RefTo<AwsKmsKey>? kmsKeyId,

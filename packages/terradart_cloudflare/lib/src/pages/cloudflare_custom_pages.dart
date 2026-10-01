@@ -46,8 +46,8 @@ enum CustomPagesState implements TerraformEnum {
 final class CloudflareCustomPages extends Resource {
   static const String tfType = 'cloudflare_custom_pages';
 
-  CloudflareCustomPages({
-    required super.localName,
+  CloudflareCustomPages(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<CustomPagesIdentifier> identifier,
     required TfArg<CustomPagesState> state,

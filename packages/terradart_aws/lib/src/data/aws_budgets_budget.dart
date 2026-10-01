@@ -11,8 +11,8 @@ const Set<String> _awsBudgetsBudgetSensitive = <String>{};
 final class DataAwsBudgetsBudget extends Data {
   static const String tfType = 'aws_budgets_budget';
 
-  DataAwsBudgetsBudget({
-    required super.localName,
+  DataAwsBudgetsBudget(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> name,
     TfArg<String>? namePrefix,

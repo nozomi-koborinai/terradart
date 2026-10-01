@@ -10,8 +10,8 @@ const Set<String> _awsAmplifyWebhookSensitive = <String>{};
 final class AwsAmplifyWebhook extends Resource {
   static const String tfType = 'aws_amplify_webhook';
 
-  AwsAmplifyWebhook({
-    required super.localName,
+  AwsAmplifyWebhook(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> branchName,
     TfArg<String>? description,

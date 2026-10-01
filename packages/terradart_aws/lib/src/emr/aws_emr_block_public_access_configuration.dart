@@ -30,8 +30,8 @@ final class EmrBlockPublicAccessConfigurationPermittedPublicSecurityGroupRuleRan
 final class AwsEmrBlockPublicAccessConfiguration extends Resource {
   static const String tfType = 'aws_emr_block_public_access_configuration';
 
-  AwsEmrBlockPublicAccessConfiguration({
-    required super.localName,
+  AwsEmrBlockPublicAccessConfiguration(
+    super.localName, {
     required TfArg<bool> blockPublicSecurityGroupRules,
     TfArg<String>? region,
     List<

@@ -57,8 +57,8 @@ final class BatchJobQueueJobStateTimeLimitAction {
 final class AwsBatchJobQueue extends Resource {
   static const String tfType = 'aws_batch_job_queue';
 
-  AwsBatchJobQueue({
-    required super.localName,
+  AwsBatchJobQueue(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<num> priority,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsAppstreamImageSensitive = <String>{};
 final class DataAwsAppstreamImage extends Data {
   static const String tfType = 'aws_appstream_image';
 
-  DataAwsAppstreamImage({
-    required super.localName,
+  DataAwsAppstreamImage(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<bool>? mostRecent,
     TfArg<String>? name,

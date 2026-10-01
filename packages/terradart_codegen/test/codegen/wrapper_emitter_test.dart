@@ -297,11 +297,8 @@ void main() {
         );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-        // Constructor opens with the wrapper class name and named-param brace.
-        expect(out, contains('  GooglePubsubTopic({'));
-
-        // Identity super-parameter: every Resource<S> takes a localName.
-        expect(out, contains('    required super.localName,'));
+        // The constructor takes the local name first, then named arguments.
+        expect(out, contains('  GooglePubsubTopic(super.localName, {'));
 
         // Required attribute (only `name` in this resource).
         expect(out, contains('    required TfArg<String> name,'));
@@ -922,7 +919,7 @@ void main() {
       // would pass vacuously when the emitter still has no constructor.
       expect(
         out,
-        contains('  GooglePubsubTopic({'),
+        contains('  GooglePubsubTopic(super.localName, {'),
         reason:
             'constructor must be emitted; otherwise exclusion checks pass vacuously',
       );

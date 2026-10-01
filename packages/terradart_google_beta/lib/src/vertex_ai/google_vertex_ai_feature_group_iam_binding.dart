@@ -42,8 +42,8 @@ final class VertexAiFeatureGroupIamBindingCondition {
 final class GoogleVertexAiFeatureGroupIamBinding extends Resource {
   static const String tfType = 'google_vertex_ai_feature_group_iam_binding';
 
-  GoogleVertexAiFeatureGroupIamBinding({
-    required super.localName,
+  GoogleVertexAiFeatureGroupIamBinding(
+    super.localName, {
     required RefTo<GoogleVertexAiFeatureGroup> featureGroup,
     required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,

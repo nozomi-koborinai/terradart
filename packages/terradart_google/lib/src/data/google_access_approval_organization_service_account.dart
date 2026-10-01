@@ -15,8 +15,8 @@ final class DataGoogleAccessApprovalOrganizationServiceAccount extends Data {
   static const String tfType =
       'google_access_approval_organization_service_account';
 
-  DataGoogleAccessApprovalOrganizationServiceAccount({
-    required super.localName,
+  DataGoogleAccessApprovalOrganizationServiceAccount(
+    super.localName, {
     required TfArg<String> organizationId,
     super.provider,
     super.timeouts,

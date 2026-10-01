@@ -26,8 +26,8 @@ const Set<String> _googleNetworkSecurityInterceptDeploymentSensitive =
 final class GoogleNetworkSecurityInterceptDeployment extends Resource {
   static const String tfType = 'google_network_security_intercept_deployment';
 
-  GoogleNetworkSecurityInterceptDeployment({
-    required super.localName,
+  GoogleNetworkSecurityInterceptDeployment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> interceptDeploymentId,
     required TfArg<String> forwardingRule,

@@ -308,8 +308,8 @@ final class BedrockagentcoreEvaluatorNumerical {
 final class AwsBedrockagentcoreEvaluator extends Resource {
   static const String tfType = 'aws_bedrockagentcore_evaluator';
 
-  AwsBedrockagentcoreEvaluator({
-    required super.localName,
+  AwsBedrockagentcoreEvaluator(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> evaluatorName,
     RefTo<AwsKmsKey>? kmsKeyArn,

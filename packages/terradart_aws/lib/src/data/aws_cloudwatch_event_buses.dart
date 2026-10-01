@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchEventBusesSensitive = <String>{};
 final class DataAwsCloudwatchEventBuses extends Data {
   static const String tfType = 'aws_cloudwatch_event_buses';
 
-  DataAwsCloudwatchEventBuses({
-    required super.localName,
+  DataAwsCloudwatchEventBuses(
+    super.localName, {
     TfArg<String>? namePrefix,
     TfArg<String>? region,
     super.provider,

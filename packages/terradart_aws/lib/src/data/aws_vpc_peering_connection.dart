@@ -32,8 +32,8 @@ final class DataVpcPeeringConnectionFilter {
 final class DataAwsVpcPeeringConnection extends Data {
   static const String tfType = 'aws_vpc_peering_connection';
 
-  DataAwsVpcPeeringConnection({
-    required super.localName,
+  DataAwsVpcPeeringConnection(
+    super.localName, {
     TfArg<String>? cidrBlock,
     TfArg<String>? ownerId,
     TfArg<String>? peerCidrBlock,

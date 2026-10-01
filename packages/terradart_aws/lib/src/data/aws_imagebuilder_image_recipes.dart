@@ -30,8 +30,8 @@ final class DataImagebuilderImageRecipesFilter {
 final class DataAwsImagebuilderImageRecipes extends Data {
   static const String tfType = 'aws_imagebuilder_image_recipes';
 
-  DataAwsImagebuilderImageRecipes({
-    required super.localName,
+  DataAwsImagebuilderImageRecipes(
+    super.localName, {
     TfArg<String>? owner,
     TfArg<String>? region,
     List<DataImagebuilderImageRecipesFilter>? filter,

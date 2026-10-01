@@ -10,8 +10,8 @@ const Set<String> _awsGlueWorkflowSensitive = <String>{};
 final class AwsGlueWorkflow extends Resource {
   static const String tfType = 'aws_glue_workflow';
 
-  AwsGlueWorkflow({
-    required super.localName,
+  AwsGlueWorkflow(
+    super.localName, {
     TfArg<Map<String, String>>? defaultRunProperties,
     TfArg<String>? description,
     TfArg<num>? maxConcurrentRuns,

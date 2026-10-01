@@ -11,8 +11,8 @@ const Set<String> _awsS3controlAccessPointsSensitive = <String>{};
 final class DataAwsS3controlAccessPoints extends Data {
   static const String tfType = 'aws_s3control_access_points';
 
-  DataAwsS3controlAccessPoints({
-    required super.localName,
+  DataAwsS3controlAccessPoints(
+    super.localName, {
     TfArg<String>? accountId,
     RefTo<AwsS3Bucket>? bucket,
     TfArg<String>? dataSourceId,

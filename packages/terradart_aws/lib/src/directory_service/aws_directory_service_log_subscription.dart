@@ -12,8 +12,8 @@ const Set<String> _awsDirectoryServiceLogSubscriptionSensitive = <String>{};
 final class AwsDirectoryServiceLogSubscription extends Resource {
   static const String tfType = 'aws_directory_service_log_subscription';
 
-  AwsDirectoryServiceLogSubscription({
-    required super.localName,
+  AwsDirectoryServiceLogSubscription(
+    super.localName, {
     required TfArg<String> directoryId,
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     TfArg<String>? region,

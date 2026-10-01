@@ -36,8 +36,8 @@ final class BillingAccountIamMemberCondition {
 final class GoogleBillingAccountIamMember extends Resource {
   static const String tfType = 'google_billing_account_iam_member';
 
-  GoogleBillingAccountIamMember({
-    required super.localName,
+  GoogleBillingAccountIamMember(
+    super.localName, {
     required TfArg<String> billingAccountId,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -263,8 +263,8 @@ enum SagemakerNotebookInstanceMinimumInstanceMetadataServiceVersion
 final class AwsSagemakerNotebookInstance extends Resource {
   static const String tfType = 'aws_sagemaker_notebook_instance';
 
-  AwsSagemakerNotebookInstance({
-    required super.localName,
+  AwsSagemakerNotebookInstance(
+    super.localName, {
     TfArg<List<String>>? additionalCodeRepositories,
     TfArg<String>? defaultCodeRepository,
     TfArg<SagemakerNotebookInstanceDirectInternetAccess>? directInternetAccess,

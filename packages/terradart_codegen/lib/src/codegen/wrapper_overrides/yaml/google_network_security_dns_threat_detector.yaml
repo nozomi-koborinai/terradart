@@ -48,7 +48,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkSecurityDnsThreatDetector(
-  ///   localName: 'dns_threat',
+  ///   'dns_threat',
   ///   name: TfArg.literal('terradart-dns-threat'),
   ///   location: TfArg.literal('global'),
   ///   threatDetectorProvider: TfArg.literal(

@@ -88,8 +88,8 @@ final class SignerSigningProfilePermissionStatementIdPrefix
 final class AwsSignerSigningProfilePermission extends Resource {
   static const String tfType = 'aws_signer_signing_profile_permission';
 
-  AwsSignerSigningProfilePermission({
-    required super.localName,
+  AwsSignerSigningProfilePermission(
+    super.localName, {
     required TfArg<SignerSigningProfilePermissionAction> action,
     required TfArg<String> principal,
     required TfArg<String> profileName,

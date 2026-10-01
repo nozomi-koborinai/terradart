@@ -54,8 +54,8 @@ final class BatchSchedulingPolicyShareDistribution {
 final class AwsBatchSchedulingPolicy extends Resource {
   static const String tfType = 'aws_batch_scheduling_policy';
 
-  AwsBatchSchedulingPolicy({
-    required super.localName,
+  AwsBatchSchedulingPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

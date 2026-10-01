@@ -14,8 +14,8 @@ const Set<String> _googleCloudbuildv2ConnectionIamPolicySensitive = <String>{};
 final class DataGoogleCloudbuildv2ConnectionIamPolicy extends Data {
   static const String tfType = 'google_cloudbuildv2_connection_iam_policy';
 
-  DataGoogleCloudbuildv2ConnectionIamPolicy({
-    required super.localName,
+  DataGoogleCloudbuildv2ConnectionIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

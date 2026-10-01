@@ -15,8 +15,8 @@ const Set<String> _googleCertificateManagerDnsAuthorizationSensitive =
 final class DataGoogleCertificateManagerDnsAuthorization extends Data {
   static const String tfType = 'google_certificate_manager_dns_authorization';
 
-  DataGoogleCertificateManagerDnsAuthorization({
-    required super.localName,
+  DataGoogleCertificateManagerDnsAuthorization(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? location,
     required TfArg<String> name,

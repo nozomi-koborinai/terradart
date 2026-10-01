@@ -10,8 +10,8 @@ const Set<String> _awsFmsAdminAccountSensitive = <String>{};
 final class AwsFmsAdminAccount extends Resource {
   static const String tfType = 'aws_fms_admin_account';
 
-  AwsFmsAdminAccount({
-    required super.localName,
+  AwsFmsAdminAccount(
+    super.localName, {
     TfArg<String>? accountId,
     super.lifecycle,
     super.dependsOn,

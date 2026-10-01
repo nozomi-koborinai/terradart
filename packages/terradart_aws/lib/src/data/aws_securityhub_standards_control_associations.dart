@@ -11,8 +11,8 @@ const Set<String> _awsSecurityhubStandardsControlAssociationsSensitive =
 final class DataAwsSecurityhubStandardsControlAssociations extends Data {
   static const String tfType = 'aws_securityhub_standards_control_associations';
 
-  DataAwsSecurityhubStandardsControlAssociations({
-    required super.localName,
+  DataAwsSecurityhubStandardsControlAssociations(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> securityControlId,
     super.provider,

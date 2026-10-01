@@ -79,8 +79,8 @@ final class VpcEndpointConnectionNotificationVpcEndpointServiceId
 final class AwsVpcEndpointConnectionNotification extends Resource {
   static const String tfType = 'aws_vpc_endpoint_connection_notification';
 
-  AwsVpcEndpointConnectionNotification({
-    required super.localName,
+  AwsVpcEndpointConnectionNotification(
+    super.localName, {
     required TfArg<List<String>> connectionEvents,
     required TfArg<String> connectionNotificationArn,
     TfArg<String>? region,

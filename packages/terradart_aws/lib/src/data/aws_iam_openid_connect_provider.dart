@@ -11,8 +11,8 @@ const Set<String> _awsIamOpenidConnectProviderSensitive = <String>{};
 final class DataAwsIamOpenidConnectProvider extends Data {
   static const String tfType = 'aws_iam_openid_connect_provider';
 
-  DataAwsIamOpenidConnectProvider({
-    required super.localName,
+  DataAwsIamOpenidConnectProvider(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? url,

@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustGatewaySettingsSensitive = <String>{};
 final class DataCloudflareZeroTrustGatewaySettings extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_settings';
 
-  DataCloudflareZeroTrustGatewaySettings({
-    required super.localName,
+  DataCloudflareZeroTrustGatewaySettings(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

@@ -389,8 +389,8 @@ final class DataPipelinePipelineLaunchParametersEnvironment {
 final class GoogleDataPipelinePipeline extends Resource {
   static const String tfType = 'google_data_pipeline_pipeline';
 
-  GoogleDataPipelinePipeline({
-    required super.localName,
+  GoogleDataPipelinePipeline(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
     required TfArg<String> name,

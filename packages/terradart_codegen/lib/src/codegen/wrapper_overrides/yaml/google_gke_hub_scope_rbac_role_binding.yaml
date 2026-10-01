@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleGkeHubScopeRbacRoleBinding(
-  ///   localName: 'team_view',
+  ///   'team_view',
   ///   scopeId: .literal('terradart-scope'),
   ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
   ///   principal: .user(.literal('terradart-fleet-rbac@example.com')),

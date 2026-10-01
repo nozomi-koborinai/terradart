@@ -13,8 +13,8 @@ const Set<String> _googleOrganizationSensitive = <String>{};
 final class DataGoogleOrganization extends Data {
   static const String tfType = 'google_organization';
 
-  DataGoogleOrganization({
-    required super.localName,
+  DataGoogleOrganization(
+    super.localName, {
     TfArg<String>? domain,
     TfArg<String>? organization,
     super.provider,

@@ -13,8 +13,8 @@ const Set<String> _googleBillingAccountSensitive = <String>{};
 final class DataGoogleBillingAccount extends Data {
   static const String tfType = 'google_billing_account';
 
-  DataGoogleBillingAccount({
-    required super.localName,
+  DataGoogleBillingAccount(
+    super.localName, {
     TfArg<String>? billingAccount,
     TfArg<String>? displayName,
     TfArg<bool>? lookupProjects,

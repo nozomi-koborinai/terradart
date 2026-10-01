@@ -20,8 +20,8 @@ final class DataCloudflareZeroTrustTunnelWarpConnectorConfig extends Data {
   static const String tfType =
       'cloudflare_zero_trust_tunnel_warp_connector_config';
 
-  DataCloudflareZeroTrustTunnelWarpConnectorConfig({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelWarpConnectorConfig(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> tunnelId,
     super.provider,

@@ -11,8 +11,8 @@ const Set<String> _awsDynamodbTableItemSensitive = <String>{};
 final class DataAwsDynamodbTableItem extends Data {
   static const String tfType = 'aws_dynamodb_table_item';
 
-  DataAwsDynamodbTableItem({
-    required super.localName,
+  DataAwsDynamodbTableItem(
+    super.localName, {
     TfArg<Map<String, String>>? expressionAttributeNames,
     required TfArg<String> key,
     TfArg<String>? projectionExpression,

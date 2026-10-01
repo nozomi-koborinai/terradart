@@ -794,8 +794,8 @@ final class DataLossPreventionContentPolicyUnsupportedFileType {
 final class GoogleDataLossPreventionContentPolicy extends Resource {
   static const String tfType = 'google_data_loss_prevention_content_policy';
 
-  GoogleDataLossPreventionContentPolicy({
-    required super.localName,
+  GoogleDataLossPreventionContentPolicy(
+    super.localName, {
     required TfArg<String> parent,
     TfArg<String>? displayName,
     required List<DataLossPreventionContentPolicyRules> rules,

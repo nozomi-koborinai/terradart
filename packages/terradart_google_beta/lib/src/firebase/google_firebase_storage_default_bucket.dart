@@ -13,8 +13,8 @@ const Set<String> _googleFirebaseStorageDefaultBucketSensitive = <String>{};
 final class GoogleFirebaseStorageDefaultBucket extends Resource {
   static const String tfType = 'google_firebase_storage_default_bucket';
 
-  GoogleFirebaseStorageDefaultBucket({
-    required super.localName,
+  GoogleFirebaseStorageDefaultBucket(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> location,
     TfArg<String>? project,

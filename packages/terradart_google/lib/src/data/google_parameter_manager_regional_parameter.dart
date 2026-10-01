@@ -15,8 +15,8 @@ const Set<String> _googleParameterManagerRegionalParameterSensitive =
 final class DataGoogleParameterManagerRegionalParameter extends Data {
   static const String tfType = 'google_parameter_manager_regional_parameter';
 
-  DataGoogleParameterManagerRegionalParameter({
-    required super.localName,
+  DataGoogleParameterManagerRegionalParameter(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> parameterId,
     TfArg<String>? project,

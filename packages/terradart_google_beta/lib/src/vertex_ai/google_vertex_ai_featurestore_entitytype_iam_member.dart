@@ -39,8 +39,8 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamMember extends Resource {
   static const String tfType =
       'google_vertex_ai_featurestore_entitytype_iam_member';
 
-  GoogleVertexAiFeaturestoreEntitytypeIamMember({
-    required super.localName,
+  GoogleVertexAiFeaturestoreEntitytypeIamMember(
+    super.localName, {
     required RefTo<GoogleVertexAiFeaturestoreEntitytype> entitytype,
     TfArg<String>? featurestore,
     required IamPrincipal member,

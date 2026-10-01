@@ -16,8 +16,8 @@ const Set<String> _cloudflareEmailRoutingDnsSensitive = <String>{};
 final class CloudflareEmailRoutingDns extends Resource {
   static const String tfType = 'cloudflare_email_routing_dns';
 
-  CloudflareEmailRoutingDns({
-    required super.localName,
+  CloudflareEmailRoutingDns(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? subdomain,
     required RefTo<CloudflareZone> zoneId,

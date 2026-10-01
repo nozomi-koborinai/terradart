@@ -11,8 +11,8 @@ const Set<String> _awsMemorydbAclSensitive = <String>{};
 final class DataAwsMemorydbAcl extends Data {
   static const String tfType = 'aws_memorydb_acl';
 
-  DataAwsMemorydbAcl({
-    required super.localName,
+  DataAwsMemorydbAcl(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

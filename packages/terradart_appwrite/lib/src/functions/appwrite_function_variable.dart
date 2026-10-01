@@ -18,8 +18,8 @@ const Set<String> _appwriteFunctionVariableSensitive = <String>{'value'};
 final class AppwriteFunctionVariable extends Resource {
   static const String tfType = 'appwrite_function_variable';
 
-  AppwriteFunctionVariable({
-    required super.localName,
+  AppwriteFunctionVariable(
+    super.localName, {
     required RefTo<AppwriteFunction> functionId,
     required TfArg<String> key,
     RefTo<AppwriteProject>? projectId,

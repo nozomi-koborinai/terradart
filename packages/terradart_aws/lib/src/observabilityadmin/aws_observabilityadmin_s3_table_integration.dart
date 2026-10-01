@@ -44,8 +44,8 @@ enum ObservabilityadminS3TableIntegrationSseAlgorithm implements TerraformEnum {
 final class AwsObservabilityadminS3TableIntegration extends Resource {
   static const String tfType = 'aws_observabilityadmin_s3_table_integration';
 
-  AwsObservabilityadminS3TableIntegration({
-    required super.localName,
+  AwsObservabilityadminS3TableIntegration(
+    super.localName, {
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,

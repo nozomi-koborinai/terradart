@@ -31,8 +31,8 @@ enum NetworkSecurityUllMirroringEngineDeletionPolicy implements TerraformEnum {
 final class GoogleNetworkSecurityUllMirroringEngine extends Resource {
   static const String tfType = 'google_network_security_ull_mirroring_engine';
 
-  GoogleNetworkSecurityUllMirroringEngine({
-    required super.localName,
+  GoogleNetworkSecurityUllMirroringEngine(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> ullMirroringEngineId,
     TfArg<Map<String, String>>? labels,

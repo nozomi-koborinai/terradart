@@ -28,8 +28,8 @@ final class VertexAiDatasetEncryptionSpec {
 final class GoogleVertexAiDataset extends Resource {
   static const String tfType = 'google_vertex_ai_dataset';
 
-  GoogleVertexAiDataset({
-    required super.localName,
+  GoogleVertexAiDataset(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> metadataSchemaUri,
     TfArg<String>? region,

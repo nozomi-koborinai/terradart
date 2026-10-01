@@ -14,8 +14,8 @@ const Set<String> _googleSecretManagerRegionalSecretSensitive = <String>{};
 final class DataGoogleSecretManagerRegionalSecret extends Data {
   static const String tfType = 'google_secret_manager_regional_secret';
 
-  DataGoogleSecretManagerRegionalSecret({
-    required super.localName,
+  DataGoogleSecretManagerRegionalSecret(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> secretId,

@@ -40,8 +40,8 @@ final class DialogflowCxEnvironmentVersionConfigs {
 final class GoogleDialogflowCxEnvironment extends Resource {
   static const String tfType = 'google_dialogflow_cx_environment';
 
-  GoogleDialogflowCxEnvironment({
-    required super.localName,
+  GoogleDialogflowCxEnvironment(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? description,

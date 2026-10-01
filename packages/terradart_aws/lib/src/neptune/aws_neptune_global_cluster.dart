@@ -86,8 +86,8 @@ final class NeptuneGlobalClusterSourceDbClusterIdentifier
 final class AwsNeptuneGlobalCluster extends Resource {
   static const String tfType = 'aws_neptune_global_cluster';
 
-  AwsNeptuneGlobalCluster({
-    required super.localName,
+  AwsNeptuneGlobalCluster(
+    super.localName, {
     TfArg<bool>? deletionProtection,
     required NeptuneGlobalClusterSource source,
     TfArg<String>? engineVersion,

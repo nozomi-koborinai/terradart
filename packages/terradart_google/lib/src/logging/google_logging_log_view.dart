@@ -20,7 +20,7 @@ const Set<String> _googleLoggingLogViewSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final auditView = GoogleLoggingLogView(
-///   localName: 'audit_view',
+///   'audit_view',
 ///   bucket: auditBucket.ref,
 ///   name: TfArg.literal('audit-only'),
 ///   filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
@@ -29,8 +29,8 @@ const Set<String> _googleLoggingLogViewSensitive = <String>{};
 final class GoogleLoggingLogView extends Resource {
   static const String tfType = 'google_logging_log_view';
 
-  GoogleLoggingLogView({
-    required super.localName,
+  GoogleLoggingLogView(
+    super.localName, {
     required RefTo<GoogleLoggingProjectBucketConfig> bucket,
     required TfArg<String> name,
     TfArg<String>? filter,

@@ -633,8 +633,8 @@ final class AppmeshVirtualGatewayJson {
 final class AwsAppmeshVirtualGateway extends Resource {
   static const String tfType = 'aws_appmesh_virtual_gateway';
 
-  AwsAppmeshVirtualGateway({
-    required super.localName,
+  AwsAppmeshVirtualGateway(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

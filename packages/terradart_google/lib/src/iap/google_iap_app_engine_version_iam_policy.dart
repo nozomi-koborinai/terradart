@@ -15,8 +15,8 @@ const Set<String> _googleIapAppEngineVersionIamPolicySensitive = <String>{};
 final class GoogleIapAppEngineVersionIamPolicy extends Resource {
   static const String tfType = 'google_iap_app_engine_version_iam_policy';
 
-  GoogleIapAppEngineVersionIamPolicy({
-    required super.localName,
+  GoogleIapAppEngineVersionIamPolicy(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> service,
     required TfArg<String> versionId,

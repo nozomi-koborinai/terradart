@@ -26,8 +26,8 @@ final class GoogleIdentityPlatformDefaultSupportedIdpConfig extends Resource {
   static const String tfType =
       'google_identity_platform_default_supported_idp_config';
 
-  GoogleIdentityPlatformDefaultSupportedIdpConfig({
-    required super.localName,
+  GoogleIdentityPlatformDefaultSupportedIdpConfig(
+    super.localName, {
     required TfArg<String> clientId,
     required TfArg<String> clientSecret,
     TfArg<String>? deletionPolicy,

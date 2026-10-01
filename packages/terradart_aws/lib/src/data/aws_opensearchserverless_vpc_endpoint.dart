@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchserverlessVpcEndpointSensitive = <String>{};
 final class DataAwsOpensearchserverlessVpcEndpoint extends Data {
   static const String tfType = 'aws_opensearchserverless_vpc_endpoint';
 
-  DataAwsOpensearchserverlessVpcEndpoint({
-    required super.localName,
+  DataAwsOpensearchserverlessVpcEndpoint(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> vpcEndpointId,
     super.provider,

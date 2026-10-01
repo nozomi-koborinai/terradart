@@ -223,8 +223,8 @@ final class OpensearchserverlessSecurityConfigSamlOptions {
 final class AwsOpensearchserverlessSecurityConfig extends Resource {
   static const String tfType = 'aws_opensearchserverless_security_config';
 
-  AwsOpensearchserverlessSecurityConfig({
-    required super.localName,
+  AwsOpensearchserverlessSecurityConfig(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

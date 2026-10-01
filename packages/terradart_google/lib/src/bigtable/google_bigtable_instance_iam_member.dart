@@ -37,8 +37,8 @@ final class BigtableInstanceIamMemberCondition {
 final class GoogleBigtableInstanceIamMember extends Resource {
   static const String tfType = 'google_bigtable_instance_iam_member';
 
-  GoogleBigtableInstanceIamMember({
-    required super.localName,
+  GoogleBigtableInstanceIamMember(
+    super.localName, {
     required RefTo<GoogleBigtableInstance> instance,
     required TfArg<String> role,
     required IamPrincipal member,

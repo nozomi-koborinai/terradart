@@ -48,7 +48,7 @@ final class GkeQuickstartStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'main',
+        'main',
         name: .literal('gke-vpc'),
         autoCreateSubnetworks: .literal(false),
         routingMode: .literal(.regional),
@@ -58,7 +58,7 @@ final class GkeQuickstartStack extends Stack {
 
     final subnet = add(
       GoogleComputeSubnetwork(
-        localName: 'gke',
+        'gke',
         name: .literal('gke-subnet'),
         region: .literal(region),
         network: vpc.ref,
@@ -68,7 +68,7 @@ final class GkeQuickstartStack extends Stack {
 
     final cluster = add(
       GoogleContainerCluster(
-        localName: 'main',
+        'main',
         name: .literal(clusterName),
         location: .literal(region),
         initialNodeCount: .literal(1),
@@ -94,7 +94,7 @@ final class GkeQuickstartStack extends Stack {
 
     final primaryPool = add(
       GoogleContainerNodePool(
-        localName: 'primary',
+        'primary',
         name: .literal('primary-pool'),
         location: .literal(region),
         cluster: cluster.ref,
@@ -110,7 +110,7 @@ final class GkeQuickstartStack extends Stack {
     // registers against the auto-created default fleet.
     final membership = add(
       GoogleGkeHubMembership(
-        localName: 'main',
+        'main',
         membershipId: .literal('main-cluster'),
         endpoint: GkeHubMembershipEndpoint(
           gkeCluster: .new(resourceLink: cluster.ref),
@@ -139,7 +139,7 @@ final class GkeQuickstartStack extends Stack {
     // fails with "Invalid argument"; an in-stack SA is a real principal.
     final backupOperator = add(
       GoogleServiceAccount(
-        localName: 'backup_operator',
+        'backup_operator',
         accountId: .literal('gke-backup-operator'),
         displayName: .literal('GKE Backup operator'),
       ),
@@ -147,7 +147,7 @@ final class GkeQuickstartStack extends Stack {
 
     add(
       GoogleGkeHubMembershipIamMember(
-        localName: 'membership_viewer',
+        'membership_viewer',
         membership: .literal('main-cluster'),
         role: .literal('roles/viewer'),
         member: backupOperator.principal,
@@ -157,7 +157,7 @@ final class GkeQuickstartStack extends Stack {
 
     final backupPlan = add(
       GoogleGkeBackupBackupPlan(
-        localName: 'main',
+        'main',
         name: .literal('main-backup-plan'),
         location: .literal(region),
         cluster: cluster.ref,
@@ -181,7 +181,7 @@ final class GkeQuickstartStack extends Stack {
 
     add(
       GoogleGkeBackupRestorePlan(
-        localName: 'main',
+        'main',
         name: .literal('main-restore-plan'),
         location: .literal(region),
         // The API requires the full backup-plan resource name
@@ -205,7 +205,7 @@ final class GkeQuickstartStack extends Stack {
 
     add(
       GoogleGkeBackupBackupPlanIamMember(
-        localName: 'viewer',
+        'viewer',
         backupPlan: backupPlan.ref,
         role: .literal('roles/gkebackup.viewer'),
         member: backupOperator.principal,

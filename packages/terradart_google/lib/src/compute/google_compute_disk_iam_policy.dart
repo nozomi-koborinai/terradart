@@ -17,8 +17,8 @@ const Set<String> _googleComputeDiskIamPolicySensitive = <String>{};
 final class GoogleComputeDiskIamPolicy extends Resource {
   static const String tfType = 'google_compute_disk_iam_policy';
 
-  GoogleComputeDiskIamPolicy({
-    required super.localName,
+  GoogleComputeDiskIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeDisk> disk,
     required TfArg<String> policyData,
     TfArg<String>? zone,

@@ -26,8 +26,8 @@ final class SaasRuntimeSaasLocations {
 final class GoogleSaasRuntimeSaas extends Resource {
   static const String tfType = 'google_saas_runtime_saas';
 
-  GoogleSaasRuntimeSaas({
-    required super.localName,
+  GoogleSaasRuntimeSaas(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,

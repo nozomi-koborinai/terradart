@@ -45,8 +45,8 @@ final class WorkbenchInstanceIamBindingCondition {
 final class GoogleWorkbenchInstanceIamBinding extends Resource {
   static const String tfType = 'google_workbench_instance_iam_binding';
 
-  GoogleWorkbenchInstanceIamBinding({
-    required super.localName,
+  GoogleWorkbenchInstanceIamBinding(
+    super.localName, {
     required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

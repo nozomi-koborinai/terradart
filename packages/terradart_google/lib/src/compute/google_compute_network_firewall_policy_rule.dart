@@ -184,7 +184,7 @@ final class ComputeNetworkFirewallPolicyRuleTargetSecureTags {
 /// Minimal ingress allow example (any source, TCP 443):
 /// ```dart
 /// GoogleComputeNetworkFirewallPolicyRule(
-///   localName: 'allow_https',
+///   'allow_https',
 ///   firewallPolicy: policy.ref,
 ///   priority: TfArg.literal(1000),
 ///   action: TfArg.literal('allow'),
@@ -205,8 +205,8 @@ final class ComputeNetworkFirewallPolicyRuleTargetSecureTags {
 final class GoogleComputeNetworkFirewallPolicyRule extends Resource {
   static const String tfType = 'google_compute_network_firewall_policy_rule';
 
-  GoogleComputeNetworkFirewallPolicyRule({
-    required super.localName,
+  GoogleComputeNetworkFirewallPolicyRule(
+    super.localName, {
     required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<num> priority,
     required TfArg<String> action,

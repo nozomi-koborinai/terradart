@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example (enforce App Check on Cloud Firestore):
   /// ```dart
   /// final firestoreEnforcement = GoogleFirebaseAppCheckServiceConfig(
-  ///   localName: 'firestore_enforced',
+  ///   'firestore_enforced',
   ///   serviceId: TfArg.literal('firestore.googleapis.com'),
   ///   enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
   /// );

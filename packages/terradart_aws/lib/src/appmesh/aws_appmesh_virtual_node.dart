@@ -928,8 +928,8 @@ enum AppmeshVirtualNodeResponseType implements TerraformEnum {
 final class AwsAppmeshVirtualNode extends Resource {
   static const String tfType = 'aws_appmesh_virtual_node';
 
-  AwsAppmeshVirtualNode({
-    required super.localName,
+  AwsAppmeshVirtualNode(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

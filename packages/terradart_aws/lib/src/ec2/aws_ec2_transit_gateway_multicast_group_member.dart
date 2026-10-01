@@ -11,8 +11,8 @@ const Set<String> _awsEc2TransitGatewayMulticastGroupMemberSensitive =
 final class AwsEc2TransitGatewayMulticastGroupMember extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_multicast_group_member';
 
-  AwsEc2TransitGatewayMulticastGroupMember({
-    required super.localName,
+  AwsEc2TransitGatewayMulticastGroupMember(
+    super.localName, {
     required TfArg<String> groupIpAddress,
     required TfArg<String> networkInterfaceId,
     TfArg<String>? region,

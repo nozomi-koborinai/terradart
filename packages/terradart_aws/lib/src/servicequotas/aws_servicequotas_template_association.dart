@@ -10,8 +10,8 @@ const Set<String> _awsServicequotasTemplateAssociationSensitive = <String>{};
 final class AwsServicequotasTemplateAssociation extends Resource {
   static const String tfType = 'aws_servicequotas_template_association';
 
-  AwsServicequotasTemplateAssociation({
-    required super.localName,
+  AwsServicequotasTemplateAssociation(
+    super.localName, {
     TfArg<String>? region,
     TfArg<bool>? skipDestroy,
     super.lifecycle,

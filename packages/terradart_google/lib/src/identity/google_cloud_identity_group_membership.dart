@@ -84,8 +84,8 @@ final class CloudIdentityGroupMembershipExpiryDetail {
 final class GoogleCloudIdentityGroupMembership extends Resource {
   static const String tfType = 'google_cloud_identity_group_membership';
 
-  GoogleCloudIdentityGroupMembership({
-    required super.localName,
+  GoogleCloudIdentityGroupMembership(
+    super.localName, {
     TfArg<bool>? createIgnoreAlreadyExists,
     TfArg<String>? deletionPolicy,
     required RefTo<GoogleCloudIdentityGroup> group,

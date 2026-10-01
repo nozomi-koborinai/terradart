@@ -22,8 +22,8 @@ final class MedialiveInputSecurityGroupWhitelistRules {
 final class AwsMedialiveInputSecurityGroup extends Resource {
   static const String tfType = 'aws_medialive_input_security_group';
 
-  AwsMedialiveInputSecurityGroup({
-    required super.localName,
+  AwsMedialiveInputSecurityGroup(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required List<MedialiveInputSecurityGroupWhitelistRules> whitelistRules,

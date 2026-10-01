@@ -100,8 +100,8 @@ final class BigqueryAnalyticsHubDataExchangeDefaultExchangeConfig {
 final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
   static const String tfType = 'google_bigquery_analytics_hub_data_exchange';
 
-  GoogleBigqueryAnalyticsHubDataExchange({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubDataExchange(
+    super.localName, {
     required TfArg<String> dataExchangeId,
     TfArg<String>? description,
     TfArg<BigqueryAnalyticsHubDataExchangeDiscoveryType>? discoveryType,

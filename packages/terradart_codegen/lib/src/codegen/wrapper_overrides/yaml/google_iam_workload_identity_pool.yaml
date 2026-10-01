@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example (CI/CD federation for GitHub Actions):
   /// ```dart
   /// final ciPool = GoogleIamWorkloadIdentityPool(
-  ///   localName: 'ci',
+  ///   'ci',
   ///   workloadIdentityPoolId: TfArg.literal('github-actions'),
   ///   displayName: TfArg.literal('GitHub Actions CI/CD'),
   ///   description: TfArg.literal(

@@ -32,8 +32,8 @@ enum PlacementGroupStrategy implements TerraformEnum {
 final class AwsPlacementGroup extends Resource {
   static const String tfType = 'aws_placement_group';
 
-  AwsPlacementGroup({
-    required super.localName,
+  AwsPlacementGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<num>? partitionCount,
     TfArg<String>? region,

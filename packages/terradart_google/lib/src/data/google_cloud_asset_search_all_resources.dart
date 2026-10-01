@@ -13,8 +13,8 @@ const Set<String> _googleCloudAssetSearchAllResourcesSensitive = <String>{};
 final class DataGoogleCloudAssetSearchAllResources extends Data {
   static const String tfType = 'google_cloud_asset_search_all_resources';
 
-  DataGoogleCloudAssetSearchAllResources({
-    required super.localName,
+  DataGoogleCloudAssetSearchAllResources(
+    super.localName, {
     TfArg<List<String>>? assetTypes,
     TfArg<String>? query,
     required TfArg<String> scope,

@@ -7,9 +7,9 @@ import 'resource.dart';
 /// (Terraform forbids it on data sources); it does take the `provider`
 /// meta-argument, like a resource.
 abstract base class Data extends Resource {
-  Data({
+  Data(
+    super.localName, {
     required super.terraformType,
-    required super.localName,
     required super.argMap,
     super.dependsOn,
     super.provider,

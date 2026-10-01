@@ -25,8 +25,8 @@ enum LicensemanagerLicenseConfigurationLicenseCountingType
 final class AwsLicensemanagerLicenseConfiguration extends Resource {
   static const String tfType = 'aws_licensemanager_license_configuration';
 
-  AwsLicensemanagerLicenseConfiguration({
-    required super.localName,
+  AwsLicensemanagerLicenseConfiguration(
+    super.localName, {
     TfArg<String>? description,
     TfArg<num>? licenseCount,
     TfArg<bool>? licenseCountHardLimit,

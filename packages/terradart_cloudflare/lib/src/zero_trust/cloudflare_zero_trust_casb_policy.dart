@@ -71,8 +71,8 @@ final class ZeroTrustCasbPolicyWebhookConfigs {
 final class CloudflareZeroTrustCasbPolicy extends Resource {
   static const String tfType = 'cloudflare_zero_trust_casb_policy';
 
-  CloudflareZeroTrustCasbPolicy({
-    required super.localName,
+  CloudflareZeroTrustCasbPolicy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> displayName,
     required TfArg<String> findingTypeId,

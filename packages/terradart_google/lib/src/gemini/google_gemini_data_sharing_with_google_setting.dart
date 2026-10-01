@@ -23,7 +23,7 @@ const Set<String> _googleGeminiDataSharingWithGoogleSettingSensitive =
 /// Example:
 /// ```dart
 /// GoogleGeminiDataSharingWithGoogleSetting(
-///   localName: 'sharing',
+///   'sharing',
 ///   dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
 ///   location: TfArg.literal('global'),
 ///   enableDataSharing: TfArg.literal(false),
@@ -33,8 +33,8 @@ const Set<String> _googleGeminiDataSharingWithGoogleSettingSensitive =
 final class GoogleGeminiDataSharingWithGoogleSetting extends Resource {
   static const String tfType = 'google_gemini_data_sharing_with_google_setting';
 
-  GoogleGeminiDataSharingWithGoogleSetting({
-    required super.localName,
+  GoogleGeminiDataSharingWithGoogleSetting(
+    super.localName, {
     required TfArg<String> dataSharingWithGoogleSettingId,
     TfArg<String>? location,
     TfArg<bool>? enableDataSharing,

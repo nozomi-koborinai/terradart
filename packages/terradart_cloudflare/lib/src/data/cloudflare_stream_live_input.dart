@@ -27,8 +27,8 @@ const Set<String> _cloudflareStreamLiveInputSensitive = <String>{
 final class DataCloudflareStreamLiveInput extends Data {
   static const String tfType = 'cloudflare_stream_live_input';
 
-  DataCloudflareStreamLiveInput({
-    required super.localName,
+  DataCloudflareStreamLiveInput(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> liveInputIdentifier,
     super.provider,

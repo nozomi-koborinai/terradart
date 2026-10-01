@@ -632,8 +632,8 @@ final class AwsChimesdkmediapipelinesMediaInsightsPipelineConfiguration
   static const String tfType =
       'aws_chimesdkmediapipelines_media_insights_pipeline_configuration';
 
-  AwsChimesdkmediapipelinesMediaInsightsPipelineConfiguration({
-    required super.localName,
+  AwsChimesdkmediapipelinesMediaInsightsPipelineConfiguration(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> resourceAccessRoleArn,

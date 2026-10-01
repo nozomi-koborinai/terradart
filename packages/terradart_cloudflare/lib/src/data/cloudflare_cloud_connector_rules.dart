@@ -16,8 +16,8 @@ const Set<String> _cloudflareCloudConnectorRulesSensitive = <String>{};
 final class DataCloudflareCloudConnectorRules extends Data {
   static const String tfType = 'cloudflare_cloud_connector_rules';
 
-  DataCloudflareCloudConnectorRules({
-    required super.localName,
+  DataCloudflareCloudConnectorRules(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

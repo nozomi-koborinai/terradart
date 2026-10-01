@@ -117,8 +117,8 @@ enum Route53recoverycontrolconfigSafetyRuleType implements TerraformEnum {
 final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
   static const String tfType = 'aws_route53recoverycontrolconfig_safety_rule';
 
-  AwsRoute53recoverycontrolconfigSafetyRule({
-    required super.localName,
+  AwsRoute53recoverycontrolconfigSafetyRule(
+    super.localName, {
     required Route53recoverycontrolconfigSafetyRuleControls controls,
     required TfArg<String> controlPanelArn,
     required TfArg<String> name,

@@ -24,7 +24,7 @@ const Set<String> _googleNetworkSecurityGatewaySecurityPolicySensitive =
 /// Example:
 /// ```dart
 /// GoogleNetworkSecurityGatewaySecurityPolicy(
-///   localName: 'swp',
+///   'swp',
 ///   name: TfArg.literal('terradart-gateway-policy'),
 ///   location: TfArg.literal('us-central1'),
 ///   description: TfArg.literal('TerraDart smoke gateway security policy'),
@@ -34,8 +34,8 @@ final class GoogleNetworkSecurityGatewaySecurityPolicy extends Resource {
   static const String tfType =
       'google_network_security_gateway_security_policy';
 
-  GoogleNetworkSecurityGatewaySecurityPolicy({
-    required super.localName,
+  GoogleNetworkSecurityGatewaySecurityPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? description,

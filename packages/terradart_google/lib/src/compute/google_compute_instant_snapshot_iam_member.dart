@@ -38,8 +38,8 @@ final class ComputeInstantSnapshotIamMemberCondition {
 final class GoogleComputeInstantSnapshotIamMember extends Resource {
   static const String tfType = 'google_compute_instant_snapshot_iam_member';
 
-  GoogleComputeInstantSnapshotIamMember({
-    required super.localName,
+  GoogleComputeInstantSnapshotIamMember(
+    super.localName, {
     required RefTo<GoogleComputeInstantSnapshot> instantSnapshot,
     required TfArg<String> role,
     required IamPrincipal member,

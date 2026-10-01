@@ -94,8 +94,8 @@ final class TransferWebAppIdentityCenterConfig {
 final class AwsTransferWebApp extends Resource {
   static const String tfType = 'aws_transfer_web_app';
 
-  AwsTransferWebApp({
-    required super.localName,
+  AwsTransferWebApp(
+    super.localName, {
     TfArg<String>? accessEndpoint,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

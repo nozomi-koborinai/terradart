@@ -17,8 +17,8 @@ const Set<String> _cloudflareApiShieldSensitive = <String>{};
 final class DataCloudflareApiShield extends Data {
   static const String tfType = 'cloudflare_api_shield';
 
-  DataCloudflareApiShield({
-    required super.localName,
+  DataCloudflareApiShield(
+    super.localName, {
     TfArg<bool>? normalize,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsServiceDiscoveryHttpNamespaceSensitive = <String>{};
 final class AwsServiceDiscoveryHttpNamespace extends Resource {
   static const String tfType = 'aws_service_discovery_http_namespace';
 
-  AwsServiceDiscoveryHttpNamespace({
-    required super.localName,
+  AwsServiceDiscoveryHttpNamespace(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

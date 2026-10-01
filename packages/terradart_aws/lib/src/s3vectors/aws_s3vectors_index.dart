@@ -45,8 +45,8 @@ final class S3vectorsIndexMetadataConfiguration {
 final class AwsS3vectorsIndex extends Resource {
   static const String tfType = 'aws_s3vectors_index';
 
-  AwsS3vectorsIndex({
-    required super.localName,
+  AwsS3vectorsIndex(
+    super.localName, {
     required TfArg<S3vectorsIndexDataType> dataType,
     required TfArg<num> dimension,
     required TfArg<S3vectorsIndexDistanceMetric> distanceMetric,

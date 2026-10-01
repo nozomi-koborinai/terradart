@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleKmsProjectAutokeyConfig(
-  ///   localName: 'autokey',
+  ///   'autokey',
   ///   keyProjectResolutionMode: TfArg.literal(
   ///     KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,
   ///   ),

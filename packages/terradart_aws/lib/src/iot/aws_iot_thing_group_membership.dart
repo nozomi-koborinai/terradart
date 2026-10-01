@@ -10,8 +10,8 @@ const Set<String> _awsIotThingGroupMembershipSensitive = <String>{};
 final class AwsIotThingGroupMembership extends Resource {
   static const String tfType = 'aws_iot_thing_group_membership';
 
-  AwsIotThingGroupMembership({
-    required super.localName,
+  AwsIotThingGroupMembership(
+    super.localName, {
     TfArg<bool>? overrideDynamicGroup,
     TfArg<String>? region,
     required TfArg<String> thingGroupName,

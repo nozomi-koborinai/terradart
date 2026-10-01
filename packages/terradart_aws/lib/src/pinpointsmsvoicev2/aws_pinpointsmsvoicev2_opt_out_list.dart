@@ -10,8 +10,8 @@ const Set<String> _awsPinpointsmsvoicev2OptOutListSensitive = <String>{};
 final class AwsPinpointsmsvoicev2OptOutList extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_opt_out_list';
 
-  AwsPinpointsmsvoicev2OptOutList({
-    required super.localName,
+  AwsPinpointsmsvoicev2OptOutList(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

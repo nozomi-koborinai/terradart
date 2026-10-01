@@ -43,8 +43,8 @@ enum MigrationCenterImportDataFileFormat implements TerraformEnum {
 final class GoogleMigrationCenterImportDataFile extends Resource {
   static const String tfType = 'google_migration_center_import_data_file';
 
-  GoogleMigrationCenterImportDataFile({
-    required super.localName,
+  GoogleMigrationCenterImportDataFile(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> importJob,
     required TfArg<String> importDataFileId,

@@ -12,8 +12,8 @@ const Set<String> _awsImagebuilderDistributionConfigurationSensitive =
 final class DataAwsImagebuilderDistributionConfiguration extends Data {
   static const String tfType = 'aws_imagebuilder_distribution_configuration';
 
-  DataAwsImagebuilderDistributionConfiguration({
-    required super.localName,
+  DataAwsImagebuilderDistributionConfiguration(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

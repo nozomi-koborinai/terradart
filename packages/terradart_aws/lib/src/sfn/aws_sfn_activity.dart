@@ -47,8 +47,8 @@ enum SfnActivityType implements TerraformEnum {
 final class AwsSfnActivity extends Resource {
   static const String tfType = 'aws_sfn_activity';
 
-  AwsSfnActivity({
-    required super.localName,
+  AwsSfnActivity(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

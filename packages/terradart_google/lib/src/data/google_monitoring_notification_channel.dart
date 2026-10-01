@@ -14,8 +14,8 @@ const Set<String> _googleMonitoringNotificationChannelSensitive = <String>{};
 final class DataGoogleMonitoringNotificationChannel extends Data {
   static const String tfType = 'google_monitoring_notification_channel';
 
-  DataGoogleMonitoringNotificationChannel({
-    required super.localName,
+  DataGoogleMonitoringNotificationChannel(
+    super.localName, {
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,

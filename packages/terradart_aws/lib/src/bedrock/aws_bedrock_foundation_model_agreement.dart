@@ -10,8 +10,8 @@ const Set<String> _awsBedrockFoundationModelAgreementSensitive = <String>{};
 final class AwsBedrockFoundationModelAgreement extends Resource {
   static const String tfType = 'aws_bedrock_foundation_model_agreement';
 
-  AwsBedrockFoundationModelAgreement({
-    required super.localName,
+  AwsBedrockFoundationModelAgreement(
+    super.localName, {
     required TfArg<String> modelId,
     required TfArg<String> offerToken,
     TfArg<String>? region,

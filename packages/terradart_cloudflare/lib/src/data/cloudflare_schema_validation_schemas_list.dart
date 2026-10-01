@@ -16,8 +16,8 @@ const Set<String> _cloudflareSchemaValidationSchemasListSensitive = <String>{};
 final class DataCloudflareSchemaValidationSchemasList extends Data {
   static const String tfType = 'cloudflare_schema_validation_schemas_list';
 
-  DataCloudflareSchemaValidationSchemasList({
-    required super.localName,
+  DataCloudflareSchemaValidationSchemasList(
+    super.localName, {
     TfArg<num>? maxItems,
     TfArg<bool>? omitSource,
     TfArg<bool>? validationEnabled,

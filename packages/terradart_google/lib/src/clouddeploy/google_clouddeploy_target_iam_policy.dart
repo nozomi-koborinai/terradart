@@ -18,8 +18,8 @@ const Set<String> _googleClouddeployTargetIamPolicySensitive = <String>{};
 final class GoogleClouddeployTargetIamPolicy extends Resource {
   static const String tfType = 'google_clouddeploy_target_iam_policy';
 
-  GoogleClouddeployTargetIamPolicy({
-    required super.localName,
+  GoogleClouddeployTargetIamPolicy(
+    super.localName, {
     required RefTo<GoogleClouddeployTarget> target,
     required TfArg<String> policyData,
     TfArg<String>? location,

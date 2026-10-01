@@ -21,8 +21,8 @@ final class GoogleAccessContextManagerAccessPolicyIamPolicy extends Resource {
   static const String tfType =
       'google_access_context_manager_access_policy_iam_policy';
 
-  GoogleAccessContextManagerAccessPolicyIamPolicy({
-    required super.localName,
+  GoogleAccessContextManagerAccessPolicyIamPolicy(
+    super.localName, {
     required RefTo<GoogleAccessContextManagerAccessPolicy> accessPolicy,
     required TfArg<String> policyData,
     super.lifecycle,

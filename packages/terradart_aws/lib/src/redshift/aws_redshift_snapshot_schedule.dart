@@ -76,8 +76,8 @@ final class RedshiftSnapshotScheduleIdentifierPrefix
 final class AwsRedshiftSnapshotSchedule extends Resource {
   static const String tfType = 'aws_redshift_snapshot_schedule';
 
-  AwsRedshiftSnapshotSchedule({
-    required super.localName,
+  AwsRedshiftSnapshotSchedule(
+    super.localName, {
     required TfArg<List<String>> definitions,
     TfArg<String>? description,
     TfArg<bool>? forceDestroy,

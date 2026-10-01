@@ -25,8 +25,8 @@ const Set<String> _googleIamWorkforcePoolProviderScimTokenSensitive = <String>{
 final class GoogleIamWorkforcePoolProviderScimToken extends Resource {
   static const String tfType = 'google_iam_workforce_pool_provider_scim_token';
 
-  GoogleIamWorkforcePoolProviderScimToken({
-    required super.localName,
+  GoogleIamWorkforcePoolProviderScimToken(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
     required TfArg<String> location,

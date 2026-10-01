@@ -44,7 +44,7 @@ final class DataConnectStack extends Stack {
     // the Cloud SQL instance ID.
     add(
       GoogleFirebaseDataConnectService(
-        localName: 'web',
+        'web',
         serviceId: .literal('web-svc'),
         location: .literal('us-central1'),
         displayName: .literal('Web app Data Connect service'),

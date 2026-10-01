@@ -53,8 +53,8 @@ final class GoogleContactCenterInsightsAutoLabelingRule extends Resource {
   static const String tfType =
       'google_contact_center_insights_auto_labeling_rule';
 
-  GoogleContactCenterInsightsAutoLabelingRule({
-    required super.localName,
+  GoogleContactCenterInsightsAutoLabelingRule(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? autoLabelingRuleId,
     TfArg<String>? displayName,

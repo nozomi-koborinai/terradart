@@ -354,8 +354,8 @@ final class RekognitionStreamProcessorFaceSearch {
 final class AwsRekognitionStreamProcessor extends Resource {
   static const String tfType = 'aws_rekognition_stream_processor';
 
-  AwsRekognitionStreamProcessor({
-    required super.localName,
+  AwsRekognitionStreamProcessor(
+    super.localName, {
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

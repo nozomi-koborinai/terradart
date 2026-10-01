@@ -46,8 +46,8 @@ final class DataformRepositoryIamMemberCondition {
 final class GoogleDataformRepositoryIamMember extends Resource {
   static const String tfType = 'google_dataform_repository_iam_member';
 
-  GoogleDataformRepositoryIamMember({
-    required super.localName,
+  GoogleDataformRepositoryIamMember(
+    super.localName, {
     required RefTo<GoogleDataformRepository> repository,
     required TfArg<String> role,
     required IamPrincipal member,

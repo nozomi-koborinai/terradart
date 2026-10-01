@@ -13,8 +13,8 @@ const Set<String> _awsMskVpcConnectionSensitive = <String>{};
 final class AwsMskVpcConnection extends Resource {
   static const String tfType = 'aws_msk_vpc_connection';
 
-  AwsMskVpcConnection({
-    required super.localName,
+  AwsMskVpcConnection(
+    super.localName, {
     required TfArg<String> authentication,
     required TfArg<List<String>> clientSubnets,
     TfArg<String>? region,

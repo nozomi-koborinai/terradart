@@ -31,8 +31,8 @@ final class DataEc2TransitGatewayPeeringAttachmentFilter {
 final class DataAwsEc2TransitGatewayPeeringAttachment extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_peering_attachment';
 
-  DataAwsEc2TransitGatewayPeeringAttachment({
-    required super.localName,
+  DataAwsEc2TransitGatewayPeeringAttachment(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2TransitGatewayPeeringAttachmentFilter>? filter,

@@ -130,8 +130,8 @@ enum GlueSecurityConfigurationS3EncryptionMode implements TerraformEnum {
 final class AwsGlueSecurityConfiguration extends Resource {
   static const String tfType = 'aws_glue_security_configuration';
 
-  AwsGlueSecurityConfiguration({
-    required super.localName,
+  AwsGlueSecurityConfiguration(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required GlueSecurityConfigurationEncryptionConfiguration

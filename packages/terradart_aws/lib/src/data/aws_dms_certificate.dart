@@ -14,8 +14,8 @@ const Set<String> _awsDmsCertificateSensitive = <String>{
 final class DataAwsDmsCertificate extends Data {
   static const String tfType = 'aws_dms_certificate';
 
-  DataAwsDmsCertificate({
-    required super.localName,
+  DataAwsDmsCertificate(
+    super.localName, {
     required TfArg<String> certificateId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

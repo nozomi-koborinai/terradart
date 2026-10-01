@@ -11,8 +11,8 @@ const Set<String> _awsEbsDefaultKmsKeySensitive = <String>{};
 final class DataAwsEbsDefaultKmsKey extends Data {
   static const String tfType = 'aws_ebs_default_kms_key';
 
-  DataAwsEbsDefaultKmsKey({
-    required super.localName,
+  DataAwsEbsDefaultKmsKey(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

@@ -12,8 +12,8 @@ final class AwsDxHostedPublicVirtualInterfaceAccepter extends Resource {
   static const String tfType =
       'aws_dx_hosted_public_virtual_interface_accepter';
 
-  AwsDxHostedPublicVirtualInterfaceAccepter({
-    required super.localName,
+  AwsDxHostedPublicVirtualInterfaceAccepter(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> virtualInterfaceId,

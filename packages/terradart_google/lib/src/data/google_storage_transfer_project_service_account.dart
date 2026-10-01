@@ -16,8 +16,8 @@ final class DataGoogleStorageTransferProjectServiceAccount extends Data {
   static const String tfType =
       'google_storage_transfer_project_service_account';
 
-  DataGoogleStorageTransferProjectServiceAccount({
-    required super.localName,
+  DataGoogleStorageTransferProjectServiceAccount(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

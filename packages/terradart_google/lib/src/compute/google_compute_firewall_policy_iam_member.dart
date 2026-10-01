@@ -43,8 +43,8 @@ final class ComputeFirewallPolicyIamMemberCondition {
 final class GoogleComputeFirewallPolicyIamMember extends Resource {
   static const String tfType = 'google_compute_firewall_policy_iam_member';
 
-  GoogleComputeFirewallPolicyIamMember({
-    required super.localName,
+  GoogleComputeFirewallPolicyIamMember(
+    super.localName, {
     required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
     required IamPrincipal member,

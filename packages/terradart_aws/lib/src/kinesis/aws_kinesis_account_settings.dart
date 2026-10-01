@@ -34,8 +34,8 @@ enum KinesisAccountSettingsStatus implements TerraformEnum {
 final class AwsKinesisAccountSettings extends Resource {
   static const String tfType = 'aws_kinesis_account_settings';
 
-  AwsKinesisAccountSettings({
-    required super.localName,
+  AwsKinesisAccountSettings(
+    super.localName, {
     TfArg<String>? region,
     List<KinesisAccountSettingsMinimumThroughputBillingCommitment>?
     minimumThroughputBillingCommitment,

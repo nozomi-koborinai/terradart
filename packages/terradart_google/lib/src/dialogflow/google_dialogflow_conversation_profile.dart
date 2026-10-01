@@ -774,7 +774,7 @@ enum DialogflowConversationProfileSsmlGender implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleDialogflowConversationProfile(
-///   localName: 'demo_profile',
+///   'demo_profile',
 ///   displayName: TfArg.literal('terradart-profile'),
 ///   location: TfArg.literal('global'),
 ///   deletionPolicy: TfArg.literal('DELETE'),
@@ -783,8 +783,8 @@ enum DialogflowConversationProfileSsmlGender implements TerraformEnum {
 final class GoogleDialogflowConversationProfile extends Resource {
   static const String tfType = 'google_dialogflow_conversation_profile';
 
-  GoogleDialogflowConversationProfile({
-    required super.localName,
+  GoogleDialogflowConversationProfile(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
     TfArg<String>? languageCode,

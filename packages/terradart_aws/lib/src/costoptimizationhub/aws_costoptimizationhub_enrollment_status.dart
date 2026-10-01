@@ -10,8 +10,8 @@ const Set<String> _awsCostoptimizationhubEnrollmentStatusSensitive = <String>{};
 final class AwsCostoptimizationhubEnrollmentStatus extends Resource {
   static const String tfType = 'aws_costoptimizationhub_enrollment_status';
 
-  AwsCostoptimizationhubEnrollmentStatus({
-    required super.localName,
+  AwsCostoptimizationhubEnrollmentStatus(
+    super.localName, {
     TfArg<bool>? includeMemberAccounts,
     super.lifecycle,
     super.dependsOn,

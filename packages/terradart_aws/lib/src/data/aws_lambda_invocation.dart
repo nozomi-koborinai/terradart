@@ -12,8 +12,8 @@ const Set<String> _awsLambdaInvocationSensitive = <String>{};
 final class DataAwsLambdaInvocation extends Data {
   static const String tfType = 'aws_lambda_invocation';
 
-  DataAwsLambdaInvocation({
-    required super.localName,
+  DataAwsLambdaInvocation(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> input,
     TfArg<String>? qualifier,

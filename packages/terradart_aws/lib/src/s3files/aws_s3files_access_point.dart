@@ -76,8 +76,8 @@ final class S3filesAccessPointCreationPermissions {
 final class AwsS3filesAccessPoint extends Resource {
   static const String tfType = 'aws_s3files_access_point';
 
-  AwsS3filesAccessPoint({
-    required super.localName,
+  AwsS3filesAccessPoint(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

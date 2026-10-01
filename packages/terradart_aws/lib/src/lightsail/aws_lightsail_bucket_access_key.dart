@@ -12,8 +12,8 @@ const Set<String> _awsLightsailBucketAccessKeySensitive = <String>{
 final class AwsLightsailBucketAccessKey extends Resource {
   static const String tfType = 'aws_lightsail_bucket_access_key';
 
-  AwsLightsailBucketAccessKey({
-    required super.localName,
+  AwsLightsailBucketAccessKey(
+    super.localName, {
     required TfArg<String> bucketName,
     TfArg<String>? region,
     super.lifecycle,

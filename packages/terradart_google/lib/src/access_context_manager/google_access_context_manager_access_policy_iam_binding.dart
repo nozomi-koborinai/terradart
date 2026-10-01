@@ -46,8 +46,8 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
   static const String tfType =
       'google_access_context_manager_access_policy_iam_binding';
 
-  GoogleAccessContextManagerAccessPolicyIamBinding({
-    required super.localName,
+  GoogleAccessContextManagerAccessPolicyIamBinding(
+    super.localName, {
     required RefTo<GoogleAccessContextManagerAccessPolicy> accessPolicy,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

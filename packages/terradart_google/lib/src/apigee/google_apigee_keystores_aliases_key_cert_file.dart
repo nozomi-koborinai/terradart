@@ -27,8 +27,8 @@ const Set<String> _googleApigeeKeystoresAliasesKeyCertFileSensitive = <String>{
 final class GoogleApigeeKeystoresAliasesKeyCertFile extends Resource {
   static const String tfType = 'google_apigee_keystores_aliases_key_cert_file';
 
-  GoogleApigeeKeystoresAliasesKeyCertFile({
-    required super.localName,
+  GoogleApigeeKeystoresAliasesKeyCertFile(
+    super.localName, {
     required TfArg<String> alias,
     required TfArg<String> orgId,
     required TfArg<String> environment,

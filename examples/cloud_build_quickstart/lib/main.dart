@@ -62,7 +62,7 @@ final class CloudBuildStack extends Stack {
     // the build can `docker push`.
     final buildSa = add(
       GoogleServiceAccount(
-        localName: 'build_sa',
+        'build_sa',
         accountId: .literal('cloud-build-sa'),
         displayName: .literal('Cloud Build runner'),
         dependsOn: apiDeps,
@@ -71,7 +71,7 @@ final class CloudBuildStack extends Stack {
 
     final saLogWriter = add(
       GoogleProjectIamMember(
-        localName: 'build_sa_log_writer',
+        'build_sa_log_writer',
         project: .literal(projectId),
         role: .literal('roles/logging.logWriter'),
         member: buildSa.principal,
@@ -80,7 +80,7 @@ final class CloudBuildStack extends Stack {
 
     final saBuilder = add(
       GoogleProjectIamMember(
-        localName: 'build_sa_builder',
+        'build_sa_builder',
         project: .literal(projectId),
         role: .literal('roles/cloudbuild.builds.builder'),
         member: buildSa.principal,
@@ -99,7 +99,7 @@ final class CloudBuildStack extends Stack {
 
     final lbConn = add(
       GoogleCloudbuildv2Connection(
-        localName: 'lb_conn',
+        'lb_conn',
         location: .literal(region),
         name: .literal('github-app-conn'),
         host: .githubConfig(
@@ -121,7 +121,7 @@ final class CloudBuildStack extends Stack {
     // its source.
     add(
       GoogleCloudbuildv2ConnectionIamMember(
-        localName: 'lb_conn_iam',
+        'lb_conn_iam',
         connection: lbConn.ref,
         role: .literal('roles/cloudbuild.connectionViewer'),
         member: buildSa.principal,
@@ -137,7 +137,7 @@ final class CloudBuildStack extends Stack {
 
     final lbRepo = add(
       GoogleCloudbuildv2Repository(
-        localName: 'lb_repo',
+        'lb_repo',
         location: .literal(region),
         name: .literal('myapp'),
         parentConnection: lbConn.ref,
@@ -154,7 +154,7 @@ final class CloudBuildStack extends Stack {
 
     final lbAr = add(
       GoogleArtifactRegistryRepository(
-        localName: 'lb_ar',
+        'lb_ar',
         location: .literal(region),
         repositoryId: .literal('myapp-images'),
         format: .literal('DOCKER'),
@@ -173,7 +173,7 @@ final class CloudBuildStack extends Stack {
 
     final arIam = add(
       GoogleArtifactRegistryRepositoryIamMember(
-        localName: 'lb_ar_iam',
+        'lb_ar_iam',
         repository: lbAr.ref,
         role: .literal('roles/artifactregistry.writer'),
         member: buildSa.principal,
@@ -190,7 +190,7 @@ final class CloudBuildStack extends Stack {
 
     final lbPool = add(
       GoogleCloudbuildWorkerPool(
-        localName: 'lb_pool',
+        'lb_pool',
         name: .literal('private-pool'),
         location: .literal(region),
         workerConfig: CloudbuildWorkerPoolWorkerConfig(
@@ -214,7 +214,7 @@ final class CloudBuildStack extends Stack {
 
     add(
       GoogleCloudbuildTrigger(
-        localName: 'lb_trigger',
+        'lb_trigger',
         name: .literal('myapp-main-push'),
         location: .literal(region),
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(

@@ -1305,7 +1305,7 @@ final class DataprocWorkflowTemplateWorkerConfig {
 /// Example:
 /// ```dart
 /// GoogleDataprocWorkflowTemplate(
-///   localName: 'sparkpi',
+///   'sparkpi',
 ///   name: TfArg.literal('terradart-wf'),
 ///   location: TfArg.literal('us-central1'),
 ///   placement: DataprocWorkflowTemplatePlacement(
@@ -1332,8 +1332,8 @@ final class DataprocWorkflowTemplateWorkerConfig {
 final class GoogleDataprocWorkflowTemplate extends Resource {
   static const String tfType = 'google_dataproc_workflow_template';
 
-  GoogleDataprocWorkflowTemplate({
-    required super.localName,
+  GoogleDataprocWorkflowTemplate(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required DataprocWorkflowTemplatePlacement placement,

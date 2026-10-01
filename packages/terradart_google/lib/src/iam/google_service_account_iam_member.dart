@@ -69,8 +69,8 @@ final class ServiceAccountIamMemberCondition {
 final class GoogleServiceAccountIamMember extends Resource {
   static const String tfType = 'google_service_account_iam_member';
 
-  GoogleServiceAccountIamMember({
-    required super.localName,
+  GoogleServiceAccountIamMember(
+    super.localName, {
     required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<String> role,
     required IamPrincipal member,

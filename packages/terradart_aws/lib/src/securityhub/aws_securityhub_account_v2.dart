@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubAccountV2Sensitive = <String>{};
 final class AwsSecurityhubAccountV2 extends Resource {
   static const String tfType = 'aws_securityhub_account_v2';
 
-  AwsSecurityhubAccountV2({
-    required super.localName,
+  AwsSecurityhubAccountV2(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

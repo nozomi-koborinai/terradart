@@ -24,8 +24,8 @@ const Set<String> _appwriteMongoBranchSensitive = <String>{
 final class AppwriteMongoBranch extends Resource {
   static const String tfType = 'appwrite_mongo_branch';
 
-  AppwriteMongoBranch({
-    required super.localName,
+  AppwriteMongoBranch(
+    super.localName, {
     TfArg<String>? branchId,
     required RefTo<AppwriteMongoDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,

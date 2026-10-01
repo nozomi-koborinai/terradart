@@ -14,8 +14,8 @@ const Set<String> _googleAccessApprovalFolderServiceAccountSensitive =
 final class DataGoogleAccessApprovalFolderServiceAccount extends Data {
   static const String tfType = 'google_access_approval_folder_service_account';
 
-  DataGoogleAccessApprovalFolderServiceAccount({
-    required super.localName,
+  DataGoogleAccessApprovalFolderServiceAccount(
+    super.localName, {
     required TfArg<String> folderId,
     super.provider,
     super.timeouts,

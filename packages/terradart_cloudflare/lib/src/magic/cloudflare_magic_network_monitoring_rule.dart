@@ -76,8 +76,8 @@ enum MagicNetworkMonitoringRuleZscoreTarget implements TerraformEnum {
 final class CloudflareMagicNetworkMonitoringRule extends Resource {
   static const String tfType = 'cloudflare_magic_network_monitoring_rule';
 
-  CloudflareMagicNetworkMonitoringRule({
-    required super.localName,
+  CloudflareMagicNetworkMonitoringRule(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> automaticAdvertisement,
     TfArg<num>? bandwidthThreshold,

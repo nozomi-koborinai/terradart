@@ -436,8 +436,8 @@ final class KinesisAnalyticsApplicationS3 {
 final class AwsKinesisAnalyticsApplication extends Resource {
   static const String tfType = 'aws_kinesis_analytics_application';
 
-  AwsKinesisAnalyticsApplication({
-    required super.localName,
+  AwsKinesisAnalyticsApplication(
+    super.localName, {
     TfArg<String>? code,
     TfArg<String>? description,
     required TfArg<String> name,

@@ -45,8 +45,8 @@ final class GooglePrivatecaCertificateTemplateIamBinding extends Resource {
   static const String tfType =
       'google_privateca_certificate_template_iam_binding';
 
-  GooglePrivatecaCertificateTemplateIamBinding({
-    required super.localName,
+  GooglePrivatecaCertificateTemplateIamBinding(
+    super.localName, {
     required RefTo<GooglePrivatecaCertificateTemplate> certificateTemplate,
     TfArg<String>? location,
     required TfArg<String> role,

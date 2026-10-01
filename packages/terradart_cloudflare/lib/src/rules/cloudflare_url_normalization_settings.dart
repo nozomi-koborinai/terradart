@@ -50,8 +50,8 @@ enum UrlNormalizationSettingsType implements TerraformEnum {
 final class CloudflareUrlNormalizationSettings extends Resource {
   static const String tfType = 'cloudflare_url_normalization_settings';
 
-  CloudflareUrlNormalizationSettings({
-    required super.localName,
+  CloudflareUrlNormalizationSettings(
+    super.localName, {
     required TfArg<UrlNormalizationSettingsScope> scope,
     required TfArg<UrlNormalizationSettingsType> type,
     required RefTo<CloudflareZone> zoneId,

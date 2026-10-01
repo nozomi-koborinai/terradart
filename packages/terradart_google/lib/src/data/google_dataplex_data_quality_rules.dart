@@ -13,8 +13,8 @@ const Set<String> _googleDataplexDataQualityRulesSensitive = <String>{};
 final class DataGoogleDataplexDataQualityRules extends Data {
   static const String tfType = 'google_dataplex_data_quality_rules';
 
-  DataGoogleDataplexDataQualityRules({
-    required super.localName,
+  DataGoogleDataplexDataQualityRules(
+    super.localName, {
     required TfArg<String> dataScanId,
     TfArg<String>? location,
     TfArg<String>? project,

@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontConnectionGroupSensitive = <String>{};
 final class AwsCloudfrontConnectionGroup extends Resource {
   static const String tfType = 'aws_cloudfront_connection_group';
 
-  AwsCloudfrontConnectionGroup({
-    required super.localName,
+  AwsCloudfrontConnectionGroup(
+    super.localName, {
     TfArg<String>? anycastIpListId,
     TfArg<bool>? enabled,
     TfArg<bool>? ipv6Enabled,

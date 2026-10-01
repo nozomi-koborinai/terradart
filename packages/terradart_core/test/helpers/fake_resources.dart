@@ -53,7 +53,7 @@ final class TestStack extends Stack {
 /// `terraformType` is `'fake_thing'`; `supportsDeletionProtection` defaults
 /// to `false` (base class behaviour).
 final class FakeResource extends Resource {
-  FakeResource({required super.localName, required TfArg<String> name})
+  FakeResource(super.localName, {required TfArg<String> name})
     : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
@@ -61,11 +61,11 @@ final class FakeResource extends Resource {
 }
 
 final class FakePubsubTopic extends Resource {
-  FakePubsubTopic({required super.localName, required super.argMap})
+  FakePubsubTopic(super.localName, {required super.argMap})
     : super(terraformType: 'google_pubsub_topic');
 
-  FakePubsubTopic.withMeta({
-    required super.localName,
+  FakePubsubTopic.withMeta(
+    super.localName, {
     required super.argMap,
     super.lifecycle,
     super.dependsOn,
@@ -78,7 +78,7 @@ final class FakePubsubTopic extends Resource {
 }
 
 final class FakePubsubSubscription extends Resource {
-  FakePubsubSubscription({required super.localName, required super.argMap})
+  FakePubsubSubscription(super.localName, {required super.argMap})
     : super(terraformType: 'google_pubsub_subscription');
 
   @override
@@ -86,7 +86,7 @@ final class FakePubsubSubscription extends Resource {
 }
 
 final class FakeSecretVersion extends Resource {
-  FakeSecretVersion({required super.localName, required super.argMap})
+  FakeSecretVersion(super.localName, {required super.argMap})
     : super(terraformType: 'google_secret_manager_secret_version');
 
   @override
@@ -94,7 +94,7 @@ final class FakeSecretVersion extends Resource {
 }
 
 final class FakeSecretData extends Data {
-  FakeSecretData({required super.localName, required super.argMap})
+  FakeSecretData(super.localName, {required super.argMap})
     : super(terraformType: 'google_kms_secret');
 
   @override
@@ -102,8 +102,8 @@ final class FakeSecretData extends Data {
 }
 
 final class FakeProjectData extends Data {
-  FakeProjectData({
-    required super.localName,
+  FakeProjectData(
+    super.localName, {
     required super.argMap,
     super.provider,
     super.timeouts,

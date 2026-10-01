@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftClusterCredentialsSensitive = <String>{
 final class DataAwsRedshiftClusterCredentials extends Data {
   static const String tfType = 'aws_redshift_cluster_credentials';
 
-  DataAwsRedshiftClusterCredentials({
-    required super.localName,
+  DataAwsRedshiftClusterCredentials(
+    super.localName, {
     TfArg<bool>? autoCreate,
     required TfArg<String> clusterIdentifier,
     TfArg<List<String>>? dbGroups,

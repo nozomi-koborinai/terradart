@@ -908,8 +908,8 @@ final class ZeroTrustAccessPolicyRequire {
 final class CloudflareZeroTrustAccessPolicy extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_policy';
 
-  CloudflareZeroTrustAccessPolicy({
-    required super.localName,
+  CloudflareZeroTrustAccessPolicy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? approvalRequired,
     required TfArg<ZeroTrustAccessPolicyDecision> decision,

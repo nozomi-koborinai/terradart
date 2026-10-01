@@ -129,8 +129,8 @@ final class DataIamPolicyDocumentPrincipals {
 final class DataAwsIamPolicyDocument extends Data {
   static const String tfType = 'aws_iam_policy_document';
 
-  DataAwsIamPolicyDocument({
-    required super.localName,
+  DataAwsIamPolicyDocument(
+    super.localName, {
     TfArg<String>? overrideJson,
     TfArg<List<String>>? overridePolicyDocuments,
     TfArg<String>? policyId,

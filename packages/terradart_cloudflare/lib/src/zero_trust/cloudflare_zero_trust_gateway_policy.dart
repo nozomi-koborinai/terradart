@@ -683,8 +683,8 @@ final class ZeroTrustGatewayPolicySchedule {
 final class CloudflareZeroTrustGatewayPolicy extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_policy';
 
-  CloudflareZeroTrustGatewayPolicy({
-    required super.localName,
+  CloudflareZeroTrustGatewayPolicy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<ZeroTrustGatewayPolicyAction> action,
     TfArg<String>? description,

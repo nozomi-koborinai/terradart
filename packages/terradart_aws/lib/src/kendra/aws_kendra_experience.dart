@@ -70,8 +70,8 @@ final class KendraExperienceUserIdentityConfiguration {
 final class AwsKendraExperience extends Resource {
   static const String tfType = 'aws_kendra_experience';
 
-  AwsKendraExperience({
-    required super.localName,
+  AwsKendraExperience(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> indexId,
     required TfArg<String> name,

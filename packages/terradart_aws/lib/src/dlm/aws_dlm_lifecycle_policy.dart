@@ -743,8 +743,8 @@ enum DlmLifecyclePolicyUnshareIntervalUnit implements TerraformEnum {
 final class AwsDlmLifecyclePolicy extends Resource {
   static const String tfType = 'aws_dlm_lifecycle_policy';
 
-  AwsDlmLifecyclePolicy({
-    required super.localName,
+  AwsDlmLifecyclePolicy(
+    super.localName, {
     TfArg<DlmLifecyclePolicyDefaultPolicy>? defaultPolicy,
     required TfArg<String> description,
     required RefTo<AwsIamRole> executionRoleArn,

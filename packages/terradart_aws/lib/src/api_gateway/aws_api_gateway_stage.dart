@@ -73,8 +73,8 @@ final class ApiGatewayStageCanarySettings {
 final class AwsApiGatewayStage extends Resource {
   static const String tfType = 'aws_api_gateway_stage';
 
-  AwsApiGatewayStage({
-    required super.localName,
+  AwsApiGatewayStage(
+    super.localName, {
     TfArg<bool>? cacheClusterEnabled,
     TfArg<ApiGatewayStageCacheClusterSize>? cacheClusterSize,
     TfArg<String>? clientCertificateId,

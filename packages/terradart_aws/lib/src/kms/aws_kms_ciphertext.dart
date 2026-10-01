@@ -72,8 +72,8 @@ final class KmsCiphertextPlaintextWo extends KmsCiphertextPlaintext {
 final class AwsKmsCiphertext extends Resource {
   static const String tfType = 'aws_kms_ciphertext';
 
-  AwsKmsCiphertext({
-    required super.localName,
+  AwsKmsCiphertext(
+    super.localName, {
     TfArg<Map<String, String>>? context,
     required RefTo<AwsKmsKey> keyId,
     required KmsCiphertextPlaintext plaintext,

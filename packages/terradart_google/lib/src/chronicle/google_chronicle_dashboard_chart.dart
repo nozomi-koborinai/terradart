@@ -502,8 +502,8 @@ class ChronicleDashboardChartQuery {
 final class GoogleChronicleDashboardChart extends Resource {
   static const String tfType = 'google_chronicle_dashboard_chart';
 
-  GoogleChronicleDashboardChart({
-    required super.localName,
+  GoogleChronicleDashboardChart(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     RefTo<GoogleChronicleNativeDashboard>? nativeDashboard,

@@ -11,8 +11,8 @@ const Set<String> _awsAppmeshMeshSensitive = <String>{};
 final class DataAwsAppmeshMesh extends Data {
   static const String tfType = 'aws_appmesh_mesh';
 
-  DataAwsAppmeshMesh({
-    required super.localName,
+  DataAwsAppmeshMesh(
+    super.localName, {
     TfArg<String>? meshOwner,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -28,8 +28,8 @@ const Set<String> _googleChronicleSoarNetworkSensitive = <String>{};
 final class GoogleChronicleSoarNetwork extends Resource {
   static const String tfType = 'google_chronicle_soar_network';
 
-  GoogleChronicleSoarNetwork({
-    required super.localName,
+  GoogleChronicleSoarNetwork(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> address,
     required TfArg<String> environmentsJson,

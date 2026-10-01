@@ -11,8 +11,8 @@ const Set<String> _awsIamPolicySensitive = <String>{};
 final class DataAwsIamPolicy extends Data {
   static const String tfType = 'aws_iam_policy';
 
-  DataAwsIamPolicy({
-    required super.localName,
+  DataAwsIamPolicy(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? pathPrefix,

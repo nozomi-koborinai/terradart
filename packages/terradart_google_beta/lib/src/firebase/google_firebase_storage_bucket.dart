@@ -14,8 +14,8 @@ const Set<String> _googleFirebaseStorageBucketSensitive = <String>{};
 final class GoogleFirebaseStorageBucket extends Resource {
   static const String tfType = 'google_firebase_storage_bucket';
 
-  GoogleFirebaseStorageBucket({
-    required super.localName,
+  GoogleFirebaseStorageBucket(
+    super.localName, {
     TfArg<String>? bucketId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

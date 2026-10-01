@@ -28,8 +28,8 @@ enum PostgresqlBackupPolicyType implements TerraformEnum {
 final class AppwritePostgresqlBackupPolicy extends Resource {
   static const String tfType = 'appwrite_postgresql_backup_policy';
 
-  AppwritePostgresqlBackupPolicy({
-    required super.localName,
+  AppwritePostgresqlBackupPolicy(
+    super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,

@@ -10,7 +10,7 @@ const Set<String> _awsUxcServicesSensitive = <String>{};
 final class DataAwsUxcServices extends Data {
   static const String tfType = 'aws_uxc_services';
 
-  DataAwsUxcServices({required super.localName, super.provider, super.timeouts})
+  DataAwsUxcServices(super.localName, {super.provider, super.timeouts})
     : super(terraformType: tfType, argMap: {});
 
   @override

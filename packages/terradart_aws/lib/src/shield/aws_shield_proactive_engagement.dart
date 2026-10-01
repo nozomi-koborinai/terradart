@@ -34,8 +34,8 @@ final class ShieldProactiveEngagementEmergencyContact {
 final class AwsShieldProactiveEngagement extends Resource {
   static const String tfType = 'aws_shield_proactive_engagement';
 
-  AwsShieldProactiveEngagement({
-    required super.localName,
+  AwsShieldProactiveEngagement(
+    super.localName, {
     required TfArg<bool> enabled,
     List<ShieldProactiveEngagementEmergencyContact>? emergencyContact,
     super.lifecycle,

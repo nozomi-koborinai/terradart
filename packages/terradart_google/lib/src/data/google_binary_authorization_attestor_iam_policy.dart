@@ -16,8 +16,8 @@ final class DataGoogleBinaryAuthorizationAttestorIamPolicy extends Data {
   static const String tfType =
       'google_binary_authorization_attestor_iam_policy';
 
-  DataGoogleBinaryAuthorizationAttestorIamPolicy({
-    required super.localName,
+  DataGoogleBinaryAuthorizationAttestorIamPolicy(
+    super.localName, {
     required TfArg<String> attestor,
     TfArg<String>? project,
     super.provider,

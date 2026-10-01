@@ -60,8 +60,8 @@ final class ComputeExternalVpnGatewayParams {
 final class GoogleComputeExternalVpnGateway extends Resource {
   static const String tfType = 'google_compute_external_vpn_gateway';
 
-  GoogleComputeExternalVpnGateway({
-    required super.localName,
+  GoogleComputeExternalVpnGateway(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<ComputeExternalVpnGatewayRedundancyType>? redundancyType,

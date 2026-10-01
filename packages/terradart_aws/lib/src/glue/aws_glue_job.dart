@@ -174,8 +174,8 @@ enum GlueJobProvider implements TerraformEnum {
 final class AwsGlueJob extends Resource {
   static const String tfType = 'aws_glue_job';
 
-  AwsGlueJob({
-    required super.localName,
+  AwsGlueJob(
+    super.localName, {
     TfArg<List<String>>? connections,
     TfArg<Map<String, String>>? defaultArguments,
     TfArg<String>? description,

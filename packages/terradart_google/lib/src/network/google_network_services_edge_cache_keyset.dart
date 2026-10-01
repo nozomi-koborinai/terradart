@@ -65,8 +65,8 @@ final class NetworkServicesEdgeCacheKeysetValidationSharedKeys {
 final class GoogleNetworkServicesEdgeCacheKeyset extends Resource {
   static const String tfType = 'google_network_services_edge_cache_keyset';
 
-  GoogleNetworkServicesEdgeCacheKeyset({
-    required super.localName,
+  GoogleNetworkServicesEdgeCacheKeyset(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     List<NetworkServicesEdgeCacheKeysetPublicKey>? publicKey,

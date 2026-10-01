@@ -11,8 +11,8 @@ const Set<String> _awsSpotDatafeedSubscriptionSensitive = <String>{};
 final class DataAwsSpotDatafeedSubscription extends Data {
   static const String tfType = 'aws_spot_datafeed_subscription';
 
-  DataAwsSpotDatafeedSubscription({
-    required super.localName,
+  DataAwsSpotDatafeedSubscription(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

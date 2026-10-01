@@ -298,8 +298,8 @@ final class Route53domainsRegisteredDomainTechContact {
 final class AwsRoute53domainsRegisteredDomain extends Resource {
   static const String tfType = 'aws_route53domains_registered_domain';
 
-  AwsRoute53domainsRegisteredDomain({
-    required super.localName,
+  AwsRoute53domainsRegisteredDomain(
+    super.localName, {
     TfArg<bool>? adminPrivacy,
     TfArg<bool>? autoRenew,
     TfArg<bool>? billingPrivacy,

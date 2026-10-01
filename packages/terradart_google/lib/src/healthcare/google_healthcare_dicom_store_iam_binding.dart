@@ -44,8 +44,8 @@ final class HealthcareDicomStoreIamBindingCondition {
 final class GoogleHealthcareDicomStoreIamBinding extends Resource {
   static const String tfType = 'google_healthcare_dicom_store_iam_binding';
 
-  GoogleHealthcareDicomStoreIamBinding({
-    required super.localName,
+  GoogleHealthcareDicomStoreIamBinding(
+    super.localName, {
     required RefTo<GoogleHealthcareDicomStore> dicomStore,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -13,8 +13,8 @@ const Set<String> _googleBackupDrDataSourceReferenceSensitive = <String>{};
 final class DataGoogleBackupDrDataSourceReference extends Data {
   static const String tfType = 'google_backup_dr_data_source_reference';
 
-  DataGoogleBackupDrDataSourceReference({
-    required super.localName,
+  DataGoogleBackupDrDataSourceReference(
+    super.localName, {
     required TfArg<String> dataSourceReferenceId,
     required TfArg<String> location,
     TfArg<String>? project,

@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchDashboardSensitive = <String>{};
 final class AwsCloudwatchDashboard extends Resource {
   static const String tfType = 'aws_cloudwatch_dashboard';
 
-  AwsCloudwatchDashboard({
-    required super.localName,
+  AwsCloudwatchDashboard(
+    super.localName, {
     required TfArg<String> dashboardBody,
     required TfArg<String> dashboardName,
     TfArg<String>? region,

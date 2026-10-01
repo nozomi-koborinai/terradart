@@ -216,8 +216,8 @@ final class GlueCatalogTableOptimizerRetentionConfigurationIcebergConfiguration 
 final class AwsGlueCatalogTableOptimizer extends Resource {
   static const String tfType = 'aws_glue_catalog_table_optimizer';
 
-  AwsGlueCatalogTableOptimizer({
-    required super.localName,
+  AwsGlueCatalogTableOptimizer(
+    super.localName, {
     required TfArg<String> catalogId,
     required TfArg<String> databaseName,
     TfArg<String>? region,

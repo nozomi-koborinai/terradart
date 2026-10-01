@@ -21,8 +21,8 @@ enum BedrockagentAgentCollaboration implements TerraformEnum {
 final class AwsBedrockagentAgent extends Resource {
   static const String tfType = 'aws_bedrockagent_agent';
 
-  AwsBedrockagentAgent({
-    required super.localName,
+  AwsBedrockagentAgent(
+    super.localName, {
     TfArg<BedrockagentAgentCollaboration>? agentCollaboration,
     required TfArg<String> agentName,
     required TfArg<String> agentResourceRoleArn,

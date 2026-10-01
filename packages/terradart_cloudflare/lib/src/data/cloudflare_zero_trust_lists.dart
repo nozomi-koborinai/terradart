@@ -11,8 +11,8 @@ const Set<String> _cloudflareZeroTrustListsSensitive = <String>{};
 final class DataCloudflareZeroTrustLists extends Data {
   static const String tfType = 'cloudflare_zero_trust_lists';
 
-  DataCloudflareZeroTrustLists({
-    required super.localName,
+  DataCloudflareZeroTrustLists(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<List<String>>? filter,

@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightNamespaceSensitive = <String>{};
 final class AwsQuicksightNamespace extends Resource {
   static const String tfType = 'aws_quicksight_namespace';
 
-  AwsQuicksightNamespace({
-    required super.localName,
+  AwsQuicksightNamespace(
+    super.localName, {
     TfArg<String>? awsAccountId,
     TfArg<String>? identityStore,
     required TfArg<String> namespace,

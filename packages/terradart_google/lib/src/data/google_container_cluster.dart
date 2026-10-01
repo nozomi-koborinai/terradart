@@ -14,8 +14,8 @@ const Set<String> _googleContainerClusterSensitive = <String>{};
 final class DataGoogleContainerCluster extends Data {
   static const String tfType = 'google_container_cluster';
 
-  DataGoogleContainerCluster({
-    required super.localName,
+  DataGoogleContainerCluster(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

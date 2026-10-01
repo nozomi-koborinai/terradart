@@ -97,8 +97,8 @@ final class ApiTokenPermissionGroups {
 final class CloudflareApiToken extends Resource {
   static const String tfType = 'cloudflare_api_token';
 
-  CloudflareApiToken({
-    required super.localName,
+  CloudflareApiToken(
+    super.localName, {
     TfArg<String>? expiresOn,
     required TfArg<String> name,
     TfArg<String>? notBefore,

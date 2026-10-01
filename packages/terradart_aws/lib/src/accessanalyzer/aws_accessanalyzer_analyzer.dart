@@ -200,8 +200,8 @@ final class AccessanalyzerAnalyzerExclusion {
 final class AwsAccessanalyzerAnalyzer extends Resource {
   static const String tfType = 'aws_accessanalyzer_analyzer';
 
-  AwsAccessanalyzerAnalyzer({
-    required super.localName,
+  AwsAccessanalyzerAnalyzer(
+    super.localName, {
     required TfArg<String> analyzerName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

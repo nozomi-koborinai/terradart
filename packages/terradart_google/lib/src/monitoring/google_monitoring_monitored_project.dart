@@ -19,7 +19,7 @@ const Set<String> _googleMonitoringMonitoredProjectSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleMonitoringMonitoredProject(
-///   localName: 'child_project',
+///   'child_project',
 ///   metricsScope: TfArg.literal(
 ///     'locations/global/metricsScopes/my-metrics-scope',
 ///   ),
@@ -29,8 +29,8 @@ const Set<String> _googleMonitoringMonitoredProjectSensitive = <String>{};
 final class GoogleMonitoringMonitoredProject extends Resource {
   static const String tfType = 'google_monitoring_monitored_project';
 
-  GoogleMonitoringMonitoredProject({
-    required super.localName,
+  GoogleMonitoringMonitoredProject(
+    super.localName, {
     required TfArg<String> metricsScope,
     required TfArg<String> name,
     super.lifecycle,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftClusterIamRolesSensitive = <String>{};
 final class AwsRedshiftClusterIamRoles extends Resource {
   static const String tfType = 'aws_redshift_cluster_iam_roles';
 
-  AwsRedshiftClusterIamRoles({
-    required super.localName,
+  AwsRedshiftClusterIamRoles(
+    super.localName, {
     required TfArg<String> clusterIdentifier,
     TfArg<String>? defaultIamRoleArn,
     TfArg<List<String>>? iamRoleArns,

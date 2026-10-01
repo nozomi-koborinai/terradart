@@ -19,8 +19,8 @@ final class DataCloudflareSchemaValidationOperationSettings extends Data {
   static const String tfType =
       'cloudflare_schema_validation_operation_settings';
 
-  DataCloudflareSchemaValidationOperationSettings({
-    required super.localName,
+  DataCloudflareSchemaValidationOperationSettings(
+    super.localName, {
     required TfArg<String> operationId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

@@ -54,8 +54,8 @@ enum DataUserGroupDirection implements TerraformEnum {
 final class DataCloudflareUserGroup extends Data {
   static const String tfType = 'cloudflare_user_group';
 
-  DataCloudflareUserGroup({
-    required super.localName,
+  DataCloudflareUserGroup(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? userGroupId,
     DataUserGroupFilter? filter,

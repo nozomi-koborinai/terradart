@@ -14,8 +14,8 @@ const Set<String> _googleDataprocMetastoreServiceSensitive = <String>{};
 final class DataGoogleDataprocMetastoreService extends Data {
   static const String tfType = 'google_dataproc_metastore_service';
 
-  DataGoogleDataprocMetastoreService({
-    required super.localName,
+  DataGoogleDataprocMetastoreService(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> serviceId,

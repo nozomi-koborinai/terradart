@@ -18,8 +18,8 @@ const Set<String> _cloudflareLogpushDatasetJobSensitive = <String>{
 final class DataCloudflareLogpushDatasetJob extends Data {
   static const String tfType = 'cloudflare_logpush_dataset_job';
 
-  DataCloudflareLogpushDatasetJob({
-    required super.localName,
+  DataCloudflareLogpushDatasetJob(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? datasetId,
     RefTo<CloudflareZone>? zoneId,

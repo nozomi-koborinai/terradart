@@ -14,8 +14,8 @@ const Set<String> _googleEndpointsServiceIamPolicySensitive = <String>{};
 final class DataGoogleEndpointsServiceIamPolicy extends Data {
   static const String tfType = 'google_endpoints_service_iam_policy';
 
-  DataGoogleEndpointsServiceIamPolicy({
-    required super.localName,
+  DataGoogleEndpointsServiceIamPolicy(
+    super.localName, {
     required TfArg<String> serviceName,
     super.provider,
     super.timeouts,

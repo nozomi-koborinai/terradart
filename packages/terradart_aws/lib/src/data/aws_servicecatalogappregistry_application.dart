@@ -12,8 +12,8 @@ const Set<String> _awsServicecatalogappregistryApplicationSensitive =
 final class DataAwsServicecatalogappregistryApplication extends Data {
   static const String tfType = 'aws_servicecatalogappregistry_application';
 
-  DataAwsServicecatalogappregistryApplication({
-    required super.localName,
+  DataAwsServicecatalogappregistryApplication(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

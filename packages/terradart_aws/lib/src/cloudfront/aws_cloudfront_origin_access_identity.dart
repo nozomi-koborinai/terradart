@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontOriginAccessIdentitySensitive = <String>{};
 final class AwsCloudfrontOriginAccessIdentity extends Resource {
   static const String tfType = 'aws_cloudfront_origin_access_identity';
 
-  AwsCloudfrontOriginAccessIdentity({
-    required super.localName,
+  AwsCloudfrontOriginAccessIdentity(
+    super.localName, {
     TfArg<String>? comment,
     super.lifecycle,
     super.dependsOn,

@@ -234,8 +234,8 @@ final class KeyspacesTableTtl {
 final class AwsKeyspacesTable extends Resource {
   static const String tfType = 'aws_keyspaces_table';
 
-  AwsKeyspacesTable({
-    required super.localName,
+  AwsKeyspacesTable(
+    super.localName, {
     TfArg<num>? defaultTimeToLive,
     required TfArg<String> keyspaceName,
     TfArg<String>? region,

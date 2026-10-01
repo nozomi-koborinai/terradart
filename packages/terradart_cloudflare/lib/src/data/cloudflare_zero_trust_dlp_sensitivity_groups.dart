@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpSensitivityGroupsSensitive =
 final class DataCloudflareZeroTrustDlpSensitivityGroups extends Data {
   static const String tfType = 'cloudflare_zero_trust_dlp_sensitivity_groups';
 
-  DataCloudflareZeroTrustDlpSensitivityGroups({
-    required super.localName,
+  DataCloudflareZeroTrustDlpSensitivityGroups(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

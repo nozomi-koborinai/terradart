@@ -31,8 +31,8 @@ final class DataEc2ClientVpnEndpointFilter {
 final class DataAwsEc2ClientVpnEndpoint extends Data {
   static const String tfType = 'aws_ec2_client_vpn_endpoint';
 
-  DataAwsEc2ClientVpnEndpoint({
-    required super.localName,
+  DataAwsEc2ClientVpnEndpoint(
+    super.localName, {
     TfArg<String>? clientVpnEndpointId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

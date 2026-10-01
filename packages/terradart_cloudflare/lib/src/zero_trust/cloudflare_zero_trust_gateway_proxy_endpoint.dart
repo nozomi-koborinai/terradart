@@ -23,8 +23,8 @@ enum ZeroTrustGatewayProxyEndpointKind implements TerraformEnum {
 final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_proxy_endpoint';
 
-  CloudflareZeroTrustGatewayProxyEndpoint({
-    required super.localName,
+  CloudflareZeroTrustGatewayProxyEndpoint(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? ips,
     TfArg<ZeroTrustGatewayProxyEndpointKind>? kind,

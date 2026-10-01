@@ -14,8 +14,8 @@ const Set<String> _googleComposerUserWorkloadsSecretSensitive = <String>{};
 final class DataGoogleComposerUserWorkloadsSecret extends Data {
   static const String tfType = 'google_composer_user_workloads_secret';
 
-  DataGoogleComposerUserWorkloadsSecret({
-    required super.localName,
+  DataGoogleComposerUserWorkloadsSecret(
+    super.localName, {
     required TfArg<String> environment,
     required TfArg<String> name,
     TfArg<String>? project,

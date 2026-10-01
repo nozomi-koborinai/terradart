@@ -30,7 +30,7 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 /// Example:
 /// ```dart
 /// final readerCreds = GoogleFirestoreUserCreds(
-///   localName: 'reader_creds',
+///   'reader_creds',
 ///   database: db.ref,
 ///   name: TfArg.literal('analytics-reader'),
 /// );
@@ -38,8 +38,8 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 final class GoogleFirestoreUserCreds extends Resource {
   static const String tfType = 'google_firestore_user_creds';
 
-  GoogleFirestoreUserCreds({
-    required super.localName,
+  GoogleFirestoreUserCreds(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleFirestoreDatabase> database,
     TfArg<String>? project,

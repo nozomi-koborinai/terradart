@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBigtableLogicalView(
-  ///   localName: 'recent_events',
+  ///   'recent_events',
   ///   logicalViewId: TfArg.literal('recent-events'),
   ///   instance: instance.ref,
   ///   query: TfArg.literal('SELECT * FROM events WHERE timestamp > 0'),

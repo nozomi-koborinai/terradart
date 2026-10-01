@@ -10,8 +10,8 @@ const Set<String> _awsBillingViewsSensitive = <String>{};
 final class DataAwsBillingViews extends Data {
   static const String tfType = 'aws_billing_views';
 
-  DataAwsBillingViews({
-    required super.localName,
+  DataAwsBillingViews(
+    super.localName, {
     TfArg<List<String>>? billingViewTypes,
     super.provider,
     super.timeouts,

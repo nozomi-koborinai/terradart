@@ -34,8 +34,8 @@ enum RedshiftLoggingLogExports implements TerraformEnum {
 final class AwsRedshiftLogging extends Resource {
   static const String tfType = 'aws_redshift_logging';
 
-  AwsRedshiftLogging({
-    required super.localName,
+  AwsRedshiftLogging(
+    super.localName, {
     RefTo<AwsS3Bucket>? bucketName,
     required TfArg<String> clusterIdentifier,
     TfArg<RedshiftLoggingLogDestinationType>? logDestinationType,

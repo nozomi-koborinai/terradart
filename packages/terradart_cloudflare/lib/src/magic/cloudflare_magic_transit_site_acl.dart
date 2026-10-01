@@ -91,8 +91,8 @@ final class MagicTransitSiteAclLan2 {
 final class CloudflareMagicTransitSiteAcl extends Resource {
   static const String tfType = 'cloudflare_magic_transit_site_acl';
 
-  CloudflareMagicTransitSiteAcl({
-    required super.localName,
+  CloudflareMagicTransitSiteAcl(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     TfArg<bool>? forwardLocally,

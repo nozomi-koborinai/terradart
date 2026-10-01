@@ -10,8 +10,8 @@ const Set<String> _awsBedrockInferenceProfilesSensitive = <String>{};
 final class DataAwsBedrockInferenceProfiles extends Data {
   static const String tfType = 'aws_bedrock_inference_profiles';
 
-  DataAwsBedrockInferenceProfiles({
-    required super.localName,
+  DataAwsBedrockInferenceProfiles(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? type,
     super.provider,

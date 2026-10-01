@@ -29,8 +29,8 @@ final class DataMagicTransitSiteFilter {
 final class DataCloudflareMagicTransitSite extends Data {
   static const String tfType = 'cloudflare_magic_transit_site';
 
-  DataCloudflareMagicTransitSite({
-    required super.localName,
+  DataCloudflareMagicTransitSite(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? siteId,
     DataMagicTransitSiteFilter? filter,

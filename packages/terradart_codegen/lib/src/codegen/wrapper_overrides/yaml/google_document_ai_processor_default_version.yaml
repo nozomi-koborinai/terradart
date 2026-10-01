@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDocumentAiProcessorDefaultVersion(
-  ///   localName: 'ocr_default',
+  ///   'ocr_default',
   ///   processor: ocr.ref,
   ///   version: TfArg.literal(
   ///     '${ocr.id.interpolation}/processorVersions/stable',

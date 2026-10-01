@@ -21,8 +21,8 @@ enum Cloud9EnvironmentMembershipPermissions implements TerraformEnum {
 final class AwsCloud9EnvironmentMembership extends Resource {
   static const String tfType = 'aws_cloud9_environment_membership';
 
-  AwsCloud9EnvironmentMembership({
-    required super.localName,
+  AwsCloud9EnvironmentMembership(
+    super.localName, {
     required TfArg<String> environmentId,
     required TfArg<Cloud9EnvironmentMembershipPermissions> permissions,
     TfArg<String>? region,

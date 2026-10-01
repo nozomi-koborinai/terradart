@@ -42,8 +42,8 @@ final class DatasyncLocationS3Config {
 final class AwsDatasyncLocationS3 extends Resource {
   static const String tfType = 'aws_datasync_location_s3';
 
-  AwsDatasyncLocationS3({
-    required super.localName,
+  AwsDatasyncLocationS3(
+    super.localName, {
     TfArg<List<String>>? agentArns,
     TfArg<String>? region,
     required RefTo<AwsS3Bucket> s3BucketArn,

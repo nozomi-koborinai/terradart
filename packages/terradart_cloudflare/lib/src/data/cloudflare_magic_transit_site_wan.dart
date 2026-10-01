@@ -17,8 +17,8 @@ const Set<String> _cloudflareMagicTransitSiteWanSensitive = <String>{};
 final class DataCloudflareMagicTransitSiteWan extends Data {
   static const String tfType = 'cloudflare_magic_transit_site_wan';
 
-  DataCloudflareMagicTransitSiteWan({
-    required super.localName,
+  DataCloudflareMagicTransitSiteWan(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> siteId,
     required TfArg<String> wanId,

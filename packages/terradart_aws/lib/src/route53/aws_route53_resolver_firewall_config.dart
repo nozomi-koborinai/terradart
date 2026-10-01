@@ -21,8 +21,8 @@ enum Route53ResolverFirewallConfigFirewallFailOpen implements TerraformEnum {
 final class AwsRoute53ResolverFirewallConfig extends Resource {
   static const String tfType = 'aws_route53_resolver_firewall_config';
 
-  AwsRoute53ResolverFirewallConfig({
-    required super.localName,
+  AwsRoute53ResolverFirewallConfig(
+    super.localName, {
     TfArg<Route53ResolverFirewallConfigFirewallFailOpen>? firewallFailOpen,
     TfArg<String>? region,
     required TfArg<String> resourceId,

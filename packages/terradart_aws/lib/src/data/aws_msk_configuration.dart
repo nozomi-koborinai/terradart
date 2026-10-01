@@ -11,8 +11,8 @@ const Set<String> _awsMskConfigurationSensitive = <String>{};
 final class DataAwsMskConfiguration extends Data {
   static const String tfType = 'aws_msk_configuration';
 
-  DataAwsMskConfiguration({
-    required super.localName,
+  DataAwsMskConfiguration(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

@@ -29,8 +29,8 @@ final class QuicksightKeyRegistration {
 final class AwsQuicksightKeyRegistration extends Resource {
   static const String tfType = 'aws_quicksight_key_registration';
 
-  AwsQuicksightKeyRegistration({
-    required super.localName,
+  AwsQuicksightKeyRegistration(
+    super.localName, {
     TfArg<String>? awsAccountId,
     TfArg<String>? region,
     List<QuicksightKeyRegistration>? keyRegistration,

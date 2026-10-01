@@ -11,8 +11,8 @@ const Set<String> _awsFsxWindowsFileSystemSensitive = <String>{};
 final class DataAwsFsxWindowsFileSystem extends Data {
   static const String tfType = 'aws_fsx_windows_file_system';
 
-  DataAwsFsxWindowsFileSystem({
-    required super.localName,
+  DataAwsFsxWindowsFileSystem(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

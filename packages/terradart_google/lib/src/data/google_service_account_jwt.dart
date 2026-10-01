@@ -13,8 +13,8 @@ const Set<String> _googleServiceAccountJwtSensitive = <String>{'jwt'};
 final class DataGoogleServiceAccountJwt extends Data {
   static const String tfType = 'google_service_account_jwt';
 
-  DataGoogleServiceAccountJwt({
-    required super.localName,
+  DataGoogleServiceAccountJwt(
+    super.localName, {
     TfArg<List<String>>? delegates,
     TfArg<num>? expiresIn,
     required TfArg<String> payload,

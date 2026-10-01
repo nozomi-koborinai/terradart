@@ -167,8 +167,8 @@ enum ImagebuilderInfrastructureConfigurationTenancy implements TerraformEnum {
 final class AwsImagebuilderInfrastructureConfiguration extends Resource {
   static const String tfType = 'aws_imagebuilder_infrastructure_configuration';
 
-  AwsImagebuilderInfrastructureConfiguration({
-    required super.localName,
+  AwsImagebuilderInfrastructureConfiguration(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> instanceProfileName,
     TfArg<List<String>>? instanceTypes,

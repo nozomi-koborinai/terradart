@@ -37,8 +37,8 @@ final class TagsTagValueIamMemberCondition {
 final class GoogleTagsTagValueIamMember extends Resource {
   static const String tfType = 'google_tags_tag_value_iam_member';
 
-  GoogleTagsTagValueIamMember({
-    required super.localName,
+  GoogleTagsTagValueIamMember(
+    super.localName, {
     required RefTo<GoogleTagsTagValue> tagValue,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -72,8 +72,8 @@ enum DataEmailSecurityTrustedDomainsOrder implements TerraformEnum {
 final class DataCloudflareEmailSecurityTrustedDomains extends Data {
   static const String tfType = 'cloudflare_email_security_trusted_domains';
 
-  DataCloudflareEmailSecurityTrustedDomains({
-    required super.localName,
+  DataCloudflareEmailSecurityTrustedDomains(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? trustedDomainId,
     DataEmailSecurityTrustedDomainsFilter? filter,

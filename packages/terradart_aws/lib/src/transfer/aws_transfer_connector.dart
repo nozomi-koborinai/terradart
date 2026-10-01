@@ -161,8 +161,8 @@ final class TransferConnectorSftpConfig {
 final class AwsTransferConnector extends Resource {
   static const String tfType = 'aws_transfer_connector';
 
-  AwsTransferConnector({
-    required super.localName,
+  AwsTransferConnector(
+    super.localName, {
     required TfArg<String> accessRole,
     TfArg<String>? loggingRole,
     TfArg<String>? region,

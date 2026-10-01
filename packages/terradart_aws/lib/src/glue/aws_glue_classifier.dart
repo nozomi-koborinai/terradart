@@ -263,8 +263,8 @@ final class GlueClassifierXmlClassifier {
 final class AwsGlueClassifier extends Resource {
   static const String tfType = 'aws_glue_classifier';
 
-  AwsGlueClassifier({
-    required super.localName,
+  AwsGlueClassifier(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     GlueClassifierFormat? format,

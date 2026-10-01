@@ -42,8 +42,8 @@ final class KmsKeyRingIamBindingCondition {
 final class GoogleKmsKeyRingIamBinding extends Resource {
   static const String tfType = 'google_kms_key_ring_iam_binding';
 
-  GoogleKmsKeyRingIamBinding({
-    required super.localName,
+  GoogleKmsKeyRingIamBinding(
+    super.localName, {
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

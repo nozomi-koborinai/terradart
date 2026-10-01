@@ -30,8 +30,8 @@ enum ChronicleCaseCloseDefinitionCloseReason implements TerraformEnum {
 final class GoogleChronicleCaseCloseDefinition extends Resource {
   static const String tfType = 'google_chronicle_case_close_definition';
 
-  GoogleChronicleCaseCloseDefinition({
-    required super.localName,
+  GoogleChronicleCaseCloseDefinition(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     required TfArg<ChronicleCaseCloseDefinitionCloseReason> closeReason,

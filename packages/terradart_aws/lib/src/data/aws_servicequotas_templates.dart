@@ -10,8 +10,8 @@ const Set<String> _awsServicequotasTemplatesSensitive = <String>{};
 final class DataAwsServicequotasTemplates extends Data {
   static const String tfType = 'aws_servicequotas_templates';
 
-  DataAwsServicequotasTemplates({
-    required super.localName,
+  DataAwsServicequotasTemplates(
+    super.localName, {
     TfArg<String>? awsRegion,
     TfArg<String>? region,
     super.provider,

@@ -44,8 +44,8 @@ final class DataprocMetastoreServiceIamMemberCondition {
 final class GoogleDataprocMetastoreServiceIamMember extends Resource {
   static const String tfType = 'google_dataproc_metastore_service_iam_member';
 
-  GoogleDataprocMetastoreServiceIamMember({
-    required super.localName,
+  GoogleDataprocMetastoreServiceIamMember(
+    super.localName, {
     required RefTo<GoogleDataprocMetastoreService> service,
     required TfArg<String> role,
     required IamPrincipal member,

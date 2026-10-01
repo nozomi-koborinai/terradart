@@ -187,8 +187,8 @@ final class SagemakerWorkforceVpcConfig {
 final class AwsSagemakerWorkforce extends Resource {
   static const String tfType = 'aws_sagemaker_workforce';
 
-  AwsSagemakerWorkforce({
-    required super.localName,
+  AwsSagemakerWorkforce(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> workforceName,
     required SagemakerWorkforceIdentityProvider identityProvider,

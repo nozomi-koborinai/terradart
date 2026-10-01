@@ -69,8 +69,8 @@ enum DataAccountMemberFilterStatus implements TerraformEnum {
 final class DataCloudflareAccountMember extends Data {
   static const String tfType = 'cloudflare_account_member';
 
-  DataCloudflareAccountMember({
-    required super.localName,
+  DataCloudflareAccountMember(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? memberId,
     DataAccountMemberFilter? filter,

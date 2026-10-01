@@ -11,8 +11,8 @@ const Set<String> _awsWorkspaceswebSessionLoggerAssociationSensitive =
 final class AwsWorkspaceswebSessionLoggerAssociation extends Resource {
   static const String tfType = 'aws_workspacesweb_session_logger_association';
 
-  AwsWorkspaceswebSessionLoggerAssociation({
-    required super.localName,
+  AwsWorkspaceswebSessionLoggerAssociation(
+    super.localName, {
     required TfArg<String> portalArn,
     TfArg<String>? region,
     required TfArg<String> sessionLoggerArn,

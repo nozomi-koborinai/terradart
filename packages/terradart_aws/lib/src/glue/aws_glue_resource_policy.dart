@@ -20,8 +20,8 @@ enum GlueResourcePolicyEnableHybrid implements TerraformEnum {
 final class AwsGlueResourcePolicy extends Resource {
   static const String tfType = 'aws_glue_resource_policy';
 
-  AwsGlueResourcePolicy({
-    required super.localName,
+  AwsGlueResourcePolicy(
+    super.localName, {
     TfArg<GlueResourcePolicyEnableHybrid>? enableHybrid,
     required TfArg<String> policy,
     TfArg<String>? region,

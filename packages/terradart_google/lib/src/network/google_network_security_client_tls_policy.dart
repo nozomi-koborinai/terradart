@@ -173,7 +173,7 @@ final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderI
 /// Example:
 /// ```dart
 /// GoogleNetworkSecurityClientTlsPolicy(
-///   localName: 'backend',
+///   'backend',
 ///   name: TfArg.literal('terradart-client-tls'),
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('TerraDart smoke client TLS policy'),
@@ -182,8 +182,8 @@ final class NetworkSecurityClientTlsPolicyServerValidationCaCertificateProviderI
 final class GoogleNetworkSecurityClientTlsPolicy extends Resource {
   static const String tfType = 'google_network_security_client_tls_policy';
 
-  GoogleNetworkSecurityClientTlsPolicy({
-    required super.localName,
+  GoogleNetworkSecurityClientTlsPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? description,

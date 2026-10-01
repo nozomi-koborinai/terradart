@@ -19,8 +19,8 @@ enum Ec2SecondaryNetworkType implements TerraformEnum {
 final class AwsEc2SecondaryNetwork extends Resource {
   static const String tfType = 'aws_ec2_secondary_network';
 
-  AwsEc2SecondaryNetwork({
-    required super.localName,
+  AwsEc2SecondaryNetwork(
+    super.localName, {
     required TfArg<String> ipv4CidrBlock,
     required TfArg<Ec2SecondaryNetworkType> networkType,
     TfArg<String>? region,

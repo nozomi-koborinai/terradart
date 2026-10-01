@@ -11,8 +11,8 @@ const Set<String> _awsAppconfigApplicationSensitive = <String>{};
 final class DataAwsAppconfigApplication extends Data {
   static const String tfType = 'aws_appconfig_application';
 
-  DataAwsAppconfigApplication({
-    required super.localName,
+  DataAwsAppconfigApplication(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     super.provider,

@@ -28,8 +28,8 @@ final class DataRouteTablesFilter {
 final class DataAwsRouteTables extends Data {
   static const String tfType = 'aws_route_tables';
 
-  DataAwsRouteTables({
-    required super.localName,
+  DataAwsRouteTables(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,

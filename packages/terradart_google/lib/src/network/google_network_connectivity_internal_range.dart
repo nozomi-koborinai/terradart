@@ -95,7 +95,7 @@ final class NetworkConnectivityInternalRangeMigration {
 /// Example:
 /// ```dart
 /// GoogleNetworkConnectivityInternalRange(
-///   localName: 'reserved',
+///   'reserved',
 ///   name: TfArg.literal('terradart-ir'),
 ///   network: vpc.ref,
 ///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
@@ -106,8 +106,8 @@ final class NetworkConnectivityInternalRangeMigration {
 final class GoogleNetworkConnectivityInternalRange extends Resource {
   static const String tfType = 'google_network_connectivity_internal_range';
 
-  GoogleNetworkConnectivityInternalRange({
-    required super.localName,
+  GoogleNetworkConnectivityInternalRange(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     required TfArg<NetworkConnectivityInternalRangeUsage> usage,

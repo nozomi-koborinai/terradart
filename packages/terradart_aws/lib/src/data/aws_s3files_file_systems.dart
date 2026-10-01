@@ -20,8 +20,8 @@ final class DataS3filesFileSystems {
 final class DataAwsS3filesFileSystems extends Data {
   static const String tfType = 'aws_s3files_file_systems';
 
-  DataAwsS3filesFileSystems({
-    required super.localName,
+  DataAwsS3filesFileSystems(
+    super.localName, {
     TfArg<String>? region,
     List<DataS3filesFileSystems>? fileSystems,
     super.provider,

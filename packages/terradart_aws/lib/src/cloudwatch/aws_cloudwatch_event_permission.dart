@@ -52,8 +52,8 @@ enum CloudwatchEventPermissionType implements TerraformEnum {
 final class AwsCloudwatchEventPermission extends Resource {
   static const String tfType = 'aws_cloudwatch_event_permission';
 
-  AwsCloudwatchEventPermission({
-    required super.localName,
+  AwsCloudwatchEventPermission(
+    super.localName, {
     TfArg<String>? action,
     TfArg<String>? eventBusName,
     required TfArg<String> principal,

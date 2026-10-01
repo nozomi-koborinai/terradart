@@ -64,8 +64,8 @@ enum AccountSubscriptionRatePlanId implements TerraformEnum {
 final class CloudflareAccountSubscription extends Resource {
   static const String tfType = 'cloudflare_account_subscription';
 
-  CloudflareAccountSubscription({
-    required super.localName,
+  CloudflareAccountSubscription(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<AccountSubscriptionFrequency>? frequency,
     AccountSubscriptionRatePlan? ratePlan,

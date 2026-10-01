@@ -15,8 +15,8 @@ const Set<String> _cloudflareAccountRolesSensitive = <String>{};
 final class DataCloudflareAccountRoles extends Data {
   static const String tfType = 'cloudflare_account_roles';
 
-  DataCloudflareAccountRoles({
-    required super.localName,
+  DataCloudflareAccountRoles(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

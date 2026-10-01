@@ -47,8 +47,8 @@ final class GoogleSecureSourceManagerRepositoryIamBinding extends Resource {
   static const String tfType =
       'google_secure_source_manager_repository_iam_binding';
 
-  GoogleSecureSourceManagerRepositoryIamBinding({
-    required super.localName,
+  GoogleSecureSourceManagerRepositoryIamBinding(
+    super.localName, {
     required RefTo<GoogleSecureSourceManagerRepository> repository,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

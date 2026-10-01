@@ -23,7 +23,7 @@ final class DataprocAutoscalingStack extends Stack {
       ) {
     final apiDataproc = add(
       GoogleProjectService(
-        localName: 'api_dataproc',
+        'api_dataproc',
         service: .literal('dataproc.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -31,7 +31,7 @@ final class DataprocAutoscalingStack extends Stack {
 
     final policy = add(
       GoogleDataprocAutoscalingPolicy(
-        localName: 'asp',
+        'asp',
         policyId: .literal('terradart-asp'),
         location: .literal('us-central1'),
         workerConfig: DataprocAutoscalingPolicyWorkerConfig(
@@ -50,7 +50,7 @@ final class DataprocAutoscalingStack extends Stack {
 
     final policyReader = add(
       GoogleServiceAccount(
-        localName: 'policy_reader',
+        'policy_reader',
         accountId: .literal('terradart-asp-reader'),
         displayName: .literal('Dataproc autoscaling policy reader'),
       ),
@@ -58,7 +58,7 @@ final class DataprocAutoscalingStack extends Stack {
 
     add(
       GoogleDataprocAutoscalingPolicyIamMember(
-        localName: 'policy_reader_grant',
+        'policy_reader_grant',
         autoscalingPolicy: .literal('terradart-asp'),
         location: .literal('us-central1'),
         role: .literal('roles/viewer'),
@@ -69,7 +69,7 @@ final class DataprocAutoscalingStack extends Stack {
 
     add(
       GoogleDataprocWorkflowTemplate(
-        localName: 'sparkpi',
+        'sparkpi',
         name: .literal('terradart-wf'),
         location: .literal('us-central1'),
         placement: DataprocWorkflowTemplatePlacement(

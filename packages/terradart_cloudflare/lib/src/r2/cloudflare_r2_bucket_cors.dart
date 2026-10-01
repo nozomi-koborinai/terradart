@@ -87,8 +87,8 @@ enum R2BucketCorsMethods implements TerraformEnum {
 final class CloudflareR2BucketCors extends Resource {
   static const String tfType = 'cloudflare_r2_bucket_cors';
 
-  CloudflareR2BucketCors({
-    required super.localName,
+  CloudflareR2BucketCors(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketCorsJurisdiction>? jurisdiction,

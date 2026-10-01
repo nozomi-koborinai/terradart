@@ -15,8 +15,8 @@ final class DataGoogleCloudIdentityGroupTransitiveMemberships extends Data {
   static const String tfType =
       'google_cloud_identity_group_transitive_memberships';
 
-  DataGoogleCloudIdentityGroupTransitiveMemberships({
-    required super.localName,
+  DataGoogleCloudIdentityGroupTransitiveMemberships(
+    super.localName, {
     required TfArg<String> group,
     super.provider,
     super.timeouts,

@@ -158,8 +158,8 @@ enum CloudsearchDomainDesiredInstanceType implements TerraformEnum {
 final class AwsCloudsearchDomain extends Resource {
   static const String tfType = 'aws_cloudsearch_domain';
 
-  AwsCloudsearchDomain({
-    required super.localName,
+  AwsCloudsearchDomain(
+    super.localName, {
     TfArg<bool>? multiAz,
     required TfArg<String> name,
     TfArg<String>? region,

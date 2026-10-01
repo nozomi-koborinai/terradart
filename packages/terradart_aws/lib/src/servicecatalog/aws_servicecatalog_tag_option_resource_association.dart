@@ -12,8 +12,8 @@ final class AwsServicecatalogTagOptionResourceAssociation extends Resource {
   static const String tfType =
       'aws_servicecatalog_tag_option_resource_association';
 
-  AwsServicecatalogTagOptionResourceAssociation({
-    required super.localName,
+  AwsServicecatalogTagOptionResourceAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceId,
     required TfArg<String> tagOptionId,

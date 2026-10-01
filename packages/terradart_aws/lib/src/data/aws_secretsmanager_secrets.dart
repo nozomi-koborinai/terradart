@@ -30,8 +30,8 @@ final class DataSecretsmanagerSecretsFilter {
 final class DataAwsSecretsmanagerSecrets extends Data {
   static const String tfType = 'aws_secretsmanager_secrets';
 
-  DataAwsSecretsmanagerSecrets({
-    required super.localName,
+  DataAwsSecretsmanagerSecrets(
+    super.localName, {
     TfArg<String>? region,
     List<DataSecretsmanagerSecretsFilter>? filter,
     super.provider,

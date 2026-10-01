@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineExternalAccessRuleSensitive = <String>{};
 final class DataGoogleVmwareengineExternalAccessRule extends Data {
   static const String tfType = 'google_vmwareengine_external_access_rule';
 
-  DataGoogleVmwareengineExternalAccessRule({
-    required super.localName,
+  DataGoogleVmwareengineExternalAccessRule(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     super.provider,

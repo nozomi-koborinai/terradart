@@ -11,8 +11,8 @@ const Set<String> _awsCloudwatchEventConnectionSensitive = <String>{};
 final class DataAwsCloudwatchEventConnection extends Data {
   static const String tfType = 'aws_cloudwatch_event_connection';
 
-  DataAwsCloudwatchEventConnection({
-    required super.localName,
+  DataAwsCloudwatchEventConnection(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

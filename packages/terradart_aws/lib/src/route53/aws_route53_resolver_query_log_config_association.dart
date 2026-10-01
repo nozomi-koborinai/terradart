@@ -12,8 +12,8 @@ final class AwsRoute53ResolverQueryLogConfigAssociation extends Resource {
   static const String tfType =
       'aws_route53_resolver_query_log_config_association';
 
-  AwsRoute53ResolverQueryLogConfigAssociation({
-    required super.localName,
+  AwsRoute53ResolverQueryLogConfigAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resolverQueryLogConfigId,
     required TfArg<String> resourceId,

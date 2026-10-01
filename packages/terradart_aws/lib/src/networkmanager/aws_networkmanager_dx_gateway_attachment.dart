@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerDxGatewayAttachmentSensitive = <String>{};
 final class AwsNetworkmanagerDxGatewayAttachment extends Resource {
   static const String tfType = 'aws_networkmanager_dx_gateway_attachment';
 
-  AwsNetworkmanagerDxGatewayAttachment({
-    required super.localName,
+  AwsNetworkmanagerDxGatewayAttachment(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     required TfArg<String> directConnectGatewayArn,
     required TfArg<List<String>> edgeLocations,

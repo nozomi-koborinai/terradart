@@ -12,8 +12,8 @@ const Set<String> _awsShieldDrtAccessRoleArnAssociationSensitive = <String>{};
 final class AwsShieldDrtAccessRoleArnAssociation extends Resource {
   static const String tfType = 'aws_shield_drt_access_role_arn_association';
 
-  AwsShieldDrtAccessRoleArnAssociation({
-    required super.localName,
+  AwsShieldDrtAccessRoleArnAssociation(
+    super.localName, {
     required RefTo<AwsIamRole> roleArn,
     super.lifecycle,
     super.dependsOn,

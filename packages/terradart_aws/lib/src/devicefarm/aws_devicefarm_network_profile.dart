@@ -20,8 +20,8 @@ enum DevicefarmNetworkProfileType implements TerraformEnum {
 final class AwsDevicefarmNetworkProfile extends Resource {
   static const String tfType = 'aws_devicefarm_network_profile';
 
-  AwsDevicefarmNetworkProfile({
-    required super.localName,
+  AwsDevicefarmNetworkProfile(
+    super.localName, {
     TfArg<String>? description,
     TfArg<num>? downlinkBandwidthBits,
     TfArg<num>? downlinkDelayMs,

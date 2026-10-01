@@ -10,8 +10,8 @@ const Set<String> _awsEc2TransitGatewayRouteTableSensitive = <String>{};
 final class AwsEc2TransitGatewayRouteTable extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_route_table';
 
-  AwsEc2TransitGatewayRouteTable({
-    required super.localName,
+  AwsEc2TransitGatewayRouteTable(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayId,

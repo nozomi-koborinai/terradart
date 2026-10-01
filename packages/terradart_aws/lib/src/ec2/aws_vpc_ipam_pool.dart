@@ -77,8 +77,8 @@ enum VpcIpamPoolResourceType implements TerraformEnum {
 final class AwsVpcIpamPool extends Resource {
   static const String tfType = 'aws_vpc_ipam_pool';
 
-  AwsVpcIpamPool({
-    required super.localName,
+  AwsVpcIpamPool(
+    super.localName, {
     required TfArg<VpcIpamPoolAddressFamily> addressFamily,
     TfArg<num>? allocationDefaultNetmaskLength,
     TfArg<num>? allocationMaxNetmaskLength,

@@ -188,8 +188,8 @@ enum GlueTriggerConditionsState implements TerraformEnum {
 final class AwsGlueTrigger extends Resource {
   static const String tfType = 'aws_glue_trigger';
 
-  AwsGlueTrigger({
-    required super.localName,
+  AwsGlueTrigger(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? enabled,
     required TfArg<String> name,

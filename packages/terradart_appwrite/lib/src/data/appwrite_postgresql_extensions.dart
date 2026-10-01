@@ -16,8 +16,8 @@ const Set<String> _appwritePostgresqlExtensionsSensitive = <String>{};
 final class DataAppwritePostgresqlExtensions extends Data {
   static const String tfType = 'appwrite_postgresql_extensions';
 
-  DataAppwritePostgresqlExtensions({
-    required super.localName,
+  DataAppwritePostgresqlExtensions(
+    super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     super.provider,

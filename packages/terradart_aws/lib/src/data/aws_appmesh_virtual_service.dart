@@ -11,8 +11,8 @@ const Set<String> _awsAppmeshVirtualServiceSensitive = <String>{};
 final class DataAwsAppmeshVirtualService extends Data {
   static const String tfType = 'aws_appmesh_virtual_service';
 
-  DataAwsAppmeshVirtualService({
-    required super.localName,
+  DataAwsAppmeshVirtualService(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

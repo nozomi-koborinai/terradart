@@ -847,7 +847,7 @@ final class OsConfigPatchDeploymentDisruptionBudgetPercentage
 /// Example:
 /// ```dart
 /// GoogleOsConfigPatchDeployment(
-///   localName: 'monthly_patches',
+///   'monthly_patches',
 ///   patchDeploymentId: TfArg.literal('monthly-patches'),
 ///   description: TfArg.literal('Monthly security patches'),
 ///   instanceFilter: OsConfigPatchDeploymentInstanceFilter(
@@ -866,8 +866,8 @@ final class OsConfigPatchDeploymentDisruptionBudgetPercentage
 final class GoogleOsConfigPatchDeployment extends Resource {
   static const String tfType = 'google_os_config_patch_deployment';
 
-  GoogleOsConfigPatchDeployment({
-    required super.localName,
+  GoogleOsConfigPatchDeployment(
+    super.localName, {
     required TfArg<String> patchDeploymentId,
     TfArg<String>? description,
     required OsConfigPatchDeploymentInstanceFilter instanceFilter,

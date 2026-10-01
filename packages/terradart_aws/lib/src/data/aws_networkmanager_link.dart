@@ -11,8 +11,8 @@ const Set<String> _awsNetworkmanagerLinkSensitive = <String>{};
 final class DataAwsNetworkmanagerLink extends Data {
   static const String tfType = 'aws_networkmanager_link';
 
-  DataAwsNetworkmanagerLink({
-    required super.localName,
+  DataAwsNetworkmanagerLink(
+    super.localName, {
     required TfArg<String> globalNetworkId,
     required TfArg<String> linkId,
     TfArg<Map<String, String>>? tags,

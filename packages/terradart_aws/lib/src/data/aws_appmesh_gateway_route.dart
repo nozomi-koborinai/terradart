@@ -11,8 +11,8 @@ const Set<String> _awsAppmeshGatewayRouteSensitive = <String>{};
 final class DataAwsAppmeshGatewayRoute extends Data {
   static const String tfType = 'aws_appmesh_gateway_route';
 
-  DataAwsAppmeshGatewayRoute({
-    required super.localName,
+  DataAwsAppmeshGatewayRoute(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

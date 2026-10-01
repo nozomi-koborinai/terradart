@@ -19,8 +19,8 @@ enum OpensearchserverlessLifecyclePolicyType implements TerraformEnum {
 final class AwsOpensearchserverlessLifecyclePolicy extends Resource {
   static const String tfType = 'aws_opensearchserverless_lifecycle_policy';
 
-  AwsOpensearchserverlessLifecyclePolicy({
-    required super.localName,
+  AwsOpensearchserverlessLifecyclePolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> policy,

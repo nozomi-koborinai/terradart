@@ -10,8 +10,8 @@ const Set<String> _awsDetectiveGraphSensitive = <String>{};
 final class AwsDetectiveGraph extends Resource {
   static const String tfType = 'aws_detective_graph';
 
-  AwsDetectiveGraph({
-    required super.localName,
+  AwsDetectiveGraph(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

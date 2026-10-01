@@ -10,8 +10,8 @@ const Set<String> _cloudflareOrganizationProfileSensitive = <String>{};
 final class CloudflareOrganizationProfile extends Resource {
   static const String tfType = 'cloudflare_organization_profile';
 
-  CloudflareOrganizationProfile({
-    required super.localName,
+  CloudflareOrganizationProfile(
+    super.localName, {
     required TfArg<String> businessAddress,
     required TfArg<String> businessEmail,
     required TfArg<String> businessName,

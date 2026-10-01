@@ -15,8 +15,8 @@ const Set<String> _googleFirebaseAiLogicPromptTemplateLockSensitive =
 final class GoogleFirebaseAiLogicPromptTemplateLock extends Resource {
   static const String tfType = 'google_firebase_ai_logic_prompt_template_lock';
 
-  GoogleFirebaseAiLogicPromptTemplateLock({
-    required super.localName,
+  GoogleFirebaseAiLogicPromptTemplateLock(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> location,
     TfArg<String>? project,

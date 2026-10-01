@@ -12,8 +12,8 @@ final class AwsSecurityhubConfigurationPolicyAssociation extends Resource {
   static const String tfType =
       'aws_securityhub_configuration_policy_association';
 
-  AwsSecurityhubConfigurationPolicyAssociation({
-    required super.localName,
+  AwsSecurityhubConfigurationPolicyAssociation(
+    super.localName, {
     required TfArg<String> policyId,
     TfArg<String>? region,
     required TfArg<String> targetId,

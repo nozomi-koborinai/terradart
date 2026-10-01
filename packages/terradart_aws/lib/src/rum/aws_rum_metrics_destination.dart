@@ -22,8 +22,8 @@ enum RumMetricsDestination implements TerraformEnum {
 final class AwsRumMetricsDestination extends Resource {
   static const String tfType = 'aws_rum_metrics_destination';
 
-  AwsRumMetricsDestination({
-    required super.localName,
+  AwsRumMetricsDestination(
+    super.localName, {
     required TfArg<String> appMonitorName,
     required TfArg<RumMetricsDestination> destination,
     TfArg<String>? destinationArn,

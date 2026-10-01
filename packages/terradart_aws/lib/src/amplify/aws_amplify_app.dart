@@ -178,8 +178,8 @@ enum AmplifyAppBuildComputeType implements TerraformEnum {
 final class AwsAmplifyApp extends Resource {
   static const String tfType = 'aws_amplify_app';
 
-  AwsAmplifyApp({
-    required super.localName,
+  AwsAmplifyApp(
+    super.localName, {
     TfArg<String>? accessToken,
     TfArg<List<String>>? autoBranchCreationPatterns,
     TfArg<String>? basicAuthCredentials,

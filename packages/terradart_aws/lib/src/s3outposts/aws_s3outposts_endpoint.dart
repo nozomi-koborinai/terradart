@@ -23,8 +23,8 @@ enum S3outpostsEndpointAccessType implements TerraformEnum {
 final class AwsS3outpostsEndpoint extends Resource {
   static const String tfType = 'aws_s3outposts_endpoint';
 
-  AwsS3outpostsEndpoint({
-    required super.localName,
+  AwsS3outpostsEndpoint(
+    super.localName, {
     TfArg<S3outpostsEndpointAccessType>? accessType,
     TfArg<String>? customerOwnedIpv4Pool,
     required TfArg<String> outpostId,

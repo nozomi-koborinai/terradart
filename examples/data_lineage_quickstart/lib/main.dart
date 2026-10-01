@@ -19,7 +19,7 @@ final class DataLineageStack extends Stack {
       ) {
     final apiLineage = add(
       GoogleProjectService(
-        localName: 'api_datalineage',
+        'api_datalineage',
         service: .literal('datalineage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -27,7 +27,7 @@ final class DataLineageStack extends Stack {
 
     add(
       GoogleDataLineageConfig(
-        localName: 'lineage',
+        'lineage',
         parent: .literal('projects/$projectId'),
         location: .literal('global'),
         ingestion: DataLineageConfigIngestion(

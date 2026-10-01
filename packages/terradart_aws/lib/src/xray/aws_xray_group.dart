@@ -30,8 +30,8 @@ final class XrayGroupInsightsConfiguration {
 final class AwsXrayGroup extends Resource {
   static const String tfType = 'aws_xray_group';
 
-  AwsXrayGroup({
-    required super.localName,
+  AwsXrayGroup(
+    super.localName, {
     required TfArg<String> filterExpression,
     required TfArg<String> groupName,
     TfArg<String>? region,

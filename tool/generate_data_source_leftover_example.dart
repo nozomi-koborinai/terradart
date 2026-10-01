@@ -75,7 +75,9 @@ void main() {
     final tfType = typeMatch.group(1)!;
     final localName = _uniqueLocal(tfType, usedLocal);
 
-    final ctorStart = src.indexOf('$className({');
+    final ctorStart = src.indexOf(
+      RegExp('${RegExp.escape(className)}\\(\\s*super\\.localName, \\{'),
+    );
     if (ctorStart < 0) {
       throw StateError('no constructor in ${file.path}');
     }
@@ -109,7 +111,7 @@ void main() {
     final buf = StringBuffer()
       ..writeln('    add(')
       ..writeln('      $className(')
-      ..writeln("        localName: '$localName',");
+      ..writeln("        '$localName',");
     for (final a in args) {
       buf.writeln(a);
     }

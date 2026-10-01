@@ -87,8 +87,8 @@ final class OpensearchApplicationIamIdentityCenterOptions {
 final class AwsOpensearchApplication extends Resource {
   static const String tfType = 'aws_opensearch_application';
 
-  AwsOpensearchApplication({
-    required super.localName,
+  AwsOpensearchApplication(
+    super.localName, {
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,

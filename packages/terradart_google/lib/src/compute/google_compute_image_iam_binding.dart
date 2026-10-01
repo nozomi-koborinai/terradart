@@ -42,8 +42,8 @@ final class ComputeImageIamBindingCondition {
 final class GoogleComputeImageIamBinding extends Resource {
   static const String tfType = 'google_compute_image_iam_binding';
 
-  GoogleComputeImageIamBinding({
-    required super.localName,
+  GoogleComputeImageIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeImage> image,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

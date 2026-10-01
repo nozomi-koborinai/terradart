@@ -13,8 +13,8 @@ const Set<String> _googleSqlTiersSensitive = <String>{};
 final class DataGoogleSqlTiers extends Data {
   static const String tfType = 'google_sql_tiers';
 
-  DataGoogleSqlTiers({
-    required super.localName,
+  DataGoogleSqlTiers(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareDnsZoneTransfersPeerSensitive = <String>{};
 final class CloudflareDnsZoneTransfersPeer extends Resource {
   static const String tfType = 'cloudflare_dns_zone_transfers_peer';
 
-  CloudflareDnsZoneTransfersPeer({
-    required super.localName,
+  CloudflareDnsZoneTransfersPeer(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? ip,
     TfArg<bool>? ixfrEnable,

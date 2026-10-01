@@ -38,14 +38,14 @@ final class TagsStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/tags_stack.app.dart'),
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
     // the service account in-stack and bind against its `principal`
     // (a bare `serviceAccount:...@example.com` literal would fail apply).
     final tagger = add(
       GoogleServiceAccount(
-        localName: 'tagger',
+        'tagger',
         accountId: .literal('terradart-tagger'),
         displayName: .literal('Resource Manager tag operator'),
       ),
@@ -55,7 +55,7 @@ final class TagsStack extends Stack {
     // resolve the number from the `google_project` data source.
     final envKey = add(
       GoogleTagsTagKey(
-        localName: 'env',
+        'env',
         shortName: .literal('terradart-env'),
         parent: .literal('projects/${current.number.interpolation}'),
         description: .literal('Deployment environment (terradart demo)'),
@@ -65,7 +65,7 @@ final class TagsStack extends Stack {
     // A value under the key. `parent` is the key's resource id (`tagKeys/...`).
     final prodValue = add(
       GoogleTagsTagValue(
-        localName: 'prod',
+        'prod',
         shortName: .literal('production'),
         parent: envKey.ref,
         description: .literal('Production environment'),
@@ -76,7 +76,7 @@ final class TagsStack extends Stack {
     // name; `tag_value` is the value's resource id (`tagValues/...`).
     add(
       GoogleTagsTagBinding(
-        localName: 'project_env',
+        'project_env',
         parent: .literal(
           '//cloudresourcemanager.googleapis.com/projects/'
           '${current.number.interpolation}',
@@ -89,7 +89,7 @@ final class TagsStack extends Stack {
     // Tag-key IAM: member → binding → policy (ordered teardown).
     final envViewer = add(
       GoogleTagsTagKeyIamMember(
-        localName: 'env_viewer',
+        'env_viewer',
         tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
         member: tagger.principal,
@@ -99,7 +99,7 @@ final class TagsStack extends Stack {
 
     final envViewerBinding = add(
       GoogleTagsTagKeyIamBinding(
-        localName: 'env_viewer_binding',
+        'env_viewer_binding',
         tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
         members: .literal([tagger.principal]),
@@ -109,7 +109,7 @@ final class TagsStack extends Stack {
 
     add(
       GoogleTagsTagKeyIamPolicy(
-        localName: 'env_viewer_policy',
+        'env_viewer_policy',
         tagKey: envKey.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -125,7 +125,7 @@ final class TagsStack extends Stack {
     // Tag-value IAM: member → binding → policy (ordered teardown).
     final prodUser = add(
       GoogleTagsTagValueIamMember(
-        localName: 'prod_user',
+        'prod_user',
         tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
         member: tagger.principal,
@@ -135,7 +135,7 @@ final class TagsStack extends Stack {
 
     final prodUserBinding = add(
       GoogleTagsTagValueIamBinding(
-        localName: 'prod_user_binding',
+        'prod_user_binding',
         tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
         members: .literal([tagger.principal]),
@@ -145,7 +145,7 @@ final class TagsStack extends Stack {
 
     add(
       GoogleTagsTagValueIamPolicy(
-        localName: 'prod_user_policy',
+        'prod_user_policy',
         tagValue: prodValue.ref,
         policyData: .literal(
           _iamPolicyDataJson(

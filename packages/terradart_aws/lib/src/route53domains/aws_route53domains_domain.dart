@@ -507,8 +507,8 @@ final class Route53domainsDomainTechContact {
 final class AwsRoute53domainsDomain extends Resource {
   static const String tfType = 'aws_route53domains_domain';
 
-  AwsRoute53domainsDomain({
-    required super.localName,
+  AwsRoute53domainsDomain(
+    super.localName, {
     TfArg<bool>? adminPrivacy,
     TfArg<bool>? autoRenew,
     TfArg<List<Map<String, Object?>>>? billingContact,

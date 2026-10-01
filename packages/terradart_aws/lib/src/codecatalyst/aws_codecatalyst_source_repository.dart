@@ -10,8 +10,8 @@ const Set<String> _awsCodecatalystSourceRepositorySensitive = <String>{};
 final class AwsCodecatalystSourceRepository extends Resource {
   static const String tfType = 'aws_codecatalyst_source_repository';
 
-  AwsCodecatalystSourceRepository({
-    required super.localName,
+  AwsCodecatalystSourceRepository(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> projectName,

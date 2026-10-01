@@ -89,8 +89,8 @@ final class Ec2HostInstanceType extends Ec2HostInstance {
 final class AwsEc2Host extends Resource {
   static const String tfType = 'aws_ec2_host';
 
-  AwsEc2Host({
-    required super.localName,
+  AwsEc2Host(
+    super.localName, {
     TfArg<String>? assetId,
     TfArg<Ec2HostAutoPlacement>? autoPlacement,
     required TfArg<String> availabilityZone,

@@ -61,8 +61,8 @@ enum Route53ResolverRuleProtocol implements TerraformEnum {
 final class AwsRoute53ResolverRule extends Resource {
   static const String tfType = 'aws_route53_resolver_rule';
 
-  AwsRoute53ResolverRule({
-    required super.localName,
+  AwsRoute53ResolverRule(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? name,
     TfArg<String>? region,

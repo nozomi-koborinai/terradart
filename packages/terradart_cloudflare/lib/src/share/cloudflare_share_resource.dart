@@ -27,8 +27,8 @@ enum ShareResourceResourceType implements TerraformEnum {
 final class CloudflareShareResource extends Resource {
   static const String tfType = 'cloudflare_share_resource';
 
-  CloudflareShareResource({
-    required super.localName,
+  CloudflareShareResource(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> meta,
     required TfArg<String> resourceAccountId,

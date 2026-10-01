@@ -312,8 +312,8 @@ final class Sesv2ConfigurationSetEventDestinationSnsDestination {
 final class AwsSesv2ConfigurationSetEventDestination extends Resource {
   static const String tfType = 'aws_sesv2_configuration_set_event_destination';
 
-  AwsSesv2ConfigurationSetEventDestination({
-    required super.localName,
+  AwsSesv2ConfigurationSetEventDestination(
+    super.localName, {
     required TfArg<String> configurationSetName,
     required TfArg<String> eventDestinationName,
     TfArg<String>? region,

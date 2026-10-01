@@ -32,12 +32,12 @@ final class EdgeStack extends Stack {
         appExports: AppExports('lib/generated/edge_stack.app.dart'),
       ) {
     final zone = add(CloudflareZone(
-      localName: 'main',
+      'main',
       name: .literal('example.com'),
       account: ZoneAccount(id: .literal(accountId)),
     ));
     final api = add(CloudflareDnsRecord(
-      localName: 'api',
+      'api',
       zoneId: zone.ref, // only a CloudflareZone fits here
       name: .literal('api.example.com'),
       type: .literal(.cname),

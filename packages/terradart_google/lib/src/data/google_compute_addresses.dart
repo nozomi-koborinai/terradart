@@ -13,8 +13,8 @@ const Set<String> _googleComputeAddressesSensitive = <String>{};
 final class DataGoogleComputeAddresses extends Data {
   static const String tfType = 'google_compute_addresses';
 
-  DataGoogleComputeAddresses({
-    required super.localName,
+  DataGoogleComputeAddresses(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     TfArg<String>? region,

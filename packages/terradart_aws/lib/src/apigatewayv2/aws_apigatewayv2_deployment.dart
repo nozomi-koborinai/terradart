@@ -10,8 +10,8 @@ const Set<String> _awsApigatewayv2DeploymentSensitive = <String>{};
 final class AwsApigatewayv2Deployment extends Resource {
   static const String tfType = 'aws_apigatewayv2_deployment';
 
-  AwsApigatewayv2Deployment({
-    required super.localName,
+  AwsApigatewayv2Deployment(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? description,
     TfArg<String>? region,

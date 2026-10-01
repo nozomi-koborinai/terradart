@@ -180,8 +180,8 @@ final class SccOrganizationCustomModuleResourceSelector {
 final class GoogleSccOrganizationCustomModule extends Resource {
   static const String tfType = 'google_scc_organization_custom_module';
 
-  GoogleSccOrganizationCustomModule({
-    required super.localName,
+  GoogleSccOrganizationCustomModule(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required TfArg<SccOrganizationCustomModuleEnablementState> enablementState,

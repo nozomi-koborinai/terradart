@@ -10,8 +10,8 @@ const Set<String> _awsWafregionalWebAclAssociationSensitive = <String>{};
 final class AwsWafregionalWebAclAssociation extends Resource {
   static const String tfType = 'aws_wafregional_web_acl_association';
 
-  AwsWafregionalWebAclAssociation({
-    required super.localName,
+  AwsWafregionalWebAclAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     required TfArg<String> webAclId,

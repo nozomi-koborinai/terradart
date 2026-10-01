@@ -45,8 +45,8 @@ final class GoogleIapAgentRegistryMcpServerIamMember extends Resource {
   static const String tfType =
       'google_iap_agent_registry_mcp_server_iam_member';
 
-  GoogleIapAgentRegistryMcpServerIamMember({
-    required super.localName,
+  GoogleIapAgentRegistryMcpServerIamMember(
+    super.localName, {
     required TfArg<String> mcpServerId,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -13,8 +13,8 @@ final class DataCloudflareZeroTrustDeviceManagedNetworksList extends Data {
   static const String tfType =
       'cloudflare_zero_trust_device_managed_networks_list';
 
-  DataCloudflareZeroTrustDeviceManagedNetworksList({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceManagedNetworksList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

@@ -53,8 +53,8 @@ final class DataZeroTrustDexTestTargetPolicies {
 final class DataCloudflareZeroTrustDexTest extends Data {
   static const String tfType = 'cloudflare_zero_trust_dex_test';
 
-  DataCloudflareZeroTrustDexTest({
-    required super.localName,
+  DataCloudflareZeroTrustDexTest(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? dexTestId,
     DataZeroTrustDexTestFilter? filter,

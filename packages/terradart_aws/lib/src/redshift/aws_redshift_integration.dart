@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftIntegrationSensitive = <String>{};
 final class AwsRedshiftIntegration extends Resource {
   static const String tfType = 'aws_redshift_integration';
 
-  AwsRedshiftIntegration({
-    required super.localName,
+  AwsRedshiftIntegration(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<String>? description,
     required TfArg<String> integrationName,

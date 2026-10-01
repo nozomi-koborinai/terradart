@@ -14,8 +14,8 @@ const Set<String> _googleGkeHubFeatureSensitive = <String>{};
 final class DataGoogleGkeHubFeature extends Data {
   static const String tfType = 'google_gke_hub_feature';
 
-  DataGoogleGkeHubFeature({
-    required super.localName,
+  DataGoogleGkeHubFeature(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

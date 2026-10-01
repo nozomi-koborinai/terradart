@@ -27,8 +27,8 @@ const Set<String> _googleDiscoveryEngineServingConfigSensitive = <String>{};
 final class GoogleDiscoveryEngineServingConfig extends Resource {
   static const String tfType = 'google_discovery_engine_serving_config';
 
-  GoogleDiscoveryEngineServingConfig({
-    required super.localName,
+  GoogleDiscoveryEngineServingConfig(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,

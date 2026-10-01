@@ -53,8 +53,8 @@ final class AwsS3controlDirectoryBucketAccessPointScope extends Resource {
   static const String tfType =
       'aws_s3control_directory_bucket_access_point_scope';
 
-  AwsS3controlDirectoryBucketAccessPointScope({
-    required super.localName,
+  AwsS3controlDirectoryBucketAccessPointScope(
+    super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> name,
     TfArg<String>? region,

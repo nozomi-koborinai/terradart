@@ -38,8 +38,8 @@ final class BiglakeIcebergCatalogIamMemberCondition {
 final class GoogleBiglakeIcebergCatalogIamMember extends Resource {
   static const String tfType = 'google_biglake_iceberg_catalog_iam_member';
 
-  GoogleBiglakeIcebergCatalogIamMember({
-    required super.localName,
+  GoogleBiglakeIcebergCatalogIamMember(
+    super.localName, {
     required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> role,
     required IamPrincipal member,

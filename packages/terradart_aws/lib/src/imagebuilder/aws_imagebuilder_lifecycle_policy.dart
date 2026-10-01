@@ -253,8 +253,8 @@ final class ImagebuilderLifecyclePolicyRecipe {
 final class AwsImagebuilderLifecyclePolicy extends Resource {
   static const String tfType = 'aws_imagebuilder_lifecycle_policy';
 
-  AwsImagebuilderLifecyclePolicy({
-    required super.localName,
+  AwsImagebuilderLifecyclePolicy(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> executionRole,
     required TfArg<String> name,

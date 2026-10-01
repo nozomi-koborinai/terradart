@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetappStoragePool(
-  ///   localName: 'pool',
+  ///   'pool',
   ///   name: TfArg.literal('terradart-pool'),
   ///   location: TfArg.literal('us-central1'),
   ///   network: vpc.ref,

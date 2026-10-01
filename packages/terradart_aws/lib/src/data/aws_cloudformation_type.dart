@@ -11,8 +11,8 @@ const Set<String> _awsCloudformationTypeSensitive = <String>{};
 final class DataAwsCloudformationType extends Data {
   static const String tfType = 'aws_cloudformation_type';
 
-  DataAwsCloudformationType({
-    required super.localName,
+  DataAwsCloudformationType(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? region,
     TfArg<String>? type,

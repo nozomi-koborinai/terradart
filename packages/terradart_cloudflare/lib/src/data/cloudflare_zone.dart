@@ -127,8 +127,8 @@ final class DataZoneAccount {
 final class DataCloudflareZone extends Data {
   static const String tfType = 'cloudflare_zone';
 
-  DataCloudflareZone({
-    required super.localName,
+  DataCloudflareZone(
+    super.localName, {
     TfArg<String>? zoneId,
     DataZoneFilter? filter,
     super.provider,

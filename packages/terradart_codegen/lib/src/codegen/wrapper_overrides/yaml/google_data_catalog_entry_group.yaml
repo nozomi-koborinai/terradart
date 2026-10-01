@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataCatalogEntryGroup(
-  ///   localName: 'group',
+  ///   'group',
   ///   entryGroupId: TfArg.literal('terradart_entry_group'),
   ///   region: TfArg.literal('us-central1'),
   ///   displayName: TfArg.literal('TerraDart entry group'),

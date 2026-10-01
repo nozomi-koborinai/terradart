@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkSecurityServerTlsPolicy(
-  ///   localName: 'frontend',
+  ///   'frontend',
   ///   name: TfArg.literal('terradart-server-tls'),
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('TerraDart smoke server TLS policy'),

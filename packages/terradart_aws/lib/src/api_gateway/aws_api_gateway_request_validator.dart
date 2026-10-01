@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayRequestValidatorSensitive = <String>{};
 final class AwsApiGatewayRequestValidator extends Resource {
   static const String tfType = 'aws_api_gateway_request_validator';
 
-  AwsApiGatewayRequestValidator({
-    required super.localName,
+  AwsApiGatewayRequestValidator(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> restApiId,

@@ -11,8 +11,8 @@ const Set<String> _awsVpcIpamPreviewNextCidrSensitive = <String>{};
 final class DataAwsVpcIpamPreviewNextCidr extends Data {
   static const String tfType = 'aws_vpc_ipam_preview_next_cidr';
 
-  DataAwsVpcIpamPreviewNextCidr({
-    required super.localName,
+  DataAwsVpcIpamPreviewNextCidr(
+    super.localName, {
     TfArg<List<String>>? disallowedCidrs,
     required TfArg<String> ipamPoolId,
     TfArg<num>? netmaskLength,

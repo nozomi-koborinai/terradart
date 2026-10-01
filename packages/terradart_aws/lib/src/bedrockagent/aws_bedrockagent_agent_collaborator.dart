@@ -35,8 +35,8 @@ final class BedrockagentAgentCollaboratorAgentDescriptor {
 final class AwsBedrockagentAgentCollaborator extends Resource {
   static const String tfType = 'aws_bedrockagent_agent_collaborator';
 
-  AwsBedrockagentAgentCollaborator({
-    required super.localName,
+  AwsBedrockagentAgentCollaborator(
+    super.localName, {
     required TfArg<String> agentId,
     TfArg<String>? agentVersion,
     required TfArg<String> collaborationInstruction,

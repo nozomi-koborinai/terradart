@@ -693,8 +693,8 @@ enum NetworkfirewallRuleGroupRuleOrder implements TerraformEnum {
 final class AwsNetworkfirewallRuleGroup extends Resource {
   static const String tfType = 'aws_networkfirewall_rule_group';
 
-  AwsNetworkfirewallRuleGroup({
-    required super.localName,
+  AwsNetworkfirewallRuleGroup(
+    super.localName, {
     required TfArg<num> capacity,
     TfArg<String>? description,
     required TfArg<String> name,

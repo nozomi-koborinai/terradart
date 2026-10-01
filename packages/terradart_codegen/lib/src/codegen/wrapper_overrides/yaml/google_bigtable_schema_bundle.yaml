@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBigtableSchemaBundle(
-  ///   localName: 'events_proto',
+  ///   'events_proto',
   ///   schemaBundleId: TfArg.literal('events-proto'),
   ///   instance: instance.ref,
   ///   table: table.ref,

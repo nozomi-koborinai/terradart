@@ -130,8 +130,8 @@ final class ContactCenterInsightsAssessmentRuleScheduleInfo {
 final class GoogleContactCenterInsightsAssessmentRule extends Resource {
   static const String tfType = 'google_contact_center_insights_assessment_rule';
 
-  GoogleContactCenterInsightsAssessmentRule({
-    required super.localName,
+  GoogleContactCenterInsightsAssessmentRule(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? assessmentRuleId,
     TfArg<String>? displayName,

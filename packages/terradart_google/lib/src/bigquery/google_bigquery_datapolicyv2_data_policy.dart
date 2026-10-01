@@ -86,7 +86,7 @@ class BigqueryDatapolicyv2DataPolicyDataGovernanceTag {
 /// Example (raw-data access):
 /// ```dart
 /// GoogleBigqueryDatapolicyv2DataPolicy(
-///   localName: 'raw_access',
+///   'raw_access',
 ///   location: TfArg.literal('us-central1'),
 ///   dataPolicyId: TfArg.literal('raw-access'),
 ///   dataPolicyType: TfArg.literal(
@@ -98,7 +98,7 @@ class BigqueryDatapolicyv2DataPolicyDataGovernanceTag {
 /// Example (predefined email mask):
 /// ```dart
 /// GoogleBigqueryDatapolicyv2DataPolicy(
-///   localName: 'email_mask_v2',
+///   'email_mask_v2',
 ///   location: TfArg.literal('us-central1'),
 ///   dataPolicyId: TfArg.literal('email-mask-v2'),
 ///   dataPolicyType: TfArg.literal(
@@ -113,8 +113,8 @@ class BigqueryDatapolicyv2DataPolicyDataGovernanceTag {
 final class GoogleBigqueryDatapolicyv2DataPolicy extends Resource {
   static const String tfType = 'google_bigquery_datapolicyv2_data_policy';
 
-  GoogleBigqueryDatapolicyv2DataPolicy({
-    required super.localName,
+  GoogleBigqueryDatapolicyv2DataPolicy(
+    super.localName, {
     required TfArg<String> dataPolicyId,
     required TfArg<BigqueryDatapolicyv2DataPolicyType> dataPolicyType,
     required TfArg<String> location,

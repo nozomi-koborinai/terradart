@@ -37,8 +37,8 @@ final class NetworkServicesMulticastGroupRangeLogConfig {
 final class GoogleNetworkServicesMulticastGroupRange extends Resource {
   static const String tfType = 'google_network_services_multicast_group_range';
 
-  GoogleNetworkServicesMulticastGroupRange({
-    required super.localName,
+  GoogleNetworkServicesMulticastGroupRange(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastGroupRangeId,
     required TfArg<String> multicastDomain,

@@ -4102,8 +4102,8 @@ final class ChronicleFeedWorkspaceUsersSettings {
 final class GoogleChronicleFeed extends Resource {
   static const String tfType = 'google_chronicle_feed';
 
-  GoogleChronicleFeed({
-    required super.localName,
+  GoogleChronicleFeed(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     TfArg<String>? displayName,

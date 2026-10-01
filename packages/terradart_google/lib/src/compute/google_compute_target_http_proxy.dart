@@ -37,7 +37,7 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 /// Example:
 /// ```dart
 /// final httpProxy = GoogleComputeTargetHttpProxy(
-///   localName: 'lb_http',
+///   'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),
 ///   urlMap: urlMap.ref,
 /// );
@@ -48,8 +48,8 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 final class GoogleComputeTargetHttpProxy extends Resource {
   static const String tfType = 'google_compute_target_http_proxy';
 
-  GoogleComputeTargetHttpProxy({
-    required super.localName,
+  GoogleComputeTargetHttpProxy(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeUrlMap> urlMap,
     TfArg<bool>? proxyBind,

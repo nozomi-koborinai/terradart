@@ -40,8 +40,8 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamMember extends Resource {
   static const String tfType =
       'google_bigquery_analytics_hub_data_exchange_iam_member';
 
-  GoogleBigqueryAnalyticsHubDataExchangeIamMember({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubDataExchangeIamMember(
+    super.localName, {
     required RefTo<GoogleBigqueryAnalyticsHubDataExchange> dataExchange,
     TfArg<String>? location,
     required IamPrincipal member,

@@ -20,8 +20,8 @@ enum SesReceiptFilterPolicy implements TerraformEnum {
 final class AwsSesReceiptFilter extends Resource {
   static const String tfType = 'aws_ses_receipt_filter';
 
-  AwsSesReceiptFilter({
-    required super.localName,
+  AwsSesReceiptFilter(
+    super.localName, {
     required TfArg<String> cidr,
     required TfArg<String> name,
     required TfArg<SesReceiptFilterPolicy> policy,

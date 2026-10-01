@@ -82,8 +82,8 @@ final class ImagebuilderWorkflowDocumentUri
 final class AwsImagebuilderWorkflow extends Resource {
   static const String tfType = 'aws_imagebuilder_workflow';
 
-  AwsImagebuilderWorkflow({
-    required super.localName,
+  AwsImagebuilderWorkflow(
+    super.localName, {
     TfArg<String>? changeDescription,
     required ImagebuilderWorkflowDocument document,
     TfArg<String>? description,

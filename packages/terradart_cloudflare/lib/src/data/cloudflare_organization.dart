@@ -108,8 +108,8 @@ final class DataOrganizationParent {
 final class DataCloudflareOrganization extends Data {
   static const String tfType = 'cloudflare_organization';
 
-  DataCloudflareOrganization({
-    required super.localName,
+  DataCloudflareOrganization(
+    super.localName, {
     TfArg<String>? organizationId,
     DataOrganizationFilter? filter,
     super.provider,

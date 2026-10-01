@@ -186,6 +186,25 @@ Rename the calls; synth output does not change.
 | `final project = addData(DataGoogleProject(...));` | `final project = add(DataGoogleProject(...));` |
 | `stack.addData(trust);` | `stack.add(trust);` |
 
+### The local name is the first argument
+
+Every resource, data source and `ModuleCall` takes its Terraform local name
+as its first positional argument instead of `localName:`. Synth output does
+not change.
+
+| 0.31 | 0.32 |
+|------|------|
+| `GooglePubsubTopic(localName: 'orders', name: .literal('orders'))` | `GooglePubsubTopic('orders', name: .literal('orders'))` |
+| `AwsIamRole(localName: 'hello', ...)` | `AwsIamRole('hello', ...)` |
+| `ModuleCall(localName: 'network', source: './network')` | `ModuleCall('network', source: './network')` |
+| `MyResource({required super.localName, ...})` | `MyResource(super.localName, {...})` |
+
+`dart fix` cannot turn a named argument into a positional one. In most
+code, deleting the label is the whole change: search for `localName: ` and
+remove it where it is the first argument of a constructor call. A
+hand-written `Resource`, `Data` or `ModuleCall` subclass takes
+`super.localName` positionally.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

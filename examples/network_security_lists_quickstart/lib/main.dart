@@ -26,7 +26,7 @@ final class ListsStack extends Stack {
       ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
-        localName: 'api_networksecurity',
+        'api_networksecurity',
         service: .literal('networksecurity.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -34,7 +34,7 @@ final class ListsStack extends Stack {
 
     final blocklist = add(
       GoogleNetworkSecurityAddressGroup(
-        localName: 'blocklist',
+        'blocklist',
         name: .literal('terradart-blocklist'),
         parent: .literal('projects/$projectId'),
         location: .literal('us-central1'),
@@ -48,7 +48,7 @@ final class ListsStack extends Stack {
 
     add(
       GoogleNetworkSecurityUrlLists(
-        localName: 'allowlist',
+        'allowlist',
         name: .literal('terradart-allowlist'),
         location: .literal('us-central1'),
         values: .literal(const ['*.example.com', 'docs.example.org']),
@@ -62,7 +62,7 @@ final class ListsStack extends Stack {
     // enables any API must enable every API its resources need.
     final apiNetworkConnectivity = add(
       GoogleProjectService(
-        localName: 'api_networkconnectivity',
+        'api_networkconnectivity',
         service: .literal('networkconnectivity.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -70,7 +70,7 @@ final class ListsStack extends Stack {
 
     add(
       GoogleNetworkConnectivityHub(
-        localName: 'hub',
+        'hub',
         name: .literal('terradart-hub'),
         description: .literal('NCC routing hub (terradart demo)'),
         dependsOn: [apiNetworkConnectivity],
@@ -79,7 +79,7 @@ final class ListsStack extends Stack {
 
     final auditor = add(
       GoogleServiceAccount(
-        localName: 'address_group_auditor',
+        'address_group_auditor',
         accountId: .literal('terradart-ag-auditor'),
         displayName: .literal('Address group auditor'),
       ),
@@ -87,7 +87,7 @@ final class ListsStack extends Stack {
 
     add(
       GoogleNetworkSecurityAddressGroupIamMember(
-        localName: 'blocklist_auditor',
+        'blocklist_auditor',
         addressGroup: blocklist.ref,
         role: .literal('roles/viewer'),
         member: auditor.principal,

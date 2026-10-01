@@ -78,8 +78,8 @@ final class BiglakeTableSerdeInfo {
 final class GoogleBiglakeTable extends Resource {
   static const String tfType = 'google_biglake_table';
 
-  GoogleBiglakeTable({
-    required super.localName,
+  GoogleBiglakeTable(
+    super.localName, {
     required TfArg<String> name,
     RefTo<GoogleBiglakeDatabase>? database,
     TfArg<String>? type,

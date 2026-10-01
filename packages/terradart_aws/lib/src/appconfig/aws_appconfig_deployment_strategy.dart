@@ -30,8 +30,8 @@ enum AppconfigDeploymentStrategyReplicateTo implements TerraformEnum {
 final class AwsAppconfigDeploymentStrategy extends Resource {
   static const String tfType = 'aws_appconfig_deployment_strategy';
 
-  AwsAppconfigDeploymentStrategy({
-    required super.localName,
+  AwsAppconfigDeploymentStrategy(
+    super.localName, {
     required TfArg<num> deploymentDurationInMinutes,
     TfArg<String>? description,
     TfArg<num>? finalBakeTimeInMinutes,

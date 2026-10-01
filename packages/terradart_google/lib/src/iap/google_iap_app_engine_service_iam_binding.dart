@@ -42,8 +42,8 @@ final class IapAppEngineServiceIamBindingCondition {
 final class GoogleIapAppEngineServiceIamBinding extends Resource {
   static const String tfType = 'google_iap_app_engine_service_iam_binding';
 
-  GoogleIapAppEngineServiceIamBinding({
-    required super.localName,
+  GoogleIapAppEngineServiceIamBinding(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> service,
     required TfArg<String> role,

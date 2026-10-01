@@ -14,8 +14,8 @@ const Set<String> _awsS3filesFileSystemSensitive = <String>{};
 final class AwsS3filesFileSystem extends Resource {
   static const String tfType = 'aws_s3files_file_system';
 
-  AwsS3filesFileSystem({
-    required super.localName,
+  AwsS3filesFileSystem(
+    super.localName, {
     TfArg<bool>? acceptBucketWarning,
     required RefTo<AwsS3Bucket> bucket,
     RefTo<AwsKmsKey>? kmsKeyId,

@@ -39,8 +39,8 @@ final class GoogleComputeRegionBackendServiceIamMember extends Resource {
   static const String tfType =
       'google_compute_region_backend_service_iam_member';
 
-  GoogleComputeRegionBackendServiceIamMember({
-    required super.localName,
+  GoogleComputeRegionBackendServiceIamMember(
+    super.localName, {
     required IamPrincipal member,
     required RefTo<GoogleComputeRegionBackendService> backendService,
     TfArg<String>? project,

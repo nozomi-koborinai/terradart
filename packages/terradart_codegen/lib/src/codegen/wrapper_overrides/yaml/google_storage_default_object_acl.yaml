@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageDefaultObjectAcl(
-  ///   localName: 'legacy_default',
+  ///   'legacy_default',
   ///   bucket: legacy.ref,
   ///   roleEntity: TfArg.literal([
   ///     'OWNER:project-owners-\${current.number}',

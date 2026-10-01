@@ -21,8 +21,8 @@ enum Pinpointsmsvoicev2KeywordAction implements TerraformEnum {
 final class AwsPinpointsmsvoicev2Keyword extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_keyword';
 
-  AwsPinpointsmsvoicev2Keyword({
-    required super.localName,
+  AwsPinpointsmsvoicev2Keyword(
+    super.localName, {
     required TfArg<String> keyword,
     TfArg<Pinpointsmsvoicev2KeywordAction>? keywordAction,
     required TfArg<String> keywordMessage,

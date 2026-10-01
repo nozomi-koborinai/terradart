@@ -28,8 +28,8 @@ final class DataZeroTrustDeviceIpProfileFilter {
 final class DataCloudflareZeroTrustDeviceIpProfile extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_ip_profile';
 
-  DataCloudflareZeroTrustDeviceIpProfile({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceIpProfile(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? profileId,
     DataZeroTrustDeviceIpProfileFilter? filter,

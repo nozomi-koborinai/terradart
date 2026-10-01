@@ -28,8 +28,8 @@ final class DataCustomerGatewayFilter {
 final class DataAwsCustomerGateway extends Data {
   static const String tfType = 'aws_customer_gateway';
 
-  DataAwsCustomerGateway({
-    required super.localName,
+  DataAwsCustomerGateway(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataCustomerGatewayFilter>? filter,

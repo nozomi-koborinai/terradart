@@ -37,7 +37,7 @@ enum NetworkSecurityDnsThreatDetectorProvider implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleNetworkSecurityDnsThreatDetector(
-///   localName: 'dns_threat',
+///   'dns_threat',
 ///   name: TfArg.literal('terradart-dns-threat'),
 ///   location: TfArg.literal('global'),
 ///   threatDetectorProvider: TfArg.literal(
@@ -48,8 +48,8 @@ enum NetworkSecurityDnsThreatDetectorProvider implements TerraformEnum {
 final class GoogleNetworkSecurityDnsThreatDetector extends Resource {
   static const String tfType = 'google_network_security_dns_threat_detector';
 
-  GoogleNetworkSecurityDnsThreatDetector({
-    required super.localName,
+  GoogleNetworkSecurityDnsThreatDetector(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<NetworkSecurityDnsThreatDetectorProvider>? threatDetectorProvider,

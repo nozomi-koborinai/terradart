@@ -28,8 +28,8 @@ final class DataNetworkAclsFilter {
 final class DataAwsNetworkAcls extends Data {
   static const String tfType = 'aws_network_acls';
 
-  DataAwsNetworkAcls({
-    required super.localName,
+  DataAwsNetworkAcls(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,

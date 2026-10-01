@@ -10,8 +10,8 @@ const Set<String> _awsIdentitystoreGroupMembershipsSensitive = <String>{};
 final class DataAwsIdentitystoreGroupMemberships extends Data {
   static const String tfType = 'aws_identitystore_group_memberships';
 
-  DataAwsIdentitystoreGroupMemberships({
-    required super.localName,
+  DataAwsIdentitystoreGroupMemberships(
+    super.localName, {
     required TfArg<String> groupId,
     required TfArg<String> identityStoreId,
     TfArg<String>? region,

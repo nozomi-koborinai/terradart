@@ -159,8 +159,8 @@ final class DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig {
 final class GoogleDiscoveryEngineRecommendationEngine extends Resource {
   static const String tfType = 'google_discovery_engine_recommendation_engine';
 
-  GoogleDiscoveryEngineRecommendationEngine({
-    required super.localName,
+  GoogleDiscoveryEngineRecommendationEngine(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> engineId,
     required TfArg<String> displayName,

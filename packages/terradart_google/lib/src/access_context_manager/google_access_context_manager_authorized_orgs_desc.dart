@@ -66,7 +66,7 @@ enum AccessContextManagerAuthorizedOrgsDescAuthorizationDirection
 /// Example:
 /// ```dart
 /// GoogleAccessContextManagerAuthorizedOrgsDesc(
-///   localName: 'demo_orgs',
+///   'demo_orgs',
 ///   parent: TfArg.literal(
 ///     'accessPolicies/${policy.name.interpolation}',
 ///   ),
@@ -91,8 +91,8 @@ final class GoogleAccessContextManagerAuthorizedOrgsDesc extends Resource {
   static const String tfType =
       'google_access_context_manager_authorized_orgs_desc';
 
-  GoogleAccessContextManagerAuthorizedOrgsDesc({
-    required super.localName,
+  GoogleAccessContextManagerAuthorizedOrgsDesc(
+    super.localName, {
     required TfArg<String> parent,
     required TfArg<String> name,
     TfArg<List<String>>? orgs,

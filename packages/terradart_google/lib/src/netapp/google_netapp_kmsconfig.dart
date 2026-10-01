@@ -24,8 +24,8 @@ const Set<String> _googleNetappKmsconfigSensitive = <String>{};
 final class GoogleNetappKmsconfig extends Resource {
   static const String tfType = 'google_netapp_kmsconfig';
 
-  GoogleNetappKmsconfig({
-    required super.localName,
+  GoogleNetappKmsconfig(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleKmsCryptoKey> cryptoKeyName,

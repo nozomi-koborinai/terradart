@@ -15,8 +15,8 @@ const Set<String> _cloudflareZeroTrustDeviceIpProfilesSensitive = <String>{};
 final class DataCloudflareZeroTrustDeviceIpProfiles extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_ip_profiles';
 
-  DataCloudflareZeroTrustDeviceIpProfiles({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceIpProfiles(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<num>? perPage,

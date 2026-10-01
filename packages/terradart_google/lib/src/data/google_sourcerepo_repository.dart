@@ -14,8 +14,8 @@ const Set<String> _googleSourcerepoRepositorySensitive = <String>{};
 final class DataGoogleSourcerepoRepository extends Data {
   static const String tfType = 'google_sourcerepo_repository';
 
-  DataGoogleSourcerepoRepository({
-    required super.localName,
+  DataGoogleSourcerepoRepository(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

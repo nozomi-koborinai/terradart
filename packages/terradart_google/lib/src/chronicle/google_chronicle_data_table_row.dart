@@ -23,8 +23,8 @@ const Set<String> _googleChronicleDataTableRowSensitive = <String>{};
 final class GoogleChronicleDataTableRow extends Resource {
   static const String tfType = 'google_chronicle_data_table_row';
 
-  GoogleChronicleDataTableRow({
-    required super.localName,
+  GoogleChronicleDataTableRow(
+    super.localName, {
     required TfArg<String> dataTableId,
     required TfArg<List<String>> values,
     required TfArg<String> location,

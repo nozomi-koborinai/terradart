@@ -38,8 +38,8 @@ final class ComputeRegionDiskIamMemberCondition {
 final class GoogleComputeRegionDiskIamMember extends Resource {
   static const String tfType = 'google_compute_region_disk_iam_member';
 
-  GoogleComputeRegionDiskIamMember({
-    required super.localName,
+  GoogleComputeRegionDiskIamMember(
+    super.localName, {
     required RefTo<GoogleComputeRegionDisk> disk,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -303,8 +303,8 @@ final class AwsComputeoptimizerRecommendationPreferences extends Resource {
   static const String tfType =
       'aws_computeoptimizer_recommendation_preferences';
 
-  AwsComputeoptimizerRecommendationPreferences({
-    required super.localName,
+  AwsComputeoptimizerRecommendationPreferences(
+    super.localName, {
     TfArg<
       ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics
     >?

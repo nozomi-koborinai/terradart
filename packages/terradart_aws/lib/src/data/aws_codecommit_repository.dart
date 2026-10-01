@@ -11,8 +11,8 @@ const Set<String> _awsCodecommitRepositorySensitive = <String>{};
 final class DataAwsCodecommitRepository extends Data {
   static const String tfType = 'aws_codecommit_repository';
 
-  DataAwsCodecommitRepository({
-    required super.localName,
+  DataAwsCodecommitRepository(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> repositoryName,
     super.provider,

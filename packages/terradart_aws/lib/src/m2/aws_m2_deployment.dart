@@ -10,8 +10,8 @@ const Set<String> _awsM2DeploymentSensitive = <String>{};
 final class AwsM2Deployment extends Resource {
   static const String tfType = 'aws_m2_deployment';
 
-  AwsM2Deployment({
-    required super.localName,
+  AwsM2Deployment(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<num> applicationVersion,
     required TfArg<String> environmentId,

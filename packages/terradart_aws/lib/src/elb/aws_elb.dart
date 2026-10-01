@@ -171,8 +171,8 @@ final class ElbListener {
 final class AwsElb extends Resource {
   static const String tfType = 'aws_elb';
 
-  AwsElb({
-    required super.localName,
+  AwsElb(
+    super.localName, {
     TfArg<List<String>>? availabilityZones,
     TfArg<bool>? connectionDraining,
     TfArg<num>? connectionDrainingTimeout,

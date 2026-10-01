@@ -14,8 +14,8 @@ const Set<String> _googleBigqueryConnectionIamPolicySensitive = <String>{};
 final class DataGoogleBigqueryConnectionIamPolicy extends Data {
   static const String tfType = 'google_bigquery_connection_iam_policy';
 
-  DataGoogleBigqueryConnectionIamPolicy({
-    required super.localName,
+  DataGoogleBigqueryConnectionIamPolicy(
+    super.localName, {
     required TfArg<String> connectionId,
     TfArg<String>? location,
     TfArg<String>? project,

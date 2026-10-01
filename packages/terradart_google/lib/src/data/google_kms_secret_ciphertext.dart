@@ -15,8 +15,8 @@ const Set<String> _googleKmsSecretCiphertextSensitive = <String>{'plaintext'};
 final class DataGoogleKmsSecretCiphertext extends Data {
   static const String tfType = 'google_kms_secret_ciphertext';
 
-  DataGoogleKmsSecretCiphertext({
-    required super.localName,
+  DataGoogleKmsSecretCiphertext(
+    super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> plaintext,
     super.provider,

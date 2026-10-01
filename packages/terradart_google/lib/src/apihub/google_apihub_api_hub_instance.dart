@@ -56,8 +56,8 @@ final class ApihubApiHubInstanceConfig {
 final class GoogleApihubApiHubInstance extends Resource {
   static const String tfType = 'google_apihub_api_hub_instance';
 
-  GoogleApihubApiHubInstance({
-    required super.localName,
+  GoogleApihubApiHubInstance(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? apiHubInstanceId,
     TfArg<String>? description,

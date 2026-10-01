@@ -32,8 +32,8 @@ final class NelSettingValue {
 final class CloudflareNelSetting extends Resource {
   static const String tfType = 'cloudflare_nel_setting';
 
-  CloudflareNelSetting({
-    required super.localName,
+  CloudflareNelSetting(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required NelSettingValue value,
     super.lifecycle,

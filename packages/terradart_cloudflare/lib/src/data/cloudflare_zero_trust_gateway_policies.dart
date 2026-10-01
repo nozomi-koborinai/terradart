@@ -11,8 +11,8 @@ const Set<String> _cloudflareZeroTrustGatewayPoliciesSensitive = <String>{};
 final class DataCloudflareZeroTrustGatewayPolicies extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_policies';
 
-  DataCloudflareZeroTrustGatewayPolicies({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayPolicies(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<List<String>>? filter,

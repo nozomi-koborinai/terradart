@@ -21,8 +21,8 @@ enum GuarddutyPublishingDestinationType implements TerraformEnum {
 final class AwsGuarddutyPublishingDestination extends Resource {
   static const String tfType = 'aws_guardduty_publishing_destination';
 
-  AwsGuarddutyPublishingDestination({
-    required super.localName,
+  AwsGuarddutyPublishingDestination(
+    super.localName, {
     required TfArg<String> destinationArn,
     TfArg<GuarddutyPublishingDestinationType>? destinationType,
     required TfArg<String> detectorId,

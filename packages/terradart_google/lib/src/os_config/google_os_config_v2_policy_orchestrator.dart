@@ -838,7 +838,7 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 /// Example:
 /// ```dart
 /// GoogleOsConfigV2PolicyOrchestrator(
-///   localName: 'stopped',
+///   'stopped',
 ///   policyOrchestratorId: TfArg.literal('terradart-po'),
 ///   action: TfArg.literal('UPSERT'),
 ///   state: TfArg.literal('STOPPED'),
@@ -885,8 +885,8 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 final class GoogleOsConfigV2PolicyOrchestrator extends Resource {
   static const String tfType = 'google_os_config_v2_policy_orchestrator';
 
-  GoogleOsConfigV2PolicyOrchestrator({
-    required super.localName,
+  GoogleOsConfigV2PolicyOrchestrator(
+    super.localName, {
     required TfArg<String> policyOrchestratorId,
     required TfArg<String> action,
     required OsConfigV2PolicyOrchestratorOrchestratedResource

@@ -13,8 +13,8 @@ const Set<String> _googleCloudIdentityPoliciesSensitive = <String>{};
 final class DataGoogleCloudIdentityPolicies extends Data {
   static const String tfType = 'google_cloud_identity_policies';
 
-  DataGoogleCloudIdentityPolicies({
-    required super.localName,
+  DataGoogleCloudIdentityPolicies(
+    super.localName, {
     TfArg<String>? filter,
     super.provider,
     super.timeouts,

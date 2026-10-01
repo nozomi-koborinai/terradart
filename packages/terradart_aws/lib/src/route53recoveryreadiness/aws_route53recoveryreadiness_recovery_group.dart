@@ -11,8 +11,8 @@ const Set<String> _awsRoute53recoveryreadinessRecoveryGroupSensitive =
 final class AwsRoute53recoveryreadinessRecoveryGroup extends Resource {
   static const String tfType = 'aws_route53recoveryreadiness_recovery_group';
 
-  AwsRoute53recoveryreadinessRecoveryGroup({
-    required super.localName,
+  AwsRoute53recoveryreadinessRecoveryGroup(
+    super.localName, {
     TfArg<List<String>>? cells,
     required TfArg<String> recoveryGroupName,
     TfArg<Map<String, String>>? tags,

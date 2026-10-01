@@ -16,8 +16,8 @@ final class DataGoogleIapWebRegionForwardingRuleServiceIamPolicy extends Data {
   static const String tfType =
       'google_iap_web_region_forwarding_rule_service_iam_policy';
 
-  DataGoogleIapWebRegionForwardingRuleServiceIamPolicy({
-    required super.localName,
+  DataGoogleIapWebRegionForwardingRuleServiceIamPolicy(
+    super.localName, {
     required TfArg<String> forwardingRuleRegionServiceName,
     TfArg<String>? project,
     TfArg<String>? region,

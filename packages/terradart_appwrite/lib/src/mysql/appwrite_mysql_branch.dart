@@ -24,8 +24,8 @@ const Set<String> _appwriteMysqlBranchSensitive = <String>{
 final class AppwriteMysqlBranch extends Resource {
   static const String tfType = 'appwrite_mysql_branch';
 
-  AppwriteMysqlBranch({
-    required super.localName,
+  AppwriteMysqlBranch(
+    super.localName, {
     TfArg<String>? branchId,
     required RefTo<AppwriteMysqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,

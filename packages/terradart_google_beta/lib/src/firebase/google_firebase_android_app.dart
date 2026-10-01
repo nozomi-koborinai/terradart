@@ -12,8 +12,8 @@ const Set<String> _googleFirebaseAndroidAppSensitive = <String>{};
 final class GoogleFirebaseAndroidApp extends Resource {
   static const String tfType = 'google_firebase_android_app';
 
-  GoogleFirebaseAndroidApp({
-    required super.localName,
+  GoogleFirebaseAndroidApp(
+    super.localName, {
     TfArg<String>? apiKeyId,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,

@@ -28,8 +28,8 @@ final class DataEmailRoutingRuleFilter {
 final class DataCloudflareEmailRoutingRule extends Data {
   static const String tfType = 'cloudflare_email_routing_rule';
 
-  DataCloudflareEmailRoutingRule({
-    required super.localName,
+  DataCloudflareEmailRoutingRule(
+    super.localName, {
     TfArg<String>? ruleIdentifier,
     RefTo<CloudflareZone>? zoneId,
     DataEmailRoutingRuleFilter? filter,

@@ -39,8 +39,8 @@ enum EmailSecurityAllowPolicyPatternType implements TerraformEnum {
 final class CloudflareEmailSecurityAllowPolicy extends Resource {
   static const String tfType = 'cloudflare_email_security_allow_policy';
 
-  CloudflareEmailSecurityAllowPolicy({
-    required super.localName,
+  CloudflareEmailSecurityAllowPolicy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> pattern,
     required TfArg<EmailSecurityAllowPolicyPatternType> patternType,

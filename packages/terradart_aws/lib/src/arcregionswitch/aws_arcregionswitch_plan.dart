@@ -1509,8 +1509,8 @@ final class ArcregionswitchPlanRecordSet {
 final class AwsArcregionswitchPlan extends Resource {
   static const String tfType = 'aws_arcregionswitch_plan';
 
-  AwsArcregionswitchPlan({
-    required super.localName,
+  AwsArcregionswitchPlan(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> executionRole,
     required TfArg<String> name,

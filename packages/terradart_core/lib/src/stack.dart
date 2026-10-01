@@ -270,7 +270,7 @@ abstract base class Stack {
   /// ```dart
   /// addOutput('orders_topic_id', topic.id);
   /// final service = add(GoogleCloudRunV2Service(
-  ///   localName: 'orders',
+  ///   'orders',
   ///   name: .literal('orders'),
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(containers: [
@@ -617,7 +617,7 @@ abstract base class Stack {
   ///
   /// ```dart
   /// final sa = addModule(ModuleCall(
-  ///   localName: 'sa_bff',
+  ///   'sa_bff',
   ///   source: '../modules/service_account',
   ///   inputs: {'account_id': .literal('app-bff-sa')},
   /// ));

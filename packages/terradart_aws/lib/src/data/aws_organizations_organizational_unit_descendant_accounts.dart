@@ -13,8 +13,8 @@ final class DataAwsOrganizationsOrganizationalUnitDescendantAccounts
   static const String tfType =
       'aws_organizations_organizational_unit_descendant_accounts';
 
-  DataAwsOrganizationsOrganizationalUnitDescendantAccounts({
-    required super.localName,
+  DataAwsOrganizationsOrganizationalUnitDescendantAccounts(
+    super.localName, {
     required TfArg<String> parentId,
     super.provider,
     super.timeouts,

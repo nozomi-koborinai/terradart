@@ -94,8 +94,8 @@ final class ConfigOrganizationConformancePackInputParameter {
 final class AwsConfigOrganizationConformancePack extends Resource {
   static const String tfType = 'aws_config_organization_conformance_pack';
 
-  AwsConfigOrganizationConformancePack({
-    required super.localName,
+  AwsConfigOrganizationConformancePack(
+    super.localName, {
     TfArg<String>? deliveryS3Bucket,
     TfArg<String>? deliveryS3KeyPrefix,
     TfArg<List<String>>? excludedAccounts,

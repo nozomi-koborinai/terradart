@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsResourcePolicySensitive = <String>{};
 final class AwsOrganizationsResourcePolicy extends Resource {
   static const String tfType = 'aws_organizations_resource_policy';
 
-  AwsOrganizationsResourcePolicy({
-    required super.localName,
+  AwsOrganizationsResourcePolicy(
+    super.localName, {
     required TfArg<String> content,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

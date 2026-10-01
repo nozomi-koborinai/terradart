@@ -459,8 +459,8 @@ enum AutoscalingplansScalingPlanPredefinedScalingMetricType
 final class AwsAutoscalingplansScalingPlan extends Resource {
   static const String tfType = 'aws_autoscalingplans_scaling_plan';
 
-  AwsAutoscalingplansScalingPlan({
-    required super.localName,
+  AwsAutoscalingplansScalingPlan(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required AutoscalingplansScalingPlanApplicationSource applicationSource,

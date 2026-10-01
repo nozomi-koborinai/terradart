@@ -20,8 +20,8 @@ enum LightsailLbIpAddressType implements TerraformEnum {
 final class AwsLightsailLb extends Resource {
   static const String tfType = 'aws_lightsail_lb';
 
-  AwsLightsailLb({
-    required super.localName,
+  AwsLightsailLb(
+    super.localName, {
     TfArg<String>? healthCheckPath,
     required TfArg<num> instancePort,
     TfArg<LightsailLbIpAddressType>? ipAddressType,

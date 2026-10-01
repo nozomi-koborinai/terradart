@@ -10,8 +10,8 @@ const Set<String> _awsEc2InstanceTypeSensitive = <String>{};
 final class DataAwsEc2InstanceType extends Data {
   static const String tfType = 'aws_ec2_instance_type';
 
-  DataAwsEc2InstanceType({
-    required super.localName,
+  DataAwsEc2InstanceType(
+    super.localName, {
     required TfArg<String> instanceType,
     TfArg<String>? region,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsEc2InstanceMetadataDefaultsSensitive = <String>{};
 final class AwsEc2InstanceMetadataDefaults extends Resource {
   static const String tfType = 'aws_ec2_instance_metadata_defaults';
 
-  AwsEc2InstanceMetadataDefaults({
-    required super.localName,
+  AwsEc2InstanceMetadataDefaults(
+    super.localName, {
     TfArg<String>? httpEndpoint,
     TfArg<num>? httpPutResponseHopLimit,
     TfArg<String>? httpTokens,

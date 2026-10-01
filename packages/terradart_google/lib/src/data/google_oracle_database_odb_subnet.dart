@@ -14,8 +14,8 @@ const Set<String> _googleOracleDatabaseOdbSubnetSensitive = <String>{};
 final class DataGoogleOracleDatabaseOdbSubnet extends Data {
   static const String tfType = 'google_oracle_database_odb_subnet';
 
-  DataGoogleOracleDatabaseOdbSubnet({
-    required super.localName,
+  DataGoogleOracleDatabaseOdbSubnet(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> odbSubnetId,
     required TfArg<String> odbnetwork,

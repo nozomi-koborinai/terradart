@@ -172,8 +172,8 @@ enum LogpushJobTimestampFormat implements TerraformEnum {
 final class CloudflareLogpushJob extends Resource {
   static const String tfType = 'cloudflare_logpush_job';
 
-  CloudflareLogpushJob({
-    required super.localName,
+  CloudflareLogpushJob(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<LogpushJobDataset>? dataset,
     required TfArg<String> destinationConf,

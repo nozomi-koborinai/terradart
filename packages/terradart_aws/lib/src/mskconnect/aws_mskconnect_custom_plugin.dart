@@ -57,8 +57,8 @@ final class MskconnectCustomPluginS3 {
 final class AwsMskconnectCustomPlugin extends Resource {
   static const String tfType = 'aws_mskconnect_custom_plugin';
 
-  AwsMskconnectCustomPlugin({
-    required super.localName,
+  AwsMskconnectCustomPlugin(
+    super.localName, {
     required TfArg<MskconnectCustomPluginContentType> contentType,
     TfArg<String>? description,
     required TfArg<String> name,

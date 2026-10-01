@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightAccountSettingsSensitive = <String>{};
 final class AwsQuicksightAccountSettings extends Resource {
   static const String tfType = 'aws_quicksight_account_settings';
 
-  AwsQuicksightAccountSettings({
-    required super.localName,
+  AwsQuicksightAccountSettings(
+    super.localName, {
     TfArg<String>? awsAccountId,
     TfArg<String>? defaultNamespace,
     TfArg<String>? region,

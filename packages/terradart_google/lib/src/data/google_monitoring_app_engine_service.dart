@@ -13,8 +13,8 @@ const Set<String> _googleMonitoringAppEngineServiceSensitive = <String>{};
 final class DataGoogleMonitoringAppEngineService extends Data {
   static const String tfType = 'google_monitoring_app_engine_service';
 
-  DataGoogleMonitoringAppEngineService({
-    required super.localName,
+  DataGoogleMonitoringAppEngineService(
+    super.localName, {
     required TfArg<String> moduleId,
     TfArg<String>? project,
     super.provider,

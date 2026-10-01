@@ -38,8 +38,8 @@ final class HealthcareDicomStoreNotificationConfig {
 final class GoogleHealthcareDicomStore extends Resource {
   static const String tfType = 'google_healthcare_dicom_store';
 
-  GoogleHealthcareDicomStore({
-    required super.localName,
+  GoogleHealthcareDicomStore(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleHealthcareDataset> dataset,
     TfArg<Map<String, String>>? labels,

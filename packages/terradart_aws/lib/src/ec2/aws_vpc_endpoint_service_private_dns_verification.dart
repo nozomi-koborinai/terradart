@@ -12,8 +12,8 @@ final class AwsVpcEndpointServicePrivateDnsVerification extends Resource {
   static const String tfType =
       'aws_vpc_endpoint_service_private_dns_verification';
 
-  AwsVpcEndpointServicePrivateDnsVerification({
-    required super.localName,
+  AwsVpcEndpointServicePrivateDnsVerification(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceId,
     TfArg<bool>? waitForVerification,

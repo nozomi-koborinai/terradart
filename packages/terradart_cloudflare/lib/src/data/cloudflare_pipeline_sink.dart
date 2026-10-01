@@ -33,8 +33,8 @@ final class DataPipelineSinkFilter {
 final class DataCloudflarePipelineSink extends Data {
   static const String tfType = 'cloudflare_pipeline_sink';
 
-  DataCloudflarePipelineSink({
-    required super.localName,
+  DataCloudflarePipelineSink(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? sinkId,
     DataPipelineSinkFilter? filter,

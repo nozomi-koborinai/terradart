@@ -13,8 +13,8 @@ const Set<String> _awsApigatewayv2VpcLinkSensitive = <String>{};
 final class AwsApigatewayv2VpcLink extends Resource {
   static const String tfType = 'aws_apigatewayv2_vpc_link';
 
-  AwsApigatewayv2VpcLink({
-    required super.localName,
+  AwsApigatewayv2VpcLink(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,

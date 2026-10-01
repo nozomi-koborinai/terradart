@@ -27,8 +27,8 @@ const Set<String> _googleChronicleRuleSensitive = <String>{};
 final class GoogleChronicleRule extends Resource {
   static const String tfType = 'google_chronicle_rule';
 
-  GoogleChronicleRule({
-    required super.localName,
+  GoogleChronicleRule(
+    super.localName, {
     TfArg<String>? text,
     required TfArg<String> location,
     required TfArg<String> instance,

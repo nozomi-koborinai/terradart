@@ -15,8 +15,8 @@ const Set<String> _googleComputeDiskResourcePolicyAttachmentSensitive =
 final class GoogleComputeDiskResourcePolicyAttachment extends Resource {
   static const String tfType = 'google_compute_disk_resource_policy_attachment';
 
-  GoogleComputeDiskResourcePolicyAttachment({
-    required super.localName,
+  GoogleComputeDiskResourcePolicyAttachment(
+    super.localName, {
     required RefTo<GoogleComputeResourcePolicy> name,
     required RefTo<GoogleComputeDisk> disk,
     TfArg<String>? zone,

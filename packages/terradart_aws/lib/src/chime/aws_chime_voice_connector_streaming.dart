@@ -41,8 +41,8 @@ final class ChimeVoiceConnectorStreamingMediaInsightsConfiguration {
 final class AwsChimeVoiceConnectorStreaming extends Resource {
   static const String tfType = 'aws_chime_voice_connector_streaming';
 
-  AwsChimeVoiceConnectorStreaming({
-    required super.localName,
+  AwsChimeVoiceConnectorStreaming(
+    super.localName, {
     required TfArg<num> dataRetention,
     TfArg<bool>? disabled,
     TfArg<String>? region,

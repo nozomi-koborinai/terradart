@@ -170,7 +170,7 @@ final class OrdersStack extends Stack {
         providers: [GoogleProvider(project: projectId)],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    final topic = add(GooglePubsubTopic('orders', name: .literal('orders-prod')));
     addConstant('ordersTopicName', .ref(topic.name));
     addOutput('orders_topic_id', topic.id);
   }
@@ -223,10 +223,10 @@ String deployedTopicId() =>
 `outputEnvironment()` returns exactly those variables — each non-sensitive output registered so far, by variable name, as a `TfArg<String>`: a `String` output as is, any other as `jsonencode(...)` — so a Cloud Run service (or a function) receives the outputs it reads, with no variable name written twice:
 
 ```dart
-final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+final topic = add(GooglePubsubTopic('orders', name: .literal('orders-prod')));
 addOutput('orders_topic_id', topic.id);
 final service = add(GoogleCloudRunV2Service(
-  localName: 'api',
+  'api',
   name: .literal('orders-api'),
   location: .literal('asia-northeast1'),
   template: CloudRunV2ServiceTemplate(containers: [

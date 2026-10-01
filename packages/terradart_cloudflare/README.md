@@ -35,14 +35,14 @@ final class EdgeDnsStack extends Stack {
   EdgeDnsStack()
       : super(providers: [const CloudflareProvider()]) {
     final zone = CloudflareZone(
-      localName: 'main',
+      'main',
       name: .literal('example.com'),
       account: ZoneAccount(id: .literal('your-account-id')),
     );
     add(zone);
     add(
       CloudflareDnsRecord(
-        localName: 'api',
+        'api',
         zoneId: zone.ref,
         name: .literal('api.example.com'),
         type: .literal(.cname),

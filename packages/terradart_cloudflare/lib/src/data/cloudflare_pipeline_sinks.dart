@@ -15,8 +15,8 @@ const Set<String> _cloudflarePipelineSinksSensitive = <String>{};
 final class DataCloudflarePipelineSinks extends Data {
   static const String tfType = 'cloudflare_pipeline_sinks';
 
-  DataCloudflarePipelineSinks({
-    required super.localName,
+  DataCloudflarePipelineSinks(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

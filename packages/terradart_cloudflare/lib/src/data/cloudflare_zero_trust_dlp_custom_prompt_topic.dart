@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpCustomPromptTopicSensitive =
 final class DataCloudflareZeroTrustDlpCustomPromptTopic extends Data {
   static const String tfType = 'cloudflare_zero_trust_dlp_custom_prompt_topic';
 
-  DataCloudflareZeroTrustDlpCustomPromptTopic({
-    required super.localName,
+  DataCloudflareZeroTrustDlpCustomPromptTopic(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> entryId,
     super.provider,

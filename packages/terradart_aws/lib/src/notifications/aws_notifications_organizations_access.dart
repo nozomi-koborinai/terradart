@@ -10,8 +10,8 @@ const Set<String> _awsNotificationsOrganizationsAccessSensitive = <String>{};
 final class AwsNotificationsOrganizationsAccess extends Resource {
   static const String tfType = 'aws_notifications_organizations_access';
 
-  AwsNotificationsOrganizationsAccess({
-    required super.localName,
+  AwsNotificationsOrganizationsAccess(
+    super.localName, {
     required TfArg<bool> enabled,
     super.lifecycle,
     super.dependsOn,

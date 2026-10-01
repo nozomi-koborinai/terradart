@@ -13,8 +13,8 @@ const Set<String> _googleMonitoringMeshIstioServiceSensitive = <String>{};
 final class DataGoogleMonitoringMeshIstioService extends Data {
   static const String tfType = 'google_monitoring_mesh_istio_service';
 
-  DataGoogleMonitoringMeshIstioService({
-    required super.localName,
+  DataGoogleMonitoringMeshIstioService(
+    super.localName, {
     required TfArg<String> meshUid,
     TfArg<String>? project,
     required TfArg<String> serviceName,

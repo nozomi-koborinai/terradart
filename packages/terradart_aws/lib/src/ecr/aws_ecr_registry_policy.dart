@@ -10,8 +10,8 @@ const Set<String> _awsEcrRegistryPolicySensitive = <String>{};
 final class AwsEcrRegistryPolicy extends Resource {
   static const String tfType = 'aws_ecr_registry_policy';
 
-  AwsEcrRegistryPolicy({
-    required super.localName,
+  AwsEcrRegistryPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     super.lifecycle,

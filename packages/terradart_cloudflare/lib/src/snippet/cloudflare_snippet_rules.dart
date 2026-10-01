@@ -44,8 +44,8 @@ final class SnippetRules {
 final class CloudflareSnippetRules extends Resource {
   static const String tfType = 'cloudflare_snippet_rules';
 
-  CloudflareSnippetRules({
-    required super.localName,
+  CloudflareSnippetRules(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required List<SnippetRules> rules,
     super.lifecycle,

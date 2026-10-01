@@ -16,8 +16,8 @@ const Set<String> _googleIapAgentRegistryAgentIamPolicySensitive = <String>{};
 final class GoogleIapAgentRegistryAgentIamPolicy extends Resource {
   static const String tfType = 'google_iap_agent_registry_agent_iam_policy';
 
-  GoogleIapAgentRegistryAgentIamPolicy({
-    required super.localName,
+  GoogleIapAgentRegistryAgentIamPolicy(
+    super.localName, {
     required TfArg<String> agentId,
     required TfArg<String> policyData,
     TfArg<String>? location,

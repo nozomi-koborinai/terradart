@@ -79,8 +79,8 @@ final class Ec2ClientVpnAuthorizationRuleAudienceAuthorizeAllGroups
 final class AwsEc2ClientVpnAuthorizationRule extends Resource {
   static const String tfType = 'aws_ec2_client_vpn_authorization_rule';
 
-  AwsEc2ClientVpnAuthorizationRule({
-    required super.localName,
+  AwsEc2ClientVpnAuthorizationRule(
+    super.localName, {
     required Ec2ClientVpnAuthorizationRuleAudience audience,
     required TfArg<String> clientVpnEndpointId,
     TfArg<String>? description,

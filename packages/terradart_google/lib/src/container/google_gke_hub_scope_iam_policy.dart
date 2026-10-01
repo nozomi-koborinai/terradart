@@ -17,8 +17,8 @@ const Set<String> _googleGkeHubScopeIamPolicySensitive = <String>{};
 final class GoogleGkeHubScopeIamPolicy extends Resource {
   static const String tfType = 'google_gke_hub_scope_iam_policy';
 
-  GoogleGkeHubScopeIamPolicy({
-    required super.localName,
+  GoogleGkeHubScopeIamPolicy(
+    super.localName, {
     required RefTo<GoogleGkeHubScope> scope,
     required TfArg<String> policyData,
     TfArg<String>? project,

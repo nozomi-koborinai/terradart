@@ -44,8 +44,8 @@ final class SsmquicksetupConfigurationManagerConfigurationDefinition {
 final class AwsSsmquicksetupConfigurationManager extends Resource {
   static const String tfType = 'aws_ssmquicksetup_configuration_manager';
 
-  AwsSsmquicksetupConfigurationManager({
-    required super.localName,
+  AwsSsmquicksetupConfigurationManager(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

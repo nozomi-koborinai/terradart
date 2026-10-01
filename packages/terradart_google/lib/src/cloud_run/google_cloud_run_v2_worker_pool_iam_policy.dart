@@ -18,8 +18,8 @@ const Set<String> _googleCloudRunV2WorkerPoolIamPolicySensitive = <String>{};
 final class GoogleCloudRunV2WorkerPoolIamPolicy extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool_iam_policy';
 
-  GoogleCloudRunV2WorkerPoolIamPolicy({
-    required super.localName,
+  GoogleCloudRunV2WorkerPoolIamPolicy(
+    super.localName, {
     required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> policyData,
     TfArg<String>? location,

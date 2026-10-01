@@ -10,8 +10,8 @@ const Set<String> _awsDefaultVpcSensitive = <String>{};
 final class AwsDefaultVpc extends Resource {
   static const String tfType = 'aws_default_vpc';
 
-  AwsDefaultVpc({
-    required super.localName,
+  AwsDefaultVpc(
+    super.localName, {
     TfArg<bool>? assignGeneratedIpv6CidrBlock,
     TfArg<bool>? enableDnsHostnames,
     TfArg<bool>? enableDnsSupport,

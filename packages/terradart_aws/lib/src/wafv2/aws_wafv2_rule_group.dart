@@ -1442,8 +1442,8 @@ final class Wafv2RuleGroupVisibilityConfig {
 final class AwsWafv2RuleGroup extends Resource {
   static const String tfType = 'aws_wafv2_rule_group';
 
-  AwsWafv2RuleGroup({
-    required super.localName,
+  AwsWafv2RuleGroup(
+    super.localName, {
     required TfArg<num> capacity,
     TfArg<String>? description,
     Wafv2RuleGroupName? name,

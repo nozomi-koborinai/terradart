@@ -13,8 +13,8 @@ const Set<String> _googleBiglakeHiveDatabaseSensitive = <String>{};
 final class GoogleBiglakeHiveDatabase extends Resource {
   static const String tfType = 'google_biglake_hive_database';
 
-  GoogleBiglakeHiveDatabase({
-    required super.localName,
+  GoogleBiglakeHiveDatabase(
+    super.localName, {
     required TfArg<String> catalog,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

@@ -12,8 +12,8 @@ const Set<String> _awsS3BucketPolicySensitive = <String>{};
 final class AwsS3BucketPolicy extends Resource {
   static const String tfType = 'aws_s3_bucket_policy';
 
-  AwsS3BucketPolicy({
-    required super.localName,
+  AwsS3BucketPolicy(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> policy,
     TfArg<String>? region,

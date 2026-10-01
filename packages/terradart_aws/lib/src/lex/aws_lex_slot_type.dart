@@ -37,8 +37,8 @@ final class LexSlotTypeEnumerationValue {
 final class AwsLexSlotType extends Resource {
   static const String tfType = 'aws_lex_slot_type';
 
-  AwsLexSlotType({
-    required super.localName,
+  AwsLexSlotType(
+    super.localName, {
     TfArg<bool>? createVersion,
     TfArg<String>? description,
     required TfArg<String> name,

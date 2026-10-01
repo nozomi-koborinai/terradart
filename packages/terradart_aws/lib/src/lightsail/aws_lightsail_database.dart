@@ -10,8 +10,8 @@ const Set<String> _awsLightsailDatabaseSensitive = <String>{'master_password'};
 final class AwsLightsailDatabase extends Resource {
   static const String tfType = 'aws_lightsail_database';
 
-  AwsLightsailDatabase({
-    required super.localName,
+  AwsLightsailDatabase(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<String>? availabilityZone,
     TfArg<bool>? backupRetentionEnabled,

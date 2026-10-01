@@ -33,8 +33,8 @@ enum SsmDefaultPatchBaselineOperatingSystem implements TerraformEnum {
 final class AwsSsmDefaultPatchBaseline extends Resource {
   static const String tfType = 'aws_ssm_default_patch_baseline';
 
-  AwsSsmDefaultPatchBaseline({
-    required super.localName,
+  AwsSsmDefaultPatchBaseline(
+    super.localName, {
     required TfArg<String> baselineId,
     required TfArg<SsmDefaultPatchBaselineOperatingSystem> operatingSystem,
     TfArg<String>? region,

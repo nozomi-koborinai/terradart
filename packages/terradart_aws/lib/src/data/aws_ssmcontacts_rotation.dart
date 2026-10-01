@@ -11,8 +11,8 @@ const Set<String> _awsSsmcontactsRotationSensitive = <String>{};
 final class DataAwsSsmcontactsRotation extends Data {
   static const String tfType = 'aws_ssmcontacts_rotation';
 
-  DataAwsSsmcontactsRotation({
-    required super.localName,
+  DataAwsSsmcontactsRotation(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     super.provider,

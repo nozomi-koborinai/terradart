@@ -71,8 +71,8 @@ final class ProjectIamMemberCondition {
 final class GoogleProjectIamMember extends Resource {
   static const String tfType = 'google_project_iam_member';
 
-  GoogleProjectIamMember({
-    required super.localName,
+  GoogleProjectIamMember(
+    super.localName, {
     required TfArg<String> project,
     required TfArg<String> role,
     required IamPrincipal member,

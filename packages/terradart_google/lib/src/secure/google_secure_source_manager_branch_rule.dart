@@ -22,8 +22,8 @@ const Set<String> _googleSecureSourceManagerBranchRuleSensitive = <String>{};
 final class GoogleSecureSourceManagerBranchRule extends Resource {
   static const String tfType = 'google_secure_source_manager_branch_rule';
 
-  GoogleSecureSourceManagerBranchRule({
-    required super.localName,
+  GoogleSecureSourceManagerBranchRule(
+    super.localName, {
     required TfArg<String> branchRuleId,
     required TfArg<String> location,
     required TfArg<String> repositoryId,

@@ -20,8 +20,8 @@ enum ComputeoptimizerEnrollmentStatus implements TerraformEnum {
 final class AwsComputeoptimizerEnrollmentStatus extends Resource {
   static const String tfType = 'aws_computeoptimizer_enrollment_status';
 
-  AwsComputeoptimizerEnrollmentStatus({
-    required super.localName,
+  AwsComputeoptimizerEnrollmentStatus(
+    super.localName, {
     TfArg<bool>? includeMemberAccounts,
     TfArg<String>? region,
     required TfArg<ComputeoptimizerEnrollmentStatus> status,

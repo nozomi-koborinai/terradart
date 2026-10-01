@@ -17,8 +17,8 @@ const Set<String> _googleKmsKeyRingIamPolicySensitive = <String>{};
 final class GoogleKmsKeyRingIamPolicy extends Resource {
   static const String tfType = 'google_kms_key_ring_iam_policy';
 
-  GoogleKmsKeyRingIamPolicy({
-    required super.localName,
+  GoogleKmsKeyRingIamPolicy(
+    super.localName, {
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> policyData,
     super.lifecycle,

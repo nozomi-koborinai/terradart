@@ -10,8 +10,8 @@ const Set<String> _awsRdsShardGroupSensitive = <String>{};
 final class AwsRdsShardGroup extends Resource {
   static const String tfType = 'aws_rds_shard_group';
 
-  AwsRdsShardGroup({
-    required super.localName,
+  AwsRdsShardGroup(
+    super.localName, {
     TfArg<num>? computeRedundancy,
     required TfArg<String> dbClusterIdentifier,
     required TfArg<String> dbShardGroupIdentifier,

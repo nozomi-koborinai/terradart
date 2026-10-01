@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmonitorMonitorSensitive = <String>{};
 final class AwsNetworkmonitorMonitor extends Resource {
   static const String tfType = 'aws_networkmonitor_monitor';
 
-  AwsNetworkmonitorMonitor({
-    required super.localName,
+  AwsNetworkmonitorMonitor(
+    super.localName, {
     TfArg<num>? aggregationPeriod,
     required TfArg<String> monitorName,
     TfArg<String>? region,

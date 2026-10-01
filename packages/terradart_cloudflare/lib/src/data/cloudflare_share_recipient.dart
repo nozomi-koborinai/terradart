@@ -12,8 +12,8 @@ const Set<String> _cloudflareShareRecipientSensitive = <String>{};
 final class DataCloudflareShareRecipient extends Data {
   static const String tfType = 'cloudflare_share_recipient';
 
-  DataCloudflareShareRecipient({
-    required super.localName,
+  DataCloudflareShareRecipient(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeResources,
     required TfArg<String> recipientId,

@@ -14,8 +14,8 @@ const Set<String> _googleWorkbenchInstanceIamPolicySensitive = <String>{};
 final class DataGoogleWorkbenchInstanceIamPolicy extends Data {
   static const String tfType = 'google_workbench_instance_iam_policy';
 
-  DataGoogleWorkbenchInstanceIamPolicy({
-    required super.localName,
+  DataGoogleWorkbenchInstanceIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

@@ -10,8 +10,8 @@ const Set<String> _awsSesDomainIdentityVerificationSensitive = <String>{};
 final class AwsSesDomainIdentityVerification extends Resource {
   static const String tfType = 'aws_ses_domain_identity_verification';
 
-  AwsSesDomainIdentityVerification({
-    required super.localName,
+  AwsSesDomainIdentityVerification(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? region,
     super.lifecycle,

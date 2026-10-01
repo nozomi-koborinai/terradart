@@ -6,7 +6,7 @@ void main() {
   group('GoogleCloudTasksQueue', () {
     test('queue requires name + location', () {
       final q = GoogleCloudTasksQueue(
-        localName: 'jobs',
+        'jobs',
         name: TfArg.literal('jobs-prod'),
         location: TfArg.literal('us-central1'),
         rateLimits: const CloudTasksQueueRateLimits(
@@ -31,7 +31,7 @@ void main() {
 
     test('queue id ref interpolation', () {
       final q = GoogleCloudTasksQueue(
-        localName: 'jobs',
+        'jobs',
         name: TfArg.literal('jobs-prod'),
         location: TfArg.literal('us-central1'),
       );
@@ -47,7 +47,7 @@ void main() {
 
     test('retry_config + stackdriver_logging_config snake_case keys', () {
       final q = GoogleCloudTasksQueue(
-        localName: 'jobs',
+        'jobs',
         name: TfArg.literal('jobs-prod'),
         location: TfArg.literal('us-central1'),
         retryConfig: const CloudTasksQueueRetryConfig(

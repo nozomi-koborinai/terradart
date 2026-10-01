@@ -158,8 +158,8 @@ final class StorageFtpServerConsumerRejectList {
 final class GoogleStorageFtpServer extends Resource {
   static const String tfType = 'google_storage_ftp_server';
 
-  GoogleStorageFtpServer({
-    required super.localName,
+  GoogleStorageFtpServer(
+    super.localName, {
     required TfArg<String> serverId,
     required TfArg<String> location,
     required TfArg<StorageFtpServerAccessType> accessType,

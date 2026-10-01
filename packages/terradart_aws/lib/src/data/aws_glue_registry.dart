@@ -11,8 +11,8 @@ const Set<String> _awsGlueRegistrySensitive = <String>{};
 final class DataAwsGlueRegistry extends Data {
   static const String tfType = 'aws_glue_registry';
 
-  DataAwsGlueRegistry({
-    required super.localName,
+  DataAwsGlueRegistry(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

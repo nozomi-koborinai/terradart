@@ -133,7 +133,7 @@ final class DataCatalogTagField {
 /// Example:
 /// ```dart
 /// GoogleDataCatalogTag(
-///   localName: 'entry_source',
+///   'entry_source',
 ///   parent: entry.id,
 ///   template: template.ref,
 ///   fields: [
@@ -150,8 +150,8 @@ final class DataCatalogTagField {
 final class GoogleDataCatalogTag extends Resource {
   static const String tfType = 'google_data_catalog_tag';
 
-  GoogleDataCatalogTag({
-    required super.localName,
+  GoogleDataCatalogTag(
+    super.localName, {
     required RefTo<GoogleDataCatalogTagTemplate> template,
     TfArg<String>? parent,
     required List<DataCatalogTagField> fields,

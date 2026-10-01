@@ -12,7 +12,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleApphubBoundary(
-  ///   localName: 'host',
+  ///   'host',
   ///   location: TfArg.literal('global'),
   ///   crmNode: TfArg.literal('projects/${current.number.interpolation}'),
   /// );

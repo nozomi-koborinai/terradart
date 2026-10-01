@@ -27,8 +27,8 @@ final class DataPrefixListFilter {
 final class DataAwsPrefixList extends Data {
   static const String tfType = 'aws_prefix_list';
 
-  DataAwsPrefixList({
-    required super.localName,
+  DataAwsPrefixList(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? prefixListId,
     TfArg<String>? region,

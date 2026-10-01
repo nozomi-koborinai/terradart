@@ -34,8 +34,8 @@ final class NetworkmanagerSiteLocation {
 final class AwsNetworkmanagerSite extends Resource {
   static const String tfType = 'aws_networkmanager_site';
 
-  AwsNetworkmanagerSite({
-    required super.localName,
+  AwsNetworkmanagerSite(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> globalNetworkId,
     TfArg<Map<String, String>>? tags,

@@ -63,8 +63,8 @@ class ArtifactRegistryProjectConfigPlatformLogsConfig {
 final class GoogleArtifactRegistryProjectConfig extends Resource {
   static const String tfType = 'google_artifact_registry_project_config';
 
-  GoogleArtifactRegistryProjectConfig({
-    required super.localName,
+  GoogleArtifactRegistryProjectConfig(
+    super.localName, {
     TfArg<String>? location,
     ArtifactRegistryProjectConfigPlatformLogsConfig? platformLogsConfig,
     TfArg<String>? project,

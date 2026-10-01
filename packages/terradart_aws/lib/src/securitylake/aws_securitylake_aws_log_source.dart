@@ -38,8 +38,8 @@ final class SecuritylakeAwsLogSource {
 final class AwsSecuritylakeAwsLogSource extends Resource {
   static const String tfType = 'aws_securitylake_aws_log_source';
 
-  AwsSecuritylakeAwsLogSource({
-    required super.localName,
+  AwsSecuritylakeAwsLogSource(
+    super.localName, {
     TfArg<String>? region,
     List<SecuritylakeAwsLogSource>? source,
     super.lifecycle,

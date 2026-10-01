@@ -31,8 +31,8 @@ enum ApprunnerObservabilityConfigurationVendor implements TerraformEnum {
 final class AwsApprunnerObservabilityConfiguration extends Resource {
   static const String tfType = 'aws_apprunner_observability_configuration';
 
-  AwsApprunnerObservabilityConfiguration({
-    required super.localName,
+  AwsApprunnerObservabilityConfiguration(
+    super.localName, {
     required TfArg<String> observabilityConfigurationName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

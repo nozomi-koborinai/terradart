@@ -11,8 +11,8 @@ const Set<String> _awsDbInstanceSensitive = <String>{};
 final class DataAwsDbInstance extends Data {
   static const String tfType = 'aws_db_instance';
 
-  DataAwsDbInstance({
-    required super.localName,
+  DataAwsDbInstance(
+    super.localName, {
     TfArg<String>? dbInstanceIdentifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

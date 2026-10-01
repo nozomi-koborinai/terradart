@@ -196,7 +196,7 @@ final class LoggingSavedQueryOpsAnalyticsQuery {
 /// Example:
 /// ```dart
 /// GoogleLoggingSavedQuery(
-///   localName: 'audit_errors',
+///   'audit_errors',
 ///   name: .literal('audit-errors'),
 ///   displayName: .literal('Audit errors (7d)'),
 ///   parent: .literal('projects/my-proj/locations/global'),
@@ -214,8 +214,8 @@ final class LoggingSavedQueryOpsAnalyticsQuery {
 final class GoogleLoggingSavedQuery extends Resource {
   static const String tfType = 'google_logging_saved_query';
 
-  GoogleLoggingSavedQuery({
-    required super.localName,
+  GoogleLoggingSavedQuery(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> displayName,
     required TfArg<String> parent,

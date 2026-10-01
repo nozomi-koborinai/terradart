@@ -27,8 +27,8 @@ final class DataSsmPatchBaselinesFilter {
 final class DataAwsSsmPatchBaselines extends Data {
   static const String tfType = 'aws_ssm_patch_baselines';
 
-  DataAwsSsmPatchBaselines({
-    required super.localName,
+  DataAwsSsmPatchBaselines(
+    super.localName, {
     TfArg<bool>? defaultBaselines,
     TfArg<String>? region,
     List<DataSsmPatchBaselinesFilter>? filter,

@@ -37,8 +37,8 @@ final class Ec2ManagedPrefixListEntry {
 final class AwsEc2ManagedPrefixList extends Resource {
   static const String tfType = 'aws_ec2_managed_prefix_list';
 
-  AwsEc2ManagedPrefixList({
-    required super.localName,
+  AwsEc2ManagedPrefixList(
+    super.localName, {
     required TfArg<Ec2ManagedPrefixListAddressFamily> addressFamily,
     required TfArg<num> maxEntries,
     required TfArg<String> name,

@@ -12,8 +12,8 @@ const Set<String> _awsRdsIntegrationSensitive = <String>{};
 final class AwsRdsIntegration extends Resource {
   static const String tfType = 'aws_rds_integration';
 
-  AwsRdsIntegration({
-    required super.localName,
+  AwsRdsIntegration(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<String>? dataFilter,
     required TfArg<String> integrationName,

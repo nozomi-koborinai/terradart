@@ -17,8 +17,8 @@ const Set<String> _googleFolderIamPolicySensitive = <String>{};
 final class GoogleFolderIamPolicy extends Resource {
   static const String tfType = 'google_folder_iam_policy';
 
-  GoogleFolderIamPolicy({
-    required super.localName,
+  GoogleFolderIamPolicy(
+    super.localName, {
     required RefTo<GoogleFolder> folder,
     required TfArg<String> policyData,
     super.lifecycle,

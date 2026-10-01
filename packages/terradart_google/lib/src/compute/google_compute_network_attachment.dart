@@ -32,8 +32,8 @@ enum ComputeNetworkAttachmentConnectionPreference implements TerraformEnum {
 final class GoogleComputeNetworkAttachment extends Resource {
   static const String tfType = 'google_compute_network_attachment';
 
-  GoogleComputeNetworkAttachment({
-    required super.localName,
+  GoogleComputeNetworkAttachment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<ComputeNetworkAttachmentConnectionPreference>

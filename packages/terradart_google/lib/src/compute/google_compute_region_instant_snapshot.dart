@@ -49,8 +49,8 @@ class ComputeRegionInstantSnapshotParams {
 final class GoogleComputeRegionInstantSnapshot extends Resource {
   static const String tfType = 'google_compute_region_instant_snapshot';
 
-  GoogleComputeRegionInstantSnapshot({
-    required super.localName,
+  GoogleComputeRegionInstantSnapshot(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRegionDisk> sourceDisk,
     TfArg<String>? description,

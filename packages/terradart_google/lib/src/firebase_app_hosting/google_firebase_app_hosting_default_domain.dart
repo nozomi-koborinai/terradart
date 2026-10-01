@@ -26,7 +26,7 @@ const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final defaultDomain = GoogleFirebaseAppHostingDefaultDomain(
-///   localName: 'default',
+///   'default',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('my-backend--my-project.us-central1.hosted.app'),
@@ -40,8 +40,8 @@ const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
   static const String tfType = 'google_firebase_app_hosting_default_domain';
 
-  GoogleFirebaseAppHostingDefaultDomain({
-    required super.localName,
+  GoogleFirebaseAppHostingDefaultDomain(
+    super.localName, {
     required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required TfArg<String> domainId,

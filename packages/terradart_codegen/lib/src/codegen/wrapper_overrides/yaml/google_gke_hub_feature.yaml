@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleGkeHubFeature(
-  ///   localName: 'mcsd',
+  ///   'mcsd',
   ///   name: TfArg.literal('multiclusterservicediscovery'),
   ///   location: TfArg.literal('global'),
   /// );

@@ -11,8 +11,8 @@ const Set<String> _awsSignerSigningProfileSensitive = <String>{};
 final class DataAwsSignerSigningProfile extends Data {
   static const String tfType = 'aws_signer_signing_profile';
 
-  DataAwsSignerSigningProfile({
-    required super.localName,
+  DataAwsSignerSigningProfile(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

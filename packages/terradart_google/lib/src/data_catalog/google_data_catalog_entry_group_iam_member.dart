@@ -41,8 +41,8 @@ final class DataCatalogEntryGroupIamMemberCondition {
 final class GoogleDataCatalogEntryGroupIamMember extends Resource {
   static const String tfType = 'google_data_catalog_entry_group_iam_member';
 
-  GoogleDataCatalogEntryGroupIamMember({
-    required super.localName,
+  GoogleDataCatalogEntryGroupIamMember(
+    super.localName, {
     required RefTo<GoogleDataCatalogEntryGroup> entryGroup,
     required TfArg<String> role,
     required IamPrincipal member,

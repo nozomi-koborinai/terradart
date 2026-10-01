@@ -927,7 +927,7 @@ final class ComputeInstanceWorkloadIdentityConfig {
 /// Example (minimal):
 /// ```dart
 /// final vm = GoogleComputeInstance(
-///   localName: 'web',
+///   'web',
 ///   name: .literal('web-01'),
 ///   machineType: .literal('e2-medium'),
 ///   zone: .literal('us-central1-a'),
@@ -947,8 +947,8 @@ final class ComputeInstanceWorkloadIdentityConfig {
 final class GoogleComputeInstance extends Resource {
   static const String tfType = 'google_compute_instance';
 
-  GoogleComputeInstance({
-    required super.localName,
+  GoogleComputeInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> machineType,
     TfArg<String>? zone,

@@ -23,8 +23,8 @@ enum BedrockProvisionedModelThroughputCommitmentDuration
 final class AwsBedrockProvisionedModelThroughput extends Resource {
   static const String tfType = 'aws_bedrock_provisioned_model_throughput';
 
-  AwsBedrockProvisionedModelThroughput({
-    required super.localName,
+  AwsBedrockProvisionedModelThroughput(
+    super.localName, {
     TfArg<BedrockProvisionedModelThroughputCommitmentDuration>?
     commitmentDuration,
     required TfArg<String> modelArn,

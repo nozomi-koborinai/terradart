@@ -16,8 +16,8 @@ const Set<String> _cloudflareObservatoryScheduledTestSensitive = <String>{};
 final class DataCloudflareObservatoryScheduledTest extends Data {
   static const String tfType = 'cloudflare_observatory_scheduled_test';
 
-  DataCloudflareObservatoryScheduledTest({
-    required super.localName,
+  DataCloudflareObservatoryScheduledTest(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> url,
     RefTo<CloudflareZone>? zoneId,

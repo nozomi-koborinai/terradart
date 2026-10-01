@@ -15,8 +15,8 @@ const Set<String> _appwriteMessagingSubscriberSensitive = <String>{};
 final class AppwriteMessagingSubscriber extends Resource {
   static const String tfType = 'appwrite_messaging_subscriber';
 
-  AppwriteMessagingSubscriber({
-    required super.localName,
+  AppwriteMessagingSubscriber(
+    super.localName, {
     RefTo<AppwriteProject>? projectId,
     required TfArg<String> targetId,
     required RefTo<AppwriteMessagingTopic> topicId,

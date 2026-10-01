@@ -15,8 +15,8 @@ const Set<String> _cloudflareFlagshipAppsSensitive = <String>{};
 final class DataCloudflareFlagshipApps extends Data {
   static const String tfType = 'cloudflare_flagship_apps';
 
-  DataCloudflareFlagshipApps({
-    required super.localName,
+  DataCloudflareFlagshipApps(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

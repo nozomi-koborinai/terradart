@@ -11,8 +11,8 @@ const Set<String> _awsMskconnectWorkerConfigurationSensitive = <String>{};
 final class DataAwsMskconnectWorkerConfiguration extends Data {
   static const String tfType = 'aws_mskconnect_worker_configuration';
 
-  DataAwsMskconnectWorkerConfiguration({
-    required super.localName,
+  DataAwsMskconnectWorkerConfiguration(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

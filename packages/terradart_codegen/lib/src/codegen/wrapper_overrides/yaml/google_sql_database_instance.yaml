@@ -49,7 +49,7 @@ curatedDoc: |-
   /// `cloud_sql_quickstart` example for the full chain):
   /// ```dart
   /// final primary = GoogleSqlDatabaseInstance(
-  ///   localName: 'primary',
+  ///   'primary',
   ///   name: TfArg.literal('orders-primary'),
   ///   databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
   ///   region: TfArg.literal('asia-northeast1'),

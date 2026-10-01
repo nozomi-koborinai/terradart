@@ -11,8 +11,8 @@ const Set<String> _awsElbSensitive = <String>{};
 final class DataAwsElb extends Data {
   static const String tfType = 'aws_elb';
 
-  DataAwsElb({
-    required super.localName,
+  DataAwsElb(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -160,8 +160,8 @@ final class RateLimitMatchResponse {
 final class CloudflareRateLimit extends Resource {
   static const String tfType = 'cloudflare_rate_limit';
 
-  CloudflareRateLimit({
-    required super.localName,
+  CloudflareRateLimit(
+    super.localName, {
     required TfArg<num> period,
     TfArg<String>? rateLimitId,
     required TfArg<num> threshold,

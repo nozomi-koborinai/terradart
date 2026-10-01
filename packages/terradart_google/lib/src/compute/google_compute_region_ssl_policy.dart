@@ -37,8 +37,8 @@ enum RegionSslPolicyMinTlsVersion implements TerraformEnum {
 final class GoogleComputeRegionSslPolicy extends Resource {
   static const String tfType = 'google_compute_region_ssl_policy';
 
-  GoogleComputeRegionSslPolicy({
-    required super.localName,
+  GoogleComputeRegionSslPolicy(
+    super.localName, {
     TfArg<List<String>>? customFeatures,
     TfArg<String>? description,
     TfArg<RegionSslPolicyMinTlsVersion>? minTlsVersion,

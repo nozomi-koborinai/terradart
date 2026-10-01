@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayBasePathMappingSensitive = <String>{};
 final class AwsApiGatewayBasePathMapping extends Resource {
   static const String tfType = 'aws_api_gateway_base_path_mapping';
 
-  AwsApiGatewayBasePathMapping({
-    required super.localName,
+  AwsApiGatewayBasePathMapping(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? basePath,
     required TfArg<String> domainName,

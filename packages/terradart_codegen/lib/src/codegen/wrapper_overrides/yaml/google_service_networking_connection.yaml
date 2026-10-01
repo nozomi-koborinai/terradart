@@ -45,7 +45,7 @@ curatedDoc: |-
   /// `cloud_sql_quickstart` example):
   /// ```dart
   /// final psaPeering = GoogleServiceNetworkingConnection(
-  ///   localName: 'psa',
+  ///   'psa',
   ///   network: vpc.ref,
   ///   service: TfArg.literal('servicenetworking.googleapis.com'),
   ///   reservedPeeringRanges: TfArg.literal([

@@ -11,8 +11,8 @@ const Set<String> _cloudflareZeroTrustDevicePostureRulesSensitive = <String>{};
 final class DataCloudflareZeroTrustDevicePostureRules extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_posture_rules';
 
-  DataCloudflareZeroTrustDevicePostureRules({
-    required super.localName,
+  DataCloudflareZeroTrustDevicePostureRules(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

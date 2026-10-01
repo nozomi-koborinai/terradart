@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final auditView = GoogleLoggingLogView(
-  ///   localName: 'audit_view',
+  ///   'audit_view',
   ///   bucket: auditBucket.ref,
   ///   name: TfArg.literal('audit-only'),
   ///   filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),

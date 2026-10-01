@@ -13,7 +13,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final sink = GoogleLoggingOrganizationSink(
-  ///   localName: 'org_audit_to_bq',
+  ///   'org_audit_to_bq',
   ///   name: TfArg.literal('org-audit-to-bq'),
   ///   orgId: TfArg.literal('123456789012'),
   ///   destination: TfArg.literal(

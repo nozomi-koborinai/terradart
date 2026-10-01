@@ -38,7 +38,7 @@ final class EventsStack extends Stack {
     : super(providers: [GoogleProvider(project: projectId), const TimeProvider()]) {
     final apis = Apis.enable(this, barrels: [Barrels.pubsub]);
     add(GooglePubsubTopic(
-      localName: 'events',
+      'events',
       name: .literal('events'),
       dependsOn: apis,
     ));
@@ -52,18 +52,18 @@ An IAM adjunct takes its parent as a reference (`bucket: uploads.ref`) and who t
 
 ```dart
 final runtime = add(
-  GoogleServiceAccount(localName: 'runtime', accountId: .literal('runtime')),
+  GoogleServiceAccount('runtime', accountId: .literal('runtime')),
 );
 final uploads = add(
   GoogleStorageBucket(
-    localName: 'uploads',
+    'uploads',
     name: .literal('uploads'),
     location: .literal('US'),
   ),
 );
 add(
   GoogleStorageBucketIamMember(
-    localName: 'runtime_writer',
+    'runtime_writer',
     bucket: uploads.ref,
     role: .literal('roles/storage.objectCreator'),
     member: runtime.principal,
@@ -71,7 +71,7 @@ add(
 );
 add(
   GoogleStorageBucketIamBinding(
-    localName: 'admins',
+    'admins',
     bucket: uploads.ref,
     role: .literal('roles/storage.admin'),
     members: .literal([.group('sre@example.com'), .user('alice@example.com')]),
@@ -130,13 +130,13 @@ final class MobileAppBackendStack extends Stack {
         ) {
     // 1. [Beta] Enable Firebase on the project
     final fb = add(GoogleFirebaseProject(
-      localName: 'firebase',
+      'firebase',
       project: .literal(projectId),
     ));
 
     // 2. [Beta] Register Firebase client app
     add(GoogleFirebaseWebApp(
-      localName: 'web_client',
+      'web_client',
       displayName: .literal('Web Client'),
       project: .literal(projectId),
       dependsOn: [fb],
@@ -144,7 +144,7 @@ final class MobileAppBackendStack extends Stack {
 
     // 3. [GA] Firestore Database (Native mode)
     final db = add(GoogleFirestoreDatabase(
-      localName: 'db',
+      'db',
       name: .literal('(default)'),
       locationId: .literal('asia-northeast1'),
       type: .literal(.firestoreNative),
@@ -153,7 +153,7 @@ final class MobileAppBackendStack extends Stack {
 
     // 4. [GA] Cloud Storage for user uploads
     final uploadsBucket = add(GoogleStorageBucket(
-      localName: 'uploads',
+      'uploads',
       name: .literal('$projectId-uploads'),
       location: .literal('ASIA-NORTHEAST1'),
       storageClass: .literal(.standard),
@@ -162,7 +162,7 @@ final class MobileAppBackendStack extends Stack {
 
     // 5. [GA] Cloud Run v2 backend service
     add(GoogleCloudRunV2Service(
-      localName: 'api',
+      'api',
       name: .literal('api-server'),
       location: .literal('asia-northeast1'),
       template: CloudRunV2ServiceTemplate(
@@ -201,7 +201,7 @@ final class MultiRegionStack extends Stack {
           GoogleProvider(alias: 'eu', project: projectId, region: 'europe-west1'),
         ]) {
     add(GoogleStorageBucket(
-      localName: 'assets_eu',
+      'assets_eu',
       name: .literal('my-app-assets-eu'),
       location: .literal('EUROPE-WEST1'),
       provider: 'google.eu', // provider = google.eu

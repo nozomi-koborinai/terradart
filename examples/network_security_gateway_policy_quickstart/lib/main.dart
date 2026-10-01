@@ -20,7 +20,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
       ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
-        localName: 'api_networksecurity',
+        'api_networksecurity',
         service: .literal('networksecurity.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -28,7 +28,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
 
     final policy = add(
       GoogleNetworkSecurityGatewaySecurityPolicy(
-        localName: 'swp',
+        'swp',
         name: .literal('terradart-gateway-policy'),
         location: .literal('us-central1'),
         description: .literal('TerraDart smoke gateway security policy'),
@@ -38,7 +38,7 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
 
     add(
       GoogleNetworkSecurityGatewaySecurityPolicyRule(
-        localName: 'allow_example',
+        'allow_example',
         name: .literal('terradart-allow-example'),
         location: .literal('us-central1'),
         gatewaySecurityPolicy: policy.ref,

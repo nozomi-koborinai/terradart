@@ -46,8 +46,8 @@ enum DataAccessRulesTarget implements TerraformEnum {
 final class DataCloudflareAccessRules extends Data {
   static const String tfType = 'cloudflare_access_rules';
 
-  DataCloudflareAccessRules({
-    required super.localName,
+  DataCloudflareAccessRules(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<String>? match,

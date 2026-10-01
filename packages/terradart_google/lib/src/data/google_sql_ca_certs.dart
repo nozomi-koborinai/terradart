@@ -15,8 +15,8 @@ const Set<String> _googleSqlCaCertsSensitive = <String>{};
 final class DataGoogleSqlCaCerts extends Data {
   static const String tfType = 'google_sql_ca_certs';
 
-  DataGoogleSqlCaCerts({
-    required super.localName,
+  DataGoogleSqlCaCerts(
+    super.localName, {
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     super.provider,

@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example (minimal):
   /// ```dart
   /// final tmpl = GoogleComputeInstanceTemplate(
-  ///   localName: 'web',
+  ///   'web',
   ///   namePrefix: .literal('web-'),
   ///   machineType: .literal('e2-medium'),
   ///   disk: [

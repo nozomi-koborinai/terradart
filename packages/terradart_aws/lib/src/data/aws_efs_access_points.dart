@@ -10,8 +10,8 @@ const Set<String> _awsEfsAccessPointsSensitive = <String>{};
 final class DataAwsEfsAccessPoints extends Data {
   static const String tfType = 'aws_efs_access_points';
 
-  DataAwsEfsAccessPoints({
-    required super.localName,
+  DataAwsEfsAccessPoints(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? region,
     super.provider,

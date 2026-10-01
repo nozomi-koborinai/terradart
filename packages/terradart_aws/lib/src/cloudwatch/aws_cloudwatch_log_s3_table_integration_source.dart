@@ -31,8 +31,8 @@ final class CloudwatchLogS3TableIntegrationSourceDataSource {
 final class AwsCloudwatchLogS3TableIntegrationSource extends Resource {
   static const String tfType = 'aws_cloudwatch_log_s3_table_integration_source';
 
-  AwsCloudwatchLogS3TableIntegrationSource({
-    required super.localName,
+  AwsCloudwatchLogS3TableIntegrationSource(
+    super.localName, {
     required TfArg<String> integrationArn,
     TfArg<String>? region,
     List<CloudwatchLogS3TableIntegrationSourceDataSource>? dataSource,

@@ -21,7 +21,7 @@ final class ModelArmorStack extends Stack {
       ) {
     final apiModelArmor = add(
       GoogleProjectService(
-        localName: 'api_modelarmor',
+        'api_modelarmor',
         service: .literal('modelarmor.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -29,7 +29,7 @@ final class ModelArmorStack extends Stack {
 
     add(
       GoogleModelArmorTemplate(
-        localName: 'basic',
+        'basic',
         location: .literal('us-central1'),
         templateId: .literal('terradart-modelarmor'),
         filterConfig: const ModelArmorTemplateFilterConfig(),

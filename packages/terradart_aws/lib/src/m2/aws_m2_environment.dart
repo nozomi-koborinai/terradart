@@ -131,8 +131,8 @@ final class M2EnvironmentFsx {
 final class AwsM2Environment extends Resource {
   static const String tfType = 'aws_m2_environment';
 
-  AwsM2Environment({
-    required super.localName,
+  AwsM2Environment(
+    super.localName, {
     TfArg<bool>? applyChangesDuringMaintenanceWindow,
     TfArg<String>? description,
     required TfArg<M2EnvironmentEngineType> engineType,

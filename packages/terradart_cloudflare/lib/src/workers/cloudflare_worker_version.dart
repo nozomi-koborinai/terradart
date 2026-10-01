@@ -902,8 +902,8 @@ final class WorkerVersionTarget {
 final class CloudflareWorkerVersion extends Resource {
   static const String tfType = 'cloudflare_worker_version';
 
-  CloudflareWorkerVersion({
-    required super.localName,
+  CloudflareWorkerVersion(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,

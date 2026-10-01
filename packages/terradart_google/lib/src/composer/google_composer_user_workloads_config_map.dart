@@ -20,7 +20,7 @@ const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleComposerUserWorkloadsConfigMap(
-///   localName: 'cfg',
+///   'cfg',
 ///   name: TfArg.literal('app-config'),
 ///   environment: env.name,
 ///   region: TfArg.literal('us-central1'),
@@ -32,8 +32,8 @@ const Set<String> _googleComposerUserWorkloadsConfigMapSensitive = <String>{};
 final class GoogleComposerUserWorkloadsConfigMap extends Resource {
   static const String tfType = 'google_composer_user_workloads_config_map';
 
-  GoogleComposerUserWorkloadsConfigMap({
-    required super.localName,
+  GoogleComposerUserWorkloadsConfigMap(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> environment,
     TfArg<String>? region,

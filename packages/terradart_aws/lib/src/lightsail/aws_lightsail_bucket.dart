@@ -10,8 +10,8 @@ const Set<String> _awsLightsailBucketSensitive = <String>{};
 final class AwsLightsailBucket extends Resource {
   static const String tfType = 'aws_lightsail_bucket';
 
-  AwsLightsailBucket({
-    required super.localName,
+  AwsLightsailBucket(
+    super.localName, {
     required TfArg<String> bundleId,
     TfArg<bool>? forceDelete,
     required TfArg<String> name,

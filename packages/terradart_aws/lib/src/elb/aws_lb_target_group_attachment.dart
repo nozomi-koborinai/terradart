@@ -10,8 +10,8 @@ const Set<String> _awsLbTargetGroupAttachmentSensitive = <String>{};
 final class AwsLbTargetGroupAttachment extends Resource {
   static const String tfType = 'aws_lb_target_group_attachment';
 
-  AwsLbTargetGroupAttachment({
-    required super.localName,
+  AwsLbTargetGroupAttachment(
+    super.localName, {
     TfArg<String>? availabilityZone,
     TfArg<num>? port,
     TfArg<String>? quicServerId,

@@ -5,7 +5,7 @@ import 'package:terradart_core/src/stack.dart';
 import 'package:test/test.dart';
 
 final class _R extends Resource {
-  _R({required super.localName, required String type})
+  _R(super.localName, {required String type})
     : super(terraformType: type, argMap: const {});
 
   @override
@@ -13,7 +13,7 @@ final class _R extends Resource {
 }
 
 final class _D extends Data {
-  _D({required super.localName, required String type})
+  _D(super.localName, {required String type})
     : super(terraformType: type, argMap: const {});
 
   @override
@@ -50,24 +50,24 @@ void main() {
   group('Stack dedup', () {
     test('same (resource, type, localName) -> DuplicateResourceError', () {
       final stack = _S();
-      stack.add(_R(localName: 'orders', type: 'google_pubsub_topic'));
+      stack.add(_R('orders', type: 'google_pubsub_topic'));
       expect(
-        () => stack.add(_R(localName: 'orders', type: 'google_pubsub_topic')),
+        () => stack.add(_R('orders', type: 'google_pubsub_topic')),
         throwsA(isA<DuplicateResourceError>()),
       );
     });
 
     test('different localName under same type -> ok', () {
       final stack = _S();
-      stack.add(_R(localName: 'orders', type: 'google_pubsub_topic'));
-      stack.add(_R(localName: 'events', type: 'google_pubsub_topic'));
+      stack.add(_R('orders', type: 'google_pubsub_topic'));
+      stack.add(_R('events', type: 'google_pubsub_topic'));
       expect(stack.resources, hasLength(2));
     });
 
     test('different type under same localName -> ok', () {
       final stack = _S();
-      stack.add(_R(localName: 'main', type: 'google_pubsub_topic'));
-      stack.add(_R(localName: 'main', type: 'google_pubsub_subscription'));
+      stack.add(_R('main', type: 'google_pubsub_topic'));
+      stack.add(_R('main', type: 'google_pubsub_subscription'));
       expect(stack.resources, hasLength(2));
     });
 
@@ -75,8 +75,8 @@ void main() {
       'resource and data with same type+localName coexist (kind differs)',
       () {
         final stack = _S();
-        stack.add(_R(localName: 'main', type: 'google_project'));
-        stack.add(_D(localName: 'main', type: 'google_project'));
+        stack.add(_R('main', type: 'google_project'));
+        stack.add(_D('main', type: 'google_project'));
         expect(stack.resources, hasLength(1));
         expect(stack.dataSources, hasLength(1));
       },
@@ -84,9 +84,9 @@ void main() {
 
     test('two data sources with same (data, type, localName) -> error', () {
       final stack = _S();
-      stack.add(_D(localName: 'current', type: 'google_project'));
+      stack.add(_D('current', type: 'google_project'));
       expect(
-        () => stack.add(_D(localName: 'current', type: 'google_project')),
+        () => stack.add(_D('current', type: 'google_project')),
         throwsA(isA<DuplicateResourceError>()),
       );
     });
@@ -95,8 +95,8 @@ void main() {
       'cross-collection scenario: a data source and a resource of the SAME (type,localName) -> ok (different kind)',
       () {
         final stack = _S();
-        stack.add(_D(localName: 'shared', type: 'google_project'));
-        stack.add(_R(localName: 'shared', type: 'google_project'));
+        stack.add(_D('shared', type: 'google_project'));
+        stack.add(_R('shared', type: 'google_project'));
         // Both registered because kind differs.
         expect(stack.resources, hasLength(1));
         expect(stack.dataSources, hasLength(1));

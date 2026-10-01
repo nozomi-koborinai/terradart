@@ -10,8 +10,8 @@ const Set<String> _awsElasticacheServiceUpdateActionsSensitive = <String>{};
 final class DataAwsElasticacheServiceUpdateActions extends Data {
   static const String tfType = 'aws_elasticache_service_update_actions';
 
-  DataAwsElasticacheServiceUpdateActions({
-    required super.localName,
+  DataAwsElasticacheServiceUpdateActions(
+    super.localName, {
     TfArg<String>? cacheClusterId,
     TfArg<String>? region,
     TfArg<String>? replicationGroupId,

@@ -33,8 +33,8 @@ final class DataPipelineStreamFilter {
 final class DataCloudflarePipelineStream extends Data {
   static const String tfType = 'cloudflare_pipeline_stream';
 
-  DataCloudflarePipelineStream({
-    required super.localName,
+  DataCloudflarePipelineStream(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? streamId,
     DataPipelineStreamFilter? filter,

@@ -16,8 +16,8 @@ const Set<String> _cloudflarePageShieldCookiesSensitive = <String>{};
 final class DataCloudflarePageShieldCookies extends Data {
   static const String tfType = 'cloudflare_page_shield_cookies';
 
-  DataCloudflarePageShieldCookies({
-    required super.localName,
+  DataCloudflarePageShieldCookies(
+    super.localName, {
     required TfArg<String> cookieId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

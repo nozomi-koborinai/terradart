@@ -97,8 +97,8 @@ final class ConnectUserHierarchyStructureLevelTwo {
 final class AwsConnectUserHierarchyStructure extends Resource {
   static const String tfType = 'aws_connect_user_hierarchy_structure';
 
-  AwsConnectUserHierarchyStructure({
-    required super.localName,
+  AwsConnectUserHierarchyStructure(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required ConnectUserHierarchyStructure hierarchyStructure,

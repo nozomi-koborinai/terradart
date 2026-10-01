@@ -31,8 +31,8 @@ enum WorkspaceswebPortalInstanceType implements TerraformEnum {
 final class AwsWorkspaceswebPortal extends Resource {
   static const String tfType = 'aws_workspacesweb_portal';
 
-  AwsWorkspaceswebPortal({
-    required super.localName,
+  AwsWorkspaceswebPortal(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<WorkspaceswebPortalAuthenticationType>? authenticationType,
     TfArg<String>? browserSettingsArn,

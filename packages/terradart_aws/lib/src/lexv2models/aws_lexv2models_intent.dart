@@ -1706,8 +1706,8 @@ final class Lexv2modelsIntentSlotPriority {
 final class AwsLexv2modelsIntent extends Resource {
   static const String tfType = 'aws_lexv2models_intent';
 
-  AwsLexv2modelsIntent({
-    required super.localName,
+  AwsLexv2modelsIntent(
+    super.localName, {
     required TfArg<String> botId,
     required TfArg<String> botVersion,
     TfArg<String>? description,

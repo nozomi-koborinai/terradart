@@ -69,8 +69,8 @@ final class LightsailContainerServiceCertificate {
 final class AwsLightsailContainerService extends Resource {
   static const String tfType = 'aws_lightsail_container_service';
 
-  AwsLightsailContainerService({
-    required super.localName,
+  AwsLightsailContainerService(
+    super.localName, {
     TfArg<bool>? isDisabled,
     required TfArg<String> name,
     required TfArg<String> power,

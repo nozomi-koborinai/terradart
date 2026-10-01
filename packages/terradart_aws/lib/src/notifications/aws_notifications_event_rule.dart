@@ -10,8 +10,8 @@ const Set<String> _awsNotificationsEventRuleSensitive = <String>{};
 final class AwsNotificationsEventRule extends Resource {
   static const String tfType = 'aws_notifications_event_rule';
 
-  AwsNotificationsEventRule({
-    required super.localName,
+  AwsNotificationsEventRule(
+    super.localName, {
     TfArg<String>? eventPattern,
     required TfArg<String> eventType,
     required TfArg<String> notificationConfigurationArn,

@@ -17,8 +17,8 @@ const Set<String> _googleSccSourceIamPolicySensitive = <String>{};
 final class GoogleSccSourceIamPolicy extends Resource {
   static const String tfType = 'google_scc_source_iam_policy';
 
-  GoogleSccSourceIamPolicy({
-    required super.localName,
+  GoogleSccSourceIamPolicy(
+    super.localName, {
     required RefTo<GoogleSccSource> source,
     TfArg<String>? organization,
     required TfArg<String> policyData,

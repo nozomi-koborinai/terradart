@@ -90,8 +90,8 @@ enum GlueDataCatalogEncryptionSettingsCatalogEncryptionMode
 final class AwsGlueDataCatalogEncryptionSettings extends Resource {
   static const String tfType = 'aws_glue_data_catalog_encryption_settings';
 
-  AwsGlueDataCatalogEncryptionSettings({
-    required super.localName,
+  AwsGlueDataCatalogEncryptionSettings(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? region,
     required GlueDataCatalogEncryptionSettings dataCatalogEncryptionSettings,

@@ -18,8 +18,8 @@ final class GoogleGeminiGdaObservabilitySettingBinding extends Resource {
   static const String tfType =
       'google_gemini_gda_observability_setting_binding';
 
-  GoogleGeminiGdaObservabilitySettingBinding({
-    required super.localName,
+  GoogleGeminiGdaObservabilitySettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiGdaObservabilitySetting>
     gdaObservabilitySettingId,
     required TfArg<String> settingBindingId,

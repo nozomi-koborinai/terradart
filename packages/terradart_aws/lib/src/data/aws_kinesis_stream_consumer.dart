@@ -11,8 +11,8 @@ const Set<String> _awsKinesisStreamConsumerSensitive = <String>{};
 final class DataAwsKinesisStreamConsumer extends Data {
   static const String tfType = 'aws_kinesis_stream_consumer';
 
-  DataAwsKinesisStreamConsumer({
-    required super.localName,
+  DataAwsKinesisStreamConsumer(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

@@ -24,7 +24,7 @@ const Set<String> _googleDataCatalogEntryGroupSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleDataCatalogEntryGroup(
-///   localName: 'group',
+///   'group',
 ///   entryGroupId: TfArg.literal('terradart_entry_group'),
 ///   region: TfArg.literal('us-central1'),
 ///   displayName: TfArg.literal('TerraDart entry group'),
@@ -34,8 +34,8 @@ const Set<String> _googleDataCatalogEntryGroupSensitive = <String>{};
 final class GoogleDataCatalogEntryGroup extends Resource {
   static const String tfType = 'google_data_catalog_entry_group';
 
-  GoogleDataCatalogEntryGroup({
-    required super.localName,
+  GoogleDataCatalogEntryGroup(
+    super.localName, {
     required TfArg<String> entryGroupId,
     TfArg<String>? region,
     TfArg<String>? displayName,

@@ -14,8 +14,8 @@ const Set<String> _googleParameterManagerParameterSensitive = <String>{};
 final class DataGoogleParameterManagerParameter extends Data {
   static const String tfType = 'google_parameter_manager_parameter';
 
-  DataGoogleParameterManagerParameter({
-    required super.localName,
+  DataGoogleParameterManagerParameter(
+    super.localName, {
     required TfArg<String> parameterId,
     TfArg<String>? project,
     super.provider,

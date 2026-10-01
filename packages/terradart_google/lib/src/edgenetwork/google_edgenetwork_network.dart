@@ -23,8 +23,8 @@ const Set<String> _googleEdgenetworkNetworkSensitive = <String>{};
 final class GoogleEdgenetworkNetwork extends Resource {
   static const String tfType = 'google_edgenetwork_network';
 
-  GoogleEdgenetworkNetwork({
-    required super.localName,
+  GoogleEdgenetworkNetwork(
+    super.localName, {
     required TfArg<String> networkId,
     required TfArg<String> location,
     required TfArg<String> zone,

@@ -17,8 +17,8 @@ const Set<String> _googleProjectDefaultServiceAccountsSensitive = <String>{};
 final class GoogleProjectDefaultServiceAccounts extends Resource {
   static const String tfType = 'google_project_default_service_accounts';
 
-  GoogleProjectDefaultServiceAccounts({
-    required super.localName,
+  GoogleProjectDefaultServiceAccounts(
+    super.localName, {
     required TfArg<String> action,
     required TfArg<String> project,
     TfArg<String>? restorePolicy,

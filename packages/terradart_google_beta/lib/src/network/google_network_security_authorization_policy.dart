@@ -112,8 +112,8 @@ final class NetworkSecurityAuthorizationPolicySources {
 final class GoogleNetworkSecurityAuthorizationPolicy extends Resource {
   static const String tfType = 'google_network_security_authorization_policy';
 
-  GoogleNetworkSecurityAuthorizationPolicy({
-    required super.localName,
+  GoogleNetworkSecurityAuthorizationPolicy(
+    super.localName, {
     required TfArg<NetworkSecurityAuthorizationPolicyAction> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

@@ -11,8 +11,8 @@ const Set<String> _awsBackupPlanSensitive = <String>{};
 final class DataAwsBackupPlan extends Data {
   static const String tfType = 'aws_backup_plan';
 
-  DataAwsBackupPlan({
-    required super.localName,
+  DataAwsBackupPlan(
+    super.localName, {
     required TfArg<String> planId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

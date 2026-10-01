@@ -10,8 +10,8 @@ const Set<String> _awsServicecatalogPortfolioSensitive = <String>{};
 final class AwsServicecatalogPortfolio extends Resource {
   static const String tfType = 'aws_servicecatalog_portfolio';
 
-  AwsServicecatalogPortfolio({
-    required super.localName,
+  AwsServicecatalogPortfolio(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> providerName,

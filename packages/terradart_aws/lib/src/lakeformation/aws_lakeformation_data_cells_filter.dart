@@ -183,8 +183,8 @@ final class LakeformationDataCellsFilterAllRowsWildcard {
 final class AwsLakeformationDataCellsFilter extends Resource {
   static const String tfType = 'aws_lakeformation_data_cells_filter';
 
-  AwsLakeformationDataCellsFilter({
-    required super.localName,
+  AwsLakeformationDataCellsFilter(
+    super.localName, {
     TfArg<String>? region,
     List<LakeformationDataCellsFilterTableData>? tableData,
     super.lifecycle,

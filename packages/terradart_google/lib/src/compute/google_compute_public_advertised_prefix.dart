@@ -39,8 +39,8 @@ enum ComputePublicAdvertisedPrefixPdpScope implements TerraformEnum {
 final class GoogleComputePublicAdvertisedPrefix extends Resource {
   static const String tfType = 'google_compute_public_advertised_prefix';
 
-  GoogleComputePublicAdvertisedPrefix({
-    required super.localName,
+  GoogleComputePublicAdvertisedPrefix(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? dnsVerificationIp,

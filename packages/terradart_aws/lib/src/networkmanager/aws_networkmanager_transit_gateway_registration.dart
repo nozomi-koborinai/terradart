@@ -12,8 +12,8 @@ final class AwsNetworkmanagerTransitGatewayRegistration extends Resource {
   static const String tfType =
       'aws_networkmanager_transit_gateway_registration';
 
-  AwsNetworkmanagerTransitGatewayRegistration({
-    required super.localName,
+  AwsNetworkmanagerTransitGatewayRegistration(
+    super.localName, {
     required TfArg<String> globalNetworkId,
     required TfArg<String> transitGatewayArn,
     super.lifecycle,

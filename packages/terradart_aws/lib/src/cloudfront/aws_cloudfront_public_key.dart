@@ -68,8 +68,8 @@ final class CloudfrontPublicKeyNamePrefix extends CloudfrontPublicKeyName {
 final class AwsCloudfrontPublicKey extends Resource {
   static const String tfType = 'aws_cloudfront_public_key';
 
-  AwsCloudfrontPublicKey({
-    required super.localName,
+  AwsCloudfrontPublicKey(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> encodedKey,
     CloudfrontPublicKeyName? name,

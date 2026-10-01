@@ -1224,8 +1224,8 @@ final class SagemakerUserProfileTensorBoardAppSettings {
 final class AwsSagemakerUserProfile extends Resource {
   static const String tfType = 'aws_sagemaker_user_profile';
 
-  AwsSagemakerUserProfile({
-    required super.localName,
+  AwsSagemakerUserProfile(
+    super.localName, {
     required TfArg<String> domainId,
     TfArg<String>? region,
     TfArg<String>? singleSignOnUserIdentifier,

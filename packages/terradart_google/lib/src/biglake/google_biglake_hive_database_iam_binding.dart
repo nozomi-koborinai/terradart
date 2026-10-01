@@ -43,8 +43,8 @@ final class BiglakeHiveDatabaseIamBindingCondition {
 final class GoogleBiglakeHiveDatabaseIamBinding extends Resource {
   static const String tfType = 'google_biglake_hive_database_iam_binding';
 
-  GoogleBiglakeHiveDatabaseIamBinding({
-    required super.localName,
+  GoogleBiglakeHiveDatabaseIamBinding(
+    super.localName, {
     TfArg<String>? catalog,
     required TfArg<List<IamPrincipal>> members,
     required RefTo<GoogleBiglakeHiveDatabase> database,

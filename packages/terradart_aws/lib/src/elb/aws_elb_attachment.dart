@@ -10,8 +10,8 @@ const Set<String> _awsElbAttachmentSensitive = <String>{};
 final class AwsElbAttachment extends Resource {
   static const String tfType = 'aws_elb_attachment';
 
-  AwsElbAttachment({
-    required super.localName,
+  AwsElbAttachment(
+    super.localName, {
     required TfArg<String> elb,
     required TfArg<String> instance,
     TfArg<String>? region,

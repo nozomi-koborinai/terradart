@@ -10,8 +10,8 @@ const Set<String> _awsDetectiveOrganizationConfigurationSensitive = <String>{};
 final class AwsDetectiveOrganizationConfiguration extends Resource {
   static const String tfType = 'aws_detective_organization_configuration';
 
-  AwsDetectiveOrganizationConfiguration({
-    required super.localName,
+  AwsDetectiveOrganizationConfiguration(
+    super.localName, {
     required TfArg<bool> autoEnable,
     required TfArg<String> graphArn,
     TfArg<String>? region,

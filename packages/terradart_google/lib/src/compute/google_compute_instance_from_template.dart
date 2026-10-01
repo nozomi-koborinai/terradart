@@ -824,8 +824,8 @@ final class ComputeInstanceFromTemplateWorkloadIdentityConfig {
 final class GoogleComputeInstanceFromTemplate extends Resource {
   static const String tfType = 'google_compute_instance_from_template';
 
-  GoogleComputeInstanceFromTemplate({
-    required super.localName,
+  GoogleComputeInstanceFromTemplate(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> sourceInstanceTemplate,
     TfArg<String>? machineType,

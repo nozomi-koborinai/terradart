@@ -15,8 +15,8 @@ const Set<String> _googleSqlBackupRunSensitive = <String>{};
 final class DataGoogleSqlBackupRun extends Data {
   static const String tfType = 'google_sql_backup_run';
 
-  DataGoogleSqlBackupRun({
-    required super.localName,
+  DataGoogleSqlBackupRun(
+    super.localName, {
     TfArg<num>? backupId,
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<bool>? mostRecent,

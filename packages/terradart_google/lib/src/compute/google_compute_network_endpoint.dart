@@ -28,7 +28,7 @@ const Set<String> _googleComputeNetworkEndpointSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleComputeNetworkEndpoint(
-///   localName: 'onprem_vm',
+///   'onprem_vm',
 ///   networkEndpointGroup: neg.ref,
 ///   ipAddress: TfArg.literal('10.0.0.5'),
 ///   port: TfArg.literal(8080),
@@ -38,8 +38,8 @@ const Set<String> _googleComputeNetworkEndpointSensitive = <String>{};
 final class GoogleComputeNetworkEndpoint extends Resource {
   static const String tfType = 'google_compute_network_endpoint';
 
-  GoogleComputeNetworkEndpoint({
-    required super.localName,
+  GoogleComputeNetworkEndpoint(
+    super.localName, {
     required RefTo<GoogleComputeNetworkEndpointGroup> networkEndpointGroup,
     required TfArg<String> ipAddress,
     TfArg<num>? port,

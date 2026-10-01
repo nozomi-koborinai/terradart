@@ -12,8 +12,8 @@ const Set<String> _awsLambdaFunctionUrlSensitive = <String>{};
 final class DataAwsLambdaFunctionUrl extends Data {
   static const String tfType = 'aws_lambda_function_url';
 
-  DataAwsLambdaFunctionUrl({
-    required super.localName,
+  DataAwsLambdaFunctionUrl(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     TfArg<String>? qualifier,
     TfArg<String>? region,

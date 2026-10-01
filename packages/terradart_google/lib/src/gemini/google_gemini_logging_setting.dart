@@ -12,8 +12,8 @@ const Set<String> _googleGeminiLoggingSettingSensitive = <String>{};
 final class GoogleGeminiLoggingSetting extends Resource {
   static const String tfType = 'google_gemini_logging_setting';
 
-  GoogleGeminiLoggingSetting({
-    required super.localName,
+  GoogleGeminiLoggingSetting(
+    super.localName, {
     required TfArg<String> loggingSettingId,
     required TfArg<String> location,
     TfArg<bool>? logMetadata,

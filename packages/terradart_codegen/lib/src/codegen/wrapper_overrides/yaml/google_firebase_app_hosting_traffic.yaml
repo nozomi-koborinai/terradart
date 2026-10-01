@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example (manual pin: 100% to one build):
   /// ```dart
   /// final traffic = GoogleFirebaseAppHostingTraffic(
-  ///   localName: 'main',
+  ///   'main',
   ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   routing: .target(
@@ -38,7 +38,7 @@ curatedDoc: |-
   /// Example (automatic rollouts off the `main` branch):
   /// ```dart
   /// final traffic = GoogleFirebaseAppHostingTraffic(
-  ///   localName: 'main',
+  ///   'main',
   ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   routing: .rolloutPolicy(

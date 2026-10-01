@@ -178,8 +178,8 @@ final class ListRedirect {
 final class CloudflareList extends Resource {
   static const String tfType = 'cloudflare_list';
 
-  CloudflareList({
-    required super.localName,
+  CloudflareList(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<ListKind> kind,

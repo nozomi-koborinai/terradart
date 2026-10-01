@@ -40,7 +40,7 @@ enum GeminiReleaseChannelSettingBindingProduct implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleGeminiReleaseChannelSettingBinding(
-///   localName: 'channel_bind',
+///   'channel_bind',
 ///   releaseChannelSettingId: .literal('terradart-channel'),
 ///   settingBindingId: TfArg.literal('terradart-channel-bind'),
 ///   location: TfArg.literal('global'),
@@ -50,8 +50,8 @@ enum GeminiReleaseChannelSettingBindingProduct implements TerraformEnum {
 final class GoogleGeminiReleaseChannelSettingBinding extends Resource {
   static const String tfType = 'google_gemini_release_channel_setting_binding';
 
-  GoogleGeminiReleaseChannelSettingBinding({
-    required super.localName,
+  GoogleGeminiReleaseChannelSettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiReleaseChannelSetting> releaseChannelSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,

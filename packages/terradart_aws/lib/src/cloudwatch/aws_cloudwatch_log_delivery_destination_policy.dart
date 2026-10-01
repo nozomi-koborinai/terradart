@@ -11,8 +11,8 @@ const Set<String> _awsCloudwatchLogDeliveryDestinationPolicySensitive =
 final class AwsCloudwatchLogDeliveryDestinationPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_delivery_destination_policy';
 
-  AwsCloudwatchLogDeliveryDestinationPolicy({
-    required super.localName,
+  AwsCloudwatchLogDeliveryDestinationPolicy(
+    super.localName, {
     required TfArg<String> deliveryDestinationName,
     required TfArg<String> deliveryDestinationPolicy,
     TfArg<String>? region,

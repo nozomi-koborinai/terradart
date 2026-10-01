@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeSnapshotSettings(
-  ///   localName: 'defaults',
+  ///   'defaults',
   ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
   ///     policy: TfArg.literal(
   ///       ComputeSnapshotSettingsPolicy.localRegion,

@@ -11,8 +11,8 @@ const Set<String> _awsVpcIpamSensitive = <String>{};
 final class DataAwsVpcIpam extends Data {
   static const String tfType = 'aws_vpc_ipam';
 
-  DataAwsVpcIpam({
-    required super.localName,
+  DataAwsVpcIpam(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

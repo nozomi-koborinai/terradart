@@ -10,8 +10,8 @@ const Set<String> _awsFinspaceKxDatabaseSensitive = <String>{};
 final class AwsFinspaceKxDatabase extends Resource {
   static const String tfType = 'aws_finspace_kx_database';
 
-  AwsFinspaceKxDatabase({
-    required super.localName,
+  AwsFinspaceKxDatabase(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> environmentId,
     required TfArg<String> name,

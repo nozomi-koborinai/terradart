@@ -110,7 +110,7 @@ final class SqlUserPasswordPolicy {
 ///   const TfVariable(type: 'string', sensitive: true),
 /// );
 /// final appUser = GoogleSqlUser(
-///   localName: 'app',
+///   'app',
 ///   instance: primary.ref,
 ///   name: TfArg.literal('app'),
 ///   type: TfArg.literal(SqlUserType.builtIn),
@@ -121,7 +121,7 @@ final class SqlUserPasswordPolicy {
 /// Example (Cloud IAM service-account user, no password):
 /// ```dart
 /// final ciUser = GoogleSqlUser(
-///   localName: 'ci',
+///   'ci',
 ///   instance: primary.ref,
 ///   name: TfArg.literal('ci-runner@my-project.iam.gserviceaccount.com'),
 ///   type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
@@ -130,8 +130,8 @@ final class SqlUserPasswordPolicy {
 final class GoogleSqlUser extends Resource {
   static const String tfType = 'google_sql_user';
 
-  GoogleSqlUser({
-    required super.localName,
+  GoogleSqlUser(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<SqlUserType>? type,

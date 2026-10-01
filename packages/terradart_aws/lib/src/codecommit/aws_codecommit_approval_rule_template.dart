@@ -10,8 +10,8 @@ const Set<String> _awsCodecommitApprovalRuleTemplateSensitive = <String>{};
 final class AwsCodecommitApprovalRuleTemplate extends Resource {
   static const String tfType = 'aws_codecommit_approval_rule_template';
 
-  AwsCodecommitApprovalRuleTemplate({
-    required super.localName,
+  AwsCodecommitApprovalRuleTemplate(
+    super.localName, {
     required TfArg<String> content,
     TfArg<String>? description,
     required TfArg<String> name,

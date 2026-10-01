@@ -10,8 +10,8 @@ const Set<String> _awsLoadBalancerListenerPolicySensitive = <String>{};
 final class AwsLoadBalancerListenerPolicy extends Resource {
   static const String tfType = 'aws_load_balancer_listener_policy';
 
-  AwsLoadBalancerListenerPolicy({
-    required super.localName,
+  AwsLoadBalancerListenerPolicy(
+    super.localName, {
     required TfArg<String> loadBalancerName,
     required TfArg<num> loadBalancerPort,
     TfArg<List<String>>? policyNames,

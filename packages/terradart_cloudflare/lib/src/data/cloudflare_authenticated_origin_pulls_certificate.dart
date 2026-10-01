@@ -14,8 +14,8 @@ final class DataCloudflareAuthenticatedOriginPullsCertificate extends Data {
   static const String tfType =
       'cloudflare_authenticated_origin_pulls_certificate';
 
-  DataCloudflareAuthenticatedOriginPullsCertificate({
-    required super.localName,
+  DataCloudflareAuthenticatedOriginPullsCertificate(
+    super.localName, {
     required TfArg<String> certificateId,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

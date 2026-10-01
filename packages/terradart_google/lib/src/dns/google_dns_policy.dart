@@ -81,8 +81,8 @@ final class DnsPolicyNetworks {
 final class GoogleDnsPolicy extends Resource {
   static const String tfType = 'google_dns_policy';
 
-  GoogleDnsPolicy({
-    required super.localName,
+  GoogleDnsPolicy(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? enableInboundForwarding,
     TfArg<bool>? enableLogging,

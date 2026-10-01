@@ -38,8 +38,8 @@ final class CloudRunV2WorkerPoolIamMemberCondition {
 final class GoogleCloudRunV2WorkerPoolIamMember extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool_iam_member';
 
-  GoogleCloudRunV2WorkerPoolIamMember({
-    required super.localName,
+  GoogleCloudRunV2WorkerPoolIamMember(
+    super.localName, {
     required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> role,
     required IamPrincipal member,

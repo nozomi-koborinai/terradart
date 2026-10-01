@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIapTunnelDestGroup(
-  ///   localName: 'internal',
+  ///   'internal',
   ///   groupName: TfArg.literal('terradart-internal'),
   ///   region: TfArg.literal('us-central1'),
   ///   cidrs: TfArg.literal(['10.1.0.0/16']),

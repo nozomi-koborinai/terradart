@@ -25,7 +25,7 @@ const Set<String> _googleEndpointsServiceSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleEndpointsService(
-///   localName: 'echo',
+///   'echo',
 ///   serviceName: TfArg.literal('terradart.endpoints.$projectId.cloud.goog'),
 ///   openapiConfig: TfArg.literal(openapiYaml),
 ///   deletionPolicy: TfArg.literal('DELETE'),
@@ -34,8 +34,8 @@ const Set<String> _googleEndpointsServiceSensitive = <String>{};
 final class GoogleEndpointsService extends Resource {
   static const String tfType = 'google_endpoints_service';
 
-  GoogleEndpointsService({
-    required super.localName,
+  GoogleEndpointsService(
+    super.localName, {
     required TfArg<String> serviceName,
     TfArg<String>? openapiConfig,
     TfArg<String>? grpcConfig,

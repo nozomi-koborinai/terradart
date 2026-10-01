@@ -14,8 +14,8 @@ const Set<String> _googleDataprocMetastoreTableIamPolicySensitive = <String>{};
 final class DataGoogleDataprocMetastoreTableIamPolicy extends Data {
   static const String tfType = 'google_dataproc_metastore_table_iam_policy';
 
-  DataGoogleDataprocMetastoreTableIamPolicy({
-    required super.localName,
+  DataGoogleDataprocMetastoreTableIamPolicy(
+    super.localName, {
     required TfArg<String> databaseId,
     TfArg<String>? location,
     TfArg<String>? project,

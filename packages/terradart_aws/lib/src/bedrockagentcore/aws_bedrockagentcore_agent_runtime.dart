@@ -602,8 +602,8 @@ final class BedrockagentcoreAgentRuntimeRequestHeaderConfiguration {
 final class AwsBedrockagentcoreAgentRuntime extends Resource {
   static const String tfType = 'aws_bedrockagentcore_agent_runtime';
 
-  AwsBedrockagentcoreAgentRuntime({
-    required super.localName,
+  AwsBedrockagentcoreAgentRuntime(
+    super.localName, {
     required TfArg<String> agentRuntimeName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? environmentVariables,

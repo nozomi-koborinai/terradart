@@ -50,8 +50,8 @@ final class WafregionalRegexMatchSetFieldToMatch {
 final class AwsWafregionalRegexMatchSet extends Resource {
   static const String tfType = 'aws_wafregional_regex_match_set';
 
-  AwsWafregionalRegexMatchSet({
-    required super.localName,
+  AwsWafregionalRegexMatchSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     List<WafregionalRegexMatchSetRegexMatchTuple>? regexMatchTuple,

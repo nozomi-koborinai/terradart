@@ -36,8 +36,8 @@ final class IapWebIamMemberCondition {
 final class GoogleIapWebIamMember extends Resource {
   static const String tfType = 'google_iap_web_iam_member';
 
-  GoogleIapWebIamMember({
-    required super.localName,
+  GoogleIapWebIamMember(
+    super.localName, {
     required TfArg<String> role,
     required IamPrincipal member,
     IapWebIamMemberCondition? condition,

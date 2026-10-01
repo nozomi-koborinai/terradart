@@ -14,8 +14,8 @@ const Set<String> _googleKmsCryptoKeyIamPolicySensitive = <String>{};
 final class DataGoogleKmsCryptoKeyIamPolicy extends Data {
   static const String tfType = 'google_kms_crypto_key_iam_policy';
 
-  DataGoogleKmsCryptoKeyIamPolicy({
-    required super.localName,
+  DataGoogleKmsCryptoKeyIamPolicy(
+    super.localName, {
     required TfArg<String> cryptoKeyId,
     super.provider,
     super.timeouts,

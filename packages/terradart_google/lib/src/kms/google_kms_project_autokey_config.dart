@@ -44,7 +44,7 @@ enum KmsProjectAutokeyConfigKeyProjectResolutionMode implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleKmsProjectAutokeyConfig(
-///   localName: 'autokey',
+///   'autokey',
 ///   keyProjectResolutionMode: TfArg.literal(
 ///     KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,
 ///   ),
@@ -53,8 +53,8 @@ enum KmsProjectAutokeyConfigKeyProjectResolutionMode implements TerraformEnum {
 final class GoogleKmsProjectAutokeyConfig extends Resource {
   static const String tfType = 'google_kms_project_autokey_config';
 
-  GoogleKmsProjectAutokeyConfig({
-    required super.localName,
+  GoogleKmsProjectAutokeyConfig(
+    super.localName, {
     TfArg<KmsProjectAutokeyConfigKeyProjectResolutionMode>?
     keyProjectResolutionMode,
     TfArg<String>? deletionPolicy,

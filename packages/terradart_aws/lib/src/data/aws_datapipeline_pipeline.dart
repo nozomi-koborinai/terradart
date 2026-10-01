@@ -11,8 +11,8 @@ const Set<String> _awsDatapipelinePipelineSensitive = <String>{};
 final class DataAwsDatapipelinePipeline extends Data {
   static const String tfType = 'aws_datapipeline_pipeline';
 
-  DataAwsDatapipelinePipeline({
-    required super.localName,
+  DataAwsDatapipelinePipeline(
+    super.localName, {
     required TfArg<String> pipelineId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

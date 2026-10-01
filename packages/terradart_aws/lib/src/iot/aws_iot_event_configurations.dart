@@ -10,8 +10,8 @@ const Set<String> _awsIotEventConfigurationsSensitive = <String>{};
 final class AwsIotEventConfigurations extends Resource {
   static const String tfType = 'aws_iot_event_configurations';
 
-  AwsIotEventConfigurations({
-    required super.localName,
+  AwsIotEventConfigurations(
+    super.localName, {
     required TfArg<Map<String, bool>> eventConfigurations,
     TfArg<String>? region,
     super.lifecycle,

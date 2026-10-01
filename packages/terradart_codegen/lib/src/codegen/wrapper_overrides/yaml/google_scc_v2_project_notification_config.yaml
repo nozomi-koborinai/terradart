@@ -30,11 +30,11 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final topic = GooglePubsubTopic(
-  ///   localName: 'scc_findings',
+  ///   'scc_findings',
   ///   name: TfArg.literal('scc-findings'),
   /// );
   /// GoogleSccV2ProjectNotificationConfig(
-  ///   localName: 'findings_export',
+  ///   'findings_export',
   ///   configId: TfArg.literal('terradart-findings'),
   ///   description: TfArg.literal('Export ACTIVE findings to Pub/Sub'),
   ///   pubsubTopic: topic.ref,

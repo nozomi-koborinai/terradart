@@ -1171,7 +1171,7 @@ final class StackEmitter {
       );
     }
     final ctor =
-        '${entry.className}(localName: ${dartString(b.name)}'
+        '${entry.className}(${dartString(b.name)}'
         '${args.isEmpty ? '' : ', ${args.join(', ')}'}'
         '${extras.isEmpty ? '' : ', ${extras.join(', ')}'})';
     return _Emitted(
@@ -1231,7 +1231,7 @@ final class StackEmitter {
         'source = ${hclSource(sourceExpr)} is not a literal',
       );
     }
-    final extras = <String>['localName: ${dartString(call.name)}'];
+    final extras = <String>[dartString(call.name)];
     extras.add('source: ${dartString(source)}');
     final versionExpr = values.remove('version');
     if (versionExpr != null) {

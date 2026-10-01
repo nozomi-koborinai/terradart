@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleClouddeployAutomation(
-  ///   localName: 'promote',
+  ///   'promote',
   ///   name: .literal('terradart-automation'),
   ///   location: .literal('us-central1'),
   ///   deliveryPipeline: pipeline.ref,

@@ -328,8 +328,8 @@ enum PipelineSinkUnit implements TerraformEnum {
 final class CloudflarePipelineSink extends Resource {
   static const String tfType = 'cloudflare_pipeline_sink';
 
-  CloudflarePipelineSink({
-    required super.localName,
+  CloudflarePipelineSink(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<PipelineSinkType> type,

@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBigtableAuthorizedView(
-  ///   localName: 'tenant_a',
+  ///   'tenant_a',
   ///   instanceName: instance.ref,
   ///   tableName: table.ref,
   ///   name: TfArg.literal('tenant-a'),

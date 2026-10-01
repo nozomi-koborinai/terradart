@@ -77,8 +77,8 @@ final class StorageFtpUserCredentials {
 final class GoogleStorageFtpUser extends Resource {
   static const String tfType = 'google_storage_ftp_user';
 
-  GoogleStorageFtpUser({
-    required super.localName,
+  GoogleStorageFtpUser(
+    super.localName, {
     required TfArg<String> serverId,
     required TfArg<String> userId,
     required TfArg<String> location,

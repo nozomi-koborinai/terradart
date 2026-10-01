@@ -45,8 +45,8 @@ enum InspectorAssessmentTemplateEvent implements TerraformEnum {
 final class AwsInspectorAssessmentTemplate extends Resource {
   static const String tfType = 'aws_inspector_assessment_template';
 
-  AwsInspectorAssessmentTemplate({
-    required super.localName,
+  AwsInspectorAssessmentTemplate(
+    super.localName, {
     required TfArg<num> duration,
     required TfArg<String> name,
     TfArg<String>? region,

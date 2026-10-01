@@ -10,8 +10,8 @@ const Set<String> _awsIotEndpointSensitive = <String>{};
 final class DataAwsIotEndpoint extends Data {
   static const String tfType = 'aws_iot_endpoint';
 
-  DataAwsIotEndpoint({
-    required super.localName,
+  DataAwsIotEndpoint(
+    super.localName, {
     TfArg<String>? endpointType,
     TfArg<String>? region,
     super.provider,

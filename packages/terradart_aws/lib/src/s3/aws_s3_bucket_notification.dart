@@ -108,8 +108,8 @@ final class S3BucketNotificationTopic {
 final class AwsS3BucketNotification extends Resource {
   static const String tfType = 'aws_s3_bucket_notification';
 
-  AwsS3BucketNotification({
-    required super.localName,
+  AwsS3BucketNotification(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? eventbridge,
     TfArg<String>? region,

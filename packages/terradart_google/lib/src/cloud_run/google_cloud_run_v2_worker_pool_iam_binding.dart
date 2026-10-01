@@ -44,8 +44,8 @@ final class CloudRunV2WorkerPoolIamBindingCondition {
 final class GoogleCloudRunV2WorkerPoolIamBinding extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool_iam_binding';
 
-  GoogleCloudRunV2WorkerPoolIamBinding({
-    required super.localName,
+  GoogleCloudRunV2WorkerPoolIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudRunV2WorkerPool> workerPool,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

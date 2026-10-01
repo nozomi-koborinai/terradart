@@ -12,8 +12,8 @@ final class AwsDatazoneEnvironmentBlueprintConfiguration extends Resource {
   static const String tfType =
       'aws_datazone_environment_blueprint_configuration';
 
-  AwsDatazoneEnvironmentBlueprintConfiguration({
-    required super.localName,
+  AwsDatazoneEnvironmentBlueprintConfiguration(
+    super.localName, {
     required TfArg<String> domainId,
     required TfArg<List<String>> enabledRegions,
     required TfArg<String> environmentBlueprintId,

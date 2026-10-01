@@ -647,7 +647,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 /// Example (Cloud SQL — federated queries against a Postgres replica):
 /// ```dart
 /// final pg = GoogleBigqueryConnection(
-///   localName: 'analytics_pg',
+///   'analytics_pg',
 ///   connectionId: TfArg.literal('analytics-pg'),
 ///   location: TfArg.literal('US'),
 ///   friendlyName: TfArg.literal('Analytics Postgres (read-replica)'),
@@ -666,7 +666,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 /// Example (AWS — BigLake federation against S3 / Glue):
 /// ```dart
 /// final s3 = GoogleBigqueryConnection(
-///   localName: 'biglake_s3',
+///   'biglake_s3',
 ///   connectionId: TfArg.literal('biglake-s3'),
 ///   location: TfArg.literal('aws-us-east-1'),
 ///   backend: .aws(
@@ -693,8 +693,8 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 final class GoogleBigqueryConnection extends Resource {
   static const String tfType = 'google_bigquery_connection';
 
-  GoogleBigqueryConnection({
-    required super.localName,
+  GoogleBigqueryConnection(
+    super.localName, {
     TfArg<String>? connectionId,
     TfArg<String>? location,
     TfArg<String>? friendlyName,

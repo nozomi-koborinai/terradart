@@ -8,7 +8,7 @@ curatedDoc: |-
   /// Example (minimal one-shot batch job):
   /// ```dart
   /// final etl = GoogleCloudRunV2Job(
-  ///   localName: 'etl',
+  ///   'etl',
   ///   name: .literal('nightly-etl'),
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2JobTemplate(

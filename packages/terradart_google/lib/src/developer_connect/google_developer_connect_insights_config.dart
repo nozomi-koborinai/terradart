@@ -88,8 +88,8 @@ final class DeveloperConnectInsightsConfigTargetProjects {
 final class GoogleDeveloperConnectInsightsConfig extends Resource {
   static const String tfType = 'google_developer_connect_insights_config';
 
-  GoogleDeveloperConnectInsightsConfig({
-    required super.localName,
+  GoogleDeveloperConnectInsightsConfig(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? appHubApplication,
     TfArg<String>? deletionPolicy,

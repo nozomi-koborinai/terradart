@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example (remote control plane):
   /// ```dart
   /// GoogleEdgecontainerCluster(
-  ///   localName: 'edge',
+  ///   'edge',
   ///   name: TfArg.literal('terradart-edge'),
   ///   location: TfArg.literal('us-central1'),
   ///   networking: EdgecontainerClusterNetworking(

@@ -90,8 +90,8 @@ final class Ec2AllowedImagesSettingsDeprecationTimeCondition {
 final class AwsEc2AllowedImagesSettings extends Resource {
   static const String tfType = 'aws_ec2_allowed_images_settings';
 
-  AwsEc2AllowedImagesSettings({
-    required super.localName,
+  AwsEc2AllowedImagesSettings(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<Ec2AllowedImagesSettingsState> state,
     List<Ec2AllowedImagesSettingsImageCriterion>? imageCriterion,

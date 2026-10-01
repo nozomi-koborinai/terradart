@@ -46,8 +46,8 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamBinding
   static const String tfType =
       'google_beyondcorp_security_gateway_application_iam_binding';
 
-  GoogleBeyondcorpSecurityGatewayApplicationIamBinding({
-    required super.localName,
+  GoogleBeyondcorpSecurityGatewayApplicationIamBinding(
+    super.localName, {
     TfArg<String>? securityGatewayId,
     required RefTo<GoogleBeyondcorpSecurityGatewayApplication> application,
     required TfArg<String> role,

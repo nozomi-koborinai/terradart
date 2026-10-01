@@ -26,7 +26,7 @@ class LoggingLinkedDatasetBigqueryDataset {
 /// Example:
 /// ```dart
 /// GoogleLoggingLinkedDataset(
-///   localName: 'audit_analytics',
+///   'audit_analytics',
 ///   bucket: auditBucket.ref,
 ///   linkId: TfArg.literal('audit-analytics'),
 ///   bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
@@ -37,8 +37,8 @@ class LoggingLinkedDatasetBigqueryDataset {
 final class GoogleLoggingLinkedDataset extends Resource {
   static const String tfType = 'google_logging_linked_dataset';
 
-  GoogleLoggingLinkedDataset({
-    required super.localName,
+  GoogleLoggingLinkedDataset(
+    super.localName, {
     required RefTo<GoogleLoggingProjectBucketConfig> bucket,
     required TfArg<String> linkId,
     TfArg<String>? description,

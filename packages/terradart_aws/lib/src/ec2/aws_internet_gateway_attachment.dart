@@ -12,8 +12,8 @@ const Set<String> _awsInternetGatewayAttachmentSensitive = <String>{};
 final class AwsInternetGatewayAttachment extends Resource {
   static const String tfType = 'aws_internet_gateway_attachment';
 
-  AwsInternetGatewayAttachment({
-    required super.localName,
+  AwsInternetGatewayAttachment(
+    super.localName, {
     required TfArg<String> internetGatewayId,
     TfArg<String>? region,
     required RefTo<AwsVpc> vpcId,

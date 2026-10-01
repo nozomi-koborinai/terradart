@@ -30,8 +30,8 @@ enum MigrationCenterGroupDeletionPolicy implements TerraformEnum {
 final class GoogleMigrationCenterGroup extends Resource {
   static const String tfType = 'google_migration_center_group';
 
-  GoogleMigrationCenterGroup({
-    required super.localName,
+  GoogleMigrationCenterGroup(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> groupId,
     TfArg<String>? displayName,

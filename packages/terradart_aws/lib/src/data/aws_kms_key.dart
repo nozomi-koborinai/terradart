@@ -11,8 +11,8 @@ const Set<String> _awsKmsKeySensitive = <String>{};
 final class DataAwsKmsKey extends Data {
   static const String tfType = 'aws_kms_key';
 
-  DataAwsKmsKey({
-    required super.localName,
+  DataAwsKmsKey(
+    super.localName, {
     TfArg<List<String>>? grantTokens,
     required TfArg<String> keyId,
     TfArg<String>? region,

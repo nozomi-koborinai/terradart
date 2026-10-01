@@ -11,8 +11,8 @@ const Set<String> _awsDbSubnetGroupSensitive = <String>{};
 final class DataAwsDbSubnetGroup extends Data {
   static const String tfType = 'aws_db_subnet_group';
 
-  DataAwsDbSubnetGroup({
-    required super.localName,
+  DataAwsDbSubnetGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

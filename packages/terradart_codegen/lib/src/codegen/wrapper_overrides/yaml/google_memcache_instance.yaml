@@ -38,7 +38,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleMemcacheInstance(
-  ///   localName: 'sessions',
+  ///   'sessions',
   ///   name: TfArg.literal('api-sessions'),
   ///   nodeCount: TfArg.literal(1),
   ///   nodeConfig: MemcacheInstanceNodeConfig(

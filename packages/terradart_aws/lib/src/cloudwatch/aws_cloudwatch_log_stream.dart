@@ -12,8 +12,8 @@ const Set<String> _awsCloudwatchLogStreamSensitive = <String>{};
 final class AwsCloudwatchLogStream extends Resource {
   static const String tfType = 'aws_cloudwatch_log_stream';
 
-  AwsCloudwatchLogStream({
-    required super.localName,
+  AwsCloudwatchLogStream(
+    super.localName, {
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,
     TfArg<String>? region,

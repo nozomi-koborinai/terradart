@@ -25,8 +25,8 @@ enum EmrStudioAuthMode implements TerraformEnum {
 final class AwsEmrStudio extends Resource {
   static const String tfType = 'aws_emr_studio';
 
-  AwsEmrStudio({
-    required super.localName,
+  AwsEmrStudio(
+    super.localName, {
     required TfArg<EmrStudioAuthMode> authMode,
     required TfArg<String> defaultS3Location,
     TfArg<String>? description,

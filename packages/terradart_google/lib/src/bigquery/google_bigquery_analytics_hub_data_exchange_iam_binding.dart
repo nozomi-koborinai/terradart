@@ -46,8 +46,8 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamBinding extends Resource {
   static const String tfType =
       'google_bigquery_analytics_hub_data_exchange_iam_binding';
 
-  GoogleBigqueryAnalyticsHubDataExchangeIamBinding({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubDataExchangeIamBinding(
+    super.localName, {
     required RefTo<GoogleBigqueryAnalyticsHubDataExchange> dataExchange,
     TfArg<String>? location,
     required TfArg<String> role,

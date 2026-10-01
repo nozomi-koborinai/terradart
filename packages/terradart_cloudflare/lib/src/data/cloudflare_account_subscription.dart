@@ -17,8 +17,8 @@ const Set<String> _cloudflareAccountSubscriptionSensitive = <String>{};
 final class DataCloudflareAccountSubscription extends Data {
   static const String tfType = 'cloudflare_account_subscription';
 
-  DataCloudflareAccountSubscription({
-    required super.localName,
+  DataCloudflareAccountSubscription(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

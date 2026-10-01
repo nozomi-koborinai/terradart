@@ -11,8 +11,8 @@ const Set<String> _awsKendraFaqSensitive = <String>{};
 final class DataAwsKendraFaq extends Data {
   static const String tfType = 'aws_kendra_faq';
 
-  DataAwsKendraFaq({
-    required super.localName,
+  DataAwsKendraFaq(
+    super.localName, {
     required TfArg<String> faqId,
     required TfArg<String> indexId,
     TfArg<String>? region,

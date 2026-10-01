@@ -12,8 +12,8 @@ final class AwsWorkspaceswebIpAccessSettingsAssociation extends Resource {
   static const String tfType =
       'aws_workspacesweb_ip_access_settings_association';
 
-  AwsWorkspaceswebIpAccessSettingsAssociation({
-    required super.localName,
+  AwsWorkspaceswebIpAccessSettingsAssociation(
+    super.localName, {
     required TfArg<String> ipAccessSettingsArn,
     required TfArg<String> portalArn,
     TfArg<String>? region,

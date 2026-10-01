@@ -12,8 +12,8 @@ const Set<String> _awsInternetGatewaySensitive = <String>{};
 final class AwsInternetGateway extends Resource {
   static const String tfType = 'aws_internet_gateway';
 
-  AwsInternetGateway({
-    required super.localName,
+  AwsInternetGateway(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,

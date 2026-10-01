@@ -22,7 +22,7 @@ final class IapTunnelStack extends Stack {
       ) {
     final apiIap = add(
       GoogleProjectService(
-        localName: 'api_iap',
+        'api_iap',
         service: .literal('iap.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class IapTunnelStack extends Stack {
 
     final destGroup = add(
       GoogleIapTunnelDestGroup(
-        localName: 'internal',
+        'internal',
         groupName: .literal('terradart-internal'),
         region: .literal('us-central1'),
         cidrs: .literal(['10.1.0.0/16']),
@@ -40,7 +40,7 @@ final class IapTunnelStack extends Stack {
 
     final tunnelUser = add(
       GoogleServiceAccount(
-        localName: 'tunnel_user',
+        'tunnel_user',
         accountId: .literal('terradart-tunnel-user'),
         displayName: .literal('IAP tunnel user'),
       ),
@@ -48,7 +48,7 @@ final class IapTunnelStack extends Stack {
 
     add(
       GoogleIapTunnelDestGroupIamMember(
-        localName: 'tunnel_user_grant',
+        'tunnel_user_grant',
         destGroup: .literal('terradart-internal'),
         region: .literal('us-central1'),
         role: .literal('roles/viewer'),
@@ -60,7 +60,7 @@ final class IapTunnelStack extends Stack {
     // Project-scoped IAP TCP forwarding (`iap.tunnel`) — no VM required.
     add(
       GoogleIapTunnelIamMember(
-        localName: 'tunnel_project_grant',
+        'tunnel_project_grant',
         role: .literal('roles/iap.tunnelResourceAccessor'),
         member: tunnelUser.principal,
         dependsOn: [apiIap, tunnelUser],

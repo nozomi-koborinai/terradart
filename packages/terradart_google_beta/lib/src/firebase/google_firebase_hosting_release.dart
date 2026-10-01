@@ -27,8 +27,8 @@ enum FirebaseHostingReleaseType implements TerraformEnum {
 final class GoogleFirebaseHostingRelease extends Resource {
   static const String tfType = 'google_firebase_hosting_release';
 
-  GoogleFirebaseHostingRelease({
-    required super.localName,
+  GoogleFirebaseHostingRelease(
+    super.localName, {
     TfArg<String>? channelId,
     TfArg<String>? message,
     required TfArg<String> siteId,

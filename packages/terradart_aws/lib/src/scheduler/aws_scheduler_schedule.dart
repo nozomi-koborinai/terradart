@@ -478,8 +478,8 @@ final class SchedulerScheduleSqsParameters {
 final class AwsSchedulerSchedule extends Resource {
   static const String tfType = 'aws_scheduler_schedule';
 
-  AwsSchedulerSchedule({
-    required super.localName,
+  AwsSchedulerSchedule(
+    super.localName, {
     TfArg<SchedulerScheduleActionAfterCompletion>? actionAfterCompletion,
     TfArg<String>? description,
     TfArg<String>? endDate,

@@ -16,7 +16,7 @@ const Set<String> _googleApphubBoundarySensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleApphubBoundary(
-///   localName: 'host',
+///   'host',
 ///   location: TfArg.literal('global'),
 ///   crmNode: TfArg.literal('projects/${current.number.interpolation}'),
 /// );
@@ -24,8 +24,8 @@ const Set<String> _googleApphubBoundarySensitive = <String>{};
 final class GoogleApphubBoundary extends Resource {
   static const String tfType = 'google_apphub_boundary';
 
-  GoogleApphubBoundary({
-    required super.localName,
+  GoogleApphubBoundary(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? crmNode,
     TfArg<String>? project,

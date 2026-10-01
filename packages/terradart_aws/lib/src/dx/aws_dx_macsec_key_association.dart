@@ -10,8 +10,8 @@ const Set<String> _awsDxMacsecKeyAssociationSensitive = <String>{};
 final class AwsDxMacsecKeyAssociation extends Resource {
   static const String tfType = 'aws_dx_macsec_key_association';
 
-  AwsDxMacsecKeyAssociation({
-    required super.localName,
+  AwsDxMacsecKeyAssociation(
+    super.localName, {
     TfArg<String>? cak,
     TfArg<String>? ckn,
     required TfArg<String> connectionId,

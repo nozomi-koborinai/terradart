@@ -16,8 +16,8 @@ const Set<String> _cloudflareCustomHostnameFallbackOriginSensitive = <String>{};
 final class DataCloudflareCustomHostnameFallbackOrigin extends Data {
   static const String tfType = 'cloudflare_custom_hostname_fallback_origin';
 
-  DataCloudflareCustomHostnameFallbackOrigin({
-    required super.localName,
+  DataCloudflareCustomHostnameFallbackOrigin(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

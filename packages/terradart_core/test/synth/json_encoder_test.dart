@@ -146,7 +146,7 @@ void main() {
 
     test('a Stack with no provider is a NoProviders issue', () {
       final stack = TestStack()
-        ..add(FakePubsubTopic(localName: 'orders', argMap: const {}));
+        ..add(FakePubsubTopic('orders', argMap: const {}));
       expect(stack.validate(), [isA<NoProviders>()]);
       expect(() => stack.synth(), throwsSynthIssue<NoProviders>());
     });
@@ -259,7 +259,7 @@ void main() {
             ],
           )..add(
             FakePubsubTopic.withMeta(
-              localName: 'orders',
+              'orders',
               argMap: {'name': const TfArgLiteral<String>('orders')},
               provider: provider,
             ),
@@ -272,11 +272,7 @@ void main() {
       // A data source selects an alias the same way, and synth keeps it.
       final withData = stackWith('google.eu')
         ..add(
-          FakeProjectData(
-            localName: 'current',
-            argMap: const {},
-            provider: 'google.eu',
-          ),
+          FakeProjectData('current', argMap: const {}, provider: 'google.eu'),
         );
       expect(
         (withData.synth().tfJson['data'] as Map)['google_project']['current'],
@@ -286,7 +282,7 @@ void main() {
         () =>
             (TestStack(providers: stackWith(null).providers)..add(
                   FakeProjectData(
-                    localName: 'current',
+                    'current',
                     argMap: const {},
                     provider: 'google.us',
                   ),
@@ -630,7 +626,7 @@ void main() {
   group('TfJsonEncoder.resourceBlock', () {
     test('emits literal-only resource', () {
       final r = FakePubsubTopic(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders-prod')},
       );
       final out = TfJsonEncoder.resourceBlock(r);
@@ -639,7 +635,7 @@ void main() {
 
     test('combines lifecycle + depends_on', () {
       final r = FakePubsubTopic.withMeta(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         lifecycle: const LifecycleOptions(preventDestroy: true),
         dependsOn: const [AddressStub('google_storage_bucket.archive')],
@@ -657,7 +653,7 @@ void main() {
 
     test('emits provider meta-argument when set', () {
       final r = FakePubsubTopic.withMeta(
-        localName: 'orders',
+        'orders',
         argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         provider: 'google-beta',
       );
@@ -669,7 +665,7 @@ void main() {
       final stack = TestStack()
         ..add(
           FakeSecretVersion(
-            localName: 'api_key',
+            'api_key',
             argMap: const {
               'secret': TfArgLiteral<String>('projects/x/secrets/api-key'),
               'secret_data': TfArgLiteral<String>('PLAINTEXT'),
@@ -692,10 +688,8 @@ void main() {
   });
 
   group('TfJsonEncoder.movedBlock', () {
-    FakePubsubTopic topic(String name) => FakePubsubTopic(
-      localName: name,
-      argMap: {'name': TfArgLiteral<String>(name)},
-    );
+    FakePubsubTopic topic(String name) =>
+        FakePubsubTopic(name, argMap: {'name': TfArgLiteral<String>(name)});
 
     test('returns null when the stack recorded no moved entry', () {
       expect(TfJsonEncoder.movedBlock(TestStack()..add(topic('a'))), isNull);
@@ -793,13 +787,13 @@ void main() {
       final stack = TestStack();
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         ),
       );
       stack.add(
         FakePubsubTopic(
-          localName: 'audit',
+          'audit',
           argMap: const {'name': TfArgLiteral<String>('audit-prod')},
         ),
       );
@@ -824,7 +818,7 @@ void main() {
       final stack = TestStack();
       stack.add(
         FakeProjectData(
-          localName: 'this',
+          'this',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
         ),
       );
@@ -847,7 +841,7 @@ void main() {
       final stack = TestStack();
       stack.add(
         FakeProjectData(
-          localName: 'eu',
+          'eu',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
           provider: 'google.eu',
         ),
@@ -1031,7 +1025,7 @@ void main() {
       final stack = TestStack(providers: const [betaProvider]);
       stack.add(
         FakePubsubTopic.withMeta(
-          localName: 't',
+          't',
           argMap: {'name': TfArg.literal('x')},
           provider: 'google-beta',
         ),
@@ -1043,7 +1037,7 @@ void main() {
       final stack = TestStack(providers: const [betaProvider]);
       stack.add(
         FakePubsubTopic.withMeta(
-          localName: 't',
+          't',
           argMap: {'name': TfArg.literal('x')},
           provider: 'google-beta-nope',
         ),
@@ -1061,9 +1055,7 @@ void main() {
       'without an explicit provider the implied prefix is still required',
       () {
         final stack = TestStack(providers: const [betaProvider]);
-        stack.add(
-          FakePubsubTopic(localName: 't', argMap: {'name': TfArg.literal('x')}),
-        );
+        stack.add(FakePubsubTopic('t', argMap: {'name': TfArg.literal('x')}));
         expect(stack.validate(), [
           isA<MissingProvider>().having(
             (i) => i.provider,

@@ -44,8 +44,8 @@ final class NetworkSecurityFirewallEndpointSettings {
 final class GoogleNetworkSecurityFirewallEndpoint extends Resource {
   static const String tfType = 'google_network_security_firewall_endpoint';
 
-  GoogleNetworkSecurityFirewallEndpoint({
-    required super.localName,
+  GoogleNetworkSecurityFirewallEndpoint(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> parent,

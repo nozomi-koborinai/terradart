@@ -76,8 +76,8 @@ final class RouteTableAssociationTargetSubnetId
 final class AwsRouteTableAssociation extends Resource {
   static const String tfType = 'aws_route_table_association';
 
-  AwsRouteTableAssociation({
-    required super.localName,
+  AwsRouteTableAssociation(
+    super.localName, {
     required RouteTableAssociationTarget target,
     TfArg<String>? region,
     required TfArg<String> routeTableId,

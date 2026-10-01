@@ -97,8 +97,8 @@ final class DataEcrLifecyclePolicyDocumentSelection {
 final class DataAwsEcrLifecyclePolicyDocument extends Data {
   static const String tfType = 'aws_ecr_lifecycle_policy_document';
 
-  DataAwsEcrLifecyclePolicyDocument({
-    required super.localName,
+  DataAwsEcrLifecyclePolicyDocument(
+    super.localName, {
     List<DataEcrLifecyclePolicyDocumentRule>? rule,
     super.provider,
     super.timeouts,

@@ -12,8 +12,8 @@ const Set<String> _awsNetworkAclAssociationSensitive = <String>{};
 final class AwsNetworkAclAssociation extends Resource {
   static const String tfType = 'aws_network_acl_association';
 
-  AwsNetworkAclAssociation({
-    required super.localName,
+  AwsNetworkAclAssociation(
+    super.localName, {
     required TfArg<String> networkAclId,
     TfArg<String>? region,
     required RefTo<AwsSubnet> subnetId,

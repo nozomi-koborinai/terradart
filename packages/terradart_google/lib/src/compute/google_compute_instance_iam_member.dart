@@ -37,8 +37,8 @@ final class ComputeInstanceIamMemberCondition {
 final class GoogleComputeInstanceIamMember extends Resource {
   static const String tfType = 'google_compute_instance_iam_member';
 
-  GoogleComputeInstanceIamMember({
-    required super.localName,
+  GoogleComputeInstanceIamMember(
+    super.localName, {
     required RefTo<GoogleComputeInstance> instance,
     required TfArg<String> role,
     required IamPrincipal member,

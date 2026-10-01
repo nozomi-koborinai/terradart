@@ -10,8 +10,8 @@ const Set<String> _awsEc2TransitGatewayPolicyTableSensitive = <String>{};
 final class AwsEc2TransitGatewayPolicyTable extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_policy_table';
 
-  AwsEc2TransitGatewayPolicyTable({
-    required super.localName,
+  AwsEc2TransitGatewayPolicyTable(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayId,

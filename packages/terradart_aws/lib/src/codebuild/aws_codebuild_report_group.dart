@@ -93,8 +93,8 @@ enum CodebuildReportGroupPackaging implements TerraformEnum {
 final class AwsCodebuildReportGroup extends Resource {
   static const String tfType = 'aws_codebuild_report_group';
 
-  AwsCodebuildReportGroup({
-    required super.localName,
+  AwsCodebuildReportGroup(
+    super.localName, {
     TfArg<bool>? deleteReports,
     required TfArg<String> name,
     TfArg<String>? region,

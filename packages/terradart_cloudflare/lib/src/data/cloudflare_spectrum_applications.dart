@@ -15,8 +15,8 @@ const Set<String> _cloudflareSpectrumApplicationsSensitive = <String>{};
 final class DataCloudflareSpectrumApplications extends Data {
   static const String tfType = 'cloudflare_spectrum_applications';
 
-  DataCloudflareSpectrumApplications({
-    required super.localName,
+  DataCloudflareSpectrumApplications(
+    super.localName, {
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? order,

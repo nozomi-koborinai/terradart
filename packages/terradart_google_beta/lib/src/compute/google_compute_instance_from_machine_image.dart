@@ -685,8 +685,8 @@ final class ComputeInstanceFromMachineImageWorkloadIdentityConfig {
 final class GoogleComputeInstanceFromMachineImage extends Resource {
   static const String tfType = 'google_compute_instance_from_machine_image';
 
-  GoogleComputeInstanceFromMachineImage({
-    required super.localName,
+  GoogleComputeInstanceFromMachineImage(
+    super.localName, {
     TfArg<bool>? allowStoppingForUpdate,
     TfArg<bool>? canIpForward,
     TfArg<String>? deletionPolicy,

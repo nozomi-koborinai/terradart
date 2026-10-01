@@ -52,8 +52,8 @@ final class MonitoringSnoozeInterval {
 final class GoogleMonitoringSnooze extends Resource {
   static const String tfType = 'google_monitoring_snooze';
 
-  GoogleMonitoringSnooze({
-    required super.localName,
+  GoogleMonitoringSnooze(
+    super.localName, {
     required TfArg<String> displayName,
     required MonitoringSnoozeCriteria criteria,
     required MonitoringSnoozeInterval interval,

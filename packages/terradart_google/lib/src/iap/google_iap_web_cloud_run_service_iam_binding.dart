@@ -42,8 +42,8 @@ final class IapWebCloudRunServiceIamBindingCondition {
 final class GoogleIapWebCloudRunServiceIamBinding extends Resource {
   static const String tfType = 'google_iap_web_cloud_run_service_iam_binding';
 
-  GoogleIapWebCloudRunServiceIamBinding({
-    required super.localName,
+  GoogleIapWebCloudRunServiceIamBinding(
+    super.localName, {
     required TfArg<String> cloudRunServiceName,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

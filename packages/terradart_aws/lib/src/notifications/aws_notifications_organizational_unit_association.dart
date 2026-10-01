@@ -12,8 +12,8 @@ final class AwsNotificationsOrganizationalUnitAssociation extends Resource {
   static const String tfType =
       'aws_notifications_organizational_unit_association';
 
-  AwsNotificationsOrganizationalUnitAssociation({
-    required super.localName,
+  AwsNotificationsOrganizationalUnitAssociation(
+    super.localName, {
     required TfArg<String> notificationConfigurationArn,
     required TfArg<String> organizationalUnitId,
     super.lifecycle,

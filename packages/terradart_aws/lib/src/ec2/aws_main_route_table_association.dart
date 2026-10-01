@@ -12,8 +12,8 @@ const Set<String> _awsMainRouteTableAssociationSensitive = <String>{};
 final class AwsMainRouteTableAssociation extends Resource {
   static const String tfType = 'aws_main_route_table_association';
 
-  AwsMainRouteTableAssociation({
-    required super.localName,
+  AwsMainRouteTableAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routeTableId,
     required RefTo<AwsVpc> vpcId,

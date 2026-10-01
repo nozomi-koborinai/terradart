@@ -16,8 +16,8 @@ const Set<String> _googleHealthcareConsentStoreSensitive = <String>{};
 final class GoogleHealthcareConsentStore extends Resource {
   static const String tfType = 'google_healthcare_consent_store';
 
-  GoogleHealthcareConsentStore({
-    required super.localName,
+  GoogleHealthcareConsentStore(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleHealthcareDataset> dataset,
     TfArg<String>? defaultConsentTtl,

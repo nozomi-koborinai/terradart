@@ -12,8 +12,8 @@ const Set<String> _awsIamRolePoliciesExclusiveSensitive = <String>{};
 final class AwsIamRolePoliciesExclusive extends Resource {
   static const String tfType = 'aws_iam_role_policies_exclusive';
 
-  AwsIamRolePoliciesExclusive({
-    required super.localName,
+  AwsIamRolePoliciesExclusive(
+    super.localName, {
     required TfArg<List<String>> policyNames,
     required RefTo<AwsIamRole> roleName,
     super.lifecycle,

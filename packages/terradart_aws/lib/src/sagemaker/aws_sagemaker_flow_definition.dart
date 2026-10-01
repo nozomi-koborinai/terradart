@@ -181,8 +181,8 @@ final class SagemakerFlowDefinitionOutputConfig {
 final class AwsSagemakerFlowDefinition extends Resource {
   static const String tfType = 'aws_sagemaker_flow_definition';
 
-  AwsSagemakerFlowDefinition({
-    required super.localName,
+  AwsSagemakerFlowDefinition(
+    super.localName, {
     required TfArg<String> flowDefinitionName,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

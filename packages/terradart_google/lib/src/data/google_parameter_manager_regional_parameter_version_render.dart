@@ -19,8 +19,8 @@ final class DataGoogleParameterManagerRegionalParameterVersionRender
   static const String tfType =
       'google_parameter_manager_regional_parameter_version_render';
 
-  DataGoogleParameterManagerRegionalParameterVersionRender({
-    required super.localName,
+  DataGoogleParameterManagerRegionalParameterVersionRender(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> parameter,
     required TfArg<String> parameterVersionId,

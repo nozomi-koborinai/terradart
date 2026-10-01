@@ -10,8 +10,8 @@ const Set<String> _awsVpclatticeAuthPolicySensitive = <String>{};
 final class AwsVpclatticeAuthPolicy extends Resource {
   static const String tfType = 'aws_vpclattice_auth_policy';
 
-  AwsVpclatticeAuthPolicy({
-    required super.localName,
+  AwsVpclatticeAuthPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceIdentifier,

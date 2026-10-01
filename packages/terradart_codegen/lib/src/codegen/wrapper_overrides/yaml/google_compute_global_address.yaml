@@ -27,7 +27,7 @@ curatedDoc: |-
   /// [GoogleServiceNetworkingConnection].
   /// ```dart
   /// final psaRange = GoogleComputeGlobalAddress(
-  ///   localName: 'psa_range',
+  ///   'psa_range',
   ///   name: TfArg.literal('cloudsql-psa-range'),
   ///   addressType: TfArg.literal(GlobalAddressType.internal),
   ///   purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
@@ -39,7 +39,7 @@ curatedDoc: |-
   /// Example (external LB VIP):
   /// ```dart
   /// final lbVip = GoogleComputeGlobalAddress(
-  ///   localName: 'lb_vip',
+  ///   'lb_vip',
   ///   name: TfArg.literal('global-lb-vip'),
   ///   addressType: TfArg.literal(GlobalAddressType.external),
   ///   ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),

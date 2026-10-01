@@ -43,8 +43,8 @@ final class ComputeMachineImageIamBindingCondition {
 final class GoogleComputeMachineImageIamBinding extends Resource {
   static const String tfType = 'google_compute_machine_image_iam_binding';
 
-  GoogleComputeMachineImageIamBinding({
-    required super.localName,
+  GoogleComputeMachineImageIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeMachineImage> machineImage,
     required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,

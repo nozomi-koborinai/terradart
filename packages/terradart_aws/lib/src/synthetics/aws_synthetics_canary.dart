@@ -142,8 +142,8 @@ final class SyntheticsCanaryVpcConfig {
 final class AwsSyntheticsCanary extends Resource {
   static const String tfType = 'aws_synthetics_canary';
 
-  AwsSyntheticsCanary({
-    required super.localName,
+  AwsSyntheticsCanary(
+    super.localName, {
     required TfArg<String> artifactS3Location,
     TfArg<bool>? deleteLambda,
     required RefTo<AwsIamRole> executionRoleArn,

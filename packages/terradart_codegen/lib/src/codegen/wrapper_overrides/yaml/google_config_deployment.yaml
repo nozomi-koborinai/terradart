@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example (Git blueprint):
   /// ```dart
   /// GoogleConfigDeployment(
-  ///   localName: 'vpc',
+  ///   'vpc',
   ///   name: TfArg.literal('my-vpc-deployment'),
   ///   location: TfArg.literal('us-central1'),
   ///   serviceAccount: RefTo.literal(

@@ -87,8 +87,8 @@ final class IamAccessBoundaryPolicyAvailabilityCondition {
 final class GoogleIamAccessBoundaryPolicy extends Resource {
   static const String tfType = 'google_iam_access_boundary_policy';
 
-  GoogleIamAccessBoundaryPolicy({
-    required super.localName,
+  GoogleIamAccessBoundaryPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
     required TfArg<String> name,

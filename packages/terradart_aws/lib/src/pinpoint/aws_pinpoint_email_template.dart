@@ -66,8 +66,8 @@ final class PinpointEmailTemplateHeader {
 final class AwsPinpointEmailTemplate extends Resource {
   static const String tfType = 'aws_pinpoint_email_template';
 
-  AwsPinpointEmailTemplate({
-    required super.localName,
+  AwsPinpointEmailTemplate(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> templateName,

@@ -36,7 +36,7 @@ final class SccLeftoverStack extends Stack {
 
     final sa = add(
       GoogleServiceAccount(
-        localName: 'viewer',
+        'viewer',
         accountId: .literal('scc-leftover-viewer'),
         displayName: .literal('SCC leftover viewer'),
         dependsOn: apiDeps,
@@ -45,7 +45,7 @@ final class SccLeftoverStack extends Stack {
 
     final topic = add(
       GooglePubsubTopic(
-        localName: 'findings',
+        'findings',
         name: .literal('terradart-scc-findings'),
         dependsOn: apiDeps,
       ),
@@ -56,7 +56,7 @@ final class SccLeftoverStack extends Stack {
 
     final dataset = add(
       GoogleBigqueryDataset(
-        localName: 'scc_export',
+        'scc_export',
         datasetId: .literal('terradart_scc'),
         location: .literal('US'),
         dependsOn: apiDeps,
@@ -68,7 +68,7 @@ final class SccLeftoverStack extends Stack {
 
     final source = add(
       GoogleSccSource(
-        localName: 'scanner',
+        'scanner',
         organization: .literal(org),
         displayName: .literal('terradart leftover source'),
         dependsOn: apiDeps,
@@ -76,7 +76,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccSourceIamMember(
-        localName: 'source_viewer',
+        'source_viewer',
         source: source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
         member: sa.principal,
@@ -86,7 +86,7 @@ final class SccLeftoverStack extends Stack {
 
     final v2Source = add(
       GoogleSccV2OrganizationSource(
-        localName: 'v2_scanner',
+        'v2_scanner',
         organization: .literal(org),
         displayName: .literal('terradart leftover v2 source'),
         dependsOn: apiDeps,
@@ -94,7 +94,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2OrganizationSourceIamMember(
-        localName: 'v2_source_viewer',
+        'v2_source_viewer',
         source: v2Source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
         member: sa.principal,
@@ -104,7 +104,7 @@ final class SccLeftoverStack extends Stack {
 
     add(
       GoogleSccNotificationConfig(
-        localName: 'org_notify',
+        'org_notify',
         configId: .literal('terradart-org-notify'),
         organization: .literal(org),
         pubsubTopic: topicPath,
@@ -119,14 +119,14 @@ final class SccLeftoverStack extends Stack {
     // the topic.
     final notificationAgent = add(
       GoogleSccNotificationServiceAccount(
-        localName: 'notification_agent',
+        'notification_agent',
         organization: .literal(org),
         dependsOn: apiDeps,
       ),
     );
     add(
       GooglePubsubTopicIamMember(
-        localName: 'findings_publisher',
+        'findings_publisher',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: notificationAgent.principal,
@@ -134,7 +134,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccFolderNotificationConfig(
-        localName: 'folder_notify',
+        'folder_notify',
         configId: .literal('terradart-folder-notify'),
         folder: .literal(folder),
         pubsubTopic: topicPath,
@@ -147,7 +147,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccProjectNotificationConfig(
-        localName: 'project_notify',
+        'project_notify',
         configId: .literal('terradart-project-notify'),
         pubsubTopic: topicPath,
         streamingConfig: SccProjectNotificationConfigStreamingConfig(
@@ -159,7 +159,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2ProjectNotificationConfig(
-        localName: 'v2_project_notify',
+        'v2_project_notify',
         configId: .literal('terradart-v2-project-notify'),
         pubsubTopic: topic.ref,
         streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(
@@ -171,7 +171,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2OrganizationNotificationConfig(
-        localName: 'v2_org_notify',
+        'v2_org_notify',
         configId: .literal('terradart-v2-org-notify'),
         organization: .literal(org),
         pubsubTopic: topicPath,
@@ -184,7 +184,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2FolderNotificationConfig(
-        localName: 'v2_folder_notify',
+        'v2_folder_notify',
         configId: .literal('terradart-v2-folder-notify'),
         folder: .literal(folder),
         pubsubTopic: topicPath,
@@ -198,7 +198,7 @@ final class SccLeftoverStack extends Stack {
 
     add(
       GoogleSccEventThreatDetectionCustomModule(
-        localName: 'etd',
+        'etd',
         organization: .literal(org),
         displayName: .literal('terradart_etd'),
         enablementState: .literal(.enabled),
@@ -210,7 +210,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccManagementOrganizationEventThreatDetectionCustomModule(
-        localName: 'mgmt_etd',
+        'mgmt_etd',
         organization: .literal(org),
         displayName: .literal('terradart_mgmt_etd'),
         enablementState: .literal(
@@ -226,7 +226,7 @@ final class SccLeftoverStack extends Stack {
 
     add(
       GoogleSccOrganizationCustomModule(
-        localName: 'org_sha',
+        'org_sha',
         organization: .literal(org),
         displayName: .literal('terradart_org_sha'),
         enablementState: .literal(.enabled),
@@ -246,7 +246,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccFolderCustomModule(
-        localName: 'folder_sha',
+        'folder_sha',
         folder: .literal(folder),
         displayName: .literal('terradart_folder_sha'),
         enablementState: .literal(.enabled),
@@ -266,7 +266,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccProjectCustomModule(
-        localName: 'project_sha',
+        'project_sha',
         displayName: .literal('terradart_project_sha'),
         enablementState: .literal(.enabled),
         customConfig: SccProjectCustomModuleCustomConfig(
@@ -286,7 +286,7 @@ final class SccLeftoverStack extends Stack {
 
     add(
       GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule(
-        localName: 'mgmt_org_sha',
+        'mgmt_org_sha',
         organization: .literal(org),
         displayName: .literal('terradart_mgmt_org_sha'),
         enablementState: .literal(
@@ -299,7 +299,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccManagementFolderSecurityHealthAnalyticsCustomModule(
-        localName: 'mgmt_folder_sha',
+        'mgmt_folder_sha',
         folder: .literal(folder),
         displayName: .literal('terradart_mgmt_folder_sha'),
         enablementState: .literal(
@@ -312,7 +312,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule(
-        localName: 'mgmt_project_sha',
+        'mgmt_project_sha',
         displayName: .literal('terradart_mgmt_project_sha'),
         enablementState: .literal(
           SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState
@@ -325,7 +325,7 @@ final class SccLeftoverStack extends Stack {
 
     add(
       GoogleSccMuteConfig(
-        localName: 'mute',
+        'mute',
         parent: .literal('organizations/$org'),
         muteConfigId: .literal('terradart-mute'),
         filter: .literal('severity="LOW"'),
@@ -336,7 +336,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2OrganizationMuteConfig(
-        localName: 'v2_org_mute',
+        'v2_org_mute',
         organization: .literal(org),
         muteConfigId: .literal('terradart-v2-org-mute'),
         filter: .literal('severity="LOW"'),
@@ -347,7 +347,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2FolderMuteConfig(
-        localName: 'v2_folder_mute',
+        'v2_folder_mute',
         folder: .literal(folder),
         muteConfigId: .literal('terradart-v2-folder-mute'),
         filter: .literal('severity="LOW"'),
@@ -358,7 +358,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2ProjectMuteConfig(
-        localName: 'v2_project_mute',
+        'v2_project_mute',
         muteConfigId: .literal('terradart-v2-project-mute'),
         filter: .literal('severity="LOW"'),
         type: .literal('STATIC'),
@@ -369,7 +369,7 @@ final class SccLeftoverStack extends Stack {
 
     add(
       GoogleSccOrganizationSccBigQueryExport(
-        localName: 'org_bq',
+        'org_bq',
         organization: .literal(org),
         bigQueryExportId: .literal('terradart-org-bq'),
         dataset: datasetPath,
@@ -381,7 +381,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccFolderSccBigQueryExport(
-        localName: 'folder_bq',
+        'folder_bq',
         folder: .literal(folder),
         bigQueryExportId: .literal('terradart-folder-bq'),
         dataset: datasetPath,
@@ -393,7 +393,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccProjectSccBigQueryExport(
-        localName: 'project_bq',
+        'project_bq',
         bigQueryExportId: .literal('terradart-project-bq'),
         dataset: datasetPath,
         filter: .literal('state="ACTIVE"'),
@@ -404,7 +404,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2OrganizationSccBigQueryExport(
-        localName: 'v2_org_bq',
+        'v2_org_bq',
         organization: .literal(org),
         bigQueryExportId: .literal('terradart-v2-org-bq'),
         dataset: datasetPath,
@@ -415,7 +415,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2OrganizationSccBigQueryExports(
-        localName: 'v2_org_bqs',
+        'v2_org_bqs',
         organization: .literal(org),
         bigQueryExportId: .literal('terradart-v2-org-bqs'),
         dataset: datasetPath,
@@ -426,7 +426,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2FolderSccBigQueryExport(
-        localName: 'v2_folder_bq',
+        'v2_folder_bq',
         folder: .literal(folder),
         bigQueryExportId: .literal('terradart-v2-folder-bq'),
         dataset: datasetPath,
@@ -437,7 +437,7 @@ final class SccLeftoverStack extends Stack {
     );
     add(
       GoogleSccV2ProjectSccBigQueryExport(
-        localName: 'v2_project_bq',
+        'v2_project_bq',
         bigQueryExportId: .literal('terradart-v2-project-bq'),
         dataset: datasetPath,
         filter: .literal('state="ACTIVE"'),

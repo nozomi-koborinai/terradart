@@ -10,8 +10,8 @@ const Set<String> _awsDxRouterConfigurationSensitive = <String>{};
 final class DataAwsDxRouterConfiguration extends Data {
   static const String tfType = 'aws_dx_router_configuration';
 
-  DataAwsDxRouterConfiguration({
-    required super.localName,
+  DataAwsDxRouterConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routerTypeIdentifier,
     required TfArg<String> virtualInterfaceId,

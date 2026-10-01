@@ -10,8 +10,8 @@ const Set<String> _awsVpcRouteServerPropagationSensitive = <String>{};
 final class AwsVpcRouteServerPropagation extends Resource {
   static const String tfType = 'aws_vpc_route_server_propagation';
 
-  AwsVpcRouteServerPropagation({
-    required super.localName,
+  AwsVpcRouteServerPropagation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routeServerId,
     required TfArg<String> routeTableId,

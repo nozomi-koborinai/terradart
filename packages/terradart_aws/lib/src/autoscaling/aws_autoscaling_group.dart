@@ -1250,8 +1250,8 @@ final class AutoscalingGroupInstanceReusePolicy {
 final class AwsAutoscalingGroup extends Resource {
   static const String tfType = 'aws_autoscaling_group';
 
-  AwsAutoscalingGroup({
-    required super.localName,
+  AwsAutoscalingGroup(
+    super.localName, {
     AutoscalingGroupPlacement? placement,
     TfArg<bool>? capacityRebalance,
     TfArg<String>? context,

@@ -68,8 +68,8 @@ final class LightsailKeyPairNamePrefix extends LightsailKeyPairName {
 final class AwsLightsailKeyPair extends Resource {
   static const String tfType = 'aws_lightsail_key_pair';
 
-  AwsLightsailKeyPair({
-    required super.localName,
+  AwsLightsailKeyPair(
+    super.localName, {
     LightsailKeyPairName? name,
     TfArg<String>? pgpKey,
     TfArg<String>? publicKey,

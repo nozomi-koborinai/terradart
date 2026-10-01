@@ -41,8 +41,8 @@ final class MagicTransitSiteWanStaticAddressing {
 final class CloudflareMagicTransitSiteWan extends Resource {
   static const String tfType = 'cloudflare_magic_transit_site_wan';
 
-  CloudflareMagicTransitSiteWan({
-    required super.localName,
+  CloudflareMagicTransitSiteWan(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? name,
     required TfArg<num> physport,

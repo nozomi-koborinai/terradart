@@ -37,8 +37,8 @@ final class DataplexLakeIamMemberCondition {
 final class GoogleDataplexLakeIamMember extends Resource {
   static const String tfType = 'google_dataplex_lake_iam_member';
 
-  GoogleDataplexLakeIamMember({
-    required super.localName,
+  GoogleDataplexLakeIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> role,
     required IamPrincipal member,

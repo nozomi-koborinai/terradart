@@ -17,8 +17,8 @@ const Set<String> _cloudflareSchemaValidationSettingsSensitive = <String>{};
 final class DataCloudflareSchemaValidationSettings extends Data {
   static const String tfType = 'cloudflare_schema_validation_settings';
 
-  DataCloudflareSchemaValidationSettings({
-    required super.localName,
+  DataCloudflareSchemaValidationSettings(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -38,8 +38,8 @@ final class NetworkConnectivityHubIamMemberCondition {
 final class GoogleNetworkConnectivityHubIamMember extends Resource {
   static const String tfType = 'google_network_connectivity_hub_iam_member';
 
-  GoogleNetworkConnectivityHubIamMember({
-    required super.localName,
+  GoogleNetworkConnectivityHubIamMember(
+    super.localName, {
     required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> role,
     required IamPrincipal member,

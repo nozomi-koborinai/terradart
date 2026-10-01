@@ -67,8 +67,8 @@ final class FsxDataRepositoryAssociationAutoImportPolicy {
 final class AwsFsxDataRepositoryAssociation extends Resource {
   static const String tfType = 'aws_fsx_data_repository_association';
 
-  AwsFsxDataRepositoryAssociation({
-    required super.localName,
+  AwsFsxDataRepositoryAssociation(
+    super.localName, {
     TfArg<bool>? batchImportMetaDataOnCreate,
     required TfArg<String> dataRepositoryPath,
     TfArg<bool>? deleteDataInFilesystem,

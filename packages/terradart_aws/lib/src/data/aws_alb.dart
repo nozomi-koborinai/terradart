@@ -11,8 +11,8 @@ const Set<String> _awsAlbSensitive = <String>{};
 final class DataAwsAlb extends Data {
   static const String tfType = 'aws_alb';
 
-  DataAwsAlb({
-    required super.localName,
+  DataAwsAlb(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

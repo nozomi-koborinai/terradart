@@ -207,8 +207,8 @@ enum S3BucketInventoryFrequency implements TerraformEnum {
 final class AwsS3BucketInventory extends Resource {
   static const String tfType = 'aws_s3_bucket_inventory';
 
-  AwsS3BucketInventory({
-    required super.localName,
+  AwsS3BucketInventory(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? enabled,
     required TfArg<S3BucketInventoryIncludedObjectVersions>

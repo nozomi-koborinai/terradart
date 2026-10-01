@@ -617,7 +617,7 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 /// Example (self-signed root in a DEVOPS pool):
 /// ```dart
 /// GooglePrivatecaCertificateAuthority(
-///   localName: 'app_ca',
+///   'app_ca',
 ///   certificateAuthorityId: TfArg.literal('app-root-ca'),
 ///   pool: caPool.ref,
 ///   location: TfArg.literal('us-central1'),
@@ -646,8 +646,8 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 final class GooglePrivatecaCertificateAuthority extends Resource {
   static const String tfType = 'google_privateca_certificate_authority';
 
-  GooglePrivatecaCertificateAuthority({
-    required super.localName,
+  GooglePrivatecaCertificateAuthority(
+    super.localName, {
     required TfArg<String> certificateAuthorityId,
     required RefTo<GooglePrivatecaCaPool> pool,
     required TfArg<String> location,

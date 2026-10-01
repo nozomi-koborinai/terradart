@@ -76,8 +76,8 @@ enum Route53ResolverFirewallRuleFirewallDomainRedirectionAction
 final class AwsRoute53ResolverFirewallRule extends Resource {
   static const String tfType = 'aws_route53_resolver_firewall_rule';
 
-  AwsRoute53ResolverFirewallRule({
-    required super.localName,
+  AwsRoute53ResolverFirewallRule(
+    super.localName, {
     required TfArg<Route53ResolverFirewallRuleAction> action,
     TfArg<Route53ResolverFirewallRuleBlockOverrideDnsType>?
     blockOverrideDnsType,

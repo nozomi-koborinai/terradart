@@ -14,8 +14,8 @@ const Set<String> _googleStorageInsightsDatasetConfigSensitive = <String>{};
 final class DataGoogleStorageInsightsDatasetConfig extends Data {
   static const String tfType = 'google_storage_insights_dataset_config';
 
-  DataGoogleStorageInsightsDatasetConfig({
-    required super.localName,
+  DataGoogleStorageInsightsDatasetConfig(
+    super.localName, {
     required TfArg<String> datasetConfigId,
     required TfArg<String> location,
     TfArg<String>? project,

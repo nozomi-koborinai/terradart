@@ -12,8 +12,8 @@ const Set<String> _awsVpcSecurityGroupEgressRuleSensitive = <String>{};
 final class AwsVpcSecurityGroupEgressRule extends Resource {
   static const String tfType = 'aws_vpc_security_group_egress_rule';
 
-  AwsVpcSecurityGroupEgressRule({
-    required super.localName,
+  AwsVpcSecurityGroupEgressRule(
+    super.localName, {
     TfArg<String>? cidrIpv4,
     TfArg<String>? cidrIpv6,
     TfArg<String>? description,

@@ -27,8 +27,8 @@ final class DataVpcIpamPoolCidrsFilter {
 final class DataAwsVpcIpamPoolCidrs extends Data {
   static const String tfType = 'aws_vpc_ipam_pool_cidrs';
 
-  DataAwsVpcIpamPoolCidrs({
-    required super.localName,
+  DataAwsVpcIpamPoolCidrs(
+    super.localName, {
     required TfArg<String> ipamPoolId,
     TfArg<String>? region,
     List<DataVpcIpamPoolCidrsFilter>? filter,

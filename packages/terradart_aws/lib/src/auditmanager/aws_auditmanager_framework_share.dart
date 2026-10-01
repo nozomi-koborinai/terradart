@@ -10,8 +10,8 @@ const Set<String> _awsAuditmanagerFrameworkShareSensitive = <String>{};
 final class AwsAuditmanagerFrameworkShare extends Resource {
   static const String tfType = 'aws_auditmanager_framework_share';
 
-  AwsAuditmanagerFrameworkShare({
-    required super.localName,
+  AwsAuditmanagerFrameworkShare(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> destinationAccount,
     required TfArg<String> destinationRegion,

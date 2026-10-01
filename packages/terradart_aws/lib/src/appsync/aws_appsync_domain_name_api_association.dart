@@ -10,8 +10,8 @@ const Set<String> _awsAppsyncDomainNameApiAssociationSensitive = <String>{};
 final class AwsAppsyncDomainNameApiAssociation extends Resource {
   static const String tfType = 'aws_appsync_domain_name_api_association';
 
-  AwsAppsyncDomainNameApiAssociation({
-    required super.localName,
+  AwsAppsyncDomainNameApiAssociation(
+    super.localName, {
     required TfArg<String> apiId,
     required TfArg<String> domainName,
     TfArg<String>? region,

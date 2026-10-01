@@ -14,8 +14,8 @@ const Set<String> _googleVmwareenginePrivateCloudSensitive = <String>{};
 final class DataGoogleVmwareenginePrivateCloud extends Data {
   static const String tfType = 'google_vmwareengine_private_cloud';
 
-  DataGoogleVmwareenginePrivateCloud({
-    required super.localName,
+  DataGoogleVmwareenginePrivateCloud(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

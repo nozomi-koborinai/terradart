@@ -22,8 +22,8 @@ enum DynamodbTableReplicaTableClassOverride implements TerraformEnum {
 final class AwsDynamodbTableReplica extends Resource {
   static const String tfType = 'aws_dynamodb_table_replica';
 
-  AwsDynamodbTableReplica({
-    required super.localName,
+  AwsDynamodbTableReplica(
+    super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     required TfArg<String> globalTableArn,
     RefTo<AwsKmsKey>? kmsKeyArn,

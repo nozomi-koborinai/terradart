@@ -122,8 +122,8 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
   static const String tfType =
       'cloudflare_zero_trust_access_infrastructure_target';
 
-  DataCloudflareZeroTrustAccessInfrastructureTarget({
-    required super.localName,
+  DataCloudflareZeroTrustAccessInfrastructureTarget(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? targetId,
     DataZeroTrustAccessInfrastructureTargetFilter? filter,

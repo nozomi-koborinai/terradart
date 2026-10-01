@@ -26,8 +26,8 @@ enum MagicWanBgpFilterProfileMatchAction implements TerraformEnum {
 final class CloudflareMagicWanBgpFilterProfile extends Resource {
   static const String tfType = 'cloudflare_magic_wan_bgp_filter_profile';
 
-  CloudflareMagicWanBgpFilterProfile({
-    required super.localName,
+  CloudflareMagicWanBgpFilterProfile(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<MagicWanBgpFilterProfileMatchAction> matchAction,

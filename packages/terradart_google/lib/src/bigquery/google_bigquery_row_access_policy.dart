@@ -17,8 +17,8 @@ const Set<String> _googleBigqueryRowAccessPolicySensitive = <String>{};
 final class GoogleBigqueryRowAccessPolicy extends Resource {
   static const String tfType = 'google_bigquery_row_access_policy';
 
-  GoogleBigqueryRowAccessPolicy({
-    required super.localName,
+  GoogleBigqueryRowAccessPolicy(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> filterPredicate,
     TfArg<List<String>>? grantees,

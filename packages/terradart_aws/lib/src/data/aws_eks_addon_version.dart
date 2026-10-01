@@ -10,8 +10,8 @@ const Set<String> _awsEksAddonVersionSensitive = <String>{};
 final class DataAwsEksAddonVersion extends Data {
   static const String tfType = 'aws_eks_addon_version';
 
-  DataAwsEksAddonVersion({
-    required super.localName,
+  DataAwsEksAddonVersion(
+    super.localName, {
     required TfArg<String> addonName,
     required TfArg<String> kubernetesVersion,
     TfArg<bool>? mostRecent,

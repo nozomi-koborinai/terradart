@@ -10,8 +10,8 @@ const Set<String> _awsRoute53profilesResourceAssociationSensitive = <String>{};
 final class AwsRoute53profilesResourceAssociation extends Resource {
   static const String tfType = 'aws_route53profiles_resource_association';
 
-  AwsRoute53profilesResourceAssociation({
-    required super.localName,
+  AwsRoute53profilesResourceAssociation(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> profileId,
     TfArg<String>? region,

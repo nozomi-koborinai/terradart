@@ -72,8 +72,8 @@ final class CloudConnectorRulesParameters {
 final class CloudflareCloudConnectorRules extends Resource {
   static const String tfType = 'cloudflare_cloud_connector_rules';
 
-  CloudflareCloudConnectorRules({
-    required super.localName,
+  CloudflareCloudConnectorRules(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     List<CloudConnectorRules>? rules,
     super.lifecycle,

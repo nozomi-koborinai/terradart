@@ -2142,8 +2142,8 @@ enum SagemakerAlgorithmTransformResourcesInstanceType implements TerraformEnum {
 final class AwsSagemakerAlgorithm extends Resource {
   static const String tfType = 'aws_sagemaker_algorithm';
 
-  AwsSagemakerAlgorithm({
-    required super.localName,
+  AwsSagemakerAlgorithm(
+    super.localName, {
     TfArg<String>? algorithmDescription,
     required TfArg<String> algorithmName,
     TfArg<bool>? certifyForMarketplace,

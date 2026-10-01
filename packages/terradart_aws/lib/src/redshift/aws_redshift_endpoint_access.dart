@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftEndpointAccessSensitive = <String>{};
 final class AwsRedshiftEndpointAccess extends Resource {
   static const String tfType = 'aws_redshift_endpoint_access';
 
-  AwsRedshiftEndpointAccess({
-    required super.localName,
+  AwsRedshiftEndpointAccess(
+    super.localName, {
     required TfArg<String> clusterIdentifier,
     required TfArg<String> endpointName,
     TfArg<String>? region,

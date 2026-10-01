@@ -10,8 +10,8 @@ const Set<String> _awsPrometheusRuleGroupNamespaceSensitive = <String>{};
 final class AwsPrometheusRuleGroupNamespace extends Resource {
   static const String tfType = 'aws_prometheus_rule_group_namespace';
 
-  AwsPrometheusRuleGroupNamespace({
-    required super.localName,
+  AwsPrometheusRuleGroupNamespace(
+    super.localName, {
     required TfArg<String> data,
     required TfArg<String> name,
     TfArg<String>? region,

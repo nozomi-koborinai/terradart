@@ -10,8 +10,8 @@ const Set<String> _awsIotRegistrationCodeSensitive = <String>{};
 final class DataAwsIotRegistrationCode extends Data {
   static const String tfType = 'aws_iot_registration_code';
 
-  DataAwsIotRegistrationCode({
-    required super.localName,
+  DataAwsIotRegistrationCode(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

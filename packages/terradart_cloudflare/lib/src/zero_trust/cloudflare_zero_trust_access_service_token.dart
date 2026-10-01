@@ -19,8 +19,8 @@ const Set<String> _cloudflareZeroTrustAccessServiceTokenSensitive = <String>{
 final class CloudflareZeroTrustAccessServiceToken extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_service_token';
 
-  CloudflareZeroTrustAccessServiceToken({
-    required super.localName,
+  CloudflareZeroTrustAccessServiceToken(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? clientSecretVersion,
     TfArg<String>? duration,

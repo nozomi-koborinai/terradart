@@ -30,8 +30,8 @@ final class DataSsmMaintenanceWindowsFilter {
 final class DataAwsSsmMaintenanceWindows extends Data {
   static const String tfType = 'aws_ssm_maintenance_windows';
 
-  DataAwsSsmMaintenanceWindows({
-    required super.localName,
+  DataAwsSsmMaintenanceWindows(
+    super.localName, {
     TfArg<String>? region,
     List<DataSsmMaintenanceWindowsFilter>? filter,
     super.provider,

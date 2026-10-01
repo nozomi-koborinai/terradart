@@ -43,8 +43,8 @@ final class ApiGatewayApiConfigIamBindingCondition {
 final class GoogleApiGatewayApiConfigIamBinding extends Resource {
   static const String tfType = 'google_api_gateway_api_config_iam_binding';
 
-  GoogleApiGatewayApiConfigIamBinding({
-    required super.localName,
+  GoogleApiGatewayApiConfigIamBinding(
+    super.localName, {
     TfArg<String>? api,
     required RefTo<GoogleApiGatewayApiConfig> apiConfig,
     required TfArg<List<IamPrincipal>> members,

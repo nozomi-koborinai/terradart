@@ -20,8 +20,8 @@ enum OrganizationsAccountIamUserAccessToBilling implements TerraformEnum {
 final class AwsOrganizationsAccount extends Resource {
   static const String tfType = 'aws_organizations_account';
 
-  AwsOrganizationsAccount({
-    required super.localName,
+  AwsOrganizationsAccount(
+    super.localName, {
     TfArg<bool>? closeOnDeletion,
     TfArg<bool>? createGovcloud,
     required TfArg<String> email,

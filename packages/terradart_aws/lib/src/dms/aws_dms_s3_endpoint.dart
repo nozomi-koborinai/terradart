@@ -127,8 +127,8 @@ enum DmsS3EndpointSslMode implements TerraformEnum {
 final class AwsDmsS3Endpoint extends Resource {
   static const String tfType = 'aws_dms_s3_endpoint';
 
-  AwsDmsS3Endpoint({
-    required super.localName,
+  AwsDmsS3Endpoint(
+    super.localName, {
     TfArg<bool>? addColumnName,
     TfArg<bool>? addTrailingPaddingCharacter,
     TfArg<String>? bucketFolder,

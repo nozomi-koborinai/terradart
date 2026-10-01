@@ -17,8 +17,8 @@ const Set<String> _googleComputeImageIamPolicySensitive = <String>{};
 final class GoogleComputeImageIamPolicy extends Resource {
   static const String tfType = 'google_compute_image_iam_policy';
 
-  GoogleComputeImageIamPolicy({
-    required super.localName,
+  GoogleComputeImageIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeImage> image,
     required TfArg<String> policyData,
     TfArg<String>? project,

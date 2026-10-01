@@ -46,7 +46,7 @@ final class RemoteConfigStack extends Stack {
 
     add(
       GoogleFirebaseRemoteConfigRemoteConfig(
-        localName: 'main',
+        'main',
         conditions: [japanCondition],
         parameters: [
           // Boolean feature flag: enable a new checkout flow.

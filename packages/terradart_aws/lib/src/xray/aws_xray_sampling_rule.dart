@@ -10,8 +10,8 @@ const Set<String> _awsXraySamplingRuleSensitive = <String>{};
 final class AwsXraySamplingRule extends Resource {
   static const String tfType = 'aws_xray_sampling_rule';
 
-  AwsXraySamplingRule({
-    required super.localName,
+  AwsXraySamplingRule(
+    super.localName, {
     TfArg<Map<String, String>>? attributes,
     required TfArg<num> fixedRate,
     required TfArg<String> host,

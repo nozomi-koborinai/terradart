@@ -11,8 +11,8 @@ const Set<String> _awsEfsAccessPointSensitive = <String>{};
 final class DataAwsEfsAccessPoint extends Data {
   static const String tfType = 'aws_efs_access_point';
 
-  DataAwsEfsAccessPoint({
-    required super.localName,
+  DataAwsEfsAccessPoint(
+    super.localName, {
     required TfArg<String> accessPointId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

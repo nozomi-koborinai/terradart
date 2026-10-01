@@ -63,7 +63,7 @@ curatedDoc: |-
   /// `us-central1`):
   /// ```dart
   /// final urlMap = GoogleComputeRegionUrlMap(
-  ///   localName: 'urlmap',
+  ///   'urlmap',
   ///   name: TfArg.literal('regionurlmap-prod'),
   ///   region: TfArg.literal('us-central1'),
   ///   defaultService: login.ref,

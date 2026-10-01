@@ -10,8 +10,8 @@ const Set<String> _awsOutpostsOutpostInstanceTypeSensitive = <String>{};
 final class DataAwsOutpostsOutpostInstanceType extends Data {
   static const String tfType = 'aws_outposts_outpost_instance_type';
 
-  DataAwsOutpostsOutpostInstanceType({
-    required super.localName,
+  DataAwsOutpostsOutpostInstanceType(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? instanceType,
     TfArg<List<String>>? preferredInstanceTypes,

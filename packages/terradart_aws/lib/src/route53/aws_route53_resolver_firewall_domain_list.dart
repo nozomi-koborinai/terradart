@@ -10,8 +10,8 @@ const Set<String> _awsRoute53ResolverFirewallDomainListSensitive = <String>{};
 final class AwsRoute53ResolverFirewallDomainList extends Resource {
   static const String tfType = 'aws_route53_resolver_firewall_domain_list';
 
-  AwsRoute53ResolverFirewallDomainList({
-    required super.localName,
+  AwsRoute53ResolverFirewallDomainList(
+    super.localName, {
     TfArg<List<String>>? domains,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -38,8 +38,8 @@ final class GoogleIapWebForwardingRuleServiceIamMember extends Resource {
   static const String tfType =
       'google_iap_web_forwarding_rule_service_iam_member';
 
-  GoogleIapWebForwardingRuleServiceIamMember({
-    required super.localName,
+  GoogleIapWebForwardingRuleServiceIamMember(
+    super.localName, {
     required TfArg<String> forwardingRuleServiceName,
     required TfArg<String> role,
     required IamPrincipal member,

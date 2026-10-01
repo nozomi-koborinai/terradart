@@ -20,8 +20,8 @@ final class GoogleClouddeployDeliveryPipelineIamPolicy extends Resource {
   static const String tfType =
       'google_clouddeploy_delivery_pipeline_iam_policy';
 
-  GoogleClouddeployDeliveryPipelineIamPolicy({
-    required super.localName,
+  GoogleClouddeployDeliveryPipelineIamPolicy(
+    super.localName, {
     required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> policyData,
     TfArg<String>? location,

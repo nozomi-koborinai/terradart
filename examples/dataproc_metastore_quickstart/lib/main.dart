@@ -38,7 +38,7 @@ final class DataprocMetastoreStack extends Stack {
     // auto-mode VPC so the example is self-contained.
     final network = add(
       GoogleComputeNetwork(
-        localName: 'metastore_net',
+        'metastore_net',
         name: .literal('terradart-metastore-net'),
         autoCreateSubnetworks: .literal(true),
         dependsOn: apiDeps,
@@ -47,14 +47,14 @@ final class DataprocMetastoreStack extends Stack {
 
     final viewerSa = add(
       GoogleServiceAccount(
-        localName: 'metastore_viewer',
+        'metastore_viewer',
         accountId: .literal('td-metastore-viewer'),
         displayName: .literal('TerraDart Metastore viewer'),
       ),
     );
 
     final service = GoogleDataprocMetastoreService(
-      localName: 'hive',
+      'hive',
       serviceId: .literal(serviceId),
       location: .literal(location),
       capacity: .tier(.literal(.developer)),
@@ -68,7 +68,7 @@ final class DataprocMetastoreStack extends Stack {
 
     add(
       GoogleDataprocMetastoreServiceIamMember(
-        localName: 'viewer',
+        'viewer',
         service: .literal(serviceId),
         location: .literal(location),
         role: .literal('roles/metastore.metadataViewer'),
@@ -78,7 +78,7 @@ final class DataprocMetastoreStack extends Stack {
     );
 
     final federation = GoogleDataprocMetastoreFederation(
-      localName: 'query',
+      'query',
       federationId: .literal(federationId),
       location: .literal(location),
       version: .literal('3.1.2'),
@@ -95,7 +95,7 @@ final class DataprocMetastoreStack extends Stack {
 
     add(
       GoogleDataprocMetastoreFederationIamMember(
-        localName: 'fed_viewer',
+        'fed_viewer',
         federation: .literal(federationId),
         location: .literal(location),
         role: .literal('roles/metastore.federationViewer'),

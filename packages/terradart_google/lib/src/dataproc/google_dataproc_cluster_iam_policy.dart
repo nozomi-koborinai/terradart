@@ -19,8 +19,8 @@ const Set<String> _googleDataprocClusterIamPolicySensitive = <String>{};
 final class GoogleDataprocClusterIamPolicy extends Resource {
   static const String tfType = 'google_dataproc_cluster_iam_policy';
 
-  GoogleDataprocClusterIamPolicy({
-    required super.localName,
+  GoogleDataprocClusterIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> policyData,
     TfArg<String>? region,

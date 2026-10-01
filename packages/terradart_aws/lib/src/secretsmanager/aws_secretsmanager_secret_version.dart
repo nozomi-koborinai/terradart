@@ -102,8 +102,8 @@ final class SecretsmanagerSecretVersionSecretStringWo
 final class AwsSecretsmanagerSecretVersion extends Resource {
   static const String tfType = 'aws_secretsmanager_secret_version';
 
-  AwsSecretsmanagerSecretVersion({
-    required super.localName,
+  AwsSecretsmanagerSecretVersion(
+    super.localName, {
     TfArg<String>? region,
     SecretsmanagerSecretVersionSecret? secret,
     required TfArg<String> secretId,

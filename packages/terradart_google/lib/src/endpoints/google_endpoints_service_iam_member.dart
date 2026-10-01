@@ -37,8 +37,8 @@ final class EndpointsServiceIamMemberCondition {
 final class GoogleEndpointsServiceIamMember extends Resource {
   static const String tfType = 'google_endpoints_service_iam_member';
 
-  GoogleEndpointsServiceIamMember({
-    required super.localName,
+  GoogleEndpointsServiceIamMember(
+    super.localName, {
     required RefTo<GoogleEndpointsService> service,
     required TfArg<String> role,
     required IamPrincipal member,

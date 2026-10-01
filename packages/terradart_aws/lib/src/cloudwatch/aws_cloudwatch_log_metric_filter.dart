@@ -83,8 +83,8 @@ enum CloudwatchLogMetricFilterUnit implements TerraformEnum {
 final class AwsCloudwatchLogMetricFilter extends Resource {
   static const String tfType = 'aws_cloudwatch_log_metric_filter';
 
-  AwsCloudwatchLogMetricFilter({
-    required super.localName,
+  AwsCloudwatchLogMetricFilter(
+    super.localName, {
     TfArg<bool>? applyOnTransformedLogs,
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,

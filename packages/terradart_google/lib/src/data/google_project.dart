@@ -24,9 +24,9 @@ const Set<String> _googleProjectSensitive = <String>{};
 ///
 /// Example:
 /// ```dart
-/// final current = stack.add(GoogleProject(localName: 'current'));
+/// final current = stack.add(GoogleProject('current'));
 /// final cmekBinding = GooglePubsubTopicIamMember(
-///   localName: 'pubsub_cmek',
+///   'pubsub_cmek',
 ///   topic: topic.ref,
 ///   role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypterDecrypter'),
 ///   member: .serviceAccount(
@@ -37,8 +37,8 @@ const Set<String> _googleProjectSensitive = <String>{};
 final class GoogleProject extends Data {
   static const String tfType = 'google_project';
 
-  GoogleProject({
-    required super.localName,
+  GoogleProject(
+    super.localName, {
     TfArg<String>? projectId,
     super.provider,
     super.timeouts,

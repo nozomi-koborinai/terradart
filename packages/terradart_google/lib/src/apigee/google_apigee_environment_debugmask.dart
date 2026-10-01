@@ -19,8 +19,8 @@ const Set<String> _googleApigeeEnvironmentDebugmaskSensitive = <String>{};
 final class GoogleApigeeEnvironmentDebugmask extends Resource {
   static const String tfType = 'google_apigee_environment_debugmask';
 
-  GoogleApigeeEnvironmentDebugmask({
-    required super.localName,
+  GoogleApigeeEnvironmentDebugmask(
+    super.localName, {
     required TfArg<String> envId,
     TfArg<List<String>>? faultXPaths,
     TfArg<Map<String, String>>? namespaces,

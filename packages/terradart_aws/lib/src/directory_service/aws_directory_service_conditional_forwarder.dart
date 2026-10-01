@@ -11,8 +11,8 @@ const Set<String> _awsDirectoryServiceConditionalForwarderSensitive =
 final class AwsDirectoryServiceConditionalForwarder extends Resource {
   static const String tfType = 'aws_directory_service_conditional_forwarder';
 
-  AwsDirectoryServiceConditionalForwarder({
-    required super.localName,
+  AwsDirectoryServiceConditionalForwarder(
+    super.localName, {
     required TfArg<String> directoryId,
     required TfArg<List<String>> dnsIps,
     TfArg<String>? region,

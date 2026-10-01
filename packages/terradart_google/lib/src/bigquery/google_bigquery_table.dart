@@ -825,7 +825,7 @@ final class BigqueryTableView {
 /// Example:
 /// ```dart
 /// final events = GoogleBigqueryTable(
-///   localName: 'events',
+///   'events',
 ///   datasetId: dataset.ref,
 ///   tableId: TfArg.literal('events_v1'),
 ///   friendlyName: TfArg.literal('Click events'),
@@ -841,8 +841,8 @@ final class BigqueryTableView {
 final class GoogleBigqueryTable extends Resource {
   static const String tfType = 'google_bigquery_table';
 
-  GoogleBigqueryTable({
-    required super.localName,
+  GoogleBigqueryTable(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> tableId,
     TfArg<String>? friendlyName,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareAccountApiTokenPermissionGroupsSensitive =
 final class DataCloudflareAccountApiTokenPermissionGroups extends Data {
   static const String tfType = 'cloudflare_account_api_token_permission_groups';
 
-  DataCloudflareAccountApiTokenPermissionGroups({
-    required super.localName,
+  DataCloudflareAccountApiTokenPermissionGroups(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? name,
     TfArg<String>? scope,

@@ -74,8 +74,8 @@ enum EmailRoutingCatchAllMatchersType implements TerraformEnum {
 final class CloudflareEmailRoutingCatchAll extends Resource {
   static const String tfType = 'cloudflare_email_routing_catch_all';
 
-  CloudflareEmailRoutingCatchAll({
-    required super.localName,
+  CloudflareEmailRoutingCatchAll(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<String>? name,
     TfArg<String>? ownerWorkerTag,

@@ -22,8 +22,8 @@ const Set<String> _googleNetappActiveDirectorySensitive = <String>{'password'};
 final class GoogleNetappActiveDirectory extends Resource {
   static const String tfType = 'google_netapp_active_directory';
 
-  GoogleNetappActiveDirectory({
-    required super.localName,
+  GoogleNetappActiveDirectory(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> domain,

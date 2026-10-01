@@ -11,8 +11,8 @@ const Set<String> _awsElasticsearchDomainSensitive = <String>{};
 final class DataAwsElasticsearchDomain extends Data {
   static const String tfType = 'aws_elasticsearch_domain';
 
-  DataAwsElasticsearchDomain({
-    required super.localName,
+  DataAwsElasticsearchDomain(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

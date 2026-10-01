@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example (daily snapshot schedule, keep 7 days):
   /// ```dart
   /// GoogleComputeResourcePolicy(
-  ///   localName: 'daily_snapshots',
+  ///   'daily_snapshots',
   ///   name: .literal('daily-snapshots'),
   ///   region: .literal('us-central1'),
   ///   kind: .snapshotSchedulePolicy(

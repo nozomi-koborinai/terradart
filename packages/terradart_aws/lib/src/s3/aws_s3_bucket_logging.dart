@@ -168,8 +168,8 @@ final class S3BucketLoggingSimplePrefix {
 final class AwsS3BucketLogging extends Resource {
   static const String tfType = 'aws_s3_bucket_logging';
 
-  AwsS3BucketLogging({
-    required super.localName,
+  AwsS3BucketLogging(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

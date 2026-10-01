@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustGatewayPacfileSensitive = <String>{};
 final class CloudflareZeroTrustGatewayPacfile extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_pacfile';
 
-  CloudflareZeroTrustGatewayPacfile({
-    required super.localName,
+  CloudflareZeroTrustGatewayPacfile(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> contents,
     TfArg<String>? description,

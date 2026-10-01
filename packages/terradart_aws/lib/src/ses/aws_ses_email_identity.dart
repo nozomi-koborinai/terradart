@@ -10,8 +10,8 @@ const Set<String> _awsSesEmailIdentitySensitive = <String>{};
 final class AwsSesEmailIdentity extends Resource {
   static const String tfType = 'aws_ses_email_identity';
 
-  AwsSesEmailIdentity({
-    required super.localName,
+  AwsSesEmailIdentity(
+    super.localName, {
     required TfArg<String> email,
     TfArg<String>? region,
     super.lifecycle,

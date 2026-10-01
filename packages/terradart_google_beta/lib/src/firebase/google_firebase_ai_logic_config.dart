@@ -110,8 +110,8 @@ final class FirebaseAiLogicConfigTrafficFilter {
 final class GoogleFirebaseAiLogicConfig extends Resource {
   static const String tfType = 'google_firebase_ai_logic_config';
 
-  GoogleFirebaseAiLogicConfig({
-    required super.localName,
+  GoogleFirebaseAiLogicConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? location,
     TfArg<String>? project,

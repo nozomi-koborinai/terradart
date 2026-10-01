@@ -30,8 +30,8 @@ final class WafregionalIpsetIpSetDescriptor {
 final class AwsWafregionalIpset extends Resource {
   static const String tfType = 'aws_wafregional_ipset';
 
-  AwsWafregionalIpset({
-    required super.localName,
+  AwsWafregionalIpset(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     List<WafregionalIpsetIpSetDescriptor>? ipSetDescriptor,

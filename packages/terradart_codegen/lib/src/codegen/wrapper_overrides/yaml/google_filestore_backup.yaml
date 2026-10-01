@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleFilestoreBackup(
-  ///   localName: 'share_backup',
+  ///   'share_backup',
   ///   name: TfArg.literal('share-backup-1'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   sourceInstance: nfs.ref,

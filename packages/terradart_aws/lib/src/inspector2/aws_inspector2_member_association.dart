@@ -10,8 +10,8 @@ const Set<String> _awsInspector2MemberAssociationSensitive = <String>{};
 final class AwsInspector2MemberAssociation extends Resource {
   static const String tfType = 'aws_inspector2_member_association';
 
-  AwsInspector2MemberAssociation({
-    required super.localName,
+  AwsInspector2MemberAssociation(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? region,
     super.lifecycle,

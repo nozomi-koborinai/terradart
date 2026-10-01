@@ -32,8 +32,8 @@ final class LambdaFunctionScalingConfig {
 final class AwsLambdaFunctionScalingConfig extends Resource {
   static const String tfType = 'aws_lambda_function_scaling_config';
 
-  AwsLambdaFunctionScalingConfig({
-    required super.localName,
+  AwsLambdaFunctionScalingConfig(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> qualifier,
     TfArg<String>? region,

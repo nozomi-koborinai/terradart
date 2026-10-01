@@ -14,7 +14,7 @@ curatedDoc: |-
   /// Example (HTTP-triggered Python function backed by a GCS source archive):
   /// ```dart
   /// final fn = GoogleCloudfunctions2Function(
-  ///   localName: 'http_fn',
+  ///   'http_fn',
   ///   name: .literal('hello-http'),
   ///   location: .literal('asia-northeast1'),
   ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
@@ -41,7 +41,7 @@ curatedDoc: |-
   /// Example (Pub/Sub event-triggered function):
   /// ```dart
   /// final fn = GoogleCloudfunctions2Function(
-  ///   localName: 'sub_fn',
+  ///   'sub_fn',
   ///   name: .literal('order-handler'),
   ///   location: .literal('asia-northeast1'),
   ///   buildConfig: Cloudfunctions2FunctionBuildConfig(

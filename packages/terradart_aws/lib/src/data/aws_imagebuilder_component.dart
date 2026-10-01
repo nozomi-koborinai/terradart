@@ -11,8 +11,8 @@ const Set<String> _awsImagebuilderComponentSensitive = <String>{};
 final class DataAwsImagebuilderComponent extends Data {
   static const String tfType = 'aws_imagebuilder_component';
 
-  DataAwsImagebuilderComponent({
-    required super.localName,
+  DataAwsImagebuilderComponent(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

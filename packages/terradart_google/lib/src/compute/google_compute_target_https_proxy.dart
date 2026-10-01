@@ -164,7 +164,7 @@ final class ComputeTargetHttpsProxySslCertificates
 /// Example (classic SSL certificate, external HTTPS LB):
 /// ```dart
 /// final httpsProxy = GoogleComputeTargetHttpsProxy(
-///   localName: 'lb_https',
+///   'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: urlMap.ref,
 ///   certificates: .sslCertificates(
@@ -182,8 +182,8 @@ final class ComputeTargetHttpsProxySslCertificates
 final class GoogleComputeTargetHttpsProxy extends Resource {
   static const String tfType = 'google_compute_target_https_proxy';
 
-  GoogleComputeTargetHttpsProxy({
-    required super.localName,
+  GoogleComputeTargetHttpsProxy(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeUrlMap> urlMap,
     ComputeTargetHttpsProxyCertificates? certificates,

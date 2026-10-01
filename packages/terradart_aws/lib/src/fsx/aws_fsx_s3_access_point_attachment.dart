@@ -128,8 +128,8 @@ final class FsxS3AccessPointAttachmentVpcConfiguration {
 final class AwsFsxS3AccessPointAttachment extends Resource {
   static const String tfType = 'aws_fsx_s3_access_point_attachment';
 
-  AwsFsxS3AccessPointAttachment({
-    required super.localName,
+  AwsFsxS3AccessPointAttachment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<FsxS3AccessPointAttachmentType> type,

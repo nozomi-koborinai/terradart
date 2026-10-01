@@ -23,8 +23,8 @@ enum Inspector2EnablerResourceTypes implements TerraformEnum {
 final class AwsInspector2Enabler extends Resource {
   static const String tfType = 'aws_inspector2_enabler';
 
-  AwsInspector2Enabler({
-    required super.localName,
+  AwsInspector2Enabler(
+    super.localName, {
     required TfArg<List<String>> accountIds,
     TfArg<String>? region,
     required List<TfArg<Inspector2EnablerResourceTypes>> resourceTypes,

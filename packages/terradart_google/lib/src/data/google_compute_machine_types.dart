@@ -13,8 +13,8 @@ const Set<String> _googleComputeMachineTypesSensitive = <String>{};
 final class DataGoogleComputeMachineTypes extends Data {
   static const String tfType = 'google_compute_machine_types';
 
-  DataGoogleComputeMachineTypes({
-    required super.localName,
+  DataGoogleComputeMachineTypes(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     TfArg<String>? zone,

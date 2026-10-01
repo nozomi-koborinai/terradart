@@ -18,8 +18,8 @@ const Set<String> _appwritePostgresqlExtensionSensitive = <String>{};
 final class AppwritePostgresqlExtension extends Resource {
   static const String tfType = 'appwrite_postgresql_extension';
 
-  AppwritePostgresqlExtension({
-    required super.localName,
+  AppwritePostgresqlExtension(
+    super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     required TfArg<String> name,
     RefTo<AppwriteProject>? projectId,

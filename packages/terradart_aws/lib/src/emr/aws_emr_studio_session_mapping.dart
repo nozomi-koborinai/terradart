@@ -81,8 +81,8 @@ final class EmrStudioSessionMappingIdentityName
 final class AwsEmrStudioSessionMapping extends Resource {
   static const String tfType = 'aws_emr_studio_session_mapping';
 
-  AwsEmrStudioSessionMapping({
-    required super.localName,
+  AwsEmrStudioSessionMapping(
+    super.localName, {
     required EmrStudioSessionMappingIdentity identity,
     required TfArg<EmrStudioSessionMappingIdentityType> identityType,
     TfArg<String>? region,

@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example (Feature Registry source):
   /// ```dart
   /// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
-  ///   localName: 'fv',
+  ///   'fv',
   ///   featureOnlineStore: fos.name,
   ///   name: .literal('customer_view'),
   ///   region: .literal('us-central1'),

@@ -36,7 +36,7 @@ const Set<String> _googleIdentityPlatformTenantOauthIdpConfigSensitive =
 /// Example:
 /// ```dart
 /// GoogleIdentityPlatformTenantOauthIdpConfig(
-///   localName: 'demo_oidc',
+///   'demo_oidc',
 ///   name: TfArg.literal('oidc.terradart'),
 ///   tenant: tenant.ref,
 ///   displayName: TfArg.literal('TerraDart dummy OIDC'),
@@ -50,8 +50,8 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
   static const String tfType =
       'google_identity_platform_tenant_oauth_idp_config';
 
-  GoogleIdentityPlatformTenantOauthIdpConfig({
-    required super.localName,
+  GoogleIdentityPlatformTenantOauthIdpConfig(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleIdentityPlatformTenant> tenant,
     required TfArg<String> displayName,

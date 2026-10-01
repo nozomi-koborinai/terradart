@@ -102,7 +102,7 @@ final class IamDenyPolicyDenialCondition {
 /// Example:
 /// ```dart
 /// GoogleIamDenyPolicy(
-///   localName: 'storage_get_deny',
+///   'storage_get_deny',
 ///   parent: TfArg.literal(
 ///     Uri.encodeComponent(
 ///       'cloudresourcemanager.googleapis.com/projects/$projectId',
@@ -126,8 +126,8 @@ final class IamDenyPolicyDenialCondition {
 final class GoogleIamDenyPolicy extends Resource {
   static const String tfType = 'google_iam_deny_policy';
 
-  GoogleIamDenyPolicy({
-    required super.localName,
+  GoogleIamDenyPolicy(
+    super.localName, {
     required TfArg<String> parent,
     required TfArg<String> name,
     TfArg<String>? displayName,

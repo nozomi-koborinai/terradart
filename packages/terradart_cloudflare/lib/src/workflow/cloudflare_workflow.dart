@@ -66,8 +66,8 @@ final class WorkflowSchedules {
 final class CloudflareWorkflow extends Resource {
   static const String tfType = 'cloudflare_workflow';
 
-  CloudflareWorkflow({
-    required super.localName,
+  CloudflareWorkflow(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> className,
     required TfArg<String> scriptName,

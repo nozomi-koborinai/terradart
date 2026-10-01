@@ -13,8 +13,8 @@ const Set<String> _googleContainerAttachedVersionsSensitive = <String>{};
 final class DataGoogleContainerAttachedVersions extends Data {
   static const String tfType = 'google_container_attached_versions';
 
-  DataGoogleContainerAttachedVersions({
-    required super.localName,
+  DataGoogleContainerAttachedVersions(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> project,
     super.provider,

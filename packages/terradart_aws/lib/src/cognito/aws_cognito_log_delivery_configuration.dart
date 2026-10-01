@@ -113,8 +113,8 @@ final class CognitoLogDeliveryConfigurationS3Configuration {
 final class AwsCognitoLogDeliveryConfiguration extends Resource {
   static const String tfType = 'aws_cognito_log_delivery_configuration';
 
-  AwsCognitoLogDeliveryConfiguration({
-    required super.localName,
+  AwsCognitoLogDeliveryConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> userPoolId,
     List<CognitoLogDeliveryConfigurationLogConfigurations>? logConfigurations,

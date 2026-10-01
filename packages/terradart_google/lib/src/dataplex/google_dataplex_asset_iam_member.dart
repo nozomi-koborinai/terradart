@@ -37,8 +37,8 @@ final class DataplexAssetIamMemberCondition {
 final class GoogleDataplexAssetIamMember extends Resource {
   static const String tfType = 'google_dataplex_asset_iam_member';
 
-  GoogleDataplexAssetIamMember({
-    required super.localName,
+  GoogleDataplexAssetIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexAsset> asset,
     TfArg<String>? dataplexZone,
     TfArg<String>? lake,

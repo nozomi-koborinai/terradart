@@ -775,8 +775,8 @@ final class ZeroTrustAccessGroupRequire {
 final class CloudflareZeroTrustAccessGroup extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_group';
 
-  CloudflareZeroTrustAccessGroup({
-    required super.localName,
+  CloudflareZeroTrustAccessGroup(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<bool>? isDefault,
     required TfArg<String> name,

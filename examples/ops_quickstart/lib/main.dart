@@ -35,7 +35,7 @@ final class AuditPipelineStack extends Stack {
 
     final apiLogging = add(
       GoogleProjectService(
-        localName: 'api_logging',
+        'api_logging',
         service: .literal('logging.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -43,7 +43,7 @@ final class AuditPipelineStack extends Stack {
 
     final apiBigquery = add(
       GoogleProjectService(
-        localName: 'api_bigquery',
+        'api_bigquery',
         service: .literal('bigquery.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -51,14 +51,14 @@ final class AuditPipelineStack extends Stack {
 
     final apiSpanner = add(
       GoogleProjectService(
-        localName: 'api_spanner',
+        'api_spanner',
         service: .literal('spanner.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
 
     final dataset = GoogleBigqueryDataset(
-      localName: 'audit_logs',
+      'audit_logs',
       datasetId: .literal('audit_logs'),
       location: .literal('asia-northeast1'),
       friendlyName: .literal('Cloud Audit Logs sink'),
@@ -68,7 +68,7 @@ final class AuditPipelineStack extends Stack {
     add(dataset);
 
     final auditBucket = GoogleLoggingProjectBucketConfig(
-      localName: 'audit_bucket',
+      'audit_bucket',
       bucketId: .literal(bucketId),
       location: .literal(location),
       project: .literal(projectId),
@@ -81,7 +81,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingLogScope(
-        localName: 'audit_scope',
+        'audit_scope',
         name: .literal('audit-scope'),
         resourceNames: .literal([
           'projects/$projectId/locations/$location/buckets/$bucketId',
@@ -93,7 +93,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingLinkedDataset(
-        localName: 'audit_analytics',
+        'audit_analytics',
         bucket: auditBucket.ref,
         linkId: .literal('audit-analytics'),
         bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
@@ -104,7 +104,7 @@ final class AuditPipelineStack extends Stack {
     );
 
     final auditView = GoogleLoggingLogView(
-      localName: 'audit_view',
+      'audit_view',
       bucket: auditBucket.ref,
       name: .literal(viewName),
       location: .literal(location),
@@ -116,7 +116,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingLogViewIamMember(
-        localName: 'audit_view_viewer',
+        'audit_view_viewer',
         logView: auditView.ref,
         role: .literal('roles/logging.viewer'),
         member: .group('security-auditors@example.com'),
@@ -126,7 +126,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingProjectExclusion(
-        localName: 'drop_dns_noise',
+        'drop_dns_noise',
         name: .literal('drop-dns-noise'),
         filter: .literal('resource.type="dns_query"'),
         description: .literal('Skip high-volume DNS query logs.'),
@@ -136,7 +136,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingSavedQuery(
-        localName: 'audit_errors',
+        'audit_errors',
         name: .literal('audit-errors'),
         displayName: .literal('Audit errors'),
         parent: .literal('projects/$projectId/locations/$location'),
@@ -155,7 +155,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingMetric(
-        localName: 'audit_error_count',
+        'audit_error_count',
         name: .literal('audit_error_count'),
         filter: .literal(
           'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
@@ -176,7 +176,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingProjectSink(
-        localName: 'audit_to_bq',
+        'audit_to_bq',
         name: .literal('audit-to-bq'),
         destination: projectSinkDestination,
         filter: .literal('logName:"cloudaudit.googleapis.com"'),
@@ -190,7 +190,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingFolderSink(
-        localName: 'folder_audit_to_bq',
+        'folder_audit_to_bq',
         name: .literal('folder-audit-to-bq'),
         folder: TfArg.variable('ops_folder_id'),
         destination: projectSinkDestination,
@@ -205,7 +205,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleLoggingOrganizationSink(
-        localName: 'org_audit_to_bq',
+        'org_audit_to_bq',
         name: .literal('org-audit-to-bq'),
         orgId: TfArg.variable('ops_organization_id'),
         destination: projectSinkDestination,
@@ -222,7 +222,7 @@ final class AuditPipelineStack extends Stack {
 
     final spanner = add(
       GoogleSpannerInstance(
-        localName: 'audit_spanner',
+        'audit_spanner',
         config: .literal('regional-asia-northeast1'),
         displayName: .literal('Audit metadata store'),
         numNodes: .literal(1),
@@ -232,7 +232,7 @@ final class AuditPipelineStack extends Stack {
 
     final spannerDb = add(
       GoogleSpannerDatabase(
-        localName: 'audit_meta',
+        'audit_meta',
         instance: spanner.ref,
         name: .literal('audit_meta'),
         versionRetentionPeriod: .literal('86400s'),
@@ -242,7 +242,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleSpannerInstanceIamMember(
-        localName: 'spanner_instance_viewer',
+        'spanner_instance_viewer',
         instance: spanner.ref,
         role: .literal('roles/spanner.viewer'),
         member: .group('audit-readers@example.com'),
@@ -252,7 +252,7 @@ final class AuditPipelineStack extends Stack {
 
     add(
       GoogleSpannerDatabaseIamMember(
-        localName: 'spanner_db_reader',
+        'spanner_db_reader',
         database: spannerDb.ref,
         role: .literal('roles/spanner.databaseReader'),
         member: .group('audit-readers@example.com'),

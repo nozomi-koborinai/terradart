@@ -10,8 +10,8 @@ const Set<String> _awsIpRangesSensitive = <String>{};
 final class DataAwsIpRanges extends Data {
   static const String tfType = 'aws_ip_ranges';
 
-  DataAwsIpRanges({
-    required super.localName,
+  DataAwsIpRanges(
+    super.localName, {
     TfArg<List<String>>? regions,
     required TfArg<List<String>> services,
     TfArg<String>? url,

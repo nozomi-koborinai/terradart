@@ -322,8 +322,8 @@ final class LbSubnetMapping {
 final class AwsLb extends Resource {
   static const String tfType = 'aws_lb';
 
-  AwsLb({
-    required super.localName,
+  AwsLb(
+    super.localName, {
     TfArg<num>? clientKeepAlive,
     TfArg<String>? customerOwnedIpv4Pool,
     TfArg<LbDesyncMitigationMode>? desyncMitigationMode,

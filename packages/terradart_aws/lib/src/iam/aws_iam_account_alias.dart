@@ -10,8 +10,8 @@ const Set<String> _awsIamAccountAliasSensitive = <String>{};
 final class AwsIamAccountAlias extends Resource {
   static const String tfType = 'aws_iam_account_alias';
 
-  AwsIamAccountAlias({
-    required super.localName,
+  AwsIamAccountAlias(
+    super.localName, {
     required TfArg<String> accountAlias,
     super.lifecycle,
     super.dependsOn,

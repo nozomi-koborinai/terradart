@@ -11,8 +11,8 @@ const Set<String> _awsWafWebAclSensitive = <String>{};
 final class DataAwsWafWebAcl extends Data {
   static const String tfType = 'aws_waf_web_acl';
 
-  DataAwsWafWebAcl({
-    required super.localName,
+  DataAwsWafWebAcl(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

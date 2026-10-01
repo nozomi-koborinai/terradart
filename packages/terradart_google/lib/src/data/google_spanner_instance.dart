@@ -14,8 +14,8 @@ const Set<String> _googleSpannerInstanceSensitive = <String>{};
 final class DataGoogleSpannerInstance extends Data {
   static const String tfType = 'google_spanner_instance';
 
-  DataGoogleSpannerInstance({
-    required super.localName,
+  DataGoogleSpannerInstance(
+    super.localName, {
     TfArg<String>? config,
     TfArg<String>? displayName,
     required TfArg<String> name,

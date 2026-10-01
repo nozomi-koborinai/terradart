@@ -120,7 +120,7 @@ enum SecretManagerSecretVersionDeletionPolicy implements TerraformEnum {
 ///
 /// ```dart
 /// GoogleSecretManagerSecretVersion(
-///   localName: 'api_key_v1',
+///   'api_key_v1',
 ///   secret: apiKey.ref,
 ///   payload: SecretManagerSecretVersionWriteOnlyPayload(
 ///     secretDataWo: TfArg.literal(apiKeyValue),
@@ -131,8 +131,8 @@ enum SecretManagerSecretVersionDeletionPolicy implements TerraformEnum {
 final class GoogleSecretManagerSecretVersion extends Resource {
   static const String tfType = 'google_secret_manager_secret_version';
 
-  GoogleSecretManagerSecretVersion({
-    required super.localName,
+  GoogleSecretManagerSecretVersion(
+    super.localName, {
     required RefTo<GoogleSecretManagerSecret> secret,
     required SecretManagerSecretVersionPayload payload,
     TfArg<bool>? enabled,

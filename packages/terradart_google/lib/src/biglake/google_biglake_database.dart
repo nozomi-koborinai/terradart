@@ -31,8 +31,8 @@ final class BiglakeDatabaseHiveOptions {
 final class GoogleBiglakeDatabase extends Resource {
   static const String tfType = 'google_biglake_database';
 
-  GoogleBiglakeDatabase({
-    required super.localName,
+  GoogleBiglakeDatabase(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleBiglakeCatalog> catalog,
     required TfArg<String> type,

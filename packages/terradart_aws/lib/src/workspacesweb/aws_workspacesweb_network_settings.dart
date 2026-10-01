@@ -14,8 +14,8 @@ const Set<String> _awsWorkspaceswebNetworkSettingsSensitive = <String>{};
 final class AwsWorkspaceswebNetworkSettings extends Resource {
   static const String tfType = 'aws_workspacesweb_network_settings';
 
-  AwsWorkspaceswebNetworkSettings({
-    required super.localName,
+  AwsWorkspaceswebNetworkSettings(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,

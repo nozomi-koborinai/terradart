@@ -16,8 +16,8 @@ const Set<String> _googleStorageObjectSignedUrlSensitive = <String>{
 final class DataGoogleStorageObjectSignedUrl extends Data {
   static const String tfType = 'google_storage_object_signed_url';
 
-  DataGoogleStorageObjectSignedUrl({
-    required super.localName,
+  DataGoogleStorageObjectSignedUrl(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? contentMd5,
     TfArg<String>? contentType,

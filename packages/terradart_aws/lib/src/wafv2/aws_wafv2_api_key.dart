@@ -22,8 +22,8 @@ enum Wafv2ApiKeyScope implements TerraformEnum {
 final class AwsWafv2ApiKey extends Resource {
   static const String tfType = 'aws_wafv2_api_key';
 
-  AwsWafv2ApiKey({
-    required super.localName,
+  AwsWafv2ApiKey(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<Wafv2ApiKeyScope> scope,
     required TfArg<List<String>> tokenDomains,

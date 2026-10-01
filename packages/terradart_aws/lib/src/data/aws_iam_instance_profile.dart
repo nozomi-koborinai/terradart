@@ -11,8 +11,8 @@ const Set<String> _awsIamInstanceProfileSensitive = <String>{};
 final class DataAwsIamInstanceProfile extends Data {
   static const String tfType = 'aws_iam_instance_profile';
 
-  DataAwsIamInstanceProfile({
-    required super.localName,
+  DataAwsIamInstanceProfile(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

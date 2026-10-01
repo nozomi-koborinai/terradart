@@ -12,7 +12,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final vpc = GoogleComputeNetwork(
-  ///   localName: 'main',
+  ///   'main',
   ///   name: TfArg.literal('main-vpc'),
   ///   autoCreateSubnetworks: TfArg.literal(false),
   ///   routingMode: TfArg.literal(RoutingMode.regional),

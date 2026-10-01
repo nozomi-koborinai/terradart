@@ -21,7 +21,7 @@ const Set<String> _googleManagedKafkaTopicSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleManagedKafkaTopic(
-///   localName: 'events',
+///   'events',
 ///   topicId: TfArg.literal('events'),
 ///   cluster: cluster.clusterId,
 ///   location: TfArg.literal('us-central1'),
@@ -32,8 +32,8 @@ const Set<String> _googleManagedKafkaTopicSensitive = <String>{};
 final class GoogleManagedKafkaTopic extends Resource {
   static const String tfType = 'google_managed_kafka_topic';
 
-  GoogleManagedKafkaTopic({
-    required super.localName,
+  GoogleManagedKafkaTopic(
+    super.localName, {
     required TfArg<String> topicId,
     required TfArg<String> cluster,
     required TfArg<String> location,

@@ -11,8 +11,8 @@ const Set<String> _awsMemorydbParameterGroupSensitive = <String>{};
 final class DataAwsMemorydbParameterGroup extends Data {
   static const String tfType = 'aws_memorydb_parameter_group';
 
-  DataAwsMemorydbParameterGroup({
-    required super.localName,
+  DataAwsMemorydbParameterGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

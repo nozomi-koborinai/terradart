@@ -144,8 +144,8 @@ final class NetworkServicesLbRouteExtensionMatchCondition {
 final class GoogleNetworkServicesLbRouteExtension extends Resource {
   static const String tfType = 'google_network_services_lb_route_extension';
 
-  GoogleNetworkServicesLbRouteExtension({
-    required super.localName,
+  GoogleNetworkServicesLbRouteExtension(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<NetworkServicesLbRouteExtensionLoadBalancingScheme>

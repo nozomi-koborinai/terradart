@@ -54,8 +54,8 @@ final class LambdaFunctionEventInvokeConfigOnSuccess {
 final class AwsLambdaFunctionEventInvokeConfig extends Resource {
   static const String tfType = 'aws_lambda_function_event_invoke_config';
 
-  AwsLambdaFunctionEventInvokeConfig({
-    required super.localName,
+  AwsLambdaFunctionEventInvokeConfig(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     TfArg<num>? maximumEventAgeInSeconds,
     TfArg<num>? maximumRetryAttempts,

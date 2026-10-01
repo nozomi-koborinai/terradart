@@ -44,7 +44,7 @@ curatedDoc: |-
   /// Example (Cloud Storage object finalized -> Cloud Run service):
   /// ```dart
   /// final onUpload = GoogleEventarcTrigger(
-  ///   localName: 'on_upload',
+  ///   'on_upload',
   ///   name: .literal('on-upload'),
   ///   location: .literal('asia-northeast1'),
   ///   serviceAccount: .of(runner),

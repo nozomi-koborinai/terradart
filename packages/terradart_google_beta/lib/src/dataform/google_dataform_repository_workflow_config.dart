@@ -77,8 +77,8 @@ final class DataformRepositoryWorkflowConfigIncludedTargets {
 final class GoogleDataformRepositoryWorkflowConfig extends Resource {
   static const String tfType = 'google_dataform_repository_workflow_config';
 
-  GoogleDataformRepositoryWorkflowConfig({
-    required super.localName,
+  GoogleDataformRepositoryWorkflowConfig(
+    super.localName, {
     TfArg<String>? cronSchedule,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? disabled,

@@ -136,8 +136,8 @@ enum FsxOpenzfsVolumeUserAndGroupQuotasType implements TerraformEnum {
 final class AwsFsxOpenzfsVolume extends Resource {
   static const String tfType = 'aws_fsx_openzfs_volume';
 
-  AwsFsxOpenzfsVolume({
-    required super.localName,
+  AwsFsxOpenzfsVolume(
+    super.localName, {
     TfArg<bool>? copyTagsToSnapshots,
     TfArg<FsxOpenzfsVolumeDataCompressionType>? dataCompressionType,
     List<TfArg<FsxOpenzfsVolumeDeleteVolumeOptions>>? deleteVolumeOptions,

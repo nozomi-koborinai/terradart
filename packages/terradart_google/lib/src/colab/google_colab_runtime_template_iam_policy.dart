@@ -18,8 +18,8 @@ const Set<String> _googleColabRuntimeTemplateIamPolicySensitive = <String>{};
 final class GoogleColabRuntimeTemplateIamPolicy extends Resource {
   static const String tfType = 'google_colab_runtime_template_iam_policy';
 
-  GoogleColabRuntimeTemplateIamPolicy({
-    required super.localName,
+  GoogleColabRuntimeTemplateIamPolicy(
+    super.localName, {
     required RefTo<GoogleColabRuntimeTemplate> runtimeTemplate,
     required TfArg<String> policyData,
     TfArg<String>? location,

@@ -264,8 +264,8 @@ final class S3ObjectDefaultTags {
 final class AwsS3Object extends Resource {
   static const String tfType = 'aws_s3_object';
 
-  AwsS3Object({
-    required super.localName,
+  AwsS3Object(
+    super.localName, {
     TfArg<S3ObjectAcl>? acl,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,

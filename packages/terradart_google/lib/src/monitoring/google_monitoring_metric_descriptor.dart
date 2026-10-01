@@ -156,7 +156,7 @@ class MonitoringMetricDescriptorMetadata {
 /// Example (custom DELTA / INT64 counter):
 /// ```dart
 /// final descriptor = GoogleMonitoringMetricDescriptor(
-///   localName: 'app_requests',
+///   'app_requests',
 ///   type: TfArg.literal('custom.googleapis.com/myapp/requests'),
 ///   metricKind: TfArg.literal(MonitoringMetricKind.delta),
 ///   valueType: TfArg.literal(MonitoringValueType.int64),
@@ -175,8 +175,8 @@ class MonitoringMetricDescriptorMetadata {
 final class GoogleMonitoringMetricDescriptor extends Resource {
   static const String tfType = 'google_monitoring_metric_descriptor';
 
-  GoogleMonitoringMetricDescriptor({
-    required super.localName,
+  GoogleMonitoringMetricDescriptor(
+    super.localName, {
     required TfArg<String> type,
     required TfArg<MonitoringMetricKind> metricKind,
     required TfArg<MonitoringValueType> valueType,

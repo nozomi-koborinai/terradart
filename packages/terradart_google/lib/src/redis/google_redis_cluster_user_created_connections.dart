@@ -87,7 +87,7 @@ final class RedisClusterUserCreatedConnectionsPscConnection {
 /// Example (attach after [GoogleRedisCluster] is up):
 /// ```dart
 /// GoogleRedisClusterUserCreatedConnections(
-///   localName: 'rc_conn',
+///   'rc_conn',
 ///   name: cluster.name,
 ///   region: TfArg.literal('us-central1'),
 /// );
@@ -95,8 +95,8 @@ final class RedisClusterUserCreatedConnectionsPscConnection {
 final class GoogleRedisClusterUserCreatedConnections extends Resource {
   static const String tfType = 'google_redis_cluster_user_created_connections';
 
-  GoogleRedisClusterUserCreatedConnections({
-    required super.localName,
+  GoogleRedisClusterUserCreatedConnections(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     List<RedisClusterUserCreatedConnectionsClusterEndpoints>? clusterEndpoints,

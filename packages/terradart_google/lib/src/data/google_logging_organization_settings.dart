@@ -14,8 +14,8 @@ const Set<String> _googleLoggingOrganizationSettingsSensitive = <String>{};
 final class DataGoogleLoggingOrganizationSettings extends Data {
   static const String tfType = 'google_logging_organization_settings';
 
-  DataGoogleLoggingOrganizationSettings({
-    required super.localName,
+  DataGoogleLoggingOrganizationSettings(
+    super.localName, {
     required TfArg<String> organization,
     super.provider,
     super.timeouts,

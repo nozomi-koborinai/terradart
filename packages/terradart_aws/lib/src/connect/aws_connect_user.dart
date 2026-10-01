@@ -75,8 +75,8 @@ enum ConnectUserPhoneType implements TerraformEnum {
 final class AwsConnectUser extends Resource {
   static const String tfType = 'aws_connect_user';
 
-  AwsConnectUser({
-    required super.localName,
+  AwsConnectUser(
+    super.localName, {
     TfArg<String>? directoryUserId,
     TfArg<String>? hierarchyGroupId,
     required TfArg<String> instanceId,

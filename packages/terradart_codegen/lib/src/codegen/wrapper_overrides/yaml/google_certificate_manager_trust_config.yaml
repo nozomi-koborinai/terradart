@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCertificateManagerTrustConfig(
-  ///   localName: 'app_trust',
+  ///   'app_trust',
   ///   name: TfArg.literal('app-trust'),
   ///   location: TfArg.literal('global'),
   ///   trustStores: [

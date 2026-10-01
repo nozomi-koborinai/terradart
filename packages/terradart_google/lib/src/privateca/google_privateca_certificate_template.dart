@@ -387,7 +387,7 @@ final class PrivatecaCertificateTemplatePolicyIds {
 /// Example (permissive template for a DEVOPS/ENTERPRISE pool):
 /// ```dart
 /// GooglePrivatecaCertificateTemplate(
-///   localName: 'leaf_template',
+///   'leaf_template',
 ///   name: TfArg.literal('app-leaf-template'),
 ///   location: TfArg.literal('us-central1'),
 ///   identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
@@ -405,8 +405,8 @@ final class PrivatecaCertificateTemplatePolicyIds {
 final class GooglePrivatecaCertificateTemplate extends Resource {
   static const String tfType = 'google_privateca_certificate_template';
 
-  GooglePrivatecaCertificateTemplate({
-    required super.localName,
+  GooglePrivatecaCertificateTemplate(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required PrivatecaCertificateTemplateIdentityConstraints

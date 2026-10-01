@@ -19,8 +19,8 @@ const Set<String> _googleBiglakeIcebergNamespaceIamPolicySensitive = <String>{};
 final class GoogleBiglakeIcebergNamespaceIamPolicy extends Resource {
   static const String tfType = 'google_biglake_iceberg_namespace_iam_policy';
 
-  GoogleBiglakeIcebergNamespaceIamPolicy({
-    required super.localName,
+  GoogleBiglakeIcebergNamespaceIamPolicy(
+    super.localName, {
     TfArg<String>? catalog,
     required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> policyData,

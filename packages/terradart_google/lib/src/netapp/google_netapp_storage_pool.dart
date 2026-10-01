@@ -105,7 +105,7 @@ enum NetappStoragePoolType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleNetappStoragePool(
-///   localName: 'pool',
+///   'pool',
 ///   name: TfArg.literal('terradart-pool'),
 ///   location: TfArg.literal('us-central1'),
 ///   network: vpc.ref,
@@ -116,8 +116,8 @@ enum NetappStoragePoolType implements TerraformEnum {
 final class GoogleNetappStoragePool extends Resource {
   static const String tfType = 'google_netapp_storage_pool';
 
-  GoogleNetappStoragePool({
-    required super.localName,
+  GoogleNetappStoragePool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleComputeNetwork> network,

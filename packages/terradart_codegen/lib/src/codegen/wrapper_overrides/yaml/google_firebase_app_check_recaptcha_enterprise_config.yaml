@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final recaptchaEnterprise = GoogleFirebaseAppCheckRecaptchaEnterpriseConfig(
-  ///   localName: 'web',
+  ///   'web',
   ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
   ///   siteKey: TfArg.literal('6LdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
   ///   tokenTtl: TfArg.literal('3600s'),

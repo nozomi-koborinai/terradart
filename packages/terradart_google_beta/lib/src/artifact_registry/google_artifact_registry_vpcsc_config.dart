@@ -22,8 +22,8 @@ enum ArtifactRegistryVpcscConfigVpcscPolicy implements TerraformEnum {
 final class GoogleArtifactRegistryVpcscConfig extends Resource {
   static const String tfType = 'google_artifact_registry_vpcsc_config';
 
-  GoogleArtifactRegistryVpcscConfig({
-    required super.localName,
+  GoogleArtifactRegistryVpcscConfig(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     TfArg<ArtifactRegistryVpcscConfigVpcscPolicy>? vpcscPolicy,

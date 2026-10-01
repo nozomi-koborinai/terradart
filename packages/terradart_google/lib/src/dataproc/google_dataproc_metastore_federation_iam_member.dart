@@ -44,8 +44,8 @@ final class GoogleDataprocMetastoreFederationIamMember extends Resource {
   static const String tfType =
       'google_dataproc_metastore_federation_iam_member';
 
-  GoogleDataprocMetastoreFederationIamMember({
-    required super.localName,
+  GoogleDataprocMetastoreFederationIamMember(
+    super.localName, {
     required RefTo<GoogleDataprocMetastoreFederation> federation,
     required TfArg<String> role,
     required IamPrincipal member,

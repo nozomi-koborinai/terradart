@@ -11,8 +11,8 @@ const Set<String> _awsS3AccountPublicAccessBlockSensitive = <String>{};
 final class DataAwsS3AccountPublicAccessBlock extends Data {
   static const String tfType = 'aws_s3_account_public_access_block';
 
-  DataAwsS3AccountPublicAccessBlock({
-    required super.localName,
+  DataAwsS3AccountPublicAccessBlock(
+    super.localName, {
     TfArg<String>? accountId,
     super.provider,
     super.timeouts,

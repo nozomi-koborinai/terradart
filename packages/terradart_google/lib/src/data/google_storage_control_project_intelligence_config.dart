@@ -16,8 +16,8 @@ final class DataGoogleStorageControlProjectIntelligenceConfig extends Data {
   static const String tfType =
       'google_storage_control_project_intelligence_config';
 
-  DataGoogleStorageControlProjectIntelligenceConfig({
-    required super.localName,
+  DataGoogleStorageControlProjectIntelligenceConfig(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

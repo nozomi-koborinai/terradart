@@ -206,8 +206,8 @@ enum AiGatewayDynamicRoutingLimitType implements TerraformEnum {
 final class CloudflareAiGatewayDynamicRouting extends Resource {
   static const String tfType = 'cloudflare_ai_gateway_dynamic_routing';
 
-  CloudflareAiGatewayDynamicRouting({
-    required super.localName,
+  CloudflareAiGatewayDynamicRouting(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> gatewayId,
     required TfArg<String> name,

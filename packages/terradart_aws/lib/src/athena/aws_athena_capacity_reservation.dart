@@ -10,8 +10,8 @@ const Set<String> _awsAthenaCapacityReservationSensitive = <String>{};
 final class AwsAthenaCapacityReservation extends Resource {
   static const String tfType = 'aws_athena_capacity_reservation';
 
-  AwsAthenaCapacityReservation({
-    required super.localName,
+  AwsAthenaCapacityReservation(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

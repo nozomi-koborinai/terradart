@@ -14,8 +14,8 @@ const Set<String> _googleFilestoreInstanceSensitive = <String>{};
 final class DataGoogleFilestoreInstance extends Data {
   static const String tfType = 'google_filestore_instance';
 
-  DataGoogleFilestoreInstance({
-    required super.localName,
+  DataGoogleFilestoreInstance(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

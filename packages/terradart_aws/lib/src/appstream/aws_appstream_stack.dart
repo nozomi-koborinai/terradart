@@ -160,8 +160,8 @@ enum AppstreamStackPermission implements TerraformEnum {
 final class AwsAppstreamStack extends Resource {
   static const String tfType = 'aws_appstream_stack';
 
-  AwsAppstreamStack({
-    required super.localName,
+  AwsAppstreamStack(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? displayName,
     TfArg<List<String>>? embedHostDomains,

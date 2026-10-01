@@ -22,8 +22,8 @@ enum WorkmailUserRole implements TerraformEnum {
 final class AwsWorkmailUser extends Resource {
   static const String tfType = 'aws_workmail_user';
 
-  AwsWorkmailUser({
-    required super.localName,
+  AwsWorkmailUser(
+    super.localName, {
     TfArg<String>? city,
     TfArg<String>? company,
     TfArg<String>? country,

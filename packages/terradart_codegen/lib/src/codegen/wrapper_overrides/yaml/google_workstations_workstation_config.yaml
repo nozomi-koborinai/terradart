@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleWorkstationsWorkstationConfig(
-  ///   localName: 'cfg',
+  ///   'cfg',
   ///   workstationConfigId: TfArg.literal('dev'),
   ///   workstationClusterId: cluster.workstationClusterId,
   ///   location: TfArg.literal('us-central1'),

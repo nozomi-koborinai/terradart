@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontDistributionTenantSensitive = <String>{};
 final class DataAwsCloudfrontDistributionTenant extends Data {
   static const String tfType = 'aws_cloudfront_distribution_tenant';
 
-  DataAwsCloudfrontDistributionTenant({
-    required super.localName,
+  DataAwsCloudfrontDistributionTenant(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? domain,
     TfArg<String>? name,

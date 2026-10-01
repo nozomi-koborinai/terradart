@@ -43,8 +43,8 @@ final class BigqueryTableIamBindingCondition {
 final class GoogleBigqueryTableIamBinding extends Resource {
   static const String tfType = 'google_bigquery_table_iam_binding';
 
-  GoogleBigqueryTableIamBinding({
-    required super.localName,
+  GoogleBigqueryTableIamBinding(
+    super.localName, {
     TfArg<String>? datasetId,
     required RefTo<GoogleBigqueryTable> table,
     required TfArg<String> role,

@@ -11,8 +11,8 @@ const Set<String> _awsMedialiveInputSensitive = <String>{};
 final class DataAwsMedialiveInput extends Data {
   static const String tfType = 'aws_medialive_input';
 
-  DataAwsMedialiveInput({
-    required super.localName,
+  DataAwsMedialiveInput(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

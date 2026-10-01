@@ -136,8 +136,8 @@ enum ServicecatalogProductProvisioningArtifactParametersType
 final class AwsServicecatalogProduct extends Resource {
   static const String tfType = 'aws_servicecatalog_product';
 
-  AwsServicecatalogProduct({
-    required super.localName,
+  AwsServicecatalogProduct(
+    super.localName, {
     TfArg<ServicecatalogProductAcceptLanguage>? acceptLanguage,
     TfArg<String>? description,
     TfArg<String>? distributor,

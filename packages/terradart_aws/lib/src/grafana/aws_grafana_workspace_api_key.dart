@@ -21,8 +21,8 @@ enum GrafanaWorkspaceApiKeyRole implements TerraformEnum {
 final class AwsGrafanaWorkspaceApiKey extends Resource {
   static const String tfType = 'aws_grafana_workspace_api_key';
 
-  AwsGrafanaWorkspaceApiKey({
-    required super.localName,
+  AwsGrafanaWorkspaceApiKey(
+    super.localName, {
     required TfArg<String> keyName,
     required TfArg<GrafanaWorkspaceApiKeyRole> keyRole,
     TfArg<String>? region,

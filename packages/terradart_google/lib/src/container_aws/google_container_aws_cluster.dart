@@ -333,8 +333,8 @@ final class ContainerAwsClusterNetworking {
 final class GoogleContainerAwsCluster extends Resource {
   static const String tfType = 'google_container_aws_cluster';
 
-  GoogleContainerAwsCluster({
-    required super.localName,
+  GoogleContainerAwsCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> awsRegion,

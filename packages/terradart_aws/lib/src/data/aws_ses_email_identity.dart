@@ -11,8 +11,8 @@ const Set<String> _awsSesEmailIdentitySensitive = <String>{};
 final class DataAwsSesEmailIdentity extends Data {
   static const String tfType = 'aws_ses_email_identity';
 
-  DataAwsSesEmailIdentity({
-    required super.localName,
+  DataAwsSesEmailIdentity(
+    super.localName, {
     required TfArg<String> email,
     TfArg<String>? region,
     super.provider,

@@ -67,8 +67,8 @@ final class IdentityPlatformTenantPermissions {
 final class GoogleIdentityPlatformTenant extends Resource {
   static const String tfType = 'google_identity_platform_tenant';
 
-  GoogleIdentityPlatformTenant({
-    required super.localName,
+  GoogleIdentityPlatformTenant(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<bool>? allowPasswordSignup,
     TfArg<bool>? enableEmailLinkSignin,

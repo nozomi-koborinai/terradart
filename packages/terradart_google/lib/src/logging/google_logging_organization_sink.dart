@@ -52,7 +52,7 @@ class LoggingOrganizationSinkExclusion {
 /// Example:
 /// ```dart
 /// final sink = GoogleLoggingOrganizationSink(
-///   localName: 'org_audit_to_bq',
+///   'org_audit_to_bq',
 ///   name: TfArg.literal('org-audit-to-bq'),
 ///   orgId: TfArg.literal('123456789012'),
 ///   destination: TfArg.literal(
@@ -65,8 +65,8 @@ class LoggingOrganizationSinkExclusion {
 final class GoogleLoggingOrganizationSink extends Resource {
   static const String tfType = 'google_logging_organization_sink';
 
-  GoogleLoggingOrganizationSink({
-    required super.localName,
+  GoogleLoggingOrganizationSink(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     required TfArg<String> destination,

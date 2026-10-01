@@ -11,8 +11,8 @@ const Set<String> _cloudflareOriginCaCertificatesSensitive = <String>{};
 final class DataCloudflareOriginCaCertificates extends Data {
   static const String tfType = 'cloudflare_origin_ca_certificates';
 
-  DataCloudflareOriginCaCertificates({
-    required super.localName,
+  DataCloudflareOriginCaCertificates(
+    super.localName, {
     TfArg<num>? limit,
     TfArg<num>? maxItems,
     TfArg<num>? offset,

@@ -282,8 +282,8 @@ final class ApigeeSecurityActionHeaders {
 final class GoogleApigeeSecurityAction extends Resource {
   static const String tfType = 'google_apigee_security_action';
 
-  GoogleApigeeSecurityAction({
-    required super.localName,
+  GoogleApigeeSecurityAction(
+    super.localName, {
     TfArg<List<String>>? apiProxies,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

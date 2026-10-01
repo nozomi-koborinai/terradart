@@ -60,8 +60,8 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
   static const String tfType =
       'google_oracle_database_goldengate_connection_assignment';
 
-  GoogleOracleDatabaseGoldengateConnectionAssignment({
-    required super.localName,
+  GoogleOracleDatabaseGoldengateConnectionAssignment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> goldengateConnectionAssignmentId,
     required OracleDatabaseGoldengateConnectionAssignmentProperties properties,

@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final repo = GoogleCloudbuildv2Repository(
-  ///   localName: 'repo',
+  ///   'repo',
   ///   name: TfArg.literal('my-repo'),
   ///   parentConnection: githubConn.ref,
   ///   remoteUri: TfArg.literal('https://github.com/org/my-repo.git'),

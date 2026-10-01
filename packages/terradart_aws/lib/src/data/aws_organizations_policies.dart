@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsPoliciesSensitive = <String>{};
 final class DataAwsOrganizationsPolicies extends Data {
   static const String tfType = 'aws_organizations_policies';
 
-  DataAwsOrganizationsPolicies({
-    required super.localName,
+  DataAwsOrganizationsPolicies(
+    super.localName, {
     required TfArg<String> filter,
     super.provider,
     super.timeouts,

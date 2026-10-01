@@ -75,8 +75,8 @@ enum DataApiShieldOperationOrder implements TerraformEnum {
 final class DataCloudflareApiShieldOperation extends Data {
   static const String tfType = 'cloudflare_api_shield_operation';
 
-  DataCloudflareApiShieldOperation({
-    required super.localName,
+  DataCloudflareApiShieldOperation(
+    super.localName, {
     TfArg<List<String>>? feature,
     TfArg<String>? operationId,
     TfArg<bool>? withSchemas,

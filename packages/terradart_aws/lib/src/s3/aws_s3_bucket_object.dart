@@ -224,8 +224,8 @@ final class S3BucketObjectIntegrityKmsKeyId extends S3BucketObjectIntegrity {
 final class AwsS3BucketObject extends Resource {
   static const String tfType = 'aws_s3_bucket_object';
 
-  AwsS3BucketObject({
-    required super.localName,
+  AwsS3BucketObject(
+    super.localName, {
     TfArg<S3BucketObjectAcl>? acl,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,

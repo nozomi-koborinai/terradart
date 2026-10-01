@@ -133,7 +133,7 @@ void main() {
       stack.addExternalVariable('declared_elsewhere');
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: {'name': TfArg.literal('orders'), ...topicArgs},
         ),
       );
@@ -241,7 +241,7 @@ void main() {
             ],
           )..add(
             FakeProjectData(
-              localName: 'current',
+              'current',
               argMap: {'project_id': TfArg.variable<String>('project_id')},
             ),
           );

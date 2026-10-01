@@ -12,8 +12,8 @@ const Set<String> _awsLocationGeofenceCollectionSensitive = <String>{};
 final class AwsLocationGeofenceCollection extends Resource {
   static const String tfType = 'aws_location_geofence_collection';
 
-  AwsLocationGeofenceCollection({
-    required super.localName,
+  AwsLocationGeofenceCollection(
+    super.localName, {
     required TfArg<String> collectionName,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,

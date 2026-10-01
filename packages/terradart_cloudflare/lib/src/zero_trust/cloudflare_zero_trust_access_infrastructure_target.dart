@@ -69,8 +69,8 @@ final class CloudflareZeroTrustAccessInfrastructureTarget extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_access_infrastructure_target';
 
-  CloudflareZeroTrustAccessInfrastructureTarget({
-    required super.localName,
+  CloudflareZeroTrustAccessInfrastructureTarget(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> hostname,
     TfArg<Map<String, String>>? tags,

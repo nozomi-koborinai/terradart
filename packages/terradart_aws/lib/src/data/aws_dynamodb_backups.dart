@@ -10,8 +10,8 @@ const Set<String> _awsDynamodbBackupsSensitive = <String>{};
 final class DataAwsDynamodbBackups extends Data {
   static const String tfType = 'aws_dynamodb_backups';
 
-  DataAwsDynamodbBackups({
-    required super.localName,
+  DataAwsDynamodbBackups(
+    super.localName, {
     TfArg<String>? backupType,
     TfArg<String>? region,
     TfArg<String>? tableName,

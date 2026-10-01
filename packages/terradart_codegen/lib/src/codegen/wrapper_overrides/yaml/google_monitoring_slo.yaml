@@ -13,7 +13,7 @@ curatedDoc: |-
   /// Example (availability basic SLI):
   /// ```dart
   /// GoogleMonitoringSlo(
-  ///   localName: 'api_availability',
+  ///   'api_availability',
   ///   service: apiService.name,
   ///   goal: .literal(0.99),
   ///   displayName: .literal('API availability'),

@@ -215,8 +215,8 @@ final class CustomerprofilesProfileShippingAddress {
 final class AwsCustomerprofilesProfile extends Resource {
   static const String tfType = 'aws_customerprofiles_profile';
 
-  AwsCustomerprofilesProfile({
-    required super.localName,
+  AwsCustomerprofilesProfile(
+    super.localName, {
     TfArg<String>? accountNumber,
     TfArg<String>? additionalInformation,
     TfArg<Map<String, String>>? attributes,

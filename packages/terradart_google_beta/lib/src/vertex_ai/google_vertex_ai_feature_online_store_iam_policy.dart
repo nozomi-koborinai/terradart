@@ -20,8 +20,8 @@ final class GoogleVertexAiFeatureOnlineStoreIamPolicy extends Resource {
   static const String tfType =
       'google_vertex_ai_feature_online_store_iam_policy';
 
-  GoogleVertexAiFeatureOnlineStoreIamPolicy({
-    required super.localName,
+  GoogleVertexAiFeatureOnlineStoreIamPolicy(
+    super.localName, {
     required RefTo<GoogleVertexAiFeatureOnlineStore> featureOnlineStore,
     required TfArg<String> policyData,
     TfArg<String>? project,

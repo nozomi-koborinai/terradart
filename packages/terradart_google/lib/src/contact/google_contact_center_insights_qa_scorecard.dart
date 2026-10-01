@@ -32,8 +32,8 @@ enum ContactCenterInsightsQaScorecardSource implements TerraformEnum {
 final class GoogleContactCenterInsightsQaScorecard extends Resource {
   static const String tfType = 'google_contact_center_insights_qa_scorecard';
 
-  GoogleContactCenterInsightsQaScorecard({
-    required super.localName,
+  GoogleContactCenterInsightsQaScorecard(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> qaScorecardId,
     TfArg<String>? displayName,

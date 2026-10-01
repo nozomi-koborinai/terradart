@@ -12,12 +12,7 @@ final class HelloBetaStack extends Stack {
           GoogleBetaProvider(project: projectId, region: 'us-central1'),
         ],
       ) {
-    add(
-      GoogleFirebaseProject(
-        localName: 'firebase',
-        project: .literal(projectId),
-      ),
-    );
+    add(GoogleFirebaseProject('firebase', project: .literal(projectId)));
   }
 }
 

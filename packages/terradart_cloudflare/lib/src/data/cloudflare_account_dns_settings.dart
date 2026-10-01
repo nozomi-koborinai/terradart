@@ -16,8 +16,8 @@ const Set<String> _cloudflareAccountDnsSettingsSensitive = <String>{};
 final class DataCloudflareAccountDnsSettings extends Data {
   static const String tfType = 'cloudflare_account_dns_settings';
 
-  DataCloudflareAccountDnsSettings({
-    required super.localName,
+  DataCloudflareAccountDnsSettings(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

@@ -34,8 +34,8 @@ enum QuicksightAccountSubscriptionEdition implements TerraformEnum {
 final class AwsQuicksightAccountSubscription extends Resource {
   static const String tfType = 'aws_quicksight_account_subscription';
 
-  AwsQuicksightAccountSubscription({
-    required super.localName,
+  AwsQuicksightAccountSubscription(
+    super.localName, {
     required TfArg<String> accountName,
     TfArg<String>? activeDirectoryName,
     TfArg<List<String>>? adminGroup,

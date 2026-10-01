@@ -45,7 +45,7 @@ final class NetworkRouteStack extends Stack {
       ) {
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -53,7 +53,7 @@ final class NetworkRouteStack extends Stack {
 
     final apiIam = add(
       GoogleProjectService(
-        localName: 'api_iam',
+        'api_iam',
         service: .literal('iam.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -61,7 +61,7 @@ final class NetworkRouteStack extends Stack {
 
     final edgeViewer = add(
       GoogleServiceAccount(
-        localName: 'edge_viewer',
+        'edge_viewer',
         accountId: .literal('route-edge-viewer'),
         displayName: .literal('Network firewall policy viewer (demo)'),
         dependsOn: [apiIam],
@@ -70,7 +70,7 @@ final class NetworkRouteStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'demo',
+        'demo',
         name: .literal('terradart-route-demo'),
         autoCreateSubnetworks: .literal(false),
         routingMode: .literal(.regional),
@@ -80,7 +80,7 @@ final class NetworkRouteStack extends Stack {
 
     final route = add(
       GoogleComputeRoute(
-        localName: 'egress_demo',
+        'egress_demo',
         name: .literal('terradart-egress-demo'),
         network: vpc.ref,
         destRange: .literal('192.168.255.0/24'),
@@ -93,7 +93,7 @@ final class NetworkRouteStack extends Stack {
 
     final router = add(
       GoogleComputeRouter(
-        localName: 'edge',
+        'edge',
         name: .literal('terradart-route-router'),
         network: .network(vpc.ref),
         region: .literal('us-central1'),
@@ -104,7 +104,7 @@ final class NetworkRouteStack extends Stack {
 
     add(
       GoogleComputeRouterNamedSet(
-        localName: 'prefixes',
+        'prefixes',
         name: .literal('terradart-prefixes'),
         router: router.ref,
         region: .literal('us-central1'),
@@ -122,7 +122,7 @@ final class NetworkRouteStack extends Stack {
 
     add(
       GoogleComputeProjectMetadataItem(
-        localName: 'ops_owner',
+        'ops_owner',
         key: .literal('terradart-ops-owner'),
         value: .literal('platform-team'),
         dependsOn: [apiCompute],
@@ -133,7 +133,7 @@ final class NetworkRouteStack extends Stack {
     // for standalone VPC firewall rules; rules/associations attach separately).
     final edgePolicy = add(
       GoogleComputeNetworkFirewallPolicy(
-        localName: 'edge_policy',
+        'edge_policy',
         name: .literal('terradart-edge-policy'),
         description: .literal('Global network firewall policy (demo)'),
         dependsOn: [apiCompute],
@@ -142,7 +142,7 @@ final class NetworkRouteStack extends Stack {
 
     final edgeBinding = add(
       GoogleComputeNetworkFirewallPolicyIamBinding(
-        localName: 'edge_policy_viewer',
+        'edge_policy_viewer',
         firewallPolicy: edgePolicy.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([edgeViewer.principal]),
@@ -152,7 +152,7 @@ final class NetworkRouteStack extends Stack {
 
     add(
       GoogleComputeNetworkFirewallPolicyIamPolicy(
-        localName: 'edge_policy_policy',
+        'edge_policy_policy',
         firewallPolicy: edgePolicy.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -167,7 +167,7 @@ final class NetworkRouteStack extends Stack {
 
     final regionalEdgePolicy = add(
       GoogleComputeRegionNetworkFirewallPolicy(
-        localName: 'regional_edge_policy',
+        'regional_edge_policy',
         name: .literal('terradart-regional-edge-policy'),
         region: .literal('us-central1'),
         description: .literal('Regional network firewall policy (IAM demo)'),
@@ -177,7 +177,7 @@ final class NetworkRouteStack extends Stack {
 
     final regionalEdgeBinding = add(
       GoogleComputeRegionNetworkFirewallPolicyIamBinding(
-        localName: 'regional_edge_policy_viewer',
+        'regional_edge_policy_viewer',
         firewallPolicy: regionalEdgePolicy.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([edgeViewer.principal]),
@@ -187,7 +187,7 @@ final class NetworkRouteStack extends Stack {
 
     add(
       GoogleComputeRegionNetworkFirewallPolicyIamPolicy(
-        localName: 'regional_edge_policy_policy',
+        'regional_edge_policy_policy',
         firewallPolicy: regionalEdgePolicy.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -204,7 +204,7 @@ final class NetworkRouteStack extends Stack {
     // the typed sealed schedule + retention helpers.
     final snapshotPolicy = add(
       GoogleComputeResourcePolicy(
-        localName: 'daily_snapshots',
+        'daily_snapshots',
         name: .literal('terradart-daily-snapshots'),
         region: .literal('us-central1'),
         kind: .snapshotSchedulePolicy(
@@ -227,7 +227,7 @@ final class NetworkRouteStack extends Stack {
     // (deletion_policy DELETE so the attachment detaches cleanly on destroy).
     final disk = add(
       GoogleComputeDisk(
-        localName: 'data',
+        'data',
         name: .literal('terradart-data-disk'),
         zone: .literal('us-central1-a'),
         type: .literal('pd-standard'),
@@ -238,7 +238,7 @@ final class NetworkRouteStack extends Stack {
 
     add(
       GoogleComputeDiskResourcePolicyAttachment(
-        localName: 'data_snapshots',
+        'data_snapshots',
         name: .literal('terradart-daily-snapshots'),
         disk: disk.ref,
         zone: .literal('us-central1-a'),

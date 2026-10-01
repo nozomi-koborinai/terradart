@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataLineageConfig(
-  ///   localName: 'lineage',
+  ///   'lineage',
   ///   parent: TfArg.literal('projects/<project-id>'),
   ///   location: TfArg.literal('global'),
   ///   ingestion: DataLineageConfigIngestion(

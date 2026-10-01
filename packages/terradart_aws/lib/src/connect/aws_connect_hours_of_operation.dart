@@ -87,8 +87,8 @@ final class ConnectHoursOfOperationStartTime {
 final class AwsConnectHoursOfOperation extends Resource {
   static const String tfType = 'aws_connect_hours_of_operation';
 
-  AwsConnectHoursOfOperation({
-    required super.localName,
+  AwsConnectHoursOfOperation(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> instanceId,
     required TfArg<String> name,

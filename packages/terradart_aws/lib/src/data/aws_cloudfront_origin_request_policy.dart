@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontOriginRequestPolicySensitive = <String>{};
 final class DataAwsCloudfrontOriginRequestPolicy extends Data {
   static const String tfType = 'aws_cloudfront_origin_request_policy';
 
-  DataAwsCloudfrontOriginRequestPolicy({
-    required super.localName,
+  DataAwsCloudfrontOriginRequestPolicy(
+    super.localName, {
     TfArg<String>? name,
     super.provider,
     super.timeouts,

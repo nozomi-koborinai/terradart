@@ -28,8 +28,8 @@ final class DataInstanceFilter {
 final class DataAwsInstance extends Data {
   static const String tfType = 'aws_instance';
 
-  DataAwsInstance({
-    required super.localName,
+  DataAwsInstance(
+    super.localName, {
     TfArg<bool>? getPasswordData,
     TfArg<bool>? getUserData,
     TfArg<String>? instanceId,

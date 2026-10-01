@@ -31,8 +31,8 @@ enum VertexAiModelGardenEnableModelEnablementState implements TerraformEnum {
 final class GoogleVertexAiModelGardenEnableModel extends Resource {
   static const String tfType = 'google_vertex_ai_model_garden_enable_model';
 
-  GoogleVertexAiModelGardenEnableModel({
-    required super.localName,
+  GoogleVertexAiModelGardenEnableModel(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> publisherModelName,
     super.lifecycle,

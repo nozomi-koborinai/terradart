@@ -11,8 +11,8 @@ const Set<String> _awsOdbCloudAutonomousVmClusterSensitive = <String>{};
 final class DataAwsOdbCloudAutonomousVmCluster extends Data {
   static const String tfType = 'aws_odb_cloud_autonomous_vm_cluster';
 
-  DataAwsOdbCloudAutonomousVmCluster({
-    required super.localName,
+  DataAwsOdbCloudAutonomousVmCluster(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

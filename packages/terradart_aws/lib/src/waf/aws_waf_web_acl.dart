@@ -134,8 +134,8 @@ final class WafWebAclOverrideAction {
 final class AwsWafWebAcl extends Resource {
   static const String tfType = 'aws_waf_web_acl';
 
-  AwsWafWebAcl({
-    required super.localName,
+  AwsWafWebAcl(
+    super.localName, {
     required TfArg<String> metricName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

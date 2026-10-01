@@ -31,7 +31,7 @@ const Set<String> _googleDocumentAiProcessorDefaultVersionSensitive =
 /// Example:
 /// ```dart
 /// GoogleDocumentAiProcessorDefaultVersion(
-///   localName: 'ocr_default',
+///   'ocr_default',
 ///   processor: ocr.ref,
 ///   version: TfArg.literal(
 ///     '${ocr.id.interpolation}/processorVersions/stable',
@@ -41,8 +41,8 @@ const Set<String> _googleDocumentAiProcessorDefaultVersionSensitive =
 final class GoogleDocumentAiProcessorDefaultVersion extends Resource {
   static const String tfType = 'google_document_ai_processor_default_version';
 
-  GoogleDocumentAiProcessorDefaultVersion({
-    required super.localName,
+  GoogleDocumentAiProcessorDefaultVersion(
+    super.localName, {
     required RefTo<GoogleDocumentAiProcessor> processor,
     required TfArg<String> version,
     super.lifecycle,

@@ -13,8 +13,8 @@ const Set<String> _googleKmsSecretAsymmetricSensitive = <String>{'plaintext'};
 final class DataGoogleKmsSecretAsymmetric extends Data {
   static const String tfType = 'google_kms_secret_asymmetric';
 
-  DataGoogleKmsSecretAsymmetric({
-    required super.localName,
+  DataGoogleKmsSecretAsymmetric(
+    super.localName, {
     required TfArg<String> ciphertext,
     TfArg<String>? crc32,
     required TfArg<String> cryptoKeyVersion,

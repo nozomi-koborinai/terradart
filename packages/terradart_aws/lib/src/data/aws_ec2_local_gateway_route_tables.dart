@@ -30,8 +30,8 @@ final class DataEc2LocalGatewayRouteTablesFilter {
 final class DataAwsEc2LocalGatewayRouteTables extends Data {
   static const String tfType = 'aws_ec2_local_gateway_route_tables';
 
-  DataAwsEc2LocalGatewayRouteTables({
-    required super.localName,
+  DataAwsEc2LocalGatewayRouteTables(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2LocalGatewayRouteTablesFilter>? filter,

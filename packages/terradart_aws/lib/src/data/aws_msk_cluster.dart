@@ -11,8 +11,8 @@ const Set<String> _awsMskClusterSensitive = <String>{};
 final class DataAwsMskCluster extends Data {
   static const String tfType = 'aws_msk_cluster';
 
-  DataAwsMskCluster({
-    required super.localName,
+  DataAwsMskCluster(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

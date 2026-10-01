@@ -74,8 +74,8 @@ final class SignerSigningJobSourceS3 {
 final class AwsSignerSigningJob extends Resource {
   static const String tfType = 'aws_signer_signing_job';
 
-  AwsSignerSigningJob({
-    required super.localName,
+  AwsSignerSigningJob(
+    super.localName, {
     TfArg<bool>? ignoreSigningJobFailure,
     required TfArg<String> profileName,
     TfArg<String>? region,

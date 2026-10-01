@@ -224,8 +224,8 @@ final class LakeformationResourceLfTagColumnWildcard {
 final class AwsLakeformationResourceLfTag extends Resource {
   static const String tfType = 'aws_lakeformation_resource_lf_tag';
 
-  AwsLakeformationResourceLfTag({
-    required super.localName,
+  AwsLakeformationResourceLfTag(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? region,
     required LakeformationResourceLfTagResource resource,

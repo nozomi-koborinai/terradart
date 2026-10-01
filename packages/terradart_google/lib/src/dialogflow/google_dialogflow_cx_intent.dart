@@ -84,8 +84,8 @@ final class DialogflowCxIntentParts {
 final class GoogleDialogflowCxIntent extends Resource {
   static const String tfType = 'google_dialogflow_cx_intent';
 
-  GoogleDialogflowCxIntent({
-    required super.localName,
+  GoogleDialogflowCxIntent(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? description,

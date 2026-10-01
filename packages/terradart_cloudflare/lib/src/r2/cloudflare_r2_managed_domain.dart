@@ -23,8 +23,8 @@ enum R2ManagedDomainJurisdiction implements TerraformEnum {
 final class CloudflareR2ManagedDomain extends Resource {
   static const String tfType = 'cloudflare_r2_managed_domain';
 
-  CloudflareR2ManagedDomain({
-    required super.localName,
+  CloudflareR2ManagedDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<bool> enabled,

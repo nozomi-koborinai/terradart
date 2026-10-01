@@ -13,8 +13,8 @@ final class AwsApprunnerDefaultAutoScalingConfigurationVersion
   static const String tfType =
       'aws_apprunner_default_auto_scaling_configuration_version';
 
-  AwsApprunnerDefaultAutoScalingConfigurationVersion({
-    required super.localName,
+  AwsApprunnerDefaultAutoScalingConfigurationVersion(
+    super.localName, {
     required TfArg<String> autoScalingConfigurationArn,
     TfArg<String>? region,
     super.lifecycle,

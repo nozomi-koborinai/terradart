@@ -116,7 +116,7 @@ final class VertexAiIndexEndpointDeployedIndexAuthProvider {
 /// Example:
 /// ```dart
 /// GoogleVertexAiIndexEndpointDeployedIndex(
-///   localName: 'dep',
+///   'dep',
 ///   deployedIndexId: TfArg.literal('terradart_dep'),
 ///   indexEndpoint: endpoint.name,
 ///   index: index.name,
@@ -130,8 +130,8 @@ final class VertexAiIndexEndpointDeployedIndexAuthProvider {
 final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
   static const String tfType = 'google_vertex_ai_index_endpoint_deployed_index';
 
-  GoogleVertexAiIndexEndpointDeployedIndex({
-    required super.localName,
+  GoogleVertexAiIndexEndpointDeployedIndex(
+    super.localName, {
     required TfArg<String> deployedIndexId,
     required RefTo<GoogleVertexAiIndexEndpoint> indexEndpoint,
     required TfArg<String> index,

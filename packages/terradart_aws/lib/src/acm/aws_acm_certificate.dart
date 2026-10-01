@@ -174,8 +174,8 @@ final class AcmCertificateValidationOption {
 final class AwsAcmCertificate extends Resource {
   static const String tfType = 'aws_acm_certificate';
 
-  AwsAcmCertificate({
-    required super.localName,
+  AwsAcmCertificate(
+    super.localName, {
     TfArg<String>? certificateAuthorityArn,
     TfArg<String>? certificateBody,
     TfArg<String>? certificateChain,

@@ -32,8 +32,8 @@ final class DatazoneFormTypeModel {
 final class AwsDatazoneFormType extends Resource {
   static const String tfType = 'aws_datazone_form_type';
 
-  AwsDatazoneFormType({
-    required super.localName,
+  AwsDatazoneFormType(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> domainIdentifier,
     required TfArg<String> name,

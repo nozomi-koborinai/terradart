@@ -27,7 +27,7 @@ TestStack _stack({AppExports? appExports}) => TestStack(
 TestStack _plainStack() => TestStack(providers: const [_provider]);
 
 FakePubsubTopic _topic(TestStack stack, Map<String, TfArg<dynamic>?> argMap) =>
-    stack.add(FakePubsubTopic(localName: 'orders', argMap: argMap));
+    stack.add(FakePubsubTopic('orders', argMap: argMap));
 
 String _source(Stack stack) => stack.synth().dartSource!;
 
@@ -116,7 +116,7 @@ void main() {
       final stack = _stack();
       final project = stack.add(
         FakeProjectData(
-          localName: 'p',
+          'p',
           argMap: const {'project_id': TfArgLiteral<String>('my-proj')},
         ),
       );
@@ -284,7 +284,7 @@ void main() {
         final stack = _stack();
         final version = stack.add(
           FakeSecretVersion(
-            localName: 's',
+            's',
             argMap: const {'secret_data': TfArgLiteral<String>('pw')},
           ),
         );
@@ -299,7 +299,7 @@ void main() {
         final stack = _stack();
         final secret = stack.add(
           FakeSecretData(
-            localName: 's',
+            's',
             argMap: const {'plaintext': TfArgLiteral<String>('pw')},
           ),
         );
@@ -310,7 +310,7 @@ void main() {
       test('an owner that is not registered', () {
         final stack = _stack();
         final topic = FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('o')},
         );
         stack.addConstant('x', .ref(TfRef.attribute<String>(topic, 'name')));
@@ -365,9 +365,7 @@ void main() {
 
     test('requires sensitive: true for a sensitive field', () {
       final stack = _plainStack();
-      final version = stack.add(
-        FakeSecretVersion(localName: 's', argMap: const {}),
-      );
+      final version = stack.add(FakeSecretVersion('s', argMap: const {}));
       final ref = TfRef.attribute<String>(version, 'secret_data');
       expect(
         () => stack.addOutput('pw', ref),
@@ -379,9 +377,7 @@ void main() {
 
     test('requires sensitive: true for a data source sensitive field', () {
       final stack = _plainStack();
-      final secret = stack.add(
-        FakeSecretData(localName: 's', argMap: const {}),
-      );
+      final secret = stack.add(FakeSecretData('s', argMap: const {}));
       final ref = TfRef.data<String>(secret, 'plaintext');
       expect(
         () => stack.addOutput('pw', ref),

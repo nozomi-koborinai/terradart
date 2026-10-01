@@ -160,8 +160,8 @@ final class DialogflowCxGenerativeSettingsLlmModelSettings {
 final class GoogleDialogflowCxGenerativeSettings extends Resource {
   static const String tfType = 'google_dialogflow_cx_generative_settings';
 
-  GoogleDialogflowCxGenerativeSettings({
-    required super.localName,
+  GoogleDialogflowCxGenerativeSettings(
+    super.localName, {
     required TfArg<String> languageCode,
     TfArg<String>? parent,
     DialogflowCxGenerativeSettingsFallbackSettings? fallbackSettings,

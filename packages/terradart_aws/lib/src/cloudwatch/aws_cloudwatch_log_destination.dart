@@ -12,8 +12,8 @@ const Set<String> _awsCloudwatchLogDestinationSensitive = <String>{};
 final class AwsCloudwatchLogDestination extends Resource {
   static const String tfType = 'aws_cloudwatch_log_destination';
 
-  AwsCloudwatchLogDestination({
-    required super.localName,
+  AwsCloudwatchLogDestination(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

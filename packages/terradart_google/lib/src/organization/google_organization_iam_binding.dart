@@ -41,8 +41,8 @@ final class OrganizationIamBindingCondition {
 final class GoogleOrganizationIamBinding extends Resource {
   static const String tfType = 'google_organization_iam_binding';
 
-  GoogleOrganizationIamBinding({
-    required super.localName,
+  GoogleOrganizationIamBinding(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBinaryAuthorizationPolicy(
-  ///   localName: 'project_policy',
+  ///   'project_policy',
   ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
   ///     evaluationMode: TfArg.literal(
   ///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,

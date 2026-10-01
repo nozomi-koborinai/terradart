@@ -124,8 +124,8 @@ final class SaasRuntimeUnitKindOutputVariableMappings {
 final class GoogleSaasRuntimeUnitKind extends Resource {
   static const String tfType = 'google_saas_runtime_unit_kind';
 
-  GoogleSaasRuntimeUnitKind({
-    required super.localName,
+  GoogleSaasRuntimeUnitKind(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? defaultRelease,
     TfArg<String>? deletionPolicy,

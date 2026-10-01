@@ -246,8 +246,8 @@ final class Pinpointsmsvoicev2EventDestinationSnsDestination {
 final class AwsPinpointsmsvoicev2EventDestination extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_event_destination';
 
-  AwsPinpointsmsvoicev2EventDestination({
-    required super.localName,
+  AwsPinpointsmsvoicev2EventDestination(
+    super.localName, {
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
     required TfArg<String> eventDestinationName,

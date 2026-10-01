@@ -10,8 +10,8 @@ const Set<String> _awsKmsReplicaKeySensitive = <String>{};
 final class AwsKmsReplicaKey extends Resource {
   static const String tfType = 'aws_kms_replica_key';
 
-  AwsKmsReplicaKey({
-    required super.localName,
+  AwsKmsReplicaKey(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     TfArg<num>? deletionWindowInDays,
     TfArg<String>? description,

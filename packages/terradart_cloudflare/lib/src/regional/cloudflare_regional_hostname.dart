@@ -16,8 +16,8 @@ const Set<String> _cloudflareRegionalHostnameSensitive = <String>{};
 final class CloudflareRegionalHostname extends Resource {
   static const String tfType = 'cloudflare_regional_hostname';
 
-  CloudflareRegionalHostname({
-    required super.localName,
+  CloudflareRegionalHostname(
+    super.localName, {
     required TfArg<String> hostname,
     required TfArg<String> regionKey,
     TfArg<String>? routing,

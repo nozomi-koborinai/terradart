@@ -69,8 +69,8 @@ final class OamLinkMetricConfiguration {
 final class AwsOamLink extends Resource {
   static const String tfType = 'aws_oam_link';
 
-  AwsOamLink({
-    required super.localName,
+  AwsOamLink(
+    super.localName, {
     required TfArg<String> labelTemplate,
     TfArg<String>? region,
     required List<TfArg<OamLinkResourceTypes>> resourceTypes,

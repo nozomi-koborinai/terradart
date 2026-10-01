@@ -286,8 +286,8 @@ enum KendraIndexKeyLocation implements TerraformEnum {
 final class AwsKendraIndex extends Resource {
   static const String tfType = 'aws_kendra_index';
 
-  AwsKendraIndex({
-    required super.localName,
+  AwsKendraIndex(
+    super.localName, {
     TfArg<String>? description,
     TfArg<KendraIndexEdition>? edition,
     required TfArg<String> name,

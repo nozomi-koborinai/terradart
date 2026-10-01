@@ -14,8 +14,8 @@ const Set<String> _googleComputeRegionInstanceTemplateSensitive = <String>{};
 final class DataGoogleComputeRegionInstanceTemplate extends Data {
   static const String tfType = 'google_compute_region_instance_template';
 
-  DataGoogleComputeRegionInstanceTemplate({
-    required super.localName,
+  DataGoogleComputeRegionInstanceTemplate(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<bool>? mostRecent,
     TfArg<String>? name,

@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkSecurityGatewaySecurityPolicy(
-  ///   localName: 'swp',
+  ///   'swp',
   ///   name: TfArg.literal('terradart-gateway-policy'),
   ///   location: TfArg.literal('us-central1'),
   ///   description: TfArg.literal('TerraDart smoke gateway security policy'),

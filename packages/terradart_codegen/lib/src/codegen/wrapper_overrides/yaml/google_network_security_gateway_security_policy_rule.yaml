@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkSecurityGatewaySecurityPolicyRule(
-  ///   localName: 'allow_example',
+  ///   'allow_example',
   ///   name: TfArg.literal('terradart-allow-example'),
   ///   location: TfArg.literal('us-central1'),
   ///   gatewaySecurityPolicy: policy.ref,

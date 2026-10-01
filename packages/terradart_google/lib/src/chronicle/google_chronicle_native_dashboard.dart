@@ -196,8 +196,8 @@ final class ChronicleNativeDashboardChartLayout {
 final class GoogleChronicleNativeDashboard extends Resource {
   static const String tfType = 'google_chronicle_native_dashboard';
 
-  GoogleChronicleNativeDashboard({
-    required super.localName,
+  GoogleChronicleNativeDashboard(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     required TfArg<String> displayName,

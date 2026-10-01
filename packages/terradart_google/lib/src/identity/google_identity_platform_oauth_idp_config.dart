@@ -49,7 +49,7 @@ final class IdentityPlatformOauthIdpConfigResponseType {
 /// Example:
 /// ```dart
 /// GoogleIdentityPlatformOauthIdpConfig(
-///   localName: 'project_oidc',
+///   'project_oidc',
 ///   name: TfArg.literal('oidc.terradart-project'),
 ///   displayName: TfArg.literal('TerraDart project dummy OIDC'),
 ///   issuer: TfArg.literal('https://accounts.example.com'),
@@ -61,8 +61,8 @@ final class IdentityPlatformOauthIdpConfigResponseType {
 final class GoogleIdentityPlatformOauthIdpConfig extends Resource {
   static const String tfType = 'google_identity_platform_oauth_idp_config';
 
-  GoogleIdentityPlatformOauthIdpConfig({
-    required super.localName,
+  GoogleIdentityPlatformOauthIdpConfig(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? displayName,
     required TfArg<String> issuer,

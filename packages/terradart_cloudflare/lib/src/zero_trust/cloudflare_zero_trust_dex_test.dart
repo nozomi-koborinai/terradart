@@ -48,8 +48,8 @@ final class ZeroTrustDexTestTargetPolicies {
 final class CloudflareZeroTrustDexTest extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dex_test';
 
-  CloudflareZeroTrustDexTest({
-    required super.localName,
+  CloudflareZeroTrustDexTest(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<bool> enabled,

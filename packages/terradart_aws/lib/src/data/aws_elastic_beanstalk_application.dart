@@ -11,8 +11,8 @@ const Set<String> _awsElasticBeanstalkApplicationSensitive = <String>{};
 final class DataAwsElasticBeanstalkApplication extends Data {
   static const String tfType = 'aws_elastic_beanstalk_application';
 
-  DataAwsElasticBeanstalkApplication({
-    required super.localName,
+  DataAwsElasticBeanstalkApplication(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

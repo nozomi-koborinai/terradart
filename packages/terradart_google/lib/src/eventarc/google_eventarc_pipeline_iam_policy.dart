@@ -18,8 +18,8 @@ const Set<String> _googleEventarcPipelineIamPolicySensitive = <String>{};
 final class GoogleEventarcPipelineIamPolicy extends Resource {
   static const String tfType = 'google_eventarc_pipeline_iam_policy';
 
-  GoogleEventarcPipelineIamPolicy({
-    required super.localName,
+  GoogleEventarcPipelineIamPolicy(
+    super.localName, {
     required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> policyData,
     TfArg<String>? location,

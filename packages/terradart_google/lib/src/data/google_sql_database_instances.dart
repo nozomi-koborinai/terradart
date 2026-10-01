@@ -13,8 +13,8 @@ const Set<String> _googleSqlDatabaseInstancesSensitive = <String>{};
 final class DataGoogleSqlDatabaseInstances extends Data {
   static const String tfType = 'google_sql_database_instances';
 
-  DataGoogleSqlDatabaseInstances({
-    required super.localName,
+  DataGoogleSqlDatabaseInstances(
+    super.localName, {
     TfArg<String>? databaseVersion,
     TfArg<String>? project,
     TfArg<String>? region,

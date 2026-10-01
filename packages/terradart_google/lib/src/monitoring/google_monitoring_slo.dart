@@ -767,7 +767,7 @@ final class MonitoringSloMetricSumInRange {
 /// Example (availability basic SLI):
 /// ```dart
 /// GoogleMonitoringSlo(
-///   localName: 'api_availability',
+///   'api_availability',
 ///   service: apiService.name,
 ///   goal: .literal(0.99),
 ///   displayName: .literal('API availability'),
@@ -784,8 +784,8 @@ final class MonitoringSloMetricSumInRange {
 final class GoogleMonitoringSlo extends Resource {
   static const String tfType = 'google_monitoring_slo';
 
-  GoogleMonitoringSlo({
-    required super.localName,
+  GoogleMonitoringSlo(
+    super.localName, {
     required TfArg<String> service,
     required TfArg<num> goal,
     TfArg<String>? displayName,

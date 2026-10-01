@@ -66,15 +66,15 @@ final class GoogleBetaProvider implements StackProvider {
 ///
 /// ```dart
 /// final assetSa = GoogleProjectServiceIdentity(
-///   localName: 'cloudasset',
+///   'cloudasset',
 ///   service: TfArg.literal('cloudasset.googleapis.com'),
 /// );
 /// ```
 final class GoogleProjectServiceIdentity extends Resource {
   static const String tfType = 'google_project_service_identity';
 
-  GoogleProjectServiceIdentity({
-    required super.localName,
+  GoogleProjectServiceIdentity(
+    super.localName, {
     required TfArg<String> service,
     TfArg<String>? project,
     super.dependsOn,

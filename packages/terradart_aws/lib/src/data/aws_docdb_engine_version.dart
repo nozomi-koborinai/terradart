@@ -10,8 +10,8 @@ const Set<String> _awsDocdbEngineVersionSensitive = <String>{};
 final class DataAwsDocdbEngineVersion extends Data {
   static const String tfType = 'aws_docdb_engine_version';
 
-  DataAwsDocdbEngineVersion({
-    required super.localName,
+  DataAwsDocdbEngineVersion(
+    super.localName, {
     TfArg<String>? engine,
     TfArg<String>? parameterGroupFamily,
     TfArg<List<String>>? preferredVersions,

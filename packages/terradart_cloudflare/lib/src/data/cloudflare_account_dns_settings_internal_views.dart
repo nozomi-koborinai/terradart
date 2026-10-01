@@ -45,8 +45,8 @@ final class DataAccountDnsSettingsInternalViewsName {
 final class DataCloudflareAccountDnsSettingsInternalViews extends Data {
   static const String tfType = 'cloudflare_account_dns_settings_internal_views';
 
-  DataCloudflareAccountDnsSettingsInternalViews({
-    required super.localName,
+  DataCloudflareAccountDnsSettingsInternalViews(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<String>? match,

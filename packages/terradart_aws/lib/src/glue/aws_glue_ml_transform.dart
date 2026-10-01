@@ -110,8 +110,8 @@ final class GlueMlTransformFindMatchesParameters {
 final class AwsGlueMlTransform extends Resource {
   static const String tfType = 'aws_glue_ml_transform';
 
-  AwsGlueMlTransform({
-    required super.localName,
+  AwsGlueMlTransform(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? glueVersion,
     TfArg<num>? maxCapacity,

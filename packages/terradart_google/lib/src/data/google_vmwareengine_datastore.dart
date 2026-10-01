@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineDatastoreSensitive = <String>{};
 final class DataGoogleVmwareengineDatastore extends Data {
   static const String tfType = 'google_vmwareengine_datastore';
 
-  DataGoogleVmwareengineDatastore({
-    required super.localName,
+  DataGoogleVmwareengineDatastore(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

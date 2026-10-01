@@ -11,8 +11,8 @@ const Set<String> _awsDirectoryServiceDirectorySensitive = <String>{};
 final class DataAwsDirectoryServiceDirectory extends Data {
   static const String tfType = 'aws_directory_service_directory';
 
-  DataAwsDirectoryServiceDirectory({
-    required super.localName,
+  DataAwsDirectoryServiceDirectory(
+    super.localName, {
     required TfArg<String> directoryId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

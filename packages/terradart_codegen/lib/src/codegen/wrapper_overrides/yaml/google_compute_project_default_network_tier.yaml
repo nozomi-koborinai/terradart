@@ -39,7 +39,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeProjectDefaultNetworkTier(
-  ///   localName: 'defaults',
+  ///   'defaults',
   ///   networkTier: TfArg.literal(
   ///     ComputeProjectDefaultNetworkTier.standard,
   ///   ),

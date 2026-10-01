@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchserverlessSecurityPolicySensitive = <String>{};
 final class DataAwsOpensearchserverlessSecurityPolicy extends Data {
   static const String tfType = 'aws_opensearchserverless_security_policy';
 
-  DataAwsOpensearchserverlessSecurityPolicy({
-    required super.localName,
+  DataAwsOpensearchserverlessSecurityPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> type,

@@ -13,8 +13,8 @@ const Set<String> _googleDatastreamStaticIpsSensitive = <String>{};
 final class DataGoogleDatastreamStaticIps extends Data {
   static const String tfType = 'google_datastream_static_ips';
 
-  DataGoogleDatastreamStaticIps({
-    required super.localName,
+  DataGoogleDatastreamStaticIps(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

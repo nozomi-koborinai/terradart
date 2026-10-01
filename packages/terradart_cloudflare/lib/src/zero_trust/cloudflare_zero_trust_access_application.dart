@@ -1998,8 +1998,8 @@ enum ZeroTrustAccessApplicationProtocol implements TerraformEnum {
 final class CloudflareZeroTrustAccessApplication extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_application';
 
-  CloudflareZeroTrustAccessApplication({
-    required super.localName,
+  CloudflareZeroTrustAccessApplication(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<bool>? allowAuthenticateViaWarp,
     TfArg<bool>? allowIframe,

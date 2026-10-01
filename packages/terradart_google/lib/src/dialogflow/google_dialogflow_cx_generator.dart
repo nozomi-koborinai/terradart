@@ -95,8 +95,8 @@ final class DialogflowCxGeneratorPromptText {
 final class GoogleDialogflowCxGenerator extends Resource {
   static const String tfType = 'google_dialogflow_cx_generator';
 
-  GoogleDialogflowCxGenerator({
-    required super.localName,
+  GoogleDialogflowCxGenerator(
+    super.localName, {
     required TfArg<String> displayName,
     required DialogflowCxGeneratorPromptText promptText,
     TfArg<String>? parent,

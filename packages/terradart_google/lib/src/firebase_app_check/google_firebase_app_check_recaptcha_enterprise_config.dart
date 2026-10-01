@@ -26,7 +26,7 @@ const Set<String> _googleFirebaseAppCheckRecaptchaEnterpriseConfigSensitive =
 /// Example:
 /// ```dart
 /// final recaptchaEnterprise = GoogleFirebaseAppCheckRecaptchaEnterpriseConfig(
-///   localName: 'web',
+///   'web',
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   siteKey: TfArg.literal('6LdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
 ///   tokenTtl: TfArg.literal('3600s'),
@@ -44,8 +44,8 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
   static const String tfType =
       'google_firebase_app_check_recaptcha_enterprise_config';
 
-  GoogleFirebaseAppCheckRecaptchaEnterpriseConfig({
-    required super.localName,
+  GoogleFirebaseAppCheckRecaptchaEnterpriseConfig(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> siteKey,
     TfArg<String>? tokenTtl,

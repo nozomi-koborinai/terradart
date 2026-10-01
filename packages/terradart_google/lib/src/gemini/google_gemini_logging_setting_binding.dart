@@ -36,7 +36,7 @@ enum GeminiLoggingSettingBindingProduct implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleGeminiLoggingSettingBinding(
-///   localName: 'logging_bind',
+///   'logging_bind',
 ///   loggingSettingId: .literal('terradart-logging'),
 ///   settingBindingId: TfArg.literal('terradart-logging-bind'),
 ///   location: TfArg.literal('global'),
@@ -46,8 +46,8 @@ enum GeminiLoggingSettingBindingProduct implements TerraformEnum {
 final class GoogleGeminiLoggingSettingBinding extends Resource {
   static const String tfType = 'google_gemini_logging_setting_binding';
 
-  GoogleGeminiLoggingSettingBinding({
-    required super.localName,
+  GoogleGeminiLoggingSettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiLoggingSetting> loggingSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,

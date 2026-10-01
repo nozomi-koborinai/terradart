@@ -29,8 +29,8 @@ const Set<String> _cloudflareUrlNormalizationSettingsSensitive = <String>{};
 final class DataCloudflareUrlNormalizationSettings extends Data {
   static const String tfType = 'cloudflare_url_normalization_settings';
 
-  DataCloudflareUrlNormalizationSettings({
-    required super.localName,
+  DataCloudflareUrlNormalizationSettings(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

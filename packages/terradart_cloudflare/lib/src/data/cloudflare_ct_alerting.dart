@@ -16,8 +16,8 @@ const Set<String> _cloudflareCtAlertingSensitive = <String>{};
 final class DataCloudflareCtAlerting extends Data {
   static const String tfType = 'cloudflare_ct_alerting';
 
-  DataCloudflareCtAlerting({
-    required super.localName,
+  DataCloudflareCtAlerting(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

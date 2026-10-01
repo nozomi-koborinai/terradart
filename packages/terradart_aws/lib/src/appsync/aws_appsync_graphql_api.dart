@@ -307,8 +307,8 @@ enum AppsyncGraphqlApiDefaultAction implements TerraformEnum {
 final class AwsAppsyncGraphqlApi extends Resource {
   static const String tfType = 'aws_appsync_graphql_api';
 
-  AwsAppsyncGraphqlApi({
-    required super.localName,
+  AwsAppsyncGraphqlApi(
+    super.localName, {
     TfArg<AppsyncGraphqlApiType>? apiType,
     required TfArg<AppsyncGraphqlApiAuthenticationType> authenticationType,
     TfArg<AppsyncGraphqlApiIntrospectionConfig>? introspectionConfig,

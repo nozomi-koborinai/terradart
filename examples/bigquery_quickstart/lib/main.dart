@@ -45,14 +45,14 @@ final class AnalyticsStack extends Stack {
     // `terraform apply` validates the principal exists. Declared ahead of the
     // dataset so the access entry can reference the SA's email.
     final reader = GoogleServiceAccount(
-      localName: 'analytics_reader',
+      'analytics_reader',
       accountId: .literal('analytics-reader'),
       displayName: .literal('Analytics dataset reader'),
     );
     add(reader);
 
     final dataset = GoogleBigqueryDataset(
-      localName: 'analytics',
+      'analytics',
       datasetId: .literal('analytics_prod'),
       location: .literal('asia-northeast1'),
       friendlyName: .literal('Production analytics'),
@@ -78,7 +78,7 @@ final class AnalyticsStack extends Stack {
     // production usage would point at a JSON file or a generated schema.
 
     final eventsTable = GoogleBigqueryTable(
-      localName: 'events',
+      'events',
       datasetId: dataset.ref,
       tableId: .literal('events'),
       deletionProtection: .literal(false),
@@ -96,7 +96,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryDatasetIamMember(
-        localName: 'analytics_reader_binding',
+        'analytics_reader_binding',
         dataset: dataset.ref,
         role: .literal('roles/bigquery.dataViewer'),
         member: reader.principal,
@@ -111,7 +111,7 @@ final class AnalyticsStack extends Stack {
     // given workload (e.g. an ingest pipeline).
 
     final ingestor = GoogleServiceAccount(
-      localName: 'events_ingestor',
+      'events_ingestor',
       accountId: .literal('events-ingestor'),
       displayName: .literal('Events table ingestor'),
     );
@@ -119,7 +119,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryTableIamMember(
-        localName: 'events_ingestor_binding',
+        'events_ingestor_binding',
         table: eventsTable.ref,
         role: .literal('roles/bigquery.dataEditor'),
         member: ingestor.principal,
@@ -130,7 +130,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryBiReservation(
-        localName: 'bi_engine',
+        'bi_engine',
         location: .literal('asia-northeast1'),
         size: .literal(1),
       ),
@@ -138,7 +138,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryDatapolicyDataPolicy(
-        localName: 'email_mask',
+        'email_mask',
         location: .literal('asia-northeast1'),
         dataPolicyId: .literal('mask-email'),
         dataPolicyType: .literal(.dataMaskingPolicy),
@@ -151,7 +151,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryDatapolicyDataPolicyIamMember(
-        localName: 'mask_email_reader',
+        'mask_email_reader',
         dataPolicy: .literal('mask-email'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/bigquerydatapolicy.maskedReader'),
@@ -161,7 +161,7 @@ final class AnalyticsStack extends Stack {
 
     final exchange = add(
       GoogleBigqueryAnalyticsHubDataExchange(
-        localName: 'shared_exchange',
+        'shared_exchange',
         location: .literal('asia-northeast1'),
         dataExchangeId: .literal('shared-exchange'),
         displayName: .literal('Shared analytics exchange'),
@@ -170,7 +170,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryAnalyticsHubListing(
-        localName: 'events_listing',
+        'events_listing',
         location: .literal('asia-northeast1'),
         dataExchangeId: .literal('shared-exchange'),
         listingId: .literal('events-listing'),
@@ -186,7 +186,7 @@ final class AnalyticsStack extends Stack {
 
     final slotsReservation = add(
       GoogleBigqueryReservation(
-        localName: 'analytics_slots',
+        'analytics_slots',
         name: .literal('analytics-slots'),
         location: .literal('asia-northeast1'),
         slotCapacity: .literal(50),
@@ -195,7 +195,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryReservationAssignment(
-        localName: 'project_slots',
+        'project_slots',
         assignee: .literal('projects/$projectId'),
         jobType: .literal(.query),
         location: .literal('asia-northeast1'),
@@ -205,7 +205,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryRowAccessPolicy(
-        localName: 'events_tenant_filter',
+        'events_tenant_filter',
         datasetId: dataset.ref,
         tableId: eventsTable.ref,
         policyId: .literal('tenant-filter'),
@@ -217,7 +217,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryAnalyticsHubDataExchangeIamMember(
-        localName: 'exchange_subscriber',
+        'exchange_subscriber',
         dataExchange: .literal('shared-exchange'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/analyticshub.subscriber'),
@@ -227,7 +227,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryAnalyticsHubListingIamMember(
-        localName: 'listing_viewer',
+        'listing_viewer',
         dataExchangeId: .literal('shared-exchange'),
         listing: .literal('events-listing'),
         location: .literal('asia-northeast1'),
@@ -238,7 +238,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryAnalyticsHubListingSubscription(
-        localName: 'events_subscription',
+        'events_subscription',
         dataExchangeId: .literal('shared-exchange'),
         listingId: .literal('events-listing'),
         location: .literal('asia-northeast1'),
@@ -256,7 +256,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryConnection(
-        localName: 'cloud_resource_link',
+        'cloud_resource_link',
         connectionId: .literal('cloud-resource-link'),
         location: .literal('asia-northeast1'),
         backend: .cloudResource(),
@@ -265,7 +265,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryConnectionIamMember(
-        localName: 'connection_user',
+        'connection_user',
         connection: .literal('cloud-resource-link'),
         location: .literal('asia-northeast1'),
         role: .literal('roles/bigquery.connectionUser'),
@@ -277,7 +277,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryJob(
-        localName: 'events_count_job',
+        'events_count_job',
         jobId: .literal('events-count-backfill'),
         location: .literal('asia-northeast1'),
         configuration: .query(
@@ -300,7 +300,7 @@ final class AnalyticsStack extends Stack {
 
     final addOneRoutine = add(
       GoogleBigqueryRoutine(
-        localName: 'add_one',
+        'add_one',
         datasetId: dataset.ref,
         routineId: .literal('add_one'),
         routineType: .literal(.scalarFunction),
@@ -318,7 +318,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryRoutineIamMember(
-        localName: 'add_one_reader',
+        'add_one_reader',
         routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataViewer'),
         member: reader.principal,
@@ -327,7 +327,7 @@ final class AnalyticsStack extends Stack {
 
     final addOneBinding = add(
       GoogleBigqueryRoutineIamBinding(
-        localName: 'add_one_binding',
+        'add_one_binding',
         routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataEditor'),
         members: .literal([reader.principal]),
@@ -337,7 +337,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryRoutineIamPolicy(
-        localName: 'add_one_policy',
+        'add_one_policy',
         routine: addOneRoutine.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -354,14 +354,14 @@ final class AnalyticsStack extends Stack {
     // use them; enrollment is project-wide.
     add(
       GoogleBigqueryDataTransferDataSourceEnrollment(
-        localName: 'carbon_footprint',
+        'carbon_footprint',
         dataSourceId: .literal('61cede5a-0000-2440-ad42-883d24f8f7b8'),
       ),
     );
 
     add(
       GoogleBigqueryCapacityCommitment(
-        localName: 'analytics_trial',
+        'analytics_trial',
         capacityCommitmentId: .literal('analytics-trial'),
         location: .literal('asia-northeast1'),
         slotCount: .literal(50),
@@ -372,7 +372,7 @@ final class AnalyticsStack extends Stack {
 
     add(
       GoogleBigqueryDataTransferConfig(
-        localName: 'daily_events_rollup',
+        'daily_events_rollup',
         displayName: .literal('Daily events rollup'),
         dataSourceId: .literal('scheduled_query'),
         destinationDatasetId: dataset.ref,
@@ -391,7 +391,7 @@ final class AnalyticsStack extends Stack {
     // sealed `access` list): grant the project's writers READER on the dataset.
     add(
       GoogleBigqueryDatasetAccess(
-        localName: 'project_writers_reader',
+        'project_writers_reader',
         datasetId: dataset.ref,
         role: .literal('READER'),
         grantee: .specialGroup(.literal(.projectWriters)),

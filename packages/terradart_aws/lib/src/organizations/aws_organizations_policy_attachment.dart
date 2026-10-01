@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsPolicyAttachmentSensitive = <String>{};
 final class AwsOrganizationsPolicyAttachment extends Resource {
   static const String tfType = 'aws_organizations_policy_attachment';
 
-  AwsOrganizationsPolicyAttachment({
-    required super.localName,
+  AwsOrganizationsPolicyAttachment(
+    super.localName, {
     required TfArg<String> policyId,
     TfArg<bool>? skipDestroy,
     required TfArg<String> targetId,

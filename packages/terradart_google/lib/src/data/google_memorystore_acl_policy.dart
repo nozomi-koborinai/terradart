@@ -14,8 +14,8 @@ const Set<String> _googleMemorystoreAclPolicySensitive = <String>{};
 final class DataGoogleMemorystoreAclPolicy extends Data {
   static const String tfType = 'google_memorystore_acl_policy';
 
-  DataGoogleMemorystoreAclPolicy({
-    required super.localName,
+  DataGoogleMemorystoreAclPolicy(
+    super.localName, {
     required TfArg<String> aclPolicyId,
     TfArg<String>? location,
     TfArg<String>? project,

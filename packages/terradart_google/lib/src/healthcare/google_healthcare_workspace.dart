@@ -36,8 +36,8 @@ final class HealthcareWorkspaceSettings {
 final class GoogleHealthcareWorkspace extends Resource {
   static const String tfType = 'google_healthcare_workspace';
 
-  GoogleHealthcareWorkspace({
-    required super.localName,
+  GoogleHealthcareWorkspace(
+    super.localName, {
     required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> name,
     required HealthcareWorkspaceSettings settings,

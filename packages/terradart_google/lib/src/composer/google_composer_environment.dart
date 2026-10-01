@@ -708,7 +708,7 @@ final class ComposerEnvironmentStorageConfig {
 /// Example:
 /// ```dart
 /// GoogleComposerEnvironment(
-///   localName: 'airflow',
+///   'airflow',
 ///   name: TfArg.literal('terradart-composer'),
 ///   region: TfArg.literal('us-central1'),
 ///   config: ComposerEnvironmentConfig(
@@ -719,8 +719,8 @@ final class ComposerEnvironmentStorageConfig {
 final class GoogleComposerEnvironment extends Resource {
   static const String tfType = 'google_composer_environment';
 
-  GoogleComposerEnvironment({
-    required super.localName,
+  GoogleComposerEnvironment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     ComposerEnvironmentConfig? config,

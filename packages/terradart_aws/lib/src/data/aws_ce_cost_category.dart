@@ -11,8 +11,8 @@ const Set<String> _awsCeCostCategorySensitive = <String>{};
 final class DataAwsCeCostCategory extends Data {
   static const String tfType = 'aws_ce_cost_category';
 
-  DataAwsCeCostCategory({
-    required super.localName,
+  DataAwsCeCostCategory(
+    super.localName, {
     required TfArg<String> costCategoryArn,
     TfArg<Map<String, String>>? tags,
     super.provider,

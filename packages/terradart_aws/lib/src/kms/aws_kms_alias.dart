@@ -67,8 +67,8 @@ final class KmsAliasNamePrefix extends KmsAliasName {
 final class AwsKmsAlias extends Resource {
   static const String tfType = 'aws_kms_alias';
 
-  AwsKmsAlias({
-    required super.localName,
+  AwsKmsAlias(
+    super.localName, {
     KmsAliasName? name,
     TfArg<String>? region,
     required TfArg<String> targetKeyId,

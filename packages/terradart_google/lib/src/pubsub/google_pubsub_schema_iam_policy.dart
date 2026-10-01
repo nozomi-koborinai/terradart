@@ -17,8 +17,8 @@ const Set<String> _googlePubsubSchemaIamPolicySensitive = <String>{};
 final class GooglePubsubSchemaIamPolicy extends Resource {
   static const String tfType = 'google_pubsub_schema_iam_policy';
 
-  GooglePubsubSchemaIamPolicy({
-    required super.localName,
+  GooglePubsubSchemaIamPolicy(
+    super.localName, {
     required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> policyData,
     TfArg<String>? project,

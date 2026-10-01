@@ -15,8 +15,8 @@ const Set<String> _googleTagsTagValueSensitive = <String>{};
 final class GoogleTagsTagValue extends Resource {
   static const String tfType = 'google_tags_tag_value';
 
-  GoogleTagsTagValue({
-    required super.localName,
+  GoogleTagsTagValue(
+    super.localName, {
     required TfArg<String> shortName,
     required RefTo<GoogleTagsTagKey> parent,
     TfArg<String>? description,

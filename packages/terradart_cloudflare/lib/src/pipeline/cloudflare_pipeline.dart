@@ -16,8 +16,8 @@ const Set<String> _cloudflarePipelineSensitive = <String>{};
 final class CloudflarePipeline extends Resource {
   static const String tfType = 'cloudflare_pipeline';
 
-  CloudflarePipeline({
-    required super.localName,
+  CloudflarePipeline(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<String> sql,

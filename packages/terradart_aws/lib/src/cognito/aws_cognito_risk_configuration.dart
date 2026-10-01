@@ -300,8 +300,8 @@ final class CognitoRiskConfigurationRiskExceptionConfiguration {
 final class AwsCognitoRiskConfiguration extends Resource {
   static const String tfType = 'aws_cognito_risk_configuration';
 
-  AwsCognitoRiskConfiguration({
-    required super.localName,
+  AwsCognitoRiskConfiguration(
+    super.localName, {
     TfArg<String>? clientId,
     TfArg<String>? region,
     required TfArg<String> userPoolId,

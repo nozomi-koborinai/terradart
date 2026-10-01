@@ -11,8 +11,8 @@ const Set<String> _awsApiGatewayResourceSensitive = <String>{};
 final class DataAwsApiGatewayResource extends Data {
   static const String tfType = 'aws_api_gateway_resource';
 
-  DataAwsApiGatewayResource({
-    required super.localName,
+  DataAwsApiGatewayResource(
+    super.localName, {
     required TfArg<String> path,
     TfArg<String>? region,
     required TfArg<String> restApiId,

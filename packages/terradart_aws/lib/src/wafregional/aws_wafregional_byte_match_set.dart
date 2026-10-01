@@ -54,8 +54,8 @@ final class WafregionalByteMatchSetFieldToMatch {
 final class AwsWafregionalByteMatchSet extends Resource {
   static const String tfType = 'aws_wafregional_byte_match_set';
 
-  AwsWafregionalByteMatchSet({
-    required super.localName,
+  AwsWafregionalByteMatchSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     List<WafregionalByteMatchSetByteMatchTuples>? byteMatchTuples,

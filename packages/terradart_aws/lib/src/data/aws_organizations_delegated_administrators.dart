@@ -11,8 +11,8 @@ const Set<String> _awsOrganizationsDelegatedAdministratorsSensitive =
 final class DataAwsOrganizationsDelegatedAdministrators extends Data {
   static const String tfType = 'aws_organizations_delegated_administrators';
 
-  DataAwsOrganizationsDelegatedAdministrators({
-    required super.localName,
+  DataAwsOrganizationsDelegatedAdministrators(
+    super.localName, {
     TfArg<String>? servicePrincipal,
     super.provider,
     super.timeouts,

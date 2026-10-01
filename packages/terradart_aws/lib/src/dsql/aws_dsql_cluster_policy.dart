@@ -10,8 +10,8 @@ const Set<String> _awsDsqlClusterPolicySensitive = <String>{};
 final class AwsDsqlClusterPolicy extends Resource {
   static const String tfType = 'aws_dsql_cluster_policy';
 
-  AwsDsqlClusterPolicy({
-    required super.localName,
+  AwsDsqlClusterPolicy(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     required TfArg<String> identifier,
     required TfArg<String> policy,

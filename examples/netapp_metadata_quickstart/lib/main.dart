@@ -29,7 +29,7 @@ final class NetappMetadataStack extends Stack {
 
     final apiNetapp = add(
       GoogleProjectService(
-        localName: 'api_netapp',
+        'api_netapp',
         service: .literal('netapp.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -37,7 +37,7 @@ final class NetappMetadataStack extends Stack {
 
     add(
       GoogleNetappBackupVault(
-        localName: 'vault',
+        'vault',
         name: .literal('terradart-smoke-vault'),
         location: .literal(location),
         description: .literal('Empty vault for TerraDart smoke (no backups)'),
@@ -47,7 +47,7 @@ final class NetappMetadataStack extends Stack {
 
     add(
       GoogleNetappBackupPolicy(
-        localName: 'policy',
+        'policy',
         name: .literal('terradart-smoke-policy'),
         location: .literal(location),
         dailyBackupLimit: .literal(2),
@@ -62,7 +62,7 @@ final class NetappMetadataStack extends Stack {
 
     add(
       GoogleNetappHostGroup(
-        localName: 'hosts',
+        'hosts',
         name: .literal('terradart-smoke-hosts'),
         location: .literal(location),
         type: .literal(.iscsiInitiator),

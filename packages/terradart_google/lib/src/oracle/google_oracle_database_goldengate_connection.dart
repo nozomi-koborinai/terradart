@@ -1838,8 +1838,8 @@ final class OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties {
 final class GoogleOracleDatabaseGoldengateConnection extends Resource {
   static const String tfType = 'google_oracle_database_goldengate_connection';
 
-  GoogleOracleDatabaseGoldengateConnection({
-    required super.localName,
+  GoogleOracleDatabaseGoldengateConnection(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> goldengateConnectionId,
     required OracleDatabaseGoldengateConnectionProperties properties,

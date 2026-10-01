@@ -51,8 +51,8 @@ final class OutpostsCapacityTaskInstancesToExclude {
 final class AwsOutpostsCapacityTask extends Resource {
   static const String tfType = 'aws_outposts_capacity_task';
 
-  AwsOutpostsCapacityTask({
-    required super.localName,
+  AwsOutpostsCapacityTask(
+    super.localName, {
     TfArg<String>? assetId,
     TfArg<String>? orderId,
     required TfArg<String> outpostIdentifier,

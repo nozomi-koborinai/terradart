@@ -16,8 +16,8 @@ const Set<String> _cloudflareCloudforceOneRequestAssetSensitive = <String>{};
 final class DataCloudflareCloudforceOneRequestAsset extends Data {
   static const String tfType = 'cloudflare_cloudforce_one_request_asset';
 
-  DataCloudflareCloudforceOneRequestAsset({
-    required super.localName,
+  DataCloudflareCloudforceOneRequestAsset(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> assetId,
     required TfArg<String> requestId,

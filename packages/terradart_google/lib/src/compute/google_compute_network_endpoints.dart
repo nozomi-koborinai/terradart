@@ -53,8 +53,8 @@ final class ComputeNetworkEndpoints {
 final class GoogleComputeNetworkEndpoints extends Resource {
   static const String tfType = 'google_compute_network_endpoints';
 
-  GoogleComputeNetworkEndpoints({
-    required super.localName,
+  GoogleComputeNetworkEndpoints(
+    super.localName, {
     required RefTo<GoogleComputeNetworkEndpointGroup> networkEndpointGroup,
     List<ComputeNetworkEndpoints>? networkEndpoints,
     TfArg<String>? zone,

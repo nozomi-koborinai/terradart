@@ -16,8 +16,8 @@ const Set<String> _cloudflareMagicNetworkMonitoringRulesSensitive = <String>{};
 final class DataCloudflareMagicNetworkMonitoringRules extends Data {
   static const String tfType = 'cloudflare_magic_network_monitoring_rules';
 
-  DataCloudflareMagicNetworkMonitoringRules({
-    required super.localName,
+  DataCloudflareMagicNetworkMonitoringRules(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

@@ -33,8 +33,8 @@ final class OsisPipelineEndpointVpcOptions {
 final class AwsOsisPipelineEndpoint extends Resource {
   static const String tfType = 'aws_osis_pipeline_endpoint';
 
-  AwsOsisPipelineEndpoint({
-    required super.localName,
+  AwsOsisPipelineEndpoint(
+    super.localName, {
     required TfArg<String> pipelineArn,
     TfArg<String>? region,
     List<OsisPipelineEndpointVpcOptions>? vpcOptions,

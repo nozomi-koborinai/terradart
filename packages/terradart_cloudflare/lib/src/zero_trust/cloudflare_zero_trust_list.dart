@@ -46,8 +46,8 @@ final class ZeroTrustListItems {
 final class CloudflareZeroTrustList extends Resource {
   static const String tfType = 'cloudflare_zero_trust_list';
 
-  CloudflareZeroTrustList({
-    required super.localName,
+  CloudflareZeroTrustList(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> name,

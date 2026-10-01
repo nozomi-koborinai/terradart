@@ -20,8 +20,8 @@ final class DataCloudflareApiShieldOperationSchemaValidationSettings
   static const String tfType =
       'cloudflare_api_shield_operation_schema_validation_settings';
 
-  DataCloudflareApiShieldOperationSchemaValidationSettings({
-    required super.localName,
+  DataCloudflareApiShieldOperationSchemaValidationSettings(
+    super.localName, {
     required TfArg<String> operationId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

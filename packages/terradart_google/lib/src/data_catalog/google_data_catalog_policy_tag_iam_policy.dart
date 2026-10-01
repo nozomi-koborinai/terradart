@@ -18,8 +18,8 @@ const Set<String> _googleDataCatalogPolicyTagIamPolicySensitive = <String>{};
 final class GoogleDataCatalogPolicyTagIamPolicy extends Resource {
   static const String tfType = 'google_data_catalog_policy_tag_iam_policy';
 
-  GoogleDataCatalogPolicyTagIamPolicy({
-    required super.localName,
+  GoogleDataCatalogPolicyTagIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataCatalogPolicyTag> policyTag,
     required TfArg<String> policyData,
     super.lifecycle,

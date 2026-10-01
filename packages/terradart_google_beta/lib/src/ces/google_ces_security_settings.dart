@@ -43,8 +43,8 @@ enum CesSecuritySettingsEnforcementScope implements TerraformEnum {
 final class GoogleCesSecuritySettings extends Resource {
   static const String tfType = 'google_ces_security_settings';
 
-  GoogleCesSecuritySettings({
-    required super.localName,
+  GoogleCesSecuritySettings(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     CesSecuritySettingsEndpointControlPolicy? endpointControlPolicy,

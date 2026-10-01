@@ -38,8 +38,8 @@ final class GeminiRepositoryGroupIamMemberCondition {
 final class GoogleGeminiRepositoryGroupIamMember extends Resource {
   static const String tfType = 'google_gemini_repository_group_iam_member';
 
-  GoogleGeminiRepositoryGroupIamMember({
-    required super.localName,
+  GoogleGeminiRepositoryGroupIamMember(
+    super.localName, {
     required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
     TfArg<String>? codeRepositoryIndex,
     required TfArg<String> role,

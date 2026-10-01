@@ -12,8 +12,8 @@ const Set<String> _awsGrafanaWorkspaceServiceAccountTokenSensitive = <String>{
 final class AwsGrafanaWorkspaceServiceAccountToken extends Resource {
   static const String tfType = 'aws_grafana_workspace_service_account_token';
 
-  AwsGrafanaWorkspaceServiceAccountToken({
-    required super.localName,
+  AwsGrafanaWorkspaceServiceAccountToken(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<num> secondsToLive,

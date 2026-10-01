@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminApplicationAccessScopeSensitive = <String>{};
 final class AwsSsoadminApplicationAccessScope extends Resource {
   static const String tfType = 'aws_ssoadmin_application_access_scope';
 
-  AwsSsoadminApplicationAccessScope({
-    required super.localName,
+  AwsSsoadminApplicationAccessScope(
+    super.localName, {
     required TfArg<String> applicationArn,
     TfArg<List<String>>? authorizedTargets,
     TfArg<String>? region,

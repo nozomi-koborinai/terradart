@@ -52,8 +52,8 @@ final class LoggingFolderBucketConfigIndexConfigs {
 final class GoogleLoggingFolderBucketConfig extends Resource {
   static const String tfType = 'google_logging_folder_bucket_config';
 
-  GoogleLoggingFolderBucketConfig({
-    required super.localName,
+  GoogleLoggingFolderBucketConfig(
+    super.localName, {
     required TfArg<String> bucketId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

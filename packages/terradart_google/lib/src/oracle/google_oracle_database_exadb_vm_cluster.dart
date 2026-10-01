@@ -162,8 +162,8 @@ final class OracleDatabaseExadbVmClusterVmFileSystemStorage {
 final class GoogleOracleDatabaseExadbVmCluster extends Resource {
   static const String tfType = 'google_oracle_database_exadb_vm_cluster';
 
-  GoogleOracleDatabaseExadbVmCluster({
-    required super.localName,
+  GoogleOracleDatabaseExadbVmCluster(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> exadbVmClusterId,
     required TfArg<String> displayName,

@@ -12,8 +12,8 @@ final class AwsDxHostedTransitVirtualInterfaceAccepter extends Resource {
   static const String tfType =
       'aws_dx_hosted_transit_virtual_interface_accepter';
 
-  AwsDxHostedTransitVirtualInterfaceAccepter({
-    required super.localName,
+  AwsDxHostedTransitVirtualInterfaceAccepter(
+    super.localName, {
     required TfArg<String> dxGatewayId,
     TfArg<num>? prefixPoolAllocatedCountIpv4,
     TfArg<num>? prefixPoolAllocatedCountIpv6,

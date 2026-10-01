@@ -99,8 +99,8 @@ final class VmwareengineDatastoreThirdPartyFileService {
 final class GoogleVmwareengineDatastore extends Resource {
   static const String tfType = 'google_vmwareengine_datastore';
 
-  GoogleVmwareengineDatastore({
-    required super.localName,
+  GoogleVmwareengineDatastore(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required VmwareengineDatastoreNfsDatastore nfsDatastore,

@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetappBackupPolicy(
-  ///   localName: 'policy',
+  ///   'policy',
   ///   name: TfArg.literal('daily'),
   ///   location: TfArg.literal('us-central1'),
   ///   dailyBackupLimit: TfArg.literal(2),

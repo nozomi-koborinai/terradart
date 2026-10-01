@@ -18,8 +18,8 @@ final class CloudflareWorkersForPlatformsDispatchNamespace extends Resource {
   static const String tfType =
       'cloudflare_workers_for_platforms_dispatch_namespace';
 
-  CloudflareWorkersForPlatformsDispatchNamespace({
-    required super.localName,
+  CloudflareWorkersForPlatformsDispatchNamespace(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? name,
     super.lifecycle,

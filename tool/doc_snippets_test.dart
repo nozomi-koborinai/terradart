@@ -71,7 +71,7 @@ final kept = 1;
 /// A topic.
 ///
 /// ```dart
-/// add(GooglePubsubTopic(localName: 'o', name: .literal('o')));
+/// add(GooglePubsubTopic('o', name: .literal('o')));
 /// ```
 ///
 /// ```text
@@ -85,7 +85,7 @@ final class A {}
 ''';
       final found = extractDocCommentSnippets('a.dart', source);
       expect(found.snippets.map((s) => (s.line, s.code)), [
-        (4, "add(GooglePubsubTopic(localName: 'o', name: .literal('o')));"),
+        (4, "add(GooglePubsubTopic('o', name: .literal('o')));"),
       ]);
       expect(found.unlabeled, [startsWith('a.dart:11: ')]);
     });
@@ -104,12 +104,9 @@ final class A {}
     });
 
     test('statements are Stack constructor bodies', () {
-      expect(
-        lib("final topic = add(GooglePubsubTopic(localName: 'o'));"),
-        isFalse,
-      );
+      expect(lib("final topic = add(GooglePubsubTopic('o'));"), isFalse);
       expect(lib("addOutput('x', topic.id);"), isFalse);
-      expect(lib('GoogleStorageBucket(localName: "a");'), isFalse);
+      expect(lib('GoogleStorageBucket("a");'), isFalse);
     });
   });
 
@@ -134,7 +131,7 @@ Intro.
 
 ```dart
 final topic = add(GooglePubsubTopic(
-  localName: 'orders',
+  'orders',
   nmae: .literal('orders'),
 ));
 ```
@@ -156,7 +153,7 @@ final topic = add(GooglePubsubTopic(
     File(file).writeAsStringSync('''
 /// ```dart
 /// final build = GoogleFirebaseAppHostingBuild(
-///   localName: 'v1',
+///   'v1',
 ///   backend: backend.ref,
 ///   location: .literal(region),
 ///   buildId: .literal('v1'),
@@ -167,7 +164,7 @@ final topic = add(GooglePubsubTopic(
 /// ```
 ///
 /// ```dart
-/// add(GooglePubsubTopic(localName: 'o', nmae: .literal(topicName)));
+/// add(GooglePubsubTopic('o', nmae: .literal(topicName)));
 /// ```
 final class A {}
 ''');

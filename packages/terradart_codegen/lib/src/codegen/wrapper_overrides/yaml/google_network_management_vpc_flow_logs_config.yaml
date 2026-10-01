@@ -68,7 +68,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkManagementVpcFlowLogsConfig(
-  ///   localName: 'vpc_logs',
+  ///   'vpc_logs',
   ///   vpcFlowLogsConfigId: TfArg.literal('terradart-vpc-flow'),
   ///   location: TfArg.literal('global'),
   ///   network: .literal(

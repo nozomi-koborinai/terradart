@@ -31,8 +31,8 @@ enum LoadBalancerMonitorType implements TerraformEnum {
 final class CloudflareLoadBalancerMonitor extends Resource {
   static const String tfType = 'cloudflare_load_balancer_monitor';
 
-  CloudflareLoadBalancerMonitor({
-    required super.localName,
+  CloudflareLoadBalancerMonitor(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowInsecure,
     TfArg<num>? consecutiveDown,

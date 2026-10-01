@@ -45,7 +45,7 @@ curatedDoc: |-
   /// Example (self-signed root in a DEVOPS pool):
   /// ```dart
   /// GooglePrivatecaCertificateAuthority(
-  ///   localName: 'app_ca',
+  ///   'app_ca',
   ///   certificateAuthorityId: TfArg.literal('app-root-ca'),
   ///   pool: caPool.ref,
   ///   location: TfArg.literal('us-central1'),

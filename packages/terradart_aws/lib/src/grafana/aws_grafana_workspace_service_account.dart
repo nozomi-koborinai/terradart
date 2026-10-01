@@ -21,8 +21,8 @@ enum GrafanaWorkspaceServiceAccountGrafanaRole implements TerraformEnum {
 final class AwsGrafanaWorkspaceServiceAccount extends Resource {
   static const String tfType = 'aws_grafana_workspace_service_account';
 
-  AwsGrafanaWorkspaceServiceAccount({
-    required super.localName,
+  AwsGrafanaWorkspaceServiceAccount(
+    super.localName, {
     required TfArg<GrafanaWorkspaceServiceAccountGrafanaRole> grafanaRole,
     required TfArg<String> name,
     TfArg<String>? region,

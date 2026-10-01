@@ -12,7 +12,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBinaryAuthorizationAttestorIamMember(
-  ///   localName: 'attestor_viewer',
+  ///   'attestor_viewer',
   ///   attestor: attestor.ref,
   ///   role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
   ///   member: .serviceAccount('ci@$projectId.iam.gserviceaccount.com'),

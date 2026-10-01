@@ -18,8 +18,8 @@ final class GoogleIapAgentRegistryMcpServerIamPolicy extends Resource {
   static const String tfType =
       'google_iap_agent_registry_mcp_server_iam_policy';
 
-  GoogleIapAgentRegistryMcpServerIamPolicy({
-    required super.localName,
+  GoogleIapAgentRegistryMcpServerIamPolicy(
+    super.localName, {
     required TfArg<String> mcpServerId,
     required TfArg<String> policyData,
     TfArg<String>? location,

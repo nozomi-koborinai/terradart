@@ -11,8 +11,8 @@ const Set<String> _awsGlobalacceleratorAcceleratorSensitive = <String>{};
 final class DataAwsGlobalacceleratorAccelerator extends Data {
   static const String tfType = 'aws_globalaccelerator_accelerator';
 
-  DataAwsGlobalacceleratorAccelerator({
-    required super.localName,
+  DataAwsGlobalacceleratorAccelerator(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     super.provider,

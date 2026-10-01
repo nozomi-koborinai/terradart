@@ -42,8 +42,8 @@ final class DataplexAssetIamBindingCondition {
 final class GoogleDataplexAssetIamBinding extends Resource {
   static const String tfType = 'google_dataplex_asset_iam_binding';
 
-  GoogleDataplexAssetIamBinding({
-    required super.localName,
+  GoogleDataplexAssetIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexAsset> asset,
     TfArg<String>? dataplexZone,
     TfArg<String>? lake,

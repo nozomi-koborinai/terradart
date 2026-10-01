@@ -30,7 +30,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final dnsAuth = GoogleCertificateManagerDnsAuthorization(
-  ///   localName: 'app_dns',
+  ///   'app_dns',
   ///   name: TfArg.literal('app-dns'),
   ///   domain: TfArg.literal('app.example.com'),
   /// );

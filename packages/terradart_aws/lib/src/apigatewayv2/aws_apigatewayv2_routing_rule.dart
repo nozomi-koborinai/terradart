@@ -112,8 +112,8 @@ final class Apigatewayv2RoutingRuleAnyOf {
 final class AwsApigatewayv2RoutingRule extends Resource {
   static const String tfType = 'aws_apigatewayv2_routing_rule';
 
-  AwsApigatewayv2RoutingRule({
-    required super.localName,
+  AwsApigatewayv2RoutingRule(
+    super.localName, {
     required TfArg<String> domainName,
     required TfArg<num> priority,
     TfArg<String>? region,

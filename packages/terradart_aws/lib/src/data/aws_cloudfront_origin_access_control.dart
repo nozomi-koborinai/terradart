@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontOriginAccessControlSensitive = <String>{};
 final class DataAwsCloudfrontOriginAccessControl extends Data {
   static const String tfType = 'aws_cloudfront_origin_access_control';
 
-  DataAwsCloudfrontOriginAccessControl({
-    required super.localName,
+  DataAwsCloudfrontOriginAccessControl(
+    super.localName, {
     required TfArg<String> id,
     super.provider,
     super.timeouts,

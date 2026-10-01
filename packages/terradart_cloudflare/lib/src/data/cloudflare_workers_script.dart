@@ -28,8 +28,8 @@ final class DataWorkersScriptFilter {
 final class DataCloudflareWorkersScript extends Data {
   static const String tfType = 'cloudflare_workers_script';
 
-  DataCloudflareWorkersScript({
-    required super.localName,
+  DataCloudflareWorkersScript(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? scriptName,
     DataWorkersScriptFilter? filter,

@@ -14,8 +14,8 @@ const Set<String> _googleDataCatalogTaxonomyIamPolicySensitive = <String>{};
 final class DataGoogleDataCatalogTaxonomyIamPolicy extends Data {
   static const String tfType = 'google_data_catalog_taxonomy_iam_policy';
 
-  DataGoogleDataCatalogTaxonomyIamPolicy({
-    required super.localName,
+  DataGoogleDataCatalogTaxonomyIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> taxonomy,

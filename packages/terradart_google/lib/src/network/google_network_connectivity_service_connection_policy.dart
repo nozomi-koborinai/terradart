@@ -76,8 +76,8 @@ final class GoogleNetworkConnectivityServiceConnectionPolicy extends Resource {
   static const String tfType =
       'google_network_connectivity_service_connection_policy';
 
-  GoogleNetworkConnectivityServiceConnectionPolicy({
-    required super.localName,
+  GoogleNetworkConnectivityServiceConnectionPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleComputeNetwork> network,

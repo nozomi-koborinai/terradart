@@ -17,8 +17,8 @@ const Set<String> _googleSiteVerificationOwnerSensitive = <String>{};
 final class GoogleSiteVerificationOwner extends Resource {
   static const String tfType = 'google_site_verification_owner';
 
-  GoogleSiteVerificationOwner({
-    required super.localName,
+  GoogleSiteVerificationOwner(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> email,
     required TfArg<String> webResourceId,

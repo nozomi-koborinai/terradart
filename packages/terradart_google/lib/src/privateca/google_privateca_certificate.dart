@@ -532,7 +532,7 @@ final class PrivatecaCertificatePolicyIds {
 /// Example (CSR-based issuance from a root CA):
 /// ```dart
 /// GooglePrivatecaCertificate(
-///   localName: 'leaf_cert',
+///   'leaf_cert',
 ///   name: TfArg.literal('app-leaf-cert'),
 ///   pool: caPool.ref,
 ///   location: TfArg.literal('us-central1'),
@@ -544,8 +544,8 @@ final class PrivatecaCertificatePolicyIds {
 final class GooglePrivatecaCertificate extends Resource {
   static const String tfType = 'google_privateca_certificate';
 
-  GooglePrivatecaCertificate({
-    required super.localName,
+  GooglePrivatecaCertificate(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GooglePrivatecaCaPool> pool,
     required TfArg<String> location,

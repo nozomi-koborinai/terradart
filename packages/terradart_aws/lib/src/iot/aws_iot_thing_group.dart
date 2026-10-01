@@ -38,8 +38,8 @@ final class IotThingGroupAttributePayload {
 final class AwsIotThingGroup extends Resource {
   static const String tfType = 'aws_iot_thing_group';
 
-  AwsIotThingGroup({
-    required super.localName,
+  AwsIotThingGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? parentGroupName,
     TfArg<String>? region,

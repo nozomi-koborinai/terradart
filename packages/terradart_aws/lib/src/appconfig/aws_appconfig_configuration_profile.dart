@@ -54,8 +54,8 @@ enum AppconfigConfigurationProfileValidatorType implements TerraformEnum {
 final class AwsAppconfigConfigurationProfile extends Resource {
   static const String tfType = 'aws_appconfig_configuration_profile';
 
-  AwsAppconfigConfigurationProfile({
-    required super.localName,
+  AwsAppconfigConfigurationProfile(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyIdentifier,

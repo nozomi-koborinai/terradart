@@ -11,8 +11,8 @@ const Set<String> _awsDxGatewaySensitive = <String>{};
 final class DataAwsDxGateway extends Data {
   static const String tfType = 'aws_dx_gateway';
 
-  DataAwsDxGateway({
-    required super.localName,
+  DataAwsDxGateway(
+    super.localName, {
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     super.provider,

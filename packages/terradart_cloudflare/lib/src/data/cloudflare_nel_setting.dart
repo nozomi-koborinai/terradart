@@ -16,8 +16,8 @@ const Set<String> _cloudflareNelSettingSensitive = <String>{};
 final class DataCloudflareNelSetting extends Data {
   static const String tfType = 'cloudflare_nel_setting';
 
-  DataCloudflareNelSetting({
-    required super.localName,
+  DataCloudflareNelSetting(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

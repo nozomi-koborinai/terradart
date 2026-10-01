@@ -27,8 +27,8 @@ final class DataSsmInstancesFilter {
 final class DataAwsSsmInstances extends Data {
   static const String tfType = 'aws_ssm_instances';
 
-  DataAwsSsmInstances({
-    required super.localName,
+  DataAwsSsmInstances(
+    super.localName, {
     TfArg<String>? region,
     List<DataSsmInstancesFilter>? filter,
     super.provider,

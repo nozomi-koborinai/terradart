@@ -11,8 +11,8 @@ const Set<String> _awsSfnActivitySensitive = <String>{};
 final class DataAwsSfnActivity extends Data {
   static const String tfType = 'aws_sfn_activity';
 
-  DataAwsSfnActivity({
-    required super.localName,
+  DataAwsSfnActivity(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

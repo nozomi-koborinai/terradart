@@ -19,8 +19,8 @@ const Set<String> _googleOrganizationServiceIdentitySensitive = <String>{};
 final class GoogleOrganizationServiceIdentity extends Resource {
   static const String tfType = 'google_organization_service_identity';
 
-  GoogleOrganizationServiceIdentity({
-    required super.localName,
+  GoogleOrganizationServiceIdentity(
+    super.localName, {
     required TfArg<String> service,
     required TfArg<String> organization,
     super.lifecycle,

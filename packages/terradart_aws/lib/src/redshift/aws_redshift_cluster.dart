@@ -184,8 +184,8 @@ final class RedshiftClusterSnapshotIdentifier extends RedshiftClusterSnapshot {
 final class AwsRedshiftCluster extends Resource {
   static const String tfType = 'aws_redshift_cluster';
 
-  AwsRedshiftCluster({
-    required super.localName,
+  AwsRedshiftCluster(
+    super.localName, {
     TfArg<bool>? allowVersionUpgrade,
     TfArg<bool>? applyImmediately,
     TfArg<RedshiftClusterAquaConfigurationStatus>? aquaConfigurationStatus,

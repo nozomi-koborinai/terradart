@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustTunnelCloudflaredRouteSensitive =
 final class CloudflareZeroTrustTunnelCloudflaredRoute extends Resource {
   static const String tfType = 'cloudflare_zero_trust_tunnel_cloudflared_route';
 
-  CloudflareZeroTrustTunnelCloudflaredRoute({
-    required super.localName,
+  CloudflareZeroTrustTunnelCloudflaredRoute(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comment,
     required TfArg<String> network,

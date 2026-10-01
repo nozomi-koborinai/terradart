@@ -27,8 +27,8 @@ enum DirectoryServiceRadiusSettingsAuthenticationProtocol
 final class AwsDirectoryServiceRadiusSettings extends Resource {
   static const String tfType = 'aws_directory_service_radius_settings';
 
-  AwsDirectoryServiceRadiusSettings({
-    required super.localName,
+  AwsDirectoryServiceRadiusSettings(
+    super.localName, {
     required TfArg<DirectoryServiceRadiusSettingsAuthenticationProtocol>
     authenticationProtocol,
     required TfArg<String> directoryId,

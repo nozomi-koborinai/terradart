@@ -27,8 +27,8 @@ final class VpclatticeTargetGroupAttachmentTarget {
 final class AwsVpclatticeTargetGroupAttachment extends Resource {
   static const String tfType = 'aws_vpclattice_target_group_attachment';
 
-  AwsVpclatticeTargetGroupAttachment({
-    required super.localName,
+  AwsVpclatticeTargetGroupAttachment(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> targetGroupIdentifier,
     required VpclatticeTargetGroupAttachmentTarget target,

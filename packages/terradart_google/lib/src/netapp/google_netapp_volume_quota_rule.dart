@@ -32,8 +32,8 @@ enum NetappVolumeQuotaRuleType implements TerraformEnum {
 final class GoogleNetappVolumeQuotaRule extends Resource {
   static const String tfType = 'google_netapp_volume_quota_rule';
 
-  GoogleNetappVolumeQuotaRule({
-    required super.localName,
+  GoogleNetappVolumeQuotaRule(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> volumeName,
     required TfArg<NetappVolumeQuotaRuleType> type,

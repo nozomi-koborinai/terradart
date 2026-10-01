@@ -42,8 +42,8 @@ final class ApigeeEnvironmentIamBindingCondition {
 final class GoogleApigeeEnvironmentIamBinding extends Resource {
   static const String tfType = 'google_apigee_environment_iam_binding';
 
-  GoogleApigeeEnvironmentIamBinding({
-    required super.localName,
+  GoogleApigeeEnvironmentIamBinding(
+    super.localName, {
     TfArg<String>? orgId,
     required RefTo<GoogleApigeeEnvironment> environment,
     required TfArg<String> role,

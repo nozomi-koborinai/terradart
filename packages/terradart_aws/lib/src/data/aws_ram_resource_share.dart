@@ -28,8 +28,8 @@ final class DataRamResourceShareFilter {
 final class DataAwsRamResourceShare extends Data {
   static const String tfType = 'aws_ram_resource_share';
 
-  DataAwsRamResourceShare({
-    required super.localName,
+  DataAwsRamResourceShare(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     required TfArg<String> resourceOwner,

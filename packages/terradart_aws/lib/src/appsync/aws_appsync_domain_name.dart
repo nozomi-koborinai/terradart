@@ -10,8 +10,8 @@ const Set<String> _awsAppsyncDomainNameSensitive = <String>{};
 final class AwsAppsyncDomainName extends Resource {
   static const String tfType = 'aws_appsync_domain_name';
 
-  AwsAppsyncDomainName({
-    required super.localName,
+  AwsAppsyncDomainName(
+    super.localName, {
     required TfArg<String> certificateArn,
     TfArg<String>? description,
     required TfArg<String> domainName,

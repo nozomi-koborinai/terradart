@@ -18,8 +18,8 @@ final class DataCloudflareSchemaValidationOperationSettingsList extends Data {
   static const String tfType =
       'cloudflare_schema_validation_operation_settings_list';
 
-  DataCloudflareSchemaValidationOperationSettingsList({
-    required super.localName,
+  DataCloudflareSchemaValidationOperationSettingsList(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

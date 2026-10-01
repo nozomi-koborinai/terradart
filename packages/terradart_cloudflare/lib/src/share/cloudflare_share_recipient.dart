@@ -12,8 +12,8 @@ const Set<String> _cloudflareShareRecipientSensitive = <String>{};
 final class CloudflareShareRecipient extends Resource {
   static const String tfType = 'cloudflare_share_recipient';
 
-  CloudflareShareRecipient({
-    required super.localName,
+  CloudflareShareRecipient(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeResources,
     TfArg<String>? organizationId,

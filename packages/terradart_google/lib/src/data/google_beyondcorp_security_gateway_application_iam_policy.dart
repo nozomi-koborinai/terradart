@@ -17,8 +17,8 @@ final class DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy
   static const String tfType =
       'google_beyondcorp_security_gateway_application_iam_policy';
 
-  DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy({
-    required super.localName,
+  DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,

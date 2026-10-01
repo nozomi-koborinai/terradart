@@ -33,8 +33,8 @@ final class GoogleSccEventThreatDetectionCustomModule extends Resource {
   static const String tfType =
       'google_scc_event_threat_detection_custom_module';
 
-  GoogleSccEventThreatDetectionCustomModule({
-    required super.localName,
+  GoogleSccEventThreatDetectionCustomModule(
+    super.localName, {
     required TfArg<String> config,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

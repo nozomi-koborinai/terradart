@@ -31,8 +31,8 @@ enum MigrationCenterImportJobDeletionPolicy implements TerraformEnum {
 final class GoogleMigrationCenterImportJob extends Resource {
   static const String tfType = 'google_migration_center_import_job';
 
-  GoogleMigrationCenterImportJob({
-    required super.localName,
+  GoogleMigrationCenterImportJob(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> importJobId,
     required RefTo<GoogleMigrationCenterSource> assetSource,

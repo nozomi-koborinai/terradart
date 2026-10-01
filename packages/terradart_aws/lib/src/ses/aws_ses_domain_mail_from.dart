@@ -20,8 +20,8 @@ enum SesDomainMailFromBehaviorOnMxFailure implements TerraformEnum {
 final class AwsSesDomainMailFrom extends Resource {
   static const String tfType = 'aws_ses_domain_mail_from';
 
-  AwsSesDomainMailFrom({
-    required super.localName,
+  AwsSesDomainMailFrom(
+    super.localName, {
     TfArg<SesDomainMailFromBehaviorOnMxFailure>? behaviorOnMxFailure,
     required TfArg<String> domain,
     required TfArg<String> mailFromDomain,

@@ -14,8 +14,8 @@ const Set<String> _googleNetworkConnectivityHubIamPolicySensitive = <String>{};
 final class DataGoogleNetworkConnectivityHubIamPolicy extends Data {
   static const String tfType = 'google_network_connectivity_hub_iam_policy';
 
-  DataGoogleNetworkConnectivityHubIamPolicy({
-    required super.localName,
+  DataGoogleNetworkConnectivityHubIamPolicy(
+    super.localName, {
     required TfArg<String> hub,
     TfArg<String>? project,
     super.provider,

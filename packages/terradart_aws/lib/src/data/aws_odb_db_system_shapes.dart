@@ -10,8 +10,8 @@ const Set<String> _awsOdbDbSystemShapesSensitive = <String>{};
 final class DataAwsOdbDbSystemShapes extends Data {
   static const String tfType = 'aws_odb_db_system_shapes';
 
-  DataAwsOdbDbSystemShapes({
-    required super.localName,
+  DataAwsOdbDbSystemShapes(
+    super.localName, {
     TfArg<String>? availabilityZoneId,
     TfArg<String>? region,
     super.provider,

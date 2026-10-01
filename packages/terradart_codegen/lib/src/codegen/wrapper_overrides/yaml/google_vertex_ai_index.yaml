@@ -30,7 +30,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiIndex(
-  ///   localName: 'idx',
+  ///   'idx',
   ///   displayName: TfArg.literal('terradart-idx'),
   ///   region: TfArg.literal('us-central1'),
   ///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),

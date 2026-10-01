@@ -14,8 +14,8 @@ const Set<String> _googleSecretManagerSecretSensitive = <String>{};
 final class DataGoogleSecretManagerSecret extends Data {
   static const String tfType = 'google_secret_manager_secret';
 
-  DataGoogleSecretManagerSecret({
-    required super.localName,
+  DataGoogleSecretManagerSecret(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> secretId,
     super.provider,

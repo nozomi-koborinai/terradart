@@ -198,8 +198,8 @@ final class AppsyncResolverLambdaConflictHandlerConfig {
 final class AwsAppsyncResolver extends Resource {
   static const String tfType = 'aws_appsync_resolver';
 
-  AwsAppsyncResolver({
-    required super.localName,
+  AwsAppsyncResolver(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? code,
     AppsyncResolverBackend? backend,

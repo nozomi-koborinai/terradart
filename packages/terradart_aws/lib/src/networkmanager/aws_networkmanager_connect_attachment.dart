@@ -32,8 +32,8 @@ enum NetworkmanagerConnectAttachmentProtocol implements TerraformEnum {
 final class AwsNetworkmanagerConnectAttachment extends Resource {
   static const String tfType = 'aws_networkmanager_connect_attachment';
 
-  AwsNetworkmanagerConnectAttachment({
-    required super.localName,
+  AwsNetworkmanagerConnectAttachment(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     required TfArg<String> edgeLocation,
     TfArg<String>? routingPolicyLabel,

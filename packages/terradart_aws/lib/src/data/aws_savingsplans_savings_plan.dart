@@ -11,8 +11,8 @@ const Set<String> _awsSavingsplansSavingsPlanSensitive = <String>{};
 final class DataAwsSavingsplansSavingsPlan extends Data {
   static const String tfType = 'aws_savingsplans_savings_plan';
 
-  DataAwsSavingsplansSavingsPlan({
-    required super.localName,
+  DataAwsSavingsplansSavingsPlan(
+    super.localName, {
     required TfArg<String> savingsPlanId,
     super.provider,
     super.timeouts,

@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkSecurityBackendAuthenticationConfig(
-  ///   localName: 'backend_auth',
+  ///   'backend_auth',
   ///   name: TfArg.literal('terradart-backend-auth'),
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('TerraDart smoke backend authentication'),

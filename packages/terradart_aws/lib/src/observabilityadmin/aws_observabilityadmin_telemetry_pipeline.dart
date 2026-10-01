@@ -22,8 +22,8 @@ final class ObservabilityadminTelemetryPipelineConfiguration {
 final class AwsObservabilityadminTelemetryPipeline extends Resource {
   static const String tfType = 'aws_observabilityadmin_telemetry_pipeline';
 
-  AwsObservabilityadminTelemetryPipeline({
-    required super.localName,
+  AwsObservabilityadminTelemetryPipeline(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

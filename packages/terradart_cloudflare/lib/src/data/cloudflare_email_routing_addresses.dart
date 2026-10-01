@@ -15,8 +15,8 @@ const Set<String> _cloudflareEmailRoutingAddressesSensitive = <String>{};
 final class DataCloudflareEmailRoutingAddresses extends Data {
   static const String tfType = 'cloudflare_email_routing_addresses';
 
-  DataCloudflareEmailRoutingAddresses({
-    required super.localName,
+  DataCloudflareEmailRoutingAddresses(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,

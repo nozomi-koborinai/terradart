@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftSnapshotScheduleAssociationSensitive = <String>{};
 final class AwsRedshiftSnapshotScheduleAssociation extends Resource {
   static const String tfType = 'aws_redshift_snapshot_schedule_association';
 
-  AwsRedshiftSnapshotScheduleAssociation({
-    required super.localName,
+  AwsRedshiftSnapshotScheduleAssociation(
+    super.localName, {
     required TfArg<String> clusterIdentifier,
     TfArg<String>? region,
     required TfArg<String> scheduleIdentifier,

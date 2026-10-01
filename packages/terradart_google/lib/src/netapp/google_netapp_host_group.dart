@@ -41,8 +41,8 @@ enum NetappHostGroupType implements TerraformEnum {
 final class GoogleNetappHostGroup extends Resource {
   static const String tfType = 'google_netapp_host_group';
 
-  GoogleNetappHostGroup({
-    required super.localName,
+  GoogleNetappHostGroup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<NetappHostGroupType> type,

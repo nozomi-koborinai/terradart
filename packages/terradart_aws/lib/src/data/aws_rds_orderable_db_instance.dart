@@ -10,8 +10,8 @@ const Set<String> _awsRdsOrderableDbInstanceSensitive = <String>{};
 final class DataAwsRdsOrderableDbInstance extends Data {
   static const String tfType = 'aws_rds_orderable_db_instance';
 
-  DataAwsRdsOrderableDbInstance({
-    required super.localName,
+  DataAwsRdsOrderableDbInstance(
+    super.localName, {
     TfArg<String>? availabilityZoneGroup,
     required TfArg<String> engine,
     TfArg<bool>? engineLatestVersion,

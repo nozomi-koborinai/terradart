@@ -14,8 +14,8 @@ const Set<String> _googleHealthcareFhirStoreIamPolicySensitive = <String>{};
 final class DataGoogleHealthcareFhirStoreIamPolicy extends Data {
   static const String tfType = 'google_healthcare_fhir_store_iam_policy';
 
-  DataGoogleHealthcareFhirStoreIamPolicy({
-    required super.localName,
+  DataGoogleHealthcareFhirStoreIamPolicy(
+    super.localName, {
     required TfArg<String> fhirStoreId,
     super.provider,
     super.timeouts,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareR2CustomDomainSensitive = <String>{};
 final class DataCloudflareR2CustomDomain extends Data {
   static const String tfType = 'cloudflare_r2_custom_domain';
 
-  DataCloudflareR2CustomDomain({
-    required super.localName,
+  DataCloudflareR2CustomDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> domain,

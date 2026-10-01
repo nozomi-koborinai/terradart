@@ -71,8 +71,8 @@ final class VpcIpamPoolCidrAllocationCidrNetmaskLength
 final class AwsVpcIpamPoolCidrAllocation extends Resource {
   static const String tfType = 'aws_vpc_ipam_pool_cidr_allocation';
 
-  AwsVpcIpamPoolCidrAllocation({
-    required super.localName,
+  AwsVpcIpamPoolCidrAllocation(
+    super.localName, {
     VpcIpamPoolCidrAllocationCidr? cidr,
     TfArg<String>? description,
     TfArg<List<String>>? disallowedCidrs,

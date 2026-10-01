@@ -13,8 +13,8 @@ const Set<String> _awsApprunnerVpcConnectorSensitive = <String>{};
 final class AwsApprunnerVpcConnector extends Resource {
   static const String tfType = 'aws_apprunner_vpc_connector';
 
-  AwsApprunnerVpcConnector({
-    required super.localName,
+  AwsApprunnerVpcConnector(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups,
     required TfArg<List<RefTo<AwsSubnet>>> subnets,

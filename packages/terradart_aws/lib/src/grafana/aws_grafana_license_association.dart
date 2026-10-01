@@ -20,8 +20,8 @@ enum GrafanaLicenseAssociationLicenseType implements TerraformEnum {
 final class AwsGrafanaLicenseAssociation extends Resource {
   static const String tfType = 'aws_grafana_license_association';
 
-  AwsGrafanaLicenseAssociation({
-    required super.localName,
+  AwsGrafanaLicenseAssociation(
+    super.localName, {
     TfArg<String>? grafanaToken,
     required TfArg<GrafanaLicenseAssociationLicenseType> licenseType,
     TfArg<String>? region,

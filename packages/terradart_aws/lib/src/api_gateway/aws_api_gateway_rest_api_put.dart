@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayRestApiPutSensitive = <String>{};
 final class AwsApiGatewayRestApiPut extends Resource {
   static const String tfType = 'aws_api_gateway_rest_api_put';
 
-  AwsApiGatewayRestApiPut({
-    required super.localName,
+  AwsApiGatewayRestApiPut(
+    super.localName, {
     required TfArg<String> body,
     TfArg<bool>? failOnWarnings,
     TfArg<Map<String, String>>? parameters,

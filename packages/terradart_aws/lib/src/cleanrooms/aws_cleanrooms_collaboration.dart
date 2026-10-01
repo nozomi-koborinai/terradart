@@ -72,8 +72,8 @@ final class CleanroomsCollaborationMember {
 final class AwsCleanroomsCollaboration extends Resource {
   static const String tfType = 'aws_cleanrooms_collaboration';
 
-  AwsCleanroomsCollaboration({
-    required super.localName,
+  AwsCleanroomsCollaboration(
+    super.localName, {
     TfArg<CleanroomsCollaborationAnalyticsEngine>? analyticsEngine,
     required TfArg<String> creatorDisplayName,
     required TfArg<List<String>> creatorMemberAbilities,

@@ -373,8 +373,8 @@ final class CloudfrontResponseHeadersPolicyServerTimingHeadersConfig {
 final class AwsCloudfrontResponseHeadersPolicy extends Resource {
   static const String tfType = 'aws_cloudfront_response_headers_policy';
 
-  AwsCloudfrontResponseHeadersPolicy({
-    required super.localName,
+  AwsCloudfrontResponseHeadersPolicy(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> name,
     CloudfrontResponseHeadersPolicyCorsConfig? corsConfig,

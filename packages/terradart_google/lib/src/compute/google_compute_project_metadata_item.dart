@@ -10,8 +10,8 @@ const Set<String> _googleComputeProjectMetadataItemSensitive = <String>{};
 final class GoogleComputeProjectMetadataItem extends Resource {
   static const String tfType = 'google_compute_project_metadata_item';
 
-  GoogleComputeProjectMetadataItem({
-    required super.localName,
+  GoogleComputeProjectMetadataItem(
+    super.localName, {
     required TfArg<String> key,
     required TfArg<String> value,
     TfArg<String>? project,

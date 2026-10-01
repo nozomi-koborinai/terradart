@@ -10,8 +10,8 @@ const Set<String> _awsIamServiceLinkedRoleSensitive = <String>{};
 final class AwsIamServiceLinkedRole extends Resource {
   static const String tfType = 'aws_iam_service_linked_role';
 
-  AwsIamServiceLinkedRole({
-    required super.localName,
+  AwsIamServiceLinkedRole(
+    super.localName, {
     required TfArg<String> awsServiceName,
     TfArg<String>? customSuffix,
     TfArg<String>? description,

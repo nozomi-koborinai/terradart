@@ -22,8 +22,8 @@ enum DmsEventSubscriptionSourceType implements TerraformEnum {
 final class AwsDmsEventSubscription extends Resource {
   static const String tfType = 'aws_dms_event_subscription';
 
-  AwsDmsEventSubscription({
-    required super.localName,
+  AwsDmsEventSubscription(
+    super.localName, {
     TfArg<bool>? enabled,
     required TfArg<List<String>> eventCategories,
     required TfArg<String> name,

@@ -22,8 +22,8 @@ final class SsmcontactsContactChannelDeliveryAddress {
 final class AwsSsmcontactsContactChannel extends Resource {
   static const String tfType = 'aws_ssmcontacts_contact_channel';
 
-  AwsSsmcontactsContactChannel({
-    required super.localName,
+  AwsSsmcontactsContactChannel(
+    super.localName, {
     required TfArg<String> contactId,
     required TfArg<String> name,
     TfArg<String>? region,

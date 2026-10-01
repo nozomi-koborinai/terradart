@@ -77,8 +77,8 @@ final class TranscribeVocabularyFilterTermsWords
 final class AwsTranscribeVocabularyFilter extends Resource {
   static const String tfType = 'aws_transcribe_vocabulary_filter';
 
-  AwsTranscribeVocabularyFilter({
-    required super.localName,
+  AwsTranscribeVocabularyFilter(
+    super.localName, {
     required TfArg<String> languageCode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

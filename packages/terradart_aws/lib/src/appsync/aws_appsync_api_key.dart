@@ -10,8 +10,8 @@ const Set<String> _awsAppsyncApiKeySensitive = <String>{'key'};
 final class AwsAppsyncApiKey extends Resource {
   static const String tfType = 'aws_appsync_api_key';
 
-  AwsAppsyncApiKey({
-    required super.localName,
+  AwsAppsyncApiKey(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? description,
     TfArg<String>? expires,

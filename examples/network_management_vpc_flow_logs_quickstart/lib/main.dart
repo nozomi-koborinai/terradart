@@ -20,11 +20,11 @@ final class VpcFlowLogsStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -32,7 +32,7 @@ final class VpcFlowLogsStack extends Stack {
 
     final apiNetworkManagement = add(
       GoogleProjectService(
-        localName: 'api_networkmanagement',
+        'api_networkmanagement',
         service: .literal('networkmanagement.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -40,7 +40,7 @@ final class VpcFlowLogsStack extends Stack {
 
     final network = add(
       GoogleComputeNetwork(
-        localName: 'vpc',
+        'vpc',
         name: .literal('terradart-flow-vpc'),
         autoCreateSubnetworks: .literal(false),
         dependsOn: [apiCompute],
@@ -49,7 +49,7 @@ final class VpcFlowLogsStack extends Stack {
 
     add(
       GoogleNetworkManagementVpcFlowLogsConfig(
-        localName: 'vpc_logs',
+        'vpc_logs',
         vpcFlowLogsConfigId: .literal('terradart-vpc-flow'),
         location: .literal('global'),
         network: .literal(

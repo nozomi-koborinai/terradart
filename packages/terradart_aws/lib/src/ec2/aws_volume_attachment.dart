@@ -10,8 +10,8 @@ const Set<String> _awsVolumeAttachmentSensitive = <String>{};
 final class AwsVolumeAttachment extends Resource {
   static const String tfType = 'aws_volume_attachment';
 
-  AwsVolumeAttachment({
-    required super.localName,
+  AwsVolumeAttachment(
+    super.localName, {
     required TfArg<String> deviceName,
     TfArg<bool>? forceDetach,
     required TfArg<String> instanceId,

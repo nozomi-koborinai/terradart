@@ -10,8 +10,8 @@ const Set<String> _cloudflareOauthScopesSensitive = <String>{};
 final class DataCloudflareOauthScopes extends Data {
   static const String tfType = 'cloudflare_oauth_scopes';
 
-  DataCloudflareOauthScopes({
-    required super.localName,
+  DataCloudflareOauthScopes(
+    super.localName, {
     TfArg<num>? maxItems,
     super.provider,
     super.timeouts,

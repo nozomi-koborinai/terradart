@@ -60,8 +60,8 @@ final class BigqueryAnalyticsHubQueryTemplateRoutine {
 final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
   static const String tfType = 'google_bigquery_analytics_hub_query_template';
 
-  GoogleBigqueryAnalyticsHubQueryTemplate({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubQueryTemplate(
+    super.localName, {
     required TfArg<String> dataExchangeId,
     required TfArg<String> queryTemplateId,
     required TfArg<String> location,

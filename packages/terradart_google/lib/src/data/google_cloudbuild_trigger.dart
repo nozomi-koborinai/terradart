@@ -14,8 +14,8 @@ const Set<String> _googleCloudbuildTriggerSensitive = <String>{};
 final class DataGoogleCloudbuildTrigger extends Data {
   static const String tfType = 'google_cloudbuild_trigger';
 
-  DataGoogleCloudbuildTrigger({
-    required super.localName,
+  DataGoogleCloudbuildTrigger(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> triggerId,

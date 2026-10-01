@@ -41,8 +41,8 @@ final class KendraFaqS3Path {
 final class AwsKendraFaq extends Resource {
   static const String tfType = 'aws_kendra_faq';
 
-  AwsKendraFaq({
-    required super.localName,
+  AwsKendraFaq(
+    super.localName, {
     TfArg<String>? description,
     TfArg<KendraFaqFileFormat>? fileFormat,
     required TfArg<String> indexId,

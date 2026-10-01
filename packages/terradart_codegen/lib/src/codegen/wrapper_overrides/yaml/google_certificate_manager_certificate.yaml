@@ -43,7 +43,7 @@ curatedDoc: |-
   /// Example (managed + DNS authorization):
   /// ```dart
   /// GoogleCertificateManagerCertificate(
-  ///   localName: 'app_cert',
+  ///   'app_cert',
   ///   name: .literal('app-cert'),
   ///   provisioning: .managed(
   ///     .new(

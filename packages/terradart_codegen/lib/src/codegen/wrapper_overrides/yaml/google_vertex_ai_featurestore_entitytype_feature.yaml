@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiFeaturestoreEntitytypeFeature(
-  ///   localName: 'age',
+  ///   'age',
   ///   entitytype: entity.name,
   ///   name: TfArg.literal('age'),
   ///   valueType: TfArg.literal('INT64'),

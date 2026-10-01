@@ -11,8 +11,8 @@ const Set<String> _awsPrometheusDefaultScraperConfigurationSensitive =
 final class DataAwsPrometheusDefaultScraperConfiguration extends Data {
   static const String tfType = 'aws_prometheus_default_scraper_configuration';
 
-  DataAwsPrometheusDefaultScraperConfiguration({
-    required super.localName,
+  DataAwsPrometheusDefaultScraperConfiguration(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

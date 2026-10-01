@@ -38,8 +38,8 @@ final class SccV2OrganizationSourceIamMemberCondition {
 final class GoogleSccV2OrganizationSourceIamMember extends Resource {
   static const String tfType = 'google_scc_v2_organization_source_iam_member';
 
-  GoogleSccV2OrganizationSourceIamMember({
-    required super.localName,
+  GoogleSccV2OrganizationSourceIamMember(
+    super.localName, {
     required RefTo<GoogleSccV2OrganizationSource> source,
     TfArg<String>? organization,
     required TfArg<String> role,

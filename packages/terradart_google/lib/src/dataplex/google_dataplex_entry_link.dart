@@ -76,8 +76,8 @@ enum DataplexEntryLinkEntryReferencesType implements TerraformEnum {
 final class GoogleDataplexEntryLink extends Resource {
   static const String tfType = 'google_dataplex_entry_link';
 
-  GoogleDataplexEntryLink({
-    required super.localName,
+  GoogleDataplexEntryLink(
+    super.localName, {
     required TfArg<String> entryGroupId,
     required TfArg<String> entryLinkId,
     required TfArg<String> entryLinkType,

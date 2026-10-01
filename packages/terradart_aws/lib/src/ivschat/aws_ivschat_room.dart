@@ -27,8 +27,8 @@ final class IvschatRoomMessageReviewHandler {
 final class AwsIvschatRoom extends Resource {
   static const String tfType = 'aws_ivschat_room';
 
-  AwsIvschatRoom({
-    required super.localName,
+  AwsIvschatRoom(
+    super.localName, {
     TfArg<List<String>>? loggingConfigurationIdentifiers,
     TfArg<num>? maximumMessageLength,
     TfArg<num>? maximumMessageRatePerSecond,

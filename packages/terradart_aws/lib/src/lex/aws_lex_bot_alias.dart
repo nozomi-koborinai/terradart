@@ -61,8 +61,8 @@ final class LexBotAliasLogSettings {
 final class AwsLexBotAlias extends Resource {
   static const String tfType = 'aws_lex_bot_alias';
 
-  AwsLexBotAlias({
-    required super.localName,
+  AwsLexBotAlias(
+    super.localName, {
     required TfArg<String> botName,
     required TfArg<String> botVersion,
     TfArg<String>? description,

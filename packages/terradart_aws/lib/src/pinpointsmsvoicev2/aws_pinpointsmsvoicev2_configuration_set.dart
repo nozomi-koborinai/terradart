@@ -23,8 +23,8 @@ enum Pinpointsmsvoicev2ConfigurationSetDefaultMessageType
 final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_configuration_set';
 
-  AwsPinpointsmsvoicev2ConfigurationSet({
-    required super.localName,
+  AwsPinpointsmsvoicev2ConfigurationSet(
+    super.localName, {
     TfArg<Pinpointsmsvoicev2ConfigurationSetDefaultMessageType>?
     defaultMessageType,
     TfArg<String>? defaultSenderId,

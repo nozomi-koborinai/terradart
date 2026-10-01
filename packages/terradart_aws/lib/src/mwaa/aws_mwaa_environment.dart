@@ -193,8 +193,8 @@ final class MwaaEnvironmentNetworkConfiguration {
 final class AwsMwaaEnvironment extends Resource {
   static const String tfType = 'aws_mwaa_environment';
 
-  AwsMwaaEnvironment({
-    required super.localName,
+  AwsMwaaEnvironment(
+    super.localName, {
     TfArg<Map<String, String>>? airflowConfigurationOptions,
     TfArg<String>? airflowVersion,
     required TfArg<String> dagS3Path,

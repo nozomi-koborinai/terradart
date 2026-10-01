@@ -12,8 +12,8 @@ const Set<String> _awsEc2CarrierGatewaySensitive = <String>{};
 final class AwsEc2CarrierGateway extends Resource {
   static const String tfType = 'aws_ec2_carrier_gateway';
 
-  AwsEc2CarrierGateway({
-    required super.localName,
+  AwsEc2CarrierGateway(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required RefTo<AwsVpc> vpcId,

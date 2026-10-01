@@ -12,8 +12,8 @@ final class AwsSsoadminManagedPolicyAttachmentsExclusive extends Resource {
   static const String tfType =
       'aws_ssoadmin_managed_policy_attachments_exclusive';
 
-  AwsSsoadminManagedPolicyAttachmentsExclusive({
-    required super.localName,
+  AwsSsoadminManagedPolicyAttachmentsExclusive(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<List<String>> managedPolicyArns,
     required TfArg<String> permissionSetArn,

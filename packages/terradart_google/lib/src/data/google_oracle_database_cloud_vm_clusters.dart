@@ -13,8 +13,8 @@ const Set<String> _googleOracleDatabaseCloudVmClustersSensitive = <String>{};
 final class DataGoogleOracleDatabaseCloudVmClusters extends Data {
   static const String tfType = 'google_oracle_database_cloud_vm_clusters';
 
-  DataGoogleOracleDatabaseCloudVmClusters({
-    required super.localName,
+  DataGoogleOracleDatabaseCloudVmClusters(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

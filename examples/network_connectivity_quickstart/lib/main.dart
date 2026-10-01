@@ -26,7 +26,7 @@ final class NetworkConnectivityStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'cci_vpc',
+        'cci_vpc',
         name: .literal('terradart-cci-vpc'),
         autoCreateSubnetworks: .literal(false),
         dependsOn: apiDeps,
@@ -35,7 +35,7 @@ final class NetworkConnectivityStack extends Stack {
 
     add(
       GoogleNetworkConnectivityTransport(
-        localName: 'aws_cci',
+        'aws_cci',
         name: .literal('terradart-aws-transport'),
         region: .literal(region),
         network: vpc.ref,

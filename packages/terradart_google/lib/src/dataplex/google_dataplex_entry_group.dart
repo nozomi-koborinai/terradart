@@ -12,8 +12,8 @@ const Set<String> _googleDataplexEntryGroupSensitive = <String>{};
 final class GoogleDataplexEntryGroup extends Resource {
   static const String tfType = 'google_dataplex_entry_group';
 
-  GoogleDataplexEntryGroup({
-    required super.localName,
+  GoogleDataplexEntryGroup(
+    super.localName, {
     TfArg<String>? entryGroupId,
     TfArg<String>? location,
     TfArg<String>? displayName,

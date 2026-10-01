@@ -20,8 +20,8 @@ enum Route53KeySigningKeyStatus implements TerraformEnum {
 final class AwsRoute53KeySigningKey extends Resource {
   static const String tfType = 'aws_route53_key_signing_key';
 
-  AwsRoute53KeySigningKey({
-    required super.localName,
+  AwsRoute53KeySigningKey(
+    super.localName, {
     required TfArg<String> hostedZoneId,
     required TfArg<String> keyManagementServiceArn,
     required TfArg<String> name,

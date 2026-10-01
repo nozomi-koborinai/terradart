@@ -504,8 +504,8 @@ final class SecurityposturePostureSecurityHealthAnalyticsModule {
 final class GoogleSecurityposturePosture extends Resource {
   static const String tfType = 'google_securityposture_posture';
 
-  GoogleSecurityposturePosture({
-    required super.localName,
+  GoogleSecurityposturePosture(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> location,

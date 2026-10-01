@@ -73,8 +73,8 @@ final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
   static const String tfType =
       'aws_dx_hosted_private_virtual_interface_accepter';
 
-  AwsDxHostedPrivateVirtualInterfaceAccepter({
-    required super.localName,
+  AwsDxHostedPrivateVirtualInterfaceAccepter(
+    super.localName, {
     required DxHostedPrivateVirtualInterfaceAccepterGatewayId gatewayId,
     TfArg<num>? prefixPoolAllocatedCountIpv4,
     TfArg<num>? prefixPoolAllocatedCountIpv6,

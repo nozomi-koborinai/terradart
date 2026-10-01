@@ -237,8 +237,8 @@ enum AppsyncApiLogLevel implements TerraformEnum {
 final class AwsAppsyncApi extends Resource {
   static const String tfType = 'aws_appsync_api';
 
-  AwsAppsyncApi({
-    required super.localName,
+  AwsAppsyncApi(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? ownerContact,
     TfArg<String>? region,

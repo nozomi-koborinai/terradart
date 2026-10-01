@@ -17,8 +17,8 @@ const Set<String> _cloudflareAccountDnsSettingsInternalViewSensitive =
 final class CloudflareAccountDnsSettingsInternalView extends Resource {
   static const String tfType = 'cloudflare_account_dns_settings_internal_view';
 
-  CloudflareAccountDnsSettingsInternalView({
-    required super.localName,
+  CloudflareAccountDnsSettingsInternalView(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<List<String>> zones,

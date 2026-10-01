@@ -13,8 +13,8 @@ final class AwsAuditmanagerOrganizationAdminAccountRegistration
   static const String tfType =
       'aws_auditmanager_organization_admin_account_registration';
 
-  AwsAuditmanagerOrganizationAdminAccountRegistration({
-    required super.localName,
+  AwsAuditmanagerOrganizationAdminAccountRegistration(
+    super.localName, {
     required TfArg<String> adminAccountId,
     TfArg<String>? region,
     super.lifecycle,

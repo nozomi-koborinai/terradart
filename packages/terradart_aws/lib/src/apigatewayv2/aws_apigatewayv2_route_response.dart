@@ -10,8 +10,8 @@ const Set<String> _awsApigatewayv2RouteResponseSensitive = <String>{};
 final class AwsApigatewayv2RouteResponse extends Resource {
   static const String tfType = 'aws_apigatewayv2_route_response';
 
-  AwsApigatewayv2RouteResponse({
-    required super.localName,
+  AwsApigatewayv2RouteResponse(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? modelSelectionExpression,
     TfArg<String>? region,

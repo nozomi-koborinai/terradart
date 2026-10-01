@@ -26,7 +26,7 @@ const Set<String> _googleStorageFolderSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleStorageFolder(
-///   localName: 'reports',
+///   'reports',
 ///   bucket: assets.ref,
 ///   name: TfArg.literal('reports/'),
 ///   forceDestroy: TfArg.literal(true),
@@ -35,8 +35,8 @@ const Set<String> _googleStorageFolderSensitive = <String>{};
 final class GoogleStorageFolder extends Resource {
   static const String tfType = 'google_storage_folder';
 
-  GoogleStorageFolder({
-    required super.localName,
+  GoogleStorageFolder(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> name,
     TfArg<bool>? forceDestroy,

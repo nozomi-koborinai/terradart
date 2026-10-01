@@ -44,8 +44,8 @@ final class CloudfunctionsFunctionIamBindingCondition {
 final class GoogleCloudfunctionsFunctionIamBinding extends Resource {
   static const String tfType = 'google_cloudfunctions_function_iam_binding';
 
-  GoogleCloudfunctionsFunctionIamBinding({
-    required super.localName,
+  GoogleCloudfunctionsFunctionIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudfunctionsFunction> function,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

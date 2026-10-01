@@ -211,7 +211,7 @@ String renderModuleWrapper(LocalModule m, {required String version}) {
     ..writeln("import 'package:terradart_core/terradart_core.dart';")
     ..writeln()
     ..writeln('final class ${m.className} extends ModuleCall {')
-    ..writeln('  ${m.className}({');
+    ..writeln('  ${m.className}(super.localName, {');
   for (final p in _metaParameters) {
     b.writeln('    $p,');
   }
@@ -258,7 +258,6 @@ String renderModuleWrapper(LocalModule m, {required String version}) {
 /// `module.<name>[0]`, which no output getter of the wrapper spells, so such
 /// calls stay in Terraform.
 const _metaParameters = [
-  'required super.localName',
   'required super.source',
   'super.version',
   'super.providers',

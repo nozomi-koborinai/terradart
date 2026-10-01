@@ -10,8 +10,8 @@ const Set<String> _awsVpcIpamPreviewNextCidrSensitive = <String>{};
 final class AwsVpcIpamPreviewNextCidr extends Resource {
   static const String tfType = 'aws_vpc_ipam_preview_next_cidr';
 
-  AwsVpcIpamPreviewNextCidr({
-    required super.localName,
+  AwsVpcIpamPreviewNextCidr(
+    super.localName, {
     TfArg<List<String>>? disallowedCidrs,
     required TfArg<String> ipamPoolId,
     TfArg<num>? netmaskLength,

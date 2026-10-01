@@ -42,8 +42,8 @@ final class AccessanalyzerArchiveRuleFilter {
 final class AwsAccessanalyzerArchiveRule extends Resource {
   static const String tfType = 'aws_accessanalyzer_archive_rule';
 
-  AwsAccessanalyzerArchiveRule({
-    required super.localName,
+  AwsAccessanalyzerArchiveRule(
+    super.localName, {
     required TfArg<String> analyzerName,
     TfArg<String>? region,
     required TfArg<String> ruleName,

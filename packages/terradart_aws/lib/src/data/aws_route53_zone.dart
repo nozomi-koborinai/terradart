@@ -12,8 +12,8 @@ const Set<String> _awsRoute53ZoneSensitive = <String>{};
 final class DataAwsRoute53Zone extends Data {
   static const String tfType = 'aws_route53_zone';
 
-  DataAwsRoute53Zone({
-    required super.localName,
+  DataAwsRoute53Zone(
+    super.localName, {
     TfArg<bool>? enableAcceleratedRecovery,
     TfArg<String>? name,
     TfArg<bool>? privateZone,

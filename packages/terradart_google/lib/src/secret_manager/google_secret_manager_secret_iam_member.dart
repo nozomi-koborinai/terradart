@@ -38,8 +38,8 @@ final class SecretManagerSecretIamMemberCondition {
 final class GoogleSecretManagerSecretIamMember extends Resource {
   static const String tfType = 'google_secret_manager_secret_iam_member';
 
-  GoogleSecretManagerSecretIamMember({
-    required super.localName,
+  GoogleSecretManagerSecretIamMember(
+    super.localName, {
     required RefTo<GoogleSecretManagerSecret> secret,
     required TfArg<String> role,
     required IamPrincipal member,

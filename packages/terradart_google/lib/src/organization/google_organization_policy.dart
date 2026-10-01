@@ -99,8 +99,8 @@ final class OrganizationPolicyRestorePolicy {
 final class GoogleOrganizationPolicy extends Resource {
   static const String tfType = 'google_organization_policy';
 
-  GoogleOrganizationPolicy({
-    required super.localName,
+  GoogleOrganizationPolicy(
+    super.localName, {
     required TfArg<String> constraint,
     TfArg<String>? deletionPolicy,
     required TfArg<String> orgId,

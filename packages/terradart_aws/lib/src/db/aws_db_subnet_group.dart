@@ -70,8 +70,8 @@ final class DbSubnetGroupNamePrefix extends DbSubnetGroupName {
 final class AwsDbSubnetGroup extends Resource {
   static const String tfType = 'aws_db_subnet_group';
 
-  AwsDbSubnetGroup({
-    required super.localName,
+  AwsDbSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     DbSubnetGroupName? name,
     TfArg<String>? region,

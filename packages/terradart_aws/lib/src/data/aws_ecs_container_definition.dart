@@ -10,8 +10,8 @@ const Set<String> _awsEcsContainerDefinitionSensitive = <String>{};
 final class DataAwsEcsContainerDefinition extends Data {
   static const String tfType = 'aws_ecs_container_definition';
 
-  DataAwsEcsContainerDefinition({
-    required super.localName,
+  DataAwsEcsContainerDefinition(
+    super.localName, {
     required TfArg<String> containerName,
     TfArg<String>? region,
     required TfArg<String> taskDefinition,

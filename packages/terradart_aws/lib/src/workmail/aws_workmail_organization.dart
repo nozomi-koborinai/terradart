@@ -12,8 +12,8 @@ const Set<String> _awsWorkmailOrganizationSensitive = <String>{};
 final class AwsWorkmailOrganization extends Resource {
   static const String tfType = 'aws_workmail_organization';
 
-  AwsWorkmailOrganization({
-    required super.localName,
+  AwsWorkmailOrganization(
+    super.localName, {
     TfArg<bool>? deleteDirectory,
     TfArg<bool>? deleteIdentityCenterApplication,
     TfArg<String>? directoryId,

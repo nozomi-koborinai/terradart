@@ -166,8 +166,8 @@ final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan
 final class GoogleComputeGlobalVmExtensionPolicy extends Resource {
   static const String tfType = 'google_compute_global_vm_extension_policy';
 
-  GoogleComputeGlobalVmExtensionPolicy({
-    required super.localName,
+  GoogleComputeGlobalVmExtensionPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<num>? priority,

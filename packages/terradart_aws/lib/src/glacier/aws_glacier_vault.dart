@@ -42,8 +42,8 @@ enum GlacierVaultEvents implements TerraformEnum {
 final class AwsGlacierVault extends Resource {
   static const String tfType = 'aws_glacier_vault';
 
-  AwsGlacierVault({
-    required super.localName,
+  AwsGlacierVault(
+    super.localName, {
     TfArg<String>? accessPolicy,
     required TfArg<String> name,
     TfArg<String>? region,

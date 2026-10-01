@@ -276,7 +276,7 @@ class ComputeBackendBucketParams {
 /// Example (CDN-fronted static assets with custom cache headers):
 /// ```dart
 /// final assets = GoogleComputeBackendBucket(
-///   localName: 'static_assets',
+///   'static_assets',
 ///   name: TfArg.literal('static-assets'),
 ///   bucketName: .literal('my-static-assets'),
 ///   enableCdn: TfArg.literal(true),
@@ -303,7 +303,7 @@ class ComputeBackendBucketParams {
 /// Example (private bucket fronted by Cloud Armor edge policy):
 /// ```dart
 /// final secured = GoogleComputeBackendBucket(
-///   localName: 'secured_assets',
+///   'secured_assets',
 ///   name: TfArg.literal('secured-assets'),
 ///   bucketName: .literal('private-static-assets'),
 ///   enableCdn: TfArg.literal(true),
@@ -329,8 +329,8 @@ class ComputeBackendBucketParams {
 final class GoogleComputeBackendBucket extends Resource {
   static const String tfType = 'google_compute_backend_bucket';
 
-  GoogleComputeBackendBucket({
-    required super.localName,
+  GoogleComputeBackendBucket(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? description,

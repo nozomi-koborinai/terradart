@@ -21,8 +21,8 @@ enum OriginCaCertificateRequestType implements TerraformEnum {
 final class CloudflareOriginCaCertificate extends Resource {
   static const String tfType = 'cloudflare_origin_ca_certificate';
 
-  CloudflareOriginCaCertificate({
-    required super.localName,
+  CloudflareOriginCaCertificate(
+    super.localName, {
     required TfArg<String> csr,
     required TfArg<List<String>> hostnames,
     required TfArg<OriginCaCertificateRequestType> requestType,

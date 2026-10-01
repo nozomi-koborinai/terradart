@@ -14,8 +14,8 @@ const Set<String> _googleIapTunnelInstanceIamPolicySensitive = <String>{};
 final class DataGoogleIapTunnelInstanceIamPolicy extends Data {
   static const String tfType = 'google_iap_tunnel_instance_iam_policy';
 
-  DataGoogleIapTunnelInstanceIamPolicy({
-    required super.localName,
+  DataGoogleIapTunnelInstanceIamPolicy(
+    super.localName, {
     required TfArg<String> instance,
     TfArg<String>? project,
     TfArg<String>? zone,

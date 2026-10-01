@@ -15,8 +15,8 @@ final class DataGoogleStorageControlProjectIntelligenceFinding extends Data {
   static const String tfType =
       'google_storage_control_project_intelligence_finding';
 
-  DataGoogleStorageControlProjectIntelligenceFinding({
-    required super.localName,
+  DataGoogleStorageControlProjectIntelligenceFinding(
+    super.localName, {
     required TfArg<String> findingId,
     TfArg<String>? location,
     TfArg<String>? project,

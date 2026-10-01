@@ -1064,7 +1064,7 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 /// `cloud_sql_quickstart` example for the full chain):
 /// ```dart
 /// final primary = GoogleSqlDatabaseInstance(
-///   localName: 'primary',
+///   'primary',
 ///   name: TfArg.literal('orders-primary'),
 ///   databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
 ///   region: TfArg.literal('asia-northeast1'),
@@ -1095,8 +1095,8 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 final class GoogleSqlDatabaseInstance extends Resource {
   static const String tfType = 'google_sql_database_instance';
 
-  GoogleSqlDatabaseInstance({
-    required super.localName,
+  GoogleSqlDatabaseInstance(
+    super.localName, {
     required TfArg<DatabaseVersion> databaseVersion,
     TfArg<String>? name,
     TfArg<String>? region,

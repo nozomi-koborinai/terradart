@@ -14,8 +14,8 @@ const Set<String> _googleBackupDrManagementServerSensitive = <String>{};
 final class DataGoogleBackupDrManagementServer extends Data {
   static const String tfType = 'google_backup_dr_management_server';
 
-  DataGoogleBackupDrManagementServer({
-    required super.localName,
+  DataGoogleBackupDrManagementServer(
+    super.localName, {
     required TfArg<String> location,
     super.provider,
     super.timeouts,

@@ -858,7 +858,7 @@ final class MonitoringAlertPolicyLinks {
 /// Example (threshold on Compute Engine instance uptime):
 /// ```dart
 /// final policy = GoogleMonitoringAlertPolicy(
-///   localName: 'compute_uptime',
+///   'compute_uptime',
 ///   displayName: TfArg.literal('Compute instance uptime SLO'),
 ///   combiner: TfArg.literal(AlertCombiner.or),
 ///   conditions: const [
@@ -883,8 +883,8 @@ final class MonitoringAlertPolicyLinks {
 final class GoogleMonitoringAlertPolicy extends Resource {
   static const String tfType = 'google_monitoring_alert_policy';
 
-  GoogleMonitoringAlertPolicy({
-    required super.localName,
+  GoogleMonitoringAlertPolicy(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<AlertCombiner> combiner,
     required List<MonitoringAlertPolicyConditions> conditions,

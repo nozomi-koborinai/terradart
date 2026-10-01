@@ -49,8 +49,8 @@ enum Sesv2ContactListDefaultSubscriptionStatus implements TerraformEnum {
 final class AwsSesv2ContactList extends Resource {
   static const String tfType = 'aws_sesv2_contact_list';
 
-  AwsSesv2ContactList({
-    required super.localName,
+  AwsSesv2ContactList(
+    super.localName, {
     required TfArg<String> contactListName,
     TfArg<String>? description,
     TfArg<String>? region,

@@ -94,8 +94,8 @@ enum BackupReportPlanReportTemplate implements TerraformEnum {
 final class AwsBackupReportPlan extends Resource {
   static const String tfType = 'aws_backup_report_plan';
 
-  AwsBackupReportPlan({
-    required super.localName,
+  AwsBackupReportPlan(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

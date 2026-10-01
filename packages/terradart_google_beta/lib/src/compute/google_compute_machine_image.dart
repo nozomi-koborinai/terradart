@@ -56,8 +56,8 @@ final class ComputeMachineImageParams {
 final class GoogleComputeMachineImage extends Resource {
   static const String tfType = 'google_compute_machine_image';
 
-  GoogleComputeMachineImage({
-    required super.localName,
+  GoogleComputeMachineImage(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<bool>? guestFlush,

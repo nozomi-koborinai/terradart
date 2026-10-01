@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamWatermarkSensitive = <String>{};
 final class CloudflareStreamWatermark extends Resource {
   static const String tfType = 'cloudflare_stream_watermark';
 
-  CloudflareStreamWatermark({
-    required super.localName,
+  CloudflareStreamWatermark(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? identifier,
     TfArg<String>? name,

@@ -76,8 +76,8 @@ enum DynamodbTableExportViewType implements TerraformEnum {
 final class AwsDynamodbTableExport extends Resource {
   static const String tfType = 'aws_dynamodb_table_export';
 
-  AwsDynamodbTableExport({
-    required super.localName,
+  AwsDynamodbTableExport(
+    super.localName, {
     TfArg<DynamodbTableExportFormat>? exportFormat,
     TfArg<String>? exportTime,
     TfArg<DynamodbTableExportType>? exportType,

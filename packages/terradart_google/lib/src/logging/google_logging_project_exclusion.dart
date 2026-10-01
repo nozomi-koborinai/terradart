@@ -14,7 +14,7 @@ const Set<String> _googleLoggingProjectExclusionSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleLoggingProjectExclusion(
-///   localName: 'drop_dns_noise',
+///   'drop_dns_noise',
 ///   name: TfArg.literal('drop-dns-noise'),
 ///   filter: TfArg.literal('resource.type="dns_query"'),
 ///   description: TfArg.literal('Skip high-volume DNS query logs.'),
@@ -23,8 +23,8 @@ const Set<String> _googleLoggingProjectExclusionSensitive = <String>{};
 final class GoogleLoggingProjectExclusion extends Resource {
   static const String tfType = 'google_logging_project_exclusion';
 
-  GoogleLoggingProjectExclusion({
-    required super.localName,
+  GoogleLoggingProjectExclusion(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> filter,
     TfArg<String>? description,

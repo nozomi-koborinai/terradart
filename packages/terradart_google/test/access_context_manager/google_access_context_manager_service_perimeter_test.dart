@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   test('perimeterType is a typed enum and serializes raw', () {
     final p = GoogleAccessContextManagerServicePerimeter(
-      localName: 'p',
+      'p',
       name: TfArg.literal('accessPolicies/1/servicePerimeters/p'),
       parent: TfArg.literal('accessPolicies/1'),
       title: TfArg.literal('p'),

@@ -71,8 +71,8 @@ final class OpensearchDomainSamlOptionsIdp {
 final class AwsOpensearchDomainSamlOptions extends Resource {
   static const String tfType = 'aws_opensearch_domain_saml_options';
 
-  AwsOpensearchDomainSamlOptions({
-    required super.localName,
+  AwsOpensearchDomainSamlOptions(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     OpensearchDomainSamlOptions? samlOptions,

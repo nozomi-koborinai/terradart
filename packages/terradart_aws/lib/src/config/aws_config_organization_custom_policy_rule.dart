@@ -38,8 +38,8 @@ enum ConfigOrganizationCustomPolicyRuleTriggerTypes implements TerraformEnum {
 final class AwsConfigOrganizationCustomPolicyRule extends Resource {
   static const String tfType = 'aws_config_organization_custom_policy_rule';
 
-  AwsConfigOrganizationCustomPolicyRule({
-    required super.localName,
+  AwsConfigOrganizationCustomPolicyRule(
+    super.localName, {
     TfArg<List<String>>? debugLogDeliveryAccounts,
     TfArg<String>? description,
     TfArg<List<String>>? excludedAccounts,

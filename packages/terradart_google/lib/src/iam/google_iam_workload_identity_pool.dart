@@ -215,7 +215,7 @@ final class IamWorkloadIdentityPoolTrustAnchors {
 /// Example (CI/CD federation for GitHub Actions):
 /// ```dart
 /// final ciPool = GoogleIamWorkloadIdentityPool(
-///   localName: 'ci',
+///   'ci',
 ///   workloadIdentityPoolId: TfArg.literal('github-actions'),
 ///   displayName: TfArg.literal('GitHub Actions CI/CD'),
 ///   description: TfArg.literal(
@@ -229,8 +229,8 @@ final class IamWorkloadIdentityPoolTrustAnchors {
 final class GoogleIamWorkloadIdentityPool extends Resource {
   static const String tfType = 'google_iam_workload_identity_pool';
 
-  GoogleIamWorkloadIdentityPool({
-    required super.localName,
+  GoogleIamWorkloadIdentityPool(
+    super.localName, {
     required TfArg<String> workloadIdentityPoolId,
     TfArg<String>? displayName,
     TfArg<String>? description,

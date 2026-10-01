@@ -11,8 +11,8 @@ const Set<String> _awsCloudhsmV2ClusterSensitive = <String>{};
 final class DataAwsCloudhsmV2Cluster extends Data {
   static const String tfType = 'aws_cloudhsm_v2_cluster';
 
-  DataAwsCloudhsmV2Cluster({
-    required super.localName,
+  DataAwsCloudhsmV2Cluster(
+    super.localName, {
     required TfArg<String> clusterId,
     TfArg<String>? clusterState,
     TfArg<String>? region,

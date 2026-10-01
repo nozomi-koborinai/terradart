@@ -355,8 +355,8 @@ final class AlbTargetGroupTargetHealthState {
 final class AwsAlbTargetGroup extends Resource {
   static const String tfType = 'aws_alb_target_group';
 
-  AwsAlbTargetGroup({
-    required super.localName,
+  AwsAlbTargetGroup(
+    super.localName, {
     TfArg<bool>? connectionTermination,
     TfArg<String>? deregistrationDelay,
     TfArg<AlbTargetGroupIpAddressType>? ipAddressType,

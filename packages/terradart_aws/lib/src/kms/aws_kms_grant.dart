@@ -57,8 +57,8 @@ final class KmsGrantConstraints {
 final class AwsKmsGrant extends Resource {
   static const String tfType = 'aws_kms_grant';
 
-  AwsKmsGrant({
-    required super.localName,
+  AwsKmsGrant(
+    super.localName, {
     TfArg<List<String>>? grantCreationTokens,
     required TfArg<String> granteePrincipal,
     required RefTo<AwsKmsKey> keyId,

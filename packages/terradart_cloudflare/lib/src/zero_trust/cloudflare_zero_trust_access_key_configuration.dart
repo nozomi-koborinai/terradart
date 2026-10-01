@@ -18,8 +18,8 @@ const Set<String> _cloudflareZeroTrustAccessKeyConfigurationSensitive =
 final class CloudflareZeroTrustAccessKeyConfiguration extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_key_configuration';
 
-  CloudflareZeroTrustAccessKeyConfiguration({
-    required super.localName,
+  CloudflareZeroTrustAccessKeyConfiguration(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<num> keyRotationIntervalDays,
     super.lifecycle,

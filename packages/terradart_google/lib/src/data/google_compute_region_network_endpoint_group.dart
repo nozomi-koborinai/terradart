@@ -15,8 +15,8 @@ const Set<String> _googleComputeRegionNetworkEndpointGroupSensitive =
 final class DataGoogleComputeRegionNetworkEndpointGroup extends Data {
   static const String tfType = 'google_compute_region_network_endpoint_group';
 
-  DataGoogleComputeRegionNetworkEndpointGroup({
-    required super.localName,
+  DataGoogleComputeRegionNetworkEndpointGroup(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? region,

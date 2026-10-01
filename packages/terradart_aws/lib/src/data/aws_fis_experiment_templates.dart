@@ -10,8 +10,8 @@ const Set<String> _awsFisExperimentTemplatesSensitive = <String>{};
 final class DataAwsFisExperimentTemplates extends Data {
   static const String tfType = 'aws_fis_experiment_templates';
 
-  DataAwsFisExperimentTemplates({
-    required super.localName,
+  DataAwsFisExperimentTemplates(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.provider,

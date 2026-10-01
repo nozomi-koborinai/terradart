@@ -51,8 +51,8 @@ enum ConnectVocabularyLanguageCode implements TerraformEnum {
 final class AwsConnectVocabulary extends Resource {
   static const String tfType = 'aws_connect_vocabulary';
 
-  AwsConnectVocabulary({
-    required super.localName,
+  AwsConnectVocabulary(
+    super.localName, {
     required TfArg<String> content,
     required TfArg<String> instanceId,
     required TfArg<ConnectVocabularyLanguageCode> languageCode,

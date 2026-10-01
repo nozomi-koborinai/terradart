@@ -24,7 +24,7 @@ const Set<String> _googleDataformTeamFolderSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleDataformTeamFolder(
-///   localName: 'team',
+///   'team',
 ///   displayName: TfArg.literal('terradart-team'),
 ///   region: TfArg.literal('us-central1'),
 /// );
@@ -32,8 +32,8 @@ const Set<String> _googleDataformTeamFolderSensitive = <String>{};
 final class GoogleDataformTeamFolder extends Resource {
   static const String tfType = 'google_dataform_team_folder';
 
-  GoogleDataformTeamFolder({
-    required super.localName,
+  GoogleDataformTeamFolder(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> region,
     TfArg<String>? deletionPolicy,

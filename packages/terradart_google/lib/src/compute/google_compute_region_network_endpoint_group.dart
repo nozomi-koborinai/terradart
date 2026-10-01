@@ -326,7 +326,7 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 /// Example (serverless NEG fronting a Cloud Run service):
 /// ```dart
 /// final crNeg = GoogleComputeRegionNetworkEndpointGroup(
-///   localName: 'cr_neg',
+///   'cr_neg',
 ///   name: TfArg.literal('cloudrun-neg'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   serverless: .cloudRun(
@@ -339,8 +339,8 @@ final class ComputeRegionNetworkEndpointGroupPscData {
 final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_region_network_endpoint_group';
 
-  GoogleComputeRegionNetworkEndpointGroup({
-    required super.localName,
+  GoogleComputeRegionNetworkEndpointGroup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     TfArg<RegionNetworkEndpointGroupType>? networkEndpointType,

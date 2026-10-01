@@ -85,8 +85,8 @@ final class VpcIpamPoolCidrAuthorizationContext {
 final class AwsVpcIpamPoolCidr extends Resource {
   static const String tfType = 'aws_vpc_ipam_pool_cidr';
 
-  AwsVpcIpamPoolCidr({
-    required super.localName,
+  AwsVpcIpamPoolCidr(
+    super.localName, {
     VpcIpamPoolCidrRange? range,
     required TfArg<String> ipamPoolId,
     TfArg<String>? region,

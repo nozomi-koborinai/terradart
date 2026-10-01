@@ -15,8 +15,8 @@ const Set<String> _cloudflareZeroTrustGatewayPacfilesSensitive = <String>{};
 final class DataCloudflareZeroTrustGatewayPacfiles extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_pacfiles';
 
-  DataCloudflareZeroTrustGatewayPacfiles({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayPacfiles(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

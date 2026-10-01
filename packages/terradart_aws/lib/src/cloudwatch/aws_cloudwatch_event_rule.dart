@@ -143,8 +143,8 @@ final class CloudwatchEventRuleNamePrefix extends CloudwatchEventRuleName {
 final class AwsCloudwatchEventRule extends Resource {
   static const String tfType = 'aws_cloudwatch_event_rule';
 
-  AwsCloudwatchEventRule({
-    required super.localName,
+  AwsCloudwatchEventRule(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? eventBusName,
     TfArg<String>? eventPattern,

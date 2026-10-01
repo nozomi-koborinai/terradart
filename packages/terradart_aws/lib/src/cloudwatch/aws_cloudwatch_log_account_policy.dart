@@ -32,8 +32,8 @@ enum CloudwatchLogAccountPolicyScope implements TerraformEnum {
 final class AwsCloudwatchLogAccountPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_account_policy';
 
-  AwsCloudwatchLogAccountPolicy({
-    required super.localName,
+  AwsCloudwatchLogAccountPolicy(
+    super.localName, {
     required TfArg<String> policyDocument,
     required TfArg<String> policyName,
     required TfArg<CloudwatchLogAccountPolicyType> policyType,

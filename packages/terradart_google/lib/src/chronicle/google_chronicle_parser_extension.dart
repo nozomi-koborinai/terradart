@@ -227,8 +227,8 @@ final class ChronicleParserExtensionPreprocessConfig {
 final class GoogleChronicleParserExtension extends Resource {
   static const String tfType = 'google_chronicle_parser_extension';
 
-  GoogleChronicleParserExtension({
-    required super.localName,
+  GoogleChronicleParserExtension(
+    super.localName, {
     required TfArg<String> logType,
     required TfArg<String> location,
     required TfArg<String> instance,

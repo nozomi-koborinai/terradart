@@ -1198,8 +1198,8 @@ final class BedrockagentDataSourceParsingPrompt {
 final class AwsBedrockagentDataSource extends Resource {
   static const String tfType = 'aws_bedrockagent_data_source';
 
-  AwsBedrockagentDataSource({
-    required super.localName,
+  AwsBedrockagentDataSource(
+    super.localName, {
     TfArg<BedrockagentDataSourceDataDeletionPolicy>? dataDeletionPolicy,
     TfArg<String>? description,
     required TfArg<String> knowledgeBaseId,

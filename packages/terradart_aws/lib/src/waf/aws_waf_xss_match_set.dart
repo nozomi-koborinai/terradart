@@ -75,8 +75,8 @@ enum WafXssMatchSetType implements TerraformEnum {
 final class AwsWafXssMatchSet extends Resource {
   static const String tfType = 'aws_waf_xss_match_set';
 
-  AwsWafXssMatchSet({
-    required super.localName,
+  AwsWafXssMatchSet(
+    super.localName, {
     required TfArg<String> name,
     List<WafXssMatchSetXssMatchTuples>? xssMatchTuples,
     super.lifecycle,

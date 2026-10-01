@@ -677,8 +677,8 @@ final class QuicksightDataSourceVpcConnectionProperties {
 final class AwsQuicksightDataSource extends Resource {
   static const String tfType = 'aws_quicksight_data_source';
 
-  AwsQuicksightDataSource({
-    required super.localName,
+  AwsQuicksightDataSource(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSourceId,
     required TfArg<String> name,

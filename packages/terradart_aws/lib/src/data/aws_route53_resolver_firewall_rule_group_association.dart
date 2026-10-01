@@ -13,8 +13,8 @@ final class DataAwsRoute53ResolverFirewallRuleGroupAssociation extends Data {
   static const String tfType =
       'aws_route53_resolver_firewall_rule_group_association';
 
-  DataAwsRoute53ResolverFirewallRuleGroupAssociation({
-    required super.localName,
+  DataAwsRoute53ResolverFirewallRuleGroupAssociation(
+    super.localName, {
     required TfArg<String> firewallRuleGroupAssociationId,
     TfArg<String>? region,
     super.provider,

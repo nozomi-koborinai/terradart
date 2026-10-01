@@ -11,8 +11,8 @@ const Set<String> _awsConnectSecurityProfileSensitive = <String>{};
 final class DataAwsConnectSecurityProfile extends Data {
   static const String tfType = 'aws_connect_security_profile';
 
-  DataAwsConnectSecurityProfile({
-    required super.localName,
+  DataAwsConnectSecurityProfile(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? name,
     TfArg<String>? region,

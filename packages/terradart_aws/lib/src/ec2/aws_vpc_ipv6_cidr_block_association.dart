@@ -12,8 +12,8 @@ const Set<String> _awsVpcIpv6CidrBlockAssociationSensitive = <String>{};
 final class AwsVpcIpv6CidrBlockAssociation extends Resource {
   static const String tfType = 'aws_vpc_ipv6_cidr_block_association';
 
-  AwsVpcIpv6CidrBlockAssociation({
-    required super.localName,
+  AwsVpcIpv6CidrBlockAssociation(
+    super.localName, {
     TfArg<bool>? assignGeneratedIpv6CidrBlock,
     TfArg<String>? ipv6CidrBlock,
     TfArg<String>? ipv6IpamPoolId,

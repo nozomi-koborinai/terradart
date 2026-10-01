@@ -12,8 +12,8 @@ const Set<String> _cloudflareFieldExtractorSensitive = <String>{};
 final class DataCloudflareFieldExtractor extends Data {
   static const String tfType = 'cloudflare_field_extractor';
 
-  DataCloudflareFieldExtractor({
-    required super.localName,
+  DataCloudflareFieldExtractor(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> extractor,
     super.provider,

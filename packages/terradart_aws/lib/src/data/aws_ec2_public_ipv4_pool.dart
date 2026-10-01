@@ -10,8 +10,8 @@ const Set<String> _awsEc2PublicIpv4PoolSensitive = <String>{};
 final class DataAwsEc2PublicIpv4Pool extends Data {
   static const String tfType = 'aws_ec2_public_ipv4_pool';
 
-  DataAwsEc2PublicIpv4Pool({
-    required super.localName,
+  DataAwsEc2PublicIpv4Pool(
+    super.localName, {
     required TfArg<String> poolId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

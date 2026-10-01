@@ -22,8 +22,8 @@ enum QldbLedgerPermissionsMode implements TerraformEnum {
 final class AwsQldbLedger extends Resource {
   static const String tfType = 'aws_qldb_ledger';
 
-  AwsQldbLedger({
-    required super.localName,
+  AwsQldbLedger(
+    super.localName, {
     TfArg<bool>? deletionProtection,
     RefTo<AwsKmsKey>? kmsKey,
     TfArg<String>? name,

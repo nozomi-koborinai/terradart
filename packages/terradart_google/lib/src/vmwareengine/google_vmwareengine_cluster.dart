@@ -235,8 +235,8 @@ final class VmwareengineClusterNodeTypeConfigs {
 final class GoogleVmwareengineCluster extends Resource {
   static const String tfType = 'google_vmwareengine_cluster';
 
-  GoogleVmwareengineCluster({
-    required super.localName,
+  GoogleVmwareengineCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     List<VmwareengineClusterNodeTypeConfigs>? nodeTypeConfigs,

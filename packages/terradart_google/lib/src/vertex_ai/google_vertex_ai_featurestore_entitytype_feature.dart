@@ -29,7 +29,7 @@ const Set<String> _googleVertexAiFeaturestoreEntitytypeFeatureSensitive =
 /// Example:
 /// ```dart
 /// GoogleVertexAiFeaturestoreEntitytypeFeature(
-///   localName: 'age',
+///   'age',
 ///   entitytype: entity.name,
 ///   name: TfArg.literal('age'),
 ///   valueType: TfArg.literal('INT64'),
@@ -39,8 +39,8 @@ final class GoogleVertexAiFeaturestoreEntitytypeFeature extends Resource {
   static const String tfType =
       'google_vertex_ai_featurestore_entitytype_feature';
 
-  GoogleVertexAiFeaturestoreEntitytypeFeature({
-    required super.localName,
+  GoogleVertexAiFeaturestoreEntitytypeFeature(
+    super.localName, {
     required TfArg<String> entitytype,
     TfArg<String>? name,
     required TfArg<String> valueType,

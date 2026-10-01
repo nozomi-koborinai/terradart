@@ -27,8 +27,8 @@ final class DataRegionsFilter {
 final class DataAwsRegions extends Data {
   static const String tfType = 'aws_regions';
 
-  DataAwsRegions({
-    required super.localName,
+  DataAwsRegions(
+    super.localName, {
     TfArg<bool>? allRegions,
     List<DataRegionsFilter>? filter,
     super.provider,

@@ -30,7 +30,7 @@ final class OrgLeftoverStack extends Stack {
 
     add(
       GoogleComputeFirewallPolicyWithRules(
-        localName: 'fw_with_rules',
+        'fw_with_rules',
         parent: .literal(org),
         shortName: .literal('terradart-fw'),
         rule: [
@@ -52,7 +52,7 @@ final class OrgLeftoverStack extends Stack {
 
     final policy = add(
       GoogleComputeOrganizationSecurityPolicy(
-        localName: 'org_armor',
+        'org_armor',
         parent: .literal(org),
         displayName: .literal('terradart-org-armor'),
         deletionPolicy: .literal('DELETE'),
@@ -61,7 +61,7 @@ final class OrgLeftoverStack extends Stack {
     );
     add(
       GoogleComputeOrganizationSecurityPolicyAssociation(
-        localName: 'org_armor_assoc',
+        'org_armor_assoc',
         name: .literal('terradart-org-armor-assoc'),
         policyId: policy.ref,
         attachmentId: .literal(org),
@@ -71,7 +71,7 @@ final class OrgLeftoverStack extends Stack {
     );
     add(
       GoogleComputeOrganizationSecurityPolicyRule(
-        localName: 'org_armor_rule',
+        'org_armor_rule',
         policyId: policy.ref,
         action: .literal('allow'),
         priority: .literal(1000),
@@ -85,7 +85,7 @@ final class OrgLeftoverStack extends Stack {
 
     final advertised = add(
       GoogleComputePublicAdvertisedPrefix(
-        localName: 'byoip_pap',
+        'byoip_pap',
         name: .literal('terradart-pap'),
         ipCidrRange: .literal('1.2.3.0/24'),
         description: .literal('placeholder BYOIP prefix'),
@@ -95,7 +95,7 @@ final class OrgLeftoverStack extends Stack {
     );
     add(
       GoogleComputePublicDelegatedPrefix(
-        localName: 'byoip_pdp',
+        'byoip_pdp',
         name: .literal('terradart-pdp'),
         region: .literal('us-central1'),
         ipCidrRange: .literal('1.2.3.0/25'),
@@ -107,7 +107,7 @@ final class OrgLeftoverStack extends Stack {
 
     add(
       GoogleStorageControlFolderIntelligenceConfig(
-        localName: 'folder_intel',
+        'folder_intel',
         name: .literal('123456789'),
         editionConfig: .literal('DISABLED'),
         dependsOn: apiDeps,
@@ -115,7 +115,7 @@ final class OrgLeftoverStack extends Stack {
     );
     add(
       GoogleStorageControlOrganizationIntelligenceConfig(
-        localName: 'org_intel',
+        'org_intel',
         name: .literal('123456789'),
         editionConfig: .literal('DISABLED'),
         dependsOn: apiDeps,
@@ -124,7 +124,7 @@ final class OrgLeftoverStack extends Stack {
 
     add(
       GoogleNetworkServicesWasmPlugin(
-        localName: 'wasm',
+        'wasm',
         name: .literal('terradart-wasm'),
         mainVersionId: .literal('v1'),
         versions: [

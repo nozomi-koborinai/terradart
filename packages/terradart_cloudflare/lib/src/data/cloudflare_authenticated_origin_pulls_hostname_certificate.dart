@@ -15,8 +15,8 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificate
   static const String tfType =
       'cloudflare_authenticated_origin_pulls_hostname_certificate';
 
-  DataCloudflareAuthenticatedOriginPullsHostnameCertificate({
-    required super.localName,
+  DataCloudflareAuthenticatedOriginPullsHostnameCertificate(
+    super.localName, {
     required TfArg<String> certificateId,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

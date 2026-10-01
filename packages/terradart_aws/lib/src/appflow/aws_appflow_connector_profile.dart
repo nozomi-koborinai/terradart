@@ -1183,8 +1183,8 @@ final class AppflowConnectorProfilePropertiesZendesk {
 final class AwsAppflowConnectorProfile extends Resource {
   static const String tfType = 'aws_appflow_connector_profile';
 
-  AwsAppflowConnectorProfile({
-    required super.localName,
+  AwsAppflowConnectorProfile(
+    super.localName, {
     required TfArg<AppflowConnectorProfileConnectionMode> connectionMode,
     TfArg<String>? connectorLabel,
     required TfArg<AppflowConnectorProfileConnectorType> connectorType,

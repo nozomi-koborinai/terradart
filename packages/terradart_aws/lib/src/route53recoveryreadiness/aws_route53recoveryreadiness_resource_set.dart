@@ -114,8 +114,8 @@ final class Route53recoveryreadinessResourceSetR53Resource {
 final class AwsRoute53recoveryreadinessResourceSet extends Resource {
   static const String tfType = 'aws_route53recoveryreadiness_resource_set';
 
-  AwsRoute53recoveryreadinessResourceSet({
-    required super.localName,
+  AwsRoute53recoveryreadinessResourceSet(
+    super.localName, {
     required TfArg<String> resourceSetName,
     required TfArg<String> resourceSetType,
     TfArg<Map<String, String>>? tags,

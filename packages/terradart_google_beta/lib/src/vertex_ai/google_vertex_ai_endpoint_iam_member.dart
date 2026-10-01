@@ -37,8 +37,8 @@ final class VertexAiEndpointIamMemberCondition {
 final class GoogleVertexAiEndpointIamMember extends Resource {
   static const String tfType = 'google_vertex_ai_endpoint_iam_member';
 
-  GoogleVertexAiEndpointIamMember({
-    required super.localName,
+  GoogleVertexAiEndpointIamMember(
+    super.localName, {
     required RefTo<GoogleVertexAiEndpoint> endpoint,
     TfArg<String>? location,
     required IamPrincipal member,

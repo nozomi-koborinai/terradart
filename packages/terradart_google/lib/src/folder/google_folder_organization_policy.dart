@@ -99,8 +99,8 @@ final class FolderOrganizationPolicyRestorePolicy {
 final class GoogleFolderOrganizationPolicy extends Resource {
   static const String tfType = 'google_folder_organization_policy';
 
-  GoogleFolderOrganizationPolicy({
-    required super.localName,
+  GoogleFolderOrganizationPolicy(
+    super.localName, {
     required TfArg<String> constraint,
     TfArg<String>? deletionPolicy,
     required TfArg<String> folder,

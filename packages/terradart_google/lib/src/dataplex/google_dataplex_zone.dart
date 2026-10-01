@@ -127,8 +127,8 @@ enum DataplexZoneLocationType implements TerraformEnum {
 final class GoogleDataplexZone extends Resource {
   static const String tfType = 'google_dataplex_zone';
 
-  GoogleDataplexZone({
-    required super.localName,
+  GoogleDataplexZone(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> location,

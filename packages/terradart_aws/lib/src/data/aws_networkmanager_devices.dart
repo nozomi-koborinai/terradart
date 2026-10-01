@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerDevicesSensitive = <String>{};
 final class DataAwsNetworkmanagerDevices extends Data {
   static const String tfType = 'aws_networkmanager_devices';
 
-  DataAwsNetworkmanagerDevices({
-    required super.localName,
+  DataAwsNetworkmanagerDevices(
+    super.localName, {
     required TfArg<String> globalNetworkId,
     TfArg<String>? siteId,
     TfArg<Map<String, String>>? tags,

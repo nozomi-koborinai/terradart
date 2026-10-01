@@ -522,8 +522,8 @@ enum MskReplicatorTopicNameConfigurationType implements TerraformEnum {
 final class AwsMskReplicator extends Resource {
   static const String tfType = 'aws_msk_replicator';
 
-  AwsMskReplicator({
-    required super.localName,
+  AwsMskReplicator(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     required TfArg<String> replicatorName,

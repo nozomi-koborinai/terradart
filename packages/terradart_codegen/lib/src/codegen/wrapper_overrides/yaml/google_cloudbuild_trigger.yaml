@@ -50,7 +50,7 @@ curatedDoc: |-
   /// `cloudbuild.yaml`):
   /// ```dart
   /// final pushTrigger = GoogleCloudbuildTrigger(
-  ///   localName: 'push_main',
+  ///   'push_main',
   ///   name: .literal('push-main'),
   ///   location: .literal('asia-northeast1'),
   ///   buildSpec: .filename(.literal('cloudbuild.yaml')),
@@ -68,7 +68,7 @@ curatedDoc: |-
   /// `cloudbuildv2_repository`):
   /// ```dart
   /// final prTrigger = GoogleCloudbuildTrigger(
-  ///   localName: 'pr_gate',
+  ///   'pr_gate',
   ///   name: .literal('pr-gate'),
   ///   location: .literal('asia-northeast1'),
   ///   serviceAccount: .of(runner),

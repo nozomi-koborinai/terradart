@@ -104,7 +104,7 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
 /// Example:
 /// ```dart
 /// GoogleVertexAiDeploymentResourcePool(
-///   localName: 'pool',
+///   'pool',
 ///   name: TfArg.literal('terradart-pool'),
 ///   region: TfArg.literal('us-central1'),
 ///   dedicatedResources: VertexAiDeploymentResourcePoolDedicatedResources(
@@ -118,8 +118,8 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
 final class GoogleVertexAiDeploymentResourcePool extends Resource {
   static const String tfType = 'google_vertex_ai_deployment_resource_pool';
 
-  GoogleVertexAiDeploymentResourcePool({
-    required super.localName,
+  GoogleVertexAiDeploymentResourcePool(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     VertexAiDeploymentResourcePoolDedicatedResources? dedicatedResources,

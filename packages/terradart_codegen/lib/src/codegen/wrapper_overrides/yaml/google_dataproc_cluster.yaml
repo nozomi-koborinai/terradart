@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataprocCluster(
-  ///   localName: 'spark',
+  ///   'spark',
   ///   name: TfArg.literal('terradart-dataproc'),
   ///   region: TfArg.literal('us-central1'),
   ///   clusterConfig: DataprocClusterConfig(

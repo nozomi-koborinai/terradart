@@ -12,8 +12,8 @@ const Set<String> _awsElasticacheSubnetGroupSensitive = <String>{};
 final class AwsElasticacheSubnetGroup extends Resource {
   static const String tfType = 'aws_elasticache_subnet_group';
 
-  AwsElasticacheSubnetGroup({
-    required super.localName,
+  AwsElasticacheSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

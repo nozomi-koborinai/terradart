@@ -14,8 +14,8 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 final class DataGooglePubsubTopic extends Data {
   static const String tfType = 'google_pubsub_topic';
 
-  DataGooglePubsubTopic({
-    required super.localName,
+  DataGooglePubsubTopic(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

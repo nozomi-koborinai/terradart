@@ -454,8 +454,8 @@ enum DataplexTaskType implements TerraformEnum {
 final class GoogleDataplexTask extends Resource {
   static const String tfType = 'google_dataplex_task';
 
-  GoogleDataplexTask({
-    required super.localName,
+  GoogleDataplexTask(
+    super.localName, {
     TfArg<String>? taskId,
     TfArg<String>? location,
     RefTo<GoogleDataplexLake>? lake,

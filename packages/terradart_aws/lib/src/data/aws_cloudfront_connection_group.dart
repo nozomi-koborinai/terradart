@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontConnectionGroupSensitive = <String>{};
 final class DataAwsCloudfrontConnectionGroup extends Data {
   static const String tfType = 'aws_cloudfront_connection_group';
 
-  DataAwsCloudfrontConnectionGroup({
-    required super.localName,
+  DataAwsCloudfrontConnectionGroup(
+    super.localName, {
     TfArg<String>? routingEndpoint,
     super.provider,
     super.timeouts,

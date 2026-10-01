@@ -39,8 +39,8 @@ final class ElasticBeanstalkConfigurationTemplateSetting {
 final class AwsElasticBeanstalkConfigurationTemplate extends Resource {
   static const String tfType = 'aws_elastic_beanstalk_configuration_template';
 
-  AwsElasticBeanstalkConfigurationTemplate({
-    required super.localName,
+  AwsElasticBeanstalkConfigurationTemplate(
+    super.localName, {
     required TfArg<String> application,
     TfArg<String>? description,
     TfArg<String>? environmentId,

@@ -47,8 +47,8 @@ final class CloudIdentityGroupKey {
 final class GoogleCloudIdentityGroup extends Resource {
   static const String tfType = 'google_cloud_identity_group';
 
-  GoogleCloudIdentityGroup({
-    required super.localName,
+  GoogleCloudIdentityGroup(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? displayName,

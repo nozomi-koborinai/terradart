@@ -167,8 +167,8 @@ final class ComputeRegionPerInstanceConfigInternalIp {
 final class GoogleComputeRegionPerInstanceConfig extends Resource {
   static const String tfType = 'google_compute_region_per_instance_config';
 
-  GoogleComputeRegionPerInstanceConfig({
-    required super.localName,
+  GoogleComputeRegionPerInstanceConfig(
+    super.localName, {
     required RefTo<GoogleComputeRegionInstanceGroupManager>
     regionInstanceGroupManager,
     required TfArg<String> name,

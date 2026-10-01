@@ -26,7 +26,7 @@ final class HttpFunctionStack extends Stack {
         ],
       ) {
     final sourceBucket = GoogleStorageBucket(
-      localName: 'fn_source',
+      'fn_source',
       name: .literal('$projectId-fn-source'),
       location: .literal('asia-northeast1'),
       forceDestroy: .literal(true),
@@ -35,7 +35,7 @@ final class HttpFunctionStack extends Stack {
     add(sourceBucket);
 
     final sourceObject = GoogleStorageBucketObject(
-      localName: 'fn_source_zip',
+      'fn_source_zip',
       bucket: sourceBucket.ref,
       name: .literal('hello-http.zip'),
       body: .source(source: .literal('./hello-http.zip')),
@@ -43,7 +43,7 @@ final class HttpFunctionStack extends Stack {
     add(sourceObject);
 
     final runtimeSa = GoogleServiceAccount(
-      localName: 'fn_runtime',
+      'fn_runtime',
       accountId: .literal('hello-http-runtime'),
       displayName: .literal('Runtime SA for hello-http Cloud Function'),
     );
@@ -51,7 +51,7 @@ final class HttpFunctionStack extends Stack {
 
     final helloHttp = add(
       GoogleCloudfunctions2Function(
-        localName: 'hello_http',
+        'hello_http',
         name: .literal('hello-http'),
         location: .literal('asia-northeast1'),
         description: .literal('terradart Cloud Functions Gen 2 quickstart.'),
@@ -77,7 +77,7 @@ final class HttpFunctionStack extends Stack {
 
     add(
       GoogleCloudfunctions2FunctionIamMember(
-        localName: 'hello_http_invoker',
+        'hello_http_invoker',
         function: helloHttp.ref,
         role: .literal('roles/cloudfunctions.invoker'),
         member: .allAuthenticatedUsers,

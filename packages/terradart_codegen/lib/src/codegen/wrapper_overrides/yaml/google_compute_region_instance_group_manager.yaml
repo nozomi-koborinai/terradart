@@ -55,7 +55,7 @@ curatedDoc: |-
   /// proactive rebalancing):
   /// ```dart
   /// final mig = GoogleComputeRegionInstanceGroupManager(
-  ///   localName: 'web',
+  ///   'web',
   ///   name: TfArg.literal('web-rmig'),
   ///   region: TfArg.literal('asia-northeast1'),
   ///   baseInstanceName: TfArg.literal('web'),

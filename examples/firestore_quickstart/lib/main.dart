@@ -27,7 +27,7 @@ final class MessagesStack extends Stack {
         ],
       ) {
     final db = GoogleFirestoreDatabase(
-      localName: 'messages',
+      'messages',
       name: .literal('quickstart-db'),
       locationId: .literal('asia-northeast1'),
       type: .literal(.firestoreNative),
@@ -43,7 +43,7 @@ final class MessagesStack extends Stack {
 
     add(
       GoogleFirestoreIndex(
-        localName: 'messages_by_user_time',
+        'messages_by_user_time',
         collection: .literal('messages'),
         database: db.ref,
         queryScope: .literal(.collection),
@@ -64,7 +64,7 @@ final class MessagesStack extends Stack {
 
     add(
       GoogleFirestoreField(
-        localName: 'expires_at_ttl',
+        'expires_at_ttl',
         collection: .literal('messages'),
         field: .literal('expires_at'),
         database: db.ref,
@@ -74,7 +74,7 @@ final class MessagesStack extends Stack {
 
     add(
       GoogleFirestoreBackupSchedule(
-        localName: 'daily_backup',
+        'daily_backup',
         database: db.ref,
         retention: .literal('604800s'),
         recurrence: const .daily(),
@@ -85,7 +85,7 @@ final class MessagesStack extends Stack {
 
     add(
       GoogleFirestoreChangeStream(
-        localName: 'messages_changes',
+        'messages_changes',
         database: db.ref,
         name: .literal('messages-changes'),
         scope: .collectionGroupScope(

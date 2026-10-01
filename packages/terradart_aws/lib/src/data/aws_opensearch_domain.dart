@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchDomainSensitive = <String>{};
 final class DataAwsOpensearchDomain extends Data {
   static const String tfType = 'aws_opensearch_domain';
 
-  DataAwsOpensearchDomain({
-    required super.localName,
+  DataAwsOpensearchDomain(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

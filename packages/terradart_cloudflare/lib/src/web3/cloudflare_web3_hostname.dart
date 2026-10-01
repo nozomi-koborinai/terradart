@@ -27,8 +27,8 @@ enum Web3HostnameTarget implements TerraformEnum {
 final class CloudflareWeb3Hostname extends Resource {
   static const String tfType = 'cloudflare_web3_hostname';
 
-  CloudflareWeb3Hostname({
-    required super.localName,
+  CloudflareWeb3Hostname(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? dnslink,
     required TfArg<String> name,

@@ -38,8 +38,8 @@ final class VertexAiReasoningEngineIamMemberCondition {
 final class GoogleVertexAiReasoningEngineIamMember extends Resource {
   static const String tfType = 'google_vertex_ai_reasoning_engine_iam_member';
 
-  GoogleVertexAiReasoningEngineIamMember({
-    required super.localName,
+  GoogleVertexAiReasoningEngineIamMember(
+    super.localName, {
     required RefTo<GoogleVertexAiReasoningEngine> reasoningEngine,
     required TfArg<String> role,
     required IamPrincipal member,

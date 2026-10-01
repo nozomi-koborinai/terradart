@@ -14,8 +14,8 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{};
 final class DataGoogleComputeSslCertificate extends Data {
   static const String tfType = 'google_compute_ssl_certificate';
 
-  DataGoogleComputeSslCertificate({
-    required super.localName,
+  DataGoogleComputeSslCertificate(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

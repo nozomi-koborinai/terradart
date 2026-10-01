@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayAccountSensitive = <String>{};
 final class AwsApiGatewayAccount extends Resource {
   static const String tfType = 'aws_api_gateway_account';
 
-  AwsApiGatewayAccount({
-    required super.localName,
+  AwsApiGatewayAccount(
+    super.localName, {
     TfArg<String>? cloudwatchRoleArn,
     TfArg<String>? region,
     super.lifecycle,

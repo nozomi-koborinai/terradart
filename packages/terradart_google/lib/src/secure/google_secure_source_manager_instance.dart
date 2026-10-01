@@ -119,7 +119,7 @@ final class SecureSourceManagerInstanceWorkforceIdentityFederationConfig {
 /// Example:
 /// ```dart
 /// GoogleSecureSourceManagerInstance(
-///   localName: 'git',
+///   'git',
 ///   location: TfArg.literal('us-central1'),
 ///   instanceId: TfArg.literal('terradart-ssm'),
 ///   deletionPolicy: TfArg.literal('DELETE'),
@@ -128,8 +128,8 @@ final class SecureSourceManagerInstanceWorkforceIdentityFederationConfig {
 final class GoogleSecureSourceManagerInstance extends Resource {
   static const String tfType = 'google_secure_source_manager_instance';
 
-  GoogleSecureSourceManagerInstance({
-    required super.localName,
+  GoogleSecureSourceManagerInstance(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instanceId,
     TfArg<Map<String, String>>? labels,

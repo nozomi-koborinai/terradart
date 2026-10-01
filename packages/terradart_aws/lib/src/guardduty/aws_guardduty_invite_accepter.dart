@@ -10,8 +10,8 @@ const Set<String> _awsGuarddutyInviteAccepterSensitive = <String>{};
 final class AwsGuarddutyInviteAccepter extends Resource {
   static const String tfType = 'aws_guardduty_invite_accepter';
 
-  AwsGuarddutyInviteAccepter({
-    required super.localName,
+  AwsGuarddutyInviteAccepter(
+    super.localName, {
     required TfArg<String> detectorId,
     required TfArg<String> masterAccountId,
     TfArg<String>? region,

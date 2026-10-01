@@ -11,8 +11,8 @@ const Set<String> _awsOamSinkSensitive = <String>{};
 final class DataAwsOamSink extends Data {
   static const String tfType = 'aws_oam_sink';
 
-  DataAwsOamSink({
-    required super.localName,
+  DataAwsOamSink(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> sinkIdentifier,
     TfArg<Map<String, String>>? tags,

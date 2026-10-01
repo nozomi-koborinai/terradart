@@ -38,8 +38,8 @@ final class DataplexDataProductIamMemberCondition {
 final class GoogleDataplexDataProductIamMember extends Resource {
   static const String tfType = 'google_dataplex_data_product_iam_member';
 
-  GoogleDataplexDataProductIamMember({
-    required super.localName,
+  GoogleDataplexDataProductIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexDataProduct> dataProduct,
     required TfArg<String> role,
     required IamPrincipal member,

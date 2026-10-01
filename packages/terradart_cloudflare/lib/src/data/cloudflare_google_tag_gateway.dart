@@ -16,8 +16,8 @@ const Set<String> _cloudflareGoogleTagGatewaySensitive = <String>{};
 final class DataCloudflareGoogleTagGateway extends Data {
   static const String tfType = 'cloudflare_google_tag_gateway';
 
-  DataCloudflareGoogleTagGateway({
-    required super.localName,
+  DataCloudflareGoogleTagGateway(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

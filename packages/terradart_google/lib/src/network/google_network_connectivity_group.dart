@@ -43,7 +43,7 @@ final class NetworkConnectivityGroupAutoAccept {
 /// Example:
 /// ```dart
 /// GoogleNetworkConnectivityGroup(
-///   localName: 'center',
+///   'center',
 ///   hub: hub.ref,
 ///   name: TfArg.literal(NetworkConnectivityGroupName.center),
 /// );
@@ -51,8 +51,8 @@ final class NetworkConnectivityGroupAutoAccept {
 final class GoogleNetworkConnectivityGroup extends Resource {
   static const String tfType = 'google_network_connectivity_group';
 
-  GoogleNetworkConnectivityGroup({
-    required super.localName,
+  GoogleNetworkConnectivityGroup(
+    super.localName, {
     required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<NetworkConnectivityGroupName> name,
     TfArg<String>? description,

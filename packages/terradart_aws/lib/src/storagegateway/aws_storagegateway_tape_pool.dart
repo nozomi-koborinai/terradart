@@ -31,8 +31,8 @@ enum StoragegatewayTapePoolStorageClass implements TerraformEnum {
 final class AwsStoragegatewayTapePool extends Resource {
   static const String tfType = 'aws_storagegateway_tape_pool';
 
-  AwsStoragegatewayTapePool({
-    required super.localName,
+  AwsStoragegatewayTapePool(
+    super.localName, {
     required TfArg<String> poolName,
     TfArg<String>? region,
     TfArg<num>? retentionLockTimeInDays,

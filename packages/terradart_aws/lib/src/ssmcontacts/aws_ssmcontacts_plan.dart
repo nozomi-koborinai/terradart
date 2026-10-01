@@ -81,8 +81,8 @@ final class SsmcontactsPlanContactTargetInfo {
 final class AwsSsmcontactsPlan extends Resource {
   static const String tfType = 'aws_ssmcontacts_plan';
 
-  AwsSsmcontactsPlan({
-    required super.localName,
+  AwsSsmcontactsPlan(
+    super.localName, {
     required TfArg<String> contactId,
     TfArg<String>? region,
     required List<SsmcontactsPlanStage> stage,

@@ -348,8 +348,8 @@ final class SagemakerModelVpcConfig {
 final class AwsSagemakerModel extends Resource {
   static const String tfType = 'aws_sagemaker_model';
 
-  AwsSagemakerModel({
-    required super.localName,
+  AwsSagemakerModel(
+    super.localName, {
     TfArg<bool>? enableNetworkIsolation,
     required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? name,

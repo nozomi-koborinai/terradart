@@ -10,8 +10,8 @@ const Set<String> _awsOdbNetworksSensitive = <String>{};
 final class DataAwsOdbNetworks extends Data {
   static const String tfType = 'aws_odb_networks';
 
-  DataAwsOdbNetworks({
-    required super.localName,
+  DataAwsOdbNetworks(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

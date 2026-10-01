@@ -113,7 +113,7 @@ enum BackupDayOfWeek implements TerraformEnum {
 /// Example (keep daily backups for 7 days):
 /// ```dart
 /// final daily = GoogleFirestoreBackupSchedule(
-///   localName: 'daily',
+///   'daily',
 ///   database: db.ref,
 ///   retention: TfArg.literal('604800s'),
 ///   recurrence: const FirestoreBackupScheduleDailyRecurrence(),
@@ -123,7 +123,7 @@ enum BackupDayOfWeek implements TerraformEnum {
 /// Example (weekly backup every Monday, retained 4 weeks):
 /// ```dart
 /// final weekly = GoogleFirestoreBackupSchedule(
-///   localName: 'weekly',
+///   'weekly',
 ///   database: db.ref,
 ///   retention: TfArg.literal('2419200s'),
 ///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(day: BackupDayOfWeek.monday),
@@ -135,8 +135,8 @@ enum BackupDayOfWeek implements TerraformEnum {
 final class GoogleFirestoreBackupSchedule extends Resource {
   static const String tfType = 'google_firestore_backup_schedule';
 
-  GoogleFirestoreBackupSchedule({
-    required super.localName,
+  GoogleFirestoreBackupSchedule(
+    super.localName, {
     RefTo<GoogleFirestoreDatabase>? database,
     required TfArg<String> retention,
     required FirestoreBackupScheduleBackupRecurrence recurrence,

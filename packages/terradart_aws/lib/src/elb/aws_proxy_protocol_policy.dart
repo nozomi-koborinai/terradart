@@ -10,8 +10,8 @@ const Set<String> _awsProxyProtocolPolicySensitive = <String>{};
 final class AwsProxyProtocolPolicy extends Resource {
   static const String tfType = 'aws_proxy_protocol_policy';
 
-  AwsProxyProtocolPolicy({
-    required super.localName,
+  AwsProxyProtocolPolicy(
+    super.localName, {
     required TfArg<List<String>> instancePorts,
     required TfArg<String> loadBalancer,
     TfArg<String>? region,

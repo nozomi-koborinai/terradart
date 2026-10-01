@@ -55,8 +55,8 @@ final class CodestarconnectionsHostVpcConfiguration {
 final class AwsCodestarconnectionsHost extends Resource {
   static const String tfType = 'aws_codestarconnections_host';
 
-  AwsCodestarconnectionsHost({
-    required super.localName,
+  AwsCodestarconnectionsHost(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> providerEndpoint,
     required TfArg<CodestarconnectionsHostProviderType> providerType,

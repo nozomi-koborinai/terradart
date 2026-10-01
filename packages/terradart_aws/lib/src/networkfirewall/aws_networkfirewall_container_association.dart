@@ -61,8 +61,8 @@ final class NetworkfirewallContainerAssociationAttributeFilter {
 final class AwsNetworkfirewallContainerAssociation extends Resource {
   static const String tfType = 'aws_networkfirewall_container_association';
 
-  AwsNetworkfirewallContainerAssociation({
-    required super.localName,
+  AwsNetworkfirewallContainerAssociation(
+    super.localName, {
     required TfArg<String> containerAssociationName,
     TfArg<String>? description,
     TfArg<String>? region,

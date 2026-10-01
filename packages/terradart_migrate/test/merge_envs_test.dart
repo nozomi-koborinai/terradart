@@ -165,7 +165,7 @@ resource "google_storage_bucket" "backups" {
       expect(merged.guards.single.dartName, 'isProd');
       expect(merged.guards.single.members, ['prod']);
       expect(merged.source, contains('if (env.isProd) {'));
-      expect(merged.source, contains("localName: 'backups'"));
+      expect(merged.source, contains("'backups'"));
     });
 
     test('the flag is false where the block is absent', () {

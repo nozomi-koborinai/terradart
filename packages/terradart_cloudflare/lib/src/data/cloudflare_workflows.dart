@@ -15,8 +15,8 @@ const Set<String> _cloudflareWorkflowsSensitive = <String>{};
 final class DataCloudflareWorkflows extends Data {
   static const String tfType = 'cloudflare_workflows';
 
-  DataCloudflareWorkflows({
-    required super.localName,
+  DataCloudflareWorkflows(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,

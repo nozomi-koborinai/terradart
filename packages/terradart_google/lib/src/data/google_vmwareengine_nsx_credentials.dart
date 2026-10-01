@@ -13,8 +13,8 @@ const Set<String> _googleVmwareengineNsxCredentialsSensitive = <String>{};
 final class DataGoogleVmwareengineNsxCredentials extends Data {
   static const String tfType = 'google_vmwareengine_nsx_credentials';
 
-  DataGoogleVmwareengineNsxCredentials({
-    required super.localName,
+  DataGoogleVmwareengineNsxCredentials(
+    super.localName, {
     required TfArg<String> parent,
     super.provider,
     super.timeouts,

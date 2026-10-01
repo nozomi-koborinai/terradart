@@ -14,8 +14,8 @@ final class AwsEc2LocalGatewayRouteTableVpcAssociation extends Resource {
   static const String tfType =
       'aws_ec2_local_gateway_route_table_vpc_association';
 
-  AwsEc2LocalGatewayRouteTableVpcAssociation({
-    required super.localName,
+  AwsEc2LocalGatewayRouteTableVpcAssociation(
+    super.localName, {
     required TfArg<String> localGatewayRouteTableId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

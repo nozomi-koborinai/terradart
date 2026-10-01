@@ -14,8 +14,8 @@ const Set<String> _appwriteTablesdbSensitive = <String>{};
 final class DataAppwriteTablesdb extends Data {
   static const String tfType = 'appwrite_tablesdb';
 
-  DataAppwriteTablesdb({
-    required super.localName,
+  DataAppwriteTablesdb(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

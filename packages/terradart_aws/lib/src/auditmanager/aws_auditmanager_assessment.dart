@@ -110,8 +110,8 @@ final class AuditmanagerAssessmentAwsServices {
 final class AwsAuditmanagerAssessment extends Resource {
   static const String tfType = 'aws_auditmanager_assessment';
 
-  AwsAuditmanagerAssessment({
-    required super.localName,
+  AwsAuditmanagerAssessment(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> frameworkId,
     required TfArg<String> name,

@@ -746,8 +746,8 @@ enum IotTopicRuleUnit implements TerraformEnum {
 final class AwsIotTopicRule extends Resource {
   static const String tfType = 'aws_iot_topic_rule';
 
-  AwsIotTopicRule({
-    required super.localName,
+  AwsIotTopicRule(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<bool> enabled,
     required TfArg<String> name,

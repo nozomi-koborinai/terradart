@@ -185,8 +185,8 @@ enum ElasticacheClusterLogType implements TerraformEnum {
 final class AwsElasticacheCluster extends Resource {
   static const String tfType = 'aws_elasticache_cluster';
 
-  AwsElasticacheCluster({
-    required super.localName,
+  AwsElasticacheCluster(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<String>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,

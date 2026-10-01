@@ -23,8 +23,8 @@ const Set<String> _googleAccessContextManagerIngressPolicySensitive =
 final class GoogleAccessContextManagerIngressPolicy extends Resource {
   static const String tfType = 'google_access_context_manager_ingress_policy';
 
-  GoogleAccessContextManagerIngressPolicy({
-    required super.localName,
+  GoogleAccessContextManagerIngressPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required RefTo<GoogleAccessContextManagerServicePerimeter>
     ingressPolicyName,

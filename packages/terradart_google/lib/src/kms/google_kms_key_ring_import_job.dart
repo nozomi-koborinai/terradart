@@ -54,7 +54,7 @@ enum KmsKeyRingImportJobProtectionLevel implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleKmsKeyRingImportJob(
-///   localName: 'import',
+///   'import',
 ///   keyRing: ring.ref,
 ///   importJobId: TfArg.literal('terradart-import'),
 ///   importMethod: TfArg.literal(
@@ -68,8 +68,8 @@ enum KmsKeyRingImportJobProtectionLevel implements TerraformEnum {
 final class GoogleKmsKeyRingImportJob extends Resource {
   static const String tfType = 'google_kms_key_ring_import_job';
 
-  GoogleKmsKeyRingImportJob({
-    required super.localName,
+  GoogleKmsKeyRingImportJob(
+    super.localName, {
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> importJobId,
     required TfArg<KmsKeyRingImportJobImportMethod> importMethod,

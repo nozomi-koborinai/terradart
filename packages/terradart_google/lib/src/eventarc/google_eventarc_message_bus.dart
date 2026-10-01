@@ -46,8 +46,8 @@ class EventarcMessageBusLoggingConfig {
 final class GoogleEventarcMessageBus extends Resource {
   static const String tfType = 'google_eventarc_message_bus';
 
-  GoogleEventarcMessageBus({
-    required super.localName,
+  GoogleEventarcMessageBus(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     TfArg<String>? displayName,

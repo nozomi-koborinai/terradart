@@ -49,8 +49,8 @@ final class AwsGlobalacceleratorCustomRoutingAccelerator extends Resource {
   static const String tfType =
       'aws_globalaccelerator_custom_routing_accelerator';
 
-  AwsGlobalacceleratorCustomRoutingAccelerator({
-    required super.localName,
+  AwsGlobalacceleratorCustomRoutingAccelerator(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<GlobalacceleratorCustomRoutingAcceleratorIpAddressType>?
     ipAddressType,

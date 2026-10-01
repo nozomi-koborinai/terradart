@@ -21,8 +21,8 @@ enum Sesv2AccountSuppressionAttributesSuppressedReasons
 final class AwsSesv2AccountSuppressionAttributes extends Resource {
   static const String tfType = 'aws_sesv2_account_suppression_attributes';
 
-  AwsSesv2AccountSuppressionAttributes({
-    required super.localName,
+  AwsSesv2AccountSuppressionAttributes(
+    super.localName, {
     TfArg<String>? region,
     required List<TfArg<Sesv2AccountSuppressionAttributesSuppressedReasons>>
     suppressedReasons,

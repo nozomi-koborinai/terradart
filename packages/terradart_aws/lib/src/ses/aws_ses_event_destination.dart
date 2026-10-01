@@ -196,8 +196,8 @@ final class SesEventDestinationSnsDestination {
 final class AwsSesEventDestination extends Resource {
   static const String tfType = 'aws_ses_event_destination';
 
-  AwsSesEventDestination({
-    required super.localName,
+  AwsSesEventDestination(
+    super.localName, {
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
     required List<TfArg<SesEventDestinationMatchingTypes>> matchingTypes,

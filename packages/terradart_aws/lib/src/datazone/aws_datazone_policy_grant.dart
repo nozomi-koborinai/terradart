@@ -498,8 +498,8 @@ final class DatazonePolicyGrantAllUsersGrantFilter {
 final class AwsDatazonePolicyGrant extends Resource {
   static const String tfType = 'aws_datazone_policy_grant';
 
-  AwsDatazonePolicyGrant({
-    required super.localName,
+  AwsDatazonePolicyGrant(
+    super.localName, {
     required TfArg<String> domainIdentifier,
     required TfArg<String> entityIdentifier,
     required TfArg<DatazonePolicyGrantEntityType> entityType,

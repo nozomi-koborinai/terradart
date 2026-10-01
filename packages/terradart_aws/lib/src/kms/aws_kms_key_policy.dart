@@ -12,8 +12,8 @@ const Set<String> _awsKmsKeyPolicySensitive = <String>{};
 final class AwsKmsKeyPolicy extends Resource {
   static const String tfType = 'aws_kms_key_policy';
 
-  AwsKmsKeyPolicy({
-    required super.localName,
+  AwsKmsKeyPolicy(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     required RefTo<AwsKmsKey> keyId,
     required TfArg<String> policy,

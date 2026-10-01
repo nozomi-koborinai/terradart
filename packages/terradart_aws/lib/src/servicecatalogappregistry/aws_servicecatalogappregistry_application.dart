@@ -11,8 +11,8 @@ const Set<String> _awsServicecatalogappregistryApplicationSensitive =
 final class AwsServicecatalogappregistryApplication extends Resource {
   static const String tfType = 'aws_servicecatalogappregistry_application';
 
-  AwsServicecatalogappregistryApplication({
-    required super.localName,
+  AwsServicecatalogappregistryApplication(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

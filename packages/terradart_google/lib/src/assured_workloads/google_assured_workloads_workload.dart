@@ -173,8 +173,8 @@ enum AssuredWorkloadsWorkloadKajEnrollmentType implements TerraformEnum {
 final class GoogleAssuredWorkloadsWorkload extends Resource {
   static const String tfType = 'google_assured_workloads_workload';
 
-  GoogleAssuredWorkloadsWorkload({
-    required super.localName,
+  GoogleAssuredWorkloadsWorkload(
+    super.localName, {
     TfArg<String>? billingAccount,
     required TfArg<AssuredWorkloadsWorkloadComplianceRegime> complianceRegime,
     TfArg<String>? deletionPolicy,

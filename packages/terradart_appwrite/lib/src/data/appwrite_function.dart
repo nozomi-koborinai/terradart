@@ -14,8 +14,8 @@ const Set<String> _appwriteFunctionSensitive = <String>{};
 final class DataAppwriteFunction extends Data {
   static const String tfType = 'appwrite_function';
 
-  DataAppwriteFunction({
-    required super.localName,
+  DataAppwriteFunction(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

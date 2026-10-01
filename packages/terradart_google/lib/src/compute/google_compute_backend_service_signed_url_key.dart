@@ -21,8 +21,8 @@ const Set<String> _googleComputeBackendServiceSignedUrlKeySensitive = <String>{
 final class GoogleComputeBackendServiceSignedUrlKey extends Resource {
   static const String tfType = 'google_compute_backend_service_signed_url_key';
 
-  GoogleComputeBackendServiceSignedUrlKey({
-    required super.localName,
+  GoogleComputeBackendServiceSignedUrlKey(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeBackendService> backendService,
     required TfArg<String> keyValue,

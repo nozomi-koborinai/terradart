@@ -37,8 +37,8 @@ final class S3controlMultiRegionAccessPointRoutesRoute {
 final class AwsS3controlMultiRegionAccessPointRoutes extends Resource {
   static const String tfType = 'aws_s3control_multi_region_access_point_routes';
 
-  AwsS3controlMultiRegionAccessPointRoutes({
-    required super.localName,
+  AwsS3controlMultiRegionAccessPointRoutes(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> mrap,
     TfArg<String>? region,

@@ -106,8 +106,8 @@ final class SecretsmanagerSecretRotationScheduleExpression
 final class AwsSecretsmanagerSecretRotation extends Resource {
   static const String tfType = 'aws_secretsmanager_secret_rotation';
 
-  AwsSecretsmanagerSecretRotation({
-    required super.localName,
+  AwsSecretsmanagerSecretRotation(
+    super.localName, {
     TfArg<String>? externalSecretRotationRoleArn,
     TfArg<String>? region,
     TfArg<bool>? rotateImmediately,

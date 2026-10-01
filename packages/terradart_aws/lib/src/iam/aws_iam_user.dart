@@ -12,8 +12,8 @@ const Set<String> _awsIamUserSensitive = <String>{};
 final class AwsIamUser extends Resource {
   static const String tfType = 'aws_iam_user';
 
-  AwsIamUser({
-    required super.localName,
+  AwsIamUser(
+    super.localName, {
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,
     TfArg<String>? path,

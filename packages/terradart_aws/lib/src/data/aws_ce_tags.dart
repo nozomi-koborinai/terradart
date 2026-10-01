@@ -195,8 +195,8 @@ final class DataCeTagsTimePeriod {
 final class DataAwsCeTags extends Data {
   static const String tfType = 'aws_ce_tags';
 
-  DataAwsCeTags({
-    required super.localName,
+  DataAwsCeTags(
+    super.localName, {
     TfArg<String>? searchString,
     TfArg<String>? tagKey,
     DataCeTagsFilter? filter,

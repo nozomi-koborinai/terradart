@@ -16,8 +16,8 @@ const Set<String> _cloudflareHealthcheckSensitive = <String>{};
 final class DataCloudflareHealthcheck extends Data {
   static const String tfType = 'cloudflare_healthcheck';
 
-  DataCloudflareHealthcheck({
-    required super.localName,
+  DataCloudflareHealthcheck(
+    super.localName, {
     required TfArg<String> healthcheckId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

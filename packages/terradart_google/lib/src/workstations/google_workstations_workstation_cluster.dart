@@ -59,7 +59,7 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
 /// Example:
 /// ```dart
 /// GoogleWorkstationsWorkstationCluster(
-///   localName: 'ws',
+///   'ws',
 ///   workstationClusterId: TfArg.literal('terradart-ws'),
 ///   location: TfArg.literal('us-central1'),
 ///   network: vpc.ref,
@@ -69,8 +69,8 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
 final class GoogleWorkstationsWorkstationCluster extends Resource {
   static const String tfType = 'google_workstations_workstation_cluster';
 
-  GoogleWorkstationsWorkstationCluster({
-    required super.localName,
+  GoogleWorkstationsWorkstationCluster(
+    super.localName, {
     required TfArg<String> workstationClusterId,
     TfArg<String>? location,
     required RefTo<GoogleComputeNetwork> network,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareWaitingRoomSettingsSensitive = <String>{};
 final class CloudflareWaitingRoomSettings extends Resource {
   static const String tfType = 'cloudflare_waiting_room_settings';
 
-  CloudflareWaitingRoomSettings({
-    required super.localName,
+  CloudflareWaitingRoomSettings(
+    super.localName, {
     TfArg<bool>? searchEngineCrawlerBypass,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

@@ -11,8 +11,8 @@ const Set<String> _awsBackupVaultSensitive = <String>{};
 final class DataAwsBackupVault extends Data {
   static const String tfType = 'aws_backup_vault';
 
-  DataAwsBackupVault({
-    required super.localName,
+  DataAwsBackupVault(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -33,8 +33,8 @@ final class ZeroTrustDeviceDeploymentGroupsVersionConfig {
 final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
   static const String tfType = 'cloudflare_zero_trust_device_deployment_groups';
 
-  CloudflareZeroTrustDeviceDeploymentGroups({
-    required super.localName,
+  CloudflareZeroTrustDeviceDeploymentGroups(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     TfArg<List<String>>? policyIds,

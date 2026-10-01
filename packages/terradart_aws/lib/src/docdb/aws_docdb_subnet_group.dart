@@ -70,8 +70,8 @@ final class DocdbSubnetGroupNamePrefix extends DocdbSubnetGroupName {
 final class AwsDocdbSubnetGroup extends Resource {
   static const String tfType = 'aws_docdb_subnet_group';
 
-  AwsDocdbSubnetGroup({
-    required super.localName,
+  AwsDocdbSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     DocdbSubnetGroupName? name,
     TfArg<String>? region,

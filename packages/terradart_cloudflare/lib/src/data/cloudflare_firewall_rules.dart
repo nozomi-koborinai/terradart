@@ -15,8 +15,8 @@ const Set<String> _cloudflareFirewallRulesSensitive = <String>{};
 final class DataCloudflareFirewallRules extends Data {
   static const String tfType = 'cloudflare_firewall_rules';
 
-  DataCloudflareFirewallRules({
-    required super.localName,
+  DataCloudflareFirewallRules(
+    super.localName, {
     TfArg<String>? action,
     TfArg<String>? description,
     TfArg<num>? maxItems,

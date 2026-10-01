@@ -16,8 +16,8 @@ const Set<String> _cloudflareWorkersCronTriggerSensitive = <String>{};
 final class DataCloudflareWorkersCronTrigger extends Data {
   static const String tfType = 'cloudflare_workers_cron_trigger';
 
-  DataCloudflareWorkersCronTrigger({
-    required super.localName,
+  DataCloudflareWorkersCronTrigger(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> scriptName,
     super.provider,

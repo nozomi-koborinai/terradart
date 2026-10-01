@@ -160,8 +160,8 @@ final class CloudfunctionsFunctionSourceRepository {
 final class GoogleCloudfunctionsFunction extends Resource {
   static const String tfType = 'google_cloudfunctions_function';
 
-  GoogleCloudfunctionsFunction({
-    required super.localName,
+  GoogleCloudfunctionsFunction(
+    super.localName, {
     TfArg<num>? availableMemoryMb,
     TfArg<Map<String, String>>? buildEnvironmentVariables,
     TfArg<String>? buildServiceAccount,

@@ -23,8 +23,8 @@ final class AwsArczonalshiftAutoshiftObserverNotificationStatus
   static const String tfType =
       'aws_arczonalshift_autoshift_observer_notification_status';
 
-  AwsArczonalshiftAutoshiftObserverNotificationStatus({
-    required super.localName,
+  AwsArczonalshiftAutoshiftObserverNotificationStatus(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<ArczonalshiftAutoshiftObserverNotificationStatus> status,
     super.lifecycle,

@@ -11,8 +11,8 @@ const Set<String> _awsDatazoneDomainSensitive = <String>{};
 final class DataAwsDatazoneDomain extends Data {
   static const String tfType = 'aws_datazone_domain';
 
-  DataAwsDatazoneDomain({
-    required super.localName,
+  DataAwsDatazoneDomain(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     super.provider,

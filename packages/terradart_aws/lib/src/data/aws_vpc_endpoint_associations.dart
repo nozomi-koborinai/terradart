@@ -10,8 +10,8 @@ const Set<String> _awsVpcEndpointAssociationsSensitive = <String>{};
 final class DataAwsVpcEndpointAssociations extends Data {
   static const String tfType = 'aws_vpc_endpoint_associations';
 
-  DataAwsVpcEndpointAssociations({
-    required super.localName,
+  DataAwsVpcEndpointAssociations(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> vpcEndpointId,
     super.provider,

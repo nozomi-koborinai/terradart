@@ -10,8 +10,8 @@ const Set<String> _awsRoute53ResolverRulesSensitive = <String>{};
 final class DataAwsRoute53ResolverRules extends Data {
   static const String tfType = 'aws_route53_resolver_rules';
 
-  DataAwsRoute53ResolverRules({
-    required super.localName,
+  DataAwsRoute53ResolverRules(
+    super.localName, {
     TfArg<String>? nameRegex,
     TfArg<String>? ownerId,
     TfArg<String>? region,

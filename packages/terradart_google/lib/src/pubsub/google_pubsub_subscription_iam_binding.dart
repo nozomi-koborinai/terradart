@@ -43,8 +43,8 @@ final class PubsubSubscriptionIamBindingCondition {
 final class GooglePubsubSubscriptionIamBinding extends Resource {
   static const String tfType = 'google_pubsub_subscription_iam_binding';
 
-  GooglePubsubSubscriptionIamBinding({
-    required super.localName,
+  GooglePubsubSubscriptionIamBinding(
+    super.localName, {
     required RefTo<GooglePubsubSubscription> subscription,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

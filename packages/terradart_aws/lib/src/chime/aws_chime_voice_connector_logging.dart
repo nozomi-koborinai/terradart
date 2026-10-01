@@ -10,8 +10,8 @@ const Set<String> _awsChimeVoiceConnectorLoggingSensitive = <String>{};
 final class AwsChimeVoiceConnectorLogging extends Resource {
   static const String tfType = 'aws_chime_voice_connector_logging';
 
-  AwsChimeVoiceConnectorLogging({
-    required super.localName,
+  AwsChimeVoiceConnectorLogging(
+    super.localName, {
     TfArg<bool>? enableMediaMetricLogs,
     TfArg<bool>? enableSipLogs,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsGlueRegistrySensitive = <String>{};
 final class AwsGlueRegistry extends Resource {
   static const String tfType = 'aws_glue_registry';
 
-  AwsGlueRegistry({
-    required super.localName,
+  AwsGlueRegistry(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     required TfArg<String> registryName,

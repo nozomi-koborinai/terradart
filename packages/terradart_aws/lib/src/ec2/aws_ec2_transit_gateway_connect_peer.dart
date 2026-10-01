@@ -10,8 +10,8 @@ const Set<String> _awsEc2TransitGatewayConnectPeerSensitive = <String>{};
 final class AwsEc2TransitGatewayConnectPeer extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_connect_peer';
 
-  AwsEc2TransitGatewayConnectPeer({
-    required super.localName,
+  AwsEc2TransitGatewayConnectPeer(
+    super.localName, {
     TfArg<String>? bgpAsn,
     required TfArg<List<String>> insideCidrBlocks,
     required TfArg<String> peerAddress,

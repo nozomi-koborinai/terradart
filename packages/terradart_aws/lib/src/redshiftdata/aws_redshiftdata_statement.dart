@@ -30,8 +30,8 @@ final class RedshiftdataStatementParameters {
 final class AwsRedshiftdataStatement extends Resource {
   static const String tfType = 'aws_redshiftdata_statement';
 
-  AwsRedshiftdataStatement({
-    required super.localName,
+  AwsRedshiftdataStatement(
+    super.localName, {
     TfArg<String>? clusterIdentifier,
     required TfArg<String> database,
     TfArg<String>? dbUser,

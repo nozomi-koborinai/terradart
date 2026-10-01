@@ -180,8 +180,8 @@ final class Ec2NetworkInsightsAccessScopeMatchPaths {
 final class AwsEc2NetworkInsightsAccessScope extends Resource {
   static const String tfType = 'aws_ec2_network_insights_access_scope';
 
-  AwsEc2NetworkInsightsAccessScope({
-    required super.localName,
+  AwsEc2NetworkInsightsAccessScope(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<Ec2NetworkInsightsAccessScopeExcludePaths>? excludePaths,

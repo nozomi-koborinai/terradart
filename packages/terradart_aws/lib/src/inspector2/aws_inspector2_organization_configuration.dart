@@ -42,8 +42,8 @@ final class Inspector2OrganizationConfigurationAutoEnable {
 final class AwsInspector2OrganizationConfiguration extends Resource {
   static const String tfType = 'aws_inspector2_organization_configuration';
 
-  AwsInspector2OrganizationConfiguration({
-    required super.localName,
+  AwsInspector2OrganizationConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required Inspector2OrganizationConfigurationAutoEnable autoEnable,
     super.lifecycle,

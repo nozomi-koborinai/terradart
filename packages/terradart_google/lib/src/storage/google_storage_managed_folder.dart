@@ -23,8 +23,8 @@ const Set<String> _googleStorageManagedFolderSensitive = <String>{};
 final class GoogleStorageManagedFolder extends Resource {
   static const String tfType = 'google_storage_managed_folder';
 
-  GoogleStorageManagedFolder({
-    required super.localName,
+  GoogleStorageManagedFolder(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,

@@ -23,8 +23,8 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
   static const String tfType =
       'google_network_management_organization_vpc_flow_logs_config';
 
-  GoogleNetworkManagementOrganizationVpcFlowLogsConfig({
-    required super.localName,
+  GoogleNetworkManagementOrganizationVpcFlowLogsConfig(
+    super.localName, {
     TfArg<String>? aggregationInterval,
     TfArg<String>? crossProjectMetadata,
     TfArg<String>? deletionPolicy,

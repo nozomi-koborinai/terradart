@@ -11,8 +11,8 @@ const Set<String> _awsServicecatalogappregistryAttributeGroupSensitive =
 final class AwsServicecatalogappregistryAttributeGroup extends Resource {
   static const String tfType = 'aws_servicecatalogappregistry_attribute_group';
 
-  AwsServicecatalogappregistryAttributeGroup({
-    required super.localName,
+  AwsServicecatalogappregistryAttributeGroup(
+    super.localName, {
     required TfArg<String> attributes,
     TfArg<String>? description,
     required TfArg<String> name,

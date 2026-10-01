@@ -28,8 +28,8 @@ final class ObservabilityBucketCmekSettings {
 final class GoogleObservabilityBucket extends Resource {
   static const String tfType = 'google_observability_bucket';
 
-  GoogleObservabilityBucket({
-    required super.localName,
+  GoogleObservabilityBucket(
+    super.localName, {
     required TfArg<String> bucketId,
     required TfArg<String> location,
     TfArg<String>? displayName,

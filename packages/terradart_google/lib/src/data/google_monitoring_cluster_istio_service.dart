@@ -13,8 +13,8 @@ const Set<String> _googleMonitoringClusterIstioServiceSensitive = <String>{};
 final class DataGoogleMonitoringClusterIstioService extends Data {
   static const String tfType = 'google_monitoring_cluster_istio_service';
 
-  DataGoogleMonitoringClusterIstioService({
-    required super.localName,
+  DataGoogleMonitoringClusterIstioService(
+    super.localName, {
     required TfArg<String> clusterName,
     required TfArg<String> location,
     TfArg<String>? project,

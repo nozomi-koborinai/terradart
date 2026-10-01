@@ -878,8 +878,8 @@ enum SpotFleetRequestReplacementStrategy implements TerraformEnum {
 final class AwsSpotFleetRequest extends Resource {
   static const String tfType = 'aws_spot_fleet_request';
 
-  AwsSpotFleetRequest({
-    required super.localName,
+  AwsSpotFleetRequest(
+    super.localName, {
     TfArg<SpotFleetRequestAllocationStrategy>? allocationStrategy,
     TfArg<String>? context,
     TfArg<SpotFleetRequestExcessCapacityTerminationPolicy>?

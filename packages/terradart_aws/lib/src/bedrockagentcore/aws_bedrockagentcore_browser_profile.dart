@@ -10,8 +10,8 @@ const Set<String> _awsBedrockagentcoreBrowserProfileSensitive = <String>{};
 final class AwsBedrockagentcoreBrowserProfile extends Resource {
   static const String tfType = 'aws_bedrockagentcore_browser_profile';
 
-  AwsBedrockagentcoreBrowserProfile({
-    required super.localName,
+  AwsBedrockagentcoreBrowserProfile(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

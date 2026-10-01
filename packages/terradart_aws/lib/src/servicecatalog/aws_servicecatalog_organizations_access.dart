@@ -10,8 +10,8 @@ const Set<String> _awsServicecatalogOrganizationsAccessSensitive = <String>{};
 final class AwsServicecatalogOrganizationsAccess extends Resource {
   static const String tfType = 'aws_servicecatalog_organizations_access';
 
-  AwsServicecatalogOrganizationsAccess({
-    required super.localName,
+  AwsServicecatalogOrganizationsAccess(
+    super.localName, {
     required TfArg<bool> enabled,
     super.lifecycle,
     super.dependsOn,

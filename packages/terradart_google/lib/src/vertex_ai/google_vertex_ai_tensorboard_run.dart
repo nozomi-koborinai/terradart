@@ -19,8 +19,8 @@ const Set<String> _googleVertexAiTensorboardRunSensitive = <String>{};
 final class GoogleVertexAiTensorboardRun extends Resource {
   static const String tfType = 'google_vertex_ai_tensorboard_run';
 
-  GoogleVertexAiTensorboardRun({
-    required super.localName,
+  GoogleVertexAiTensorboardRun(
+    super.localName, {
     required TfArg<String> tensorboardRunId,
     required TfArg<String> experiment,
     required TfArg<String> tensorboard,

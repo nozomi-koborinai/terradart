@@ -10,8 +10,8 @@ const Set<String> _awsFinspaceKxScalingGroupSensitive = <String>{};
 final class AwsFinspaceKxScalingGroup extends Resource {
   static const String tfType = 'aws_finspace_kx_scaling_group';
 
-  AwsFinspaceKxScalingGroup({
-    required super.localName,
+  AwsFinspaceKxScalingGroup(
+    super.localName, {
     required TfArg<String> availabilityZoneId,
     required TfArg<String> environmentId,
     required TfArg<String> hostType,

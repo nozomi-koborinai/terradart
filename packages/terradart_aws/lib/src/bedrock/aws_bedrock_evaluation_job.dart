@@ -933,8 +933,8 @@ final class BedrockEvaluationJobOutputDataConfig {
 final class AwsBedrockEvaluationJob extends Resource {
   static const String tfType = 'aws_bedrock_evaluation_job';
 
-  AwsBedrockEvaluationJob({
-    required super.localName,
+  AwsBedrockEvaluationJob(
+    super.localName, {
     TfArg<BedrockEvaluationJobApplicationType>? applicationType,
     TfArg<String>? customerEncryptionKeyId,
     TfArg<String>? jobDescription,

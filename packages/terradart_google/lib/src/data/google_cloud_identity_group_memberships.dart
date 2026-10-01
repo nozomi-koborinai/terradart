@@ -13,8 +13,8 @@ const Set<String> _googleCloudIdentityGroupMembershipsSensitive = <String>{};
 final class DataGoogleCloudIdentityGroupMemberships extends Data {
   static const String tfType = 'google_cloud_identity_group_memberships';
 
-  DataGoogleCloudIdentityGroupMemberships({
-    required super.localName,
+  DataGoogleCloudIdentityGroupMemberships(
+    super.localName, {
     required TfArg<String> group,
     super.provider,
     super.timeouts,

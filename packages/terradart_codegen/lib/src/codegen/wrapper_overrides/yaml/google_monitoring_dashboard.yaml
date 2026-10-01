@@ -37,7 +37,7 @@ curatedDoc: |-
   /// Example (raw String, exported from Cloud Console):
   /// ```dart
   /// final overview = GoogleMonitoringDashboard(
-  ///   localName: 'service_overview',
+  ///   'service_overview',
   ///   dashboardJson: TfArg.literal('''
   /// {
   ///   "displayName": "Service overview",
@@ -72,7 +72,7 @@ curatedDoc: |-
   /// Example (programmatic assembly via `dart:convert`):
   /// ```dart
   /// final dashboard = GoogleMonitoringDashboard(
-  ///   localName: 'service_overview',
+  ///   'service_overview',
   ///   dashboardJson: TfArg.literal(jsonEncode(<String, dynamic>{
   ///     'displayName': 'Service overview',
   ///     'mosaicLayout': {'columns': 12, 'tiles': <Map<String, dynamic>>[]},

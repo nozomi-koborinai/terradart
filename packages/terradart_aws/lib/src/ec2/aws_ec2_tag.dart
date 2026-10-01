@@ -10,8 +10,8 @@ const Set<String> _awsEc2TagSensitive = <String>{};
 final class AwsEc2Tag extends Resource {
   static const String tfType = 'aws_ec2_tag';
 
-  AwsEc2Tag({
-    required super.localName,
+  AwsEc2Tag(
+    super.localName, {
     required TfArg<String> key,
     TfArg<String>? region,
     required TfArg<String> resourceId,

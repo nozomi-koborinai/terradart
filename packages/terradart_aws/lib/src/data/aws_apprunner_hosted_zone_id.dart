@@ -10,8 +10,8 @@ const Set<String> _awsApprunnerHostedZoneIdSensitive = <String>{};
 final class DataAwsApprunnerHostedZoneId extends Data {
   static const String tfType = 'aws_apprunner_hosted_zone_id';
 
-  DataAwsApprunnerHostedZoneId({
-    required super.localName,
+  DataAwsApprunnerHostedZoneId(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

@@ -33,8 +33,8 @@ enum MigrationCenterDiscoveryClientDeletionPolicy implements TerraformEnum {
 final class GoogleMigrationCenterDiscoveryClient extends Resource {
   static const String tfType = 'google_migration_center_discovery_client';
 
-  GoogleMigrationCenterDiscoveryClient({
-    required super.localName,
+  GoogleMigrationCenterDiscoveryClient(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> discoveryClientId,
     required RefTo<GoogleMigrationCenterSource> source,

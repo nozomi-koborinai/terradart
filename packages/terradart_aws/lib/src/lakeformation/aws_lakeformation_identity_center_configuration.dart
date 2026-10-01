@@ -12,8 +12,8 @@ final class AwsLakeformationIdentityCenterConfiguration extends Resource {
   static const String tfType =
       'aws_lakeformation_identity_center_configuration';
 
-  AwsLakeformationIdentityCenterConfiguration({
-    required super.localName,
+  AwsLakeformationIdentityCenterConfiguration(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> instanceArn,
     TfArg<String>? region,

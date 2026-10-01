@@ -28,8 +28,8 @@ enum ChimeVoiceConnectorAwsRegion implements TerraformEnum {
 final class AwsChimeVoiceConnector extends Resource {
   static const String tfType = 'aws_chime_voice_connector';
 
-  AwsChimeVoiceConnector({
-    required super.localName,
+  AwsChimeVoiceConnector(
+    super.localName, {
     TfArg<ChimeVoiceConnectorAwsRegion>? awsRegion,
     required TfArg<String> name,
     TfArg<String>? region,

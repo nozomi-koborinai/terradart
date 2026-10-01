@@ -11,8 +11,8 @@ const Set<String> _cloudflareAiSearchInstancesSensitive = <String>{};
 final class DataCloudflareAiSearchInstances extends Data {
   static const String tfType = 'cloudflare_ai_search_instances';
 
-  DataCloudflareAiSearchInstances({
-    required super.localName,
+  DataCloudflareAiSearchInstances(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? namespace,

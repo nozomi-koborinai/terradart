@@ -30,8 +30,8 @@ final class RedshiftParameterGroupParameter {
 final class AwsRedshiftParameterGroup extends Resource {
   static const String tfType = 'aws_redshift_parameter_group';
 
-  AwsRedshiftParameterGroup({
-    required super.localName,
+  AwsRedshiftParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     required TfArg<String> name,

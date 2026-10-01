@@ -16,8 +16,8 @@ const Set<String> _googleServiceUsageConsumerQuotaOverrideSensitive =
 final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
   static const String tfType = 'google_service_usage_consumer_quota_override';
 
-  GoogleServiceUsageConsumerQuotaOverride({
-    required super.localName,
+  GoogleServiceUsageConsumerQuotaOverride(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? dimensions,
     TfArg<bool>? force,

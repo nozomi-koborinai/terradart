@@ -12,8 +12,8 @@ const Set<String> _cloudflarePrecursorSensitive = <String>{};
 final class DataCloudflarePrecursor extends Data {
   static const String tfType = 'cloudflare_precursor';
 
-  DataCloudflarePrecursor({
-    required super.localName,
+  DataCloudflarePrecursor(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

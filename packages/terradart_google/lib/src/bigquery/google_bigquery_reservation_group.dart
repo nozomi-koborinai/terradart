@@ -20,7 +20,7 @@ const Set<String> _googleBigqueryReservationGroupSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleBigqueryReservationGroup(
-///   localName: 'analytics',
+///   'analytics',
 ///   name: TfArg.literal('terradart-res-group'),
 ///   location: TfArg.literal('US'),
 /// );
@@ -28,8 +28,8 @@ const Set<String> _googleBigqueryReservationGroupSensitive = <String>{};
 final class GoogleBigqueryReservationGroup extends Resource {
   static const String tfType = 'google_bigquery_reservation_group';
 
-  GoogleBigqueryReservationGroup({
-    required super.localName,
+  GoogleBigqueryReservationGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? deletionPolicy,

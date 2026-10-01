@@ -10,8 +10,8 @@ const Set<String> _awsDxConnectionAssociationSensitive = <String>{};
 final class AwsDxConnectionAssociation extends Resource {
   static const String tfType = 'aws_dx_connection_association';
 
-  AwsDxConnectionAssociation({
-    required super.localName,
+  AwsDxConnectionAssociation(
+    super.localName, {
     required TfArg<String> connectionId,
     required TfArg<String> lagId,
     TfArg<String>? region,

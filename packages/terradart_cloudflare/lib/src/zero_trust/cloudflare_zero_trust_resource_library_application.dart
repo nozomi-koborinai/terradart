@@ -14,8 +14,8 @@ final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_resource_library_application';
 
-  CloudflareZeroTrustResourceLibraryApplication({
-    required super.localName,
+  CloudflareZeroTrustResourceLibraryApplication(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? name,
     TfArg<List<String>>? hostnames,

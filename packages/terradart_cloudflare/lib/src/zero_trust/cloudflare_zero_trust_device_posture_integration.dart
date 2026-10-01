@@ -82,8 +82,8 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_device_posture_integration';
 
-  CloudflareZeroTrustDevicePostureIntegration({
-    required super.localName,
+  CloudflareZeroTrustDevicePostureIntegration(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> interval,
     required TfArg<String> name,

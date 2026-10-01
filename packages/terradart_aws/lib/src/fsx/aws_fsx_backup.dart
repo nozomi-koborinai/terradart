@@ -10,8 +10,8 @@ const Set<String> _awsFsxBackupSensitive = <String>{};
 final class AwsFsxBackup extends Resource {
   static const String tfType = 'aws_fsx_backup';
 
-  AwsFsxBackup({
-    required super.localName,
+  AwsFsxBackup(
+    super.localName, {
     TfArg<String>? fileSystemId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

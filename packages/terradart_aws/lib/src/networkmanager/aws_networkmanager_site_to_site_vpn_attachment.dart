@@ -11,8 +11,8 @@ const Set<String> _awsNetworkmanagerSiteToSiteVpnAttachmentSensitive =
 final class AwsNetworkmanagerSiteToSiteVpnAttachment extends Resource {
   static const String tfType = 'aws_networkmanager_site_to_site_vpn_attachment';
 
-  AwsNetworkmanagerSiteToSiteVpnAttachment({
-    required super.localName,
+  AwsNetworkmanagerSiteToSiteVpnAttachment(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     TfArg<String>? routingPolicyLabel,
     TfArg<Map<String, String>>? tags,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftserverlessSnapshotSensitive = <String>{};
 final class AwsRedshiftserverlessSnapshot extends Resource {
   static const String tfType = 'aws_redshiftserverless_snapshot';
 
-  AwsRedshiftserverlessSnapshot({
-    required super.localName,
+  AwsRedshiftserverlessSnapshot(
+    super.localName, {
     required TfArg<String> namespaceName,
     TfArg<String>? region,
     TfArg<num>? retentionPeriod,

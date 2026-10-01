@@ -17,8 +17,8 @@ const Set<String> _googleLoggingOrganizationExclusionSensitive = <String>{};
 final class GoogleLoggingOrganizationExclusion extends Resource {
   static const String tfType = 'google_logging_organization_exclusion';
 
-  GoogleLoggingOrganizationExclusion({
-    required super.localName,
+  GoogleLoggingOrganizationExclusion(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? disabled,
     required TfArg<String> filter,

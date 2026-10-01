@@ -15,8 +15,8 @@ const Set<String> _cloudflareEmailSecurityBlockSendersSensitive = <String>{};
 final class DataCloudflareEmailSecurityBlockSenders extends Data {
   static const String tfType = 'cloudflare_email_security_block_senders';
 
-  DataCloudflareEmailSecurityBlockSenders({
-    required super.localName,
+  DataCloudflareEmailSecurityBlockSenders(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,

@@ -12,8 +12,8 @@ const Set<String> _awsKmsReplicaExternalKeySensitive = <String>{
 final class AwsKmsReplicaExternalKey extends Resource {
   static const String tfType = 'aws_kms_replica_external_key';
 
-  AwsKmsReplicaExternalKey({
-    required super.localName,
+  AwsKmsReplicaExternalKey(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     TfArg<num>? deletionWindowInDays,
     TfArg<String>? description,

@@ -542,8 +542,8 @@ final class BedrockGuardrailWordsConfig {
 final class AwsBedrockGuardrail extends Resource {
   static const String tfType = 'aws_bedrock_guardrail';
 
-  AwsBedrockGuardrail({
-    required super.localName,
+  AwsBedrockGuardrail(
+    super.localName, {
     required TfArg<String> blockedInputMessaging,
     required TfArg<String> blockedOutputsMessaging,
     TfArg<String>? description,

@@ -25,8 +25,8 @@ const Set<String> _googleComputeHttpHealthCheckSensitive = <String>{};
 final class GoogleComputeHttpHealthCheck extends Resource {
   static const String tfType = 'google_compute_http_health_check';
 
-  GoogleComputeHttpHealthCheck({
-    required super.localName,
+  GoogleComputeHttpHealthCheck(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? requestPath,
     TfArg<num>? port,

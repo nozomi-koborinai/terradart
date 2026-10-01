@@ -30,8 +30,8 @@ final class AppconfigEnvironmentMonitor {
 final class AwsAppconfigEnvironment extends Resource {
   static const String tfType = 'aws_appconfig_environment';
 
-  AwsAppconfigEnvironment({
-    required super.localName,
+  AwsAppconfigEnvironment(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? description,
     required TfArg<String> name,

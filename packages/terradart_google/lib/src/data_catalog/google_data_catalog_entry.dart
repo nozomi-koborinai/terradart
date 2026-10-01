@@ -96,7 +96,7 @@ final class DataCatalogEntryGcsFilesetSpec {
 /// Example (custom entry):
 /// ```dart
 /// GoogleDataCatalogEntry(
-///   localName: 'custom',
+///   'custom',
 ///   entryGroup: group.ref,
 ///   entryId: TfArg.literal('my_entry'),
 ///   entryKind: DataCatalogEntryCustomType(
@@ -108,8 +108,8 @@ final class DataCatalogEntryGcsFilesetSpec {
 final class GoogleDataCatalogEntry extends Resource {
   static const String tfType = 'google_data_catalog_entry';
 
-  GoogleDataCatalogEntry({
-    required super.localName,
+  GoogleDataCatalogEntry(
+    super.localName, {
     required RefTo<GoogleDataCatalogEntryGroup> entryGroup,
     required TfArg<String> entryId,
     required DataCatalogEntryKind entryKind,

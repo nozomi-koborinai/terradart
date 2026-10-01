@@ -105,8 +105,8 @@ final class BedrockagentcoreCodeInterpreterVpcConfig {
 final class AwsBedrockagentcoreCodeInterpreter extends Resource {
   static const String tfType = 'aws_bedrockagentcore_code_interpreter';
 
-  AwsBedrockagentcoreCodeInterpreter({
-    required super.localName,
+  AwsBedrockagentcoreCodeInterpreter(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> name,

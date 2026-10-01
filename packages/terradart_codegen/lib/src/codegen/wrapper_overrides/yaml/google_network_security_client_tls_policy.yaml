@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkSecurityClientTlsPolicy(
-  ///   localName: 'backend',
+  ///   'backend',
   ///   name: TfArg.literal('terradart-client-tls'),
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('TerraDart smoke client TLS policy'),

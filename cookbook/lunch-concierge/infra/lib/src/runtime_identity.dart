@@ -25,7 +25,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
 }) {
   final serviceAccount = stack.add(
     GoogleServiceAccount(
-      localName: 'sql_client',
+      'sql_client',
       accountId: .literal(sqlClientAccountId),
       displayName: .literal('Lunch Concierge runtime and SQL client'),
     ),
@@ -33,7 +33,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
 
   final cloudSqlClientGrant = stack.add(
     GoogleProjectIamMember(
-      localName: 'sql_client_cloudsql_client',
+      'sql_client_cloudsql_client',
       project: .literal(projectId),
       role: .literal('roles/cloudsql.client'),
       member: serviceAccount.principal,
@@ -43,7 +43,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
 
   final instanceUserGrant = stack.add(
     GoogleProjectIamMember(
-      localName: 'sql_client_instance_user',
+      'sql_client_instance_user',
       project: .literal(projectId),
       role: .literal('roles/cloudsql.instanceUser'),
       member: serviceAccount.principal,
@@ -53,7 +53,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
 
   final vertexUserGrant = stack.add(
     GoogleProjectIamMember(
-      localName: 'sql_client_vertex_user',
+      'sql_client_vertex_user',
       project: .literal(projectId),
       role: .literal('roles/aiplatform.user'),
       member: serviceAccount.principal,

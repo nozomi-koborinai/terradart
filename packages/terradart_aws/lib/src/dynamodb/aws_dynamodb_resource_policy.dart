@@ -10,8 +10,8 @@ const Set<String> _awsDynamodbResourcePolicySensitive = <String>{};
 final class AwsDynamodbResourcePolicy extends Resource {
   static const String tfType = 'aws_dynamodb_resource_policy';
 
-  AwsDynamodbResourcePolicy({
-    required super.localName,
+  AwsDynamodbResourcePolicy(
+    super.localName, {
     TfArg<bool>? confirmRemoveSelfResourceAccess,
     required TfArg<String> policy,
     TfArg<String>? region,

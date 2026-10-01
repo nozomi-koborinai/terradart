@@ -17,8 +17,8 @@ const Set<String> _googleSqlSslCertSensitive = <String>{
 final class GoogleSqlSslCert extends Resource {
   static const String tfType = 'google_sql_ssl_cert';
 
-  GoogleSqlSslCert({
-    required super.localName,
+  GoogleSqlSslCert(
+    super.localName, {
     required TfArg<String> commonName,
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,

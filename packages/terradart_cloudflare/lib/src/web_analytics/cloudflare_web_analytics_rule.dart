@@ -12,8 +12,8 @@ const Set<String> _cloudflareWebAnalyticsRuleSensitive = <String>{};
 final class CloudflareWebAnalyticsRule extends Resource {
   static const String tfType = 'cloudflare_web_analytics_rule';
 
-  CloudflareWebAnalyticsRule({
-    required super.localName,
+  CloudflareWebAnalyticsRule(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? host,
     TfArg<bool>? inclusive,

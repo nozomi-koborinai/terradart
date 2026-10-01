@@ -90,8 +90,8 @@ final class SecuritylakeSubscriberNotificationSqsNotificationConfiguration {
 final class AwsSecuritylakeSubscriberNotification extends Resource {
   static const String tfType = 'aws_securitylake_subscriber_notification';
 
-  AwsSecuritylakeSubscriberNotification({
-    required super.localName,
+  AwsSecuritylakeSubscriberNotification(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> subscriberId,
     List<SecuritylakeSubscriberNotificationConfiguration>? configuration,

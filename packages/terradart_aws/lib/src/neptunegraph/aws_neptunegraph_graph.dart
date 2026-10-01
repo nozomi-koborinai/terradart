@@ -91,8 +91,8 @@ final class NeptunegraphGraphVectorSearchConfiguration {
 final class AwsNeptunegraphGraph extends Resource {
   static const String tfType = 'aws_neptunegraph_graph';
 
-  AwsNeptunegraphGraph({
-    required super.localName,
+  AwsNeptunegraphGraph(
+    super.localName, {
     TfArg<bool>? deletionProtection,
     NeptunegraphGraphName? graphName,
     RefTo<AwsKmsKey>? kmsKeyIdentifier,

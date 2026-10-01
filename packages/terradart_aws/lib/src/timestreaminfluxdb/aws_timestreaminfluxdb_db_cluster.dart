@@ -127,8 +127,8 @@ final class TimestreaminfluxdbDbClusterMaintenanceSchedule {
 final class AwsTimestreaminfluxdbDbCluster extends Resource {
   static const String tfType = 'aws_timestreaminfluxdb_db_cluster';
 
-  AwsTimestreaminfluxdbDbCluster({
-    required super.localName,
+  AwsTimestreaminfluxdbDbCluster(
+    super.localName, {
     TfArg<num>? allocatedStorage,
     TfArg<String>? bucket,
     required TfArg<TimestreaminfluxdbDbClusterDbInstanceType> dbInstanceType,

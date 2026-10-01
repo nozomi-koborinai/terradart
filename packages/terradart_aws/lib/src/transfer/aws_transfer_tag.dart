@@ -10,8 +10,8 @@ const Set<String> _awsTransferTagSensitive = <String>{};
 final class AwsTransferTag extends Resource {
   static const String tfType = 'aws_transfer_tag';
 
-  AwsTransferTag({
-    required super.localName,
+  AwsTransferTag(
+    super.localName, {
     required TfArg<String> key,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

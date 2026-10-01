@@ -16,8 +16,8 @@ const Set<String> _googleIapLocationWebIamPolicySensitive = <String>{};
 final class GoogleIapLocationWebIamPolicy extends Resource {
   static const String tfType = 'google_iap_location_web_iam_policy';
 
-  GoogleIapLocationWebIamPolicy({
-    required super.localName,
+  GoogleIapLocationWebIamPolicy(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> policyData,
     TfArg<String>? project,

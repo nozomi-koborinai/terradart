@@ -41,8 +41,8 @@ final class DataCustomHostnamesHostname {
 final class DataCloudflareCustomHostnames extends Data {
   static const String tfType = 'cloudflare_custom_hostnames';
 
-  DataCloudflareCustomHostnames({
-    required super.localName,
+  DataCloudflareCustomHostnames(
+    super.localName, {
     TfArg<String>? certificateAuthority,
     TfArg<String>? customOriginServer,
     TfArg<String>? direction,

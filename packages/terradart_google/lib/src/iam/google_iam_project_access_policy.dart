@@ -113,8 +113,8 @@ final class IamProjectAccessPolicyOperation {
 final class GoogleIamProjectAccessPolicy extends Resource {
   static const String tfType = 'google_iam_project_access_policy';
 
-  GoogleIamProjectAccessPolicy({
-    required super.localName,
+  GoogleIamProjectAccessPolicy(
+    super.localName, {
     required TfArg<String> accessPolicyId,
     required TfArg<String> location,
     TfArg<String>? displayName,

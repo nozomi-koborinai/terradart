@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataCatalogTag(
-  ///   localName: 'entry_source',
+  ///   'entry_source',
   ///   parent: entry.id,
   ///   template: template.ref,
   ///   fields: [

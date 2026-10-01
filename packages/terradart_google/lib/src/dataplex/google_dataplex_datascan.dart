@@ -1070,8 +1070,8 @@ final class DataplexDatascanSchedule {
 final class GoogleDataplexDatascan extends Resource {
   static const String tfType = 'google_dataplex_datascan';
 
-  GoogleDataplexDatascan({
-    required super.localName,
+  GoogleDataplexDatascan(
+    super.localName, {
     required TfArg<String> dataScanId,
     required TfArg<String> location,
     required DataplexDatascanScanSpec scanSpec,

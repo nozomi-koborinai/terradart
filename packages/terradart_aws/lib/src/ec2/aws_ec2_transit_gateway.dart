@@ -90,8 +90,8 @@ enum Ec2TransitGatewayVpnEcmpSupport implements TerraformEnum {
 final class AwsEc2TransitGateway extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway';
 
-  AwsEc2TransitGateway({
-    required super.localName,
+  AwsEc2TransitGateway(
+    super.localName, {
     TfArg<num>? amazonSideAsn,
     TfArg<Ec2TransitGatewayAutoAcceptSharedAttachments>?
     autoAcceptSharedAttachments,

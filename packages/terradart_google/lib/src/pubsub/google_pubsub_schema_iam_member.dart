@@ -37,8 +37,8 @@ final class PubsubSchemaIamMemberCondition {
 final class GooglePubsubSchemaIamMember extends Resource {
   static const String tfType = 'google_pubsub_schema_iam_member';
 
-  GooglePubsubSchemaIamMember({
-    required super.localName,
+  GooglePubsubSchemaIamMember(
+    super.localName, {
     required RefTo<GooglePubsubSchema> schema,
     required TfArg<String> role,
     required IamPrincipal member,

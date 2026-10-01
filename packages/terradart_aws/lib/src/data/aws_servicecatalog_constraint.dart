@@ -11,8 +11,8 @@ const Set<String> _awsServicecatalogConstraintSensitive = <String>{};
 final class DataAwsServicecatalogConstraint extends Data {
   static const String tfType = 'aws_servicecatalog_constraint';
 
-  DataAwsServicecatalogConstraint({
-    required super.localName,
+  DataAwsServicecatalogConstraint(
+    super.localName, {
     TfArg<String>? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> id,

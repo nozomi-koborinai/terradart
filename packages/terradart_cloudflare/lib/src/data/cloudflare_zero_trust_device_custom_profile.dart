@@ -35,8 +35,8 @@ enum DataZeroTrustDeviceCustomProfileFilterProfileType
 final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_custom_profile';
 
-  DataCloudflareZeroTrustDeviceCustomProfile({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceCustomProfile(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? policyId,
     DataZeroTrustDeviceCustomProfileFilter? filter,

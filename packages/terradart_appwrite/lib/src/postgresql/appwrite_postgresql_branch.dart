@@ -25,8 +25,8 @@ const Set<String> _appwritePostgresqlBranchSensitive = <String>{
 final class AppwritePostgresqlBranch extends Resource {
   static const String tfType = 'appwrite_postgresql_branch';
 
-  AppwritePostgresqlBranch({
-    required super.localName,
+  AppwritePostgresqlBranch(
+    super.localName, {
     TfArg<String>? branchId,
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,

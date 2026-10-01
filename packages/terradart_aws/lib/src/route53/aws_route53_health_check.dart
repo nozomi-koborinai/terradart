@@ -107,8 +107,8 @@ enum Route53HealthCheckType implements TerraformEnum {
 final class AwsRoute53HealthCheck extends Resource {
   static const String tfType = 'aws_route53_health_check';
 
-  AwsRoute53HealthCheck({
-    required super.localName,
+  AwsRoute53HealthCheck(
+    super.localName, {
     TfArg<num>? childHealthThreshold,
     TfArg<List<String>>? childHealthchecks,
     TfArg<String>? cloudwatchAlarmName,

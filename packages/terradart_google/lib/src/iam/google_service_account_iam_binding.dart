@@ -43,8 +43,8 @@ final class ServiceAccountIamBindingCondition {
 final class GoogleServiceAccountIamBinding extends Resource {
   static const String tfType = 'google_service_account_iam_binding';
 
-  GoogleServiceAccountIamBinding({
-    required super.localName,
+  GoogleServiceAccountIamBinding(
+    super.localName, {
     required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

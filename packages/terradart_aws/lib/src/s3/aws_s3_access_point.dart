@@ -52,8 +52,8 @@ final class S3AccessPointVpcConfiguration {
 final class AwsS3AccessPoint extends Resource {
   static const String tfType = 'aws_s3_access_point';
 
-  AwsS3AccessPoint({
-    required super.localName,
+  AwsS3AccessPoint(
+    super.localName, {
     TfArg<String>? accountId,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? bucketAccountId,

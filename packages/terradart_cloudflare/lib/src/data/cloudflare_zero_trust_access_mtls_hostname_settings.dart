@@ -20,8 +20,8 @@ final class DataCloudflareZeroTrustAccessMtlsHostnameSettings extends Data {
   static const String tfType =
       'cloudflare_zero_trust_access_mtls_hostname_settings';
 
-  DataCloudflareZeroTrustAccessMtlsHostnameSettings({
-    required super.localName,
+  DataCloudflareZeroTrustAccessMtlsHostnameSettings(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

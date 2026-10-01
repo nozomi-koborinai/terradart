@@ -247,7 +247,7 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 /// Example (GitHub Actions OIDC):
 /// ```dart
 /// final githubProvider = GoogleIamWorkloadIdentityPoolProvider(
-///   localName: 'github_provider',
+///   'github_provider',
 ///   workloadIdentityPoolId: pool.ref,
 ///   workloadIdentityPoolProviderId: .literal('github-actions'),
 ///   displayName: .literal('GitHub Actions'),
@@ -267,8 +267,8 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
   static const String tfType = 'google_iam_workload_identity_pool_provider';
 
-  GoogleIamWorkloadIdentityPoolProvider({
-    required super.localName,
+  GoogleIamWorkloadIdentityPoolProvider(
+    super.localName, {
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolProviderId,
     TfArg<String>? displayName,

@@ -138,8 +138,8 @@ final class ElasticBeanstalkEnvironmentSetting {
 final class AwsElasticBeanstalkEnvironment extends Resource {
   static const String tfType = 'aws_elastic_beanstalk_environment';
 
-  AwsElasticBeanstalkEnvironment({
-    required super.localName,
+  AwsElasticBeanstalkEnvironment(
+    super.localName, {
     required TfArg<String> application,
     TfArg<String>? cnamePrefix,
     TfArg<String>? description,

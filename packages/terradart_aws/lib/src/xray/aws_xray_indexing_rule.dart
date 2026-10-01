@@ -40,8 +40,8 @@ final class XrayIndexingRuleProbabilistic {
 final class AwsXrayIndexingRule extends Resource {
   static const String tfType = 'aws_xray_indexing_rule';
 
-  AwsXrayIndexingRule({
-    required super.localName,
+  AwsXrayIndexingRule(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     List<XrayIndexingRule>? rule,

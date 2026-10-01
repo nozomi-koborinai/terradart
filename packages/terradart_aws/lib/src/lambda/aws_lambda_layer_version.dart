@@ -81,8 +81,8 @@ enum LambdaLayerVersionCompatibleRuntimes implements TerraformEnum {
 final class AwsLambdaLayerVersion extends Resource {
   static const String tfType = 'aws_lambda_layer_version';
 
-  AwsLambdaLayerVersion({
-    required super.localName,
+  AwsLambdaLayerVersion(
+    super.localName, {
     List<TfArg<LambdaLayerVersionCompatibleArchitectures>>?
     compatibleArchitectures,
     List<TfArg<LambdaLayerVersionCompatibleRuntimes>>? compatibleRuntimes,

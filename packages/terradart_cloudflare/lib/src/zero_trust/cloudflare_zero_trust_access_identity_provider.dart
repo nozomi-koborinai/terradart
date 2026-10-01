@@ -256,8 +256,8 @@ enum ZeroTrustAccessIdentityProviderIdentityUpdateBehavior
 final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
   static const String tfType = 'cloudflare_zero_trust_access_identity_provider';
 
-  CloudflareZeroTrustAccessIdentityProvider({
-    required super.localName,
+  CloudflareZeroTrustAccessIdentityProvider(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> name,
     TfArg<bool>? readOnly,

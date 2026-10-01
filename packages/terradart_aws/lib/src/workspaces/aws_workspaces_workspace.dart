@@ -84,8 +84,8 @@ enum WorkspacesWorkspaceRunningMode implements TerraformEnum {
 final class AwsWorkspacesWorkspace extends Resource {
   static const String tfType = 'aws_workspaces_workspace';
 
-  AwsWorkspacesWorkspace({
-    required super.localName,
+  AwsWorkspacesWorkspace(
+    super.localName, {
     required TfArg<String> bundleId,
     required TfArg<String> directoryId,
     TfArg<String>? region,

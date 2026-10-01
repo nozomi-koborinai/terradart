@@ -20,8 +20,8 @@ enum NetworkInterfacePermission implements TerraformEnum {
 final class AwsNetworkInterfacePermission extends Resource {
   static const String tfType = 'aws_network_interface_permission';
 
-  AwsNetworkInterfacePermission({
-    required super.localName,
+  AwsNetworkInterfacePermission(
+    super.localName, {
     required TfArg<String> awsAccountId,
     required TfArg<String> networkInterfaceId,
     required TfArg<NetworkInterfacePermission> permission,

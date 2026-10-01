@@ -357,7 +357,7 @@ final class LookerInstanceUserMetadata {
 /// Example:
 /// ```dart
 /// GoogleLookerInstance(
-///   localName: 'bi',
+///   'bi',
 ///   name: TfArg.literal('terradart-looker'),
 ///   region: TfArg.literal('us-central1'),
 ///   platformEdition: TfArg.literal(
@@ -372,8 +372,8 @@ final class LookerInstanceUserMetadata {
 final class GoogleLookerInstance extends Resource {
   static const String tfType = 'google_looker_instance';
 
-  GoogleLookerInstance({
-    required super.localName,
+  GoogleLookerInstance(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<LookerInstancePlatformEdition>? platformEdition,

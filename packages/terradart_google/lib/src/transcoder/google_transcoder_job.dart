@@ -607,8 +607,8 @@ final class TranscoderJobPubsubDestination {
 final class GoogleTranscoderJob extends Resource {
   static const String tfType = 'google_transcoder_job';
 
-  GoogleTranscoderJob({
-    required super.localName,
+  GoogleTranscoderJob(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,

@@ -17,8 +17,8 @@ const Set<String> _googleDnsManagedZoneIamPolicySensitive = <String>{};
 final class GoogleDnsManagedZoneIamPolicy extends Resource {
   static const String tfType = 'google_dns_managed_zone_iam_policy';
 
-  GoogleDnsManagedZoneIamPolicy({
-    required super.localName,
+  GoogleDnsManagedZoneIamPolicy(
+    super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> policyData,
     TfArg<String>? project,

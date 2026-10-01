@@ -233,8 +233,8 @@ final class GoogleStorageControlOrganizationIntelligenceConfig
   static const String tfType =
       'google_storage_control_organization_intelligence_config';
 
-  GoogleStorageControlOrganizationIntelligenceConfig({
-    required super.localName,
+  GoogleStorageControlOrganizationIntelligenceConfig(
+    super.localName, {
     TfArg<String>? editionConfig,
     required TfArg<String> name,
     StorageControlOrganizationIntelligenceConfigFilter? filter,

@@ -45,7 +45,7 @@ final class CloudSqlStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'sql_vpc',
+        'sql_vpc',
         name: .literal('cloudsql-vpc'),
         autoCreateSubnetworks: .literal(false),
       ),
@@ -55,7 +55,7 @@ final class CloudSqlStack extends Stack {
 
     final psaRange = add(
       GoogleComputeGlobalAddress(
-        localName: 'psa_range',
+        'psa_range',
         name: .literal('cloudsql-psa-range'),
         addressType: .literal(.internal),
         purpose: .literal(.vpcPeering),
@@ -68,7 +68,7 @@ final class CloudSqlStack extends Stack {
 
     final psaConnection = add(
       GoogleServiceNetworkingConnection(
-        localName: 'psa',
+        'psa',
         network: vpc.ref,
         service: .literal('servicenetworking.googleapis.com'),
         reservedPeeringRanges: .literal([
@@ -93,7 +93,7 @@ final class CloudSqlStack extends Stack {
 
     final primary = add(
       GoogleSqlDatabaseInstance(
-        localName: 'primary',
+        'primary',
         name: .literal('orders-primary'),
         databaseVersion: .literal(.postgres15),
         region: .literal('asia-northeast1'),
@@ -127,7 +127,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleSqlDatabase(
-        localName: 'orders',
+        'orders',
         instance: primary.ref,
         name: .literal('orders'),
       ),
@@ -137,7 +137,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleSqlUser(
-        localName: 'app',
+        'app',
         instance: primary.ref,
         name: .literal('app'),
         type: .literal(.builtIn),
@@ -148,7 +148,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleSqlSslCert(
-        localName: 'client_cert',
+        'client_cert',
         instance: primary.ref,
         commonName: .literal('app-client'),
       ),
@@ -156,7 +156,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleSqlSourceRepresentationInstance(
-        localName: 'legacy_mysql',
+        'legacy_mysql',
         name: .literal('legacy-mysql'),
         region: .literal('asia-northeast1'),
         databaseVersion: .literal('MYSQL_8_0'),
@@ -173,7 +173,7 @@ final class CloudSqlStack extends Stack {
 
     final alloyCluster = add(
       GoogleAlloydbCluster(
-        localName: 'alloydb',
+        'alloydb',
         clusterId: .literal('app-alloydb'),
         location: .literal('asia-northeast1'),
         networkConfig: AlloydbClusterNetworkConfig(
@@ -191,7 +191,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleAlloydbInstance(
-        localName: 'alloydb_primary',
+        'alloydb_primary',
         cluster: alloyCluster.ref,
         instanceId: .literal('primary'),
         instanceType: .literal(.primary),
@@ -201,7 +201,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleAlloydbUser(
-        localName: 'alloydb_app',
+        'alloydb_app',
         cluster: alloyCluster.ref,
         userId: .literal('app'),
         userType: .literal(.alloydbBuiltIn),
@@ -212,7 +212,7 @@ final class CloudSqlStack extends Stack {
 
     add(
       GoogleAlloydbBackup(
-        localName: 'alloydb_nightly',
+        'alloydb_nightly',
         backupId: .literal('nightly-backup'),
         clusterName: alloyCluster.ref,
         location: .literal('asia-northeast1'),

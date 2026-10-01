@@ -20,8 +20,8 @@ const Set<String> _awsIamRolePolicyAttachmentSensitive = <String>{};
 final class AwsIamRolePolicyAttachment extends Resource {
   static const String tfType = 'aws_iam_role_policy_attachment';
 
-  AwsIamRolePolicyAttachment({
-    required super.localName,
+  AwsIamRolePolicyAttachment(
+    super.localName, {
     required RefTo<AwsIamPolicy> policyArn,
     required RefTo<AwsIamRole> role,
     super.lifecycle,

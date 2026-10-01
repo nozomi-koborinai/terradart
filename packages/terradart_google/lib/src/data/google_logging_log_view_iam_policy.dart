@@ -14,8 +14,8 @@ const Set<String> _googleLoggingLogViewIamPolicySensitive = <String>{};
 final class DataGoogleLoggingLogViewIamPolicy extends Data {
   static const String tfType = 'google_logging_log_view_iam_policy';
 
-  DataGoogleLoggingLogViewIamPolicy({
-    required super.localName,
+  DataGoogleLoggingLogViewIamPolicy(
+    super.localName, {
     required TfArg<String> bucket,
     TfArg<String>? location,
     required TfArg<String> name,

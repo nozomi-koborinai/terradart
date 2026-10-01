@@ -38,8 +38,8 @@ final class HealthcareHl7V2StoreIamMemberCondition {
 final class GoogleHealthcareHl7V2StoreIamMember extends Resource {
   static const String tfType = 'google_healthcare_hl7_v2_store_iam_member';
 
-  GoogleHealthcareHl7V2StoreIamMember({
-    required super.localName,
+  GoogleHealthcareHl7V2StoreIamMember(
+    super.localName, {
     required RefTo<GoogleHealthcareHl7V2Store> hl7V2Store,
     required TfArg<String> role,
     required IamPrincipal member,

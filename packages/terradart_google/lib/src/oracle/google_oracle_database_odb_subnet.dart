@@ -39,8 +39,8 @@ enum OracleDatabaseOdbSubnetPurpose implements TerraformEnum {
 final class GoogleOracleDatabaseOdbSubnet extends Resource {
   static const String tfType = 'google_oracle_database_odb_subnet';
 
-  GoogleOracleDatabaseOdbSubnet({
-    required super.localName,
+  GoogleOracleDatabaseOdbSubnet(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> odbnetwork,
     required TfArg<String> odbSubnetId,

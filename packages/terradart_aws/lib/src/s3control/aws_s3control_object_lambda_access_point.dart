@@ -121,8 +121,8 @@ final class S3controlObjectLambdaAccessPointAwsLambda {
 final class AwsS3controlObjectLambdaAccessPoint extends Resource {
   static const String tfType = 'aws_s3control_object_lambda_access_point';
 
-  AwsS3controlObjectLambdaAccessPoint({
-    required super.localName,
+  AwsS3controlObjectLambdaAccessPoint(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> name,
     TfArg<String>? region,

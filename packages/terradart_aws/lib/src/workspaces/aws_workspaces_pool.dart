@@ -34,8 +34,8 @@ final class WorkspacesPoolCapacity {
 final class AwsWorkspacesPool extends Resource {
   static const String tfType = 'aws_workspaces_pool';
 
-  AwsWorkspacesPool({
-    required super.localName,
+  AwsWorkspacesPool(
+    super.localName, {
     TfArg<List<Map<String, Object?>>>? applicationSettings,
     required TfArg<String> bundleId,
     required TfArg<String> description,

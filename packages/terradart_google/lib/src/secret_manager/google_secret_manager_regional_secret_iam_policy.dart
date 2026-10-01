@@ -21,8 +21,8 @@ final class GoogleSecretManagerRegionalSecretIamPolicy extends Resource {
   static const String tfType =
       'google_secret_manager_regional_secret_iam_policy';
 
-  GoogleSecretManagerRegionalSecretIamPolicy({
-    required super.localName,
+  GoogleSecretManagerRegionalSecretIamPolicy(
+    super.localName, {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
     TfArg<String>? location,
     required TfArg<String> policyData,

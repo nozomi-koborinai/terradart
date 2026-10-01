@@ -38,8 +38,8 @@ final class DataplexAspectTypeIamMemberCondition {
 final class GoogleDataplexAspectTypeIamMember extends Resource {
   static const String tfType = 'google_dataplex_aspect_type_iam_member';
 
-  GoogleDataplexAspectTypeIamMember({
-    required super.localName,
+  GoogleDataplexAspectTypeIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexAspectType> aspectType,
     required TfArg<String> role,
     required IamPrincipal member,

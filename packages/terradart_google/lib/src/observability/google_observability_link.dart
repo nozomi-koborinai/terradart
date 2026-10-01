@@ -15,8 +15,8 @@ const Set<String> _googleObservabilityLinkSensitive = <String>{};
 final class GoogleObservabilityLink extends Resource {
   static const String tfType = 'google_observability_link';
 
-  GoogleObservabilityLink({
-    required super.localName,
+  GoogleObservabilityLink(
+    super.localName, {
     required TfArg<String> linkId,
     required TfArg<String> location,
     required RefTo<GoogleObservabilityBucket> bucket,

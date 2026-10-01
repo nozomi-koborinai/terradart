@@ -10,8 +10,8 @@ const Set<String> _awsApigatewayv2ApiMappingSensitive = <String>{};
 final class AwsApigatewayv2ApiMapping extends Resource {
   static const String tfType = 'aws_apigatewayv2_api_mapping';
 
-  AwsApigatewayv2ApiMapping({
-    required super.localName,
+  AwsApigatewayv2ApiMapping(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? apiMappingKey,
     required TfArg<String> domainName,

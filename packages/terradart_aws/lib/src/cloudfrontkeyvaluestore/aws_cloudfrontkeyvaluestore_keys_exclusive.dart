@@ -31,8 +31,8 @@ final class CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePair {
 final class AwsCloudfrontkeyvaluestoreKeysExclusive extends Resource {
   static const String tfType = 'aws_cloudfrontkeyvaluestore_keys_exclusive';
 
-  AwsCloudfrontkeyvaluestoreKeysExclusive({
-    required super.localName,
+  AwsCloudfrontkeyvaluestoreKeysExclusive(
+    super.localName, {
     required TfArg<String> keyValueStoreArn,
     TfArg<num>? maxBatchSize,
     List<CloudfrontkeyvaluestoreKeysExclusiveResourceKeyValuePair>?

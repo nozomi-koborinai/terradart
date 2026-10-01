@@ -14,8 +14,8 @@ const Set<String> _googleVertexAiIndexSensitive = <String>{};
 final class DataGoogleVertexAiIndex extends Data {
   static const String tfType = 'google_vertex_ai_index';
 
-  DataGoogleVertexAiIndex({
-    required super.localName,
+  DataGoogleVertexAiIndex(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> region,

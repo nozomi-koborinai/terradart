@@ -87,8 +87,8 @@ final class DocdbClusterInstanceIdentifierPrefix
 final class AwsDocdbClusterInstance extends Resource {
   static const String tfType = 'aws_docdb_cluster_instance';
 
-  AwsDocdbClusterInstance({
-    required super.localName,
+  AwsDocdbClusterInstance(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,

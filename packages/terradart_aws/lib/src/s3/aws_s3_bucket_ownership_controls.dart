@@ -37,8 +37,8 @@ enum S3BucketOwnershipControlsObjectOwnership implements TerraformEnum {
 final class AwsS3BucketOwnershipControls extends Resource {
   static const String tfType = 'aws_s3_bucket_ownership_controls';
 
-  AwsS3BucketOwnershipControls({
-    required super.localName,
+  AwsS3BucketOwnershipControls(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
     required S3BucketOwnershipControlsRule rule,

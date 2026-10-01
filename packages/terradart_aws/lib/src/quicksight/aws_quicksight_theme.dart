@@ -256,8 +256,8 @@ final class QuicksightThemePermissions {
 final class AwsQuicksightTheme extends Resource {
   static const String tfType = 'aws_quicksight_theme';
 
-  AwsQuicksightTheme({
-    required super.localName,
+  AwsQuicksightTheme(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> baseThemeId,
     required TfArg<String> name,

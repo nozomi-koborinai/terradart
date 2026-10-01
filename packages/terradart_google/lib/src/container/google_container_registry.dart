@@ -17,8 +17,8 @@ const Set<String> _googleContainerRegistrySensitive = <String>{};
 final class GoogleContainerRegistry extends Resource {
   static const String tfType = 'google_container_registry';
 
-  GoogleContainerRegistry({
-    required super.localName,
+  GoogleContainerRegistry(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     super.lifecycle,

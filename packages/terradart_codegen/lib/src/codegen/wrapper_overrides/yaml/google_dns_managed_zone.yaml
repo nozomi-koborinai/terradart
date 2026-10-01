@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example (public zone):
   /// ```dart
   /// final prod = GoogleDnsManagedZone(
-  ///   localName: 'prod',
+  ///   'prod',
   ///   name: TfArg.literal('prod-zone'),
   ///   dnsName: TfArg.literal('prod.example.com.'),
   ///   description: TfArg.literal('Production zone'),

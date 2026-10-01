@@ -24,7 +24,7 @@ final class NetworkSecurityUllStack extends Stack {
     );
 
     final engine = GoogleNetworkSecurityUllMirroringEngine(
-      localName: 'mirror',
+      'mirror',
       location: .literal(zone),
       ullMirroringEngineId: .literal('terradart-ull-engine'),
       dependsOn: apiDeps,
@@ -32,7 +32,7 @@ final class NetworkSecurityUllStack extends Stack {
     add(engine);
 
     final collector = GoogleNetworkSecurityUllMirroringCollector(
-      localName: 'appliance',
+      'appliance',
       location: .literal(zone),
       ullMirroringCollectorId: .literal('terradart-ull-collector'),
       engine: engine.ref,
@@ -45,7 +45,7 @@ final class NetworkSecurityUllStack extends Stack {
 
     add(
       GoogleNetworkSecurityUllMirroringCollectorRule(
-        localName: 'mirror_tcp',
+        'mirror_tcp',
         location: .literal(zone),
         ullMirroringCollector: collector.ref,
         ullMirroringCollectorRuleId: .literal('terradart-ull-rule'),

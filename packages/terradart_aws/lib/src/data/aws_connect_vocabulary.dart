@@ -11,8 +11,8 @@ const Set<String> _awsConnectVocabularySensitive = <String>{};
 final class DataAwsConnectVocabulary extends Data {
   static const String tfType = 'aws_connect_vocabulary';
 
-  DataAwsConnectVocabulary({
-    required super.localName,
+  DataAwsConnectVocabulary(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? name,
     TfArg<String>? region,

@@ -38,7 +38,7 @@ curatedDoc: |-
   /// Example (CDN-fronted static assets with custom cache headers):
   /// ```dart
   /// final assets = GoogleComputeBackendBucket(
-  ///   localName: 'static_assets',
+  ///   'static_assets',
   ///   name: TfArg.literal('static-assets'),
   ///   bucketName: .literal('my-static-assets'),
   ///   enableCdn: TfArg.literal(true),
@@ -65,7 +65,7 @@ curatedDoc: |-
   /// Example (private bucket fronted by Cloud Armor edge policy):
   /// ```dart
   /// final secured = GoogleComputeBackendBucket(
-  ///   localName: 'secured_assets',
+  ///   'secured_assets',
   ///   name: TfArg.literal('secured-assets'),
   ///   bucketName: .literal('private-static-assets'),
   ///   enableCdn: TfArg.literal(true),

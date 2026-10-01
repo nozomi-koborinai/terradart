@@ -10,8 +10,8 @@ const Set<String> _awsSavingsplansSavingsPlanSensitive = <String>{};
 final class AwsSavingsplansSavingsPlan extends Resource {
   static const String tfType = 'aws_savingsplans_savings_plan';
 
-  AwsSavingsplansSavingsPlan({
-    required super.localName,
+  AwsSavingsplansSavingsPlan(
+    super.localName, {
     required TfArg<String> commitment,
     TfArg<String>? purchaseTime,
     required TfArg<String> savingsPlanOfferingId,

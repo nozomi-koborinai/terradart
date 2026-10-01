@@ -28,8 +28,8 @@ final class GoogleNetworkSecurityInterceptEndpointGroup extends Resource {
   static const String tfType =
       'google_network_security_intercept_endpoint_group';
 
-  GoogleNetworkSecurityInterceptEndpointGroup({
-    required super.localName,
+  GoogleNetworkSecurityInterceptEndpointGroup(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> interceptEndpointGroupId,
     required TfArg<String> interceptDeploymentGroup,

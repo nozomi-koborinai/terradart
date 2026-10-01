@@ -51,7 +51,7 @@ curatedDoc: |-
   /// Example (HTTPS uptime check against a public URL):
   /// ```dart
   /// final apiUptime = GoogleMonitoringUptimeCheckConfig(
-  ///   localName: 'api_uptime',
+  ///   'api_uptime',
   ///   displayName: TfArg.literal('Public API healthz'),
   ///   timeout: TfArg.literal('10s'),
   ///   period: TfArg.literal('60s'),

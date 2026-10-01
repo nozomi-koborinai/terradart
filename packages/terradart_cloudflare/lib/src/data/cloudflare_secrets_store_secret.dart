@@ -67,8 +67,8 @@ enum DataSecretsStoreSecretOrder implements TerraformEnum {
 final class DataCloudflareSecretsStoreSecret extends Data {
   static const String tfType = 'cloudflare_secrets_store_secret';
 
-  DataCloudflareSecretsStoreSecret({
-    required super.localName,
+  DataCloudflareSecretsStoreSecret(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? secretId,
     required TfArg<String> storeId,

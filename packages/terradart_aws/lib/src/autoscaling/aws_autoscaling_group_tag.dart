@@ -34,8 +34,8 @@ final class AutoscalingGroupTagTag {
 final class AwsAutoscalingGroupTag extends Resource {
   static const String tfType = 'aws_autoscaling_group_tag';
 
-  AwsAutoscalingGroupTag({
-    required super.localName,
+  AwsAutoscalingGroupTag(
+    super.localName, {
     required TfArg<String> autoscalingGroupName,
     TfArg<String>? region,
     required AutoscalingGroupTagTag tag,

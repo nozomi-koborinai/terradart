@@ -54,8 +54,8 @@ final class WafSizeConstraintSetFieldToMatch {
 final class AwsWafSizeConstraintSet extends Resource {
   static const String tfType = 'aws_waf_size_constraint_set';
 
-  AwsWafSizeConstraintSet({
-    required super.localName,
+  AwsWafSizeConstraintSet(
+    super.localName, {
     required TfArg<String> name,
     List<WafSizeConstraintSetSizeConstraints>? sizeConstraints,
     super.lifecycle,

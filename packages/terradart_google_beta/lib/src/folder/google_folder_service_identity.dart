@@ -19,8 +19,8 @@ const Set<String> _googleFolderServiceIdentitySensitive = <String>{};
 final class GoogleFolderServiceIdentity extends Resource {
   static const String tfType = 'google_folder_service_identity';
 
-  GoogleFolderServiceIdentity({
-    required super.localName,
+  GoogleFolderServiceIdentity(
+    super.localName, {
     required TfArg<String> service,
     required TfArg<String> folder,
     super.lifecycle,

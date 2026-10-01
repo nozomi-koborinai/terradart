@@ -13,8 +13,8 @@ final class AwsWorkspaceswebUserAccessLoggingSettingsAssociation
   static const String tfType =
       'aws_workspacesweb_user_access_logging_settings_association';
 
-  AwsWorkspaceswebUserAccessLoggingSettingsAssociation({
-    required super.localName,
+  AwsWorkspaceswebUserAccessLoggingSettingsAssociation(
+    super.localName, {
     required TfArg<String> portalArn,
     TfArg<String>? region,
     required TfArg<String> userAccessLoggingSettingsArn,

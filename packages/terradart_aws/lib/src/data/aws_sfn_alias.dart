@@ -11,8 +11,8 @@ const Set<String> _awsSfnAliasSensitive = <String>{};
 final class DataAwsSfnAlias extends Data {
   static const String tfType = 'aws_sfn_alias';
 
-  DataAwsSfnAlias({
-    required super.localName,
+  DataAwsSfnAlias(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

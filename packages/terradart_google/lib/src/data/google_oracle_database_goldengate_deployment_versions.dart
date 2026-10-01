@@ -15,8 +15,8 @@ final class DataGoogleOracleDatabaseGoldengateDeploymentVersions extends Data {
   static const String tfType =
       'google_oracle_database_goldengate_deployment_versions';
 
-  DataGoogleOracleDatabaseGoldengateDeploymentVersions({
-    required super.localName,
+  DataGoogleOracleDatabaseGoldengateDeploymentVersions(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

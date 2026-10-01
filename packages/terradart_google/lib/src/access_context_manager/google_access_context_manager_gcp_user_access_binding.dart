@@ -258,8 +258,8 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
   static const String tfType =
       'google_access_context_manager_gcp_user_access_binding';
 
-  GoogleAccessContextManagerGcpUserAccessBinding({
-    required super.localName,
+  GoogleAccessContextManagerGcpUserAccessBinding(
+    super.localName, {
     TfArg<List<String>>? accessLevels,
     TfArg<String>? deletionPolicy,
     AccessContextManagerGcpUserAccessBindingSubject? subject,

@@ -126,8 +126,8 @@ final class SagemakerPipelinePipelineDefinitionS3Location {
 final class AwsSagemakerPipeline extends Resource {
   static const String tfType = 'aws_sagemaker_pipeline';
 
-  AwsSagemakerPipeline({
-    required super.localName,
+  AwsSagemakerPipeline(
+    super.localName, {
     required SagemakerPipelineDefinition pipelineDefinition,
     TfArg<String>? pipelineDescription,
     required TfArg<String> pipelineDisplayName,

@@ -15,8 +15,8 @@ const Set<String> _cloudflareWeb3HostnamesSensitive = <String>{};
 final class DataCloudflareWeb3Hostnames extends Data {
   static const String tfType = 'cloudflare_web3_hostnames';
 
-  DataCloudflareWeb3Hostnames({
-    required super.localName,
+  DataCloudflareWeb3Hostnames(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

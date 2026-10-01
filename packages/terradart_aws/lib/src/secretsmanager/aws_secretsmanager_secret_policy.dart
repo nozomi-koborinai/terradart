@@ -10,8 +10,8 @@ const Set<String> _awsSecretsmanagerSecretPolicySensitive = <String>{};
 final class AwsSecretsmanagerSecretPolicy extends Resource {
   static const String tfType = 'aws_secretsmanager_secret_policy';
 
-  AwsSecretsmanagerSecretPolicy({
-    required super.localName,
+  AwsSecretsmanagerSecretPolicy(
+    super.localName, {
     TfArg<bool>? blockPublicPolicy,
     required TfArg<String> policy,
     TfArg<String>? region,

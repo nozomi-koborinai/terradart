@@ -10,8 +10,8 @@ const Set<String> _awsLightsailStaticIpAttachmentSensitive = <String>{};
 final class AwsLightsailStaticIpAttachment extends Resource {
   static const String tfType = 'aws_lightsail_static_ip_attachment';
 
-  AwsLightsailStaticIpAttachment({
-    required super.localName,
+  AwsLightsailStaticIpAttachment(
+    super.localName, {
     required TfArg<String> instanceName,
     TfArg<String>? region,
     required TfArg<String> staticIpName,

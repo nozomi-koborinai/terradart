@@ -10,8 +10,8 @@ const Set<String> _awsOamSinksSensitive = <String>{};
 final class DataAwsOamSinks extends Data {
   static const String tfType = 'aws_oam_sinks';
 
-  DataAwsOamSinks({
-    required super.localName,
+  DataAwsOamSinks(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

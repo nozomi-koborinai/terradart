@@ -211,8 +211,8 @@ enum CustomHostnameTls13 implements TerraformEnum {
 final class CloudflareCustomHostname extends Resource {
   static const String tfType = 'cloudflare_custom_hostname';
 
-  CloudflareCustomHostname({
-    required super.localName,
+  CloudflareCustomHostname(
+    super.localName, {
     TfArg<Map<String, String>>? customMetadata,
     TfArg<String>? customOriginServer,
     TfArg<String>? customOriginSni,

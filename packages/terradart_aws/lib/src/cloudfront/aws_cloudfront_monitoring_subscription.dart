@@ -58,8 +58,8 @@ enum CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus
 final class AwsCloudfrontMonitoringSubscription extends Resource {
   static const String tfType = 'aws_cloudfront_monitoring_subscription';
 
-  AwsCloudfrontMonitoringSubscription({
-    required super.localName,
+  AwsCloudfrontMonitoringSubscription(
+    super.localName, {
     required TfArg<String> distributionId,
     required CloudfrontMonitoringSubscription monitoringSubscription,
     super.lifecycle,

@@ -54,8 +54,8 @@ final class DataZeroTrustNetworkHostnameRouteFilter {
 final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
   static const String tfType = 'cloudflare_zero_trust_network_hostname_route';
 
-  DataCloudflareZeroTrustNetworkHostnameRoute({
-    required super.localName,
+  DataCloudflareZeroTrustNetworkHostnameRoute(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? hostnameRouteId,
     DataZeroTrustNetworkHostnameRouteFilter? filter,

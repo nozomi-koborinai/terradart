@@ -22,8 +22,8 @@ enum VpcEncryptionControlMode implements TerraformEnum {
 final class AwsVpcEncryptionControl extends Resource {
   static const String tfType = 'aws_vpc_encryption_control';
 
-  AwsVpcEncryptionControl({
-    required super.localName,
+  AwsVpcEncryptionControl(
+    super.localName, {
     TfArg<String>? egressOnlyInternetGatewayExclusion,
     TfArg<String>? elasticFileSystemExclusion,
     TfArg<String>? internetGatewayExclusion,

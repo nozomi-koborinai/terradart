@@ -34,7 +34,7 @@ final class NightlyCleanupStack extends Stack {
 
     final topic = add(
       GooglePubsubTopic(
-        localName: 'nightly_cleanup',
+        'nightly_cleanup',
         name: .literal('nightly-cleanup'),
         dependsOn: apiDeps,
       ),
@@ -42,7 +42,7 @@ final class NightlyCleanupStack extends Stack {
 
     add(
       GoogleCloudSchedulerJob(
-        localName: 'nightly_job',
+        'nightly_job',
         name: .literal('nightly-cleanup-job'),
         region: .literal('us-central1'),
         schedule: .literal('0 3 * * *'),

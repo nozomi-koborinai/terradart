@@ -71,8 +71,8 @@ final class AccountUnit {
 final class CloudflareAccount extends Resource {
   static const String tfType = 'cloudflare_account';
 
-  CloudflareAccount({
-    required super.localName,
+  CloudflareAccount(
+    super.localName, {
     required TfArg<String> name,
     TfArg<bool>? standalone,
     TfArg<AccountType>? type,

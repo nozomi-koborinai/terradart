@@ -226,8 +226,8 @@ enum ColabRuntimeTemplatePostStartupScriptBehavior implements TerraformEnum {
 final class GoogleColabRuntimeTemplate extends Resource {
   static const String tfType = 'google_colab_runtime_template';
 
-  GoogleColabRuntimeTemplate({
-    required super.localName,
+  GoogleColabRuntimeTemplate(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> displayName,
     TfArg<String>? name,

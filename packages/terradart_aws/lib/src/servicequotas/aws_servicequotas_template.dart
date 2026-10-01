@@ -68,8 +68,8 @@ final class ServicequotasTemplateRegionChoice
 final class AwsServicequotasTemplate extends Resource {
   static const String tfType = 'aws_servicequotas_template';
 
-  AwsServicequotasTemplate({
-    required super.localName,
+  AwsServicequotasTemplate(
+    super.localName, {
     required ServicequotasTemplateRegion region,
     required TfArg<String> quotaCode,
     required TfArg<String> serviceCode,

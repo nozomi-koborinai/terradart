@@ -14,8 +14,8 @@ const Set<String> _googleLustreInstanceSensitive = <String>{};
 final class DataGoogleLustreInstance extends Data {
   static const String tfType = 'google_lustre_instance';
 
-  DataGoogleLustreInstance({
-    required super.localName,
+  DataGoogleLustreInstance(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? project,
     TfArg<String>? zone,

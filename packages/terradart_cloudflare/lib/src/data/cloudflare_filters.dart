@@ -15,8 +15,8 @@ const Set<String> _cloudflareFiltersSensitive = <String>{};
 final class DataCloudflareFilters extends Data {
   static const String tfType = 'cloudflare_filters';
 
-  DataCloudflareFilters({
-    required super.localName,
+  DataCloudflareFilters(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? expression,
     TfArg<num>? maxItems,

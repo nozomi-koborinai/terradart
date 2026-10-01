@@ -15,8 +15,8 @@ const Set<String> _cloudflareStreamsSensitive = <String>{};
 final class DataCloudflareStreams extends Data {
   static const String tfType = 'cloudflare_streams';
 
-  DataCloudflareStreams({
-    required super.localName,
+  DataCloudflareStreams(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? after,
     TfArg<bool>? asc,

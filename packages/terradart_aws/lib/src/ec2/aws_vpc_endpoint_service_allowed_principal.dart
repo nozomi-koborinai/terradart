@@ -10,8 +10,8 @@ const Set<String> _awsVpcEndpointServiceAllowedPrincipalSensitive = <String>{};
 final class AwsVpcEndpointServiceAllowedPrincipal extends Resource {
   static const String tfType = 'aws_vpc_endpoint_service_allowed_principal';
 
-  AwsVpcEndpointServiceAllowedPrincipal({
-    required super.localName,
+  AwsVpcEndpointServiceAllowedPrincipal(
+    super.localName, {
     required TfArg<String> principalArn,
     TfArg<String>? region,
     required TfArg<String> vpcEndpointServiceId,

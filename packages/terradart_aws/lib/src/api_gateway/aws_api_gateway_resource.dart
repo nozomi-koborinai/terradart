@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayResourceSensitive = <String>{};
 final class AwsApiGatewayResource extends Resource {
   static const String tfType = 'aws_api_gateway_resource';
 
-  AwsApiGatewayResource({
-    required super.localName,
+  AwsApiGatewayResource(
+    super.localName, {
     required TfArg<String> parentId,
     required TfArg<String> pathPart,
     TfArg<String>? region,

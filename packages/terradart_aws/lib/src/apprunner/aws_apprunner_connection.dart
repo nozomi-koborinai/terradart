@@ -20,8 +20,8 @@ enum ApprunnerConnectionProviderType implements TerraformEnum {
 final class AwsApprunnerConnection extends Resource {
   static const String tfType = 'aws_apprunner_connection';
 
-  AwsApprunnerConnection({
-    required super.localName,
+  AwsApprunnerConnection(
+    super.localName, {
     required TfArg<String> connectionName,
     required TfArg<ApprunnerConnectionProviderType> providerType,
     TfArg<String>? region,

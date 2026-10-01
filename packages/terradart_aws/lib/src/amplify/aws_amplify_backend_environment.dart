@@ -10,8 +10,8 @@ const Set<String> _awsAmplifyBackendEnvironmentSensitive = <String>{};
 final class AwsAmplifyBackendEnvironment extends Resource {
   static const String tfType = 'aws_amplify_backend_environment';
 
-  AwsAmplifyBackendEnvironment({
-    required super.localName,
+  AwsAmplifyBackendEnvironment(
+    super.localName, {
     required TfArg<String> appId,
     TfArg<String>? deploymentArtifacts,
     required TfArg<String> environmentName,

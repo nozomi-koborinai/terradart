@@ -1374,8 +1374,8 @@ final class Inspector2FilterVersion {
 final class AwsInspector2Filter extends Resource {
   static const String tfType = 'aws_inspector2_filter';
 
-  AwsInspector2Filter({
-    required super.localName,
+  AwsInspector2Filter(
+    super.localName, {
     required TfArg<Inspector2FilterAction> action,
     TfArg<String>? description,
     required TfArg<String> name,

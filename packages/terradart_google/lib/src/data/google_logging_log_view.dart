@@ -16,8 +16,8 @@ const Set<String> _googleLoggingLogViewSensitive = <String>{};
 final class DataGoogleLoggingLogView extends Data {
   static const String tfType = 'google_logging_log_view';
 
-  DataGoogleLoggingLogView({
-    required super.localName,
+  DataGoogleLoggingLogView(
+    super.localName, {
     required RefTo<GoogleLoggingProjectBucketConfig> bucket,
     required TfArg<String> location,
     required TfArg<String> name,

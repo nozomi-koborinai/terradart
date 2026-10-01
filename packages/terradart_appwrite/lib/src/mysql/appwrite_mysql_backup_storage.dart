@@ -40,8 +40,8 @@ enum MysqlBackupStorageProvider implements TerraformEnum {
 final class AppwriteMysqlBackupStorage extends Resource {
   static const String tfType = 'appwrite_mysql_backup_storage';
 
-  AppwriteMysqlBackupStorage({
-    required super.localName,
+  AppwriteMysqlBackupStorage(
+    super.localName, {
     required TfArg<String> accessKey,
     required TfArg<String> bucket,
     required RefTo<AppwriteMysqlDatabase> databaseId,

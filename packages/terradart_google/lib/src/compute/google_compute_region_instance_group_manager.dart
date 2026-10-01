@@ -592,7 +592,7 @@ class ComputeRegionInstanceGroupManagerResourcePolicies {
 /// proactive rebalancing):
 /// ```dart
 /// final mig = GoogleComputeRegionInstanceGroupManager(
-///   localName: 'web',
+///   'web',
 ///   name: TfArg.literal('web-rmig'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   baseInstanceName: TfArg.literal('web'),
@@ -641,8 +641,8 @@ class ComputeRegionInstanceGroupManagerResourcePolicies {
 final class GoogleComputeRegionInstanceGroupManager extends Resource {
   static const String tfType = 'google_compute_region_instance_group_manager';
 
-  GoogleComputeRegionInstanceGroupManager({
-    required super.localName,
+  GoogleComputeRegionInstanceGroupManager(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,

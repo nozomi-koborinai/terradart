@@ -340,8 +340,8 @@ final class BatchComputeEnvironmentUpdatePolicy {
 final class AwsBatchComputeEnvironment extends Resource {
   static const String tfType = 'aws_batch_compute_environment';
 
-  AwsBatchComputeEnvironment({
-    required super.localName,
+  AwsBatchComputeEnvironment(
+    super.localName, {
     BatchComputeEnvironmentName? name,
     TfArg<String>? region,
     RefTo<AwsIamRole>? serviceRole,

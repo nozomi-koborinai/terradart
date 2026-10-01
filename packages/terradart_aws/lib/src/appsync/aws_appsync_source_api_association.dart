@@ -132,8 +132,8 @@ final class AppsyncSourceApiAssociationSourceApiId
 final class AwsAppsyncSourceApiAssociation extends Resource {
   static const String tfType = 'aws_appsync_source_api_association';
 
-  AwsAppsyncSourceApiAssociation({
-    required super.localName,
+  AwsAppsyncSourceApiAssociation(
+    super.localName, {
     TfArg<String>? description,
     required AppsyncSourceApiAssociationMergedApi mergedApi,
     TfArg<String>? region,

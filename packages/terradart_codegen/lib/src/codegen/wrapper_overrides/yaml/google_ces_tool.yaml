@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesTool(
-  ///   localName: 'search',
+  ///   'search',
   ///   app: app.ref,
   ///   toolId: TfArg.literal('terradart-ces-search'),
   ///   googleSearchTool: CesToolGoogleSearchTool(

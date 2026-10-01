@@ -396,8 +396,8 @@ final class DiscoveryEngineWidgetConfigSearchAddonSpec {
 final class GoogleDiscoveryEngineWidgetConfig extends Resource {
   static const String tfType = 'google_discovery_engine_widget_config';
 
-  GoogleDiscoveryEngineWidgetConfig({
-    required super.localName,
+  GoogleDiscoveryEngineWidgetConfig(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> engineId,
     TfArg<String>? collectionId,

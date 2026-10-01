@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminRegionSensitive = <String>{};
 final class AwsSsoadminRegion extends Resource {
   static const String tfType = 'aws_ssoadmin_region';
 
-  AwsSsoadminRegion({
-    required super.localName,
+  AwsSsoadminRegion(
+    super.localName, {
     required TfArg<String> instanceArn,
     TfArg<String>? region,
     required TfArg<String> regionName,

@@ -45,8 +45,8 @@ final class BiglakeIcebergTableIamBindingCondition {
 final class GoogleBiglakeIcebergTableIamBinding extends Resource {
   static const String tfType = 'google_biglake_iceberg_table_iam_binding';
 
-  GoogleBiglakeIcebergTableIamBinding({
-    required super.localName,
+  GoogleBiglakeIcebergTableIamBinding(
+    super.localName, {
     TfArg<String>? catalog,
     TfArg<String>? namespace,
     required RefTo<GoogleBiglakeIcebergTable> table,

@@ -20,8 +20,8 @@ enum XrayTraceSegmentDestination implements TerraformEnum {
 final class AwsXrayTraceSegmentDestination extends Resource {
   static const String tfType = 'aws_xray_trace_segment_destination';
 
-  AwsXrayTraceSegmentDestination({
-    required super.localName,
+  AwsXrayTraceSegmentDestination(
+    super.localName, {
     required TfArg<XrayTraceSegmentDestination> destination,
     TfArg<String>? region,
     super.lifecycle,

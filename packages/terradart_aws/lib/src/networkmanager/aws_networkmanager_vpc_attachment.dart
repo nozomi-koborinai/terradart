@@ -39,8 +39,8 @@ final class NetworkmanagerVpcAttachmentOptions {
 final class AwsNetworkmanagerVpcAttachment extends Resource {
   static const String tfType = 'aws_networkmanager_vpc_attachment';
 
-  AwsNetworkmanagerVpcAttachment({
-    required super.localName,
+  AwsNetworkmanagerVpcAttachment(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     TfArg<String>? routingPolicyLabel,
     required TfArg<List<String>> subnetArns,

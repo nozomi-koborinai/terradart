@@ -38,8 +38,8 @@ final class DevicefarmTestGridProjectVpcConfig {
 final class AwsDevicefarmTestGridProject extends Resource {
   static const String tfType = 'aws_devicefarm_test_grid_project';
 
-  AwsDevicefarmTestGridProject({
-    required super.localName,
+  AwsDevicefarmTestGridProject(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

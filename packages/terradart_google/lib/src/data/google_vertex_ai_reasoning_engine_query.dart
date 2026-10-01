@@ -13,8 +13,8 @@ const Set<String> _googleVertexAiReasoningEngineQuerySensitive = <String>{};
 final class DataGoogleVertexAiReasoningEngineQuery extends Data {
   static const String tfType = 'google_vertex_ai_reasoning_engine_query';
 
-  DataGoogleVertexAiReasoningEngineQuery({
-    required super.localName,
+  DataGoogleVertexAiReasoningEngineQuery(
+    super.localName, {
     TfArg<String>? classMethod,
     TfArg<String>? input,
     TfArg<String>? project,

@@ -14,8 +14,8 @@ const Set<String> _googleRedisInstanceSensitive = <String>{};
 final class DataGoogleRedisInstance extends Data {
   static const String tfType = 'google_redis_instance';
 
-  DataGoogleRedisInstance({
-    required super.localName,
+  DataGoogleRedisInstance(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

@@ -14,7 +14,7 @@ curatedDoc: |-
   /// Example (VPC spoke):
   /// ```dart
   /// GoogleNetworkConnectivitySpoke(
-  ///   localName: 'vpc_spoke',
+  ///   'vpc_spoke',
   ///   name: .literal('vpc-spoke'),
   ///   location: .literal('global'),
   ///   hub: hub.ref,

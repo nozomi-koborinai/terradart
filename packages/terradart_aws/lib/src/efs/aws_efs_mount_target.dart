@@ -24,8 +24,8 @@ enum EfsMountTargetIpAddressType implements TerraformEnum {
 final class AwsEfsMountTarget extends Resource {
   static const String tfType = 'aws_efs_mount_target';
 
-  AwsEfsMountTarget({
-    required super.localName,
+  AwsEfsMountTarget(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? ipAddress,
     TfArg<EfsMountTargetIpAddressType>? ipAddressType,

@@ -56,8 +56,8 @@ final class DataformRepositoryReleaseConfigCodeCompilationConfig {
 final class GoogleDataformRepositoryReleaseConfig extends Resource {
   static const String tfType = 'google_dataform_repository_release_config';
 
-  GoogleDataformRepositoryReleaseConfig({
-    required super.localName,
+  GoogleDataformRepositoryReleaseConfig(
+    super.localName, {
     TfArg<String>? cronSchedule,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? disabled,

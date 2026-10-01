@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final playIntegrity = GoogleFirebaseAppCheckPlayIntegrityConfig(
-  ///   localName: 'android',
+  ///   'android',
   ///   appId: TfArg.literal('1:1234567890:android:abcdef'),
   ///   tokenTtl: TfArg.literal('3600s'),
   /// );

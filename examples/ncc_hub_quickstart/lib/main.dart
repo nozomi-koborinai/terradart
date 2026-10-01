@@ -42,7 +42,7 @@ final class NccHubStack extends Stack {
 
     final hub = add(
       GoogleNetworkConnectivityHub(
-        localName: 'hub',
+        'hub',
         name: .literal('terradart-ncc-hub'),
         description: .literal('TerraDart NCC hub'),
         policyMode: .literal('PRESET'),
@@ -53,7 +53,7 @@ final class NccHubStack extends Stack {
 
     final centerGroup = add(
       GoogleNetworkConnectivityGroup(
-        localName: 'center',
+        'center',
         hub: hub.ref,
         name: .literal(.center),
         description: .literal('STAR center group'),
@@ -63,7 +63,7 @@ final class NccHubStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'spoke_vpc',
+        'spoke_vpc',
         name: .literal('terradart-ncc-spoke-vpc'),
         autoCreateSubnetworks: .literal(false),
         dependsOn: apiDeps,
@@ -72,7 +72,7 @@ final class NccHubStack extends Stack {
 
     final subnet = add(
       GoogleComputeSubnetwork(
-        localName: 'spoke_subnet',
+        'spoke_subnet',
         name: .literal('terradart-ncc-spoke-subnet'),
         ipCidrRange: .literal('10.20.0.0/24'),
         region: .literal(region),
@@ -84,7 +84,7 @@ final class NccHubStack extends Stack {
 
     add(
       GoogleNetworkConnectivitySpoke(
-        localName: 'vpc_spoke',
+        'vpc_spoke',
         name: .literal('terradart-vpc-spoke'),
         location: .literal('global'),
         hub: hub.ref,
@@ -96,7 +96,7 @@ final class NccHubStack extends Stack {
 
     add(
       GoogleNetworkConnectivityInternalRange(
-        localName: 'reserved',
+        'reserved',
         name: .literal('terradart-ncc-ir'),
         network: vpc.ref,
         usage: .literal(.forVpc),
@@ -109,7 +109,7 @@ final class NccHubStack extends Stack {
 
     add(
       GoogleNetworkConnectivityRegionalEndpoint(
-        localName: 'storage_rep',
+        'storage_rep',
         name: .literal('terradart-storage-rep'),
         location: .literal(region),
         targetGoogleApi: .literal('storage.us-central1.rep.googleapis.com'),
@@ -122,7 +122,7 @@ final class NccHubStack extends Stack {
 
     add(
       GoogleNetworkConnectivityPolicyBasedRoute(
-        localName: 'default_pbr',
+        'default_pbr',
         name: .literal('terradart-ncc-pbr'),
         network: vpc.ref,
         filter: NetworkConnectivityPolicyBasedRouteFilter(
@@ -142,7 +142,7 @@ final class NccHubStack extends Stack {
 
     final inventory = add(
       GoogleServiceAccount(
-        localName: 'ncc_inventory',
+        'ncc_inventory',
         accountId: .literal('ncc-inventory'),
         displayName: .literal('NCC hub inventory reader'),
       ),
@@ -150,7 +150,7 @@ final class NccHubStack extends Stack {
 
     add(
       GoogleNetworkConnectivityHubIamMember(
-        localName: 'hub_viewer',
+        'hub_viewer',
         hub: hub.ref,
         role: .literal('roles/networkconnectivity.viewer'),
         member: inventory.principal,

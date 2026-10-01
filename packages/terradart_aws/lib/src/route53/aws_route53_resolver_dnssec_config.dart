@@ -10,8 +10,8 @@ const Set<String> _awsRoute53ResolverDnssecConfigSensitive = <String>{};
 final class AwsRoute53ResolverDnssecConfig extends Resource {
   static const String tfType = 'aws_route53_resolver_dnssec_config';
 
-  AwsRoute53ResolverDnssecConfig({
-    required super.localName,
+  AwsRoute53ResolverDnssecConfig(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceId,
     super.lifecycle,

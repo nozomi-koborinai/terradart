@@ -893,8 +893,8 @@ final class CloudRunV2WorkerPoolNetworkInterfaces {
 final class GoogleCloudRunV2WorkerPool extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool';
 
-  GoogleCloudRunV2WorkerPool({
-    required super.localName,
+  GoogleCloudRunV2WorkerPool(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? client,
     TfArg<String>? clientVersion,

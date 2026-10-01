@@ -10,8 +10,8 @@ const Set<String> _awsBackupVaultLockConfigurationSensitive = <String>{};
 final class AwsBackupVaultLockConfiguration extends Resource {
   static const String tfType = 'aws_backup_vault_lock_configuration';
 
-  AwsBackupVaultLockConfiguration({
-    required super.localName,
+  AwsBackupVaultLockConfiguration(
+    super.localName, {
     required TfArg<String> backupVaultName,
     TfArg<num>? changeableForDays,
     TfArg<num>? maxRetentionDays,

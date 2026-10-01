@@ -57,8 +57,8 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
   static const String tfType =
       'google_database_migration_service_private_connection';
 
-  GoogleDatabaseMigrationServicePrivateConnection({
-    required super.localName,
+  GoogleDatabaseMigrationServicePrivateConnection(
+    super.localName, {
     TfArg<bool>? createWithoutValidation,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

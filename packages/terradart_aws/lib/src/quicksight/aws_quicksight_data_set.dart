@@ -779,8 +779,8 @@ final class QuicksightDataSetTagRules {
 final class AwsQuicksightDataSet extends Resource {
   static const String tfType = 'aws_quicksight_data_set';
 
-  AwsQuicksightDataSet({
-    required super.localName,
+  AwsQuicksightDataSet(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
     required TfArg<QuicksightDataSetImportMode> importMode,

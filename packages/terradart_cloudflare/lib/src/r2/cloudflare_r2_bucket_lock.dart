@@ -85,8 +85,8 @@ enum R2BucketLockType implements TerraformEnum {
 final class CloudflareR2BucketLock extends Resource {
   static const String tfType = 'cloudflare_r2_bucket_lock';
 
-  CloudflareR2BucketLock({
-    required super.localName,
+  CloudflareR2BucketLock(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketLockJurisdiction>? jurisdiction,

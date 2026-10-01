@@ -550,7 +550,7 @@ enum NetappVolumeTierAction implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleNetappVolume(
-///   localName: 'vol',
+///   'vol',
 ///   name: TfArg.literal('data'),
 ///   location: TfArg.literal('us-central1'),
 ///   storagePool: pool.name,
@@ -562,8 +562,8 @@ enum NetappVolumeTierAction implements TerraformEnum {
 final class GoogleNetappVolume extends Resource {
   static const String tfType = 'google_netapp_volume';
 
-  GoogleNetappVolume({
-    required super.localName,
+  GoogleNetappVolume(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> storagePool,

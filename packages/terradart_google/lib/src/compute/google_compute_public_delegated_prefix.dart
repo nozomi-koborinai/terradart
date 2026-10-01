@@ -44,8 +44,8 @@ enum ComputePublicDelegatedPrefixMode implements TerraformEnum {
 final class GoogleComputePublicDelegatedPrefix extends Resource {
   static const String tfType = 'google_compute_public_delegated_prefix';
 
-  GoogleComputePublicDelegatedPrefix({
-    required super.localName,
+  GoogleComputePublicDelegatedPrefix(
+    super.localName, {
     TfArg<num>? allocatablePrefixLength,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

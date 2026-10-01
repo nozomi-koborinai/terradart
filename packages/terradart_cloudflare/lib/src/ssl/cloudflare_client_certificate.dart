@@ -16,8 +16,8 @@ const Set<String> _cloudflareClientCertificateSensitive = <String>{};
 final class CloudflareClientCertificate extends Resource {
   static const String tfType = 'cloudflare_client_certificate';
 
-  CloudflareClientCertificate({
-    required super.localName,
+  CloudflareClientCertificate(
+    super.localName, {
     required TfArg<String> csr,
     TfArg<bool>? reactivate,
     required TfArg<num> validityDays,

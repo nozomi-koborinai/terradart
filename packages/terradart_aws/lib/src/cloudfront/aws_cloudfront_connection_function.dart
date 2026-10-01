@@ -63,8 +63,8 @@ final class CloudfrontConnectionFunctionKeyValueStoreAssociation {
 final class AwsCloudfrontConnectionFunction extends Resource {
   static const String tfType = 'aws_cloudfront_connection_function';
 
-  AwsCloudfrontConnectionFunction({
-    required super.localName,
+  AwsCloudfrontConnectionFunction(
+    super.localName, {
     required TfArg<String> connectionFunctionCode,
     required TfArg<String> name,
     TfArg<bool>? publish,

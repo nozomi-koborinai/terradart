@@ -18,8 +18,8 @@ const Set<String> _googleGeminiRepositoryGroupIamPolicySensitive = <String>{};
 final class GoogleGeminiRepositoryGroupIamPolicy extends Resource {
   static const String tfType = 'google_gemini_repository_group_iam_policy';
 
-  GoogleGeminiRepositoryGroupIamPolicy({
-    required super.localName,
+  GoogleGeminiRepositoryGroupIamPolicy(
+    super.localName, {
     required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
     TfArg<String>? codeRepositoryIndex,
     required TfArg<String> policyData,

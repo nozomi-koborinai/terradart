@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleGeminiReleaseChannelSettingBinding(
-  ///   localName: 'channel_bind',
+  ///   'channel_bind',
   ///   releaseChannelSettingId: .literal('terradart-channel'),
   ///   settingBindingId: TfArg.literal('terradart-channel-bind'),
   ///   location: TfArg.literal('global'),

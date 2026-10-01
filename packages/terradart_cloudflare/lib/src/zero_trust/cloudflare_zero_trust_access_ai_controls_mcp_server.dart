@@ -84,8 +84,8 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_access_ai_controls_mcp_server';
 
-  CloudflareZeroTrustAccessAiControlsMcpServer({
-    required super.localName,
+  CloudflareZeroTrustAccessAiControlsMcpServer(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? authCredentials,
     required TfArg<ZeroTrustAccessAiControlsMcpServerAuthType> authType,

@@ -43,8 +43,8 @@ final class DataFusionInstanceIamBindingCondition {
 final class GoogleDataFusionInstanceIamBinding extends Resource {
   static const String tfType = 'google_data_fusion_instance_iam_binding';
 
-  GoogleDataFusionInstanceIamBinding({
-    required super.localName,
+  GoogleDataFusionInstanceIamBinding(
+    super.localName, {
     required RefTo<GoogleDataFusionInstance> instance,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

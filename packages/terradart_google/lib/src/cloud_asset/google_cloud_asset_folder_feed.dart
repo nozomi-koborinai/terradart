@@ -87,8 +87,8 @@ final class CloudAssetFolderFeedPubsubDestination {
 final class GoogleCloudAssetFolderFeed extends Resource {
   static const String tfType = 'google_cloud_asset_folder_feed';
 
-  GoogleCloudAssetFolderFeed({
-    required super.localName,
+  GoogleCloudAssetFolderFeed(
+    super.localName, {
     TfArg<List<String>>? assetNames,
     TfArg<List<String>>? assetTypes,
     required TfArg<String> billingProject,

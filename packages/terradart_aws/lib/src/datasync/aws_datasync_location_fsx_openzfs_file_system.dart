@@ -57,8 +57,8 @@ enum DatasyncLocationFsxOpenzfsFileSystemVersion implements TerraformEnum {
 final class AwsDatasyncLocationFsxOpenzfsFileSystem extends Resource {
   static const String tfType = 'aws_datasync_location_fsx_openzfs_file_system';
 
-  AwsDatasyncLocationFsxOpenzfsFileSystem({
-    required super.localName,
+  AwsDatasyncLocationFsxOpenzfsFileSystem(
+    super.localName, {
     required TfArg<String> fsxFilesystemArn,
     TfArg<String>? region,
     required TfArg<List<String>> securityGroupArns,

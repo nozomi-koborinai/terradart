@@ -22,7 +22,7 @@ final class StorageIntelligenceStack extends Stack {
       ) {
     final apiStorage = add(
       GoogleProjectService(
-        localName: 'api_storage',
+        'api_storage',
         service: .literal('storage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class StorageIntelligenceStack extends Stack {
 
     add(
       GoogleStorageControlProjectIntelligenceConfig(
-        localName: 'intelligence',
+        'intelligence',
         name: .literal(projectId),
         editionConfig: .literal(.disabled),
         dependsOn: [apiStorage],

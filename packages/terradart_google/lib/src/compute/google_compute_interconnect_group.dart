@@ -69,8 +69,8 @@ final class ComputeInterconnectGroupInterconnects {
 final class GoogleComputeInterconnectGroup extends Resource {
   static const String tfType = 'google_compute_interconnect_group';
 
-  GoogleComputeInterconnectGroup({
-    required super.localName,
+  GoogleComputeInterconnectGroup(
+    super.localName, {
     required TfArg<String> name,
     required ComputeInterconnectGroupIntent intent,
     List<ComputeInterconnectGroupInterconnects>? interconnects,

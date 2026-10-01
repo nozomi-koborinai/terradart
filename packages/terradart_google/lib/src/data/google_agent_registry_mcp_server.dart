@@ -13,8 +13,8 @@ const Set<String> _googleAgentRegistryMcpServerSensitive = <String>{};
 final class DataGoogleAgentRegistryMcpServer extends Data {
   static const String tfType = 'google_agent_registry_mcp_server';
 
-  DataGoogleAgentRegistryMcpServer({
-    required super.localName,
+  DataGoogleAgentRegistryMcpServer(
+    super.localName, {
     TfArg<String>? filter,
     required TfArg<String> location,
     TfArg<String>? mcpServerId,

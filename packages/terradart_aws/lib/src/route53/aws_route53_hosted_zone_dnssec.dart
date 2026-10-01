@@ -20,8 +20,8 @@ enum Route53HostedZoneDnssecSigningStatus implements TerraformEnum {
 final class AwsRoute53HostedZoneDnssec extends Resource {
   static const String tfType = 'aws_route53_hosted_zone_dnssec';
 
-  AwsRoute53HostedZoneDnssec({
-    required super.localName,
+  AwsRoute53HostedZoneDnssec(
+    super.localName, {
     required TfArg<String> hostedZoneId,
     TfArg<Route53HostedZoneDnssecSigningStatus>? signingStatus,
     super.lifecycle,

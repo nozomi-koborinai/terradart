@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example (project scope, unlinked):
   /// ```dart
   /// GoogleStorageInsightsDatasetConfig(
-  ///   localName: 'inventory',
+  ///   'inventory',
   ///   datasetConfigId: TfArg.literal('terradart-insights'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   retentionPeriodDays: TfArg.literal(1),

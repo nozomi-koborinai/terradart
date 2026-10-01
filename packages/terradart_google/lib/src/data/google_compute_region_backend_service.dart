@@ -14,8 +14,8 @@ const Set<String> _googleComputeRegionBackendServiceSensitive = <String>{};
 final class DataGoogleComputeRegionBackendService extends Data {
   static const String tfType = 'google_compute_region_backend_service';
 
-  DataGoogleComputeRegionBackendService({
-    required super.localName,
+  DataGoogleComputeRegionBackendService(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

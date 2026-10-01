@@ -56,8 +56,8 @@ enum DataSpectrumApplicationOrder implements TerraformEnum {
 final class DataCloudflareSpectrumApplication extends Data {
   static const String tfType = 'cloudflare_spectrum_application';
 
-  DataCloudflareSpectrumApplication({
-    required super.localName,
+  DataCloudflareSpectrumApplication(
+    super.localName, {
     TfArg<String>? appId,
     RefTo<CloudflareZone>? zoneId,
     DataSpectrumApplicationFilter? filter,

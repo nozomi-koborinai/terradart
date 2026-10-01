@@ -14,8 +14,8 @@ const Set<String> _googleSccSourceIamPolicySensitive = <String>{};
 final class DataGoogleSccSourceIamPolicy extends Data {
   static const String tfType = 'google_scc_source_iam_policy';
 
-  DataGoogleSccSourceIamPolicy({
-    required super.localName,
+  DataGoogleSccSourceIamPolicy(
+    super.localName, {
     required TfArg<String> organization,
     required TfArg<String> source,
     super.provider,

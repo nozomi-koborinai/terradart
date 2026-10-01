@@ -18,8 +18,8 @@ const Set<String> _googleVertexAiReasoningEngineIamPolicySensitive = <String>{};
 final class GoogleVertexAiReasoningEngineIamPolicy extends Resource {
   static const String tfType = 'google_vertex_ai_reasoning_engine_iam_policy';
 
-  GoogleVertexAiReasoningEngineIamPolicy({
-    required super.localName,
+  GoogleVertexAiReasoningEngineIamPolicy(
+    super.localName, {
     required RefTo<GoogleVertexAiReasoningEngine> reasoningEngine,
     required TfArg<String> policyData,
     TfArg<String>? region,

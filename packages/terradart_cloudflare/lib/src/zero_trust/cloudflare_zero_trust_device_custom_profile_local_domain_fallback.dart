@@ -44,8 +44,8 @@ final class CloudflareZeroTrustDeviceCustomProfileLocalDomainFallback
   static const String tfType =
       'cloudflare_zero_trust_device_custom_profile_local_domain_fallback';
 
-  CloudflareZeroTrustDeviceCustomProfileLocalDomainFallback({
-    required super.localName,
+  CloudflareZeroTrustDeviceCustomProfileLocalDomainFallback(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> policyId,
     required List<ZeroTrustDeviceCustomProfileLocalDomainFallbackDomains>

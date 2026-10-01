@@ -242,7 +242,7 @@ final class RecaptchaEnterpriseKeyDefaultSettings {
 /// Example:
 /// ```dart
 /// GoogleRecaptchaEnterpriseKey(
-///   localName: 'web_login',
+///   'web_login',
 ///   displayName: TfArg.literal('Login page'),
 ///   webSettings: RecaptchaEnterpriseKeyWebSettings(
 ///     integrationType: TfArg.literal(
@@ -255,8 +255,8 @@ final class RecaptchaEnterpriseKeyDefaultSettings {
 final class GoogleRecaptchaEnterpriseKey extends Resource {
   static const String tfType = 'google_recaptcha_enterprise_key';
 
-  GoogleRecaptchaEnterpriseKey({
-    required super.localName,
+  GoogleRecaptchaEnterpriseKey(
+    super.localName, {
     required TfArg<String> displayName,
     RecaptchaEnterpriseKeyWebSettings? webSettings,
     RecaptchaEnterpriseKeyAndroidSettings? androidSettings,

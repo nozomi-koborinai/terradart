@@ -14,8 +14,8 @@ const Set<String> _googleCloudTasksQueueIamPolicySensitive = <String>{};
 final class DataGoogleCloudTasksQueueIamPolicy extends Data {
   static const String tfType = 'google_cloud_tasks_queue_iam_policy';
 
-  DataGoogleCloudTasksQueueIamPolicy({
-    required super.localName,
+  DataGoogleCloudTasksQueueIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

@@ -117,7 +117,7 @@ final class DataCatalogTagTemplateField {
 /// Example:
 /// ```dart
 /// GoogleDataCatalogTagTemplate(
-///   localName: 'demo',
+///   'demo',
 ///   tagTemplateId: TfArg.literal('terradart_template'),
 ///   region: TfArg.literal('us-central1'),
 ///   displayName: TfArg.literal('Demo Tag Template'),
@@ -135,8 +135,8 @@ final class DataCatalogTagTemplateField {
 final class GoogleDataCatalogTagTemplate extends Resource {
   static const String tfType = 'google_data_catalog_tag_template';
 
-  GoogleDataCatalogTagTemplate({
-    required super.localName,
+  GoogleDataCatalogTagTemplate(
+    super.localName, {
     required TfArg<String> tagTemplateId,
     required List<DataCatalogTagTemplateField> fields,
     TfArg<String>? displayName,

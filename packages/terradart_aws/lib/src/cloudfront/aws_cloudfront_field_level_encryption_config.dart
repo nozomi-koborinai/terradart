@@ -124,8 +124,8 @@ final class CloudfrontFieldLevelEncryptionConfigQueryArgProfilesItems {
 final class AwsCloudfrontFieldLevelEncryptionConfig extends Resource {
   static const String tfType = 'aws_cloudfront_field_level_encryption_config';
 
-  AwsCloudfrontFieldLevelEncryptionConfig({
-    required super.localName,
+  AwsCloudfrontFieldLevelEncryptionConfig(
+    super.localName, {
     TfArg<String>? comment,
     required CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfig
     contentTypeProfileConfig,

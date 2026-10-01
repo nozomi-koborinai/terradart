@@ -69,8 +69,8 @@ enum StreamLiveInputMode implements TerraformEnum {
 final class CloudflareStreamLiveInput extends Resource {
   static const String tfType = 'cloudflare_stream_live_input';
 
-  CloudflareStreamLiveInput({
-    required super.localName,
+  CloudflareStreamLiveInput(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? defaultCreator,
     TfArg<num>? deleteRecordingAfterDays,

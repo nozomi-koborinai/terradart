@@ -14,7 +14,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleApikeysKey(
-  ///   localName: 'maps_browser',
+  ///   'maps_browser',
   ///   name: TfArg.literal('maps-browser-key'),
   ///   displayName: TfArg.literal('Browser Maps key'),
   /// );

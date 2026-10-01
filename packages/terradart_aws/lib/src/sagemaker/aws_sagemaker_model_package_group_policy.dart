@@ -10,8 +10,8 @@ const Set<String> _awsSagemakerModelPackageGroupPolicySensitive = <String>{};
 final class AwsSagemakerModelPackageGroupPolicy extends Resource {
   static const String tfType = 'aws_sagemaker_model_package_group_policy';
 
-  AwsSagemakerModelPackageGroupPolicy({
-    required super.localName,
+  AwsSagemakerModelPackageGroupPolicy(
+    super.localName, {
     required TfArg<String> modelPackageGroupName,
     TfArg<String>? region,
     required TfArg<String> resourcePolicy,

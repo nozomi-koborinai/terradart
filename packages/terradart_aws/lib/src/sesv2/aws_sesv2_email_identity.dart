@@ -46,8 +46,8 @@ enum Sesv2EmailIdentityNextSigningKeyLength implements TerraformEnum {
 final class AwsSesv2EmailIdentity extends Resource {
   static const String tfType = 'aws_sesv2_email_identity';
 
-  AwsSesv2EmailIdentity({
-    required super.localName,
+  AwsSesv2EmailIdentity(
+    super.localName, {
     TfArg<String>? configurationSetName,
     required TfArg<String> emailIdentity,
     TfArg<String>? region,

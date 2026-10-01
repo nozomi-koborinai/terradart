@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiFeatureGroupFeature(
-  ///   localName: 'score',
+  ///   'score',
   ///   featureGroup: group.ref,
   ///   name: TfArg.literal('feature_score'),
   ///   region: TfArg.literal('us-central1'),

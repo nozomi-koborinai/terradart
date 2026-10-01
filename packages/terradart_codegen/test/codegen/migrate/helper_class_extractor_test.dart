@@ -501,10 +501,10 @@ final class TaggedValue extends Choice {
     test('skips Resource / Data subclasses', () {
       const src = '''
 final class GoogleThing extends Resource {
-  GoogleThing({required super.localName}) : super(terraformType: 'x');
+  GoogleThing(super.localName) : super(terraformType: 'x');
 }
 final class DataGoogleThing extends Data {
-  DataGoogleThing({required super.localName}) : super(terraformType: 'x');
+  DataGoogleThing(super.localName) : super(terraformType: 'x');
 }
 ''';
       expect(_extractor.extract(src).helpers, isEmpty);

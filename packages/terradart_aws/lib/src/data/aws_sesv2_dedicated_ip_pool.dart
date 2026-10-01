@@ -11,8 +11,8 @@ const Set<String> _awsSesv2DedicatedIpPoolSensitive = <String>{};
 final class DataAwsSesv2DedicatedIpPool extends Data {
   static const String tfType = 'aws_sesv2_dedicated_ip_pool';
 
-  DataAwsSesv2DedicatedIpPool({
-    required super.localName,
+  DataAwsSesv2DedicatedIpPool(
+    super.localName, {
     required TfArg<String> poolName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

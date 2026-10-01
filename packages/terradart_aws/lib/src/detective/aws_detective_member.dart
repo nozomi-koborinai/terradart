@@ -10,8 +10,8 @@ const Set<String> _awsDetectiveMemberSensitive = <String>{};
 final class AwsDetectiveMember extends Resource {
   static const String tfType = 'aws_detective_member';
 
-  AwsDetectiveMember({
-    required super.localName,
+  AwsDetectiveMember(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<bool>? disableEmailNotification,
     required TfArg<String> emailAddress,

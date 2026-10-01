@@ -57,8 +57,8 @@ enum OauthClientVisibility implements TerraformEnum {
 final class CloudflareOauthClient extends Resource {
   static const String tfType = 'cloudflare_oauth_client';
 
-  CloudflareOauthClient({
-    required super.localName,
+  CloudflareOauthClient(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? allowedCorsOrigins,
     required TfArg<String> clientName,

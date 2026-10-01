@@ -233,7 +233,7 @@ final class EventarcTriggerPubsub {
 /// Example (Cloud Storage object finalized -> Cloud Run service):
 /// ```dart
 /// final onUpload = GoogleEventarcTrigger(
-///   localName: 'on_upload',
+///   'on_upload',
 ///   name: .literal('on-upload'),
 ///   location: .literal('asia-northeast1'),
 ///   serviceAccount: .of(runner),
@@ -266,8 +266,8 @@ final class EventarcTriggerPubsub {
 final class GoogleEventarcTrigger extends Resource {
   static const String tfType = 'google_eventarc_trigger';
 
-  GoogleEventarcTrigger({
-    required super.localName,
+  GoogleEventarcTrigger(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required List<EventarcTriggerMatchingCriteria> matchingCriteria,

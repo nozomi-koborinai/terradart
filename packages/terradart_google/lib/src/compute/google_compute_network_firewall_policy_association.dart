@@ -22,8 +22,8 @@ final class GoogleComputeNetworkFirewallPolicyAssociation extends Resource {
   static const String tfType =
       'google_compute_network_firewall_policy_association';
 
-  GoogleComputeNetworkFirewallPolicyAssociation({
-    required super.localName,
+  GoogleComputeNetworkFirewallPolicyAssociation(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required RefTo<GoogleComputeNetwork> attachmentTarget,

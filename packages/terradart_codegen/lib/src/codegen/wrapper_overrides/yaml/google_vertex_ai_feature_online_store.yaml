@@ -31,7 +31,7 @@ curatedDoc: |-
   /// Example (Optimized):
   /// ```dart
   /// GoogleVertexAiFeatureOnlineStore(
-  ///   localName: 'fos',
+  ///   'fos',
   ///   name: TfArg.literal('terradart_fos'),
   ///   region: TfArg.literal('us-central1'),
   ///   storage: const VertexAiFeatureOnlineStoreOptimized(),
@@ -41,7 +41,7 @@ curatedDoc: |-
   /// Example (Bigtable):
   /// ```dart
   /// GoogleVertexAiFeatureOnlineStore(
-  ///   localName: 'fos_bt',
+  ///   'fos_bt',
   ///   name: TfArg.literal('terradart_fos_bt'),
   ///   region: TfArg.literal('us-central1'),
   ///   storage: VertexAiFeatureOnlineStoreBigtable(

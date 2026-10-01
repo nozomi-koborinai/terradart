@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final membership = GoogleGkeHubMembership(
-  ///   localName: 'main',
+  ///   'main',
   ///   membershipId: TfArg.literal('main-cluster'),
   ///   endpoint: GkeHubMembershipEndpoint(
   ///     gkeCluster: .new(

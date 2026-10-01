@@ -13,8 +13,8 @@ const Set<String> _googleComputeNetworkPeeringRoutesConfigSensitive =
 final class GoogleComputeNetworkPeeringRoutesConfig extends Resource {
   static const String tfType = 'google_compute_network_peering_routes_config';
 
-  GoogleComputeNetworkPeeringRoutesConfig({
-    required super.localName,
+  GoogleComputeNetworkPeeringRoutesConfig(
+    super.localName, {
     required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> peering,
     required TfArg<bool> importCustomRoutes,

@@ -18,8 +18,8 @@ final class CloudflareZeroTrustDlpSensitivityLevelOrder extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_dlp_sensitivity_level_order';
 
-  CloudflareZeroTrustDlpSensitivityLevelOrder({
-    required super.localName,
+  CloudflareZeroTrustDlpSensitivityLevelOrder(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<List<String>> levelIds,
     required TfArg<String> sensitivityGroupId,

@@ -28,8 +28,8 @@ final class DataVpnGatewayFilter {
 final class DataAwsVpnGateway extends Data {
   static const String tfType = 'aws_vpn_gateway';
 
-  DataAwsVpnGateway({
-    required super.localName,
+  DataAwsVpnGateway(
+    super.localName, {
     TfArg<String>? amazonSideAsn,
     TfArg<String>? attachedVpcId,
     TfArg<String>? availabilityZone,

@@ -11,8 +11,8 @@ const Set<String> _awsVpclatticeListenerSensitive = <String>{};
 final class DataAwsVpclatticeListener extends Data {
   static const String tfType = 'aws_vpclattice_listener';
 
-  DataAwsVpclatticeListener({
-    required super.localName,
+  DataAwsVpclatticeListener(
+    super.localName, {
     required TfArg<String> listenerIdentifier,
     TfArg<String>? region,
     required TfArg<String> serviceIdentifier,

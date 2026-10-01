@@ -77,7 +77,7 @@ final class ApiServiceStack extends Stack {
 
     final dbPassword = add(
       GoogleSecretManagerSecret(
-        localName: 'db_password',
+        'db_password',
         secretId: .literal('api-db-password'),
         replication: .userManaged(
           .new(replicas: [.new(location: .literal('asia-northeast1'))]),
@@ -91,7 +91,7 @@ final class ApiServiceStack extends Stack {
     // found"). Write-only data keeps the value out of Terraform state (§10.4).
     final dbPasswordV1 = add(
       GoogleSecretManagerSecretVersion(
-        localName: 'db_password_v1',
+        'db_password_v1',
         secret: dbPassword.ref,
         payload: .writeOnly(
           secretDataWo: .literal('placeholder-secret-value'),
@@ -114,7 +114,7 @@ final class ApiServiceStack extends Stack {
 
     final runtimeSa = add(
       GoogleServiceAccount(
-        localName: 'api_runtime',
+        'api_runtime',
         accountId: .literal('api-runtime'),
         displayName: .literal('Cloud Run api runtime'),
       ),
@@ -122,7 +122,7 @@ final class ApiServiceStack extends Stack {
 
     final secretAccessor = add(
       GoogleSecretManagerSecretIamMember(
-        localName: 'api_runtime_secret_accessor',
+        'api_runtime_secret_accessor',
         secret: dbPassword.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: runtimeSa.principal,
@@ -147,7 +147,7 @@ final class ApiServiceStack extends Stack {
 
     final vpc = add(
       GoogleComputeNetwork(
-        localName: 'app_vpc',
+        'app_vpc',
         name: .literal('app-vpc'),
         autoCreateSubnetworks: .literal(false),
         dependsOn: apiDeps,
@@ -156,7 +156,7 @@ final class ApiServiceStack extends Stack {
 
     final psaRange = add(
       GoogleComputeGlobalAddress(
-        localName: 'psa_range',
+        'psa_range',
         name: .literal('app-psa-range'),
         addressType: .literal(.internal),
         purpose: .literal(.vpcPeering),
@@ -168,7 +168,7 @@ final class ApiServiceStack extends Stack {
 
     final psaConnection = add(
       GoogleServiceNetworkingConnection(
-        localName: 'psa',
+        'psa',
         network: vpc.ref,
         service: .literal('servicenetworking.googleapis.com'),
         reservedPeeringRanges: .literal([psaRange.name.interpolation]),
@@ -177,7 +177,7 @@ final class ApiServiceStack extends Stack {
     );
 
     final runConnector = GoogleVpcAccessConnector(
-      localName: 'run_vpc',
+      'run_vpc',
       name: .literal('run-vpc'),
       region: .literal('asia-northeast1'),
       ipCidrRange: .literal('10.8.0.0/28'),
@@ -190,7 +190,7 @@ final class ApiServiceStack extends Stack {
 
     final cache = add(
       GoogleRedisInstance(
-        localName: 'api_cache',
+        'api_cache',
         name: .literal('api-cache'),
         memorySizeGb: .literal(1),
         region: .literal('asia-northeast1'),
@@ -206,7 +206,7 @@ final class ApiServiceStack extends Stack {
 
     add(
       GoogleMemcacheInstance(
-        localName: 'api_sessions',
+        'api_sessions',
         name: .literal('api-sessions'),
         nodeCount: .literal(1),
         nodeConfig: MemcacheInstanceNodeConfig(
@@ -226,7 +226,7 @@ final class ApiServiceStack extends Stack {
     );
 
     final apiService = GoogleCloudRunV2Service(
-      localName: 'api',
+      'api',
       name: .literal('api'),
       location: .literal('asia-northeast1'),
       ingress: .literal(.internalLoadBalancer),
@@ -293,7 +293,7 @@ final class ApiServiceStack extends Stack {
 
     final batchWorkers = add(
       GoogleCloudRunV2WorkerPool(
-        localName: 'batch_workers',
+        'batch_workers',
         name: .literal('batch-workers'),
         location: .literal('asia-northeast1'),
         launchStage: .literal(.ga),
@@ -314,7 +314,7 @@ final class ApiServiceStack extends Stack {
     // resource only defines the Job, not its executions.
 
     final nightlyJob = GoogleCloudRunV2Job(
-      localName: 'nightly_cleanup',
+      'nightly_cleanup',
       name: .literal('nightly-cleanup'),
       location: .literal('asia-northeast1'),
       // Cloud Run v2 jobs default deletion_protection=true, which blocks
@@ -356,7 +356,7 @@ final class ApiServiceStack extends Stack {
 
     add(
       GoogleCloudRunV2ServiceIamMember(
-        localName: 'api_public_invoker',
+        'api_public_invoker',
         service: apiService.ref,
         role: .literal('roles/run.invoker'),
         member: .allUsers,
@@ -366,7 +366,7 @@ final class ApiServiceStack extends Stack {
     // IAP accessor on the Cloud Run service (project-scoped IAP web path).
     add(
       GoogleIapWebCloudRunServiceIamMember(
-        localName: 'api_iap_accessor',
+        'api_iap_accessor',
         cloudRunServiceName: apiService.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: runtimeSa.principal,
@@ -383,7 +383,7 @@ final class ApiServiceStack extends Stack {
     // -- and nothing else in the project.
 
     final schedulerSa = GoogleServiceAccount(
-      localName: 'cleanup_scheduler',
+      'cleanup_scheduler',
       accountId: .literal('cleanup-scheduler'),
       displayName: .literal('Nightly cleanup scheduler'),
     );
@@ -391,7 +391,7 @@ final class ApiServiceStack extends Stack {
 
     add(
       GoogleCloudRunV2JobIamMember(
-        localName: 'nightly_cleanup_invoker',
+        'nightly_cleanup_invoker',
         job: nightlyJob.ref,
         role: .literal('roles/run.invoker'),
         member: schedulerSa.principal,
@@ -408,7 +408,7 @@ final class ApiServiceStack extends Stack {
 
     add(
       GoogleCloudRunV2WorkerPoolIamMember(
-        localName: 'batch_workers_developer',
+        'batch_workers_developer',
         workerPool: batchWorkers.ref,
         role: .literal('roles/run.developer'),
         member: schedulerSa.principal,

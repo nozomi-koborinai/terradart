@@ -232,8 +232,8 @@ final class ClouddeployTargetRun {
 final class GoogleClouddeployTarget extends Resource {
   static const String tfType = 'google_clouddeploy_target';
 
-  GoogleClouddeployTarget({
-    required super.localName,
+  GoogleClouddeployTarget(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     ClouddeployTargetGke? gke,

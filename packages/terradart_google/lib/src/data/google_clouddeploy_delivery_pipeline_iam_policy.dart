@@ -16,8 +16,8 @@ final class DataGoogleClouddeployDeliveryPipelineIamPolicy extends Data {
   static const String tfType =
       'google_clouddeploy_delivery_pipeline_iam_policy';
 
-  DataGoogleClouddeployDeliveryPipelineIamPolicy({
-    required super.localName,
+  DataGoogleClouddeployDeliveryPipelineIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

@@ -11,8 +11,8 @@ const Set<String> _awsSfnStateMachineSensitive = <String>{};
 final class DataAwsSfnStateMachine extends Data {
   static const String tfType = 'aws_sfn_state_machine';
 
-  DataAwsSfnStateMachine({
-    required super.localName,
+  DataAwsSfnStateMachine(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

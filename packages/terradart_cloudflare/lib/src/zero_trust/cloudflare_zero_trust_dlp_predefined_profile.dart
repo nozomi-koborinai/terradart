@@ -37,8 +37,8 @@ final class ZeroTrustDlpPredefinedProfileEntries {
 final class CloudflareZeroTrustDlpPredefinedProfile extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_predefined_profile';
 
-  CloudflareZeroTrustDlpPredefinedProfile({
-    required super.localName,
+  CloudflareZeroTrustDlpPredefinedProfile(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? aiContextEnabled,
     TfArg<num>? allowedMatchCount,

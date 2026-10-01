@@ -57,8 +57,8 @@ final class SagemakerProjectProvisioningParameter {
 final class AwsSagemakerProject extends Resource {
   static const String tfType = 'aws_sagemaker_project';
 
-  AwsSagemakerProject({
-    required super.localName,
+  AwsSagemakerProject(
+    super.localName, {
     TfArg<String>? projectDescription,
     required TfArg<String> projectName,
     TfArg<String>? region,

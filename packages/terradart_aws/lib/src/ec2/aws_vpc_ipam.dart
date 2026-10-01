@@ -42,8 +42,8 @@ final class VpcIpamOperatingRegions {
 final class AwsVpcIpam extends Resource {
   static const String tfType = 'aws_vpc_ipam';
 
-  AwsVpcIpam({
-    required super.localName,
+  AwsVpcIpam(
+    super.localName, {
     TfArg<bool>? cascade,
     TfArg<String>? description,
     TfArg<bool>? enablePrivateGua,

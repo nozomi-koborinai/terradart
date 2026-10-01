@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustGatewayProxyEndpointsSensitive =
 final class DataCloudflareZeroTrustGatewayProxyEndpoints extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_proxy_endpoints';
 
-  DataCloudflareZeroTrustGatewayProxyEndpoints({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayProxyEndpoints(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<List<String>>? filter,

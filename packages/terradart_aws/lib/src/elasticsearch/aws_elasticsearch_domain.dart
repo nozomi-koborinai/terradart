@@ -450,8 +450,8 @@ final class ElasticsearchDomainVpcOptions {
 final class AwsElasticsearchDomain extends Resource {
   static const String tfType = 'aws_elasticsearch_domain';
 
-  AwsElasticsearchDomain({
-    required super.localName,
+  AwsElasticsearchDomain(
+    super.localName, {
     TfArg<String>? accessPolicies,
     TfArg<Map<String, String>>? advancedOptions,
     required TfArg<String> domainName,

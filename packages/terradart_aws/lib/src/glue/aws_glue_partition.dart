@@ -160,8 +160,8 @@ final class GluePartitionSortColumns {
 final class AwsGluePartition extends Resource {
   static const String tfType = 'aws_glue_partition';
 
-  AwsGluePartition({
-    required super.localName,
+  AwsGluePartition(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> databaseName,
     TfArg<Map<String, String>>? parameters,

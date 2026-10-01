@@ -462,8 +462,8 @@ enum LbListenerMode implements TerraformEnum {
 final class AwsLbListener extends Resource {
   static const String tfType = 'aws_lb_listener';
 
-  AwsLbListener({
-    required super.localName,
+  AwsLbListener(
+    super.localName, {
     TfArg<LbListenerAlpnPolicy>? alpnPolicy,
     TfArg<String>? certificateArn,
     required TfArg<String> loadBalancerArn,

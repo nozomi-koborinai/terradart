@@ -40,7 +40,7 @@ final class AppwriteInfraStack extends Stack {
         ) {
     add(
       AppwriteStorageBucket(
-        localName: 'uploads',
+        'uploads',
         name: .literal('uploads'),
         maximumFileSize: .literal(10485760),
       ),

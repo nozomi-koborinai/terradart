@@ -1059,8 +1059,8 @@ final class Kinesisanalyticsv2ApplicationCloudwatchLoggingOptions {
 final class AwsKinesisanalyticsv2Application extends Resource {
   static const String tfType = 'aws_kinesisanalyticsv2_application';
 
-  AwsKinesisanalyticsv2Application({
-    required super.localName,
+  AwsKinesisanalyticsv2Application(
+    super.localName, {
     TfArg<Kinesisanalyticsv2ApplicationMode>? applicationMode,
     TfArg<String>? description,
     TfArg<bool>? forceStop,

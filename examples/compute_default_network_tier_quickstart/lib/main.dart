@@ -20,7 +20,7 @@ final class ComputeDefaultNetworkTierStack extends Stack {
       ) {
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -28,7 +28,7 @@ final class ComputeDefaultNetworkTierStack extends Stack {
 
     add(
       GoogleComputeProjectDefaultNetworkTier(
-        localName: 'defaults',
+        'defaults',
         networkTier: .literal(.standard),
         dependsOn: [apiCompute],
       ),

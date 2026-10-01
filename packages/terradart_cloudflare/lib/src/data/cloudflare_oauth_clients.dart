@@ -15,8 +15,8 @@ const Set<String> _cloudflareOauthClientsSensitive = <String>{};
 final class DataCloudflareOauthClients extends Data {
   static const String tfType = 'cloudflare_oauth_clients';
 
-  DataCloudflareOauthClients({
-    required super.localName,
+  DataCloudflareOauthClients(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

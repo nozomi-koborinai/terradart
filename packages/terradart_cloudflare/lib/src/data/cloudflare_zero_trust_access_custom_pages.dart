@@ -15,8 +15,8 @@ const Set<String> _cloudflareZeroTrustAccessCustomPagesSensitive = <String>{};
 final class DataCloudflareZeroTrustAccessCustomPages extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_custom_pages';
 
-  DataCloudflareZeroTrustAccessCustomPages({
-    required super.localName,
+  DataCloudflareZeroTrustAccessCustomPages(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

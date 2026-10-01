@@ -15,8 +15,8 @@ const Set<String> _googleOrganizationIamPolicySensitive = <String>{};
 final class GoogleOrganizationIamPolicy extends Resource {
   static const String tfType = 'google_organization_iam_policy';
 
-  GoogleOrganizationIamPolicy({
-    required super.localName,
+  GoogleOrganizationIamPolicy(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> policyData,
     super.lifecycle,

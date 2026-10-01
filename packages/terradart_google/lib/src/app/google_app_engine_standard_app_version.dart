@@ -520,8 +520,8 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
 final class GoogleAppEngineStandardAppVersion extends Resource {
   static const String tfType = 'google_app_engine_standard_app_version';
 
-  GoogleAppEngineStandardAppVersion({
-    required super.localName,
+  GoogleAppEngineStandardAppVersion(
+    super.localName, {
     required TfArg<String> service,
     TfArg<String>? versionId,
     required TfArg<String> runtime,

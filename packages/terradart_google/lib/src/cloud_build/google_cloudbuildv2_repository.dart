@@ -27,7 +27,7 @@ const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 /// Example:
 /// ```dart
 /// final repo = GoogleCloudbuildv2Repository(
-///   localName: 'repo',
+///   'repo',
 ///   name: TfArg.literal('my-repo'),
 ///   parentConnection: githubConn.ref,
 ///   remoteUri: TfArg.literal('https://github.com/org/my-repo.git'),
@@ -40,8 +40,8 @@ const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 final class GoogleCloudbuildv2Repository extends Resource {
   static const String tfType = 'google_cloudbuildv2_repository';
 
-  GoogleCloudbuildv2Repository({
-    required super.localName,
+  GoogleCloudbuildv2Repository(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleCloudbuildv2Connection> parentConnection,
     required TfArg<String> remoteUri,

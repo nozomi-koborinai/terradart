@@ -175,8 +175,8 @@ final class LightsailDistributionOrigin {
 final class AwsLightsailDistribution extends Resource {
   static const String tfType = 'aws_lightsail_distribution';
 
-  AwsLightsailDistribution({
-    required super.localName,
+  AwsLightsailDistribution(
+    super.localName, {
     required TfArg<String> bundleId,
     TfArg<String>? certificateName,
     TfArg<String>? ipAddressType,

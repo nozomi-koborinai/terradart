@@ -85,7 +85,7 @@ enum SslPolicyMinTlsVersion implements TerraformEnum {
 /// Example (TLS 1.2-only, compliance-grade):
 /// ```dart
 /// final policy = GoogleComputeSslPolicy(
-///   localName: 'prod_ssl',
+///   'prod_ssl',
 ///   name: TfArg.literal('prod-ssl-policy'),
 ///   profile: TfArg.literal(SslPolicyProfile.restricted),
 ///   minTlsVersion: TfArg.literal(SslPolicyMinTlsVersion.tls12),
@@ -95,7 +95,7 @@ enum SslPolicyMinTlsVersion implements TerraformEnum {
 /// Example (custom cipher set):
 /// ```dart
 /// final policy = GoogleComputeSslPolicy(
-///   localName: 'custom_ssl',
+///   'custom_ssl',
 ///   name: TfArg.literal('custom-ssl-policy'),
 ///   profile: TfArg.literal(SslPolicyProfile.custom),
 ///   minTlsVersion: TfArg.literal(SslPolicyMinTlsVersion.tls12),
@@ -112,8 +112,8 @@ enum SslPolicyMinTlsVersion implements TerraformEnum {
 final class GoogleComputeSslPolicy extends Resource {
   static const String tfType = 'google_compute_ssl_policy';
 
-  GoogleComputeSslPolicy({
-    required super.localName,
+  GoogleComputeSslPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<SslPolicyProfile>? profile,

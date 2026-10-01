@@ -73,8 +73,8 @@ final class MailmanagerRelayNoAuthentication {
 final class AwsMailmanagerRelay extends Resource {
   static const String tfType = 'aws_mailmanager_relay';
 
-  AwsMailmanagerRelay({
-    required super.localName,
+  AwsMailmanagerRelay(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> serverName,

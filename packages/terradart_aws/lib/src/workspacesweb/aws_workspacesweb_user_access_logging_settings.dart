@@ -11,8 +11,8 @@ const Set<String> _awsWorkspaceswebUserAccessLoggingSettingsSensitive =
 final class AwsWorkspaceswebUserAccessLoggingSettings extends Resource {
   static const String tfType = 'aws_workspacesweb_user_access_logging_settings';
 
-  AwsWorkspaceswebUserAccessLoggingSettings({
-    required super.localName,
+  AwsWorkspaceswebUserAccessLoggingSettings(
+    super.localName, {
     required TfArg<String> kinesisStreamArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

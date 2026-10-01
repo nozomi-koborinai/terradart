@@ -356,8 +356,8 @@ final class DbInstanceS3Import {
 final class AwsDbInstance extends Resource {
   static const String tfType = 'aws_db_instance';
 
-  AwsDbInstance({
-    required super.localName,
+  AwsDbInstance(
+    super.localName, {
     TfArg<num>? allocatedStorage,
     TfArg<bool>? allowMajorVersionUpgrade,
     TfArg<bool>? applyImmediately,

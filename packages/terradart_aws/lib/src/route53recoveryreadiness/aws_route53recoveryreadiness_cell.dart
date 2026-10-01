@@ -10,8 +10,8 @@ const Set<String> _awsRoute53recoveryreadinessCellSensitive = <String>{};
 final class AwsRoute53recoveryreadinessCell extends Resource {
   static const String tfType = 'aws_route53recoveryreadiness_cell';
 
-  AwsRoute53recoveryreadinessCell({
-    required super.localName,
+  AwsRoute53recoveryreadinessCell(
+    super.localName, {
     required TfArg<String> cellName,
     TfArg<List<String>>? cells,
     TfArg<Map<String, String>>? tags,

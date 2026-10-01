@@ -42,11 +42,11 @@ final class OrdersStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final ordersSchema = add(
       GooglePubsubSchema(
-        localName: 'orders_proto',
+        'orders_proto',
         name: .literal('orders-proto'),
         type: .literal(.protocolBuffer),
         definition: .literal(
@@ -61,7 +61,7 @@ final class OrdersStack extends Stack {
     // account in-stack and bind against its `principal`.
     final ordersPublisher = add(
       GoogleServiceAccount(
-        localName: 'orders_publisher',
+        'orders_publisher',
         // 6-30 chars, lowercase letters/digits/hyphens.
         accountId: .literal('orders-publisher'),
         displayName: .literal('Orders Pub/Sub publisher'),
@@ -70,7 +70,7 @@ final class OrdersStack extends Stack {
 
     add(
       GooglePubsubSchemaIamMember(
-        localName: 'orders_schema_publisher',
+        'orders_schema_publisher',
         schema: ordersSchema.ref,
         // `roles/pubsub.schemaAdmin` is a project-level role and is NOT
         // grantable on an individual schema resource (apply fails with
@@ -86,7 +86,7 @@ final class OrdersStack extends Stack {
 
     final schemaViewerBinding = add(
       GooglePubsubSchemaIamBinding(
-        localName: 'orders_schema_viewer_binding',
+        'orders_schema_viewer_binding',
         schema: ordersSchema.ref,
         role: .literal('roles/pubsub.viewer'),
         members: .literal([ordersPublisher.principal]),
@@ -96,7 +96,7 @@ final class OrdersStack extends Stack {
 
     add(
       GooglePubsubSchemaIamPolicy(
-        localName: 'orders_schema_viewer_policy',
+        'orders_schema_viewer_policy',
         schema: ordersSchema.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -111,7 +111,7 @@ final class OrdersStack extends Stack {
 
     final topic = add(
       GooglePubsubTopic(
-        localName: 'orders',
+        'orders',
         name: .literal('orders-prod'),
         // 7-day retention so late-arriving subscribers can backfill.
         messageRetentionDuration: .literal(
@@ -122,7 +122,7 @@ final class OrdersStack extends Stack {
 
     add(
       GooglePubsubSubscription(
-        localName: 'orders_push',
+        'orders_push',
         name: .literal('orders-push'),
         // Cloud Scheduler / Pub/Sub cross-resource refs need topic.id (the
         // full `projects/.../topics/orders-prod` path), NOT topic.name.
@@ -136,7 +136,7 @@ final class OrdersStack extends Stack {
 
     add(
       GooglePubsubTopicIamMember(
-        localName: 'orders_pubsub_agent',
+        'orders_pubsub_agent',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: .serviceAccount(
@@ -150,7 +150,7 @@ final class OrdersStack extends Stack {
     // Binding then policy (dependsOn) so apply ordering stays deterministic.
     final topicViewerBinding = add(
       GooglePubsubTopicIamBinding(
-        localName: 'orders_publisher_binding',
+        'orders_publisher_binding',
         topic: topic.ref,
         role: .literal('roles/pubsub.viewer'),
         members: .literal([ordersPublisher.principal]),
@@ -160,7 +160,7 @@ final class OrdersStack extends Stack {
 
     add(
       GooglePubsubTopicIamPolicy(
-        localName: 'orders_publisher_policy',
+        'orders_publisher_policy',
         topic: topic.ref,
         policyData: .literal(
           _iamPolicyDataJson(

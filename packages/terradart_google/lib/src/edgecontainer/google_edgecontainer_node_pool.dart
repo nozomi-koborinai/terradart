@@ -53,8 +53,8 @@ final class EdgecontainerNodePoolNodeConfig {
 final class GoogleEdgecontainerNodePool extends Resource {
   static const String tfType = 'google_edgecontainer_node_pool';
 
-  GoogleEdgecontainerNodePool({
-    required super.localName,
+  GoogleEdgecontainerNodePool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> cluster,
     required TfArg<String> location,

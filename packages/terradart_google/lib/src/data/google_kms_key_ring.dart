@@ -14,8 +14,8 @@ const Set<String> _googleKmsKeyRingSensitive = <String>{};
 final class DataGoogleKmsKeyRing extends Data {
   static const String tfType = 'google_kms_key_ring';
 
-  DataGoogleKmsKeyRing({
-    required super.localName,
+  DataGoogleKmsKeyRing(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

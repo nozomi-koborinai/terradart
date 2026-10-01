@@ -101,8 +101,8 @@ enum CloudtrailEventDataStoreField implements TerraformEnum {
 final class AwsCloudtrailEventDataStore extends Resource {
   static const String tfType = 'aws_cloudtrail_event_data_store';
 
-  AwsCloudtrailEventDataStore({
-    required super.localName,
+  AwsCloudtrailEventDataStore(
+    super.localName, {
     TfArg<CloudtrailEventDataStoreBillingMode>? billingMode,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<bool>? multiRegionEnabled,

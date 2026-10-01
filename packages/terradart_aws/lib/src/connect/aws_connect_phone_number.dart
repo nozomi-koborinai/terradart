@@ -270,8 +270,8 @@ enum ConnectPhoneNumberType implements TerraformEnum {
 final class AwsConnectPhoneNumber extends Resource {
   static const String tfType = 'aws_connect_phone_number';
 
-  AwsConnectPhoneNumber({
-    required super.localName,
+  AwsConnectPhoneNumber(
+    super.localName, {
     required TfArg<ConnectPhoneNumberCountryCode> countryCode,
     TfArg<String>? description,
     TfArg<String>? prefix,

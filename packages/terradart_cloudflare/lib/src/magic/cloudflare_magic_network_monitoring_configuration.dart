@@ -43,8 +43,8 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
   static const String tfType =
       'cloudflare_magic_network_monitoring_configuration';
 
-  CloudflareMagicNetworkMonitoringConfiguration({
-    required super.localName,
+  CloudflareMagicNetworkMonitoringConfiguration(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? defaultSampling,
     required TfArg<String> name,

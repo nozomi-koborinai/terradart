@@ -40,8 +40,8 @@ enum MessagingProviderType implements TerraformEnum {
 final class AppwriteMessagingProvider extends Resource {
   static const String tfType = 'appwrite_messaging_provider';
 
-  AppwriteMessagingProvider({
-    required super.localName,
+  AppwriteMessagingProvider(
+    super.localName, {
     TfArg<String>? accountSid,
     TfArg<String>? apiKey,
     TfArg<String>? apiSecret,

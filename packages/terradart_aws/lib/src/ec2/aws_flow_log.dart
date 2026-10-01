@@ -255,8 +255,8 @@ enum FlowLogResourceType implements TerraformEnum {
 final class AwsFlowLog extends Resource {
   static const String tfType = 'aws_flow_log';
 
-  AwsFlowLog({
-    required super.localName,
+  AwsFlowLog(
+    super.localName, {
     TfArg<String>? deliverCrossAccountRole,
     required FlowLogSource source,
     RefTo<AwsIamRole>? iamRoleArn,

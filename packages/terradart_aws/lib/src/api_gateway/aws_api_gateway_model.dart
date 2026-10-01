@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayModelSensitive = <String>{};
 final class AwsApiGatewayModel extends Resource {
   static const String tfType = 'aws_api_gateway_model';
 
-  AwsApiGatewayModel({
-    required super.localName,
+  AwsApiGatewayModel(
+    super.localName, {
     required TfArg<String> contentType,
     TfArg<String>? description,
     required TfArg<String> name,

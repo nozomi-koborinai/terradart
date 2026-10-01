@@ -20,8 +20,8 @@ final class GoogleComputeRegionBackendBucketIamPolicy extends Resource {
   static const String tfType =
       'google_compute_region_backend_bucket_iam_policy';
 
-  GoogleComputeRegionBackendBucketIamPolicy({
-    required super.localName,
+  GoogleComputeRegionBackendBucketIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeRegionBackendBucket> backendBucket,
     required TfArg<String> policyData,
     TfArg<String>? project,

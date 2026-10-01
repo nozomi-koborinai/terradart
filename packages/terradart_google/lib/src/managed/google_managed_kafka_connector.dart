@@ -39,7 +39,7 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
 /// Example:
 /// ```dart
 /// GoogleManagedKafkaConnector(
-///   localName: 'sink',
+///   'sink',
 ///   connectorId: TfArg.literal('gcs-sink'),
 ///   connectCluster: connect.connectClusterId,
 ///   location: TfArg.literal('us-central1'),
@@ -52,8 +52,8 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
 final class GoogleManagedKafkaConnector extends Resource {
   static const String tfType = 'google_managed_kafka_connector';
 
-  GoogleManagedKafkaConnector({
-    required super.localName,
+  GoogleManagedKafkaConnector(
+    super.localName, {
     required TfArg<String> connectorId,
     required TfArg<String> connectCluster,
     required TfArg<String> location,

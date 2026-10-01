@@ -908,8 +908,8 @@ final class EcsServiceVpcLatticeConfigurations {
 final class AwsEcsService extends Resource {
   static const String tfType = 'aws_ecs_service';
 
-  AwsEcsService({
-    required super.localName,
+  AwsEcsService(
+    super.localName, {
     TfArg<EcsServiceAvailabilityZoneRebalancing>? availabilityZoneRebalancing,
     RefTo<AwsEcsCluster>? cluster,
     TfArg<num>? deploymentMaximumPercent,

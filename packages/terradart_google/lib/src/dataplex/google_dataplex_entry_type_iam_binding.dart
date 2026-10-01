@@ -43,8 +43,8 @@ final class DataplexEntryTypeIamBindingCondition {
 final class GoogleDataplexEntryTypeIamBinding extends Resource {
   static const String tfType = 'google_dataplex_entry_type_iam_binding';
 
-  GoogleDataplexEntryTypeIamBinding({
-    required super.localName,
+  GoogleDataplexEntryTypeIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexEntryType> entryType,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

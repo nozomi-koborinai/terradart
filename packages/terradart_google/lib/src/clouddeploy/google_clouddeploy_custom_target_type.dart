@@ -336,8 +336,8 @@ final class ClouddeployCustomTargetTypeRender {
 final class GoogleClouddeployCustomTargetType extends Resource {
   static const String tfType = 'google_clouddeploy_custom_target_type';
 
-  GoogleClouddeployCustomTargetType({
-    required super.localName,
+  GoogleClouddeployCustomTargetType(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     ClouddeployCustomTargetTypeActions? actions,

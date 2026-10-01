@@ -46,7 +46,7 @@ curatedDoc: |-
   /// Example (CPU-only autoscaler with cooldown):
   /// ```dart
   /// final igm = GoogleComputeInstanceGroupManager(
-  ///   localName: 'web_igm',
+  ///   'web_igm',
   ///   name: TfArg.literal('web-igm'),
   ///   zone: TfArg.literal('asia-northeast1-a'),
   ///   baseInstanceName: .literal('web'),
@@ -57,7 +57,7 @@ curatedDoc: |-
   ///   ],
   /// );
   /// final autoscaler = GoogleComputeAutoscaler(
-  ///   localName: 'web_autoscaler',
+  ///   'web_autoscaler',
   ///   name: TfArg.literal('web-autoscaler'),
   ///   zone: TfArg.literal('asia-northeast1-a'),
   ///   target: igm.ref,

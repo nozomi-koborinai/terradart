@@ -41,7 +41,7 @@ final class AwsEcsExpressStack extends Stack {
         ],
       ) {
     final repo = AwsEcrRepository(
-      localName: 'server',
+      'server',
       name: .literal(_name),
       imageTagMutability: .literal(.mutable),
       forceDelete: .literal(true),
@@ -52,7 +52,7 @@ final class AwsEcsExpressStack extends Stack {
     add(repo);
     add(
       AwsEcrLifecyclePolicy(
-        localName: 'server',
+        'server',
         repository: repo.ref,
         policy: .literal(
           jsonEncode({
@@ -90,11 +90,11 @@ final class AwsEcsExpressStack extends Stack {
           'AmazonECSInfrastructureRoleforExpressGatewayServices',
     );
 
-    final cluster = AwsEcsCluster(localName: 'server', name: .literal(_name));
+    final cluster = AwsEcsCluster('server', name: .literal(_name));
     add(cluster);
 
     final logs = AwsCloudwatchLogGroup(
-      localName: 'server',
+      'server',
       name: .name(.literal('/ecs/$_name')),
       retentionInDays: .literal(14),
     );
@@ -102,7 +102,7 @@ final class AwsEcsExpressStack extends Stack {
 
     add(
       AwsEcsExpressGatewayService(
-        localName: 'server',
+        'server',
         serviceName: .literal(_name),
         cluster: cluster.ref,
         executionRoleArn: execution.role.ref,
@@ -137,7 +137,7 @@ final class AwsEcsExpressStack extends Stack {
     required String policyArn,
   }) {
     final trust = DataAwsIamPolicyDocument(
-      localName: '${localName}_trust',
+      '${localName}_trust',
       statement: [
         DataIamPolicyDocumentStatement(
           effect: .literal('Allow'),
@@ -150,13 +150,13 @@ final class AwsEcsExpressStack extends Stack {
     );
     add(trust);
     final role = AwsIamRole(
-      localName: localName,
+      localName,
       name: .name(.literal(name)),
       assumeRolePolicy: trust.json,
     );
     add(role);
     final attachment = AwsIamRolePolicyAttachment(
-      localName: localName,
+      localName,
       role: role.ref,
       policyArn: .literal(policyArn),
     );

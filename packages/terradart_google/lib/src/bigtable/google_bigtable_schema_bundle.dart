@@ -37,7 +37,7 @@ class BigtableSchemaBundleProtoSchema {
 /// Example:
 /// ```dart
 /// GoogleBigtableSchemaBundle(
-///   localName: 'events_proto',
+///   'events_proto',
 ///   schemaBundleId: TfArg.literal('events-proto'),
 ///   instance: instance.ref,
 ///   table: table.ref,
@@ -49,8 +49,8 @@ class BigtableSchemaBundleProtoSchema {
 final class GoogleBigtableSchemaBundle extends Resource {
   static const String tfType = 'google_bigtable_schema_bundle';
 
-  GoogleBigtableSchemaBundle({
-    required super.localName,
+  GoogleBigtableSchemaBundle(
+    super.localName, {
     required TfArg<String> schemaBundleId,
     RefTo<GoogleBigtableInstance>? instance,
     RefTo<GoogleBigtableTable>? table,

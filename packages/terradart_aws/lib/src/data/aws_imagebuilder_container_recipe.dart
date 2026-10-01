@@ -11,8 +11,8 @@ const Set<String> _awsImagebuilderContainerRecipeSensitive = <String>{};
 final class DataAwsImagebuilderContainerRecipe extends Data {
   static const String tfType = 'aws_imagebuilder_container_recipe';
 
-  DataAwsImagebuilderContainerRecipe({
-    required super.localName,
+  DataAwsImagebuilderContainerRecipe(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

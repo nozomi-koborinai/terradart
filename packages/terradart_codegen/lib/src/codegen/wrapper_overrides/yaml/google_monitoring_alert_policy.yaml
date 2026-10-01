@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example (threshold on Compute Engine instance uptime):
   /// ```dart
   /// final policy = GoogleMonitoringAlertPolicy(
-  ///   localName: 'compute_uptime',
+  ///   'compute_uptime',
   ///   displayName: TfArg.literal('Compute instance uptime SLO'),
   ///   combiner: TfArg.literal(AlertCombiner.or),
   ///   conditions: const [

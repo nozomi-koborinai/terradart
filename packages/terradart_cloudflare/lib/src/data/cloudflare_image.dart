@@ -16,8 +16,8 @@ const Set<String> _cloudflareImageSensitive = <String>{};
 final class DataCloudflareImage extends Data {
   static const String tfType = 'cloudflare_image';
 
-  DataCloudflareImage({
-    required super.localName,
+  DataCloudflareImage(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> imageId,
     super.provider,

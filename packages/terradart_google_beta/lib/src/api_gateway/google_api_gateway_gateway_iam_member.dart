@@ -38,8 +38,8 @@ final class ApiGatewayGatewayIamMemberCondition {
 final class GoogleApiGatewayGatewayIamMember extends Resource {
   static const String tfType = 'google_api_gateway_gateway_iam_member';
 
-  GoogleApiGatewayGatewayIamMember({
-    required super.localName,
+  GoogleApiGatewayGatewayIamMember(
+    super.localName, {
     required RefTo<GoogleApiGatewayGateway> gateway,
     required IamPrincipal member,
     TfArg<String>? project,

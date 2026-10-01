@@ -36,8 +36,8 @@ final class DataprocJobIamMemberCondition {
 final class GoogleDataprocJobIamMember extends Resource {
   static const String tfType = 'google_dataproc_job_iam_member';
 
-  GoogleDataprocJobIamMember({
-    required super.localName,
+  GoogleDataprocJobIamMember(
+    super.localName, {
     required TfArg<String> jobId,
     required TfArg<String> role,
     required IamPrincipal member,

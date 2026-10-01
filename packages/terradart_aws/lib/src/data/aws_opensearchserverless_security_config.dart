@@ -39,8 +39,8 @@ final class DataOpensearchserverlessSecurityConfigSamlOptions {
 final class DataAwsOpensearchserverlessSecurityConfig extends Data {
   static const String tfType = 'aws_opensearchserverless_security_config';
 
-  DataAwsOpensearchserverlessSecurityConfig({
-    required super.localName,
+  DataAwsOpensearchserverlessSecurityConfig(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     List<DataOpensearchserverlessSecurityConfigIamFederationOptions>?

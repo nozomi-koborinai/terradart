@@ -39,8 +39,8 @@ final class ServiceDirectoryNamespaceIamMemberCondition {
 final class GoogleServiceDirectoryNamespaceIamMember extends Resource {
   static const String tfType = 'google_service_directory_namespace_iam_member';
 
-  GoogleServiceDirectoryNamespaceIamMember({
-    required super.localName,
+  GoogleServiceDirectoryNamespaceIamMember(
+    super.localName, {
     required RefTo<GoogleServiceDirectoryNamespace> namespace,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -10,8 +10,8 @@ const Set<String> _awsLambdaResourcePolicySensitive = <String>{};
 final class AwsLambdaResourcePolicy extends Resource {
   static const String tfType = 'aws_lambda_resource_policy';
 
-  AwsLambdaResourcePolicy({
-    required super.localName,
+  AwsLambdaResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

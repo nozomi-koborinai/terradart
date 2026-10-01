@@ -80,8 +80,8 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
   static const String tfType =
       'google_network_services_agent_connectivity_template';
 
-  GoogleNetworkServicesAgentConnectivityTemplate({
-    required super.localName,
+  GoogleNetworkServicesAgentConnectivityTemplate(
+    super.localName, {
     required TfArg<String> agentConnectivityTemplateId,
     required TfArg<String> location,
     required TfArg<NetworkServicesAgentConnectivityTemplateAccessPath>

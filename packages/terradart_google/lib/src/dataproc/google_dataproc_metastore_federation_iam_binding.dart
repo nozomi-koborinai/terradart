@@ -46,8 +46,8 @@ final class GoogleDataprocMetastoreFederationIamBinding extends Resource {
   static const String tfType =
       'google_dataproc_metastore_federation_iam_binding';
 
-  GoogleDataprocMetastoreFederationIamBinding({
-    required super.localName,
+  GoogleDataprocMetastoreFederationIamBinding(
+    super.localName, {
     required RefTo<GoogleDataprocMetastoreFederation> federation,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

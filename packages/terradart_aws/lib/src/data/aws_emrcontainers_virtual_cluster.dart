@@ -11,8 +11,8 @@ const Set<String> _awsEmrcontainersVirtualClusterSensitive = <String>{};
 final class DataAwsEmrcontainersVirtualCluster extends Data {
   static const String tfType = 'aws_emrcontainers_virtual_cluster';
 
-  DataAwsEmrcontainersVirtualCluster({
-    required super.localName,
+  DataAwsEmrcontainersVirtualCluster(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> virtualClusterId,

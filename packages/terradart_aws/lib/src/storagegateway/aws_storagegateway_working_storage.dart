@@ -10,8 +10,8 @@ const Set<String> _awsStoragegatewayWorkingStorageSensitive = <String>{};
 final class AwsStoragegatewayWorkingStorage extends Resource {
   static const String tfType = 'aws_storagegateway_working_storage';
 
-  AwsStoragegatewayWorkingStorage({
-    required super.localName,
+  AwsStoragegatewayWorkingStorage(
+    super.localName, {
     required TfArg<String> diskId,
     required TfArg<String> gatewayArn,
     TfArg<String>? region,

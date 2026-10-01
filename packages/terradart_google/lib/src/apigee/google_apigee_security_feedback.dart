@@ -74,8 +74,8 @@ enum ApigeeSecurityFeedbackAttribute implements TerraformEnum {
 final class GoogleApigeeSecurityFeedback extends Resource {
   static const String tfType = 'google_apigee_security_feedback';
 
-  GoogleApigeeSecurityFeedback({
-    required super.localName,
+  GoogleApigeeSecurityFeedback(
+    super.localName, {
     required TfArg<String> feedbackId,
     required TfArg<String> orgId,
     required TfArg<ApigeeSecurityFeedbackType> feedbackType,

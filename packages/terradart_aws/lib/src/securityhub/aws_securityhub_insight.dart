@@ -2391,8 +2391,8 @@ final class SecurityhubInsightWorkflowStatus {
 final class AwsSecurityhubInsight extends Resource {
   static const String tfType = 'aws_securityhub_insight';
 
-  AwsSecurityhubInsight({
-    required super.localName,
+  AwsSecurityhubInsight(
+    super.localName, {
     required TfArg<String> groupByAttribute,
     required TfArg<String> name,
     TfArg<String>? region,

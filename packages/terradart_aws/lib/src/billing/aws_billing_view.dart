@@ -99,8 +99,8 @@ final class BillingViewTimeRange {
 final class AwsBillingView extends Resource {
   static const String tfType = 'aws_billing_view';
 
-  AwsBillingView({
-    required super.localName,
+  AwsBillingView(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<List<String>>? sourceViews,

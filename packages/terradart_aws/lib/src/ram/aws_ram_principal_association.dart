@@ -10,8 +10,8 @@ const Set<String> _awsRamPrincipalAssociationSensitive = <String>{};
 final class AwsRamPrincipalAssociation extends Resource {
   static const String tfType = 'aws_ram_principal_association';
 
-  AwsRamPrincipalAssociation({
-    required super.localName,
+  AwsRamPrincipalAssociation(
+    super.localName, {
     required TfArg<String> principal,
     TfArg<String>? region,
     required TfArg<String> resourceShareArn,

@@ -35,8 +35,8 @@ final class DaxClusterServerSideEncryption {
 final class AwsDaxCluster extends Resource {
   static const String tfType = 'aws_dax_cluster';
 
-  AwsDaxCluster({
-    required super.localName,
+  AwsDaxCluster(
+    super.localName, {
     TfArg<List<String>>? availabilityZones,
     TfArg<DaxClusterEndpointEncryptionType>? clusterEndpointEncryptionType,
     required TfArg<String> clusterName,

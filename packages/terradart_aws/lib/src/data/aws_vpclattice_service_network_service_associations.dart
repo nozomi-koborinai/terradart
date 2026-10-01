@@ -12,8 +12,8 @@ final class DataAwsVpclatticeServiceNetworkServiceAssociations extends Data {
   static const String tfType =
       'aws_vpclattice_service_network_service_associations';
 
-  DataAwsVpclatticeServiceNetworkServiceAssociations({
-    required super.localName,
+  DataAwsVpclatticeServiceNetworkServiceAssociations(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? serviceIdentifier,
     TfArg<String>? serviceNetworkIdentifier,

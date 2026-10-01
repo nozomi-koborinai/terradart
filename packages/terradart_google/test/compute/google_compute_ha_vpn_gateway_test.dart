@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   test('gatewayIpVersion / stackType are typed enums and serialize raw', () {
     final gw = GoogleComputeHaVpnGateway(
-      localName: 'gw',
+      'gw',
       name: TfArg.literal('gw'),
       network: .literal('net'),
       gatewayIpVersion: TfArg.literal(ComputeHaVpnGatewayIpVersion.ipv6),

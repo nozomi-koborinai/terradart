@@ -16,8 +16,8 @@ const Set<String> _googleFirebaseProjectSensitive = <String>{};
 final class GoogleFirebaseProject extends Resource {
   static const String tfType = 'google_firebase_project';
 
-  GoogleFirebaseProject({
-    required super.localName,
+  GoogleFirebaseProject(
+    super.localName, {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

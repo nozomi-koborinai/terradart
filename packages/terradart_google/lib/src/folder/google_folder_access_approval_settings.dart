@@ -40,8 +40,8 @@ final class FolderAccessApprovalSettingsEnrolledServices {
 final class GoogleFolderAccessApprovalSettings extends Resource {
   static const String tfType = 'google_folder_access_approval_settings';
 
-  GoogleFolderAccessApprovalSettings({
-    required super.localName,
+  GoogleFolderAccessApprovalSettings(
+    super.localName, {
     TfArg<String>? activeKeyVersion,
     TfArg<String>? deletionPolicy,
     required TfArg<String> folderId,

@@ -239,7 +239,7 @@ final class MonitoringNotificationChannelCredentialServiceKeyWo
 /// Example (Slack channel):
 /// ```dart
 /// final slack = GoogleMonitoringNotificationChannel(
-///   localName: 'oncall_slack',
+///   'oncall_slack',
 ///   displayName: .literal('#oncall alerts'),
 ///   type: .literal('slack'),
 ///   labels: .literal(const {
@@ -256,8 +256,8 @@ final class MonitoringNotificationChannelCredentialServiceKeyWo
 final class GoogleMonitoringNotificationChannel extends Resource {
   static const String tfType = 'google_monitoring_notification_channel';
 
-  GoogleMonitoringNotificationChannel({
-    required super.localName,
+  GoogleMonitoringNotificationChannel(
+    super.localName, {
     TfArg<String>? displayName,
     required TfArg<String> type,
     TfArg<Map<String, String>>? labels,

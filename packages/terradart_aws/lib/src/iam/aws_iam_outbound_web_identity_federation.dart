@@ -10,8 +10,8 @@ const Set<String> _awsIamOutboundWebIdentityFederationSensitive = <String>{};
 final class AwsIamOutboundWebIdentityFederation extends Resource {
   static const String tfType = 'aws_iam_outbound_web_identity_federation';
 
-  AwsIamOutboundWebIdentityFederation({
-    required super.localName,
+  AwsIamOutboundWebIdentityFederation(
+    super.localName, {
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -30,8 +30,8 @@ final class DataNatGatewayFilter {
 final class DataAwsNatGateway extends Data {
   static const String tfType = 'aws_nat_gateway';
 
-  DataAwsNatGateway({
-    required super.localName,
+  DataAwsNatGateway(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? state,
     RefTo<AwsSubnet>? subnetId,

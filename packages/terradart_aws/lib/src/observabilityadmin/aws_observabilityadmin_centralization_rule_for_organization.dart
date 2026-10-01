@@ -401,8 +401,8 @@ final class AwsObservabilityadminCentralizationRuleForOrganization
   static const String tfType =
       'aws_observabilityadmin_centralization_rule_for_organization';
 
-  AwsObservabilityadminCentralizationRuleForOrganization({
-    required super.localName,
+  AwsObservabilityadminCentralizationRuleForOrganization(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     TfArg<Map<String, String>>? tags,

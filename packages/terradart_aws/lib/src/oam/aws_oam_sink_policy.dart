@@ -10,8 +10,8 @@ const Set<String> _awsOamSinkPolicySensitive = <String>{};
 final class AwsOamSinkPolicy extends Resource {
   static const String tfType = 'aws_oam_sink_policy';
 
-  AwsOamSinkPolicy({
-    required super.localName,
+  AwsOamSinkPolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> sinkIdentifier,

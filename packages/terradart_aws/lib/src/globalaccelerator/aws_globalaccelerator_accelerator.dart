@@ -44,8 +44,8 @@ final class GlobalacceleratorAcceleratorAttributes {
 final class AwsGlobalacceleratorAccelerator extends Resource {
   static const String tfType = 'aws_globalaccelerator_accelerator';
 
-  AwsGlobalacceleratorAccelerator({
-    required super.localName,
+  AwsGlobalacceleratorAccelerator(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<GlobalacceleratorAcceleratorIpAddressType>? ipAddressType,
     TfArg<List<String>>? ipAddresses,

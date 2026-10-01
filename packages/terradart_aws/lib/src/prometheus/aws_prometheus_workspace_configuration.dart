@@ -41,8 +41,8 @@ final class PrometheusWorkspaceConfigurationLimits {
 final class AwsPrometheusWorkspaceConfiguration extends Resource {
   static const String tfType = 'aws_prometheus_workspace_configuration';
 
-  AwsPrometheusWorkspaceConfiguration({
-    required super.localName,
+  AwsPrometheusWorkspaceConfiguration(
+    super.localName, {
     TfArg<num>? outOfOrderTimeWindowInSeconds,
     TfArg<String>? region,
     TfArg<num>? retentionPeriodInDays,

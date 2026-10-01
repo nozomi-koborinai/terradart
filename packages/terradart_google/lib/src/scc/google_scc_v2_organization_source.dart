@@ -21,8 +21,8 @@ const Set<String> _googleSccV2OrganizationSourceSensitive = <String>{};
 final class GoogleSccV2OrganizationSource extends Resource {
   static const String tfType = 'google_scc_v2_organization_source';
 
-  GoogleSccV2OrganizationSource({
-    required super.localName,
+  GoogleSccV2OrganizationSource(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> displayName,
     required TfArg<String> organization,

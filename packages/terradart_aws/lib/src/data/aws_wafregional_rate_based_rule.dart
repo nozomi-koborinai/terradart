@@ -11,8 +11,8 @@ const Set<String> _awsWafregionalRateBasedRuleSensitive = <String>{};
 final class DataAwsWafregionalRateBasedRule extends Data {
   static const String tfType = 'aws_wafregional_rate_based_rule';
 
-  DataAwsWafregionalRateBasedRule({
-    required super.localName,
+  DataAwsWafregionalRateBasedRule(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

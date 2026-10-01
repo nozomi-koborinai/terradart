@@ -13,8 +13,8 @@ const Set<String> _googleVmwareengineUpgradesSensitive = <String>{};
 final class DataGoogleVmwareengineUpgrades extends Data {
   static const String tfType = 'google_vmwareengine_upgrades';
 
-  DataGoogleVmwareengineUpgrades({
-    required super.localName,
+  DataGoogleVmwareengineUpgrades(
+    super.localName, {
     TfArg<String>? name,
     required TfArg<String> parent,
     super.provider,

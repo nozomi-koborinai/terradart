@@ -12,8 +12,8 @@ const Set<String> _awsVpcEndpointSubnetAssociationSensitive = <String>{};
 final class AwsVpcEndpointSubnetAssociation extends Resource {
   static const String tfType = 'aws_vpc_endpoint_subnet_association';
 
-  AwsVpcEndpointSubnetAssociation({
-    required super.localName,
+  AwsVpcEndpointSubnetAssociation(
+    super.localName, {
     TfArg<String>? region,
     required RefTo<AwsSubnet> subnetId,
     required TfArg<String> vpcEndpointId,

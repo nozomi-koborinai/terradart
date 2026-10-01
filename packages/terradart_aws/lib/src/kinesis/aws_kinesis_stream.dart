@@ -124,8 +124,8 @@ enum KinesisStreamMode implements TerraformEnum {
 final class AwsKinesisStream extends Resource {
   static const String tfType = 'aws_kinesis_stream';
 
-  AwsKinesisStream({
-    required super.localName,
+  AwsKinesisStream(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<KinesisStreamEncryptionType>? encryptionType,
     TfArg<bool>? enforceConsumerDeletion,

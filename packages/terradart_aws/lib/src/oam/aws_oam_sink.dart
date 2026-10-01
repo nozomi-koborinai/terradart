@@ -10,8 +10,8 @@ const Set<String> _awsOamSinkSensitive = <String>{};
 final class AwsOamSink extends Resource {
   static const String tfType = 'aws_oam_sink';
 
-  AwsOamSink({
-    required super.localName,
+  AwsOamSink(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

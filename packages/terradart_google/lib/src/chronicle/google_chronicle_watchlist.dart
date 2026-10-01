@@ -58,8 +58,8 @@ final class ChronicleWatchlistUserPreferences {
 final class GoogleChronicleWatchlist extends Resource {
   static const String tfType = 'google_chronicle_watchlist';
 
-  GoogleChronicleWatchlist({
-    required super.localName,
+  GoogleChronicleWatchlist(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
     required TfArg<String> instance,

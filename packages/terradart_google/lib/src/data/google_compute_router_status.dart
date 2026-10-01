@@ -13,8 +13,8 @@ const Set<String> _googleComputeRouterStatusSensitive = <String>{};
 final class DataGoogleComputeRouterStatus extends Data {
   static const String tfType = 'google_compute_router_status';
 
-  DataGoogleComputeRouterStatus({
-    required super.localName,
+  DataGoogleComputeRouterStatus(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

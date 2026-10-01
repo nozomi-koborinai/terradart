@@ -163,8 +163,8 @@ final class MemorydbClusterSnapshotName extends MemorydbClusterSnapshot {
 final class AwsMemorydbCluster extends Resource {
   static const String tfType = 'aws_memorydb_cluster';
 
-  AwsMemorydbCluster({
-    required super.localName,
+  AwsMemorydbCluster(
+    super.localName, {
     required TfArg<String> aclName,
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<bool>? dataTiering,

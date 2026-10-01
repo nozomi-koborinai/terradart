@@ -30,8 +30,8 @@ final class AppfabricAppAuthorizationConnectionAuthRequest {
 final class AwsAppfabricAppAuthorizationConnection extends Resource {
   static const String tfType = 'aws_appfabric_app_authorization_connection';
 
-  AwsAppfabricAppAuthorizationConnection({
-    required super.localName,
+  AwsAppfabricAppAuthorizationConnection(
+    super.localName, {
     required TfArg<String> appAuthorizationArn,
     required TfArg<String> appBundleArn,
     TfArg<String>? region,

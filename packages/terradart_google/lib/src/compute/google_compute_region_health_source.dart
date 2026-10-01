@@ -31,8 +31,8 @@ enum ComputeRegionHealthSourceType implements TerraformEnum {
 final class GoogleComputeRegionHealthSource extends Resource {
   static const String tfType = 'google_compute_region_health_source';
 
-  GoogleComputeRegionHealthSource({
-    required super.localName,
+  GoogleComputeRegionHealthSource(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     required TfArg<ComputeRegionHealthSourceType> sourceType,

@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineNetworkPolicySensitive = <String>{};
 final class DataGoogleVmwareengineNetworkPolicy extends Data {
   static const String tfType = 'google_vmwareengine_network_policy';
 
-  DataGoogleVmwareengineNetworkPolicy({
-    required super.localName,
+  DataGoogleVmwareengineNetworkPolicy(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

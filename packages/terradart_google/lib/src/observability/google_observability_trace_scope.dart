@@ -12,8 +12,8 @@ const Set<String> _googleObservabilityTraceScopeSensitive = <String>{};
 final class GoogleObservabilityTraceScope extends Resource {
   static const String tfType = 'google_observability_trace_scope';
 
-  GoogleObservabilityTraceScope({
-    required super.localName,
+  GoogleObservabilityTraceScope(
+    super.localName, {
     required TfArg<String> traceScopeId,
     required TfArg<String> location,
     required TfArg<List<String>> resourceNames,

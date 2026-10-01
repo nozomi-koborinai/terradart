@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final httpProxy = GoogleComputeTargetHttpProxy(
-  ///   localName: 'lb_http',
+  ///   'lb_http',
   ///   name: TfArg.literal('lb-http-proxy'),
   ///   urlMap: urlMap.ref,
   /// );

@@ -34,7 +34,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCloudAssetProjectFeed(
-  ///   localName: 'project_feed',
+  ///   'project_feed',
   ///   feedId: TfArg.literal('terradart-project-feed'),
   ///   assetTypes: TfArg.literal(const [
   ///     'cloudresourcemanager.googleapis.com/Project',

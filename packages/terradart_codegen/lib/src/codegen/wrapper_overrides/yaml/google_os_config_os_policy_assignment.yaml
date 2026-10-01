@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleOsConfigOsPolicyAssignment(
-  ///   localName: 'baseline',
+  ///   'baseline',
   ///   name: TfArg.literal('baseline-policies'),
   ///   location: TfArg.literal('us-central1-a'),
   ///   osPolicies: [/* OsConfigOsPolicyAssignmentOsPolicies helpers */],

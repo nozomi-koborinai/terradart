@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetappVolumeSnapshot(
-  ///   localName: 'snap',
+  ///   'snap',
   ///   name: TfArg.literal('daily'),
   ///   location: TfArg.literal('us-central1'),
   ///   volumeName: vol.name,

@@ -824,8 +824,8 @@ enum GkeonpremBareMetalClusterPolicy implements TerraformEnum {
 final class GoogleGkeonpremBareMetalCluster extends Resource {
   static const String tfType = 'google_gkeonprem_bare_metal_cluster';
 
-  GoogleGkeonpremBareMetalCluster({
-    required super.localName,
+  GoogleGkeonpremBareMetalCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> bareMetalVersion,

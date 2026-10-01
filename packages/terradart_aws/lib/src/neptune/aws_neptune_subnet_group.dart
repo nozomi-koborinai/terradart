@@ -70,8 +70,8 @@ final class NeptuneSubnetGroupNamePrefix extends NeptuneSubnetGroupName {
 final class AwsNeptuneSubnetGroup extends Resource {
   static const String tfType = 'aws_neptune_subnet_group';
 
-  AwsNeptuneSubnetGroup({
-    required super.localName,
+  AwsNeptuneSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     NeptuneSubnetGroupName? name,
     TfArg<String>? region,

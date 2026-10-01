@@ -100,8 +100,8 @@ final class Resiliencehubv2PolicyMultiRegion {
 final class AwsResiliencehubv2Policy extends Resource {
   static const String tfType = 'aws_resiliencehubv2_policy';
 
-  AwsResiliencehubv2Policy({
-    required super.localName,
+  AwsResiliencehubv2Policy(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,

@@ -158,8 +158,8 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
 final class AwsElastictranscoderPipeline extends Resource {
   static const String tfType = 'aws_elastictranscoder_pipeline';
 
-  AwsElastictranscoderPipeline({
-    required super.localName,
+  AwsElastictranscoderPipeline(
+    super.localName, {
     TfArg<String>? awsKmsKeyArn,
     required TfArg<String> inputBucket,
     TfArg<String>? name,

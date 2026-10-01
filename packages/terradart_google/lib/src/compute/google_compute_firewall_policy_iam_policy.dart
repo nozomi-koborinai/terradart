@@ -19,8 +19,8 @@ const Set<String> _googleComputeFirewallPolicyIamPolicySensitive = <String>{};
 final class GoogleComputeFirewallPolicyIamPolicy extends Resource {
   static const String tfType = 'google_compute_firewall_policy_iam_policy';
 
-  GoogleComputeFirewallPolicyIamPolicy({
-    required super.localName,
+  GoogleComputeFirewallPolicyIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<String> policyData,
     super.lifecycle,

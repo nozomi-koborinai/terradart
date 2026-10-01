@@ -17,8 +17,8 @@ const Set<String> _googleGkeHubFeatureIamPolicySensitive = <String>{};
 final class GoogleGkeHubFeatureIamPolicy extends Resource {
   static const String tfType = 'google_gke_hub_feature_iam_policy';
 
-  GoogleGkeHubFeatureIamPolicy({
-    required super.localName,
+  GoogleGkeHubFeatureIamPolicy(
+    super.localName, {
     required RefTo<GoogleGkeHubFeature> feature,
     TfArg<String>? location,
     required TfArg<String> policyData,

@@ -71,8 +71,8 @@ enum CustomSslLabel implements TerraformEnum {
 final class CloudflareCustomSsl extends Resource {
   static const String tfType = 'cloudflare_custom_ssl';
 
-  CloudflareCustomSsl({
-    required super.localName,
+  CloudflareCustomSsl(
+    super.localName, {
     TfArg<CustomSslBundleMethod>? bundleMethod,
     required TfArg<String> certificate,
     TfArg<String>? customCsrId,

@@ -29,7 +29,7 @@ final class WifTrustDomainStack extends Stack {
 
     final pool = add(
       GoogleIamWorkloadIdentityPool(
-        localName: 'trust',
+        'trust',
         workloadIdentityPoolId: .literal(poolId),
         displayName: .literal('TerraDart trust-domain pool'),
         description: .literal(
@@ -41,7 +41,7 @@ final class WifTrustDomainStack extends Stack {
 
     final namespace = add(
       GoogleIamWorkloadIdentityPoolNamespace(
-        localName: 'apps',
+        'apps',
         workloadIdentityPoolId: .literal(poolId),
         workloadIdentityPoolNamespaceId: .literal(namespaceId),
         description: .literal('TerraDart apps namespace'),
@@ -51,7 +51,7 @@ final class WifTrustDomainStack extends Stack {
 
     add(
       GoogleIamWorkloadIdentityPoolManagedIdentity(
-        localName: 'runner',
+        'runner',
         workloadIdentityPoolId: .literal(poolId),
         workloadIdentityPoolNamespaceId: .literal(namespaceId),
         workloadIdentityPoolManagedIdentityId: .literal(identityId),

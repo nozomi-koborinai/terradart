@@ -28,8 +28,8 @@ final class DataCustomCsrFilter {
 final class DataCloudflareCustomCsr extends Data {
   static const String tfType = 'cloudflare_custom_csr';
 
-  DataCloudflareCustomCsr({
-    required super.localName,
+  DataCloudflareCustomCsr(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? customCsrId,
     RefTo<CloudflareZone>? zoneId,

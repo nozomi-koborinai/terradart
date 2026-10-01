@@ -22,8 +22,8 @@ const Set<String> _googleIamWorkforcePoolProviderScimTenantSensitive =
 final class GoogleIamWorkforcePoolProviderScimTenant extends Resource {
   static const String tfType = 'google_iam_workforce_pool_provider_scim_tenant';
 
-  GoogleIamWorkforcePoolProviderScimTenant({
-    required super.localName,
+  GoogleIamWorkforcePoolProviderScimTenant(
+    super.localName, {
     required TfArg<Map<String, String>> claimMapping,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

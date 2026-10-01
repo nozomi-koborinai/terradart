@@ -12,8 +12,8 @@ const Set<String> _cloudflareAiSearchTokenSensitive = <String>{'cf_api_key'};
 final class CloudflareAiSearchToken extends Resource {
   static const String tfType = 'cloudflare_ai_search_token';
 
-  CloudflareAiSearchToken({
-    required super.localName,
+  CloudflareAiSearchToken(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> cfApiId,
     required TfArg<String> cfApiKey,

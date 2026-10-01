@@ -14,8 +14,8 @@ const Set<String> _googleComputeInstanceGroupSensitive = <String>{};
 final class DataGoogleComputeInstanceGroup extends Data {
   static const String tfType = 'google_compute_instance_group';
 
-  DataGoogleComputeInstanceGroup({
-    required super.localName,
+  DataGoogleComputeInstanceGroup(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLink,

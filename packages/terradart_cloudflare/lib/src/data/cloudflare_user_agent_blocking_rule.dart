@@ -40,8 +40,8 @@ final class DataUserAgentBlockingRuleFilter {
 final class DataCloudflareUserAgentBlockingRule extends Data {
   static const String tfType = 'cloudflare_user_agent_blocking_rule';
 
-  DataCloudflareUserAgentBlockingRule({
-    required super.localName,
+  DataCloudflareUserAgentBlockingRule(
+    super.localName, {
     TfArg<String>? uaRuleId,
     RefTo<CloudflareZone>? zoneId,
     DataUserAgentBlockingRuleFilter? filter,

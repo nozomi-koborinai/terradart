@@ -93,8 +93,8 @@ final class BigqueryDatapolicyDataPolicyDataMaskingPolicyRoutine
 final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   static const String tfType = 'google_bigquery_datapolicy_data_policy';
 
-  GoogleBigqueryDatapolicyDataPolicy({
-    required super.localName,
+  GoogleBigqueryDatapolicyDataPolicy(
+    super.localName, {
     required TfArg<String> dataPolicyId,
     required TfArg<BigqueryDatapolicyDataPolicyType> dataPolicyType,
     required TfArg<String> location,

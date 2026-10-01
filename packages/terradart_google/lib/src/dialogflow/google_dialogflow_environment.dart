@@ -224,8 +224,8 @@ enum DialogflowEnvironmentSsmlGender implements TerraformEnum {
 final class GoogleDialogflowEnvironment extends Resource {
   static const String tfType = 'google_dialogflow_environment';
 
-  GoogleDialogflowEnvironment({
-    required super.localName,
+  GoogleDialogflowEnvironment(
+    super.localName, {
     required TfArg<String> environmentid,
     RefTo<GoogleDialogflowVersion>? agentVersion,
     TfArg<String>? location,

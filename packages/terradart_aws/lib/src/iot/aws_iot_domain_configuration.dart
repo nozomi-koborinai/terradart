@@ -89,8 +89,8 @@ final class IotDomainConfigurationTlsConfig {
 final class AwsIotDomainConfiguration extends Resource {
   static const String tfType = 'aws_iot_domain_configuration';
 
-  AwsIotDomainConfiguration({
-    required super.localName,
+  AwsIotDomainConfiguration(
+    super.localName, {
     TfArg<IotDomainConfigurationApplicationProtocol>? applicationProtocol,
     TfArg<IotDomainConfigurationAuthenticationType>? authenticationType,
     TfArg<String>? domainName,

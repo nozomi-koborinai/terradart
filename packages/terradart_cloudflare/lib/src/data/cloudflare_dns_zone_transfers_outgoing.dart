@@ -17,8 +17,8 @@ const Set<String> _cloudflareDnsZoneTransfersOutgoingSensitive = <String>{};
 final class DataCloudflareDnsZoneTransfersOutgoing extends Data {
   static const String tfType = 'cloudflare_dns_zone_transfers_outgoing';
 
-  DataCloudflareDnsZoneTransfersOutgoing({
-    required super.localName,
+  DataCloudflareDnsZoneTransfersOutgoing(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

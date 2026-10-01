@@ -234,8 +234,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyWithRules extends Resource {
   static const String tfType =
       'google_compute_region_network_firewall_policy_with_rules';
 
-  GoogleComputeRegionNetworkFirewallPolicyWithRules({
-    required super.localName,
+  GoogleComputeRegionNetworkFirewallPolicyWithRules(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required List<ComputeRegionNetworkFirewallPolicyWithRulesRule> rule,

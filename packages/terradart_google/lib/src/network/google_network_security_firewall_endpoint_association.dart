@@ -44,8 +44,8 @@ final class GoogleNetworkSecurityFirewallEndpointAssociation extends Resource {
   static const String tfType =
       'google_network_security_firewall_endpoint_association';
 
-  GoogleNetworkSecurityFirewallEndpointAssociation({
-    required super.localName,
+  GoogleNetworkSecurityFirewallEndpointAssociation(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> firewallEndpoint,

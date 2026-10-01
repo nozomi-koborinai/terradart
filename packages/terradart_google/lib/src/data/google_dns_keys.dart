@@ -14,8 +14,8 @@ const Set<String> _googleDnsKeysSensitive = <String>{};
 final class DataGoogleDnsKeys extends Data {
   static const String tfType = 'google_dns_keys';
 
-  DataGoogleDnsKeys({
-    required super.localName,
+  DataGoogleDnsKeys(
+    super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     TfArg<String>? project,
     super.provider,

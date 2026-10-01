@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamCaptionLanguageSensitive = <String>{};
 final class CloudflareStreamCaptionLanguage extends Resource {
   static const String tfType = 'cloudflare_stream_caption_language';
 
-  CloudflareStreamCaptionLanguage({
-    required super.localName,
+  CloudflareStreamCaptionLanguage(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? file,
     required TfArg<String> identifier,

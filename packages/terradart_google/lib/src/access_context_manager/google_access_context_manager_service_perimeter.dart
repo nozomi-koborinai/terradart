@@ -466,8 +466,8 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
   static const String tfType =
       'google_access_context_manager_service_perimeter';
 
-  GoogleAccessContextManagerServicePerimeter({
-    required super.localName,
+  GoogleAccessContextManagerServicePerimeter(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     required TfArg<String> title,

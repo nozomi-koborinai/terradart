@@ -1875,8 +1875,8 @@ enum LaunchTemplateResourceType implements TerraformEnum {
 final class AwsLaunchTemplate extends Resource {
   static const String tfType = 'aws_launch_template';
 
-  AwsLaunchTemplate({
-    required super.localName,
+  AwsLaunchTemplate(
+    super.localName, {
     LaunchTemplateDefaultVersion? defaultVersion,
     TfArg<String>? description,
     TfArg<bool>? disableApiStop,

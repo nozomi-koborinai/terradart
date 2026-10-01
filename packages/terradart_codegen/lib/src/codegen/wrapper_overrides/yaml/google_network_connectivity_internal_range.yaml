@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkConnectivityInternalRange(
-  ///   localName: 'reserved',
+  ///   'reserved',
   ///   name: TfArg.literal('terradart-ir'),
   ///   network: vpc.ref,
   ///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),

@@ -42,14 +42,14 @@ final class InternalDnsStack extends Stack {
         ],
       ) {
     final vpc = GoogleComputeNetwork(
-      localName: 'gnd_vpc',
+      'gnd_vpc',
       name: .literal('gnd-vpc'),
       autoCreateSubnetworks: .literal(false),
     );
     add(vpc);
 
     final internalZone = GoogleDnsManagedZone(
-      localName: 'internal',
+      'internal',
       name: .literal('internal-corp'),
       dnsName: .literal('internal.corp.'),
       description: .literal('Private DNS for internal services in gnd-vpc.'),
@@ -72,7 +72,7 @@ final class InternalDnsStack extends Stack {
     // other zones in the same project.
 
     final zoneAdmin = GoogleServiceAccount(
-      localName: 'internal_zone_admin',
+      'internal_zone_admin',
       accountId: .literal('internal-zone-admin'),
       displayName: .literal('internal.corp. zone admin'),
     );
@@ -83,7 +83,7 @@ final class InternalDnsStack extends Stack {
     // and binding tore down in parallel during a destroy).
     final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
-        localName: 'internal_zone_admin_member',
+        'internal_zone_admin_member',
         managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         member: zoneAdmin.principal,
@@ -93,7 +93,7 @@ final class InternalDnsStack extends Stack {
 
     final zoneAdminBinding = add(
       GoogleDnsManagedZoneIamBinding(
-        localName: 'internal_zone_admin_binding',
+        'internal_zone_admin_binding',
         managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         members: .literal([zoneAdmin.principal]),
@@ -103,7 +103,7 @@ final class InternalDnsStack extends Stack {
 
     add(
       GoogleDnsManagedZoneIamPolicy(
-        localName: 'internal_zone_admin_policy',
+        'internal_zone_admin_policy',
         managedZone: internalZone.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -120,7 +120,7 @@ final class InternalDnsStack extends Stack {
 
     add(
       GoogleDnsPolicy(
-        localName: 'internal_logging',
+        'internal_logging',
         name: .literal('internal-logging-policy'),
         enableLogging: .literal(true),
       ),
@@ -128,7 +128,7 @@ final class InternalDnsStack extends Stack {
 
     add(
       GoogleDnsRecordSet(
-        localName: 'api_a',
+        'api_a',
         managedZone: internalZone.ref,
         name: .literal('api.internal.corp.'),
         type: .literal(.a),
@@ -141,7 +141,7 @@ final class InternalDnsStack extends Stack {
 
     final overrides = add(
       GoogleDnsResponsePolicy(
-        localName: 'internal_overrides',
+        'internal_overrides',
         responsePolicyName: .literal('internal-overrides'),
         description: .literal(
           'Local DNS overrides for hybrid resolution in gnd-vpc.',
@@ -151,7 +151,7 @@ final class InternalDnsStack extends Stack {
 
     add(
       GoogleDnsResponsePolicyRule(
-        localName: 'legacy_fallback',
+        'legacy_fallback',
         // `response_policy` takes the policy's `response_policy_name` value.
         // The wrapper exposes no `response_policy_name` attribute ref, so the
         // literal (matching the policy above) supplies the value and the

@@ -20,8 +20,8 @@ enum DynamodbContributorInsightsMode implements TerraformEnum {
 final class AwsDynamodbContributorInsights extends Resource {
   static const String tfType = 'aws_dynamodb_contributor_insights';
 
-  AwsDynamodbContributorInsights({
-    required super.localName,
+  AwsDynamodbContributorInsights(
+    super.localName, {
     TfArg<String>? indexName,
     TfArg<DynamodbContributorInsightsMode>? mode,
     TfArg<String>? region,

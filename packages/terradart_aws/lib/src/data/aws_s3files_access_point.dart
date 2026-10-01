@@ -46,8 +46,8 @@ final class DataS3filesAccessPointCreationPermissions {
 final class DataAwsS3filesAccessPoint extends Data {
   static const String tfType = 'aws_s3files_access_point';
 
-  DataAwsS3filesAccessPoint({
-    required super.localName,
+  DataAwsS3filesAccessPoint(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     List<DataS3filesAccessPointPosixUser>? posixUser,

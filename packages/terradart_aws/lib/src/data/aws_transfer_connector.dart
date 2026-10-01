@@ -11,8 +11,8 @@ const Set<String> _awsTransferConnectorSensitive = <String>{};
 final class DataAwsTransferConnector extends Data {
   static const String tfType = 'aws_transfer_connector';
 
-  DataAwsTransferConnector({
-    required super.localName,
+  DataAwsTransferConnector(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

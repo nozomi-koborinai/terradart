@@ -156,8 +156,8 @@ final class NetworkServicesAgentGatewayEgress {
 final class GoogleNetworkServicesAgentGateway extends Resource {
   static const String tfType = 'google_network_services_agent_gateway';
 
-  GoogleNetworkServicesAgentGateway({
-    required super.localName,
+  GoogleNetworkServicesAgentGateway(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required NetworkServicesAgentGatewayDeployment deployment,

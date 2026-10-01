@@ -37,8 +37,8 @@ final class ComputeSubnetworkIamMemberCondition {
 final class GoogleComputeSubnetworkIamMember extends Resource {
   static const String tfType = 'google_compute_subnetwork_iam_member';
 
-  GoogleComputeSubnetworkIamMember({
-    required super.localName,
+  GoogleComputeSubnetworkIamMember(
+    super.localName, {
     required RefTo<GoogleComputeSubnetwork> subnetwork,
     required TfArg<String> role,
     required IamPrincipal member,

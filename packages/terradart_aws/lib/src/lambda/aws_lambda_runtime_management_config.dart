@@ -23,8 +23,8 @@ enum LambdaRuntimeManagementConfigUpdateRuntimeOn implements TerraformEnum {
 final class AwsLambdaRuntimeManagementConfig extends Resource {
   static const String tfType = 'aws_lambda_runtime_management_config';
 
-  AwsLambdaRuntimeManagementConfig({
-    required super.localName,
+  AwsLambdaRuntimeManagementConfig(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     TfArg<String>? qualifier,
     TfArg<String>? region,

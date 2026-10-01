@@ -51,8 +51,8 @@ enum LambdamicrovmsImageArchitecture implements TerraformEnum {
 final class AwsLambdamicrovmsImage extends Resource {
   static const String tfType = 'aws_lambdamicrovms_image';
 
-  AwsLambdamicrovmsImage({
-    required super.localName,
+  AwsLambdamicrovmsImage(
+    super.localName, {
     List<TfArg<LambdamicrovmsImageAdditionalOsCapabilities>>?
     additionalOsCapabilities,
     required TfArg<String> baseImageArn,

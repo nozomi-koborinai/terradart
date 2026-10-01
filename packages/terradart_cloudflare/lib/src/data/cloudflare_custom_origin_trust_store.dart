@@ -33,8 +33,8 @@ final class DataCustomOriginTrustStoreFilter {
 final class DataCloudflareCustomOriginTrustStore extends Data {
   static const String tfType = 'cloudflare_custom_origin_trust_store';
 
-  DataCloudflareCustomOriginTrustStore({
-    required super.localName,
+  DataCloudflareCustomOriginTrustStore(
+    super.localName, {
     TfArg<String>? customOriginTrustStoreId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomOriginTrustStoreFilter? filter,

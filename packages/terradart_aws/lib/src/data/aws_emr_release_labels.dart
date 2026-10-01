@@ -27,8 +27,8 @@ final class DataEmrReleaseLabelsFilters {
 final class DataAwsEmrReleaseLabels extends Data {
   static const String tfType = 'aws_emr_release_labels';
 
-  DataAwsEmrReleaseLabels({
-    required super.localName,
+  DataAwsEmrReleaseLabels(
+    super.localName, {
     TfArg<String>? region,
     DataEmrReleaseLabelsFilters? filters,
     super.provider,

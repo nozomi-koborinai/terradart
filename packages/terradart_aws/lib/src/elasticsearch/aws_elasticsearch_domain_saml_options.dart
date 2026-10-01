@@ -71,8 +71,8 @@ final class ElasticsearchDomainSamlOptionsIdp {
 final class AwsElasticsearchDomainSamlOptions extends Resource {
   static const String tfType = 'aws_elasticsearch_domain_saml_options';
 
-  AwsElasticsearchDomainSamlOptions({
-    required super.localName,
+  AwsElasticsearchDomainSamlOptions(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     ElasticsearchDomainSamlOptions? samlOptions,

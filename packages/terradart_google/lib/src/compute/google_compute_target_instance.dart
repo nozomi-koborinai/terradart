@@ -33,8 +33,8 @@ enum ComputeTargetInstanceNatPolicy implements TerraformEnum {
 final class GoogleComputeTargetInstance extends Resource {
   static const String tfType = 'google_compute_target_instance';
 
-  GoogleComputeTargetInstance({
-    required super.localName,
+  GoogleComputeTargetInstance(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeInstance> instance,
     TfArg<String>? zone,

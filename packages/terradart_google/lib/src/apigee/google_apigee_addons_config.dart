@@ -109,8 +109,8 @@ final class ApigeeAddonsConfigMonetizationConfig {
 final class GoogleApigeeAddonsConfig extends Resource {
   static const String tfType = 'google_apigee_addons_config';
 
-  GoogleApigeeAddonsConfig({
-    required super.localName,
+  GoogleApigeeAddonsConfig(
+    super.localName, {
     required TfArg<String> org,
     ApigeeAddonsConfig? addonsConfig,
     TfArg<String>? deletionPolicy,

@@ -40,8 +40,8 @@ final class GeminiGibqObservabilitySettingConversationalAnalyticsSetting {
 final class GoogleGeminiGibqObservabilitySetting extends Resource {
   static const String tfType = 'google_gemini_gibq_observability_setting';
 
-  GoogleGeminiGibqObservabilitySetting({
-    required super.localName,
+  GoogleGeminiGibqObservabilitySetting(
+    super.localName, {
     required TfArg<String> gibqObservabilitySettingId,
     TfArg<String>? location,
     GeminiGibqObservabilitySettingConversationalAnalyticsSetting?

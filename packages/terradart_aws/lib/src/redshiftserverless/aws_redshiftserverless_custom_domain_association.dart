@@ -12,8 +12,8 @@ final class AwsRedshiftserverlessCustomDomainAssociation extends Resource {
   static const String tfType =
       'aws_redshiftserverless_custom_domain_association';
 
-  AwsRedshiftserverlessCustomDomainAssociation({
-    required super.localName,
+  AwsRedshiftserverlessCustomDomainAssociation(
+    super.localName, {
     required TfArg<String> customDomainCertificateArn,
     required TfArg<String> customDomainName,
     TfArg<String>? region,

@@ -35,8 +35,8 @@ final class DiscoveryEngineCmekConfigSingleRegionKeys {
 final class GoogleDiscoveryEngineCmekConfig extends Resource {
   static const String tfType = 'google_discovery_engine_cmek_config';
 
-  GoogleDiscoveryEngineCmekConfig({
-    required super.localName,
+  GoogleDiscoveryEngineCmekConfig(
+    super.localName, {
     required TfArg<String> cmekConfigId,
     TfArg<String>? deletionPolicy,
     required RefTo<GoogleKmsCryptoKey> kmsKey,

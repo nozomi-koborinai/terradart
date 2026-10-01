@@ -25,8 +25,8 @@ final class ComputeBulkPerInstanceConfigInstances {
 final class GoogleComputeBulkPerInstanceConfig extends Resource {
   static const String tfType = 'google_compute_bulk_per_instance_config';
 
-  GoogleComputeBulkPerInstanceConfig({
-    required super.localName,
+  GoogleComputeBulkPerInstanceConfig(
+    super.localName, {
     required RefTo<GoogleComputeInstanceGroupManager> instanceGroupManager,
     List<ComputeBulkPerInstanceConfigInstances>? instances,
     TfArg<String>? deletionPolicy,

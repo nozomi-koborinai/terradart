@@ -11,8 +11,8 @@ const Set<String> _awsMqBrokerSensitive = <String>{};
 final class DataAwsMqBroker extends Data {
   static const String tfType = 'aws_mq_broker';
 
-  DataAwsMqBroker({
-    required super.localName,
+  DataAwsMqBroker(
+    super.localName, {
     TfArg<String>? brokerId,
     TfArg<String>? brokerName,
     TfArg<String>? region,

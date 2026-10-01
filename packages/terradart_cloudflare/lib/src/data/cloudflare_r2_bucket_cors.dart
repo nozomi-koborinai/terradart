@@ -12,8 +12,8 @@ const Set<String> _cloudflareR2BucketCorsSensitive = <String>{};
 final class DataCloudflareR2BucketCors extends Data {
   static const String tfType = 'cloudflare_r2_bucket_cors';
 
-  DataCloudflareR2BucketCors({
-    required super.localName,
+  DataCloudflareR2BucketCors(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     super.provider,

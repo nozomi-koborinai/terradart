@@ -31,8 +31,8 @@ final class DataEc2CapacityBlockReservationFilter {
 final class DataAwsEc2CapacityBlockReservation extends Data {
   static const String tfType = 'aws_ec2_capacity_block_reservation';
 
-  DataAwsEc2CapacityBlockReservation({
-    required super.localName,
+  DataAwsEc2CapacityBlockReservation(
+    super.localName, {
     TfArg<String>? region,
     List<DataEc2CapacityBlockReservationFilter>? filter,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsBedrockagentcoreWorkloadIdentitySensitive = <String>{};
 final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
   static const String tfType = 'aws_bedrockagentcore_workload_identity';
 
-  AwsBedrockagentcoreWorkloadIdentity({
-    required super.localName,
+  AwsBedrockagentcoreWorkloadIdentity(
+    super.localName, {
     TfArg<List<String>>? allowedResourceOauth2ReturnUrls,
     required TfArg<String> name,
     TfArg<String>? region,

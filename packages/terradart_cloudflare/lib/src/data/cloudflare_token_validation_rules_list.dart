@@ -16,8 +16,8 @@ const Set<String> _cloudflareTokenValidationRulesListSensitive = <String>{};
 final class DataCloudflareTokenValidationRulesList extends Data {
   static const String tfType = 'cloudflare_token_validation_rules_list';
 
-  DataCloudflareTokenValidationRulesList({
-    required super.localName,
+  DataCloudflareTokenValidationRulesList(
+    super.localName, {
     TfArg<String>? action,
     TfArg<bool>? enabled,
     TfArg<String>? host,

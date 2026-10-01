@@ -10,8 +10,8 @@ const Set<String> _awsServiceDiscoveryPrivateDnsNamespaceSensitive = <String>{};
 final class AwsServiceDiscoveryPrivateDnsNamespace extends Resource {
   static const String tfType = 'aws_service_discovery_private_dns_namespace';
 
-  AwsServiceDiscoveryPrivateDnsNamespace({
-    required super.localName,
+  AwsServiceDiscoveryPrivateDnsNamespace(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

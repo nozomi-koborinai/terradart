@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpPredefinedEntrySensitive = <String>{};
 final class CloudflareZeroTrustDlpPredefinedEntry extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_predefined_entry';
 
-  CloudflareZeroTrustDlpPredefinedEntry({
-    required super.localName,
+  CloudflareZeroTrustDlpPredefinedEntry(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> enabled,
     required TfArg<String> entryId,

@@ -13,8 +13,8 @@ const Set<String> _awsIamPolicyAttachmentSensitive = <String>{};
 final class AwsIamPolicyAttachment extends Resource {
   static const String tfType = 'aws_iam_policy_attachment';
 
-  AwsIamPolicyAttachment({
-    required super.localName,
+  AwsIamPolicyAttachment(
+    super.localName, {
     TfArg<List<String>>? groups,
     required TfArg<String> name,
     required RefTo<AwsIamPolicy> policyArn,

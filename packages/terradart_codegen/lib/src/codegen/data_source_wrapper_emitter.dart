@@ -331,8 +331,7 @@ class DataSourceWrapperEmitter {
       argMapByName[spec.tfName] = slot.argMapEntry;
     }
 
-    buf.writeln('  $pascal({');
-    buf.writeln('    required super.localName,');
+    buf.writeln('  $pascal(super.localName, {');
     for (final name in paramOrder) {
       final snippet = paramsByName[name];
       if (snippet == null) {

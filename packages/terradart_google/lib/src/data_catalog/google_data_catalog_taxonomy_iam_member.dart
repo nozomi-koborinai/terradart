@@ -41,8 +41,8 @@ final class DataCatalogTaxonomyIamMemberCondition {
 final class GoogleDataCatalogTaxonomyIamMember extends Resource {
   static const String tfType = 'google_data_catalog_taxonomy_iam_member';
 
-  GoogleDataCatalogTaxonomyIamMember({
-    required super.localName,
+  GoogleDataCatalogTaxonomyIamMember(
+    super.localName, {
     required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> role,
     required IamPrincipal member,

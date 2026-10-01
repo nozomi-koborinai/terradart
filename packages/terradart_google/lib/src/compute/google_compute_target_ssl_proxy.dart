@@ -26,8 +26,8 @@ enum TargetSslProxyProxyHeader implements TerraformEnum {
 final class GoogleComputeTargetSslProxy extends Resource {
   static const String tfType = 'google_compute_target_ssl_proxy';
 
-  GoogleComputeTargetSslProxy({
-    required super.localName,
+  GoogleComputeTargetSslProxy(
+    super.localName, {
     required RefTo<GoogleComputeBackendService> backendService,
     TfArg<String>? certificateMap,
     TfArg<String>? description,

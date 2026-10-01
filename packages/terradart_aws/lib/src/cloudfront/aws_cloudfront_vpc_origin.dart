@@ -77,8 +77,8 @@ final class CloudfrontVpcOriginSslProtocols {
 final class AwsCloudfrontVpcOrigin extends Resource {
   static const String tfType = 'aws_cloudfront_vpc_origin';
 
-  AwsCloudfrontVpcOrigin({
-    required super.localName,
+  AwsCloudfrontVpcOrigin(
+    super.localName, {
     TfArg<Map<String, String>>? tags,
     List<CloudfrontVpcOriginEndpointConfig>? vpcOriginEndpointConfig,
     super.lifecycle,

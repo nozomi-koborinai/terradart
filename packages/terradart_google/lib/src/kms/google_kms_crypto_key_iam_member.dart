@@ -37,8 +37,8 @@ final class KmsCryptoKeyIamMemberCondition {
 final class GoogleKmsCryptoKeyIamMember extends Resource {
   static const String tfType = 'google_kms_crypto_key_iam_member';
 
-  GoogleKmsCryptoKeyIamMember({
-    required super.localName,
+  GoogleKmsCryptoKeyIamMember(
+    super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> role,
     required IamPrincipal member,

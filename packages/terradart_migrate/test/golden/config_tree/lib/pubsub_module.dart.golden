@@ -8,8 +8,8 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 
 final class PubsubModule extends ModuleCall {
-  PubsubModule({
-    required super.localName,
+  PubsubModule(
+    super.localName, {
     required super.source,
     super.version,
     super.providers,

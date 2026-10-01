@@ -16,8 +16,8 @@ const Set<String> _cloudflareCallsSfuAppSensitive = <String>{};
 final class DataCloudflareCallsSfuApp extends Data {
   static const String tfType = 'cloudflare_calls_sfu_app';
 
-  DataCloudflareCallsSfuApp({
-    required super.localName,
+  DataCloudflareCallsSfuApp(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsDevicefarmProjectSensitive = <String>{};
 final class AwsDevicefarmProject extends Resource {
   static const String tfType = 'aws_devicefarm_project';
 
-  AwsDevicefarmProject({
-    required super.localName,
+  AwsDevicefarmProject(
+    super.localName, {
     TfArg<num>? defaultJobTimeoutMinutes,
     required TfArg<String> name,
     TfArg<String>? region,

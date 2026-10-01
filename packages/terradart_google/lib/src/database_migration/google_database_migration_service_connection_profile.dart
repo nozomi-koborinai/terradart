@@ -895,8 +895,8 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
   static const String tfType =
       'google_database_migration_service_connection_profile';
 
-  GoogleDatabaseMigrationServiceConnectionProfile({
-    required super.localName,
+  GoogleDatabaseMigrationServiceConnectionProfile(
+    super.localName, {
     required TfArg<String> connectionProfileId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

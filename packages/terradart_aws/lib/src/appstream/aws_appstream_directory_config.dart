@@ -62,8 +62,8 @@ final class AppstreamDirectoryConfigServiceAccountCredentials {
 final class AwsAppstreamDirectoryConfig extends Resource {
   static const String tfType = 'aws_appstream_directory_config';
 
-  AwsAppstreamDirectoryConfig({
-    required super.localName,
+  AwsAppstreamDirectoryConfig(
+    super.localName, {
     required TfArg<String> directoryName,
     required TfArg<List<String>> organizationalUnitDistinguishedNames,
     TfArg<String>? region,

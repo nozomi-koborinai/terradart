@@ -10,8 +10,8 @@ const Set<String> _awsLexv2modelsBotVersionSensitive = <String>{};
 final class AwsLexv2modelsBotVersion extends Resource {
   static const String tfType = 'aws_lexv2models_bot_version';
 
-  AwsLexv2modelsBotVersion({
-    required super.localName,
+  AwsLexv2modelsBotVersion(
+    super.localName, {
     required TfArg<String> botId,
     TfArg<String>? botVersion,
     TfArg<String>? description,

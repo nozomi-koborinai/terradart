@@ -14,8 +14,8 @@ const Set<String> _googleRedisClusterAclPolicySensitive = <String>{};
 final class DataGoogleRedisClusterAclPolicy extends Data {
   static const String tfType = 'google_redis_cluster_acl_policy';
 
-  DataGoogleRedisClusterAclPolicy({
-    required super.localName,
+  DataGoogleRedisClusterAclPolicy(
+    super.localName, {
     required TfArg<String> aclPolicyId,
     TfArg<String>? location,
     TfArg<String>? project,

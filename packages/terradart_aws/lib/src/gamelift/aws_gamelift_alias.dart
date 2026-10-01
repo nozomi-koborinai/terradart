@@ -44,8 +44,8 @@ enum GameliftAliasType implements TerraformEnum {
 final class AwsGameliftAlias extends Resource {
   static const String tfType = 'aws_gamelift_alias';
 
-  AwsGameliftAlias({
-    required super.localName,
+  AwsGameliftAlias(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsBedrockUseCaseForModelAccessSensitive = <String>{};
 final class AwsBedrockUseCaseForModelAccess extends Resource {
   static const String tfType = 'aws_bedrock_use_case_for_model_access';
 
-  AwsBedrockUseCaseForModelAccess({
-    required super.localName,
+  AwsBedrockUseCaseForModelAccess(
+    super.localName, {
     required TfArg<String> formData,
     super.lifecycle,
     super.dependsOn,

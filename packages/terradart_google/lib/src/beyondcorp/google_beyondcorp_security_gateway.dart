@@ -198,8 +198,8 @@ final class BeyondcorpSecurityGatewayResourceOverride {
 final class GoogleBeyondcorpSecurityGateway extends Resource {
   static const String tfType = 'google_beyondcorp_security_gateway';
 
-  GoogleBeyondcorpSecurityGateway({
-    required super.localName,
+  GoogleBeyondcorpSecurityGateway(
+    super.localName, {
     required TfArg<String> securityGatewayId,
     TfArg<String>? location,
     TfArg<String>? displayName,

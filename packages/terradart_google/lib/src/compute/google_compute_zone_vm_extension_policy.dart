@@ -58,8 +58,8 @@ final class ComputeZoneVmExtensionPolicyLabelSelector {
 final class GoogleComputeZoneVmExtensionPolicy extends Resource {
   static const String tfType = 'google_compute_zone_vm_extension_policy';
 
-  GoogleComputeZoneVmExtensionPolicy({
-    required super.localName,
+  GoogleComputeZoneVmExtensionPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> zone,
     required List<ComputeZoneVmExtensionPolicyExtensionPolicies>

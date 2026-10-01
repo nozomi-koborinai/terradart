@@ -22,8 +22,8 @@ final class DynamodbGlobalTableReplica {
 final class AwsDynamodbGlobalTable extends Resource {
   static const String tfType = 'aws_dynamodb_global_table';
 
-  AwsDynamodbGlobalTable({
-    required super.localName,
+  AwsDynamodbGlobalTable(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required List<DynamodbGlobalTableReplica> replica,

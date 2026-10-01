@@ -63,7 +63,7 @@ enum AppCheckEnforcementMode implements TerraformEnum {
 /// Example (enforce App Check on Cloud Firestore):
 /// ```dart
 /// final firestoreEnforcement = GoogleFirebaseAppCheckServiceConfig(
-///   localName: 'firestore_enforced',
+///   'firestore_enforced',
 ///   serviceId: TfArg.literal('firestore.googleapis.com'),
 ///   enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
 /// );
@@ -85,8 +85,8 @@ enum AppCheckEnforcementMode implements TerraformEnum {
 final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   static const String tfType = 'google_firebase_app_check_service_config';
 
-  GoogleFirebaseAppCheckServiceConfig({
-    required super.localName,
+  GoogleFirebaseAppCheckServiceConfig(
+    super.localName, {
     required TfArg<String> serviceId,
     TfArg<AppCheckEnforcementMode>? enforcementMode,
     TfArg<String>? deletionPolicy,

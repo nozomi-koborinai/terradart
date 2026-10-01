@@ -32,8 +32,8 @@ final class RedisClusterAclPolicyRules {
 final class GoogleRedisClusterAclPolicy extends Resource {
   static const String tfType = 'google_redis_cluster_acl_policy';
 
-  GoogleRedisClusterAclPolicy({
-    required super.localName,
+  GoogleRedisClusterAclPolicy(
+    super.localName, {
     required TfArg<String> aclPolicyId,
     required TfArg<String> location,
     required List<RedisClusterAclPolicyRules> rules,

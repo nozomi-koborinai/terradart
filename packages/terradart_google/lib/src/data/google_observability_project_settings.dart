@@ -14,8 +14,8 @@ const Set<String> _googleObservabilityProjectSettingsSensitive = <String>{};
 final class DataGoogleObservabilityProjectSettings extends Data {
   static const String tfType = 'google_observability_project_settings';
 
-  DataGoogleObservabilityProjectSettings({
-    required super.localName,
+  DataGoogleObservabilityProjectSettings(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> project,
     super.provider,

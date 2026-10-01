@@ -13,8 +13,8 @@ const Set<String> _googleCloudQuotasQuotaInfoSensitive = <String>{};
 final class DataGoogleCloudQuotasQuotaInfo extends Data {
   static const String tfType = 'google_cloud_quotas_quota_info';
 
-  DataGoogleCloudQuotasQuotaInfo({
-    required super.localName,
+  DataGoogleCloudQuotasQuotaInfo(
+    super.localName, {
     required TfArg<String> parent,
     required TfArg<String> quotaId,
     required TfArg<String> service,

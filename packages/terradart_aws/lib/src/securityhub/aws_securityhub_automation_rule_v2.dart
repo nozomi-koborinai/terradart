@@ -113,8 +113,8 @@ final class SecurityhubAutomationRuleV2Criteria {
 final class AwsSecurityhubAutomationRuleV2 extends Resource {
   static const String tfType = 'aws_securityhub_automation_rule_v2';
 
-  AwsSecurityhubAutomationRuleV2({
-    required super.localName,
+  AwsSecurityhubAutomationRuleV2(
+    super.localName, {
     required TfArg<String> description,
     TfArg<String>? region,
     required TfArg<String> ruleName,

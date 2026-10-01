@@ -143,8 +143,8 @@ final class EbsSnapshotImportUserBucket {
 final class AwsEbsSnapshotImport extends Resource {
   static const String tfType = 'aws_ebs_snapshot_import';
 
-  AwsEbsSnapshotImport({
-    required super.localName,
+  AwsEbsSnapshotImport(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? encrypted,
     RefTo<AwsKmsKey>? kmsKeyId,

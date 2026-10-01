@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleAccessContextManagerAuthorizedOrgsDesc(
-  ///   localName: 'demo_orgs',
+  ///   'demo_orgs',
   ///   parent: TfArg.literal(
   ///     'accessPolicies/${policy.name.interpolation}',
   ///   ),

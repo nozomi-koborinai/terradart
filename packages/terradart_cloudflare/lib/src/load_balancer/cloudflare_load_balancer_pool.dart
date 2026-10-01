@@ -223,8 +223,8 @@ final class LoadBalancerPoolHeader {
 final class CloudflareLoadBalancerPool extends Resource {
   static const String tfType = 'cloudflare_load_balancer_pool';
 
-  CloudflareLoadBalancerPool({
-    required super.localName,
+  CloudflareLoadBalancerPool(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     List<TfArg<LoadBalancerPoolCheckRegions>>? checkRegions,
     TfArg<String>? description,

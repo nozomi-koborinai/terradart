@@ -96,8 +96,8 @@ enum DataEmailSecurityAllowPolicyFilterPatternType implements TerraformEnum {
 final class DataCloudflareEmailSecurityAllowPolicy extends Data {
   static const String tfType = 'cloudflare_email_security_allow_policy';
 
-  DataCloudflareEmailSecurityAllowPolicy({
-    required super.localName,
+  DataCloudflareEmailSecurityAllowPolicy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? policyId,
     DataEmailSecurityAllowPolicyFilter? filter,

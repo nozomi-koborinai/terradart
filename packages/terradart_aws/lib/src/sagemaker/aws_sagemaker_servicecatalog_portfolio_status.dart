@@ -21,8 +21,8 @@ enum SagemakerServicecatalogPortfolioStatus implements TerraformEnum {
 final class AwsSagemakerServicecatalogPortfolioStatus extends Resource {
   static const String tfType = 'aws_sagemaker_servicecatalog_portfolio_status';
 
-  AwsSagemakerServicecatalogPortfolioStatus({
-    required super.localName,
+  AwsSagemakerServicecatalogPortfolioStatus(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<SagemakerServicecatalogPortfolioStatus> status,
     super.lifecycle,

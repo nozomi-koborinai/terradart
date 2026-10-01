@@ -42,8 +42,8 @@ final class IapAgentRegistryIamBindingCondition {
 final class GoogleIapAgentRegistryIamBinding extends Resource {
   static const String tfType = 'google_iap_agent_registry_iam_binding';
 
-  GoogleIapAgentRegistryIamBinding({
-    required super.localName,
+  GoogleIapAgentRegistryIamBinding(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

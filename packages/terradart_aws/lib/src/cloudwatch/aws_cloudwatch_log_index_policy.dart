@@ -12,8 +12,8 @@ const Set<String> _awsCloudwatchLogIndexPolicySensitive = <String>{};
 final class AwsCloudwatchLogIndexPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_index_policy';
 
-  AwsCloudwatchLogIndexPolicy({
-    required super.localName,
+  AwsCloudwatchLogIndexPolicy(
+    super.localName, {
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> policyDocument,
     TfArg<String>? region,

@@ -20,8 +20,8 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamPolicy extends Resource {
   static const String tfType =
       'google_vertex_ai_featurestore_entitytype_iam_policy';
 
-  GoogleVertexAiFeaturestoreEntitytypeIamPolicy({
-    required super.localName,
+  GoogleVertexAiFeaturestoreEntitytypeIamPolicy(
+    super.localName, {
     required RefTo<GoogleVertexAiFeaturestoreEntitytype> entitytype,
     TfArg<String>? featurestore,
     required TfArg<String> policyData,

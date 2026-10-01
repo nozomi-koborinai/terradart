@@ -16,8 +16,8 @@ const Set<String> _cloudflareImageVariantSensitive = <String>{};
 final class DataCloudflareImageVariant extends Data {
   static const String tfType = 'cloudflare_image_variant';
 
-  DataCloudflareImageVariant({
-    required super.localName,
+  DataCloudflareImageVariant(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> variantId,
     super.provider,

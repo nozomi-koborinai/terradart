@@ -11,8 +11,8 @@ const Set<String> _awsElasticacheReplicationGroupSensitive = <String>{};
 final class DataAwsElasticacheReplicationGroup extends Data {
   static const String tfType = 'aws_elasticache_replication_group';
 
-  DataAwsElasticacheReplicationGroup({
-    required super.localName,
+  DataAwsElasticacheReplicationGroup(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationGroupId,
     super.provider,

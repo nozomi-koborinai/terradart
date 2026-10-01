@@ -40,8 +40,8 @@ final class QuicksightFolderPermissions {
 final class AwsQuicksightFolder extends Resource {
   static const String tfType = 'aws_quicksight_folder';
 
-  AwsQuicksightFolder({
-    required super.localName,
+  AwsQuicksightFolder(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> folderId,
     TfArg<QuicksightFolderType>? folderType,

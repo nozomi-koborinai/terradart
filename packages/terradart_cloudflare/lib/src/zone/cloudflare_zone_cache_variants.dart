@@ -72,8 +72,8 @@ final class ZoneCacheVariantsValue {
 final class CloudflareZoneCacheVariants extends Resource {
   static const String tfType = 'cloudflare_zone_cache_variants';
 
-  CloudflareZoneCacheVariants({
-    required super.localName,
+  CloudflareZoneCacheVariants(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required ZoneCacheVariantsValue value,
     super.lifecycle,

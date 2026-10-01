@@ -233,8 +233,8 @@ final class BackupDrBackupPlanDiskBackupPlanProperties {
 final class GoogleBackupDrBackupPlan extends Resource {
   static const String tfType = 'google_backup_dr_backup_plan';
 
-  GoogleBackupDrBackupPlan({
-    required super.localName,
+  GoogleBackupDrBackupPlan(
+    super.localName, {
     required TfArg<String> backupPlanId,
     required TfArg<String> location,
     required TfArg<String> backupVault,

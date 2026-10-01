@@ -43,8 +43,8 @@ enum SagemakerImageVersionVendorGuidance implements TerraformEnum {
 final class AwsSagemakerImageVersion extends Resource {
   static const String tfType = 'aws_sagemaker_image_version';
 
-  AwsSagemakerImageVersion({
-    required super.localName,
+  AwsSagemakerImageVersion(
+    super.localName, {
     TfArg<List<String>>? aliases,
     required TfArg<String> baseImage,
     TfArg<bool>? horovod,

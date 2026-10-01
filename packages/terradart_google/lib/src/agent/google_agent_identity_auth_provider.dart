@@ -299,8 +299,8 @@ final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo
 final class GoogleAgentIdentityAuthProvider extends Resource {
   static const String tfType = 'google_agent_identity_auth_provider';
 
-  GoogleAgentIdentityAuthProvider({
-    required super.localName,
+  GoogleAgentIdentityAuthProvider(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> authProviderId,
     required AgentIdentityAuthProviderTypeParams authProviderTypeParams,

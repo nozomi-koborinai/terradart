@@ -30,8 +30,8 @@ final class AutoscalingTrafficSourceAttachmentTrafficSource {
 final class AwsAutoscalingTrafficSourceAttachment extends Resource {
   static const String tfType = 'aws_autoscaling_traffic_source_attachment';
 
-  AwsAutoscalingTrafficSourceAttachment({
-    required super.localName,
+  AwsAutoscalingTrafficSourceAttachment(
+    super.localName, {
     required TfArg<String> autoscalingGroupName,
     TfArg<String>? region,
     AutoscalingTrafficSourceAttachmentTrafficSource? trafficSource,

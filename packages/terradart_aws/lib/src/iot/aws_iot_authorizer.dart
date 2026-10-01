@@ -22,8 +22,8 @@ enum IotAuthorizerStatus implements TerraformEnum {
 final class AwsIotAuthorizer extends Resource {
   static const String tfType = 'aws_iot_authorizer';
 
-  AwsIotAuthorizer({
-    required super.localName,
+  AwsIotAuthorizer(
+    super.localName, {
     required TfArg<String> authorizerFunctionArn,
     TfArg<bool>? enableCachingForHttp,
     required TfArg<String> name,

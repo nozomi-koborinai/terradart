@@ -28,8 +28,8 @@ final class DataEipFilter {
 final class DataAwsEip extends Data {
   static const String tfType = 'aws_eip';
 
-  DataAwsEip({
-    required super.localName,
+  DataAwsEip(
+    super.localName, {
     TfArg<String>? publicIp,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

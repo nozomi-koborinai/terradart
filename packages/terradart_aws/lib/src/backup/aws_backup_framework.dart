@@ -74,8 +74,8 @@ final class BackupFrameworkScope {
 final class AwsBackupFramework extends Resource {
   static const String tfType = 'aws_backup_framework';
 
-  AwsBackupFramework({
-    required super.localName,
+  AwsBackupFramework(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

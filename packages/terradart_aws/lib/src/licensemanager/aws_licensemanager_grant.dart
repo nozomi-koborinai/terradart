@@ -25,8 +25,8 @@ enum LicensemanagerGrantAllowedOperations implements TerraformEnum {
 final class AwsLicensemanagerGrant extends Resource {
   static const String tfType = 'aws_licensemanager_grant';
 
-  AwsLicensemanagerGrant({
-    required super.localName,
+  AwsLicensemanagerGrant(
+    super.localName, {
     required List<TfArg<LicensemanagerGrantAllowedOperations>>
     allowedOperations,
     required TfArg<String> licenseArn,

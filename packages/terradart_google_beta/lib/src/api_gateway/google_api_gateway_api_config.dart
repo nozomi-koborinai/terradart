@@ -212,8 +212,8 @@ final class ApiGatewayApiConfigDocument {
 final class GoogleApiGatewayApiConfig extends Resource {
   static const String tfType = 'google_api_gateway_api_config';
 
-  GoogleApiGatewayApiConfig({
-    required super.localName,
+  GoogleApiGatewayApiConfig(
+    super.localName, {
     required TfArg<String> api,
     TfArg<String>? apiConfigId,
     TfArg<String>? apiConfigIdPrefix,

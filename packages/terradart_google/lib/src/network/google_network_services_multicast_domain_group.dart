@@ -25,8 +25,8 @@ const Set<String> _googleNetworkServicesMulticastDomainGroupSensitive =
 final class GoogleNetworkServicesMulticastDomainGroup extends Resource {
   static const String tfType = 'google_network_services_multicast_domain_group';
 
-  GoogleNetworkServicesMulticastDomainGroup({
-    required super.localName,
+  GoogleNetworkServicesMulticastDomainGroup(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastDomainGroupId,
     TfArg<String>? description,

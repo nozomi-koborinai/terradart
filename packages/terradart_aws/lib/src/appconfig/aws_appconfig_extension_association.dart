@@ -10,8 +10,8 @@ const Set<String> _awsAppconfigExtensionAssociationSensitive = <String>{};
 final class AwsAppconfigExtensionAssociation extends Resource {
   static const String tfType = 'aws_appconfig_extension_association';
 
-  AwsAppconfigExtensionAssociation({
-    required super.localName,
+  AwsAppconfigExtensionAssociation(
+    super.localName, {
     required TfArg<String> extensionArn,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,

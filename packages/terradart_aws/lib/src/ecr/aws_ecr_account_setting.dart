@@ -35,8 +35,8 @@ enum EcrAccountSettingValue implements TerraformEnum {
 final class AwsEcrAccountSetting extends Resource {
   static const String tfType = 'aws_ecr_account_setting';
 
-  AwsEcrAccountSetting({
-    required super.localName,
+  AwsEcrAccountSetting(
+    super.localName, {
     required TfArg<EcrAccountSettingName> name,
     TfArg<String>? region,
     required TfArg<EcrAccountSettingValue> value,

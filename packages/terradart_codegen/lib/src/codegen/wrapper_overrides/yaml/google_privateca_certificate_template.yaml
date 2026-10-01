@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example (permissive template for a DEVOPS/ENTERPRISE pool):
   /// ```dart
   /// GooglePrivatecaCertificateTemplate(
-  ///   localName: 'leaf_template',
+  ///   'leaf_template',
   ///   name: TfArg.literal('app-leaf-template'),
   ///   location: TfArg.literal('us-central1'),
   ///   identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(

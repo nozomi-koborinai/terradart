@@ -79,8 +79,8 @@ final class CloudflareZeroTrustTunnelWarpConnectorConfig extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_tunnel_warp_connector_config';
 
-  CloudflareZeroTrustTunnelWarpConnectorConfig({
-    required super.localName,
+  CloudflareZeroTrustTunnelWarpConnectorConfig(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<ZeroTrustTunnelWarpConnectorConfigHaMode> haMode,
     required TfArg<String> tunnelId,

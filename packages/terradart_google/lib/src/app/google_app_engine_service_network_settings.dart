@@ -43,8 +43,8 @@ enum AppEngineServiceNetworkSettingsIngressTrafficAllowed
 final class GoogleAppEngineServiceNetworkSettings extends Resource {
   static const String tfType = 'google_app_engine_service_network_settings';
 
-  GoogleAppEngineServiceNetworkSettings({
-    required super.localName,
+  GoogleAppEngineServiceNetworkSettings(
+    super.localName, {
     required TfArg<String> service,
     required AppEngineServiceNetworkSettings networkSettings,
     TfArg<String>? project,

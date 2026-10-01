@@ -672,8 +672,8 @@ final class AppautoscalingPolicyPredefinedMetricSpecification {
 final class AwsAppautoscalingPolicy extends Resource {
   static const String tfType = 'aws_appautoscaling_policy';
 
-  AwsAppautoscalingPolicy({
-    required super.localName,
+  AwsAppautoscalingPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<AppautoscalingPolicyType>? policyType,
     TfArg<String>? region,

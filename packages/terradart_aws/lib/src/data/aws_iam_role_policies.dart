@@ -11,8 +11,8 @@ const Set<String> _awsIamRolePoliciesSensitive = <String>{};
 final class DataAwsIamRolePolicies extends Data {
   static const String tfType = 'aws_iam_role_policies';
 
-  DataAwsIamRolePolicies({
-    required super.localName,
+  DataAwsIamRolePolicies(
+    super.localName, {
     required RefTo<AwsIamRole> roleName,
     super.provider,
     super.timeouts,

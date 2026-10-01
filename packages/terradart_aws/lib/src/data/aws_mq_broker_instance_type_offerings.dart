@@ -10,8 +10,8 @@ const Set<String> _awsMqBrokerInstanceTypeOfferingsSensitive = <String>{};
 final class DataAwsMqBrokerInstanceTypeOfferings extends Data {
   static const String tfType = 'aws_mq_broker_instance_type_offerings';
 
-  DataAwsMqBrokerInstanceTypeOfferings({
-    required super.localName,
+  DataAwsMqBrokerInstanceTypeOfferings(
+    super.localName, {
     TfArg<String>? engineType,
     TfArg<String>? hostInstanceType,
     TfArg<String>? region,

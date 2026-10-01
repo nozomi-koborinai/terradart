@@ -16,8 +16,8 @@ final class DataGoogleDataprocMetastoreFederationIamPolicy extends Data {
   static const String tfType =
       'google_dataproc_metastore_federation_iam_policy';
 
-  DataGoogleDataprocMetastoreFederationIamPolicy({
-    required super.localName,
+  DataGoogleDataprocMetastoreFederationIamPolicy(
+    super.localName, {
     required TfArg<String> federationId,
     TfArg<String>? location,
     TfArg<String>? project,

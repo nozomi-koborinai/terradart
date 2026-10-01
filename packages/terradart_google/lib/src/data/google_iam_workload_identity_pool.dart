@@ -14,8 +14,8 @@ const Set<String> _googleIamWorkloadIdentityPoolSensitive = <String>{};
 final class DataGoogleIamWorkloadIdentityPool extends Data {
   static const String tfType = 'google_iam_workload_identity_pool';
 
-  DataGoogleIamWorkloadIdentityPool({
-    required super.localName,
+  DataGoogleIamWorkloadIdentityPool(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> workloadIdentityPoolId,
     super.provider,

@@ -1121,8 +1121,8 @@ final class MailmanagerRuleSetUnless {
 final class AwsMailmanagerRuleSet extends Resource {
   static const String tfType = 'aws_mailmanager_rule_set';
 
-  AwsMailmanagerRuleSet({
-    required super.localName,
+  AwsMailmanagerRuleSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -287,7 +287,7 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 /// Example (external HTTPS L7 Application LB frontend):
 /// ```dart
 /// final feFwd = GoogleComputeGlobalForwardingRule(
-///   localName: 'fe',
+///   'fe',
 ///   name: TfArg.literal('lb-https-frontend'),
 ///   target: httpsProxy.selfLink,
 ///   ipAddress: lbVip.selfLink,
@@ -303,8 +303,8 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 final class GoogleComputeGlobalForwardingRule extends Resource {
   static const String tfType = 'google_compute_global_forwarding_rule';
 
-  GoogleComputeGlobalForwardingRule({
-    required super.localName,
+  GoogleComputeGlobalForwardingRule(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> target,
     TfArg<String>? ipAddress,

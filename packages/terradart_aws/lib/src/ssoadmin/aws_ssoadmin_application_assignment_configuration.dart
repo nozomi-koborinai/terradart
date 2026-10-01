@@ -12,8 +12,8 @@ final class AwsSsoadminApplicationAssignmentConfiguration extends Resource {
   static const String tfType =
       'aws_ssoadmin_application_assignment_configuration';
 
-  AwsSsoadminApplicationAssignmentConfiguration({
-    required super.localName,
+  AwsSsoadminApplicationAssignmentConfiguration(
+    super.localName, {
     required TfArg<String> applicationArn,
     required TfArg<bool> assignmentRequired,
     TfArg<String>? region,

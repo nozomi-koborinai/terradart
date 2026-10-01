@@ -1972,7 +1972,7 @@ final class ComputeUrlMapHeaders {
 /// Example (login backend + static bucket, both routed via host/path):
 /// ```dart
 /// final urlMap = GoogleComputeUrlMap(
-///   localName: 'urlmap',
+///   'urlmap',
 ///   name: TfArg.literal('urlmap-prod'),
 ///   defaultService: login.ref,
 ///   hostRule: [
@@ -2023,8 +2023,8 @@ final class ComputeUrlMapHeaders {
 final class GoogleComputeUrlMap extends Resource {
   static const String tfType = 'google_compute_url_map';
 
-  GoogleComputeUrlMap({
-    required super.localName,
+  GoogleComputeUrlMap(
+    super.localName, {
     required TfArg<String> name,
     RefTo<GoogleComputeBackendService>? defaultService,
     TfArg<String>? description,

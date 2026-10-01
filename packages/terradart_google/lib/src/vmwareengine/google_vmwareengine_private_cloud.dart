@@ -260,8 +260,8 @@ final class VmwareenginePrivateCloudNetworkConfig {
 final class GoogleVmwareenginePrivateCloud extends Resource {
   static const String tfType = 'google_vmwareengine_private_cloud';
 
-  GoogleVmwareenginePrivateCloud({
-    required super.localName,
+  GoogleVmwareenginePrivateCloud(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required VmwareenginePrivateCloudManagementCluster managementCluster,

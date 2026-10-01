@@ -11,8 +11,8 @@ const Set<String> _awsMskconnectConnectorSensitive = <String>{};
 final class DataAwsMskconnectConnector extends Data {
   static const String tfType = 'aws_mskconnect_connector';
 
-  DataAwsMskconnectConnector({
-    required super.localName,
+  DataAwsMskconnectConnector(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

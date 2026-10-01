@@ -162,8 +162,8 @@ final class SfnStateMachineTracingConfiguration {
 final class AwsSfnStateMachine extends Resource {
   static const String tfType = 'aws_sfn_state_machine';
 
-  AwsSfnStateMachine({
-    required super.localName,
+  AwsSfnStateMachine(
+    super.localName, {
     required TfArg<String> definition,
     SfnStateMachineName? name,
     TfArg<bool>? publish,

@@ -214,8 +214,8 @@ final class DataprocSessionTemplateSparkConnectSession {
 final class GoogleDataprocSessionTemplate extends Resource {
   static const String tfType = 'google_dataproc_session_template';
 
-  GoogleDataprocSessionTemplate({
-    required super.localName,
+  GoogleDataprocSessionTemplate(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<Map<String, String>>? labels,

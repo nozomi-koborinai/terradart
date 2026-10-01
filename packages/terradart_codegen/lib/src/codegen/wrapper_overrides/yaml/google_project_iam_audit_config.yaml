@@ -36,7 +36,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleProjectIamAuditConfig(
-  ///   localName: 'storage_admin_read',
+  ///   'storage_admin_read',
   ///   project: TfArg.literal(projectId),
   ///   service: TfArg.literal('storage.googleapis.com'),
   ///   auditLogConfig: [

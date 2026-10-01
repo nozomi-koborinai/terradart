@@ -12,8 +12,8 @@ const Set<String> _awsAppconfigHostedConfigurationVersionSensitive = <String>{
 final class AwsAppconfigHostedConfigurationVersion extends Resource {
   static const String tfType = 'aws_appconfig_hosted_configuration_version';
 
-  AwsAppconfigHostedConfigurationVersion({
-    required super.localName,
+  AwsAppconfigHostedConfigurationVersion(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> configurationProfileId,
     required TfArg<String> content,

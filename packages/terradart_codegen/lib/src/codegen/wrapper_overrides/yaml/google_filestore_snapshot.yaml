@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleFilestoreSnapshot(
-  ///   localName: 'share_snap',
+  ///   'share_snap',
   ///   name: TfArg.literal('share-snap-1'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   instance: nfs.ref,

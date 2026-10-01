@@ -340,7 +340,7 @@ final class CesAgentDisablePlannerTransfer {
 /// Example:
 /// ```dart
 /// GoogleCesAgent(
-///   localName: 'agent',
+///   'agent',
 ///   app: app.ref,
 ///   agentId: TfArg.literal('terradart-ces-agent'),
 ///   displayName: TfArg.literal('terradart-ces-agent'),
@@ -351,8 +351,8 @@ final class CesAgentDisablePlannerTransfer {
 final class GoogleCesAgent extends Resource {
   static const String tfType = 'google_ces_agent';
 
-  GoogleCesAgent({
-    required super.localName,
+  GoogleCesAgent(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required TfArg<String> displayName,

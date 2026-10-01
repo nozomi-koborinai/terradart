@@ -10,8 +10,8 @@ const Set<String> _awsBackupVaultPolicySensitive = <String>{};
 final class AwsBackupVaultPolicy extends Resource {
   static const String tfType = 'aws_backup_vault_policy';
 
-  AwsBackupVaultPolicy({
-    required super.localName,
+  AwsBackupVaultPolicy(
+    super.localName, {
     required TfArg<String> backupVaultName,
     required TfArg<String> policy,
     TfArg<String>? region,

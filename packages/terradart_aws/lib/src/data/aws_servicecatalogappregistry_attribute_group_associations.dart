@@ -13,8 +13,8 @@ final class DataAwsServicecatalogappregistryAttributeGroupAssociations
   static const String tfType =
       'aws_servicecatalogappregistry_attribute_group_associations';
 
-  DataAwsServicecatalogappregistryAttributeGroupAssociations({
-    required super.localName,
+  DataAwsServicecatalogappregistryAttributeGroupAssociations(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     super.provider,

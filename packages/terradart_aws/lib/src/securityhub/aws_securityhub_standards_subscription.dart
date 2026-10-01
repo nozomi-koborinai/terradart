@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubStandardsSubscriptionSensitive = <String>{};
 final class AwsSecurityhubStandardsSubscription extends Resource {
   static const String tfType = 'aws_securityhub_standards_subscription';
 
-  AwsSecurityhubStandardsSubscription({
-    required super.localName,
+  AwsSecurityhubStandardsSubscription(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> standardsArn,
     super.lifecycle,

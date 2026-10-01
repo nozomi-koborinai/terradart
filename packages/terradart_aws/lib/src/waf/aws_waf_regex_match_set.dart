@@ -50,8 +50,8 @@ final class WafRegexMatchSetFieldToMatch {
 final class AwsWafRegexMatchSet extends Resource {
   static const String tfType = 'aws_waf_regex_match_set';
 
-  AwsWafRegexMatchSet({
-    required super.localName,
+  AwsWafRegexMatchSet(
+    super.localName, {
     required TfArg<String> name,
     List<WafRegexMatchSetRegexMatchTuple>? regexMatchTuple,
     super.lifecycle,

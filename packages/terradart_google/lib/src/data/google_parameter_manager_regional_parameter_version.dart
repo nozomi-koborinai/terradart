@@ -16,8 +16,8 @@ final class DataGoogleParameterManagerRegionalParameterVersion extends Data {
   static const String tfType =
       'google_parameter_manager_regional_parameter_version';
 
-  DataGoogleParameterManagerRegionalParameterVersion({
-    required super.localName,
+  DataGoogleParameterManagerRegionalParameterVersion(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> parameter,
     required TfArg<String> parameterVersionId,

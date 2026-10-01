@@ -29,8 +29,8 @@ final class ComputeVpnGatewayParams {
 final class GoogleComputeVpnGateway extends Resource {
   static const String tfType = 'google_compute_vpn_gateway';
 
-  GoogleComputeVpnGateway({
-    required super.localName,
+  GoogleComputeVpnGateway(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? region,

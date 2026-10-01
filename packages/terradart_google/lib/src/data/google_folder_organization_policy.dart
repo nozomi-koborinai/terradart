@@ -14,8 +14,8 @@ const Set<String> _googleFolderOrganizationPolicySensitive = <String>{};
 final class DataGoogleFolderOrganizationPolicy extends Data {
   static const String tfType = 'google_folder_organization_policy';
 
-  DataGoogleFolderOrganizationPolicy({
-    required super.localName,
+  DataGoogleFolderOrganizationPolicy(
+    super.localName, {
     required TfArg<String> constraint,
     required TfArg<String> folder,
     super.provider,

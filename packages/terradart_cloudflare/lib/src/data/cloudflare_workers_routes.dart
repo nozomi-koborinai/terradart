@@ -15,8 +15,8 @@ const Set<String> _cloudflareWorkersRoutesSensitive = <String>{};
 final class DataCloudflareWorkersRoutes extends Data {
   static const String tfType = 'cloudflare_workers_routes';
 
-  DataCloudflareWorkersRoutes({
-    required super.localName,
+  DataCloudflareWorkersRoutes(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

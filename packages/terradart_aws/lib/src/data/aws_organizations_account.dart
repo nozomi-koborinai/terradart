@@ -11,8 +11,8 @@ const Set<String> _awsOrganizationsAccountSensitive = <String>{};
 final class DataAwsOrganizationsAccount extends Data {
   static const String tfType = 'aws_organizations_account';
 
-  DataAwsOrganizationsAccount({
-    required super.localName,
+  DataAwsOrganizationsAccount(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<Map<String, String>>? tags,
     super.provider,

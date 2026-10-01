@@ -306,8 +306,8 @@ final class SsmMaintenanceWindowTaskStepFunctionsParameters {
 final class AwsSsmMaintenanceWindowTask extends Resource {
   static const String tfType = 'aws_ssm_maintenance_window_task';
 
-  AwsSsmMaintenanceWindowTask({
-    required super.localName,
+  AwsSsmMaintenanceWindowTask(
+    super.localName, {
     TfArg<SsmMaintenanceWindowTaskCutoffBehavior>? cutoffBehavior,
     TfArg<String>? description,
     TfArg<String>? maxConcurrency,

@@ -285,8 +285,8 @@ final class SagemakerEndpointRollbackMaximumBatchSize {
 final class AwsSagemakerEndpoint extends Resource {
   static const String tfType = 'aws_sagemaker_endpoint';
 
-  AwsSagemakerEndpoint({
-    required super.localName,
+  AwsSagemakerEndpoint(
+    super.localName, {
     required TfArg<String> endpointConfigName,
     TfArg<String>? name,
     TfArg<String>? region,

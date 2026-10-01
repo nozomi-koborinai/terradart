@@ -38,8 +38,8 @@ final class GkeHubMembershipIamMemberCondition {
 final class GoogleGkeHubMembershipIamMember extends Resource {
   static const String tfType = 'google_gke_hub_membership_iam_member';
 
-  GoogleGkeHubMembershipIamMember({
-    required super.localName,
+  GoogleGkeHubMembershipIamMember(
+    super.localName, {
     required RefTo<GoogleGkeHubMembership> membership,
     TfArg<String>? location,
     required TfArg<String> role,

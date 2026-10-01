@@ -35,7 +35,7 @@ class BigtableAuthorizedViewSubsetView {
 /// Example:
 /// ```dart
 /// GoogleBigtableAuthorizedView(
-///   localName: 'tenant_a',
+///   'tenant_a',
 ///   instanceName: instance.ref,
 ///   tableName: table.ref,
 ///   name: TfArg.literal('tenant-a'),
@@ -47,8 +47,8 @@ class BigtableAuthorizedViewSubsetView {
 final class GoogleBigtableAuthorizedView extends Resource {
   static const String tfType = 'google_bigtable_authorized_view';
 
-  GoogleBigtableAuthorizedView({
-    required super.localName,
+  GoogleBigtableAuthorizedView(
+    super.localName, {
     required RefTo<GoogleBigtableInstance> instanceName,
     required RefTo<GoogleBigtableTable> tableName,
     required TfArg<String> name,

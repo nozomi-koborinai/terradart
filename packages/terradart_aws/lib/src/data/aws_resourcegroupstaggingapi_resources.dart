@@ -30,8 +30,8 @@ final class DataResourcegroupstaggingapiResourcesTagFilter {
 final class DataAwsResourcegroupstaggingapiResources extends Data {
   static const String tfType = 'aws_resourcegroupstaggingapi_resources';
 
-  DataAwsResourcegroupstaggingapiResources({
-    required super.localName,
+  DataAwsResourcegroupstaggingapiResources(
+    super.localName, {
     TfArg<bool>? excludeCompliantResources,
     TfArg<bool>? includeComplianceDetails,
     TfArg<String>? region,

@@ -11,8 +11,8 @@ const Set<String> _awsRedshiftClusterSensitive = <String>{};
 final class DataAwsRedshiftCluster extends Data {
   static const String tfType = 'aws_redshift_cluster';
 
-  DataAwsRedshiftCluster({
-    required super.localName,
+  DataAwsRedshiftCluster(
+    super.localName, {
     required TfArg<String> clusterIdentifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

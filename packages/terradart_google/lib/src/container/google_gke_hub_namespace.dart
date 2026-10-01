@@ -14,8 +14,8 @@ const Set<String> _googleGkeHubNamespaceSensitive = <String>{};
 final class GoogleGkeHubNamespace extends Resource {
   static const String tfType = 'google_gke_hub_namespace';
 
-  GoogleGkeHubNamespace({
-    required super.localName,
+  GoogleGkeHubNamespace(
+    super.localName, {
     required TfArg<String> scopeNamespaceId,
     required RefTo<GoogleGkeHubScope> scopeId,
     required RefTo<GoogleGkeHubScope> scope,

@@ -14,8 +14,8 @@ const Set<String> _appwriteSiteSensitive = <String>{};
 final class AppwriteSite extends Resource {
   static const String tfType = 'appwrite_site';
 
-  AppwriteSite({
-    required super.localName,
+  AppwriteSite(
+    super.localName, {
     TfArg<String>? adapter,
     TfArg<String>? buildCommand,
     required TfArg<String> buildRuntime,

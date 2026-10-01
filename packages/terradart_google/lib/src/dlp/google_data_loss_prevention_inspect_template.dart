@@ -608,8 +608,8 @@ enum DataLossPreventionInspectTemplateFixedLikelihood implements TerraformEnum {
 final class GoogleDataLossPreventionInspectTemplate extends Resource {
   static const String tfType = 'google_data_loss_prevention_inspect_template';
 
-  GoogleDataLossPreventionInspectTemplate({
-    required super.localName,
+  GoogleDataLossPreventionInspectTemplate(
+    super.localName, {
     required TfArg<String> parent,
     TfArg<String>? templateId,
     TfArg<String>? displayName,

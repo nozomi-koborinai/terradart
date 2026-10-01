@@ -466,7 +466,7 @@ class ComputeInstanceGroupManagerResourcePolicies {
 /// proactive update policy):
 /// ```dart
 /// final mig = GoogleComputeInstanceGroupManager(
-///   localName: 'web',
+///   'web',
 ///   name: TfArg.literal('web-mig'),
 ///   zone: TfArg.literal('asia-northeast1-a'),
 ///   baseInstanceName: TfArg.literal('web'),
@@ -508,8 +508,8 @@ class ComputeInstanceGroupManagerResourcePolicies {
 final class GoogleComputeInstanceGroupManager extends Resource {
   static const String tfType = 'google_compute_instance_group_manager';
 
-  GoogleComputeInstanceGroupManager({
-    required super.localName,
+  GoogleComputeInstanceGroupManager(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? zone,
     TfArg<String>? description,

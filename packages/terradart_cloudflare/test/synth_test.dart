@@ -18,14 +18,14 @@ final class _TestStack extends Stack {
         ],
       ) {
     final zone = CloudflareZone(
-      localName: 'main',
+      'main',
       name: .literal('example.com'),
       account: .new(id: .literal('acc-1')),
     );
     add(zone);
     add(
       CloudflareDnsRecord(
-        localName: 'api',
+        'api',
         zoneId: zone.ref,
         name: .literal('api.example.com'),
         type: .literal(.cname),

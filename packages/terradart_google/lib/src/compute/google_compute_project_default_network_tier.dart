@@ -33,7 +33,7 @@ enum ComputeProjectDefaultNetworkTier implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleComputeProjectDefaultNetworkTier(
-///   localName: 'defaults',
+///   'defaults',
 ///   networkTier: TfArg.literal(
 ///     ComputeProjectDefaultNetworkTier.standard,
 ///   ),
@@ -42,8 +42,8 @@ enum ComputeProjectDefaultNetworkTier implements TerraformEnum {
 final class GoogleComputeProjectDefaultNetworkTier extends Resource {
   static const String tfType = 'google_compute_project_default_network_tier';
 
-  GoogleComputeProjectDefaultNetworkTier({
-    required super.localName,
+  GoogleComputeProjectDefaultNetworkTier(
+    super.localName, {
     required TfArg<ComputeProjectDefaultNetworkTier> networkTier,
     TfArg<String>? project,
     super.lifecycle,
