@@ -266,7 +266,9 @@ final class CloudfrontResponseHeadersPolicyReferrerPolicy {
 
   final TfArg<bool> override;
 
-  final TfArg<CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy>
+  final TfArg<
+    CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
+  >
   referrerPolicy;
 
   Map<String, Object?> encode() => {
@@ -276,7 +278,7 @@ final class CloudfrontResponseHeadersPolicyReferrerPolicy {
 }
 
 /// `referrer_policy` — derived from the provider schema description.
-enum CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy
+enum CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy
     implements TerraformEnum {
   noReferrer('no-referrer'),
   noReferrerWhenDowngrade('no-referrer-when-downgrade'),
@@ -287,7 +289,7 @@ enum CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy
   strictOriginWhenCrossOrigin('strict-origin-when-cross-origin'),
   unsafeUrl('unsafe-url');
 
-  const CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy(
+  const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy(
     this.terraformValue,
   );
   @override

@@ -10,10 +10,8 @@ const Set<String> _awsEcrReplicationConfigurationSensitive = <String>{};
 /// Typed helper for the `replication_configuration` block of
 /// `aws_ecr_replication_configuration` (derived from provider schema).
 @immutable
-final class EcrReplicationConfigurationReplicationConfiguration {
-  const EcrReplicationConfigurationReplicationConfiguration({
-    required this.rule,
-  });
+final class EcrReplicationConfiguration {
+  const EcrReplicationConfiguration({required this.rule});
 
   final List<EcrReplicationConfigurationRule> rule;
 
@@ -96,8 +94,7 @@ final class AwsEcrReplicationConfiguration extends Resource {
   AwsEcrReplicationConfiguration({
     required super.localName,
     TfArg<String>? region,
-    EcrReplicationConfigurationReplicationConfiguration?
-    replicationConfiguration,
+    EcrReplicationConfiguration? replicationConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

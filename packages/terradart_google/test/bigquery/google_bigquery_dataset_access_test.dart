@@ -70,7 +70,7 @@ void main() {
 
     test('view nests a fully-qualified table reference', () {
       final access = BigqueryDatasetAccessView(
-        view: BigqueryDatasetDatasetView(
+        view: BigqueryDatasetView(
           projectId: TfArg.literal('p'),
           datasetId: RefTo.literal('analytics'),
           tableId: TfArg.literal('daily_view'),
@@ -92,8 +92,8 @@ void main() {
 
     test('dataset nests a dataset reference + target_types', () {
       final access = BigqueryDatasetAccessDataset(
-        dataset: BigqueryDatasetDatasetAccessChild(
-          dataset: BigqueryDatasetDatasetReference(
+        dataset: BigqueryDatasetAccessChild(
+          dataset: BigqueryDatasetReference(
             projectId: TfArg.literal('p'),
             datasetId: RefTo.literal('shared'),
           ),
@@ -117,7 +117,7 @@ void main() {
 
     test('routine nests a routine reference and needs no role', () {
       final access = BigqueryDatasetAccessRoutine(
-        routine: BigqueryDatasetDatasetRoutineRef(
+        routine: BigqueryDatasetRoutineRef(
           projectId: TfArg.literal('p'),
           datasetId: RefTo.literal('lib'),
           routineId: TfArg.literal('cleanse'),

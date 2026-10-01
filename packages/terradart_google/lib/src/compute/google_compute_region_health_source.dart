@@ -6,11 +6,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_region_health_source`.
 const Set<String> _googleComputeRegionHealthSourceSensitive = <String>{};
 
-/// Compute Region Health Source Source enum for `source_type`.
-enum ComputeRegionHealthSourceSourceType implements TerraformEnum {
+/// Compute Region Health Source enum for `source_type`.
+enum ComputeRegionHealthSourceType implements TerraformEnum {
   backendService('BACKEND_SERVICE');
 
-  const ComputeRegionHealthSourceSourceType(this.terraformValue);
+  const ComputeRegionHealthSourceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -32,7 +32,7 @@ final class GoogleComputeRegionHealthSource extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    required TfArg<ComputeRegionHealthSourceSourceType> sourceType,
+    required TfArg<ComputeRegionHealthSourceType> sourceType,
     TfArg<String>? healthAggregationPolicy,
     TfArg<List<String>>? sources,
     TfArg<String>? description,

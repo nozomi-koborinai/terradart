@@ -7,11 +7,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssoadmin_trusted_token_issuer`.
 const Set<String> _awsSsoadminTrustedTokenIssuerSensitive = <String>{};
 
-/// Ssoadmin Trusted Token Issuer Trusted Token Issuer enum for `trusted_token_issuer_type`.
-enum SsoadminTrustedTokenIssuerTrustedTokenIssuerType implements TerraformEnum {
+/// Ssoadmin Trusted Token Issuer enum for `trusted_token_issuer_type`.
+enum SsoadminTrustedTokenIssuerType implements TerraformEnum {
   oidcJwt('OIDC_JWT');
 
-  const SsoadminTrustedTokenIssuerTrustedTokenIssuerType(this.terraformValue);
+  const SsoadminTrustedTokenIssuerType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -81,8 +81,7 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<SsoadminTrustedTokenIssuerTrustedTokenIssuerType>
-    trustedTokenIssuerType,
+    required TfArg<SsoadminTrustedTokenIssuerType> trustedTokenIssuerType,
     List<SsoadminTrustedTokenIssuerConfiguration>?
     trustedTokenIssuerConfiguration,
     super.lifecycle,

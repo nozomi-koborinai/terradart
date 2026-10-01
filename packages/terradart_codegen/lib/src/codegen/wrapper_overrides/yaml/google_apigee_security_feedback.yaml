@@ -28,7 +28,7 @@ paramOrder:
   - feedback_contexts
 
 dartTypeOverrides:
-  feedback_type: ApigeeSecurityFeedbackFeedbackType
+  feedback_type: ApigeeSecurityFeedbackType
   reason: ApigeeSecurityFeedbackReason
 
 extraGetters: |2

@@ -27,12 +27,12 @@ enum FsxOpenzfsVolumeDeleteVolumeOptions implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Fsx Openzfs Volume Volume enum for `volume_type`.
-enum FsxOpenzfsVolumeVolumeType implements TerraformEnum {
+/// Fsx Openzfs Volume enum for `volume_type`.
+enum FsxOpenzfsVolumeType implements TerraformEnum {
   ontap('ONTAP'),
   openzfs('OPENZFS');
 
-  const FsxOpenzfsVolumeVolumeType(this.terraformValue);
+  const FsxOpenzfsVolumeType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -113,7 +113,7 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<FsxOpenzfsVolumeType> type;
+  final TfArg<FsxOpenzfsVolumeUserAndGroupQuotasType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -123,11 +123,11 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOpenzfsVolumeType implements TerraformEnum {
+enum FsxOpenzfsVolumeUserAndGroupQuotasType implements TerraformEnum {
   user('USER'),
   group('GROUP');
 
-  const FsxOpenzfsVolumeType(this.terraformValue);
+  const FsxOpenzfsVolumeUserAndGroupQuotasType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -149,7 +149,7 @@ final class AwsFsxOpenzfsVolume extends Resource {
     TfArg<num>? storageCapacityQuotaGib,
     TfArg<num>? storageCapacityReservationGib,
     TfArg<Map<String, String>>? tags,
-    TfArg<FsxOpenzfsVolumeVolumeType>? volumeType,
+    TfArg<FsxOpenzfsVolumeType>? volumeType,
     FsxOpenzfsVolumeNfsExports? nfsExports,
     FsxOpenzfsVolumeOriginSnapshot? originSnapshot,
     List<FsxOpenzfsVolumeUserAndGroupQuotas>? userAndGroupQuotas,

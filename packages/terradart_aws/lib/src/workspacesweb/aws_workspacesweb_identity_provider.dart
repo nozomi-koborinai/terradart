@@ -6,9 +6,8 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_workspacesweb_identity_provider`.
 const Set<String> _awsWorkspaceswebIdentityProviderSensitive = <String>{};
 
-/// Workspacesweb Identity Provider Identity Provider enum for `identity_provider_type`.
-enum WorkspaceswebIdentityProviderIdentityProviderType
-    implements TerraformEnum {
+/// Workspacesweb Identity Provider enum for `identity_provider_type`.
+enum WorkspaceswebIdentityProviderType implements TerraformEnum {
   saml('SAML'),
   facebook('Facebook'),
   google('Google'),
@@ -16,7 +15,7 @@ enum WorkspaceswebIdentityProviderIdentityProviderType
   signinwithapple('SignInWithApple'),
   oidc('OIDC');
 
-  const WorkspaceswebIdentityProviderIdentityProviderType(this.terraformValue);
+  const WorkspaceswebIdentityProviderType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -29,8 +28,7 @@ final class AwsWorkspaceswebIdentityProvider extends Resource {
     required super.localName,
     required TfArg<Map<String, String>> identityProviderDetails,
     required TfArg<String> identityProviderName,
-    required TfArg<WorkspaceswebIdentityProviderIdentityProviderType>
-    identityProviderType,
+    required TfArg<WorkspaceswebIdentityProviderType> identityProviderType,
     required TfArg<String> portalArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

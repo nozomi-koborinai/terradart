@@ -52,7 +52,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('cloudrun-neg'),
   ///   region: TfArg.literal('asia-northeast1'),
   ///   serverless: .cloudRun(
-  ///     ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
+  ///     ComputeRegionNetworkEndpointGroupCloudRun(
   ///       service: TfArg.ref(cloudRunService.nameRef),
   ///     ),
   ///   ),
@@ -134,8 +134,8 @@ prelude: |
   /// optional [tag] pins traffic to a named revision tag for fine-grained
   /// canary routing.
   @immutable
-  class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun {
-    const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun({
+  class ComputeRegionNetworkEndpointGroupCloudRun {
+    const ComputeRegionNetworkEndpointGroupCloudRun({
       this.service,
       this.tag,
       this.urlMask,
@@ -174,8 +174,8 @@ prelude: |
   /// [urlMask] to route across multiple functions via a URL template (the
   /// schema's `at_least_one_of` rule requires at least one of the two).
   @immutable
-  class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction {
-    const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction({
+  class ComputeRegionNetworkEndpointGroupCloudFunction {
+    const ComputeRegionNetworkEndpointGroupCloudFunction({
       this.function,
       this.urlMask,
     });
@@ -210,8 +210,8 @@ prelude: |
   /// pin a specific service or version, or supply [urlMask] to route across
   /// many at once.
   @immutable
-  class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
-    const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine({
+  class ComputeRegionNetworkEndpointGroupAppEngine {
+    const ComputeRegionNetworkEndpointGroupAppEngine({
       this.service,
       this.version,
       this.urlMask,
@@ -239,11 +239,11 @@ prelude: |
 
 customSlots:
   cloud_run:
-    paramDeclaration: 'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun? cloudRun'
+    paramDeclaration: 'ComputeRegionNetworkEndpointGroupCloudRun? cloudRun'
     argMapEntry: "if (cloudRun != null) 'cloud_run': TfArg.literal([cloudRun.toArgMap()]),"
   cloud_function:
-    paramDeclaration: 'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction? cloudFunction'
+    paramDeclaration: 'ComputeRegionNetworkEndpointGroupCloudFunction? cloudFunction'
     argMapEntry: "if (cloudFunction != null) 'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),"
   app_engine:
-    paramDeclaration: 'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine? appEngine'
+    paramDeclaration: 'ComputeRegionNetworkEndpointGroupAppEngine? appEngine'
     argMapEntry: "if (appEngine != null) 'app_engine': TfArg.literal([appEngine.toArgMap()]),"

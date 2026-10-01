@@ -8,12 +8,12 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_rum_metrics_destination`.
 const Set<String> _awsRumMetricsDestinationSensitive = <String>{};
 
-/// Rum Metrics Destination enum for `destination`.
-enum RumMetricsDestinationDestination implements TerraformEnum {
+/// Rum Metrics enum for `destination`.
+enum RumMetricsDestination implements TerraformEnum {
   cloudwatch('CloudWatch'),
   evidently('Evidently');
 
-  const RumMetricsDestinationDestination(this.terraformValue);
+  const RumMetricsDestination(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -25,7 +25,7 @@ final class AwsRumMetricsDestination extends Resource {
   AwsRumMetricsDestination({
     required super.localName,
     required TfArg<String> appMonitorName,
-    required TfArg<RumMetricsDestinationDestination> destination,
+    required TfArg<RumMetricsDestination> destination,
     TfArg<String>? destinationArn,
     RefTo<AwsIamRole>? iamRoleArn,
     TfArg<String>? region,

@@ -9,7 +9,7 @@ curatedDoc: |-
   /// Chronicle dashboard chart tile managed against a [GoogleChronicleNativeDashboard].
   ///
   /// Set [nativeDashboard] to `TfArg.ref(dashboard.nameRef)`. Use
-  /// [ChronicleDashboardChartChartLayout], [ChronicleDashboardChartSpec], and
+  /// [ChronicleDashboardChartLayout], [ChronicleDashboardChartSpec], and
   /// [ChronicleDashboardChartQuery] for the nested blocks.
 
 paramOrder:
@@ -261,8 +261,8 @@ prelude: |
 
   /// `chart_layout` block.
   @immutable
-  class ChronicleDashboardChartChartLayout {
-    const ChronicleDashboardChartChartLayout({
+  class ChronicleDashboardChartLayout {
+    const ChronicleDashboardChartLayout({
       this.startX,
       required this.spanX,
       this.startY,
@@ -514,7 +514,7 @@ prelude: |
 
 customSlots:
   chart_layout:
-    paramDeclaration: 'ChronicleDashboardChartChartLayout? chartLayout'
+    paramDeclaration: 'ChronicleDashboardChartLayout? chartLayout'
     argMapEntry: "if (chartLayout != null) 'chart_layout': TfArg.literal([chartLayout.toArgMap()]),"
   dashboard_chart:
     paramDeclaration: 'required ChronicleDashboardChartSpec dashboardChart'

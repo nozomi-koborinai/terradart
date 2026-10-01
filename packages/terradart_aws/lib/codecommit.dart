@@ -10,7 +10,4 @@ export 'src/codecommit/aws_codecommit_approval_rule_template_association.dart'
 export 'src/codecommit/aws_codecommit_repository.dart'
     show AwsCodecommitRepository;
 export 'src/codecommit/aws_codecommit_trigger.dart'
-    show
-        AwsCodecommitTrigger,
-        CodecommitTriggerEvents,
-        CodecommitTriggerTrigger;
+    show AwsCodecommitTrigger, CodecommitTrigger, CodecommitTriggerEvents;

@@ -259,8 +259,8 @@ final class Wafv2WebAclRuleCount {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleLabel {
-  const Wafv2WebAclRuleLabel({required this.name});
+final class Wafv2WebAclRuleRuleLabel {
+  const Wafv2WebAclRuleRuleLabel({required this.name});
 
   final TfArg<String> name;
 
@@ -316,7 +316,7 @@ final class Wafv2WebAclRuleStatement {
   final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
   final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
@@ -440,7 +440,7 @@ final class Wafv2WebAclRuleAndStatementStatement {
   final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
   final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
@@ -564,7 +564,7 @@ final class Wafv2WebAclRuleStatementStatement {
   final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
   final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
@@ -679,7 +679,7 @@ final class Wafv2WebAclRuleStatementAndStatementStatement {
   final List<Wafv2WebAclRuleRegexPatternSetReferenceStatement>?
   regexPatternSetReferenceStatement;
 
-  final List<Wafv2WebAclRuleGroupReferenceStatement>?
+  final List<Wafv2WebAclRuleStatementRuleGroupReferenceStatement>?
   ruleGroupReferenceStatement;
 
   final List<Wafv2WebAclRuleSizeConstraintStatement>? sizeConstraintStatement;
@@ -845,9 +845,9 @@ final class Wafv2WebAclRuleFieldToMatch {
 
   final List<Wafv2WebAclRuleCount>? queryString;
 
-  final List<Wafv2WebAclRuleLabel>? singleHeader;
+  final List<Wafv2WebAclRuleRuleLabel>? singleHeader;
 
-  final List<Wafv2WebAclRuleLabel>? singleQueryArgument;
+  final List<Wafv2WebAclRuleRuleLabel>? singleQueryArgument;
 
   final List<Wafv2WebAclRuleUriFragment>? uriFragment;
 
@@ -1211,7 +1211,8 @@ final class Wafv2WebAclRuleManagedRuleGroupStatement {
 
   final List<Wafv2WebAclRuleManagedRuleGroupConfigs>? managedRuleGroupConfigs;
 
-  final List<Wafv2WebAclRuleActionOverride>? ruleActionOverride;
+  final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
+  ruleActionOverride;
 
   final List<Wafv2WebAclRuleScopeDownStatement>? scopeDownStatement;
 
@@ -1669,8 +1670,11 @@ final class Wafv2WebAclRuleAwsManagedRulesBotControlRuleSet {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleActionOverride {
-  const Wafv2WebAclRuleActionOverride({required this.name, this.actionToUse});
+final class Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride {
+  const Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride({
+    required this.name,
+    this.actionToUse,
+  });
 
   final TfArg<String> name;
 
@@ -2041,8 +2045,8 @@ final class Wafv2WebAclRuleQueryString {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleGroupReferenceStatement {
-  const Wafv2WebAclRuleGroupReferenceStatement({
+final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
+  const Wafv2WebAclRuleStatementRuleGroupReferenceStatement({
     required this.arn,
     this.excludedRule,
     this.ruleActionOverride,
@@ -2050,9 +2054,10 @@ final class Wafv2WebAclRuleGroupReferenceStatement {
 
   final TfArg<String> arn;
 
-  final List<Wafv2WebAclRuleLabel>? excludedRule;
+  final List<Wafv2WebAclRuleRuleLabel>? excludedRule;
 
-  final List<Wafv2WebAclRuleActionOverride>? ruleActionOverride;
+  final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
+  ruleActionOverride;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -2099,7 +2104,7 @@ final class AwsWafv2WebAclRule extends Resource {
     Wafv2WebAclRuleBehavior? behavior,
     List<Wafv2WebAclRuleCaptchaConfig>? captchaConfig,
     List<Wafv2WebAclRuleCaptchaConfig>? challengeConfig,
-    List<Wafv2WebAclRuleLabel>? ruleLabel,
+    List<Wafv2WebAclRuleRuleLabel>? ruleLabel,
     List<Wafv2WebAclRuleStatement>? statement,
     List<Wafv2WebAclRuleVisibilityConfig>? visibilityConfig,
     super.lifecycle,

@@ -8,7 +8,7 @@ void main() {
       localName: 'gw',
       name: TfArg.literal('gw'),
       network: .literal('net'),
-      gatewayIpVersion: TfArg.literal(ComputeHaVpnGatewayGatewayIpVersion.ipv6),
+      gatewayIpVersion: TfArg.literal(ComputeHaVpnGatewayIpVersion.ipv6),
       stackType: TfArg.literal(ComputeHaVpnGatewayStackType.ipv4Ipv6),
     );
     expect(gw.argMap['gateway_ip_version']!.toTfJson(), 'IPV6');

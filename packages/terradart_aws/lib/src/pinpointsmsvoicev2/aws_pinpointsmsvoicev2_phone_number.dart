@@ -16,26 +16,26 @@ enum Pinpointsmsvoicev2PhoneNumberMessageType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Pinpointsmsvoicev2 Phone Number Number enum for `number_capabilities`.
-enum Pinpointsmsvoicev2PhoneNumberNumberCapabilities implements TerraformEnum {
+/// Pinpointsmsvoicev2 Phone Number enum for `number_capabilities`.
+enum Pinpointsmsvoicev2PhoneNumberCapabilities implements TerraformEnum {
   sms('SMS'),
   voice('VOICE'),
   mms('MMS'),
   rcs('RCS');
 
-  const Pinpointsmsvoicev2PhoneNumberNumberCapabilities(this.terraformValue);
+  const Pinpointsmsvoicev2PhoneNumberCapabilities(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Pinpointsmsvoicev2 Phone Number Number enum for `number_type`.
-enum Pinpointsmsvoicev2PhoneNumberNumberType implements TerraformEnum {
+/// Pinpointsmsvoicev2 Phone Number enum for `number_type`.
+enum Pinpointsmsvoicev2PhoneNumberType implements TerraformEnum {
   longCode('LONG_CODE'),
   tollFree('TOLL_FREE'),
   tenDlc('TEN_DLC'),
   simulator('SIMULATOR');
 
-  const Pinpointsmsvoicev2PhoneNumberNumberType(this.terraformValue);
+  const Pinpointsmsvoicev2PhoneNumberType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -50,9 +50,9 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
     TfArg<bool>? forceDisassociate,
     required TfArg<String> isoCountryCode,
     required TfArg<Pinpointsmsvoicev2PhoneNumberMessageType> messageType,
-    required List<TfArg<Pinpointsmsvoicev2PhoneNumberNumberCapabilities>>
+    required List<TfArg<Pinpointsmsvoicev2PhoneNumberCapabilities>>
     numberCapabilities,
-    required TfArg<Pinpointsmsvoicev2PhoneNumberNumberType> numberType,
+    required TfArg<Pinpointsmsvoicev2PhoneNumberType> numberType,
     TfArg<String>? optOutListName,
     TfArg<String>? region,
     TfArg<String>? registrationId,

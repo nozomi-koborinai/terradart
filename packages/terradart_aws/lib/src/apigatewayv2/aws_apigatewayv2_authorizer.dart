@@ -7,25 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_apigatewayv2_authorizer`.
 const Set<String> _awsApigatewayv2AuthorizerSensitive = <String>{};
 
-/// Apigatewayv2 Authorizer Authorizer Payload Format enum for `authorizer_payload_format_version`.
-enum Apigatewayv2AuthorizerAuthorizerPayloadFormatVersion
-    implements TerraformEnum {
+/// Apigatewayv2 Authorizer Payload Format enum for `authorizer_payload_format_version`.
+enum Apigatewayv2AuthorizerPayloadFormatVersion implements TerraformEnum {
   v1p0('1.0'),
   v2p0('2.0');
 
-  const Apigatewayv2AuthorizerAuthorizerPayloadFormatVersion(
-    this.terraformValue,
-  );
+  const Apigatewayv2AuthorizerPayloadFormatVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Apigatewayv2 Authorizer Authorizer enum for `authorizer_type`.
-enum Apigatewayv2AuthorizerAuthorizerType implements TerraformEnum {
+/// Apigatewayv2 Authorizer enum for `authorizer_type`.
+enum Apigatewayv2AuthorizerType implements TerraformEnum {
   request('REQUEST'),
   jwt('JWT');
 
-  const Apigatewayv2AuthorizerAuthorizerType(this.terraformValue);
+  const Apigatewayv2AuthorizerType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -54,10 +51,10 @@ final class AwsApigatewayv2Authorizer extends Resource {
     required super.localName,
     required TfArg<String> apiId,
     TfArg<String>? authorizerCredentialsArn,
-    TfArg<Apigatewayv2AuthorizerAuthorizerPayloadFormatVersion>?
+    TfArg<Apigatewayv2AuthorizerPayloadFormatVersion>?
     authorizerPayloadFormatVersion,
     TfArg<num>? authorizerResultTtlInSeconds,
-    required TfArg<Apigatewayv2AuthorizerAuthorizerType> authorizerType,
+    required TfArg<Apigatewayv2AuthorizerType> authorizerType,
     TfArg<String>? authorizerUri,
     TfArg<bool>? enableSimpleResponses,
     TfArg<List<String>>? identitySources,

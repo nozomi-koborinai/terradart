@@ -8,17 +8,17 @@ deriveOutputGetters: true
 # deriveEnums cannot merge enum_values onto schema attrs — hand-write.
 
 dartTypeOverrides:
-  catalog_type: BiglakeIcebergCatalogCatalogType
+  catalog_type: BiglakeIcebergCatalogType
   credential_mode: BiglakeIcebergCatalogCredentialMode
 
 prelude: |
   /// Terraform `catalog_type` for [GoogleBiglakeIcebergCatalog].
-  enum BiglakeIcebergCatalogCatalogType implements TerraformEnum {
+  enum BiglakeIcebergCatalogType implements TerraformEnum {
     catalogTypeGcsBucket('CATALOG_TYPE_GCS_BUCKET'),
     catalogTypeBiglake('CATALOG_TYPE_BIGLAKE'),
     catalogTypeFederated('CATALOG_TYPE_FEDERATED');
 
-    const BiglakeIcebergCatalogCatalogType(this.terraformValue);
+    const BiglakeIcebergCatalogType(this.terraformValue);
     @override
     final String terraformValue;
   }

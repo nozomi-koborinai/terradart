@@ -4,7 +4,7 @@
 library;
 
 export 'src/securitylake/aws_securitylake_aws_log_source.dart'
-    show AwsSecuritylakeAwsLogSource, SecuritylakeAwsLogSourceSource;
+    show AwsSecuritylakeAwsLogSource, SecuritylakeAwsLogSource;
 export 'src/securitylake/aws_securitylake_custom_log_source.dart'
     show
         AwsSecuritylakeCustomLogSource,

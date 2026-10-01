@@ -37,6 +37,6 @@ export 'src/memorystore/google_memorystore_instance.dart'
 export 'src/memorystore/google_memorystore_instance_desired_user_created_endpoints.dart'
     show
         GoogleMemorystoreInstanceDesiredUserCreatedEndpoints,
+        MemorystoreInstanceDesiredUserCreatedEndpoints,
         MemorystoreInstanceDesiredUserCreatedEndpointsConnections,
-        MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpoints,
         MemorystoreInstanceDesiredUserCreatedEndpointsPscConnection;

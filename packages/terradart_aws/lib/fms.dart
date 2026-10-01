@@ -25,4 +25,4 @@ export 'src/fms/aws_fms_policy.dart'
         FmsPolicySecurityServicePolicyData,
         FmsPolicyThirdPartyFirewallPolicy;
 export 'src/fms/aws_fms_resource_set.dart'
-    show AwsFmsResourceSet, FmsResourceSetResourceSet;
+    show AwsFmsResourceSet, FmsResourceSet;

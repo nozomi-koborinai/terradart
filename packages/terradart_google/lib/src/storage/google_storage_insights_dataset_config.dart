@@ -9,15 +9,15 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 /// Sensitive field paths for `google_storage_insights_dataset_config`.
 const Set<String> _googleStorageInsightsDatasetConfigSensitive = <String>{};
 
-/// Storage Insights Dataset Config Dataset Config enum for `dataset_config_state`.
-enum StorageInsightsDatasetConfigDatasetConfigState implements TerraformEnum {
+/// Storage Insights Dataset Config enum for `dataset_config_state`.
+enum StorageInsightsDatasetConfigState implements TerraformEnum {
   configStateUnspecified('CONFIG_STATE_UNSPECIFIED'),
   configStateActive('CONFIG_STATE_ACTIVE'),
   configStateVerificationInProgress('CONFIG_STATE_VERIFICATION_IN_PROGRESS'),
   configStateCreated('CONFIG_STATE_CREATED'),
   configStateProcessing('CONFIG_STATE_PROCESSING');
 
-  const StorageInsightsDatasetConfigDatasetConfigState(this.terraformValue);
+  const StorageInsightsDatasetConfigState(this.terraformValue);
   @override
   final String terraformValue;
 }

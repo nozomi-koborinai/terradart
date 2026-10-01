@@ -450,8 +450,8 @@ final class ComputeHealthCheckGrpcTlsHealthCheckConfig
 
 /// `log_config` block. Toggles Cloud Logging export of probe results.
 @immutable
-class ComputeHealthCheckHealthCheckLogConfig {
-  const ComputeHealthCheckHealthCheckLogConfig({this.enable});
+class ComputeHealthCheckLogConfig {
+  const ComputeHealthCheckLogConfig({this.enable});
 
   /// `true` exports each probe result to Cloud Logging. Defaults to
   /// `false` (no logs).
@@ -518,7 +518,7 @@ class ComputeHealthCheckHealthCheckLogConfig {
 ///     proxyHeader: HealthCheckProxyHeader.none,
 ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
 ///   ),
-///   logConfig: ComputeHealthCheckHealthCheckLogConfig(enable: .literal(true)),
+///   logConfig: ComputeHealthCheckLogConfig(enable: .literal(true)),
 /// );
 /// ```
 ///
@@ -554,7 +554,7 @@ final class GoogleComputeHealthCheck extends Resource {
     TfArg<num>? unhealthyThreshold,
     TfArg<List<String>>? sourceRegions,
     required ComputeHealthCheckProtocol protocol,
-    ComputeHealthCheckHealthCheckLogConfig? logConfig,
+    ComputeHealthCheckLogConfig? logConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

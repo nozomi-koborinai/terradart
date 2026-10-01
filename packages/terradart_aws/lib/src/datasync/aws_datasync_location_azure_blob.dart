@@ -28,11 +28,11 @@ enum DatasyncLocationAzureBlobAuthenticationType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Datasync Location Azure Blob Blob enum for `blob_type`.
-enum DatasyncLocationAzureBlobBlobType implements TerraformEnum {
+/// Datasync Location Azure Blob enum for `blob_type`.
+enum DatasyncLocationAzureBlobType implements TerraformEnum {
   block('BLOCK');
 
-  const DatasyncLocationAzureBlobBlobType(this.terraformValue);
+  const DatasyncLocationAzureBlobType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -58,7 +58,7 @@ final class AwsDatasyncLocationAzureBlob extends Resource {
     required TfArg<List<String>> agentArns,
     required TfArg<DatasyncLocationAzureBlobAuthenticationType>
     authenticationType,
-    TfArg<DatasyncLocationAzureBlobBlobType>? blobType,
+    TfArg<DatasyncLocationAzureBlobType>? blobType,
     required TfArg<String> containerUrl,
     TfArg<String>? region,
     TfArg<String>? subdirectory,

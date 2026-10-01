@@ -121,7 +121,7 @@ enum GlobalForwardingRuleMigrationState implements TerraformEnum {
 }
 
 /// `metadata_filters[*].filter_match_criteria`. Controls how the
-/// nested [ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilterLabel] entries combine.
+/// nested [ComputeGlobalForwardingRuleMetadataFilterLabel] entries combine.
 ///
 /// - [matchAny]: at least one filter label must match a label in the
 ///   xDS client's node metadata.
@@ -145,8 +145,8 @@ enum GlobalForwardingRuleMetadataFilterMatchCriteria implements TerraformEnum {
 /// metadata in their config request; this filter gates which routing
 /// config gets returned to which client.
 @immutable
-class ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter {
-  const ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter({
+class ComputeGlobalForwardingRuleMetadataFilter {
+  const ComputeGlobalForwardingRuleMetadataFilter({
     required this.filterMatchCriteria,
     required this.filterLabels,
   });
@@ -157,8 +157,7 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter {
   filterMatchCriteria;
 
   /// 1-64 label entries. Must be non-empty by schema (`min_items: 1`).
-  final List<ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilterLabel>
-  filterLabels;
+  final List<ComputeGlobalForwardingRuleMetadataFilterLabel> filterLabels;
 
   Map<String, Object?> toArgMap() => {
     'filter_match_criteria': filterMatchCriteria.toTfJson(),
@@ -170,8 +169,8 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter {
 /// [value] are required by the provider schema; lengths are capped at
 /// 1024 characters by the API (not enforced here).
 @immutable
-class ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilterLabel {
-  const ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilterLabel({
+class ComputeGlobalForwardingRuleMetadataFilterLabel {
+  const ComputeGlobalForwardingRuleMetadataFilterLabel({
     required this.name,
     required this.value,
   });
@@ -197,8 +196,8 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilterLabel {
 /// forwarding rules that target Google APIs (so other consumers in the
 /// same project can resolve the rule by Service Directory name).
 @immutable
-class ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistration {
-  const ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistration({
+class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
+  const ComputeGlobalForwardingRuleServiceDirectoryRegistration({
     this.namespace,
     this.serviceDirectoryRegion,
   });
@@ -319,11 +318,8 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
     RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<GlobalForwardingRuleNetworkTier>? networkTier,
     TfArg<List<String>>? sourceIpRanges,
-    List<ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter>?
-    metadataFilters,
-    List<
-      ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistration
-    >?
+    List<ComputeGlobalForwardingRuleMetadataFilter>? metadataFilters,
+    List<ComputeGlobalForwardingRuleServiceDirectoryRegistration>?
     serviceDirectoryRegistrations,
     TfArg<GlobalForwardingRuleMigrationState>?
     externalManagedBackendBucketMigrationState,

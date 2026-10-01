@@ -6,11 +6,11 @@ library;
 export 'src/ce/aws_ce_anomaly_monitor.dart'
     show
         AwsCeAnomalyMonitor,
-        CeAnomalyMonitorMonitorDimension,
-        CeAnomalyMonitorMonitorType,
+        CeAnomalyMonitorDimension,
         CeAnomalyMonitorScope,
         CeAnomalyMonitorScopeMonitorDimension,
-        CeAnomalyMonitorScopeMonitorSpecification;
+        CeAnomalyMonitorScopeMonitorSpecification,
+        CeAnomalyMonitorType;
 export 'src/ce/aws_ce_anomaly_subscription.dart'
     show
         AwsCeAnomalySubscription,
@@ -34,6 +34,7 @@ export 'src/ce/aws_ce_cost_allocation_tag.dart'
 export 'src/ce/aws_ce_cost_category.dart'
     show
         AwsCeCostCategory,
+        CeCostCategory,
         CeCostCategoryAnd,
         CeCostCategoryAndAnd,
         CeCostCategoryAndCostCategory,
@@ -41,7 +42,6 @@ export 'src/ce/aws_ce_cost_category.dart'
         CeCostCategoryAndNot,
         CeCostCategoryAndOr,
         CeCostCategoryAndTags,
-        CeCostCategoryCostCategory,
         CeCostCategoryDimension,
         CeCostCategoryDimensionName,
         CeCostCategoryInheritedValue,

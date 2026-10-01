@@ -35,11 +35,11 @@ enum SecurityPolicyType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `rule.action` -- what Cloud Armor does when the [ComputeSecurityPolicySecurityPolicyRule]
+/// `rule.action` -- what Cloud Armor does when the [ComputeSecurityPolicyRules]
 /// matches. The `deny(NNN)` actions return a fixed HTTP status to the
 /// client; `rateBasedBan` and `throttle` REQUIRE
-/// [ComputeSecurityPolicySecurityPolicyRule.rateLimitOptions]; `redirect` REQUIRES
-/// [ComputeSecurityPolicySecurityPolicyRule.redirectOptions]. The Terraform value
+/// [ComputeSecurityPolicyRules.rateLimitOptions]; `redirect` REQUIRES
+/// [ComputeSecurityPolicyRules.redirectOptions]. The Terraform value
 /// preserves the literal provider strings (parentheses and digits
 /// included) -- the Dart variants pick identifier-safe names.
 enum SecurityPolicyRuleAction implements TerraformEnum {
@@ -57,16 +57,16 @@ enum SecurityPolicyRuleAction implements TerraformEnum {
   deny502('deny(502)'),
 
   /// Rate-based ban: once the client trips the threshold configured
-  /// in [ComputeSecurityPolicySecurityPolicyRule.rateLimitOptions], the key is banned for
+  /// in [ComputeSecurityPolicyRules.rateLimitOptions], the key is banned for
   /// `banDurationSec`.
   rateBasedBan('rate_based_ban'),
 
   /// Redirect (HTTP 302 or to a Google reCAPTCHA challenge). Pair with
-  /// [ComputeSecurityPolicySecurityPolicyRule.redirectOptions].
+  /// [ComputeSecurityPolicyRules.redirectOptions].
   redirect('redirect'),
 
   /// Throttle requests over the configured rate-limit threshold.
-  /// Pair with [ComputeSecurityPolicySecurityPolicyRule.rateLimitOptions].
+  /// Pair with [ComputeSecurityPolicyRules.rateLimitOptions].
   throttle('throttle');
 
   const SecurityPolicyRuleAction(this.terraformValue);
@@ -75,9 +75,9 @@ enum SecurityPolicyRuleAction implements TerraformEnum {
 }
 
 /// `match.versioned_expr` -- Cloud Armor's only built-in predicate
-/// today. Pair with [ComputeSecurityPolicySecurityPolicyRuleMatchConfig.srcIpRanges] to
+/// today. Pair with [ComputeSecurityPolicyRulesMatchConfig.srcIpRanges] to
 /// match by source IP / CIDR. For richer matching (geo, path, headers),
-/// use [ComputeSecurityPolicySecurityPolicyRuleMatchExpr] (CEL) instead.
+/// use [ComputeSecurityPolicyRulesMatchExpr] (CEL) instead.
 enum SecurityPolicyRuleMatchVersionedExpr implements TerraformEnum {
   /// Source-IP-v1 predicate. Reads `match.config.src_ip_ranges` and
   /// matches IPv4/IPv6 CIDR ranges (or `'*'` for any).
@@ -159,8 +159,8 @@ enum SecurityPolicyWafExclusionOperator implements TerraformEnum {
 /// which silently disables a deny-list policy. Always author the
 /// default rule explicitly.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRule {
-  const ComputeSecurityPolicySecurityPolicyRule({
+class ComputeSecurityPolicyRules {
+  const ComputeSecurityPolicyRules({
     required this.priority,
     required this.action,
     required this.match,
@@ -181,9 +181,9 @@ class ComputeSecurityPolicySecurityPolicyRule {
   final SecurityPolicyRuleAction action;
 
   /// Match condition. Pick exactly one of
-  /// [ComputeSecurityPolicySecurityPolicyRuleMatch.config] (versioned predicate over
-  /// source IPs) or [ComputeSecurityPolicySecurityPolicyRuleMatch.expr] (CEL expression).
-  final ComputeSecurityPolicySecurityPolicyRuleMatch match;
+  /// [ComputeSecurityPolicyRulesMatch.config] (versioned predicate over
+  /// source IPs) or [ComputeSecurityPolicyRulesMatch.expr] (CEL expression).
+  final ComputeSecurityPolicyRulesMatch match;
 
   /// Free-form description. Max 64 chars per the schema.
   final TfArg<String>? description;
@@ -196,17 +196,16 @@ class ComputeSecurityPolicySecurityPolicyRule {
 
   /// Required when [action] is [SecurityPolicyRuleAction.rateBasedBan]
   /// or [SecurityPolicyRuleAction.throttle]; forbidden otherwise.
-  final ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions?
-  rateLimitOptions;
+  final ComputeSecurityPolicyRulesRateLimitOptions? rateLimitOptions;
 
   /// Required when [action] is [SecurityPolicyRuleAction.redirect];
   /// forbidden otherwise.
-  final ComputeSecurityPolicySecurityPolicyRuleRedirectOptions? redirectOptions;
+  final ComputeSecurityPolicyRulesRedirectOptions? redirectOptions;
 
   /// Optional header rewrites applied alongside the match action
   /// (e.g. tagging a request with an internal `X-Cloud-Armor-Rule`
   /// header for downstream observability).
-  final ComputeSecurityPolicySecurityPolicyRuleHeaderAction? headerAction;
+  final ComputeSecurityPolicyRulesHeaderAction? headerAction;
 
   Map<String, Object?> toArgMap() => {
     'priority': priority.toTfJson(),
@@ -224,16 +223,16 @@ class ComputeSecurityPolicySecurityPolicyRule {
 
 /// `rule.match` -- the condition under which a rule fires.
 /// Mutually-exclusive variants:
-/// - [ComputeSecurityPolicySecurityPolicyRuleMatch.config] -- built-in predicate
+/// - [ComputeSecurityPolicyRulesMatch.config] -- built-in predicate
 ///   (`versionedExpr` + `config.srcIpRanges`). Use for IP / CIDR
 ///   allow-lists or deny-lists. Fast path; no CEL evaluation.
-/// - [ComputeSecurityPolicySecurityPolicyRuleMatch.expr] -- user-defined CEL expression.
+/// - [ComputeSecurityPolicyRulesMatch.expr] -- user-defined CEL expression.
 ///   Use for anything beyond source-IP matching (geo, path, header,
 ///   request size, ...). See
 ///   https://cloud.google.com/armor/docs/rules-language-reference.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleMatch {
-  const ComputeSecurityPolicySecurityPolicyRuleMatch._({
+class ComputeSecurityPolicyRulesMatch {
+  const ComputeSecurityPolicyRulesMatch._({
     this.versionedExpr,
     this.config,
     this.expr,
@@ -241,22 +240,22 @@ class ComputeSecurityPolicySecurityPolicyRuleMatch {
 
   /// Built-in predicate variant. Pair [versionedExpr] with [config]
   /// (both required by the schema when this variant is used).
-  factory ComputeSecurityPolicySecurityPolicyRuleMatch.config({
+  factory ComputeSecurityPolicyRulesMatch.config({
     required SecurityPolicyRuleMatchVersionedExpr versionedExpr,
-    required ComputeSecurityPolicySecurityPolicyRuleMatchConfig config,
-  }) => ComputeSecurityPolicySecurityPolicyRuleMatch._(
+    required ComputeSecurityPolicyRulesMatchConfig config,
+  }) => ComputeSecurityPolicyRulesMatch._(
     versionedExpr: versionedExpr,
     config: config,
   );
 
   /// User-defined CEL expression variant.
-  factory ComputeSecurityPolicySecurityPolicyRuleMatch.expr(
-    ComputeSecurityPolicySecurityPolicyRuleMatchExpr expr,
-  ) => ComputeSecurityPolicySecurityPolicyRuleMatch._(expr: expr);
+  factory ComputeSecurityPolicyRulesMatch.expr(
+    ComputeSecurityPolicyRulesMatchExpr expr,
+  ) => ComputeSecurityPolicyRulesMatch._(expr: expr);
 
   final SecurityPolicyRuleMatchVersionedExpr? versionedExpr;
-  final ComputeSecurityPolicySecurityPolicyRuleMatchConfig? config;
-  final ComputeSecurityPolicySecurityPolicyRuleMatchExpr? expr;
+  final ComputeSecurityPolicyRulesMatchConfig? config;
+  final ComputeSecurityPolicyRulesMatchExpr? expr;
 
   Map<String, Object?> toArgMap() => {
     if (versionedExpr != null) 'versioned_expr': versionedExpr!.terraformValue,
@@ -270,10 +269,8 @@ class ComputeSecurityPolicySecurityPolicyRuleMatch {
 /// per rule. Pass `['*']` to match ALL inbound IPs (the canonical
 /// default-deny / default-allow shape).
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleMatchConfig {
-  const ComputeSecurityPolicySecurityPolicyRuleMatchConfig({
-    required this.srcIpRanges,
-  });
+class ComputeSecurityPolicyRulesMatchConfig {
+  const ComputeSecurityPolicyRulesMatchConfig({required this.srcIpRanges});
 
   /// IPv4/IPv6 CIDR ranges to match against the request's source IP.
   /// Max 10 entries. Use `'*'` to match any.
@@ -293,10 +290,8 @@ class ComputeSecurityPolicySecurityPolicyRuleMatchConfig {
 /// - `origin.region_code == 'JP'` -- only Japanese-geocoded traffic.
 /// - `request.path.matches('/admin/.*')` -- requests to any admin URL.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleMatchExpr {
-  const ComputeSecurityPolicySecurityPolicyRuleMatchExpr({
-    required this.expression,
-  });
+class ComputeSecurityPolicyRulesMatchExpr {
+  const ComputeSecurityPolicyRulesMatchExpr({required this.expression});
 
   /// CEL expression. Pass as a raw [String] -- the wrapper does not
   /// validate CEL syntax; invalid expressions surface as Cloud Armor
@@ -313,8 +308,8 @@ class ComputeSecurityPolicySecurityPolicyRuleMatchExpr {
 /// offending key out for [banDurationSec] seconds once it trips
 /// [banThreshold].
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
-  const ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions({
+class ComputeSecurityPolicyRulesRateLimitOptions {
+  const ComputeSecurityPolicyRulesRateLimitOptions({
     required this.conformAction,
     required this.exceedAction,
     required this.rateLimitThreshold,
@@ -336,8 +331,7 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
   final TfArg<String> exceedAction;
 
   /// Required rate-limit threshold (counts per interval).
-  final ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold
-  rateLimitThreshold;
+  final ComputeSecurityPolicyRulesRateLimitThreshold rateLimitThreshold;
 
   /// Only honored when the rule action is
   /// [SecurityPolicyRuleAction.rateBasedBan]. Seconds the key remains
@@ -347,7 +341,7 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
   /// Only honored when the rule action is
   /// [SecurityPolicyRuleAction.rateBasedBan]. Trip threshold for
   /// converting a throttle into a ban.
-  final ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold? banThreshold;
+  final ComputeSecurityPolicyRulesRateLimitThreshold? banThreshold;
 
   /// Which request attribute the threshold is keyed on.
   final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
@@ -358,12 +352,10 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
 
   /// Composite key (combine multiple attributes). Mutually exclusive
   /// with the single-attribute [enforceOnKey] / [enforceOnKeyName].
-  final List<ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig>?
-  enforceOnKeyConfigs;
+  final List<ComputeSecurityPolicyRulesEnforceOnKeyConfig>? enforceOnKeyConfigs;
 
   /// Redirect target when [exceedAction] is `'redirect'`.
-  final ComputeSecurityPolicySecurityPolicyRuleRedirectOptions?
-  exceedRedirectOptions;
+  final ComputeSecurityPolicyRulesRedirectOptions? exceedRedirectOptions;
 
   Map<String, Object?> toArgMap() => {
     'conform_action': conformAction.toTfJson(),
@@ -386,8 +378,8 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
 /// `rate_limit_threshold` / `ban_threshold` shape. Count of requests
 /// per fixed [intervalSec] window.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold {
-  const ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold({
+class ComputeSecurityPolicyRulesRateLimitThreshold {
+  const ComputeSecurityPolicyRulesRateLimitThreshold({
     required this.count,
     required this.intervalSec,
   });
@@ -404,8 +396,8 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold {
 /// One entry in `rate_limit_options.enforce_on_key_configs`. Lets a
 /// rule key on a composite of attributes (e.g. "(client IP, region)").
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig {
-  const ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig({
+class ComputeSecurityPolicyRulesEnforceOnKeyConfig {
+  const ComputeSecurityPolicyRulesEnforceOnKeyConfig({
     this.enforceOnKeyType,
     this.enforceOnKeyName,
   });
@@ -431,8 +423,8 @@ class ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig {
 /// to); `'GOOGLE_RECAPTCHA'` swaps the request for a Google-hosted
 /// reCAPTCHA challenge and MUST NOT set [target].
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleRedirectOptions {
-  const ComputeSecurityPolicySecurityPolicyRuleRedirectOptions({
+class ComputeSecurityPolicyRulesRedirectOptions {
+  const ComputeSecurityPolicyRulesRedirectOptions({
     required this.type,
     this.target,
   });
@@ -457,18 +449,17 @@ class ComputeSecurityPolicySecurityPolicyRuleRedirectOptions {
 /// downstream services (or Cloud Logging) can see which Cloud Armor
 /// rule fired.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleHeaderAction {
-  const ComputeSecurityPolicySecurityPolicyRuleHeaderAction({
+class ComputeSecurityPolicyRulesHeaderAction {
+  const ComputeSecurityPolicyRulesHeaderAction({
     required this.requestHeadersToAdds,
   }) : assert(
          requestHeadersToAdds.length >= 1,
-         'ComputeSecurityPolicySecurityPolicyRuleHeaderAction.requestHeadersToAdds must have '
+         'ComputeSecurityPolicyRulesHeaderAction.requestHeadersToAdds must have '
          'at least one entry (schema enforces min_items=1).',
        );
 
   /// At least one per the schema's `min_items=1`.
-  final List<ComputeSecurityPolicySecurityPolicyRuleHeaderAdd>
-  requestHeadersToAdds;
+  final List<ComputeSecurityPolicyRulesHeaderAdd> requestHeadersToAdds;
 
   Map<String, Object?> toArgMap() => {
     'request_headers_to_adds': requestHeadersToAdds
@@ -477,12 +468,12 @@ class ComputeSecurityPolicySecurityPolicyRuleHeaderAction {
   };
 }
 
-/// One header rewrite in [ComputeSecurityPolicySecurityPolicyRuleHeaderAction.requestHeadersToAdds].
+/// One header rewrite in [ComputeSecurityPolicyRulesHeaderAction.requestHeadersToAdds].
 /// `headerValue` is optional -- omitting it adds the header with an
 /// empty string value.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRuleHeaderAdd {
-  const ComputeSecurityPolicySecurityPolicyRuleHeaderAdd({
+class ComputeSecurityPolicyRulesHeaderAdd {
+  const ComputeSecurityPolicyRulesHeaderAdd({
     required this.headerName,
     this.headerValue,
   });
@@ -504,8 +495,8 @@ class ComputeSecurityPolicySecurityPolicyRuleHeaderAdd {
 /// policy: JSON-body inspection for preconfigured WAF rules, log
 /// verbosity, and client-IP resolution headers.
 @immutable
-class ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig {
-  const ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig({
+class ComputeSecurityPolicyAdvancedOptionsConfig {
+  const ComputeSecurityPolicyAdvancedOptionsConfig({
     this.jsonParsing,
     this.logLevel,
     this.requestBodyInspectionSize,
@@ -532,7 +523,7 @@ class ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig {
 
   /// Custom Content-Type → JSON parser mapping. Only honored when
   /// [jsonParsing] is [SecurityPolicyJsonParsing.standard].
-  final ComputeSecurityPolicySecurityPolicyJsonCustomConfig? jsonCustomConfig;
+  final ComputeSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
   Map<String, Object?> toArgMap() => {
     if (jsonParsing != null) 'json_parsing': jsonParsing!.terraformValue,
@@ -550,10 +541,8 @@ class ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig {
 /// Content-Type values Cloud Armor should treat as JSON for WAF body
 /// inspection (beyond the default `application/json`).
 @immutable
-class ComputeSecurityPolicySecurityPolicyJsonCustomConfig {
-  const ComputeSecurityPolicySecurityPolicyJsonCustomConfig({
-    required this.contentTypes,
-  });
+class ComputeSecurityPolicyJsonCustomConfig {
+  const ComputeSecurityPolicyJsonCustomConfig({required this.contentTypes});
 
   /// Additional Content-Type header values to apply JSON parsing to.
   final List<String> contentTypes;
@@ -569,13 +558,12 @@ class ComputeSecurityPolicySecurityPolicyJsonCustomConfig {
 /// auto-mitigation. When enabled, Cloud Armor watches traffic patterns
 /// and proposes / auto-deploys rules during a suspected attack.
 @immutable
-class ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig {
-  const ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig({
+class ComputeSecurityPolicyAdaptiveProtectionConfig {
+  const ComputeSecurityPolicyAdaptiveProtectionConfig({
     this.layer7DdosDefenseConfig,
   });
 
-  final ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig?
-  layer7DdosDefenseConfig;
+  final ComputeSecurityPolicyLayer7DdosDefenseConfig? layer7DdosDefenseConfig;
 
   Map<String, Object?> toArgMap() => {
     if (layer7DdosDefenseConfig != null)
@@ -587,8 +575,8 @@ class ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig {
 /// (typically `'STANDARD'`); per-segment thresholds can be tuned via
 /// [thresholdConfigs] for tenants with predictable traffic shape.
 @immutable
-class ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig {
-  const ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig({
+class ComputeSecurityPolicyLayer7DdosDefenseConfig {
+  const ComputeSecurityPolicyLayer7DdosDefenseConfig({
     this.enable,
     this.ruleVisibility,
     this.thresholdConfigs,
@@ -603,10 +591,8 @@ class ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig {
   final TfArg<String>? ruleVisibility;
 
   /// Per-named-config threshold overrides. Each entry must have a
-  /// unique [ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig.name].
-  final List<
-    ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig
-  >?
+  /// unique [ComputeSecurityPolicyAdaptiveProtectionThresholdConfig.name].
+  final List<ComputeSecurityPolicyAdaptiveProtectionThresholdConfig>?
   thresholdConfigs;
 
   Map<String, Object?> toArgMap() => {
@@ -621,8 +607,8 @@ class ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig {
 /// through verbatim -- consult the Cloud Armor adaptive-protection
 /// docs for tuning guidance.
 @immutable
-class ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig {
-  const ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig({
+class ComputeSecurityPolicyAdaptiveProtectionThresholdConfig {
+  const ComputeSecurityPolicyAdaptiveProtectionThresholdConfig({
     required this.name,
     this.autoDeployConfidenceThreshold,
     this.autoDeployExpirationSec,
@@ -647,7 +633,7 @@ class ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig {
 
   /// Per-traffic-segment thresholds (e.g. region, header value). Each
   /// entry constitutes a separate traffic unit for evaluation.
-  final List<ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig>?
+  final List<ComputeSecurityPolicyTrafficGranularityConfig>?
   trafficGranularityConfigs;
 
   Map<String, Object?> toArgMap() => {
@@ -680,8 +666,8 @@ class ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig {
 /// (true) and [value] (non-empty string) are mutually exclusive: the
 /// schema rejects setting both.
 @immutable
-class ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig {
-  const ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig({
+class ComputeSecurityPolicyTrafficGranularityConfig {
+  const ComputeSecurityPolicyTrafficGranularityConfig({
     required this.type,
     this.enableEachUniqueValue,
     this.value,
@@ -716,8 +702,8 @@ class ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig {
 /// exposed by Terraform today; if unset, Cloud Armor uses a Google-
 /// managed key.
 @immutable
-class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
-  const ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig({
+class ComputeSecurityPolicyRecaptchaOptionsConfig {
+  const ComputeSecurityPolicyRecaptchaOptionsConfig({
     required this.redirectSiteKey,
   });
 
@@ -748,7 +734,7 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 ///   for edge policies that filter at Google's cache layer (cache-bypass
 ///   protection, applied to backend services and backend buckets), or
 ///   [SecurityPolicyType.cloudArmorNetwork] for Network Load Balancing.
-/// - [rules]: at least one [ComputeSecurityPolicySecurityPolicyRule]. Cloud Armor
+/// - [rules]: at least one [ComputeSecurityPolicyRules]. Cloud Armor
 ///   always needs a default rule (priority `2147483647`, match `'*'`) --
 ///   if you omit it the provider auto-injects one with action `allow`,
 ///   which is rarely what you want for a deny-list policy. Author the
@@ -767,23 +753,23 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 ///   type: TfArg.literal(SecurityPolicyType.cloudArmorEdge),
 ///   rules: [
 ///     // Higher-priority allow for JP traffic.
-///     ComputeSecurityPolicySecurityPolicyRule(
+///     ComputeSecurityPolicyRules(
 ///       priority: TfArg.literal(1000),
 ///       action: SecurityPolicyRuleAction.allow,
-///       match: ComputeSecurityPolicySecurityPolicyRuleMatch.expr(
-///         ComputeSecurityPolicySecurityPolicyRuleMatchExpr(
+///       match: ComputeSecurityPolicyRulesMatch.expr(
+///         ComputeSecurityPolicyRulesMatchExpr(
 ///           expression: TfArg.literal("origin.region_code == 'JP'"),
 ///         ),
 ///       ),
 ///       description: TfArg.literal('allow JP'),
 ///     ),
 ///     // Default-deny (lowest priority, match all).
-///     ComputeSecurityPolicySecurityPolicyRule(
+///     ComputeSecurityPolicyRules(
 ///       priority: TfArg.literal(2147483647),
 ///       action: SecurityPolicyRuleAction.deny403,
-///       match: ComputeSecurityPolicySecurityPolicyRuleMatch.config(
+///       match: ComputeSecurityPolicyRulesMatch.config(
 ///         versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-///         config: ComputeSecurityPolicySecurityPolicyRuleMatchConfig(srcIpRanges: ['*']),
+///         config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
 ///       ),
 ///       description: TfArg.literal('default deny'),
 ///     ),
@@ -793,22 +779,22 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 ///
 /// Example (rate-limit on `/api/*`, redirect overflow to a CAPTCHA):
 /// ```dart
-/// ComputeSecurityPolicySecurityPolicyRule(
+/// ComputeSecurityPolicyRules(
 ///   priority: TfArg.literal(500),
 ///   action: SecurityPolicyRuleAction.throttle,
-///   match: ComputeSecurityPolicySecurityPolicyRuleMatch.expr(
-///     ComputeSecurityPolicySecurityPolicyRuleMatchExpr(
+///   match: ComputeSecurityPolicyRulesMatch.expr(
+///     ComputeSecurityPolicyRulesMatchExpr(
 ///       expression: TfArg.literal("request.path.matches('/api/.*')"),
 ///     ),
 ///   ),
-///   rateLimitOptions: ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions(
+///   rateLimitOptions: ComputeSecurityPolicyRulesRateLimitOptions(
 ///     conformAction: TfArg.literal('allow'),
 ///     exceedAction: TfArg.literal('redirect'),
-///     rateLimitThreshold: ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold(
+///     rateLimitThreshold: ComputeSecurityPolicyRulesRateLimitThreshold(
 ///       count: TfArg.literal(100),
 ///       intervalSec: TfArg.literal(60),
 ///     ),
-///     exceedRedirectOptions: ComputeSecurityPolicySecurityPolicyRuleRedirectOptions(
+///     exceedRedirectOptions: ComputeSecurityPolicyRulesRedirectOptions(
 ///       type: TfArg.literal('GOOGLE_RECAPTCHA'),
 ///     ),
 ///   ),
@@ -827,13 +813,10 @@ final class GoogleComputeSecurityPolicy extends Resource {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<SecurityPolicyType>? type,
-    required List<ComputeSecurityPolicySecurityPolicyRule> rules,
-    ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig?
-    adaptiveProtectionConfig,
-    ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig?
-    advancedOptionsConfig,
-    ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig?
-    recaptchaOptionsConfig,
+    required List<ComputeSecurityPolicyRules> rules,
+    ComputeSecurityPolicyAdaptiveProtectionConfig? adaptiveProtectionConfig,
+    ComputeSecurityPolicyAdvancedOptionsConfig? advancedOptionsConfig,
+    ComputeSecurityPolicyRecaptchaOptionsConfig? recaptchaOptionsConfig,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     super.lifecycle,

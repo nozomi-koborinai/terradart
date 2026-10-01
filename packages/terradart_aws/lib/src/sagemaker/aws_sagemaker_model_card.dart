@@ -9,14 +9,14 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 /// Sensitive field paths for `aws_sagemaker_model_card`.
 const Set<String> _awsSagemakerModelCardSensitive = <String>{};
 
-/// Sagemaker Model Card Model Card enum for `model_card_status`.
-enum SagemakerModelCardModelCardStatus implements TerraformEnum {
+/// Sagemaker Model Card enum for `model_card_status`.
+enum SagemakerModelCardStatus implements TerraformEnum {
   draft('Draft'),
   pendingreview('PendingReview'),
   approved('Approved'),
   archived('Archived');
 
-  const SagemakerModelCardModelCardStatus(this.terraformValue);
+  const SagemakerModelCardStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -42,7 +42,7 @@ final class AwsSagemakerModelCard extends Resource {
     required super.localName,
     required TfArg<String> content,
     required TfArg<String> modelCardName,
-    required TfArg<SagemakerModelCardModelCardStatus> modelCardStatus,
+    required TfArg<SagemakerModelCardStatus> modelCardStatus,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<SagemakerModelCardSecurityConfig>? securityConfig,

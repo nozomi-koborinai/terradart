@@ -21,11 +21,11 @@ enum DiscoveryEngineSearchEngineIndustryVertical implements TerraformEnum {
 }
 
 /// `search_engine_config.search_tier`.
-enum DiscoveryEngineSearchEngineSearchTier implements TerraformEnum {
+enum DiscoveryEngineSearchEngineTier implements TerraformEnum {
   searchTierStandard('SEARCH_TIER_STANDARD'),
   searchTierEnterprise('SEARCH_TIER_ENTERPRISE');
 
-  const DiscoveryEngineSearchEngineSearchTier(this.terraformValue);
+  const DiscoveryEngineSearchEngineTier(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -113,7 +113,7 @@ final class DiscoveryEngineSearchEngineConfig {
 
   final TfArg<List<String>>? searchAddOns;
 
-  final TfArg<DiscoveryEngineSearchEngineSearchTier>? searchTier;
+  final TfArg<DiscoveryEngineSearchEngineTier>? searchTier;
 
   Map<String, Object?> encode() => {
     'required_subscription_tier': ?requiredSubscriptionTier?.toTfJson(),

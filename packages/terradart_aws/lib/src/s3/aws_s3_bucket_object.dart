@@ -24,22 +24,22 @@ enum S3BucketObjectAcl implements TerraformEnum {
   final String terraformValue;
 }
 
-/// S3 Bucket Object Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
-enum S3BucketObjectObjectLockLegalHoldStatus implements TerraformEnum {
+/// S3 Bucket Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
+enum S3BucketObjectLockLegalHoldStatus implements TerraformEnum {
   on('ON'),
   off('OFF');
 
-  const S3BucketObjectObjectLockLegalHoldStatus(this.terraformValue);
+  const S3BucketObjectLockLegalHoldStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// S3 Bucket Object Object Lock enum for `object_lock_mode`.
-enum S3BucketObjectObjectLockMode implements TerraformEnum {
+/// S3 Bucket Object Lock enum for `object_lock_mode`.
+enum S3BucketObjectLockMode implements TerraformEnum {
   governance('GOVERNANCE'),
   compliance('COMPLIANCE');
 
-  const S3BucketObjectObjectLockMode(this.terraformValue);
+  const S3BucketObjectLockMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -239,8 +239,8 @@ final class AwsS3BucketObject extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
     TfArg<Map<String, String>>? metadata,
-    TfArg<S3BucketObjectObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
-    TfArg<S3BucketObjectObjectLockMode>? objectLockMode,
+    TfArg<S3BucketObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
+    TfArg<S3BucketObjectLockMode>? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
     TfArg<String>? region,
     TfArg<S3BucketObjectServerSideEncryption>? serverSideEncryption,

@@ -10,13 +10,13 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_cloudformation_type`.
 const Set<String> _awsCloudformationTypeSensitive = <String>{};
 
-/// Cloudformation Type enum for `type`.
-enum CloudformationTypeType implements TerraformEnum {
+/// Cloudformation enum for `type`.
+enum CloudformationType implements TerraformEnum {
   resource('RESOURCE'),
   module('MODULE'),
   hook('HOOK');
 
-  const CloudformationTypeType(this.terraformValue);
+  const CloudformationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -49,7 +49,7 @@ final class AwsCloudformationType extends Resource {
     RefTo<AwsIamRole>? executionRoleArn,
     TfArg<String>? region,
     required TfArg<String> schemaHandlerPackage,
-    TfArg<CloudformationTypeType>? type,
+    TfArg<CloudformationType>? type,
     required TfArg<String> typeName,
     CloudformationTypeLoggingConfig? loggingConfig,
     super.lifecycle,

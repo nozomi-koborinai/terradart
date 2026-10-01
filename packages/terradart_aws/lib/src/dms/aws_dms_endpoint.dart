@@ -17,12 +17,12 @@ const Set<String> _awsDmsEndpointSensitive = <String>{
   'redis_settings.auth_password',
 };
 
-/// Dms Endpoint Endpoint enum for `endpoint_type`.
-enum DmsEndpointEndpointType implements TerraformEnum {
+/// Dms Endpoint enum for `endpoint_type`.
+enum DmsEndpointType implements TerraformEnum {
   source('source'),
   target('target');
 
-  const DmsEndpointEndpointType(this.terraformValue);
+  const DmsEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -830,7 +830,7 @@ final class AwsDmsEndpoint extends Resource {
     TfArg<String>? certificateArn,
     TfArg<String>? databaseName,
     required TfArg<String> endpointId,
-    required TfArg<DmsEndpointEndpointType> endpointType,
+    required TfArg<DmsEndpointType> endpointType,
     required TfArg<DmsEndpointEngineName> engineName,
     TfArg<String>? extraConnectionAttributes,
     RefTo<AwsKmsKey>? kmsKeyArn,

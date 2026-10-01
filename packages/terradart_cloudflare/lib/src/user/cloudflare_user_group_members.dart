@@ -22,8 +22,8 @@ enum UserGroupMembersDirection implements TerraformEnum {
 /// Typed helper for the `members` block of
 /// `cloudflare_user_group_members` (derived from provider schema).
 @immutable
-final class UserGroupMembersMembers {
-  const UserGroupMembersMembers({required this.id});
+final class UserGroupMembers {
+  const UserGroupMembers({required this.id});
 
   final TfArg<String> id;
 
@@ -46,7 +46,7 @@ final class CloudflareUserGroupMembers extends Resource {
     TfArg<num>? page,
     TfArg<num>? perPage,
     required TfArg<String> userGroupId,
-    required List<UserGroupMembersMembers> members,
+    required List<UserGroupMembers> members,
     super.lifecycle,
     super.dependsOn,
     super.provider,

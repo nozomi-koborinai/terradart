@@ -12,12 +12,12 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 /// Sensitive field paths for `aws_kinesisanalyticsv2_application`.
 const Set<String> _awsKinesisanalyticsv2ApplicationSensitive = <String>{};
 
-/// Kinesisanalyticsv2 Application Application enum for `application_mode`.
-enum Kinesisanalyticsv2ApplicationApplicationMode implements TerraformEnum {
+/// Kinesisanalyticsv2 Application enum for `application_mode`.
+enum Kinesisanalyticsv2ApplicationMode implements TerraformEnum {
   streaming('STREAMING'),
   interactive('INTERACTIVE');
 
-  const Kinesisanalyticsv2ApplicationApplicationMode(this.terraformValue);
+  const Kinesisanalyticsv2ApplicationMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1061,7 +1061,7 @@ final class AwsKinesisanalyticsv2Application extends Resource {
 
   AwsKinesisanalyticsv2Application({
     required super.localName,
-    TfArg<Kinesisanalyticsv2ApplicationApplicationMode>? applicationMode,
+    TfArg<Kinesisanalyticsv2ApplicationMode>? applicationMode,
     TfArg<String>? description,
     TfArg<bool>? forceStop,
     required TfArg<String> name,

@@ -10,7 +10,7 @@ export 'src/iot/aws_iot_billing_group.dart'
 export 'src/iot/aws_iot_ca_certificate.dart'
     show
         AwsIotCaCertificate,
-        IotCaCertificateCertificateMode,
+        IotCaCertificateMode,
         IotCaCertificateRegistrationConfig;
 export 'src/iot/aws_iot_certificate.dart' show AwsIotCertificate;
 export 'src/iot/aws_iot_domain_configuration.dart'

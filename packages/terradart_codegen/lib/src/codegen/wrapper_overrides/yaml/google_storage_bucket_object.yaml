@@ -153,7 +153,7 @@ prelude: |
     /// factory uses the `blockKey` + `value` pair directly in its argMap
     /// (relying on the synth layer to unwrap the [TfArg]); this method
     /// exists for parity with other sealed-class encoders (e.g.
-    /// [StorageBucketObjectBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
+    /// [StorageBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
     /// and is exercised by the Gate 6 encode round-trip test.
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
@@ -254,8 +254,8 @@ prelude: |
   /// Conflicts with `eventBasedHold` at the provider level — the schema
   /// rejects both being set.
   @immutable
-  class StorageBucketObjectBucketObjectRetention {
-    const StorageBucketObjectBucketObjectRetention({
+  class StorageBucketObjectRetention {
+    const StorageBucketObjectRetention({
       required this.mode,
       required this.retainUntilTime,
     });
@@ -288,8 +288,8 @@ customSlots:
     paramDeclaration: 'StorageBucketObjectCustomerEncryption? customerEncryption'
     argMapEntry: "if (customerEncryption != null) 'customer_encryption': TfArg.literal([customerEncryption.toArgMap()]),"
   # Helper-typed override. IR carries `retention` as a nested block;
-  # hand-written exposes `StorageBucketObjectBucketObjectRetention?` (named to avoid
+  # hand-written exposes `StorageBucketObjectRetention?` (named to avoid
   # collision with `RetentionPolicy` on `google_storage_bucket`).
   retention:
-    paramDeclaration: 'StorageBucketObjectBucketObjectRetention? retention'
+    paramDeclaration: 'StorageBucketObjectRetention? retention'
     argMapEntry: "if (retention != null) 'retention': TfArg.literal([retention.toArgMap()]),"

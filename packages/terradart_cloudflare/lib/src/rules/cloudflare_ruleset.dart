@@ -340,7 +340,7 @@ final class RulesetActionParameters {
 
   final TfArg<Map<String, dynamic>>? rules;
 
-  final TfArg<RulesetRuleset>? ruleset;
+  final TfArg<Ruleset>? ruleset;
 
   final TfArg<List<String>>? rulesets;
 
@@ -767,10 +767,10 @@ enum RulesetResponseBodyBuffering implements TerraformEnum {
 }
 
 /// `ruleset` — derived from the provider schema description.
-enum RulesetRuleset implements TerraformEnum {
+enum Ruleset implements TerraformEnum {
   current('current');
 
-  const RulesetRuleset(this.terraformValue);
+  const Ruleset(this.terraformValue);
   @override
   final String terraformValue;
 }

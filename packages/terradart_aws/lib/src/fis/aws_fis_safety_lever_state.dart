@@ -10,8 +10,8 @@ const Set<String> _awsFisSafetyLeverStateSensitive = <String>{};
 /// Typed helper for the `state` block of
 /// `aws_fis_safety_lever_state` (derived from provider schema).
 @immutable
-final class FisSafetyLeverStateState {
-  const FisSafetyLeverStateState({required this.reason, required this.status});
+final class FisSafetyLeverState {
+  const FisSafetyLeverState({required this.reason, required this.status});
 
   final TfArg<String> reason;
 
@@ -40,7 +40,7 @@ final class AwsFisSafetyLeverState extends Resource {
   AwsFisSafetyLeverState({
     required super.localName,
     TfArg<String>? region,
-    List<FisSafetyLeverStateState>? state,
+    List<FisSafetyLeverState>? state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

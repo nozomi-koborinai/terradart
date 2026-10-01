@@ -60,18 +60,17 @@ export 'src/appsync/aws_appsync_function.dart'
     show
         AppsyncFunctionConflictDetection,
         AppsyncFunctionConflictHandler,
-        AppsyncFunctionFunctionVersion,
         AppsyncFunctionLambdaConflictHandlerConfig,
         AppsyncFunctionRuntime,
         AppsyncFunctionRuntimeName,
         AppsyncFunctionSyncConfig,
+        AppsyncFunctionVersion,
         AwsAppsyncFunction;
 export 'src/appsync/aws_appsync_graphql_api.dart'
     show
         AppsyncGraphqlApiAdditionalAuthenticationProvider,
         AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType,
         AppsyncGraphqlApiAdditionalAuthenticationProviderUserPoolConfig,
-        AppsyncGraphqlApiApiType,
         AppsyncGraphqlApiAuthenticationType,
         AppsyncGraphqlApiDataSourceLevelMetricsBehavior,
         AppsyncGraphqlApiDefaultAction,
@@ -83,6 +82,7 @@ export 'src/appsync/aws_appsync_graphql_api.dart'
         AppsyncGraphqlApiOpenidConnectConfig,
         AppsyncGraphqlApiOperationLevelMetricsConfig,
         AppsyncGraphqlApiResolverLevelMetricsBehavior,
+        AppsyncGraphqlApiType,
         AppsyncGraphqlApiUserPoolConfig,
         AppsyncGraphqlApiVisibility,
         AwsAppsyncGraphqlApi;

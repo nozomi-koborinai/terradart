@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_graphql_api`.
 const Set<String> _awsAppsyncGraphqlApiSensitive = <String>{};
 
-/// Appsync Graphql Api Api enum for `api_type`.
-enum AppsyncGraphqlApiApiType implements TerraformEnum {
+/// Appsync Graphql Api enum for `api_type`.
+enum AppsyncGraphqlApiType implements TerraformEnum {
   graphql('GRAPHQL'),
   merged('MERGED');
 
-  const AppsyncGraphqlApiApiType(this.terraformValue);
+  const AppsyncGraphqlApiType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -309,7 +309,7 @@ final class AwsAppsyncGraphqlApi extends Resource {
 
   AwsAppsyncGraphqlApi({
     required super.localName,
-    TfArg<AppsyncGraphqlApiApiType>? apiType,
+    TfArg<AppsyncGraphqlApiType>? apiType,
     required TfArg<AppsyncGraphqlApiAuthenticationType> authenticationType,
     TfArg<AppsyncGraphqlApiIntrospectionConfig>? introspectionConfig,
     TfArg<String>? mergedApiExecutionRoleArn,

@@ -28,6 +28,7 @@ export 'src/dynamodb/aws_dynamodb_table.dart'
         AwsDynamodbTable,
         DynamodbTableAttribute,
         DynamodbTableBillingMode,
+        DynamodbTableClass,
         DynamodbTableConsistencyMode,
         DynamodbTableCsv,
         DynamodbTableGlobalSecondaryIndex,
@@ -51,17 +52,16 @@ export 'src/dynamodb/aws_dynamodb_table.dart'
         DynamodbTableSourceRestoreSourceName,
         DynamodbTableSourceRestoreSourceTableArn,
         DynamodbTableStreamViewType,
-        DynamodbTableTableClass,
         DynamodbTableTtl,
         DynamodbTableType,
         DynamodbTableWarmThroughput;
 export 'src/dynamodb/aws_dynamodb_table_export.dart'
     show
         AwsDynamodbTableExport,
-        DynamodbTableExportExportFormat,
-        DynamodbTableExportExportType,
+        DynamodbTableExportFormat,
         DynamodbTableExportIncrementalExportSpecification,
         DynamodbTableExportS3SseAlgorithm,
+        DynamodbTableExportType,
         DynamodbTableExportViewType;
 export 'src/dynamodb/aws_dynamodb_table_item.dart' show AwsDynamodbTableItem;
 export 'src/dynamodb/aws_dynamodb_table_replica.dart'

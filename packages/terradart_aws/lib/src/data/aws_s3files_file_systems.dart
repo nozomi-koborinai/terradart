@@ -10,8 +10,8 @@ const Set<String> _awsS3filesFileSystemsSensitive = <String>{};
 /// Typed helper for the `file_systems` block of
 /// `aws_s3files_file_systems` (derived from provider schema).
 @immutable
-final class DataS3filesFileSystemsFileSystems {
-  const DataS3filesFileSystemsFileSystems();
+final class DataS3filesFileSystems {
+  const DataS3filesFileSystems();
 
   Map<String, Object?> encode() => {};
 }
@@ -23,7 +23,7 @@ final class DataAwsS3filesFileSystems extends Data {
   DataAwsS3filesFileSystems({
     required super.localName,
     TfArg<String>? region,
-    List<DataS3filesFileSystemsFileSystems>? fileSystems,
+    List<DataS3filesFileSystems>? fileSystems,
     super.provider,
     super.timeouts,
   }) : super(

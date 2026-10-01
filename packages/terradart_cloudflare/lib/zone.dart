@@ -36,6 +36,6 @@ export 'src/zone/cloudflare_zone_tracing.dart'
 export 'src/zone/cloudflare_zone_tracing_rules.dart'
     show
         CloudflareZoneTracingRules,
+        ZoneTracingRules,
         ZoneTracingRulesAction,
-        ZoneTracingRulesActionParameters,
-        ZoneTracingRulesRules;
+        ZoneTracingRulesActionParameters;

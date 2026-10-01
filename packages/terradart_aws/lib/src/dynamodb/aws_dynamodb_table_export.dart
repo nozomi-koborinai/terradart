@@ -9,22 +9,22 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 /// Sensitive field paths for `aws_dynamodb_table_export`.
 const Set<String> _awsDynamodbTableExportSensitive = <String>{};
 
-/// Dynamodb Table Export Export enum for `export_format`.
-enum DynamodbTableExportExportFormat implements TerraformEnum {
+/// Dynamodb Table Export enum for `export_format`.
+enum DynamodbTableExportFormat implements TerraformEnum {
   dynamodbJson('DYNAMODB_JSON'),
   ion('ION');
 
-  const DynamodbTableExportExportFormat(this.terraformValue);
+  const DynamodbTableExportFormat(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Dynamodb Table Export Export enum for `export_type`.
-enum DynamodbTableExportExportType implements TerraformEnum {
+/// Dynamodb Table Export enum for `export_type`.
+enum DynamodbTableExportType implements TerraformEnum {
   fullExport('FULL_EXPORT'),
   incrementalExport('INCREMENTAL_EXPORT');
 
-  const DynamodbTableExportExportType(this.terraformValue);
+  const DynamodbTableExportType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -78,9 +78,9 @@ final class AwsDynamodbTableExport extends Resource {
 
   AwsDynamodbTableExport({
     required super.localName,
-    TfArg<DynamodbTableExportExportFormat>? exportFormat,
+    TfArg<DynamodbTableExportFormat>? exportFormat,
     TfArg<String>? exportTime,
-    TfArg<DynamodbTableExportExportType>? exportType,
+    TfArg<DynamodbTableExportType>? exportType,
     TfArg<String>? region,
     required RefTo<AwsS3Bucket> s3Bucket,
     TfArg<String>? s3BucketOwner,

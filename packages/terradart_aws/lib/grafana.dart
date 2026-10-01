@@ -18,7 +18,7 @@ export 'src/grafana/aws_grafana_workspace.dart'
         GrafanaWorkspacePermissionType,
         GrafanaWorkspaceVpcConfiguration;
 export 'src/grafana/aws_grafana_workspace_api_key.dart'
-    show AwsGrafanaWorkspaceApiKey, GrafanaWorkspaceApiKeyKeyRole;
+    show AwsGrafanaWorkspaceApiKey, GrafanaWorkspaceApiKeyRole;
 export 'src/grafana/aws_grafana_workspace_saml_configuration.dart'
     show AwsGrafanaWorkspaceSamlConfiguration;
 export 'src/grafana/aws_grafana_workspace_service_account.dart'

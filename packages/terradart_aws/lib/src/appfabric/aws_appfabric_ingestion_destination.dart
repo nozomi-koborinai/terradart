@@ -28,7 +28,7 @@ final class AppfabricIngestionDestinationConfiguration {
 final class AppfabricIngestionDestinationConfigurationAuditLog {
   const AppfabricIngestionDestinationConfigurationAuditLog({this.destination});
 
-  final List<AppfabricIngestionDestinationDestination>? destination;
+  final List<AppfabricIngestionDestination>? destination;
 
   Map<String, Object?> encode() => {
     if (destination != null)
@@ -39,11 +39,8 @@ final class AppfabricIngestionDestinationConfigurationAuditLog {
 /// Typed helper for the `destination_configuration.audit_log.destination` block of
 /// `aws_appfabric_ingestion_destination` (derived from provider schema).
 @immutable
-final class AppfabricIngestionDestinationDestination {
-  const AppfabricIngestionDestinationDestination({
-    this.firehoseStream,
-    this.s3Bucket,
-  });
+final class AppfabricIngestionDestination {
+  const AppfabricIngestionDestination({this.firehoseStream, this.s3Bucket});
 
   final List<AppfabricIngestionDestinationFirehoseStream>? firehoseStream;
 

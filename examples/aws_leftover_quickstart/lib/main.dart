@@ -89,7 +89,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'accountaccess_entitlement',
         applicationArn: .literal(arn),
         entitlement: [
-          AccountaccessEntitlementEntitlement(
+          AccountaccessEntitlement(
             principalRole: [
               AccountaccessEntitlementPrincipalRole(
                 roleArn: .literal(arn),
@@ -425,9 +425,7 @@ final class AwsLeftoverStack extends Stack {
         methodPath: .literal(leftover),
         restApiId: .literal(leftover),
         stageName: .literal(leftover),
-        settings: ApiGatewayMethodSettingsSettings(
-          cacheDataEncrypted: .literal(true),
-        ),
+        settings: ApiGatewayMethodSettings(cacheDataEncrypted: .literal(true)),
       ),
     );
 
@@ -826,7 +824,7 @@ final class AwsLeftoverStack extends Stack {
             auditLog: [
               AppfabricIngestionDestinationConfigurationAuditLog(
                 destination: [
-                  AppfabricIngestionDestinationDestination(
+                  AppfabricIngestionDestination(
                     firehoseStream: [
                       AppfabricIngestionDestinationFirehoseStream(
                         streamName: .literal(leftover),
@@ -2347,7 +2345,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'chime_voice_connector_termination_credentials',
         voiceConnectorId: .literal(leftover),
         credentials: [
-          ChimeVoiceConnectorTerminationCredentialsCredentials(
+          ChimeVoiceConnectorTerminationCredentials(
             password: .variable('leftover_secret'),
             username: .literal(leftover),
           ),
@@ -2648,13 +2646,12 @@ final class AwsLeftoverStack extends Stack {
       AwsCloudfrontMonitoringSubscription(
         localName: 'cloudfront_monitoring_subscription',
         distributionId: .literal(leftover),
-        monitoringSubscription:
-            CloudfrontMonitoringSubscriptionMonitoringSubscription(
-              realtimeMetricsSubscriptionConfig:
-                  CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig(
-                    realtimeMetricsSubscriptionStatus: .literal(.enabled),
-                  ),
-            ),
+        monitoringSubscription: CloudfrontMonitoringSubscription(
+          realtimeMetricsSubscriptionConfig:
+              CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig(
+                realtimeMetricsSubscriptionStatus: .literal(.enabled),
+              ),
+        ),
       ),
     );
 
@@ -3369,7 +3366,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'codecommit_trigger',
         repositoryName: .literal(leftover),
         trigger: [
-          CodecommitTriggerTrigger(
+          CodecommitTrigger(
             destinationArn: .literal(arn),
             events: [.literal(.all)],
             name: .literal(leftover),
@@ -3926,9 +3923,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'connect_instance_storage_config',
         instanceId: .literal('i-0123456789abcdef0'),
         resourceType: .literal(.chatTranscripts),
-        storageConfig: ConnectInstanceStorageConfigStorageConfig(
-          storageType: .literal(.s3),
-        ),
+        storageConfig: ConnectInstanceStorageConfig(storageType: .literal(.s3)),
       ),
     );
 
@@ -4025,7 +4020,7 @@ final class AwsLeftoverStack extends Stack {
       AwsConnectUserHierarchyStructure(
         localName: 'connect_user_hierarchy_structure',
         instanceId: .literal('i-0123456789abcdef0'),
-        hierarchyStructure: ConnectUserHierarchyStructureHierarchyStructure(
+        hierarchyStructure: ConnectUserHierarchyStructure(
           levelFive: ConnectUserHierarchyStructureLevelFive(
             name: .literal(leftover),
           ),
@@ -4129,7 +4124,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDataexchangeEventAction(
         localName: 'dataexchange_event_action',
         action: [
-          DataexchangeEventActionAction(
+          DataexchangeEventAction(
             exportRevisionToS3: [
               DataexchangeEventActionExportRevisionToS3(
                 revisionDestination: [
@@ -5968,7 +5963,7 @@ final class AwsLeftoverStack extends Stack {
       AwsEfsBackupPolicy(
         localName: 'efs_backup_policy',
         fileSystemId: .literal(leftover),
-        backupPolicy: EfsBackupPolicyBackupPolicy(status: .literal(.disabled)),
+        backupPolicy: EfsBackupPolicy(status: .literal(.disabled)),
       ),
     );
 
@@ -6944,17 +6939,15 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsGlueDataCatalogEncryptionSettings(
         localName: 'glue_data_catalog_encryption_settings',
-        dataCatalogEncryptionSettings:
-            GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings(
-              connectionPasswordEncryption:
-                  GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption(
-                    returnConnectionPasswordEncrypted: .literal(true),
-                  ),
-              encryptionAtRest:
-                  GlueDataCatalogEncryptionSettingsEncryptionAtRest(
-                    catalogEncryptionMode: .literal(.disabled),
-                  ),
-            ),
+        dataCatalogEncryptionSettings: GlueDataCatalogEncryptionSettings(
+          connectionPasswordEncryption:
+              GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption(
+                returnConnectionPasswordEncrypted: .literal(true),
+              ),
+          encryptionAtRest: GlueDataCatalogEncryptionSettingsEncryptionAtRest(
+            catalogEncryptionMode: .literal(.disabled),
+          ),
+        ),
       ),
     );
 
@@ -7017,9 +7010,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'glue_partition_index',
         databaseName: .literal(leftover),
         tableName: .literal(leftover),
-        partitionIndex: GluePartitionIndexPartitionIndex(
-          indexName: .literal(leftover),
-        ),
+        partitionIndex: GluePartitionIndex(indexName: .literal(leftover)),
       ),
     );
 
@@ -8179,7 +8170,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'lakeformation_lf_tag_expression',
         name: .literal(leftover),
         expression: [
-          LakeformationLfTagExpressionExpression(
+          LakeformationLfTagExpression(
             tagKey: .literal(leftover),
             tagValues: .literal([leftover]),
           ),
@@ -8224,7 +8215,7 @@ final class AwsLeftoverStack extends Stack {
           LakeformationResourceLfTagDatabase(name: .literal(leftover)),
         ]),
         lfTag: [
-          LakeformationResourceLfTagLfTag(
+          LakeformationResourceLfTag(
             key: .literal(leftover),
             value: .literal(leftover),
           ),
@@ -8312,9 +8303,7 @@ final class AwsLeftoverStack extends Stack {
         functionName: .literal(leftover),
         qualifier: .literal('1'),
         functionScalingConfig: [
-          LambdaFunctionScalingConfigFunctionScalingConfig(
-            maxExecutionEnvironments: .literal(200),
-          ),
+          LambdaFunctionScalingConfig(maxExecutionEnvironments: .literal(200)),
         ],
       ),
     );
@@ -9684,7 +9673,7 @@ final class AwsLeftoverStack extends Stack {
       AwsNetworkfirewallFirewallPolicy(
         localName: 'networkfirewall_firewall_policy',
         name: .literal(leftover),
-        firewallPolicy: NetworkfirewallFirewallPolicyFirewallPolicy(
+        firewallPolicy: NetworkfirewallFirewallPolicy(
           statelessDefaultActions: .literal([leftover]),
           statelessFragmentDefaultActions: .literal([leftover]),
         ),
@@ -9702,16 +9691,15 @@ final class AwsLeftoverStack extends Stack {
       AwsNetworkfirewallLoggingConfiguration(
         localName: 'networkfirewall_logging_configuration',
         firewallArn: .literal(arn),
-        loggingConfiguration:
-            NetworkfirewallLoggingConfigurationLoggingConfiguration(
-              logDestinationConfig: [
-                NetworkfirewallLoggingConfigurationLogDestinationConfig(
-                  logDestination: .literal({'bucketName': leftover}),
-                  logDestinationType: .literal(.s3),
-                  logType: .literal(.flow),
-                ),
-              ],
+        loggingConfiguration: NetworkfirewallLoggingConfiguration(
+          logDestinationConfig: [
+            NetworkfirewallLoggingConfigurationLogDestinationConfig(
+              logDestination: .literal({'bucketName': leftover}),
+              logDestinationType: .literal(.s3),
+              logType: .literal(.flow),
             ),
+          ],
+        ),
       ),
     );
 
@@ -9737,7 +9725,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'networkfirewall_tls_inspection_configuration',
         name: .literal(leftover),
         tlsInspectionConfiguration: [
-          NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration(
+          NetworkfirewallTlsInspectionConfiguration(
             serverCertificateConfiguration: [
               NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration(
                 scope: [
@@ -10161,9 +10149,7 @@ final class AwsLeftoverStack extends Stack {
       AwsObservabilityadminTelemetryRule(
         localName: 'observabilityadmin_telemetry_rule',
         ruleName: .literal(leftover),
-        rule: [
-          ObservabilityadminTelemetryRuleRule(telemetryType: .literal(.logs)),
-        ],
+        rule: [ObservabilityadminTelemetryRule(telemetryType: .literal(.logs))],
       ),
     );
 
@@ -11003,9 +10989,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsQuicksightKeyRegistration(
         localName: 'quicksight_key_registration',
-        keyRegistration: [
-          QuicksightKeyRegistrationKeyRegistration(keyArn: .literal(arn)),
-        ],
+        keyRegistration: [QuicksightKeyRegistration(keyArn: .literal(arn))],
       ),
     );
 
@@ -11022,7 +11006,7 @@ final class AwsLeftoverStack extends Stack {
         dataSetId: .literal(leftover),
         scheduleId: .literal(leftover),
         schedule: [
-          QuicksightRefreshScheduleSchedule(
+          QuicksightRefreshSchedule(
             refreshType: .literal(.incrementalRefresh),
             scheduleFrequency: [
               QuicksightRefreshScheduleFrequency(interval: .literal(.minute15)),
@@ -12225,7 +12209,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 's3_bucket_metadata_configuration',
         bucket: .literal(leftover),
         metadataConfiguration: [
-          S3BucketMetadataConfigurationMetadataConfiguration(
+          S3BucketMetadataConfiguration(
             journalTableConfiguration: [
               S3BucketMetadataConfigurationJournalTableConfiguration(
                 recordExpiration: [
@@ -12438,7 +12422,7 @@ final class AwsLeftoverStack extends Stack {
         accountId: .literal('123456789012'),
         name: .literal('leftover--use1-az4--xa-s3'),
         scope: [
-          S3controlDirectoryBucketAccessPointScopeScope(
+          S3controlDirectoryBucketAccessPointScope(
             permissions: [.literal(.getobject)],
           ),
         ],
@@ -12516,18 +12500,16 @@ final class AwsLeftoverStack extends Stack {
       AwsS3controlStorageLensConfiguration(
         localName: 's3control_storage_lens_configuration',
         configId: .literal(leftover),
-        storageLensConfiguration:
-            S3controlStorageLensConfigurationStorageLensConfiguration(
-              enabled: .literal(true),
-              accountLevel: S3controlStorageLensConfigurationAccountLevel(
-                bucketLevel: S3controlStorageLensConfigurationBucketLevel(
-                  activityMetrics:
-                      S3controlStorageLensConfigurationActivityMetrics(
-                        enabled: .literal(true),
-                      ),
-                ),
+        storageLensConfiguration: S3controlStorageLensConfiguration(
+          enabled: .literal(true),
+          accountLevel: S3controlStorageLensConfigurationAccountLevel(
+            bucketLevel: S3controlStorageLensConfigurationBucketLevel(
+              activityMetrics: S3controlStorageLensConfigurationActivityMetrics(
+                enabled: .literal(true),
               ),
             ),
+          ),
+        ),
       ),
     );
 
@@ -12756,7 +12738,7 @@ final class AwsLeftoverStack extends Stack {
       AwsSagemakerDevice(
         localName: 'sagemaker_device',
         deviceFleetName: .literal(leftover),
-        device: SagemakerDeviceDevice(deviceName: .literal(leftover)),
+        device: SagemakerDevice(deviceName: .literal(leftover)),
       ),
     );
 
@@ -13286,7 +13268,7 @@ final class AwsLeftoverStack extends Stack {
       AwsSecurityhubConfigurationPolicy(
         localName: 'securityhub_configuration_policy',
         name: .literal(leftover),
-        configurationPolicy: SecurityhubConfigurationPolicyConfigurationPolicy(
+        configurationPolicy: SecurityhubConfigurationPolicy(
           serviceEnabled: .literal(true),
         ),
       ),
@@ -13406,7 +13388,7 @@ final class AwsLeftoverStack extends Stack {
       AwsSecuritylakeAwsLogSource(
         localName: 'securitylake_aws_log_source',
         source: [
-          SecuritylakeAwsLogSourceSource(
+          SecuritylakeAwsLogSource(
             regions: .literal([leftover]),
             sourceName: .literal(leftover),
           ),
@@ -13829,7 +13811,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'sesv2_configuration_set_event_destination',
         configurationSetName: .literal(leftover),
         eventDestinationName: .literal(leftover),
-        eventDestination: Sesv2ConfigurationSetEventDestinationEventDestination(
+        eventDestination: Sesv2ConfigurationSetEventDestination(
           matchingEventTypes: [.literal(.send)],
           target: .cloudWatchDestination(
             Sesv2ConfigurationSetEventDestinationCloudWatchDestination(
@@ -16046,7 +16028,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'xray_indexing_rule',
         name: .literal(leftover),
         rule: [
-          XrayIndexingRuleRule(
+          XrayIndexingRule(
             probabilistic: [
               XrayIndexingRuleProbabilistic(
                 desiredSamplingPercentage: .literal(200),
@@ -18185,10 +18167,7 @@ final class AwsLeftoverStack extends Stack {
       DataAwsKmsSecret(
         localName: 'd_kms_secret',
         secret: [
-          DataKmsSecretSecret(
-            name: .literal(leftover),
-            payload: .literal(leftover),
-          ),
+          DataKmsSecret(name: .literal(leftover), payload: .literal(leftover)),
         ],
       ),
     );

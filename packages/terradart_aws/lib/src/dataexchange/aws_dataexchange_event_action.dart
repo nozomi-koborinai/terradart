@@ -13,8 +13,8 @@ const Set<String> _awsDataexchangeEventActionSensitive = <String>{};
 /// Typed helper for the `action` block of
 /// `aws_dataexchange_event_action` (derived from provider schema).
 @immutable
-final class DataexchangeEventActionAction {
-  const DataexchangeEventActionAction({this.exportRevisionToS3});
+final class DataexchangeEventAction {
+  const DataexchangeEventAction({this.exportRevisionToS3});
 
   final List<DataexchangeEventActionExportRevisionToS3>? exportRevisionToS3;
 
@@ -126,7 +126,7 @@ final class AwsDataexchangeEventAction extends Resource {
   AwsDataexchangeEventAction({
     required super.localName,
     TfArg<String>? region,
-    List<DataexchangeEventActionAction>? action,
+    List<DataexchangeEventAction>? action,
     List<DataexchangeEventActionEvent>? event,
     super.lifecycle,
     super.dependsOn,

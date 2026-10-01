@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustGatewaySettingsSensitive = <String>{};
 /// Typed helper for the `settings` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
-final class ZeroTrustGatewaySettingsSettings {
-  const ZeroTrustGatewaySettingsSettings({
+final class ZeroTrustGatewaySettings {
+  const ZeroTrustGatewaySettings({
     this.maxTtlSecs,
     this.activityLog,
     this.antivirus,
@@ -418,7 +418,7 @@ final class CloudflareZeroTrustGatewaySettings extends Resource {
   CloudflareZeroTrustGatewaySettings({
     required super.localName,
     required RefTo<CloudflareAccount> accountId,
-    ZeroTrustGatewaySettingsSettings? settings,
+    ZeroTrustGatewaySettings? settings,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -12,13 +12,13 @@ const Set<String> _appwriteMongoBackupStorageSensitive = <String>{
   'secret_key',
 };
 
-/// Mongo Backup Storage Storage enum for `storage_provider`.
-enum MongoBackupStorageStorageProvider implements TerraformEnum {
+/// Mongo Backup Storage enum for `storage_provider`.
+enum MongoBackupStorageProvider implements TerraformEnum {
   s3('s3'),
   gcs('gcs'),
   azure('azure');
 
-  const MongoBackupStorageStorageProvider(this.terraformValue);
+  const MongoBackupStorageProvider(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -50,7 +50,7 @@ final class AppwriteMongoBackupStorage extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<MongoBackupStorageStorageProvider> storageProvider,
+    required TfArg<MongoBackupStorageProvider> storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -52,7 +52,6 @@ export 'src/biglake/google_biglake_hive_table_iam_policy.dart'
     show GoogleBiglakeHiveTableIamPolicy;
 export 'src/biglake/google_biglake_iceberg_catalog.dart'
     show
-        BiglakeIcebergCatalogCatalogType,
         BiglakeIcebergCatalogCredentialMode,
         BiglakeIcebergCatalogFederatedCatalogOptions,
         BiglakeIcebergCatalogGlueCatalogInfo,
@@ -60,6 +59,7 @@ export 'src/biglake/google_biglake_iceberg_catalog.dart'
         BiglakeIcebergCatalogRefreshSchedule,
         BiglakeIcebergCatalogRefreshScope,
         BiglakeIcebergCatalogRestrictedLocationsConfig,
+        BiglakeIcebergCatalogType,
         BiglakeIcebergCatalogUnityCatalogInfo,
         GoogleBiglakeIcebergCatalog;
 export 'src/biglake/google_biglake_iceberg_catalog_iam_binding.dart'

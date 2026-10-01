@@ -6,7 +6,7 @@ deriveOutputGetters: true
 deriveEnums: true
 
 dartTypeOverrides:
-  policy_type: ComputeRegionNetworkFirewallPolicyPolicyType
+  policy_type: ComputeRegionNetworkFirewallPolicyType
 
 paramOrder:
   - name

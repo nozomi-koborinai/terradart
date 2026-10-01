@@ -20,14 +20,14 @@ enum VerifiedaccessEndpointAttachmentType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Verifiedaccess Endpoint Endpoint enum for `endpoint_type`.
-enum VerifiedaccessEndpointEndpointType implements TerraformEnum {
+/// Verifiedaccess Endpoint enum for `endpoint_type`.
+enum VerifiedaccessEndpointType implements TerraformEnum {
   loadBalancer('load-balancer'),
   networkInterface('network-interface'),
   rds('rds'),
   cidr('cidr');
 
-  const VerifiedaccessEndpointEndpointType(this.terraformValue);
+  const VerifiedaccessEndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -229,7 +229,7 @@ final class AwsVerifiedaccessEndpoint extends Resource {
     TfArg<String>? description,
     TfArg<String>? domainCertificateArn,
     TfArg<String>? endpointDomainPrefix,
-    required TfArg<VerifiedaccessEndpointEndpointType> endpointType,
+    required TfArg<VerifiedaccessEndpointType> endpointType,
     TfArg<String>? policyDocument,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,

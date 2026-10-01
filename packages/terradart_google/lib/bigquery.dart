@@ -163,6 +163,7 @@ export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_policy.dart'
 export 'src/bigquery/google_bigquery_dataset.dart'
     show
         BigqueryDatasetAccess,
+        BigqueryDatasetAccessChild,
         BigqueryDatasetAccessCondition,
         BigqueryDatasetAccessDataset,
         BigqueryDatasetAccessDomain,
@@ -172,13 +173,12 @@ export 'src/bigquery/google_bigquery_dataset.dart'
         BigqueryDatasetAccessSpecialGroup,
         BigqueryDatasetAccessUserByEmail,
         BigqueryDatasetAccessView,
-        BigqueryDatasetDatasetAccessChild,
-        BigqueryDatasetDatasetReference,
-        BigqueryDatasetDatasetRoutineRef,
-        BigqueryDatasetDatasetView,
         BigqueryDatasetDefaultEncryptionConfiguration,
         BigqueryDatasetExternalCatalogDatasetOptions,
         BigqueryDatasetExternalDatasetReference,
+        BigqueryDatasetReference,
+        BigqueryDatasetRoutineRef,
+        BigqueryDatasetView,
         DatasetStorageBillingModel,
         GoogleBigqueryDataset;
 export 'src/bigquery/google_bigquery_dataset_access.dart'

@@ -7,13 +7,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_netapp_backup_vault`.
 const Set<String> _googleNetappBackupVaultSensitive = <String>{};
 
-/// Netapp Backup Vault Backup Vault enum for `backup_vault_type`.
-enum NetappBackupVaultBackupVaultType implements TerraformEnum {
+/// Netapp Backup Vault enum for `backup_vault_type`.
+enum NetappBackupVaultType implements TerraformEnum {
   backupVaultTypeUnspecified('BACKUP_VAULT_TYPE_UNSPECIFIED'),
   inRegion('IN_REGION'),
   crossRegion('CROSS_REGION');
 
-  const NetappBackupVaultBackupVaultType(this.terraformValue);
+  const NetappBackupVaultType(this.terraformValue);
   @override
   final String terraformValue;
 }

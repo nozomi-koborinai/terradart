@@ -12,12 +12,12 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_codebuild_project`.
 const Set<String> _awsCodebuildProjectSensitive = <String>{};
 
-/// Codebuild Project Project enum for `project_visibility`.
-enum CodebuildProjectProjectVisibility implements TerraformEnum {
+/// Codebuild Project enum for `project_visibility`.
+enum CodebuildProjectVisibility implements TerraformEnum {
   publicRead('PUBLIC_READ'),
   private('PRIVATE');
 
-  const CodebuildProjectProjectVisibility(this.terraformValue);
+  const CodebuildProjectVisibility(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -843,7 +843,7 @@ final class AwsCodebuildProject extends Resource {
     TfArg<String>? description,
     TfArg<String>? encryptionKey,
     required TfArg<String> name,
-    TfArg<CodebuildProjectProjectVisibility>? projectVisibility,
+    TfArg<CodebuildProjectVisibility>? projectVisibility,
     TfArg<num>? queuedTimeout,
     TfArg<String>? region,
     TfArg<String>? resourceAccessRole,

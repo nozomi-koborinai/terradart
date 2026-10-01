@@ -12,8 +12,8 @@ const Set<String> _cloudflareCloudConnectorRulesSensitive = <String>{};
 /// Typed helper for the `rules` block of
 /// `cloudflare_cloud_connector_rules` (derived from provider schema).
 @immutable
-final class CloudConnectorRulesRules {
-  const CloudConnectorRulesRules({
+final class CloudConnectorRules {
+  const CloudConnectorRules({
     this.cloudConnectorRulesProvider,
     this.description,
     this.enabled,
@@ -75,7 +75,7 @@ final class CloudflareCloudConnectorRules extends Resource {
   CloudflareCloudConnectorRules({
     required super.localName,
     required RefTo<CloudflareZone> zoneId,
-    List<CloudConnectorRulesRules>? rules,
+    List<CloudConnectorRules>? rules,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -7,7 +7,7 @@ deriveOutputGetters: true
 deriveEnums: true
 
 dartTypeOverrides:
-  policy_type: ComputeRegionHealthAggregationPolicyPolicyType
+  policy_type: ComputeRegionHealthAggregationPolicyType
 
 curatedDoc: |-
   /// Regional health aggregation policy used by

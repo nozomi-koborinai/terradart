@@ -68,8 +68,6 @@ export 'src/guardduty/aws_guardduty_organization_configuration_feature.dart'
         GuarddutyOrganizationConfigurationFeatureAutoEnable,
         GuarddutyOrganizationConfigurationFeatureName;
 export 'src/guardduty/aws_guardduty_publishing_destination.dart'
-    show
-        AwsGuarddutyPublishingDestination,
-        GuarddutyPublishingDestinationDestinationType;
+    show AwsGuarddutyPublishingDestination, GuarddutyPublishingDestinationType;
 export 'src/guardduty/aws_guardduty_threatintelset.dart'
     show AwsGuarddutyThreatintelset, GuarddutyThreatintelsetFormat;

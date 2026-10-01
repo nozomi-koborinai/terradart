@@ -12,8 +12,8 @@ const Set<String> _cloudflareSnippetRulesSensitive = <String>{};
 /// Typed helper for the `rules` block of
 /// `cloudflare_snippet_rules` (derived from provider schema).
 @immutable
-final class SnippetRulesRules {
-  const SnippetRulesRules({
+final class SnippetRules {
+  const SnippetRules({
     this.description,
     this.enabled,
     required this.expression,
@@ -47,7 +47,7 @@ final class CloudflareSnippetRules extends Resource {
   CloudflareSnippetRules({
     required super.localName,
     required RefTo<CloudflareZone> zoneId,
-    required List<SnippetRulesRules> rules,
+    required List<SnippetRules> rules,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -24,11 +24,11 @@ export 'src/networkfirewall/aws_networkfirewall_firewall.dart'
 export 'src/networkfirewall/aws_networkfirewall_firewall_policy.dart'
     show
         AwsNetworkfirewallFirewallPolicy,
+        NetworkfirewallFirewallPolicy,
         NetworkfirewallFirewallPolicyAction,
         NetworkfirewallFirewallPolicyActionDefinition,
         NetworkfirewallFirewallPolicyDimension,
         NetworkfirewallFirewallPolicyEncryptionConfiguration,
-        NetworkfirewallFirewallPolicyFirewallPolicy,
         NetworkfirewallFirewallPolicyFlowTimeouts,
         NetworkfirewallFirewallPolicyIpSet,
         NetworkfirewallFirewallPolicyOverride,
@@ -47,15 +47,16 @@ export 'src/networkfirewall/aws_networkfirewall_firewall_transit_gateway_attachm
 export 'src/networkfirewall/aws_networkfirewall_logging_configuration.dart'
     show
         AwsNetworkfirewallLoggingConfiguration,
+        NetworkfirewallLoggingConfiguration,
         NetworkfirewallLoggingConfigurationLogDestinationConfig,
         NetworkfirewallLoggingConfigurationLogDestinationType,
-        NetworkfirewallLoggingConfigurationLogType,
-        NetworkfirewallLoggingConfigurationLoggingConfiguration;
+        NetworkfirewallLoggingConfigurationLogType;
 export 'src/networkfirewall/aws_networkfirewall_resource_policy.dart'
     show AwsNetworkfirewallResourcePolicy;
 export 'src/networkfirewall/aws_networkfirewall_rule_group.dart'
     show
         AwsNetworkfirewallRuleGroup,
+        NetworkfirewallRuleGroup,
         NetworkfirewallRuleGroupAction,
         NetworkfirewallRuleGroupActionDefinition,
         NetworkfirewallRuleGroupCustomAction,
@@ -80,7 +81,6 @@ export 'src/networkfirewall/aws_networkfirewall_rule_group.dart'
         NetworkfirewallRuleGroupPublishMetricAction,
         NetworkfirewallRuleGroupReferenceSets,
         NetworkfirewallRuleGroupRuleDefinition,
-        NetworkfirewallRuleGroupRuleGroup,
         NetworkfirewallRuleGroupRuleOption,
         NetworkfirewallRuleGroupRuleOrder,
         NetworkfirewallRuleGroupRuleVariables,
@@ -98,6 +98,7 @@ export 'src/networkfirewall/aws_networkfirewall_rule_group.dart'
 export 'src/networkfirewall/aws_networkfirewall_tls_inspection_configuration.dart'
     show
         AwsNetworkfirewallTlsInspectionConfiguration,
+        NetworkfirewallTlsInspectionConfiguration,
         NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationStatus,
         NetworkfirewallTlsInspectionConfigurationDestination,
         NetworkfirewallTlsInspectionConfigurationDestinationPorts,
@@ -107,7 +108,6 @@ export 'src/networkfirewall/aws_networkfirewall_tls_inspection_configuration.dar
         NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration,
         NetworkfirewallTlsInspectionConfigurationSource,
         NetworkfirewallTlsInspectionConfigurationSourcePorts,
-        NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration,
         NetworkfirewallTlsInspectionConfigurationUnknownStatusAction;
 export 'src/networkfirewall/aws_networkfirewall_vpc_endpoint_association.dart'
     show

@@ -10,8 +10,8 @@ const Set<String> _awsKmsSecretSensitive = <String>{};
 /// Typed helper for the `secret` block of
 /// `aws_kms_secret` (derived from provider schema).
 @immutable
-final class DataKmsSecretSecret {
-  const DataKmsSecretSecret({
+final class DataKmsSecret {
+  const DataKmsSecret({
     this.context,
     this.grantTokens,
     required this.name,
@@ -41,7 +41,7 @@ final class DataAwsKmsSecret extends Data {
   DataAwsKmsSecret({
     required super.localName,
     TfArg<String>? region,
-    required List<DataKmsSecretSecret> secret,
+    required List<DataKmsSecret> secret,
     super.provider,
     super.timeouts,
   }) : super(

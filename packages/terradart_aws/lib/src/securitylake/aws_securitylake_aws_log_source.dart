@@ -10,8 +10,8 @@ const Set<String> _awsSecuritylakeAwsLogSourceSensitive = <String>{};
 /// Typed helper for the `source` block of
 /// `aws_securitylake_aws_log_source` (derived from provider schema).
 @immutable
-final class SecuritylakeAwsLogSourceSource {
-  const SecuritylakeAwsLogSourceSource({
+final class SecuritylakeAwsLogSource {
+  const SecuritylakeAwsLogSource({
     this.accounts,
     required this.regions,
     required this.sourceName,
@@ -41,7 +41,7 @@ final class AwsSecuritylakeAwsLogSource extends Resource {
   AwsSecuritylakeAwsLogSource({
     required super.localName,
     TfArg<String>? region,
-    List<SecuritylakeAwsLogSourceSource>? source,
+    List<SecuritylakeAwsLogSource>? source,
     super.lifecycle,
     super.dependsOn,
     super.provider,

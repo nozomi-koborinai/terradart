@@ -18,9 +18,7 @@ export 'src/workspacesweb/aws_workspacesweb_data_protection_settings.dart'
 export 'src/workspacesweb/aws_workspacesweb_data_protection_settings_association.dart'
     show AwsWorkspaceswebDataProtectionSettingsAssociation;
 export 'src/workspacesweb/aws_workspacesweb_identity_provider.dart'
-    show
-        AwsWorkspaceswebIdentityProvider,
-        WorkspaceswebIdentityProviderIdentityProviderType;
+    show AwsWorkspaceswebIdentityProvider, WorkspaceswebIdentityProviderType;
 export 'src/workspacesweb/aws_workspacesweb_ip_access_settings.dart'
     show AwsWorkspaceswebIpAccessSettings, WorkspaceswebIpAccessSettingsIpRule;
 export 'src/workspacesweb/aws_workspacesweb_ip_access_settings_association.dart'

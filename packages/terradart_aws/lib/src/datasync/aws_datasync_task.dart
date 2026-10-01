@@ -10,12 +10,12 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 /// Sensitive field paths for `aws_datasync_task`.
 const Set<String> _awsDatasyncTaskSensitive = <String>{};
 
-/// Datasync Task Task enum for `task_mode`.
-enum DatasyncTaskTaskMode implements TerraformEnum {
+/// Datasync Task enum for `task_mode`.
+enum DatasyncTaskMode implements TerraformEnum {
   basic('BASIC'),
   enhanced('ENHANCED');
 
-  const DatasyncTaskTaskMode(this.terraformValue);
+  const DatasyncTaskMode(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -469,7 +469,7 @@ final class AwsDatasyncTask extends Resource {
     TfArg<String>? region,
     required TfArg<String> sourceLocationArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<DatasyncTaskTaskMode>? taskMode,
+    TfArg<DatasyncTaskMode>? taskMode,
     DatasyncTaskExcludes? excludes,
     DatasyncTaskIncludes? includes,
     DatasyncTaskOptions? options,

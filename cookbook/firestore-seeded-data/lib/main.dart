@@ -235,11 +235,11 @@ final class FirestoreSeededDataStack extends Stack {
         database: .ref(db.nameRef),
         queryScope: .literal(.collection),
         fields: [
-          FirestoreIndexIndexField(
+          FirestoreIndexField(
             fieldPath: .literal('monthly_usd'),
             spec: const .order(FirestoreIndexOrder.ascending),
           ),
-          FirestoreIndexIndexField(
+          FirestoreIndexField(
             fieldPath: .literal('label'),
             spec: const .order(FirestoreIndexOrder.ascending),
           ),

@@ -10,8 +10,8 @@ const Set<String> _awsEfsBackupPolicySensitive = <String>{};
 /// Typed helper for the `backup_policy` block of
 /// `aws_efs_backup_policy` (derived from provider schema).
 @immutable
-final class EfsBackupPolicyBackupPolicy {
-  const EfsBackupPolicyBackupPolicy({required this.status});
+final class EfsBackupPolicy {
+  const EfsBackupPolicy({required this.status});
 
   final TfArg<EfsBackupPolicyStatus> status;
 
@@ -36,7 +36,7 @@ final class AwsEfsBackupPolicy extends Resource {
     required super.localName,
     required TfArg<String> fileSystemId,
     TfArg<String>? region,
-    required EfsBackupPolicyBackupPolicy backupPolicy,
+    required EfsBackupPolicy backupPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

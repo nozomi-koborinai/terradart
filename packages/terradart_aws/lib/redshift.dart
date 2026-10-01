@@ -46,7 +46,6 @@ export 'src/redshift/aws_redshift_hsm_configuration.dart'
 export 'src/redshift/aws_redshift_idc_application.dart'
     show
         AwsRedshiftIdcApplication,
-        RedshiftIdcApplicationApplicationType,
         RedshiftIdcApplicationAuthorization,
         RedshiftIdcApplicationAuthorizedTokenIssuer,
         RedshiftIdcApplicationConnect,
@@ -55,7 +54,8 @@ export 'src/redshift/aws_redshift_idc_application.dart'
         RedshiftIdcApplicationReadWriteAccess,
         RedshiftIdcApplicationRedshift,
         RedshiftIdcApplicationS3AccessGrants,
-        RedshiftIdcApplicationServiceIntegration;
+        RedshiftIdcApplicationServiceIntegration,
+        RedshiftIdcApplicationType;
 export 'src/redshift/aws_redshift_integration.dart' show AwsRedshiftIntegration;
 export 'src/redshift/aws_redshift_logging.dart'
     show
@@ -98,5 +98,5 @@ export 'src/redshift/aws_redshift_usage_limit.dart'
         AwsRedshiftUsageLimit,
         RedshiftUsageLimitBreachAction,
         RedshiftUsageLimitFeatureType,
-        RedshiftUsageLimitLimitType,
-        RedshiftUsageLimitPeriod;
+        RedshiftUsageLimitPeriod,
+        RedshiftUsageLimitType;

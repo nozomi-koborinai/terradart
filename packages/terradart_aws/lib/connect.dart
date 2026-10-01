@@ -30,6 +30,7 @@ export 'src/connect/aws_connect_instance.dart'
 export 'src/connect/aws_connect_instance_storage_config.dart'
     show
         AwsConnectInstanceStorageConfig,
+        ConnectInstanceStorageConfig,
         ConnectInstanceStorageConfigEncryptionConfig,
         ConnectInstanceStorageConfigEncryptionType,
         ConnectInstanceStorageConfigKinesisFirehoseConfig,
@@ -37,7 +38,6 @@ export 'src/connect/aws_connect_instance_storage_config.dart'
         ConnectInstanceStorageConfigKinesisVideoStreamConfig,
         ConnectInstanceStorageConfigResourceType,
         ConnectInstanceStorageConfigS3Config,
-        ConnectInstanceStorageConfigStorageConfig,
         ConnectInstanceStorageConfigStorageType;
 export 'src/connect/aws_connect_lambda_function_association.dart'
     show AwsConnectLambdaFunctionAssociation;
@@ -79,7 +79,7 @@ export 'src/connect/aws_connect_user_hierarchy_group.dart'
 export 'src/connect/aws_connect_user_hierarchy_structure.dart'
     show
         AwsConnectUserHierarchyStructure,
-        ConnectUserHierarchyStructureHierarchyStructure,
+        ConnectUserHierarchyStructure,
         ConnectUserHierarchyStructureLevelFive,
         ConnectUserHierarchyStructureLevelFour,
         ConnectUserHierarchyStructureLevelOne,

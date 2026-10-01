@@ -4,11 +4,10 @@
 library;
 
 export 'src/bedrockagent/aws_bedrockagent_agent.dart'
-    show AwsBedrockagentAgent, BedrockagentAgentAgentCollaboration;
+    show AwsBedrockagentAgent, BedrockagentAgentCollaboration;
 export 'src/bedrockagent/aws_bedrockagent_agent_action_group.dart'
     show
         AwsBedrockagentAgentActionGroup,
-        BedrockagentAgentActionGroupActionGroupState,
         BedrockagentAgentActionGroupApiSchema,
         BedrockagentAgentActionGroupApiSchemaPayload,
         BedrockagentAgentActionGroupApiSchemaS3,
@@ -23,6 +22,7 @@ export 'src/bedrockagent/aws_bedrockagent_agent_action_group.dart'
         BedrockagentAgentActionGroupParameters,
         BedrockagentAgentActionGroupParentActionGroupSignature,
         BedrockagentAgentActionGroupS3,
+        BedrockagentAgentActionGroupState,
         BedrockagentAgentActionGroupType;
 export 'src/bedrockagent/aws_bedrockagent_agent_alias.dart'
     show AwsBedrockagentAgentAlias;

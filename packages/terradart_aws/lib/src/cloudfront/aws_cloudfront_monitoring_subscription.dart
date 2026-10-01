@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontMonitoringSubscriptionSensitive = <String>{};
 /// Typed helper for the `monitoring_subscription` block of
 /// `aws_cloudfront_monitoring_subscription` (derived from provider schema).
 @immutable
-final class CloudfrontMonitoringSubscriptionMonitoringSubscription {
-  const CloudfrontMonitoringSubscriptionMonitoringSubscription({
+final class CloudfrontMonitoringSubscription {
+  const CloudfrontMonitoringSubscription({
     required this.realtimeMetricsSubscriptionConfig,
   });
 
@@ -61,8 +61,7 @@ final class AwsCloudfrontMonitoringSubscription extends Resource {
   AwsCloudfrontMonitoringSubscription({
     required super.localName,
     required TfArg<String> distributionId,
-    required CloudfrontMonitoringSubscriptionMonitoringSubscription
-    monitoringSubscription,
+    required CloudfrontMonitoringSubscription monitoringSubscription,
     super.lifecycle,
     super.dependsOn,
     super.provider,

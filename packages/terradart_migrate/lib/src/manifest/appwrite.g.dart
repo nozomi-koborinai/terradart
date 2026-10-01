@@ -1740,7 +1740,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'storageProvider',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'MongoBackupStorageStorageProvider',
+          dartType: 'MongoBackupStorageProvider',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2855,7 +2855,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'storageProvider',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'MysqlBackupStorageStorageProvider',
+          dartType: 'MysqlBackupStorageProvider',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4101,7 +4101,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           dartName: 'storageProvider',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'PostgresqlBackupStorageStorageProvider',
+          dartType: 'PostgresqlBackupStorageProvider',
         ),
       ],
       getters: <MigrateGetter>[
@@ -7211,8 +7211,8 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       name: 'MongoBackupPolicyType',
       members: <String, String>{'full': 'full', 'incremental': 'incremental'},
     ),
-    'MongoBackupStorageStorageProvider': MigrateEnum(
-      name: 'MongoBackupStorageStorageProvider',
+    'MongoBackupStorageProvider': MigrateEnum(
+      name: 'MongoBackupStorageProvider',
       members: <String, String>{'s3': 's3', 'gcs': 'gcs', 'azure': 'azure'},
     ),
     'MongoDatabaseMaintenanceWindowDay': MigrateEnum(
@@ -7247,8 +7247,8 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       name: 'MysqlBackupPolicyType',
       members: <String, String>{'full': 'full', 'incremental': 'incremental'},
     ),
-    'MysqlBackupStorageStorageProvider': MigrateEnum(
-      name: 'MysqlBackupStorageStorageProvider',
+    'MysqlBackupStorageProvider': MigrateEnum(
+      name: 'MysqlBackupStorageProvider',
       members: <String, String>{'s3': 's3', 'gcs': 'gcs', 'azure': 'azure'},
     ),
     'MysqlDatabaseMaintenanceWindowDay': MigrateEnum(
@@ -7290,8 +7290,8 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       name: 'PostgresqlBackupPolicyType',
       members: <String, String>{'full': 'full', 'incremental': 'incremental'},
     ),
-    'PostgresqlBackupStorageStorageProvider': MigrateEnum(
-      name: 'PostgresqlBackupStorageStorageProvider',
+    'PostgresqlBackupStorageProvider': MigrateEnum(
+      name: 'PostgresqlBackupStorageProvider',
       members: <String, String>{'s3': 's3', 'gcs': 'gcs', 'azure': 'azure'},
     ),
     'PostgresqlDatabaseMaintenanceWindowDay': MigrateEnum(

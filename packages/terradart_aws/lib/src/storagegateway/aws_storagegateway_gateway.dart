@@ -12,8 +12,8 @@ const Set<String> _awsStoragegatewayGatewaySensitive = <String>{
   'smb_guest_password',
 };
 
-/// Storagegateway Gateway Gateway enum for `gateway_type`.
-enum StoragegatewayGatewayGatewayType implements TerraformEnum {
+/// Storagegateway Gateway enum for `gateway_type`.
+enum StoragegatewayGatewayType implements TerraformEnum {
   cached('CACHED'),
   fileFsxSmb('FILE_FSX_SMB'),
   fileS3('FILE_S3'),
@@ -21,7 +21,7 @@ enum StoragegatewayGatewayGatewayType implements TerraformEnum {
   vtl('VTL'),
   vtlSnow('VTL_SNOW');
 
-  const StoragegatewayGatewayGatewayType(this.terraformValue);
+  const StoragegatewayGatewayType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -197,7 +197,7 @@ final class AwsStoragegatewayGateway extends Resource {
     RefTo<AwsCloudwatchLogGroup>? cloudwatchLogGroupArn,
     required TfArg<String> gatewayName,
     required TfArg<String> gatewayTimezone,
-    TfArg<StoragegatewayGatewayGatewayType>? gatewayType,
+    TfArg<StoragegatewayGatewayType>? gatewayType,
     TfArg<String>? gatewayVpcEndpoint,
     TfArg<StoragegatewayGatewayMediumChangerType>? mediumChangerType,
     TfArg<String>? region,

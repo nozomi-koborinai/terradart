@@ -7,8 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lakeformation_permissions`.
 const Set<String> _awsLakeformationPermissionsSensitive = <String>{};
 
-/// Lakeformation Permissions enum for `permissions`.
-enum LakeformationPermissionsPermissions implements TerraformEnum {
+/// Lakeformation enum for `permissions`.
+enum LakeformationPermissions implements TerraformEnum {
   all('ALL'),
   select('SELECT'),
   alter('ALTER'),
@@ -26,14 +26,13 @@ enum LakeformationPermissionsPermissions implements TerraformEnum {
   createCatalog('CREATE_CATALOG'),
   superUser('SUPER_USER');
 
-  const LakeformationPermissionsPermissions(this.terraformValue);
+  const LakeformationPermissions(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Lakeformation Permissions Permissions With Grant enum for `permissions_with_grant_option`.
-enum LakeformationPermissionsPermissionsWithGrantOption
-    implements TerraformEnum {
+/// Lakeformation Permissions With Grant enum for `permissions_with_grant_option`.
+enum LakeformationPermissionsWithGrantOption implements TerraformEnum {
   all('ALL'),
   select('SELECT'),
   alter('ALTER'),
@@ -51,7 +50,7 @@ enum LakeformationPermissionsPermissionsWithGrantOption
   createCatalog('CREATE_CATALOG'),
   superUser('SUPER_USER');
 
-  const LakeformationPermissionsPermissionsWithGrantOption(this.terraformValue);
+  const LakeformationPermissionsWithGrantOption(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -478,8 +477,8 @@ final class AwsLakeformationPermissions extends Resource {
     required super.localName,
     TfArg<String>? catalogId,
     required LakeformationPermissionsResource resource,
-    required List<TfArg<LakeformationPermissionsPermissions>> permissions,
-    List<TfArg<LakeformationPermissionsPermissionsWithGrantOption>>?
+    required List<TfArg<LakeformationPermissions>> permissions,
+    List<TfArg<LakeformationPermissionsWithGrantOption>>?
     permissionsWithGrantOption,
     required TfArg<String> principal,
     TfArg<String>? region,

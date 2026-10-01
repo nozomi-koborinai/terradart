@@ -41,6 +41,7 @@ export 'src/observabilityadmin/aws_observabilityadmin_telemetry_pipeline.dart'
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_rule.dart'
     show
         AwsObservabilityadminTelemetryRule,
+        ObservabilityadminTelemetryRule,
         ObservabilityadminTelemetryRuleAction,
         ObservabilityadminTelemetryRuleActionCondition,
         ObservabilityadminTelemetryRuleAdvancedEventSelectors,
@@ -64,7 +65,6 @@ export 'src/observabilityadmin/aws_observabilityadmin_telemetry_rule.dart'
         ObservabilityadminTelemetryRuleRedactedFields,
         ObservabilityadminTelemetryRuleRequirement,
         ObservabilityadminTelemetryRuleResourceType,
-        ObservabilityadminTelemetryRuleRule,
         ObservabilityadminTelemetryRuleSingleHeader,
         ObservabilityadminTelemetryRuleTelemetrySourceTypes,
         ObservabilityadminTelemetryRuleTelemetryType,

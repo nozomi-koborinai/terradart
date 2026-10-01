@@ -15,17 +15,17 @@ deriveOutputGetters: true
 # duplicate type — delete the prelude then, per the derivation-gate rule.
 
 dartTypeOverrides:
-  threat_detector_provider: NetworkSecurityDnsThreatDetectorThreatDetectorProvider
+  threat_detector_provider: NetworkSecurityDnsThreatDetectorProvider
 
 prelude: |
   /// `threat_detector_provider` for [GoogleNetworkSecurityDnsThreatDetector].
   ///
   /// Upstream documents `INFOBLOX` as the only supported value.
-  enum NetworkSecurityDnsThreatDetectorThreatDetectorProvider
+  enum NetworkSecurityDnsThreatDetectorProvider
       implements TerraformEnum {
     infoblox('INFOBLOX');
 
-    const NetworkSecurityDnsThreatDetectorThreatDetectorProvider(
+    const NetworkSecurityDnsThreatDetectorProvider(
       this.terraformValue,
     );
     @override
@@ -52,7 +52,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-dns-threat'),
   ///   location: TfArg.literal('global'),
   ///   threatDetectorProvider: TfArg.literal(
-  ///     NetworkSecurityDnsThreatDetectorThreatDetectorProvider.infoblox,
+  ///     NetworkSecurityDnsThreatDetectorProvider.infoblox,
   ///   ),
   /// );
   /// ```

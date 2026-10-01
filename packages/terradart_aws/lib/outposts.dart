@@ -6,6 +6,6 @@ library;
 export 'src/outposts/aws_outposts_capacity_task.dart'
     show
         AwsOutpostsCapacityTask,
+        OutpostsCapacityTaskActionOnBlockingInstances,
         OutpostsCapacityTaskInstancePool,
-        OutpostsCapacityTaskInstancesToExclude,
-        OutpostsCapacityTaskTaskActionOnBlockingInstances;
+        OutpostsCapacityTaskInstancesToExclude;

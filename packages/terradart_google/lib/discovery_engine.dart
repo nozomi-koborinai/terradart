@@ -113,7 +113,7 @@ export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
         DiscoveryEngineSearchEngineIndustryVertical,
         DiscoveryEngineSearchEngineKnowledgeGraphConfig,
         DiscoveryEngineSearchEngineRequiredSubscriptionTier,
-        DiscoveryEngineSearchEngineSearchTier,
+        DiscoveryEngineSearchEngineTier,
         GoogleDiscoveryEngineSearchEngine;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_binding.dart'
     show

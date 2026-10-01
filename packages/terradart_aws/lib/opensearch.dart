@@ -61,23 +61,20 @@ export 'src/opensearch/aws_opensearch_domain_policy.dart'
 export 'src/opensearch/aws_opensearch_domain_saml_options.dart'
     show
         AwsOpensearchDomainSamlOptions,
-        OpensearchDomainSamlOptionsIdp,
-        OpensearchDomainSamlOptionsSamlOptions;
+        OpensearchDomainSamlOptions,
+        OpensearchDomainSamlOptionsIdp;
 export 'src/opensearch/aws_opensearch_inbound_connection_accepter.dart'
     show AwsOpensearchInboundConnectionAccepter;
 export 'src/opensearch/aws_opensearch_outbound_connection.dart'
     show
         AwsOpensearchOutboundConnection,
-        OpensearchOutboundConnectionConnectionMode,
         OpensearchOutboundConnectionCrossClusterSearch,
         OpensearchOutboundConnectionLocalDomainInfo,
+        OpensearchOutboundConnectionMode,
         OpensearchOutboundConnectionProperties,
         OpensearchOutboundConnectionRemoteDomainInfo;
 export 'src/opensearch/aws_opensearch_package.dart'
-    show
-        AwsOpensearchPackage,
-        OpensearchPackagePackageType,
-        OpensearchPackageSource;
+    show AwsOpensearchPackage, OpensearchPackageSource, OpensearchPackageType;
 export 'src/opensearch/aws_opensearch_package_association.dart'
     show AwsOpensearchPackageAssociation;
 export 'src/opensearch/aws_opensearch_vpc_endpoint.dart'

@@ -7,13 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_outposts_capacity_task`.
 const Set<String> _awsOutpostsCapacityTaskSensitive = <String>{};
 
-/// Outposts Capacity Task Task Action On Blocking enum for `task_action_on_blocking_instances`.
-enum OutpostsCapacityTaskTaskActionOnBlockingInstances
-    implements TerraformEnum {
+/// Outposts Capacity Task Action On Blocking enum for `task_action_on_blocking_instances`.
+enum OutpostsCapacityTaskActionOnBlockingInstances implements TerraformEnum {
   waitForEvacuation('WAIT_FOR_EVACUATION'),
   failTask('FAIL_TASK');
 
-  const OutpostsCapacityTaskTaskActionOnBlockingInstances(this.terraformValue);
+  const OutpostsCapacityTaskActionOnBlockingInstances(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -58,7 +57,7 @@ final class AwsOutpostsCapacityTask extends Resource {
     TfArg<String>? orderId,
     required TfArg<String> outpostIdentifier,
     TfArg<String>? region,
-    TfArg<OutpostsCapacityTaskTaskActionOnBlockingInstances>?
+    TfArg<OutpostsCapacityTaskActionOnBlockingInstances>?
     taskActionOnBlockingInstances,
     List<OutpostsCapacityTaskInstancePool>? instancePool,
     List<OutpostsCapacityTaskInstancesToExclude>? instancesToExclude,

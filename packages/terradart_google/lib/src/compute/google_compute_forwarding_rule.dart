@@ -112,8 +112,8 @@ enum ForwardingRuleNetworkTier implements TerraformEnum {
 /// Service Directory service name to register under), distinct from
 /// the global resource which exposes `namespace` + `service_directory_region`.
 @immutable
-class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
-  const ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration({
+class ComputeForwardingRuleServiceDirectoryRegistration {
+  const ComputeForwardingRuleServiceDirectoryRegistration({
     this.namespace,
     this.service,
   });
@@ -268,7 +268,7 @@ final class GoogleComputeForwardingRule extends Resource {
     TfArg<ForwardingRuleNetworkTier>? networkTier,
     TfArg<List<String>>? sourceIpRanges,
     TfArg<String>? serviceLabel,
-    List<ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration>?
+    List<ComputeForwardingRuleServiceDirectoryRegistration>?
     serviceDirectoryRegistrations,
     TfArg<bool>? allowGlobalAccess,
     TfArg<bool>? allowPscGlobalAccess,

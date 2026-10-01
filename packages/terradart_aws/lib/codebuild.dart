@@ -47,7 +47,6 @@ export 'src/codebuild/aws_codebuild_project.dart'
         CodebuildProjectModes,
         CodebuildProjectNamespaceType,
         CodebuildProjectPackaging,
-        CodebuildProjectProjectVisibility,
         CodebuildProjectRegistryCredential,
         CodebuildProjectRestrictions,
         CodebuildProjectS3Logs,
@@ -57,6 +56,7 @@ export 'src/codebuild/aws_codebuild_project.dart'
         CodebuildProjectSecondarySourcesType,
         CodebuildProjectSource,
         CodebuildProjectStatus,
+        CodebuildProjectVisibility,
         CodebuildProjectVpcConfig;
 export 'src/codebuild/aws_codebuild_report_group.dart'
     show

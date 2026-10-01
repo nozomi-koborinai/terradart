@@ -11,8 +11,8 @@ const Set<String> _awsChimeVoiceConnectorTerminationCredentialsSensitive =
 /// Typed helper for the `credentials` block of
 /// `aws_chime_voice_connector_termination_credentials` (derived from provider schema).
 @immutable
-final class ChimeVoiceConnectorTerminationCredentialsCredentials {
-  const ChimeVoiceConnectorTerminationCredentialsCredentials({
+final class ChimeVoiceConnectorTerminationCredentials {
+  const ChimeVoiceConnectorTerminationCredentials({
     required this.password,
     required this.username,
   });
@@ -36,8 +36,7 @@ final class AwsChimeVoiceConnectorTerminationCredentials extends Resource {
     required super.localName,
     TfArg<String>? region,
     required TfArg<String> voiceConnectorId,
-    required List<ChimeVoiceConnectorTerminationCredentialsCredentials>
-    credentials,
+    required List<ChimeVoiceConnectorTerminationCredentials> credentials,
     super.lifecycle,
     super.dependsOn,
     super.provider,

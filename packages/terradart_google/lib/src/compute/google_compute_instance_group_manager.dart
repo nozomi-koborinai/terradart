@@ -69,14 +69,14 @@ enum InstanceGroupManagerUpdatePolicyReplacementMethod
 /// self-link, typically a within-batch sibling) and optionally caps how
 /// many instances run that version via [targetSize].
 ///
-/// Multiple [ComputeInstanceGroupManagerInstanceGroupManagerVersion] entries enable canary
+/// Multiple [ComputeInstanceGroupManagerVersion] entries enable canary
 /// rollouts: the MIG splits the total [GoogleComputeInstanceGroupManager.targetSize]
 /// across versions based on each version's [targetSize] (fixed count
 /// or percentage). A version without [targetSize] absorbs the
 /// remainder.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerVersion {
-  const ComputeInstanceGroupManagerInstanceGroupManagerVersion({
+class ComputeInstanceGroupManagerVersion {
+  const ComputeInstanceGroupManagerVersion({
     required this.instanceTemplate,
     this.name,
     this.targetSize,
@@ -90,8 +90,7 @@ class ComputeInstanceGroupManagerInstanceGroupManagerVersion {
   final TfArg<String>? name;
 
   /// Cap on how many instances run this version (fixed or percent).
-  final ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize?
-  targetSize;
+  final ComputeInstanceGroupManagerVersionTargetSize? targetSize;
 
   Map<String, Object?> toArgMap() => {
     'instance_template': instanceTemplate.toTfJson(),
@@ -103,8 +102,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerVersion {
 /// `version.target_size` (`max_items=1`). Exactly one of [fixed] or
 /// [percent] should be set.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize {
-  const ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize({
+class ComputeInstanceGroupManagerVersionTargetSize {
+  const ComputeInstanceGroupManagerVersionTargetSize({
     this.fixed,
     this.percent,
   });
@@ -129,8 +128,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize {
 /// for longer than the initial-delay window, the MIG recreates it.
 /// Schema marks both fields as required.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy {
-  const ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy({
+class ComputeInstanceGroupManagerAutoHealingPolicy {
+  const ComputeInstanceGroupManagerAutoHealingPolicy({
     required this.healthCheck,
     required this.initialDelaySec,
   });
@@ -155,10 +154,10 @@ class ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy {
 // ===========================================================================
 
 /// `update_policy` block. Drives how the MIG rolls a new
-/// [ComputeInstanceGroupManagerInstanceGroupManagerVersion] across its members.
+/// [ComputeInstanceGroupManagerVersion] across its members.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy {
-  const ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy({
+class ComputeInstanceGroupManagerUpdatePolicy {
+  const ComputeInstanceGroupManagerUpdatePolicy({
     required this.minimalAction,
     required this.type,
     this.mostDisruptiveAllowedAction,
@@ -222,8 +221,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy {
 /// One entry in [namedPorts]. Backend services that reference this
 /// MIG by `port_name` look up the matching [port] number here.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerNamedPort {
-  const ComputeInstanceGroupManagerInstanceGroupManagerNamedPort({
+class ComputeInstanceGroupManagerNamedPort {
+  const ComputeInstanceGroupManagerNamedPort({
     required this.name,
     required this.port,
   });
@@ -248,8 +247,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerNamedPort {
 /// [deviceName] as **stateful** — the MIG preserves the disk across
 /// VM recreates per [deleteRule].
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk {
-  const ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk({
+class ComputeInstanceGroupManagerStatefulDisk {
+  const ComputeInstanceGroupManagerStatefulDisk({
     required this.deviceName,
     this.deleteRule,
   });
@@ -271,8 +270,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk {
 /// One entry in [statefulInternalIps] / [statefulExternalIps].
 /// Both blocks share the same shape.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp {
-  const ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp({
+class ComputeInstanceGroupManagerStatefulIp {
+  const ComputeInstanceGroupManagerStatefulIp({
     this.interfaceName,
     this.deleteRule,
   });
@@ -298,8 +297,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp {
 /// every VM the MIG manages, overlaying the instance template's
 /// values.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig {
-  const ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig({
+class ComputeInstanceGroupManagerAllInstancesConfig {
+  const ComputeInstanceGroupManagerAllInstancesConfig({
     this.labels,
     this.metadata,
   });
@@ -320,8 +319,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig {
 /// `instance_lifecycle_policy` block — fine-grained behavior on
 /// failures and template updates.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy {
-  const ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy({
+class ComputeInstanceGroupManagerInstanceLifecyclePolicy {
+  const ComputeInstanceGroupManagerInstanceLifecyclePolicy({
     this.defaultActionOnFailure,
     this.forceUpdateOnRepair,
   });
@@ -348,8 +347,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy {
 /// `standby_policy` block — controls how the MIG resumes VMs from a
 /// standby pool during scale-out.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy {
-  const ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy({
+class ComputeInstanceGroupManagerStandbyPolicy {
+  const ComputeInstanceGroupManagerStandbyPolicy({
     this.initialDelaySec,
     this.mode,
   });
@@ -376,10 +375,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy {
 /// creates VMs individually or all at once to reach
 /// [GoogleComputeInstanceGroupManager.targetSize].
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy {
-  const ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy({
-    required this.mode,
-  });
+class ComputeInstanceGroupManagerTargetSizePolicy {
+  const ComputeInstanceGroupManagerTargetSizePolicy({required this.mode});
 
   /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
   final TfArg<String> mode;
@@ -394,10 +391,8 @@ class ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy {
 /// `resource_policies` block — wires the MIG to a
 /// `google_compute_resource_policy` workload policy.
 @immutable
-class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
-  const ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies({
-    this.workloadPolicy,
-  });
+class ComputeInstanceGroupManagerResourcePolicies {
+  const ComputeInstanceGroupManagerResourcePolicies({this.workloadPolicy});
 
   /// Full or partial URL of the workload policy.
   final TfArg<String>? workloadPolicy;
@@ -445,17 +440,17 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
 ///   composition explicit.
 /// - `base_instance_name`: 1-58 chars; each VM the MIG creates is named
 ///   `<base_instance_name>-<random4>`.
-/// - At least one [ComputeInstanceGroupManagerInstanceGroupManagerVersion] in [versions]; each
+/// - At least one [ComputeInstanceGroupManagerVersion] in [versions]; each
 ///   version requires an `instance_template` self-link.
 ///
 /// Cross-resource references (typical wiring):
-/// - [ComputeInstanceGroupManagerInstanceGroupManagerVersion.instanceTemplate]: self-link of a
+/// - [ComputeInstanceGroupManagerVersion.instanceTemplate]: self-link of a
 ///   `google_compute_instance_template` resource (curated as a sibling
 ///   in the same batch). The MIG creates members from this template.
-/// - [ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy.healthCheck]: self-link of a
+/// - [ComputeInstanceGroupManagerAutoHealingPolicy.healthCheck]: self-link of a
 ///   `google_compute_health_check` (or `google_compute_region_health_check`
 ///   for compatible types). When a VM fails this health check for
-///   longer than [ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
+///   longer than [ComputeInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
 ///   the MIG recreates it.
 /// - [targetPools]: self-links of `google_compute_target_pool`. New VMs
 ///   are added to these target pools; pre-existing VMs are not
@@ -474,7 +469,7 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
 ///   baseInstanceName: TfArg.literal('web'),
 ///   targetSize: TfArg.literal(3),
 ///   versions: [
-///     ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+///     ComputeInstanceGroupManagerVersion(
 ///       name: TfArg.literal('canary'),
 ///       instanceTemplate: TfArg.literal(
 ///         // var.instance_template_id — within-batch sibling self-link.
@@ -483,19 +478,19 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
 ///     ),
 ///   ],
 ///   namedPorts: [
-///     ComputeInstanceGroupManagerInstanceGroupManagerNamedPort(
+///     ComputeInstanceGroupManagerNamedPort(
 ///       name: TfArg.literal('http'),
 ///       port: TfArg.literal(80),
 ///     ),
 ///   ],
-///   autoHealingPolicies: ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy(
+///   autoHealingPolicies: ComputeInstanceGroupManagerAutoHealingPolicy(
 ///     healthCheck: TfArg.literal(
 ///       // var.health_check_id — typically a Batch 4 health check.
 ///       'projects/p/global/healthChecks/web-hc',
 ///     ),
 ///     initialDelaySec: TfArg.literal(300),
 ///   ),
-///   updatePolicy: ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy(
+///   updatePolicy: ComputeInstanceGroupManagerUpdatePolicy(
 ///     type: InstanceGroupManagerUpdatePolicyType.proactive,
 ///     minimalAction: InstanceGroupManagerUpdatePolicyAction.replace,
 ///     maxSurgeFixed: TfArg.literal(1),
@@ -524,27 +519,18 @@ final class GoogleComputeInstanceGroupManager extends Resource {
     TfArg<bool>? waitForInstances,
     TfArg<String>? waitForInstancesStatus,
     TfArg<List<String>>? targetPools,
-    required List<ComputeInstanceGroupManagerInstanceGroupManagerVersion>
-    versions,
-    List<ComputeInstanceGroupManagerInstanceGroupManagerNamedPort>? namedPorts,
-    ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy?
-    autoHealingPolicies,
-    ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy? updatePolicy,
-    ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy?
-    instanceLifecyclePolicy,
-    ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy? standbyPolicy,
-    List<ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy>?
-    targetSizePolicies,
-    ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies?
-    resourcePolicies,
-    ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig?
-    allInstancesConfig,
-    List<ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk>?
-    statefulDisks,
-    List<ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp>?
-    statefulInternalIps,
-    List<ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp>?
-    statefulExternalIps,
+    required List<ComputeInstanceGroupManagerVersion> versions,
+    List<ComputeInstanceGroupManagerNamedPort>? namedPorts,
+    ComputeInstanceGroupManagerAutoHealingPolicy? autoHealingPolicies,
+    ComputeInstanceGroupManagerUpdatePolicy? updatePolicy,
+    ComputeInstanceGroupManagerInstanceLifecyclePolicy? instanceLifecyclePolicy,
+    ComputeInstanceGroupManagerStandbyPolicy? standbyPolicy,
+    List<ComputeInstanceGroupManagerTargetSizePolicy>? targetSizePolicies,
+    ComputeInstanceGroupManagerResourcePolicies? resourcePolicies,
+    ComputeInstanceGroupManagerAllInstancesConfig? allInstancesConfig,
+    List<ComputeInstanceGroupManagerStatefulDisk>? statefulDisks,
+    List<ComputeInstanceGroupManagerStatefulIp>? statefulInternalIps,
+    List<ComputeInstanceGroupManagerStatefulIp>? statefulExternalIps,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

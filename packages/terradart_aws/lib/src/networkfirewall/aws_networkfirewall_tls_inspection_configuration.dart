@@ -11,8 +11,8 @@ const Set<String> _awsNetworkfirewallTlsInspectionConfigurationSensitive =
 /// Typed helper for the `tls_inspection_configuration` block of
 /// `aws_networkfirewall_tls_inspection_configuration` (derived from provider schema).
 @immutable
-final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration {
-  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration({
+final class NetworkfirewallTlsInspectionConfiguration {
+  const NetworkfirewallTlsInspectionConfiguration({
     this.serverCertificateConfiguration,
   });
 
@@ -241,8 +241,7 @@ final class AwsNetworkfirewallTlsInspectionConfiguration extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration>?
-    tlsInspectionConfiguration,
+    List<NetworkfirewallTlsInspectionConfiguration>? tlsInspectionConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

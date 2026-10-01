@@ -10,8 +10,8 @@ const Set<String> _googleApigeeAddonsConfigSensitive = <String>{};
 /// Typed helper for the `addons_config` block of
 /// `google_apigee_addons_config` (derived from provider schema).
 @immutable
-final class ApigeeAddonsConfigAddonsConfig {
-  const ApigeeAddonsConfigAddonsConfig({
+final class ApigeeAddonsConfig {
+  const ApigeeAddonsConfig({
     this.advancedApiOpsConfig,
     this.apiSecurityConfig,
     this.connectorsPlatformConfig,
@@ -112,7 +112,7 @@ final class GoogleApigeeAddonsConfig extends Resource {
   GoogleApigeeAddonsConfig({
     required super.localName,
     required TfArg<String> org,
-    ApigeeAddonsConfigAddonsConfig? addonsConfig,
+    ApigeeAddonsConfig? addonsConfig,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

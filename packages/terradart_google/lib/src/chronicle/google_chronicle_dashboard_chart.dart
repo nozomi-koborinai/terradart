@@ -239,8 +239,8 @@ enum ChronicleDashboardChartAxisType implements TerraformEnum {
 
 /// `chart_layout` block.
 @immutable
-class ChronicleDashboardChartChartLayout {
-  const ChronicleDashboardChartChartLayout({
+class ChronicleDashboardChartLayout {
+  const ChronicleDashboardChartLayout({
     this.startX,
     required this.spanX,
     this.startY,
@@ -494,7 +494,7 @@ class ChronicleDashboardChartQuery {
 /// Chronicle dashboard chart tile managed against a [GoogleChronicleNativeDashboard].
 ///
 /// Set [nativeDashboard] to `TfArg.ref(dashboard.nameRef)`. Use
-/// [ChronicleDashboardChartChartLayout], [ChronicleDashboardChartSpec], and
+/// [ChronicleDashboardChartLayout], [ChronicleDashboardChartSpec], and
 /// [ChronicleDashboardChartQuery] for the nested blocks.
 final class GoogleChronicleDashboardChart extends Resource {
   static const String tfType = 'google_chronicle_dashboard_chart';
@@ -504,7 +504,7 @@ final class GoogleChronicleDashboardChart extends Resource {
     required TfArg<String> location,
     required TfArg<String> instance,
     TfArg<String>? nativeDashboard,
-    ChronicleDashboardChartChartLayout? chartLayout,
+    ChronicleDashboardChartLayout? chartLayout,
     required ChronicleDashboardChartSpec dashboardChart,
     ChronicleDashboardChartQuery? dashboardQuery,
     TfArg<ChronicleDashboardChartDeletionPolicy>? deletionPolicy,

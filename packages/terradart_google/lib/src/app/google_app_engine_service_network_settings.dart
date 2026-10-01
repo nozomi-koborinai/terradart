@@ -10,10 +10,8 @@ const Set<String> _googleAppEngineServiceNetworkSettingsSensitive = <String>{};
 /// Typed helper for the `network_settings` block of
 /// `google_app_engine_service_network_settings` (derived from provider schema).
 @immutable
-final class AppEngineServiceNetworkSettingsNetworkSettings {
-  const AppEngineServiceNetworkSettingsNetworkSettings({
-    this.ingressTrafficAllowed,
-  });
+final class AppEngineServiceNetworkSettings {
+  const AppEngineServiceNetworkSettings({this.ingressTrafficAllowed});
 
   final TfArg<AppEngineServiceNetworkSettingsIngressTrafficAllowed>?
   ingressTrafficAllowed;
@@ -48,7 +46,7 @@ final class GoogleAppEngineServiceNetworkSettings extends Resource {
   GoogleAppEngineServiceNetworkSettings({
     required super.localName,
     required TfArg<String> service,
-    required AppEngineServiceNetworkSettingsNetworkSettings networkSettings,
+    required AppEngineServiceNetworkSettings networkSettings,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -106,7 +106,7 @@ customSlots:
     argMapEntry: 'source.blockKey: source.value,'
 
 dartTypeOverrides:
-  snapshot_type: ComputeSnapshotSnapshotType
+  snapshot_type: ComputeSnapshotType
 
 extraGetters: |2
     /// Reference to `name` attribute.

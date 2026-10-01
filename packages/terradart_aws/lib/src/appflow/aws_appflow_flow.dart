@@ -325,7 +325,8 @@ final class AppflowFlowDestinationConnectorPropertiesS3 {
 
   final TfArg<String>? bucketPrefix;
 
-  final AppflowFlowS3S3OutputFormatConfig? s3OutputFormatConfig;
+  final AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig?
+  s3OutputFormatConfig;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -337,8 +338,8 @@ final class AppflowFlowDestinationConnectorPropertiesS3 {
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
-final class AppflowFlowS3S3OutputFormatConfig {
-  const AppflowFlowS3S3OutputFormatConfig({
+final class AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig {
+  const AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig({
     this.fileType,
     this.preserveSourceDataTyping,
     this.aggregationConfig,

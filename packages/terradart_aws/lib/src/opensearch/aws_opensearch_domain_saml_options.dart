@@ -12,8 +12,8 @@ const Set<String> _awsOpensearchDomainSamlOptionsSensitive = <String>{
 /// Typed helper for the `saml_options` block of
 /// `aws_opensearch_domain_saml_options` (derived from provider schema).
 @immutable
-final class OpensearchDomainSamlOptionsSamlOptions {
-  const OpensearchDomainSamlOptionsSamlOptions({
+final class OpensearchDomainSamlOptions {
+  const OpensearchDomainSamlOptions({
     this.enabled,
     this.masterBackendRole,
     this.masterUserName,
@@ -75,7 +75,7 @@ final class AwsOpensearchDomainSamlOptions extends Resource {
     required super.localName,
     required TfArg<String> domainName,
     TfArg<String>? region,
-    OpensearchDomainSamlOptionsSamlOptions? samlOptions,
+    OpensearchDomainSamlOptions? samlOptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,

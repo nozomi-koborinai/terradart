@@ -10,8 +10,8 @@ const Set<String> _awsGluePartitionIndexSensitive = <String>{};
 /// Typed helper for the `partition_index` block of
 /// `aws_glue_partition_index` (derived from provider schema).
 @immutable
-final class GluePartitionIndexPartitionIndex {
-  const GluePartitionIndexPartitionIndex({this.indexName, this.keys});
+final class GluePartitionIndex {
+  const GluePartitionIndex({this.indexName, this.keys});
 
   final TfArg<String>? indexName;
 
@@ -33,7 +33,7 @@ final class AwsGluePartitionIndex extends Resource {
     required TfArg<String> databaseName,
     TfArg<String>? region,
     required TfArg<String> tableName,
-    required GluePartitionIndexPartitionIndex partitionIndex,
+    required GluePartitionIndex partitionIndex,
     super.lifecycle,
     super.dependsOn,
     super.provider,

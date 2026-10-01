@@ -9,7 +9,7 @@ extraImports:
   - "import 'package:meta/meta.dart';"
 
 dartTypeOverrides:
-  perimeter_type: AccessContextManagerServicePerimeterPerimeterType
+  perimeter_type: AccessContextManagerServicePerimeterType
 
 paramOrder:
   - name

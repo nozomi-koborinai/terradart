@@ -17,10 +17,10 @@ export 'src/timestreaminfluxdb/aws_timestreaminfluxdb_db_cluster.dart'
 export 'src/timestreaminfluxdb/aws_timestreaminfluxdb_db_instance.dart'
     show
         AwsTimestreaminfluxdbDbInstance,
-        TimestreaminfluxdbDbInstanceDbInstanceType,
         TimestreaminfluxdbDbInstanceDbStorageType,
         TimestreaminfluxdbDbInstanceDeploymentType,
         TimestreaminfluxdbDbInstanceLogDeliveryConfiguration,
         TimestreaminfluxdbDbInstanceMaintenanceSchedule,
         TimestreaminfluxdbDbInstanceNetworkType,
-        TimestreaminfluxdbDbInstanceS3Configuration;
+        TimestreaminfluxdbDbInstanceS3Configuration,
+        TimestreaminfluxdbDbInstanceType;

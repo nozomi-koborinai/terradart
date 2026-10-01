@@ -7,8 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_budgets_budget`.
 const Set<String> _awsBudgetsBudgetSensitive = <String>{};
 
-/// Budgets Budget Budget enum for `budget_type`.
-enum BudgetsBudgetBudgetType implements TerraformEnum {
+/// Budgets Budget enum for `budget_type`.
+enum BudgetsBudgetType implements TerraformEnum {
   usage('USAGE'),
   cost('COST'),
   riUtilization('RI_UTILIZATION'),
@@ -16,7 +16,7 @@ enum BudgetsBudgetBudgetType implements TerraformEnum {
   savingsPlansUtilization('SAVINGS_PLANS_UTILIZATION'),
   savingsPlansCoverage('SAVINGS_PLANS_COVERAGE');
 
-  const BudgetsBudgetBudgetType(this.terraformValue);
+  const BudgetsBudgetType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -845,7 +845,7 @@ final class AwsBudgetsBudget extends Resource {
     required super.localName,
     TfArg<String>? accountId,
     TfArg<String>? billingViewArn,
-    required TfArg<BudgetsBudgetBudgetType> budgetType,
+    required TfArg<BudgetsBudgetType> budgetType,
     TfArg<String>? limitAmount,
     TfArg<String>? limitUnit,
     BudgetsBudgetMeasure? measure,

@@ -14,7 +14,7 @@ export 'src/app/google_app_engine_application.dart'
         GoogleAppEngineApplication;
 export 'src/app/google_app_engine_application_url_dispatch_rules.dart'
     show
-        AppEngineApplicationUrlDispatchRulesDispatchRules,
+        AppEngineApplicationUrlDispatchRules,
         GoogleAppEngineApplicationUrlDispatchRules;
 export 'src/app/google_app_engine_domain_mapping.dart'
     show
@@ -56,8 +56,8 @@ export 'src/app/google_app_engine_flexible_app_version.dart'
         GoogleAppEngineFlexibleAppVersion;
 export 'src/app/google_app_engine_service_network_settings.dart'
     show
+        AppEngineServiceNetworkSettings,
         AppEngineServiceNetworkSettingsIngressTrafficAllowed,
-        AppEngineServiceNetworkSettingsNetworkSettings,
         GoogleAppEngineServiceNetworkSettings;
 export 'src/app/google_app_engine_service_split_traffic.dart'
     show

@@ -41,8 +41,8 @@ export 'src/redis/google_redis_cluster_acl_policy.dart'
 export 'src/redis/google_redis_cluster_user_created_connections.dart'
     show
         GoogleRedisClusterUserCreatedConnections,
+        RedisClusterUserCreatedConnections,
         RedisClusterUserCreatedConnectionsClusterEndpoints,
-        RedisClusterUserCreatedConnectionsConnections,
         RedisClusterUserCreatedConnectionsPscConnection;
 export 'src/redis/google_redis_instance.dart'
     show

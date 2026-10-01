@@ -9,11 +9,11 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustRiskScoringIntegrationSensitive =
     <String>{};
 
-/// Zero Trust Risk Scoring Integration Integration enum for `integration_type`.
-enum ZeroTrustRiskScoringIntegrationIntegrationType implements TerraformEnum {
+/// Zero Trust Risk Scoring Integration enum for `integration_type`.
+enum ZeroTrustRiskScoringIntegrationType implements TerraformEnum {
   okta('Okta');
 
-  const ZeroTrustRiskScoringIntegrationIntegrationType(this.terraformValue);
+  const ZeroTrustRiskScoringIntegrationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -30,8 +30,7 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
     required super.localName,
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? active,
-    required TfArg<ZeroTrustRiskScoringIntegrationIntegrationType>
-    integrationType,
+    required TfArg<ZeroTrustRiskScoringIntegrationType> integrationType,
     TfArg<String>? referenceId,
     required TfArg<String> tenantUrl,
     super.lifecycle,

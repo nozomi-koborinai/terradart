@@ -21,8 +21,8 @@ final class CloudwatchAlarmMuteRuleMuteTargets {
 /// Typed helper for the `rule` block of
 /// `aws_cloudwatch_alarm_mute_rule` (derived from provider schema).
 @immutable
-final class CloudwatchAlarmMuteRuleRule {
-  const CloudwatchAlarmMuteRuleRule({this.schedule});
+final class CloudwatchAlarmMuteRule {
+  const CloudwatchAlarmMuteRule({this.schedule});
 
   final List<CloudwatchAlarmMuteRuleSchedule>? schedule;
 
@@ -67,7 +67,7 @@ final class AwsCloudwatchAlarmMuteRule extends Resource {
     TfArg<String>? startDate,
     TfArg<Map<String, String>>? tags,
     List<CloudwatchAlarmMuteRuleMuteTargets>? muteTargets,
-    List<CloudwatchAlarmMuteRuleRule>? rule,
+    List<CloudwatchAlarmMuteRule>? rule,
     super.lifecycle,
     super.dependsOn,
     super.provider,

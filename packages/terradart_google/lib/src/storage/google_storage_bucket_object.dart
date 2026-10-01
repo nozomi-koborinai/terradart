@@ -52,7 +52,7 @@ sealed class StorageBucketObjectBody {
   /// factory uses the `blockKey` + `value` pair directly in its argMap
   /// (relying on the synth layer to unwrap the [TfArg]); this method
   /// exists for parity with other sealed-class encoders (e.g.
-  /// [StorageBucketObjectBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
+  /// [StorageBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
   /// and is exercised by the Gate 6 encode round-trip test.
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
@@ -153,8 +153,8 @@ class StorageBucketObjectCustomerEncryption {
 /// Conflicts with `eventBasedHold` at the provider level — the schema
 /// rejects both being set.
 @immutable
-class StorageBucketObjectBucketObjectRetention {
-  const StorageBucketObjectBucketObjectRetention({
+class StorageBucketObjectRetention {
+  const StorageBucketObjectRetention({
     required this.mode,
     required this.retainUntilTime,
   });
@@ -263,7 +263,7 @@ final class GoogleStorageBucketObject extends Resource {
     StorageBucketObjectContexts? contexts,
     TfArg<String>? deletionPolicy,
     StorageBucketObjectCustomerEncryption? customerEncryption,
-    StorageBucketObjectBucketObjectRetention? retention,
+    StorageBucketObjectRetention? retention,
     super.lifecycle,
     super.dependsOn,
     super.provider,

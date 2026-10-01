@@ -29,8 +29,6 @@ export 'src/macie2/aws_macie2_classification_job.dart'
         Macie2ClassificationJobIncludesAnd,
         Macie2ClassificationJobIncludesSimpleScopeTerm,
         Macie2ClassificationJobIncludesTagScopeTerm,
-        Macie2ClassificationJobJobStatus,
-        Macie2ClassificationJobJobType,
         Macie2ClassificationJobName,
         Macie2ClassificationJobNameChoice,
         Macie2ClassificationJobNamePrefix,
@@ -45,10 +43,12 @@ export 'src/macie2/aws_macie2_classification_job.dart'
         Macie2ClassificationJobScopingIncludes,
         Macie2ClassificationJobSimpleCriterion,
         Macie2ClassificationJobSimpleScopeTermKey,
+        Macie2ClassificationJobStatus,
         Macie2ClassificationJobTagCriterion,
         Macie2ClassificationJobTagScopeTermKey,
         Macie2ClassificationJobTagValues,
-        Macie2ClassificationJobTarget;
+        Macie2ClassificationJobTarget,
+        Macie2ClassificationJobType;
 export 'src/macie2/aws_macie2_custom_data_identifier.dart'
     show
         AwsMacie2CustomDataIdentifier,

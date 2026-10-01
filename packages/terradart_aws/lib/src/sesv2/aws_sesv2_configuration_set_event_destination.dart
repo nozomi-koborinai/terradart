@@ -14,8 +14,8 @@ const Set<String> _awsSesv2ConfigurationSetEventDestinationSensitive =
 /// Typed helper for the `event_destination` block of
 /// `aws_sesv2_configuration_set_event_destination` (derived from provider schema).
 @immutable
-final class Sesv2ConfigurationSetEventDestinationEventDestination {
-  const Sesv2ConfigurationSetEventDestinationEventDestination({
+final class Sesv2ConfigurationSetEventDestination {
+  const Sesv2ConfigurationSetEventDestination({
     this.enabled,
     required this.matchingEventTypes,
     required this.target,
@@ -317,8 +317,7 @@ final class AwsSesv2ConfigurationSetEventDestination extends Resource {
     required TfArg<String> configurationSetName,
     required TfArg<String> eventDestinationName,
     TfArg<String>? region,
-    required Sesv2ConfigurationSetEventDestinationEventDestination
-    eventDestination,
+    required Sesv2ConfigurationSetEventDestination eventDestination,
     super.lifecycle,
     super.dependsOn,
     super.provider,

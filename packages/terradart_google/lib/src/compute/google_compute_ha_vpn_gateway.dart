@@ -9,12 +9,12 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_compute_ha_vpn_gateway`.
 const Set<String> _googleComputeHaVpnGatewaySensitive = <String>{};
 
-/// Compute Ha Vpn Gateway Gateway Ip enum for `gateway_ip_version`.
-enum ComputeHaVpnGatewayGatewayIpVersion implements TerraformEnum {
+/// Compute Ha Vpn Gateway Ip enum for `gateway_ip_version`.
+enum ComputeHaVpnGatewayIpVersion implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
-  const ComputeHaVpnGatewayGatewayIpVersion(this.terraformValue);
+  const ComputeHaVpnGatewayIpVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -77,7 +77,7 @@ final class GoogleComputeHaVpnGateway extends Resource {
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<ComputeHaVpnGatewayGatewayIpVersion>? gatewayIpVersion,
+    TfArg<ComputeHaVpnGatewayIpVersion>? gatewayIpVersion,
     TfArg<ComputeHaVpnGatewayStackType>? stackType,
     TfArg<Map<String, String>>? labels,
     ComputeHaVpnGatewayParams? params,

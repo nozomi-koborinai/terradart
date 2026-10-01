@@ -5,18 +5,18 @@ library;
 
 export 'src/apigatewayv2/aws_apigatewayv2_api.dart'
     show
-        Apigatewayv2ApiApiKeySelectionExpression,
         Apigatewayv2ApiCorsConfiguration,
         Apigatewayv2ApiIpAddressType,
+        Apigatewayv2ApiKeySelectionExpression,
         Apigatewayv2ApiProtocolType,
         AwsApigatewayv2Api;
 export 'src/apigatewayv2/aws_apigatewayv2_api_mapping.dart'
     show AwsApigatewayv2ApiMapping;
 export 'src/apigatewayv2/aws_apigatewayv2_authorizer.dart'
     show
-        Apigatewayv2AuthorizerAuthorizerPayloadFormatVersion,
-        Apigatewayv2AuthorizerAuthorizerType,
         Apigatewayv2AuthorizerJwtConfiguration,
+        Apigatewayv2AuthorizerPayloadFormatVersion,
+        Apigatewayv2AuthorizerType,
         AwsApigatewayv2Authorizer;
 export 'src/apigatewayv2/aws_apigatewayv2_deployment.dart'
     show AwsApigatewayv2Deployment;
@@ -33,11 +33,11 @@ export 'src/apigatewayv2/aws_apigatewayv2_integration.dart'
     show
         Apigatewayv2IntegrationConnectionType,
         Apigatewayv2IntegrationContentHandlingStrategy,
-        Apigatewayv2IntegrationIntegrationType,
         Apigatewayv2IntegrationPassthroughBehavior,
         Apigatewayv2IntegrationPayloadFormatVersion,
         Apigatewayv2IntegrationResponseParameters,
         Apigatewayv2IntegrationTlsConfig,
+        Apigatewayv2IntegrationType,
         AwsApigatewayv2Integration;
 export 'src/apigatewayv2/aws_apigatewayv2_integration_response.dart'
     show

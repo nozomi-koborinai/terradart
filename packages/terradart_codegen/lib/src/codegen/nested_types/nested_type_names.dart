@@ -29,24 +29,105 @@ Set<String> rootSealedTypeNames(
   };
 }
 
+/// The type name each top-level input in [keys] — attributes and blocks
+/// alike, so an enum and a block helper never share one — takes on [stem]: [stem]
+/// joined with the input's name by [joinTypeName] (`ComputeSnapshot` +
+/// `snapshot_type` → `ComputeSnapshotType`; `Ec2InstanceState` + `state` →
+/// `Ec2InstanceState`). When inputs join alike, the one that drops the
+/// fewest words keeps the name and the others take [stem] and their name
+/// concatenated whole; on a tie all of them do.
+///
+/// [laneInputs] as for [joinStem].
+Map<String, String> topLevelTypeNames(
+  String stem,
+  Iterable<String> keys, {
+  Map<String, Set<String>> laneInputs = const {},
+}) {
+  final whole = {for (final k in keys) k: stem + snakeToPascal(k)};
+  final names = {for (final k in whole.keys) k: joinStem(stem, k, laneInputs)};
+  int dropped(String k) =>
+      pascalWords(whole[k]!).length - pascalWords(names[k]!).length;
+  while (true) {
+    final owners = <String, List<String>>{};
+    for (final MapEntry(:key, :value) in names.entries) {
+      (owners[value] ??= []).add(key);
+    }
+    final move = <String>[];
+    for (final ks in owners.values) {
+      if (ks.length < 2) continue;
+      final fewest = ks.map(dropped).reduce((a, b) => a < b ? a : b);
+      final keepers = ks.where((k) => dropped(k) == fewest).toList();
+      move.addAll(
+        ks.where(
+          (k) =>
+              names[k] != whole[k] &&
+              !(keepers.length == 1 && keepers.single == k),
+        ),
+      );
+    }
+    if (move.isEmpty) return names;
+    for (final k in move) {
+      names[k] = whole[k]!;
+    }
+  }
+}
+
+/// [segment] joined onto [stem] by [joinTypeName], unless that names a
+/// type another type of the lane takes: [laneInputs] maps every stem of the
+/// lane to the PascalCase name of every input in its schema, and when the
+/// words the join drops leave such a stem whose inputs include the rest of
+/// the join, the two are concatenated whole instead
+/// (`AutoscalingGroupTag` + `tag` → `AutoscalingGroupTagTag`, since
+/// `aws_autoscaling_group` names its own `tag` `AutoscalingGroupTag`).
+String joinStem(
+  String stem,
+  String segment,
+  Map<String, Set<String>> laneInputs,
+) {
+  final joined = joinTypeName(stem, segment);
+  final stemWords = pascalWords(stem);
+  final dropped =
+      stemWords.length +
+      pascalWords(snakeToPascal(segment)).length -
+      pascalWords(joined).length;
+  if (dropped == 0) return joined;
+  final other = stemWords.take(stemWords.length - dropped).join();
+  final inputs = laneInputs[other];
+  return inputs != null && inputs.contains(joined.substring(other.length))
+      ? stem + snakeToPascal(segment)
+      : joined;
+}
+
 /// The candidate type names for the block or enum input at [path] on
 /// [stem], in order of preference: [stem] plus its own name; then plus one
 /// ancestor and its name, nearest ancestor first; then plus the last three,
 /// four, … segments of [path]. Segments are joined with [joinTypeName]
-/// (words a segment repeats from the name so far are dropped), each
-/// followed by the same segments concatenated whole when that differs. The
+/// (words a segment repeats from the name so far are dropped); only then
+/// come the same segment lists concatenated whole, which say a word twice.
+/// A leaf that only repeats the end of [stem] takes [stem] itself
+/// (`AccessContextManagerAccessLevels` + `access_levels`) unless
+/// [allowStem] is false. The first join onto [stem] follows [joinStem]. The
 /// last candidate is [stem] plus the whole path, concatenated.
-List<String> typeNameCandidates(String stem, List<String> path) {
-  final out = <String>[];
+List<String> typeNameCandidates(
+  String stem,
+  List<String> path, {
+  bool allowStem = true,
+  Map<String, Set<String>> laneInputs = const {},
+}) {
+  final joins = <String>[];
+  final wholes = <String>[];
   void add(List<String> segments) {
     var joined = stem;
-    for (final segment in segments) {
-      final next = joinTypeName(joined, segment);
-      joined = next == joined ? joined + snakeToPascal(segment) : next;
+    for (final (i, segment) in segments.indexed) {
+      final next = i == 0
+          ? joinStem(joined, segment, laneInputs)
+          : joinTypeName(joined, segment);
+      joined = next == joined && (i > 0 || segments.length > 1)
+          ? joined + snakeToPascal(segment)
+          : next;
     }
-    for (final name in [joined, stem + segments.map(snakeToPascal).join()]) {
-      if (name != stem && !out.contains(name)) out.add(name);
-    }
+    joins.add(joined);
+    wholes.add(stem + segments.map(snakeToPascal).join());
   }
 
   final leaf = path.last;
@@ -57,9 +138,15 @@ List<String> typeNameCandidates(String stem, List<String> path) {
   for (var k = 3; k <= path.length; k++) {
     add(path.sublist(path.length - k));
   }
-  out.remove(stem + path.map(snakeToPascal).join());
-  out.add(stem + path.map(snakeToPascal).join());
-  return out;
+  final last = stem + path.map(snakeToPascal).join();
+  final all = {
+    ...joins,
+    ...wholes,
+  }.where((n) => allowStem || n != stem).toList();
+  bool stutters(String n) => repeatsAcrossJoin(stem, n.substring(stem.length));
+  final repeating = all.where(stutters).toList()
+    ..sort((a, b) => a.length.compareTo(b.length));
+  return {...all.where((n) => !stutters(n)), ...repeating, last}.toList();
 }
 
 /// Short, collision-free type names for the blocks and enum inputs at
@@ -67,18 +154,35 @@ List<String> typeNameCandidates(String stem, List<String> path) {
 /// index-aligned.
 ///
 /// Each takes the first of its [typeNameCandidates] that nothing else in
-/// the resource takes: no other path, and no name in [reserved]. On a
+/// the resource takes: no other path, and no name in [owned] or [reserved].
+/// [owned] names belong to other types outright (the top-level inputs'); a
+/// [reserved] name is one a sealed variant prefers, and a path left with no
+/// other candidate takes it (the variant then ends in `Choice`). On a
 /// collision the shorter path keeps its name and the deeper ones move to
 /// their next candidate; paths of the same depth all move. So a block
 /// named like no other block or enum input of the resource is
 /// `<stem><Name>`, and a deeper namesake is told apart by its nearest
-/// distinguishing ancestor.
+/// distinguishing ancestor. The paths at [stemless] (sealed types, whose
+/// variants are named after them) never take [stem] itself. [laneInputs]
+/// as for [joinStem]. Throws a [StateError] when a path runs out of
+/// candidates on a name another path or [owned] holds.
 List<String> conciseTypeNames(
   String stem,
   List<List<String>> paths, {
+  Set<String> owned = const {},
   Set<String> reserved = const {},
+  Set<int> stemless = const {},
+  Map<String, Set<String>> laneInputs = const {},
 }) {
-  final candidates = [for (final p in paths) typeNameCandidates(stem, p)];
+  final candidates = [
+    for (final (i, p) in paths.indexed)
+      typeNameCandidates(
+        stem,
+        p,
+        allowStem: !stemless.contains(i),
+        laneInputs: laneInputs,
+      ),
+  ];
   final at = List.filled(paths.length, 0);
   bool canMove(int i) => at[i] < candidates[i].length - 1;
 
@@ -89,7 +193,7 @@ List<String> conciseTypeNames(
     }
     final move = <int>{};
     for (final MapEntry(key: name, value: ids) in owners.entries) {
-      if (reserved.contains(name)) {
+      if (owned.contains(name) || reserved.contains(name)) {
         move.addAll(ids.where(canMove));
         continue;
       }
@@ -111,7 +215,7 @@ List<String> conciseTypeNames(
   final names = [for (var i = 0; i < paths.length; i++) candidates[i][at[i]]];
   final seen = <String>{};
   for (var i = 0; i < names.length; i++) {
-    if (!seen.add(names[i])) {
+    if (owned.contains(names[i]) || !seen.add(names[i])) {
       throw StateError(
         'no unique type name for $stem ${paths[i].join('.')}: '
         '${names[i]} is taken',

@@ -122,7 +122,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineApplicationUrlDispatchRules(
         localName: 'dispatch',
         dispatchRules: [
-          AppEngineApplicationUrlDispatchRulesDispatchRules(
+          AppEngineApplicationUrlDispatchRules(
             domain: .literal('*'),
             path: .literal('/*'),
             service: .literal('default'),
@@ -144,7 +144,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineServiceNetworkSettings(
         localName: 'default_ingress',
         service: .literal('default'),
-        networkSettings: AppEngineServiceNetworkSettingsNetworkSettings(
+        networkSettings: AppEngineServiceNetworkSettings(
           ingressTrafficAllowed: .literal(
             AppEngineServiceNetworkSettingsIngressTrafficAllowed
                 .ingressTrafficAllowedAll,

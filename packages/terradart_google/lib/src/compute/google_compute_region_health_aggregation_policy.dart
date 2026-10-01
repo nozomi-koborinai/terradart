@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRegionHealthAggregationPolicySensitive =
     <String>{};
 
-/// Compute Region Health Aggregation Policy Policy enum for `policy_type`.
-enum ComputeRegionHealthAggregationPolicyPolicyType implements TerraformEnum {
+/// Compute Region Health Aggregation Policy enum for `policy_type`.
+enum ComputeRegionHealthAggregationPolicyType implements TerraformEnum {
   dnsPublicIpPolicy('DNS_PUBLIC_IP_POLICY'),
   backendServicePolicy('BACKEND_SERVICE_POLICY');
 
-  const ComputeRegionHealthAggregationPolicyPolicyType(this.terraformValue);
+  const ComputeRegionHealthAggregationPolicyType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -39,7 +39,7 @@ final class GoogleComputeRegionHealthAggregationPolicy extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    TfArg<ComputeRegionHealthAggregationPolicyPolicyType>? policyType,
+    TfArg<ComputeRegionHealthAggregationPolicyType>? policyType,
     TfArg<num>? healthyPercentThreshold,
     TfArg<num>? minHealthyThreshold,
     TfArg<String>? description,

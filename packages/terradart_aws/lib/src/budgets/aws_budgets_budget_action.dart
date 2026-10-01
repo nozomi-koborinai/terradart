@@ -9,13 +9,13 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_budgets_budget_action`.
 const Set<String> _awsBudgetsBudgetActionSensitive = <String>{};
 
-/// Budgets Budget Action Action enum for `action_type`.
-enum BudgetsBudgetActionActionType implements TerraformEnum {
+/// Budgets Budget Action enum for `action_type`.
+enum BudgetsBudgetActionType implements TerraformEnum {
   applyIamPolicy('APPLY_IAM_POLICY'),
   applyScpPolicy('APPLY_SCP_POLICY'),
   runSsmDocuments('RUN_SSM_DOCUMENTS');
 
-  const BudgetsBudgetActionActionType(this.terraformValue);
+  const BudgetsBudgetActionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -207,7 +207,7 @@ final class AwsBudgetsBudgetAction extends Resource {
   AwsBudgetsBudgetAction({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<BudgetsBudgetActionActionType> actionType,
+    required TfArg<BudgetsBudgetActionType> actionType,
     required TfArg<BudgetsBudgetActionApprovalModel> approvalModel,
     required TfArg<String> budgetName,
     required RefTo<AwsIamRole> executionRoleArn,

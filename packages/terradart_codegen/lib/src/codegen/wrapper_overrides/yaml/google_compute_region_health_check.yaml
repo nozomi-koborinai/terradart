@@ -44,7 +44,7 @@ curatedDoc: |-
   ///     requestPath: .literal('/healthz'),
   ///     portSpecification: .useFixedPort,
   ///   ),
-  ///   logConfig: ComputeRegionHealthCheckRegionHealthCheckLogConfig(enable: .literal(true)),
+  ///   logConfig: ComputeRegionHealthCheckLogConfig(enable: .literal(true)),
   /// );
   /// ```
   ///
@@ -534,8 +534,8 @@ prelude: |
 
   /// `log_config` block. Toggles Cloud Logging export of probe results.
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
-    const ComputeRegionHealthCheckRegionHealthCheckLogConfig({this.enable});
+  class ComputeRegionHealthCheckLogConfig {
+    const ComputeRegionHealthCheckLogConfig({this.enable});
 
     /// `true` exports each probe result to Cloud Logging. Defaults to
     /// `false` (no logs).
@@ -551,5 +551,5 @@ customSlots:
     paramDeclaration: 'required ComputeRegionHealthCheckProtocol protocol'
     argMapEntry: 'protocol.blockKey: TfArg.literal(protocol.encode()),'
   log_config:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckLogConfig? logConfig'
+    paramDeclaration: 'ComputeRegionHealthCheckLogConfig? logConfig'
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

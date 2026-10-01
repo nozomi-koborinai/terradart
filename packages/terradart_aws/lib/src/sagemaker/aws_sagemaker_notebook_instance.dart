@@ -22,8 +22,8 @@ enum SagemakerNotebookInstanceDirectInternetAccess implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Sagemaker Notebook Instance Instance enum for `instance_type`.
-enum SagemakerNotebookInstanceInstanceType implements TerraformEnum {
+/// Sagemaker Notebook Instance enum for `instance_type`.
+enum SagemakerNotebookInstanceType implements TerraformEnum {
   mlT2Medium('ml.t2.medium'),
   mlT2Large('ml.t2.large'),
   mlT2Xlarge('ml.t2.xlarge'),
@@ -214,7 +214,7 @@ enum SagemakerNotebookInstanceInstanceType implements TerraformEnum {
   mlG6e24xlarge('ml.g6e.24xlarge'),
   mlG6e48xlarge('ml.g6e.48xlarge');
 
-  const SagemakerNotebookInstanceInstanceType(this.terraformValue);
+  const SagemakerNotebookInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -268,7 +268,7 @@ final class AwsSagemakerNotebookInstance extends Resource {
     TfArg<List<String>>? additionalCodeRepositories,
     TfArg<String>? defaultCodeRepository,
     TfArg<SagemakerNotebookInstanceDirectInternetAccess>? directInternetAccess,
-    required TfArg<SagemakerNotebookInstanceInstanceType> instanceType,
+    required TfArg<SagemakerNotebookInstanceType> instanceType,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? lifecycleConfigName,
     required TfArg<String> name,

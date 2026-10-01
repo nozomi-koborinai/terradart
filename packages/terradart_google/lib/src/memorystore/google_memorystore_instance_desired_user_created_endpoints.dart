@@ -13,10 +13,8 @@ _googleMemorystoreInstanceDesiredUserCreatedEndpointsSensitive = <String>{};
 /// Typed helper for the `desired_user_created_endpoints` block of
 /// `google_memorystore_instance_desired_user_created_endpoints` (derived from provider schema).
 @immutable
-final class MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpoints {
-  const MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpoints({
-    this.connections,
-  });
+final class MemorystoreInstanceDesiredUserCreatedEndpoints {
+  const MemorystoreInstanceDesiredUserCreatedEndpoints({this.connections});
 
   final List<MemorystoreInstanceDesiredUserCreatedEndpointsConnections>?
   connections;
@@ -99,9 +97,7 @@ final class GoogleMemorystoreInstanceDesiredUserCreatedEndpoints
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    List<
-      MemorystoreInstanceDesiredUserCreatedEndpointsDesiredUserCreatedEndpoints
-    >?
+    List<MemorystoreInstanceDesiredUserCreatedEndpoints>?
     desiredUserCreatedEndpoints,
     TfArg<String>? project,
     super.lifecycle,

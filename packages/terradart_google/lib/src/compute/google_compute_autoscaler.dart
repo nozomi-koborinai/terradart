@@ -34,7 +34,7 @@ enum AutoscalerMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Predictive autoscaling method for [ComputeAutoscalerAutoscalerCpuUtilization].
+/// Predictive autoscaling method for [ComputeAutoscalerCpuUtilization].
 ///
 /// - [none] — disable predictive autoscaling (default).
 /// - [optimizeAvailability] — monitor weekly load patterns and scale out
@@ -52,7 +52,7 @@ enum AutoscalerCpuPredictiveMethod implements TerraformEnum {
 /// Mirrors the API's `utilizationTargetType` enum.
 ///
 /// - [gauge] — the metric is an instantaneous reading; the autoscaler
-///   keeps it at [ComputeAutoscalerAutoscalerMetric.target].
+///   keeps it at [ComputeAutoscalerMetric.target].
 /// - [deltaPerSecond] — the metric is a per-second rate.
 /// - [deltaPerMinute] — the metric is a per-minute rate.
 enum AutoscalerMetricType implements TerraformEnum {
@@ -78,8 +78,8 @@ enum AutoscalerMetricType implements TerraformEnum {
 /// At least one signal sub-block is recommended; if none are set the GCP
 /// API falls back to CPU utilization at 0.6 (60%).
 @immutable
-class ComputeAutoscalerAutoscalerAutoscalingPolicy {
-  const ComputeAutoscalerAutoscalerAutoscalingPolicy({
+class ComputeAutoscalerAutoscalingPolicy {
+  const ComputeAutoscalerAutoscalingPolicy({
     required this.minReplicas,
     required this.maxReplicas,
     this.cooldownPeriod,
@@ -109,28 +109,26 @@ class ComputeAutoscalerAutoscalerAutoscalingPolicy {
 
   /// CPU-utilization signal. Mutually compatible with the other signal
   /// blocks; the autoscaler picks the **highest** recommended size.
-  final ComputeAutoscalerAutoscalerCpuUtilization? cpuUtilization;
+  final ComputeAutoscalerCpuUtilization? cpuUtilization;
 
   /// Load-balancing utilization signal. Requires the target MIG to sit
   /// behind a backend service with `utilization` balancing mode.
-  final ComputeAutoscalerAutoscalerLoadBalancingUtilization?
-  loadBalancingUtilization;
+  final ComputeAutoscalerLoadBalancingUtilization? loadBalancingUtilization;
 
   /// Custom Stackdriver / Cloud Monitoring metrics. Each entry defines
   /// one metric the autoscaler will observe; the policy picks the
   /// highest recommendation across all signals.
-  final List<ComputeAutoscalerAutoscalerMetric>? metrics;
+  final List<ComputeAutoscalerMetric>? metrics;
 
   /// Smoothing applied to scale-**in** decisions (replica removals).
   /// Prevents the autoscaler from shedding replicas too aggressively
   /// during traffic dips.
-  final ComputeAutoscalerAutoscalerScaleInControl? scaleInControl;
+  final ComputeAutoscalerScaleInControl? scaleInControl;
 
   /// Scheduled scaling overrides. Each entry pins a minimum replica
   /// count during a cron-defined time window. The map key becomes the
   /// schedule's `name` on the wire.
-  final Map<String, ComputeAutoscalerAutoscalerScalingSchedule>?
-  scalingSchedules;
+  final Map<String, ComputeAutoscalerScalingSchedule>? scalingSchedules;
 
   Map<String, Object?> toArgMap() => {
     'min_replicas': minReplicas.toTfJson(),
@@ -157,8 +155,8 @@ class ComputeAutoscalerAutoscalerAutoscalingPolicy {
 /// `cpu_utilization` block. Drives autoscaling against the average CPU
 /// usage of instances in the target MIG.
 @immutable
-class ComputeAutoscalerAutoscalerCpuUtilization {
-  const ComputeAutoscalerAutoscalerCpuUtilization({
+class ComputeAutoscalerCpuUtilization {
+  const ComputeAutoscalerCpuUtilization({
     required this.target,
     this.predictiveMethod,
   });
@@ -187,10 +185,8 @@ class ComputeAutoscalerAutoscalerCpuUtilization {
 /// backend-capacity utilization (HTTP(S) load balancer with
 /// `utilization` balancing mode).
 @immutable
-class ComputeAutoscalerAutoscalerLoadBalancingUtilization {
-  const ComputeAutoscalerAutoscalerLoadBalancingUtilization({
-    required this.target,
-  });
+class ComputeAutoscalerLoadBalancingUtilization {
+  const ComputeAutoscalerLoadBalancingUtilization({required this.target});
 
   /// Target fraction of backend capacity utilization (0.0..1.0). The
   /// schema marks this required; defaults to 0.8 on the API side.
@@ -207,8 +203,8 @@ class ComputeAutoscalerAutoscalerLoadBalancingUtilization {
 /// Exactly one of [target] / [singleInstanceAssignment] is typically
 /// set; the GCP API enforces the constraint at apply time.
 @immutable
-class ComputeAutoscalerAutoscalerMetric {
-  const ComputeAutoscalerAutoscalerMetric({
+class ComputeAutoscalerMetric {
+  const ComputeAutoscalerMetric({
     required this.name,
     this.target,
     this.type,
@@ -258,8 +254,8 @@ class ComputeAutoscalerAutoscalerMetric {
 /// shed replicas inside a [timeWindowSec]-second sliding window — useful
 /// for stateful workloads that need warm capacity to drain gracefully.
 @immutable
-class ComputeAutoscalerAutoscalerScaleInControl {
-  const ComputeAutoscalerAutoscalerScaleInControl({
+class ComputeAutoscalerScaleInControl {
+  const ComputeAutoscalerScaleInControl({
     this.maxScaledInReplicas,
     this.timeWindowSec,
   });
@@ -267,7 +263,7 @@ class ComputeAutoscalerAutoscalerScaleInControl {
   /// Upper bound on replicas removed within [timeWindowSec]. The schema
   /// requires at least one of [maxScaledInReplicas] / [timeWindowSec];
   /// both are typically set together.
-  final ComputeAutoscalerAutoscalerScaleInReplicas? maxScaledInReplicas;
+  final ComputeAutoscalerScaleInReplicas? maxScaledInReplicas;
 
   /// Lookback window, in seconds. The autoscaler computes a moving
   /// total of scale-in events over this duration and refuses to exceed
@@ -285,11 +281,11 @@ class ComputeAutoscalerAutoscalerScaleInControl {
 /// [fixed] count or a [percent] of the current MIG size; the schema
 /// requires at least one of the two.
 @immutable
-class ComputeAutoscalerAutoscalerScaleInReplicas {
-  const ComputeAutoscalerAutoscalerScaleInReplicas({this.fixed, this.percent});
+class ComputeAutoscalerScaleInReplicas {
+  const ComputeAutoscalerScaleInReplicas({this.fixed, this.percent});
 
   /// Fixed maximum number of VM instances that may be removed inside
-  /// the parent [ComputeAutoscalerAutoscalerScaleInControl.timeWindowSec] window. Must
+  /// the parent [ComputeAutoscalerScaleInControl.timeWindowSec] window. Must
   /// be a positive integer.
   final TfArg<int>? fixed;
 
@@ -314,8 +310,8 @@ class ComputeAutoscalerAutoscalerScaleInReplicas {
 /// a cron-defined time window. Multiple schedules may overlap; the
 /// effective floor is the maximum across all active schedules.
 @immutable
-class ComputeAutoscalerAutoscalerScalingSchedule {
-  const ComputeAutoscalerAutoscalerScalingSchedule({
+class ComputeAutoscalerScalingSchedule {
+  const ComputeAutoscalerScalingSchedule({
     required this.minRequiredReplicas,
     required this.schedule,
     required this.durationSec,
@@ -411,7 +407,7 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 ///   zone: TfArg.literal('asia-northeast1-a'),
 ///   baseInstanceName: .literal('web'),
 ///   versions: [
-///     ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+///     ComputeInstanceGroupManagerVersion(
 ///       instanceTemplate: .ref(template.selfLink),
 ///     ),
 ///   ],
@@ -421,19 +417,19 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 ///   name: TfArg.literal('web-autoscaler'),
 ///   zone: TfArg.literal('asia-northeast1-a'),
 ///   target: TfArg.ref(igm.selfLink),
-///   autoscalingPolicy: ComputeAutoscalerAutoscalerAutoscalingPolicy(
+///   autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
 ///     minReplicas: .literal(1),
 ///     maxReplicas: .literal(10),
 ///     cooldownPeriod: .literal(60),
-///     cpuUtilization: ComputeAutoscalerAutoscalerCpuUtilization(target: .literal(0.6)),
+///     cpuUtilization: ComputeAutoscalerCpuUtilization(target: .literal(0.6)),
 ///   ),
 /// );
 /// ```
 ///
 /// Naming convention: ALL nested helper types in this resource are
-/// prefixed `Autoscaler...` (e.g. [ComputeAutoscalerAutoscalerAutoscalingPolicy],
-/// [ComputeAutoscalerAutoscalerCpuUtilization], [ComputeAutoscalerAutoscalerScaleInControl],
-/// [ComputeAutoscalerAutoscalerMetric], [ComputeAutoscalerAutoscalerScalingSchedule]) to avoid colliding
+/// prefixed `Autoscaler...` (e.g. [ComputeAutoscalerAutoscalingPolicy],
+/// [ComputeAutoscalerCpuUtilization], [ComputeAutoscalerScaleInControl],
+/// [ComputeAutoscalerMetric], [ComputeAutoscalerScalingSchedule]) to avoid colliding
 /// with the parallel `RegionAutoscaler...` family on the regional
 /// sibling.
 final class GoogleComputeAutoscaler extends Resource {
@@ -444,7 +440,7 @@ final class GoogleComputeAutoscaler extends Resource {
     required TfArg<String> name,
     required TfArg<String> zone,
     required TfArg<String> target,
-    required ComputeAutoscalerAutoscalerAutoscalingPolicy autoscalingPolicy,
+    required ComputeAutoscalerAutoscalingPolicy autoscalingPolicy,
     TfArg<String>? description,
     TfArg<String>? project,
     super.lifecycle,

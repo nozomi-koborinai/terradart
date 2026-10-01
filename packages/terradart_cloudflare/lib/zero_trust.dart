@@ -110,6 +110,7 @@ export 'src/zero_trust/cloudflare_zero_trust_access_custom_page.dart'
 export 'src/zero_trust/cloudflare_zero_trust_access_group.dart'
     show
         CloudflareZeroTrustAccessGroup,
+        ZeroTrustAccessGroup,
         ZeroTrustAccessGroupAnyValidServiceToken,
         ZeroTrustAccessGroupAuthContext,
         ZeroTrustAccessGroupAuthMethod,
@@ -126,7 +127,6 @@ export 'src/zero_trust/cloudflare_zero_trust_access_group.dart'
         ZeroTrustAccessGroupExternalEvaluation,
         ZeroTrustAccessGroupGeo,
         ZeroTrustAccessGroupGithubOrganization,
-        ZeroTrustAccessGroupGroup,
         ZeroTrustAccessGroupGsuite,
         ZeroTrustAccessGroupInclude,
         ZeroTrustAccessGroupIp,
@@ -162,7 +162,7 @@ export 'src/zero_trust/cloudflare_zero_trust_access_mtls_certificate.dart'
 export 'src/zero_trust/cloudflare_zero_trust_access_mtls_hostname_settings.dart'
     show
         CloudflareZeroTrustAccessMtlsHostnameSettings,
-        ZeroTrustAccessMtlsHostnameSettingsSettings;
+        ZeroTrustAccessMtlsHostnameSettings;
 export 'src/zero_trust/cloudflare_zero_trust_access_policy.dart'
     show
         CloudflareZeroTrustAccessPolicy,
@@ -232,12 +232,12 @@ export 'src/zero_trust/cloudflare_zero_trust_device_custom_profile.dart'
         ZeroTrustDeviceCustomProfileExclude,
         ZeroTrustDeviceCustomProfileGlobalAcceleration,
         ZeroTrustDeviceCustomProfileInclude,
-        ZeroTrustDeviceCustomProfileProfileType,
         ZeroTrustDeviceCustomProfileProxyControl,
         ZeroTrustDeviceCustomProfileServiceModeV2,
         ZeroTrustDeviceCustomProfileSplitTunnel,
         ZeroTrustDeviceCustomProfileSplitTunnelExclude,
         ZeroTrustDeviceCustomProfileSplitTunnelInclude,
+        ZeroTrustDeviceCustomProfileType,
         ZeroTrustDeviceCustomProfileVirtualNetworks;
 export 'src/zero_trust/cloudflare_zero_trust_device_custom_profile_local_domain_fallback.dart'
     show
@@ -423,6 +423,7 @@ export 'src/zero_trust/cloudflare_zero_trust_gateway_proxy_endpoint.dart'
 export 'src/zero_trust/cloudflare_zero_trust_gateway_settings.dart'
     show
         CloudflareZeroTrustGatewaySettings,
+        ZeroTrustGatewaySettings,
         ZeroTrustGatewaySettingsActivityLog,
         ZeroTrustGatewaySettingsAntivirus,
         ZeroTrustGatewaySettingsBlockPage,
@@ -440,7 +441,6 @@ export 'src/zero_trust/cloudflare_zero_trust_gateway_settings.dart'
         ZeroTrustGatewaySettingsNotificationSettings,
         ZeroTrustGatewaySettingsProtocolDetection,
         ZeroTrustGatewaySettingsSandbox,
-        ZeroTrustGatewaySettingsSettings,
         ZeroTrustGatewaySettingsSettingsMode,
         ZeroTrustGatewaySettingsTlsDecrypt;
 export 'src/zero_trust/cloudflare_zero_trust_list.dart'
@@ -470,7 +470,7 @@ export 'src/zero_trust/cloudflare_zero_trust_risk_behavior.dart'
 export 'src/zero_trust/cloudflare_zero_trust_risk_scoring_integration.dart'
     show
         CloudflareZeroTrustRiskScoringIntegration,
-        ZeroTrustRiskScoringIntegrationIntegrationType;
+        ZeroTrustRiskScoringIntegrationType;
 export 'src/zero_trust/cloudflare_zero_trust_tunnel_cloudflared.dart'
     show
         CloudflareZeroTrustTunnelCloudflared,
@@ -478,8 +478,8 @@ export 'src/zero_trust/cloudflare_zero_trust_tunnel_cloudflared.dart'
 export 'src/zero_trust/cloudflare_zero_trust_tunnel_cloudflared_config.dart'
     show
         CloudflareZeroTrustTunnelCloudflaredConfig,
+        ZeroTrustTunnelCloudflaredConfig,
         ZeroTrustTunnelCloudflaredConfigAccess,
-        ZeroTrustTunnelCloudflaredConfigConfig,
         ZeroTrustTunnelCloudflaredConfigIngress,
         ZeroTrustTunnelCloudflaredConfigOriginRequest,
         ZeroTrustTunnelCloudflaredConfigSource;
@@ -492,7 +492,7 @@ export 'src/zero_trust/cloudflare_zero_trust_tunnel_warp_connector.dart'
 export 'src/zero_trust/cloudflare_zero_trust_tunnel_warp_connector_config.dart'
     show
         CloudflareZeroTrustTunnelWarpConnectorConfig,
-        ZeroTrustTunnelWarpConnectorConfigConfig,
+        ZeroTrustTunnelWarpConnectorConfig,
         ZeroTrustTunnelWarpConnectorConfigHaMode,
         ZeroTrustTunnelWarpConnectorConfigVips,
         ZeroTrustTunnelWarpConnectorConfigVipsPrevious;

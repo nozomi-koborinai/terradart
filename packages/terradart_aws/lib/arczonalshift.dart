@@ -5,7 +5,7 @@ library;
 
 export 'src/arczonalshift/aws_arczonalshift_autoshift_observer_notification_status.dart'
     show
-        ArczonalshiftAutoshiftObserverNotificationStatusStatus,
+        ArczonalshiftAutoshiftObserverNotificationStatus,
         AwsArczonalshiftAutoshiftObserverNotificationStatus;
 export 'src/arczonalshift/aws_arczonalshift_zonal_autoshift_configuration.dart'
     show

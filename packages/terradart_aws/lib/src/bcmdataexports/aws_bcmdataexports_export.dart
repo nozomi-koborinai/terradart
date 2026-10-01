@@ -12,8 +12,8 @@ const Set<String> _awsBcmdataexportsExportSensitive = <String>{};
 /// Typed helper for the `export` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
-final class BcmdataexportsExportExport {
-  const BcmdataexportsExportExport({
+final class BcmdataexportsExport {
+  const BcmdataexportsExport({
     this.description,
     required this.name,
     this.dataQuery,
@@ -206,7 +206,7 @@ final class AwsBcmdataexportsExport extends Resource {
   AwsBcmdataexportsExport({
     required super.localName,
     TfArg<Map<String, String>>? tags,
-    List<BcmdataexportsExportExport>? export,
+    List<BcmdataexportsExport>? export,
     super.lifecycle,
     super.dependsOn,
     super.provider,

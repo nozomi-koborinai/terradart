@@ -10,12 +10,12 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_dax_cluster`.
 const Set<String> _awsDaxClusterSensitive = <String>{};
 
-/// Dax Cluster Cluster Endpoint Encryption enum for `cluster_endpoint_encryption_type`.
-enum DaxClusterClusterEndpointEncryptionType implements TerraformEnum {
+/// Dax Cluster Endpoint Encryption enum for `cluster_endpoint_encryption_type`.
+enum DaxClusterEndpointEncryptionType implements TerraformEnum {
   none('NONE'),
   tls('TLS');
 
-  const DaxClusterClusterEndpointEncryptionType(this.terraformValue);
+  const DaxClusterEndpointEncryptionType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -38,8 +38,7 @@ final class AwsDaxCluster extends Resource {
   AwsDaxCluster({
     required super.localName,
     TfArg<List<String>>? availabilityZones,
-    TfArg<DaxClusterClusterEndpointEncryptionType>?
-    clusterEndpointEncryptionType,
+    TfArg<DaxClusterEndpointEncryptionType>? clusterEndpointEncryptionType,
     required TfArg<String> clusterName,
     TfArg<String>? description,
     required RefTo<AwsIamRole> iamRoleArn,

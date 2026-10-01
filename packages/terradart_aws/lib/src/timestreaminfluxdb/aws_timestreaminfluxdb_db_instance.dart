@@ -12,8 +12,8 @@ const Set<String> _awsTimestreaminfluxdbDbInstanceSensitive = <String>{
   'password',
 };
 
-/// Timestreaminfluxdb Db Instance Db Instance enum for `db_instance_type`.
-enum TimestreaminfluxdbDbInstanceDbInstanceType implements TerraformEnum {
+/// Timestreaminfluxdb Db Instance enum for `db_instance_type`.
+enum TimestreaminfluxdbDbInstanceType implements TerraformEnum {
   dbInfluxMedium('db.influx.medium'),
   dbInfluxLarge('db.influx.large'),
   dbInfluxXlarge('db.influx.xlarge'),
@@ -24,7 +24,7 @@ enum TimestreaminfluxdbDbInstanceDbInstanceType implements TerraformEnum {
   dbInflux16xlarge('db.influx.16xlarge'),
   dbInflux24xlarge('db.influx.24xlarge');
 
-  const TimestreaminfluxdbDbInstanceDbInstanceType(this.terraformValue);
+  const TimestreaminfluxdbDbInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -122,7 +122,7 @@ final class AwsTimestreaminfluxdbDbInstance extends Resource {
     required super.localName,
     required TfArg<num> allocatedStorage,
     required TfArg<String> bucket,
-    required TfArg<TimestreaminfluxdbDbInstanceDbInstanceType> dbInstanceType,
+    required TfArg<TimestreaminfluxdbDbInstanceType> dbInstanceType,
     TfArg<String>? dbParameterGroupIdentifier,
     TfArg<TimestreaminfluxdbDbInstanceDbStorageType>? dbStorageType,
     TfArg<TimestreaminfluxdbDbInstanceDeploymentType>? deploymentType,

@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securityhub_automation_rule`.
 const Set<String> _awsSecurityhubAutomationRuleSensitive = <String>{};
 
-/// Securityhub Automation Rule Rule enum for `rule_status`.
-enum SecurityhubAutomationRuleRuleStatus implements TerraformEnum {
+/// Securityhub Automation Rule enum for `rule_status`.
+enum SecurityhubAutomationRuleStatus implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const SecurityhubAutomationRuleRuleStatus(this.terraformValue);
+  const SecurityhubAutomationRuleStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -182,19 +182,20 @@ enum SecurityhubAutomationRuleLabel implements TerraformEnum {
 final class SecurityhubAutomationRuleWorkflow {
   const SecurityhubAutomationRuleWorkflow({this.status});
 
-  final TfArg<SecurityhubAutomationRuleStatus>? status;
+  final TfArg<SecurityhubAutomationRuleFindingFieldsUpdateStatus>? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum SecurityhubAutomationRuleStatus implements TerraformEnum {
+enum SecurityhubAutomationRuleFindingFieldsUpdateStatus
+    implements TerraformEnum {
   newCase('NEW'),
   notified('NOTIFIED'),
   resolved('RESOLVED'),
   suppressed('SUPPRESSED');
 
-  const SecurityhubAutomationRuleStatus(this.terraformValue);
+  const SecurityhubAutomationRuleFindingFieldsUpdateStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -1270,7 +1271,7 @@ final class AwsSecurityhubAutomationRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<num> ruleOrder,
-    TfArg<SecurityhubAutomationRuleRuleStatus>? ruleStatus,
+    TfArg<SecurityhubAutomationRuleStatus>? ruleStatus,
     TfArg<Map<String, String>>? tags,
     List<SecurityhubAutomationRuleActions>? actions,
     List<SecurityhubAutomationRuleCriteria>? criteria,

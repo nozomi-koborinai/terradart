@@ -29,18 +29,18 @@ extraGetters: |2
 
 prelude: |
   /// `search_engine_config.search_tier`.
-  enum DiscoveryEngineSearchEngineSearchTier implements TerraformEnum {
+  enum DiscoveryEngineSearchEngineTier implements TerraformEnum {
     searchTierStandard('SEARCH_TIER_STANDARD'),
     searchTierEnterprise('SEARCH_TIER_ENTERPRISE');
 
-    const DiscoveryEngineSearchEngineSearchTier(this.terraformValue);
+    const DiscoveryEngineSearchEngineTier(this.terraformValue);
     @override
     final String terraformValue;
   }
 
 dartTypeOverrides:
   industry_vertical: DiscoveryEngineSearchEngineIndustryVertical
-  search_engine_config.search_tier: DiscoveryEngineSearchEngineSearchTier
+  search_engine_config.search_tier: DiscoveryEngineSearchEngineTier
 
 
 extraImports:

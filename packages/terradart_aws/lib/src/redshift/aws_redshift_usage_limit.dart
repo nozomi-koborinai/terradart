@@ -31,12 +31,12 @@ enum RedshiftUsageLimitFeatureType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Redshift Usage Limit Limit enum for `limit_type`.
-enum RedshiftUsageLimitLimitType implements TerraformEnum {
+/// Redshift Usage Limit enum for `limit_type`.
+enum RedshiftUsageLimitType implements TerraformEnum {
   time('time'),
   dataScanned('data-scanned');
 
-  const RedshiftUsageLimitLimitType(this.terraformValue);
+  const RedshiftUsageLimitType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -62,7 +62,7 @@ final class AwsRedshiftUsageLimit extends Resource {
     TfArg<RedshiftUsageLimitBreachAction>? breachAction,
     required TfArg<String> clusterIdentifier,
     required TfArg<RedshiftUsageLimitFeatureType> featureType,
-    required TfArg<RedshiftUsageLimitLimitType> limitType,
+    required TfArg<RedshiftUsageLimitType> limitType,
     TfArg<RedshiftUsageLimitPeriod>? period,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

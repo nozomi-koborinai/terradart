@@ -10,8 +10,8 @@ const Set<String> _awsLakeformationLfTagExpressionSensitive = <String>{};
 /// Typed helper for the `expression` block of
 /// `aws_lakeformation_lf_tag_expression` (derived from provider schema).
 @immutable
-final class LakeformationLfTagExpressionExpression {
-  const LakeformationLfTagExpressionExpression({
+final class LakeformationLfTagExpression {
+  const LakeformationLfTagExpression({
     required this.tagKey,
     required this.tagValues,
   });
@@ -38,7 +38,7 @@ final class AwsLakeformationLfTagExpression extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    List<LakeformationLfTagExpressionExpression>? expression,
+    List<LakeformationLfTagExpression>? expression,
     super.lifecycle,
     super.dependsOn,
     super.provider,

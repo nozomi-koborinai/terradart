@@ -12,8 +12,8 @@ const Set<String> _cloudflareWaitingRoomRulesSensitive = <String>{};
 /// Typed helper for the `rules` block of
 /// `cloudflare_waiting_room_rules` (derived from provider schema).
 @immutable
-final class WaitingRoomRulesRules {
-  const WaitingRoomRulesRules({
+final class WaitingRoomRules {
+  const WaitingRoomRules({
     required this.action,
     this.description,
     this.enabled,
@@ -57,7 +57,7 @@ final class CloudflareWaitingRoomRules extends Resource {
     required super.localName,
     required TfArg<String> waitingRoomId,
     required RefTo<CloudflareZone> zoneId,
-    required List<WaitingRoomRulesRules> rules,
+    required List<WaitingRoomRules> rules,
     super.lifecycle,
     super.dependsOn,
     super.provider,

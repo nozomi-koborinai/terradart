@@ -145,7 +145,7 @@ prelude: |
   }
 
   /// VPC flow log metadata-inclusion mode. Pair `customMetadata` with the
-  /// [ComputeSubnetworkSubnetworkLogConfig.metadataFields] selector.
+  /// [ComputeSubnetworkLogConfig.metadataFields] selector.
   enum SubnetworkLogConfigMetadata implements TerraformEnum {
     includeAllMetadata('INCLUDE_ALL_METADATA'),
     excludeAllMetadata('EXCLUDE_ALL_METADATA'),
@@ -209,8 +209,8 @@ prelude: |
   /// logging is not supported when the subnetwork `purpose` is
   /// `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
   @immutable
-  class ComputeSubnetworkSubnetworkLogConfig {
-    const ComputeSubnetworkSubnetworkLogConfig({
+  class ComputeSubnetworkLogConfig {
+    const ComputeSubnetworkLogConfig({
       this.aggregationInterval,
       this.flowSampling,
       this.metadata,
@@ -254,5 +254,5 @@ customSlots:
     paramDeclaration: "List<ComputeSubnetworkSecondaryIpRange>? secondaryIpRange"
     argMapEntry: "if (secondaryIpRange != null) 'secondary_ip_range': TfArg.literal(secondaryIpRange.map((s) => s.toArgMap()).toList()),"
   log_config:
-    paramDeclaration: "ComputeSubnetworkSubnetworkLogConfig? logConfig"
+    paramDeclaration: "ComputeSubnetworkLogConfig? logConfig"
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

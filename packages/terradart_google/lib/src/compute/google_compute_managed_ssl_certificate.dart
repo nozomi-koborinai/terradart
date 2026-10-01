@@ -35,10 +35,8 @@ enum ManagedSslCertificateType implements TerraformEnum {
 ///   to the load balancer fronting this certificate before issuance can
 ///   complete (typically 30-60 minutes of DNS validation per domain).
 @immutable
-class ComputeManagedSslCertificateManagedSslCertificateConfig {
-  const ComputeManagedSslCertificateManagedSslCertificateConfig({
-    required this.domains,
-  });
+class ComputeManagedSslCertificateConfig {
+  const ComputeManagedSslCertificateConfig({required this.domains});
 
   /// Domain names to include on the certificate. Required.
   final List<String> domains;
@@ -65,7 +63,7 @@ class ComputeManagedSslCertificateManagedSslCertificateConfig {
 /// - `name`: GCP resource name. Managed and self-managed SSL certificates
 ///   share a single namespace — must be unique across both resource types
 ///   in the project.
-/// - `managed`: one [ComputeManagedSslCertificateManagedSslCertificateConfig]
+/// - `managed`: one [ComputeManagedSslCertificateConfig]
 ///   carrying the list of domains. Required in practice.
 ///
 /// Provisioning notes:
@@ -89,7 +87,7 @@ class ComputeManagedSslCertificateManagedSslCertificateConfig {
 /// final lbCert = GoogleComputeManagedSslCertificate(
 ///   localName: 'lb_cert',
 ///   name: TfArg.literal('lb-managed-cert'),
-///   managed: const ComputeManagedSslCertificateManagedSslCertificateConfig(
+///   managed: const ComputeManagedSslCertificateConfig(
 ///     domains: ['api.example.com', 'www.example.com'],
 ///   ),
 /// );
@@ -100,7 +98,7 @@ final class GoogleComputeManagedSslCertificate extends Resource {
   GoogleComputeManagedSslCertificate({
     required super.localName,
     TfArg<String>? name,
-    ComputeManagedSslCertificateManagedSslCertificateConfig? managed,
+    ComputeManagedSslCertificateConfig? managed,
     TfArg<ManagedSslCertificateType>? type,
     TfArg<String>? description,
     TfArg<String>? project,

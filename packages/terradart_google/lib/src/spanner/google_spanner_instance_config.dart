@@ -21,7 +21,7 @@ final class SpannerInstanceConfigReplicas {
 
   final TfArg<String>? location;
 
-  final TfArg<SpannerInstanceConfigType>? type;
+  final TfArg<SpannerInstanceConfigReplicasType>? type;
 
   Map<String, Object?> encode() => {
     'default_leader_location': ?defaultLeaderLocation?.toTfJson(),
@@ -31,12 +31,12 @@ final class SpannerInstanceConfigReplicas {
 }
 
 /// `type` — derived from the provider schema description.
-enum SpannerInstanceConfigType implements TerraformEnum {
+enum SpannerInstanceConfigReplicasType implements TerraformEnum {
   readWrite('READ_WRITE'),
   readOnly('READ_ONLY'),
   witness('WITNESS');
 
-  const SpannerInstanceConfigType(this.terraformValue);
+  const SpannerInstanceConfigReplicasType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -70,7 +70,7 @@ enum SpannerInstanceConfigType implements TerraformEnum {
 ///   replicas: [
 ///     SpannerInstanceConfigReplicas(
 ///       location: TfArg.literal('us-west1'),
-///       type: TfArg.literal(SpannerInstanceConfigType.readOnly),
+///       type: TfArg.literal(SpannerInstanceConfigReplicasType.readOnly),
 ///       defaultLeaderLocation: TfArg.literal(false),
 ///     ),
 ///   ],

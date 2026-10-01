@@ -16,13 +16,13 @@ enum DirectoryServiceTrustSelectiveAuth implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Directory Service Trust Trust enum for `trust_direction`.
-enum DirectoryServiceTrustTrustDirection implements TerraformEnum {
+/// Directory Service Trust enum for `trust_direction`.
+enum DirectoryServiceTrustDirection implements TerraformEnum {
   oneWayOutgoing('One-Way: Outgoing'),
   oneWayIncoming('One-Way: Incoming'),
   twoWay('Two-Way');
 
-  const DirectoryServiceTrustTrustDirection(this.terraformValue);
+  const DirectoryServiceTrustDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -39,7 +39,7 @@ final class AwsDirectoryServiceTrust extends Resource {
     TfArg<String>? region,
     required TfArg<String> remoteDomainName,
     TfArg<DirectoryServiceTrustSelectiveAuth>? selectiveAuth,
-    required TfArg<DirectoryServiceTrustTrustDirection> trustDirection,
+    required TfArg<DirectoryServiceTrustDirection> trustDirection,
     required TfArg<String> trustPassword,
     TfArg<String>? trustType,
     super.lifecycle,
