@@ -181,7 +181,7 @@ final class AssetsStack extends Stack {
         serverId: .literal('assets-sftp'),
         userId: .literal('assets-reader'),
         location: .literal('asia-northeast1'),
-        customerServiceAccount: .ref(reader.email),
+        customerServiceAccount: reader.ref,
         storageDirectoryMappings: [
           StorageFtpUserStorageDirectoryMappings(
             bucket: assets.ref,

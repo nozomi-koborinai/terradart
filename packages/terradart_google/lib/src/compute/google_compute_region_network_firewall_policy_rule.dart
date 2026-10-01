@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_network_firewall_policy.dart'
+    show GoogleComputeRegionNetworkFirewallPolicy;
+
 /// Sensitive field paths for `google_compute_region_network_firewall_policy_rule`.
 const Set<String> _googleComputeRegionNetworkFirewallPolicyRuleSensitive =
     <String>{};
@@ -188,7 +191,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags {
 /// ```dart
 /// GoogleComputeRegionNetworkFirewallPolicyRule(
 ///   localName: 'allow_https',
-///   firewallPolicy: TfArg.ref(policy.nameRef),
+///   firewallPolicy: policy.ref,
 ///   region: TfArg.literal('asia-northeast1'),
 ///   priority: TfArg.literal(1000),
 ///   action: TfArg.literal('allow'),
@@ -212,7 +215,7 @@ final class GoogleComputeRegionNetworkFirewallPolicyRule extends Resource {
 
   GoogleComputeRegionNetworkFirewallPolicyRule({
     required super.localName,
-    required TfArg<String> firewallPolicy,
+    required RefTo<GoogleComputeRegionNetworkFirewallPolicy> firewallPolicy,
     TfArg<String>? region,
     required TfArg<num> priority,
     required TfArg<String> action,
@@ -233,7 +236,7 @@ final class GoogleComputeRegionNetworkFirewallPolicyRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'firewall_policy': firewallPolicy,
+           'firewall_policy': firewallPolicy.encodeAs('name'),
            'region': ?region,
            'priority': priority,
            'action': action,

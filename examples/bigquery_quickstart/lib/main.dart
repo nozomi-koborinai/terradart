@@ -200,7 +200,7 @@ final class AnalyticsStack extends Stack {
         assignee: .literal('projects/$projectId'),
         jobType: .literal(.query),
         location: .literal('asia-northeast1'),
-        reservation: .ref(slotsReservation.nameRef),
+        reservation: slotsReservation.ref,
       ),
     );
 
@@ -208,7 +208,7 @@ final class AnalyticsStack extends Stack {
       GoogleBigqueryRowAccessPolicy(
         localName: 'events_tenant_filter',
         datasetId: dataset.ref,
-        tableId: .ref(eventsTable.tableIdRef),
+        tableId: eventsTable.ref,
         policyId: .literal('tenant-filter'),
         filterPredicate: .literal('tenant_id = SESSION_USER()'),
       ),
@@ -383,7 +383,7 @@ final class AnalyticsStack extends Stack {
         localName: 'daily_events_rollup',
         displayName: .literal('Daily events rollup'),
         dataSourceId: .literal('scheduled_query'),
-        destinationDatasetId: .ref(dataset.datasetIdRef),
+        destinationDatasetId: dataset.ref,
         location: .literal('asia-northeast1'),
         schedule: .literal('every 24 hours'),
         params: .literal({

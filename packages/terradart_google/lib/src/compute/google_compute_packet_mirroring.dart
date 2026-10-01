@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_forwarding_rule.dart'
+    show GoogleComputeForwardingRule;
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_packet_mirroring`.
 const Set<String> _googleComputePacketMirroringSensitive = <String>{};
 
@@ -23,9 +29,11 @@ enum ComputePacketMirroringEnable implements TerraformEnum {
 final class ComputePacketMirroringCollectorIlb {
   const ComputePacketMirroringCollectorIlb({required this.url});
 
-  final TfArg<String> url;
+  final RefTo<GoogleComputeForwardingRule> url;
 
-  Map<String, Object?> encode() => {'url': url.toTfJson()};
+  Map<String, Object?> encode() => {
+    'url': url.encodeAs('self_link').toTfJson(),
+  };
 }
 
 /// Typed helper for the `filter` block of
@@ -93,9 +101,11 @@ final class ComputePacketMirroringMirroredResources {
 final class ComputePacketMirroringInstances {
   const ComputePacketMirroringInstances({required this.url});
 
-  final TfArg<String> url;
+  final RefTo<GoogleComputeInstance> url;
 
-  Map<String, Object?> encode() => {'url': url.toTfJson()};
+  Map<String, Object?> encode() => {
+    'url': url.encodeAs('self_link').toTfJson(),
+  };
 }
 
 /// Typed helper for the `mirrored_resources.subnetworks` block of
@@ -104,9 +114,11 @@ final class ComputePacketMirroringInstances {
 final class ComputePacketMirroringSubnetworks {
   const ComputePacketMirroringSubnetworks({required this.url});
 
-  final TfArg<String> url;
+  final RefTo<GoogleComputeSubnetwork> url;
 
-  Map<String, Object?> encode() => {'url': url.toTfJson()};
+  Map<String, Object?> encode() => {
+    'url': url.encodeAs('self_link').toTfJson(),
+  };
 }
 
 /// Typed helper for the `network` block of
@@ -115,9 +127,11 @@ final class ComputePacketMirroringSubnetworks {
 final class ComputePacketMirroringNetwork {
   const ComputePacketMirroringNetwork({required this.url});
 
-  final TfArg<String> url;
+  final RefTo<GoogleComputeNetwork> url;
 
-  Map<String, Object?> encode() => {'url': url.toTfJson()};
+  Map<String, Object?> encode() => {
+    'url': url.encodeAs('self_link').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_packet_mirroring`.

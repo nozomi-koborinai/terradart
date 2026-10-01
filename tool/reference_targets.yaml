@@ -22,6 +22,14 @@
 # A resource's entry also covers the same input of its data source; key a
 # data-source-only input `data.<type>.<path>`.
 #
+# A section entry `- mm: resource-refs` also types every Magic Modules
+# `ResourceRef` input of a curated resource (`resource: 'Router'`,
+# `imports: 'name'` in the lane's `<schemaDir>/mm/`) as a reference to that
+# resource of the same product, emitting the attribute it imports. The
+# rules above it win on an input both match; its own `attributes` /
+# `exclude` cover the rest, and wrap fails on one that names no
+# `ResourceRef` input.
+#
 # A section entry `- inherit: <provider source>` takes that section's rules
 # for a lane whose inputs name the other lane's resources (google-beta →
 # `terradart_google`, `referencesFrom:` in tool/providers.yaml). Its own
@@ -36,10 +44,24 @@
 # (`reference input not typed:`).
 
 hashicorp/google:
+  - mm: resource-refs
+    attributes:
+      # The hub's URI; its `name` is the short name.
+      google_network_connectivity_spoke.hub: id
+    exclude:
+      # Also a managed SSL certificate.
+      - google_compute_target_https_proxy.ssl_certificates
+      - google_compute_target_ssl_proxy.ssl_certificates
+  # Upstream's ResourceRef names `Disk`.
+  - target: google_compute_region_disk
+    attribute: name
+    slots: '^disk$'
+    types: '^google_compute_region_disk_resource_policy_attachment$'
   - target: google_compute_network
     attribute: id
-    slots: '(^|\.)(network|network_self_link|network_uri|vpc_network|authorized_network|consumer_network|peer_network)$'
+    slots: '(^|\.)(network|network_self_link|network_uri|vpc_network|authorized_network|consumer_network|peer_network|private_network|network_url|linked_vpc_network\.uri)$'
     attributes:
+      google_sql_database_instance.settings.ip_configuration.private_network: self_link
       google_cloudfunctions2_function.service_config.direct_vpc_network_interface.network: name
       google_compute_network_peering_routes_config.network: name
       google_container_cluster.node_pool.network_config.additional_node_network_configs.network: name
@@ -136,7 +158,7 @@ hashicorp/google:
       - google_pubsub_lite_subscription.topic
   - target: google_bigquery_dataset
     attribute: dataset_id
-    slots: '(^|\.)dataset_id$'
+    slots: '(^|\.)(dataset_id|destination_dataset_id)$'
     attributes:
       google_datastream_stream.destination_config.bigquery_destination_config.single_target_dataset.dataset_id: id
     exclude:
@@ -188,11 +210,309 @@ hashicorp/google:
     attribute: repository_group_id
     slots: '^repository_group_id$'
     types: '^google_gemini_repository_group_iam_'
-
+  # Parents of hand-written or non-ResourceRef children. `(?!.*_iam_)`
+  # leaves IAM adjuncts to their parent-ref slot.
+  - target: google_compute_network
+    attribute: self_link
+    slots: '^attachment_target$'
+    types: '^google_compute_(region_)?network_firewall_policy_association$'
+  - target: google_compute_global_address
+    attribute: name
+    slots: '(^|\.)ip_configuration\.allocated_ip_range$|^network_config\.allocated_ip_range$'
+    types: '^google_(sql_database_instance|alloydb_cluster)$'
+  - target: google_sql_database_instance
+    attribute: name
+    slots: '^instance$'
+    types: '^google_sql_'
+  - target: google_alloydb_cluster
+    attribute: id
+    slots: '^cluster_name$'
+    types: '^google_alloydb_backup$'
+  - target: google_compute_disk
+    attribute: name
+    slots: '^disk$'
+    types: '^google_compute_disk_resource_policy_attachment$'
+  - target: google_compute_resource_policy
+    attribute: name
+    slots: '^name$'
+    types: '_resource_policy_attachment$'
+  - target: google_compute_router
+    attribute: name
+    slots: '^router$'
+    types: '^google_compute_router_(interface|peer)$'
+  - target: google_compute_instance_group_manager
+    attribute: name
+    slots: '^instance_group_manager$'
+    types: '^google_compute_(bulk_per_instance_config|per_instance_config|resize_request)$'
+  - target: google_compute_organization_security_policy
+    attribute: id
+    slots: '^policy_id$'
+    types: '^google_compute_organization_security_policy_'
+  - target: google_compute_public_advertised_prefix
+    attribute: id
+    slots: '^parent_prefix$'
+    types: '^google_compute_public_delegated_prefix$'
+  - target: google_compute_security_policy
+    attribute: name
+    slots: '^security_policy$'
+    types: '^google_compute_(security_policy_rule|backend_service)$'
+    attributes:
+      google_compute_backend_service.security_policy: self_link
+  - target: google_compute_region_security_policy
+    attribute: name
+    slots: '^security_policy$'
+    types: '^google_compute_region_security_policy_rule$'
+  - target: google_container_cluster
+    attribute: name
+    slots: '^cluster$'
+    types: '^google_container_node_pool$'
+  - target: google_container_cluster
+    attribute: id
+    slots: '^cluster$|^endpoint\.gke_cluster\.resource_link$'
+    types: '^google_(gke_backup_(backup|restore)_plan|gke_hub_membership)$'
+  - target: google_gke_backup_backup_plan
+    attribute: id
+    slots: '^backup_plan$'
+    types: '^google_gke_backup_restore_plan$'
+  - target: google_gke_hub_scope
+    attribute: scope_id
+    slots: '^scope_id$'
+    types: '^google_gke_hub_(?!.*_iam_)'
+  - target: google_bigtable_instance
+    attribute: name
+    slots: '^(instance|instance_name)$'
+    types: '^google_bigtable_(?!.*_iam_)'
+  - target: google_bigtable_table
+    attribute: name
+    slots: '^(table|table_name)$'
+    types: '^google_bigtable_(?!.*_iam_)'
+  - target: google_bigquery_table
+    attribute: table_id
+    slots: '^table_id$'
+    types: '^google_bigquery_row_access_policy$'
+  - target: google_firestore_database
+    attribute: name
+    slots: '^database$'
+    types: '^google_firestore_'
+  - target: google_kms_key_ring
+    attribute: id
+    slots: '^key_ring$'
+    types: '^google_kms_'
+  - target: google_data_catalog_entry_group
+    attribute: id
+    slots: '^entry_group$'
+    types: '^google_data_catalog_entry$'
+  - target: google_data_catalog_tag_template
+    attribute: id
+    slots: '^template$'
+    types: '^google_data_catalog_tag$'
+  - target: google_data_catalog_taxonomy
+    attribute: id
+    slots: '^taxonomy$'
+    types: '^google_data_catalog_policy_tag$'
+  - target: google_data_loss_prevention_inspect_template
+    attribute: name
+    slots: '(^|\.)inspect_template_name$'
+  - target: google_dataplex_lake
+    attribute: name
+    slots: '^lake$'
+    types: '^google_dataplex_(?!.*_iam_)'
+  - target: google_dataplex_zone
+    attribute: name
+    slots: '^dataplex_zone$'
+    types: '^google_dataplex_(?!.*_iam_)'
+  - target: google_dataplex_data_product
+    attribute: data_product_id
+    slots: '^data_product_id$'
+    types: '^google_dataplex_(?!.*_iam_)'
+  - target: google_dialogflow_version
+    attribute: id
+    slots: '^agent_version$'
+    types: '^google_dialogflow_environment$'
+  - target: google_discovery_engine_data_store
+    attribute: data_store_id
+    slots: '^data_store_id$'
+    types: '^google_discovery_engine_(schema|sitemap|target_site)$'
+  - target: google_discovery_engine_search_engine
+    attribute: engine_id
+    slots: '^engine_id$'
+    types: '^google_discovery_engine_(control|serving_config)$'
+  - target: google_dns_managed_zone
+    attribute: name
+    slots: '^managed_zone$'
+    types: '^google_dns_(?!.*_iam_)'
+  - target: google_document_ai_processor
+    attribute: id
+    slots: '^processor$'
+    types: '^google_document_ai_processor_default_version$'
+  - target: google_eventarc_message_bus
+    attribute: name
+    slots: '^(destination|message_bus)$'
+    types: '^google_eventarc_(google_api_source|enrollment)$'
+    exclude:
+      # A pipeline (the rule below).
+      - google_eventarc_enrollment.destination
+  - target: google_eventarc_pipeline
+    attribute: name
+    slots: '^destination$'
+    types: '^google_eventarc_enrollment$'
+  - target: google_filestore_instance
+    attribute: name
+    slots: '^(source_instance|instance)$'
+    types: '^google_filestore_(?!.*_iam_)'
+    attributes:
+      google_filestore_backup.source_instance: id
+  - target: google_firebase_app_hosting_backend
+    attribute: backend_id
+    slots: '^backend$'
+    types: '^google_firebase_app_hosting_'
+  - target: google_firebase_app_hosting_build
+    attribute: build_id
+    slots: '^target\.splits\.build$'
+    types: '^google_firebase_app_hosting_traffic$'
+  - target: google_iam_workload_identity_pool
+    attribute: workload_identity_pool_id
+    slots: '^workload_identity_pool_id$'
+    types: '^google_iam_workload_identity_pool_(?!iam_)'
+  - target: google_identity_platform_tenant
+    attribute: name
+    slots: '^tenant$'
+    types: '^google_identity_platform_tenant_'
+  - target: google_logging_project_bucket_config
+    attribute: id
+    slots: '^(bucket|bucket_name)$'
+    types: '^google_logging_(linked_dataset|log_view|metric)$'
+  - target: google_migration_center_source
+    attribute: name
+    slots: '^(source|asset_source)$'
+    types: '^google_migration_center_(discovery_client|import_job)$'
+  - target: google_network_security_gateway_security_policy
+    attribute: name
+    slots: '^gateway_security_policy$'
+  - target: google_network_security_ull_mirroring_engine
+    attribute: name
+    slots: '^engine$'
+    types: '^google_network_security_ull_mirroring_collector$'
+  - target: google_network_security_ull_mirroring_collector
+    attribute: name
+    slots: '^ull_mirroring_collector$'
+  - target: google_oracle_database_odb_network
+    attribute: name
+    slots: '^odb_network$'
+    types: '^google_oracle_database_'
+  - target: google_oracle_database_odb_subnet
+    attribute: name
+    slots: '^(odb_subnet|backup_odb_subnet)$'
+    types: '^google_oracle_database_'
+  - target: google_oracle_database_cloud_exadata_infrastructure
+    attribute: id
+    slots: '^exadata_infrastructure$'
+    types: '^google_oracle_database_cloud_vm_cluster$'
+  - target: google_oracle_database_exascale_db_storage_vault
+    attribute: id
+    slots: '(^|\.)exascale_db_storage_vault$'
+  - target: google_oracle_database_goldengate_connection
+    attribute: name
+    slots: '^properties\.goldengate_connection$'
+  - target: google_oracle_database_goldengate_deployment
+    attribute: name
+    slots: '^properties\.goldengate_deployment$'
+  - target: google_privateca_ca_pool
+    attribute: name
+    slots: '^pool$|\.ca_pool$'
+    types: '^google_(privateca_certificate|privateca_certificate_authority|certificate_manager_certificate_issuance_config)$'
+    attributes:
+      google_certificate_manager_certificate_issuance_config.certificate_authority_config.certificate_authority_service_config.ca_pool: id
+  - target: google_privateca_certificate_template
+    attribute: id
+    slots: '^certificate_template$'
+    types: '^google_privateca_certificate$'
+  - target: google_secret_manager_secret
+    attribute: id
+    slots: '(^|\.)secret_key_ref\.secret$|\.volumes\.secret\.secret$'
+    types: '^google_cloud_run_v2_'
+  - target: google_service_directory_namespace
+    attribute: id
+    slots: '^namespace$'
+    types: '^google_service_directory_service$'
+  - target: google_service_directory_service
+    attribute: id
+    slots: '^service$'
+    types: '^google_service_directory_endpoint$'
+  - target: google_storage_bucket_object
+    attribute: name
+    slots: '(^|\.)storage_source\.object$|^object$'
+    types: '^google_(cloudfunctions2_function|storage_object_acl)$'
+  - target: google_tags_tag_key
+    attribute: id
+    slots: '^parent$'
+    types: '^google_tags_tag_value$'
+  - target: google_tags_tag_value
+    attribute: id
+    slots: '^tag_value$'
+    types: '^google_tags_(location_)?tag_binding$'
+  - target: google_vector_search_collection
+    attribute: collection_id
+    slots: '^collection_id$'
+    types: '^google_vector_search_'
+  - target: google_vertex_ai_feature_group
+    attribute: name
+    slots: '^feature_group$'
+    types: '^google_vertex_ai_(?!.*_iam_)'
+  - target: google_artifact_registry_repository
+    attribute: repository_id
+    slots: '^repository_id$'
+    types: '^google_artifact_registry_(?!.*_iam_)'
+  - target: google_biglake_catalog
+    attribute: id
+    slots: '^catalog$'
+    types: '^google_biglake_database$'
+  - target: google_biglake_database
+    attribute: id
+    slots: '^database$'
+    types: '^google_biglake_table$'
+  - target: google_biglake_iceberg_catalog
+    attribute: name
+    slots: '^catalog$'
+    types: '^google_biglake_iceberg_(namespace|table)$'
+  - target: google_biglake_iceberg_namespace
+    attribute: namespace_id
+    slots: '^namespace$'
+    types: '^google_biglake_iceberg_table$'
+  - target: google_ces_app_version
+    attribute: name
+    slots: '^app_version$'
+    types: '^google_ces_deployment$'
+  - target: google_ces_agent
+    attribute: name
+    slots: '^entry_agent$'
+    types: '^google_ces_example$'
+  - target: google_ces_toolset
+    attribute: name
+    slots: '(^|\.)toolset$'
+    types: '^google_ces_'
+  - target: google_migration_center_group
+    attribute: name
+    slots: '^group_preferenceset_assignments\.group$'
+  - target: google_migration_center_preference_set
+    attribute: name
+    slots: '(^|\.)preference_set$'
+    types: '^google_migration_center_'
+  - target: google_service_account
+    attribute: email
+    slots: '^customer_service_account$'
+    types: '^google_storage_ftp_user$'
+  - target: google_chronicle_native_dashboard
+    attribute: name
+    slots: '^native_dashboard$'
+  - target: google_clouddeploy_delivery_pipeline
+    attribute: name
+    slots: '^delivery_pipeline$'
+    types: '^google_clouddeploy_(?!.*_iam_)'
 hashicorp/aws:
   - target: aws_iam_role
     attribute: arn
-    slots: '(^|\.)(role_arn|execution_role_arn|task_role_arn|service_role_arn|iam_role_arn|service_role|iam_service_role_arn|invocation_role_arn|job_role_arn|source_role_arn)$'
+    slots: '(^|\.)(role_arn|execution_role_arn|task_role_arn|service_role_arn|iam_role_arn|service_role|iam_service_role_arn|invocation_role_arn|job_role_arn|source_role_arn|infrastructure_role_arn)$'
   - target: aws_iam_role
     attribute: name
     slots: '(^|\.)(role|roles|role_name|iam_role_name)$'
@@ -297,6 +617,28 @@ hashicorp/aws:
       - aws_cloudfront_distribution.ordered_cache_behavior.function_association.function_arn
       - aws_cloudfront_multitenant_distribution.cache_behavior.function_association.function_arn
       - aws_cloudfront_multitenant_distribution.default_cache_behavior.function_association.function_arn
+  - target: aws_acm_certificate
+    attribute: arn
+    slots: '(^|\.)acm_certificate_arn$|^certificate_arn$'
+    types: '^aws_(cloudfront_|acm_)'
+  - target: aws_cloudfront_origin_access_control
+    attribute: id
+    slots: '(^|\.)origin_access_control_id$'
+  - target: aws_cloudfront_cache_policy
+    attribute: id
+    slots: '(^|\.)cache_policy_id$'
+  - target: aws_ecr_repository
+    attribute: name
+    slots: '^repository$'
+    types: '^aws_ecr_'
+  - target: aws_ecs_cluster
+    attribute: arn
+    slots: '^cluster$'
+    types: '^aws_ecs_'
+  - target: aws_route53_zone
+    attribute: zone_id
+    slots: '^zone_id$'
+    types: '^aws_route53_'
 
 cloudflare/cloudflare:
   - target: cloudflare_account
@@ -343,6 +685,7 @@ appwrite/appwrite:
     types: '^appwrite_postgresql_'
 
 hashicorp/google-beta:
+  - mm: resource-refs
   - inherit: hashicorp/google
     attributes:
       # As on google_dataflow_job.

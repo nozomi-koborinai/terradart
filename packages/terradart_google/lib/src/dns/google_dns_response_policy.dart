@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_dns_response_policy`.
 const Set<String> _googleDnsResponsePolicySensitive = <String>{};
 
@@ -26,9 +28,11 @@ final class DnsResponsePolicyGkeClusters {
 final class DnsResponsePolicyNetworks {
   const DnsResponsePolicyNetworks({required this.networkUrl});
 
-  final TfArg<String> networkUrl;
+  final RefTo<GoogleComputeNetwork> networkUrl;
 
-  Map<String, Object?> encode() => {'network_url': networkUrl.toTfJson()};
+  Map<String, Object?> encode() => {
+    'network_url': networkUrl.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_dns_response_policy`.

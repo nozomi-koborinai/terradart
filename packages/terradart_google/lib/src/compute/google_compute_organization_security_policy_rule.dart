@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_organization_security_policy.dart'
+    show GoogleComputeOrganizationSecurityPolicy;
+
 /// Sensitive field paths for `google_compute_organization_security_policy_rule`.
 const Set<String> _googleComputeOrganizationSecurityPolicyRuleSensitive =
     <String>{};
@@ -264,7 +267,7 @@ final class GoogleComputeOrganizationSecurityPolicyRule extends Resource {
     required TfArg<String> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
-    required TfArg<String> policyId,
+    required RefTo<GoogleComputeOrganizationSecurityPolicy> policyId,
     TfArg<bool>? preview,
     required TfArg<num> priority,
     ComputeOrganizationSecurityPolicyRuleHeaderAction? headerAction,
@@ -282,7 +285,7 @@ final class GoogleComputeOrganizationSecurityPolicyRule extends Resource {
            'action': action,
            'deletion_policy': ?deletionPolicy,
            'description': ?description,
-           'policy_id': policyId,
+           'policy_id': policyId.encodeAs('id'),
            'preview': ?preview,
            'priority': priority,
            if (headerAction != null)

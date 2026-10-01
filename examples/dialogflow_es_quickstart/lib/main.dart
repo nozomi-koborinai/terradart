@@ -101,7 +101,7 @@ final class DialogflowEsStack extends Stack {
         localName: 'dev',
         environmentid: .literal('terradartes'),
         location: .literal('global'),
-        agentVersion: .ref(version.id),
+        agentVersion: version.ref,
         description: .literal('terradart es env'),
         dependsOn: [...onAgent, ResourceDependency(version)],
       ),

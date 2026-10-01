@@ -11,6 +11,7 @@ import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
@@ -384,6 +385,116 @@ void main() {
         ], complete: false).errors,
         isEmpty,
       );
+    });
+  });
+
+  group('MM ResourceRef inputs', () {
+    final vm = const MmYamlParser().parseString('''
+name: Vm
+parameters:
+  - name: zoneNetwork
+    type: String
+properties:
+  - name: network
+    type: ResourceRef
+    resource: Network
+    imports: selfLink
+  - name: networks
+    type: Array
+    item_type:
+      type: ResourceRef
+      resource: Network
+      imports: name
+  - name: nic
+    type: NestedObject
+    properties:
+      - name: network
+        type: ResourceRef
+        resource: Network
+        imports: selfLink
+''');
+
+    ReferenceResolution resolve({
+      List<ReferenceRule> rules = const [],
+      MmReferenceRule mmRule = const MmReferenceRule(),
+    }) => resolveReferences(
+      rules: rules,
+      resourceSchemas: _blocks('resource_schemas'),
+      curated: const ['google_x_network', 'google_x_vm'],
+      targetDirs: const {'google_x_network': 'x', 'google_x_vm': 'x'},
+      mmRule: mmRule,
+      mm: {'google_x_vm': vm},
+    );
+
+    test('the parser records every ResourceRef by snake-cased path', () {
+      expect(vm.name, 'Vm');
+      expect(vm.resourceRefs, {
+        'network': (resource: 'Network', imports: 'selfLink'),
+        'networks': (resource: 'Network', imports: 'name'),
+        'nic.network': (resource: 'Network', imports: 'selfLink'),
+      });
+    });
+
+    test('types each input as the same-product resource it imports', () {
+      final r = resolve();
+      expect(r.errors, isEmpty);
+      final refs = r.byResource['google_x_vm']!;
+      expect(refs['network']!.dartType, 'RefTo<GoogleXNetwork>');
+      expect(refs['network']!.attribute, 'self_link');
+      expect(refs['networks']!.attribute, 'name');
+      expect(refs['nic.network']!.attribute, 'self_link');
+    });
+
+    test('explicit rules win, and attributes / exclude adjust the rest', () {
+      final r = resolve(
+        rules: [
+          ReferenceRule(
+            target: 'google_x_network',
+            attribute: 'name',
+            slots: RegExp(r'^network$'),
+          ),
+        ],
+        mmRule: const MmReferenceRule(
+          attributes: {'google_x_vm.networks': 'self_link'},
+          exclude: {'google_x_vm.nic.network'},
+        ),
+      );
+      expect(r.errors, isEmpty);
+      final refs = r.byResource['google_x_vm']!;
+      expect(refs.keys, unorderedEquals(['network', 'networks']));
+      expect(refs['network']!.attribute, 'name');
+      expect(refs['networks']!.attribute, 'self_link');
+    });
+
+    test('reports an entry that names no ResourceRef input', () {
+      final r = resolve(
+        mmRule: const MmReferenceRule(exclude: {'google_x_vm.name'}),
+      );
+      expect(r.errors, [
+        'mm: "google_x_vm.name" is not a ResourceRef input of a curated type',
+      ]);
+    });
+
+    test('loadMmReferenceRule reads the entry beside the rules', () {
+      final tmp = Directory.systemTemp.createTempSync('mmrefs');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final path = p.join(tmp.path, 'refs.yaml');
+      File(path).writeAsStringSync('''
+hashicorp/google:
+  - mm: resource-refs
+    attributes:
+      google_x_vm.network: id
+    exclude:
+      - google_x_vm.nic.network
+  - target: google_x_network
+    attribute: id
+    slots: '^networks\$'
+''');
+      final rule = loadMmReferenceRule(path, 'hashicorp/google')!;
+      expect(rule.attributes, {'google_x_vm.network': 'id'});
+      expect(rule.exclude, {'google_x_vm.nic.network'});
+      expect(loadReferenceRules(path, 'hashicorp/google'), hasLength(1));
+      expect(loadMmReferenceRule(path, 'hashicorp/aws'), isNull);
     });
   });
 

@@ -47,7 +47,7 @@ curatedDoc: |-
   ///     // self-link from Batch 2.
   ///     'projects/p/global/healthChecks/api-hc',
   ///   ]),
-  ///   securityPolicy: TfArg.literal(
+  ///   securityPolicy: .literal(
   ///     // var.security_policy_id — see Cloud Armor curation in Batch 4.
   ///     'projects/p/global/securityPolicies/edge-deny-all',
   ///   ),

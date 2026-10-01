@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_backend_service.dart'
+    show GoogleComputeBackendService;
+import '../compute/google_compute_ssl_policy.dart' show GoogleComputeSslPolicy;
+
 /// Sensitive field paths for `google_compute_target_ssl_proxy`.
 const Set<String> _googleComputeTargetSslProxySensitive = <String>{};
 
@@ -24,14 +28,14 @@ final class GoogleComputeTargetSslProxy extends Resource {
 
   GoogleComputeTargetSslProxy({
     required super.localName,
-    required TfArg<String> backendService,
+    required RefTo<GoogleComputeBackendService> backendService,
     TfArg<String>? certificateMap,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<TargetSslProxyProxyHeader>? proxyHeader,
     TfArg<List<String>>? sslCertificates,
-    TfArg<String>? sslPolicy,
+    RefTo<GoogleComputeSslPolicy>? sslPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -39,14 +43,14 @@ final class GoogleComputeTargetSslProxy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backend_service': backendService,
+           'backend_service': backendService.encodeAs('self_link'),
            'certificate_map': ?certificateMap,
            'description': ?description,
            'name': name,
            'project': ?project,
            'proxy_header': ?proxyHeader,
            'ssl_certificates': ?sslCertificates,
-           'ssl_policy': ?sslPolicy,
+           'ssl_policy': ?sslPolicy?.encodeAs('self_link'),
          },
        );
 

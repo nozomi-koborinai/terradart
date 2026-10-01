@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gkeonprem/google_gkeonprem_bare_metal_cluster.dart'
+    show GoogleGkeonpremBareMetalCluster;
+
 /// Sensitive field paths for `google_gkeonprem_bare_metal_node_pool`.
 const Set<String> _googleGkeonpremBareMetalNodePoolSensitive = <String>{};
 
@@ -116,7 +119,7 @@ final class GoogleGkeonpremBareMetalNodePool extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> bareMetalCluster,
+    required RefTo<GoogleGkeonpremBareMetalCluster> bareMetalCluster,
     required GkeonpremBareMetalNodePoolConfig nodePoolConfig,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,
@@ -131,7 +134,7 @@ final class GoogleGkeonpremBareMetalNodePool extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'bare_metal_cluster': bareMetalCluster,
+           'bare_metal_cluster': bareMetalCluster.encodeAs('name'),
            'node_pool_config': TfArg.literal(nodePoolConfig.encode()),
            'display_name': ?displayName,
            'annotations': ?annotations,

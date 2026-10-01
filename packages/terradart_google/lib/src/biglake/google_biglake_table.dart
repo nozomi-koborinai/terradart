@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_database.dart' show GoogleBiglakeDatabase;
+
 /// Sensitive field paths for `google_biglake_table`.
 const Set<String> _googleBiglakeTableSensitive = <String>{};
 
@@ -79,7 +81,7 @@ final class GoogleBiglakeTable extends Resource {
   GoogleBiglakeTable({
     required super.localName,
     required TfArg<String> name,
-    TfArg<String>? database,
+    RefTo<GoogleBiglakeDatabase>? database,
     TfArg<String>? type,
     BiglakeTableHiveOptions? hiveOptions,
     TfArg<String>? deletionPolicy,
@@ -91,7 +93,7 @@ final class GoogleBiglakeTable extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'database': ?database,
+           'database': ?database?.encodeAs('id'),
            'type': ?type,
            if (hiveOptions != null)
              'hive_options': TfArg.literal(hiveOptions.encode()),

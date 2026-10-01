@@ -18,7 +18,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleBigtableTable(
   ///   localName: 'events',
-  ///   instanceName: TfArg.ref(instance.nameRef),
+  ///   instanceName: instance.ref,
   ///   name: TfArg.literal('events'),
   ///   columnFamily: [
   ///     BigtableTableColumnFamily(family: TfArg.literal('cf1')),

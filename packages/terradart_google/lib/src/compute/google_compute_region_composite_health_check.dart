@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_forwarding_rule.dart'
+    show GoogleComputeForwardingRule;
+
 /// Sensitive field paths for `google_compute_region_composite_health_check`.
 const Set<String> _googleComputeRegionCompositeHealthCheckSensitive =
     <String>{};
@@ -23,7 +26,7 @@ final class GoogleComputeRegionCompositeHealthCheck extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    required TfArg<String> healthDestination,
+    required RefTo<GoogleComputeForwardingRule> healthDestination,
     TfArg<List<String>>? healthSources,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,
@@ -37,7 +40,7 @@ final class GoogleComputeRegionCompositeHealthCheck extends Resource {
          argMap: {
            'name': name,
            'region': region,
-           'health_destination': healthDestination,
+           'health_destination': healthDestination.encodeAs('self_link'),
            'health_sources': ?healthSources,
            'description': ?description,
            'deletion_policy': ?deletionPolicy,

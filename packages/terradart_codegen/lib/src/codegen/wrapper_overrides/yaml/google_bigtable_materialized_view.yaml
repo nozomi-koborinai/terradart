@@ -19,7 +19,7 @@ curatedDoc: |-
   /// GoogleBigtableMaterializedView(
   ///   localName: 'daily_counts',
   ///   materializedViewId: TfArg.literal('daily-counts'),
-  ///   instance: TfArg.ref(instance.nameRef),
+  ///   instance: instance.ref,
   ///   query: TfArg.literal(
   ///     'SELECT COUNT(*) AS cnt FROM events GROUP BY day',
   ///   ),

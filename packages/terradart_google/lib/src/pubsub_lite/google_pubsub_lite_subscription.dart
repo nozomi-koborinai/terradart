@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub_lite/google_pubsub_lite_topic.dart'
+    show GooglePubsubLiteTopic;
+
 /// Sensitive field paths for `google_pubsub_lite_subscription`.
 const Set<String> _googlePubsubLiteSubscriptionSensitive = <String>{};
 
@@ -50,7 +53,7 @@ final class GooglePubsubLiteSubscription extends Resource {
   GooglePubsubLiteSubscription({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> topic,
+    required RefTo<GooglePubsubLiteTopic> topic,
     TfArg<String>? region,
     TfArg<String>? zone,
     PubsubLiteSubscriptionDeliveryConfig? deliveryConfig,
@@ -64,7 +67,7 @@ final class GooglePubsubLiteSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'topic': topic,
+           'topic': topic.encodeAs('name'),
            'region': ?region,
            'zone': ?zone,
            if (deliveryConfig != null)

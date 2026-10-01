@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_container_cluster.dart' show GoogleContainerCluster;
+
 /// Sensitive field paths for `google_gke_backup_backup_plan`.
 const Set<String> _googleGkeBackupBackupPlanSensitive = <String>{};
 
@@ -333,7 +335,7 @@ final class GoogleGkeBackupBackupPlan extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> cluster,
+    required RefTo<GoogleContainerCluster> cluster,
     TfArg<String>? description,
     TfArg<bool>? deactivated,
     TfArg<Map<String, String>>? labels,
@@ -350,7 +352,7 @@ final class GoogleGkeBackupBackupPlan extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('id'),
            'description': ?description,
            'deactivated': ?deactivated,
            'labels': ?labels,

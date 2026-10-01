@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../oracle/google_oracle_database_odb_network.dart'
+    show GoogleOracleDatabaseOdbNetwork;
+import '../oracle/google_oracle_database_odb_subnet.dart'
+    show GoogleOracleDatabaseOdbSubnet;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_oracle_database_goldengate_connection`.
@@ -1839,8 +1843,8 @@ final class GoogleOracleDatabaseGoldengateConnection extends Resource {
     required TfArg<String> location,
     required TfArg<String> goldengateConnectionId,
     required OracleDatabaseGoldengateConnectionProperties properties,
-    TfArg<String>? odbSubnet,
-    TfArg<String>? odbNetwork,
+    RefTo<GoogleOracleDatabaseOdbSubnet>? odbSubnet,
+    RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     TfArg<String>? gcpOracleZone,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseGoldengateConnectionDeletionPolicy>? deletionPolicy,
@@ -1856,8 +1860,8 @@ final class GoogleOracleDatabaseGoldengateConnection extends Resource {
            'location': location,
            'goldengate_connection_id': goldengateConnectionId,
            'properties': TfArg.literal(properties.encode()),
-           'odb_subnet': ?odbSubnet,
-           'odb_network': ?odbNetwork,
+           'odb_subnet': ?odbSubnet?.encodeAs('name'),
+           'odb_network': ?odbNetwork?.encodeAs('name'),
            'gcp_oracle_zone': ?gcpOracleZone,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

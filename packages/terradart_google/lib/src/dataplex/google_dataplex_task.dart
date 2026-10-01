@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
@@ -457,7 +458,7 @@ final class GoogleDataplexTask extends Resource {
     required super.localName,
     TfArg<String>? taskId,
     TfArg<String>? location,
-    TfArg<String>? lake,
+    RefTo<GoogleDataplexLake>? lake,
     required DataplexTaskWorkload workload,
     required DataplexTaskTriggerSpec triggerSpec,
     required DataplexTaskExecutionSpec executionSpec,
@@ -475,7 +476,7 @@ final class GoogleDataplexTask extends Resource {
          argMap: {
            'task_id': ?taskId,
            'location': ?location,
-           'lake': ?lake,
+           'lake': ?lake?.encodeAs('name'),
            'display_name': ?displayName,
            'description': ?description,
            'labels': ?labels,

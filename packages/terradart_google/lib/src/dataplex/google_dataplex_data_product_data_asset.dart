@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_data_product.dart'
+    show GoogleDataplexDataProduct;
+
 /// Sensitive field paths for `google_dataplex_data_product_data_asset`.
 const Set<String> _googleDataplexDataProductDataAssetSensitive = <String>{};
 
@@ -34,7 +37,7 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
 
   GoogleDataplexDataProductDataAsset({
     required super.localName,
-    required TfArg<String> dataProductId,
+    required RefTo<GoogleDataplexDataProduct> dataProductId,
     required TfArg<String> dataAssetId,
     required TfArg<String> location,
     required TfArg<String> resource,
@@ -49,7 +52,7 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_product_id': dataProductId,
+           'data_product_id': dataProductId.encodeAs('data_product_id'),
            'data_asset_id': dataAssetId,
            'location': location,
            'resource': resource,

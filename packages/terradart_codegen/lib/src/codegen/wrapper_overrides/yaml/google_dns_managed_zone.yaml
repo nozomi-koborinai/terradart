@@ -53,6 +53,9 @@ extraGetters: |2
     /// Reference to `dns_name` attribute (the trailing-dot DNS name).
     TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');
 
+extraImports:
+  - "import '../compute/google_compute_network.dart' show GoogleComputeNetwork;"
+
 dartTypeOverrides:
   visibility: DnsZoneVisibility
 
@@ -158,8 +161,10 @@ prelude: |
   /// One entry inside `private_visibility_config.networks`.
   class DnsManagedZonePrivateVisibilityNetwork {
     const DnsManagedZonePrivateVisibilityNetwork({required this.networkUrl});
-    final TfArg<String> networkUrl;
-    Map<String, Object?> toArgMap() => {'network_url': networkUrl};
+    final RefTo<GoogleComputeNetwork> networkUrl;
+    Map<String, Object?> toArgMap() => {
+          'network_url': networkUrl.encodeAs('id').toTfJson(),
+        };
   }
 
   /// `dnssec_config` block. `kind` is rarely overridden; defaults to
@@ -217,8 +222,10 @@ prelude: |
   /// `peering_config.target_network` single sub-block (`max_items=1`).
   class DnsManagedZonePeeringTargetNetwork {
     const DnsManagedZonePeeringTargetNetwork({required this.networkUrl});
-    final TfArg<String> networkUrl;
-    Map<String, Object?> toArgMap() => {'network_url': networkUrl};
+    final RefTo<GoogleComputeNetwork> networkUrl;
+    Map<String, Object?> toArgMap() => {
+          'network_url': networkUrl.encodeAs('id').toTfJson(),
+        };
   }
 
   /// `forwarding_config` block. At least one `targetNameServers` entry.

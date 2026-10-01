@@ -3,6 +3,14 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_ssl_certificate.dart'
+    show GoogleComputeRegionSslCertificate;
+import '../compute/google_compute_region_ssl_policy.dart'
+    show GoogleComputeRegionSslPolicy;
+import '../compute/google_compute_region_url_map.dart'
+    show GoogleComputeRegionUrlMap;
+import '../compute/google_compute_ssl_policy.dart' show GoogleComputeSslPolicy;
+
 /// Sensitive field paths for `google_compute_region_target_https_proxy`.
 const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 
@@ -21,7 +29,7 @@ sealed class ComputeRegionTargetHttpsProxyCertificates {
 
   /// Sets `ssl_certificates`.
   const factory ComputeRegionTargetHttpsProxyCertificates.sslCertificates(
-    TfArg<List<String>> sslCertificates,
+    TfArg<List<RefTo<GoogleComputeRegionSslCertificate>>> sslCertificates,
   ) = ComputeRegionTargetHttpsProxySslCertificates;
 
   /// The Terraform argument this choice sets.
@@ -63,19 +71,19 @@ final class ComputeRegionTargetHttpsProxySslCertificates
     extends ComputeRegionTargetHttpsProxyCertificates {
   const ComputeRegionTargetHttpsProxySslCertificates(this.sslCertificates);
 
-  final TfArg<List<String>> sslCertificates;
+  final TfArg<List<RefTo<GoogleComputeRegionSslCertificate>>> sslCertificates;
 
   @override
   String get blockKey => 'ssl_certificates';
 
   @override
   Map<String, Object?> encode() => {
-    'ssl_certificates': sslCertificates.toTfJson(),
+    'ssl_certificates': sslCertificates.encodeAs('self_link').toTfJson(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'ssl_certificates': sslCertificates,
+    'ssl_certificates': sslCertificates.encodeAs('self_link'),
   };
 }
 
@@ -134,14 +142,14 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 /// final httpsProxy = GoogleComputeRegionTargetHttpsProxy(
 ///   localName: 'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
-///   urlMap: TfArg.ref(regionUrlMap.selfLink),
+///   urlMap: regionUrlMap.ref,
 ///   region: TfArg.literal('us-central1'),
 ///   certificates: .sslCertificates(
 ///     TfArg.literal(const [
 ///       'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
 ///     ]),
 ///   ),
-///   sslPolicy: TfArg.ref(regionSslPolicy.selfLink),
+///   sslPolicy: regionSslPolicy.ref,
 /// );
 /// ```
 ///
@@ -163,11 +171,11 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   GoogleComputeRegionTargetHttpsProxy({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> urlMap,
+    required RefTo<GoogleComputeRegionUrlMap> urlMap,
     required TfArg<String> region,
     ComputeRegionTargetHttpsProxyCertificates? certificates,
-    TfArg<String>? sslPolicy,
-    TfArg<String>? serverTlsPolicy,
+    RefTo<GoogleComputeRegionSslPolicy>? sslPolicy,
+    RefTo<GoogleComputeSslPolicy>? serverTlsPolicy,
     TfArg<num>? httpKeepAliveTimeoutSec,
     TfArg<String>? description,
     TfArg<String>? project,
@@ -179,11 +187,11 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'url_map': urlMap,
+           'url_map': urlMap.encodeAs('self_link'),
            'region': region,
            ...?certificates?.argMap,
-           'ssl_policy': ?sslPolicy,
-           'server_tls_policy': ?serverTlsPolicy,
+           'ssl_policy': ?sslPolicy?.encodeAs('self_link'),
+           'server_tls_policy': ?serverTlsPolicy?.encodeAs('self_link'),
            'http_keep_alive_timeout_sec': ?httpKeepAliveTimeoutSec,
            'description': ?description,
            'project': ?project,

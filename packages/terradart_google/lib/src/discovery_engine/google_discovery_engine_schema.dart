@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_data_store.dart'
+    show GoogleDiscoveryEngineDataStore;
+
 /// Sensitive field paths for `google_discovery_engine_schema`.
 const Set<String> _googleDiscoveryEngineSchemaSensitive = <String>{};
 
@@ -26,7 +29,7 @@ final class GoogleDiscoveryEngineSchema extends Resource {
   GoogleDiscoveryEngineSchema({
     required super.localName,
     required TfArg<String> location,
-    required TfArg<String> dataStoreId,
+    required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> schemaId,
     TfArg<String>? jsonSchema,
     TfArg<String>? deletionPolicy,
@@ -39,7 +42,7 @@ final class GoogleDiscoveryEngineSchema extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'data_store_id': dataStoreId,
+           'data_store_id': dataStoreId.encodeAs('data_store_id'),
            'schema_id': schemaId,
            'json_schema': ?jsonSchema,
            'deletion_policy': ?deletionPolicy,

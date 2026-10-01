@@ -31,7 +31,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleLoggingLinkedDataset(
   ///   localName: 'audit_analytics',
-  ///   bucket: TfArg.ref(auditBucket.bucketIdRef),
+  ///   bucket: auditBucket.ref,
   ///   linkId: TfArg.literal('audit-analytics'),
   ///   bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
   ///     datasetId: TfArg.ref(dataset.datasetIdRef),

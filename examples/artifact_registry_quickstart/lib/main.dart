@@ -64,7 +64,7 @@ final class ArtifactRegistryStack extends Stack {
     add(
       GoogleArtifactRegistryRule(
         localName: 'deny_download',
-        repositoryId: .ref(repo.repositoryIdRef),
+        repositoryId: repo.ref,
         location: .literal(location),
         ruleId: .literal('deny-all-downloads'),
         action: .literal(.deny),
@@ -88,7 +88,7 @@ final class ArtifactRegistryStack extends Stack {
       GoogleTagsTagValue(
         localName: 'ar_smoke',
         shortName: .literal('smoke'),
-        parent: .ref(envKey.id),
+        parent: envKey.ref,
         description: .literal('Smoke-test environment'),
       ),
     );
@@ -101,7 +101,7 @@ final class ArtifactRegistryStack extends Stack {
           '${current.number.interpolation}/locations/$location/repositories/'
           '${repo.repositoryIdRef.interpolation}',
         ),
-        tagValue: .ref(smoke.id),
+        tagValue: smoke.ref,
         location: .literal(location),
         dependsOn: [ResourceDependency(repo), ResourceDependency(smoke)],
       ),

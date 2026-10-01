@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../artifact_registry/google_artifact_registry_repository.dart'
+    show GoogleArtifactRegistryRepository;
 
 /// Sensitive field paths for `google_artifact_registry_npm_package`.
 const Set<String> _googleArtifactRegistryNpmPackageSensitive = <String>{};
@@ -18,7 +20,7 @@ final class DataGoogleArtifactRegistryNpmPackage extends Data {
     required TfArg<String> location,
     required TfArg<String> packageName,
     TfArg<String>? project,
-    required TfArg<String> repositoryId,
+    required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -27,7 +29,7 @@ final class DataGoogleArtifactRegistryNpmPackage extends Data {
            'location': location,
            'package_name': packageName,
            'project': ?project,
-           'repository_id': repositoryId,
+           'repository_id': repositoryId.encodeAs('repository_id'),
          },
        );
 

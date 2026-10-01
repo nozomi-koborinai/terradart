@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secret_manager/google_secret_manager_secret.dart'
+    show GoogleSecretManagerSecret;
+
 /// Sensitive field paths for `google_secret_manager_secret_version`.
 const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
   'secret_data',
@@ -118,7 +121,7 @@ enum SecretManagerSecretVersionDeletionPolicy implements TerraformEnum {
 /// ```dart
 /// GoogleSecretManagerSecretVersion(
 ///   localName: 'api_key_v1',
-///   secret: TfArg.ref(apiKey.id),
+///   secret: apiKey.ref,
 ///   payload: SecretManagerSecretVersionWriteOnlyPayload(
 ///     secretDataWo: TfArg.literal(apiKeyValue),
 ///     secretDataWoVersion: TfArg.literal('1'),
@@ -130,7 +133,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
 
   GoogleSecretManagerSecretVersion({
     required super.localName,
-    required TfArg<String> secret,
+    required RefTo<GoogleSecretManagerSecret> secret,
     required SecretManagerSecretVersionPayload payload,
     TfArg<bool>? enabled,
     TfArg<bool>? isSecretDataBase64,
@@ -143,7 +146,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret': secret,
+           'secret': secret.encodeAs('name'),
            ...payload.argMap,
            'enabled': ?enabled,
            'is_secret_data_base64': ?isSecretDataBase64,

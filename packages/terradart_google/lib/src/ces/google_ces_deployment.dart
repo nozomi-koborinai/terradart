@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app_version.dart' show GoogleCesAppVersion;
+
 /// Sensitive field paths for `google_ces_deployment`.
 const Set<String> _googleCesDeploymentSensitive = <String>{
   'instagram_credentials.auth_code',
@@ -377,7 +379,7 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 ///   localName: 'api',
 ///   location: TfArg.ref(app.locationRef),
 ///   app: TfArg.ref(app.appIdRef),
-///   appVersion: TfArg.ref(version.nameRef),
+///   appVersion: version.ref,
 ///   displayName: TfArg.literal('terradart-ces-deploy'),
 ///   channelProfile: CesDeploymentChannelProfile(
 ///     channelType: TfArg.literal('API'),
@@ -392,7 +394,7 @@ final class GoogleCesDeployment extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> app,
-    required TfArg<String> appVersion,
+    required RefTo<GoogleCesAppVersion> appVersion,
     required TfArg<String> displayName,
     required CesDeploymentChannelProfile channelProfile,
     TfArg<String>? deletionPolicy,
@@ -408,7 +410,7 @@ final class GoogleCesDeployment extends Resource {
          argMap: {
            'location': location,
            'app': app,
-           'app_version': appVersion,
+           'app_version': appVersion.encodeAs('name'),
            'display_name': displayName,
            'channel_profile': TfArg.literal(channelProfile.encode()),
            'deletion_policy': ?deletionPolicy,

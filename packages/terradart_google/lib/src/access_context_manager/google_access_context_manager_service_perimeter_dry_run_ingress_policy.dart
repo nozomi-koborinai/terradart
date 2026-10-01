@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_service_perimeter.dart'
+    show GoogleAccessContextManagerServicePerimeter;
+
 /// Sensitive field paths for `google_access_context_manager_service_perimeter_dry_run_ingress_policy`.
 const Set<String>
 _googleAccessContextManagerServicePerimeterDryRunIngressPolicySensitive =
@@ -189,7 +192,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy
   GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy({
     required super.localName,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> perimeter,
+    required RefTo<GoogleAccessContextManagerServicePerimeter> perimeter,
     TfArg<String>? title,
     AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom?
     ingressFrom,
@@ -202,7 +205,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy
          terraformType: tfType,
          argMap: {
            'deletion_policy': ?deletionPolicy,
-           'perimeter': perimeter,
+           'perimeter': perimeter.encodeAs('name'),
            'title': ?title,
            if (ingressFrom != null)
              'ingress_from': TfArg.literal(ingressFrom.encode()),

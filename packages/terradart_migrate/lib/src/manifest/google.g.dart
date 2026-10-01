@@ -181,9 +181,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'access_level',
           dartName: 'accessLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerAccessLevel',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'ip_subnetworks',
@@ -712,9 +713,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'egress_policy_name',
           dartName: 'egressPolicyName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resource',
@@ -861,9 +863,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ingress_policy_name',
           dartName: 'ingressPolicyName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resource',
@@ -1032,9 +1035,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'perimeter',
           dartName: 'perimeter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'title',
@@ -1105,9 +1109,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'perimeter',
           dartName: 'perimeter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'title',
@@ -1170,9 +1175,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'perimeter_name',
           dartName: 'perimeterName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resource',
@@ -1230,9 +1236,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'perimeter',
           dartName: 'perimeter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'title',
@@ -1299,9 +1306,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'perimeter',
           dartName: 'perimeter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'title',
@@ -1369,9 +1377,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'perimeter_name',
           dartName: 'perimeterName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAccessContextManagerServicePerimeter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resource',
@@ -2723,9 +2732,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster_name',
           dartName: 'clusterName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAlloydbCluster',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -3417,9 +3427,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAlloydbCluster',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'instance_id',
@@ -3917,9 +3928,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleAlloydbCluster',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'user_id',
@@ -10380,9 +10392,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10468,9 +10481,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10541,9 +10555,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10676,9 +10691,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10754,9 +10770,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10813,9 +10830,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10886,9 +10904,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -10945,9 +10964,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11020,9 +11040,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11128,9 +11149,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11196,9 +11218,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -11875,9 +11898,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -12012,9 +12036,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
         MigrateSlot(
           tfName: 'tag_name',
@@ -12096,9 +12121,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -12165,9 +12191,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
         MigrateSlot(
           tfName: 'version_name',
@@ -12277,9 +12304,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'repository_id',
           dartName: 'repositoryId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleArtifactRegistryRepository',
+          attribute: 'repository_id',
         ),
         MigrateSlot(
           tfName: 'view',
@@ -15192,9 +15220,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'catalog',
           dartName: 'catalog',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBiglakeCatalog',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -16375,9 +16404,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'catalog',
           dartName: 'catalog',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBiglakeIcebergCatalog',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'namespace_id',
@@ -16711,16 +16741,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'catalog',
           dartName: 'catalog',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBiglakeIcebergCatalog',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'namespace',
           dartName: 'namespace',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBiglakeIcebergNamespace',
+          attribute: 'namespace_id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -17130,9 +17162,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBiglakeDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -19028,9 +19061,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'destination_dataset_id',
           dartName: 'destinationDatasetId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigqueryDataset',
+          attribute: 'dataset_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -20998,9 +21032,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'reservation_group',
           dartName: 'reservationGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigqueryReservationGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'autoscale',
@@ -21135,9 +21170,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'reservation',
           dartName: 'reservation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigqueryReservation',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -21758,9 +21794,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'table_id',
           dartName: 'tableId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigqueryTable',
+          attribute: 'table_id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -22704,9 +22741,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: '',
@@ -22837,16 +22875,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_name',
           dartName: 'instanceName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'table_name',
           dartName: 'tableName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigtableTable',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -22924,16 +22964,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_name',
           dartName: 'instanceName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'table',
           dartName: 'table',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigtableTable',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'column_family',
@@ -23416,9 +23458,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -23500,9 +23543,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -23577,16 +23621,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'table',
           dartName: 'table',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleBigtableTable',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'proto_schema',
@@ -23663,9 +23709,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_name',
           dartName: 'instanceName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleBigtableInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -25347,9 +25394,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'map',
           dartName: 'map',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCertificateManagerCertificateMap',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'certificates',
@@ -26503,9 +26551,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'app_version',
           dartName: 'appVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCesAppVersion',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -26639,9 +26688,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entry_agent',
           dartName: 'entryAgent',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleCesAgent',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'messages',
@@ -27797,9 +27847,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'native_dashboard',
           dartName: 'nativeDashboard',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleChronicleNativeDashboard',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'chart_layout',
@@ -31018,9 +31069,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'group',
           dartName: 'group',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCloudIdentityGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'preferred_member_key',
@@ -36587,9 +36639,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parent_connection',
           dartName: 'parentConnection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCloudbuildv2Connection',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'remote_uri',
@@ -36694,9 +36747,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'delivery_pipeline',
           dartName: 'deliveryPipeline',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleClouddeployDeliveryPipeline',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'service_account',
@@ -41692,9 +41746,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target',
           dartName: 'target',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroupManager',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'autoscaling_policy',
@@ -42009,9 +42064,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_bucket',
           dartName: 'backendBucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'key_value',
@@ -42181,9 +42237,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'security_policy',
           dartName: 'securityPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSecurityPolicy',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'edge_security_policy',
@@ -42717,9 +42774,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'key_value',
@@ -42777,9 +42835,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_group_manager',
           dartName: 'instanceGroupManager',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroupManager',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'instances',
@@ -42968,9 +43027,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'snapshot',
           dartName: 'snapshot',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSnapshot',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -43718,16 +43778,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeResourcePolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'disk',
           dartName: 'disk',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeDisk',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -44202,9 +44264,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'attachment_target',
@@ -44408,9 +44471,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -44715,9 +44779,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'ip_address',
@@ -45990,9 +46055,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'global_network_endpoint_group',
           dartName: 'globalNetworkEndpointGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeGlobalNetworkEndpointGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'ip_address',
@@ -48984,9 +49050,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_pools',
           dartName: 'targetPools',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeTargetPool',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -49394,16 +49462,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'instance_group',
           dartName: 'instanceGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -49461,9 +49531,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'group',
           dartName: 'group',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -50787,9 +50858,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_disk',
           dartName: 'sourceDisk',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeDisk',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -51453,9 +51525,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -52534,9 +52607,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnetworks',
           dartName: 'subnetworks',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -52814,9 +52889,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_endpoint_group',
           dartName: 'networkEndpointGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetworkEndpointGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'ip_address',
@@ -52835,9 +52911,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -53146,9 +53223,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_endpoint_group',
           dartName: 'networkEndpointGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetworkEndpointGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'network_endpoints',
@@ -53307,16 +53385,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetworkFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'attachment_target',
           dartName: 'attachmentTarget',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -53573,9 +53653,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetworkFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -54259,9 +54340,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'node_template',
           dartName: 'nodeTemplate',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNodeTemplate',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'initial_size',
@@ -54680,9 +54762,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_id',
           dartName: 'policyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeOrganizationSecurityPolicy',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -54750,9 +54833,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_id',
           dartName: 'policyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeOrganizationSecurityPolicy',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'preview',
@@ -54968,9 +55052,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_group_manager',
           dartName: 'instanceGroupManager',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroupManager',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -55477,9 +55562,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parent_prefix',
           dartName: 'parentPrefix',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputePublicAdvertisedPrefix',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -56412,9 +56498,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'health_destination',
           dartName: 'healthDestination',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeForwardingRule',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'health_sources',
@@ -57207,16 +57294,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'disk',
           dartName: 'disk',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionDisk',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeResourcePolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -57570,9 +57659,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sources',
           dartName: 'sources',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -57805,9 +57896,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_pools',
           dartName: 'targetPools',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeTargetPool',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -58817,9 +58910,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_disk',
           dartName: 'sourceDisk',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionDisk',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -59228,9 +59322,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'ip_address',
@@ -59263,9 +59358,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'region_network_endpoint_group',
           dartName: 'regionNetworkEndpointGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionNetworkEndpointGroup',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -59675,16 +59771,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionNetworkFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'attachment_target',
           dartName: 'attachmentTarget',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -60001,9 +60099,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'firewall_policy',
           dartName: 'firewallPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionNetworkFirewallPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -60320,9 +60419,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'region_instance_group_manager',
           dartName: 'regionInstanceGroupManager',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionInstanceGroupManager',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -60457,9 +60557,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_group_manager',
           dartName: 'instanceGroupManager',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroupManager',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resize_by',
@@ -60811,9 +60912,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'security_policy',
           dartName: 'securityPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionSecurityPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'match',
@@ -61352,9 +61454,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url_map',
           dartName: 'urlMap',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionUrlMap',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -61521,9 +61624,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url_map',
           dartName: 'urlMap',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionUrlMap',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -61548,16 +61652,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ssl_policy',
           dartName: 'sslPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionSslPolicy',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'server_tls_policy',
           dartName: 'serverTlsPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSslPolicy',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'http_keep_alive_timeout_sec',
@@ -61750,9 +61856,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -61871,9 +61978,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_service',
           dartName: 'defaultService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -62557,9 +62665,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance_group_manager',
           dartName: 'instanceGroupManager',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstanceGroupManager',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resize_by',
@@ -62830,16 +62939,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeResourcePolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -63427,9 +63538,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -63579,9 +63691,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -63680,9 +63793,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -63715,23 +63829,29 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'nat_ips',
           dartName: 'natIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'initial_nat_ips',
           dartName: 'initialNatIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'drain_nat_ips',
           dartName: 'drainNatIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'min_ports_per_vm',
@@ -64153,30 +64273,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'router_nat',
           dartName: 'routerNat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouterNat',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'nat_ips',
           dartName: 'natIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'drain_nat_ips',
           dartName: 'drainNatIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -64255,9 +64381,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'interface',
@@ -64590,9 +64717,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -65030,9 +65158,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'security_policy',
           dartName: 'securityPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeSecurityPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'header_action',
@@ -65165,9 +65294,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'nat_subnets',
           dartName: 'natSubnets',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -68064,9 +68195,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url_map',
           dartName: 'urlMap',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeUrlMap',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'proxy_bind',
@@ -68236,9 +68368,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url_map',
           dartName: 'urlMap',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeUrlMap',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: '',
@@ -68263,9 +68396,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ssl_policy',
           dartName: 'sslPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSslPolicy',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'server_tls_policy',
@@ -68526,9 +68660,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -68748,9 +68883,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'certificate_map',
@@ -68797,9 +68933,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ssl_policy',
           dartName: 'sslPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeSslPolicy',
+          attribute: 'self_link',
         ),
       ],
       getters: <MigrateGetter>[
@@ -68867,9 +69004,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -68969,9 +69107,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_service',
           dartName: 'defaultService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -69270,16 +69409,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_vpn_gateway',
           dartName: 'targetVpnGateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeVpnGateway',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'vpn_gateway',
           dartName: 'vpnGateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeHaVpnGateway',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'vpn_gateway_interface',
@@ -69336,9 +69477,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'router',
           dartName: 'router',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRouter',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -69557,9 +69699,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cross_site_network',
           dartName: 'crossSiteNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeCrossSiteNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -73890,9 +74033,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleContainerCluster',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -74278,9 +74422,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entry_group',
           dartName: 'entryGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataCatalogEntryGroup',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'entry_id',
@@ -74783,9 +74928,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'taxonomy',
           dartName: 'taxonomy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataCatalogTaxonomy',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -75022,9 +75168,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'template',
           dartName: 'template',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataCatalogTagTemplate',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'parent',
@@ -79057,16 +79204,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataplex_zone',
           dartName: 'dataplexZone',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataplexZone',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'lake',
           dartName: 'lake',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataplexLake',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -79712,9 +79861,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_product_id',
           dartName: 'dataProductId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataplexDataProduct',
+          attribute: 'data_product_id',
         ),
         MigrateSlot(
           tfName: 'data_asset_id',
@@ -82811,9 +82961,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'lake',
           dartName: 'lake',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleDataplexLake',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: '',
@@ -83260,9 +83411,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'lake',
           dartName: 'lake',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDataplexLake',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -91124,9 +91276,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'agent_version',
           dartName: 'agentVersion',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleDialogflowVersion',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -92166,9 +92319,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'engine_id',
           dartName: 'engineId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDiscoveryEngineSearchEngine',
+          attribute: 'engine_id',
         ),
         MigrateSlot(
           tfName: 'control_id',
@@ -93214,9 +93368,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_store_id',
           dartName: 'dataStoreId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDiscoveryEngineDataStore',
+          attribute: 'data_store_id',
         ),
         MigrateSlot(
           tfName: 'schema_id',
@@ -93802,9 +93957,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'engine_id',
           dartName: 'engineId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDiscoveryEngineSearchEngine',
+          attribute: 'engine_id',
         ),
         MigrateSlot(
           tfName: 'serving_config_id',
@@ -93927,9 +94083,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_store_id',
           dartName: 'dataStoreId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDiscoveryEngineDataStore',
+          attribute: 'data_store_id',
         ),
         MigrateSlot(
           tfName: 'uri',
@@ -94005,9 +94162,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'data_store_id',
           dartName: 'dataStoreId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDiscoveryEngineDataStore',
+          attribute: 'data_store_id',
         ),
         MigrateSlot(
           tfName: 'provided_uri_pattern',
@@ -94320,9 +94478,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_zone',
           dartName: 'managedZone',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDnsManagedZone',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -94924,9 +95083,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_zone',
           dartName: 'managedZone',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDnsManagedZone',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -95008,9 +95168,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_zone',
           dartName: 'managedZone',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDnsManagedZone',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -95065,9 +95226,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'managed_zone',
           dartName: 'managedZone',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDnsManagedZone',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -95191,9 +95353,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'response_policy',
           dartName: 'responsePolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDnsResponsePolicy',
+          attribute: 'response_policy_name',
         ),
         MigrateSlot(
           tfName: 'rule_name',
@@ -95344,9 +95507,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'processor',
           dartName: 'processor',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleDocumentAiProcessor',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -96179,9 +96343,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleEdgenetworkNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'vlan_id',
@@ -96450,9 +96615,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network',
           dartName: 'network',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleEdgenetworkNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -97297,9 +97463,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'destination',
           dartName: 'destination',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleEventarcPipeline',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -97332,9 +97499,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'message_bus',
           dartName: 'messageBus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleEventarcMessageBus',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -97450,9 +97618,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'destination',
           dartName: 'destination',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleEventarcMessageBus',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -98389,9 +98558,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_instance',
           dartName: 'sourceInstance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFilestoreInstance',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'source_file_share',
@@ -98886,9 +99056,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFilestoreInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -99447,9 +99618,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend',
           dartName: 'backend',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirebaseAppHostingBackend',
+          attribute: 'backend_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -99538,9 +99710,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend',
           dartName: 'backend',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirebaseAppHostingBackend',
+          attribute: 'backend_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -99592,9 +99765,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend',
           dartName: 'backend',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirebaseAppHostingBackend',
+          attribute: 'backend_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -99654,9 +99828,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend',
           dartName: 'backend',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirebaseAppHostingBackend',
+          attribute: 'backend_id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -100009,9 +100184,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'retention',
@@ -100074,9 +100250,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -100397,9 +100574,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -100471,9 +100649,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'document_id',
@@ -100555,9 +100734,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'index_config',
@@ -100650,9 +100830,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'query_scope',
@@ -100782,9 +100963,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirestoreDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -103821,9 +104003,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleContainerCluster',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -104319,16 +104502,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backup_plan',
           dartName: 'backupPlan',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeBackupBackupPlan',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'cluster',
           dartName: 'cluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleContainerCluster',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -105542,9 +105727,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeHubScope',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -106001,16 +106187,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope_id',
           dartName: 'scopeId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeHubScope',
+          attribute: 'scope_id',
         ),
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeHubScope',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -106576,9 +106764,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope_id',
           dartName: 'scopeId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeHubScope',
+          attribute: 'scope_id',
         ),
         MigrateSlot(
           tfName: 'scope_rbac_role_binding_id',
@@ -107196,9 +107385,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bare_metal_cluster',
           dartName: 'bareMetalCluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeonpremBareMetalCluster',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'node_pool_config',
@@ -107873,9 +108063,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vmware_cluster',
           dartName: 'vmwareCluster',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleGkeonpremVmwareCluster',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'config',
@@ -108019,9 +108210,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset',
           dartName: 'dataset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleHealthcareDataset',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'default_consent_ttl',
@@ -108560,9 +108752,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset',
           dartName: 'dataset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleHealthcareDataset',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -108800,9 +108993,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset',
           dartName: 'dataset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleHealthcareDataset',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -109157,9 +109351,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset',
           dartName: 'dataset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleHealthcareDataset',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'reject_duplicate_message',
@@ -109529,9 +109724,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'dataset',
           dartName: 'dataset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleHealthcareDataset',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -112326,9 +112522,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'workload_identity_pool_id',
           dartName: 'workloadIdentityPoolId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIamWorkloadIdentityPool',
+          attribute: 'workload_identity_pool_id',
         ),
         MigrateSlot(
           tfName: 'workload_identity_pool_namespace_id',
@@ -112432,9 +112629,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'workload_identity_pool_id',
           dartName: 'workloadIdentityPoolId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIamWorkloadIdentityPool',
+          attribute: 'workload_identity_pool_id',
         ),
         MigrateSlot(
           tfName: 'workload_identity_pool_namespace_id',
@@ -112576,9 +112774,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'workload_identity_pool_id',
           dartName: 'workloadIdentityPoolId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIamWorkloadIdentityPool',
+          attribute: 'workload_identity_pool_id',
         ),
         MigrateSlot(
           tfName: 'workload_identity_pool_provider_id',
@@ -112711,9 +112910,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'workload_identity_pool_id',
           dartName: 'workloadIdentityPoolId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIamWorkloadIdentityPool',
+          attribute: 'workload_identity_pool_id',
         ),
         MigrateSlot(
           tfName: 'workload_identity_pool_provider_id',
@@ -117737,9 +117937,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tenant',
           dartName: 'tenant',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIdentityPlatformTenant',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -117826,9 +118027,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tenant',
           dartName: 'tenant',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIdentityPlatformTenant',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'idp_config',
@@ -117893,9 +118095,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tenant',
           dartName: 'tenant',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIdentityPlatformTenant',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -118844,9 +119047,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_ring',
           dartName: 'keyRing',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleKmsKeyRing',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'purpose',
@@ -118980,9 +119184,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_ring',
           dartName: 'keyRing',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleKmsKeyRing',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -119471,9 +119676,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_ring',
           dartName: 'keyRing',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleKmsKeyRing',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -120263,9 +120469,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_ring',
           dartName: 'keyRing',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleKmsKeyRing',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'import_job_id',
@@ -121493,9 +121700,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleLoggingProjectBucketConfig',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'link_id',
@@ -121656,9 +121864,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleLoggingProjectBucketConfig',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -121751,9 +121960,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleLoggingProjectBucketConfig',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -122182,9 +122392,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket_name',
           dartName: 'bucketName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleLoggingProjectBucketConfig',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -125750,9 +125961,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source',
           dartName: 'source',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleMigrationCenterSource',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'service_account',
@@ -126148,9 +126360,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'asset_source',
           dartName: 'assetSource',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleMigrationCenterSource',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -126598,9 +126811,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'preference_set',
           dartName: 'preferenceSet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleMigrationCenterPreferenceSet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'disable_cloud_logging',
@@ -130962,9 +131176,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'hub',
           dartName: 'hub',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleNetworkConnectivityHub',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -132188,9 +132403,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'hub',
           dartName: 'hub',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleNetworkConnectivityHub',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: '',
@@ -134589,9 +134805,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway_security_policy',
           dartName: 'gatewaySecurityPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleNetworkSecurityGatewaySecurityPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -136538,9 +136755,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'engine',
           dartName: 'engine',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleNetworkSecurityUllMirroringEngine',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'forwarding_rule',
@@ -136653,9 +136871,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ull_mirroring_collector',
           dartName: 'ullMirroringCollector',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleNetworkSecurityUllMirroringCollector',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'ull_mirroring_collector_rule_id',
@@ -138102,9 +138321,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway_security_policy',
           dartName: 'gatewaySecurityPolicy',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleNetworkSecurityGatewaySecurityPolicy',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'server_tls_policy',
@@ -141512,16 +141732,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'odb_subnet',
           dartName: 'odbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'odb_network',
           dartName: 'odbNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'network',
@@ -142082,9 +142304,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cloud_exadata_infrastructure',
           dartName: 'cloudExadataInfrastructure',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseCloudExadataInfrastructure',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -142215,30 +142438,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exadata_infrastructure',
           dartName: 'exadataInfrastructure',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseCloudExadataInfrastructure',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'odb_network',
           dartName: 'odbNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'odb_subnet',
           dartName: 'odbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'backup_odb_subnet',
           dartName: 'backupOdbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'properties',
@@ -142293,9 +142520,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exascale_db_storage_vault',
           dartName: 'exascaleDbStorageVault',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseExascaleDbStorageVault',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'network',
@@ -142715,9 +142943,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'odb_subnet',
           dartName: 'odbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'properties',
@@ -142730,9 +142959,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'odb_network',
           dartName: 'odbNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'gcp_oracle_zone',
@@ -142880,23 +143110,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'odb_subnet',
           dartName: 'odbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'backup_odb_subnet',
           dartName: 'backupOdbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'odb_network',
           dartName: 'odbNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'properties',
@@ -143328,16 +143561,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'odb_subnet',
           dartName: 'odbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'odb_network',
           dartName: 'odbNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'gcp_oracle_zone',
@@ -143645,16 +143880,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'odb_subnet',
           dartName: 'odbSubnet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbSubnet',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'odb_network',
           dartName: 'odbNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseOdbNetwork',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'gcp_oracle_zone',
@@ -146348,9 +146585,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parameter',
           dartName: 'parameter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleParameterManagerParameter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'parameter_version_id',
@@ -146832,9 +147070,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parameter',
           dartName: 'parameter',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleParameterManagerRegionalParameter',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'parameter_version_id',
@@ -147475,9 +147714,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'pool',
           dartName: 'pool',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GooglePrivatecaCaPool',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -147515,9 +147755,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'certificate_template',
           dartName: 'certificateTemplate',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GooglePrivatecaCertificateTemplate',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -147648,9 +147889,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'pool',
           dartName: 'pool',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GooglePrivatecaCaPool',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -147900,9 +148142,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'pool',
           dartName: 'pool',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GooglePrivatecaCaPool',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -149795,9 +150038,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'topic',
           dartName: 'topic',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GooglePubsubLiteTopic',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -156400,9 +156644,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerRegionalSecret',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'secret_data',
@@ -157246,9 +157491,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: '',
@@ -159569,9 +159815,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleServiceDirectoryService',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'address',
@@ -159896,9 +160143,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'namespace',
           dartName: 'namespace',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleServiceDirectoryNamespace',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'metadata',
@@ -160869,16 +161117,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSpannerInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'database',
           dartName: 'database',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSpannerDatabase',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'retention_duration',
@@ -160978,9 +161228,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSpannerInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -161455,9 +161706,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'config',
           dartName: 'config',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSpannerInstanceConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -162056,16 +162308,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSpannerInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'config',
           dartName: 'config',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSpannerInstanceConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -162162,9 +162416,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'most_recent',
@@ -162225,9 +162480,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -162277,9 +162533,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'charset',
@@ -162354,9 +162611,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -162968,9 +163226,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -163100,9 +163359,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -163161,9 +163421,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -163384,9 +163645,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -163495,9 +163757,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSqlDatabaseInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -166484,9 +166747,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'customer_service_account',
           dartName: 'customerServiceAccount',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
         ),
         MigrateSlot(
           tfName: 'storage_directory_mappings',
@@ -167584,9 +167848,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'object',
           dartName: 'object',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleStorageBucketObject',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'predefined_acl',
@@ -168042,9 +168307,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tag_value',
           dartName: 'tagValue',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleTagsTagValue',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -168102,9 +168368,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tag_value',
           dartName: 'tagValue',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleTagsTagValue',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -168512,9 +168779,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parent',
           dartName: 'parent',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleTagsTagKey',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -168580,9 +168848,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parent',
           dartName: 'parent',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleTagsTagKey',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'short_name',
@@ -169181,9 +169450,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'collection_id',
           dartName: 'collectionId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVectorSearchCollection',
+          attribute: 'collection_id',
         ),
         MigrateSlot(
           tfName: 'data_object_id',
@@ -169288,9 +169558,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'collection_id',
           dartName: 'collectionId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVectorSearchCollection',
+          attribute: 'collection_id',
         ),
         MigrateSlot(
           tfName: 'index_id',
@@ -170256,9 +170527,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_group',
           dartName: 'featureGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -171355,9 +171627,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'index_endpoint',
           dartName: 'indexEndpoint',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiIndexEndpoint',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'index',
@@ -180638,9 +180911,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'allocated_ip_range',
           dartName: 'allocatedIpRange',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeGlobalAddress',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'network',
@@ -193330,9 +193604,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'ca_pool',
               dartName: 'caPool',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.reference,
               required: true,
-              dartType: 'String',
+              dartType: 'GooglePrivatecaCaPool',
+              attribute: 'id',
             ),
           ],
         ),
@@ -193893,9 +194168,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'toolset',
           dartName: 'toolset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCesToolset',
+          attribute: 'name',
         ),
       ],
     ),
@@ -195335,9 +195611,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'toolset',
           dartName: 'toolset',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCesToolset',
+          attribute: 'name',
         ),
       ],
     ),
@@ -204373,9 +204650,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'items',
@@ -204394,9 +204672,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -205627,9 +205906,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'items',
@@ -205648,9 +205928,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -206802,9 +207083,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'items',
@@ -206823,9 +207105,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'secret',
           dartName: 'secret',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleSecretManagerSecret',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -213832,9 +214115,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'object',
           dartName: 'object',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleStorageBucketObject',
+          attribute: 'name',
         ),
       ],
     ),
@@ -218577,9 +218861,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'interconnect_attachment',
           dartName: 'interconnectAttachment',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeInterconnectAttachment',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -221178,9 +221463,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_attachment',
           dartName: 'networkAttachment',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetworkAttachment',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'network_ip',
@@ -222818,9 +223104,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'instance',
           dartName: 'instance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'ip_address',
@@ -223788,9 +224075,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url',
           dartName: 'url',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeForwardingRule',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -223826,9 +224114,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url',
           dartName: 'url',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeInstance',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -223868,9 +224157,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url',
           dartName: 'url',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -223880,9 +224170,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'url',
           dartName: 'url',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -228292,10 +228583,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ssl_certificates',
           dartName: 'sslCertificates',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
+          repeated: true,
           positional: true,
-          dartType: 'List<String>',
+          dartType: 'GoogleComputeRegionSslCertificate',
+          attribute: 'self_link',
         ),
       ],
       shorthand: 'sslCertificates',
@@ -228478,9 +228771,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -228510,6 +228804,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices':
+        MigrateHelper(
+          className:
+              'ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'backend_service',
+              dartName: 'backendService',
+              kind: MigrateSlotKind.reference,
+              required: false,
+              dartType: 'GoogleComputeBackendService',
+              attribute: 'self_link',
+            ),
+            MigrateSlot(
+              tfName: 'weight',
+              dartName: 'weight',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'header_action',
+              dartName: 'headerAction',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper: 'ComputeRegionUrlMapHeaderAction',
+            ),
+          ],
+        ),
     'ComputeRegionUrlMapDefaultUrlRedirect': MigrateHelper(
       className: 'ComputeRegionUrlMapDefaultUrlRedirect',
       slots: <MigrateSlot>[
@@ -228964,9 +229288,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_service',
           dartName: 'defaultService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -229092,7 +229417,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'ComputeRegionUrlMapWeightedBackendServices',
+          helper:
+              'ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices',
         ),
       ],
     ),
@@ -229109,9 +229435,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'route_action',
@@ -229224,7 +229551,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy',
+          helper: 'ComputeRegionUrlMapRouteActionRequestMirrorPolicy',
         ),
         MigrateSlot(
           tfName: 'retry_policy',
@@ -229411,9 +229738,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -229550,6 +229878,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeRegionUrlMapRouteActionRequestMirrorPolicy': MigrateHelper(
+      className: 'ComputeRegionUrlMapRouteActionRequestMirrorPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'backend_service',
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
+          required: true,
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
+        ),
+      ],
+    ),
     'ComputeRegionUrlMapRouteActionTimeout': MigrateHelper(
       className: 'ComputeRegionUrlMapRouteActionTimeout',
       slots: <MigrateSlot>[
@@ -229575,9 +229916,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'weight',
@@ -229609,9 +229951,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'header_action',
@@ -229778,7 +230121,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper: 'ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy',
+          helper: 'ComputeRegionUrlMapRouteActionRequestMirrorPolicy',
         ),
         MigrateSlot(
           tfName: 'retry_policy',
@@ -229889,9 +230232,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -229939,9 +230283,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'weight',
@@ -230950,30 +231295,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_nat_active_ips',
           dartName: 'sourceNatActiveIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'source_nat_active_ranges',
           dartName: 'sourceNatActiveRanges',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'source_nat_drain_ips',
           dartName: 'sourceNatDrainIps',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeAddress',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'source_nat_drain_ranges',
           dartName: 'sourceNatDrainRanges',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -231002,9 +231355,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -231048,9 +231402,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'secondary_ip_range_names',
@@ -231983,9 +232338,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_url',
           dartName: 'networkUrl',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id_or_num',
@@ -232737,9 +233093,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'error_service',
           dartName: 'errorService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendBucket',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'error_response_rule',
@@ -232788,9 +233145,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'error_service',
           dartName: 'errorService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendBucket',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'error_response_rule',
@@ -233548,9 +233906,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'default_service',
           dartName: 'defaultService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -233709,9 +234068,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'custom_error_response_policy',
@@ -234035,9 +234395,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
       ],
     ),
@@ -234225,9 +234586,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'weight',
@@ -234259,9 +234621,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'custom_error_response_policy',
@@ -234559,9 +234922,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'service',
           dartName: 'service',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'headers',
@@ -234637,9 +235001,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'backend_service',
           dartName: 'backendService',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'weight',
@@ -234746,10 +235111,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'peer_external_gateway',
           dartName: 'peerExternalGateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeExternalVpnGateway',
+          attribute: 'self_link',
         ),
       ],
       shorthand: 'peerExternalGateway',
@@ -234760,10 +235126,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'peer_gcp_gateway',
           dartName: 'peerGcpGateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
           positional: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeHaVpnGateway',
+          attribute: 'self_link',
         ),
       ],
       shorthand: 'peerGcpGateway',
@@ -249807,9 +250174,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'inspect_template_name',
           dartName: 'inspectTemplateName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleDataLossPreventionInspectTemplate',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'actions',
@@ -251616,9 +251984,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_network',
           dartName: 'privateNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'require_ssl',
@@ -270245,9 +270614,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_url',
           dartName: 'networkUrl',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -270292,9 +270662,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_url',
           dartName: 'networkUrl',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -270351,9 +270722,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_url',
           dartName: 'networkUrl',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -270549,9 +270921,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_url',
           dartName: 'networkUrl',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -272377,9 +272750,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'build',
           dartName: 'build',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleFirebaseAppHostingBuild',
+          attribute: 'build_id',
         ),
         MigrateSlot(
           tfName: 'percent',
@@ -275726,9 +276100,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'resource_link',
           dartName: 'resourceLink',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleContainerCluster',
+          attribute: 'id',
         ),
       ],
     ),
@@ -284596,9 +284971,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'credential_type',
           dartName: 'credentialType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleIntegrationsAuthConfig',
+          attribute: 'credential_type',
         ),
         MigrateSlot(
           tfName: '',
@@ -287524,16 +287900,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'group',
           dartName: 'group',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleMigrationCenterGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'preference_set',
           dartName: 'preferenceSet',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleMigrationCenterPreferenceSet',
+          attribute: 'name',
         ),
       ],
     ),
@@ -289863,9 +290241,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'group_id',
           dartName: 'groupId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleMonitoringGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'resource_type',
@@ -291207,9 +291586,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'uri',
           dartName: 'uri',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'id',
         ),
       ],
     ),
@@ -296695,9 +297075,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exascale_db_storage_vault',
           dartName: 'exascaleDbStorageVault',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseExascaleDbStorageVault',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'grid_image_id',
@@ -297065,16 +297446,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'goldengate_connection',
           dartName: 'goldengateConnection',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseGoldengateConnection',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'goldengate_deployment',
           dartName: 'goldengateDeployment',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleOracleDatabaseGoldengateDeployment',
+          attribute: 'name',
         ),
       ],
     ),
@@ -307305,9 +307688,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'throughput_reservation',
           dartName: 'throughputReservation',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GooglePubsubLiteReservation',
+          attribute: 'name',
         ),
       ],
     ),
@@ -312760,9 +313144,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'allocated_ip_range',
           dartName: 'allocatedIpRange',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeGlobalAddress',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'custom_subject_alternative_names',
@@ -312788,9 +313173,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'private_network',
           dartName: 'privateNetwork',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'self_link',
         ),
         MigrateSlot(
           tfName: 'server_ca_mode',

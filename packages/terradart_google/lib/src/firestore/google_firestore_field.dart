@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firestore/google_firestore_database.dart'
+    show GoogleFirestoreDatabase;
+
 /// Sensitive field paths for `google_firestore_field`.
 const Set<String> _googleFirestoreFieldSensitive = <String>{};
 
@@ -183,7 +186,7 @@ final class GoogleFirestoreField extends Resource {
     required super.localName,
     required TfArg<String> collection,
     required TfArg<String> field,
-    TfArg<String>? database,
+    RefTo<GoogleFirestoreDatabase>? database,
     FirestoreFieldIndexConfig? indexConfig,
     FirestoreFieldTtlConfig? ttlConfig,
     TfArg<String>? project,
@@ -197,7 +200,7 @@ final class GoogleFirestoreField extends Resource {
          argMap: {
            'collection': collection,
            'field': field,
-           'database': ?database,
+           'database': ?database?.encodeAs('name'),
            if (indexConfig != null)
              'index_config': TfArg.literal(indexConfig.encode()),
            if (ttlConfig != null)

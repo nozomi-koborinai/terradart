@@ -49,8 +49,8 @@ final class FleetStack extends Stack {
       GoogleGkeHubNamespace(
         localName: 'team_namespace',
         scopeNamespaceId: .literal('terradart-team'),
-        scopeId: .ref(scope.scopeIdRef),
-        scope: .ref(scope.id),
+        scopeId: scope.ref,
+        scope: scope.ref,
         dependsOn: [ResourceDependency(scope)],
       ),
     );
@@ -62,7 +62,7 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeRbacRoleBinding(
         localName: 'team_view',
-        scopeId: .ref(scope.scopeIdRef),
+        scopeId: scope.ref,
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
         role: .predefinedRole(.literal(.view)),

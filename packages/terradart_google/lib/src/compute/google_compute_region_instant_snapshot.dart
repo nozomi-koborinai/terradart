@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_disk.dart'
+    show GoogleComputeRegionDisk;
+
 /// Sensitive field paths for `google_compute_region_instant_snapshot`.
 const Set<String> _googleComputeRegionInstantSnapshotSensitive = <String>{};
 
@@ -49,7 +52,7 @@ final class GoogleComputeRegionInstantSnapshot extends Resource {
   GoogleComputeRegionInstantSnapshot({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> sourceDisk,
+    required RefTo<GoogleComputeRegionDisk> sourceDisk,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<ComputeRegionInstantSnapshotDeletionPolicy>? deletionPolicy,
@@ -64,7 +67,7 @@ final class GoogleComputeRegionInstantSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'source_disk': sourceDisk,
+           'source_disk': sourceDisk.encodeAs('name'),
            'description': ?description,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

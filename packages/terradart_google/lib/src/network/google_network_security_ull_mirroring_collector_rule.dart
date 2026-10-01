@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_security_ull_mirroring_collector.dart'
+    show GoogleNetworkSecurityUllMirroringCollector;
+
 /// Sensitive field paths for `google_network_security_ull_mirroring_collector_rule`.
 const Set<String> _googleNetworkSecurityUllMirroringCollectorRuleSensitive =
     <String>{};
@@ -75,7 +78,8 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
   GoogleNetworkSecurityUllMirroringCollectorRule({
     required super.localName,
     required TfArg<String> location,
-    required TfArg<String> ullMirroringCollector,
+    required RefTo<GoogleNetworkSecurityUllMirroringCollector>
+    ullMirroringCollector,
     required TfArg<String> ullMirroringCollectorRuleId,
     required NetworkSecurityUllMirroringCollectorRuleMatch match,
     TfArg<Map<String, String>>? labels,
@@ -90,7 +94,7 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'ull_mirroring_collector': ullMirroringCollector,
+           'ull_mirroring_collector': ullMirroringCollector.encodeAs('name'),
            'ull_mirroring_collector_rule_id': ullMirroringCollectorRuleId,
            'match': TfArg.literal([match.toArgMap()]),
            'labels': ?labels,

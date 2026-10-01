@@ -2,7 +2,15 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
+import 'google_migration_center_group.dart' show GoogleMigrationCenterGroup;
+import 'google_migration_center_preference_set.dart'
+    show GoogleMigrationCenterPreferenceSet;
 import 'package:terradart_core/terradart_core.dart';
+
+import '../migration/google_migration_center_group.dart'
+    show GoogleMigrationCenterGroup;
+import '../migration/google_migration_center_preference_set.dart'
+    show GoogleMigrationCenterPreferenceSet;
 
 /// Sensitive field paths for `google_migration_center_report_config`.
 const Set<String> _googleMigrationCenterReportConfigSensitive = <String>{};
@@ -26,12 +34,12 @@ class MigrationCenterReportConfigGroupPreferencesetAssignment {
     required this.preferenceSet,
   });
 
-  final TfArg<String> group;
-  final TfArg<String> preferenceSet;
+  final RefTo<GoogleMigrationCenterGroup> group;
+  final RefTo<GoogleMigrationCenterPreferenceSet> preferenceSet;
 
   Map<String, Object?> toArgMap() => {
-    'group': group.toTfJson(),
-    'preference_set': preferenceSet.toTfJson(),
+    'group': group.encodeAs('name').toTfJson(),
+    'preference_set': preferenceSet.encodeAs('name').toTfJson(),
   };
 }
 

@@ -104,7 +104,7 @@ final class ChronicleCustomListStack extends Stack {
         localName: 'dns_events',
         location: .literal('us'),
         instance: .literal(instanceId),
-        nativeDashboard: .ref(dashboard.nameRef),
+        nativeDashboard: dashboard.ref,
         chartLayout: ChronicleDashboardChartLayout(
           spanX: .literal(42),
           spanY: .literal(27),

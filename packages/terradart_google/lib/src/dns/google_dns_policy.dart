@@ -6,6 +6,8 @@ import 'package:terradart_google/src/dns/google_dns_managed_zone.dart'
     show ForwardingPath;
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_dns_policy`.
 const Set<String> _googleDnsPolicySensitive = <String>{};
 
@@ -65,9 +67,11 @@ final class DnsPolicyScope {
 final class DnsPolicyNetworks {
   const DnsPolicyNetworks({required this.networkUrl});
 
-  final TfArg<String> networkUrl;
+  final RefTo<GoogleComputeNetwork> networkUrl;
 
-  Map<String, Object?> encode() => {'network_url': networkUrl.toTfJson()};
+  Map<String, Object?> encode() => {
+    'network_url': networkUrl.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_dns_policy`.

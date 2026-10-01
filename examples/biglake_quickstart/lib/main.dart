@@ -62,7 +62,7 @@ final class MetastoreStack extends Stack {
       GoogleBiglakeDatabase(
         localName: 'sales',
         name: .literal('terradart_db'),
-        catalog: .ref(catalog.id),
+        catalog: catalog.ref,
         type: .literal('HIVE'),
         hiveOptions: BiglakeDatabaseHiveOptions(
           locationUri: .literal('$warehouse/terradart_db'),
@@ -76,7 +76,7 @@ final class MetastoreStack extends Stack {
       GoogleBiglakeTable(
         localName: 'orders',
         name: .literal('terradart_orders'),
-        database: .ref(database.id),
+        database: database.ref,
         type: .literal('HIVE'),
         hiveOptions: BiglakeTableHiveOptions(
           tableType: .literal('MANAGED_TABLE'),
@@ -119,7 +119,7 @@ final class MetastoreStack extends Stack {
     final icebergNamespace = add(
       GoogleBiglakeIcebergNamespace(
         localName: 'iceberg_ns',
-        catalog: .ref(icebergCatalog.nameRef),
+        catalog: icebergCatalog.ref,
         namespaceId: .literal('terradart_ns'),
         dependsOn: [ResourceDependency(icebergCatalog)],
       ),
@@ -128,8 +128,8 @@ final class MetastoreStack extends Stack {
     final icebergTable = add(
       GoogleBiglakeIcebergTable(
         localName: 'iceberg_orders',
-        catalog: .ref(icebergCatalog.nameRef),
-        namespace: .ref(icebergNamespace.namespaceIdRef),
+        catalog: icebergCatalog.ref,
+        namespace: icebergNamespace.ref,
         name: .literal('terradart_iceberg_orders'),
         location: .literal(
           'gs://$icebergBucketName/terradart_ns/terradart_iceberg_orders',

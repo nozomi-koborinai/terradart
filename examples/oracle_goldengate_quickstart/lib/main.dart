@@ -62,8 +62,8 @@ final class OracleGoldengateStack extends Stack {
       location: .literal(location),
       goldengateDeploymentId: .literal(deploymentId),
       displayName: .literal('TerraDart GoldenGate deployment'),
-      odbSubnet: .ref(odbSubnet.nameRef),
-      odbNetwork: .ref(odbNetwork.nameRef),
+      odbSubnet: odbSubnet.ref,
+      odbNetwork: odbNetwork.ref,
       properties: OracleDatabaseGoldengateDeploymentProperties(
         deploymentType: .literal('DATA_REPLICATION'),
         oggData: OracleDatabaseGoldengateDeploymentOggData(
@@ -100,8 +100,8 @@ final class OracleGoldengateStack extends Stack {
         location: .literal(location),
         goldengateConnectionAssignmentId: .literal(assignmentId),
         properties: OracleDatabaseGoldengateConnectionAssignmentProperties(
-          goldengateConnection: .ref(connection.nameRef),
-          goldengateDeployment: .ref(deployment.nameRef),
+          goldengateConnection: connection.ref,
+          goldengateDeployment: deployment.ref,
         ),
         displayName: .literal('TerraDart connection assignment'),
         dependsOn: [

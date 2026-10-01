@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../alloydb/google_alloydb_cluster.dart' show GoogleAlloydbCluster;
+
 /// Sensitive field paths for `google_alloydb_user`.
 const Set<String> _googleAlloydbUserSensitive = <String>{'password'};
 
@@ -90,7 +92,7 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 /// ```dart
 /// GoogleAlloydbUser(
 ///   localName: 'app',
-///   cluster: TfArg.ref(cluster.id),
+///   cluster: cluster.ref,
 ///   userId: TfArg.literal('app'),
 ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
 ///   password: .passwordWo(.literal(dbPassword)),
@@ -102,7 +104,7 @@ final class GoogleAlloydbUser extends Resource {
 
   GoogleAlloydbUser({
     required super.localName,
-    required TfArg<String> cluster,
+    required RefTo<GoogleAlloydbCluster> cluster,
     required TfArg<String> userId,
     required TfArg<AlloydbUserType> userType,
     AlloydbUserPassword? password,
@@ -114,7 +116,7 @@ final class GoogleAlloydbUser extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('name'),
            'user_id': userId,
            'user_type': userType,
            ...?password?.argMap,

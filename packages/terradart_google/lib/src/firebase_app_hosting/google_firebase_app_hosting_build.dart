@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firebase_app_hosting/google_firebase_app_hosting_backend.dart'
+    show GoogleFirebaseAppHostingBackend;
+
 /// Sensitive field paths for `google_firebase_app_hosting_build`.
 const Set<String> _googleFirebaseAppHostingBuildSensitive = <String>{};
 
@@ -108,7 +111,7 @@ final class FirebaseAppHostingBuildContainer {
 /// ```dart
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   localName: 'v1',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
 ///   source: .codebase(
@@ -122,7 +125,7 @@ final class FirebaseAppHostingBuildContainer {
 /// ```dart
 /// final build = GoogleFirebaseAppHostingBuild(
 ///   localName: 'v1',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
 ///   source: .container(
@@ -144,7 +147,7 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
 
   GoogleFirebaseAppHostingBuild({
     required super.localName,
-    required TfArg<String> backend,
+    required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required TfArg<String> buildId,
     required FirebaseAppHostingBuildSource source,
@@ -159,7 +162,7 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backend': backend,
+           'backend': backend.encodeAs('backend_id'),
            'location': location,
            'build_id': buildId,
            'source': TfArg.literal(source.encode()),

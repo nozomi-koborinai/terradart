@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+
 /// Sensitive field paths for `google_bigtable_app_profile`.
 const Set<String> _googleBigtableAppProfileSensitive = <String>{};
 
@@ -238,7 +240,7 @@ enum BigtableAppProfilePriority implements TerraformEnum {
 /// GoogleBigtableAppProfile(
 ///   localName: 'default',
 ///   appProfileId: TfArg.literal('default'),
-///   instance: TfArg.ref(instance.nameRef),
+///   instance: instance.ref,
 ///   routing: .singleClusterRouting(
 ///     BigtableAppProfileSingleClusterRouting(
 ///       clusterId: TfArg.literal('events-c1'),
@@ -252,7 +254,7 @@ final class GoogleBigtableAppProfile extends Resource {
   GoogleBigtableAppProfile({
     required super.localName,
     required TfArg<String> appProfileId,
-    TfArg<String>? instance,
+    RefTo<GoogleBigtableInstance>? instance,
     required BigtableAppProfileRouting routing,
     TfArg<List<String>>? multiClusterRoutingClusterIds,
     BigtableAppProfileIsolation? isolation,
@@ -269,7 +271,7 @@ final class GoogleBigtableAppProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'app_profile_id': appProfileId,
-           'instance': ?instance,
+           'instance': ?instance?.encodeAs('name'),
            ...routing.argMap,
            'multi_cluster_routing_cluster_ids': ?multiClusterRoutingClusterIds,
            ...?isolation?.argMap,

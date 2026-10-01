@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_service_perimeter.dart'
+    show GoogleAccessContextManagerServicePerimeter;
+
 /// Sensitive field paths for `google_access_context_manager_service_perimeter_resource`.
 const Set<String> _googleAccessContextManagerServicePerimeterResourceSensitive =
     <String>{};
@@ -35,7 +38,7 @@ final class GoogleAccessContextManagerServicePerimeterResource
   GoogleAccessContextManagerServicePerimeterResource({
     required super.localName,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> perimeterName,
+    required RefTo<GoogleAccessContextManagerServicePerimeter> perimeterName,
     required TfArg<String> resource,
     super.lifecycle,
     super.dependsOn,
@@ -45,7 +48,7 @@ final class GoogleAccessContextManagerServicePerimeterResource
          terraformType: tfType,
          argMap: {
            'deletion_policy': ?deletionPolicy,
-           'perimeter_name': perimeterName,
+           'perimeter_name': perimeterName.encodeAs('name'),
            'resource': resource,
          },
        );

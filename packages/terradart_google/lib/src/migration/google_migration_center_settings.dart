@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../migration/google_migration_center_preference_set.dart'
+    show GoogleMigrationCenterPreferenceSet;
+
 /// Sensitive field paths for `google_migration_center_settings`.
 const Set<String> _googleMigrationCenterSettingsSensitive = <String>{};
 
@@ -32,7 +35,7 @@ final class GoogleMigrationCenterSettings extends Resource {
   GoogleMigrationCenterSettings({
     required super.localName,
     required TfArg<String> location,
-    TfArg<String>? preferenceSet,
+    RefTo<GoogleMigrationCenterPreferenceSet>? preferenceSet,
     TfArg<bool>? disableCloudLogging,
     TfArg<MigrationCenterSettingsDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
@@ -44,7 +47,7 @@ final class GoogleMigrationCenterSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'preference_set': ?preferenceSet,
+           'preference_set': ?preferenceSet?.encodeAs('name'),
            'disable_cloud_logging': ?disableCloudLogging,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_backend_service.dart'
+    show GoogleComputeRegionBackendService;
+
 /// Sensitive field paths for `google_compute_region_target_tcp_proxy`.
 const Set<String> _googleComputeRegionTargetTcpProxySensitive = <String>{};
 
@@ -25,7 +28,7 @@ final class GoogleComputeRegionTargetTcpProxy extends Resource {
 
   GoogleComputeRegionTargetTcpProxy({
     required super.localName,
-    TfArg<String>? backendService,
+    RefTo<GoogleComputeRegionBackendService>? backendService,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? project,
@@ -39,7 +42,7 @@ final class GoogleComputeRegionTargetTcpProxy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backend_service': ?backendService,
+           'backend_service': ?backendService?.encodeAs('self_link'),
            'description': ?description,
            'name': name,
            'project': ?project,

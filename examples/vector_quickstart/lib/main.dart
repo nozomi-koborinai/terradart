@@ -65,7 +65,7 @@ final class VectorSearchStack extends Stack {
       GoogleVectorSearchDataObject(
         localName: 'sample_doc',
         location: .literal(location),
-        collectionId: .ref(collection.collectionIdRef),
+        collectionId: collection.ref,
         dataObjectId: .literal('terradart-sample-doc'),
         data: .literal(
           '{"title":"TerraDart smoke","plot":"Schema coverage only"}',

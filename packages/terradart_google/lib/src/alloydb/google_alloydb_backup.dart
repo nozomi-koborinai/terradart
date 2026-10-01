@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../alloydb/google_alloydb_cluster.dart' show GoogleAlloydbCluster;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_alloydb_backup`.
@@ -39,7 +40,7 @@ final class AlloydbBackupEncryptionConfig {
 /// GoogleAlloydbBackup(
 ///   localName: 'nightly',
 ///   backupId: TfArg.literal('nightly-backup'),
-///   clusterName: TfArg.ref(alloyCluster.id),
+///   clusterName: alloyCluster.ref,
 ///   location: TfArg.literal('asia-northeast1'),
 /// );
 /// ```
@@ -49,7 +50,7 @@ final class GoogleAlloydbBackup extends Resource {
   GoogleAlloydbBackup({
     required super.localName,
     required TfArg<String> backupId,
-    required TfArg<String> clusterName,
+    required RefTo<GoogleAlloydbCluster> clusterName,
     required TfArg<String> location,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
@@ -66,7 +67,7 @@ final class GoogleAlloydbBackup extends Resource {
          terraformType: tfType,
          argMap: {
            'backup_id': backupId,
-           'cluster_name': clusterName,
+           'cluster_name': clusterName.encodeAs('id'),
            'location': location,
            'labels': ?labels,
            'annotations': ?annotations,

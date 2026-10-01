@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../acm/aws_acm_certificate.dart' show AwsAcmCertificate;
+
 /// Sensitive field paths for `aws_acm_certificate_validation`.
 const Set<String> _awsAcmCertificateValidationSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsAcmCertificateValidation extends Resource {
 
   AwsAcmCertificateValidation({
     required super.localName,
-    required TfArg<String> certificateArn,
+    required RefTo<AwsAcmCertificate> certificateArn,
     TfArg<String>? region,
     TfArg<List<String>>? validationRecordFqdns,
     super.lifecycle,
@@ -22,7 +24,7 @@ final class AwsAcmCertificateValidation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'certificate_arn': certificateArn,
+           'certificate_arn': certificateArn.encodeAs('arn'),
            'region': ?region,
            'validation_record_fqdns': ?validationRecordFqdns,
          },

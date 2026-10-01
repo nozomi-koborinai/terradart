@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sql/google_sql_database_instance.dart'
+    show GoogleSqlDatabaseInstance;
 
 /// Sensitive field paths for `google_sql_backup_run`.
 const Set<String> _googleSqlBackupRunSensitive = <String>{};
@@ -16,7 +18,7 @@ final class DataGoogleSqlBackupRun extends Data {
   DataGoogleSqlBackupRun({
     required super.localName,
     TfArg<num>? backupId,
-    required TfArg<String> instance,
+    required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<bool>? mostRecent,
     TfArg<String>? project,
     super.provider,
@@ -25,7 +27,7 @@ final class DataGoogleSqlBackupRun extends Data {
          terraformType: tfType,
          argMap: {
            'backup_id': ?backupId,
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'most_recent': ?mostRecent,
            'project': ?project,
          },

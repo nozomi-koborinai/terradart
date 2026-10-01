@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_privateca_certificate_authority`.
@@ -618,7 +619,7 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 /// GooglePrivatecaCertificateAuthority(
 ///   localName: 'app_ca',
 ///   certificateAuthorityId: TfArg.literal('app-root-ca'),
-///   pool: TfArg.ref(caPool.id),
+///   pool: caPool.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   config: PrivatecaCertificateAuthorityConfig(
 ///     subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
@@ -650,7 +651,7 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
   GooglePrivatecaCertificateAuthority({
     required super.localName,
     required TfArg<String> certificateAuthorityId,
-    required TfArg<String> pool,
+    required RefTo<GooglePrivatecaCaPool> pool,
     required TfArg<String> location,
     required PrivatecaCertificateAuthorityConfig config,
     required PrivatecaCertificateAuthorityKeySpec keySpec,
@@ -675,7 +676,7 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_authority_id': certificateAuthorityId,
-           'pool': pool,
+           'pool': pool.encodeAs('name'),
            'location': location,
            'config': TfArg.literal(config.encode()),
            'key_spec': TfArg.literal(keySpec.encode()),

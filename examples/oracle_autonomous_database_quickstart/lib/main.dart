@@ -62,8 +62,8 @@ final class OracleAutonomousDatabaseStack extends Stack {
         database: .literal('terradartdb'),
         displayName: .literal('TerraDart Autonomous Database'),
         adminPassword: .literal('Placeholder-Pass1'),
-        odbSubnet: .ref(odbSubnet.nameRef),
-        odbNetwork: .ref(odbNetwork.nameRef),
+        odbSubnet: odbSubnet.ref,
+        odbNetwork: odbNetwork.ref,
         properties: OracleDatabaseAutonomousDatabaseProperties(
           dbWorkload: .literal(.oltp),
           licenseType: .literal(.licenseIncluded),

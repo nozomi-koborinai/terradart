@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
 
 /// Sensitive field paths for `google_compute_interconnect_attachment`.
 const Set<String> _googleComputeInterconnectAttachmentSensitive = <String>{};
@@ -195,7 +196,7 @@ final class GoogleComputeInterconnectAttachment extends Resource {
     required TfArg<String> name,
     TfArg<ComputeInterconnectAttachmentType>? type,
     TfArg<String>? interconnect,
-    TfArg<String>? router,
+    RefTo<GoogleComputeRouter>? router,
     TfArg<String>? region,
     TfArg<String>? bandwidth,
     TfArg<num>? vlanTag8021q,
@@ -225,7 +226,7 @@ final class GoogleComputeInterconnectAttachment extends Resource {
            'name': name,
            'type': ?type,
            'interconnect': ?interconnect,
-           'router': ?router,
+           'router': ?router?.encodeAs('self_link'),
            'region': ?region,
            'bandwidth': ?bandwidth,
            'vlan_tag8021q': ?vlanTag8021q,

@@ -5,6 +5,9 @@ deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true
 
+extraImports:
+  - "import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;"
+
 dartTypeOverrides:
   key_algorithm: CertificateManagerCertificateIssuanceConfigKeyAlgorithm
 
@@ -42,9 +45,7 @@ curatedDoc: |-
   ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
   ///     certificateAuthorityServiceConfig:
   ///         CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
-  ///       caPool: TfArg.literal(
-  ///         'projects/my-project/locations/us-central1/caPools/my-pool',
-  ///       ),
+  ///       caPool: pool.ref,
   ///     ),
   ///   ),
   ///   keyAlgorithm: TfArg.literal(
@@ -75,9 +76,11 @@ prelude: |
       required this.caPool,
     });
 
-    final TfArg<String> caPool;
+    final RefTo<GooglePrivatecaCaPool> caPool;
 
-    Map<String, Object?> encode() => {'ca_pool': caPool};
+    Map<String, Object?> encode() => {
+      'ca_pool': caPool.encodeAs('id').toTfJson(),
+    };
   }
 
   /// Certificate authority backend for [GoogleCertificateManagerCertificateIssuanceConfig].

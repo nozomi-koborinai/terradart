@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../route53/aws_route53_zone.dart' show AwsRoute53Zone;
+
 /// Sensitive field paths for `aws_route53_record`.
 const Set<String> _awsRoute53RecordSensitive = <String>{};
 
@@ -518,7 +520,7 @@ final class AwsRoute53Record extends Resource {
     TfArg<String>? setIdentifier,
     TfArg<num>? ttl,
     required TfArg<Route53RecordType> type,
-    required TfArg<String> zoneId,
+    required RefTo<AwsRoute53Zone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -534,7 +536,7 @@ final class AwsRoute53Record extends Resource {
            'set_identifier': ?setIdentifier,
            'ttl': ?ttl,
            'type': type,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('zone_id'),
          },
        );
 

@@ -2,7 +2,14 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
+import 'google_firebase_app_hosting_build.dart'
+    show GoogleFirebaseAppHostingBuild;
 import 'package:terradart_core/terradart_core.dart';
+
+import '../firebase_app_hosting/google_firebase_app_hosting_backend.dart'
+    show GoogleFirebaseAppHostingBackend;
+import '../firebase_app_hosting/google_firebase_app_hosting_build.dart'
+    show GoogleFirebaseAppHostingBuild;
 
 /// Sensitive field paths for `google_firebase_app_hosting_traffic`.
 const Set<String> _googleFirebaseAppHostingTrafficSensitive = <String>{};
@@ -42,10 +49,8 @@ class FirebaseAppHostingTrafficSplit {
     required this.percent,
   });
 
-  /// `build_id` of the target build (NOT the full resource path).
-  /// Typically `TfArg.ref(build.buildIdRef)` where `build` is a
-  /// [GoogleFirebaseAppHostingBuild].
-  final TfArg<String> build;
+  /// The target build; emits its `build_id`.
+  final RefTo<GoogleFirebaseAppHostingBuild> build;
 
   /// Percentage of traffic to direct at [build]. Provider currently
   /// requires this to be exactly 0 or 100; the split list as a whole
@@ -53,7 +58,7 @@ class FirebaseAppHostingTrafficSplit {
   final TfArg<int> percent;
 
   Map<String, Object?> toArgMap() => {
-    'build': build.toTfJson(),
+    'build': build.encodeAs('build_id').toTfJson(),
     'percent': percent.toTfJson(),
   };
 }
@@ -177,13 +182,13 @@ final class FirebaseAppHostingTrafficRoutingTarget
 /// ```dart
 /// final traffic = GoogleFirebaseAppHostingTraffic(
 ///   localName: 'main',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .target(
 ///     FirebaseAppHostingTrafficTarget(
 ///       splits: [
 ///         FirebaseAppHostingTrafficSplit(
-///           build: TfArg.ref(build.buildIdRef),
+///           build: build.ref,
 ///           percent: TfArg.literal(100),
 ///         ),
 ///       ],
@@ -196,7 +201,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
 /// ```dart
 /// final traffic = GoogleFirebaseAppHostingTraffic(
 ///   localName: 'main',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .rolloutPolicy(
 ///     FirebaseAppHostingTrafficRolloutPolicy(
@@ -216,7 +221,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
 
   GoogleFirebaseAppHostingTraffic({
     required super.localName,
-    required TfArg<String> backend,
+    required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required FirebaseAppHostingTrafficRouting routing,
     TfArg<String>? project,
@@ -227,7 +232,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backend': backend,
+           'backend': backend.encodeAs('backend_id'),
            'location': location,
            ...routing.argMap,
            'project': ?project,

@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_address.dart' show GoogleComputeAddress;
+import '../compute/google_compute_router.dart' show GoogleComputeRouter;
+import '../compute/google_compute_router_nat.dart' show GoogleComputeRouterNat;
+
 /// Sensitive field paths for `google_compute_router_nat_address`.
 const Set<String> _googleComputeRouterNatAddressSensitive = <String>{};
 
@@ -26,10 +30,10 @@ final class GoogleComputeRouterNatAddress extends Resource {
 
   GoogleComputeRouterNatAddress({
     required super.localName,
-    required TfArg<String> router,
-    required TfArg<String> routerNat,
-    required TfArg<List<String>> natIps,
-    TfArg<List<String>>? drainNatIps,
+    required RefTo<GoogleComputeRouter> router,
+    required RefTo<GoogleComputeRouterNat> routerNat,
+    required TfArg<List<RefTo<GoogleComputeAddress>>> natIps,
+    TfArg<List<RefTo<GoogleComputeAddress>>>? drainNatIps,
     TfArg<String>? region,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -40,10 +44,10 @@ final class GoogleComputeRouterNatAddress extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'router': router,
-           'router_nat': routerNat,
-           'nat_ips': natIps,
-           'drain_nat_ips': ?drainNatIps,
+           'router': router.encodeAs('name'),
+           'router_nat': routerNat.encodeAs('name'),
+           'nat_ips': natIps.encodeAs('self_link'),
+           'drain_nat_ips': ?drainNatIps?.encodeAs('self_link'),
            'region': ?region,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

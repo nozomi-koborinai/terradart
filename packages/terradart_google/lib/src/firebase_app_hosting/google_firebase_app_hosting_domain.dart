@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firebase_app_hosting/google_firebase_app_hosting_backend.dart'
+    show GoogleFirebaseAppHostingBackend;
+
 /// Sensitive field paths for `google_firebase_app_hosting_domain`.
 const Set<String> _googleFirebaseAppHostingDomainSensitive = <String>{};
 
@@ -71,7 +74,7 @@ class FirebaseAppHostingDomainRedirect {
 /// ```dart
 /// final www = GoogleFirebaseAppHostingDomain(
 ///   localName: 'www',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('www.example.com'),
 /// );
@@ -81,7 +84,7 @@ class FirebaseAppHostingDomainRedirect {
 /// ```dart
 /// final apex = GoogleFirebaseAppHostingDomain(
 ///   localName: 'apex',
-///   backend: TfArg.ref(backend.backendIdRef),
+///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('example.com'),
 ///   serve: FirebaseAppHostingDomainServe(
@@ -103,7 +106,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
 
   GoogleFirebaseAppHostingDomain({
     required super.localName,
-    required TfArg<String> backend,
+    required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required TfArg<String> domainId,
     FirebaseAppHostingDomainServe? serve,
@@ -116,7 +119,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'backend': backend,
+           'backend': backend.encodeAs('backend_id'),
            'location': location,
            'domain_id': domainId,
            if (serve != null) 'serve': TfArg.literal([serve.toArgMap()]),
